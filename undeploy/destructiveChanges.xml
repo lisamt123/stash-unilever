@@ -30,7 +30,7 @@
 	<members>isll_EventDetailExtention</members>
 	<members>isll_EventDetailExtentionTest</members>
 	<members>isll_EventHandler</members>
-	<members>sll_EventHandlerTest</members>
+	<members>isll_EventHandlerTest</members>
 	<members>isll_FeedItemTriggerHandler</members>
 	<members>isll_FeedItemTriggerHandlerTest</members>
 	<members>isll_LibraryController</members>
