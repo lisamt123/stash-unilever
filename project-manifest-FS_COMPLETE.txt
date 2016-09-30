@@ -44,6 +44,7 @@ src/objects/FS_Segmentation__c.object
 src/objects/FS_TemporaryProductDiscount__c.object
 src/objects/FS_User_Territory__c.object
 src/objects/FSOpportunityTriggerSettings__c.object
+src/objects/FSCurrencyinEUR__c.object
 src/objects/FSVATRU__c.object
 src/objects/FSVATUA__c.object
 src/layouts/Account-Feed Based Distributor.layout
@@ -585,3 +586,33 @@ src/roles/Sales_Development_Manager.role
 src/roles/Senior_Distributor_Account_Executive.role
 src/roles/Specnaz.role
 src/roles/UFS_Russia.role
+src/permissionsets/FS_AFM.permissionset
+src/permissionsets/FS_Integration_User.permissionset
+src/permissionsets/FS_Marketing.permissionset
+src/permissionsets/FS_RU_Corporate.permissionset
+src/permissionsets/FS_RU_Finance.permissionset
+src/permissionsets/FS_RU_SCP.permissionset
+src/permissionsets/FS_RussiaSalesRep.permissionset
+src/permissionsets/FS_Sales_Rep.permissionset
+src/permissionsets/FS_SCP_And_Corp.permissionset
+src/profiles/Unilever Food Solution - NA.profile
+src/profiles/Unilever Food Solution - Russia.profile
+src/objectTranslations/Account-ru.objectTranslation
+src/objectTranslations/Activity-ru.objectTranslation
+src/objectTranslations/CampaignMember-ru.objectTranslation
+src/objectTranslations/Case-ru.objectTranslation
+src/objectTranslations/Contact-ru.objectTranslation
+src/objectTranslations/File__c-ru.objectTranslation
+src/objectTranslations/FS_Account_Plan__c-ru.objectTranslation
+src/objectTranslations/FS_Defined_Objective__c-ru.objectTranslation
+src/objectTranslations/FS_Monthy_Planner__c-ru.objectTranslation
+src/objectTranslations/FS_Segmentation__c-ru.objectTranslation
+src/objectTranslations/Lead-ru.objectTranslation
+src/objectTranslations/OpportunityLineItem-ru.objectTranslation
+src/objectTranslations/Opportunity-ru.objectTranslation
+src/objectTranslations/Pricebook2-ru.objectTranslation
+src/objectTranslations/Product_at_Risk__c-ru.objectTranslation
+src/objectTranslations/Risk__c-ru.objectTranslation
+src/objectTranslations/Solution-ru.objectTranslation
+src/objectTranslations/Survey_Question__c-ru.objectTranslation
+src/objectTranslations/Task-ru.objectTranslation
