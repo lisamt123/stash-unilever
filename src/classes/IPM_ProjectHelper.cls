@@ -1252,20 +1252,7 @@ public with sharing class IPM_ProjectHelper
                                                     globalProject = childToParentProject.get(project.IPM_Parent_Project__c);
                                                 }  
                                                 
-                                                // to identify finanical as a key or non-key.
-                                                if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY) {
                                                     
-                                                    System.debug('ProjectRolloutMap ==>' + projectToRolloutMap);
-                                                    Map<Id,IPM_Project_Rollout__c> mapProjectRollout = projectToRolloutMap.get(project.id);
-                                                    for(IPM_Project_Rollout__c oRollout : mapProjectRollout.values()){
-                                                        if(oRollout.Name == financeUniqueKey && oRollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE){
-                                                            System.debug('Flag IsKeyFinancialAtCapability__c checked');
-                                                            financialObj.IsKeyFinancialAtCapability__c = oRollout.KeyMCO__c;
-                                                            System.debug('financialObj after flag check==>'+financialObj);
-                                                            break;
-                                                        }
-                                                    }
-                                                }      
                                             } 
                                             else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
                                             {   
@@ -1331,7 +1318,34 @@ public with sharing class IPM_ProjectHelper
                                             
                                             if(isChanged)
                                             {
+                                                
                                                 financialsToUpsert.put(financialObj.Financial_External_Id__c,financialObj);
+                                                
+                                            }
+                                        }
+                                    }                                               
+                                }
+                                
+                                
+                                else{
+                                
+                                	
+                                	// to identify finanical as a key or non-key.
+                                	
+                                	IPM_Financial__c financialObj = finUniqueKeyToFinancialMap.get(financeUniqueKey);
+
+                                    if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY) {
+                                        
+
+                                        Map<Id,IPM_Project_Rollout__c> mapProjectRollout = projectToRolloutMap.get(project.id);
+                                        for(IPM_Project_Rollout__c oRollout : mapProjectRollout.values()){
+                                            if(oRollout.Name == financeUniqueKey && oRollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE){
+
+                                                financialObj.IsKeyFinancialAtCapability__c = oRollout.KeyMCO__c;
+                                                
+                                                financialsToUpsert.put(financialObj.Financial_External_Id__c,financialObj);
+                                                break;
+                                                
                                             }
                                         }
                                     }                                               

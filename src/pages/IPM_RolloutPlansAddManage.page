@@ -171,7 +171,7 @@
 
     <c:IPM_ConfirmModal />
     <c:IPM_StopConfirmation />
-    <apex:actionFunction name="changeCluster" action="{!changeCluster}" reRender="clusterSectionId,scriptPanel" status="loadingStatus" oncomplete="scriptPanelLoad();">
+    <apex:actionFunction name="changeCluster" action="{!changeCluster}" reRender="clusterSectionId,scriptPanel" status="loadingStatus" oncomplete="scriptPanelLoad();regionalscriptpanel();">
      <apex:param name="p1" assignTo="{!globalCountries}" value=""/>
      <apex:param name="p2" assignTo="{!globalUnselectedCountries}" value=""/>
      <apex:param name="p3" assignTo="{!selectedCluster}" value=""/>

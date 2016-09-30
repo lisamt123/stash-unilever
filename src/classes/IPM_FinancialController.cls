@@ -118,7 +118,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public decimal exRate{get;set;}
     map<string,decimal> mapCurrency;   
     
-    
+    /*************************************************************************************************************************************
+    * @description  Used to Populate the values of Label of 'Accept Local BC' in GKM3
+    * @param        NONE
+    * @return       label String
+    */
     public String getLabelValueGKM3() {
         
         String buttonLabel = IPM_ConstantUtils.BLANK;
@@ -126,7 +130,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             buttonLabel = Label.IPM_OVER_FIN_BC_F_OR_C_GKM3;
         }
         if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_PLE ){
-            if(project.IPM_Phase__c == currentFinancial.Added_At_Stage__c){
+            if(currentFinancial.Added_At_Stage__c == IPM_ConstantUtils.PHASE_MARKET_READY||currentFinancial.Added_At_Stage__c == IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT||currentFinancial.Added_At_Stage__c == IPM_ConstantUtils.PHASE_PLE ){
                 buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3;
             }
             else{
@@ -786,6 +790,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     {
                         topDown = true;
                         getGlobalMyViewWrappers();
+                         showKeyFinancial = true; // This is set to true to show keyfinancial flag in phase from Feasibility to PLE
                     } 
                     else if(currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME){
                         getGlobalTopDownWrappers();
@@ -1871,7 +1876,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             isEditMode = true;
             isEditModeBottomUp = false;
-            isFinEditable = isFinancialEditable(project, currentFinancial);
+            isFinEditable = false;
             
             if(!isProjectStop && (toShowEditOpern||toShowEditButton))
             {
@@ -1912,7 +1917,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
              milestoneFinanceDataValidationMessage = IPM_ConstantUtils.BLANK;
              isEditMode = false;
              isEditModeBottomUp = false;
-             isFinEditable = isFinancialEditable(project, currentFinancial);
+             isFinEditable = true;
              
             
             

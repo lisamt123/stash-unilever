@@ -7433,6 +7433,11 @@
         <field>IPM_Questionnaire__c.BETCurrentStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Questionnaire__c.PDLDocument_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Questionnaire__c.IPM_HelpText_ReadOnly__c</field>

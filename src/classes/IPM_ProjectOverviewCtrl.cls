@@ -255,11 +255,11 @@ public with sharing class IPM_ProjectOverviewCtrl {
        IPM_Project_Type__c currentProjecttype =  IPM_Utils.retrieveProjectType(project);
        if(currentProjecttype != null && currentProjecttype.IPM_Gate_Document__c != null){
            currGateToDisplay = Label.IPM_IN + IPM_ConstantUtils.IPM_SPACE +   currentProjecttype.IPM_Gate_Document__c;
-       }
 	   if(IPM_ConstantUtils.CONTRACT_GATE.Equals(currentProjecttype.IPM_Gate_Document__c) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3 .equals(project.IPM_ProjectGKM__c))
 	   {
 			currGateToDisplay +=IPM_ConstantUtils.PDLAMP;
-	   }
+           }
+       }
        
        /*** Logic to Display the "Reactivate Project" button on Project Overview page for IPM Business Partner   
    			For Stopped project in Ideas phase for 38 months, "Reactivate Project" button will be displayed for IPM Business Partner
