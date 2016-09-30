@@ -57,7 +57,8 @@
            || navigator.userAgent.match(/webOS/i)
            || navigator.userAgent.match(/iPhone/i)
            || navigator.userAgent.match(/iPad/i)){
-            helper.scrollToLocation(component, "top");            
+            helper.scrollToLocation(component, "top");   
+            
         }
         if(navigator.userAgent.match(/iPod/i)
            || navigator.userAgent.match(/BlackBerry/i)

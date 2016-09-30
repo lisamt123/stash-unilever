@@ -65,7 +65,7 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
+      <runTest>AA_AgentAppService_Test</runTest>
     </sf:deploy>
-  </target>  
-
+  </target>
 </project>
