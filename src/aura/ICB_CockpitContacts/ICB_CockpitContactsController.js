@@ -14,7 +14,6 @@
     changeCheckBox : function(component, event, helper) {
         console.log('Entering <changeCheckBox>');
         helper.changeCheck(component,event,"checkbox"); 
-        location.reload(true);
         console.log('Exit <changeCheckBox>');
     },
     solicitation : function(component, event, helper) {
@@ -23,7 +22,6 @@
         var listContact = component.get("v.listContacts");
         if(!listContact[indexContact].isDisabled){
             helper.createOpportunity(component, event);
-            location.reload(true);
         }
         console.log('Exit <solicitation>');
     },
@@ -34,7 +32,6 @@
        
         if(!listContact[indexContact].isDisabled && listContact[indexContact].oppLineItem != null){
             helper.oppItemUpdate(component,event,listContact[indexContact].contactItem.Id);
-            location.reload(true);
         }
         console.log('Exit <updatedItem>');
     }

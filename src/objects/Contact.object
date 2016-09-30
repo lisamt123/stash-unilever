@@ -752,6 +752,16 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>ICB_Cause__c</fullName>
+        <externalId>false</externalId>
+        <label>Cause</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>ICB_Community_User__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Verify if the user is part of the Ice cream community.</description>
@@ -799,6 +809,14 @@
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Fail__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Fail</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>ICB_Internet_Access__c</fullName>
@@ -885,6 +903,15 @@
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ICB_Cause__c  &lt;&gt; &apos;&apos;, &apos;Fail&apos;, IF( ICB_Community_User__c = TRUE , &apos;Active&apos;, &apos;Inactive&apos;))</formula>
+        <label>Status</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>ICB_Type__c</fullName>
