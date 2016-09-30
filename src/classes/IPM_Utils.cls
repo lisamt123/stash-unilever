@@ -116,7 +116,7 @@ public without sharing class IPM_Utils {
     public static String DueDatecannotbelessthanMarketReadyGateApproval='Due Date cannot be less than Market Ready Gate Approval';
     public static String DueDatecannotbeafterContractGate='Due Date cannot be after Contract Gate';
     public static String PostLaunchEvaluation='Post Launch Evaluation';
-    public static String TargetLaunchDateShiptoTrade='Target Launch Date(Ship to Trade)';
+    public static String TargetLaunchDateShiptoTrade='Target Launch Date (Ship to Trade)';
     public static String DueDatecannotbelessthanShiptotrade='Due Date cannot be less than Ship to trade';
     public static String DueDatecannotbelessthanMarketDeploymentGateApproval='Due Date cannot be less than Market Deployment Gate Approval';
     public static String Duedate='Due date';

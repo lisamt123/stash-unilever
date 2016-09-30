@@ -492,14 +492,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
-        <fullName>Validation_Enabled__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Validation Enabled</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
     <label>IPM Project Type</label>
     <visibility>Public</visibility>
 </CustomObject>

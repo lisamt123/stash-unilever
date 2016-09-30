@@ -102,57 +102,57 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
     	} 
         for(IPM_Project_Rollout__c rollout : localRolloutList)
         {
-        	if((rollout.KeyMCO__c && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) || project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-	        {
-	        	RolloutLevelWrapper rolloutLevelWp = new RolloutLevelWrapper();
-	        	rolloutLevelWp.localRolloutWp = rollout;
-	        	for(IPM_Country__c cntryEle : rollout.IPM_Countries_Local__r)
-	        	{
-	        		String selectedClaimString = IPM_ConstantUtils.SELECT_CLAIM;
-	        		List<String> selectedClaimList = new List<String>();
-	        		rolloutLevelWp.countryListWp.add(cntryEle);
-	        		for(IPM_Project_Claim__c projClm : projectClaimList)
-	        		{
-	        			CountryClaimsWrapper cntyLvl = null;
-	        			
-	        			String uniqueKey = projClm.id +''+ cntryEle.Id;
-	        		
-	        			if(uniqueKeyToCountryClaimsMap.containsKey(uniqueKey))
-	        			{
-	        				IPM_Country_Level_Claim__c DBCountryLevelClaimObj = uniqueKeyToCountryClaimsMap.get(uniqueKey);
-	        				cntyLvl = new CountryClaimsWrapper(DBCountryLevelClaimObj,true);
-	        				selectedClaimList.add(DBCountryLevelClaimObj.IPM_Claim__c);	
-	        			}
-	        			else if(!showCountryClaim)
-	        			{
-	        				cntyLvl = new CountryClaimsWrapper(new IPM_Country_Level_Claim__c( IPM_Project_Claim__c=projClm.id, IPM_Claim__c = projClm.IPM_Claim__c,IPM_Country__c = cntryEle.Id),false);
-	        			}
-	        			
-	        			if(cntyLvl!=null)
-	        			{
-			        		if(rolloutLevelWp.countryLevelMapWp.containsKey(cntryEle.id))
-			        		{
-								rolloutLevelWp.countryLevelMapWp.get(cntryEle.id).add(cntyLvl);
-							}
-							else
-							{
-								rolloutLevelWp.countryLevelMapWp.put(cntryEle.id,new List<CountryClaimsWrapper>{cntyLvl});
-							}	
-	        			}
-	        		}
-	        		if(!selectedClaimList.isEmpty())
-	        		{ 
-	        			selectedClaimString = String.join(selectedClaimList,IPM_ConstantUtils.SEMICOLONCLAIMSSEPERATION);
-	        		}
-					rolloutLevelWp.countryToSelectedClaims.put(cntryEle.Id,selectedClaimString);	
-	        	}
-	        	rolloutLvlWrapper.add(rolloutLevelWp);
-	        }
-        }	
-	}
-	
-	
-	
+            if((rollout.KeyMCO__c && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) || project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+            {
+                RolloutLevelWrapper rolloutLevelWp = new RolloutLevelWrapper();
+                rolloutLevelWp.localRolloutWp = rollout;
+                for(IPM_Country__c cntryEle : rollout.IPM_Countries_Local__r)
+                {
+                    String selectedClaimString = IPM_ConstantUtils.SELECT_CLAIM;
+                    List<String> selectedClaimList = new List<String>();
+                    rolloutLevelWp.countryListWp.add(cntryEle);
+                    for(IPM_Project_Claim__c projClm : projectClaimList)
+                    {
+                        CountryClaimsWrapper cntyLvl = null;
+                        
+                        String uniqueKey = projClm.id +''+ cntryEle.Id;
+                    
+                        if(uniqueKeyToCountryClaimsMap.containsKey(uniqueKey))
+                        {
+                            IPM_Country_Level_Claim__c DBCountryLevelClaimObj = uniqueKeyToCountryClaimsMap.get(uniqueKey);
+                            cntyLvl = new CountryClaimsWrapper(DBCountryLevelClaimObj,true);
+                            selectedClaimList.add(DBCountryLevelClaimObj.IPM_Claim__c); 
+                        }
+                        else
+                        {
+                            cntyLvl = new CountryClaimsWrapper(new IPM_Country_Level_Claim__c( IPM_Project_Claim__c=projClm.id, IPM_Claim__c = projClm.IPM_Claim__c,IPM_Country__c = cntryEle.Id),false);
+                        }
+                        
+                        if(cntyLvl!=null)
+                        {
+                            if(rolloutLevelWp.countryLevelMapWp.containsKey(cntryEle.id))
+                            {
+                                rolloutLevelWp.countryLevelMapWp.get(cntryEle.id).add(cntyLvl);
+                            }
+                            else
+                            {
+                                rolloutLevelWp.countryLevelMapWp.put(cntryEle.id,new List<CountryClaimsWrapper>{cntyLvl});
+                            }   
+                        }
+                    }
+                    if(!selectedClaimList.isEmpty())
+                    { 
+                        selectedClaimString = String.join(selectedClaimList,IPM_ConstantUtils.SEMICOLONCLAIMSSEPERATION);
+                    }
+                    rolloutLevelWp.countryToSelectedClaims.put(cntryEle.Id,selectedClaimString);    
+                }
+                rolloutLvlWrapper.add(rolloutLevelWp);
+            }
+        }   
+    }
+    
+    
+    
     public PageReference addProjectClaimsToAllCountries() 
     {
     	List<IPM_Country_Level_Claim__c> countryLevelClaimList = new List<IPM_Country_Level_Claim__c>();

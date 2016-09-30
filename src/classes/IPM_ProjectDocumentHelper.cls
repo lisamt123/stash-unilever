@@ -291,8 +291,10 @@ public with sharing class IPM_ProjectDocumentHelper
                                         
                                         
 										copyOverSummaryData(projDocSect,section,associatedGate);
+										
+                                        skipProjSec = skipProjectDocumentSections(projDocSect, currentProject);
                                         
-										if(!String.isBlank(section.ProjectSpan__c) && !String.isBlank(project.IPMProject_Span__c) && section.ProjectSpan__c.contains(project.IPMProject_Span__c)){
+										if(!String.isBlank(section.ProjectSpan__c) && !String.isBlank(project.IPMProject_Span__c) && section.ProjectSpan__c.contains(project.IPMProject_Span__c) && skipProjSec ){
 											if(!(project.IPM_ProjectSubType__c == IPM_ConstantUtils.IPM_BLG && section.IPM_Section_Sequence__c == '5.3'))
 											{
                                             projectDocumentSectionList.add(projDocSect);
@@ -305,6 +307,17 @@ public with sharing class IPM_ProjectDocumentHelper
             }       
         }
         return projectDocumentSectionList;
+    }
+    
+      public static boolean skipProjectDocumentSections(IPM_Project_Document_Section__c projDocSect, IPM_Project__c currentProject)
+    {
+    	
+    	if(currentProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && projDocSect.IPM_Master_Section_External_Id__c == IPM_ConstantUtils.REGIONAL_BDTEAM_EXTID)
+    	{
+    		return false;
+    	}
+    	
+    	return true;
     }
     
     public static void copyOverSummaryData(IPM_Project_Document_Section__c  projDocSect, IPM_Section__c section,String associatedGate)
