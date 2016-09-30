@@ -23,7 +23,7 @@ public with sharing class FAU_EmailTemplateSenderController {
         //addFieldsTo(standardController);
         
         // commented by Suman Sarita Mahapatra to avoid "Detects when a local variable is declared and/or assigned, but not used." in Sonar.
-      // List<SObject> selectedObjects = (List<SObject>) standardController.getSelected();
+       List<SObject> selectedObjects = (List<SObject>) standardController.getSelected();
  
     }
     
