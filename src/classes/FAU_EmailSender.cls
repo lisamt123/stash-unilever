@@ -14,14 +14,11 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
 ***********************************************************************/
 public without sharing class FAU_EmailSender {
     //Constructor
-    //Constructor
     public FAU_EmailSender()
     {
         
     }  
-    {
-        
-    }  
+
 
     /*******************************************************************
        Purpose:     Send Email to Webparticipants (with Meeting Request)
@@ -52,7 +49,8 @@ public without sharing class FAU_EmailSender {
     /*******************************************************************
        Purpose:     create ICS file
     ********************************************************************/
-    private static Blob createIcsBlob(Datetime dtStart, Datetime dtEnd, String sLocation, String sSummary, String sDescription) {
+    private static Blob createIcsBlob(Datetime dtStart, Datetime dtEnd, String sLocation, String sSummary, String sDescription)
+    {
         String txtInvite = '';
         String T = 'T';
         String Z='Z\n';//Modified by yugandhar,declared new string Z
@@ -92,7 +90,7 @@ public without sharing class FAU_EmailSender {
             //msg.setToAddresses(new List<String>{lUserEmail[j]});
 
             lstMsgs.add(msg);
-        }   
+           
          // Send the emails in a transaction, then roll it back
         Savepoint beforeInserts = Database.setSavepoint();
 
@@ -112,7 +110,6 @@ public without sharing class FAU_EmailSender {
 
             }
             lstMsgsToSend.add(emailToSend);
-        }
 
         System.Debug('##### FAU_EmailSender - lstMsgsToSend.size(): ' + lstMsgsToSend.size()); 
         System.Debug('##### FAU_EmailSender - Before Second Send'); 
