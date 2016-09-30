@@ -873,7 +873,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                         {
                             Id localRolloutId = tempLocalRollout.Id;
                             IPM_Project_Rollout__c localRollout = lstcompleteRollout.get(localRolloutId);
-                            if(projectType!=null &&  projectType.IPM_CreateLocalProjects__c && checkToLogicToCreateProject(projectType,tempLocalRollout))
+                            if(projectType!=null &&  projectType.IPM_CreateLocalProjects__c && checkToLogicToCreateProject(projectType,tempLocalRollout) && localRollout.Local_Project__c==null)
                             {
                                 localRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
                                 localRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;

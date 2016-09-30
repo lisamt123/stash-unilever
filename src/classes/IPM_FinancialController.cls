@@ -2881,6 +2881,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 localRolloutProject.IPM_Target_Launch_Dates__c = mcoCountryRolloutPlan.Target_Launch_Date__c;
                 localRolloutProject.Rollout_Plan_Target_Launch_Date__c = mcoCountryRolloutPlan.Target_Launch_Date__c;
                 update localRolloutProject;
+                project.IPM_Target_Launch_Dates__c = localRolloutProject.IPM_Target_Launch_Dates__c;
                 getFinancials();                 
             }
             else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
@@ -3149,9 +3150,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     @testvisible Private void localProjectConditions(){
         if(IPM_ConstantUtils.GATE_KEEPING_MODEL_3.equalsIgnoreCase(project.IPM_ProjectGKM__c)){
             financialAcceptFrom = label.IPM_Accept_Global_BC;
+            tldAcceptedBCConfirmed=Label.Accept_from_Global+IPM_ConstantUtils.IPM_SPACE +label.IPM_and_Confirm;
         }
         else{
             financialAcceptFrom=label.IPM_ACCEPT_REGIONAL_BC;
+            tldAcceptedBCConfirmed=Label.Accept_from_Regional+IPM_ConstantUtils.IPM_SPACE +label.IPM_and_Confirm;
         }
         
         boolean isLocalProjectAccept=false;
@@ -3159,7 +3162,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         toShowEditOpern=false;
         isCopyfromSTDBC=false;
         isTDLAcceptNBC_Confirm=false;
-        tldAcceptedBCConfirmed=Label.Accept_from_Regional+IPM_ConstantUtils.IPM_SPACE +label.IPM_and_Confirm;
+        
         if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(project.IPM_Project_Type__c) &&
         ((IPM_ConstantUtils.PHASE_FEASIBILITY.equals(project.IPM_Phase__c) && currentFinancial.IPM_Business_Case_Confirmed__c) ||
         (IPM_ConstantUtils.PHASE_CAPABILITY.equals(project.IPM_Phase__c) && currentFinancial.Is_BC_Confirmed_Capability__c)))
