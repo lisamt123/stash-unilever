@@ -186,7 +186,9 @@
             }
     },
     cancel: function(component, event, helper) {
-        var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
+       // var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
+       // winter 17' critical update issue
+       var selectEvent =  component.getEvent("navigateToPageDetailEvent");
         selectEvent.setParams({"navigate":"AA_LandingPageComponent","filterType":component.get("v.filterType"),"applyFilter":component.get("v.applyFilter"),"sortType":component.get("v.sortType"),"limitRecords":component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"clusterId":component.get("v.clusterId"),"countryId":component.get("v.countryId")}).fire();
     },
     handleSelectedUsers : function(component, event, helper) {
@@ -376,7 +378,9 @@
                 component.set("v.disableButton",false);
                 component.set("v.successMessage","true");     
                 setTimeout(function() {
-                    var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
+                    // var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
+                    // winter 17' critical update issue
+                    var selectEvent =  component.getEvent("navigateToPageDetailEvent");
                     selectEvent.setParams({"navigate":"AA_LandingPageComponent","filterType":component.get("v.filterType"),"sortType":component.get("v.sortType"),"limitRecords":component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"clusterId":component.get("v.clusterId"),"countryId":component.get("v.countryId")}).fire();
                 },3000);
             }
