@@ -1,6 +1,9 @@
 src
 src/permissionsets
-src/permissionsets/CEC_User.permissionset
+src/pages
 src/permissionsets/CEC_Manager.permissionset
-src/profiles
-src/profiles/Unilever - Salesforce MultiApp Standard.profile
+src/pages/CEC_PreChatForm.page
+src/pages/CEC_PreChatForm.page-meta.xml 
+
+
+

@@ -73,7 +73,7 @@
     <fieldUpdates>
         <fullName>SAM_Product_Other_Product_RW</fullName>
         <field>RecordTypeId</field>
-        <lookupValue>SAM_Other_Product_RW</lookupValue>
+        <lookupValue>SAM_XOther_Product_RW</lookupValue>
         <lookupValueType>RecordType</lookupValueType>
         <name>SAM Product Other Product RW</name>
         <notifyAssignee>false</notifyAssignee>

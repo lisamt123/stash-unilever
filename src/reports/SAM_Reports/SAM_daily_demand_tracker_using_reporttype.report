@@ -4,6 +4,9 @@
         <field>SAM_Request__c$Name</field>
     </columns>
     <columns>
+        <field>SAM_Request__c$txt_Request_Type_for_UI__c</field>
+    </columns>
+    <columns>
         <field>SAM_Request__c$txt_Master_Clarity_Id__c</field>
     </columns>
     <columns>
@@ -52,7 +55,7 @@
         <field>SAM_Request__c$eml_Portfolio_Manager_Email__c</field>
     </columns>
     <columns>
-        <field>SAM_Request__c.Quote_Line_Items__r$pkl_Publisher__c</field>
+        <field>SAM_Request__c$txt_CrossCharge_Publisher__c</field>
     </columns>
     <columns>
         <field>SAM_Request__c.Quote_Line_Items__r$Name</field>
@@ -61,7 +64,7 @@
         <field>SAM_Request__c.Quote_Line_Items__r$num_Quantity__c</field>
     </columns>
     <columns>
-        <field>SAM_Request__c$date_Query_Start_Date__c</field>
+        <field>SAM_Request__c$date_Request_Start_Date__c</field>
     </columns>
     <columns>
         <field>SAM_Request__c$Quote_Final_Provided_Date__c</field>
@@ -121,13 +124,7 @@
         <field>SAM_Request__c$pkl_Reason_for_closure__c</field>
     </columns>
     <columns>
-        <field>SAM_Request__c$ltxt_Comments__c</field>
-    </columns>
-    <columns>
         <field>SAM_Request__c$ltxt_Request_Comment_History__c</field>
-    </columns>
-    <columns>
-        <field>SAM_Request__c$fml_SAM_demand_manager__c</field>
     </columns>
     <columns>
         <field>SAM_Request__c.Quote_Line_Items__r$Total_Annual_Maint__c</field>
@@ -158,6 +155,9 @@
     </columns>
     <columns>
         <field>SAM_Request__c.Quote_Line_Items__r$pkl_Build_Details_Applicable__c</field>
+    </columns>
+    <columns>
+        <field>SAM_Request__c$fml_SAM_demand_manager__c</field>
     </columns>
     <currency>EUR</currency>
     <format>Summary</format>

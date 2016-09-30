@@ -1136,13 +1136,13 @@
             <name>End_Date_update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>SAM_Request__c.pkl_Status__c</field>
             <operation>equals</operation>
             <value>Closed</value>
         </criteriaItems>
-        <description>Report - end date update</description>
+        <description>Report - end date update . Alok - Deactivated and merged with Process Builder &quot;SAM Request Re-Open, Status and Owner Update and Send Status change Email&quot; &gt; Closed criteria</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1151,13 +1151,13 @@
             <name>Update_Start_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>SAM_Request__c.pkl_Status__c</field>
             <operation>equals</operation>
             <value>Saved</value>
         </criteriaItems>
-        <description>Report - request start date update</description>
+        <description>Report - request start date update .Alok : Deactivated and merged with Workflow - &quot;SAM Set STATUS to Saved&quot;</description>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -1240,6 +1240,10 @@
         </actions>
         <actions>
             <name>SAM_record_type_update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Start_Date</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>

@@ -25,37 +25,45 @@
             <title>R2R SME Area wise Summary</title>
             <useReportChart>false</useReportChart>
         </components>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <componentType>Table</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+            <report>CI_R2R_Innovation_Reports/CI_R2R_R2R_SME_Area_wise_Summary</report>
+            <showPicturesOnTables>true</showPicturesOnTables>
+            <sortBy>RowLabelAscending</sortBy>
+            <title>R2R SME Area</title>
+        </components>
     </leftSection>
     <middleSection>
         <columnSize>Medium</columnSize>
         <components>
-            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
-            <chartSummary>
-                <axisBinding>y</axisBinding>
-                <column>RowCount</column>
-            </chartSummary>
-            <componentType>ColumnStacked</componentType>
+            <componentType>Column</componentType>
             <displayUnits>Auto</displayUnits>
             <drillEnabled>false</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>false</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>CI_R2R_Innovation__c.R2R_SME_Area__c</groupingColumn>
-            <groupingColumn>CI_R2R_Innovation__c.Project_Category__c</groupingColumn>
             <legendPosition>Bottom</legendPosition>
-            <report>CI_R2R_Innovation_Reports/CI_R2R_SME_Vs_Project_Category_Summary</report>
+            <report>CI_R2R_Innovation_Reports/CI_R2R_RAG_Status_Wise_Summary</report>
             <showPercentage>false</showPercentage>
             <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
-            <title>Summary of SME and Project Category</title>
+            <title>R2R RAG Status wise summary</title>
             <useReportChart>false</useReportChart>
         </components>
     </middleSection>
     <rightSection>
         <columnSize>Medium</columnSize>
     </rightSection>
-    <runningUser>deploy.system@unilever.com</runningUser>
+    <runningUser>vivekaa.arumugam@unilever.com</runningUser>
     <textColor>#000000</textColor>
     <title>CI_R2R_Dashboard</title>
     <titleColor>#000000</titleColor>

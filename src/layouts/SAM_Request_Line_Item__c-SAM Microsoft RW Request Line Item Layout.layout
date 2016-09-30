@@ -49,6 +49,10 @@
                 <behavior>Edit</behavior>
                 <field>pkl_Hyper_V_Farm__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_SQL_Server_Farm__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -66,7 +70,8 @@
                 <field>txt_Version__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Edit</behavior>
+                <field>num_Number_of_VMS__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
