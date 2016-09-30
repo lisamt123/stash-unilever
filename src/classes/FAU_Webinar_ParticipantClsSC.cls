@@ -17,17 +17,17 @@ public with sharing class FAU_Webinar_ParticipantClsSC {
     /*******************************************************************
         Purpose:  Update PArticipant Webinar Date Time
     *******************************************************************/ 
-	public static FAU_Participant__c updateWebinarDateTime(FAU_Webinar_Participant__c oNewWebinarParticpant, set<Id> setPartcipantIds ){ 
+    public static FAU_Participant__c updateWebinarDateTime(FAU_Webinar_Participant__c oNewWebinarParticpant, set<Id> setPartcipantIds ){ 
         
-        if((oNewWebinarParticpant.FAU_Has_Accepted__c == True)&& (setPartcipantIds.contains(oNewWebinarParticpant.FAU_Participant__c)==false)){
+        if((oNewWebinarParticpant.FAU_Has_Accepted__c)&& (!setPartcipantIds.contains(oNewWebinarParticpant.FAU_Participant__c))){
             FAU_Participant__c oPartcipant = new FAU_Participant__c(Id = oNewWebinarParticpant.FAU_Participant__c,
-	            												 FAU_Webinar_Date_Time__c = oNewWebinarParticpant.FAU_Start_Time__c);
+                                                                 FAU_Webinar_Date_Time__c = oNewWebinarParticpant.FAU_Start_Time__c);
             
-         	setPartcipantIds.add(oPartcipant.Id);  
-         	return oPartcipant;
-    	}else{
-    		return null;
-    	}
-	}
+            setPartcipantIds.add(oPartcipant.Id);  
+            return oPartcipant;
+        }else{
+            return null;
+        }
+    }
 
 }
