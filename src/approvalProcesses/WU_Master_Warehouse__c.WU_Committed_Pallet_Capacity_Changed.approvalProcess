@@ -46,12 +46,13 @@
         </action>
 		<action>
             <name>WU_RejectionNotification</name>
-            <type>EmailAlert</type>
+            <type>Alert</type>
         </action>
         <action>
             <name>SetPriorValueForCommittedPallet</name>
             <type>FieldUpdate</type>
         </action>
+		
     </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
