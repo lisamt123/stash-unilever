@@ -149,7 +149,7 @@
     },
     navigateToMiddleElement : function(component, event, helper) {
         var middleElem = component.find("middlediv").getElement();
-        helper.scrollToLocation(component, middleElem);
+      //  helper.scrollToLocation(component, middleElem);
     },    
     scrollToTop : function(component, event, helper){   
 		helper.scrollToLocation(component, "top");
