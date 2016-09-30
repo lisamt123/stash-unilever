@@ -111,6 +111,32 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
     <externalSharingModel>Private</externalSharingModel>
+	<fields>
+        <fullName>ACCC_Survey__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;http://survey.clicktools.com/go?iv=&quot; 
+		&amp; $Setup.cec_Org_Settings__c.ACCC_Survey_Id__c
+		&amp; &quot;&amp;q1=&quot; &amp; Id 
+		&amp; &quot;&amp;q2=&quot; &amp; CaseNumber 
+		&amp; &quot;&amp;q3=&quot; &amp; TEXT(CreatedDate) 
+		&amp; &quot;&amp;q4=&quot; &amp; Text(Country_Name__c) 
+		&amp; &quot;&amp;q7=&quot; &amp; L2_Product_Category__c 
+		&amp; &quot;&amp;q8=&quot; &amp; L7_Product_Category__c 
+		&amp; &quot;&amp;q9=&quot; &amp; Case_Brand__c 
+		&amp; &quot;&amp;q10=&quot; &amp; CEC_Product_Reporting_Name__c 
+		&amp; &quot;&amp;q11=&quot; &amp; Product_UPC__c 
+		&amp; &quot;&amp;q12=&quot; &amp; Production_Code__c 
+		&amp; &quot;&amp;q13=&quot; &amp; TEXT(Origin) 
+		&amp; &quot;&amp;q14=&quot; &amp; Global_Reason_L5_desc__c, 
+		&quot;Homecare Cosmetovigilence&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ACCC Survey</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>AccountId</fullName>
         <trackFeedHistory>false</trackFeedHistory>

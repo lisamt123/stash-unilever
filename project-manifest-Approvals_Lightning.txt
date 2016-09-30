@@ -110,6 +110,12 @@ src/aura/CORE_CA_SubDetailEvent/CORE_CA_SubDetailEvent.evt
 src/aura/CORE_CA_SubDetailEvent/CORE_CA_SubDetailEvent.evt-meta.xml
 src/aura/CORE_CA_FeedbackEvent/CORE_CA_FeedbackEvent.evt
 src/aura/CORE_CA_FeedbackEvent/CORE_CA_FeedbackEvent.evt-meta.xml
+src/aura/ChatterPublisherCmp
+src/aura/ChatterPublisherCmp/ChatterPublisherCmp.cmp
+src/aura/ChatterPublisherCmp/ChatterPublisherCmp.cmp-meta.xml
+src/aura/ChatterPublisherCmp/ChatterPublisherCmp.css
+src/aura/ChatterPublisherCmp/ChatterPublisherCmpController.js
+src/aura/ChatterPublisherCmp/ChatterPublisherCmpHelper.js
 src/tabs
 src/tabs/My_Approval_2_0.tab
 src/workflows

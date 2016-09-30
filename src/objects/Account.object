@@ -2122,6 +2122,17 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
+	<fields>
+        <fullName>SMS_Search_Mobile_Number__c</fullName>
+        <description>CEC: Formula field is used to identify market specific accounts</description>
+        <externalId>false</externalId>
+        <formula>Mobile_Phone_No_Special_Char__c +  TEXT(Owner.Market__c)</formula>
+        <label>SMS Search Mobile Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Strategic_Capabilities_Video__c</fullName>
         <externalId>false</externalId>
