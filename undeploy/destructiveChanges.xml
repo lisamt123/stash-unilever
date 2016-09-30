@@ -53,7 +53,7 @@
 	<members>isll_UserpicWithFlagController</members>
 	<members>isll_UserpicWithFlagControllerTest</members>
 	<members>isll_USLPBrandTableCompControllerTest</members>
-	<members>isll_USLPBrandTableComponentController<members>
+	<members>isll_USLPBrandTableComponentController</members>
 	<members>isll_Utility</members>
 	<members>isll_UtilityTest</members>
 	<members>isll_WordCloudController</members>
