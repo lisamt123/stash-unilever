@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+2568<?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>AD_Manager</application>
@@ -2564,8 +2564,7 @@
         <apexClass>CPA_testStatusMsgCustomSettingClass</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-    <classAccesses>
+        <classAccesses>
         <apexClass>EA_Constants</apexClass>
         <enabled>false</enabled>
     </classAccesses>
