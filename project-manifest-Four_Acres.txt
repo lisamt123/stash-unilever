@@ -20,7 +20,7 @@ src/classes/FAU_EmailTemplateSenderContllerTest.cls
 src/classes/FAU_EmailTemplateSenderContllerTest.cls-meta.xml
 src/classes/FAU_EmailTemplateSenderController.cls
 src/classes/FAU_EmailTemplateSenderController.cls-meta.xml
-src/classes/FAU_GenrateAndAttachPDFControllerTest.cls	
+src/classes/FAU_GenrateAndAttachPDFControllerTest.cls
 src/classes/FAU_GenrateAndAttachPDFControllerTest.cls-meta.xml
 src/classes/FAU_LandingPage_ControllerTest.cls
 src/classes/FAU_LandingPage_ControllerTest.cls-meta.xml
@@ -39,7 +39,7 @@ src/classes/FAU_ParticipantControllerExtensionTest.cls-meta.xml
 src/classes/FAU_ParticipantHandler.cls
 src/classes/FAU_ParticipantHandler.cls-meta.xml
 src/classes/FAU_Participant_BioControllerExtTest.cls
-src/classes/FAU_Participant_Biography_Doc_ConTest.cls-meta.xml
+src/classes/FAU_Participant_BioControllerExtTest.cls-meta.xml
 src/classes/FAU_ProgramHandler.cls
 src/classes/FAU_ProgramHandler.cls-meta.xml
 src/classes/FAU_ProgramTest.cls
