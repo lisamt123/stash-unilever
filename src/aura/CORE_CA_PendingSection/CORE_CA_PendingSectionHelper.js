@@ -1,6 +1,14 @@
 ({ 
         scrollToLocation : function(component, location) {
-           
+            var cssScrolltoTop = $(".scroller");
+        //var cssScrolltoTop = component.find("scrollID").get("v.class");
+        if (cssScrolltoTop) {
+            var cssScrolltoTopTransform = cssScrolltoTop.css("transform");
+            if (cssScrolltoTopTransform) {
+                cssScrolltoTop.css("transform", "translate3d(0px, 0px, 0px)"); //set 'transform' since lighntning architecture uses css 'transfrom' property to scroll 
+            }
+        }
+        /*   
         var scroller = this.getScroller(component), 
             payload = { 
                 time: 300, 
@@ -15,9 +23,11 @@
         } 
         
             scroller.getEvent("scrollTo").setParams(payload).fire(); 
+            */
         }, 
     
     //THIS IS AN ABSOLUTE HACK AND MOST LIKELY WILL BREAK IN SUMMER16! 
+    /*
     getScroller : function(component) { 
         var elem = component.getElement(), 
             scroller; 
@@ -33,4 +43,5 @@
         
         return scroller; 
     } 
+    */
 })

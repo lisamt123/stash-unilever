@@ -4,9 +4,12 @@
   Date: 03 June 2016
   Requirement/Description: Closed tab of the Approval APP.
 -->
-<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" controller="CORE_FB_Feedback_App_Controller">
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" controller="CORE_FB_Feedback_App_Controller" access="global">
     <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> -->
     <aura:attribute name="isFeedBackPopup" type="boolean" />
+    <!-- Winter'17 fix start-->
+    <aura:attribute name="isDesktop" type="String"/>
+     <!-- Winter'17 fix end-->
     <style>
         .hiddenClass{
         color: red;

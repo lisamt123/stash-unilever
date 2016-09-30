@@ -292,22 +292,30 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>pkl_Hard_Partitioning__c</fullName>
+        <fullName>pkl_Hard_Partitioning_new__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Select (Yes/No) if there is Hardware partioning</inlineHelpText>
         <label>Hard Partitioning</label>
-        <length>255</length>
-        <required>false</required>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>pkl_Hyper_V_Farm__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Select (Yes/No) from the Drop Down, if the deployment is on Hyper-V Fram</inlineHelpText>
-        <label>Hyper - V Farm</label>
+        <label>Windows HyperV farm</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -383,6 +391,7 @@
             <picklistValues>
                 <fullName>Not sure</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
@@ -433,6 +442,7 @@
             <picklistValues>
                 <fullName>Not sure</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
@@ -570,6 +580,26 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>pkl_SQL_Server_Farm__c</fullName>
+        <externalId>false</externalId>
+        <label>SQL Server Farm</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>pkl_System_Type_Existing__c</fullName>
         <description>SAP - Earlier, its label was  &apos;System Type (Existing)&apos;</description>
         <externalId>false</externalId>
@@ -643,6 +673,7 @@
             <picklistValues>
                 <fullName>Not sure</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
@@ -669,6 +700,7 @@
             <picklistValues>
                 <fullName>Not sure</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
@@ -723,16 +755,24 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>txt_Diagnostic__c</fullName>
+        <fullName>txt_Diagnostic_new__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Brief if Daignostic pack is required</inlineHelpText>
         <label>Diagnostic</label>
-        <length>255</length>
-        <required>false</required>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>txt_Edition__c</fullName>
@@ -821,7 +861,7 @@
         <fullName>txt_New_System_Existing__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Is a new system created or hosted on existing system</inlineHelpText>
-        <label>New System/Existing</label>
+        <label>SID Name</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -892,11 +932,31 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Partitioning_new__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Brief if partioned</inlineHelpText>
+        <label>Partitioning</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>txt_Physical_Machine_Name__c</fullName>
         <description>IBM-If Instance Type is Virtual then &apos;Physical Server Name&apos; is Mandatory</description>
         <externalId>false</externalId>
-        <inlineHelpText>Enter the Physical machine hostname which is deployed</inlineHelpText>
-        <label>Physical Machine Name</label>
+        <inlineHelpText>Enter the Physical server hostname which is deployed</inlineHelpText>
+        <label>Physical Server Name</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -906,6 +966,7 @@
     </fields>
     <fields>
         <fullName>txt_Physical_Server_Name__c</fullName>
+        <description>Delete this field later on</description>
         <externalId>false</externalId>
         <label>Physical Server Name</label>
         <length>255</length>
@@ -952,7 +1013,20 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Product_Type_Name__c</fullName>
+        <description>Name of the Product Type which is updated on product creation</description>
+        <externalId>false</externalId>
+        <label>Product Type Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_Publisher__c</fullName>
+        <description>This is auto populated with Record Type Name for Non - Other Products. For Other Products it is editable for user</description>
         <externalId>false</externalId>
         <label>Publisher</label>
         <length>255</length>
@@ -1043,6 +1117,26 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Tuning_new__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Brief if Tuning pack is required</inlineHelpText>
+        <label>Tuning</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>txt_Version__c</fullName>
         <externalId>false</externalId>
         <label>Version</label>
@@ -1088,6 +1182,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Hard_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Hyper_V_Farm__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1127,10 +1232,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -1150,10 +1251,6 @@
             <picklist>pkl_Physical_instance__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1272,6 +1369,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -1316,10 +1424,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -1331,7 +1435,36 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Diagnostic_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Tuning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1357,6 +1490,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Hard_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Hyper_V_Farm__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1396,10 +1540,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -1419,10 +1559,6 @@
             <picklist>pkl_Physical_instance__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1541,6 +1677,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -1585,10 +1732,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -1600,7 +1743,36 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Diagnostic_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Tuning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1625,6 +1797,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Hard_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Hyper_V_Farm__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1664,10 +1847,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -1687,10 +1866,6 @@
             <picklist>pkl_Physical_instance__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1809,6 +1984,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -1853,10 +2039,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -1868,7 +2050,36 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Diagnostic_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Tuning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1894,6 +2105,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Hard_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Hyper_V_Farm__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1933,10 +2155,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -1960,10 +2178,6 @@
             <picklist>pkl_Physical_instance__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2082,6 +2296,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -2126,10 +2351,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -2141,7 +2362,36 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Diagnostic_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Tuning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2166,6 +2416,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Hard_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Hyper_V_Farm__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2205,10 +2466,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -2228,10 +2485,6 @@
             <picklist>pkl_Physical_instance__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2350,6 +2603,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -2394,10 +2658,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -2409,7 +2669,36 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Diagnostic_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Tuning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2435,6 +2724,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Hard_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Hyper_V_Farm__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2474,10 +2774,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -2501,10 +2797,6 @@
             <picklist>pkl_Physical_instance__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2623,6 +2915,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -2667,10 +2970,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -2682,7 +2981,36 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Diagnostic_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Tuning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2707,6 +3035,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Hard_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Hyper_V_Farm__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2746,10 +3085,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -2769,10 +3104,6 @@
             <picklist>pkl_Physical_instance__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2891,6 +3222,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -2935,10 +3277,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -2950,7 +3288,36 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Diagnostic_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Tuning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2975,6 +3342,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Hard_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Hyper_V_Farm__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3014,10 +3392,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -3037,10 +3411,6 @@
             <picklist>pkl_Physical_instance__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3159,6 +3529,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -3203,10 +3584,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -3218,7 +3595,36 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Diagnostic_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Tuning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3244,6 +3650,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Hard_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Hyper_V_Farm__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3283,10 +3700,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -3306,10 +3719,6 @@
             <picklist>pkl_Physical_instance__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3428,6 +3837,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -3472,10 +3892,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -3487,7 +3903,36 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Diagnostic_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Tuning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3513,6 +3958,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Hard_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Hyper_V_Farm__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3552,10 +4008,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -3575,10 +4027,6 @@
             <picklist>pkl_Physical_instance__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3697,6 +4145,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -3741,10 +4200,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
@@ -3756,7 +4211,36 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Not sure</fullName>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Diagnostic_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Partitioning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>txt_Tuning_new__c</picklist>
+            <values>
+                <fullName>No</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3812,16 +4296,9 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
     </validationRules>
     <validationRules>
         <fullName>SAM_Database_Instance_Name_Alpha</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Database_Instance_Name__c ) ) ),(NOT( REGEX( txt_Database_Instance_Name__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Database_Instance_Name__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>SAM_Diagnostic_Alphanumeric_Data</fullName>
-        <active>true</active>
-        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Diagnostic__c ) ) ),(NOT( REGEX( txt_Diagnostic__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
-        <errorDisplayField>txt_Diagnostic__c</errorDisplayField>
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
@@ -3839,13 +4316,6 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <errorMessage>Existing SID dependent fields are mandatory only when Existing SID value is Yes</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>SAM_Hard_Partioning_Alpha_Data</fullName>
-        <active>true</active>
-        <errorConditionFormula>AND(( NOT( ISBLANK(  pkl_Hard_Partitioning__c ) ) ),(NOT( REGEX( pkl_Hard_Partitioning__c, &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
-        <errorDisplayField>pkl_Hard_Partitioning__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>SAM_Installation_Machine_Name_Alpha</fullName>
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Installation_Machine_Name__c ) ) ),(NOT( REGEX( txt_Installation_Machine_Name__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
@@ -3855,17 +4325,18 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
     <validationRules>
         <fullName>SAM_Instance_Type_PSN_IBM</fullName>
         <active>true</active>
-        <description>IBM-If Instance type is selected as Virtual then &apos;Physical Server Name&apos; is Mandatory</description>
+        <description>IBM &amp; Oracle-If Instance type is selected as Virtual then &apos;Physical Server Name&apos; is Mandatory</description>
         <errorConditionFormula>AND(ISPICKVAL(pkl_Instance_Type__c ,&apos;Virtual&apos;), ISBLANK( txt_Physical_Machine_Name__c))</errorConditionFormula>
         <errorDisplayField>txt_Physical_Machine_Name__c</errorDisplayField>
-        <errorMessage>If Instance Type is Virtual then Physical Machine Name is mandatory.</errorMessage>
+        <errorMessage>If Instance Type is Virtual then Physical Server Name is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Instance_Type_PSN_IBM_REV</fullName>
         <active>true</active>
-        <description>Physical Machine Name is mandatory only if Instance Type is Virtual</description>
+        <description>IBM &amp; Oracle - Physical Machine Name is mandatory only if Instance Type is Virtual</description>
         <errorConditionFormula>AND(OR( ISPICKVAL( pkl_Instance_Type__c , &apos;Physical&apos;),ISPICKVAL(pkl_Instance_Type__c , &apos;&apos;)), NOT(ISBLANK( txt_Physical_Machine_Name__c )))</errorConditionFormula>
-        <errorMessage>Physical Machine Name is mandatory only if Instance Type is Virtual</errorMessage>
+        <errorDisplayField>txt_Physical_Machine_Name__c</errorDisplayField>
+        <errorMessage>Physical Server Name is mandatory only if Instance Type is Virtual</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Interfacing_Application_details_Alph</fullName>
@@ -3998,15 +4469,8 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>SAM_Partitioning_Alphanumeric_data</fullName>
-        <active>true</active>
-        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Partitioning__c ) ) ),(NOT( REGEX( txt_Partitioning__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
-        <errorDisplayField>txt_Partitioning__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>SAM_Physical_Instance_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Physical Server Name is mandatory if physical instance is yes.</description>
         <errorConditionFormula>AND( ISPICKVAL( pkl_Physical_instance__c , &apos;Yes&apos;),  ISBLANK(txt_Physical_Server_Name__c ) )</errorConditionFormula>
         <errorDisplayField>txt_Physical_Server_Name__c</errorDisplayField>
@@ -4021,18 +4485,18 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
     </validationRules>
     <validationRules>
         <fullName>SAM_Physical_Server_Name_Alpha</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Physical_Server_Name__c ) ) ),(NOT( REGEX( txt_Physical_Server_Name__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Physical_Server_Name__c</errorDisplayField>
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Physical_Server_Name_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Physical serve name  should be blank when &apos;Physical instance&apos; is selected as No or Not Sure.</description>
         <errorConditionFormula>AND( NOT(ISBLANK(txt_Physical_Server_Name__c)),OR( ISPICKVAL( pkl_Physical_instance__c , &apos;No&apos;), ISPICKVAL(pkl_Physical_instance__c , &apos;Not sure&apos;),ISPICKVAL(pkl_Physical_instance__c , &apos;&apos;) ) )</errorConditionFormula>
         <errorDisplayField>txt_Physical_Server_Name__c</errorDisplayField>
-        <errorMessage>Physical Server Name is mandatory if Physical instance is Yes.</errorMessage>
+        <errorMessage>Physical Server Name is mandatory if Instance Type is Virtual.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Physical_Server_Reverse_Validation</fullName>
@@ -4169,13 +4633,6 @@ NOT(ISBLANK( txt_System_Type_Others_SAP__c))
         <errorMessage>You can not enter data here if System Type is not Other.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>SAM_Tuning_Alphanumeric_data</fullName>
-        <active>true</active>
-        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Tuning__c ) ) ),(NOT( REGEX( txt_Tuning__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
-        <errorDisplayField>txt_Tuning__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>SAM_Version_Alphanumeric_Data</fullName>
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK( txt_Version__c ) ) ),(NOT( REGEX( txt_Version__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
@@ -4184,7 +4641,7 @@ NOT(ISBLANK( txt_System_Type_Others_SAP__c))
     </validationRules>
     <validationRules>
         <fullName>SAM_Virtual_Instance_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Virtual Server Name is mandatory if virtual instance is yes.</description>
         <errorConditionFormula>AND( ISPICKVAL(  pkl_Virtual_instance__c , &apos;Yes&apos;), ISBLANK( txt_Virtual_Server_Name__c ) )</errorConditionFormula>
         <errorDisplayField>txt_Virtual_Server_Name__c</errorDisplayField>
@@ -4199,7 +4656,7 @@ NOT(ISBLANK( txt_System_Type_Others_SAP__c))
     </validationRules>
     <validationRules>
         <fullName>SAM_Virtual_Server_Name_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Virtual serve name should be blank when &apos;Vitual instance&apos; is selected as No or Not Sure.</description>
         <errorConditionFormula>AND( NOT(ISBLANK( txt_Virtual_Server_Name__c )),OR( ISPICKVAL(  pkl_Virtual_instance__c  , &apos;No&apos;), ISPICKVAL(pkl_Virtual_instance__c  , &apos;Not sure&apos;),ISPICKVAL(pkl_Virtual_instance__c  , &apos;&apos;) ) )</errorConditionFormula>
         <errorDisplayField>txt_Virtual_Server_Name__c</errorDisplayField>
@@ -4224,7 +4681,7 @@ OR(ISBLANK(  num_Number_of_Virtual_Cores__c ),ISBLANK(  num_Number_of_Virtual_Pr
     </validationRules>
     <validationRules>
         <fullName>SAM_reverse_validation_on_phy_ver_instan</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>If Physical Instance is selected as Yes, then Virtual Instance should not be Yes and vice versa.</description>
         <errorConditionFormula>IF(ISPICKVAL(pkl_Physical_instance__c, &quot;Yes&quot;), ISPICKVAL(pkl_Virtual_instance__c, &quot;Yes&quot;), false)</errorConditionFormula>
         <errorMessage>If Physical Instance is selected as Yes, then Virtual Instance should not be Yes and vice versa.</errorMessage>

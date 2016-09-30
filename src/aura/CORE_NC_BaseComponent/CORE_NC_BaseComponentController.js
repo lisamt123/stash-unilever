@@ -61,9 +61,8 @@
         component.set("v.myNewsPannel",true);
 	},
     updatePanel : function(component, event, helper) {
-		// alert(1);
 		
-        //alert(component.get("v.NewsType"));
+       // alert(component.get("v.NewsType"));
         component.set("v.display",true);
         var menuStyle = component.find("globalNews");
         $A.util.addClass(menuStyle, "inactiveMenu");

@@ -26,7 +26,7 @@ public with sharing Class Core_NC_NewsArticleCommentCount{
      boolean   resultGrp=false;
      // Fetching the  ParentId's from Custom setting 
            string  strParentIdsToCheck;
-      if(!Test.isRunningTest()){ 
+     
     strParentIdsToCheck = CORE_NEWS_ARTICLE__c.getinstance('GroupsToPost').Text_Value__c;  
     
       for(FeedItem objFI: newTrigger){ 
@@ -67,6 +67,6 @@ public with sharing Class Core_NC_NewsArticleCommentCount{
                           }//end of Parent If
                       }// end of Parent for 
                  
-                 } 
+                 
                 }
    }

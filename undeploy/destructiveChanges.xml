@@ -14,6 +14,7 @@
         <name>CustomObjectTranslation</name>
     </types>
 	<types>  
+		<members>FA_Occurence_Member__c</members>
         <members>Course_Attachment__c</members>
 		<members>FA_Course_ChatterGroup__c</members>
 		<members>FA_Course_Facilitator__c</members>
@@ -23,55 +24,11 @@
 		<members>FA_Feedback__c</members>
 		<members>FA_Feedback_Questionnaire__c</members>
 		<members>FA_Member_ChatterGroup__c</members>
-		<members>FA_Occurence_Member__c</members>
 		<members>FA_Pre_Work_Task_Assignment__c</members>
 		<members>FA_Pre_Work_Task__c</members>
 		<members>FA_UserPreference__c</members>
-        <name>CustomObject</name>  
-	</types>  
-	<types>
-		<member>FA CourseFacilitator External ID</member>
-		<member>FA CourseOccurence External ID</member>
-		<member>FA_Alert_For_Admin</member>
-		<member>FA_Course_Cancellation_Mail</member>
-		<member>FA_Course_Invitation_Mail</member>
-		<member>FA_Feedback_Update</member>
-		<member>FA_OccMem_External_ID</member>
-		<member>FA_Update_External_ID_Of_Pre_Work_Task</member>
-		<member>FA_Training_Room_External_ID</member>
-		<member>Alert_for_Admin_user_pref</member>
-		<name>FieldUpdate</name>
-	</types>
-	<types>
-		<member>FA_CourseFacilitator_External_ID</member>
-		<member>FA Email Invitation</member>
-		<member>FA Feedback Mail</member>
-		<member>FA Update External ID</member>
-		<member>FA_AlertforAdmin</member>
-		<member>FA_Cancellation Mail</member>
-		<member>FA Update External ID Of Pre Work Task</member>
-		<member>FA Update External ID Of Training Room</member>
-		<member>FA_AlertforAdmin_UserPre</member>
-	</types>
-	<types>
-		<members>FA_Config_Settings__c</members>
 		<members>FA_Course__c</members>
-		<members>FA_Course_ChatterGroup__c</members>
-		<members>FA_Course_Facilitator__c</members>
-		<members>FA_Course_Occurence__c</members>
-		<members>FA_ErrorLog__c</members>
-		<members>FA_FBQuestionSet__c</members>
-		<members>FA_Feedback__c</members>
-		<members>FA_Feedback_Questionnaire__c</members>
-		<members>FA_Member_ChatterGroup__c</members>
-		<members>FA_Occurence_Member__c</members>
-		<members>FA_Pre_Work_Task__c</members>
-		<members>FA_Pre_Work_Task_Assignment__c</members>
-		<members>FA_Training_Room__c</members>
-		<members>FA_Training_Venue__c</members>
-		<members>FA_UserPreference__c</members>
-		<name>Workflow</name>
-	</types>
-
+        <name>CustomObject</name>  
+		</types>  
 	    <version>37.0</version>
 </Package>

@@ -1,5 +1,6 @@
 <aura:component controller="Core_WP_WorkPlaceController" implements="force:appHostable,flexipage:availableForAllPageTypes">
-    <ltng:require styles="/resource/CORE_WP_WorkplaceStyles/mapJs/leaflet.css" />      
+   <ltng:require styles="/resource/CORE_WP_WorkplaceStyles/mapJs/leaflet.css" /> 
+    <ltng:require scripts="/resource/CORE_IC_IdeasLigthtning/js/jquery.js" />
     <!--  ,/resource/CORE_NC_JsFiles/lightningBootstrapMin.css-->
     <ltng:require scripts="/resource/CORE_WP_WorkplaceStyles/mapJs/leaflet.js" 
                   styles="/resource/CORE_NC_JsFiles/lightningBootStrap.css"                  
