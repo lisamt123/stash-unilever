@@ -9,63 +9,7 @@
 <apex:page controller="IPM_FinancialController" sidebar="false" standardStylesheets="false" extensions="IPM_GetHelpDoc" action="{!setConsolidatedFinancialValidationCells}">   
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Filter.css')}"/>  
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Financial.css')}"/>
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/jquery-ui.css')}"/>
-    <style>
-    .ui-tooltip.info_tooltips{
-     -webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
-    box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
-    font-weight: normal;
-    background-color: #01B1A6 ;
-    border-radius: 2px;
-    border: none;
-    text-align: left;
-    color:#fff;
-    opacity:0.9;
-    max-width: 230px;
-}
-.ui-tooltip-content {
-    position: relative;
-    padding: 0;    
-    font-size:12px;
-    padding-right:22px
-}
-.ui-tooltip-content::after, .ui-tooltip-content::before {
-    top: 102%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-}
-.bottom .ui-tooltip-content::after {
-    border-color:transparent;
-    border-top-color: #01B1A6;
-    border-width: 10px;
-    left: 50%;
-    margin-left: -10px;
-}
-.bottom .ui-tooltip-content::before {
-    border-color: rgba(118, 118, 118, 0);
-    border-width: 11px;
-    left: 50%;
-    margin-left: -11px;
-}
-.top .ui-tooltip-content::after {
-    top: -17px;
-    left: 50%;
-    border-color: #01B1A6 transparent;
-    border-width: 0 10px 10px;
-    margin-left: -10px;
-}
-.top .ui-tooltip-content::before {
-     border-color: rgba(118, 118, 118, 0);
-     top: -18px;
-     left: 48%;
-     border-width: 0 11px 11px;
-     margin-left: -8px;
- }
-    </style>
+
     <apex:composition template="IPM_TemplateRevamp">
         <apex:define name="body">
             <apex:form >
@@ -379,6 +323,9 @@
                                                                                 <apex:actionSupport event="onchange" action="{!changeSustainabilityPeriod}" rerender="tabContentPanel,pollerPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
                                                                             </apex:selectList>
                                                                         </div>
+                                                                        <span class="SecButtonSet infoMarTop">
+                                                                            <a class="icoButton info smalllinfo" data-html="true" data-placement="bottom" data-toggle="tooltip" data-original-title="{!$Label.IPM_SELECT_SUSTAINABILITY_HELP}"></a>
+                                                                        </span>
                                                                     </div>
                                                                 </apex:outputText>
                                                                 <apex:outputPanel rendered="{!IF(OR(project.Sustainability_Period_Changed__c, (project.IPM_Phase__c != 'Ideas')), TRUE, FALSE)}">
@@ -637,6 +584,6 @@
         </apex:define>
     </apex:composition>
     
-   <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.js')}" type="text/javascript" />   
+ 
    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Financial.js')}" type="text/javascript"></script>
 </apex:page>

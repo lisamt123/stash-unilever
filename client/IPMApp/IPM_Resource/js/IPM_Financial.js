@@ -203,7 +203,7 @@ function accordion(elem) {
 
 function hilightTaskScript(){
     jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' },tooltipClass:'info_tip'});
-    jq(".smalllinfo").tooltip({ position: { my: 'center bottom', at: 'center bottom+10'},tooltipClass:'normal_tip'});
+    jq(".info.smalllinfo").tooltip({ position: { my: 'center bottom', at: 'center bottom+10'},tooltipClass:'normal_tip'});
 }
 
 function isNumber(evt, finval) {
@@ -218,29 +218,5 @@ function isNumber(evt, finval) {
     }
     return true;
 }
-jq(function () {
-    jq('.info').tooltip({
-            position: {
-                my: "center bottom-13",
-                at: "center top",
-                using: function( position, feedback ) {
-                    jq( this ).css( position );
-                    jq( this )
-                        .addClass( feedback.vertical );
-                }
-        },
-			tooltipClass: "info_tooltips",
-        show: null, 
-        close: function (event, ui) {
-            ui.tooltip.hover(
-            function () {
-                jq(this).stop(true).fadeTo(400, 1);
-            },
-            function () {
-                jq(this).fadeOut("400", function () {
-                    jq(this).remove();
-                })
-            });
-        }
-    });
-});
+
+
