@@ -5,6 +5,8 @@ src/approvalProcesses
 src/approvalProcesses/WU_Master_Warehouse__c.WU_Committed_Pallet_Capacity_Changed.approvalProcess
 
 
+
+
 src/email
 src/email/Warehouse_Utilization
 src/email/Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC.email
@@ -31,5 +33,7 @@ src/pages/WU_LeadershipCheck.page-meta.xml
 src/triggers
 src/triggers/WU_SetWarehousePOC.trigger
 src/triggers/WU_SetWarehousePOC.trigger-meta.xml
+
+
 
 
