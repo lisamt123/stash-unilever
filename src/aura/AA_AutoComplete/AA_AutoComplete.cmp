@@ -15,6 +15,9 @@
                     description="The record type of the aa_Agent_App_Competitor_Brand__c." />
     <aura:attribute name="placeholderValue" type="String"
                     description="The place holder value for the autocomplete input text" />
+     <aura:attribute name="matches" type="Object[]" />
+    <aura:attribute name="listIconClass" type="String" />
+    <aura:attribute name="listIconSVGPath" type="String" />
     <!-- Events -->
     <aura:registerEvent name="updateLookupIdEvent" type="c:AA_UpdateLookupId"/>     
     <aura:handler name="clearLookupIdEvent" event="c:AA_ClearLookupId" action="{!c.handleIdClear}"/>

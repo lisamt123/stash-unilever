@@ -84,7 +84,24 @@
     checkImageUpload : function(component, event, helper){
         var urlOfImage= component.get("v.objReport.DocumentUrl");
         var recordType=component.get("v.objReport.recordType");
-         var action = component.get("c.defaultImageId");
+        if(urlOfImage == null){
+            if(recordType==='UL'){
+                var isMobileDiv=component.find("isMobileDiv");
+                $A.util.addClass(isMobileDiv, "first-image-base-desktop-unilever");
+                $A.util.removeClass(isMobileDiv, "first-image-base-deskto-comp");
+                var baseImageDiv=component.find("baseImageDiv");
+                $A.util.addClass(baseImageDiv, "baseImage-unilever");
+            }
+            if (recordType==='CI'){
+                var isMobileDiv=component.find("isMobileDiv");
+                $A.util.removeClass(isMobileDiv, "first-image-base-desktop-unilever");
+                $A.util.addClass(isMobileDiv, "first-image-base-deskto-comp");
+                var baseImageDiv=component.find("baseImageDiv");
+                $A.util.addClass(baseImageDiv, "baseImage-comp");
+            }
+        }
+       /* var recordType=component.get("v.objReport.recordType");
+        var action = component.get("c.defaultImageId");
         if(recordType==='UL'){
             action.setParams({ customSettingName :'UL Logo Id'});
         }else if(recordType==='CI'){
@@ -98,15 +115,15 @@
                 console.log("inside default image");
                 if(recordType==='UL'){
                     var isMobileDiv=component.find("isMobileDiv");
-                   $A.util.addClass(isMobileDiv, "first-image-base-desktop-unilever");
-                   $A.util.removeClass(isMobileDiv, "first-image-base-deskto-comp");
+                    $A.util.addClass(isMobileDiv, "first-image-base-desktop-unilever");
+                    $A.util.removeClass(isMobileDiv, "first-image-base-deskto-comp");
                     var baseImageDiv=component.find("baseImageDiv");
                     $A.util.addClass(baseImageDiv, "baseImage-unilever");
                 }
                 if (recordType==='CI'){
                     var isMobileDiv=component.find("isMobileDiv");
-                   $A.util.removeClass(isMobileDiv, "first-image-base-desktop-unilever");
-                   $A.util.addClass(isMobileDiv, "first-image-base-deskto-comp");
+                    $A.util.removeClass(isMobileDiv, "first-image-base-desktop-unilever");
+                    $A.util.addClass(isMobileDiv, "first-image-base-deskto-comp");
                     var baseImageDiv=component.find("baseImageDiv");
                     $A.util.addClass(baseImageDiv, "baseImage-comp");
                 }
@@ -115,7 +132,7 @@
                 console.log("outside Default image");
             }
         });
-            $A.enqueueAction(action); 
-			component.set("v.isMobile",true); 
+        $A.enqueueAction(action); */
+        component.set("v.isMobile",true); 
     },
 })
