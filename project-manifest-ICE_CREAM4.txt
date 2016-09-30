@@ -46,6 +46,6 @@ src/objectTranslations/Opportunity-pt_BR.objectTranslation
 src/profiles
 src/profiles/ReadOnly.profile
 src/reportTypes
-src/reportTypes/Sales_Locales_with_Opportunities.reportType
+src/reportTypes/ICB_Sales_Locales_with_Opportunities.reportType
 src/applications
 src/applications/ICB_Mobile_Channel.app
