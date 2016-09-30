@@ -61,7 +61,7 @@ function firstsrcplan(){
     });
     jq(document).click(function(e) {
         if( jq(e.target).hasClass('srcUnitBox')){
-               
+              //Don't Hide the listbox 
         }else{
             jq(".srcList").hide(); 
         }            
