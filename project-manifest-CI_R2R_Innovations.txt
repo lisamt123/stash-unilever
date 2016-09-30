@@ -4,6 +4,8 @@ src/classes/CI_R2R_Budget_TriggerHandler.cls
 src/classes/CI_R2R_Budget_TriggerHandler.cls-meta.xml
 src/classes/CI_R2R_Innovation_TriggerFactory.cls
 src/classes/CI_R2R_Innovation_TriggerFactory.cls-meta.xml
+src/classes/CI_R2R_Innovation_TriggerHandler.cls
+src/classes/CI_R2R_Innovation_TriggerHandler.cls-meta.xml
 src/objects/CI_R2R_Budget__c.object
 src/objects/CI_R2R_Innovation__c.object
 src/objects/CI_R2R_Budget_Mapping__c.object
@@ -11,3 +13,5 @@ src/triggers/CI_R2R_Update_Cost_Centre.trigger
 src/triggers/CI_R2R_Update_Cost_Centre.trigger-meta.xml
 src/pages/CI_R2R_Innovations_Help_Page.page
 src/pages/CI_R2R_Innovations_Help_Page.page-meta.xml
+src/staticresources/CI_R2R_Innovations_Image.resource
+src/staticresources/CI_R2R_Innovations_Image.resource-meta.xml
