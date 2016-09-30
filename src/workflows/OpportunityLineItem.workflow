@@ -26,6 +26,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>FS_Total_COGS_To_Copy_of_Total_COGS</fullName>
+        <description>FS Total COGS To Copy of Total COGS</description>
+        <field>FS_Copy_of_Total_COGS__c</field>
+        <formula>TotalCOGS__c</formula>
+        <name>FS Total COGS To Copy of Total COGS</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>FS_UpdateSalesPrice</fullName>
         <description>Updating sales price to zero.</description>
         <field>UnitPrice</field>
@@ -89,17 +99,23 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
-        <fullName>FS Copy DIST TMI To Non Formula Field</fullName>
+        <fullName>FS Copy DIST TMI and COGS To Non Formula Field</fullName>
         <actions>
             <name>FS_DIST_TMI_To_Copy_of_Dist_TMI</name>
             <type>FieldUpdate</type>
         </actions>
+        <actions>
+            <name>FS_Total_COGS_To_Copy_of_Total_COGS</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>OpportunityLineItem.FS_DISTTMI__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <description>Copy DIST TMI To Non Formula Field. Needed to roll-up DIST TMI formula field to the Opportunity</description>
+        <description>Copy DIST TMI and Total COGS To Non Formula Field. Needed to roll-up DIST TMI formula field to the Opportunity</description>
+        <formula>OR(
+ISCHANGED(FS_DISTTMI__c),
+ISCHANGED(TotalCOGS__c),
+NOT(ISBLANK(FS_DISTTMI__c)),
+NOT(ISBLANK(TotalCOGS__c))
+)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

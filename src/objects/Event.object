@@ -119,7 +119,7 @@
     </fields>
     <fields>
         <fullName>Subject</fullName>
-        <picklist>	
+        <picklist>
             <picklistValues>
                 <fullName>Call</fullName>
                 <default>false</default>

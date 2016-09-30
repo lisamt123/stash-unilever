@@ -73,6 +73,16 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Copy_of_DIST_TMI__c</fullName>
+        <description>Copy of DIST TMI (FS_DISTTMI__c)</description>
+        <externalId>false</externalId>
+        <label>Copy of DIST TMI</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Description</fullName>
     </fields>
     <fields>
@@ -152,6 +162,37 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>FSNAMarginMarketCodeHelper__c</fullName>
+        <externalId>false</externalId>
+        <formula>PricebookEntry.Product2.Margin_Market_Description__c</formula>
+        <label>MarginMarketDescription</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FSNA_TotalDeviatedRate__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quantity *  FS_Rate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Deviated Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FSNA_TotalHQRate__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quantity *  FS_HQRate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total HQ Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>FS_B1Price__c</fullName>
         <externalId>false</externalId>
         <formula>PricebookEntry.FS_Bracket_1__c</formula>
@@ -167,6 +208,16 @@
         <externalId>false</externalId>
         <label>BR3</label>
         <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_Copy_of_Total_COGS__c</fullName>
+        <description>Copy of Total COGS (TotalCOGS__c) on Opportunity Product to enable a roll-up summary of COGS from the Opportunity Product to the Opportunity</description>
+        <externalId>false</externalId>
+        <label>Copy of Total COGS</label>
+        <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <type>Currency</type>
@@ -632,29 +683,6 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>ProdDistributor__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <inlineHelpText>Account that will distribute the proposed product.</inlineHelpText>
-        <label>Distributor</label>
-        <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>Account.RecordType.Name</field>
-                <operation>equals</operation>
-                <value>Distributor</value>
-            </filterItems>
-            <isOptional>false</isOptional>
-        </lookupFilter>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Opportunity Product</relationshipLabel>
-        <relationshipName>Opportunity_Product</relationshipName>
-        <required>false</required>
-        <type>Lookup</type>
-    </fields>    
-    
-    
-    <fields>
         <fullName>ICB_IS_CLOSED__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -729,6 +757,27 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>ProdDistributor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Account that will distribute the proposed product.</inlineHelpText>
+        <label>Distributor</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>Distributor</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Opportunity Product</relationshipLabel>
+        <relationshipName>Opportunity_Product</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Product2Id</fullName>
         <type>Lookup</type>
     </fields>
@@ -780,6 +829,14 @@
         <errorMessage>You can&apos;t select a product which is inactive.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>FS_OpportunityProductsStageWon</fullName>
+        <active>true</active>
+        <description>An opportunity at stage Won can not be changed at the line item level.</description>
+        <errorConditionFormula>OR (IF($Profile.Name=&quot;Unilever Food Solution - Russia&quot;,ISPICKVAL(Opportunity.StageName, &quot;3a-Won&quot;),false),IF($Profile.Name=&quot;Unilever Food Solution - NA&quot;,
+OR(ISPICKVAL(Opportunity.StageName, &quot;Closed Won&quot;),ISPICKVAL(Opportunity.StageName, &quot;05 – Won&quot;)),false))</errorConditionFormula>
+        <errorMessage>An opportunity at stage Won can not be changed at the line item level.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>FS_Schedule_On_Existing_Opportunity</fullName>
         <active>true</active>
         <description>It is used to restrict user to do product scheduling on existing opportunity</description>
@@ -804,10 +861,10 @@
         <errorMessage>Value necessary (w/ VAT) not greater than list price.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Opportunity_Products_Stage_5</fullName>
-        <active>true</active>
-        <description>An opportunity at stage 05 - Won/Closed Won can not be changed at the line item level.</description>
-        <errorConditionFormula>OR(ISPICKVAL(Opportunity.StageName, &quot;Closed Won&quot;),ISPICKVAL(Opportunity.StageName, &quot;05 – Won&quot;))</errorConditionFormula>
-        <errorMessage>An opportunity at stage 05 - Won/Closed Won can not be changed at the line item level.</errorMessage>
+        <fullName>Margin_Market_Code_Matches_on_Opportunit</fullName>
+        <active>false</active>
+        <description>The Opportunity Margin Market Code must match the Product Margin Market Code</description>
+        <errorConditionFormula>FSNAMarginMarketCodeHelper__c  &lt;&gt;  TEXT(Opportunity.FSNA_Margin_Market_Code__c)</errorConditionFormula>
+        <errorMessage>Opportunity Product Margin Market Code must match the Opportunity Margin Market Code</errorMessage>
     </validationRules>
 </CustomObject>

@@ -51,20 +51,6 @@
         <required>false</required>
         <scale>2</scale>
         <type>Currency</type>
-    </fields>    
-    
-    <fields>
-        <fullName>FS_Amount_of_box_per_pallet__c</fullName>
-        <description>Purpose: Amount of box per pallet from product</description>
-        <externalId>false</externalId>
-        <formula>Product2.FS_Amount_of_box_per_pallet__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Amount of box per pallet</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FS_Bracket_1__c</fullName>
@@ -234,36 +220,23 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
     <fields>
         <fullName>FS_VAT__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( CurrencyIsoCode,
- &apos;RUB&apos;,  
-  CASE( Product2.FS_VATRU__c, 
-        1,  $Setup.FSVATRU__c.FS_Value_1__c , 
-        2,  $Setup.FSVATRU__c.FS_Value_2__c , 
-        0) , 
- &apos;UAH&apos;,
-  CASE( Product2.FS_VATUA__c, 
-        2,  $Setup.FSVATUA__c.FS_Value_2__c , 
-        0) , 
- 0)</formula>
+        <formula>CASE( LEFT(FS_salesOrgCode__c , 1), 
+$Setup.FS_SalesOrgCode__c.FS_RU_Code__c , 
+CASE( Product2.FS_VATRU__c, 
+1, $Setup.FSVATRU__c.FS_Value_1__c , 
+2, $Setup.FSVATRU__c.FS_Value_2__c , 
+0) , 
+$Setup.FS_SalesOrgCode__c.FS_UA_Code__c , 
+CASE( Product2.FS_VATUA__c, 
+2, $Setup.FSVATUA__c.FS_Value_2__c , 
+0) , 
+0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>VAT</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>FS_Weight_Value__c</fullName>
-        <description>Purpose: Corresponding NetWeight value from product</description>
-        <externalId>false</externalId>
-        <formula>Product2.FS_NetWeight__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Weight Value</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>3</scale>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FS_salesOrgCode__c</fullName>
@@ -308,6 +281,19 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
     </fields>
     <fields>
         <fullName>UseStandardPrice</fullName>
+    </fields>
+    <fields>
+        <fullName>Weight_Value__c</fullName>
+        <description>Purpose: Corresponding NetWeight value from product</description>
+        <externalId>false</externalId>
+        <formula>Product2.FS_NetWeight__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Weight Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <searchLayouts>
         <searchResultsAdditionalFields>PRODUCT.NAME</searchResultsAdditionalFields>

@@ -65,7 +65,7 @@
         <label>Average  Price Per Meal</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>8</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -90,7 +90,7 @@
         <label>Days Per Week</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>8</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -126,29 +126,44 @@
         <fullName>FS_FoodPriceValue__c</fullName>
         <description>Calculating based on Turnover and Food cost</description>
         <externalId>false</externalId>
-        <formula>FS_FoodTurnover__c  *  FS_FoodCost__c</formula>
+        <formula>FS_FoodTurnoverRUB__c*FS_FoodCost__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Food Price Value</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>FS_FoodTurnoverRUB__c</fullName>
+        <description>Created for calculating food turnover in rub based of week per year,days per week,meal per day and average meal price</description>
+        <externalId>false</externalId>
+        <formula>FS_DaysPerWeek__c * FS_WeeksPerYear__c * FS_MealsPerDay__c * FS_AveragePricePerMeal__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Food Turnover (RUB)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_FoodTurnover__c</fullName>
         <description>Created for calculating food turnover based of week per year,days per week,meal per day and average meal price</description>
         <externalId>false</externalId>
-        <formula>(FS_DaysPerWeek__c  *  FS_WeeksPerYear__c  *  FS_MealsPerDay__c  *  FS_AveragePricePerMeal__c)/66.66265</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Food Turnover</label>
+        <formula>(FS_DaysPerWeek__c * FS_WeeksPerYear__c * FS_MealsPerDay__c * FS_AveragePricePerMeal__c)/ $Setup.FSCurrencyinEUR__c.FS_EURO__c</formula>
+        <label>Food Turnover (EUR)</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Currency</type>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FS_MealsPerDay__c</fullName>
@@ -157,7 +172,7 @@
         <label>Meals Per Day</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>8</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -195,7 +210,7 @@
         <label>Weeks Per Year</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>8</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>

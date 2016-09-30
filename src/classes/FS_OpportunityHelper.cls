@@ -247,8 +247,8 @@ public with sharing class FS_OpportunityHelper {
         
         //Get record type ids for Existing and MA-BE        
         
-        Id newRecordTypeId=recordIdBasedonDeveloperName.get('NAFSMABETool');
-        Id existingRecordTypeId=recordIdBasedonDeveloperName.get('Existing');
+        Id newRecordTypeId=recordIdBasedonDeveloperName.get('FS_OpportunityMABE');
+        Id existingRecordTypeId=recordIdBasedonDeveloperName.get('FS_ExistingBusiness');
         
         //Id newRecordTypeId = [SELECT Id FROM RecordType WHERE sObjectType='Opportunity' and DeveloperName = 'NAFSMABETool'].Id;
         //Id existingRecordTypeId = [SELECT Id FROM RecordType WHERE sObjectType='Opportunity' and DeveloperName = 'Existing'].Id;       
@@ -341,7 +341,7 @@ public with sharing class FS_OpportunityHelper {
         List<Id> listConId = new list<Id>();
         Map<Id,Opportunity> mapAccOpp= new Map<Id,Opportunity>();
         //Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');        
-        Id oppRecordTypeId=recordIdBasedonDeveloperName.get('Existing');         
+        Id oppRecordTypeId=recordIdBasedonDeveloperName.get('FS_ExistingBusiness');         
         for(Opportunity opp: listOpp){
             if(opp.RecordTypeId==oppRecordTypeId){
                 listAccId.add(opp.AccountId);

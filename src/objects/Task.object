@@ -136,8 +136,8 @@
     </fields>
     <fields>
         <fullName>Subject</fullName>
-       <picklist>
-            <picklistValues>	    
+        <picklist>
+            <picklistValues>
                 <fullName>Call</fullName>
                 <default>false</default>
             </picklistValues>
@@ -148,8 +148,8 @@
             <picklistValues>
                 <fullName>Send Quote</fullName>
                 <default>false</default>
-            </picklistValues>s	
-           <picklistValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Prepare business review</fullName>
                 <default>false</default>
             </picklistValues>
@@ -370,7 +370,51 @@
         <picklistValues>
             <picklist>Subject</picklist>
             <values>
+                <fullName>Call</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Compliance administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Conduct analysis on sales volume for promotional planning or forecasting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Coordinate field based support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Organize materials for upcoming meeting or presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prep for meetings or presentations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prepare business review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verify win implementation schedule</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Write%2C review and maintain strategic account plan</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

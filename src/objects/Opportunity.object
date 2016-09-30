@@ -291,6 +291,34 @@ Is the customer growing?</inlineHelpText>
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>FSNA_Distributor_TMI__c</fullName>
+        <description>Roll-up of the Product Level Distributor TMI</description>
+        <externalId>false</externalId>
+        <label>NA Distributor TMI</label>
+        <summarizedField>OpportunityLineItem.Copy_of_DIST_TMI__c</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FSNA_Gross_Margin__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Amount - 
+(FS_TotalRate__c+FSNA_Distributor_TMI__c+FS_TotalHQRate__c+FS_LumpSum__c)-
+Total_Opp_COGS__c) /(Amount - 
+(FS_TotalRate__c+FSNA_Distributor_TMI__c+FS_TotalHQRate__c+FS_LumpSum__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Gross Margin</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>FSNA_Margin_Market_Code__c</fullName>
         <externalId>false</externalId>
         <label>Margin Market Code</label>
@@ -328,6 +356,10 @@ Is the customer growing?</inlineHelpText>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>BOH MAYO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>D1</fullName>
                 <default>false</default>
             </picklistValues>
@@ -352,6 +384,10 @@ Is the customer growing?</inlineHelpText>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>FOH MAYO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>G1</fullName>
                 <default>false</default>
             </picklistValues>
@@ -368,6 +404,14 @@ Is the customer growing?</inlineHelpText>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>HOT TEA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ICED TEA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>K1</fullName>
                 <default>false</default>
             </picklistValues>
@@ -376,11 +420,27 @@ Is the customer growing?</inlineHelpText>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Knorr Ultimate Low/Reduced Sodium*</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LCB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Q1</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Q1 MISCELLANEOUS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SDJ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SPECIALTY TEA</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -497,54 +557,46 @@ CASE(
 FSNA_Margin_Market_Code__c,
 &quot;6I DRESSINGS-CONDIMENTS-DIPS&quot;,0.265,
 &quot;6K SAUCES-GRAVIES&quot;,0.385,
-&quot;8Z RETAIL&quot;,0.45,
 &quot;93 MAYONNAISE&quot;,0.338,
-&quot;Z1 BOH MAYO&quot;,0.251,
-&quot;Z2 CAN LCB&quot;,0,
-&quot;Z3 CAN SDJ&quot;,0,
+&quot;FOH MAYO&quot;,0.32,
+&quot;BOH MAYO&quot;,0.251,
 &quot;D1 SOUPS&quot;,0.33,
+&quot;SDJ&quot;,0.22,
 &quot;E1 BASES-BOUILLIONS&quot;,0.295,
+&quot;Knorr Ultimate Low/Reduced Sodium*&quot;,0.23,
+&quot;LCB&quot;,0.22,
 &quot;F1 SPREADS AND TOPPING&quot;,0.2,
-&quot;Z5 FOH MAYO&quot;,0.32,
 &quot;G1 TEA-BEVERAGES&quot;,0.3,
+&quot;SPECIALTY TEA&quot;,0.238929580293853,
+&quot;HOT TEA&quot;,0.229022571071625,
+&quot;ICED TEA&quot;,0.342713952331212,
 &quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,0.668,
-&quot;Z6 HOT TEA CANADA&quot;,0,
-&quot;Z7 HOT TEA US&quot;,0.229022571071625,
-&quot;Z8 ICED TEA&quot;,0.342713952331212,
 &quot;K1 MEALS&quot;,0.35,
-&quot;Z9 Knorr Ultimate Low/Reduced Sodium*&quot;,0.23,
+&quot;8Z RETAIL&quot;,0.45,
 &quot;Q1 MISCELLANEOUS&quot;,0.595,
-&quot;X2 SPECIALTY TEA CANADA&quot;,0,
-&quot;X3 SPECIALTY TEA US&quot;,0.238929580293853,
-&quot;X1 US LCB&quot;,0.22,
-&quot;X4 US SDJ&quot;,0.22,
 0),
 IF(
-ISPICKVAL(CurrencyIsoCode,&quot;CAN&quot;),
+ISPICKVAL(CurrencyIsoCode,&quot;CAD&quot;),
 CASE(FSNA_Margin_Market_Code__c,
 &quot;6I DRESSINGS-CONDIMENTS-DIPS&quot;,0.265,
 &quot;6K SAUCES-GRAVIES&quot;,0.385,
-&quot;8Z RETAIL&quot;,0.45,
 &quot;93 MAYONNAISE&quot;,0.338,
-&quot;Z1 BOH MAYO&quot;,0.237976924226836,
-&quot;Z2 CAN LCB&quot;,0.339,
-&quot;Z3 CAN SDJ&quot;,0.258215324788885,
+&quot;FOH MAYO&quot;,0.3,
+&quot;BOH MAYO&quot;,0.237976924226836,
 &quot;D1 SOUPS&quot;,0.33,
+&quot;SDJ&quot;,0.258215324788885,
 &quot;E1 BASES-BOUILLIONS&quot;,0.240715650567646,
+&quot;Knorr Ultimate Low/Reduced Sodium*&quot;,0.23,
+&quot;LCB&quot;,0.339,
 &quot;F1 SPREADS AND TOPPING&quot;,0.2,
-&quot;Z5 FOH MAYO&quot;,0.3,
 &quot;G1 TEA-BEVERAGES&quot;,0.3,
+&quot;SPECIALTY TEA&quot;,0.404640144481131,
+&quot;HOT TEA&quot;,0.25,
+&quot;ICED TEA&quot;,0.3,
 &quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,0.668,
-&quot;Z6 HOT TEA CANADA&quot;,0.25,
-&quot;Z7 HOT TEA US&quot;,0,
-&quot;Z8 ICED TEA&quot;,0.3,
 &quot;K1 MEALS&quot;,0.35,
-&quot;Z9 Knorr Ultimate Low/Reduced Sodium*&quot;,0.23,
+&quot;8Z RETAIL&quot;,0.45,
 &quot;Q1 MISCELLANEOUS&quot;,0.595,
-&quot;X2 SPECIALTY TEA CANADA&quot;,0.404640144481131,
-&quot;X3 SPECIALTY TEA US&quot;,0,
-&quot;X1 US LCB&quot;,0,
-&quot;X4 US SDJ&quot;,0,
 0),
 0)
 )</formula>
@@ -572,7 +624,7 @@ CASE(FSNA_Margin_Market_Code__c,
     <fields>
         <fullName>FSNA_TotalSpend__c</fullName>
         <externalId>false</externalId>
-        <formula>FSNA_BMI__c +  FSNA_TMI__c +  FS_TotalHQRate__c +  FS_TotalRate__c</formula>
+        <formula>FSNA_BMI__c  +  FS_TotalHQRate__c +  FS_TotalRate__c +  FSNA_Distributor_TMI__c+FS_LumpSum__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Spend</label>
         <precision>18</precision>
@@ -809,12 +861,13 @@ CASE(FSNA_Margin_Market_Code__c,
         <fullName>FS_Indicator__c</fullName>
         <description>It displays a GREEN/RED stoplight on the page based on DealRequired(Opportunity) Field</description>
         <externalId>false</externalId>
-        <formula>IF( DealApproved__c=true, 
+        <formula>IF(
+DealApproved__c=true, 
 IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 20, 20),
 IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Indicator</label>
+        <label>Approval Indicator</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1553,6 +1606,22 @@ Is the customer growing?</inlineHelpText>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Margin_Indicator__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+FSNA_Gross_Margin__c &gt;= FSNA_Margin_Market_Target__c, 
+IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 20, 20), 
+IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20) 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Margin Indicator</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Name</fullName>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1760,6 +1829,8 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
                 <controllingFieldValues>Not Pursued</controllingFieldValues>
             </picklistValues>
@@ -1769,6 +1840,9 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
+                <controllingFieldValues>3a-Won</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Not Pursued</controllingFieldValues>
@@ -1779,6 +1853,9 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
+                <controllingFieldValues>3a-Won</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Lost Existing Business</controllingFieldValues>
@@ -1790,6 +1867,9 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
+                <controllingFieldValues>3a-Won</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Lost Existing Business</controllingFieldValues>
@@ -1801,6 +1881,9 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
+                <controllingFieldValues>3a-Won</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Lost Existing Business</controllingFieldValues>
@@ -1810,6 +1893,8 @@ Enter competitor pricing if available</inlineHelpText>
                 <fullName>Lost To Competition-Branded</fullName>
                 <default>false</default>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
                 <controllingFieldValues>Lost Existing Business</controllingFieldValues>
             </picklistValues>
@@ -1817,6 +1902,8 @@ Enter competitor pricing if available</inlineHelpText>
                 <fullName>Discontinued Application</fullName>
                 <default>false</default>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
                 <controllingFieldValues>Lost Existing Business</controllingFieldValues>
             </picklistValues>
@@ -1824,6 +1911,8 @@ Enter competitor pricing if available</inlineHelpText>
                 <fullName>Lost To Competition-Custom</fullName>
                 <default>false</default>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
             </picklistValues>
             <picklistValues>
@@ -1832,6 +1921,9 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
+                <controllingFieldValues>3a-Won</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Not Pursued</controllingFieldValues>
@@ -1842,6 +1934,9 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
+                <controllingFieldValues>3a-Won</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Not Pursued</controllingFieldValues>
@@ -1852,6 +1947,9 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
+                <controllingFieldValues>3a-Won</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Lost Existing Business</controllingFieldValues>
@@ -1864,6 +1962,9 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
+                <controllingFieldValues>3a-Won</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Lost Existing Business</controllingFieldValues>
@@ -1874,6 +1975,9 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
+                <controllingFieldValues>3a-Won</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Not Pursued</controllingFieldValues>
@@ -1882,12 +1986,16 @@ Enter competitor pricing if available</inlineHelpText>
                 <fullName>Transfer to GSC/ILT</fullName>
                 <default>false</default>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Timeline Not Met</fullName>
                 <default>false</default>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
+                <controllingFieldValues>3b-Lost</controllingFieldValues>
+                <controllingFieldValues>5c-Lost</controllingFieldValues>
                 <controllingFieldValues>Closed Lost</controllingFieldValues>
             </picklistValues>
             <picklistValues>
@@ -1896,6 +2004,7 @@ Enter competitor pricing if available</inlineHelpText>
                 <controllingFieldValues>05 – Won</controllingFieldValues>
                 <controllingFieldValues>06 - Lost</controllingFieldValues>
                 <controllingFieldValues>07 - Not Pursued</controllingFieldValues>
+                <controllingFieldValues>3a-Won</controllingFieldValues>
                 <controllingFieldValues>Closed Won</controllingFieldValues>
                 <controllingFieldValues>Not Pursued</controllingFieldValues>
             </picklistValues>
@@ -2272,6 +2381,18 @@ Enter competitor pricing if available</inlineHelpText>
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
+        <fullName>Total_Opp_COGS__c</fullName>
+        <description>Roll-up of Product Level COGS</description>
+        <externalId>false</externalId>
+        <label>Total Opportunity COGS</label>
+        <summarizedField>OpportunityLineItem.FS_Copy_of_Total_COGS__c</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Type</fullName>
         <picklist>
             <picklistValues>
@@ -2550,6 +2671,10 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>BOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>D1 SOUPS</fullName>
                 <default>false</default>
             </values>
@@ -2562,6 +2687,10 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>FOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>G1 TEA-BEVERAGES</fullName>
                 <default>false</default>
             </values>
@@ -2570,7 +2699,23 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>HOT TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ICED TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>K1 MEALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Ultimate Low%2FReduced Sodium*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LCB</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2578,15 +2723,11 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X1 US LCB</fullName>
+                <fullName>SDJ</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X2 SPECIALTY TEA CANADA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>X3 SPECIALTY TEA US</fullName>
+                <fullName>SPECIALTY TEA</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2594,39 +2735,7 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X4 US SDJ</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z1 BOH MAYO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z2 CAN LCB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z3 CAN SDJ</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z5 FOH MAYO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z6 HOT TEA CANADA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Z7 HOT TEA US</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z8 ICED TEA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z9 Knorr Ultimate Low%2FReduced Sodium*</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3030,6 +3139,10 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>BOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>D1 SOUPS</fullName>
                 <default>false</default>
             </values>
@@ -3042,6 +3155,10 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>FOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>G1 TEA-BEVERAGES</fullName>
                 <default>false</default>
             </values>
@@ -3050,7 +3167,23 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>HOT TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ICED TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>K1 MEALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Ultimate Low%2FReduced Sodium*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LCB</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3058,51 +3191,15 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X1 US LCB</fullName>
+                <fullName>SDJ</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X2 SPECIALTY TEA CANADA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>X3 SPECIALTY TEA US</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>X4 US SDJ</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z1 BOH MAYO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z2 CAN LCB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z3 CAN SDJ</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z5 FOH MAYO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z6 HOT TEA CANADA</fullName>
+                <fullName>SPECIALTY TEA</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Z7 HOT TEA US</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z8 ICED TEA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z9 Knorr Ultimate Low%2FReduced Sodium*</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3487,6 +3584,13 @@ Enter competitor pricing if available</inlineHelpText>
         <businessProcess>RFS Sales Process</businessProcess>
         <description>UFS Opportunity Russia</description>
         <label>RUFS Opportunity TPR</label>
+        <picklistValues>
+            <picklist>FSNA_Margin_Market_Code__c</picklist>
+            <values>
+                <fullName>X4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>FS_DistributorTMI__c</picklist>
             <values>

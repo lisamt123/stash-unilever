@@ -242,6 +242,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -278,13 +279,10 @@
                 <fullName>In Progress</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Resubmit for approval</fullName>
-                <default>false</default>
-            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -377,10 +375,6 @@
                 <fullName>Planning</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Resubmit for approval</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -419,10 +413,6 @@
             </values>
             <values>
                 <fullName>Planning</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Resubmit for approval</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

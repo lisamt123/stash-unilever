@@ -65,7 +65,7 @@
         <type>Default</type>
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <externalSharingModel>Private</externalSharingModel>
@@ -512,20 +512,6 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Cross_Account_ID__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Used for Ship To &amp; PoP ID</description>
-        <externalId>false</externalId>
-        <label>Cross Acount ID</label>
-        <referenceTo>Account_Relationship__c</referenceTo>
-        <relationshipLabel>Accounts</relationshipLabel>
-        <relationshipName>Accounts</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>CurrencyIsoCode</fullName>
@@ -1389,7 +1375,6 @@ Branded are essential = 5</inlineHelpText>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
-
     <fields>
         <fullName>FS_BuyingGroup__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -1436,6 +1421,566 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FS_Compliancelevels__c</fullName>
+        <description>Created for CTM segmentation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Low = 0
+Medium = 2.5
+High = 5</inlineHelpText>
+        <label>Compliance levels</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_ControllingAccountCode__c</fullName>
+        <description>Purpose : A control account is a summary account in the general ledger
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
+        <externalId>false</externalId>
+        <label>Controlling Account</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_ConvenienceFactor__c</fullName>
+        <description>Created for displaying Convenience factor from Segment object</description>
+        <externalId>false</externalId>
+        <formula>FS_OperatorOutlet__r.FS_ConvenienceFactor__c</formula>
+        <label>Convenience Factor</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Customer_Number__c</fullName>
+        <description>Purpose : Auto Number to create Account ID for Food Solutions
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
+        <displayFormat>Act-{00000000}</displayFormat>
+        <externalId>false</externalId>
+        <inlineHelpText>Auto Number to create Account ID for Food Solutions</inlineHelpText>
+        <label>FS Customer Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>FS_DistributionGroupArea__c</fullName>
+        <externalId>false</externalId>
+        <label>Distribution Group Area</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FS_Distributor_Type__c</fullName>
+        <description>Purpose: Used for TPR Calculation</description>
+        <externalId>false</externalId>
+        <label>Distributor Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Strategic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C&amp;C</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Slabco</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_FOHRelevance__c</fullName>
+        <description>Created for CTM segmentation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>No interest in FOH = 0
+Some interest in FOH = 2.5 
+FOH Highly relevant = 5</inlineHelpText>
+        <label>FOH Relevance</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_FoodTurnover__c</fullName>
+        <description>Calculating the food turnover based on amount of visitors etc.</description>
+        <externalId>false</externalId>
+        <formula>(FS_AmountOfVisitors__c  *  FS_OperatorOutlet__r.FS_DaysPerWeek__c  *  FS_OperatorOutlet__r.FS_AveragePricePerMeal__c  *  FS_OperatorOutlet__r.FS_WeeksPerYear__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Food Turnover</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_Food_Price_Value__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_FoodTurnover__c  *  FS_OperatorOutlet__r.FS_FoodCost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Food Price Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_GrowthTrackRecord__c</fullName>
+        <description>Created for CTM segmentation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Below Mkt Avg = 0
+In line with Mkt = 2.5
+Above Mkt Avg = 5</inlineHelpText>
+        <label>Growth Track Record</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_INN__c</fullName>
+        <description>This field is used to store data used for Sales Planning</description>
+        <externalId>false</externalId>
+        <label>INN</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_LogisticAdministrativeComplexity__c</fullName>
+        <description>Logistic &amp; Administrative Complexity</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Multiple WHS = 0
+Specif Distributor = 2.5
+Customer Delivers Directly = 5</inlineHelpText>
+        <label>Logistic &amp; Administrative Complexity</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_MasterCode__c</fullName>
+        <description>Purpose : To display Legal Entity code
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
+        <externalId>false</externalId>
+        <label>Master Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_MasterName__c</fullName>
+        <description>Purpose : To display Legal Entity name
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
+        <externalId>false</externalId>
+        <label>Master Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_NumberofCategories__c</fullName>
+        <description>Created for CTM segmentation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>0-25% = 0
+ &gt;25  &lt;65% = 2.5  
+&gt;65% = 5</inlineHelpText>
+        <label>Number of Categories</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_OperatorOutlet__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Operator Outlet</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.FS_SubSegmentRussia__c</field>
+                <operation>equals</operation>
+                <valueField>FS_Segmentation__c.Name</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>FS_Segmentation__c</referenceTo>
+        <relationshipLabel>Accounts</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FS_ParentAccountOwner__c</fullName>
+        <description>Created for displaying the parent account owner  name on child account</description>
+        <externalId>false</externalId>
+        <formula>if(AND(RecordType.Name=&apos;Distributor&apos;,NOT(ISNULL(ParentId))),
+Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</formula>
+        <inlineHelpText>Displaying Parent Account owner from parentaccount lookup</inlineHelpText>
+        <label>Parent Account Owner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_PotentialReach__c</fullName>
+        <description>Created for CTM segmentation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>According to your local thresholds</inlineHelpText>
+        <label>Potential Reach</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_PotentialShareEUR__c</fullName>
+        <description>To displaying the UFS Potential share value in EURO currency type</description>
+        <externalId>false</externalId>
+        <formula>(FS_Food_Price_Value__c * FS_OperatorOutlet__r.FS_PotentialUFSShareOfFoodCost__c * FS_ConvenienceFactor__c)/ $Setup.FSCurrencyinEUR__c.FS_EURO__c</formula>
+        <label>UFS Potential Share (EUR)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_PotentialShareRUB__c</fullName>
+        <description>To displaying the UFS Potential share value in RUB currency type</description>
+        <externalId>false</externalId>
+        <formula>(FS_Food_Price_Value__c * FS_OperatorOutlet__r.FS_PotentialUFSShareOfFoodCost__c * FS_ConvenienceFactor__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>UFS Potential Share (RUB)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_PotentialShare__c</fullName>
+        <externalId>false</externalId>
+        <formula>(FS_Food_Price_Value__c  *  FS_OperatorOutlet__r.FS_PotentialUFSShareOfFoodCost__c  *  FS_ConvenienceFactor__c)/ $Setup.FSCurrencyinEUR__c.FS_EURO__c</formula>
+        <label>UFS Potential Share</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_PotentialValueSize__c</fullName>
+        <description>Created for CTM segmentation.</description>
+        <externalId>false</externalId>
+        <label>Potential Value Size</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_ProposedAccountOwner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is used for Account owner change Approval Process.</description>
+        <externalId>false</externalId>
+        <label>Proposed Account Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Accounts1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FS_RTM__c</fullName>
+        <description>Route to Market | Only Russia | Populated via Softserve</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Route to Market | Only Russia | Populated via Softserve</inlineHelpText>
+        <label>RTM</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Independent</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chains</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Slabco</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C&amp;C</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_RusianRegion__c</fullName>
+        <description>To display the Russia related Regions</description>
+        <externalId>false</externalId>
+        <label>RFS Region</label>
+        <picklist>
+            <controllingField>FS_RussianCity__c</controllingField>
+            <picklistValues>
+                <fullName>Moscow</fullName>
+                <default>false</default>
+                <controllingFieldValues>MOSCOW</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CFO</fullName>
+                <default>false</default>
+                <controllingFieldValues>BELGOROD</controllingFieldValues>
+                <controllingFieldValues>BRYANSK</controllingFieldValues>
+                <controllingFieldValues>IVANOVO</controllingFieldValues>
+                <controllingFieldValues>KALUGA</controllingFieldValues>
+                <controllingFieldValues>KOSTROMA</controllingFieldValues>
+                <controllingFieldValues>KURSK</controllingFieldValues>
+                <controllingFieldValues>LIPETSK</controllingFieldValues>
+                <controllingFieldValues>OREL</controllingFieldValues>
+                <controllingFieldValues>RYAZAN</controllingFieldValues>
+                <controllingFieldValues>SMOLENSK</controllingFieldValues>
+                <controllingFieldValues>TAMBOV</controllingFieldValues>
+                <controllingFieldValues>TULA</controllingFieldValues>
+                <controllingFieldValues>TVER</controllingFieldValues>
+                <controllingFieldValues>VLADIMIR</controllingFieldValues>
+                <controllingFieldValues>VORONEZH</controllingFieldValues>
+                <controllingFieldValues>YAROSLAVL</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>St.Pete</fullName>
+                <default>false</default>
+                <controllingFieldValues>SAINT-PETERSBURG</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NW</fullName>
+                <default>false</default>
+                <controllingFieldValues>ARKHANGELSK</controllingFieldValues>
+                <controllingFieldValues>CHEREPOVETS</controllingFieldValues>
+                <controllingFieldValues>KALININGRAD</controllingFieldValues>
+                <controllingFieldValues>MURMANSK</controllingFieldValues>
+                <controllingFieldValues>NOVGOROD VELIKIY</controllingFieldValues>
+                <controllingFieldValues>PETROZAVODSK</controllingFieldValues>
+                <controllingFieldValues>PSKOV</controllingFieldValues>
+                <controllingFieldValues>SYKTYVKAR</controllingFieldValues>
+                <controllingFieldValues>VOLOGDA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Belorussia</fullName>
+                <default>false</default>
+                <controllingFieldValues>MINSK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Volga</fullName>
+                <default>false</default>
+                <controllingFieldValues>CHEBOKSARY</controllingFieldValues>
+                <controllingFieldValues>CHELYABINSK</controllingFieldValues>
+                <controllingFieldValues>EKATERINBURG</controllingFieldValues>
+                <controllingFieldValues>KURGAN</controllingFieldValues>
+                <controllingFieldValues>TYUMEN</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South</fullName>
+                <default>false</default>
+                <controllingFieldValues>ARMAVIR</controllingFieldValues>
+                <controllingFieldValues>ASTRAKHAN</controllingFieldValues>
+                <controllingFieldValues>ELISTA</controllingFieldValues>
+                <controllingFieldValues>GROZNIY</controllingFieldValues>
+                <controllingFieldValues>KRASNODAR</controllingFieldValues>
+                <controllingFieldValues>ROSTOV-ON-DON</controllingFieldValues>
+                <controllingFieldValues>SEVASTOPOL</controllingFieldValues>
+                <controllingFieldValues>SIMFEROPOL</controllingFieldValues>
+                <controllingFieldValues>VOLGOGRAD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sibir</fullName>
+                <default>false</default>
+                <controllingFieldValues>ABAKAN</controllingFieldValues>
+                <controllingFieldValues>BARNAUL</controllingFieldValues>
+                <controllingFieldValues>BIYSK</controllingFieldValues>
+                <controllingFieldValues>BRATSK</controllingFieldValues>
+                <controllingFieldValues>CHITA</controllingFieldValues>
+                <controllingFieldValues>IRKUTSK</controllingFieldValues>
+                <controllingFieldValues>KEMEROVO</controllingFieldValues>
+                <controllingFieldValues>KRASNOYARSK</controllingFieldValues>
+                <controllingFieldValues>NOVOSIBIRSK</controllingFieldValues>
+                <controllingFieldValues>OMSK</controllingFieldValues>
+                <controllingFieldValues>TOMSK</controllingFieldValues>
+                <controllingFieldValues>ULAN-UDE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Far East</fullName>
+                <default>false</default>
+                <controllingFieldValues>BLAGOVESCHENSK</controllingFieldValues>
+                <controllingFieldValues>KHABAROVSK</controllingFieldValues>
+                <controllingFieldValues>MAGADAN</controllingFieldValues>
+                <controllingFieldValues>PETROPAVLOVSK-KAMCHATSKY</controllingFieldValues>
+                <controllingFieldValues>VLADIVOSTOK</controllingFieldValues>
+                <controllingFieldValues>YAKUTSK</controllingFieldValues>
+                <controllingFieldValues>YUZHNO-SAKHALINSK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+                <controllingFieldValues>CHERKASSY</controllingFieldValues>
+                <controllingFieldValues>CHERNIGOV</controllingFieldValues>
+                <controllingFieldValues>CHERNOVTSY</controllingFieldValues>
+                <controllingFieldValues>DNEPROPETROVSK</controllingFieldValues>
+                <controllingFieldValues>DONETSK</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>FS_RussianCity__c</fullName>
@@ -1707,7 +2252,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>DONETSK</fullName>
                 <default>false</default>
             </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -1716,522 +2260,42 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>FS_Compliancelevels__c</fullName>
-        <description>Created for CTM segmentation</description>
+        <fullName>FS_RussianZone__c</fullName>
+        <description>Zone is created for display the Russia specific Zone for Russia users.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Low = 0
-Medium = 2.5
-High = 5</inlineHelpText>
-        <label>Compliance levels</label>
+        <label>RFS Zone</label>
         <picklist>
+            <controllingField>FS_RusianRegion__c</controllingField>
             <picklistValues>
-                <fullName>0</fullName>
+                <fullName>Moscow &amp; CFO</fullName>
                 <default>false</default>
+                <controllingFieldValues>CFO</controllingFieldValues>
+                <controllingFieldValues>Moscow</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>2.5</fullName>
+                <fullName>St.Pete &amp; NW &amp; Bel</fullName>
                 <default>false</default>
+                <controllingFieldValues>Belorussia</controllingFieldValues>
+                <controllingFieldValues>NW</controllingFieldValues>
+                <controllingFieldValues>St.Pete</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>5</fullName>
+                <fullName>Volga &amp; South</fullName>
                 <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_ControllingAccountCode__c</fullName>
-        <description>Purpose : A control account is a summary account in the general ledger
-Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
-        <externalId>false</externalId>
-        <label>Controlling Account</label>
-        <precision>8</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FS_ConvenienceFactor__c</fullName>
-        <description>Created for displaying Convenience factor from Segment object</description>
-        <externalId>false</externalId>
-        <formula>FS_OperatorOutlet__r.FS_ConvenienceFactor__c</formula>
-        <label>Convenience Factor</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>1</scale>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FS_Customer_Number__c</fullName>
-        <description>Purpose : Auto Number to create Account ID for Food Solutions
-Data Source : NA | Integration : NA | Security Level : Restricted</description>
-        <displayFormat>Act-{00000000}</displayFormat>
-        <externalId>false</externalId>
-        <inlineHelpText>Auto Number to create Account ID for Food Solutions</inlineHelpText>
-        <label>FS Customer Number</label>
-        <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
-    </fields>
-    <fields>
-        <fullName>FS_DistributionGroupArea__c</fullName>
-        <externalId>false</externalId>
-        <label>Distribution Group Area</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>FS_Distributor_Type__c</fullName>
-        <description>Purpose: Used for TPR Calculation</description>
-        <externalId>false</externalId>
-        <label>Distributor Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Strategic</fullName>
-                <default>false</default>
+                <controllingFieldValues>South</controllingFieldValues>
+                <controllingFieldValues>Volga</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Partner</fullName>
+                <fullName>Sibir &amp; Far East</fullName>
                 <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Logist</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Direct</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>C&amp;C</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Slabco</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_FOHRelevance__c</fullName>
-        <description>Created for CTM segmentation</description>
-        <externalId>false</externalId>
-        <inlineHelpText>No interest in FOH = 0
-Some interest in FOH = 2.5 
-FOH Highly relevant = 5</inlineHelpText>
-        <label>FOH Relevance</label>
-        <picklist>
-            <picklistValues>
-                <fullName>0</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2.5</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>5</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_FoodTurnover__c</fullName>
-        <description>Calculating the food turnover based on amount of visitors etc.</description>
-        <externalId>false</externalId>
-        <formula>(FS_AmountOfVisitors__c  *  FS_OperatorOutlet__r.FS_DaysPerWeek__c  *  FS_OperatorOutlet__r.FS_AveragePricePerMeal__c  *  FS_OperatorOutlet__r.FS_WeeksPerYear__c)/66.66265</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Food Turnover</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>FS_Food_Price_Value__c</fullName>
-        <externalId>false</externalId>
-        <formula>FS_FoodTurnover__c  *  FS_OperatorOutlet__r.FS_FoodCost__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Food Price Value</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>FS_GrowthTrackRecord__c</fullName>
-        <description>Created for CTM segmentation</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Below Mkt Avg = 0
-In line with Mkt = 2.5
-Above Mkt Avg = 5</inlineHelpText>
-        <label>Growth Track Record</label>
-        <picklist>
-            <picklistValues>
-                <fullName>0</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2.5</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>5</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_LogisticAdministrativeComplexity__c</fullName>
-        <description>Logistic &amp; Administrative Complexity</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Multiple WHS = 0
-Specif Distributor = 2.5
-Customer Delivers Directly = 5</inlineHelpText>
-        <label>Logistic &amp; Administrative Complexity</label>
-        <picklist>
-            <picklistValues>
-                <fullName>0</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2.5</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>5</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_MasterCode__c</fullName>
-        <description>Purpose : To display Legal Entity code
-Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
-        <externalId>false</externalId>
-        <label>Master Code</label>
-        <length>10</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FS_MasterName__c</fullName>
-        <description>Purpose : To display Legal Entity name
-Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
-        <externalId>false</externalId>
-        <label>Master Name</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FS_NumberofCategories__c</fullName>
-        <description>Created for CTM segmentation</description>
-        <externalId>false</externalId>
-        <inlineHelpText>0-25% = 0
- &gt;25  &lt;65% = 2.5  
-&gt;65% = 5</inlineHelpText>
-        <label>Number of Categories</label>
-        <picklist>
-            <picklistValues>
-                <fullName>0</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2.5</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>5</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_OperatorOutlet__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Operator Outlet</label>
-        <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>$Source.FS_SubSegmentRussia__c</field>
-                <operation>equals</operation>
-                <valueField>FS_Segmentation__c.Name</valueField>
-            </filterItems>
-            <isOptional>false</isOptional>
-        </lookupFilter>
-        <referenceTo>FS_Segmentation__c</referenceTo>
-        <relationshipLabel>Accounts</relationshipLabel>
-        <relationshipName>Accounts</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>FS_ParentAccountOwner__c</fullName>
-        <description>Created for displaying the parent account owner  name on child account</description>
-        <externalId>false</externalId>
-        <formula>if(AND(RecordType.Name=&apos;Distributor&apos;,NOT(ISNULL(ParentId))),
-Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</formula>
-        <inlineHelpText>Displaying Parent Account owner from parentaccount lookup</inlineHelpText>
-        <label>Parent Account Owner</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FS_Payer__c</fullName>
-        <description>Purpose : To display Payer
-Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
-        <externalId>false</externalId>
-        <label>Payer</label>
-        <length>10</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FS_PotentialReach__c</fullName>
-        <description>Created for CTM segmentation</description>
-        <externalId>false</externalId>
-        <inlineHelpText>According to your local thresholds</inlineHelpText>
-        <label>Potential Reach</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FS_PotentialValueSize__c</fullName>
-        <description>Created for CTM segmentation.</description>
-        <externalId>false</externalId>
-        <label>Potential Value Size</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FS_ProposedAccountOwner__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>This field is used for Account owner change Approval Process.</description>
-        <externalId>false</externalId>
-        <label>Proposed Account Owner</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Accounts1</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>FS_RTM__c</fullName>
-        <description>Route to Market | Only Russia | Populated via Softserve</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Route to Market | Only Russia | Populated via Softserve</inlineHelpText>
-        <label>RTM</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Independent</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Chains</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Slabco</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Wholesaler</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>C&amp;C</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_RusianRegion__c</fullName>
-        <description>To display the Russia related Regions</description>
-        <externalId>false</externalId>
-        <label>RFS Region</label>
-        <picklist>
-            <controllingField>FS_RussianCity__c</controllingField>
-            <picklistValues>
-                <fullName>Moscow</fullName>
-                <default>false</default>
-                <controllingFieldValues>MOSCOW</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CFO</fullName>
-                <default>false</default>
-                <controllingFieldValues>BELGOROD</controllingFieldValues>
-                <controllingFieldValues>BRYANSK</controllingFieldValues>
-                <controllingFieldValues>IVANOVO</controllingFieldValues>
-                <controllingFieldValues>KALUGA</controllingFieldValues>
-                <controllingFieldValues>KOSTROMA</controllingFieldValues>
-                <controllingFieldValues>KURSK</controllingFieldValues>
-                <controllingFieldValues>LIPETSK</controllingFieldValues>
-                <controllingFieldValues>OREL</controllingFieldValues>
-                <controllingFieldValues>RYAZAN</controllingFieldValues>
-                <controllingFieldValues>SMOLENSK</controllingFieldValues>
-                <controllingFieldValues>TAMBOV</controllingFieldValues>
-                <controllingFieldValues>TULA</controllingFieldValues>
-                <controllingFieldValues>TVER</controllingFieldValues>
-                <controllingFieldValues>VLADIMIR</controllingFieldValues>
-                <controllingFieldValues>VORONEZH</controllingFieldValues>
-                <controllingFieldValues>YAROSLAVL</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>St.Pete</fullName>
-                <default>false</default>
-                <controllingFieldValues>SAINT-PETERSBURG</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NW</fullName>
-                <default>false</default>
-                <controllingFieldValues>ARKHANGELSK</controllingFieldValues>
-                <controllingFieldValues>CHEREPOVETS</controllingFieldValues>
-                <controllingFieldValues>KALININGRAD</controllingFieldValues>
-                <controllingFieldValues>MURMANSK</controllingFieldValues>
-                <controllingFieldValues>NOVGOROD VELIKIY</controllingFieldValues>
-                <controllingFieldValues>PETROZAVODSK</controllingFieldValues>
-                <controllingFieldValues>PSKOV</controllingFieldValues>
-                <controllingFieldValues>SYKTYVKAR</controllingFieldValues>
-                <controllingFieldValues>VOLOGDA</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Belorussia</fullName>
-                <default>false</default>
-                <controllingFieldValues>MINSK</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Volga</fullName>
-                <default>false</default>
-                <controllingFieldValues>CHEBOKSARY</controllingFieldValues>
-                <controllingFieldValues>CHELYABINSK</controllingFieldValues>
-                <controllingFieldValues>EKATERINBURG</controllingFieldValues>
-                <controllingFieldValues>KURGAN</controllingFieldValues>
-                <controllingFieldValues>TYUMEN</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>South</fullName>
-                <default>false</default>
-                <controllingFieldValues>ARMAVIR</controllingFieldValues>
-                <controllingFieldValues>ASTRAKHAN</controllingFieldValues>
-                <controllingFieldValues>ELISTA</controllingFieldValues>
-                <controllingFieldValues>GROZNIY</controllingFieldValues>
-                <controllingFieldValues>KRASNODAR</controllingFieldValues>
-                <controllingFieldValues>ROSTOV-ON-DON</controllingFieldValues>
-                <controllingFieldValues>SEVASTOPOL</controllingFieldValues>
-                <controllingFieldValues>SIMFEROPOL</controllingFieldValues>
-                <controllingFieldValues>VOLGOGRAD</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sibir</fullName>
-                <default>false</default>
-                <controllingFieldValues>ABAKAN</controllingFieldValues>
-                <controllingFieldValues>BARNAUL</controllingFieldValues>
-                <controllingFieldValues>BIYSK</controllingFieldValues>
-                <controllingFieldValues>BRATSK</controllingFieldValues>
-                <controllingFieldValues>CHITA</controllingFieldValues>
-                <controllingFieldValues>IRKUTSK</controllingFieldValues>
-                <controllingFieldValues>KEMEROVO</controllingFieldValues>
-                <controllingFieldValues>KRASNOYARSK</controllingFieldValues>
-                <controllingFieldValues>NOVOSIBIRSK</controllingFieldValues>
-                <controllingFieldValues>OMSK</controllingFieldValues>
-                <controllingFieldValues>TOMSK</controllingFieldValues>
-                <controllingFieldValues>ULAN-UDE</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Far East</fullName>
-                <default>false</default>
-                <controllingFieldValues>BLAGOVESCHENSK</controllingFieldValues>
-                <controllingFieldValues>KHABAROVSK</controllingFieldValues>
-                <controllingFieldValues>MAGADAN</controllingFieldValues>
-                <controllingFieldValues>PETROPAVLOVSK-KAMCHATSKY</controllingFieldValues>
-                <controllingFieldValues>VLADIVOSTOK</controllingFieldValues>
-                <controllingFieldValues>YAKUTSK</controllingFieldValues>
-                <controllingFieldValues>YUZHNO-SAKHALINSK</controllingFieldValues>
+                <controllingFieldValues>Far East</controllingFieldValues>
+                <controllingFieldValues>Sibir</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ukraine</fullName>
                 <default>false</default>
-                <controllingFieldValues>CHERKASSY</controllingFieldValues>
-                <controllingFieldValues>CHERNIGOV</controllingFieldValues>
-                <controllingFieldValues>CHERNOVTSY</controllingFieldValues>
-                <controllingFieldValues>DNEPROPETROVSK</controllingFieldValues>
-                <controllingFieldValues>DONETSK</controllingFieldValues>
+                <controllingFieldValues>Ukraine</controllingFieldValues>
             </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -2353,7 +2417,6 @@ At least 3 out of 4 = 5</inlineHelpText>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
-
     <fields>
         <fullName>FS_SubSegmentRussia__c</fullName>
         <externalId>false</externalId>
@@ -2467,63 +2530,6 @@ At least 3 out of 4 = 5</inlineHelpText>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>FS_PotentialShare__c</fullName>
-        <externalId>false</externalId>
-        <formula>FS_Food_Price_Value__c  *  FS_OperatorOutlet__r.FS_PotentialUFSShareOfFoodCost__c  *  FS_ConvenienceFactor__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>UFS Potential Share</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>FS_RussianZone__c</fullName>
-        <description>Zone is created for display the Russia specific Zone for Russia users.</description>
-        <externalId>false</externalId>
-        <label>RFS Zone</label>
-        <picklist>
-            <controllingField>FS_RusianRegion__c</controllingField>
-            <picklistValues>
-                <fullName>Moscow &amp; CFO</fullName>
-                <default>false</default>
-                <controllingFieldValues>CFO</controllingFieldValues>
-                <controllingFieldValues>Moscow</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>St.Pete &amp; NW &amp; Bel</fullName>
-                <default>false</default>
-                <controllingFieldValues>Belorussia</controllingFieldValues>
-                <controllingFieldValues>NW</controllingFieldValues>
-                <controllingFieldValues>St.Pete</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Volga &amp; South</fullName>
-                <default>false</default>
-                <controllingFieldValues>South</controllingFieldValues>
-                <controllingFieldValues>Volga</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sibir &amp; Far East</fullName>
-                <default>false</default>
-                <controllingFieldValues>Far East</controllingFieldValues>
-                <controllingFieldValues>Sibir</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ukraine</fullName>
-                <default>false</default>
-                <controllingFieldValues>Ukraine</controllingFieldValues>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>FS_hierarchyLevel__c</fullName>
@@ -2651,17 +2657,7 @@ At least 3 out of 4 = 5</inlineHelpText>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_INN__c</fullName>
-        <externalId>false</externalId>
-        <label>INN</label>
-        <length>20</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
+
     </fields>
     <fields>
         <fullName>ICB_CNPJ__c</fullName>
@@ -3784,28 +3780,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>SAP_ID__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>Purpose : External ID
-Data Source : NA | Integration : NA | Security Level : Restricted</description>
+Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>true</externalId>
         <label>SAP ID</label>
-        <length>20</length>
+        <length>30</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>true</unique>
-    </fields>
-    <fields>
-        <fullName>SAP_Territory__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>SAP Territory</label>
-        <referenceTo>Territory__c</referenceTo>
-        <relationshipLabel>Accounts</relationshipLabel>
-        <relationshipName>Accounts</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Sales_ORG__c</fullName>
@@ -5391,6 +5374,27 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <sharedTo>
             <roleAndSubordinatesInternal>CEC_Global_Head</roleAndSubordinatesInternal>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Secondary</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.TYPE</field>
+            <operation>equals</operation>
+            <value>Operator</value>
+        </filters>
+        <filters>
+            <field>External_Id__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Secondary</label>
+        <language>ru</language>
     </listViews>
     <listViews>
         <fullName>Secondary_Account_View</fullName>
@@ -9244,6 +9248,174 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_Compliancelevels__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>C%26C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slabco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_LogisticAdministrativeComplexity__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_RTM__c</picklist>
+            <values>
+                <fullName>C%26C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chains</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Independent</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Slabco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_RusianRegion__c</picklist>
+            <values>
+                <fullName>Belorussia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CFO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Far East</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NW</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sibir</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>St%2EPete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Volga</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_RussianCity__c</picklist>
             <values>
                 <fullName>ABAKAN</fullName>
@@ -9511,162 +9683,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Compliancelevels__c</picklist>
+            <picklist>FS_RussianZone__c</picklist>
             <values>
-                <fullName>0</fullName>
+                <fullName>Moscow %26 CFO</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>2%2E5</fullName>
+                <fullName>Sibir %26 Far East</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_Distributor_Type__c</picklist>
-            <values>
-                <fullName>C%26C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Direct</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Logist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Partner</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Slabco</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Strategic</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_FOHRelevance__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_GrowthTrackRecord__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_LogisticAdministrativeComplexity__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_NumberofCategories__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_RTM__c</picklist>
-            <values>
-                <fullName>C%26C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chains</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Independent</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Slabco</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesaler</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_RusianRegion__c</picklist>
-            <values>
-                <fullName>Belorussia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CFO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Far East</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Moscow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NW</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sibir</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>South</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>St%2EPete</fullName>
+                <fullName>St%2EPete %26 NW %26 Bel</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9674,7 +9701,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Volga</fullName>
+                <fullName>Volga %26 South</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9824,29 +9851,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_RussianZone__c</picklist>
-            <values>
-                <fullName>Moscow %26 CFO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sibir %26 Far East</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>St%2EPete %26 NW %26 Bel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ukraine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volga %26 South</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10935,8 +10939,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
         </picklistValues>
-
-    </recordTypes>   
+    </recordTypes>
     <recordTypes>
         <fullName>FS_OperatorRussia</fullName>
         <active>true</active>
@@ -11741,6 +11744,166 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_Compliancelevels__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_LogisticAdministrativeComplexity__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_RTM__c</picklist>
+            <values>
+                <fullName>C%26C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chains</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Independent</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Slabco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_RusianRegion__c</picklist>
+            <values>
+                <fullName>Belorussia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CFO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Far East</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NW</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sibir</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>St%2EPete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Volga</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_RussianCity__c</picklist>
             <values>
                 <fullName>ABAKAN</fullName>
@@ -12008,154 +12171,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Compliancelevels__c</picklist>
+            <picklist>FS_RussianZone__c</picklist>
             <values>
-                <fullName>0</fullName>
+                <fullName>Moscow %26 CFO</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>2%2E5</fullName>
+                <fullName>Sibir %26 Far East</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_Distributor_Type__c</picklist>
-            <values>
-                <fullName>Direct</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Logist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Partner</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Strategic</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_FOHRelevance__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_GrowthTrackRecord__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_LogisticAdministrativeComplexity__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_NumberofCategories__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_RTM__c</picklist>
-            <values>
-                <fullName>C%26C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chains</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Independent</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Slabco</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesaler</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_RusianRegion__c</picklist>
-            <values>
-                <fullName>Belorussia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CFO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Far East</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Moscow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NW</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sibir</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>South</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>St%2EPete</fullName>
+                <fullName>St%2EPete %26 NW %26 Bel</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12163,7 +12189,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Volga</fullName>
+                <fullName>Volga %26 South</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12313,29 +12339,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_RussianZone__c</picklist>
-            <values>
-                <fullName>Moscow %26 CFO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sibir %26 Far East</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>St%2EPete %26 NW %26 Bel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ukraine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volga %26 South</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -14313,6 +14316,166 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_Compliancelevels__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributor_Type__c</picklist>
+            <values>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_LogisticAdministrativeComplexity__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_RTM__c</picklist>
+            <values>
+                <fullName>C%26C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chains</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Independent</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Slabco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_RusianRegion__c</picklist>
+            <values>
+                <fullName>Belorussia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CFO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Far East</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NW</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sibir</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>St%2EPete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Volga</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_RussianCity__c</picklist>
             <values>
                 <fullName>ABAKAN</fullName>
@@ -14580,154 +14743,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Compliancelevels__c</picklist>
+            <picklist>FS_RussianZone__c</picklist>
             <values>
-                <fullName>0</fullName>
+                <fullName>Moscow %26 CFO</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>2%2E5</fullName>
+                <fullName>Sibir %26 Far East</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_Distributor_Type__c</picklist>
-            <values>
-                <fullName>Direct</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Logist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Partner</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Strategic</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_FOHRelevance__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_GrowthTrackRecord__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_LogisticAdministrativeComplexity__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_NumberofCategories__c</picklist>
-            <values>
-                <fullName>0</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_RTM__c</picklist>
-            <values>
-                <fullName>C%26C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chains</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Independent</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Slabco</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesaler</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_RusianRegion__c</picklist>
-            <values>
-                <fullName>Belorussia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CFO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Far East</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Moscow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NW</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sibir</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>South</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>St%2EPete</fullName>
+                <fullName>St%2EPete %26 NW %26 Bel</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14735,7 +14761,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Volga</fullName>
+                <fullName>Volga %26 South</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -14885,29 +14911,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Фри-фло%2C рестораны самообслуживания</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_RussianZone__c</picklist>
-            <values>
-                <fullName>Moscow %26 CFO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sibir %26 Far East</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>St%2EPete %26 NW %26 Bel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ukraine</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volga %26 South</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -24125,11 +24128,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <customTabListAdditionalFields>UID_Segment__c</customTabListAdditionalFields>
         <listViewButtons>Merge_Accts</listViewButtons>
         <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACCOUNT.ACCOUNT_NUMBER</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.PHONE1</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>PC_EMAIL</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.SITE</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>PC_ADDRESS2_CITY</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>PC_ADDRESS2_ZIP</lookupDialogsAdditionalFields>
+        <lookupFilterFields>ACCOUNT.NAME</lookupFilterFields>
+        <lookupFilterFields>ACCOUNT.ACCOUNT_NUMBER</lookupFilterFields>
+        <lookupFilterFields>ACCOUNT.PHONE1</lookupFilterFields>
+        <lookupFilterFields>PC_EMAIL</lookupFilterFields>
+        <lookupFilterFields>ACCOUNT.SITE</lookupFilterFields>
+        <lookupFilterFields>PC_ADDRESS2_CITY</lookupFilterFields>
+        <lookupFilterFields>PC_ADDRESS2_ZIP</lookupFilterFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.SITE</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CORE.USERS.ALIAS</lookupPhoneDialogsAdditionalFields>
@@ -24140,6 +24151,9 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <lookupPhoneDialogsAdditionalFields>PC_PHONE5</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>PC_PHONE6</lookupPhoneDialogsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.FIRST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CORE.USERS.LAST_NAME</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACCOUNT.ADDRESS2_STATE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.PHONE1</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PC_EMAIL</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.SITE</searchResultsAdditionalFields>
@@ -24158,18 +24172,26 @@ OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilev
         <errorMessage>Don&apos;t Update the Account Name / Account Currency .</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>FS_Account_Lock</fullName>
+        <active>true</active>
+        <description>Prevents users from editing Account records unless they are System Admin or integration.</description>
+        <errorConditionFormula>IF( ISNEW() || CreatedDate = LastModifiedDate || $Profile.Name=&quot;Generic API Only&quot; || $Profile.Name=&quot;System Administrator&quot; || $Profile.Name=&quot;Unilever Food Solution - Russia&quot;, false , IF( (RecordType.DeveloperName  = &quot;Operators&quot; || RecordType.DeveloperName = &quot;Distributor&quot;) &amp;&amp; (ISPICKVAL(Status__c , &quot;Temporary&quot;) || ISPICKVAL(Status__c,&quot;Active&quot;)), true, false ) )</errorConditionFormula>
+        <errorMessage>You do not have access to edit this record. Please contact your system administrator.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>FS_Account_Owner_Change_Lock</fullName>
         <active>true</active>
         <description>Created for account owner change lock for other than administrators</description>
-        <errorConditionFormula>AND( ISCHANGED( OwnerId ),NOT(OR($Profile.Name=&quot;Generic API Only&quot;, $Permission.FS_Admin )),$Profile.Name=&quot;Unilever Food Solution - Russia&quot;
-,OR(RecordType.Name=&apos;Distributor&apos;,RecordType.Name=&apos;Operator&apos;,RecordType.Name=&apos;Operator Russia&apos;))</errorConditionFormula>
+        <errorConditionFormula>IF($Profile.Name=&quot;Generic API Only&quot; || $Permission.FS_Admin || $Profile.Name=&quot;System Administrator&quot;, false,
+ 
+IF(ISCHANGED(OwnerId)=true &amp;&amp; (RecordType.DeveloperName = &quot;Distributor&quot;|| RecordType.DeveloperName = &quot;Operators&quot; || RecordType.DeveloperName = &quot;FS_OperatorRussia&quot;), true, false))</errorConditionFormula>
         <errorMessage>You do not have access to change the account owner.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FS_Billing_Street_Mandatory</fullName>
         <active>true</active>
         <description>Billing Street Mandatory</description>
-        <errorConditionFormula>AND($Profile.Name = &apos;Unilever Food Solution - Russia&apos;, BillingStreet = &apos;&apos;)</errorConditionFormula>
+        <errorConditionFormula>AND($Profile.Name = &apos;Unilever Food Solution - Russia&apos;, BillingStreet = &apos;&apos;,  OR(RecordType.DeveloperName =&apos;Operators&apos;, RecordType.DeveloperName =&apos;FS_OperatorRussia&apos;))</errorConditionFormula>
         <errorMessage>Вам необходимо заполнить адрес для создания новой учетной записи оператора.</errorMessage>
     </validationRules>
     <validationRules>
@@ -24198,8 +24220,8 @@ OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilev
     </validationRules>
     <validationRules>
         <fullName>Shipping_Address_Validation_for_US</fullName>
-        <active>false</active>
-        <errorConditionFormula>IF( AND(AND(RecordType.Name  = &quot;Operator&quot;  ,  $Profile.Name  &lt;&gt; &quot;Unilever Food Solution - Russia&quot; , $Profile.Name  &lt;&gt; &quot;System Administrator&quot; ) ,OR(  ISBLANK(  ShippingCity ),  ISBLANK(  ShippingCountry ), ISBLANK(  ShippingState ),  ISBLANK(  ShippingStreet ),  ISBLANK(  ShippingPostalCode ))) , true, false)</errorConditionFormula>
+        <active>true</active>
+        <errorConditionFormula>IF( AND(AND(RecordType.Name  = &quot;Operator&quot;  ,  $Profile.Name  = &quot;Unilever Food Solution - NA&quot; ) ,OR(  ISBLANK(  ShippingCity ),  ISBLANK(  ShippingCountry ), ISBLANK(  ShippingState ),  ISBLANK(  ShippingStreet ),  ISBLANK(  ShippingPostalCode ))) , true, false)</errorConditionFormula>
         <errorMessage>Please Check whether the Following details are filled or not:
 Shipping Street,
 Shipping City,

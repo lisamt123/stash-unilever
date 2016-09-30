@@ -51,17 +51,6 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>FS_Account_Plan__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Account Plan</label>
-        <referenceTo>FS_Account_Plan__c</referenceTo>
-        <relationshipLabel>Campaigns</relationshipLabel>
-        <relationshipName>Campaigns</relationshipName>
-        <required>false</required>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>ActualCost</fullName>
     </fields>
     <fields>
@@ -75,6 +64,29 @@
     </fields>
     <fields>
         <fullName>CampaignMemberRecordTypeId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Description</fullName>
+    </fields>
+    <fields>
+        <fullName>EndDate</fullName>
+    </fields>
+    <fields>
+        <fullName>ExpectedResponse</fullName>
+    </fields>
+    <fields>
+        <fullName>ExpectedRevenue</fullName>
+    </fields>
+    <fields>
+        <fullName>FS_Account_Plan__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account Plan</label>
+        <referenceTo>FS_Account_Plan__c</referenceTo>
+        <relationshipLabel>Campaigns</relationshipLabel>
+        <relationshipName>Campaigns</relationshipName>
+        <required>false</required>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -98,18 +110,6 @@
         <relationshipName>Campaigns</relationshipName>
         <required>false</required>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Description</fullName>
-    </fields>
-    <fields>
-        <fullName>EndDate</fullName>
-    </fields>
-    <fields>
-        <fullName>ExpectedResponse</fullName>
-    </fields>
-    <fields>
-        <fullName>ExpectedRevenue</fullName>
     </fields>
     <fields>
         <fullName>HierarchyActualCost</fullName>

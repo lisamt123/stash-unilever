@@ -54,6 +54,22 @@ public with sharing Class FS_Utility{
         }
         return recordTypeWithName;
     }
+    
+    //This method is being called from FS Process Builder
+    @InvocableMethod(label='Get Owners Custom Settings' description='')
+    public static void getDefaults(List<Account> accounts) {
+        list<Account> acts = new list<Account>();
+        list<ID> listOwner = new list<ID>();
         
+        for(Account a : accounts){
+           FS_User_Territory__c ut = FS_User_Territory__c.getInstance(a.ownerId);
+           acts.add(new Account(Id=a.Id, Region__c = ut.Region__c, Zone__c=ut.Zone__c, Territory__c=ut.Territory__c));
+        }
+        try{
+            update acts;
+        }catch(Exception e){
+            system.debug(e);
+        }
+    }    
     
    }
