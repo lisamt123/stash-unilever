@@ -184,8 +184,8 @@
     <apexClass>CRMfusionDBR101__DB_Lead</apexClass>
     <enabled>true</enabled>
 </classAccesses>
-    <description>Minimum set of behaviours and security settings for the TO users. All others TO PS build on top of that one.</description>
-   <fieldPermissions>
+<description>Minimum set of behaviours and security settings for the TO users. All others TO PS build on top of that one.</description>
+<fieldPermissions>
     <editable>false</editable>
     <field>cec_Reason_Information__kav.Additional_Sensitive_Information__c</field>
     <readable>true</readable>
@@ -1719,7 +1719,7 @@
     <editable>true</editable>
     <field>User.CEC_User_Reference__c</field>
     <readable>true</readable>
-</fieldPermissions>
+</fieldPermissions>   
 <label>TO - User</label>
 <objectPermissions>
     <allowCreate>false</allowCreate>
@@ -1919,7 +1919,7 @@
     <object>Contact</object>
     <viewAllRecords>false</viewAllRecords>
 </objectPermissions>
-    <pageAccesses>
+<pageAccesses>
     <apexPage>CEC_CaseInline</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
