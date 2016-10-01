@@ -21395,6 +21395,18 @@ Shipping Country</errorMessage>
         <url>http://search.hoovers.com/cgi-bin/hol_search?which=company&amp;query_string={!Account_Name}</url>
     </webLinks>
     <webLinks>
+        <fullName>Merge_Accts</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Merge Accts</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!URLFOR(&apos;/merge/accmergewizard.jsp&apos;,&apos;&apos;)}</url>
+    </webLinks>
+    <webLinks>
         <fullName>YahooMaps</fullName>
         <availability>online</availability>
         <displayType>link</displayType>
