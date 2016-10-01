@@ -34,7 +34,7 @@ public with sharing class Amr_UtilityClass {
 
             List<MDO_Category__c> subcategoryid = [select id from MDO_Category__c  where name =:subcategory ORDER BY Name limit 50000];
             System.debug('Entering subCategoriesForGivenCategory : ' + subcategoryid);
-            List<MDO_Category__c> firsAndSecondSublevels = [select id from MDO_Category__c where (parent_id__r.parent_id__c =:subcategoryid and parent_id__r.parent_id__r.status__c = 'Active') or (parent_id__c =: subcategory and parent_id__r.status__c = 'Active')];
+            List<MDO_Category__c> firsAndSecondSublevels = [select id from MDO_Category__c where (parent_id__r.parent_id__c =:subcategoryid and parent_id__r.parent_id__r.status__c = 'Active') or (parent_id__c =: subcategoryid and parent_id__r.status__c = 'Active')];
             subcategories.add(subcategory);
             for(MDO_Category__c cat : firsAndSecondSublevels){
                 subcategories.add(cat.id);
