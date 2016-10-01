@@ -48827,10 +48827,7 @@
         <enabled>true</enabled>
         <name>SelectFilesFromSalesforce</name>
     </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ShowCompanyNameAsUserBadge</name>
-    </userPermissions>
+
     <userPermissions>f
         <enabled>true</enabled>
         <name>SubmitMacrosAllowed</name>

@@ -145,11 +145,7 @@
             <actionType>StandardButton</actionType>
             <sortOrder>4</sortOrder>
         </platformActionListItems>
-        <platformActionListItems>
-            <actionName>FS_Defined_Objective__c.Create_Campaign</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>5</sortOrder>
-        </platformActionListItems>
+
         <platformActionListItems>
             <actionName>FS_Defined_Objective__c.Create_Risk</actionName>
             <actionType>QuickAction</actionType>

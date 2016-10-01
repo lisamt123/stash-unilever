@@ -17,13 +17,7 @@
         <columns>
             <field>Account.Opportunities$StageName</field>
         </columns>
-        <filter>
-            <criteriaItems>
-                <column>Account.Opportunities$StageName</column>
-                <operator>equals</operator>
-                <value>01 – Universe,02 - Above,03 – In the funnel,04 – Best Few</value>
-            </criteriaItems>
-        </filter>
+
         <format>Summary</format>
         <name>FS Open Opportunity</name>
         <params>
