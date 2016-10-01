@@ -52567,10 +52567,7 @@
         <enabled>true</enabled>
         <name>SubmitMacrosAllowed</name>
     </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewAllData</name>
-    </userPermissions>
+
 
     <userPermissions>
         <enabled>true</enabled>
