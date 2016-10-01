@@ -58,22 +58,23 @@
                 <fullName>Cart P</fullName>
                 <default>false</default>
             </picklistValues>
+              <picklistValues>
+                <fullName>Cart M</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Cart G</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Cart M</fullName>
+             <picklistValues>
+                <fullName>Field Box</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Tricycle</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Field Box</fullName>
-                <default>false</default>
-            </picklistValues>
+         
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>

@@ -2865,6 +2865,10 @@
         <name>ICB_ERROR_MESSAGE</name>
     </customLabels>
     <customLabels>
+        <label>E-mail Duplicado</label>
+        <name>ICB_Email_Duplicated</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Product Impulse Family --></label>
         <name>ICB_FAMILY_IMPULSE</name>
     </customLabels>

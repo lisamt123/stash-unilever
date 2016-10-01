@@ -401,6 +401,13 @@
         <searchFilterFields>NAME</searchFilterFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
+	<validationRules>
+        <fullName>CEC_Outgoing_SMS_Character_Limit</fullName>
+        <active>true</active>
+        <description>Limit the outgoing sms character to 700</description>
+        <errorConditionFormula>LEN(smagicinteract__SMSText__c) &gt; 700</errorConditionFormula>
+        <errorMessage>SMS Character cannot be greater than 700.</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>smagicinteract__Resend_SMS</fullName>
         <availability>online</availability>

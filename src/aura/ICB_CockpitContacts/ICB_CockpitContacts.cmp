@@ -7,11 +7,12 @@
     <aura:attribute name="mapInventory" type="Map" default="{0:0}" description="Attribute for save the index of list inventories" />
     <aura:attribute name="quantityUpdate" type="Integer" default="0" description="Amount of products" />
     <aura:attribute name="HeaderCockPit" type="Boolean" default="true"/>
-    
+   
+
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
     <c:ICB_MobileChannelHeader HeaderCockPit="{!v.HeaderCockPit}"/>
-   
+    
     <table class="slds-table slds-table--bordered slds-max-medium-table--stacked">
         <tbody>
             <aura:iteration var="wrapper" items="{!v.listContacts}" indexVar="index">

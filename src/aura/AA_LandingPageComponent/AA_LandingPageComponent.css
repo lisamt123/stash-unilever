@@ -103,3 +103,8 @@
     text-align: center;
     line-height:2rem;
 }
+@media screen and (min-width:1200px){
+    .THIS .slds-dropdown--right {
+    right: 2%;
+}
+}

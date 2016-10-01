@@ -268,23 +268,23 @@ public class AA_AgentAppService_Test{
         AA_ApplicationWrapperObjLtng objRep = new AA_ApplicationWrapperObjLtng();
         Test.startTest();
         system.runAs(user){
-            objRep = AA_AgentAppService.getRetriveAllAgentReports(filterType, sortType, limitRecords, offset, applyFilter, clusterData.id, countryData.id, uniBrand.id, retailerData.id, unileverReport.Reporting_on__c, recordType, compBrand.id, compName.id, compCategory.id, topic.id);
+            objRep = AA_AgentAppService.getRetriveAllAgentReports(filterType, sortType, limitRecords, offset, applyFilter, clusterData.id, countryData.id, uniBrand.id, retailerData.id, unileverReport.Reporting_on__c, recordType, compBrand.id, compName.id, compCategory.id, topic.id,true);
             system.assert(objRep.TotalAgentReportsCount != null);
             
              filterType=AA_Constants.FilteredReportSample;
 			applyFilter='true';
-			AA_AgentAppService.getRetriveAllAgentReports(filterType, sortType, limitRecords, offset, applyFilter, clusterData.id,null, uniBrand.id, retailerData.id, unileverReport.Reporting_on__c, recordType, compBrand.id, compName.id, compCategory.id, topic.id);
+			AA_AgentAppService.getRetriveAllAgentReports(filterType, sortType, limitRecords, offset, applyFilter, clusterData.id,null, uniBrand.id, retailerData.id, unileverReport.Reporting_on__c, recordType, compBrand.id, compName.id, compCategory.id, topic.id,false);
 			recordType='Competitor';
             sortType=AA_Constants.SortLikeType;
-            AA_AgentAppService.getRetriveAllAgentReports(filterType, sortType, limitRecords, offset, applyFilter, null,countryData.id, uniBrand.id, retailerData.id, unileverReport.Reporting_on__c, recordType, compBrand.id, compName.id, compCategory.id, topic.id);
+            AA_AgentAppService.getRetriveAllAgentReports(filterType, sortType, limitRecords, offset, applyFilter, null,countryData.id, uniBrand.id, retailerData.id, unileverReport.Reporting_on__c, recordType, compBrand.id, compName.id, compCategory.id, topic.id,true);
             
             applyFilter='false';
-			AA_AgentAppService.getRetriveAllAgentReports(filterType, sortType, limitRecords, offset, applyFilter, clusterData.id, countryData.id, uniBrand.id, retailerData.id, unileverReport.Reporting_on__c, recordType, compBrand.id, compName.id, compCategory.id, topic.id);
+			AA_AgentAppService.getRetriveAllAgentReports(filterType, sortType, limitRecords, offset, applyFilter, clusterData.id, countryData.id, uniBrand.id, retailerData.id, unileverReport.Reporting_on__c, recordType, compBrand.id, compName.id, compCategory.id, topic.id,true);
 			
         }
         Test.stopTest();
     }
-    static testMethod void defaultImageIdTest(){
+   /* static testMethod void defaultImageIdTest(){
         aa_agent_app_custom_setting__c setting = new aa_agent_app_custom_setting__c();
         setting.Name = 'UL Logo Id';
         setting.Value__c = AA_Constants.Stringwhatever;
@@ -293,7 +293,7 @@ public class AA_AgentAppService_Test{
         String returnedValue= AA_AgentAppService.defaultImageId(setting.Name);
         system.assertEquals(setting.Value__c, returnedValue);
         Test.stopTest();
-    }
+    }*/
      static testMethod void getCompetitorCategoryTest(){
       Schema.DescribeSObjectResult R3 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT3 = R3.getRecordTypeInfosByName();

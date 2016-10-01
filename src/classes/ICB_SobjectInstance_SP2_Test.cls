@@ -8,7 +8,7 @@ Class for creating instances which will be used to test classes from Ice Cream's
 ======================================================
 ======================================================
 History
-VERSION AUTHOR    		DATE 		DETAIL 			Description
+VERSION AUTHOR          DATE        DETAIL          Description
  1.0    Antonio Raul 14/06/2016  Class creation  
 ***********************************************************************/
 @IsTest
@@ -17,12 +17,12 @@ public class ICB_SobjectInstance_SP2_Test
      
     /*******************************************************************
     Purpose: Insert Account for using in test methods of classes: 
-			 ICB_Cockpit_CC_Test,
-			 ICB_PhotoMobileChannel_Batch_Test,
-			 ICB_ContactPartnerUserCreation_Test,
-			 ICB_PartnerUserCreation_BatchSch_Test,
-			 ICB_PhotoMobileChannel_Batch_Test,
-			 ICB_SetupPhotoMobileChannel_Test
+             ICB_Cockpit_CC_Test,
+             ICB_PhotoMobileChannel_Batch_Test,
+             ICB_ContactPartnerUserCreation_Test,
+             ICB_PartnerUserCreation_BatchSch_Test,
+             ICB_PhotoMobileChannel_Batch_Test,
+             ICB_SetupPhotoMobileChannel_Test
     Parameters: Name, recordTypeId
     Returns: [Account]
     Throws [Exceptions]: [NONE]  
@@ -36,13 +36,13 @@ public class ICB_SobjectInstance_SP2_Test
         return account;
     }
     /*******************************************************************
-	Purpose: Insert Contact for using in test methods of classes: 
-			 ICB_Cockpit_CC_Test,
-			 ICB_PhotoMobileChannel_Batch_Test,
-			 ICB_ContactPartnerUserCreation_Test,
-			 ICB_PartnerUserCreation_BatchSch_Test,
-			 ICB_PhotoMobileChannel_Batch_Test,
-			 ICB_SetupPhotoMobileChannel_Test
+    Purpose: Insert Contact for using in test methods of classes: 
+             ICB_Cockpit_CC_Test,
+             ICB_PhotoMobileChannel_Batch_Test,
+             ICB_ContactPartnerUserCreation_Test,
+             ICB_PartnerUserCreation_BatchSch_Test,
+             ICB_PhotoMobileChannel_Batch_Test,
+             ICB_SetupPhotoMobileChannel_Test
     Parameters: Name, recordTypeId,accountId
     Returns: [Account]
     Throws [Exceptions]: [NONE]  
@@ -53,7 +53,8 @@ public class ICB_SobjectInstance_SP2_Test
                                       RecordTypeId = recordTypeId,
                                       AccountId = accountId,
                                       ICB_Type__c = IcbType,
-                                      Email = email
+                                      Email = email,
+                                      ICB_Cause__c = 'Teste'
                                      );
         insert contact;
         return contact;
@@ -61,9 +62,9 @@ public class ICB_SobjectInstance_SP2_Test
         
     /*******************************************************************
     Purpose: Insert User for using in test methods of classes: 
-			 ICB_Cockpit_CC_Test,
-			 ICB_PhotoMobileChannel_Batch_Test,
-			 ICB_SetupPhotoMobileChannel_Test
+             ICB_Cockpit_CC_Test,
+             ICB_PhotoMobileChannel_Batch_Test,
+             ICB_SetupPhotoMobileChannel_Test
     Parameters: [NONE]
     Returns: User
     Throws [Exceptions]: [NONE] 
@@ -94,9 +95,9 @@ public class ICB_SobjectInstance_SP2_Test
     Returns: User
     Throws [Exceptions]: [NONE] 
     ********************************************************************/
-    public static Product2 insertProduct2(String name,String family,String image)
+    public static Product2 insertProduct2(String name,String family,String image,Id recordTypeId)
     {
-        Product2 product = new Product2(Name = name, Family = family,Product_Image__c = image,isActive=true,ICB_Price__c = 3.60);
+        Product2 product = new Product2(Name = name,RecordTypeId = recordTypeId, Family = family,Product_Image__c = image,isActive=true,ICB_Price__c = 3.60);
         insert product;
         return product;
     }
@@ -120,11 +121,11 @@ public class ICB_SobjectInstance_SP2_Test
     ********************************************************************/
     public static ICB_Inventory_Line_Item__c insertInventoryLineItem(String productId, String inventoryId,Decimal quantityUnit,Decimal quantityBoxes)
     {
-        ICB_Inventory_Line_Item__c inventoryLineItem = new ICB_Inventory_Line_Item__c(	ICB_Product__c = productId,
+        ICB_Inventory_Line_Item__c inventoryLineItem = new ICB_Inventory_Line_Item__c(  ICB_Product__c = productId,
                                                                                         ICB_Inventory__c = inventoryId,
                                                                                         ICB_Quantity_Unit__c = quantityUnit,
                                                                                         ICB_Quantity_Boxes__c = quantityBoxes,
-                                                                                     	ICB_Quantity_ToBe_Updated__c = 1);
+                                                                                        ICB_Quantity_ToBe_Updated__c = 1);
         insert inventoryLineItem;
         return inventoryLineItem;
     }
@@ -161,8 +162,8 @@ public class ICB_SobjectInstance_SP2_Test
   
      /*******************************************************************
     Purpose: Insert ICB_ContactTypes__c for using in test methods of classes: 
-			 ICB_ContactPartnerUserCreation_Test,
-		     ICB_PartnerUserCreation_BatchSch_Test
+             ICB_ContactPartnerUserCreation_Test,
+             ICB_PartnerUserCreation_BatchSch_Test
     Parameters: [NONE]
     Returns: FeedItem
     Throws [Exceptions]: [NONE] 
