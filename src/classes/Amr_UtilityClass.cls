@@ -53,7 +53,8 @@ public with sharing class Amr_UtilityClass {
 
     public Set<MDO_Brand__C> brandValues(String Category,String brandPosition){
         System.debug('Entering getBETBrandsForGivenPositioning : ' + brandPosition);
-        List<MDO_Brand__C> brandValues = [select id,name from MDO_Brand__C where id in (select brand_id__c from MDO_BrandPositions__c where brand_position_id__c =:brandPosition and status__c = 'Active' ) and status__c = 'Active' limit 50000];
+        List<MDO_Brand__C> brandPositionid = [SELECT Id FROM MDO_Brand__c WHERE Name =:brandPosition ORDER BY Name limit 50000];
+        List<MDO_Brand__C> brandValues = [select id,name from MDO_Brand__C where id in (select brand_id__c from MDO_BrandPositions__c where brand_position_id__c =:brandPositionid and status__c = 'Active' ) and status__c = 'Active' limit 50000];
         Set<MDO_Brand__C> brandSet = new Set<MDO_Brand__C>();
         brandSet.addAll(brandValues);
         return brandSet;
