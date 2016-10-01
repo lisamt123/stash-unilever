@@ -51237,10 +51237,6 @@
         <apexPage>groupMaster</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>labs_survey_css</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>AF_Bonus_Results__c.Bonus_Annual</recordType>
