@@ -163,11 +163,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>WhatCount</field>
-            <table>Activity</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>WhoCount</field>
             <table>Activity</table>
         </columns>

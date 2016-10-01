@@ -236,14 +236,12 @@ src/dashboards/FS_Dashboards/Salesperson_Dashboard.dashboard
 src/dashboards/FS_Dashboards-meta.xml
 src/reports
 src/reports/FS_Report
-src/reports/FS_Report/Account_Def_Objctives_and_Opportunities.report
 src/reports/FS_Report/Account_Plans_By_Rep.report
 src/reports/FS_Report/Closed_Revenue_This_Quarter.report
 src/reports/FS_Report/FS_Account_Opportunity_Fact_Sheet.report
 src/reports/FS_Report/FS_Contact_Account_Report.report
 src/reports/FS_Report/FS_Hierarchy_Levels.report
 src/reports/FS_Report/FS_Opportunites_Funnel.report
-src/reports/FS_Report/FS_Opportunities_by_Product_Focus.report
 src/reports/FS_Report/FS_Opportunities_Funnel_Stage_Duration.report
 src/reports/FS_Report/FS_Opportunity_planned.report
 src/reports/FS_Report/FS_Partner_Account_Report.report
@@ -253,8 +251,6 @@ src/reports/FS_Report/FS_Product_TopSellers.report
 src/reports/FS_Report/FS_Report_MABE_1.report
 src/reports/FS_Report/FS_Report_MABE_2.report
 src/reports/FS_Report/Last_Month_VS_This_Month_Closed.report
-src/reports/FS_Report/Month_Over_Month_Close_Trend.report
-src/reports/FS_Report/Open_Opportunities_by_Hierarchy.report
 src/reports/FS_Report/Opportunities_Planned_vs_Actual_Quantity.report
 src/reports/FS_Report-meta.xml
 src/reports/FS_Russia_Reports
@@ -333,6 +329,7 @@ src/reports/North_America_Food_Solutions/FS_Product_List_Price_CA.report
 src/reports/North_America_Food_Solutions/FS_Product_List_Price_HI.report
 src/reports/North_America_Food_Solutions/FS_Product_List_Price_US.report
 src/reports/North_America_Food_Solutions/Potential_Risks.report
+src/reports/North_America_Food_Solutions-meta.xml
 src/reportTypes
 src/reportTypes/FS_Account_Hierarchy.reportType
 src/reportTypes/FS_Account_levels.reportType
@@ -342,6 +339,7 @@ src/reportTypes/FS_Activities_with_Account_and_Contacts.reportType
 src/reportTypes/FS_Duplicate_Account_Records.reportType
 src/reportTypes/FS_MABE_Analysis.reportType
 src/reportTypes/FS_Opportunities_with_Actuals.reportType
+src/reportTypes/Users_and_Managers.reportType
 src/pages
 src/pages/FS_CentrallyLedChildAccounts.page
 src/pages/FS_CentrallyLedChildAccounts.page-meta.xml
@@ -437,6 +435,7 @@ src/weblinks/FS_Marketing_Materials.weblink
 src/weblinks/FS_Unilever_Food_Solutions_Canada.weblink
 src/weblinks/FS_Unilever_Food_Solutions_US.weblink
 src/weblinks/FS_US_HUB.weblink
+src/weblinks/Power_BI_Daily_Sales_Report.weblink
 src/weblinks/Sample_Ordering_Dot_Foods.weblink
 src/weblinks/Technomic.weblink
 src/weblinks/Village_Press.weblink
@@ -616,3 +615,9 @@ src/objectTranslations/Risk__c-ru.objectTranslation
 src/objectTranslations/Solution-ru.objectTranslation
 src/objectTranslations/Survey_Question__c-ru.objectTranslation
 src/objectTranslations/Task-ru.objectTranslation
+src/flows/FS_Account_Plan_Approval-1.flow
+src/flows/FS_Account_Status_Change-11.flow
+src/flows/FS_Defined_Objective_Approval_Process-2.flow
+src/flows/FS_Distributor_type_Update_on_Child-3.flow
+src/flows/FS_Territory_Call_Apex-1.flow
+src/flows/FS_UpdateRegionandZonebasedoncityforRussia-3.flow

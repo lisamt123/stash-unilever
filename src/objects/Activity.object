@@ -114,6 +114,17 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>FS_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Activities</relationshipLabel>
+        <relationshipName>Activity_Relationship</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>FS_Distributorname__c</fullName>
         <externalId>false</externalId>
         <label>Distributor name</label>

@@ -21209,7 +21209,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <lookupFilterFields>ACCOUNT.PHONE1</lookupFilterFields>
         <lookupFilterFields>PC_EMAIL</lookupFilterFields>
         <lookupFilterFields>ACCOUNT.SITE</lookupFilterFields>
-        <lookupFilterFields>PC_ADDRESS2_CITY</lookupFilterFields>
+
         <lookupFilterFields>PC_ADDRESS2_ZIP</lookupFilterFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.SITE</lookupPhoneDialogsAdditionalFields>

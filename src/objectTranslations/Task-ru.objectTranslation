@@ -45,11 +45,6 @@
         <name>Call_Type__c</name>
     </fields>
     <fields>
-        <label><!-- Account --></label>
-        <name>FS_Account__c</name>
-        <relationshipLabel><!-- Activities --></relationshipLabel>
-    </fields>
-    <fields>
         <label><!-- Distributor name --></label>
         <name>FS_Distributorname__c</name>
     </fields>
