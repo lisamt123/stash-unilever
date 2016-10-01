@@ -17,8 +17,9 @@ public with sharing class Amr_UtilityClass {
     } */
 
     public Set<MDO_BrandPosition__c> brandPostitionValues(String Category){
-    
-        List<MDO_BrandPosition__c> brandPositionLst = [Select id, name from MDO_BrandPosition__c where id in (select brand_position_id__c from MDO_BrandPositions__c where product_category_id__c = :Category and status__c = 'Active') and status__c = 'Active' limit 50000];
+        
+        Set<String> categoryAndSubs = subCategoriesForGivenCategory(category);
+        List<MDO_BrandPosition__c> brandPositionLst = [Select id, name from MDO_BrandPosition__c where id in (select brand_position_id__c from MDO_BrandPositions__c where product_category_id__c in:categoryAndSubs and status__c = 'Active') and status__c = 'Active' order by name asc];
         Set<MDO_BrandPosition__c> brandPostitionSet = new Set<MDO_BrandPosition__c>();
         
         brandPostitionSet.addAll(brandPositionLst);
@@ -26,7 +27,19 @@ public with sharing class Amr_UtilityClass {
         return brandPostitionSet;
     }
 
-
+    public static Set<String> subCategoriesForGivenCategory(String subcategory){
+        
+        Set<String> subcategories = new Set<String>{};
+        if(!String.isBlank(subcategory)) {
+            List<MDO_Category__c> firsAndSecondSublevels = [select id from MDO_Category__c where (parent_id__r.parent_id__c =:subcategory and parent_id__r.parent_id__r.status__c = 'Active') or (parent_id__c =: subcategory and parent_id__r.status__c = 'Active')];
+            subcategories.add(subcategory);
+            for(MDO_Category__c cat : firsAndSecondSublevels){
+                subcategories.add(cat.id);
+            }
+        }
+        
+        return subcategories;
+    }
     
  /* public Set<MDO_BrandPositions__c> brandValues(String Category,String brandPosition){
         List<MDO_BrandPositions__c> brandValues = [select brand_id__r.name,brand_position_id__r.name,product_category_id__r.name from MDO_BrandPositions__c where brand_position_id__r.name = :brandPosition AND product_category_id__r.name =:Category limit 50000];
