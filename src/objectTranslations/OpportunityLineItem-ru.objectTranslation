@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Actual Quantity --></label>
+        <name>Actual_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Granted --></label>
+        <name>ApprovalGranted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Required --></label>
+        <name>ApprovalRequired__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract Product --></label>
+        <name>Contract_Product__c</name>
+        <relationshipLabel><!-- Opportunity Product --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Copy of DIST TMI --></label>
+        <name>Copy_of_DIST_TMI__c</name>
+    </fields>
+    <fields>
+        <help><!-- For reporting purposes - to supply chain --></help>
+        <label><!-- Distributor Address --></label>
+        <name>Distributor_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distributor TMI --></label>
+        <name>Distributor__c</name>
+        <picklistValues>
+            <masterLabel>CA Direct</masterLabel>
+            <translation><!-- CA Direct --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA GFS</masterLabel>
+            <translation><!-- CA GFS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA Other</masterLabel>
+            <translation><!-- CA Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA Sysco</masterLabel>
+            <translation><!-- CA Sysco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colabor</masterLabel>
+            <translation><!-- Colabor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PFG</masterLabel>
+            <translation><!-- PFG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reinhart</masterLabel>
+            <translation><!-- Reinhart --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US Direct / CED</masterLabel>
+            <translation><!-- US Direct / CED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US Foods</masterLabel>
+            <translation><!-- US Foods --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US GFS</masterLabel>
+            <translation><!-- US GFS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US OTher</masterLabel>
+            <translation><!-- US OTher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US Only (Food Buy, Aramark, Sodexho, Compass)</masterLabel>
+            <translation><!-- US Only (Food Buy, Aramark, Sodexho, Compass) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US Sysco</masterLabel>
+            <translation><!-- US Sysco --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- MarginMarketDescription --></label>
+        <name>FSNAMarginMarketCodeHelper__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Deviated Rate --></label>
+        <name>FSNA_TotalDeviatedRate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total HQ Rate --></label>
+        <name>FSNA_TotalHQRate__c</name>
+    </fields>
+    <fields>
+        <label><!-- B1 Price --></label>
+        <name>FS_B1Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- BR3 --></label>
+        <name>FS_BR3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Copy of Total COGS --></label>
+        <name>FS_Copy_of_Total_COGS__c</name>
+    </fields>
+    <fields>
+        <label><!-- DIST TMI --></label>
+        <name>FS_DISTTMI__c</name>
+    </fields>
+    <fields>
+        <label><!-- DS TMI/Cs --></label>
+        <name>FS_DSTMI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delta BR1-BR3 --></label>
+        <name>FS_DeltaBR1BR3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Discount Volume --></label>
+        <name>FS_DiscountVolume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distr markup --></label>
+        <name>FS_DistributorMarkup__c</name>
+    </fields>
+    <fields>
+        <help><!-- For reporting purposes - to supply chain --></help>
+        <label><!-- Distributor Address --></label>
+        <name>FS_Distributor_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fixed Price --></label>
+        <name>FS_FixedPrice__c</name>
+    </fields>
+    <fields>
+        <label><!-- HQ Rate --></label>
+        <name>FS_HQRate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Installation charges --></label>
+        <name>FS_Installation_charges__c</name>
+    </fields>
+    <fields>
+        <label><!-- Line Manager --></label>
+        <name>FS_LineManager__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Target --></label>
+        <name>FS_MarketTarget__c</name>
+    </fields>
+    <fields>
+        <label><!-- NSV --></label>
+        <name>FS_NSV__c</name>
+    </fields>
+    <fields>
+        <label><!-- Net Price --></label>
+        <name>FS_NetPrice__c</name>
+    </fields>
+    <fields>
+        <label><!-- Op TMI/Cs --></label>
+        <name>FS_OpTMICs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Op TMI --></label>
+        <name>FS_OpTMI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price 1 (w Disc, w VAT) --></label>
+        <name>FS_Price1WithDiscountWithVAT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Market --></label>
+        <name>FS_ProductMarket__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the currency for Rate --></help>
+        <label><!-- Rate --></label>
+        <name>FS_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sample --></label>
+        <name>FS_Sample__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service Per Year --></label>
+        <name>FS_ServicePerYear__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1/2</masterLabel>
+            <translation><!-- 1/2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1/4</masterLabel>
+            <translation><!-- 1/4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- TPR Calculation Flag --></label>
+        <name>FS_TPRCalculationFlag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Temporary Product Discount --></label>
+        <name>FS_TemporaryProductDiscount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique Product --></label>
+        <name>FS_UniqueProduct__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total TTS --></label>
+        <name>FS_additionalDiscount__c</name>
+    </fields>
+    <fields>
+        <label><!-- GM when TPR = 0% --></label>
+        <name>FS_gmWhenTPREqualsZero__c</name>
+    </fields>
+    <fields>
+        <label><!-- GM --></label>
+        <name>FS_grossMargin__c</name>
+    </fields>
+    <fields>
+        <label><!-- GP --></label>
+        <name>FS_grossProfit__c</name>
+    </fields>
+    <fields>
+        <label><!-- GSV --></label>
+        <name>FS_grossSalesValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- necessary TPR --></label>
+        <name>FS_necessaryTPR__c</name>
+    </fields>
+    <fields>
+        <label><!-- NIV --></label>
+        <name>FS_netInvoiceValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- PC --></label>
+        <name>FS_productCost__c</name>
+    </fields>
+    <fields>
+        <label><!-- SCC --></label>
+        <name>FS_supplyCostChain__c</name>
+    </fields>
+    <fields>
+        <label><!-- SC --></label>
+        <name>FS_supplyCost__c</name>
+    </fields>
+    <fields>
+        <label><!-- TPR --></label>
+        <name>FS_temporaryPriceReduction__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total TPR % --></label>
+        <name>FS_totalTPRPercentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- TPR % --></label>
+        <name>FS_tprPercent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Turnover --></label>
+        <name>FS_turnover__c</name>
+    </fields>
+    <fields>
+        <label><!-- Value necessary (w/ VAT) --></label>
+        <name>FS_valueNecessaryWithVAT__c</name>
+    </fields>
+    <fields>
+        <label><!-- VAT --></label>
+        <name>FS_vat__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Profit % --></label>
+        <name>GPPercent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Profit --></label>
+        <name>GrossProfit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Closed --></label>
+        <name>ICB_IS_CLOSED__c</name>
+    </fields>
+    <fields>
+        <label><!-- Items Returned --></label>
+        <name>ICB_ITEMS_RETURNED__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purchase Price --></label>
+        <name>ICB_Purchase_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Sales --></label>
+        <name>ICB_STATUS_SALES__c</name>
+        <picklistValues>
+            <masterLabel>sold</masterLabel>
+            <translation><!-- sold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sold pending stock</masterLabel>
+            <translation><!-- sold pending stock --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>stock</masterLabel>
+            <translation><!-- stock --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Total Purchase Price --></label>
+        <name>ICB_Total_Purchase_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Closed --></label>
+        <name>IS_CLOSED__c</name>
+    </fields>
+    <fields>
+        <help><!-- Account that will distribute the proposed product. --></help>
+        <label><!-- Distributor --></label>
+        <name>ProdDistributor__c</name>
+        <relationshipLabel><!-- Opportunity Product --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Total COGS --></label>
+        <name>TotalCOGS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Turnover --></label>
+        <name>Turnover__c</name>
+    </fields>
+    <validationRules>
+        <errorMessage>Вы не можете выбрать неактивный продукт</errorMessage>
+        <name>FS_Inactive_Products</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An opportunity at stage Won can not be changed at the line item level. --></errorMessage>
+        <name>FS_OpportunityProductsStageWon</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Product scheduling не может быть выполнен для существующей Возможности</errorMessage>
+        <name>FS_Schedule_On_Existing_Opportunity</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- TPR% shouldn&apos;t be a negative value and should be less than 100.00% --></errorMessage>
+        <name>FS_TPRshouldnotbeanegativevalue</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Value necessary (w/ VAT) not greater than list price. --></errorMessage>
+        <name>FS_Valuenecessarynotgreaterthanlistpric</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Opportunity Product Margin Market Code must match the Opportunity Margin Market Code --></errorMessage>
+        <name>Margin_Market_Code_Matches_on_Opportunit</name>
+    </validationRules>
+</CustomObjectTranslation>
