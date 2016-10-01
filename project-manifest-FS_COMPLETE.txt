@@ -57,7 +57,7 @@ src/layouts/Account_Relationship__c-External PoP ID Layout.layout
 src/layouts/Campaign-Trade Event Campaign Layout.layout
 src/layouts/Contact-FSRU Contact.layout
 src/layouts/Contact-FSUS Contact.layout
-src/layouts/Contract_Product__c-Contract Product Layout.layout
+src/layouts/Contract-FS Contract Layout.layout
 src/layouts/Event-Event Layout.layout
 src/layouts/Marketing_Fund__c-Marketing Fund Layout.layout
 src/layouts/FS_Account_Plan__c-Account Plan Layout.layout
