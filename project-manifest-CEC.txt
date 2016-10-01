@@ -42,6 +42,5 @@ src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_Disable_All_Trigger.permissionset
 src/permissionsets/CEC_Social_Media_Salesforce.permissionset
 src/permissionsets/CEC_User.permissionset
-src/permissionsets/TO_User.permissionset
 src/triggers/CEC_CaseTrigger.trigger
 src/triggers/CEC_CaseTrigger.trigger-meta.xml

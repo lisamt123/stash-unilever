@@ -9,6 +9,7 @@
         action.setCallback(this,function(response){
             var contactsList = response.getReturnValue();
             var state = response.getState();
+            //SUCCESS
             if((contactsList != null) && (contactsList.length > 0) && (component.isValid() && state === "SUCCESS")){
                 component.set("v.listContacts", contactsList);
             }
@@ -36,9 +37,9 @@
                         list[indexContact].isDisabled = false;
                     }
                 }
+                component.set("v.listContacts",list);
             }
             //list[indexContact].spinnerShow = false;
-            component.set("v.listContacts",list);
         });
         $A.enqueueAction(action);
         console.log('Exit Helper <getProducts>');
@@ -104,6 +105,12 @@
                 "listJson" : "",
                 "isClosed" : false
             });
+            action.setCallback(this,function(response){
+                var state = response.getState();
+                if(state === "SUCCESS"){
+                    location.reload(true);
+                }
+            });
             $A.enqueueAction(action);
             
         } 
@@ -126,6 +133,12 @@
             "idAccount" : selectedStore.contactItem.AccountId,
             "inventoryList" : listJSON
         });
+        action.setCallback(this,function(response){
+                var state = response.getState();
+                if(state === "SUCCESS"){
+                    location.reload(true);
+                }
+        });
         $A.enqueueAction(action);
         console.log('Exit Helper <createOpportunity>');
     },
@@ -138,6 +151,12 @@
             "inventoryList" : listJSON,
             "operation" : "open",
             "idContact" : idContact
+        });
+        action.setCallback(this,function(response){
+                var state = response.getState();
+                if(state === "SUCCESS"){
+                   location.reload(true);
+                }
         });
         $A.enqueueAction(action);
         console.log('Exit Helper <oppItemUpdate>');
