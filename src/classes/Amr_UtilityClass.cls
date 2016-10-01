@@ -56,7 +56,7 @@ public with sharing class Amr_UtilityClass {
     }
     
     public Set<MDO_Category__c> categoryValues(){
-        List<MDO_Category__c>   categoryLst = [select name from MDO_Category__c  where category_type__c = 'Category' ORDER BY Name limit 50000];
+        List<MDO_Category__c>   categoryLst = [select id,name from MDO_Category__c  where category_type__c = 'Category' ORDER BY Name limit 50000];
         
         Set<MDO_Category__c> categorySet = new Set<MDO_Category__c>();
         categorySet.addAll(categoryLst);
