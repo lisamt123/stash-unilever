@@ -59,7 +59,7 @@ public with sharing Class FS_Utility{
     @InvocableMethod(label='Get Owners Custom Settings' description='')
     public static void getDefaults(List<Account> accounts) {
         list<Account> acts = new list<Account>();
-        list<ID> listOwner = new list<ID>();
+        //list<ID> listOwner = new list<ID>();
         
         for(Account a : accounts){
            FS_User_Territory__c ut = FS_User_Territory__c.getInstance(a.ownerId);
