@@ -53,9 +53,19 @@ public with sharing class Amr_UtilityClass {
 
     public Set<MDO_Brand__C> brandValues(String Category,String brandPosition){
         System.debug('Entering getBETBrandsForGivenPositioning : ' + brandPosition);
-        List<MDO_Brand__C> brandPositionid = [SELECT Id FROM MDO_Brand__c WHERE Name =:brandPosition ORDER BY Name limit 50000];
-        List<sObject> brandValues = [select id,name from MDO_Brand__C where id in (select brand_id__c from MDO_BrandPositions__c where brand_position_id__c =:brandPositionid and status__c = 'Active' ) and status__c = 'Active' limit 50000];
-        Set<MDO_Brand__C> brandSet = new Set<MDO_Brand__C>(brandValues);
+
+        List<String> brandposlist = new List<String>();
+        List<MDO_BrandPosition__c> brandPositionid = [SELECT Id FROM MDO_BrandPosition__c WHERE Name =:brandPosition ORDER BY Name limit 50000];
+        for(MDO_BrandPosition__c bp : brandPositionid){
+            brandposlist.add(bp.id);
+        }
+        List<String> brandlist = new List<String>();
+        List<MDO_BrandPositions__c> brandid =[select brand_id__c from MDO_BrandPositions__c where brand_position_id__c :brandposlist and status__c = 'Active'];
+        for(MDO_BrandPositions__c bps : brandid){
+            brandlist.add(bps.brand_id__c);
+        }
+        List<MDO_Brand__C> brandValues = [select id,name from MDO_Brand__C where id in :brandlist and status__c = 'Active' limit 50000];
+        Set<MDO_Brand__C> brandSet = new Set<MDO_Brand__C>();
         brandSet.addAll(brandValues);
         return brandSet;
     }
