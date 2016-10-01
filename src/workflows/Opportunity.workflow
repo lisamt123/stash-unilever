@@ -315,16 +315,11 @@ FS_Push_Counter__c + 1
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <booleanFilter>(1 or 2) and 3</booleanFilter>
+        <booleanFilter>1 and 2</booleanFilter>
         <criteriaItems>
             <field>Opportunity.StageName</field>
             <operation>equals</operation>
             <value>05 – Won</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Opportunity.StageName</field>
-            <operation>equals</operation>
-            <value>05 - Won</value>
         </criteriaItems>
         <criteriaItems>
             <field>Opportunity.Amount</field>
