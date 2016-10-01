@@ -60,7 +60,7 @@ public with sharing class Amr_UtilityClass {
             brandposlist.add(bp.id);
         }
         List<String> brandlist = new List<String>();
-        List<MDO_BrandPositions__c> brandid =[select brand_id__c from MDO_BrandPositions__c where brand_position_id__c :brandposlist and status__c = 'Active'];
+        List<MDO_BrandPositions__c> brandid =[select brand_id__c from MDO_BrandPositions__c where brand_position_id__c in :brandposlist and status__c = 'Active'];
         for(MDO_BrandPositions__c bps : brandid){
             brandlist.add(bps.brand_id__c);
         }
