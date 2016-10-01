@@ -52571,10 +52571,7 @@
         <enabled>true</enabled>
         <name>ViewAllData</name>
     </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewAllForecasts</name>
-    </userPermissions>
+
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewEventLogFiles</name>

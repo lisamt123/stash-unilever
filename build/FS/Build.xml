@@ -95,6 +95,20 @@
 	  <runTest>PC_ForumGroupController_Test</runTest>
 	  <runTest>testAccountHierarchy</runTest>
 	  <runTest>uw_PinnovateController_Test</runTest>	  
+	  <runTest>FS_AccountPlanningTest</runTest>
+	  <runTest>FS_ContactDetail_Test</runTest>
+	  <runTest>FS_CreateContact_CC_Test</runTest>
+	  <runTest>FS_GenerateMDMRequest_CX_Test</runTest>
+	  <runTest>FS_SendEmailWithMDMRequest_CX_Test</runTest>
+	  <runTest>FS_TPRCalculationTest</runTest>
+	  <runTest>FS_ProductSubSector_Test</runTest>
+	  <runTest>FS_OpportunityHelperTest</runTest>
+	  <runTest>FS_NewMonthlyClaimCaseSchedule_Test</runTest>
+	  <runTest>FS_MonthlyPlanningRussia_CX_Test</runTest>
+	  <runTest>FS_ContractProductHelper_Test</runTest>
+	  <runTest>FS_ContactExtend_CX_Test</runTest>
+	  <runTest>FS_ClaimedCasesForeCastingSchedule_Test</runTest>
+	  <runTest>FS_CentrallyLedChildAccountTest</runTest>
   </sf:deploy>
   <!--<antcall target="generatePackage"/>-->
   </target>

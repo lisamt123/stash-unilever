@@ -47,6 +47,7 @@ src/objects/FSOpportunityTriggerSettings__c.object
 src/objects/FSCurrencyinEUR__c.object
 src/objects/FSVATRU__c.object
 src/objects/FSVATUA__c.object
+src/layouts/AccountContactRole-Account Contact Role Layout.layout
 src/layouts/Account-Feed Based Distributor.layout
 src/layouts/Account-Feed Based Operator.layout
 src/layouts/Account-Operator Russia Read Only.layout
