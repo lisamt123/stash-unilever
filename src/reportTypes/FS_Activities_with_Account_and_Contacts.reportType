@@ -161,11 +161,7 @@
             <field>What</field>
             <table>Activity</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>WhoCount</field>
-            <table>Activity</table>
-        </columns>
+
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>RecurrenceRegeneratedType</field>

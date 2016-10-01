@@ -48818,10 +48818,7 @@
         <enabled>true</enabled>
         <name>MassInlineEdit</name>
     </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>OverrideForecasts</name>
-    </userPermissions>
+
     <userPermissions>
         <enabled>true</enabled>
         <name>RunReports</name>
@@ -48834,7 +48831,7 @@
         <enabled>true</enabled>
         <name>ShowCompanyNameAsUserBadge</name>
     </userPermissions>
-    <userPermissions>
+    <userPermissions>f
         <enabled>true</enabled>
         <name>SubmitMacrosAllowed</name>
     </userPermissions>
