@@ -31,8 +31,10 @@ public with sharing class Amr_UtilityClass {
         
         Set<String> subcategories = new Set<String>{};
         if(!String.isBlank(subcategory)) {
-            List<MDO_Category__c> firsAndSecondSublevels = [select id from MDO_Category__c where (parent_id__r.parent_id__c =:subcategory and parent_id__r.parent_id__r.status__c = 'Active') or (parent_id__c =: subcategory and parent_id__r.status__c = 'Active')];
-            subcategories.add(subcategory);
+
+            List<MDO_Category__c>   subcategoryid = [select id from MDO_Category__c  where name := subcategory ORDER BY Name limit 50000];
+            List<MDO_Category__c> firsAndSecondSublevels = [select id from MDO_Category__c where (parent_id__r.parent_id__c =:subcategoryid and parent_id__r.parent_id__r.status__c = 'Active') or (parent_id__c =: subcategory and parent_id__r.status__c = 'Active')];
+            subcategories.add(subcategoryid);
             for(MDO_Category__c cat : firsAndSecondSublevels){
                 subcategories.add(cat.id);
             }
@@ -56,7 +58,7 @@ public with sharing class Amr_UtilityClass {
     }
     
     public Set<MDO_Category__c> categoryValues(){
-        List<MDO_Category__c>   categoryLst = [select id,name from MDO_Category__c  where category_type__c = 'Category' ORDER BY Name limit 50000];
+        List<MDO_Category__c>   categoryLst = [select name from MDO_Category__c  where category_type__c = 'Category' ORDER BY Name limit 50000];
         
         Set<MDO_Category__c> categorySet = new Set<MDO_Category__c>();
         categorySet.addAll(categoryLst);
