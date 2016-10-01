@@ -7800,6 +7800,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>OWNER_NAME</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>Country_Name__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -7820,6 +7821,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>notEqual</operation>
             <value>CEC North America Queue</value>
+        </filters>
+        <filters>
+            <field>Country_Name__c</field>
+            <operation>contains</operation>
+            <value>Argentina,Bolivia,Chile,Paraguay,Peru,Uruguay</value>
         </filters>
         <label>Casos pendientes - Argentina</label>
         <language>es_MX</language>
