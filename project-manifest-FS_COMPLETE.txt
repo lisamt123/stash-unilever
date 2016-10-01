@@ -364,13 +364,6 @@ src/pages/FS_RiskSubSector.page
 src/pages/FS_RiskSubSector.page-meta.xml
 src/pages/FS_SendEmailWithMDMRequest.page
 src/pages/FS_SendEmailWithMDMRequest.page-meta.xml
-src/quickActions
-src/quickActions/FS_Account_Plan__c.New_Distributor_Objective.quickAction
-src/quickActions/FS_Account_Plan__c.New_Operator_Objective.quickAction
-src/quickActions/FS_Defined_Objective__c.Create_Campaign.quickAction
-src/quickActions/FS_Defined_Objective__c.Create_Risk.quickAction
-src/quickActions/FS_Defined_Objective__c.New_Opportunity.quickAction
-src/quickActions/FS_Defined_Objective__c.New_Russia_Opportunity.quickAction
 src/email
 src/email/FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template.email
 src/email/FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template.email-meta.xml
@@ -596,6 +589,7 @@ src/permissionsets/FS_Sales_Rep.permissionset
 src/permissionsets/FS_SCP_And_Corp.permissionset
 src/profiles/Unilever Food Solution - NA.profile
 src/profiles/Unilever Food Solution - Russia.profile
+src/profiles/Generic API Only.profile
 src/objectTranslations/Account-ru.objectTranslation
 src/objectTranslations/Activity-ru.objectTranslation
 src/objectTranslations/CampaignMember-ru.objectTranslation
