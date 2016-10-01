@@ -67,34 +67,7 @@
       <runTest>TriggerFactoryTest</runTest>
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
-      <runTest>UserTrigger_Test</runTest>      
-	  <runTest>AF_Agency_EstimateHandler_Test</runTest>
-	  <runTest>AF_RaisenewPO_Homepage_lightbox_Test</runTest>
-	  <runTest>AF_FieldHistoryCompController_Test</runTest>
-	  <runTest>AF_AgencyHomePageController_Test</runTest>
-	  <runTest>AF_BonusMatrixOverrideController_Test</runTest>
-	  <runTest>AR_Test_AgencyGridView</runTest>
-	  <runTest>AR_Test_RateReviewPopup</runTest>
-	  <runTest>AR_Test_AgencyMyProfileEditGeography</runTest>
-	  <runTest>CEC_AnonymiseConsumerBatchScheduler_Test</runTest>
-	  <runTest>CEC_CaseTriggerHelperTest</runTest>
-	  <runTest>ChatterPublisherHandlerTest</runTest>
-	  <runTest>CoreNTImportCtlTest</runTest>
-	  <runTest>FAU_EmailTemplateSenderContllerTest</runTest>
-	  <runTest>IPM_ExportTeamMembersReportCntrl_Test</runTest>
-	  <runTest>isll_BrainResultsControllerTest</runTest>
-	  <runTest>isll_CarouselControllerTest</runTest>
-	  <runTest>isll_LibraryControllerTest</runTest>
-	  <runTest>Oblix_SowMainController_Test</runTest>
-	  <runTest>Oblix_SOWNonCampaignCreateCtrl_Test2</runTest>
-	  <runTest>PBS_AchievementAssignmentsWorkCom_Test</runTest>
-	  <runTest>PBS_LearningDeleteSharedAsgmtsExt_Test</runTest>
-	  <runTest>PBS_LibraryController_Test</runTest>
-	  <runTest>PBS_TPlanImportAssignmentsExt_Test</runTest>
-	  <runTest>PBS_TrainingPlanDetail_Test</runTest>
-	  <runTest>PC_ForumGroupController_Test</runTest>
-	  <runTest>testAccountHierarchy</runTest>
-	  <runTest>uw_PinnovateController_Test</runTest>	  
+      <runTest>UserTrigger_Test</runTest>	  
 	  <runTest>FS_AccountPlanningTest</runTest>
 	  <runTest>FS_ContactDetail_Test</runTest>
 	  <runTest>FS_CreateContact_CC_Test</runTest>
@@ -109,6 +82,7 @@
 	  <runTest>FS_ContactExtend_CX_Test</runTest>
 	  <runTest>FS_ClaimedCasesForeCastingSchedule_Test</runTest>
 	  <runTest>FS_CentrallyLedChildAccountTest</runTest>
+	  <runTest>FS_MABETest</runTest>	  
   </sf:deploy>
   <!--<antcall target="generatePackage"/>-->
   </target>
