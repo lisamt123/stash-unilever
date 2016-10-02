@@ -52,7 +52,6 @@ public with sharing class Amr_UtilityClass {
     } */
 
     public Set<MDO_Brand__C> brandValues(String Category,String brandPosition){
-        System.debug('Entering getBETBrandsForGivenPositioning : ' + brandPosition);
 
         List<String> brandposlist = new List<String>();
         List<MDO_BrandPosition__c> brandPositionid = [SELECT Id FROM MDO_BrandPosition__c WHERE Name =:brandPosition ORDER BY Name limit 50000];
