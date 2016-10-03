@@ -2581,10 +2581,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ChatterUIFileUpload</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>ChatterUIGroupService</apexClass>
         <enabled>false</enabled>
     </classAccesses>
