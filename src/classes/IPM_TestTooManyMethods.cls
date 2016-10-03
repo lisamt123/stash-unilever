@@ -49,10 +49,5 @@ public class IPM_TestTooManyMethods
     {
         System.debug('Method 10');
     }
-    
-    public void method11()
-    {
-        System.debug('Method 11');
-    }
-    
+
 }
