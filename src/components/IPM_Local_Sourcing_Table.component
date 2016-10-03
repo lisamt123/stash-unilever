@@ -1,0 +1,66 @@
+<apex:component controller="IPMLocalSourcingTableController">
+<apex:attribute name="projId" description="projectId" type="String" assignTo="{!proId}"/>
+    <apex:outputPanel layout="block" styleClass="srcPlanTitle">
+        {!$Label.IPM_Local_Sourcing_Plan_Table_Header}
+    </apex:outputPanel>
+    <table border="0" cellpadding="0" cellspacing="0" class="srcplanTable table table-bordered">
+        <thead> 
+            <tr>
+                <th scope="col">                    
+                    <span class="finproject">Name</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">Format</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">Formulation</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">Packaging</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">Size</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">Sourcing Unit</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">Approval</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">Country</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:repeat value="{!lstSourcingPlanWrapper}" var="SourcingPlan">
+                <tr class="fintleblubg">  
+                    <td  class="pl15">
+                        <apex:outputText value="{!SourcingPlan.name}"/>
+                    </td>
+                    <td class="pl15">
+                        <apex:outputText value="{!SourcingPlan.format}"/>    
+                    </td>
+                    <td class="pl15">
+                        <apex:outputText value="{!SourcingPlan.formulation}"/>    
+                    </td>
+                    <td class="pl15">
+                        <apex:outputText value="{!SourcingPlan.packaging}"/>    
+                    </td>
+                    <td class="pl15">
+                        <apex:outputText value="{!SourcingPlan.size}"/>    
+                    </td>
+                    <td class="pl15">
+                        <apex:outputText value="{!SourcingPlan.sourcingUnit}"/>    
+                    </td>
+                    <td class="pl15">
+                        <span class="{!if(SourcingPlan.approval,'srcApprGreenbg','srcApprRedbg')}">{!if(SourcingPlan.approval,'Yes','Not Yet')}</span>   
+                    </td>
+                    <td class="pl15">
+                        <apex:outputText value="{!SourcingPlan.country}"/>    
+                    </td>
+                </tr>
+            </apex:repeat>
+        </tbody>
+    </table>
+</apex:component>

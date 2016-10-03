@@ -66,7 +66,10 @@
                     <li class="{!IF(activeItem=='rolloutPlan', 'active', '')}"><a href="{!$Page.IPM_RolloutPlans}?id={!projID}"><span>{!$Label.IPM_RolloutPlan}</span></a></li>
                     </apex:outputPanel>
                     <li class="{!IF(activeItem=='financials', 'active', '')}"><a href="{!$Page.IPM_Financial}?id={!projID}"><span> {!$Label.IPM_FINANCIALS}</span></a></li>
-                    </ul>
+                    <apex:outputPanel layout="block" rendered="{!AND(projSpan='Global',gkm3Proj='GKM3',OR(projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
+                    <li class="{!IF(activeItem=='rolloutPlan', 'active', '')}"><a href="{!$Page.IPM_Product_and_Sourcing_Plan}?id={!projID}"><span>{!$Label.IPM_Product_Sourcing_Plan}</span></a></li>
+                    </apex:outputPanel>
+					</ul>
                     </li>
                     <li class="tabOdd {!IF(activeItem=='teamAssignment', 'active', '')}"><a href="{!$Page.IPM_Team}?id={!projID}"><span>{!$Label.IPM_Team}</span></a></li>   
                 </ul>

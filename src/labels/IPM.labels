@@ -1,4 +1,52 @@
 <labels>
+        <fullName>IPM_No_Claims_Added</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM No Claims Added</shortDescription>
+        <value>No Claims have been entered.</value>
+</labels>
+<labels>
+        <fullName>IPM_Global_Claims_Table</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Global Claims Table</shortDescription>
+        <value>Global Claims Table</value>
+</labels>
+<labels>
+        <fullName>IPM_Capability_Confirmed_Help_Text</fullName>
+        <categories>EPIC284</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Capability Confirmed Help Text</shortDescription>
+        <value>Enter edit mode for any row and click the value to change between &apos;Not yet&apos; and &apos;Yes&apos;&apos;</value>
+    </labels>
+<labels>
+        <fullName>IPM_Sourcing_Unit_Help_Text</fullName>
+        <categories>EPIC284</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Sourcing Unit Help Text</shortDescription>
+        <value>If a Sourcing Unit you require does not appear in this list please contact the IPM Central Team</value>
+    </labels>
+<labels>
+        <fullName>IPM_Confirm_Capability_Help_Text</fullName>
+        <categories>EPIC284</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Confirm Capability Help Text</shortDescription>
+        <value>Use this option to edit Capability Confirmed status for a Sourcing Unit across all products to which it has been added.</value>
+    </labels>
+<labels>
+        <fullName>IPM_LocalSourcingTable_Help_Text</fullName>
+        <categories>EPIC286</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM LocalSourcingTable Help Text</shortDescription>
+        <value>If any country within your MCO has no associated Sourcing Unit or a product has no approved Sourcing Unit please contact the Supply Chain Leader of your Global Project.</value>
+    </labels>
+
+
+<labels>
         <fullName>IPM_SELECT_SUSTAINABILITY_HELP</fullName>
         <language>en_US</language>
         <protected>false</protected>

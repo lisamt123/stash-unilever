@@ -1105,7 +1105,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     		{
     			projPurgeIdSet.add(rolloutProj.Regional_Project__c);
     		}
-    		if(rolloutProj.Local_Project__c != null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+    		if(rolloutProj.Local_Project__c != null && ( project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL || isProjectGKM3 ))
     		{
     			projPurgeIdSet.add(rolloutProj.Local_Project__c);
     		}		

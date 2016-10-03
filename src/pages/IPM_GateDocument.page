@@ -75,8 +75,8 @@
                                                 <a class="icoButton paper-clip clipinfo" title="{!$Label.IPM_AllSummaryAttachDwnldBttn_Hovertext}" 
                                                        onclick="showAllCurrentDocSummaryAttch();" data-toggle="modal" data-target="{!if(showSummaryAttach,'#ipmAttachmentModal','#ipmNoAttachmentModal')}" data-backdrop="static" data-keyboard="false"></a>
                                                 <apex:actionfunction name="showAllCurrentDocSummaryAttch"  rerender="attsec" /> 
-                                                <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download" title="{!$Label.IPM_Download_with_Appendix}" rendered="{!isPDFDownload}">
-                                                    <apex:param name="withAppendix" AssignTo="{!isWithAppendix}" Value="True"/>
+                                                <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download" title="{!if(isPDLDocument=true,'Download',$Label.IPM_Download_with_Appendix)}" rendered="{!isPDFDownload}">
+                                                    <apex:param name="withAppendix" AssignTo="{!isWithAppendix}" Value="{!if(AND(isPDLDocument=true,hideAppendix=false),'True','False')}"/>
                                                 </apex:commandLink>
                                                 <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download-gate" title="{!$Label.IPM_Download_without_Appendix}" rendered="{!isDisplayWithoutAppendix}">
                                                     <apex:param name="withOutAppendix" AssignTo="{!isWithAppendix}" Value="False"/>

@@ -589,6 +589,62 @@
         .fourclmwidth{width:25%;}
         .compltwidth{width:5%;}
         .topwidth{width:20%;}
+        /* For Global Claims Table */
+        .glbPLDtableHead{width:100%;margin-bottom:10px;margin-top:5px;}
+        .glbPLDtableHead thead th{background-color: #dceefa;}
+        .glbPLDtableHead thead th .finproject,.glbPLDtableHead thead th .claimHeader{margin-left:10px;}
+        .glbPLDtablebody{background-color: #f2f8fc;}
+        .removeClaimText{padding:10px;}
+        .glbPLDdrpdown{margin-top: -20px;}
+        .glbPLDdrpdown>tbody>tr:nth-child(even) {background: #f8f8f8;}
+        .selectClaim{position:relative;}
+        .gatepdlContainer{width: 100%;float: left;height: 100%;}
+        .claimList{width:100%;}
+        .paddleft{padding:0px 20px;}
+        .noteclaim label {font-weight:normal; padding:5px 0px;}
+        .globalclaim {font-weight: bold;margin-top:3px;} 
+        .glbNewTable{width:100%;margin-top:-9px;}
+        .glbNewTable tbody tr td{background-color: #f2f8fc;}
+        .glbNewTable tbody tr td.custBgTr{background-color: #dceefa !important;}
+        .custTdWidth{width:44%;}
+        .yellowAlertPdl{padding: 10px;font-size: 1em;background: #FFF372;color: #333;width:97%;margin-top:3px;border-radius:4px;}
+        .yellowAlertPdl .alertimgpdl{margin-top:-4px;margin-left:5px;height:20px;width:20px;}
+        .pdlalrtText{margin-left:20px;}
+        .teamHeading .pageTitlefont{font-size: 2em;color: #253A79;font-weight:bold;}
+        
+        /* Source Plan Styles */
+        .marketingHeader {width: 490px;}
+        .chainHeader {width: 270px;}
+        .padzero {padding: 0;}
+        .col-sm-12{width:100%;}
+        .pull-left{float:left;}
+        .pull-right{float:right;}
+        table.table.table-bordered.productsource {position: relative;border: 2px solid #72c4e9;margin-right: -18px;border-spacing: 0;border-collapse: collapse;}
+        .table {width: 100%;max-width: 100%;margin-bottom: 20px;}
+        table {border-spacing: 0;border-collapse: collapse;}
+        table {background-color: transparent;}
+        .ipmTable.table>thead>tr>th{background:#f2f8fc;color:#3b516d; font-size:1em;font-weight:bold;}
+        .table>thead>tr>th span {float: left;display: inline-block;}
+        .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding: 2px 5px;vertical-align: middle;word-wrap:break-word;word-break: break-word;color: rgb(102, 102, 102);}
+        .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th{padding: 2px 5px;vertical-align: middle;}
+        table.table.table-bordered.productsource th {padding-top: 35px;background-color: #f2f8fc;border: 2px solid #ddd;text-align: center;}
+        table.table.table-bordered.productsource th span {display: block;text-align: center;width: 100%;}
+        table.table.table-bordered.productsource th span {display: block;text-align: center;width: 100%;}
+        table.table.table-bordered.productsource.darkoverlay th {background-color: #dceefa;border: 2px solid #ddd;padding-top: 47px;}
+        .table>thead>tr>th>div.capcon {width: 75px;margin: 0 auto;background-color: #ececec;color: #555;vertical-align: middle;padding: 2px 0 2px;height: auto;}
+        .tobe {margin-bottom: 40px;position: absolute;left: 0;margin-left:40px;right: 0;top: 43px;background-color: #f2f8fc;width: 465px;height: 0;padding: 8px 0px;}
+        .line {height: 0;border: 1px solid #ccc;position: relative;}
+        .line span {position: absolute;text-align: center;top: -8px;left: 0;right: 0;width: 150px;margin-left:140px;background-color: #f2f8fc;}
+        .tobesup {margin-bottom: 40px;position: absolute;left: 0;right: 0;top: 43px;margin-left:530px;background-color: #dceefa;width: 245px;height: 0;padding: 8px 0px;}
+        .line.dark {height: 0;border: 1px solid #ccc;position: relative;}
+        .line.dark span {background-color: #dceefa;width: 160px;margin-left:45px;}
+        table.table.table-bordered.productsourcegrey tr {background-color: #efefef;}
+        table.table.table-bordered.productsourcegrey tr td {border: none;text-align: center;}
+        .teamHeading{float:left;margin-bottom:20px;}
+        .teamHeading .pageTitlefont{font-size: 2em;color: #253A79;font-weight:bold;}
+        .goldenCheckcontainer{margin-top:2px;}
+        .goldenCheckcontainer label.goldbox {width: 80%;background: #FBBE2E;color: #000;border: 1px solid #E28A3C;padding: 5px;font-size: 8px !important;}
+        .goldenCheckcontainer label {width:100%;background: #999;padding:4px 18px;height: 29px;}  
     </style>
 </head>
 <body class="docBody">
@@ -851,6 +907,28 @@
                 </div>
                 <div class="dataTableBottom"></div>
         </apex:outputPanel>
+        <apex:outputPanel layout="none" rendered="{!if(AND(projectDoc.IPM_Document_Status__c='Approved', projectDoc.IPM_GateDocuments__c='Product Design Lock'),true,false)}">
+            <apex:outputText value="{!$Label.IPM_COMMENTS_FOR_PDL_GATE_DOC}" styleClass="heading2 bold"/>
+            <apex:outputField value="{!projectDoc.IPM_Approved_Comments__c}"  styleClass="bdText" /> 
+            
+            <div class="row">
+                   <div class="col-sm-11 commentPanel">
+                       <div class="row clearfix marginbottom">
+                           <div class="col-sm-8 innerHead bold">
+                               <span class="user">Approved By: </span>
+                               <span class="user"> <apex:outputText value="{!projectDoc.IPM_Updated_User_By__r.Name}"/></span>
+                               <span class="status-date">On </span>
+                               <apex:outputfield value="{!projectDoc.IPM_Approval_Date__c}"/>
+                           </div>
+                           <div class="col-sm-4 txtRight updateStatus">                                   
+                               
+                           </div>
+                       </div>
+                       
+                   </div>                    
+              </div>
+            
+        </apex:outputPanel>
         <div class="getDocs">
         <apex:repeat value="{!projDocSectionList}" var="pds">
        
@@ -892,6 +970,7 @@
                 
            <!---Components To BE Displayed within Sections END-->
            <apex:outputField value="{!pds.IPM_Gate_Document_Summary__c}" styleClass="bdText" />
+           <c:IPM_GlobalClaimPDL projId="{!projectId}" isAppendix="false" rendered="{!pds.IPM_Master_Section_External_Id__c=='Final_Global_Claims'}"></c:IPM_GlobalClaimPDL>
            <apex:outputPanel layout="block" styleClass="appBlock" rendered="{!pds.IPM_Has_Appendix__c}"> 
                  <apex:outputPanel>{!$Label.IPM_GD_APPENDIX_MSG}tion <span data-dir="{!pds.IPM_Master_Section_External_Id__c}" class="appText">{!pds.IPM_Section__r.IPM_Section_Name__c}</span></apex:outputPanel>
                                                                                                   
@@ -928,6 +1007,8 @@
                     <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy>
                     <c:IPM_MarketPerformance projId="{!projectId}" isEditable="false" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Regional' && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
                     <c:IPM_PerformanceBreakdown isAppendix="true" isEditable="false" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}"></c:IPM_PerformanceBreakdown>
+                    <c:IPM_GlobalClaimPDL projId="{!projectId}" isAppendix="true" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Final_Global_Claims'}"></c:IPM_GlobalClaimPDL>
+                    <c:IPM_SourcePlanInPDF projId="{!projectId}" rendered="{!AND(projectDoc.IPM_GateDocuments__c=='Product Design Lock')}"></c:IPM_SourcePlanInPDF> 
         </apex:repeat> 
     
 

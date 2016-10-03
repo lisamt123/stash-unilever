@@ -136,6 +136,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public boolean showBBCtable{get; set;} // flag to check the BBC table is applicble     
     public boolean isRedStylingApplicable{get;set;} 
     public transient boolean isPDLDocument{get;set;}
+    public List<IPM_Project_Claim__c> projectClaimList{get; set;}
+    public Boolean hideAppendix{get;set;} 
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -147,7 +149,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public void intialize()
     { 
         isPDLDocument = false;
-		showAttach=false;
+        hideAppendix = false;
+        showAttach=false;
         showSummaryAttach=false;
         isReadable=true;
         IsUpdateStatus=false;
@@ -330,8 +333,15 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
           reactivateProjectFlag = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
        }
       isRedStylingApplicable=((IPM_ConstantUtils.STATUS_APPROVED.equals(projectDoc.IPM_Document_Status__c) ? projectDoc.IPM_Category_Status_while_Approved__c:project.IPM_Threshold_Status__c)== Label.IPM_BelowThreshold) && (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL) ;
+       chkClaims(); 
     } 
     
+    public void chkClaims(){
+    	projectClaimList = [SELECT Id, IPM_Claim__c, IPM_Project__c FROM IPM_Project_Claim__c WHERE IPM_Project__c=:projectId];
+		if(projectClaimList.isEmpty()){
+			hideAppendix = true;
+		}
+    }
     
     public boolean getBCCtableFlag()
     {
@@ -812,6 +822,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             url.setRedirect(false);
             gateDocumentData(project.Id);
             //PDF Download Parameters
+            url.getParameters().put('DocumentType','PDF');	
             Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.ATTACHMENT_CONTENT_DISPOSITION, IPM_ConstantUtils.ATTACHMENT_FILE_NAME+project.IPM_Project_Name__c+ '_'+projectDoc.IPM_GateDocuments__c+IPM_ConstantUtils.ATTACHMENT_DOCUMENT+system.today().format()+IPM_ConstantUtils.ATTACHMENT_FILE_TYPE);
             return url;
         }

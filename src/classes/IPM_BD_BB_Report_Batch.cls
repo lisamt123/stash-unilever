@@ -251,16 +251,19 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 analyticObj.IPM_Gate_Keeping_Model__c = p.IPM_ProjectGKM__c;     
             }
             
-            if(String.isNotBlank(p.IPM_Category_Text__c) && p.IPM_Category_Text__c.equalsignorecase(IPM_ConstantUtils.LAUNDRY_CONSTANT)){
-            	analyticObj.IPM_Sub_Category__c =  p.IPM_Market__c; 
-            }
-            else if(String.isNotBlank(p.IPM_Sub_sector__c)){
-            	analyticObj.IPM_Sub_Category__c =  p.IPM_Sub_sector__c; 
-            }
-            else{
-            	analyticObj.IPM_Sub_Category__c =  p.IPM_Market__c; 
-            }
-                        
+            if(String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original))
+			{
+				analyticObj.IPM_Market_Name__c  =  p.IPM_Market__c; 
+				analyticObj.IPM_Sector__c 		=  p.IPM_Sector__c; 
+				analyticObj.IPM_Sub_Sector__c   =  p.IPM_Sub_sector__c;
+			}
+			else if(String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout))
+			{
+				analyticObj.IPM_Market_Name__c  =  p.IPM_Parent_Project__r.IPM_Market__c; 
+				analyticObj.IPM_Sector__c 		=  p.IPM_Parent_Project__r.IPM_Sector__c; 
+				analyticObj.IPM_Sub_Sector__c   =  p.IPM_Parent_Project__r.IPM_Sub_sector__c;
+			}
+            
             if(String.isNotBlank(p.IPMProject_Span__c) && String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)) {
                 analyticObj.IPM_Key_NonKey__c = p.IPM_Project_Rollout__r.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;
             }
@@ -357,11 +360,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     ************************************************/
     public void rolloutProjectHelp(IPM_Project_Rollout__c pr, IPM_Analytics__c parent, list<IPM_Analytics__c> analyticRolloutList)
     {
-        IPM_Analytics__c analyticObj = new IPM_Analytics__c();
         id regionalrolloutid=null;
             
         // project Rollout related details to be copied  
-        analyticObj = setRolloutProjectdetails(analyticObj, pr, parent);
+        IPM_Analytics__c analyticObj = setRolloutProjectdetails(pr, parent);
             
         if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
             regionalrolloutid = pr.Id; 
@@ -410,49 +412,45 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
      * @param1: IPM_Analytics__c, String, IPM_Project_Rollout__c
      * @return: IPM_Analytics__c Analytic object record  
      *********************************************************************************************************************/    
-    public IPM_Analytics__c setRolloutProjectdetails(IPM_Analytics__c analyticObj, IPM_Project_Rollout__c pr, IPM_Analytics__c parent){
+    public IPM_Analytics__c setRolloutProjectdetails(IPM_Project_Rollout__c pr, IPM_Analytics__c parent){
       //copy Values from rollout record
-        analyticObj.IPM_Project_Name__c = pr.name;
+        IPM_Analytics__c analyticObj = new IPM_Analytics__c();
+        
+        analyticObj.IPM_Project_Name__c =pr.name;
         analyticObj.IPM_Project_Phantom_Non_Key__c = IPM_ConstantUtils.Phantom;
-       
-        analyticObj.IPM_Company__c = pr.IPM_Company_Card__r.Name; // as per the update it will be populated by Unilever report tool
-        analyticObj.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
-        if(pr.Target_LaunchYear__c != null){
-            analyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;
-        }
-        analyticObj.IPM_Parent_Project_Name__c = pr.IPM_Parent_Project_Name__c; 
-        analyticObj.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
+        
+		analyticObj.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
         //Copy values From Parent project
         analyticObj.IPM_Project_Id__c = parent.IPM_Project_Id__c;                    
         analyticObj.IPM_Project_Description__c = parent.IPM_Project_Description__c;
         analyticObj.IPM_Project_Type__c = IPM_Utils.Rollout;
         analyticObj.IPM_Category_Group__c = parent.IPM_Category_Group__c;
         analyticObj.IPM_Category__c = parent.IPM_Category__c;
-        analyticObj.IPM_Brand_Positioning__c = parent.IPM_Brand_Positioning__c;
+        analyticObj.IPM_Exempt_from_Threshold__c = parent.IPM_Exempt_from_Threshold__c;
         analyticObj.IPM_Market_Place_Activity__c = parent.IPM_Market_Place_Activity__c;
         analyticObj.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
         analyticObj.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
         analyticObj.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;
-        analyticObj.IPM_Exempt_from_Threshold__c = parent.IPM_Exempt_from_Threshold__c;
-        analyticObj.IPM_Expected_Charter_Approval_Date__c = parent.IPM_Expected_Charter_Approval_Date__c;
-        analyticObj.IPM_Charter_Approved_Date__c = parent.IPM_Charter_Approved_Date__c;  
-        analyticObj.IPM_Charter_Proposed_Date__c = parent.IPM_Charter_Proposed_Date__c;
-        analyticObj.IPM_Expected_Contract_Approval_Date__c = parent.IPM_Expected_Contract_Approval_Date__c;
-        analyticObj.IPM_Expected_Market_Ready_Approval_Date__c = parent.IPM_Expected_Market_Ready_Approval_Date__c;
-        analyticObj.IPM_Expected_Market_Deployment_App_Date__c = parent.IPM_Expected_Market_Deployment_App_Date__c;
-        analyticObj.IPM_BET_First_Release_Due_Date__c = parent.IPM_BET_First_Release_Due_Date__c;
+       	analyticObj.IPM_BET_First_Release_Due_Date__c = parent.IPM_BET_First_Release_Due_Date__c;
         analyticObj.IPM_BET_First_Released_On_Date__c = parent.IPM_BET_First_Released_On_Date__c;
         analyticObj.IPM_BET_Final_Release_Due_date__c = parent.IPM_BET_Final_Release_Due_date__c;
         analyticObj.IPM_BET_Final_Released_On_date__c = parent.IPM_BET_Final_Released_On_date__c;
-        analyticObj.IPM_Business_Impact_BD__c=parent.IPM_Business_Impact_BD__c;
-        
-        if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
-            analyticObj.IPM_Project_Span__c =IPM_Utils.Regional;
+        analyticObj.IPM_Gate_Keeping_Model__c = parent.IPM_Gate_Keeping_Model__c;
+      
+       analyticObj = setrolloutdetailsGKM3(pr,analyticObj,parent);     
+       if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
+       		analyticObj.IPM_Project_Span__c =IPM_Utils.Regional;
             analyticObj.IPM_Geography__c = pr.Market_Cluster_Name__c;
-            analyticObj.IPM_Phase__c = pr.Regional_Rollout_Phase__c;
+            //analyticObj.IPM_Phase__c = pr.Regional_Rollout_Phase__c;.
+            analyticObj.IPM_Phase__c =(pr.IPM_Project_GKM__c == IPM_Utils.GATE_KEEPING_MODEL_3)?pr.IPM_project__r.IPM_Phase__c:pr.Regional_Rollout_Phase__c;
             analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
-            analyticObj.IPM_Platform__c = parent.IPM_Platform__c;
+            analyticObj.IPM_Platform__c = pr.IPM_Project_GKM__c==IPM_Utils.GATE_KEEPING_MODEL_3?IPM_ConstantUtils.BLANK:parent.IPM_Platform__c;
             analyticObj.IPM_Stopped__c= parent.IPM_Stopped__c;
+            if(pr.IPM_Project_GKM__c != IPM_Utils.GATE_KEEPING_MODEL_3){
+            analyticObj.IPM_Market_Name__c  =  parent.IPM_Market_Name__c; 
+			analyticObj.IPM_Sector__c 		=  parent.IPM_Sector__c; 
+			analyticObj.IPM_Sub_Sector__c   =  parent.IPM_Sub_sector__c;
+      		 }
         }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE ){
             analyticObj.IPM_Project_Span__c = IPM_Utils.Local;
             analyticObj.IPM_Geography__c = ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
@@ -462,6 +460,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             analyticObj.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
             analyticObj.IPM_Brand__c = pr.IPM_Brand__c;
             analyticObj.IPM_Stopped__c= parent.IPM_Stopped__c;
+            analyticObj.IPM_Market_Name__c  =  parent.IPM_Market_Name__c; 
+			analyticObj.IPM_Sector__c 		=  parent.IPM_Sector__c; 
+			analyticObj.IPM_Sub_Sector__c   =  parent.IPM_Sub_sector__c;
+          
         } 
       return analyticObj;
     }
@@ -655,16 +657,30 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	nonKeyAnalytic.IPM_Project_Phantom_Non_Key__c = IPM_ConstantUtils.Nonkey;
     	nonKeyAnalytic.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
     	nonKeyAnalytic.IPM_Project_Name__c = nonKeyFinancial.Display_Name__c;
-    	nonKeyAnalytic.IPM_Parent_Project_Name__c = parent.IPM_Project_Name__c;    	
+    	//nonKeyAnalytic.IPM_Parent_Project_Name__c = (parent.IPM_Gate_Keeping_Model__c==IPM_Utils.GATE_KEEPING_MODEL_3)?nonKeyFinancial.Global_External_Id__c:parent.IPM_Project_Name__c;   	
     	nonKeyAnalytic.IPM_Project_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
     	nonKeyAnalytic.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-    	nonKeyAnalytic.IPM_Company__c = parent.IPM_Company__c;
+    	//nonKeyAnalytic.IPM_Company__c = parent.IPM_Company__c;
     	nonKeyAnalytic.IPM_Category_Group__c = parent.IPM_Category_Group__c;
         nonKeyAnalytic.IPM_Category__c = parent.IPM_Category__c;
-    	nonKeyAnalytic.IPM_Phase__c = parent.IPM_Phase__c;
     	nonKeyAnalytic.IPM_Key_NonKey__c = IPM_ConstantUtils.OTIF_NO;
+    	nonKeyAnalytic.IPM_Market_Place_Activity__c = parent.IPM_Market_Place_Activity__c;//need to set the global project value
+		nonKeyAnalytic.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;//need to set the global project value
+		nonKeyAnalytic.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;//need to set the global project value
+		nonKeyAnalytic.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;//need to set the global project value
     	
-    	
+    	if(parent.IPM_Gate_Keeping_Model__c==IPM_Utils.GATE_KEEPING_MODEL_3){
+			nonKeyAnalytic.IPM_Parent_Project_Name__c = nonKeyFinancial.Global_External_Id__c;//need to set the global project value
+			nonKeyAnalytic.IPM_Company__c = nonKeyFinancial.IPM_Parent_Company_Card__c;//need to set the global project value
+			
+			nonKeyAnalytic.IPM_Phase__c = projectRollout.IPM_Project__r.IPM_Phase__c;//need to set the global project value
+			}
+		else
+			{
+			nonKeyAnalytic.IPM_Parent_Project_Name__c = parent.IPM_Project_Name__c;
+			nonKeyAnalytic.IPM_Company__c = parent.IPM_Company__c;
+			nonKeyAnalytic.IPM_Phase__c = parent.IPM_Phase__c;
+			}
     	if(regRLToNKLocalRolloutMap.containsKey(nonKeyFinancial.IPM_Project_Rollout__c)){
     		String strGeography = '';
     		for(Id localRolloutId : regRLToNKLocalRolloutMap.get(nonKeyFinancial.IPM_Project_Rollout__c)){
@@ -726,8 +742,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		                                                                                  IPM_Auto_Aligned_Fin_TLD__c,
 		                                                                                  IPM_Project_Rollout__r.id,
 		                                                                                  IPM_CPP_Regional__c,
-		                                                                                  IPM_CPP_Local__c                                                                                                                                                                            
-                                                                                  FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
+		                                                                                  IPM_CPP_Local__c,
+		                                                                                  Global_External_Id__c,
+		                                                                                  IPM_Parent_Company_Card__c 
+		                                                                          FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
         
             for(IPM_Financial__c fi:projectFinancialList){
                 if(fi.Local_Project__r.id !=null && (fi.Local_Project__r.IPM_Project_Name__c == fi.Financial_External_ID__c  || fi.Local_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
@@ -888,7 +906,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             list<IPM_Project_Rollout__c> projRolloutList = new list<IPM_Project_Rollout__c>([SELECT id,name,IPM_Project__r.id,Market_Cluster_Name__c,RecordTypeId,MCO_Name__c,Regional_Project__c,Regional_Rollout__c,IPM_Status__c,KeyMCO__c,IPM_Company_Card__r.Name,IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,Target_Launch_Year__c,Regional_Rollout_Phase__c,
                                                                                                     Local_Rollout_Phase__c,IPM_Project_Job_Status__c,Target_LaunchMonth__c,Target_LaunchYear__c,Regional_Rollout__r.id,Regional_Rollout__r.Name,IPM_Global_OR_Regional__c,
                                                                                                     IPM_Brand__c,IPM_Parent_Project_Name__c,IPM_Regional_PL__c,IPM_Regional_PL__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_Phase__c,
-                                                                                                    Regional_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_SourceProjectType__c,Regional_Project__r.Id,Target_Launch_Date__c                                                                    
+                                                                                                    Regional_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_SourceProjectType__c,Regional_Project__r.Id,Target_Launch_Date__c,IPM_Project_GKM__c,IPM_Project__r.IPM_Project_name__c,IPM_project__r.IPM_Brand_Positioning__c                                                                       
                                                                                                     FROM IPM_Project_Rollout__c 
                                                                                                     WHERE (IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset()) and IPM_Project_Rollout__c.isActive__c = true  Limit 50000]);
             for(IPM_Project_Rollout__c pr:projRolloutList){
@@ -972,7 +990,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                             IPM_Project_Rollout__c,IPM_Project_Rollout__r.Id,
                                                                                             IPM_Project_Rollout__r.Name,Regional_Project__c,
                                                                                             Regional_Project__r.id,IPM_CPP_Regional__c,
-                                                                                            IPM_CPP_Local__c,Year_1_iTO_Global__c,Year_1_iTO_Regional__c
+                                                                                            IPM_CPP_Local__c,Year_1_iTO_Global__c,Year_1_iTO_Regional__c,Global_External_Id__c,IPM_Parent_Company_Card__c  
                                                                                             FROM IPM_Financial__c 
                                                                                             WHERE IPM_Project_Rollout__c IN: regionalRolloutset OR Regional_Project__c IN: regionalRolloutset  Limit 50000]);
                                                 
@@ -1149,7 +1167,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 }
                 else if(p.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
                 {
-             		businessImpact=p.IPM_Parent_BI__c;
+             		businessImpact=(p.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)?p.BI__c:p.IPM_Parent_BI__c;
                 }
                  else if(p.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
                 {	
@@ -1341,5 +1359,47 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 if(ipmCountryMap.containskey(p.id)){ analyticObj.IPM_Geography__c = ipmCountryMap.get(p.id);}
             }
         return analyticObj;
-    }   
+    }
+    
+     /*********************************************************************************************************************
+     * @Description: To set GKM3 rollout details
+     * @param1: IPM_Project_Rollout__c pr
+     * @param2: IPM_Analytics__c analyticObj
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/ 
+    public IPM_Analytics__c setrolloutdetailsGKM3(IPM_Project_Rollout__c pr ,IPM_Analytics__c analyticObj,IPM_Analytics__c parent)
+	{
+	  if(pr.IPM_Project_GKM__c != IPM_Utils.GATE_KEEPING_MODEL_3)
+		{    
+			 analyticObj.IPM_Brand_Positioning__c = parent.IPM_Brand_Positioning__c;
+			 analyticObj.IPM_Company__c = pr.IPM_Company_Card__r.Name;
+			 analyticObj.IPM_Parent_Project_Name__c = pr.IPM_Parent_Project_Name__c;
+			 analyticObj.IPM_Expected_Charter_Approval_Date__c = parent.IPM_Expected_Charter_Approval_Date__c;
+        	 analyticObj.IPM_Charter_Approved_Date__c = parent.IPM_Charter_Approved_Date__c;  
+        	 analyticObj.IPM_Charter_Proposed_Date__c = parent.IPM_Charter_Proposed_Date__c;
+        	 analyticObj.IPM_Expected_Contract_Approval_Date__c = parent.IPM_Expected_Contract_Approval_Date__c;
+        	 analyticObj.IPM_Expected_Market_Ready_Approval_Date__c = parent.IPM_Expected_Market_Ready_Approval_Date__c;
+             analyticObj.IPM_Expected_Market_Deployment_App_Date__c = parent.IPM_Expected_Market_Deployment_App_Date__c;
+             analyticObj.IPM_Company__c = pr.IPM_Company_Card__r.Name;              
+             analyticObj.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
+        	 if(pr.Target_LaunchYear__c != null){
+             analyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;
+        	 }
+        	 
+        	 analyticObj.IPM_Business_Impact_BD__c=parent.IPM_Business_Impact_BD__c;
+        	
+        }
+		if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE && pr.IPM_Project_GKM__c == IPM_Utils.GATE_KEEPING_MODEL_3){
+		analyticObj.IPM_Company__c = parent.IPM_Company__c;
+		analyticObj.IPM_Parent_Project_Name__c = pr.IPM_Project__r.IPM_Project_name__c;
+		analyticObj.IPM_Brand_Positioning__c = pr.IPM_project__r.IPM_Brand_Positioning__c;
+		}
+		if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE && pr.IPM_Project_GKM__c == IPM_Utils.GATE_KEEPING_MODEL_3){
+		analyticObj.IPM_Company__c = pr.IPM_Company_Card__r.Name;
+		analyticObj.IPM_Parent_Project_Name__c = pr.IPM_Project__r.IPM_Project_name__c;
+		analyticObj.IPM_Brand_Positioning__c = parent.IPM_Brand_Positioning__c;
+		}	
+	  return analyticObj;
+	}
+    
 }

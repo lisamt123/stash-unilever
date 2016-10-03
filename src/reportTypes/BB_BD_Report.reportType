@@ -90,12 +90,7 @@
             <field>IPM_Category__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Sub-Category</displayNameOverride>
-            <field>IPM_Sub_Category__c</field>
-            <table>IPM_Analytics__c</table>
-        </columns>
+        
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>Brand Positioning</displayNameOverride>
@@ -784,6 +779,22 @@
             <field>Owner</field>
             <table>IPM_Analytics__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Market_Name__c</field>
+            <table>IPM_Analytics__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Sector__c</field>
+            <table>IPM_Analytics__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Sub_Sector__c</field>
+            <table>IPM_Analytics__c</table>
+        </columns>
+       
         <masterLabel>IPM Analytics</masterLabel>
     </sections>
 </ReportType>
