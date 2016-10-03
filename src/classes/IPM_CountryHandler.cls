@@ -288,7 +288,7 @@ public with sharing class IPM_CountryHandler implements ITrigger{
                 IPM_ProjectCountryDetails.checkAtLeastOneAssmntPerEICountry(projectIdSet);
             }
 			//delete product plan related records
-            IPM_SourcePlanController.deleteProductForCountries(countryIds); 
+            IPM_SourcePlanController_Helper.deleteProductForCountries(countryIds);
         }
         
         // Validate if there are any rollouts which dont have any countries under them, if yes delete those Rollouts.
