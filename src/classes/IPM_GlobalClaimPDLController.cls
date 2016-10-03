@@ -9,36 +9,55 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 	public List<IPM_Country__c> countrylist{get; set;}
 	public Map<String,List<String>> localCntrytoClaimMap{get; set;} 
 	public List<IPM_Country_Level_Claim__c> contryLevelClaimList{get; set;}
-	public Boolean showCountryClaim{get;set;}
+	public Boolean readOnlyLocalView{get;set;}
+	public Boolean readOnlyPDFView{get;set;} 
+	public Boolean displayNonKey{get;set;} 
 	public String projClaimId{get;Set;}
+	public Boolean showNoClaims{get;set;} 
+	
 	private static final String IPM_GLOBALCLAIMPDLCONTROLLER_STR = IPM_GlobalClaimPDLController.class.getName();
-	
-	
-	public IPM_GlobalClaimPDLController()
+
+	public IPM_GlobalClaimPDLController() 
 	{
 		Map<String,String> paramMap = Apexpages.currentpage().getparameters();
         countryList = new List<IPM_Country__c>();
         
-        showCountryClaim = false;
+        readOnlyLocalView  = readOnlyPDFView = displayNonKey = showNoClaims =  false;
         
+        String docType = Apexpages.currentPage().getParameters().get('DocumentType');
+       	if(!String.isblank(docType) && docType == 'PDF')
+       	{
+       		readOnlyPDFView = true;	
+       	} 
         if(paramMap != null && paramMap.containsKey(IPM_ConstantUtils.SF_ID)) 
         {
             projectId = paramMap.get(IPM_ConstantUtils.SF_ID);
             projDocSectionId = paramMap.get(IPM_ConstantUtils.SF_PROJ_DOC_SEC_ID);
         }
         
+        localRolloutList = [Select id, 	IPM_Rollout_Project__c, MCO_Name__c, KeyMCO__c, (Select id,Country_Name__c From IPM_Countries_Local__r Order by Local_Rollout__r.MCO__c) From IPM_Project_Rollout__c Where (IPM_Project__c =: projectId OR Local_Project__c =: projectId) and RecordType.Name =: IPM_ConstantUtils.LOCAL_ROLLOUT_RT];
         if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
 		{
-			showCountryClaim = true;
+			readOnlyLocalView = true; 
+			displayNonKey = true;
 		}
                         
-        localRolloutList = [Select id, MCO_Name__c, KeyMCO__c, (Select id,Country_Name__c From IPM_Countries_Local__r Order by Local_Rollout__r.MCO__c) From IPM_Project_Rollout__c Where (IPM_Project__c =: projectId OR Local_Project__c =: projectId) and RecordType.Name =: IPM_ConstantUtils.LOCAL_ROLLOUT_RT];
-		for(IPM_Project_Rollout__c localRollout : localRolloutList)
+		if(displayNonKey)
 		{
-			if(showCountryClaim || project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+			for(IPM_Project_Rollout__c localRollout : localRolloutList)
 			{
-				countryList.addAll(localRollout.IPM_Countries_Local__r);
-			}			
+				countryList.addAll(localRollout.IPM_Countries_Local__r); 
+			}
+		}
+		else
+		{
+			for(IPM_Project_Rollout__c localRollout : localRolloutList)
+			{
+				if(localRollout.KeyMCO__c)
+				{
+					countryList.addAll(localRollout.IPM_Countries_Local__r);
+				}	 
+			}
 		}
 
         prepareCountryClaimDetails();
@@ -74,7 +93,9 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
         rolloutLvlWrapper = new List<RolloutLevelWrapper>();
         
 		projectClaimList = [Select Id, IPM_Claim__c, IPM_Project__c, (Select Id, Name, IPM_Country__c, IPM_Project_Claim__c,IPM_Claim__c,Country_Name__c  from Country_Level_Claims__r Where IPM_Country__c IN: countryList) from IPM_Project_Claim__c WHERE IPM_Project__c=:projectId OR IPM_Project__c =: project.IPM_Parent_Project__c];
-
+		if(projectClaimList.isEmpty()){
+			showNoClaims = true;
+		}
 		if(!projectClaimList.isEmpty())
 		{
 			for(IPM_Project_Claim__c projectClaim : projectClaimList)
@@ -123,7 +144,7 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
                             cntyLvl = new CountryClaimsWrapper(DBCountryLevelClaimObj,true);
                             selectedClaimList.add(DBCountryLevelClaimObj.IPM_Claim__c); 
                         }
-                        else
+	                else if( !( readOnlyLocalView ||  readOnlyPDFView) )
                         {
                             cntyLvl = new CountryClaimsWrapper(new IPM_Country_Level_Claim__c( IPM_Project_Claim__c=projClm.id, IPM_Claim__c = projClm.IPM_Claim__c,IPM_Country__c = cntryEle.Id),false);
                         }
