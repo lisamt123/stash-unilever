@@ -2,6 +2,13 @@
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
 
 <types>
+	<members>Content_Uploader</members>
+	<members>Delete_Chatter_History</members>
+	<members>SME_Selection</members>
+	<name>CustomTab</name>
+</types>
+
+<types>
 	<members>isll_AdditionalContentController</members>
 	<members>isll_AdditionalContentController</members>
 	<members>isll_AdditionalContentControllerTest</members>
