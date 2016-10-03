@@ -9,8 +9,7 @@ VERSION  AUTHOR         DATE          DETAIL Description
 
 public with sharing class FS_OpportunityHelper {
     //Fetch custom settings for opportunity stages
-    FS_OpportunityStages__c oppStages=FS_OpportunityStages__c.getInstance('FS_Stages');    
-    string STATUS_CLOSED_LOST=oppStages.FS_Stage_Closed__c;    
+    
     Private string ERROR_MESSAGE='The following exception has occurred: ';
     Private string FOOD_SOLUTION='Food Solution';
     Private string CLASS_NAME='FS_OpportunityHelper';
@@ -122,6 +121,8 @@ public with sharing class FS_OpportunityHelper {
             
             if(varFS_Record)
             {
+            FS_OpportunityStages__c oppStages=FS_OpportunityStages__c.getInstance('FS_Stages');    
+    string STATUS_CLOSED_LOST=oppStages.FS_Stage_Closed__c;    
             //Get Accoun Plan deatils where associated opportunities that have been modified        
             Map<Id,List<Opportunity>> mapAccPlanOpportunity=New Map<Id,List<Opportunity>>();
             List<Opportunity> tempOppList=new List<Opportunity>();
@@ -198,6 +199,8 @@ public with sharing class FS_OpportunityHelper {
             
             if(varFS_Record)
             {
+            FS_OpportunityStages__c oppStages=FS_OpportunityStages__c.getInstance('FS_Stages');    
+    string STATUS_CLOSED_LOST=oppStages.FS_Stage_Closed__c;    
             //Get Accoun Plan deatils where associated opportunities have been modified        
             Map<Id,List<Opportunity>> mapObjOpportunity=New Map<Id,List<Opportunity>>();
             List<Opportunity> tempOppList=new List<Opportunity>();
