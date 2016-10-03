@@ -73,7 +73,7 @@
       <runTest>ICB_ReturnStock_Batch_Test</runTest>
       <runTest>ICB_ReturnStock_BatchSch_Test</runTest>
       <runTest>ICB_PriceBookCreation_Test</runTest>
-
+      <runTest>ICB_SetupMobileChannel_Test</runTest>
     </sf:deploy>
   </target>  
 
