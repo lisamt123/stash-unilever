@@ -7,7 +7,7 @@ trigger OpportunityTrigger on Opportunity (after insert, after update, before in
     //if(trigger.isAfter && trigger.isUpdate){
     //FS_OpportunityHelper.copyLineItemToExistingOpp(trigger.new,Trigger.OldMap);       
     //}    
-    if(Enabled){
+   // if(Enabled){
         if(trigger.isBefore && trigger.isUpdate){      
         }
         if(trigger.isAfter){
@@ -27,5 +27,5 @@ trigger OpportunityTrigger on Opportunity (after insert, after update, before in
             }
         }
         
-    }
+  //  }
 }
