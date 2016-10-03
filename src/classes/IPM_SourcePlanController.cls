@@ -424,7 +424,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         isDuplicateRow = false;
         isSaveSuccess = false;
         string holdProductCountry_STR = IPM_ConstantUtils.BLANK;
-        sourcePlanWrapper sourceC = sourcePlanMap.get(row_Index);
+        sourcePlanWrapper sourceC = duplicateCheckClass;
         if(sourceC.productPlan.IPM_Of_gTO__c <= 100 && sourceC.productPlan.IPM_Of_gTO__c >= 0){
             producList.add(sourceC.productPlan);
             duplicateCheckClass = sourceC; 
