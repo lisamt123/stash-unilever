@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Risk --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Risk --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Risk --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Risk --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Risk --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Risk --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Risk --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Risk --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>false</plural>
+        <value><!-- Risk --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>true</plural>
+        <value><!-- Risk --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>false</plural>
+        <value><!-- Risk --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>true</plural>
+        <value><!-- Risk --></value>
+    </caseValues>
+    <fields>
+        <label>План по клиенту</label>
+        <name>Account_Plan__c</name>
+        <relationshipLabel>Риски</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Клиент</label>
+        <name>Account__c</name>
+        <relationshipLabel>Риски</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Сумма</label>
+        <name>Amount__c</name>
+    </fields>
+    <fields>
+        <label>Общая сумма рисков</label>
+        <name>Collective_Risk_Value__c</name>
+    </fields>
+    <fields>
+        <label>Дата проигрыша</label>
+        <name>Date_of_Loss__c</name>
+    </fields>
+    <fields>
+        <label>Выбранная цель</label>
+        <name>Defined_Objective__c</name>
+        <relationshipLabel>Риски</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Описание</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Sector --></label>
+        <name>FS_Sub_Sector__c</name>
+    </fields>
+    <fields>
+        <label>Вероятность</label>
+        <name>Probability__c</name>
+        <picklistValues>
+            <masterLabel>0%</masterLabel>
+            <translation><!-- 0% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100%</masterLabel>
+            <translation><!-- 100% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25%</masterLabel>
+            <translation><!-- 25% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50%</masterLabel>
+            <translation><!-- 50% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>75%</masterLabel>
+            <translation><!-- 75% --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Продукт</label>
+        <name>Product__c</name>
+        <relationshipLabel>Риски</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Количество</label>
+        <name>Quantity__c</name>
+    </fields>
+    <fields>
+        <label>Категория риска</label>
+        <name>Risk_Category__c</name>
+        <picklistValues>
+            <masterLabel>Market Penetration</masterLabel>
+            <translation>Проникновение в рынок</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pricing</masterLabel>
+            <translation>Цены</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategy</masterLabel>
+            <translation>Стратегия</translation>
+        </picklistValues>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <nameFieldLabel><!-- Risk Name --></nameFieldLabel>
+</CustomObjectTranslation>

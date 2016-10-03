@@ -85,5 +85,7 @@ public with sharing class CEC_Constants {
     public static final String textileFactoryName = 'testTextileFactory';
     public static final String productFactoryName = 'testProductFactory';
     public static final String retrievalStatus = 'Retrieval Complete';
+    public static final String productBrand ='Dove';
+    public static final String reasonCode = 'Test Reason';
     
 }

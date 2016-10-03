@@ -1,7 +1,7 @@
 /********************************************************************
- Name:  FAU_EmailSender()
- Copyright © 2014  Unilever
- ======================================================
+Name:  FAU_EmailSender()
+Copyright © 2014  Unilever
+======================================================
 ======================================================
 Purpose:  This class handles Email rouitnes like mass email and ICS functionality                                                    
 -------                                                             
@@ -13,11 +13,11 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
    1.0   Jack Dermody      18/09/2014        INITIAL DEVELOPMENT           
 ***********************************************************************/
 public without sharing class FAU_EmailSender {
-	//Constructor
+                //Constructor
     public FAU_EmailSender()
-	{
-		
-	}  
+                {
+                                
+                }  
 
     /*******************************************************************
        Purpose:     Send Email to Webparticipants (with Meeting Request)
@@ -64,7 +64,7 @@ public without sharing class FAU_EmailSender {
         }
 
        sendUserEmailwithTemplate(lUserId, lUserEmail, lWhatId, lTemplateId, lDtStart, lDtEnd, lLocation, lSummary, lDescription);
- 
+
 
     }  
 
@@ -115,7 +115,7 @@ public without sharing class FAU_EmailSender {
     ********************************************************************/
     public static Messaging.EmailFileAttachment createIcsAttachment(Datetime dtStart, Datetime dtEnd, String sLocation, String sSummary, String sDescription)
     {
-    	Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
+                Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
         attachment.filename = 'meeting.ics';
         attachment.ContentType = 'text/calendar;';
         attachment.inline = true;
@@ -154,7 +154,7 @@ public without sharing class FAU_EmailSender {
         txtInvite += 'DESCRIPTION:' + sDescription +'\n';
         txtInvite += 'END:VEVENT\n';
         txtInvite += 'END:VCALENDAR';
- 
+
         System.Debug('##### FAU_EmailSender - txtInvite : ' + txtInvite); 
         return Blob.valueOf(txtInvite);
     }
