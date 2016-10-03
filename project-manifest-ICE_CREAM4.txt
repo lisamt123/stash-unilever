@@ -49,3 +49,5 @@ src/reportTypes
 src/reportTypes/ICB_Sales_Locales_with_Opportunities.reportType
 src/applications
 src/applications/ICB_Mobile_Channel.app
+src/layouts
+src/layouts/Contact-Contact Layout.layout

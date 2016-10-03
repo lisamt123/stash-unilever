@@ -255,7 +255,8 @@ public with sharing class ICB_ContactPartnerUserCreation
     private static List<Contact> getContacts()
     {
         List<Contact> contato = [SELECT Id, FirstName,ICB_Community_User__c,ICB_Fail__c,
-                                        ICB_Cause__c, LastName, Email, Name, ICB_Type__c 
+                                        ICB_Cause__c, LastName, Email, Name, ICB_Type__c,
+                                        ICB_Status__c 
                                  FROM Contact 
                                  WHERE ICB_Type__c =: types 
                                  AND RecordTypeId IN: recordTypeId
@@ -275,6 +276,7 @@ public with sharing class ICB_ContactPartnerUserCreation
 
     public static void updateContact()
     {
+        List<String> statusList = new List<String>{'Active','Fail'};
         listContact.addAll(getContacts());
         System.debug('Entering <updateContact><listContact>: ' + JSON.serializePretty(listContact));
         Map<String, Contact> mapContact = new Map<String,Contact>();
@@ -283,6 +285,7 @@ public with sharing class ICB_ContactPartnerUserCreation
         {
             mapContact.put(cont.Id, cont);
             cont.ICB_Community_User__c = true;
+            cont.ICB_Status__c = statusList.get(0);
             setEmail.add(cont.Email);
         }
         for(User user : [Select Email,ContactId From User Where Email =: setEmail])
@@ -294,6 +297,7 @@ public with sharing class ICB_ContactPartnerUserCreation
                     mapContact.get(contId).ICB_Cause__c = Label.ICB_Email_Duplicated;   
                     mapContact.get(contId).ICB_Community_User__c = false;
                     mapContact.get(contId).ICB_Fail__c = true;
+                    mapContact.get(contId).ICB_Status__c = statusList.get(1);
                 }
             }
         }
