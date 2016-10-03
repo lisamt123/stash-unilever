@@ -10,6 +10,8 @@ src/classes/IPM_BD_BB_Report_Batch_Test.cls
 src/classes/IPM_BD_BB_Report_Batch_Test.cls-meta.xml
 src/classes/IPM_CMIGateSectionController_Test.cls
 src/classes/IPM_CMIGateSectionController_Test.cls-meta.xml
+src/classes/IPM_ConstantUtils.cls
+src/classes/IPM_ConstantUtils.cls-meta.xml
 src/classes/IPM_CountryHandler.cls
 src/classes/IPM_CountryHandler.cls-meta.xml
 src/classes/IPM_GateDocumentController.cls

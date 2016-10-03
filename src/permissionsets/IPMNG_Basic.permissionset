@@ -8786,7 +8786,8 @@
 		<editable>false</editable>
 		<field>IPM_Project__c.IPM_StoppedByProjectPhase__c</field>
 		<readable>true</readable>
-    </fieldPermissions><fieldPermissions>
+    </fieldPermissions>
+	<fieldPermissions>
     	<editable>false</editable>
 		<field>IPM_Project__c.IPM_No_Rollout_Disabled__c</field>
 		<readable>true</readable>
@@ -8796,7 +8797,7 @@
         <field>IPM_Project_Resource__c.IPM_Is_Lead__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <label>IPMNG Basic</label>
+    
 	<fieldPermissions>
         <editable>false</editable>
         <field>IPM_ProductPlan__c.IPM_Country_Null__c</field>
@@ -8872,7 +8873,8 @@
         <field>IPM_SourcingUnit__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <objectPermissions>
+	<label>IPMNG Basic</label>
+	<objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
