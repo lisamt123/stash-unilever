@@ -360,11 +360,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     ************************************************/
     public void rolloutProjectHelp(IPM_Project_Rollout__c pr, IPM_Analytics__c parent, list<IPM_Analytics__c> analyticRolloutList)
     {
-        IPM_Analytics__c analyticObj = new IPM_Analytics__c();
         id regionalrolloutid=null;
             
         // project Rollout related details to be copied  
-        analyticObj = setRolloutProjectdetails(analyticObj, pr, parent);
+        IPM_Analytics__c analyticObj = setRolloutProjectdetails(pr, parent);
             
         if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
             regionalrolloutid = pr.Id; 
@@ -413,9 +412,11 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
      * @param1: IPM_Analytics__c, String, IPM_Project_Rollout__c
      * @return: IPM_Analytics__c Analytic object record  
      *********************************************************************************************************************/    
-    public IPM_Analytics__c setRolloutProjectdetails(IPM_Analytics__c analyticObj, IPM_Project_Rollout__c pr, IPM_Analytics__c parent){
+    public IPM_Analytics__c setRolloutProjectdetails(IPM_Project_Rollout__c pr, IPM_Analytics__c parent){
       //copy Values from rollout record
-        analyticObj.IPM_Project_Name__c = pr.name;
+        IPM_Analytics__c analyticObj = new IPM_Analytics__c();
+        
+        analyticObj.IPM_Project_Name__c =pr.name;
         analyticObj.IPM_Project_Phantom_Non_Key__c = IPM_ConstantUtils.Phantom;
         
 		analyticObj.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
