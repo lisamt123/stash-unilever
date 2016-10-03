@@ -1,4 +1,4 @@
-public class TesttooManyMethods
+public class IPM_TestTooManyMethods
 {
     public void method1()
     {
