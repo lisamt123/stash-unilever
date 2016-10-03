@@ -95,8 +95,7 @@ public class FS_TPRCalculationTest {
             //System.debug('oppProd.FS_gmWhenTPREqualsZero__c: ' + oppProd1.FS_gmWhenTPREqualsZero__c);
             System.assertEquals(25.03, oppProd1.FS_gmWhenTPREqualsZero__c.setScale(2));
         
-        }
-        System.debug('end');
+        }        
     }
     
     //Update existing OppProduct
@@ -426,7 +425,7 @@ public class FS_TPRCalculationTest {
             System.assertEquals(82.19, oppProd1.FS_necessaryTPR__c.setScale(2));
             
         }
-        System.debug('end');        
+        System.debug('end5');        
     }
     
     

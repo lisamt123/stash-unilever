@@ -11,7 +11,7 @@ VERSION AUTHOR         DATE         DETAIL Description
 *  @return N/A
 *  @throws N/A
 */
-public class FS_OpportunityProductHandler {
+public with sharing class FS_OpportunityProductHandler {
     
     /** Handler method for TPR Calculation during update of Opportunity Product:
     *  @name calculateTPR

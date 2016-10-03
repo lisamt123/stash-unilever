@@ -15,6 +15,9 @@ public with sharing class FS_OpportunityHelper {
     Private string FOOD_SOLUTION='Food Solution';
     Private string CLASS_NAME='FS_OpportunityHelper';
     Private Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');
+    Private final String FS_ExistingBusiness='FS_ExistingBusiness';
+    Private final String FS_OpportunityMABE='FS_OpportunityMABE';
+    Private final String FS_OpportunityTPR='FS_OpportunityTPR';
     
 /* * Method rollUpOpportunityLineItem to update Opportunity with Opp Line Item Value (Gross Profit and Market Target)
 *  @name rollUpOpportunityLineItem
@@ -37,7 +40,7 @@ public with sharing class FS_OpportunityHelper {
             Decimal averageMarketTarget =0;
             
             for(Opportunity opp : listNewTrigger){
-                if(recordIdBasedonDeveloperName.get('FS_ExistingBusiness') == opp.RecordTypeID || recordIdBasedonDeveloperName.get('FS_OpportunityMABE') == opp.RecordTypeID || recordIdBasedonDeveloperName.get('FS_OpportunityTPR') == opp.RecordTypeID )
+                if(recordIdBasedonDeveloperName.get(FS_ExistingBusiness) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityMABE) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityTPR) == opp.RecordTypeID )
                 {
                 listPriceBook.add(opp.pricebook2id);
                 listOppId.add(opp.Id);
@@ -107,7 +110,7 @@ public with sharing class FS_OpportunityHelper {
             List<Id> listAccPlanId = new List<Id>();         
             List<FS_Account_Plan__c> accPlanToUpdate = new List<FS_Account_Plan__C>();         
             for(Opportunity opp : listNewTrigger2){
-            if(recordIdBasedonDeveloperName.get('FS_ExistingBusiness') == opp.RecordTypeID || recordIdBasedonDeveloperName.get('FS_OpportunityMABE') == opp.RecordTypeID || recordIdBasedonDeveloperName.get('FS_OpportunityTPR') == opp.RecordTypeID )
+            if(recordIdBasedonDeveloperName.get(FS_ExistingBusiness) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityMABE) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityTPR) == opp.RecordTypeID )
                 {
                 varFS_Record =true;
                 if(opp.Account_Plan__c !=null){
@@ -117,7 +120,7 @@ public with sharing class FS_OpportunityHelper {
             }
             
             
-            if(varFS_Record==true)
+            if(varFS_Record)
             {
             //Get Accoun Plan deatils where associated opportunities that have been modified        
             Map<Id,List<Opportunity>> mapAccPlanOpportunity=New Map<Id,List<Opportunity>>();
@@ -184,7 +187,7 @@ public with sharing class FS_OpportunityHelper {
             Integer record_Count;         
             List<FS_Defined_Objective__c> objToUpdate = new List<FS_Defined_Objective__c>();         
             for(Opportunity opp : listNewTrigger2){
-             if(recordIdBasedonDeveloperName.get('FS_ExistingBusiness') == opp.RecordTypeID || recordIdBasedonDeveloperName.get('FS_OpportunityMABE') == opp.RecordTypeID || recordIdBasedonDeveloperName.get('FS_OpportunityTPR') == opp.RecordTypeID )
+             if(recordIdBasedonDeveloperName.get(FS_ExistingBusiness) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityMABE) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityTPR) == opp.RecordTypeID )
                 {
                   varFS_Record=true;
                 if(opp.Defined_Objective__c !=null){
@@ -193,7 +196,7 @@ public with sharing class FS_OpportunityHelper {
               }
             } 
             
-            if(varFS_Record ==true)
+            if(varFS_Record)
             {
             //Get Accoun Plan deatils where associated opportunities have been modified        
             Map<Id,List<Opportunity>> mapObjOpportunity=New Map<Id,List<Opportunity>>();
@@ -365,7 +368,7 @@ public with sharing class FS_OpportunityHelper {
         List<Id> listConId = new list<Id>();
         Map<Id,Opportunity> mapAccOpp= new Map<Id,Opportunity>();
         //Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');        
-        Id oppRecordTypeId=recordIdBasedonDeveloperName.get('FS_ExistingBusiness');         
+        Id oppRecordTypeId=recordIdBasedonDeveloperName.get(FS_ExistingBusiness);         
         for(Opportunity opp: listOpp){
             if(opp.RecordTypeId==oppRecordTypeId){
                 listAccId.add(opp.AccountId);
