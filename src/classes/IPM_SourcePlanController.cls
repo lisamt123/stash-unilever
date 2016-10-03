@@ -420,7 +420,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     public void saveRow(){
         savepoint sp = database.setSavepoint();
         list<IPM_Project_Product__c> producList = new list<IPM_Project_Product__c>();
-        sourcePlanWrapper duplicateCheckClass ;
+        sourcePlanWrapper duplicateCheckClass = sourcePlanMap.get(row_Index);
         isDuplicateRow = false;
         isSaveSuccess = false;
         string holdProductCountry_STR = IPM_ConstantUtils.BLANK;
