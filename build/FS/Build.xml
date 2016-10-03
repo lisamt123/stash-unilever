@@ -68,8 +68,15 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-	  <runTest>GSurveysController_Test</runTest>
+	  <runTest>GSurveysController_Test</runTest>	  
+	  <runTest>ICB_CalculatePlanDistaance_Batch_Test</runTest>
+	  <runTest>ICB_CalculatePlanDistance_BatchSch_Test</runTest>
+	  <runTest>ICB_CheckInCheckOut_CC_Test</runTest>
 	  <runTest>ICB_Cockpit_CC_Test</runTest>
+	  <runTest>ICB_ContactPartnerUserCreation_Test	</runTest>
+	  <runTest>ICB_InventoryProducts_CC_Test</runTest>
+	  <runTest>ICB_PartnerUserCreation_BatchSch_Test</runTest>	  
+	  <runTest>ICB_PhotoMobileChannel_Batch_Test</runTest>
 	  <runTest>ICB_ReturnStock_Batch_Test</runTest>
 	  <runTest>ICB_ReturnStock_BatchSch_Test</runTest>
 	  <runTest>SurveyManagerController_Test</runTest>
