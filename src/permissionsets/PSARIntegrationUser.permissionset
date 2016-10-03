@@ -5857,10 +5857,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>StringUtil</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>TemplateController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
