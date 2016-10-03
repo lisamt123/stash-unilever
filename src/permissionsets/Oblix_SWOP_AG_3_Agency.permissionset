@@ -35586,4 +35586,5 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>OV_Report__c.Mobile_Content__c
+        <field>OV_Report__c.Mobile_Content__c</field>
+	</fieldPermissions>	
