@@ -15,6 +15,10 @@
         <enabled>true</enabled>
     </classAccesses>
 	<classAccesses>
+        <apexClass>IPM_SourcePlanController_Helper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
         <apexClass>IPM_AddManageSection_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
