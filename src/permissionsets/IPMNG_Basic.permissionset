@@ -1184,6 +1184,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_GKM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics_OTIF__c.IPM_Geography__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1305,6 +1310,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics_OTIF__c.IPM_Project_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Project_Phantom_Non_Key__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1664,6 +1674,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Market_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Market_Place_Activity__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1690,6 +1705,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Platform__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Product_DesignLock_Completed_On_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Product_Design_Lock_Due_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1745,6 +1770,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Strategic_Intent__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Sub_Sector__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Target_Launch_Date_Aligned__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3823,6 +3858,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Financial__c.IPM_Key_Financial__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.IPM_Parent_Company_Card__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

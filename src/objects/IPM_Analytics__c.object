@@ -754,6 +754,17 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>IPM_Market_Name__c</fullName>
+        <description>To Copy market name of project</description>
+        <externalId>false</externalId>
+        <label>Market Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Market_Place_Activity__c</fullName>
         <description>IPM Answer of Q1</description>
         <externalId>false</externalId>
@@ -938,6 +949,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Sector__c</fullName>
+        <description>To copy the sector of project</description>
+        <externalId>false</externalId>
+        <label>Sector</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Stopped__c</fullName>
         <description>To Indicate whether project is stopped or not</description>
         <externalId>false</externalId>
@@ -959,11 +981,13 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    
     <fields>
-        <fullName>IPM_Sub_Category__c</fullName>
+        <fullName>IPM_Sub_Sector__c</fullName>
+        <description>To copy the sub sector of project</description>
         <externalId>false</externalId>
-        <label>IPM Sub-Category</label>
-        <length>255</length>
+        <label>Sub Sector</label>
+        <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

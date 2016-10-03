@@ -1179,6 +1179,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Market_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Market_Place_Activity__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1269,6 +1274,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Sector__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Stopped__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1277,9 +1287,10 @@
         <field>IPM_Analytics__c.IPM_Strategic_Intent__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    
     <fieldPermissions>
         <editable>false</editable>
-        <field>IPM_Analytics__c.IPM_Sub_Category__c</field>
+        <field>IPM_Analytics__c.IPM_Sub_Sector__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
