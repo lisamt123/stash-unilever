@@ -3,14 +3,14 @@
 
 <types>
 	<members>Brand_USLP_Progress__c</members>
-	<members>CMS_Article__c</members>
+	
 	<members>CMS_Article_Link__c</members>
-	<members>CMS_Content__c</members>
+	
 	<members>CMS_ContentToCarousel__c</members>
 	<members>CMS_Page_Article__c</members>
 	<members>Carousel__c</members>
 	<members>Chatter_History__c</members>
-	<members>Event__c</members>
+	
 	<members>Event_Member__c</members>
 	<members>My_Library__c</members>
 	<members>isll_Event_Visit__c</members>
