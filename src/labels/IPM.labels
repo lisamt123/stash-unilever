@@ -1,4 +1,18 @@
 <labels>
+        <fullName>IPM_No_Claims_Added</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM No Claims Added</shortDescription>
+        <value>No Claims have been entered.</value>
+</labels>
+<labels>
+        <fullName>IPM_Global_Claims_Table</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Global Claims Table</shortDescription>
+        <value>Global Claims Table</value>
+</labels>
+<labels>
         <fullName>IPM_Capability_Confirmed_Help_Text</fullName>
         <categories>EPIC284</categories>
         <language>en_US</language>
