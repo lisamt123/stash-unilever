@@ -95,8 +95,7 @@ public class FS_TPRCalculationTest {
             //System.debug('oppProd.FS_gmWhenTPREqualsZero__c: ' + oppProd1.FS_gmWhenTPREqualsZero__c);
             System.assertEquals(25.03, oppProd1.FS_gmWhenTPREqualsZero__c.setScale(2));
         
-        }
-        System.debug('end');
+        }        
     }
     
     //Update existing OppProduct
@@ -346,6 +345,90 @@ public class FS_TPRCalculationTest {
         System.debug('end');        
     }
     
+    //Update OppProduct with Ukraine VAT
+    static testMethod void testUpdateOppProductWithUkraineVAT() {
+    
+        System.debug('start this');
+        
+        setAllData();
+        //Fetch Test User Data     
+        user SalesRepUser=[select id from user where UserName='newuseropphelper@testorg.com'];
+        system.runAs(SalesRepUser){
+            
+            Test.startTest();
+            //set Opportunity Product
+            OpportunityLineItem oppProd = new OpportunityLineItem();
+            oppProd.OpportunityId = opp.Id;
+            oppProd.Quantity = 400;
+            oppProd.PricebookEntryId = pbe.Id;     
+            oppProd.TotalPrice = 3946725;
+            oppProd.FS_tprPercent__c = 2;
+            oppProd.FS_valueNecessaryWithVAT__c = 500;
+            oppProd.FS_DistributorMarkup__c = 10;
+            
+            insert oppProd;
+            
+            //System.debug('>>> opp: ' + opp);
+            
+            distributorAccount.FS_onInvoice__c = 0;
+            update distributorAccount;
+            
+            opp.FS_casesPiece__c = 'cases';
+            update opp;
+            
+            prod.FS_VATRU__c = 1;
+            update prod;
+            
+            pbe.FS_salesOrgCode__c = 'U002';
+            update pbe;
+            
+            
+            oppProd.Quantity = 500;
+            update oppProd;        
+            
+            Test.stopTest();
+            
+            OpportunityLineItem oppProd1 = new OpportunityLineItem();
+            oppProd1 = [SELECT id,
+                                FS_tprPercent__c,
+                                FS_additionalDiscount__c,
+                                FS_grossSalesValue__c,
+                                FS_netInvoiceValue__c,
+                                FS_temporaryPriceReduction__c,
+                                FS_turnover__c,
+                                FS_productCost__c,
+                                FS_supplyCost__c,
+                                FS_supplyCostChain__c,
+                                FS_grossProfit__c,
+                                FS_grossMargin__c,
+                                FS_gmWhenTPREqualsZero__c,
+                                FS_valueNecessaryWithVAT__c,
+                                FS_DistributorMarkup__c,
+                                FS_necessaryTPR__c,
+                                FS_vat__c
+                        FROM OpportunityLineItem
+                        WHERE id =: oppProd.Id];
+            
+            
+            
+            //System.debug('oppProd3: ' + oppProd1);            
+            //System.debug('oppProd.FS_valueNecessaryWithVAT__c: ' + oppProd1.FS_valueNecessaryWithVAT__c);
+            System.assertEquals(500, oppProd1.FS_valueNecessaryWithVAT__c.setScale(2));
+            
+            //System.debug('oppProd.FS_DistributorMarkup__c: ' + oppProd1.FS_DistributorMarkup__c);
+            System.assertEquals(10, oppProd1.FS_DistributorMarkup__c.setScale(2));
+            
+            //System.debug('oppProd.FS_vat__c: ' + oppProd1.FS_vat__c);
+            //System.assertEquals(18, oppProd1.FS_vat__c.setScale(2));
+            
+            System.debug('oppProd.FS_necessaryTPR__c1: ' + oppProd1.FS_necessaryTPR__c);
+            System.assertEquals(82.19, oppProd1.FS_necessaryTPR__c.setScale(2));
+            
+        }
+        System.debug('end5');        
+    }
+    
+    
     //Data setting
     //@testSetup
     static void setAllData() {
@@ -401,6 +484,18 @@ public class FS_TPRCalculationTest {
             distributorAccount.FS_offInvoice__c = 11;
             insert distributorAccount;
             
+            //set child of distributorAccount
+            Account childAccount = new Account();
+            childAccount.RecordTypeId = distributorAccountRecordType;
+            childAccount.Name = 'FS_Test Account Distributor Child';
+            childAccount.FS_supplyCost__c = 8;
+            childAccount.FS_Distributor_Type__c = 'Strategic';
+            childAccount.FS_onInvoice__c = 12;
+            childAccount.FS_offInvoice__c = 11;
+            childAccount.ParentId = distributorAccount.Id;
+            insert childAccount;
+            
+            
             //set TemporaryTPR
             FS_TemporaryProductDiscount__c tpd = new FS_TemporaryProductDiscount__c();
             tpd.FS_C_C__c = 0;
@@ -449,14 +544,19 @@ public class FS_TPRCalculationTest {
             opp.AccountId = operatorAccount.Id;
             opp.StageName = '01 – Universe';
             //opp.StageName = 'Closed Won';
+            opp.FS_Comment__c = 'test';
+            opp.FS_internalOrder__c = '40002843 TPRs of Chains team_RUS';
             opp.CloseDate = date.today() + 30;
             opp.CurrencyIsoCode = 'RUB';
             opp.FS_casesPiece__c = 'piece';
             //opp.FS_DateOfSend__c = date.today();
+            opp.FS_startDateTPR__c = date.today() + 1;
             opp.FS_endDateTPR__c = date.today() + 30;
             opp.FS_distributor__c = distributorAccount.Id;
+            opp.ShipToCode__c = childAccount.Id;
             opp.FS_selfCollection__c = true;
             opp.FS_prePaid__c = true;
+            opp.RecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('RUFS Opportunity TPR').getRecordTypeId();
             insert opp;  
         
             //System.debug('operatorAccount: ' + operatorAccount);

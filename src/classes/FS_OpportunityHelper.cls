@@ -15,6 +15,9 @@ public with sharing class FS_OpportunityHelper {
     Private string FOOD_SOLUTION='Food Solution';
     Private string CLASS_NAME='FS_OpportunityHelper';
     Private Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');
+    Private final String FS_ExistingBusiness='FS_ExistingBusiness';
+    Private final String FS_OpportunityMABE='FS_OpportunityMABE';
+    Private final String FS_OpportunityTPR='FS_OpportunityTPR';
     
 /* * Method rollUpOpportunityLineItem to update Opportunity with Opp Line Item Value (Gross Profit and Market Target)
 *  @name rollUpOpportunityLineItem
@@ -37,14 +40,17 @@ public with sharing class FS_OpportunityHelper {
             Decimal averageMarketTarget =0;
             
             for(Opportunity opp : listNewTrigger){
+                if(recordIdBasedonDeveloperName.get(FS_ExistingBusiness) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityMABE) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityTPR) == opp.RecordTypeID )
+                {
                 listPriceBook.add(opp.pricebook2id);
                 listOppId.add(opp.Id);
+                }
             }
             
             if(!listOppId.isEmpty()){    
+            
                 OppLineItem = [select Id, GPPercent__c, FS_MarketTarget__c, opportunityId from OpportunityLineItem where opportunityId in :listOppId];
-            }
-            //Calculate average grossProfit and MarketTarget of all opp prod
+              //Calculate average grossProfit and MarketTarget of all opp prod
             For(Opportunity opp : listNewTrigger){
                 For(OpportunityLineItem oli: OppLineItem ){
                     if(opp.id == oli.opportunityId){
@@ -84,6 +90,7 @@ public with sharing class FS_OpportunityHelper {
                 System.debug( ERROR_MESSAGE +e.getMessage() );
                 ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'UpdateOppField', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
             }
+          }
         }
     }
 /* * Method rollUptoAccountPlan to update rollup fields on account plan
@@ -94,6 +101,8 @@ public with sharing class FS_OpportunityHelper {
 */
     //Purpose: To update Account Plan object to roll up Opportunity 
     public void rollUptoAccountPlan(List<Opportunity> listNewTrigger2){ 
+    
+    boolean varFS_Record=false;
         if(FS_Utility.runaccPlanOnce()){
             Integer opportunity_Gain = 0;
             Integer opportunity_Potential=0;
@@ -101,10 +110,18 @@ public with sharing class FS_OpportunityHelper {
             List<Id> listAccPlanId = new List<Id>();         
             List<FS_Account_Plan__c> accPlanToUpdate = new List<FS_Account_Plan__C>();         
             for(Opportunity opp : listNewTrigger2){
+            if(recordIdBasedonDeveloperName.get(FS_ExistingBusiness) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityMABE) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityTPR) == opp.RecordTypeID )
+                {
+                varFS_Record =true;
                 if(opp.Account_Plan__c !=null){
                     listAccPlanId.add(opp.Account_Plan__c);
                 }
+              }
             }
+            
+            
+            if(varFS_Record)
+            {
             //Get Accoun Plan deatils where associated opportunities that have been modified        
             Map<Id,List<Opportunity>> mapAccPlanOpportunity=New Map<Id,List<Opportunity>>();
             List<Opportunity> tempOppList=new List<Opportunity>();
@@ -153,7 +170,7 @@ public with sharing class FS_OpportunityHelper {
                 System.debug( ERROR_MESSAGE +e.getMessage() );
                 ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'UpdateOppField', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
             }
-            
+           } 
         }
     }
     /* * Method rollUptoDefinedObjective to update roll up fields on defined objective record
@@ -163,16 +180,24 @@ public with sharing class FS_OpportunityHelper {
 *  @throws 
 */
     public void rollUptoDefinedObjective(List<Opportunity> listNewTrigger2){ 
+     boolean varFS_Record=false;
         if(FS_Utility.runObjOnce()){
             List<Id> listObjId = new List<Id>();
             Integer gross_Amount;
             Integer record_Count;         
             List<FS_Defined_Objective__c> objToUpdate = new List<FS_Defined_Objective__c>();         
             for(Opportunity opp : listNewTrigger2){
+             if(recordIdBasedonDeveloperName.get(FS_ExistingBusiness) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityMABE) == opp.RecordTypeID || recordIdBasedonDeveloperName.get(FS_OpportunityTPR) == opp.RecordTypeID )
+                {
+                  varFS_Record=true;
                 if(opp.Defined_Objective__c !=null){
                     listObjId.add(opp.Defined_Objective__c);
                 }
-            }
+              }
+            } 
+            
+            if(varFS_Record)
+            {
             //Get Accoun Plan deatils where associated opportunities have been modified        
             Map<Id,List<Opportunity>> mapObjOpportunity=New Map<Id,List<Opportunity>>();
             List<Opportunity> tempOppList=new List<Opportunity>();
@@ -212,7 +237,8 @@ public with sharing class FS_OpportunityHelper {
             Catch(DmlException e){
                 System.debug( ERROR_MESSAGE +e.getMessage() );
                 ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'UpdateOppField', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
-            }        
+            } 
+           }        
         }
     }
     /* * Method copyLineItemToExistingOpp for MABE process to copy line item ,create contract product
@@ -269,7 +295,7 @@ public with sharing class FS_OpportunityHelper {
             listExistingOppLineItem = [select Id,opportunityId,Quantity,TotalPrice,PricebookentryId,Distributor__c,
                                        Product2Id,Opportunity.contractId,Contract_Product__c,Product2.Name
                                        from OpportunityLineItem where opportunityId in :listOpp];
-        }           
+                   
         
         mapRelatedOppLineItem=utilMabe.createMapOliOpp(listExistingOppLineItem);//Create map of opportunity line items for each existing and new opportunity
         //Create map of opportunity line item for each contract associated with closed new opportunity
@@ -332,7 +358,8 @@ public with sharing class FS_OpportunityHelper {
         Catch(DmlException e){
             System.debug( ERROR_MESSAGE +e.getMessage() );
             ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'MA-BE Process', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
-        }        
+        }  
+      }        
     }
     
     public void validateOpportunity(List<Opportunity> listOpp){
@@ -341,7 +368,7 @@ public with sharing class FS_OpportunityHelper {
         List<Id> listConId = new list<Id>();
         Map<Id,Opportunity> mapAccOpp= new Map<Id,Opportunity>();
         //Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');        
-        Id oppRecordTypeId=recordIdBasedonDeveloperName.get('FS_ExistingBusiness');         
+        Id oppRecordTypeId=recordIdBasedonDeveloperName.get(FS_ExistingBusiness);         
         for(Opportunity opp: listOpp){
             if(opp.RecordTypeId==oppRecordTypeId){
                 listAccId.add(opp.AccountId);
