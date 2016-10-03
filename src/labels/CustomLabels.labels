@@ -10318,5 +10318,20 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>IPM OVER FIN BC MR OR MD OR PLE PREV NONKEY GKM3</shortDescription>
         <value>You are about to refresh the Financial Business Case from the Local Project Leader.Please make sure you subtract the gTO and iTO numbers from the Non-Key Business Case in Financials to avoid double counting.Are you sure you want to continue?</value>
     </labels>
+	<labels>
+        <fullName>IPM_Local_Sourcing_Plan_Table_Header</fullName>
+        <categories>EPIC286</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Local Sourcing Plan Table Header</shortDescription>
+        <value>Sourcing Plan (Global Scope)</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Product_Identical_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Product Identical Message</shortDescription>
+        <value>An identical sourcing plan for this product exists elsewhere in the table. Please make changes to this row to continue.</value>
+    </labels>
 </CustomLabels>
 
