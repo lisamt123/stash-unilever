@@ -4369,10 +4369,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>NavigationManager_TEST</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>NewsArticleFeedController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
