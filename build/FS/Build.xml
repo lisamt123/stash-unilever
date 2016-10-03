@@ -67,7 +67,12 @@
       <runTest>TriggerFactoryTest</runTest>
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
-      <runTest>UserTrigger_Test</runTest>	  
+      <runTest>UserTrigger_Test</runTest>
+	  <runTest>GSurveysController_Test</runTest>
+	  <runTest>ICB_Cockpit_CC_Test</runTest>
+	  <runTest>ICB_ReturnStock_Batch_Test</runTest>
+	  <runTest>ICB_ReturnStock_BatchSch_Test</runTest>
+	  <runTest>SurveyManagerController_Test</runTest>
 	  <runTest>FS_AccountPlanningTest</runTest>
 	  <runTest>FS_ContactDetail_Test</runTest>
 	  <runTest>FS_CreateContact_CC_Test</runTest>
