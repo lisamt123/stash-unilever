@@ -580,6 +580,7 @@ CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;,
     </fields>
     <fields>
         <fullName>PDLDocument_Status__c</fullName>
+        <defaultValue>&quot;No&quot;</defaultValue>
         <externalId>false</externalId>
         <label>PDLDocument Status</label>
         <length>255</length>
