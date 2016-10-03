@@ -26,7 +26,8 @@
         <description>WU ApprovalNotification</description>
         <protected>false</protected>
         <recipients>
-            <type>owner</type>
+            <field>WU_WarehousePOC_Email__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC</template>
@@ -42,17 +43,6 @@
         <senderType>CurrentUser</senderType>
         <template>Warehouse_Utilization/Warehouse_Committed_Capacity</template>
     </alerts>
-	<alerts>
-        <fullName>WU_RejectionNotification</fullName>
-        <description>WU RejectionNotification</description>
-        <protected>false</protected>
-        <recipients>
-            <field>WU_WarehousePOC_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>WU_Warehouse_Committed_StoragetoPOC_Rejection</template>
-    </alerts>
     <alerts>
         <fullName>WU_Notify_WarehousePOC</fullName>
         <description>Notify WarehousePOC</description>
@@ -62,6 +52,17 @@
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC</template>
+    </alerts>
+    <alerts>
+        <fullName>WU_RejectionNotification</fullName>
+        <description>WU RejectionNotification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>WU_WarehousePOC_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC_Rejection</template>
     </alerts>
     <alerts>
         <fullName>Warehouse_capacity_below_committed_capacity</fullName>
@@ -78,6 +79,15 @@
         <field>WU_Approval_Status__c</field>
         <formula>&apos;Approved&apos;</formula>
         <name>Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Field_Update_Submitted_By</fullName>
+        <field>Submitted_by__c</field>
+        <formula>$User.FirstName + &quot; &quot; + $User.LastName</formula>
+        <name>Field Update Submitted By</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -129,15 +139,6 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-	<fieldUpdates>
-        <fullName>Field_Update_Submitted_By</fullName>
-        <field>Submitted_by__c</field>
-        <formula>$User.FirstName + " " + $User.LastName</formula>
-        <name>Field Update Submitted By</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <fieldUpdates>
         <fullName>WU_Update_Warehouse_Capacity_Record_Type</fullName>
         <field>RecordTypeId</field>
@@ -181,9 +182,7 @@
         </actions>
         <active>true</active>
         <description>whenever Warehouse capacity will exceed 80%: system shall send notification to Warehouse Excellence Operations user.</description>
-        <formula>AND(WU_Committed_Max_PalletStorage__c &gt;0,
- ISPICKVAL(WU_Building_ContractType__c,&apos;Unilever&apos;),   
-(WU_Current_Utilization__c  /  WU_Committed_Max_PalletStorage__c)*100 &gt;= 80)</formula>
+        <formula>AND(WU_Committed_Max_PalletStorage__c &gt;0,  ISPICKVAL(WU_Building_ContractType__c,&apos;Unilever&apos;),    (WU_Current_Utilization__c  /  WU_Committed_Max_PalletStorage__c)*100 &gt;= 80)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>
