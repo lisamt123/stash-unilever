@@ -36066,11 +36066,7 @@
         <field>Survey_Question__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Survey__c.Account_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+
     <fieldPermissions>
         <editable>true</editable>
         <field>Survey__c.Hide_Survey_Name__c</field>
@@ -46791,9 +46787,7 @@
     <layoutAssignments>
         <layout>Survey_Question__c-Survey Question Layout</layout>
     </layoutAssignments>
-    <layoutAssignments>
-        <layout>Survey__c-Survey Layout</layout>
-    </layoutAssignments>
+
     <layoutAssignments>
         <layout>TO_FAQ__kav-TO - FAQ Layout</layout>
     </layoutAssignments>
