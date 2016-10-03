@@ -2613,10 +2613,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ControllerUtil</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CoreNTConstants</apexClass>
         <enabled>false</enabled>
     </classAccesses>
