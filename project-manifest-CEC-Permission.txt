@@ -1,3 +1,5 @@
 src
 src/permissionsets
-src/permissionsets/CEC_Business_Admin.permissionset
+src/sharingRules
+src/permissionsets/TO_User.permissionset
+src/sharingRules/mdm_Reason_Code__c.sharingRules
