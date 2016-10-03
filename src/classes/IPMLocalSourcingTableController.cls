@@ -1,4 +1,4 @@
-public without sharing class IPMLocalSourcingTableController {	
+public with sharing class IPMLocalSourcingTableController {	
     public Id proId
     {
         get 
