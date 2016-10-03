@@ -76,9 +76,16 @@
 	  <runTest>ICB_ContactPartnerUserCreation_Test	</runTest>
 	  <runTest>ICB_InventoryProducts_CC_Test</runTest>
 	  <runTest>ICB_PartnerUserCreation_BatchSch_Test</runTest>	  
+	  <runTest>ICB_PhotoMobileChannel_BatchSch_Test</runTest>
 	  <runTest>ICB_PhotoMobileChannel_Batch_Test</runTest>
+	  <runTest>ICB_PriceBook_Creation_Test</runTest>
+	  <runTest>ICB_RecordTypeMemory_Test</runTest>
 	  <runTest>ICB_ReturnStock_Batch_Test</runTest>
 	  <runTest>ICB_ReturnStock_BatchSch_Test</runTest>
+	  <runTest>ICB_SetupMobileChannel_Test</runTest>
+	  <runTest>ICB_SetupPhotoMobileChannel_Test</runTest>
+	  <runTest>ICB_SobjectInstance_SP2_Test</runTest>
+	  <runTest>ICB_SobjectInstance_Test</runTest>
 	  <runTest>SurveyManagerController_Test</runTest>
 	  <runTest>FS_AccountPlanningTest</runTest>
 	  <runTest>FS_ContactDetail_Test</runTest>
