@@ -5,7 +5,7 @@
 *************************************************************/
 
 @isTest
-private class Uni_IPM_CMIGateSectionController_Test {
+private class IPM_CMIGateSectionController_Test {
     
     public static IPM_Project__c project;// Project object initialization
     private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
@@ -199,7 +199,7 @@ private class Uni_IPM_CMIGateSectionController_Test {
             insert localRolloutList; 
            
             List<IPM_Project_Rollout__c> dbRolloutList =  [Select Id from IPM_Project_Rollout__c where id in :localRolloutList];
-           // System.assertEquals(dbRolloutList.size(),localRolloutList.size(),ASSERT_ERROR_STR+localRolloutList.size());
+            System.assertEquals(dbRolloutList.size(),localRolloutList.size(),ASSERT_ERROR_STR+localRolloutList.size());
             
             insertCountry(localRolloutList);
             
@@ -213,7 +213,8 @@ private class Uni_IPM_CMIGateSectionController_Test {
             }  
             
             
-            insertCMIRecords(projectList, projectDocumentList);
+            //insertCMIRecords(projectList, projectDocumentList);
+            insertCMIRecords(projectDocumentList);
             
             for(IPM_Project__c proj : projectList)
             {
@@ -280,11 +281,9 @@ private class Uni_IPM_CMIGateSectionController_Test {
         
         insert countryList;
         
-        List<IPM_Country__c> dbCountryList =  [Select Id,Country_Code__c from IPM_Country__c where id in :countryList AND MDO_Geography__r.ISO_3166_1_Code__c = 'BR'];
-       System.assert(dbCountryList.size()>0);
    	}
    	
-   	private static void insertCMIRecords(List<IPM_Project__c> projectList1, List<IPM_Project_Document__c> projectDocumentList)
+   	private static void insertCMIRecords(List<IPM_Project_Document__c> projectDocumentList)
 	{
 		IPM_ProjectDocumentSectionContentHandler.SKIP_TRIGGER_EXECUTION  = true;
         IPM_ProjectSectionContentHelper.SKIP_TRIGGER_EXECUTION = true;
@@ -365,10 +364,9 @@ private class Uni_IPM_CMIGateSectionController_Test {
         insert  projDocSecConList;
         IPM_ProjectDocumentSectionContentHandler.SKIP_TRIGGER_EXECUTION  = false;
         IPM_ProjectSectionContentHelper.SKIP_TRIGGER_EXECUTION = false;
-        List<IPM_Gate_CMI__c>  globalProjectCMIList = [SELECT id,IPM_CMI_Added_At__c,Gate__c,Country__c,Element__c,Test__c,KPI__c,Input__c,Results__c,IPM_CMI_Overall_Colour_Score_Method__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c FROM IPM_Gate_CMI__c where IPM_Project__c in :projectList1];
-        //System.assert(globalProjectCMIList.size()>0);
 	}
-	
+   	
+
     static testMethod void dotest3(){
         initializeTestMethodData();
         Test.startTest();
