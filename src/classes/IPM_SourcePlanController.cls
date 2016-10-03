@@ -370,7 +370,12 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         	integer holdIndex = null;
         	holdIndex = row_Index;
         	row_Index = null;
-        	saveEditModeRowData();
+        	for(sourcePlanWrapper sourceClass: sourcePlanMap.values()){
+	            if(sourceClass.readModeRow){
+	               row_Index = sourceClass.productProsition ;
+	               break;
+	            }
+        	}
         	if(row_Index !=null)
         	{
         		saveRow();
@@ -515,7 +520,12 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         	integer holdIndex = null;
         	holdIndex = row_Index;
         	row_Index = null;
-        	saveEditModeRowData();
+        	for(sourcePlanWrapper sourceClass: sourcePlanMap.values()){
+	            if(sourceClass.readModeRow){
+	               row_Index = sourceClass.productProsition ;
+	               break;
+	            }
+        	}
         	if(row_Index !=null)
         	{
         		saveRow();

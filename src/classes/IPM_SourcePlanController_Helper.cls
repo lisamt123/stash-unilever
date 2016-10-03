@@ -3,12 +3,13 @@
 @Description:GPL/BD/SC/TL user can create source plan for global GKM3 project after Ideas phase 
 ************************************************************************************************/
 public with sharing class IPM_SourcePlanController_Helper {
-
+ 
    
 	/*****************************************************************************************************************************
     @Description-check logged in user type to gice edit or read access on page
     ******************************************************************************************************************************/
     public static boolean getUserType(id projectId,boolean isEditable){
+    	boolean editMode = isEditable;
         list<IPM_Project__c> projectList = new list<IPM_Project__c>();
         projectList =[SELECT IPM_Project_Leader__c,Deputy_Project_Leader__c,IPM_Technical_Project_Leader__c,(SELECT id FROM IPM_Project_Resources__r WHERE IPM_User__c=:userinfo.getuserid() 
                     AND IPM_Project__c=:projectId AND (IPM_Role_Type__c =:IPM_ConstantUtils.FUNCTIONAL_ROLE_BD OR IPM_Role_Type__c =:IPM_ConstantUtils.FUNCTIONAL_ROLE_TYPE_SUPPLY_CHAIN)) FROM IPM_Project__c 
@@ -18,25 +19,26 @@ public with sharing class IPM_SourcePlanController_Helper {
         {
             for(IPM_Project_Resource__c resc:projectList[0].IPM_Project_Resources__r)
             {
-            	isEditable = true; 
+            	editMode = true; 
             }
             if(userinfo.getuserid() == projectList[0].IPM_Project_Leader__c || userinfo.getuserid() == projectList[0].Deputy_Project_Leader__c || 
              userinfo.getuserid() == projectList[0].IPM_Technical_Project_Leader__c)
             {
-                isEditable = true; 
+                editMode = true; 
             }
               
         }  
-        if(!isEditable)
+        if(!editMode)
         {
-            getCentralBPUsers(isEditable);
+            getCentralBPUsers(editMode);
         }
-        return isEditable;
+        return editMode;
     }
     /*****************************************************************************************************************************
     @Description-check logged in user type to gice edit or read access on page
     ******************************************************************************************************************************/
     public static boolean getCentralBPUsers(boolean isEditable){
+        boolean editMode = isEditable;
         //security for central team and BP users
         IPM_CustomPermission cpr = new IPM_CustomPermission();
         //boolean isCentralTeam=false;
@@ -45,9 +47,9 @@ public with sharing class IPM_SourcePlanController_Helper {
         isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
         isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
         if(isCentralTeam || isBPUser){
-           isEditable = true; 
+           editMode = true; 
         }
-    	return isEditable;
+    	return editMode;
     }
     /*****************************************************************************************************************************
     @Description-delete product country map when user/system delete ipm country
