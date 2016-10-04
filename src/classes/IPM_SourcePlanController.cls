@@ -28,6 +28,11 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     public set<integer> wrapperKeys{get;set;}//keyset of map of wrapper 
     public boolean gTOMoreThan{get;set;}//show error message to user when he/she has entered more than 100 or less than 0
     public boolean isSaveSuccess{get;set;}//whether save hppen or not
+    public boolean bIsPDLApproved{get;set;}
+    public string sourceUnitID{get;set;}
+    public boolean capabilityFlag {get;set;}
+    public boolean isCentralTeam{get;set;}
+    public string sSourcingUnit{get;set;}
     /********************************************************************************************
     @Description-Constructor  
     *********************************************************************************************/
@@ -75,6 +80,55 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     public void getSourceUnit(){
         sourceUnitsList = new list<IPM_SourcingUnit__c>();
         sourceUnitsList =[SELECT Source_Unit_Name__c FROM IPM_SourcingUnit__c WHERE Source_Unit_Name__c Like: '%'+searchUnit_STR +'%' LIMIT 1000];
+        bIsPDLApproved=false;
+        getPDLApprovedStatus();
+        isCentralTeam=IPM_SourcePlanController_Helper.isCentralTeamMember();        
+    }
+    public pageReference updateSourcinngUnit()
+    {
+        Map<String, Schema.SObjectType> gd = Schema.getGlobalDescribe(); 
+        Map<String,String> prefixKeyMap = new Map<String,String>{};
+        for(String sObj : gd.keySet())
+        {
+            Schema.DescribeSObjectResult r =  gd.get(sObj).getDescribe();
+            prefixKeyMap.put(r.getName(), r.getKeyPrefix());
+        }
+        String sPageName = prefixKeyMap.get('IPM_SourcingUnit__c');
+    	PageReference pageRef = new PageReference('/' + sPageName + '/o');
+        return pageRef;
+    } 
+    public void getPDLApprovedStatus()
+    {    	
+    	IPM_Project_Document__c oPDlDocument = [Select id,IPM_Document_Status__c From IPM_Project_Document__c Where IPM_GateDocuments__c =: IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT and IPM_Project__c=: projectId limit 1];
+        if(oPDlDocument.IPM_Document_Status__c.Equals(IPM_ConstantUtils.STATUS_APPROVED))
+        	bIsPDLApproved = true;        
+    }
+    public List<SelectOption> getSourcingUnits()
+    {
+        List<SelectOption> lstOptions = new List<SelectOption>();
+        lstOptions.add(new SelectOption('Select Sourcing Unit','Select Sourcing Unit'));
+        for (list<sourceUnitWrapper> lstSourcingPlan : sourceUnitMap.values())
+        {
+            for(sourceUnitWrapper oSourcingPlan : lstSourcingPlan){
+            	//if(oSourcingPlan.sourcingPlan!=null)
+            		//lstOptions.add(new SelectOption(oSourcingPlan.sourcingPlan.Id,oSourcingPlan.sourcingPlan.IPM_SourcingUnit__c));
+            }
+        }        
+        return lstOptions;
+    }
+    public void updateCapabilityForSourcingUnit()
+    {
+        List<IPM_SourcingPlan__c> lstSourcingPlanToUpdate = new List<IPM_SourcingPlan__c>();
+        for (list<sourceUnitWrapper> lstSourcingPlan : sourceUnitMap.values())
+        {
+            for(sourceUnitWrapper oSourcingPlan : lstSourcingPlan){
+                if(oSourcingPlan.sourcingPlan.Id==sSourcingUnit){
+                    oSourcingPlan.sourcingPlan.IPM_CapabilityConfirmed__c = capabilityFlag;
+            		lstSourcingPlanToUpdate.add(oSourcingPlan.sourcingPlan);
+                }
+            }
+        }
+        update lstSourcingPlanToUpdate;        
     }
     /***************************************************************************************************************************
     @Description:create new project product when user click on Add Row

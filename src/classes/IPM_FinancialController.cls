@@ -1084,10 +1084,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                     (SELECT 
                                                         Id,Name,recordTypeID,Financial_External_ID__c,                                    
                                                         Status__c,IPM_Key_Financial__c,Status_Global__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
-                                                        FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS
+                                                        FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS  AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )
                                                         ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                                     FROM IPM_Project_Rollout__c
-                                                    WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true  
+                                                    WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )  
                                                     AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
                                                     
         
@@ -1142,20 +1142,20 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                          (SELECT Id,Name,recordTypeID,Financial_External_ID__c,Status__c,IPM_Key_Financial__c, 
                                           Status_Global__c,Local_Project__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
                                           FROM IPM_Financials__r 
-                                          WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND(NOT Financial_External_ID__c like : nonKeyLike) 
+                                          WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND(NOT Financial_External_ID__c like : nonKeyLike) AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )  
                                           ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                   FROM IPM_Project_Rollout__c
-                                  WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
+                                  WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true ) AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
             }
             else{
             lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
                                          (SELECT Id,Name,recordTypeID,Financial_External_ID__c,Status__c,IPM_Key_Financial__c, 
                                           Status_Global__c,Local_Project__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
                                           FROM IPM_Financials__r 
-                                          WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE 
+                                          WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE  AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )
                                           ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                   FROM IPM_Project_Rollout__c
-                                  WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
+                                  WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true ) AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
             
             }  
              if(!lstRegionalRollout.isEmpty()){
