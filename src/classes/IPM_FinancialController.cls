@@ -118,6 +118,29 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public decimal exRate{get;set;}
     map<string,decimal> mapCurrency;   
     
+	/**************************************************************************
+    Name:getLocalCurrencyViewButtonVisibility()
+    Function:This Method is used to show the LocalCurrencyView Button on IPM_FinancialPage
+    Return : boolean value
+    */
+    public boolean getLocalCurrencyViewButtonVisibility(){
+        Boolean flag = false;    
+        if(isEditable && project.IPM_Phase__c != 'PLE'){
+            if( currentFinancial.Gate_Keeping_Model__c == 'GKM3'&& Schema.sObjectType.IPM_Financial__c.isUpdateable()){           
+                flag =(!isEditMode && !isRolloutError);
+            }
+            else{           
+                if( project.IPMProject_Span__c == 'Global' && project.IPM_Project_Type__c == 'Original'&& (project.IPM_Phase__c != 'Ideas') && Schema.sObjectType.IPM_Financial__c.isUpdateable()){
+                    flag = false;
+                }        
+                else{
+                    flag = (!isEditMode && !isRolloutError);
+                }
+            } 
+        }        
+            return flag;     
+    }
+	
     /*************************************************************************************************************************************
     * @description  Used to Populate the values of Label of 'Accept Local BC' in GKM3
     * @param        NONE
@@ -363,6 +386,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isPaybackInvalid = false;
         validationSettingSet = new Set<String>();
         projectType = IPM_ConstantUtils.BLANK ;
+        isRolloutError = false;
         
       
         try{
