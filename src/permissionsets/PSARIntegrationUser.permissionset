@@ -45890,10 +45890,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Course_Detail</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>Edit_Link</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
