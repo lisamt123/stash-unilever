@@ -86,19 +86,19 @@ If you make no selection now the Sustainability Period will default to 3 years o
 	<value>Product &amp; Sourcing Plan (Global Scope)</value>
 </labels>
 <labels>
-	<fullName>IPM_Product_Country_Association</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>IPM Product Country Association</shortDescription>
-	<value>The following countries have not been associated with the product yet:</value>
-</labels>
+        <fullName>IPM_Product_Country_Association</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Product Country Association</shortDescription>
+        <value>The Following countries have not been associated with a Product yet:</value>
+    </labels>
 <labels>
-	<fullName>IPM_Sourcing_Unit_Yet</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>IPM Sourcing Unit Yet</shortDescription>
-	<value>The following countries have not been associated with a sourcing unit yet:</value>
-</labels>
+        <fullName>IPM_Sourcing_Unit_Yet</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Sourcing Unit Yet</shortDescription>
+        <value>The Following countries have not been associated with a Sourcing Unit yet:</value>
+    </labels>
 <labels>
 	<fullName>IPM_Total_rows_in_table</fullName>
 	<language>en_US</language>
