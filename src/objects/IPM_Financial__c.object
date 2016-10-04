@@ -5584,6 +5584,51 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000GuMf_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GuMf</label>
+        <queue>IPM_a7I0L000000GuMf</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GuMk_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GuMk</label>
+        <queue>IPM_a7I0L000000GuMk</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GuMp_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GuMp</label>
+        <queue>IPM_a7I0L000000GuMp</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GuNi_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SAPPHIRE O AFR_AFR</label>
+        <queue>IPM_a7I0L000000GuNi</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GuNs_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GuNs</label>
+        <queue>IPM_a7I0L000000GuNs</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Financial</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
