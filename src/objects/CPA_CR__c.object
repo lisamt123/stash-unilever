@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
@@ -51,9 +52,10 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>CPA_Project_Work_Order__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -381,16 +383,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>eml_SMT_group_email__c</fullName>
-        <externalId>false</externalId>
-        <label>SMT group email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>eml_Unilever_Budget_Approver_Email__c</fullName>
         <description>Unilever Budget Approver Email</description>
         <externalId>false</externalId>
@@ -413,19 +405,9 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>eml_VDM_group_email__c</fullName>
-        <externalId>false</externalId>
-        <label>VDM group email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>fml_Pworf_Clarity_ID__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(  ISBLANK(txt_Unilever_Reference__c),If(ISBLANK(CPA_Project_Work_Order__r.PWORF_ID__r.txt_Clarity_ID__c), CPA_Project_Work_Order__r.txt_Standalone_PWO_clarity_ID__c ,CPA_Project_Work_Order__r.PWORF_ID__r.txt_Clarity_ID__c ),  txt_Unilever_Reference__c )</formula>
+        <formula>IF(  ISBLANK(txt_Unilever_Reference__c),CPA_Project_Work_Order__r.PWORF_ID__r.txt_Clarity_ID__c ,  txt_Unilever_Reference__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Unilever Reference</label>
         <required>false</required>
@@ -1684,8 +1666,33 @@
         <language>en_US</language>
         <sharedTo>
             <group>CAP_SMT_Group</group>
-            <group>CAP_ULFT_Group</group>
-            <group>CAP_ULPT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_CR</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_CR</fullName>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_CR</fullName>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -3912,7 +3919,7 @@
         <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
         <searchResultsCustomButtons>New_CR</searchResultsCustomButtons>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
     <validationRules>
         <fullName>CPA_CR_Cant_be_created</fullName>
         <active>true</active>
@@ -4020,7 +4027,7 @@ alert(&quot;You are not authorized to perform this action.&quot;);
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -4073,7 +4080,7 @@ p.id = &quot;{!CPA_CR__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
 p.isValidated__c = &quot;{!CPA_CR__c.isValidated__c }&quot;; 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -4127,7 +4134,7 @@ var p = new sforce.SObject(&apos;CPA_CR__c&apos;);
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -4167,7 +4174,7 @@ p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;;
 
 
 try { 
-	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 	var result = sforce.connection.query(soql); 
 	var records1 = result.getArray(&apos;records&apos;); 
 	var permissionSetName = records1[0].PermissionSet.Name; 
@@ -4212,7 +4219,7 @@ var p = new sforce.SObject(&apos;CPA_CR__c&apos;);
 p.id = &quot;{!CPA_CR__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -4251,7 +4258,7 @@ p.id = &quot;{!CPA_CR__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 

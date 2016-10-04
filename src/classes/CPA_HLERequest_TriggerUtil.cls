@@ -31,7 +31,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
                 req.setComments(CPA_ConstantsForContractingAppClasses.SUBMITFORAPPROVAL);
                 req.setObjectId(newHLEReqList[i].Id);
                 // submit the approval request for processing
-                Approval.ProcessResult result = Approval.process(req);
+                //Approval.ProcessResult result = Approval.process(req);
                 // display if the reqeust was successful
                 isSubmitted = true;
             }
@@ -60,7 +60,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
                         req.setComments(System.Label.CPA_Recall_and_Unlock);
                         req.setAction(CPA_ConstantsForContractingAppClasses.REMOVED);
                         req.setWorkitemId(piwi.Id);
-                        Approval.ProcessResult result =  Approval.process(req);
+                        //Approval.ProcessResult result =  Approval.process(req);
                         isSubmitted = true;
                     }
                 }

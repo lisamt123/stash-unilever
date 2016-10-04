@@ -108,7 +108,7 @@ public with sharing class CPA_AttachmentUtil {
         // Variable declaration section 
         map<id,string> mapAttachmentType = findAttachmentType(lstAttachment);
         map<Id,list<Attachment>> mapAttachmentIDPWOID = new map<Id,list<Attachment>>();
-        set<CPA_CR__c> lstUpdateCR = new set<CPA_CR__c>();
+       // set<CPA_CR__c> lstUpdateCR = new set<CPA_CR__c>();
         map<Id,CPA_CR__c> mapCR = new map<Id,CPA_CR__c>();
         // Variable declaration section 
         
@@ -150,7 +150,7 @@ public with sharing class CPA_AttachmentUtil {
         // Variable declaration section 
         map<id,string> mapAttachmentType = findAttachmentType(lstAttachment);
         map<Id,list<Attachment>> mapAttachmentIDPWOID = new map<Id,list<Attachment>>();
-        set<CPA_project_work_order__c> lstUpdatePWO = new set<CPA_project_work_order__c>();
+        //set<CPA_project_work_order__c> lstUpdatePWO = new set<CPA_project_work_order__c>();
         map<Id,CPA_project_work_order__c> mapPwo = new map<Id,CPA_project_work_order__c>();
         // Variable declaration section 
         
@@ -193,8 +193,8 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
     List<CPA_Commercial_Details__c >listComDetail = new List<CPA_Commercial_Details__c>();
     set<Id> setPWOID = new set<Id>();
     set<Id> setCRID = new set<Id>();
-    set<Id> setPWOID_NO_Delete = new set<Id>();
-    set<Id> setCRID_NO_Delete = new set<Id>();
+    //set<Id> setPWOID_NO_Delete = new set<Id>();
+    //set<Id> setCRID_NO_Delete = new set<Id>();
     map<ID,Attachment> mapPWOAttch = new map<ID,Attachment> ();
     map<ID,Attachment> mapCRAttch = new map<ID,Attachment> ();
     
@@ -256,7 +256,7 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
     Throws [Exceptions]: 
     ********************************************************************/
      public static void deleteContract(List<Attachment> lstatt)    {
-        List<CPA_Commercial_Details__c >listComDetail = new List<CPA_Commercial_Details__c>();
+        //List<CPA_Commercial_Details__c> listComDetail= new List<CPA_Commercial_Details__c>();
         set<Id> setPWOID = new set<Id>();
         set<Id> setCRID = new set<Id>();
         List<CPA_project_work_order__c>  lstTemp = new List<CPA_project_work_order__c>();

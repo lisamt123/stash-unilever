@@ -49,7 +49,7 @@ public with sharing class CPA_HLE_CancelReasonController{
     public PageReference  SaveCancelReason(){
         hleRecord.txta_Reason_for_Cancellation__c = strReason;
         hleRecord.pkl_Status__c= CPA_ConstantsForContractingAppClasses.CANCELLED;
-        Approval.unLockResult lrList = Approval.unlock(hleRecord.id, true);           
+        //Approval.unLockResult lrList = Approval.unlock(hleRecord.id, true);           
         update hleRecord;  
         PageReference ReturnPage = new PageReference('/' + hleRecord.id); 
         ReturnPage.setRedirect(true); 
