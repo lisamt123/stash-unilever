@@ -76,5 +76,4 @@
       <runTest>ICB_SetupMobileChannel_Test</runTest>
     </sf:deploy>
   </target>  
-
 </project>

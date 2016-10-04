@@ -14,7 +14,6 @@ VERSION AUTHOR          DATE        DETAIL          Description
 @IsTest
 public class ICB_SobjectInstance_SP2_Test 
 {
-     
     /*******************************************************************
     Purpose: Insert Account for using in test methods of classes: 
              ICB_Cockpit_CC_Test,

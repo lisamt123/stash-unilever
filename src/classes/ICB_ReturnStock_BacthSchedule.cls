@@ -18,7 +18,6 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 ***********************************************************************/
 global with sharing class ICB_ReturnStock_BacthSchedule implements Schedulable
 {
-    
     /*******************************************************************
      Purpose: This method execute the batch
      Parameters: [SchedulableContext]

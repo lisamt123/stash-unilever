@@ -202,9 +202,7 @@ public with sharing class ICB_ContactPartnerUserCreation
             system.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
         }
     }
-    
-    
-    /***********************************
+     /***********************************
     * Purpose: Insert the User created on the PublicGroup
     * Parameters: none
     * Returns: void

@@ -111,7 +111,6 @@ public class ICB_InventoryProducts_CC_Test
         listPBUpdateretriveValue =ICB_InventoryProducts_CC.updateValues(listPBUpdateIf);
         system.assert(listPBUpdateretriveValue == null);
     }
-    
     /*******************************************************************
     Purpose: Method to instance all objects used for tests
 	Parameters: [NONE]

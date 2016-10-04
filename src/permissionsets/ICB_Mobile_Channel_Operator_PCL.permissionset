@@ -716,4 +716,5 @@
         <enabled>true</enabled>
         <name>ViewSetup</name>
     </userPermissions>
+    
 </PermissionSet>
