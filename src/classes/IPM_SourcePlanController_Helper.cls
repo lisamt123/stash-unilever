@@ -51,6 +51,13 @@ public with sharing class IPM_SourcePlanController_Helper {
         }
     	return editMode;
     }
+    public static boolean isCentralTeamMember()
+    {
+    	IPM_CustomPermission cpr = new IPM_CustomPermission();
+    	boolean isCentralTeam=false;
+        isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
+        return isCentralTeam;
+    }
     /*****************************************************************************************************************************
     @Description-delete product country map when user/system delete ipm country
     ******************************************************************************************************************************/

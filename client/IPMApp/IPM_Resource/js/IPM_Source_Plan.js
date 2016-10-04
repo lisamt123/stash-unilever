@@ -23,7 +23,15 @@ function checkDuplicateRow(){
         });
     }
 }
-
+function displayCapabilitySection(param,eve){                
+    if(jq('select').val() === 'Select Sourcing Unit')
+    {
+        jq('#iddivCapability').hide();
+    }
+    else{
+        jq('#iddivCapability').show();
+    }
+}
 function firstsrcplan(){
     jq('.numberBox').spinner();
     jq('.sizeNumberbox').spinner();
@@ -33,6 +41,14 @@ function firstsrcplan(){
             jq(this).attr('checked','checked');
             jq(this).next('label').addClass('goldbox');
             jq(this).next('label').text('Golden');
+        }
+    }); 
+    jq(".greenBoxCheck").each(function() {
+        if(jq(this).val() === 'true' || jq(this).is(':checked'))
+        {
+            jq(this).attr('checked','checked');
+            jq(this).next('label').addClass('greenBox');
+            jq(this).next('label').text('Yes');
         }
     });        
     jq(document).on('click', '.goldenCheckcontainer input[type="checkbox"]:not(:disabled)', function() {
@@ -45,6 +61,18 @@ function firstsrcplan(){
             chkInput1.val('false');
             chkInput1.next('label').removeClass('goldbox');
             chkInput1.next('label').text('');
+        }
+    });
+    jq(document).on('click', '.approvalCheckcontainer input[type="checkbox"]:not(:disabled)', function() {
+        var chkInput1 = jq(this);
+        if (chkInput1.is(':checked')) {
+            chkInput1.val('true');
+            chkInput1.next('label').addClass('greenBox');
+            chkInput1.next('label').text('Yes');
+        } else {
+            chkInput1.val('false');
+            chkInput1.next('label').removeClass('greenBox');
+            chkInput1.next('label').text('Not yet');
         }
     });
     jq('.srcUnitBox').clearSearch();
@@ -153,6 +181,11 @@ function scndsrcplan(){
             }
         }
     }); 
+    jq(".hovertip").tooltip({ position: { my: 'center top', at: 'center bottom+10'},tooltipClass:'srcunitTip'}); 
+    jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10'},tooltipClass:'srcunitTip'});
+    jq(".approvalTip").tooltip({ position: {  my: 'center bottom', at: 'center top'},tooltipClass:'apprUnitTip'});
+    jq(".mainsrcUnitTip").tooltip({ position: {  my: 'right center', at: 'left+20 center'},tooltipClass:'mainsrcHoverTip'});
+    jq(".srcedintoTip").tooltip({ position: { my: 'center bottom', at: 'center top'},tooltipClass:'apprUnitTip'}); 
 }
 
 function thirdsrcplan(){
@@ -220,5 +253,25 @@ function thirdsrcplan(){
     }
     jq(document).on('click', '.srcedcntrymainlist input[type="checkbox"], .srcedcntrymainlist ul li', function(e) {
         e.stopPropagation();
+    });
+    jq(".srcingGreyCheck").each(function() {
+        if(jq(this).val() === 'true' || jq(this).is(':checked'))
+        {
+            jq(this).attr('checked','checked');
+            jq(this).next('label').addClass('greenBox');
+            jq(this).next('label').text('Yes');
+        }
+    });
+    jq(document).on('click', '.hdnCheckboxDiv input[type="checkbox"]:not(:disabled)', function() {
+        var chkInput1 = jq(this);
+        if (chkInput1.is(':checked')) {
+            chkInput1.val('true');
+            chkInput1.next('label').addClass('greenBox');
+            chkInput1.next('label').text('Yes');
+        } else {
+            chkInput1.val('false');
+            chkInput1.next('label').removeClass('greenBox');
+            chkInput1.next('label').text('Not yet');
+        }
     });
 }
