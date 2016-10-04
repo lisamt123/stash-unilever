@@ -3301,12 +3301,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     ***************************************************************************************************************/
     public Set<IPM_Financial__c> getConsolidatedValidationCells(IPM_Financial__c currentFinancial){
         try{
-            List<String> finExtIdSplit = currentFinancial.Financial_External_ID__c.split(IPM_ConstantUtils.UNDERSCORE);
-            String regionalConsolidatedFinExtId = '';
-            String globalConsolidatedFinExtId = finExtIdSplit.get(0)+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
-            if(finExtIdSplit.get(1)!= null){
-                regionalConsolidatedFinExtId = finExtIdSplit.get(0)+IPM_ConstantUtils.UNDERSCORE+finExtIdSplit.get(1)+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
-            }
+            String globalConsolidatedFinExtId = currentFinancial.Global_External_Id__c+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
+            String regionalConsolidatedFinExtId = currentFinancial.Regional_External_Id__c+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
+            
             
             Map<Id,IPM_Financial__c> consolidatedFinancialsMap = new Map<Id,IPM_Financial__c>([Select Id,Red_Validation_Cells_Global__c, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Regional__c, Yellow_Validation_Cells_Regional__c , Red_Validation_Cells_Local__c, Yellow_Validation_Cells_Local__c from IPM_Financial__c 
                                                                  where Financial_External_ID__c =:globalConsolidatedFinExtId 
@@ -3359,7 +3356,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 existingNonCurrentFinancialYellowValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.YELLOW);
                 
                 conFin.put(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialRedValues + redValidationCellsString);
-                conFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialYellowValues + redValidationCellsString);
+                conFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialYellowValues + yellowValidationCellsString);
                 conFin.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,(((String)conFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).length()>1));
     
             }
