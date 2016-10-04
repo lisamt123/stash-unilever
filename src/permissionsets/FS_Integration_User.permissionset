@@ -36039,11 +36039,7 @@
         <field>Survey_Question__c.Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Survey__c.Account_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+
     <fieldPermissions>
         <editable>false</editable>
         <field>Survey__c.Hide_Survey_Name__c</field>

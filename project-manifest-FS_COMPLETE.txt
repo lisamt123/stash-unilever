@@ -18,7 +18,6 @@ src/objects/Contract_Product__c.object
 src/objects/Marketing_Fund__c.object
 src/objects/Product_at_Risk__c.object
 src/objects/Risk__c.object
-src/objects/Survey__c.object
 src/objects/FS_Account_Plan__c.object
 src/objects/FS_casePiece__c.object
 src/objects/FS_Contract_Product_Opportunity_Map__c.object
@@ -87,7 +86,6 @@ src/layouts/PricebookEntry-Price Book Entry Layout.layout
 src/layouts/Product_at_Risk__c-Product at Risk Layout.layout
 src/layouts/Product2-Food Solutions Product.layout
 src/layouts/Risk__c-Risk Layout.layout
-src/layouts/Survey__c-Survey Layout.layout
 src/layouts/Task-Task Layout.layout
 src/quickActions
 src/quickActions/Account.New_Dist_Account_Plan.quickAction
@@ -580,6 +578,7 @@ src/roles/Sales_Development_Manager.role
 src/roles/Senior_Distributor_Account_Executive.role
 src/roles/Specnaz.role
 src/roles/UFS_Russia.role
+src/permissionsets/FS_Admin.permissionset
 src/permissionsets/FS_AFM.permissionset
 src/permissionsets/FS_Integration_User.permissionset
 src/permissionsets/FS_Marketing.permissionset
@@ -609,7 +608,6 @@ src/objectTranslations/Pricebook2-ru.objectTranslation
 src/objectTranslations/Product_at_Risk__c-ru.objectTranslation
 src/objectTranslations/Risk__c-ru.objectTranslation
 src/objectTranslations/Solution-ru.objectTranslation
-src/objectTranslations/Survey_Question__c-ru.objectTranslation
 src/objectTranslations/Task-ru.objectTranslation
 src/flows/FS_Account_Plan_Approval-1.flow
 src/flows/FS_Account_Status_Change-11.flow
