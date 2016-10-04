@@ -464,7 +464,7 @@ null)))</formula>
         <label>BPE Effort in man-days*</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -473,10 +473,10 @@ null)))</formula>
     <fields>
         <fullName>num_HLE_Estimated_Accenture_charge__c</fullName>
         <externalId>false</externalId>
-        <label>HLE Estimated Accenture charge</label>
+        <label>HLE Estimated Accenture charge*</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -488,7 +488,7 @@ null)))</formula>
         <label>HLE Estimated man-days*</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -838,7 +838,7 @@ null)))</formula>
     <fields>
         <fullName>txt_HLE_Accenture_estimated_project_char__c</fullName>
         <externalId>false</externalId>
-        <label>HLE Accenture estimated project charge*</label>
+        <label>Estimated project charges summary</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
