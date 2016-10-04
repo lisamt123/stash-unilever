@@ -136,7 +136,7 @@ public with sharing class Amr_AdManagerController_CC{
         try{  
            
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-            Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
+            Set<MDO_BrandPosition__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
             Set<String> brnadPosNameSet = new Set<String>();
             
             /* start Added later */
@@ -149,10 +149,10 @@ public with sharing class Amr_AdManagerController_CC{
             
             /* end Added later */
             
-            for(MDO_BrandPositions__c bps : brandPositionlst){
-                if(!brnadPosNameSet.contains(bps.brand_position_id__r.name)){
-                    listOfBrandPosition.add(new selectOption(bps.brand_position_id__r.name,bps.brand_position_id__r.name));
-                    brnadPosNameSet.add(bps.brand_position_id__r.name);
+            for(MDO_BrandPosition__c bps : brandPositionlst){
+                if(!brnadPosNameSet.contains(bps.name)){
+                    listOfBrandPosition.add(new selectOption(bps.name,bps.name));
+                    brnadPosNameSet.add(bps.name);
                 }
             }            
            }catch(Exception ex){
@@ -176,13 +176,13 @@ public with sharing class Amr_AdManagerController_CC{
             listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
         
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-            Set<MDO_BrandPositions__c> brandlst = utiltyObj.brandValues(categoryName,brandPosName);
+            Set<MDO_Brand__C> brandlst = utiltyObj.brandValues(categoryName,brandPosName);
             Set<String> brnadNameSet = new Set<String>();
             
-            for(MDO_BrandPositions__c bps : brandlst){
-                if(!brnadNameSet.contains(bps.brand_id__r.name)){
-                    listOfBrand.add(new selectOption(bps.brand_id__r.name,bps.brand_id__r.name));
-                    brnadNameSet.add(bps.brand_id__r.name);
+            for(MDO_Brand__C bps : brandlst){
+                if(!brnadNameSet.contains(bps.name)){
+                    listOfBrand.add(new selectOption(bps.name,bps.name));
+                    brnadNameSet.add(bps.name);
                 }
             }
             

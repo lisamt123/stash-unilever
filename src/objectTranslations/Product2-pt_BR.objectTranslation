@@ -710,4 +710,8 @@
         <label><!-- Products --></label>
         <name>Products</name>
     </recordTypes>
+    <recordTypes>
+        <label>Eu Sou Kibon</label>
+        <name>ICB_Mobile_Channel</name>
+    </recordTypes>
 </CustomObjectTranslation>

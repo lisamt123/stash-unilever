@@ -1,9 +1,8 @@
 src
-src/permissionsets
-src/pages
-src/permissionsets/CEC_Manager.permissionset
-src/pages/CEC_PreChatForm.page
-src/pages/CEC_PreChatForm.page-meta.xml
-
+src/classes
+src/classes/CEC_NewAccountController.cls
+src/classes/CEC_NewAccountController.cls-meta.xml
+src/classes/CEC_NewAccountControllerExtension.cls
+src/classes/CEC_NewAccountControllerExtension.cls-meta.xml
 
 

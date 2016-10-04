@@ -13,6 +13,11 @@
     <aura:attribute name="filterValue" type="string"/>
     <aura:attribute name="actionTaken" type="string"/>
     <aura:attribute name="myBool" type="Boolean"/>
+    <!-- Winter'17 fix start-->
+    <aura:attribute name="isRequired" type="Boolean"/>
+    <aura:attribute name="showspinner" type="boolean"/>
+    <!-- Winter'17 fix end-->
+    
     <style>
        body{
         	font: 100%/1.5 "Salesforce Sans",Arial,sans-serif !important;
@@ -20,7 +25,9 @@
         ::-webkit-input-placeholder {
         	color: #A8B8D0;
         }
-        
+        .slds-checkbox--toggle [type=checkbox]:checked+.slds-checkbox--faux:after, .slds-checkbox--toggle [type=checkbox]:checked~.slds-checkbox--faux:after {
+        content:"" !important;
+        }
         :-moz-placeholder { /* Firefox 18- */
         	color: #A8B8D0;  
         }
@@ -86,7 +93,7 @@
                     <div class="slds-form-element" style="margin-top: 11px;right: 2%;position: absolute;">
                         <label class="slds-checkbox--toggle slds-grid slds-grid--vertical-align-center checkbox">
                             <ui:inputCheckbox aura:id="taskCheckBox" value=""/>
-                            <span class="slds-checkbox--faux chkBoxAllignment" data-check-on="On" data-check-off="Off"></span>
+                            <span class="slds-checkbox--faux chkBoxAllignment" data-check-on="" data-check-off=""></span>
                         </label>
                     </div>
                 </aura:if>  
