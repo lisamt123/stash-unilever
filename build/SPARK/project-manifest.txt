@@ -76,7 +76,5 @@ src/objectTranslations/Product2-pt_BR.objectTranslation
 src/objectTranslations/Opportunity-pt_BR.objectTranslation
 src/reportTypes
 src/reportTypes/ICB_Sales_Locale_and_Opportunities.reportType
-src/applications
-src/applications/ICB_Mobile_Channel.app
 src/layouts
 src/layouts/Contact-Contact Layout.layout
