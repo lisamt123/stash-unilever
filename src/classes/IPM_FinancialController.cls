@@ -635,8 +635,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             {
                 if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3){
                     tabLabelMyView = IPM_ConstantUtils.TAB_TOPDOWN_LABEL;
-                    tabLabelTopDown = IPM_ConstantUtils.TAB_GLOBALCHARTER_LABEL;
-                    tabLabelTopDownGKM3 = IPM_ConstantUtils.TAB_GLOBALCHARTER_LABEL_GKM3;
+                    tabLabelTopDown = IPM_ConstantUtils.TAB_CHARTER_LABEL;
                     tabLabelRollup = IPM_ConstantUtils.TAB_LOCALBBROLLUP_LABEL;
                     
                     if (project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS)

@@ -172,7 +172,7 @@
                                                                 <apex:outputText rendered="{!showTopDownTab}">
                                                                     <li role="presentation" class="tabEven">
                                                                         <a href="#topDown" aria-controls="topDown" role="tab" data-toggle="tab" onclick="changeTabs('topdown');">
-                                                                        <span title="{!IF (project.IPMProject_Span__c=='Local',$Label.IPM_THIS_SHOWS_THE_FULL_BUSINESS,$Label.IPM_THIS_SHOWS_THE_BUSINESS)}">{!IF(project.IPM_ProjectGKM__c=='GKM3',tabLabelTopDownGKM3,tabLabelTopDown)}</span></a>
+                                                                        <span title="{!IF (project.IPMProject_Span__c=='Local',$Label.IPM_THIS_SHOWS_THE_FULL_BUSINESS,$Label.IPM_THIS_SHOWS_THE_BUSINESS)}">{!tabLabelTopDown}</span></a>
                                                                     </li>
                                                                 </apex:outputText>
                                                                 <!-- Rendered when user clicks on Rollup TAB -->
