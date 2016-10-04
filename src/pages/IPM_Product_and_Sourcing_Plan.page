@@ -28,18 +28,22 @@
     <apex:actionfunction name="addNewSourceUnit" action="{!addNewSourcePlanRow}" reRender="sourceProductTable,refreshSourceUnit,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" status="loader">
      <apex:param name="addsourceRow" assignTo="{!row_Index}" value=""/>
     </apex:actionfunction>
-    
+    <apex:actionFunction name="updateCapabilityForSourcingUnit" action="{!updateCapabilityForSourcingUnit}" reRender="sourceProductTable">
+     </apex:actionFunction>
     <apex:composition template="IPM_TemplateRevamp">
         <apex:define name="body">
             <div class="gradientbg">
                 <c:IPM_ProjectDetails project="{!project}" activeItem="coreParameters" />
             </div>
             <div class="col-sm-12 noPadleft noPadright teamHeading">
-                <div class="col-sm-8 noPadleft pageTitlefont">
+                <div class="col-sm-7 noPadleft pageTitlefont">
                     {!$Label.IPM_Product_Sourcing_Plan_Global_Scope}
                 </div>
                 <div class="custMarginTop SecButtonSet pull-right">
                     <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download" value="" /> 
+                </div>
+                <div class="mngSrcContainer pull-right">
+                  <apex:commandButton styleClass="ipmButton primary" rendered="{!isCentralTeam}" value="Manage Sourcing Unit Options"  action="{!updateSourcinngUnit}"/>
                 </div>
             </div>
             <apex:outputpanel id="sourceProductTable" layout="block">
@@ -69,11 +73,31 @@
             
                 <apex:outputpanel styleClass="ovrAllContainer" layout="block" id="sourceProduct" >
                     <div class="scrollcontainer">
-                        <div class="col-sm-12 noPadleft mrgnBottom">
+                        <div class="col-sm-6 noPadleft mrgnBottom">
                             <apex:outputpanel rendered="{!isEditable}" styleClass="ipmButtonGroup pull-left" layout="Block">
                                 <a class="ipmButton primary" onclick="createNewRow();"><span class="fa fa-plus greenicn"></span>{!$Label.IPM_Add_Blank_Row}</a>
                             </apex:outputpanel>
                             <div class="totalrow">{!$Label.IPM_Total_rows_in_table} {!totalRowsInTable}</div>
+                        </div>
+                        
+                        <div class="confirmGreyBg mrgnBottom">
+                            <span class="confirmCapabilityTitle">Confirm Capability for all Sourcing Units</span> 
+                            <span class="SecButtonSet confirmInfo infoMarTop">
+                                <a class="icoButton info" title="{!$Label.IPM_Confirm_Capability_Help_Text}"></a>
+                            </span>
+                            <div>
+                                <div class="drpDownContainer">
+                                   
+                                    <apex:selectList styleClass="srcingSlectlist" value="{!sSourcingUnit}" size="1" multiselect="false" onchange="displayCapabilitySection(this,event);">
+                                        <apex:selectOptions value="{!SourcingUnits}"></apex:selectOptions>
+                                    </apex:selectList>
+                                </div>
+                                <div id="iddivCapability" class="hdnCheckboxDiv">
+                                   <apex:inputCheckbox id="srcingGreyCheckBox" styleClass="srcingGreyCheck" value="{!capabilityFlag}"/>
+                                    <apex:outputLabel for="srcingGreyCheckBox"></apex:outputLabel>               
+                                    <input type="button" class="ipmButton primary" value="Confirm" onclick="updateCapabilityForSourcingUnit();" />
+                                </div>
+                            </div>
                         </div>
                         <div class="srcErrBox">
                             <apex:pagemessages id="pgmsg"/>
@@ -101,9 +125,9 @@
                             <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsource darkoverlay">
                                 <thead> 
                                     <tr>
-                                        <th scope="col"  width="40%"><span>{!$Label.IPM_Sourcing_Units}</span></th>
-                                        <th scope="col" width="20%"><div class="capcon">{!$Label.IPM_Capability_Confirmed}</div></th>
-                                        <th scope="col" width="40%"><span>{!$Label.IPM_Sourced_Into}</span></th>
+                                        <th scope="col"  width="40%"><span class="mainsrcUnitTip" title="If a Sourcing Unit you require does not appear in this list please contact the IPM Central Team">{!$Label.IPM_Sourcing_Units}</span></th>
+                                        <th scope="col" width="20%"><div class="capcon approvalTip" title="Enter edit mode for any row and click the value to change between 'Not yet' and 'Yes'">{!$Label.IPM_Capability_Confirmed}</div></th>
+                                        <th scope="col" width="40%"><span class="srcedintoTip" title="The countries available in this list are populated by the Product / Country Mapping column. If a required country is not present please work with the Project Marketer to have the countries mapped to the Product.">{!$Label.IPM_Sourced_Into}</span></th>
                                     </tr>
                                 </thead>               
                             </table>
@@ -193,7 +217,13 @@
                                                                                     </apex:outputPanel>
                                                                                 </apex:outputPanel>
                                                                             </td>
-                                                                            <td width="6%" class="custSrcWidth"><span>{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Confirmed','Not Yet')}</span></td>
+                                                                            <td width="6%" class="custSrcWidth">
+                                                                                <div class="approvalCheckcontainer">
+                                                                                    <apex:inputCheckbox id="approvalCheckBox" styleClass="greenBoxCheck" value="{!sourcep.sourcingPlan.IPM_CapabilityConfirmed__c}" rendered="{!bIsPDLApproved}"/>
+                                                                                    <apex:outputLabel for="approvalCheckBox"></apex:outputLabel>
+                                                                                </div>                                                                                
+                                                                                <apex:outputText rendered="{!NOT(bIsPDLApproved)}" Value="Not Yet"></apex:outputText>
+                                                                            </td>
                                                                             <td width="13%">
                                                                                 <apex:outputPanel layout="block" styleClass="noPadright noPadleft dropdown sourcedcntryContainer ipmDropDown" id="srcCountrylist">                                       
                                                                                     <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clicksrccntrylist">
@@ -230,7 +260,7 @@
                                                                     </apex:repeat>
                                                                     <tr>
                                                                         <td class="alignAddicn">
-                                                                            <span class="fa fa-plus addicn" onclick="addNewSourceUnit('{!rowNum}');"></span>
+                                                                            <span class="fa fa-plus addicn hovertip" title="Add another Sourcing Unit for this product" onclick="addNewSourceUnit('{!rowNum}');"></span>
                                                                         </td>
                                                                         <td></td>
                                                                         <td></td>
@@ -261,7 +291,7 @@
                                                                     <td width="6%"><span >{!prodPlan.productPlan.IPM_Of_gTO__c}</span></td>
                                                                     
                                                                     <td width="6%">
-                                                                        <div class="goldenCheckcontainer">
+                                                                        <div class="goldenCheckcontainer noPointer">
                                                                             <label class="{!if(prodPlan.productPlan.IPM_GoldenPrototype__c,'goldbox','')}">{!if(prodPlan.productPlan.IPM_GoldenPrototype__c,'Golden','')}</label>
                                                                         </div>
                                                                     </td>
@@ -276,7 +306,11 @@
                                                                 <apex:repeat value="{!sourceUnitMap[prodPlan.productProsition]}" var="sourcep">
                                                                     <tr>
                                                                         <td width="13%"><span> {!sourcep.sourcingPlan.IPM_SourcingUnit__c}</span></td>
-                                                                        <td width="6%" class="custSrcWidth"><span>{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Confirmed','Not Yet')}</span></td>
+                                                                        <td width="6%" class="custSrcWidth">
+                                                                            <div class="approvalCheckcontainer noPointer">
+                                                                                 <label class="{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'greenBox','')}">{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Yes','Not Yet')}</label>
+                                                                            </div>
+                                                                        </td>
                                                                         <td width="13%">
                                                                             <span>{!sourcep.sourceCountries}</span>
                                                                         </td>
