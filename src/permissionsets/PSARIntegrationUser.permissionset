@@ -5857,10 +5857,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>TemplateControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>TermsOfUseController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
