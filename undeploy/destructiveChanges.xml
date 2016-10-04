@@ -19,22 +19,6 @@
 	
 	<name>CustomObject</name>
 </types>
-<types>
-        <members>isllBrainResultsSettings__c-en_US</members>
-		<members>isll_Event_Visit__c-en_US</members>
-		<members>ISLL_Custom_Settings__c-en_US</members>
-        <name>CustomObjectTranslation</name>
-    </types>
-	
-	<types>
-        <members>isll</members>
-        <name>CustomLabels</name>
-    </types>
-<types>
- <members>isll_Event_Visit__c-Event Unique Visit Layout</members>
-        <name>Layout</name>
-    </types>
-
 <version>37.0</version>
 
 </Package>
