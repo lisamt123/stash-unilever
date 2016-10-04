@@ -364,6 +364,7 @@ public class IPM_ConstantUtils {
     //Regional
     public static final String TAB_CHARTER_LABEL = 'Charter';
     public static final String TAB_GLOBALCHARTER_LABEL = 'Global Charter';
+    public static final String TAB_GLOBALCHARTER_LABEL_GKM3 = 'Charter';
     public static final String TAB_LOCALBBROLLUP_LABEL = 'Local BB rollup';
     //Local
     public static final String TAB_MYVIEW_LABEL = 'My View'; 

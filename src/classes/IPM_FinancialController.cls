@@ -58,6 +58,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     
     public  String tabLabelMyView {get; set;} //Used to define the label for My View Tab
     public  String tabLabelTopDown {get; set;} //Used to define the label for Top Down Tab
+    public  String tabLabelTopDownGKM3 {get; set;} //Used to define the label for Top Down Tab for GKM3 Project
     public  String tabLabelRollup {get; set;} //Used to define the label for Rollup Tab 
     
     public List<SelectOption> lstSustainabilityPeriod {get; set;} //Used to manage appropriate sustainability period selection on the UI
@@ -635,6 +636,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3){
                     tabLabelMyView = IPM_ConstantUtils.TAB_TOPDOWN_LABEL;
                     tabLabelTopDown = IPM_ConstantUtils.TAB_GLOBALCHARTER_LABEL;
+                    tabLabelTopDownGKM3 = IPM_ConstantUtils.TAB_GLOBALCHARTER_LABEL_GKM3;
                     tabLabelRollup = IPM_ConstantUtils.TAB_LOCALBBROLLUP_LABEL;
                     
                     if (project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS)
@@ -1169,7 +1171,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                           WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND(NOT Financial_External_ID__c like : nonKeyLike) AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )  
                                           ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                   FROM IPM_Project_Rollout__c
-                                  WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true ) AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
+                                  WHERE IPM_Project__c =: project.id AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true ) AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
             }
             else{
             lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
@@ -1179,7 +1181,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                           WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE  AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )
                                           ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                   FROM IPM_Project_Rollout__c
-                                  WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true ) AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
+                                  WHERE IPM_Project__c =: project.id AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
             
             }  
              if(!lstRegionalRollout.isEmpty()){
