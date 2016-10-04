@@ -107,13 +107,13 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     {
         List<SelectOption> lstOptions = new List<SelectOption>();
         lstOptions.add(new SelectOption('Select Sourcing Unit','Select Sourcing Unit'));
-        for (list<sourceUnitWrapper> lstSourcingPlan : sourceUnitMap.values())
+        /*for (list<sourceUnitWrapper> lstSourcingPlan : sourceUnitMap.values())
         {
             for(sourceUnitWrapper oSourcingPlan : lstSourcingPlan){
-            	//if(oSourcingPlan.sourcingPlan!=null)
-            		//lstOptions.add(new SelectOption(oSourcingPlan.sourcingPlan.Id,oSourcingPlan.sourcingPlan.IPM_SourcingUnit__c));
+            	if(oSourcingPlan.sourcingPlan!=null)
+            		lstOptions.add(new SelectOption(oSourcingPlan.sourcingPlan.Id,oSourcingPlan.sourcingPlan.IPM_SourcingUnit__c));
             }
-        }        
+        } */       
         return lstOptions;
     }
     public void updateCapabilityForSourcingUnit()
@@ -490,7 +490,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         }
         for(sourcePlanWrapper sourceClass: sourcePlanMap.values()){
             if(sourceClass.productProsition != row_Index){
-                if(IPM_SourcePlanController_Helper.validateProductData(sourceClass,duplicateCheckClass) && duplicateCheckClass.countryStr == holdProductCountry_STR && IPM_SourcePlanController_Helper.validateSourceUnit(row_Index,sourceUnitMap,sourceClass.productProsition)
+                if(IPM_SourcePlanController_Helper.validateProductData(sourceClass,duplicateCheckClass) && duplicateCheckClass.countryStr == sourceClass.countryStr && IPM_SourcePlanController_Helper.validateSourceUnit(row_Index,sourceUnitMap,sourceClass.productProsition)
                 ){
                     isDuplicateRow = true;
                     sourceClass.isDuplicateRow =true;
