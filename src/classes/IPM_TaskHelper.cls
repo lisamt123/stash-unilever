@@ -816,7 +816,9 @@ public with sharing class IPM_TaskHelper {
 	 			{
 					// If the Task gate is same as Project Gate & task span(Standard tasks) is blank = It is an existing Gate Task.
 					// If the Task gate is same as Project Gate & task span is not blank and equal to Gate Tasks(Future Tasks) = It is an existing Gate Task.
-	 				if(!String.isBlank(task.IPM_Type_of_Gate__c) && !String.isBlank(projectCurrentGate) && task.IPM_Type_of_Gate__c.containsIgnoreCase(projectCurrentGate))
+	 				if(!String.isBlank(task.IPM_Type_of_Gate__c) && !String.isBlank(projectCurrentGate) && 
+	 				(task.IPM_Type_of_Gate__c.containsIgnoreCase(projectCurrentGate) || 
+	 					task.IPM_Type_of_Gate__c.containsIgnoreCase(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT) ) )
 	 				{
 	 					if(String.isBlank(task.IPM_TaskSpan__c) || ( task.IPM_TaskSpan__c == project.IPMProject_Span__c ) )
 	 					{ 
