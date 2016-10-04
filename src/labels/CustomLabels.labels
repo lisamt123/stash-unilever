@@ -6987,7 +6987,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Possible Error Will Not Block Progress</shortDescription>
-        <value>Possible error-current value will not block progress</value>
+        <value>Possible error - current value will NOT block progress</value>
     </labels>
     <labels>
         <fullName>IPM_PostponeDate_Required</fullName>

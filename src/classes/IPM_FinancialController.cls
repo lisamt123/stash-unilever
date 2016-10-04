@@ -58,6 +58,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     
     public  String tabLabelMyView {get; set;} //Used to define the label for My View Tab
     public  String tabLabelTopDown {get; set;} //Used to define the label for Top Down Tab
+    public  String tabLabelTopDownGKM3 {get; set;} //Used to define the label for Top Down Tab for GKM3 Project
     public  String tabLabelRollup {get; set;} //Used to define the label for Rollup Tab 
     
     public List<SelectOption> lstSustainabilityPeriod {get; set;} //Used to manage appropriate sustainability period selection on the UI
@@ -118,6 +119,29 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public decimal exRate{get;set;}
     map<string,decimal> mapCurrency;   
     
+	/**************************************************************************
+    Name:getLocalCurrencyViewButtonVisibility()
+    Function:This Method is used to show the LocalCurrencyView Button on IPM_FinancialPage
+    Return : boolean value
+    */
+    public boolean getLocalCurrencyViewButtonVisibility(){
+        Boolean flag = false;    
+        if(isEditable && project.IPM_Phase__c != 'PLE'){
+            if( currentFinancial.Gate_Keeping_Model__c == 'GKM3'&& Schema.sObjectType.IPM_Financial__c.isUpdateable()){           
+                flag =(!isEditMode && !isRolloutError);
+            }
+            else{           
+                if( project.IPMProject_Span__c == 'Global' && project.IPM_Project_Type__c == 'Original'&& (project.IPM_Phase__c != 'Ideas') && Schema.sObjectType.IPM_Financial__c.isUpdateable()){
+                    flag = false;
+                }        
+                else{
+                    flag = (!isEditMode && !isRolloutError);
+                }
+            } 
+        }        
+            return flag;     
+    }
+	
     /*************************************************************************************************************************************
     * @description  Used to Populate the values of Label of 'Accept Local BC' in GKM3
     * @param        NONE
@@ -363,6 +387,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isPaybackInvalid = false;
         validationSettingSet = new Set<String>();
         projectType = IPM_ConstantUtils.BLANK ;
+        isRolloutError = false;
         
       
         try{
@@ -611,6 +636,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3){
                     tabLabelMyView = IPM_ConstantUtils.TAB_TOPDOWN_LABEL;
                     tabLabelTopDown = IPM_ConstantUtils.TAB_GLOBALCHARTER_LABEL;
+                    tabLabelTopDownGKM3 = IPM_ConstantUtils.TAB_GLOBALCHARTER_LABEL_GKM3;
                     tabLabelRollup = IPM_ConstantUtils.TAB_LOCALBBROLLUP_LABEL;
                     
                     if (project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS)
@@ -1145,7 +1171,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                           WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND(NOT Financial_External_ID__c like : nonKeyLike) AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )  
                                           ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                   FROM IPM_Project_Rollout__c
-                                  WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true ) AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
+                                  WHERE IPM_Project__c =: project.id AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true ) AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
             }
             else{
             lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
@@ -1155,7 +1181,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                           WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE  AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )
                                           ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                   FROM IPM_Project_Rollout__c
-                                  WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true ) AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
+                                  WHERE IPM_Project__c =: project.id AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
             
             }  
              if(!lstRegionalRollout.isEmpty()){
@@ -3275,12 +3301,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     ***************************************************************************************************************/
     public Set<IPM_Financial__c> getConsolidatedValidationCells(IPM_Financial__c currentFinancial){
         try{
-            List<String> finExtIdSplit = currentFinancial.Financial_External_ID__c.split(IPM_ConstantUtils.UNDERSCORE);
-            String regionalConsolidatedFinExtId = '';
-            String globalConsolidatedFinExtId = finExtIdSplit.get(0)+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
-            if(finExtIdSplit.get(1)!= null){
-                regionalConsolidatedFinExtId = finExtIdSplit.get(0)+IPM_ConstantUtils.UNDERSCORE+finExtIdSplit.get(1)+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
-            }
+            String globalConsolidatedFinExtId = currentFinancial.Global_External_Id__c+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
+            String regionalConsolidatedFinExtId = currentFinancial.Regional_External_Id__c+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
+            
             
             Map<Id,IPM_Financial__c> consolidatedFinancialsMap = new Map<Id,IPM_Financial__c>([Select Id,Red_Validation_Cells_Global__c, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Regional__c, Yellow_Validation_Cells_Regional__c , Red_Validation_Cells_Local__c, Yellow_Validation_Cells_Local__c from IPM_Financial__c 
                                                                  where Financial_External_ID__c =:globalConsolidatedFinExtId 
@@ -3333,7 +3356,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 existingNonCurrentFinancialYellowValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.YELLOW);
                 
                 conFin.put(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialRedValues + redValidationCellsString);
-                conFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialYellowValues + redValidationCellsString);
+                conFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialYellowValues + yellowValidationCellsString);
                 conFin.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,(((String)conFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).length()>1));
     
             }
