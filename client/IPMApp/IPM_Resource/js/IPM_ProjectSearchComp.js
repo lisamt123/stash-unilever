@@ -176,7 +176,6 @@ function wrapGeography() {
         /* Below script pushes the value if the condition is true. */
         jq('.clusterCheck').each(function() {
             if (jq(this).is(":checked") === true && jq(this).val() !== 'Unassigned') {
-                unAssigned = 'false';
                 clusters.push(jq(this).val());
             }
             if (jq(this).is(":checked") === true && jq(this).val() === 'Unassigned') {
