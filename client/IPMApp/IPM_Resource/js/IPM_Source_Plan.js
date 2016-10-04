@@ -24,7 +24,7 @@ function checkDuplicateRow(){
     }
 }
 function displayCapabilitySection(param,eve){                
-    if(jq('select').val() === 'Select Sourcing Unit')
+    if(jq('select').val() === 'select')
     {
         jq('#iddivCapability').hide();
     }
@@ -189,6 +189,7 @@ function scndsrcplan(){
 }
 
 function thirdsrcplan(){
+    checkboxSelection();
     jq(document).on('click', '.cntrymainlist input[type="checkbox"], .cntrymainlist ul li', function(e) {
             e.stopPropagation();
     });
@@ -224,6 +225,31 @@ function thirdsrcplan(){
         }
         jq(".cntrymainlist").hide(); 
     });
+    jq(document).on('click', '.srcedcntrymainlist input[type="checkbox"], .srcedcntrymainlist ul li', function(e) {
+        e.stopPropagation();
+    });
+    jq(".srcingGreyCheck").each(function() {
+        if(jq(this).val() === 'true' || jq(this).is(':checked'))
+        {
+            jq(this).attr('checked','checked');
+            jq(this).next('label').addClass('greenBox');
+            jq(this).next('label').text('Yes');
+        }
+    });
+    jq(document).on('click', '.hdnCheckboxDiv input[type="checkbox"]:not(:disabled)', function() {
+        var chkInput1 = jq(this);
+        if (chkInput1.is(':checked')) {
+            chkInput1.val('true');
+            chkInput1.next('label').addClass('greenBox');
+            chkInput1.next('label').text('Yes');
+        } else {
+            chkInput1.val('false');
+            chkInput1.next('label').removeClass('greenBox');
+            chkInput1.next('label').text('Not yet');
+        }
+    });
+}
+function checkboxSelection(){
     jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e){
         e.stopPropagation();
         jq(".cntrymainlist input:checkbox").each(function() {
@@ -251,27 +277,4 @@ function thirdsrcplan(){
             });
         }
     }
-    jq(document).on('click', '.srcedcntrymainlist input[type="checkbox"], .srcedcntrymainlist ul li', function(e) {
-        e.stopPropagation();
-    });
-    jq(".srcingGreyCheck").each(function() {
-        if(jq(this).val() === 'true' || jq(this).is(':checked'))
-        {
-            jq(this).attr('checked','checked');
-            jq(this).next('label').addClass('greenBox');
-            jq(this).next('label').text('Yes');
-        }
-    });
-    jq(document).on('click', '.hdnCheckboxDiv input[type="checkbox"]:not(:disabled)', function() {
-        var chkInput1 = jq(this);
-        if (chkInput1.is(':checked')) {
-            chkInput1.val('true');
-            chkInput1.next('label').addClass('greenBox');
-            chkInput1.next('label').text('Yes');
-        } else {
-            chkInput1.val('false');
-            chkInput1.next('label').removeClass('greenBox');
-            chkInput1.next('label').text('Not yet');
-        }
-    });
 }
