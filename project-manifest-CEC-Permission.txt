@@ -3,5 +3,6 @@ src/objects
 src/permissionsets
 src/sharingRules
 src/objects/Case.object
+src/objects/cec_Org_Settings__c.object
 src/permissionsets/TO_User.permissionset
 src/sharingRules/mdm_Reason_Code__c.sharingRules
