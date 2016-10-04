@@ -3,7 +3,7 @@
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
-    <dashboardType>MyTeamUser</dashboardType>
+    <dashboardType>SpecifiedUser</dashboardType>
     <isGridLayout>false</isGridLayout>
     <leftSection>
         <columnSize>Medium</columnSize>
@@ -127,24 +127,6 @@
             <displayUnits>Auto</displayUnits>
             <drillEnabled>false</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
-            <enableHover>false</enableHover>
-            <expandOthers>false</expandOthers>
-            <header>SAM Quotation Line Status Details</header>
-            <legendPosition>Bottom</legendPosition>
-            <report>SAM_Reports/SAM_Quotation_Line_Status_Details</report>
-            <showPercentage>false</showPercentage>
-            <showPicturesOnCharts>false</showPicturesOnCharts>
-            <showValues>false</showValues>
-            <sortBy>RowLabelAscending</sortBy>
-            <useReportChart>true</useReportChart>
-        </components>
-        <components>
-            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
-            <chartAxisRange>Auto</chartAxisRange>
-            <componentType>Bar</componentType>
-            <displayUnits>Auto</displayUnits>
-            <drillEnabled>false</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <header>SAM Request Details - SAM Demand Manager</header>
@@ -157,7 +139,7 @@
             <useReportChart>true</useReportChart>
         </components>
     </rightSection>
-    <runningUser>sam.admin@unilever.com</runningUser>
+    <runningUser>monal.agey@unilever.com</runningUser>
     <textColor>#000000</textColor>
     <title>SAM Dashbords</title>
     <titleColor>#000000</titleColor>

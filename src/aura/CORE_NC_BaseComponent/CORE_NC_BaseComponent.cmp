@@ -2,7 +2,10 @@
     <aura:attribute name="filterType" type="String"/>
     <!--<aura:attribute name="newsType" type="String"/>-->    
     <aura:attribute name="NewsType" type="String" />
-    
+     <aura:attribute name="gloablNewsPannel" type="Boolean" />  
+      <aura:attribute name="paulsBlogPannel" type="Boolean" />  
+      <aura:attribute name="myNewsPannel" type="Boolean" /> 
+     <aura:attribute name="display" type="Boolean" /> 
     <div class="fixedNavbar">
     	<table class="homePageMenuWidth">             
              <tr class="alignCenter">                  

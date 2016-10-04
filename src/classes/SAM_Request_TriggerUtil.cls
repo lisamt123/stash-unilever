@@ -149,21 +149,21 @@ public with sharing class SAM_Request_TriggerUtil{
                     }
                                  
                 } 
-                List<SAM_Request_Line_Item__c> requestProducts = [Select md_Request_ID__c,Name,txt_Publisher__c From SAM_Request_Line_Item__c Where md_Request_ID__c in :requestsToUpdate order by CreatedDate];
+                List<SAM_Request_Line_Item__c> requestProducts = [Select md_Request_ID__c,Name,txt_Publisher__c,txt_Product_Type_Name__c From SAM_Request_Line_Item__c Where md_Request_ID__c in :requestsToUpdate order by CreatedDate];
                 Integer productCount = requestProducts.Size();
                 Integer count = 1;
                 for(SAM_Request_Line_Item__c requestProduct : requestProducts)
                 {
-                    requestQuotations.Add(new SAM_Quote_Line_Item__c(
+                    SAM_Quote_Line_Item__c quotationItem = new SAM_Quote_Line_Item__c(
                     md_Request__c = requestProduct.md_Request_ID__c, 
                     Name = requestProduct.Name, 
-                    pkl_Publisher__c = requestProduct.txt_Publisher__c,                 
+                    pkl_Publisher__c = requestProduct.txt_Product_Type_Name__c,                                       
                     num_Quantity__c = 1,
                     pkl_Currency_Type__c = 'EUR',
                     num_List_Price__c = 0,
                     pkl_Discount_Applicable__c = 'No',
                     Maintainence_Applicable__c = 'No',
-                    pkl_Line_Status__c = 'Completed',
+                    pkl_Line_Status__c = 'Pending with SAM',
                     pkl_Charging_Type__c = 'Cross Charge Applicable (X)',
                     pkl_Run_Cost_Applicable__c = 'No',
                     pkl_DO_PO_Details_Applicable__c = 'No',
@@ -171,7 +171,12 @@ public with sharing class SAM_Request_TriggerUtil{
                     pkl_Quotation_Available__c = 'No',
                     CreatedDate = Datetime.now().addSeconds(-productCount+count),
                     num_Quotation_Number__c = count
-                    ));
+                    );
+                    if(requestProduct.txt_Product_Type_Name__c.Contains('Other'))
+                    {
+                        quotationItem.txt_Publishers_Details__c = requestProduct.txt_Publisher__c;
+                    }
+                    requestQuotations.Add(quotationItem);
                     count++;                    
                 }                
                 Insert requestQuotations;

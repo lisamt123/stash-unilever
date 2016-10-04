@@ -24,7 +24,7 @@
         <criteriaItems>
             <column>CI_SMS_Weekly_Update__c.R2R_SME_Area__c</column>
             <operator>equals</operator>
-            <value>Tax</value>
+            <value></value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

@@ -1,19 +1,5 @@
 ({ 
     doInit : function(component, event, helper) { 
-       /*var action=component.get("c.findFeedbacks");  
-       action.setParams({"appName": "Approval"}); 
-        action.setCallback(this, function(response) { 
-            var state = response.getState(); 
-            if (state === "SUCCESS" && response.getReturnValue()!=='') { 
-                var response=response.getReturnValue();       
-                if(response === true){ 
-                    component.set("v.isFeedBackPopup",true);
-                }             
-            }
-        });
-       $A.enqueueAction(action);*/ 
-       
-       
         var retainfilter =component.get("v.filterValue");                                     
         if(retainfilter == null || retainfilter == undefined)
         {
@@ -25,7 +11,14 @@
         }
         component.set("v.spinnercomp",true);
         var filterOption = event.getSource();
-        var filter=filterOption.get("v.title");
+        /* winter'17 fix for 'title' of markup://ltng:require not visible to component start */
+        var filter;
+        var x= filterOption.toString();
+        filter="Show All";
+        if(event.getName()==='press'){
+            filter=filterOption.get("v.buttonTitle");
+        }
+      /*   winter'17 fix for 'title' of markup://ltng:require not visible to component end */
         var filteroptions;
         if(filter== "Show All")
         {  
@@ -48,8 +41,7 @@
             $A.util.removeClass(component.find('ariba'), 'filterSelected');
             $A.util.removeClass(component.find('clarity'), 'filterSelected');
             $A.util.removeClass(component.find('invoice'), 'filterSelected');
-        	component.set("v.showMoreCount",true); 
-
+        	component.set("v.showMoreCount",true);
 
         }
             else if(filter== "Show Only Purchase Requests")
@@ -89,7 +81,6 @@
         var action = component.get("c.getApprovalHomeScreenData");
         action.setCallback(this, function(response) {
             component.set("v.pendingData",response.getReturnValue().PendingApprovals);
-            
             component.set("v.filterview", false);
             helper.loadMore(component,response.getReturnValue().PendingApprovals);
             

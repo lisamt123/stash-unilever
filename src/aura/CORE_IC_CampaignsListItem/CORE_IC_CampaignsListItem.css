@@ -32,5 +32,11 @@
     margin-left: 12px;
 }
 .THIS .slds-dropdown--right {
-    transform: translateX(10px) !important;
+    transform: translateX(-30px) !important;
+}
+@media screen and (min-width:768px){
+    .THIS .slds-dropdown--right {
+    transform: translateX(-62px)!important;
+    right: auto !important;
+}
 }

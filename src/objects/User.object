@@ -225,7 +225,11 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+<<<<<<< HEAD
 <fields>
+=======
+	<fields>
+>>>>>>> develop
         <fullName>CEC_Disable_Case_Trigger__c</fullName>
         <description>CEC - Check whether the case trigger execution should be disabled or not</description>
         <externalId>false</externalId>

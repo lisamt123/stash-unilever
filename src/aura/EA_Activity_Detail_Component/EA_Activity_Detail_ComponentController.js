@@ -106,7 +106,6 @@
         cmp.set("v.EAactivityid",id);
     },
     commentspage2 :function(component, event, helper) {
-        
         helper.scrollToLocation(component, "top");
         var activity = component.get("v.activity");
         var pagename='swipe';
@@ -125,7 +124,6 @@
          
     },
     callfeedback:function(cmp,event,helper){
-        
         helper.scrollToLocation(cmp, "top");
         var activity = cmp.get("v.activity");
         var feedbacevent=$A.get("e.c:EA_Feedback_Event");
@@ -140,7 +138,7 @@
         feedbacevent.fire();
     },
     calltodoactivity:function(cmp,event,helper){
-       helper.scrollToLocation(cmp, "top");
+        helper.scrollToLocation(cmp, "top");
         var page='swipe';
         var activity = cmp.get("v.activity");
         // Get the current slide
@@ -153,7 +151,6 @@
     },
     callShowDetailCard:function(cmp,event,helper){
         var actvity=cmp.get("v.activity");
-        
         var id=actvity.activityId;
         console.log("id-->"+id);
         var page='swipe';
