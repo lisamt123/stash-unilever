@@ -42,7 +42,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Master Unilever Warehouse capacity utilization data storage</description>
@@ -51,7 +50,6 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Read</externalSharingModel>
@@ -636,11 +634,11 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
                 <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
-			<picklistValues>
+            <picklistValues>
                 <fullName>Nepal</fullName>
                 <default>false</default>
                 <controllingFieldValues>South Asia</controllingFieldValues>
-			</picklistValues>
+            </picklistValues>
             <picklistValues>
                 <fullName>Netherlands</fullName>
                 <default>false</default>
@@ -936,6 +934,18 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>WU_Current_Pallet_Utilization__c</fullName>
+        <externalId>false</externalId>
+        <label>Current Pallet Utilization</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>WU_Current_Utilization__c</fullName>
         <externalId>false</externalId>
         <label>Current Pallet Utilization Count</label>
@@ -991,6 +1001,15 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WU_Is_Submitted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Submitted</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>WU_LandOwner__c</fullName>
@@ -2261,16 +2280,16 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <fullName>Morocco</fullName>
                 <default>false</default>
             </values>
-			<values>
-                <fullName>Nepal</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>Mozambique</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Myanmar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nepal</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3082,10 +3101,6 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <fullName>Mexico</fullName>
                 <default>false</default>
             </values>
-			<values>
-                <fullName>Nepal</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>Morocco</fullName>
                 <default>false</default>
@@ -3096,6 +3111,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
             <values>
                 <fullName>Myanmar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nepal</fullName>
                 <default>false</default>
             </values>
             <values>
