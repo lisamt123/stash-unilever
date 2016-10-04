@@ -2575,6 +2575,14 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>TaskRay_Last_Use_c__c</fullName>
+        <externalId>false</externalId>
+        <label>TaskRay_Last_Use__c</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>User_License__c</fullName>
         <description>This field is used for user license report</description>
         <externalId>false</externalId>
