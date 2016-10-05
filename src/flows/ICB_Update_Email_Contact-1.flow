@@ -97,11 +97,11 @@
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>Change email</label>
+            <label>Updated Email</label>
         </rules>
     </decisions>
-    <description>Update field &quot;Fail&quot; for true of contact object when modified email of contact</description>
-    <interviewLabel>ICB_Update_Email_Contact-2_Contact</interviewLabel>
+    <description>Change fields after email is updated</description>
+    <interviewLabel>ICB_Update_Email_Contact-1_Contact</interviewLabel>
     <label>ICB Update Email Contact</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -148,7 +148,7 @@
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>Upadate field ICB_Fail</label>
+        <label>Update fields</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
         <filters>
@@ -222,6 +222,36 @@
             <field>ICB_Fail__c</field>
             <value>
                 <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ICB_Status__c</field>
+            <value>
+                <stringValue>Inactive</stringValue>
             </value>
         </inputAssignments>
         <object>Contact</object>

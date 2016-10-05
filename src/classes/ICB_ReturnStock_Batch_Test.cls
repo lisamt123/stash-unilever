@@ -14,8 +14,7 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 @isTest
 public class ICB_ReturnStock_Batch_Test 
 {
-  
-    /*******************************************************************
+   /*******************************************************************
     Purpose: Test class ICB_ReturnStock_Batch
 	Parameters: [NONE]
 	Returns: [VOID]

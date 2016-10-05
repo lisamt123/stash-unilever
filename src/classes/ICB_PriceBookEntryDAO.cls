@@ -1,10 +1,10 @@
 /**********************************************************************
 Name: PriceBookEntryDAO
 Copyright © 2016 Unilever
-
+*********************************************************************
 Purpose:
 DAO class for retrieve queries in objet PriceBookEntry
-
+*********************************************************************
 History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
  1.0    Thiago Oliveira 12/08/2016  Class creation  
@@ -37,7 +37,9 @@ public with sharing class ICB_PriceBookEntryDAO {
     
     public List<Pricebook2> getActivePricebook(Boolean value){
         List<Pricebook2> pb2 = new List<Pricebook2>();
+        
         pb2 = [SELECT ID from Pricebook2 where IsStandard =: value and IsActive = TRUE];
+       
         system.debug('pb2:'+ pb2);
         return pb2;
         

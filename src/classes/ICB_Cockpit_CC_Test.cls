@@ -235,7 +235,5 @@ public class ICB_Cockpit_CC_Test
         ICB_SobjectInstance_SP2_Test.insertPriceBookEntry(product.Id,priceBook2Id);
         priceBook2 = ICB_SobjectInstance_SP2_Test.insertPriceBook2(acc.Name);
         ICB_SobjectInstance_SP2_Test.insertPriceBookEntry(product.Id,priceBook2.Id);
-        
-       
-    }
+     }
 }
