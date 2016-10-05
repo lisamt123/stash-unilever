@@ -1,5 +1,6 @@
 src
 src/assignmentRules
+src/customPermissions
 src/email
 src/objects
 src/queues
@@ -7,6 +8,7 @@ src/roles
 src/sharingRules
 src/workflows
 src/assignmentRules/Case.assignmentRules
+src/customPermissions/CEC_Disable_Case_Trigger.customPermission
 src/email/CEC_Emails_Japan
 src/email/CEC_Emails_Japan-meta.xml
 src/objects/Case.object
@@ -15,6 +17,7 @@ src/objects/cec_Alert_Rule__c.object
 src/objects/cec_Enclosure__c.object
 src/objects/cec_Fulfilment__c.object
 src/objects/User.object
+src/objects/cec_Org_Settings__c.object
 src/queues/CEC_Japan_Escalation_Queue.queue
 src/queues/CEC_Japan_Quality_Check.queue
 src/queues/CEC_Japan_Queue.queue
