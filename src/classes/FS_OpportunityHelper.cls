@@ -48,9 +48,7 @@ public with sharing class FS_OpportunityHelper {
             
             if(!listOppId.isEmpty()){  
             
-            //Check 'NAFS Opportunity Trigger Settings'in custom settings. If enabled then call the method
-            FSOpportunityTriggerSettings__c Settings=FSOpportunityTriggerSettings__c.getinstance('isEnabled');
-            boolean Enabled=Settings.Enabled__c;
+            boolean Enabled=isEnabled();
             if(Enabled)
             {
                 OppLineItem = [select Id, GPPercent__c, FS_MarketTarget__c, opportunityId from OpportunityLineItem where opportunityId in :listOppId];
@@ -127,9 +125,7 @@ public with sharing class FS_OpportunityHelper {
             
             if(varFS_Record)
             {
-             //Check 'NAFS Opportunity Trigger Settings'in custom settings. If enabled then call the method
-            FSOpportunityTriggerSettings__c Settings=FSOpportunityTriggerSettings__c.getinstance('isEnabled');
-            boolean Enabled=Settings.Enabled__c;
+             boolean Enabled=isEnabled();
             if(Enabled)
             {
             FS_OpportunityStages__c oppStages=FS_OpportunityStages__c.getInstance('FS_Stages');    
@@ -211,9 +207,7 @@ public with sharing class FS_OpportunityHelper {
             
             if(varFS_Record)
             {
-             //Check 'NAFS Opportunity Trigger Settings'in custom settings. If enabled then call the method
-            FSOpportunityTriggerSettings__c Settings=FSOpportunityTriggerSettings__c.getinstance('isEnabled');
-            boolean Enabled=Settings.Enabled__c;
+            boolean Enabled=isEnabled();
             if(Enabled)
             {
             FS_OpportunityStages__c oppStages=FS_OpportunityStages__c.getInstance('FS_Stages');    
@@ -305,9 +299,7 @@ public with sharing class FS_OpportunityHelper {
         listNewOpportunity=utilMabe.getNewClosedOpportunity(listNewTrigger,oppOldMap,newRecordTypeId);//Get list of opportunities with New record type which has been closed          
         
         if(!listNewOpportunity.isEmpty()){
-         //Check 'NAFS Opportunity Trigger Settings'in custom settings. If enabled then call the method
-        FSOpportunityTriggerSettings__c Settings=FSOpportunityTriggerSettings__c.getinstance('isEnabled');
-        boolean Enabled=Settings.Enabled__c;
+        boolean Enabled=isEnabled();
         if(Enabled)
         {
             setContractId=utilMabe.getContractList(listNewOpportunity);//Get list of contracts for closed opportunities           
@@ -403,9 +395,8 @@ public with sharing class FS_OpportunityHelper {
             }
         }
         if(listAccId.size()>0){
-         //Check 'NAFS Opportunity Trigger Settings'in custom settings. If enabled then call the method
-            FSOpportunityTriggerSettings__c Settings=FSOpportunityTriggerSettings__c.getinstance('isEnabled');
-            boolean Enabled=Settings.Enabled__c;
+         
+            boolean Enabled=isEnabled();
             if(Enabled)
             {
             existingOppId = [Select ID, AccountId from Opportunity where RecordTypeId =: oppRecordTypeId and AccountId =: listAccId and ContractId =: listConId];
@@ -416,5 +407,13 @@ public with sharing class FS_OpportunityHelper {
             }  
           }            
         }
+    }
+    
+    Private boolean isEnabled()
+    {
+    //Check 'NAFS Opportunity Trigger Settings'in custom settings. If enabled then call the method
+            FSOpportunityTriggerSettings__c Settings=FSOpportunityTriggerSettings__c.getinstance('isEnabled');
+            return Settings.Enabled__c;
+            
     }
 }
