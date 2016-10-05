@@ -62,42 +62,6 @@ function submitOnClickRole(objSubmitBtn) {
 function closepopup(){
     window.top.location.href=IPMApp.teamurl+'?id='+IPMApp.projectID+'&TeamMemid=teammembers&showedit=true';
 }
-
-var unsaved = false;
-var jq = jQuery.noConflict();
-jq(function(){       
-jq(":input").change(function() {
-if(jq(this).attr('class') !== "teamSearchInput"){
-  unsaved = true;
-  }
-       });
-     var frame = parent.document.getElementById("ipmAddMemberModal");
-      jq(frame).find('.close').click(function(){
-          if(unsaved){
-              jq(this).removeAttr( "data-dismiss" );
-              unloadIframe();
-          }
-          else{
-              jq(this).attr("data-dismiss","modal");
-          }
-      });
-       
-  });   
-  
-  function unloadIframe(){
-    window.parent.location.href=IPMApp.teamurl+'?id='+IPMApp.projectID;
-  }
-  
-   function unloadPage()
- { 
-     if(unsaved){
-         return IPMApp.wmessage;
-     }
- } 
-
- window.onbeforeunload = unloadPage;
- 
- /* Below code is to skip the unsaved changes*/
  function skipValidation() {
      unsaved = false;
  }

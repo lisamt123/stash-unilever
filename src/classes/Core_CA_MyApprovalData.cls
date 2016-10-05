@@ -107,6 +107,20 @@ global with sharing class Core_CA_MyApprovalData {
             for(Core_Approver_Details__c penddingExpense : lstApproverDetail){
                  objExpensedata = new Core_CA_WrapperUtility.ExpenseData();
                  
+                 string Action = penddingExpense.Action__c;
+                 string Status = penddingExpense.Status__c;
+                 
+                 if(Action == 'APPR' || (Status == 'Approved' && Action != 'REWO' && Action != 'APPR' && Action != 'REJC'))
+                     objExpensedata.Req_Status ='APPR';
+                 if((Action == 'REJC' && penddingExpense.Source_System__c!=strSystemInvoice)||(penddingExpense.Source_System__c!=strSystemInvoice && Status == 'Rejected' && Action != 'REWO' && Action != 'APPR' && Action != 'REJC' ))
+                     objExpensedata.Req_Status ='REJC';
+                 if(Action == 'REWO' || (Status == 'Rework' && Action != 'REWO' && Action != 'APPR' && Action != 'REJC'))
+                     objExpensedata.Req_Status ='Rework';
+                 if((Action == 'REJC' && penddingExpense.Source_System__c ==strSystemInvoice) || (Status == 'Return to AP' && penddingExpense.Source_System__c ==strSystemInvoice && Action != 'REWO' && Action != 'APPR' && Action != 'REJC'))
+                     objExpensedata.Req_Status ='RETOAP';
+                 if(Action == 'QUER' || Status == 'Query With Vendor')    
+                     objExpensedata.Req_Status ='QUER';
+                 
                  objExpensedata.ExpenseID = mapHeaderRecord.get(penddingExpense.Approval_Header__c).External_System_Id__c;                
                  objExpensedata.Amount = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Total_amount__c;
                  objExpensedata.ApproverId = penddingExpense.Id;

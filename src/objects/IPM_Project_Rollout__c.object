@@ -436,6 +436,36 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_ShowAtGlobal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox To display stopped projects</description>
+        <externalId>false</externalId>
+        <label>Show At Global</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_ShowAtLocal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox To display stopped projects</description>
+        <externalId>false</externalId>
+        <label>Show At Local</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_ShowAtRegional__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox To display stopped projects</description>
+        <externalId>false</externalId>
+        <label>Show At Regional</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Small_C__c</fullName>
         <externalId>false</externalId>
         <label>Small C</label>
@@ -465,6 +495,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_StoppedByProject__c</fullName>
+        <externalId>false</externalId>
+        <label>Stopped By Project</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>KeyMCOAtCharter__c</fullName>
@@ -961,6 +1002,30 @@ Case(Global_Project_Phase__c,
         <formula>IF(TEXT(IPM_Rollout_Span__c) = &apos;Regional&apos; ,IPM_Project__r.Name, IF( Regional_Project__c &lt;&gt; null, Regional_Project__r.Name , Regional_Rollout__r.Name ))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Parent Project Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>IPM_Brand_Position__c</fullName>
+        <description>Get brand position</description>
+        <externalId>false</externalId>
+        <formula>if(IPM_Project__c !=null,IPM_Project__r.IPM_Brand_Positioning__c, Regional_Project__r.IPM_Brand_Positioning__c)</formula>
+        <label>Brand Position</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>IPM_Brand__c</fullName>
+        <description>store rollout brand</description>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

@@ -654,6 +654,13 @@
         <shortDescription>If Duplicate accounts found display this error message</shortDescription>
         <value>[ERR001] Multiple consumer records exist with the same email, a manual update is required.</value>
     </labels>
+	<labels>
+        <fullName>CEC_MatchingResponse_DuplicateAccountMobileNumber</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC_MatchingResponse_DuplicateAccountMobileNumber</shortDescription>
+        <value>Multiple consumer records exist with the same mobile number, a manual update is required.</value>
+    </labels>
     <labels>
         <fullName>CEC_Missing_Information</fullName>
         <categories>CEC: VF Page Global Display</categories>
@@ -787,6 +794,38 @@
         <protected>false</protected>
         <shortDescription>CEC_PhoneSearchValidationError</shortDescription>
         <value>The Phone Search should be 6 Character length</value>
+    </labels>
+	<labels>
+        <fullName>CEC_NoAccessForSMSProcess</fullName>
+        <categories>CEC:SMSError</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_NoAccessForSMSProcess</shortDescription>
+        <value>No Access for SMS Process</value>
+    </labels>
+	<labels>
+        <fullName>CEC_Home_Phone</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC Home Phone</shortDescription>
+        <value>Home Phone</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Mobile_Phone</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC Mobile Phone</shortDescription>
+        <value>Mobile Phone</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Other_Phone</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC Other Phone</shortDescription>
+        <value>Other Phone</value>
     </labels>
     <labels>
         <fullName>CEC_PostCode</fullName>

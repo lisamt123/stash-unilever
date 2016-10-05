@@ -74,9 +74,9 @@
                         <apex:outputPanel layout="block" styleClass="col-xs-12">            
                             <div class="buttonMarginRight marginTop ipmButtonGroup pull-right">   
                                                        
-								<span class="ipmButton buttonMarginRight" onClick="pageclose();">{!$Label.IPM_CANCEL}</span>
-                                <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green buttonMarginRight" action="{!saveMilestones}" reRender="form,displaymessage"  rendered="{!AND( OR(adhocmilestoneFlag, miniMilestoneFlag),milestoneFlag)}" onClick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();','')}"  />
-                                <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green buttonMarginRight" action="{!promptForTaskUpdate}" reRender="form,displaymessage"  rendered="{!AND(stndMilestoneFlag, milestoneFlag)}" onClick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();','')}"  />
+                                                                                                                                <span class="ipmButton buttonMarginRight" onClick="pageclose();pageclosemilestone();">{!$Label.IPM_CANCEL}</span>
+                                <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green buttonMarginRight" action="{!saveMilestones}" reRender="form,displaymessage"  rendered="{!AND( OR(adhocmilestoneFlag, miniMilestoneFlag),milestoneFlag)}" onClick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();pageclosemilestone();','')}"  />
+                                <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green buttonMarginRight" action="{!promptForTaskUpdate}" reRender="form,displaymessage"  rendered="{!AND(stndMilestoneFlag, milestoneFlag)}" onClick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();pageclosemilestone();','')}"  />
                         </div>
                         </apex:outputPanel>
             
@@ -86,8 +86,8 @@
                     <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">
                         <div class="buttonMarginRight popupContent ipmButtonGroup noPadding">
                             <span class="buttonMarginRight">{!$Label.IPM_DO_WE_NEED_TO_UPDATE_TASKS}</span>
-                            <apex:commandLink value="{!$Label.IPM_CONFIRM_MODAL_NO}" styleClass="ipmButton grey buttonMarginRight" action="{!saveMilestones}" rerender="displaymessage" onClick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();','')}" />
-                            <apex:commandLink value="{!$Label.IPM_CONFIRM_MODAL_YES}" styleClass="ipmButton green" action="{!saveMilestoneAndTasks}" rerender="displaymessage" onClick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();','')}" />
+                            <apex:commandLink value="{!$Label.IPM_CONFIRM_MODAL_NO}" styleClass="ipmButton grey buttonMarginRight" action="{!saveMilestones}" rerender="displaymessage" onClick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();pageclosemilestone();','')}" />
+                            <apex:commandLink value="{!$Label.IPM_CONFIRM_MODAL_YES}" styleClass="ipmButton green" action="{!saveMilestoneAndTasks}" rerender="displaymessage" onClick="skipValidation();" oncomplete="{!if(validateSuccess,'pageclose();pageclosemilestone();','')}" />
                         </div>
                         <div class="ipmButtonGroup pull-center"></div>
                     </apex:outputPanel>

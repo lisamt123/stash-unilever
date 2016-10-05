@@ -166,6 +166,11 @@
         <field>Account.Sun_Opt_In__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>Account.SMS_Search_Mobile_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.Type</field>
@@ -184,6 +189,11 @@
 	<fieldPermissions>
         <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.Account_Owner_Active_Flag__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>CEC_Case_Market_Mapping__c.Consumer_Phone_Search_Digits__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -264,6 +274,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CEC_Case_Market_Mapping__c.Product_Factory_Email_Template__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>CEC_Case_Market_Mapping__c.CSAT_Survey_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -374,6 +389,16 @@
 	<fieldPermissions>
         <editable>true</editable>
         <field>Case.Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Case.CV_Questionaire_Added__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.CV_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

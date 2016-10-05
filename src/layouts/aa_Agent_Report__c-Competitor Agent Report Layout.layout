@@ -42,10 +42,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Report_Title__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>Report_Description__c</field>
             </layoutItems>
             <layoutItems>
@@ -76,10 +72,6 @@
                 <behavior>Edit</behavior>
                 <field>OtherCompanyName__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ClusterId__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -91,8 +83,8 @@
                 <field>Sub_Topics__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Cluster_Name__c</field>
+                <behavior>Edit</behavior>
+                <field>ClusterId__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

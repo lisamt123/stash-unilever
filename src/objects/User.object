@@ -206,6 +206,14 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>WU_Permission_set_Check__c</fullName>
+        <defaultValue>false</defaultValue>        
+        <externalId>false</externalId>
+        <label>Permission set Check</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>Advisor_Correspondence_Display_Name__c</fullName>
         <description>CEC: To capture the advisor correspondence display name. This will be used in email and letters,</description>
@@ -216,6 +224,15 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>CEC_Disable_Case_Trigger__c</fullName>
+        <description>CEC - Check whether the case trigger execution should be disabled or not</description>
+        <externalId>false</externalId>
+        <formula>$Permission.CEC_Disable_Case_Trigger</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CEC Disable Case Trigger</label>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>CEC_User_Reference__c</fullName>

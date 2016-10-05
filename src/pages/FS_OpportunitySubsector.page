@@ -1,0 +1,15 @@
+<apex:page standardController="Opportunity" extensions="FS_OpportunityProductSubSector_CX"  action="{!autoRun}">         
+    <apex:form >       
+    <apex:outputPanel rendered="{!refreshPage}" id="Risk_Detail">
+    <script>
+    window.top.location='/{!Opportunity.id}';
+    </script>
+    </apex:outputPanel>
+        <apex:outputLabel >Please choose product sub sector value:</apex:outputLabel>
+            <br/><br/>
+        <apex:selectList value="{!selectedSubSector}" size="1" multiselect="false" style="width:100%;hight:100%;">
+            <apex:selectOptions value="{!listSubSector_Picklist}"/>
+            <apex:actionSupport event="onchange" action="{!updateSubSector}"/>
+        </apex:selectList>      
+       </apex:form>      
+</apex:page>
