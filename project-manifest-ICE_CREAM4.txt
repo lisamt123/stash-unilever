@@ -64,6 +64,7 @@ src/objects
 src/objects/Asset.object
 src/objects/Contact.object
 src/objects/Product2.object
+src/objects/FS_TemporaryProductDiscount__c.object
 src/labels
 src/labels/ICB.labels
 src/translations
