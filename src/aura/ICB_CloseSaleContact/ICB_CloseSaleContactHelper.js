@@ -74,6 +74,12 @@
                     "listJson" : listJSON,
                     "isClosed" : true
                 });
+                action.setCallback(this,function(response){
+                    var state = response.getState();
+                    if(component.isValid() && state === "SUCCESS"){
+                        location.reload(true);
+                    }
+                });
                 $A.enqueueAction(action);
             }
             //component.set("v.listContacts",list);
