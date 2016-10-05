@@ -4094,7 +4094,6 @@ Enter competitor pricing if available</inlineHelpText>
         <active>true</active>
         <description>Record should throw error and close date will be in future date</description>
         <errorConditionFormula>AND(OR ( ISNEW(),ISCHANGED( CloseDate )),CloseDate &lt; TODAY())</errorConditionFormula>
-        <errorDisplayField>Account_History__c</errorDisplayField>
         <errorMessage>Close Date cannot be past date.</errorMessage>
     </validationRules>
     <validationRules>
@@ -4121,14 +4120,12 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <active>true</active>
         <description>An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level.</description>
         <errorConditionFormula>(AND( DealApproved__c= true,OR(ISPICKVAL( StageName, &quot;01 - Prospecting&quot;), ISPICKVAL( StageName, &quot;02 - Qualification&quot;),ISPICKVAL( StageName, &quot;03 - Proposal&quot;))))</errorConditionFormula>
-        <errorDisplayField>Account_History__c</errorDisplayField>
         <errorMessage>An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_Notchange_at_Stage5</fullName>
         <active>true</active>
         <errorConditionFormula>AND(OR(ISPICKVAL(PRIORVALUE(StageName), &quot;Closed Won&quot;), ISPICKVAL(PRIORVALUE(StageName), &quot;05 – Won&quot;)))</errorConditionFormula>
-        <errorDisplayField>Account_History__c</errorDisplayField>
         <errorMessage>An opportunity at stage 05 - Won/Closed Won  can not be changed at the opportunity level.</errorMessage>
     </validationRules>
     <validationRules>
@@ -4136,7 +4133,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <active>true</active>
         <description>To Validate Opportunity Stage Value</description>
         <errorConditionFormula>AND(  ISCHANGED(StageName),ISPICKVAL(StageName,&apos;05 – Won&apos;), NOT(ISPICKVAL(PRIORVALUE(StageName),&quot;04 - Verbal Commitment&quot;)))</errorConditionFormula>
-        <errorDisplayField>Account_History__c</errorDisplayField>
         <errorMessage>You must save the opportunity in Stage 04 - Verbal Commitment before advancing to Stage 05 - Won</errorMessage>
     </validationRules>
     <validationRules>
@@ -4144,7 +4140,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <active>true</active>
         <description>Opportunities must be approved in order to advance it to 04 - Verbal Commitment</description>
         <errorConditionFormula>IF( ISPICKVAL(StageName,&apos;04 - Verbal Commitment&apos;),  NOT( DealApproved__c =true) , false)</errorConditionFormula>
-        <errorDisplayField>Account_History__c</errorDisplayField>
         <errorMessage>Opportunities must be approved in order to advance it to 04 - Verbal Commitment</errorMessage>
     </validationRules>
     <validationRules>
@@ -4264,7 +4259,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <active>true</active>
         <description>The number of samples SKUs that can be ordered should be limited to 10 per opportunity</description>
         <errorConditionFormula>IF(FS_NoOFSampleOrders__c &gt;10, true, false)</errorConditionFormula>
-        <errorDisplayField>Account_History__c</errorDisplayField>
         <errorMessage>The number of samples SKUs that can be ordered should be limited to 10 per opportunity</errorMessage>
     </validationRules>
     <webLinks>
