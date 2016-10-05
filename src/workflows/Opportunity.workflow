@@ -263,7 +263,7 @@ FS_Push_Counter__c + 1
         <criteriaItems>
             <field>Opportunity.RecordTypeId</field>
             <operation>equals</operation>
-            <value>Opportunity with Pricing (MA-BE)</value>
+            <value>NAFS Opportunity MABE</value>
         </criteriaItems>
         <description>Sends the notification to owner of the record 7 days before the closed date and also sends the notification to the owner and his manager after 3 days of closed date</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
