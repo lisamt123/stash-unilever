@@ -3180,7 +3180,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_Year_Date_Month_1) }}"
                         ]
                     ]
@@ -3251,7 +3251,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_Year_Date_Month_1) }}"
                         ]
                     ]
@@ -3544,7 +3544,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_Year_Date_Month_1) }}"
                         ]
                     ]
@@ -3584,7 +3584,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_Year_Date_Month_1) }}"
                         ]
                     ]
@@ -3656,7 +3656,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_Year_Date_Month_1) }}"
                         ],
                         [
@@ -3978,7 +3978,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_Year_Date_Month_1) }}"
                         ]
                     ]
@@ -6958,7 +6958,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb23000000AMGuCAO"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [

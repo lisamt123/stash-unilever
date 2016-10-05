@@ -697,7 +697,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "header_score4p5p6p",
                                 "row": 32,
@@ -1320,12 +1320,14 @@
                                 }
                             },
                             {
-                                "row": 78,
-                                "column": 3,
-                                "rowspan": 5,
                                 "colspan": 7,
+                                "column": 3,
                                 "name": "table_1",
-                                "widgetStyle": {}
+                                "row": 78,
+                                "rowspan": 5,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
                             }
                         ]
                     }
@@ -2729,193 +2731,6 @@
         ],
         "layouts": [],
         "steps": {
-            "CTA_Message_1": {
-                "type": "aggregateflex",
-                "visualizationParameters": {
-                    "visualizationType": "comparisontable",
-                    "options": {}
-                },
-                "query": {
-                    "columns": [
-                        {
-                            "query": {
-                                "filters": [
-                                    [
-                                        "Date of audit",
-                                        [
-                                            [
-                                                [
-                                                    "month",
-                                                    0
-                                                ],
-                                                [
-                                                    "month",
-                                                    0
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
-                                    ]
-                                ],
-                                "groups": [
-                                    "CTA_Message"
-                                ],
-                                "measures": [
-                                    [
-                                        "avg",
-                                        "CTA_Compliant"
-                                    ]
-                                ]
-                            },
-                            "header": "Current Month",
-                            "format": null
-                        },
-                        {
-                            "query": {
-                                "filters": [
-                                    [
-                                        "Date of audit",
-                                        [
-                                            [
-                                                [
-                                                    "month",
-                                                    -1
-                                                ],
-                                                [
-                                                    "month",
-                                                    -1
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
-                                    ]
-                                ],
-                                "groups": [
-                                    "CTA_Message"
-                                ],
-                                "measures": [
-                                    [
-                                        "avg",
-                                        "CTA_Compliant"
-                                    ]
-                                ]
-                            },
-                            "header": "Last Month",
-                            "format": null
-                        },
-                        {
-                            "query": {
-                                "filters": [
-                                    [
-                                        "Date of audit",
-                                        [
-                                            [
-                                                [
-                                                    "month",
-                                                    -1
-                                                ],
-                                                [
-                                                    "month",
-                                                    -1
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
-                                    ]
-                                ],
-                                "groups": [
-                                    "CTA_Message"
-                                ],
-                                "measures": [
-                                    [
-                                        "avg",
-                                        "CTA_Compliant"
-                                    ]
-                                ],
-                                "formula": "round(A-B,3)"
-                            },
-                            "header": "%Δ",
-                            "format": "percentage"
-                        },
-                        {
-                            "query": {
-                                "filters": [
-                                    [
-                                        "Date of audit",
-                                        [
-                                            [
-                                                [
-                                                    "month",
-                                                    -1
-                                                ],
-                                                [
-                                                    "month",
-                                                    -1
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
-                                    ]
-                                ],
-                                "groups": [
-                                    "CTA_Message"
-                                ],
-                                "measures": [
-                                    [
-                                        "avg",
-                                        "CTA_Compliant"
-                                    ]
-                                ],
-                                "formula": "round(A-B,3)"
-                            },
-                            "header": "%Δ",
-                            "format": "percentage",
-                            "showBars": true
-                        }
-                    ],
-                    "measures": [
-                        [
-                            "avg",
-                            "CTA_Compliant",
-                            "A",
-                            {
-                                "display": "Current Month"
-                            }
-                        ],
-                        [
-                            "avg",
-                            "CTA_Compliant",
-                            "C",
-                            {
-                                "display": "%Δ",
-                                "format": "percentage"
-                            }
-                        ],
-                        [
-                            "avg",
-                            "CTA_Compliant",
-                            "D",
-                            {
-                                "display": "%Δ",
-                                "format": "percentage"
-                            }
-                        ]
-                    ],
-                    "groups": [
-                        "CTA_Message"
-                    ]
-                },
-                "datasets": [
-                    {
-                        "name": "PROPOSITION_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000AMGBCA4",
-                        "id": "0Fb23000000AMGBCA4"
-                    }
-                ],
-                "isFacet": true,
-                "isGlobal": false,
-                "useGlobal": true
-            },
             "Channel_35": {
                 "datasets": [
                     {
@@ -2944,7 +2759,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_1) }}"
                         ],
                         [
@@ -3120,7 +2935,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_1) }}"
                         ],
                         [
@@ -3322,7 +3137,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_1) }}"
                         ]
                     ]
@@ -3362,7 +3177,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_1) }}"
                         ]
                     ]
@@ -3403,7 +3218,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_1) }}"
                         ],
                         [
@@ -3520,6 +3335,194 @@
                     "options": {}
                 }
             },
+            "CTA_Message_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb23000000AMGBCA4",
+                        "label": "PROPOSITION_SCORE",
+                        "name": "PROPOSITION_SCORE",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000AMGBCA4"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliant",
+                            "A",
+                            {
+                                "display": "Current Month"
+                            }
+                        ],
+                        [
+                            "avg",
+                            "CTA_Compliant",
+                            "C",
+                            {
+                                "display": "%Δ",
+                                "format": "percentage"
+                            }
+                        ],
+                        [
+                            "avg",
+                            "CTA_Compliant",
+                            "D",
+                            {
+                                "display": "%Δ",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "CTA_Compliant"
+                                    ]
+                                ],
+                                "groups": [
+                                    "CTA_Message"
+                                ],
+                                "filters": [
+                                    [
+                                        "Date of audit",
+                                        [
+                                            [
+                                                [
+                                                    "month",
+                                                    0
+                                                ],
+                                                [
+                                                    "month",
+                                                    0
+                                                ]
+                                            ]
+                                        ],
+                                        ">=<="
+                                    ]
+                                ]
+                            },
+                            "format": null,
+                            "header": "Current Month"
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "CTA_Compliant"
+                                    ]
+                                ],
+                                "groups": [
+                                    "CTA_Message"
+                                ],
+                                "filters": [
+                                    [
+                                        "Date of audit",
+                                        [
+                                            [
+                                                [
+                                                    "month",
+                                                    -1
+                                                ],
+                                                [
+                                                    "month",
+                                                    -1
+                                                ]
+                                            ]
+                                        ],
+                                        ">=<="
+                                    ]
+                                ]
+                            },
+                            "format": null,
+                            "header": "Last Month"
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "CTA_Compliant"
+                                    ]
+                                ],
+                                "groups": [
+                                    "CTA_Message"
+                                ],
+                                "formula": "round(A-B,3)",
+                                "filters": [
+                                    [
+                                        "Date of audit",
+                                        [
+                                            [
+                                                [
+                                                    "month",
+                                                    -1
+                                                ],
+                                                [
+                                                    "month",
+                                                    -1
+                                                ]
+                                            ]
+                                        ],
+                                        ">=<="
+                                    ]
+                                ]
+                            },
+                            "format": "percentage",
+                            "header": "%Δ"
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "CTA_Compliant"
+                                    ]
+                                ],
+                                "groups": [
+                                    "CTA_Message"
+                                ],
+                                "formula": "round(A-B,3)",
+                                "filters": [
+                                    [
+                                        "Date of audit",
+                                        [
+                                            [
+                                                [
+                                                    "month",
+                                                    -1
+                                                ],
+                                                [
+                                                    "month",
+                                                    -1
+                                                ]
+                                            ]
+                                        ],
+                                        ">=<="
+                                    ]
+                                ]
+                            },
+                            "format": "percentage",
+                            "showBars": true,
+                            "header": "%Δ"
+                        }
+                    ],
+                    "groups": [
+                        "CTA_Message"
+                    ]
+                },
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
             "CTA_Compliance_47": {
                 "datasets": [
                     {
@@ -3588,7 +3591,7 @@
                             "=="
                         ],
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_1) }}"
                         ],
                         [
@@ -3865,7 +3868,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_1) }}"
                         ],
                         [
@@ -4010,7 +4013,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_1) }}"
                         ]
                     ]
@@ -4331,7 +4334,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_1) }}"
                         ]
                     ]
@@ -4371,6 +4374,10 @@
                         "X4P_5P_6P"
                     ],
                     "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_1) }}"
+                        ],
                         [
                             "Country",
                             "{{ selection(Country_3) }}"
@@ -4543,7 +4550,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_1) }}"
                         ]
                     ]
@@ -4917,7 +4924,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_1) }}"
                         ],
                         [
@@ -5013,7 +5020,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb23000000AMFmCAO"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -7626,6 +7633,13 @@
                 },
                 "type": "table"
             },
+            "table_1": {
+                "parameters": {
+                    "exploreLink": true,
+                    "step": "CTA_Message_1"
+                },
+                "type": "table"
+            },
             "table_2": {
                 "parameters": {
                     "exploreLink": true,
@@ -8617,13 +8631,6 @@
                     "textColor": "#091A3E"
                 },
                 "type": "text"
-            },
-            "table_1": {
-                "type": "table",
-                "parameters": {
-                    "exploreLink": true,
-                    "step": "CTA_Message_1"
-                }
             }
         }
     },
