@@ -315,3 +315,11 @@ jq('.userLink a').click(function(event) {
     event.preventDefault();
     window.open(jq(this).attr('href'));
 });
+function saveRolloutFuncJs() {         
+    if(validationErrorJs != '') {
+        reRenderPanels();
+    }
+    else {
+        saveRolloutFunc();
+    }
+}

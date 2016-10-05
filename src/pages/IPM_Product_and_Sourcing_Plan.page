@@ -10,6 +10,10 @@
 <apex:form >    
     <!-- all action functions -->
     <apex:actionfunction action="{!createProjectProduct}" rerender="sourceProductTable,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" name="createNewRow"/>
+    <apex:actionfunction action="{!sortTable}" rerender="sourceProductTable,scriptLoad" name="sortTable" >
+    	 <apex:param name="sFilter" assignTo="{!sFilterColumn}" value=""/>
+    	 <apex:param name="sOrder" assignTo="{!sSortOrder}" value=""/>
+    </apex:actionfunction>
     <apex:actionfunction action="{!getSourceUnit}" rerender="srcUnitList,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" name="searchsourceunit">
         <apex:param name="srchvalue" assignTo="{!searchUnit_STR}" value=""/>
     </apex:actionFunction>
@@ -107,13 +111,13 @@
                             <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsource ">
                                 <thead> 
                                     <tr>
-                                        <th scope="col" width="10%"><span>{!$Label.IPM_Product_Name}</span><span class="fa fa-sort-asc"></span></th>
-                                        <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Format}</span><span class="fa fa-sort-asc"></span></th>
-                                        <th scope="col"  width="12%"><span>{!$Label.IPM_Product_Formulation}</span><span class="fa fa-sort-asc"></span></th>
-                                        <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Packaging}</span><span class="fa fa-sort-asc"></span></th>
+                                        <th scope="col" width="10%" ><span>{!$Label.IPM_Product_Name}</span><span onclick="jSortTable('IPM_Product_Name__c',this);" class="{! If(sFilterColumn=='IPM_Product_Name__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Format}</span><span onclick="jSortTable('IPM_Format__c',this);" class="{! If(sFilterColumn=='IPM_Format__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col"  width="12%"><span>{!$Label.IPM_Product_Formulation}</span><span onclick="jSortTable('IPM_Formulation__c',this);" class="{! If(sFilterColumn=='IPM_Formulation__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Packaging}</span><span onclick="jSortTable('IPM_Packing__c',this);" class="{! If(sFilterColumn=='IPM_Packing__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
                                         <th scope="col"  width="18%"><span>{!$Label.IPM_Product_Size}</span></th>
                                         <th scope="col"  width="10%"><span>{!$Label.IPM_Product_of_GTo}</span></th>
-                                        <th scope="col" width="10%"><span>{!$Label.IPM_Product_Golden_Prototype}</span><span class="fa fa-sort-asc"></span></th>
+                                        <th scope="col" width="10%" ><span>{!$Label.IPM_Product_Golden_Prototype}</span><span onclick="jSortTable('IPM_GoldenPrototype__c',this);" class="{! If(sFilterColumn=='IPM_GoldenPrototype__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
                                         <th scope="col"  width="20%"><span>{!$Label.IPM_Product_Country_Mapping}</span></th>
                                     </tr>
                                 </thead>               

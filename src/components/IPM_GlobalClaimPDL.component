@@ -16,11 +16,15 @@
     <apex:actionFunction name="deleteClaim" action="{!deleteClaim}" reRender="ProjectClaimTableId" status="Loading">
        <apex:param name="projClaimId" assignTo="{!projClaimId}" value="" />
     </apex:actionFunction>
-    <apex:outputPanel layout="{!panelLayout}"  rendered="{!AND(readOnlyPDFView,NOT(isAppendix),showNoClaims)}">        
+    <apex:outputPanel layout="{!panelLayout}"  rendered="{!AND(OR(readOnlyPDFView,readOnlyLocalView),NOT(isAppendix),showNoClaims)}">        
         <div class="col-xs-12 yellowAlertPdl">
             <div class="col-sm-1 pull-left noPadright"><img alt="Alert" class="alertimgpdl" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
             <apex:outputPanel layout="{!panelLayout}" >                        
-                <apex:outputLabel styleClass="pdlalrtText" value="{!$Label.IPM_No_Claims_Added}"/>
+                <div class="col-sm-6 noPadleft pageTitlefont"> 
+           			<apex:outputLabel value="{!$Label.IPM_Global_Claims_Table}"/> 
+           			<apex:outputLabel styleClass="pdlalrtText" value="{!$Label.IPM_No_Claims_Added}"/>
+           		</div>
+                
             </apex:outputPanel>
         </div> 
     </apex:outputPanel>  
@@ -223,7 +227,7 @@
     </apex:outputPanel>
     
     <!-- To show Non Key and Key Claims on Local Rollout Projects -->
-    <apex:outputPanel layout="{!panelLayout}"  rendered="{!readOnlyLocalView}"> 
+    <apex:outputPanel layout="{!panelLayout}"  rendered="{!AND(readOnlyLocalView,rolloutLvlWrapper.size >0)}"> 
     <div class="paddleft">
        <div class="globalclaim"> <apex:outputLabel value="{!$Label.IPM_GlobalClaimsFromPDL}"/></div>
        

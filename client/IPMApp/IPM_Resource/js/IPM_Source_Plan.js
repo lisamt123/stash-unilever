@@ -181,11 +181,11 @@ function scndsrcplan(){
             }
         }
     }); 
-    jq(".hovertip").tooltip({ position: { my: 'center top', at: 'center bottom+10'},tooltipClass:'srcunitTip'}); 
+    jq(".hovertip").tooltip({ position: {  my: 'center bottom-15', at: 'center top'},tooltipClass:'apprUnitTip'});
     jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10'},tooltipClass:'srcunitTip'});
     jq(".approvalTip").tooltip({ position: {  my: 'center bottom', at: 'center top'},tooltipClass:'apprUnitTip'});
     jq(".mainsrcUnitTip").tooltip({ position: {  my: 'right center', at: 'left+20 center'},tooltipClass:'mainsrcHoverTip'});
-    jq(".srcedintoTip").tooltip({ position: { my: 'center bottom', at: 'center top'},tooltipClass:'apprUnitTip'}); 
+    jq(".srcedintoTip").tooltip({ position: { my: 'center bottom', at: 'center top'},tooltipClass:'apprUnitTip'});
 }
 
 function thirdsrcplan(){
@@ -277,4 +277,11 @@ function checkboxSelection(){
             });
         }
     }
+    jq('.hovertip,.info,.approvalTip,.mainsrcUnitTip,.srcedintoTip').tooltip().click(function() {
+        jq('.hovertip').tooltip( "close");
+        jq('.info').tooltip( "close");
+        jq('.approvalTip').tooltip( "close");
+        jq('.mainsrcUnitTip').tooltip( "close");
+        jq('.srcedintoTip').tooltip( "close");
+    });
 }

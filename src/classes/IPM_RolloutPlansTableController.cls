@@ -72,6 +72,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public Boolean alignAllMCOTLDs{get;set;} 
     public Date allignedDateValue{get;set;}
     public string baseUrl{get;set;}
+    string httpsStr = 'https://';
+    string hostStr = 'Host';
     public string addRolloutUrlStr{get;set;}
     public string deleteMCORolloutUrlStr{get;set;}
     public string cancelRolloutUrlStr{get;set;}
@@ -95,8 +97,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         strIPM_LocalRolloutPlansTablePage = 'IPM_LocalRolloutPlansTablePage';
         strIPM_RolloutPlansTable_GKM3Page = 'IPM_RolloutPlansTable_GKM3Page';
         IPM_IECompatible.ieFix();//Added for compatibility fix
-        string httpsStr = 'https://';
-        string hostStr = 'Host';
+        
         baseUrl = httpsStr + string.valueOf(ApexPages.currentPage().getHeaders().get(hostStr));
         showEntity = IPM_ConstantUtils.BLANK;
         initialise();
@@ -836,10 +837,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     public void saveRollout()
     {
-       validationError=null;
-       // CR0355 - clear 'nonKeyMcoTLDMisalignedMap'
-       for(String key: nonKeyMcoTLDMisalignedMap.keySet())
-       {
+        validationError='';
+        // CR0355 - clear 'nonKeyMcoTLDMisalignedMap'
+        for(String key: nonKeyMcoTLDMisalignedMap.keySet())
+        {
             nonKeyMcoTLDMisalignedMap.put(key,false);
        }
 
@@ -987,10 +988,16 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             } 
              
             allignedDateValue=null;      
-            alignAllMCOTLDs=false;  
-            isEditMode=false;
-            PageReference rolloutPlans = refreshPage();
-            saveRolloutUrlStr = baseUrl + rolloutPlans.getUrl();           
+            alignAllMCOTLDs=false;
+            
+            if(String.isNotBlank(validationError)) {
+                isEditMode=true;
+            }
+            else {
+                isEditMode=false;
+                PageReference rolloutPlans = refreshPage();
+                saveRolloutUrlStr = baseUrl + rolloutPlans.getUrl();
+            }     
         }
         catch (Exception ex)
         {
