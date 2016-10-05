@@ -525,4 +525,45 @@ public with sharing class IPM_MilestoneHelper
             }    
         }
     }
+    /*@Method Name: rollupMilestoneDuedate
+      @Date: 5th Oct 2016
+      @Description: This method will be called from IPM_MilestoneHandler to update minimum due date from Rollout Mielstone to Gloabl Original Projects corresponding Milestones (Contract Gate Milestone & Market Ready Gate Milestone) for GKM2 projects  
+      @param1 :Map of <Id of Project of incoming Milestones> 
+    */
+    public static void rollupMilestoneDuedate(map<id, list<IPM_Milestone__c>> mapprojMilestones){
+    set<id> setParentProjIds = new set<id>();
+    map<id,id> mapprojParent = new map<id,id>();
+    map<id,list<IPM_Milestone__c>> mapProjchildMilestones = new map<id, list<IPM_Milestone__c>>();
+    list<IPM_Milestone__c> lstUpdateMilestones = new list<IPM_Milestone__C>();
+    map<id, IPM_Milestone__c> mapUpdateML = new map<id, IPM_Milestone__c>();
+
+    for(IPM_Project__c proj :[select id, IPM_Parent_Project__c from IPM_Project__c where id in :mapprojMilestones.keySet() and IPM_ProjectGKM__c = : IPM_ConstantUtils.GKM_2 and IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT]){
+        setParentProjIds.add(proj.IPM_Parent_Project__c);
+        mapprojParent.put(proj.id,proj.IPM_Parent_Project__c);
+        if(!mapProjchildMilestones.containsKey(proj.IPM_Parent_Project__c)){
+            list<IPM_Milestone__c> temp = new list<IPM_Milestone__c>();
+            temp = mapprojMilestones.get(proj.id);
+            mapProjchildMilestones.put(proj.IPM_Parent_Project__c, temp);   
+        }
+        else{
+            mapProjchildMilestones.get(proj.IPM_Parent_Project__c).addAll(mapprojMilestones.get(proj.id));
+        }
+    }
+
+    if(!setParentProjIds.isEmpty()){
+        for(IPM_Milestone__c ml : [select IPM_Project__c, IPM_Project__r.IPM_Phase__c, IPM_Due_Date__c, IPM_Phase__c  from IPM_Milestone__c where IPM_Project__c in :setParentProjIds]){
+            if(ml.IPM_Phase__c == ml.IPM_Project__r.IPM_Phase__c){
+                for(IPM_Milestone__c childMl :mapProjchildMilestones.get(ml.IPM_Project__c)){
+                    if(ml.IPM_Name__c == childMl.IPM_Name__c && (ml.IPM_Due_Date__c==null || ml.IPM_Due_Date__c > childMl.IPM_Due_Date__c)){
+                        ml.IPM_Due_Date__c = childMl.IPM_Due_Date__c;
+                        mapUpdateML.put(ml.id, ml);
+                    }
+                }
+            }
+        }
+    }
+    if(!mapUpdateML.isEmpty()){
+        update mapUpdateML.values();
+    }    
+    }
 }

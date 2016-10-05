@@ -18,6 +18,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
     Map<Id,IPM_Project__c> ipmProjects = new Map<Id,IPM_Project__c>();//Map of IPM Project Id and IPM Project
     Map<id,IPM_Project__c> eligibleProjectMapForCopyOver = new Map<id,IPM_Project__c>();//Map of IPM Project Id and IPM Project
     Map<Id,IPM_Milestone__c> eligibleMilestoneMapForCopyOver = new Map<Id,IPM_Milestone__c>();//Map of IPM Milestone Id and IPM Milestone
+    Map<Id,list<IPM_Milestone__c>> mapDueDateRollupMilestones = new Map<Id,list<IPM_Milestone__c>>();//Map of IPM Milestone Id and IPM Milestone
     
     /**
     * @description:bulkBefore
@@ -154,6 +155,20 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
                             eligibleMilestoneMapForCopyOver.put(incomingMilestone.Id,incomingMilestone); 
                         }
                    }
+                   //Evaluate for Due Date Rollup
+                   if((incomingMilestone.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && IPM_ConstantUtils.ROLLUP_MILESTONES.indexOf(incomingMilestone.IPM_Name__c) != -1) && (Trigger.isInsert || (incomingMilestone.IPM_Due_Date__c <oldMilestone.IPM_Due_Date__c))){
+                        if(!mapDueDateRollupMilestones.containskey(incomingMilestone.IPM_Project__c)){
+                            list<IPM_Milestone__c> temp = new list<IPM_Milestone__c>();
+                            temp.add(incomingMilestone);
+                            mapDueDateRollupMilestones.put(incomingMilestone.IPM_Project__c, temp);      
+                        }   
+                        else{
+                            mapDueDateRollupMilestones.get(incomingMilestone.IPM_Project__c).add(incomingMilestone);
+                        }
+                   }
+                }
+                if(!mapDueDateRollupMilestones.isEmpty()){
+                    IPM_MilestoneHelper.rollupMilestoneDuedate(mapDueDateRollupMilestones);
                 }
             }
             /* Map with all the projects related to updated milestones */           
