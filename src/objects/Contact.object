@@ -992,11 +992,25 @@
     <fields>
         <fullName>ICB_Status__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( ICB_Cause__c  &lt;&gt; &apos;&apos;, &apos;Fail&apos;, IF( ICB_Community_User__c = TRUE , &apos;Active&apos;, &apos;Inactive&apos;))</formula>
         <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>ICB_Type__c</fullName>

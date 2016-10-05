@@ -1,7 +1,6 @@
 @isTest
 public class ICB_PriceBookCreation_Test {
-
-    private static Account acc;
+	private static Account acc;
     private static Contact contact;
     private static Product2 product;
     private static product2 products2;

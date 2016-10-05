@@ -19,8 +19,7 @@ public with sharing class ICB_Product2DAO {
         
     // Construtor 
     public ICB_Product2DAO() {}
-        
-    // Get Instance method to return a static final instance of this object. 
+     // Get Instance method to return a static final instance of this object. 
     public static ICB_Product2DAO getInstance()
     {
     	return instance;
