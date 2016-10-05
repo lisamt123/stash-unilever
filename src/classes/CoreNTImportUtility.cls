@@ -87,7 +87,7 @@ public with sharing class CoreNTImportUtility {
         String loggedInUserName = Userinfo.getUserEmail();
         // System.debug('loggedInUser '+loggedInUser);
         transient DOM.Document doc = new DOM.Document();
-        transient Integer count = 1;
+        //transient Integer count = 1;
         try {
             doc.load(xml.toString());
             xml = null;
@@ -108,7 +108,7 @@ public with sharing class CoreNTImportUtility {
             transient List < CORE_NT_Project__c > projectLst = new List < CORE_NT_Project__c > ();
             transient List < CORE_NT_Team__c > prjTeamLst = new List < CORE_NT_Team__c > ();
             Boolean validUser = true;
-            Boolean validateProject = false;
+            //Boolean validateProject = false;
             if (project.Name != null)
                 projectLst = [Select id, name from CORE_NT_Project__c where Name = : project.Name Limit 1];
             // Implementing L2 mgr signoff    
@@ -181,8 +181,9 @@ public with sharing class CoreNTImportUtility {
                     else
                         isValid = false;
                 }
-
-                for (User userObj: [Select id from User where Email = : email Limit 1]) {
+                   List<User> U1 = [Select id from User where Email = : email]; 
+                //for (User userObj: [Select id from User where Email = : email Limit 1]) {
+                    for(User userobj:U1){
                     projTeamObj.TeamMemberName__c = userObj.id;
                     projTeamList.add(projTeamObj);
                 }
@@ -488,6 +489,7 @@ public with sharing class CoreNTImportUtility {
             upsert projTeamList ProjTeam_ExtId__c;
             matchResourcesToTasks(mapResourceToTask, projTeamMap);
         } catch (Exception ex) {
+            System.debug('The following exception has occurred: ' + ex.getMessage());
             throw ex;
         }
         System.debug(' Class : ImportProjectUtility || Method : insertSalesforceObjects || Completed ');
