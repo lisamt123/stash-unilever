@@ -260,7 +260,7 @@
                                             <td scope="col" class="text-right" width="6%">
                                                 <div class="mr15 inlineBlk">
                                                     <div class="SecButtonSet">                                                       
-                                                        <apex:commandLink styleClass="icoButton delete" action="{!deleteMCORollout}" rendered="{!AND(isEditable,isEditMode)}" onComplete="reRenderPanels();" status="loadingStatus">
+                                                        <apex:commandLink reRender="deleteMCORolloutUrlStrPanel" onComplete="afterdeleterollout();" styleClass="icoButton delete" action="{!deleteMCORollout}" rendered="{!AND(isEditable,isEditMode)}" status="loadingStatus">
                                                             <apex:param name="p1" assignTo="{!selectedMCORollout}" value="{!localRollout.Id}"/>
                                                         </apex:commandLink>
                                                     </div>
