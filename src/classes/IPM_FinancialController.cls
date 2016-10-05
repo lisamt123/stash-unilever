@@ -3536,7 +3536,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if(( validationSettingSet.contains('checkValidCAPEXYellow'.toLowerCase()) &&
                  !isFinacialConsolidated &&
                 (Decimal)finToValidate.get(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE) ||
-                (isFinacialConsolidated && finToValidate.Yellow_Validation_Cells__c != null && finToValidate.Yellow_Validation_Cells__c.containsIgnoreCase(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix))){
+                (isFinacialConsolidated && 
+                 finToValidate.get(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) != null && 
+                 ((String)finToValidate.get(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).containsIgnoreCase(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix))){
+               
                isCAPEXInvalid = true;
                yellowValidationCellsString = yellowValidationCellsString + finToValidate.Financial_External_ID__c + IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.SEMICOLON;
             }
