@@ -996,27 +996,43 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             }
         }
        
-        
-        if( (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)|| ( ( IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c )  || project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3) && ( IPM_ConstantUtils.PHASE_IDEAS.equalsIgnoreCase(project.IPM_phase__c) ) ) )
-        { 
-            processUnSelectedCountries(setCountryCodesGlobalUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
-        
-            processGlobalMCORollouts();
-        }
-        if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)  || (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3))
-        {      
+        if(project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
+        {
+        	if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c) || 
+        		( ( IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c ) ) && ( IPM_ConstantUtils.PHASE_IDEAS.equalsIgnoreCase(project.IPM_phase__c) ) ) )
+	        { 
+	            processUnSelectedCountries(setCountryCodesGlobalUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
+	        
+	            processGlobalMCORollouts();
+	        } 
+	        else if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)) 
+	        {      
                 processUnSelectedCountries(setCountryCodesMCOsUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
                 processUnSelectedCountries(setCountryCodesUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY);
                 processUnSelectedCountries(setCountryNoRolls,IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY);
                 
-            if(isProjectGKM3){
-                processUnSelectedCountries(setCountryCodesGlobalUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
-				processGlobalMCORollouts();
-            }
                 processRegionalMCORollouts();
                 processRegionalCountryRollouts(); 
+	        }		
         }
-        
+        else
+        {
+            if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c) && IPM_ConstantUtils.PHASE_IDEAS.equalsIgnoreCase(project.IPM_phase__c)) 
+            {
+            	processUnSelectedCountries(setCountryCodesGlobalUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
+	            processGlobalMCORollouts();
+            }
+            else
+            {
+	            processUnSelectedCountries(setCountryCodesMCOsUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
+	            processUnSelectedCountries(setCountryCodesUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY);
+	            processUnSelectedCountries(setCountryNoRolls,IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY);
+	  			
+	        	processGlobalMCORollouts();
+	            processRegionalMCORollouts();
+	            processRegionalCountryRollouts(); 
+            }
+        }
        
         filterRollouts();
         //Call Your method to check if there are projects available which are already stopped.
@@ -1201,7 +1217,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     {
         if(!actualDeleteRolloutMap.isEmpty())
         {
-            delete actualDeleteRolloutMap.values();
+            List<IPM_Project_Rollout__c> deleteRolloutList = [SELECT ID FROM IPM_Project_Rollout__c where Id in :actualDeleteRolloutMap.values()]; 
+            delete deleteRolloutList;
         }
     }
     
@@ -1220,11 +1237,19 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             {
                 regionalRollout.Id = null;
             }
-            upsert mapUpsertRegionalRollouts.values() IPM_Rollout_Project__c;
+            try{
+            	upsert mapUpsertRegionalRollouts.values() IPM_Rollout_Project__c;	
+            }
+            catch (Exception ex) 
+	        {
+	            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,GET_KEY_MCO_ROLLOUT_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+	            isError = TRUE;
+	            errorMessage = Label.IPM_Generic_ErrorMessage;
+	        }
         }
     }
-	
-	/**
+  
+  /**
     *  @Description This is a helper method which processes Local Rollout and upserts with external id IPM_Rollout_Project__c
     *  @name processLocalRollouts
     *  @param NONE
@@ -1236,7 +1261,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         {
             
             if(isProjectGKM3 && !mapUpsertKeyNKRollouts.isEmpty()){
-            	for(IPM_Project_Rollout__c localRollout : mapUpsertKeyNKRollouts.values()){
+              for(IPM_Project_Rollout__c localRollout : mapUpsertKeyNKRollouts.values())
+              {
             		if(!mapUpsertRollouts.containsKey(localRollout.IPM_Rollout_Project__c)){
             			mapUpsertRollouts.put(localRollout.IPM_Rollout_Project__c, localRollout);
             		}
@@ -1248,8 +1274,17 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             {
                 localRollout.Id = null;
             }
-            upsert mapUpsertRollouts.values() IPM_Rollout_Project__c;
-        }
+            try
+		{
+			upsert mapUpsertRollouts.values() IPM_Rollout_Project__c;
+		}
+		catch (Exception ex) 
+		{
+			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,GET_REGIONAL_ROLLOUT_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+			isError = TRUE;
+			errorMessage = Label.IPM_Generic_ErrorMessage; 
+		} 
+        } 
     }
     
     /**
@@ -1356,7 +1391,18 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     */
     @TestVisible private void processGlobalMCORollouts()
     {    
-        for (String countryCodeGlobal : setCountryCodesGlobal)
+    	Set<String> allSelectionExceptNoRollout = new Set<String>();
+    	
+    	if(isProjectGKM3 && project.IPM_phase__c != IPM_ConstantUtils.PHASE_IDEAS)
+    	{
+	    	allSelectionExceptNoRollout.addAll(setCountryCodesMCOs);
+	    	allSelectionExceptNoRollout.addAll(setCountryCodes);	
+    	}
+    	else
+    	{
+    		allSelectionExceptNoRollout.addAll(setCountryCodesGlobal);
+    	}
+    	for (String countryCodeGlobal : allSelectionExceptNoRollout)
         {
             MDO_Geography__c geography = mapUnileverCountries.get(countryCodeGlobal);
             
