@@ -209,7 +209,7 @@
                                 }
                             },
                             {
-                                "colspan": 3,
+                                "colspan": 4,
                                 "column": 1,
                                 "name": "header_comTrend",
                                 "row": 14,
@@ -467,7 +467,7 @@
                                 }
                             },
                             {
-                                "colspan": 3,
+                                "colspan": 4,
                                 "column": 6,
                                 "name": "header_scoreTrend",
                                 "row": 14,
