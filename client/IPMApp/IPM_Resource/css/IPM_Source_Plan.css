@@ -1,5 +1,5 @@
-.countryassociation .lightblue{width:57%;height:100px;overflow:auto;float:left; text-align:left; background-color:#f2f8fc; padding:10px; border:1px solid #ddd;font-size:12px;}
-.countryassociation .darkblue{width:34%;height:100px;color:#222;float:left; text-align:left;background-color:#dceefa; padding:10px;font-size:12px; border:1px solid #ddd}
+.countryassociation .lightblue{width:56.5%;margin-right: 1px;height:100px;overflow:auto;float:left; text-align:left; background-color:#f2f8fc; padding:10px; border:2px solid #ddd;font-size:12px;}
+.countryassociation .darkblue{width:34.5%;height:100px;color:#222;float:left; text-align:left;background-color:#dceefa; padding:10px;font-size:12px; border:2px solid #ddd}
 .border_bottom{border-bottom:1px solid #ddd;padding:5px 0px; margin-bottom:6px;}
 .darkblue .border_bottom{border-bottom:1px solid #ddd;}
 .countryassociation{margin-bottom:40px;margin-top:10px;}
@@ -127,6 +127,7 @@ width:100%;
     padding: 8px 0px;
 }
 .fa.fa-sort-asc{line-height:0;}
+.fa.fa-sort-desc{line-height:0;}
 .productsourcegrey input {
     font-size: 12px;
     width: 100%;
@@ -343,6 +344,7 @@ input.icoButton.clone{position:relative; background:url(../images/ico-clone.svg)
 .drpDownContainer{width: 185px;float: left;margin-top: 5px;}
 .srcingTitle{font-size: 12px;margin-right: 5px;}
 .hdnCheckboxDiv{display:none;float: left;margin-top: 5px;width: 190px;margin-left: 10px;}
+.scrollcontainer .col-sm-6{width:56%;}
 .drpDownContainer select.srcingSlectlist{height: 35px;width: 100%;}
 /* Tooltip Styles */
 .ui-tooltip.apprUnitTip{
@@ -470,6 +472,9 @@ input.icoButton.clone{position:relative; background:url(../images/ico-clone.svg)
   .custSizeWidth{width:9%;}
   .custNameWidth{width:5%;}
   .custSrcWidth{width:11%;}
+  .scrollcontainer .col-sm-6{width:57%;}
+  .confirmGreyBg{width: 385px;}
+  .hdnCheckboxDiv{width: 166px;}
 }
 @media (min-width: 1024px) and (max-width: 1300px) {
 
