@@ -1,11 +1,3 @@
 src
-src/dashboards/FS_Dashboards/FS_NA_Opportunity_Pipeline_Dash_Board.dashboard
-src/reports/FS_SHARED_FOLDER/FS_Opportunity_Pipeline.report
-src/reports/FS_SHARED_FOLDER/Opp_Summary_Report.report
-src/reports/FS_SHARED_FOLDER/FS_Opportunities_by_Product_Focus.report
-src/reports/FS_SHARED_FOLDER/Sales_Manager_Pipeline_Next_90_days.report
-src/reports/FS_SHARED_FOLDER/FS_Opportunity_Pipeline_Total.report
-src/reports/FS_SHARED_FOLDER/Month_Over_Month_Close_Trend.report
-src/reports/FS_SHARED_FOLDER/Account_Def_Objctives_and_Opportunities.report
-src/reports/FS_SHARED_FOLDER/Open_Opportunities_by_Hierarchy.report
-src/reports/FS_SHARED_FOLDER/Stuck_Opportunities.report
+src/permissionsets
+src/permissionsets/FS_Admin.permissionset

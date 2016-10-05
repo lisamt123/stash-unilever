@@ -16,7 +16,6 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 ***********************************************************************/
 public with sharing class ICB_Cockpit_CC 
 {    
-    
     private static final String CONST_STATUS_ITEM_OPP_SOLD_PENDING;
     private static final String CONST_STATUS_ITEM_OPP_SOLD;
     private static final String CONST_EMPTY;

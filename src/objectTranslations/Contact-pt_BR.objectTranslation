@@ -7,6 +7,18 @@
     <fields>
         <label>Status</label>
         <name>ICB_Status__c</name>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation>Inativo</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation>Ativo</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fail</masterLabel>
+            <translation>Falha</translation>
+        </picklistValues>
     </fields>
      <fields>
         <label>Fail</label>
@@ -841,4 +853,5 @@
         <label><!-- YahooWeather --></label>
         <name>YahooWeather</name>
     </webLinks>
+    
 </CustomObjectTranslation>

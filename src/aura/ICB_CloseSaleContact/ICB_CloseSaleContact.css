@@ -78,7 +78,6 @@
     
     display: initial;
 }
-
 @media(max-width:700px){
     .THIS .hidden{
         display : none !important;

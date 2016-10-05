@@ -19,6 +19,8 @@ Property   :  UserProfile
 Purpose    :  To store User KUN Profile attribute in view State for page rendering purposes
 ****************************************************************************************************************************************/
     public KUN_Profile__C UserProfile{get;set;}
+    
+    
 /**************************************************************************************************************************************
 Property   : MyEvents
 Purpose    : This property used to get and set events created by Administrators / users based on specific duration
@@ -29,11 +31,13 @@ Property   : Question
 Purpose    : This property used to get and set the question entered by user for Ask the Expert Component
 ***************************************************************************************************************************************/
     public string Question{get;set;}
+    
 /**************************************************************************************************************************************
 Property   : MyEvents
 Purpose    : This property used to highlights the dates on Visual force Page Calendar Component
 ***************************************************************************************************************************************/
     public List<KUN_Links> HighlightEvents{get;set;}
+    
 /**************************************************************************************************************************************
 Property   : DateFrom
 Purpose    : This property used to get and set dates selected by User using Visual force Page Calendar Component
@@ -131,6 +135,8 @@ Purpose    : Read-only property to get the specific record type defined in the o
             string ExpertGroup='';
             string strCollaborationGroup  =Label.KUN_Chatter_Group_Name_LBL;
             
+            
+           
             strCollaborationGroup   = IsTest ?  'KUN Test Collaboration Group' : strCollaborationGroup ;
             Id userId= [SELECT Id FROM CollaborationGroup WHERE name=:strCollaborationGroup LIMIT 1].Id ;
                        
@@ -141,6 +147,9 @@ Purpose    : Read-only property to get the specific record type defined in the o
             if(molstExperts!=null)ExpertGroup=molstExperts[0].Expert_Group__c;
             List<string> result=ExpertGroup.split(';\\s*');
             LIST<user> molstUsers=[SELECT Id FROM User WHERE email in:result];
+            //Integer questionsCounts=[select count() FROM KUN_Activities__c where Process_Area__c!='' AND Sub_Process_Area__c!=''];
+             
+            
             for(User moUser:molstUsers)userToMentionId.add(moUser.Id);
             mentionTextPost(userId,userToMentionId,postText,ProcessName,SubProcessName);
             ApexPages.Message myMsg=new  ApexPages.Message(ApexPages.Severity.INFO,'Your Question has been sent to ' + ExpertGroup + '. Check the KUN Chatter group for more updates.');
@@ -176,7 +185,7 @@ Purpose    : Read-only property to get the specific record type defined in the o
                 MyEvents=getEvents(firstDate,lastDate);
             }
             LIST<KUN_Profile__c> moProfile=[SELECT Name,Capability__c,Cluster__c,Position__c,Unilever_Profile__r.email,Unilever_Profile__r.country,Unilever_Profile__r.Name,Unilever_Profile__r.FullPhotoUrl,Unilever_Profile__r.SmallPhotoUrl FROM KUN_Profile__c WHERE Unilever_Profile__c=:UserInfo.getUserId() LIMIT 1];
-            if(moProfile==null){
+            if(moProfile.size()<=0){
                 ApexPages.Message myMsg=new  ApexPages.Message(ApexPages.Severity.ERROR,'Your Key User Community Profile dose not exists, Please Contact Community Administrator for further Information.');
                 ApexPages.addMessage(myMsg);
                 return;
