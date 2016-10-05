@@ -24,7 +24,7 @@ function checkDuplicateRow(){
     }
 }
 function displayCapabilitySection(param,eve){                
-    if(jq('select').val() === 'select')
+    if(jq('select').val() === 'Select Sourcing Unit')
     {
         jq('#iddivCapability').hide();
     }
@@ -277,4 +277,15 @@ function checkboxSelection(){
             });
         }
     }
+}
+function jSortTable(columnName,thisVar)
+{
+if(jq(thisVar).attr('class')=='fa fa-sort-asc')
+	{
+		sortTable(columnName,'asc');
+	}
+	else if(jq(thisVar).attr('class')=='fa fa-sort-desc')
+	{
+		sortTable(columnName,'desc');
+	}
 }
