@@ -7,7 +7,7 @@
 */
 public with sharing class CoreNTImportCtl {
 
-        
+    public static final string None=None;
     public CORE_NT_Project__c project {get; set;}
     public String contentType {get;set;}
     public string fileName{get;set;}  
@@ -99,7 +99,7 @@ public with sharing class CoreNTImportCtl {
                 throw new CoreNTException(CoreNTException.ERROR_EMPTY_XML);
             }            
             checkProjectExistFlag = false;
-            String xml = '';
+            //String xml = '';
             if (fileBody != null && fileName != null) {
                 if (!fileName.contains(CoreNTConstants.XML_EXTENSION))
                     throw new CoreNTException(CoreNTException.ERROR_INVALID_XML);
@@ -107,11 +107,13 @@ public with sharing class CoreNTImportCtl {
                     fileBody = null; // Null out the large filesize to prevent ViewState Max Size errors.
                     throw new CoreNTException(CoreNTException.ERROR_FILESIZE_TOO_LARGE + ' The number of characters must be less than ' + Label.Core_NT_Import_File_Max_Size + '.');
                 }
+			    return updateProjectDeatil();
             }
             // Uploading MPP Xml into Content Version for supporting Big Size Xmls
 
             uploadMPPXml(fileBody);
-            
+			transient List < CORE_NT_Project__c > lstProject = new List < CORE_NT_Project__c > ();
+            lstProject = [Select id, name from CORE_NT_Project__c where Name = : projectName Limit 1];
             for(List<ContentVersion> attachedFiles : [select d.Id,d.versionData,d.title from ContentVersion d where d.title =: fileName ORDER BY CreatedDate DESC limit 1] ) {
                
                 transient DOM.Document doc = new DOM.Document();                
@@ -119,21 +121,22 @@ public with sharing class CoreNTImportCtl {
                 transient DOM.XMLNode root = doc.getRootElement();
                 doc = null;
                 transient String projectName=null;
-                transient List < CORE_NT_Project__c > lstProject = new List < CORE_NT_Project__c > ();
+                //transient List < CORE_NT_Project__c > lstProject = new List < CORE_NT_Project__c > ();
                 if (root.getChildElement(CoreNTConstants.PROJECT_TITLE_TAG, CoreNTConstants.XML_NAMESPACE) != null)
                     projectName = root.getChildElement(CoreNTConstants.PROJECT_TITLE_TAG, CoreNTConstants.XML_NAMESPACE).getText();
                 root=null;
                 if (projectName != null)
-                    lstProject = [Select id, name from CORE_NT_Project__c where Name = : projectName Limit 1];
+                    //lstProject = [Select id, name from CORE_NT_Project__c where Name = : projectName Limit 1];
                 if (!lstProject.isEmpty())
                     checkProjectExistFlag =true;
                 lstProject=null;
             }
-
-            if(checkProjectExistFlag ==true)
+              /*if(checkProjectExistFlag ==true)
                 return null;
             else
-                return updateProjectDeatil();
+                //return updateProjectDeatil();
+			
+                return null;*/
         }
         catch (Exception e) {
                 ApexPages.Message errorMsg = new ApexPages.Message(ApexPages.Severity.FATAL, e.getMessage());
@@ -243,8 +246,8 @@ public with sharing class CoreNTImportCtl {
     public List < SelectOption > getBrandItems() {
         System.debug(' Class : ImportProjectController || Method : getBrandItems || Started ');
         brandOptions = new List < SelectOption > ();
-        List < AggregateResult > lstBrandNames = [SELECT Name FROM uw_Brand__c GROUP BY Name];
-        brandOptions.add(new SelectOption('-none-', '-None-'));
+        List < AggregateResult > lstBrandNames = [SELECT Name FROM uw_Brand__c GROUP BY Name Limit 1000];
+        brandOptions.add(new SelectOption(None, None));
         if (lstBrandNames.size() > 0) {
             for (AggregateResult brandName: lstBrandNames) {
                 brandOptions.add(new SelectOption((String) brandName.get('Name'), (String) brandName.get('Name')));
@@ -266,7 +269,7 @@ public with sharing class CoreNTImportCtl {
             System.debug(' Class : ImportProjectController || Method : getCategoryItems || Started ');
             categoryOptions = new List < SelectOption > ();
             List < AggregateResult > lstCategoryNames = [SELECT Category__c FROM Brand_Centre_New__c GROUP BY Category__c];
-            categoryOptions.add(new SelectOption('-none-', '-None-'));
+            categoryOptions.add(new SelectOption(None, None));
             for (AggregateResult categoryName: lstCategoryNames) {
                 if((String) categoryName.get('Category__c')!= null)
                     categoryOptions.add(new SelectOption((String) categoryName.get('Category__c'), (String) categoryName.get('Category__c')));
@@ -284,8 +287,8 @@ public with sharing class CoreNTImportCtl {
     public List < SelectOption > getSubcategoryItems() {
             System.debug(' Class : ImportProjectController || Method : getSubcategoryItems || Started ');
             subcategoryOptions = new List < SelectOption > ();
-            subcategoryOptions.add(new SelectOption('-none-', '-None-'));
-            if (category != '-none-') {
+            subcategoryOptions.add(new SelectOption(None, None));
+            if (category != None) {
                 List < AggregateResult > lstSubcategoryNames = [SELECT Sub_Category__c FROM Brand_Centre_New__c where Category__c = : category GROUP BY Sub_Category__c];
                 for (AggregateResult subcategoryName: lstSubcategoryNames) {
                     if((String) subcategoryName.get('Sub_Category__c') != null)
@@ -306,7 +309,7 @@ public with sharing class CoreNTImportCtl {
             System.debug(' Class : ImportProjectController || Method : updateProject || Started ');
             Pagereference projDetailPage = new Pagereference('/' + project.Id);
             try{
-                if (brandName != null && category != null && subcategory != null && brandName != '-none-' && category != '-none-' && subcategory != '-none-') {
+                if (brandName != null && category != null && subcategory != null && brandName != None && category != None && subcategory != None) {
                     project.CategoryName__c = category;
                     project.SubcategoryName__c = subcategory;
                     project.Brand__c = brandName;

@@ -13,6 +13,8 @@ public class CoreNTLandingPageController {
     public String sfdcBaseURLforImportPage { get; set; }
     public String sfdcBaseURLforReportPage { get; set; }
     public String loggedInUser { get; set; }
+	public static final string All=All;
+	public static final Regional='Regional';
     
     public List < AggregateResult > lstMilestoneTask {get;set;}
     public List < TotalProjectDataCounts > lstCategortBasedProjectData { get; set; }
@@ -93,13 +95,13 @@ public class CoreNTLandingPageController {
         }
     }
     public void updateUserRoleDetails(){
-        selectedCategory = 'All';
+        selectedCategory = All;
         selectedCategoryCriteria = 'none';
-        selectedScopeCriteria='All';
-        selectedLaunchCriteria='All';
-        selectedProjectsCriteria='All';
-        selectedTasksCriteria='All';
-        selectedResourecsCriteria='All';      
+        selectedScopeCriteria=All;
+        selectedLaunchCriteria=All;
+        selectedProjectsCriteria=All;
+        selectedTasksCriteria=All;
+        selectedResourecsCriteria=All;      
         selectedProjectID =null;
         if(selectedLogedInUserRoleKey != null)
             logedInUserRoleKey=Integer.ValueOf(selectedLogedInUserRoleKey);
@@ -114,7 +116,7 @@ public class CoreNTLandingPageController {
 
 
         if(logedInUserRoleKey == 0){
-            lstLoggedInUserProjectDetails = [SELECT OTIF_Status__c,Id, Name, PercentComplete__c, Deadline__c, Kickoff__c, CategoryName__c, SubcategoryName__c, Brand__c,Project_Scope__c,Cluster__c FROM CORE_NT_Project__C];
+            List<CORE_NT_Project__C> lstLoggedInUserProjectDetails = [SELECT OTIF_Status__c,Id, Name, PercentComplete__c, Deadline__c, Kickoff__c, CategoryName__c, SubcategoryName__c, Brand__c,Project_Scope__c,Cluster__c FROM CORE_NT_Project__C];
         }
         else{
             List<Report> report = [SELECT Id FROM Report WHERE DeveloperName = 'Delayed_Projects_and_Tasks_Report' limit 1];
@@ -150,13 +152,13 @@ public class CoreNTLandingPageController {
             displayLoggedInUserProjectsBasedOnCategory();
     }
     public void updateOTFStatusImage(){
-        Integer noOfDaysDelayed;
+        //Integer noOfDaysDelayed;
         Integer totalTasksInCurrentProject;
         Integer veryLateTasks;
         Integer LateTasks;
         Integer onTimeTasks;
         mapAllTaskDetailsOfProject= new Map<Id,List<CORE_NT_Task__C>>();
-        lstAllTaskDetailsOfProject=[SELECT ProjectId__c,Id,Due_Date__c,Complete__c,Days_Late_Formula__c FROM CORE_NT_Task__C];
+        List<CORE_NT_Task__C> lstAllTaskDetailsOfProject=[SELECT ProjectId__c,Id,Due_Date__c,Complete__c,Days_Late_Formula__c FROM CORE_NT_Task__C];
         //lstTempTaskDetails=new List<CORE_NT_Task__C>();
         for(CORE_NT_Task__C objTaskDetail: lstAllTaskDetailsOfProject){
             lstTempTaskDetails=new List<CORE_NT_Task__C>();
@@ -206,7 +208,7 @@ public class CoreNTLandingPageController {
         categoryOptions = new List < SelectOption > ();
         if (logedInUserRoleKey != 3) {
             categoryOptionsSet = new Set < SelectOption > ();
-            categoryOptions.add(new SelectOption('All', 'All'));
+            categoryOptions.add(new SelectOption(All, All));
             for (CORE_NT_Project__C objProject: lstLoggedInUserProjectDetailsTemp) {
                 if (objProject.CategoryName__c!=null && categoryOptionsSet.add(new SelectOption(objProject.CategoryName__c, objProject.CategoryName__c)))
                     categoryOptions.add(new SelectOption(objProject.CategoryName__c, objProject.CategoryName__c));
@@ -225,7 +227,7 @@ public class CoreNTLandingPageController {
         subcategoryOptions = new List < SelectOption > ();
         if (logedInUserRoleKey != 3) {
             subcategoryOptionsSet = new Set < SelectOption > ();
-            subcategoryOptions.add(new SelectOption('All', 'All'));
+            subcategoryOptions.add(new SelectOption(All, All));
             for (CORE_NT_Project__C objProject: lstLoggedInUserProjectDetailsTemp) {
                 if (objProject.SubcategoryName__c!=null && objProject.CategoryName__c == selectedCategory && subcategoryOptionsSet.add(new SelectOption(objProject.SubcategoryName__c, objProject.SubcategoryName__c)))
                     subcategoryOptions.add(new SelectOption(objProject.SubcategoryName__c, objProject.SubcategoryName__c));
@@ -244,7 +246,7 @@ public class CoreNTLandingPageController {
         brandOptions = new List < SelectOption > ();
         if (logedInUserRoleKey != 3) {
             brandOptionsSet = new Set < SelectOption > ();
-            brandOptions.add(new SelectOption('All', 'All'));
+            brandOptions.add(new SelectOption(All, All));
             for (CORE_NT_Project__C objProject: lstLoggedInUserProjectDetailsTemp) {
                 if (objProject.Brand__c!=null && objProject.CategoryName__c == selectedCategory && objProject.SubcategoryName__c == selectedSubcategory && brandOptionsSet.add(new SelectOption(objProject.Brand__c, objProject.Brand__c)))
                     brandOptions.add(new SelectOption(objProject.Brand__c, objProject.Brand__c));
@@ -264,7 +266,7 @@ public class CoreNTLandingPageController {
         lstLoggedInUserProjectDetails = new List < CORE_NT_Project__C > ();
         lstSelectedProjectTaskDetails = null;
         selectedProjectID =null;
-        if (selectedProjectsCriteria == 'All') {
+        if (selectedProjectsCriteria == All) {
             lstLoggedInUserProjectDetails = lstLoggedInUserProjectDetailsTemp;
         } else if (selectedProjectsCriteria == 'Open Projects') {
             for (CORE_NT_Project__C objProject: lstLoggedInUserProjectDetailsTemp) {
@@ -297,7 +299,7 @@ public class CoreNTLandingPageController {
     */
     public List < SelectOption > getResourceNames() {
         resourceNameOptions = new List < SelectOption > ();
-        resourceNameOptions.add(new SelectOption('All', 'All'));
+        resourceNameOptions.add(new SelectOption(All, All));
         try{
             List < CORE_NT_Team__C > resources = [SELECT TeamMemberName__c, TeamMemberName__r.Name FROM CORE_NT_Team__C WHERE Project__c = : selectedProjectID];
             for (CORE_NT_Team__C projTeamObj: resources) {
@@ -320,31 +322,31 @@ public class CoreNTLandingPageController {
     public void selectedProjectTaskDetailBasedOnTasksCriteria() {
         try{          
             if (logedInUserRoleKey == 2  && selectedProjectID != null) {
-                if (selectedTasksCriteria == 'Open Tasks' && selectedResourecsCriteria == 'All') {
+                if (selectedTasksCriteria == 'Open Tasks' && selectedResourecsCriteria == All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Due_Date__c, Project_Milestone__c, Critical__c, projectId__C, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Complete__c = : false AND Due_Date__c >= Today];
-                } else if (selectedTasksCriteria == 'Open Tasks' && selectedResourecsCriteria != 'All') {
+                } else if (selectedTasksCriteria == 'Open Tasks' && selectedResourecsCriteria != All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Due_Date__c, Project_Milestone__c, Critical__c, projectId__C, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Complete__c = : false AND Due_Date__c >= Today AND Assigned_To__c = : selectedResourecsCriteria];
-                } else if (selectedTasksCriteria == 'Critical Open Tasks' && selectedResourecsCriteria == 'All') {
+                } else if (selectedTasksCriteria == 'Critical Open Tasks' && selectedResourecsCriteria == All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Due_Date__c, Project_Milestone__c, Critical__c, projectId__C, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Complete__c = : false AND Critical__c = : true AND Due_Date__c >= Today];
-                } else if (selectedTasksCriteria == 'Critical Open Tasks' && selectedResourecsCriteria != 'All') {
+                } else if (selectedTasksCriteria == 'Critical Open Tasks' && selectedResourecsCriteria != All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Due_Date__c, Project_Milestone__c, Critical__c, projectId__C, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Complete__c = : false AND Critical__c = : true AND Due_Date__c >= Today AND Assigned_To__c = : selectedResourecsCriteria];
-                } else if (selectedTasksCriteria == 'Non-Critical Open Tasks' && selectedResourecsCriteria == 'All') {
+                } else if (selectedTasksCriteria == 'Non-Critical Open Tasks' && selectedResourecsCriteria == All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Due_Date__c, Project_Milestone__c, Critical__c, projectId__C, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Complete__c = : false AND Critical__c = : false AND Due_Date__c >= Today];
-                } else if (selectedTasksCriteria == 'Non-Critical Open Tasks' && selectedResourecsCriteria != 'All') {
+                } else if (selectedTasksCriteria == 'Non-Critical Open Tasks' && selectedResourecsCriteria != All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Due_Date__c, Project_Milestone__c, Critical__c, projectId__C, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Complete__c = : false AND Critical__c = : false AND Due_Date__c >= Today AND Assigned_To__c = : selectedResourecsCriteria];
-                } else if (selectedTasksCriteria == 'Critical Delayed Tasks' && selectedResourecsCriteria == 'All') {
+                } else if (selectedTasksCriteria == 'Critical Delayed Tasks' && selectedResourecsCriteria == All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Due_Date__c, Project_Milestone__c, Critical__c, projectId__C, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Complete__c = : false AND Critical__c = : true AND Due_Date__c < Today];
-                } else if (selectedTasksCriteria == 'Critical Delayed Tasks' && selectedResourecsCriteria != 'All') {
+                } else if (selectedTasksCriteria == 'Critical Delayed Tasks' && selectedResourecsCriteria != All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Due_Date__c, Project_Milestone__c, Critical__c, projectId__C, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Complete__c = : false AND Critical__c = : true AND Due_Date__c < Today AND Assigned_To__c = : selectedResourecsCriteria];
-                } else if (selectedTasksCriteria == 'Non-Critical Delayed Tasks' && selectedResourecsCriteria == 'All') {
+                } else if (selectedTasksCriteria == 'Non-Critical Delayed Tasks' && selectedResourecsCriteria == All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Due_Date__c, Project_Milestone__c, Critical__c, projectId__C, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Complete__c = : false AND Critical__c = : false AND Due_Date__c < Today];
-                } else if (selectedTasksCriteria == 'Non-Critical Delayed Tasks' && selectedResourecsCriteria != 'All') {
+                } else if (selectedTasksCriteria == 'Non-Critical Delayed Tasks' && selectedResourecsCriteria != All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Due_Date__c, Project_Milestone__c, Critical__c, projectId__C, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Complete__c = : false AND Critical__c = : false AND Due_Date__c < Today AND Assigned_To__c = : selectedResourecsCriteria];
-                } else if (selectedTasksCriteria == 'Milestones' && selectedResourecsCriteria == 'All') {
+                } else if (selectedTasksCriteria == 'Milestones' && selectedResourecsCriteria == All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Due_Date__c, Project_Milestone__c, Critical__c, projectId__C, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Milestone__c = : true];
-                } else if (selectedTasksCriteria == 'Milestones' && selectedResourecsCriteria != 'All') {
+                } else if (selectedTasksCriteria == 'Milestones' && selectedResourecsCriteria != All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Due_Date__c, Project_Milestone__c, Critical__c, projectId__C, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Milestone__c = : true AND Assigned_To__c = : selectedResourecsCriteria];
-                } else if (selectedTasksCriteria == 'All' && selectedResourecsCriteria != 'All') {
+                } else if (selectedTasksCriteria == All && selectedResourecsCriteria != All) {
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Project_Milestone__c, Critical__c, Due_Date__c, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID AND Assigned_To__c = : selectedResourecsCriteria];
                 } else{
                     lstSelectedProjectTaskDetails = [SELECT name, Assigned_To__c, Project_Milestone__c, Critical__c, Due_Date__c, Complete__c, Milestone__c, Task_Completed__c FROM CORE_NT_Task__C WHERE ProjectId__c = : selectedProjectID];
@@ -375,11 +377,11 @@ public class CoreNTLandingPageController {
     }
 
     public void updateCategoryBasedSelectionValues(){
-        selectedSubcategory= 'All';
+        selectedSubcategory= All;
         updateSubcategoryBasedSelectionValues();
     }
     public void updateSubcategoryBasedSelectionValues(){
-        selectedBrand = 'All';
+        selectedBrand = All;
         if(logedInUserRoleKey==0)
             updateProjectdataBasedOnSelectedCategory();
         else if(logedInUserRoleKey==1 || logedInUserRoleKey==2)
@@ -389,13 +391,13 @@ public class CoreNTLandingPageController {
         System.debug(' CoreNTLandingPageController || updateProjectdataBasedOnSelectedCategory || Started');
         
         Boolean LoggedInUserLaunchYearBasedProjectDetailsFlag=false; 
-        Boolean LoggedInUserStatusBasedProjectDetailsFlag=false;
+        //Boolean LoggedInUserStatusBasedProjectDetailsFlag=false;
         Boolean LoggedInUserCategoryBasedProjectDetailsFlag=false;
         Boolean LoggedInUserScopeBasedProjectDetailsFlag=false;
         
         List<CORE_NT_Project__C> lstLoggedInUserProjectDetailsCopy=new List<CORE_NT_Project__C>();
         lstLoggedInUserProjectDetails=new List<CORE_NT_Project__C>();
-        if(selectedLaunchCriteria!='All' && selectedLaunchCriteria!=null){
+        if(selectedLaunchCriteria!=All && selectedLaunchCriteria!=null){
             for(CORE_NT_Project__C objCoreNTProject : lstLoggedInUserProjectDetailsTemp){
                if(objCoreNTProject.Deadline__c!=null && objCoreNTProject.Deadline__c.YEAR()==Integer.ValueOf(selectedLaunchCriteria))
                     lstLoggedInUserProjectDetails.add(objCoreNTProject );
@@ -403,26 +405,26 @@ public class CoreNTLandingPageController {
             LoggedInUserLaunchYearBasedProjectDetailsFlag=true;
         }
         
-        if(LoggedInUserLaunchYearBasedProjectDetailsFlag==true){
+       /* if(LoggedInUserLaunchYearBasedProjectDetailsFlag==true){
             lstLoggedInUserProjectDetailsCopy=lstLoggedInUserProjectDetails;
             lstLoggedInUserProjectDetails=new List<CORE_NT_Project__C>();
         }
-        else
+        else*/
             lstLoggedInUserProjectDetailsCopy=lstLoggedInUserProjectDetailsTemp;
             
-        if (selectedCategory!= 'All' && selectedSubcategory== 'All' && selectedBrand == 'All'){
+        if (selectedCategory!= All && selectedSubcategory== All && selectedBrand == All){
             for(CORE_NT_Project__C objCoreNTProject : lstLoggedInUserProjectDetailsCopy){
                 if(objCoreNTProject.CategoryName__c == selectedCategory)
                     lstLoggedInUserProjectDetails.add(objCoreNTProject);
             }
             LoggedInUserCategoryBasedProjectDetailsFlag=true;
-        } else if (selectedCategory!= 'All' && selectedSubcategory!= 'All' && selectedBrand == 'All'){
+        } else if (selectedCategory!= All && selectedSubcategory!= All && selectedBrand == All){
             for(CORE_NT_Project__C objCoreNTProject : lstLoggedInUserProjectDetailsCopy){
                 if(objCoreNTProject.CategoryName__c == selectedCategory && objCoreNTProject.SubcategoryName__c == selectedSubcategory)
                     lstLoggedInUserProjectDetails.add(objCoreNTProject);
             }
             LoggedInUserCategoryBasedProjectDetailsFlag=true;
-        } else if (selectedCategory!= 'All' && selectedSubcategory!= 'All' && selectedBrand != 'All'){
+        } else if (selectedCategory!= All && selectedSubcategory!= All && selectedBrand != All){
             for(CORE_NT_Project__C objCoreNTProject : lstLoggedInUserProjectDetailsCopy){
                 if(objCoreNTProject.CategoryName__c == selectedCategory && objCoreNTProject.SubcategoryName__c == selectedSubcategory && objCoreNTProject.Brand__c == selectedBrand)
                     lstLoggedInUserProjectDetails.add(objCoreNTProject);
@@ -431,10 +433,10 @@ public class CoreNTLandingPageController {
         }      
            
                     
-        if(LoggedInUserCategoryBasedProjectDetailsFlag==true){
+        /*if(LoggedInUserCategoryBasedProjectDetailsFlag==true){
             lstLoggedInUserProjectDetailsCopy=lstLoggedInUserProjectDetails;
             lstLoggedInUserProjectDetails=new List<CORE_NT_Project__C>();
-        }
+        }*/
         
         if(selectedScopeCriteria=='Global'){
             for(CORE_NT_Project__C objCoreNTProject : lstLoggedInUserProjectDetailsCopy){
@@ -442,8 +444,8 @@ public class CoreNTLandingPageController {
                     lstLoggedInUserProjectDetails.add(objCoreNTProject);
             }
             LoggedInUserScopeBasedProjectDetailsFlag=true;
-        }else if(selectedScopeCriteria=='Regional'){
-            if(selectedClusterCriteria!='All' && selectedClusterCriteria!=null){
+        }else if(selectedScopeCriteria==Regional){
+            if(selectedClusterCriteria!=All && selectedClusterCriteria!=null){
                 for(CORE_NT_Project__C objCoreNTProject : lstLoggedInUserProjectDetailsCopy ){
                     if(objCoreNTProject.Project_Scope__c==selectedScopeCriteria && objCoreNTProject.Cluster__c==selectedClusterCriteria)
                         lstLoggedInUserProjectDetails.add(objCoreNTProject);
@@ -458,7 +460,7 @@ public class CoreNTLandingPageController {
             LoggedInUserScopeBasedProjectDetailsFlag=true;
         }
         
-        if(LoggedInUserScopeBasedProjectDetailsFlag!=true)
+        //if(LoggedInUserScopeBasedProjectDetailsFlag!=true)
             lstLoggedInUserProjectDetails=lstLoggedInUserProjectDetailsCopy;            
         
         System.debug(' CoreNTLandingPageController || updateProjectdataBasedOnSelectedCategory || Completed');
@@ -494,22 +496,22 @@ public class CoreNTLandingPageController {
             AggregateResult ontrackProjects=null;
             AggregateResult completedProjects=null;
             //if(categorys != null && subcategorys != null && brandNames != null){
-              /*  if (categorys != 'All' && subcategorys == 'All' && brandNames == 'All') {
+              /*  if (categorys != All && subcategorys == All && brandNames == All) {
                     delayedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c < 100.00 AND Deadline__c < TODAY AND CategoryName__c = : categorys];
                     ontrackProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c < 100.00 AND Deadline__c > TODAY AND CategoryName__c = : categorys];
                     completedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c = 100 AND CategoryName__c = : categorys];
     
-                } else if (categorys != 'All' && subcategorys != 'All' && brandNames == 'All') {
+                } else if (categorys != All && subcategorys != All && brandNames == All) {
                     delayedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c < 100.00 AND Deadline__c < TODAY AND CategoryName__c = : categorys AND SubcategoryName__c = : subcategorys];
                     ontrackProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c < 100.00 AND Deadline__c > TODAY AND CategoryName__c = : categorys AND SubcategoryName__c = : subcategorys];
                     completedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c = 100 AND CategoryName__c = : categorys AND SubcategoryName__c = : subcategorys];
     
-                } else if (categorys != 'All' && subcategorys != 'All' && brandNames != 'All') {
+                } else if (categorys != All && subcategorys != All && brandNames != All) {
                     delayedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c < 100.00 AND Deadline__c < TODAY AND Brand__c = : brandNames AND CategoryName__c = : categorys AND SubcategoryName__c = : subcategorys];
                     ontrackProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c < 100.00 AND Deadline__c > TODAY AND Brand__c = : brandNames AND CategoryName__c = : categorys AND SubcategoryName__c = : subcategorys];
                     completedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c = 100 AND Brand__c = : brandNames AND CategoryName__c = : categorys AND SubcategoryName__c = : subcategorys];
     
-                } else if(categorys == 'All') {*/
+                } else if(categorys == All) {*/
                     delayedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE (PercentComplete__c =null OR PercentComplete__c < 100.00) AND Deadline__c < TODAY];
                     ontrackProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE (PercentComplete__c =null OR PercentComplete__c < 100.00) AND Deadline__c >= TODAY];
                     completedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c = 100];    
@@ -544,17 +546,17 @@ public class CoreNTLandingPageController {
         Integer TotalLateTaskCount;
         Integer TotalCompleteTaskCount;
         try{
-            if (selectedCategory!= 'All' && selectedSubcategory== 'All' && selectedBrand== 'All') {
+            if (selectedCategory!= All && selectedSubcategory== All && selectedBrand== All) {
                 for (CORE_NT_Project__C objLoggedInUserProject: lstLoggedInUserProjectDetailsTemp) {
                     IF(objLoggedInUserProject.CategoryName__c == selectedCategory)
                         lstLoggedInUserProjectsBasedOnCategoryDetails.add(objLoggedInUserProject);
                 }
-            } else if (selectedCategory!= 'All' && selectedSubcategory!= 'All' && selectedBrand== 'All') {
+            } else if (selectedCategory!= All && selectedSubcategory!= All && selectedBrand== All) {
                 for (CORE_NT_Project__C objLoggedInUserProject: lstLoggedInUserProjectDetailsTemp) {
                     IF(objLoggedInUserProject.CategoryName__c == selectedCategory && objLoggedInUserProject.SubcategoryName__c == selectedSubcategory)
                         lstLoggedInUserProjectsBasedOnCategoryDetails.add(objLoggedInUserProject);
                 }
-            } else if (selectedCategory!= 'All' && selectedSubcategory!= 'All' && selectedBrand!= 'All') {
+            } else if (selectedCategory!= All && selectedSubcategory!= All && selectedBrand!= All) {
                 for (CORE_NT_Project__C objLoggedInUserProject: lstLoggedInUserProjectDetailsTemp) {
                     IF(objLoggedInUserProject.CategoryName__c == selectedCategory && objLoggedInUserProject.SubcategoryName__c == selectedSubcategory && objLoggedInUserProject.Brand__c == selectedBrand)
                         lstLoggedInUserProjectsBasedOnCategoryDetails.add(objLoggedInUserProject);
@@ -624,16 +626,16 @@ public class CoreNTLandingPageController {
     
     public List < SelectOption > getProjectScopeItems() {
         projectScopeOptions= new List < SelectOption > ();
-        projectScopeOptions.add(new SelectOption('All', 'All'));
+        projectScopeOptions.add(new SelectOption(All, All));
         projectScopeOptions.add(new SelectOption('Global', 'Global'));
-        projectScopeOptions.add(new SelectOption('Regional', 'Regional'));
+        projectScopeOptions.add(new SelectOption(Regional, Regional));
         return projectScopeOptions;
     }
     public List< SelectOption > getProjectClusterItems(){
         projectClusterOptions = new List < SelectOption > ();
         Set<String> projectClusterOptionsSet= new Set<String>();
-        projectClusterOptions.add(new SelectOption('All', 'All'));
-        if(selectedScopeCriteria=='Regional'){
+        projectClusterOptions.add(new SelectOption(All, All));
+        if(selectedScopeCriteria==Regional){
             List<CORE_NT_Project__C> lstCoreNTProject=[SELECT Project_Scope__c,Cluster__c FROM CORE_NT_Project__C where Project_Scope__c=:selectedScopeCriteria];
             for(CORE_NT_Project__C objCoreNTProject: lstCoreNTProject){
                 if (objCoreNTProject.Cluster__c !=null && projectClusterOptionsSet.add(objCoreNTProject.Cluster__c))
@@ -644,7 +646,7 @@ public class CoreNTLandingPageController {
     }
     public List<SelectOption> getProjectLaunchYearItems(){
         projectLaunchYearOptions = new List < SelectOption > ();
-        projectLaunchYearOptions.add(new SelectOption('All', 'All'));
+        projectLaunchYearOptions.add(new SelectOption(All, All));
         for(Integer launchYear : getAllLaunchYear()){
             projectLaunchYearOptions.add(new SelectOption(String.valueOf(launchYear), String.valueOf(launchYear)));
         }        
@@ -679,14 +681,14 @@ public class CoreNTLandingPageController {
                 AggregateResult delayedProjects=null;
                 AggregateResult ontrackProjects=null;
                 AggregateResult completedProjects=null;
-                if(selectedScopeCriteriaValue=='Global' || selectedScopeCriteriaValue=='All'){
+                if(selectedScopeCriteriaValue=='Global' || selectedScopeCriteriaValue==All){
                     delayedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c < 100.00 AND Deadline__c < TODAY AND Project_Scope__c=:selectedScopeCriteriaValue];
                     ontrackProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c < 100.00 AND Deadline__c < TODAY AND Project_Scope__c=:selectedScopeCriteriaValue];
                     completedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c = 100 AND Project_Scope__c=:selectedScopeCriteriaValue];
                     lstGlobalAndRegionalTypeProjectData.add(new GlobalAndRegionalTypeProjectData(selectedScopeCriteriaValue,(Integer) completedProjects.get('expr0'),(Integer) ontrackProjects.get('expr0'),(Integer) delayedProjects.get('expr0')));                    
                 System.Debug('-------------------------------------- anki 3------------------------------------------------'+lstGlobalAndRegionalTypeProjectData.size());
                 }
-                if(selectedScopeCriteriaValue=='Regional' || selectedScopeCriteriaValue=='All'){
+                if(selectedScopeCriteriaValue==Regional || selectedScopeCriteriaValue==All){
                     delayedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c < 100.00 AND Deadline__c < TODAY AND Project_Scope__c=:selectedScopeCriteriaValue];
                     ontrackProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c < 100.00 AND Deadline__c < TODAY AND Project_Scope__c=:selectedScopeCriteriaValue];
                     completedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c = 100 AND Project_Scope__c=:selectedScopeCriteriaValue];            
@@ -702,10 +704,10 @@ public class CoreNTLandingPageController {
                     completedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c = 100 AND Project_Scope__c='Global'];
                     lstGlobalAndRegionalTypeProjectData.add(new GlobalAndRegionalTypeProjectData('Global',(Integer) completedProjects.get('expr0'),(Integer) ontrackProjects.get('expr0'),(Integer) delayedProjects.get('expr0')));                    
 
-                    delayedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE (PercentComplete__c =null OR PercentComplete__c < 100.00) AND Deadline__c < TODAY AND Project_Scope__c='Regional'];
-                    ontrackProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE (PercentComplete__c =null OR PercentComplete__c < 100.00) AND Deadline__c >= TODAY AND Project_Scope__c='Regional'];
-                    completedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c = 100 AND Project_Scope__c='Regional'];            
-                    lstGlobalAndRegionalTypeProjectData.add(new GlobalAndRegionalTypeProjectData('Regional',(Integer) completedProjects.get('expr0'),(Integer) ontrackProjects.get('expr0'),(Integer) delayedProjects.get('expr0')));                                      
+                    delayedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE (PercentComplete__c =null OR PercentComplete__c < 100.00) AND Deadline__c < TODAY AND Project_Scope__c=Regional];
+                    ontrackProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE (PercentComplete__c =null OR PercentComplete__c < 100.00) AND Deadline__c >= TODAY AND Project_Scope__c=Regional];
+                    completedProjects = [SELECT count(Id) FROM CORE_NT_Project__C WHERE PercentComplete__c = 100 AND Project_Scope__c=Regional];            
+                    lstGlobalAndRegionalTypeProjectData.add(new GlobalAndRegionalTypeProjectData(Regional,(Integer) completedProjects.get('expr0'),(Integer) ontrackProjects.get('expr0'),(Integer) delayedProjects.get('expr0')));                                      
         } catch (Exception ex) {
             ApexPages.Message errorMessage = new ApexPages.Message(ApexPages.Severity.ERROR, ex.getMessage());
             ApexPages.addMessage(errorMessage);
