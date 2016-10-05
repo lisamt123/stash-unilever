@@ -68,7 +68,9 @@ src/labels
 src/labels/ICB.labels
 src/translations
 src/translations/pt_BR.translation
-
+src/triggers
+src/triggers/ICB_Setup_Mobile_Channel.trigger
+src/triggers/ICB_Setup_Mobile_Channel.trigger-meta.xml
 src/flows
 src/flows/ICB_Update_Email_Contact-1.flow
 src/objectTranslations
