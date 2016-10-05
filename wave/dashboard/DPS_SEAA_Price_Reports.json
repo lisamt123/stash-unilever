@@ -6394,7 +6394,7 @@
             "text_19": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6403,7 +6403,7 @@
             "chartDesc_scoreTrend": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of SKUs that were SP compliant in the enrolled stores for the country over a period of last 13 months.\n\n\n\n",
+                    "text": "This chart displays the % of SKUs that were SP compliant in the enrolled stores for the country over a period of last 13 months.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6688,7 +6688,7 @@
             "text_2": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7015,7 +7015,7 @@
             "text_1": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7196,7 +7196,7 @@
             "chartDesc_comTrend": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of enrolled stores that were Price compliant for the country over a period of last 13 months.\n\n",
+                    "text": "This chart displays the % of enrolled stores that were Price compliant for the country over a period of last 13 months.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7958,7 +7958,7 @@
             "text_41": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7976,7 +7976,7 @@
             "text_40": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8400,7 +8400,7 @@
             "text_39": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8510,7 +8510,7 @@
             "text_35": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8519,7 +8519,7 @@
             "text_37": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8546,7 +8546,7 @@
             "text_32": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8555,7 +8555,7 @@
             "text_31": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8564,7 +8564,7 @@
             "text_34": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8643,7 +8643,7 @@
             "text_30": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8757,7 +8757,7 @@
             "text_29": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8766,7 +8766,7 @@
             "text_28": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8784,7 +8784,7 @@
             "text_25": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8793,7 +8793,7 @@
             "text_24": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8802,7 +8802,7 @@
             "text_27": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8820,7 +8820,7 @@
             "text_26": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8842,7 +8842,7 @@
             "text_21": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8851,7 +8851,7 @@
             "text_20": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8869,7 +8869,7 @@
             "text_23": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8878,7 +8878,7 @@
             "text_22": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8913,7 +8913,7 @@
             "chartDesc_scoreRegion": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of SKUs that were SP compliant in enrolled stores in different sales regions of the country in the latest month.\n",
+                    "text": "This chart displays the % of SKUs that were SP compliant in enrolled stores in different sales regions of the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8996,7 +8996,7 @@
             "chartDesc_priceAvail": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart lists all the audited SKUs in the country, the % of enrolled stores that they were SP compliant in in the latest month, and the variance from the previous month.\n\n\n\n\n",
+                    "text": "This chart lists all the audited SKUs in the country, the % of enrolled stores that they were SP compliant in in the latest month, and the variance from the previous month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9005,7 +9005,7 @@
             "chartDesc_comCust": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of enrolled stores for Top Customers within a country which were Price Compliant in the latest month.\n",
+                    "text": "This chart displays the % of enrolled stores for Top Customers within a country which were Price Compliant in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },

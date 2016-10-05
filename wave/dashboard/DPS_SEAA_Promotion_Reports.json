@@ -75,8 +75,8 @@
                                 }
                             },
                             {
-                                "colspan": 7,
-                                "column": 1,
+                                "colspan": 8,
+                                "column": 2,
                                 "name": "chartDesc_promoAvail",
                                 "row": 86,
                                 "rowspan": 2,
@@ -463,7 +463,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 1,
                                 "name": "chartDesc_comTrend",
                                 "row": 20,
@@ -6255,7 +6255,7 @@
             "text_3": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6307,7 +6307,7 @@
             "text_2": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6359,7 +6359,7 @@
             "text_5": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6411,7 +6411,7 @@
             "text_4": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6505,7 +6505,7 @@
             "text_7": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6552,7 +6552,7 @@
             "text_6": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6666,7 +6666,7 @@
             "text_1": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6751,7 +6751,7 @@
             },
             "chartDesc_comTrend": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of enrolled stores that were Promo compliant for the country over a period of last 13 months.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -6852,7 +6852,7 @@
             "text_74": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6861,7 +6861,7 @@
             "text_73": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart lists all the audited SKUs for Promo compliance in the country, the % of enrolled stores that they were Promo compliance in the latest month, and the variance from the previous month.\n\n",
+                    "text": "This chart lists all the audited SKUs for Promo compliance in the country, the % of enrolled stores that they were Promo compliance in the latest month, and the variance from the previous month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6926,7 +6926,7 @@
             "text_69": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6935,7 +6935,7 @@
             "text_68": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in the enrolled stores for Top Customers within a country in the latest month.\n\n",
+                    "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in the enrolled stores for Top Customers within a country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6966,7 +6966,7 @@
             "text_65": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6975,7 +6975,7 @@
             "text_64": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in MT enrolled stores across all the Product categories in the country in the latest month.\n\n",
+                    "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in MT enrolled stores across all the Product categories in the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7002,7 +7002,7 @@
             "text_61": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7011,7 +7011,7 @@
             "header_overview": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nOverview",
+                    "text": "Overview",
                     "textAlignment": "left",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -7020,7 +7020,7 @@
             "text_60": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in the enrolled stores across all the Channels in the country in the latest month.\n\n",
+                    "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in the enrolled stores across all the Channels in the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7362,7 +7362,7 @@
             },
             "chartDesc_comChannel": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of enrolled stores that were Promo compliant across all the Channels in the country in the latest month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -7371,7 +7371,7 @@
             },
             "chartDesc_comCountry": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of enrolled stores that were Promo compliant for the latest month.",
                     "textAlignment": "left",
                     "textColor": "rgb(0, 0, 0)"
@@ -7442,7 +7442,7 @@
             "header_promoCompliance": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nPromo Compliance",
+                    "text": "Promo Compliance",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -7451,7 +7451,7 @@
             "header_promoScore": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nPromo Score",
+                    "text": "Promo Score",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -7459,7 +7459,7 @@
             },
             "chartDesc_comCat": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of MT enrolled stores that were Promo compliant across all the Product categories in the country in the latest month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -7689,7 +7689,7 @@
             },
             "chartDesc_scoreTrend": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in the enrolled stores for the country over a period of last 13 months.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -7726,7 +7726,7 @@
             "text_15": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in the enrolled stores for the country over a period of last 13 months.\n\n",
+                    "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in the enrolled stores for the country over a period of last 13 months.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7787,7 +7787,7 @@
             "text_12": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7796,7 +7796,7 @@
             "text_11": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of enrolled stores that were Promo compliant for the country over a period of last 13 months.\n\n",
+                    "text": "This chart displays the % of enrolled stores that were Promo compliant for the country over a period of last 13 months.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7891,7 +7891,7 @@
             },
             "chartDesc_scoreCountry": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of SKUs that were Promo compliant,  and % of Product categories that were SOF compliant in the enrolled stores for the country in the latest month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -8053,7 +8053,7 @@
             },
             "chartDesc_promoAvail": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart lists all the audited SKUs for Promo compliance in the country, the % of enrolled stores that they were Promo compliance in the latest month, and the variance from the previous month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -8316,7 +8316,7 @@
             "text_57": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8324,7 +8324,7 @@
             },
             "chartDesc_scoreCust": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in the enrolled stores for Top Customers within a country in the latest month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -8361,7 +8361,7 @@
             "text_56": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in enrolled stores in different sales regions of the country in the latest month.\n\n",
+                    "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in enrolled stores in different sales regions of the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8423,7 +8423,7 @@
             "text_51": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in 4P, 5P and 6P stores in the country in the latest month.\n\n\n",
+                    "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in 4P, 5P and 6P stores in the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8558,7 +8558,7 @@
             "text_47": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of SKUs that were Promo compliant,  and % of Product categories that were SOF compliant in the enrolled stores for the country in the latest month.\n\n",
+                    "text": "This chart displays the % of SKUs that were Promo compliant,  and % of Product categories that were SOF compliant in the enrolled stores for the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8585,7 +8585,7 @@
             "text_48": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8594,7 +8594,7 @@
             "text_43": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8603,7 +8603,7 @@
             "text_42": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of enrolled stores for Top Customers within a country which were Promo Compliant in the latest month.\n\n",
+                    "text": "This chart displays the % of enrolled stores for Top Customers within a country which were Promo Compliant in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8647,7 +8647,7 @@
             },
             "chartDesc_scoreChannel": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in the enrolled stores across all the Channels in the country in the latest month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -9006,7 +9006,7 @@
             },
             "chartDesc_com4p5p6p": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of 4P, 5P and 6P stores that were Promo compliant for the country in the latest month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -9025,7 +9025,7 @@
             "text_39": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9043,7 +9043,7 @@
             "text_35": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of enrolled stores that were Promo compliant across all the Channels in the country in the latest month.\n\n",
+                    "text": "This chart displays the % of enrolled stores that were Promo compliant across all the Channels in the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9052,7 +9052,7 @@
             "text_38": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of MT enrolled stores that were Promo compliant across all the Product categories in the country in the latest month.\n\n",
+                    "text": "This chart displays the % of MT enrolled stores that were Promo compliant across all the Product categories in the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9088,7 +9088,7 @@
             "text_33": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9193,7 +9193,7 @@
             "text_29": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9201,7 +9201,7 @@
             },
             "chartDesc_comRegion": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of enrolled stores that were Promo compliant in different sales regions of the country in the latest month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -9229,7 +9229,7 @@
             "text_27": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of enrolled stores that were Promo compliant in different sales regions of the country in the latest month.\n\n",
+                    "text": "This chart displays the % of enrolled stores that were Promo compliant in different sales regions of the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9237,7 +9237,7 @@
             },
             "chartDesc_score4p5p6p": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in 4P, 5P and 6P stores in the country in the latest month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -9265,7 +9265,7 @@
             "text_20": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of enrolled stores that were Promo compliant for the latest month.\n\n",
+                    "text": "This chart displays the % of enrolled stores that were Promo compliant for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9274,7 +9274,7 @@
             "text_23": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of 4P, 5P and 6P stores that were Promo compliant for the country in the latest month.\n\n",
+                    "text": "This chart displays the % of 4P, 5P and 6P stores that were Promo compliant for the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9304,7 +9304,7 @@
             },
             "chartDesc_scoreRegion": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in enrolled stores in different sales regions of the country in the latest month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -9313,7 +9313,7 @@
             },
             "chartDesc_scoreCat": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of SKUs that were Promo compliant, and % of Product categories that were SOF compliant in MT enrolled stores across all the Product categories in the country in the latest month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -9335,7 +9335,7 @@
             },
             "chartDesc_comCust": {
                 "parameters": {
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "text": "This chart displays the % of enrolled stores for Top Customers within a country which were Promo Compliant in the latest month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"

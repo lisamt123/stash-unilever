@@ -5960,7 +5960,7 @@
             "chartDesc_KPIscores": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the compliance percentage for each P, and the scores for its relevent KPIs, for the latest month. \n",
+                    "text": "This chart displays the compliance percentage for each P, and the scores for its relevent KPIs, for the latest month.",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -6199,7 +6199,7 @@
             "text_3": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6251,7 +6251,7 @@
             "chartDesc_comTargetCountry": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the target and actual Perfect Store Compliance percentage for each country, for the latest month.\n",
+                    "text": "This chart displays the target and actual Perfect Store Compliance percentage for each country, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6750,7 +6750,7 @@
             "chartDescMobile_enrollComCat": {
                 "parameters": {
                     "fontSize": 15,
-                    "text": "This chart displays the actual number of Enrolled Perfect Stores and the actual Perfect Store Compliance percentage, grouped by categories, for the latest month.\n",
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores and the actual Perfect Store Compliance percentage, grouped by categories, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6922,7 +6922,7 @@
             "chartDescMobile_enrollComTrend": {
                 "parameters": {
                     "fontSize": 15,
-                    "text": "This chart displays the 13 month trend of actual number of Enrolled Perfect Stores and the actual Perfect Store Compliance percentage.\n",
+                    "text": "This chart displays the 13 month trend of actual number of Enrolled Perfect Stores and the actual Perfect Store Compliance percentage.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7153,7 +7153,7 @@
             "chartDesc_enrollComCust": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by customers, for the latest month.\n",
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by customers, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7318,7 +7318,7 @@
             "chartDesc_enrollComCat": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by categories, for the latest month.\n",
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by categories, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7336,7 +7336,7 @@
             "chartDescMobile_4p5p6p": {
                 "parameters": {
                     "fontSize": 15,
-                    "text": "This chart displays the actual number of Enrolled Perfect Stores and the actual Perfect Store Compliance percentage, grouped by 4P, 5P or 6P Perfect Stores, for the latest month. \n",
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores and the actual Perfect Store Compliance percentage, grouped by 4P, 5P or 6P Perfect Stores, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7512,7 +7512,7 @@
             "chartDescMobile_enrollComCust": {
                 "parameters": {
                     "fontSize": 15,
-                    "text": "This chart displays the actual number of Enrolled Perfect Stores and the actual Perfect Store Compliance percentage, grouped by customers, for the latest month.\n",
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores and the actual Perfect Store Compliance percentage, grouped by customers, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7561,7 +7561,7 @@
             "text_17": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the target and actual number of Enrolled Perfect Stores for each country, for the latest month.\n\n",
+                    "text": "This chart displays the target and actual number of Enrolled Perfect Stores for each country, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7685,7 +7685,7 @@
             "text_10": {
                 "parameters": {
                     "fontSize": 10,
-                    "text": "This chart displays the 13 month trend of actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line).\n",
+                    "text": "This chart displays the 13 month trend of actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line).",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7694,7 +7694,7 @@
             "chartDesc_comTargetRegion": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the target and actual Perfect Store Compliance percentage for each sales region, for the latest month. \n",
+                    "text": "This chart displays the target and actual Perfect Store Compliance percentage for each sales region, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7712,7 +7712,7 @@
             "text_11": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7721,7 +7721,7 @@
             "chartDesc_enrollTargetRegion": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the target and actual number of Enrolled Perfect Stores for each sales region, for the latest month.\n",
+                    "text": "This chart displays the target and actual number of Enrolled Perfect Stores for each sales region, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7940,7 +7940,7 @@
             "chartDesc_diffPrevMonth": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the difference in percentage compared to  previous month for the respective P compliance or KPI score\n",
+                    "text": "This chart displays the difference in percentage compared to  previous month for the respective P compliance or KPI score",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -8154,7 +8154,7 @@
             "chartDesc_enrollComTrend": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the 13 month trend of actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line).\n",
+                    "text": "This chart displays the 13 month trend of actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line).",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8163,7 +8163,7 @@
             "chartDescMobile_enrollComChannel": {
                 "parameters": {
                     "fontSize": 15,
-                    "text": "This chart displays the actual number of Enrolled Perfect Stores and the actual Perfect Store Compliance percentage, grouped by channels, for the latest month.\n",
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores and the actual Perfect Store Compliance percentage, grouped by channels, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8212,7 +8212,7 @@
             "chartDesc_enrollTargetCountry": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the target and actual number of Enrolled Perfect Stores for each country, for the latest month.\n",
+                    "text": "This chart displays the target and actual number of Enrolled Perfect Stores for each country, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8415,7 +8415,7 @@
             "chartDesc_enrollComChannel": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by channels, for the latest month.\n",
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by channels, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8439,7 +8439,7 @@
             "text_58": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8448,7 +8448,7 @@
             "text_57": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8457,7 +8457,7 @@
             "text_59": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8466,7 +8466,7 @@
             "text_54": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8475,7 +8475,7 @@
             "text_53": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8484,7 +8484,7 @@
             "text_56": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8506,7 +8506,7 @@
             "text_50": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8515,7 +8515,7 @@
             "text_52": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8546,7 +8546,7 @@
             "text_51": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8754,7 +8754,7 @@
             "text_47": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8763,7 +8763,7 @@
             "text_46": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8772,7 +8772,7 @@
             "text_49": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8781,7 +8781,7 @@
             "text_48": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8790,7 +8790,7 @@
             "text_43": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by 4P, 5P or 6P Perfect Stores, for the latest month.\n\n\n",
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by 4P, 5P or 6P Perfect Stores, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8808,7 +8808,7 @@
             "text_45": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8817,7 +8817,7 @@
             "text_44": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8835,7 +8835,7 @@
             "text_40": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by categories, for the latest month.\n",
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by categories, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8936,7 +8936,7 @@
             "text_39": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by channels, for the latest month.\n",
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by channels, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8988,7 +8988,7 @@
             "text_36": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the target and actual number of Enrolled Perfect Stores for each sales region, for the latest month.\n\n",
+                    "text": "This chart displays the target and actual number of Enrolled Perfect Stores for each sales region, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9015,7 +9015,7 @@
             "text_37": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the target and actual number of Enrolled Perfect Stores for each sales region, for the latest month.\n\n",
+                    "text": "This chart displays the target and actual number of Enrolled Perfect Stores for each sales region, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9033,7 +9033,7 @@
             "text_31": {
                 "parameters": {
                     "fontSize": 10,
-                    "text": "This chart displays the difference in percentage compared to  previous month for the respective P compliance or KPI score.\n\n",
+                    "text": "This chart displays the difference in percentage compared to  previous month for the respective P compliance or KPI score.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9042,7 +9042,7 @@
             "text_34": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the target and actual Perfect Store Compliance percentage for each country, for the latest month.\n\n",
+                    "text": "This chart displays the target and actual Perfect Store Compliance percentage for each country, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9080,7 +9080,7 @@
             "text_30": {
                 "parameters": {
                     "fontSize": 10,
-                    "text": "This chart displays the compliance percentage for each P, and the scores for its relevent KPIs, for the latest month. \n\n\n",
+                    "text": "This chart displays the compliance percentage for each P, and the scores for its relevent KPIs, for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9286,7 +9286,7 @@
             "chartDesc_4p5p6p": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by 4P, 5P or 6P Perfect Stores, for the latest month. \n",
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) and the actual Perfect Store Compliance percentage (line), grouped by 4P, 5P or 6P Perfect Stores, for the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },

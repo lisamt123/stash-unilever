@@ -5776,7 +5776,7 @@
             "text_3": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -5828,7 +5828,7 @@
             "text_2": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -5880,7 +5880,7 @@
             "text_5": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -5932,7 +5932,7 @@
             "text_4": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -5984,7 +5984,7 @@
             "text_7": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6032,7 +6032,7 @@
             "text_6": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6193,7 +6193,7 @@
             "text_1": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6379,7 +6379,7 @@
             "text_70": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6410,7 +6410,7 @@
             "text_69": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the list of percentages of CTA availability grouped by each question for the latest month, and also the percentage increase or decrease compared to the previous month.\n\n",
+                    "text": "This chart displays the list of percentages of CTA availability grouped by each question for the latest month, and also the percentage increase or decrease compared to the previous month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6456,7 +6456,7 @@
             "text_65": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of CTA availability grouped by top customers for the country in the latest month. \n\n",
+                    "text": "This chart displays the percentage of CTA availability grouped by top customers for the country in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6483,7 +6483,7 @@
             "text_66": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6501,7 +6501,7 @@
             "header_overview": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nOverview",
+                    "text": "Overview",
                     "textAlignment": "left",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -6510,7 +6510,7 @@
             "text_60": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of CTA availability grouped by categories for the country in the latest month.\n\n",
+                    "text": "This chart displays the percentage of CTA availability grouped by categories for the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6546,7 +6546,7 @@
             "text_62": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7246,7 +7246,7 @@
             "text_16": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7255,7 +7255,7 @@
             "text_15": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of CTA availability for the country over a period of last 13 months.\n\n",
+                    "text": "This chart displays the percentage of CTA availability for the country over a period of last 13 months.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7325,7 +7325,7 @@
             "text_12": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7334,7 +7334,7 @@
             "text_11": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant for the country over a period of last 13 months.\n\n",
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant for the country over a period of last 13 months.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7352,7 +7352,7 @@
             "header_propositionScore": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nProposition Score",
+                    "text": "Proposition Score",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -7657,7 +7657,7 @@
             "text_58": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7709,7 +7709,7 @@
             "text_57": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of CTA availability grouped by channels for the country in the latest month.\n\n",
+                    "text": "This chart displays the percentage of CTA availability grouped by channels for the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7745,7 +7745,7 @@
             "text_53": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of CTA availability grouped by sales regions of the country in the latest month.\n\n",
+                    "text": "This chart displays the percentage of CTA availability grouped by sales regions of the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7785,7 +7785,7 @@
             "text_50": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7928,7 +7928,7 @@
             "text_46": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7937,7 +7937,7 @@
             "text_49": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of CTA availability grouped by 4P, 5P and 6P stores for the country in the latest month. \n\n",
+                    "text": "This chart displays the percentage of CTA availability grouped by 4P, 5P and 6P stores for the country in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7973,7 +7973,7 @@
             "text_45": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of CTA availability in the latest month. \n",
+                    "text": "This chart displays the percentage of CTA availability in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8009,7 +8009,7 @@
             "text_41": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8027,7 +8027,7 @@
             "text_40": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by top customers for the country in the latest month.\n\n",
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by top customers for the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8300,7 +8300,7 @@
             "text_36": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by categories for the country in the latest month.\n\n",
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by categories for the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8318,7 +8318,7 @@
             "header_propositionCompliance": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nProposition Compliance",
+                    "text": "Proposition Compliance",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -8336,7 +8336,7 @@
             "text_37": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8345,7 +8345,7 @@
             "text_32": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by channels for the country in the latest month. \n\n",
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by channels for the country in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8464,7 +8464,7 @@
             "text_29": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8473,7 +8473,7 @@
             "text_28": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by sales regions of the country in the latest month.\n\n",
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant grouped by sales regions of the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8491,7 +8491,7 @@
             "text_25": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8500,7 +8500,7 @@
             "text_24": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of 4P, 5P and 6P stores that were Proposition compliant for the country in the latest month.\n\n",
+                    "text": "This chart displays the percentage of 4P, 5P and 6P stores that were Proposition compliant for the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8545,7 +8545,7 @@
             "text_20": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant in the latest month. \n\n",
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition compliant in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },

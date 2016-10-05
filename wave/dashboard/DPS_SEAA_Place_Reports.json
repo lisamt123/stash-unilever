@@ -7958,7 +7958,7 @@
             "text_3": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8010,7 +8010,7 @@
             "text_2": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8062,7 +8062,7 @@
             "text_5": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8114,7 +8114,7 @@
             "text_4": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8214,7 +8214,7 @@
             "text_6": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8386,7 +8386,7 @@
             "text_1": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8483,7 +8483,7 @@
             "chartDesc_comTrend": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of enrolled stores that were Place compliant for the country over a  period of last 13 months. \n",
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant for the country over a  period of last 13 months. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8574,7 +8574,7 @@
             "text_71": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8612,7 +8612,7 @@
             "text_70": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the list of percentages of PSP grouped by each question for the latest month, and also the percentage increase or decrease compared to the previous month. \n\n",
+                    "text": "This chart displays the list of percentages of PSP grouped by each question for the latest month, and also the percentage increase or decrease compared to the previous month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8663,7 +8663,7 @@
             "text_68": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of audited stores for PSP, SOS, and SSP for the country over a  period of last 13 months. \n",
+                    "text": "This chart displays the percentage of audited stores for PSP, SOS, and SSP for the country over a  period of last 13 months. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8685,7 +8685,7 @@
             "text_65": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the list of percentages of SSP grouped by each question for the latest month, and also the percentage increase or decrease compared to the previous month. \n\n",
+                    "text": "This chart displays the list of percentages of SSP grouped by each question for the latest month, and also the percentage increase or decrease compared to the previous month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8712,7 +8712,7 @@
             "text_66": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8739,7 +8739,7 @@
             "text_60": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by top customers for the  country in the latest month. \n\n",
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by top customers for the  country in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9135,7 +9135,7 @@
             "chartDesc_comChannel": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped channels for  the country in the latest month. \n",
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped channels for  the country in the latest month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9144,7 +9144,7 @@
             "chartDesc_comCountry": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of enrolled stores that were Place compliant in the latest month. \n",
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant in the latest month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9225,7 +9225,7 @@
             "chartDesc_comCat": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by categories  for the country in the latest month. \n",
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by categories  for the country in the latest month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9459,7 +9459,7 @@
             "text_19": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of enrolled stores that were Place compliant in the latest month. \n\n",
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9468,7 +9468,7 @@
             "text_14": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of SOS, PSP and SSP for the country over a period of last 13 months. \n\n",
+                    "text": "This chart displays the percentage of SOS, PSP and SSP for the country over a period of last 13 months. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9495,7 +9495,7 @@
             "text_15": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9504,7 +9504,7 @@
             "text_10": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of enrolled stores that were Place compliant for the country over a  period of last 13 months. \n\n",
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant for the country over a  period of last 13 months. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9565,7 +9565,7 @@
             "text_11": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9678,7 +9678,7 @@
             "chartDesc_scoreCountry": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of SOS, PSP and SSP in the latest month. \n",
+                    "text": "This chart displays the percentage of SOS, PSP and SSP in the latest month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10182,7 +10182,7 @@
             "text_57": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10191,7 +10191,7 @@
             "chartDesc_scoreCust": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by top customers for the  country in the latest month. \n",
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by top customers for the  country in the latest month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10218,7 +10218,7 @@
             "text_53": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10227,7 +10227,7 @@
             "text_56": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by categories for the country  in the latest month. \n\n",
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by categories for the country  in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10267,7 +10267,7 @@
             "chartDesc_sspQuestion": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the list of percentages of SSP grouped by each question for the latest month, and also the percentage increase or decrease compared to the previous month. \n",
+                    "text": "This chart displays the list of percentages of SSP grouped by each question for the latest month, and also the percentage increase or decrease compared to the previous month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10276,7 +10276,7 @@
             "text_52": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10307,7 +10307,7 @@
             "text_51": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by channels for the country  in the latest month. \n\n",
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by channels for the country  in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10429,7 +10429,7 @@
             "text_47": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by sales regions of the country in  the latest month. \n\n",
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by sales regions of the country in  the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10456,7 +10456,7 @@
             "text_48": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10465,7 +10465,7 @@
             "text_43": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of SOS, PSP and SSP in the latest month. \n",
+                    "text": "This chart displays the percentage of SOS, PSP and SSP in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10501,7 +10501,7 @@
             "text_44": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10539,7 +10539,7 @@
             "chartDesc_scoreChannel": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by channels for the country  in the latest month. \n",
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by channels for the country  in the latest month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10548,7 +10548,7 @@
             "text_40": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10762,7 +10762,7 @@
             "chartDesc_com4p5p6p": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of 4P, 5P and 6P stores that were Place compliant for the country in  the latest month. \n",
+                    "text": "This chart displays the percentage of 4P, 5P and 6P stores that were Place compliant for the country in  the latest month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10780,7 +10780,7 @@
             "text_39": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by top  customers for the country in the latest month. \n\n",
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by top  customers for the country in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10798,7 +10798,7 @@
             "text_36": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10807,7 +10807,7 @@
             "text_35": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by categories  for the country in the latest month. \n\n",
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by categories  for the country in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10863,7 +10863,7 @@
             "text_31": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped channels for  the country in the latest month. \n\n",
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped channels for  the country in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10881,7 +10881,7 @@
             "text_33": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10993,7 +10993,7 @@
             "text_28": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -11002,7 +11002,7 @@
             "chartDesc_comRegion": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by sales regions of  the country in the latest month. \n",
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by sales regions of  the country in the latest month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -11020,7 +11020,7 @@
             "text_24": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of 4P, 5P and 6P stores that were Place compliant for the country in  the latest month. \n\n",
+                    "text": "This chart displays the percentage of 4P, 5P and 6P stores that were Place compliant for the country in  the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -11029,7 +11029,7 @@
             "text_27": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by sales regions of  the country in the latest month. \n\n\n",
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by sales regions of  the country in the latest month. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -11038,7 +11038,7 @@
             "chartDesc_score4p5p6p": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by 4P, 5P and 6P stores for the  country in the latest month. \n",
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by 4P, 5P and 6P stores for the  country in the latest month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -11065,7 +11065,7 @@
             "text_20": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -11116,7 +11116,7 @@
             "chartDesc_scoreRegion": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by sales regions of the country in  the latest month. \n",
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by sales regions of the country in  the latest month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -11125,7 +11125,7 @@
             "chartDesc_scoreCat": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by categories for the country  in the latest month. \n",
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by categories for the country  in the latest month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -11143,7 +11143,7 @@
             "chartDesc_comCust": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by top  customers for the country in the latest month. \n",
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by top  customers for the country in the latest month. ",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },

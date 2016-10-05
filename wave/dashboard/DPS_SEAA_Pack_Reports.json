@@ -179,7 +179,7 @@
                                 }
                             },
                             {
-                                "colspan": 6,
+                                "colspan": 7,
                                 "column": 3,
                                 "name": "chartDesc_NPDSKU",
                                 "row": 85,
@@ -261,7 +261,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 1,
                                 "name": "header_com4p5p6p",
                                 "row": 32,
@@ -337,7 +337,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "header_scoreChannel",
                                 "row": 49,
@@ -631,7 +631,7 @@
                                 }
                             },
                             {
-                                "colspan": 5,
+                                "colspan": 7,
                                 "column": 2,
                                 "name": "header_NPDSKU",
                                 "row": 78,
@@ -6230,7 +6230,7 @@
             "chartDesc_scoreTrend": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of NPD SKUs that were available in the enrolled stores for the country over a period of last 13 months. \n",
+                    "text": "This chart displays the % of NPD SKUs that were available in the enrolled stores for the country over a period of last 13 months. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6270,7 +6270,7 @@
             "text_16": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6487,7 +6487,7 @@
             "text_2": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6583,7 +6583,7 @@
             "text_8": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6610,7 +6610,7 @@
             "text_1": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6628,7 +6628,7 @@
             "chartDesc_scoreCountry": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of NPD SKUs that were available in the enrolled stores for the country in the latest month.\n\n",
+                    "text": "This chart displays the % of NPD SKUs that were available in the enrolled stores for the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -6782,7 +6782,7 @@
             "chartDesc_comTrend": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of enrolled stores that were Pack compliant for the country over a period of last 13 months. \n",
+                    "text": "This chart displays the % of enrolled stores that were Pack compliant for the country over a period of last 13 months. ",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7258,7 +7258,7 @@
             "chartDesc_scoreCust": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of NPD SKUs that were available in the enrolled stores for Top Customers within a country in the latest month.\n",
+                    "text": "This chart displays the % of NPD SKUs that were available in the enrolled stores for Top Customers within a country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "rgb(0, 0, 0)"
                 },
@@ -7471,8 +7471,8 @@
             },
             "chartDesc_NPDSKU": {
                 "parameters": {
-                    "fontSize": 12,
-                    "text": "This chart lists all the audited NPD SKUs in the country, the % of enrolled stores that they were available in the latest month, and the variance in availability from the previous month\n\n",
+                    "fontSize": 14,
+                    "text": "This chart lists all the audited NPD SKUs in the country, the % of enrolled stores that they were available in the latest month, and the variance in availability from the previous month",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7769,7 +7769,7 @@
             "text_36": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7778,7 +7778,7 @@
             "text_35": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7787,7 +7787,7 @@
             "text_38": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7796,7 +7796,7 @@
             "text_37": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7823,7 +7823,7 @@
             "text_32": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7832,7 +7832,7 @@
             "text_31": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7841,7 +7841,7 @@
             "text_34": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7850,7 +7850,7 @@
             "chartDesc_comCountry": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of enrolled stores that were Pack compliant for the latest month.\n\n",
+                    "text": "This chart displays the % of enrolled stores that were Pack compliant for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7859,7 +7859,7 @@
             "text_33": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7929,7 +7929,7 @@
             "text_30": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7982,7 +7982,7 @@
             "chartDesc_comCat": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of MT enrolled stores that were Pack compliant across all the Product categories in the country in the latest month.\n",
+                    "text": "This chart displays the % of MT enrolled stores that were Pack compliant across all the Product categories in the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8034,7 +8034,7 @@
             "text_29": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8043,7 +8043,7 @@
             "text_28": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8052,7 +8052,7 @@
             "chartDesc_comRegion": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of enrolled stores that were Pack compliant in different sales regions of the country in the latest month.\n",
+                    "text": "This chart displays the % of enrolled stores that were Pack compliant in different sales regions of the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8061,7 +8061,7 @@
             "text_25": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8070,7 +8070,7 @@
             "text_24": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8079,7 +8079,7 @@
             "text_27": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8097,7 +8097,7 @@
             "text_26": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8128,7 +8128,7 @@
             "text_21": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8155,7 +8155,7 @@
             "text_23": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8164,7 +8164,7 @@
             "text_22": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8242,7 +8242,7 @@
             "chartDesc_scoreRegion": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of NPD SKUs that were available in enrolled stores in different sales regions of the country in the latest month.\n\n",
+                    "text": "This chart displays the % of NPD SKUs that were available in enrolled stores in different sales regions of the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8264,7 +8264,7 @@
             "chartDesc_scoreCat": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of NPD SKUs that were available in MT enrolled stores across all the Product categories in the country in the latest month.\n\n",
+                    "text": "This chart displays the % of NPD SKUs that were available in MT enrolled stores across all the Product categories in the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8334,7 +8334,7 @@
             "chartDesc_comCust": {
                 "parameters": {
                     "fontSize": 14,
-                    "text": "This chart displays the % of enrolled stores for Top Customers within a country which were Pack Compliant in the latest month.\n",
+                    "text": "This chart displays the % of enrolled stores for Top Customers within a country which were Pack Compliant in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },

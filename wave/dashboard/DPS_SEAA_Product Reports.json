@@ -6556,7 +6556,7 @@
                     ]
                 ],
                 "type": "aggregate",
-                "useGlobal": false,
+                "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
@@ -7247,7 +7247,7 @@
             "text_2": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7406,7 +7406,7 @@
             "text_7": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7507,7 +7507,7 @@
             "text_9": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7571,7 +7571,7 @@
             "text_1": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nCOUNTRY",
+                    "text": "COUNTRY",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -7580,7 +7580,7 @@
             "text_83": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7589,7 +7589,7 @@
             "text_82": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7607,7 +7607,7 @@
             "text_81": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7616,7 +7616,7 @@
             "text_80": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7663,7 +7663,7 @@
             "header_productCompliance": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nProduct Compliance",
+                    "text": "Product Compliance",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -7715,7 +7715,7 @@
             "text_79": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7733,7 +7733,7 @@
             "text_76": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7781,7 +7781,7 @@
             "text_75": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7790,7 +7790,7 @@
             "text_78": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7799,7 +7799,7 @@
             "text_77": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7808,7 +7808,7 @@
             "text_72": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7817,7 +7817,7 @@
             "text_71": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7826,7 +7826,7 @@
             "text_74": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7835,7 +7835,7 @@
             "text_73": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7862,7 +7862,7 @@
             "text_70": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7908,7 +7908,7 @@
             "text_69": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7917,7 +7917,7 @@
             "text_68": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7939,7 +7939,7 @@
             "text_65": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart lists all the audited COTC SKUs in the country, the % of enrolled stores that they were available in the latest month, and the variance in availability from the previous month.\n\n",
+                    "text": "This chart lists all the audited COTC SKUs in the country, the % of enrolled stores that they were available in the latest month, and the variance in availability from the previous month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7948,7 +7948,7 @@
             "text_64": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7957,7 +7957,7 @@
             "text_67": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7966,7 +7966,7 @@
             "text_66": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -7993,7 +7993,7 @@
             "text_60": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores for Top Customers within a country in the latest month.\n\n\n",
+                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores for Top Customers within a country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8029,7 +8029,7 @@
             "text_62": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart lists all the audited MH SKUs in the country, the % of enrolled stores that they were available in the latest month, and the variance in availability from the previous month.\n\n",
+                    "text": "This chart lists all the audited MH SKUs in the country, the % of enrolled stores that they were available in the latest month, and the variance in availability from the previous month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -8609,7 +8609,7 @@
             "text_18": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9401,7 +9401,7 @@
             "text_54": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores for Top Customers within a country in the latest month.\n\n\n",
+                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores for Top Customers within a country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9428,7 +9428,7 @@
             "header_productScore": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nProduct Score",
+                    "text": "Product Score",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -9459,7 +9459,7 @@
             "text_50": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores across all the Channels in the country in the latest month.\n\n",
+                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores across all the Channels in the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9680,7 +9680,7 @@
             "text_43": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "\n",
+                    "text": "",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9698,7 +9698,7 @@
             "text_45": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in 4P, 5P and 6P stores in the country in the latest month.\n\n",
+                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in 4P, 5P and 6P stores in the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -9725,7 +9725,7 @@
             "text_41": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of enrolled stores for Top Customers within a country which were Product Compliant in the latest month.\n\n",
+                    "text": "This chart displays the % of enrolled stores for Top Customers within a country which were Product Compliant in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10184,7 +10184,7 @@
             "text_35": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of enrolled stores that were Product compliant across all the Channels in the country in the latest month.\n\n",
+                    "text": "This chart displays the % of enrolled stores that were Product compliant across all the Channels in the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10193,7 +10193,7 @@
             "text_38": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of MT enrolled stores that were Product compliant across all the Product categories in the country in the latest month.\n\n",
+                    "text": "This chart displays the % of MT enrolled stores that were Product compliant across all the Product categories in the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10220,7 +10220,7 @@
             "text_32": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of enrolled stores that were Product compliant in different sales regions of the country in the latest month.\n\n",
+                    "text": "This chart displays the % of enrolled stores that were Product compliant in different sales regions of the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10265,7 +10265,7 @@
             "text_30": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of 4P, 5P and 6P stores that were Product compliant for the country in the latest month.\n\n",
+                    "text": "This chart displays the % of 4P, 5P and 6P stores that were Product compliant for the country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10618,7 +10618,7 @@
             "text_28": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores for a country in the latest month.\n\n",
+                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores for a country in the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10703,7 +10703,7 @@
             "text_25": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of enrolled stores that were Product compliant for the latest month.\n\n",
+                    "text": "This chart displays the % of enrolled stores that were Product compliant for the latest month.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10712,7 +10712,7 @@
             "text_24": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores for the country over a period of last 13 months.\n\n\n\n",
+                    "text": "This chart displays the % of MH SKUs that were OSA, OOS and VOID in the enrolled stores for the country over a period of last 13 months.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
@@ -10784,7 +10784,7 @@
             "text_22": {
                 "parameters": {
                     "fontSize": 12,
-                    "text": "This chart displays the % of enrolled stores that were Product compliant for the country over a period of last 13 months.\n\n",
+                    "text": "This chart displays the % of enrolled stores that were Product compliant for the country over a period of last 13 months.",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
                 },
