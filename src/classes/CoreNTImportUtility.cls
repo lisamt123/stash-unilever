@@ -134,6 +134,7 @@ public with sharing class CoreNTImportUtility {
             /*Parse Resources -- First get all the Resources and validate whether the logged in User
                                  is among the resource list.*/
             Boolean isValid = false;
+			List<User> U1 = [Select id from User where Email = : email];
             for (Dom.XMLNode child: root.getChildElement(CoreNTConstants.RESOURCES_TAG, ns).getChildElements()) {
                 transient CORE_NT_Team__c projTeamObj = new CORE_NT_Team__c();
                 projTeamObj.Name = project.Name;
@@ -181,7 +182,7 @@ public with sharing class CoreNTImportUtility {
                     else
                         isValid = false;
                 }
-                   List<User> U1 = [Select id from User where Email = : email]; 
+				    
                 //for (User userObj: [Select id from User where Email = : email Limit 1]) {
                     for(User userobj:U1){
 					projTeamObj.TeamMemberName__c = userObj.id;
@@ -189,6 +190,7 @@ public with sharing class CoreNTImportUtility {
                 }
                 email = '';
                 grp = '';
+                
             } //resource for loop ends here
             if (!isValid)
                 throw new CoreNTException(CoreNTException.ERROR_NOT_NETWORK_OWNER);
