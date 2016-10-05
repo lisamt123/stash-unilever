@@ -35,12 +35,12 @@
                         <apex:commandLink oncomplete="editRolloutFunc();" reRender="editRolloutUrlStrPanel" styleClass="ipmButton primary pull-right" value="{!$Label.IPM_EDIT}" action="{!editRollout}" rendered="{! AND(NOT(isEditMode),isEditable)}" status="loadingStatus">       
                         </apex:commandLink>
                         
-                        <apex:outputPanel rendered="{!AND(isEditMode,projectType.IPM_CreateRegionalProjects__c ) }" layout="block"> 
+                        <apex:outputPanel rendered="{!AND(isEditMode,projectType.IPM_CreateLocalProjects__c ) }" layout="block"> 
                             <a class="ipmButton primary pull-right focusRolloutmodal" data-toggle="modal" data-target="#ipmRegionalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
                         </apex:outputPanel>
                          
-                        <apex:commandLink oncomplete="saveRolloutFunc();" reRender="saveRolloutUrlStrPanel" styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateRegionalProjects__c))}" status="loadingStatus" onclick="skipValidation();">
-                        <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
+                        <apex:commandLink oncomplete="saveRolloutFuncJs();" reRender="validationErrorPanel,saveRolloutUrlStrPanel" styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateLocalProjects__c))}" status="loadingStatus" onclick="skipValidation();">
+                            <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                         </apex:commandLink>
                         
                         <apex:commandLink reRender="cancelRolloutUrlStrPanel" styleClass="ipmButton pull-right mr10" value="{!$Label.IPM_CANCEL}" action="{!cancelRollout}" rendered="{!AND(isEditable,isEditMode)}" onComplete="aftercancel();" status="loadingStatus" onclick="skipValidation();">
@@ -49,10 +49,10 @@
                     </div>
                 </apex:outputPanel>
             </div>
-            
+
             <apex:outputPanel id="validationErrorMsg" rendered="{!AND(NOT(ISNULL(validationError)),NOT(ISBLANK(validationError)))}" > 
-                <apex:outputText styleClass="rolloutErrorBox" value="{!validationError}" /> 
-            </apex:outputPanel> 
+                <apex:outputText styleClass="rolloutErrorBox" value="{!validationError}" />
+            </apex:outputPanel>
             
             <!-- ---- Table Heading for Non GKM3 Models starts here  ---------->
             <apex:outputPanel >
@@ -292,7 +292,7 @@
                             <a class="ipmButton primary pull-right" data-toggle="modal" data-target="#ipmRegionalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
                         </apex:outputPanel> 
                         
-                        <apex:commandLink oncomplete="saveRolloutFunc();" reRender="saveRolloutUrlStrPanel" styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateLocalProjects__c))}" status="loadingStatus" onclick="skipValidation();">
+                        <apex:commandLink oncomplete="saveRolloutFuncJs();" reRender="validationErrorPanel,saveRolloutUrlStrPanel" styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateLocalProjects__c))}" status="loadingStatus" onclick="skipValidation();">
                             <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                         </apex:commandLink>
                         
@@ -333,7 +333,7 @@
                                     <apex:actionStatus startText="" id="Loading1" startStyleClass="proInit"/>
                                     <div class="pull-left noPadright">                                  
                                         
-                                        <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton primary" onComplete="saveRolloutFunc();" reRender="saveRolloutUrlStrPanel,createNewProject" status="loadingStatus" html-data-dismiss="modal" action="{!saveRollout}" onclick="skipValidation();">
+                                        <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton primary" onComplete="saveRolloutFuncJs();" reRender="validationErrorPanel,saveRolloutUrlStrPanel,createNewProject" status="loadingStatus" html-data-dismiss="modal" action="{!saveRollout}" onclick="skipValidation();">
                                             <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                                         </apex:commandLink>    
                                     </div> 
@@ -402,7 +402,12 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/iframeResizer.contentWindow.min.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RolloutPlansjs.js')}" type="text/javascript"></script>
-    <script>
-        var IPMProAppRP = {wmessage:'{!$Label.IPM_Unsaved_Alert}'};
-    </script>    
+    
+    <apex:outputpanel id="validationErrorPanel" >
+        <script>
+            var IPMProAppRP = {wmessage:'{!$Label.IPM_Unsaved_Alert}'};
+            var validationErrorJs = '{!validationError}';
+        </script>   
+    </apex:outputpanel>
+    
 </apex:page>
