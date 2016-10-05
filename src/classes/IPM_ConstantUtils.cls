@@ -1249,6 +1249,9 @@ public class IPM_ConstantUtils {
     public static final String ADDITIONAL_MILESTONE_PDL = 'Product Design Lock Milestone (Mandatory for Personal Care)';
     public static final String PERSONAL_CARE = 'Personal Care';
     
+    //Release-03:REQ03839/REQ03840
+    public static final string ROLLUP_MILESTONES ='Contract Gate Approval;Market Ready Gate Approval';
+    
     //Milestone Duedate validation constants
     public static final String PRODUCT_DESIGN_LOCK = 'Product Design Lock';
     
@@ -1282,9 +1285,12 @@ public class IPM_ConstantUtils {
     public static final String Project = 'PROJECT';
     public static final String Phantom = 'PHANTOM';
     public static final String PDLAMP =' & PDL';
-	
+    
+    // Section Skip
     public static final String REGIONAL_BDTEAM_EXTID ='Regional_BD_Team_FB_Req';
-	public static final String PDL_FINACIAL_GLOBAL_CLAIMS = 'Final_Global_Claims';
+    public static final String REGIONAL_FEEDBACK_EXTID ='Regional_BD_Team_Feedback_to_Global';
+    
+    public static final String PDL_FINACIAL_GLOBAL_CLAIMS = 'Final_Global_Claims';
     public static final String PDL_GOLDEN_PROTOTYPE = 'Golden_Prototype';
     public static final String PDL_QUALITY_STANDARDS = 'Quality_Standards';
 	public static final String SELECT_CLAIM = 'Select Claim';

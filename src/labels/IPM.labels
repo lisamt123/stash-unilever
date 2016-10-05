@@ -1062,7 +1062,7 @@ If you make no selection now the Sustainability Period will default to 3 years o
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Alert No Assessment For EI Country</shortDescription>
-        <value>Please complete at least one assessment in Eco-Design for all your EI Countries in Section 5.3!</value>
+        <value>Please complete at least one assessment in Eco-Design for all your EI Countries in Section 5.3</value>
     </labels>
     <labels>
         <fullName>IPM_Alert_Please_be_aware_that_some_of_your_regional_rollouts_have_not_progresse</fullName>
