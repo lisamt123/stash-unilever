@@ -58,7 +58,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     
     public  String tabLabelMyView {get; set;} //Used to define the label for My View Tab
     public  String tabLabelTopDown {get; set;} //Used to define the label for Top Down Tab
-    public  String tabLabelTopDownGKM3 {get; set;} //Used to define the label for Top Down Tab for GKM3 Project
     public  String tabLabelRollup {get; set;} //Used to define the label for Rollup Tab 
     
     public List<SelectOption> lstSustainabilityPeriod {get; set;} //Used to manage appropriate sustainability period selection on the UI
@@ -126,12 +125,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     */
     public boolean getLocalCurrencyViewButtonVisibility(){
         Boolean flag = false;    
-        if(isEditable && project.IPM_Phase__c != 'PLE'){
-            if( currentFinancial.Gate_Keeping_Model__c == 'GKM3'&& Schema.sObjectType.IPM_Financial__c.isUpdateable()){           
+        if(isEditable && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_PLE){
+            if(currentFinancial != null && currentFinancial.Gate_Keeping_Model__c == IPM_ConstantUtils.GKM_3 && Schema.sObjectType.IPM_Financial__c.isUpdateable()){           
                 flag =(!isEditMode && !isRolloutError);
             }
             else{           
-                if( project.IPMProject_Span__c == 'Global' && project.IPM_Project_Type__c == 'Original'&& (project.IPM_Phase__c != 'Ideas') && Schema.sObjectType.IPM_Financial__c.isUpdateable()){
+                if( project.IPMProject_Span__c == IPM_ConstantUtils.SpanGlobal && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL&& (project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS) && Schema.sObjectType.IPM_Financial__c.isUpdateable()){
                     flag = false;
                 }        
                 else{
@@ -980,7 +979,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         
         Map<String,List<IPM_Financial__c>> localFinancialMap = new Map<String,List<IPM_Financial__c>>();
-        if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY){
+        if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_PLE)){
         	
         	List<IPM_Project__c> lstLocalProject = new List<IPM_Project__c>();
 			
@@ -988,15 +987,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 			
 			
 			
-			if(!lstLocalProject.isEmpty()){
-				for(IPM_Project__c localProject: lstLocalProject){
-				
-					if(localFinancialMap.containsKey(localProject.Market_Cluster_Name__c)){
-						localFinancialMap.get(localProject.Market_Cluster_Name__c).add(localProject.IPM_Financials_local__r);
-					}
-					else{
-						localFinancialMap.put(localProject.Market_Cluster_Name__c,localProject.IPM_Financials_local__r);
-					}
+                for(IPM_Project__c localProject: lstLocalProject){
+                
+                    if(!localProject.IPM_Financials_local__r.isEmpty()){
+                    	if(localFinancialMap.containsKey(localProject.Market_Cluster_Name__c)){
+	                        localFinancialMap.get(localProject.Market_Cluster_Name__c).addAll(localProject.IPM_Financials_local__r);
+	                    }
+	                    else{
+	                        localFinancialMap.put(localProject.Market_Cluster_Name__c,localProject.IPM_Financials_local__r);
+	                    }
 				
 				}
 			 
