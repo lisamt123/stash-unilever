@@ -42,8 +42,14 @@
     <columns>
         <field>IPM_Analytics__c$IPM_Category__c</field>
     </columns>
-    <columns>
-        <field>IPM_Analytics__c$IPM_Sub_Category__c</field>
+	 <columns>
+        <field>IPM_Analytics__c$IPM_Sector__c</field>
+    </columns>
+	 <columns>
+        <field>IPM_Analytics__c$IPM_Sub_Sector__c</field>
+    </columns>
+	 <columns>
+        <field>IPM_Analytics__c$IPM_Market_Name__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics__c$IPM_Brand_Positioning__c</field>
