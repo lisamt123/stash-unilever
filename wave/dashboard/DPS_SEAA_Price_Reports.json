@@ -2929,7 +2929,7 @@
                     "measures": [
                         [
                             "avg",
-                            "SP_Compliance",
+                            "Price_Compliance",
                             "Price Compliance (%)"
                         ]
                     ],
@@ -2997,7 +2997,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -3181,7 +3181,7 @@
                     "columns": [
                         {
                             "query": {
-                                "pigql": "q = load \"STRATEGIC_PRICE_SCORE\"; q = filter q by 'Country' in {{ selection(Country_11) }} && 'City' in {{ selection(City_14) }} && 'Commune' in {{ selection(Commune_39) }} && 'Customer_type' in {{ selection(Customer_type_21) }} && 'Trade_Format' in {{ selection(Trade_Format_17) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_20) }} && 'Top_Customer' in {{ selection(Top_Customer_48)}} && 'Customer' in {{ selection(Customer_23) }} && 'Local_Outlet_Name' in {{ selection(Local_Outlet_Name_45) }} && 'Channel' in {{ selection(Channel_18) }} && 'Subchannel' in {{ selection(Subchannel_19) }} && 'Sales_region' in {{ selection(Sales_region_41) }} && 'Sales_area' in {{ selection(Sales_area_15) }} && 'Sales_territory' in {{ selection(Sales_territory_16) }} && 'Field_Execution_Manager' in {{ selection(Field_Execution_Manager_49) }} && 'Store_Operations_Manager' in {{ selection(Store_Operations_Manager_51) }} && 'Field_Sales_Manager' in {{ selection(Field_Sales_Manager_50) }} && 'Product_division' in {{ selection(Product_division_25) }} && 'Product_category' in {{ selection(Product_category_26) }} && 'Country' in {{ selection(Country_36) }} && 'Country' in {{ selection(Country_52) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_Score_Type_5) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_39) }} && 'Sales_region' in {{ selection(Region_53) }} && 'Sales_region' in {{ selection(Region_54) }} && 'Channel' in {{ selection(Channel_41) }} && 'Channel' in {{ selection(Channel_Score_Type_7) }} && 'Product_category' in {{ selection(Product_category_40) }} && 'Product_category' in {{ selection(Product_category_Score_Type_6) }} && 'Customer' in {{ selection(Customer_42) }}  && 'Customer' in {{ selection(Customer_Score_Type_8) }} && 'Product_market' in {{selection(Product_market_27)}} && 'Product_brand' in {{selection(Product_brand_29)}} && 'Product_sector' in {{selection(Product_sector_28)}} && 'SKU' in {{selection(SKU_30)}}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"5 months ago\"..\"5 months ago\"]; q = group q by ('Product_category', 'SKU_ID', 'SKU'); q = foreach q generate 'Product_category' as 'Product Category', 'SKU_ID' as 'SKU ID', 'SKU' as 'SKU', avg('Strategic_Price') as 'currentScore'; ",
+                                "pigql": "q = load \"STRATEGIC_PRICE_SCORE\"; q = filter q by 'Country' in {{ selection(Country_11) }} && 'City' in {{ selection(City_14) }} && 'Commune' in {{ selection(Commune_39) }} && 'Customer_Type' in {{ selection(Customer_type_21) }} && 'Trade_Format' in {{ selection(Trade_Format_17) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_20) }} && 'Top_Customer' in {{ selection(Top_Customer_48)}} && 'Customer' in {{ selection(Customer_23) }} && 'Local_Outlet_Name' in {{ selection(Local_Outlet_Name_45) }} && 'Channel' in {{ selection(Channel_18) }} && 'Subchannel' in {{ selection(Subchannel_19) }} && 'Sales_region' in {{ selection(Sales_region_41) }} && 'Sales_area' in {{ selection(Sales_area_15) }} && 'Sales_territory' in {{ selection(Sales_territory_16) }} && 'Field_Execution_Manager' in {{ selection(Field_Execution_Manager_49) }} && 'Store_Operations_Manager' in {{ selection(Store_Operations_Manager_51) }} && 'Field_Sales_Manager' in {{ selection(Field_Sales_Manager_50) }} && 'Product_division' in {{ selection(Product_division_25) }} && 'Product_category' in {{ selection(Product_category_26) }} && 'Country' in {{ selection(Country_36) }} && 'Country' in {{ selection(Country_52) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_Score_Type_5) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_39) }} && 'Sales_region' in {{ selection(Region_53) }} && 'Sales_region' in {{ selection(Region_54) }} && 'Channel' in {{ selection(Channel_41) }} && 'Channel' in {{ selection(Channel_Score_Type_7) }} && 'Product_category' in {{ selection(Product_category_40) }} && 'Product_category' in {{ selection(Product_category_Score_Type_6) }} && 'Customer' in {{ selection(Customer_42) }}  && 'Customer' in {{ selection(Customer_Score_Type_8) }} && 'Product_market' in {{selection(Product_market_27)}} && 'Product_brand' in {{selection(Product_brand_29)}} && 'Product_sector' in {{selection(Product_sector_28)}} && 'SKU' in {{selection(SKU_30)}}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"5 months ago\"..\"5 months ago\"]; q = group q by ('Product_category', 'SKU_ID', 'SKU'); q = foreach q generate 'Product_category' as 'Product Category', 'SKU_ID' as 'SKU ID', 'SKU' as 'SKU', avg('Strategic_Price') as 'currentScore'; ",
                                 "measures": [
                                     [
                                         "current",
@@ -3199,7 +3199,7 @@
                         },
                         {
                             "query": {
-                                "pigql": "q = load \"STRATEGIC_PRICE_SCORE\"; q = filter q by 'Country' in {{ selection(Country_11) }} && 'City' in {{ selection(City_14) }} && 'Commune' in {{ selection(Commune_39) }} && 'Customer_type' in {{ selection(Customer_type_21) }} && 'Trade_Format' in {{ selection(Trade_Format_17) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_20) }} && 'Top_Customer' in {{ selection(Top_Customer_48)}} && 'Customer' in {{ selection(Customer_23) }} && 'Local_Outlet_Name' in {{ selection(Local_Outlet_Name_45) }} && 'Channel' in {{ selection(Channel_18) }} && 'Subchannel' in {{ selection(Subchannel_19) }} && 'Sales_region' in {{ selection(Sales_region_41) }} && 'Sales_area' in {{ selection(Sales_area_15) }} && 'Sales_territory' in {{ selection(Sales_territory_16) }} && 'Field_Execution_Manager' in {{ selection(Field_Execution_Manager_49) }} && 'Store_Operations_Manager' in {{ selection(Store_Operations_Manager_51) }} && 'Field_Sales_Manager' in {{ selection(Field_Sales_Manager_50) }} && 'Product_division' in {{ selection(Product_division_25) }} && 'Product_category' in {{ selection(Product_category_26) }} && 'Country' in {{ selection(Country_36) }} && 'Country' in {{ selection(Country_52) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_Score_Type_5) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_39) }} && 'Sales_region' in {{ selection(Region_53) }} && 'Sales_region' in {{ selection(Region_54) }} && 'Channel' in {{ selection(Channel_41) }} && 'Channel' in {{ selection(Channel_Score_Type_7) }} && 'Product_category' in {{ selection(Product_category_40) }} && 'Product_category' in {{ selection(Product_category_Score_Type_6) }} && 'Customer' in {{ selection(Customer_42) }}  && 'Customer' in {{ selection(Customer_Score_Type_8) }} && 'Product_market' in {{selection(Product_market_27)}} && 'Product_brand' in {{selection(Product_brand_29)}} && 'Product_sector' in {{selection(Product_sector_28)}} && 'SKU' in {{selection(SKU_30)}}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"]; q = group q by ('Product_category', 'SKU_ID', 'SKU'); q = foreach q generate 'Product_category' as 'Product Category', 'SKU_ID' as 'SKU ID', 'SKU' as 'SKU', avg('Strategic_Price') as 'lastScore'; ",
+                                "pigql": "q = load \"STRATEGIC_PRICE_SCORE\"; q = filter q by 'Country' in {{ selection(Country_11) }} && 'City' in {{ selection(City_14) }} && 'Commune' in {{ selection(Commune_39) }} && 'Customer_Type' in {{ selection(Customer_type_21) }} && 'Trade_Format' in {{ selection(Trade_Format_17) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_20) }} && 'Top_Customer' in {{ selection(Top_Customer_48)}} && 'Customer' in {{ selection(Customer_23) }} && 'Local_Outlet_Name' in {{ selection(Local_Outlet_Name_45) }} && 'Channel' in {{ selection(Channel_18) }} && 'Subchannel' in {{ selection(Subchannel_19) }} && 'Sales_region' in {{ selection(Sales_region_41) }} && 'Sales_area' in {{ selection(Sales_area_15) }} && 'Sales_territory' in {{ selection(Sales_territory_16) }} && 'Field_Execution_Manager' in {{ selection(Field_Execution_Manager_49) }} && 'Store_Operations_Manager' in {{ selection(Store_Operations_Manager_51) }} && 'Field_Sales_Manager' in {{ selection(Field_Sales_Manager_50) }} && 'Product_division' in {{ selection(Product_division_25) }} && 'Product_category' in {{ selection(Product_category_26) }} && 'Country' in {{ selection(Country_36) }} && 'Country' in {{ selection(Country_52) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_Score_Type_5) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_39) }} && 'Sales_region' in {{ selection(Region_53) }} && 'Sales_region' in {{ selection(Region_54) }} && 'Channel' in {{ selection(Channel_41) }} && 'Channel' in {{ selection(Channel_Score_Type_7) }} && 'Product_category' in {{ selection(Product_category_40) }} && 'Product_category' in {{ selection(Product_category_Score_Type_6) }} && 'Customer' in {{ selection(Customer_42) }}  && 'Customer' in {{ selection(Customer_Score_Type_8) }} && 'Product_market' in {{selection(Product_market_27)}} && 'Product_brand' in {{selection(Product_brand_29)}} && 'Product_sector' in {{selection(Product_sector_28)}} && 'SKU' in {{selection(SKU_30)}}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"]; q = group q by ('Product_category', 'SKU_ID', 'SKU'); q = foreach q generate 'Product_category' as 'Product Category', 'SKU_ID' as 'SKU ID', 'SKU' as 'SKU', avg('Strategic_Price') as 'lastScore'; ",
                                 "measures": [
                                     [
                                         "last",
@@ -3219,7 +3219,7 @@
                         },
                         {
                             "query": {
-                                "pigql": "q = load \"STRATEGIC_PRICE_SCORE\"; q = filter q by 'Country' in {{ selection(Country_11) }} && 'City' in {{ selection(City_14) }} && 'Commune' in {{ selection(Commune_39) }} && 'Customer_type' in {{ selection(Customer_type_21) }} && 'Trade_Format' in {{ selection(Trade_Format_17) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_20) }} && 'Top_Customer' in {{ selection(Top_Customer_48)}} && 'Customer' in {{ selection(Customer_23) }} && 'Local_Outlet_Name' in {{ selection(Local_Outlet_Name_45) }} && 'Channel' in {{ selection(Channel_18) }} && 'Subchannel' in {{ selection(Subchannel_19) }} && 'Sales_region' in {{ selection(Sales_region_41) }} && 'Sales_area' in {{ selection(Sales_area_15) }} && 'Sales_territory' in {{ selection(Sales_territory_16) }} && 'Field_Execution_Manager' in {{ selection(Field_Execution_Manager_49) }} && 'Store_Operations_Manager' in {{ selection(Store_Operations_Manager_51) }} && 'Field_Sales_Manager' in {{ selection(Field_Sales_Manager_50) }} && 'Product_division' in {{ selection(Product_division_25) }} && 'Product_category' in {{ selection(Product_category_26) }} && 'Country' in {{ selection(Country_36) }} && 'Country' in {{ selection(Country_52) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_Score_Type_5) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_39) }} && 'Sales_region' in {{ selection(Region_53) }} && 'Sales_region' in {{ selection(Region_54) }} && 'Channel' in {{ selection(Channel_41) }} && 'Channel' in {{ selection(Channel_Score_Type_7) }} && 'Product_category' in {{ selection(Product_category_40) }} && 'Product_category' in {{ selection(Product_category_Score_Type_6) }} && 'Customer' in {{ selection(Customer_42) }}  && 'Customer' in {{ selection(Customer_Score_Type_8) }} && 'Product_market' in {{selection(Product_market_27)}} && 'Product_brand' in {{selection(Product_brand_29)}} && 'Product_sector' in {{selection(Product_sector_28)}} && 'SKU' in {{selection(SKU_30)}}; cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"5 months ago\"..\"5 months ago\"];last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"]; diff = cogroup cur by ('Product_category', 'SKU_ID', 'SKU') full, last by ('Product_category', 'SKU_ID', 'SKU'); diff = foreach diff generate coalesce(cur::'Product_category',last::'Product_category') as 'Product_category', coalesce(cur::'SKU', last::'SKU') as 'SKU', coalesce(cur::'SKU_ID', last::'SKU_ID') as 'SKU_ID', avg(cur.Strategic_Price) as currentScore, avg(last.Strategic_Price) as lastScore, (case when avg(cur.Strategic_Price) is null then coalesce(0-avg(last.Strategic_Price), 999) else coalesce(avg(cur.Strategic_Price)-avg(last.Strategic_Price),999) end) as 'scoreAverage'; diff = foreach diff generate Product_category as 'Product_category', SKU_ID as 'SKU_ID', SKU as 'SKU', (case when scoreAverage != 999 then scoreAverage when currentScore is null then (-lastScore) else (currentScore) end) as Percent_Diff;",
+                                "pigql": "q = load \"STRATEGIC_PRICE_SCORE\"; q = filter q by 'Country' in {{ selection(Country_11) }} && 'City' in {{ selection(City_14) }} && 'Commune' in {{ selection(Commune_39) }} && 'Customer_Type' in {{ selection(Customer_type_21) }} && 'Trade_Format' in {{ selection(Trade_Format_17) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_20) }} && 'Top_Customer' in {{ selection(Top_Customer_48)}} && 'Customer' in {{ selection(Customer_23) }} && 'Local_Outlet_Name' in {{ selection(Local_Outlet_Name_45) }} && 'Channel' in {{ selection(Channel_18) }} && 'Subchannel' in {{ selection(Subchannel_19) }} && 'Sales_region' in {{ selection(Sales_region_41) }} && 'Sales_area' in {{ selection(Sales_area_15) }} && 'Sales_territory' in {{ selection(Sales_territory_16) }} && 'Field_Execution_Manager' in {{ selection(Field_Execution_Manager_49) }} && 'Store_Operations_Manager' in {{ selection(Store_Operations_Manager_51) }} && 'Field_Sales_Manager' in {{ selection(Field_Sales_Manager_50) }} && 'Product_division' in {{ selection(Product_division_25) }} && 'Product_category' in {{ selection(Product_category_26) }} && 'Country' in {{ selection(Country_36) }} && 'Country' in {{ selection(Country_52) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_Score_Type_5) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_39) }} && 'Sales_region' in {{ selection(Region_53) }} && 'Sales_region' in {{ selection(Region_54) }} && 'Channel' in {{ selection(Channel_41) }} && 'Channel' in {{ selection(Channel_Score_Type_7) }} && 'Product_category' in {{ selection(Product_category_40) }} && 'Product_category' in {{ selection(Product_category_Score_Type_6) }} && 'Customer' in {{ selection(Customer_42) }}  && 'Customer' in {{ selection(Customer_Score_Type_8) }} && 'Product_market' in {{selection(Product_market_27)}} && 'Product_brand' in {{selection(Product_brand_29)}} && 'Product_sector' in {{selection(Product_sector_28)}} && 'SKU' in {{selection(SKU_30)}}; cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"5 months ago\"..\"5 months ago\"];last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"]; diff = cogroup cur by ('Product_category', 'SKU_ID', 'SKU') full, last by ('Product_category', 'SKU_ID', 'SKU'); diff = foreach diff generate coalesce(cur::'Product_category',last::'Product_category') as 'Product_category', coalesce(cur::'SKU', last::'SKU') as 'SKU', coalesce(cur::'SKU_ID', last::'SKU_ID') as 'SKU_ID', avg(cur.Strategic_Price) as currentScore, avg(last.Strategic_Price) as lastScore, (case when avg(cur.Strategic_Price) is null then coalesce(0-avg(last.Strategic_Price), 999) else coalesce(avg(cur.Strategic_Price)-avg(last.Strategic_Price),999) end) as 'scoreAverage'; diff = foreach diff generate Product_category as 'Product_category', SKU_ID as 'SKU_ID', SKU as 'SKU', (case when scoreAverage != 999 then scoreAverage when currentScore is null then (-lastScore) else (currentScore) end) as Percent_Diff;",
                                 "measures": [
                                     [
                                         "Percent",
@@ -3239,7 +3239,7 @@
                         },
                         {
                             "query": {
-                                "pigql": "q = load \"STRATEGIC_PRICE_SCORE\"; q = filter q by 'Country' in {{ selection(Country_11) }} && 'City' in {{ selection(City_14) }} && 'Commune' in {{ selection(Commune_39) }} && 'Customer_type' in {{ selection(Customer_type_21) }} && 'Trade_Format' in {{ selection(Trade_Format_17) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_20) }} && 'Top_Customer' in {{ selection(Top_Customer_48)}} && 'Customer' in {{ selection(Customer_23) }} && 'Local_Outlet_Name' in {{ selection(Local_Outlet_Name_45) }} && 'Channel' in {{ selection(Channel_18) }} && 'Subchannel' in {{ selection(Subchannel_19) }} && 'Sales_region' in {{ selection(Sales_region_41) }} && 'Sales_area' in {{ selection(Sales_area_15) }} && 'Sales_territory' in {{ selection(Sales_territory_16) }} && 'Field_Execution_Manager' in {{ selection(Field_Execution_Manager_49) }} && 'Store_Operations_Manager' in {{ selection(Store_Operations_Manager_51) }} && 'Field_Sales_Manager' in {{ selection(Field_Sales_Manager_50) }} && 'Product_division' in {{ selection(Product_division_25) }} && 'Product_category' in {{ selection(Product_category_26) }} && 'Country' in {{ selection(Country_36) }} && 'Country' in {{ selection(Country_52) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_Score_Type_5) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_39) }} && 'Sales_region' in {{ selection(Region_53) }} && 'Sales_region' in {{ selection(Region_54) }} && 'Channel' in {{ selection(Channel_41) }} && 'Channel' in {{ selection(Channel_Score_Type_7) }} && 'Product_category' in {{ selection(Product_category_40) }} && 'Product_category' in {{ selection(Product_category_Score_Type_6) }} && 'Customer' in {{ selection(Customer_42) }}  && 'Customer' in {{ selection(Customer_Score_Type_8) }} && 'Product_market' in {{selection(Product_market_27)}} && 'Product_brand' in {{selection(Product_brand_29)}} && 'Product_sector' in {{selection(Product_sector_28)}} && 'SKU' in {{selection(SKU_30)}}; cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"5 months ago\"..\"5 months ago\"];last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"]; diff = cogroup cur by ('Product_category', 'SKU_ID', 'SKU') full, last by ('Product_category', 'SKU_ID', 'SKU'); diff = foreach diff generate coalesce(cur::'Product_category',last::'Product_category') as 'Product_category', coalesce(cur::'SKU', last::'SKU') as 'SKU', coalesce(cur::'SKU_ID', last::'SKU_ID') as 'SKU_ID', coalesce(avg(cur.Strategic_Price)-avg(last.Strategic_Price),999) as 'scoreAverage', avg(cur.Strategic_Price) as currentScore, avg(last.Strategic_Price) as lastScore; diff = foreach diff generate Product_category as 'Product_category', SKU_ID as 'SKU_ID', SKU as 'SKU', (case when scoreAverage != 999 then scoreAverage when currentScore is null then (-lastScore) else (currentScore) end) as short_Bar;",
+                                "pigql": "q = load \"STRATEGIC_PRICE_SCORE\"; q = filter q by 'Country' in {{ selection(Country_11) }} && 'City' in {{ selection(City_14) }} && 'Commune' in {{ selection(Commune_39) }} && 'Customer_Type' in {{ selection(Customer_type_21) }} && 'Trade_Format' in {{ selection(Trade_Format_17) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_20) }} && 'Top_Customer' in {{ selection(Top_Customer_48)}} && 'Customer' in {{ selection(Customer_23) }} && 'Local_Outlet_Name' in {{ selection(Local_Outlet_Name_45) }} && 'Channel' in {{ selection(Channel_18) }} && 'Subchannel' in {{ selection(Subchannel_19) }} && 'Sales_region' in {{ selection(Sales_region_41) }} && 'Sales_area' in {{ selection(Sales_area_15) }} && 'Sales_territory' in {{ selection(Sales_territory_16) }} && 'Field_Execution_Manager' in {{ selection(Field_Execution_Manager_49) }} && 'Store_Operations_Manager' in {{ selection(Store_Operations_Manager_51) }} && 'Field_Sales_Manager' in {{ selection(Field_Sales_Manager_50) }} && 'Product_division' in {{ selection(Product_division_25) }} && 'Product_category' in {{ selection(Product_category_26) }} && 'Country' in {{ selection(Country_36) }} && 'Country' in {{ selection(Country_52) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_Score_Type_5) }} && 'X4P_5P_6P' in {{ selection(X4P_5P_6P_39) }} && 'Sales_region' in {{ selection(Region_53) }} && 'Sales_region' in {{ selection(Region_54) }} && 'Channel' in {{ selection(Channel_41) }} && 'Channel' in {{ selection(Channel_Score_Type_7) }} && 'Product_category' in {{ selection(Product_category_40) }} && 'Product_category' in {{ selection(Product_category_Score_Type_6) }} && 'Customer' in {{ selection(Customer_42) }}  && 'Customer' in {{ selection(Customer_Score_Type_8) }} && 'Product_market' in {{selection(Product_market_27)}} && 'Product_brand' in {{selection(Product_brand_29)}} && 'Product_sector' in {{selection(Product_sector_28)}} && 'SKU' in {{selection(SKU_30)}}; cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"5 months ago\"..\"5 months ago\"];last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"]; diff = cogroup cur by ('Product_category', 'SKU_ID', 'SKU') full, last by ('Product_category', 'SKU_ID', 'SKU'); diff = foreach diff generate coalesce(cur::'Product_category',last::'Product_category') as 'Product_category', coalesce(cur::'SKU', last::'SKU') as 'SKU', coalesce(cur::'SKU_ID', last::'SKU_ID') as 'SKU_ID', coalesce(avg(cur.Strategic_Price)-avg(last.Strategic_Price),999) as 'scoreAverage', avg(cur.Strategic_Price) as currentScore, avg(last.Strategic_Price) as lastScore; diff = foreach diff generate Product_category as 'Product_category', SKU_ID as 'SKU_ID', SKU as 'SKU', (case when scoreAverage != 999 then scoreAverage when currentScore is null then (-lastScore) else (currentScore) end) as short_Bar;",
                                 "measures": [
                                     [
                                         "short",
@@ -3312,7 +3312,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -3348,7 +3348,7 @@
                             "{{ selection(Subchannel_19) }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ selection(Store_type_43) }}"
                         ],
                         [
@@ -3461,7 +3461,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -3613,7 +3613,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -3649,7 +3649,7 @@
                             "{{ selection(Subchannel_19) }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ selection(Store_type_43) }}"
                         ],
                         [
@@ -3803,7 +3803,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -3839,7 +3839,7 @@
                             "{{ selection(Subchannel_19) }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ selection(Store_type_43) }}"
                         ],
                         [
@@ -3970,7 +3970,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -4599,7 +4599,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -4635,7 +4635,7 @@
                             "{{ selection(Subchannel_19) }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ selection(Store_type_43) }}"
                         ],
                         [
@@ -4968,7 +4968,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -5089,7 +5089,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -5125,7 +5125,7 @@
                             "{{ selection(Subchannel_19) }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ selection(Store_type_43) }}"
                         ],
                         [
@@ -5517,7 +5517,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -5553,7 +5553,7 @@
                             "{{ selection(Subchannel_19) }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ selection(Store_type_43) }}"
                         ],
                         [
@@ -5681,7 +5681,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -5713,7 +5713,7 @@
                             "{{ selection(Subchannel_19) }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ selection(Store_type_43) }}"
                         ],
                         [
@@ -5950,7 +5950,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -6112,7 +6112,7 @@
                             "{{ selection(Commune_39) }}"
                         ],
                         [
-                            "Customer_type",
+                            "Customer_Type",
                             "{{ selection(Customer_type_21) }}"
                         ],
                         [
@@ -7145,7 +7145,7 @@
             "header_priceAvail": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "Price Compliance",
+                    "text": "Price Availability",
                     "textAlignment": "left",
                     "textColor": "rgb(70, 178, 157)"
                 },

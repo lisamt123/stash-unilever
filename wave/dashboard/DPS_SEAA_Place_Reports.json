@@ -85,7 +85,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "header_score4p5p6p",
                                 "row": 37,
@@ -449,7 +449,7 @@
                                 }
                             },
                             {
-                                "colspan": 3,
+                                "colspan": 4,
                                 "column": 6,
                                 "name": "header_scoreCust",
                                 "row": 90,
@@ -8730,7 +8730,7 @@
             "header_overview": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nOverview",
+                    "text": "Overview",
                     "textAlignment": "left",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -8784,7 +8784,7 @@
             "header_scoresByQuestion": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nScores by Question",
+                    "text": "Scores by Question",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -9583,7 +9583,7 @@
             "header_placeCompliance": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nPlace Compliance",
+                    "text": "Place Compliance",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -10789,7 +10789,7 @@
             "header_placeScore": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nPlace Score",
+                    "text": "Place Score",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },

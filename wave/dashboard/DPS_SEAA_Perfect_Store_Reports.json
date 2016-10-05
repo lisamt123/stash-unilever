@@ -268,8 +268,8 @@
                                 }
                             },
                             {
-                                "colspan": 5,
-                                "column": 7,
+                                "colspan": 6,
+                                "column": 6,
                                 "name": "header_diffPrevMonth",
                                 "row": 26,
                                 "rowspan": 1,
@@ -478,7 +478,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "header_enrollCom4p5p6p",
                                 "row": 80,
@@ -1472,12 +1472,14 @@
                                 }
                             },
                             {
-                                "row": 6,
-                                "column": 2,
-                                "rowspan": 1,
                                 "colspan": 2,
+                                "column": 2,
                                 "name": "listselector_20",
-                                "widgetStyle": {}
+                                "row": 6,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
                             }
                         ]
                     }
@@ -2691,35 +2693,6 @@
         ],
         "layouts": [],
         "steps": {
-            "Key_Customer_Type_1": {
-                "type": "aggregateflex",
-                "visualizationParameters": {
-                    "visualizationType": "hbar",
-                    "options": {}
-                },
-                "query": {
-                    "groups": [
-                        "Key_Customer_Type"
-                    ],
-                    "measures": [
-                        [
-                            "count",
-                            "*"
-                        ]
-                    ]
-                },
-                "datasets": [
-                    {
-                        "name": "PS_COMPLIANCE_AGGREGATED_WITH_IC1",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000AL9iCAG",
-                        "id": "0Fb23000000AL9iCAG"
-                    }
-                ],
-                "isFacet": true,
-                "isGlobal": false,
-                "useGlobal": true,
-                "selectMode": "single"
-            },
             "Cluster_10": {
                 "datasets": [
                     {
@@ -2821,6 +2794,36 @@
                 "selectMode": "multi",
                 "start": [],
                 "type": "aggregate",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Key_Customer_Type_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb23000000AL9iCAG",
+                        "label": "PS_COMPLIANCE_AGGREGATED_WITH_IC",
+                        "name": "PS_COMPLIANCE_AGGREGATED_WITH_IC1",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000AL9iCAG"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Key_Customer_Type"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
@@ -3476,7 +3479,7 @@
                 "isFacet": true,
                 "isGlobal": false,
                 "query": {
-                    "pigql": "a = load \"PS_COMPLIANCE_AGGREGATED_WITH_IC1\"; b = load \"PS_ENROLLED_STORE\"; a = filter a by 'Top_Customer' == \"Yes\"; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(audit_Month) }};; b = filter b by date('Date_Year', 'Date_Month', 'Date_Day') in {{ selection(audit_Month) }}; c = cogroup b by 'Customer', a by 'Customer'; c = foreach c generate a.'Customer' as 'Customer', avg(a.PS_Compliance) as 'ps_comp', count(b) as 'number_enrolled'; c = order c by 'ps_comp' desc; c = limit c 20",
+                    "pigql": "a = load \"PS_COMPLIANCE_AGGREGATED_WITH_IC1\"; b = load \"PS_ENROLLED_STORE\"; a = filter a by 'Top_Customer' == \"Yes\"; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(audit_Month) }};; b = filter b by date('Date_Year', 'Date_Month', 'Date_Day') in {{ selection(audit_Month) }}; c = cogroup b by 'Customer', a by 'Customer'; c = foreach c generate a.'Customer' as 'Customer', avg(a.PS_Compliance) as 'ps_comp', sum(b.Enrollment_No) as 'number_enrolled'; c = order c by ('ps_comp' desc,'number_enrolled' desc); c = limit c 20",
                     "measures": [
                         [
                             "nummber",
@@ -3889,6 +3892,53 @@
                     "options": {}
                 }
             },
+            "Country_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb23000000AMcWCAW",
+                        "label": "ENROLLED_STORES",
+                        "name": "ENROLLED_STORES",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000AMcWCAW"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Enrollment_No"
+                        ]
+                    ],
+                    "groups": [
+                        "Country"
+                    ],
+                    "filters": [
+                        [
+                            "Date",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        0
+                                    ],
+                                    [
+                                        "month",
+                                        0
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ]
+                    ]
+                },
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
             "Field_Execution_Manager_69": {
                 "datasets": [
                     {
@@ -4207,6 +4257,56 @@
                     ],
                     "groups": [
                         "Country"
+                    ],
+                    "filters": [
+                        [
+                            "Date_Month",
+                            "{{ selection(audit_Month) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_11) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_14) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Cluster_10) }}"
+                        ],
+                        [
+                            "Sales_Region",
+                            "{{ selection(Region_100) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_8) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_21) }}"
+                        ],
+                        [
+                            "PS_Standard",
+                            "{{ selection(X4P_5P_6P_23) }}"
+                        ],
+                        [
+                            "PS_Standard",
+                            "{{ selection(X4P_5P_6P_6) }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ selection(Product_category_29) }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ selection(Product_category_7) }}"
+                        ],
+                        [
+                            "Sales_Region",
+                            "{{ selection(Sales_region_58) }}"
+                        ]
                     ]
                 },
                 "selectMode": "single",
@@ -4242,6 +4342,7 @@
                     "groups": [
                         "Country"
                     ]
+
                 },
                 "selectMode": "single",
                 "type": "aggregate",
@@ -4265,8 +4366,8 @@
                 "query": {
                     "measures": [
                         [
-                            "count",
-                            "*",
+                            "sum",
+                            "Enrollment_No",
                             "CountAll",
                             {
                                 "display": "Enrollment"
@@ -4275,6 +4376,56 @@
                     ],
                     "groups": [
                         "PS_Standard"
+                    ],
+                    "filters": [
+                        [
+                            "Date_Month",
+                            "{{ selection(audit_Month) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_11) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_14) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Cluster_10) }}"
+                        ],
+                        [
+                            "Sales_Region",
+                            "{{ selection(Region_100) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_8) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_21) }}"
+                        ],
+                        [
+                            "PS_Standard",
+                            "{{ selection(X4P_5P_6P_23) }}"
+                        ],
+                        [
+                            "PS_Standard",
+                            "{{ selection(X4P_5P_6P_6) }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ selection(Product_category_29) }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ selection(Product_category_7) }}"
+                        ],
+                        [
+                            "Sales_Region",
+                            "{{ selection(Sales_region_58) }}"
+                        ]
                     ]
                 },
                 "selectMode": "single",
@@ -4318,10 +4469,10 @@
             "Customer_54": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000AL9iCAG",
-                        "label": "PS_COMPLIANCE_AGGREGATED_WITH_IC",
-                        "name": "PS_COMPLIANCE_AGGREGATED_WITH_IC1",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000AL9iCAG"
+                      "id": "0Fb23000000F5qlCAC",
+                      "label": "DPS_PS_ENROLLED_STORE",
+                      "name": "PS_ENROLLED_STORE",
+                      "url": "/services/data/v38.0/wave/datasets/0Fb23000000F5qlCAC"
                     }
                 ],
                 "isFacet": true,
@@ -4329,8 +4480,8 @@
                 "query": {
                     "measures": [
                         [
-                            "count",
-                            "*",
+                            "sum",
+                            "Enrollment_No",
                             "CountAll",
                             {
                                 "display": "Enrollment"
@@ -4339,6 +4490,56 @@
                     ],
                     "groups": [
                         "Customer"
+                    ],
+                    "filters": [
+                        [
+                            "Date_Month",
+                            "{{ selection(audit_Month) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_11) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_14) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Cluster_10) }}"
+                        ],
+                        [
+                            "Sales_Region",
+                            "{{ selection(Region_100) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_8) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_21) }}"
+                        ],
+                        [
+                            "PS_Standard",
+                            "{{ selection(X4P_5P_6P_23) }}"
+                        ],
+                        [
+                            "PS_Standard",
+                            "{{ selection(X4P_5P_6P_6) }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ selection(Product_category_29) }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ selection(Product_category_7) }}"
+                        ],
+                        [
+                            "Sales_Region",
+                            "{{ selection(Sales_region_58) }}"
+                        ]
                     ]
                 },
                 "selectMode": "single",
@@ -4441,8 +4642,8 @@
                 "query": {
                     "measures": [
                         [
-                            "count",
-                            "*",
+                            "sum",
+                            "Enrollment_No",
                             "CountAll",
                             {
                                 "display": "Enrollment"
@@ -4451,7 +4652,58 @@
                     ],
                     "groups": [
                         "Channel"
+                    ],
+                    "filters": [
+                        [
+                            "Date_Month",
+                            "{{ selection(audit_Month) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_11) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_14) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Cluster_10) }}"
+                        ],
+                        [
+                            "Sales_Region",
+                            "{{ selection(Region_100) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_8) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_21) }}"
+                        ],
+                        [
+                            "PS_Standard",
+                            "{{ selection(X4P_5P_6P_23) }}"
+                        ],
+                        [
+                            "PS_Standard",
+                            "{{ selection(X4P_5P_6P_6) }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ selection(Product_category_29) }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ selection(Product_category_7) }}"
+                        ],
+                        [
+                            "Sales_Region",
+                            "{{ selection(Sales_region_58) }}"
+                        ]
                     ]
+
                 },
                 "selectMode": "single",
                 "type": "aggregate",
@@ -4696,8 +4948,8 @@
                 "query": {
                     "measures": [
                         [
-                            "count",
-                            "*",
+                            "sum",
+                            "Enrollment_No",
                             "CountAll",
                             {
                                 "display": "Enrollment"
@@ -4706,6 +4958,56 @@
                     ],
                     "groups": [
                         "Product_Category"
+                    ],
+                    "filters": [
+                        [
+                            "Date_Month",
+                            "{{ selection(audit_Month) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_11) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_14) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Cluster_10) }}"
+                        ],
+                        [
+                            "Sales_Region",
+                            "{{ selection(Region_100) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_8) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_21) }}"
+                        ],
+                        [
+                            "PS_Standard",
+                            "{{ selection(X4P_5P_6P_23) }}"
+                        ],
+                        [
+                            "PS_Standard",
+                            "{{ selection(X4P_5P_6P_6) }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ selection(Product_category_29) }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ selection(Product_category_7) }}"
+                        ],
+                        [
+                            "Sales_Region",
+                            "{{ selection(Sales_region_58) }}"
+                        ]
                     ]
                 },
                 "selectMode": "single",
@@ -4839,6 +5141,50 @@
                         [
                             "Date_Month",
                             "{{ selection(audit_Month) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_11) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_14) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Cluster_10) }}"
+                        ],
+                        [
+                            "Sales_Region",
+                            "{{ selection(Region_100) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_8) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_21) }}"
+                        ],
+                        [
+                            "PS_Standard",
+                            "{{ selection(X4P_5P_6P_23) }}"
+                        ],
+                        [
+                            "PS_Standard",
+                            "{{ selection(X4P_5P_6P_6) }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ selection(Product_category_29) }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ selection(Product_category_7) }}"
+                        ],
+                        [
+                            "Sales_Region",
+                            "{{ selection(Sales_region_58) }}"
                         ]
                     ]
                 },
@@ -5422,7 +5768,7 @@
                 "isFacet": true,
                 "isGlobal": false,
                 "query": {
-                    "pigql": "a = load \"PS_COMPLIANCE_AGGREGATED_WITH_IC1\"; b = load \"ENROLLED_STORES\";  a = filter a by 'Customer' in {{ selection(Customer_9) }};a = filter a by 'Commune' in {{ selection(Commune_56) }};a = filter a by 'Sales_region' in {{ selection(Region_100) }};b = filter b by 'Sales_Region' in {{ selection(Region_100) }};a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }};b = filter b by 'PS_Standard' in {{ selection(X4P_5P_6P_23) }};a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_6) }};b = filter b by 'PS_Standard' in {{ selection(X4P_5P_6P_6) }};a = filter a by 'Country' in {{ selection(Country_11) }};b = filter b by 'Country' in {{ selection(Country_11) }};a = filter a by 'Country' in {{ selection(Country_14) }};b = filter b by 'Country' in {{ selection(Country_14) }};a = filter a by 'City' in {{ selection(City_17) }};a = filter a by 'Sales_area' in {{ selection(Sales_area_18) }};a = filter a by 'Sales_region' in {{ selection(Sales_region_58) }};b = filter b by 'Sales_Region' in {{ selection(Sales_region_58) }};a = filter a by 'Sales_territory' in {{ selection(Sales_territory_19) }};a = filter a by 'Trade_Format' in {{ selection(Trade_Format_20) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_22) }};a = filter a by 'Customer' in {{ selection(Customer_26) }};a = filter a by 'Customer' in {{ selection(Customer_62) }};a = filter a by 'Product_Division' in {{ selection(Product_division_28) }};b = filter b by 'Product_Category' in {{ selection(Product_category_29) }}; a = filter a by 'Top_Customer' in {{ selection(Top_Customer_68) }}; a = filter a by 'Field_Execution_Manager' in {{ selection(Field_Execution_Manager_69) }}; a = filter a by 'Store_Operations_Manager' in {{ selection(Store_Operations_Manager_71) }}; a= filter a by 'Channel' in {{selection(Channel_8)}};a = filter a by 'Sales_region' in {{selection(Region_11)}}; a = filter a by 'Field_Sales_Manager' in {{ selection(Field_Sales_Manager_70) }}; c = cogroup b by 'Product_Category', a by 'Product_Category'; c = foreach c generate a.'Product_Category' as 'Product_Category', avg(a.PS_Compliance) as 'PS Compliance', sum(b.Enrollment_No) as 'Number of Enrolled PS'; ",
+                    "pigql": "a = load \"PS_COMPLIANCE_AGGREGATED_WITH_IC1\";  b = load \"ENROLLED_STORES\"; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(audit_Month) }};  b = filter b by date('Date_Year', 'Date_Month', 'Date_Day') in {{ selection(audit_Month) }}; a = filter a by 'Customer' in {{ selection(Customer_9) }};a = filter a by 'Commune' in {{ selection(Commune_56) }};a = filter a by 'Sales_region' in {{ selection(Region_100) }};b = filter b by 'Sales_Region' in {{ selection(Region_100) }};a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }};b = filter b by 'PS_Standard' in {{ selection(X4P_5P_6P_23) }};a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_6) }};b = filter b by 'PS_Standard' in {{ selection(X4P_5P_6P_6) }};a = filter a by 'Country' in {{ selection(Country_11) }};b = filter b by 'Country' in {{ selection(Country_11) }};a = filter a by 'Country' in {{ selection(Country_14) }};b = filter b by 'Country' in {{ selection(Country_14) }};a = filter a by 'City' in {{ selection(City_17) }};a = filter a by 'Sales_area' in {{ selection(Sales_area_18) }};a = filter a by 'Sales_region' in {{ selection(Sales_region_58) }};b = filter b by 'Sales_Region' in {{ selection(Sales_region_58) }};a = filter a by 'Sales_territory' in {{ selection(Sales_territory_19) }};a = filter a by 'Trade_Format' in {{ selection(Trade_Format_20) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_22) }};a = filter a by 'Customer' in {{ selection(Customer_26) }};a = filter a by 'Customer' in {{ selection(Customer_62) }};a = filter a by 'Product_Division' in {{ selection(Product_division_28) }};b = filter b by 'Product_Category' in {{ selection(Product_category_29) }}; a = filter a by 'Top_Customer' in {{ selection(Top_Customer_68) }}; a = filter a by 'Field_Execution_Manager' in {{ selection(Field_Execution_Manager_69) }}; a = filter a by 'Store_Operations_Manager' in {{ selection(Store_Operations_Manager_71) }}; a= filter a by 'Channel' in {{selection(Channel_8)}};a = filter a by 'Sales_region' in {{selection(Region_11)}}; a = filter a by 'Field_Sales_Manager' in {{ selection(Field_Sales_Manager_70) }}; c = cogroup b by 'Product_Category', a by 'Product_Category'; c = foreach c generate a.'Product_Category' as 'Product_Category', avg(a.PS_Compliance) as 'PS Compliance', sum(b.Enrollment_No) as 'Number of Enrolled PS'; ",
                     "measures": [
                         [
                             "nummber",
@@ -5625,7 +5971,7 @@
                     "destination": "X4P_5P_6P_47",
                     "destinationType": "explore",
                     "fontSize": 12,
-                    "includeState": false,
+                    "includeState": true,
                     "text": "🔎 Enrollment",
                     "textColor": "#091A3E"
                 },
@@ -5636,7 +5982,7 @@
                     "destination": "Channel_51",
                     "destinationType": "explore",
                     "fontSize": 12,
-                    "includeState": false,
+                    "includeState": true,
                     "text": "🔎 Compliance",
                     "textColor": "#091A3E"
                 },
@@ -5645,7 +5991,7 @@
             "header_currentMonthBreakdown": {
                 "parameters": {
                     "fontSize": 24,
-                    "text": "\nCurrent Month Breakdown",
+                    "text": "Current Month Breakdown",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -5656,7 +6002,7 @@
                     "destination": "Product_category_52",
                     "destinationType": "explore",
                     "fontSize": 12,
-                    "includeState": false,
+                    "includeState": true,
                     "text": "🔎 Enrollment",
                     "textColor": "#091A3E"
                 },
@@ -5665,7 +6011,7 @@
             "header_salesRegionTargets": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nSales Region",
+                    "text": "Sales Region",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -5676,7 +6022,7 @@
                     "destination": "Region_49",
                     "destinationType": "explore",
                     "fontSize": 12,
-                    "includeState": false,
+                    "includeState": true,
                     "text": "🔎 Compliance",
                     "textColor": "#091A3E"
                 },
@@ -5687,7 +6033,7 @@
                     "destination": "Channel_50",
                     "destinationType": "explore",
                     "fontSize": 12,
-                    "includeState": false,
+                    "includeState": true,
                     "text": "🔎 Enrollment",
                     "textColor": "#091A3E"
                 },
@@ -5722,7 +6068,7 @@
                     "destination": "Region_43",
                     "destinationType": "explore",
                     "fontSize": 12,
-                    "includeState": false,
+                    "includeState": true,
                     "text": "🔎 Enrollment",
                     "textColor": "#091A3E"
                 },
@@ -6359,7 +6705,7 @@
                     "destination": "X4P_5P_6P_48",
                     "destinationType": "explore",
                     "fontSize": 12,
-                    "includeState": false,
+                    "includeState": true,
                     "text": "🔎 Compliance",
                     "textColor": "#091A3E"
                 },
@@ -6540,7 +6886,7 @@
             "header_overview": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nOverview",
+                    "text": "Overview",
                     "textAlignment": "left",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -6818,7 +7164,7 @@
                     "destination": "Customer_54",
                     "destinationType": "explore",
                     "fontSize": 12,
-                    "includeState": false,
+                    "includeState": true,
                     "text": "🔎 Enrollment",
                     "textColor": "#091A3E"
                 },
@@ -6981,7 +7327,7 @@
             "header_countryTargets": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nCountry",
+                    "text": "Country",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -6996,10 +7342,22 @@
                 },
                 "type": "text"
             },
+            "listselector_20": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": true,
+                    "measureField": "count",
+                    "step": "Key_Customer_Type_1",
+                    "title": "Key Customer Type"
+                },
+                "type": "listselector"
+            },
             "header_currentVSprev": {
                 "parameters": {
                     "fontSize": 24,
-                    "text": "\nCurrent vs Previous Month",
+                    "text": "Current vs Previous Month",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -8008,7 +8366,7 @@
                     "destination": "Date_of_audit_Month_45",
                     "destinationType": "explore",
                     "fontSize": 12,
-                    "includeState": false,
+                    "includeState": true,
                     "text": "🔎 Enrollment",
                     "textColor": "#091A3E"
                 },
@@ -8291,7 +8649,7 @@
             "header_psEnrollmentCompliance": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nPS Enrollment and Compliance",
+                    "text": "PS Enrollment and Compliance",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -8764,7 +9122,7 @@
             },
             "header_comTargetRegion": {
                 "parameters": {
-                    "fontSize": 20,
+                    "fontSize": 18,
                     "text": "PS Compliance vs. Target by Sales Region",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
@@ -9032,7 +9390,7 @@
             },
             "header_enrollTargetRegion": {
                 "parameters": {
-                    "fontSize": 20,
+                    "fontSize": 18,
                     "text": "PS Enrollment vs. Target by Sales Region",
                     "textAlignment": "center",
                     "textColor": "#091A3E"
@@ -9059,18 +9417,6 @@
                     "title": "Commune"
                 },
                 "type": "listselector"
-            },
-            "listselector_20": {
-                "type": "listselector",
-                "parameters": {
-                    "step": "Key_Customer_Type_1",
-                    "title": "Key Customer Type",
-                    "measureField": "count",
-                    "expanded": true,
-                    "instant": true,
-                    "compact": false,
-                    "exploreLink": false
-                }
             }
         }
     },

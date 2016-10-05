@@ -41,7 +41,7 @@
                                 }
                             },
                             {
-                                "colspan": 7,
+                                "colspan": 10,
                                 "column": 1,
                                 "name": "chartdesc_MHSKU",
                                 "row": 88,
@@ -61,7 +61,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "chartDesc_scoreChannel",
                                 "row": 59,
@@ -149,7 +149,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 1,
                                 "name": "chartDesc_comCust",
                                 "row": 76,
@@ -169,7 +169,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 1,
                                 "name": "chartDesc_comRegion",
                                 "row": 48,
@@ -205,7 +205,7 @@
                                 }
                             },
                             {
-                                "colspan": 7,
+                                "colspan": 10,
                                 "column": 1,
                                 "name": "chartdesc_COTC",
                                 "row": 97,
@@ -225,7 +225,7 @@
                                 }
                             },
                             {
-                                "colspan": 3,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "header_scoreTrend",
                                 "row": 14,
@@ -265,7 +265,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 1,
                                 "name": "chartDesc_comChannel",
                                 "row": 59,
@@ -285,7 +285,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "chartDesc_score4p5p6p",
                                 "row": 39,
@@ -337,7 +337,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "chartDesc_scoreCat",
                                 "row": 67,
@@ -371,7 +371,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "chartDesc_scoreCust",
                                 "row": 76,
@@ -417,7 +417,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "chartDesc_scoreRegion",
                                 "row": 48,
@@ -427,7 +427,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "chartDesc_scoreTrend",
                                 "row": 21,
@@ -437,7 +437,7 @@
                                 }
                             },
                             {
-                                "colspan": 3,
+                                "colspan": 5,
                                 "column": 1,
                                 "name": "header_comTrend",
                                 "row": 14,
@@ -487,7 +487,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 1,
                                 "name": "chartDesc_comCat",
                                 "row": 67,
@@ -507,7 +507,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 1,
                                 "name": "chartDesc_comTrend",
                                 "row": 21,
@@ -585,7 +585,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 1,
                                 "name": "chartDesc_com4p5p6p",
                                 "row": 39,
@@ -5576,7 +5576,7 @@
                         [
                             "avg",
                             "OSA_Compliance",
-                            "OSACompliance",
+                            "OSA_Compliance",
                             {
                                 "display": "Product Compliance (%)"
                             }
@@ -7984,7 +7984,7 @@
             "header_overview": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nOverview",
+                    "text": "Overview",
                     "textAlignment": "left",
                     "textColor": "rgb(70, 178, 157)"
                 },
@@ -10748,7 +10748,7 @@
             "header_availability": {
                 "parameters": {
                     "fontSize": 32,
-                    "text": "\nAvailability",
+                    "text": "Availability",
                     "textAlignment": "center",
                     "textColor": "rgb(70, 178, 157)"
                 },
