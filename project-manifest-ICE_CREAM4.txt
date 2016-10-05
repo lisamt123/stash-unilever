@@ -68,6 +68,7 @@ src/labels
 src/labels/ICB.labels
 src/translations
 src/translations/pt_BR.translation
+
 src/flows
 src/flows/ICB_Update_Email_Contact-1.flow
 src/objectTranslations
