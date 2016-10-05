@@ -74,7 +74,7 @@ public class CPA_AttchemntUtilController_Test {
 
         CPA_CR__c objCR = CPA_testContractClass.createCR(objPWO);
         insert objCR;
-        CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
+        //CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
         Blob bBlob2 = Blob.valueOf(BLOBDATA);
         Attachment attachment2 = new Attachment();
         attachment2.ParentId = objCR.ID;
@@ -166,7 +166,7 @@ public class CPA_AttchemntUtilController_Test {
             
             CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO151);
             insert objCR1;
-            CPA_project_work_order__c pwo12 = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR1.CPA_Project_Work_Order__c];
+            //CPA_project_work_order__c pwo12 = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR1.CPA_Project_Work_Order__c];
             //objCR1.CPA_project_work_order__c = pwo12.id;
             Blob bBlob21 = Blob.valueOf(BLOBDATA);
             Attachment attachment21 = new Attachment();

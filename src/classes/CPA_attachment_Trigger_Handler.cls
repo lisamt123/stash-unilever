@@ -35,29 +35,59 @@ public with sharing class CPA_attachment_Trigger_Handler
      */
     public void bulkBefore()
     {   
-        System.debug('Entering CPA_attachment_Trigger_Handler.bulkBefore');     
-        System.debug('Exiting CPA_attachment_Trigger_Handler.bulkBefore');
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){
+         //   if(Trigger.isInsert || Trigger.isUpdate) {
+
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isInsert){
+                    
+                //}
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) 
+                //{
+                    // Fill the Map with Participants Chatter Group memeberships for the program chatter group
+                    
+                    
+                //} 
+                
+
+        //    } else if(Trigger.isDelete){
+               // CPA_LOI_TriggerUtil.DontDelete(trigger.old); - This was already commented
+         //   }
+
+            
+        //}
         
     }
     
     public void bulkAfter()
     {
-        System.debug('Entering CPA_attachment_Trigger_Handler.bulkAfter');     
-        System.debug('Exiting CPA_attachment_Trigger_Handler.bulkAfter');
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){ 
+        //    if(Trigger.isInsert || Trigger.isUpdate) {
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) {
+                    
+                //}
+         //   }
+        //}
         
     }
         
     public void beforeInsert(SObject so)
     {
-        System.debug('Entering CPA_attachment_Trigger_Handler.beforeInsert');     
-        System.debug('Exiting CPA_attachment_Trigger_Handler.beforeInsert');
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){
+        //}
         
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-         System.debug('Entering CPA_attachment_Trigger_Handler.beforeUpdate');     
-        System.debug('Exiting CPA_attachment_Trigger_Handler.beforeUpdate');
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){ 
+        //}
         
     }
     
@@ -71,31 +101,21 @@ public with sharing class CPA_attachment_Trigger_Handler
         for(sobject objAtt : trigger.old){
             Attachment objAttachemt = (Attachment)objAtt;
             string srtTemp = objAttachemt.ParentId;
-            if(objAttachemt !=null && objAttachemt.Name.startswith('Commercial') &&(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
+            if(objAttachemt.Name.startswith('Commercial') &&(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
                     lstAttachmentRead.add(objAttachemt);
             }
-          if(objAttachemt !=null && objAttachemt.ContentType!=null && objAttachemt.ContentType.contains('pdf')  &&(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
-         
+          if(objAttachemt.ContentType.contains('pdf')  &&(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
                  lstAttachmentRead1.add(objAttachemt);
              }
-             if(objAttachemt !=null &&  srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_LOI_ID) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
+             if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_LOI_ID) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
                  
                  lstAttachmentLOI.add(objAttachemt);
              }
             
         }
-        IF(lstAttachmentRead!= NULL && lstAttachmentRead.size()>0){
-            CPA_AttachmentUtil.deleteCommericalData(lstAttachmentRead);
-        }
-        if(lstAttachmentRead1 != null && lstAttachmentRead1.size()>0){
-            CPA_AttachmentUtil.deleteContract(lstAttachmentRead1);
-        }
-        if(lstAttachmentLOI !=null && lstAttachmentLOI.size()>0){
-            CPA_AttachmentUtil.DeleteLOI(lstAttachmentLOI);
-        }
-        
-        
-        
+        CPA_AttachmentUtil.deleteCommericalData(lstAttachmentRead);
+        CPA_AttachmentUtil.deleteContract(lstAttachmentRead1);
+        CPA_AttachmentUtil.DeleteLOI(lstAttachmentLOI);
     }
     
     public void afterInsert(SObject so) 
@@ -146,8 +166,10 @@ public with sharing class CPA_attachment_Trigger_Handler
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_attachment_Trigger_Handler.afterUpdate');     
-        System.debug('Exiting CPA_attachment_Trigger_Handler.afterUpdate');
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){
+            
+        //}
         
     }
     /*******************************************************************

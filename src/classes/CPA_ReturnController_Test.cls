@@ -54,7 +54,9 @@ public class CPA_ReturnController_Test {
     
         Test.setCurrentPage(new PageReference(CPA_ConstantsForContractingAppClasses.LOIREASONFORRETURN));
         System.currentPageReference().getParameters().put('id', objLOI1.id);
-        CPA_LOI_ReturnReasonController   controller1 = new CPA_LOI_ReturnReasonController  (new ApexPages.StandardController(objLOI1));
+        //swathi commented for SonarQube warning
+        //CPA_LOI_ReturnReasonController   controller1 = new CPA_LOI_ReturnReasonController  (new ApexPages.StandardController(objLOI1));
+        new CPA_LOI_ReturnReasonController  (new ApexPages.StandardController(objLOI1));
         controller.CancelReason();
         
         CPA_LOI__c objLOIfINAL = [Select Id,pkl_Status__c from CPA_LOI__c where id= :objLOI1.id ];
