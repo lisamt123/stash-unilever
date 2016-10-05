@@ -15,12 +15,14 @@ public class ICB_ContactPartnerUserCreation_Test
     private static Account acc;
     private static Contact contactNew;
     private static Contact contactOld;
+  
     
     Static
     {
         acc = new Account();
         contactNew = new Contact();
         contactOld = new Contact();
+    
     }
     
     /*******************************************************************
@@ -77,6 +79,7 @@ public class ICB_ContactPartnerUserCreation_Test
         //contactOld.Email = 'teste.old@unilever.com';
         contactOld.FirstName = 'Test Old';
         Database.update(contactOld);
+        
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Permission_Salesman','ICB Mobile Channel Salesman');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Permission_Operator','ICB Mobile Channel Operator PCL');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Type_Salesman','Ice Cream Salesman');

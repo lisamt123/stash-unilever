@@ -25,7 +25,6 @@ public with sharing class ICB_InventoryLineItemDAO {
     }
     
     public List<ICB_Inventory_Line_Item__c> getIventoryLineList(ICB_Inventory__c inventoryParam){
-        String productRecId = Schema.SObjectType.Product2.getRecordTypeInfosByName().get('Mobile Channel').getRecordTypeId();
         return[SELECT id, Name, 
                           ICB_Product__r.Name,
                           ICB_Product__r.ICB_Reference_Unit__c,
@@ -36,8 +35,7 @@ public with sharing class ICB_InventoryLineItemDAO {
                           ICB_Quantity_ToBe_Updated__c
                           FROM ICB_Inventory_Line_Item__c 
                           WHERE ICB_Inventory__c =: inventoryParam.id 
-               			  AND ICB_Product__r.RecordTypeId =: productRecId
-               			  AND ICB_Active__c =: true
+               			  AND ICB_Active__c = true
                       Order By ICB_Product__r.Name];
     }
      
