@@ -53,7 +53,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public Boolean isArchiveFalse = false;
     public String showEntity{get;set;}
     @TestVisible private static final String ID_PARAMETER = 'Id';
-    @TestVisible private static final String validationError_PARAMETER = 'validationError';
     @TestVisible private static final String ADD_ROLLOUT= 'addRollout';
     @TestVisible private static final String SAVE_ROLLOUT = 'saveRollout';
     @TestVisible private static final String regionalSpan = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
