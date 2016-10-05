@@ -126,7 +126,7 @@ System.debug('MAP--------'+mapOfEmailToActiveUsers);
     
     public void scheduleNextSendInviteBatchJob()
     {
-        scheduleNextSendInviteBatchJob(new uw_SendCollaborationInviteBatchJob_Sch(), 'Send Collab Invites', 1);
+        scheduleNextSendInviteBatchJob(new uw_SendCollaborationInviteBatchJob_Sch(), 'Send Collab Invites', 120);
     }
     
     public void scheduleNextSendInviteBatchJob(Schedulable job, String jobName, Integer waitTimeInMinutes)
