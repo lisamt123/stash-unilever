@@ -228,12 +228,14 @@ public class ICB_Cockpit_CC_Test
         ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community Login User',contactSales.Id,'Test Sales','User SL','tusl','user.sales@email.com',
                                                                            'user.sales@unilever.com','testSales');
         
-        product = ICB_SobjectInstance_SP2_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png',ICB_RecordTypeMemory.getRecType('Product2', 'ICB_Mobile_Channel'));
+        product = ICB_SobjectInstance_SP2_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png',ICB_RecordTypeMemory.getRecType('Product2', 'ICB_MobileChannel'));
         inventory = ICB_SobjectInstance_SP2_Test.insertInventory(acc.Name);
         ICB_SobjectInstance_SP2_Test.insertInventoryLineItem(product.Id, inventory.Id,50,10);
         String priceBook2Id = Test.getStandardPricebookId();
         ICB_SobjectInstance_SP2_Test.insertPriceBookEntry(product.Id,priceBook2Id);
         priceBook2 = ICB_SobjectInstance_SP2_Test.insertPriceBook2(acc.Name);
         ICB_SobjectInstance_SP2_Test.insertPriceBookEntry(product.Id,priceBook2.Id);
-     }
+        
+       
+    }
 }

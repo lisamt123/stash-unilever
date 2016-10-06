@@ -46,14 +46,9 @@ public with sharing class FS_OpportunityHelper {
                 }
             }
             
-            if(!listOppId.isEmpty()){  
+            if(!listOppId.isEmpty() && isEnabled()){  
             
-            //Check 'NAFS Opportunity Trigger Settings'in custom settings. If enabled then call the method
-            FSOpportunityTriggerSettings__c Settings=FSOpportunityTriggerSettings__c.getinstance('isEnabled');
-            boolean Enabled=Settings.Enabled__c;
-            if(Enabled)
-            {
-                OppLineItem = [select Id, GPPercent__c, FS_MarketTarget__c, opportunityId from OpportunityLineItem where opportunityId in :listOppId];
+            OppLineItem = [select Id, GPPercent__c, FS_MarketTarget__c, opportunityId from OpportunityLineItem where opportunityId in :listOppId];
               //Calculate average grossProfit and MarketTarget of all opp prod
             For(Opportunity opp : listNewTrigger){
                 For(OpportunityLineItem oli: OppLineItem ){
@@ -95,7 +90,6 @@ public with sharing class FS_OpportunityHelper {
                 ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'UpdateOppField', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
             }
           }
-        }
        } 
     }
 /* * Method rollUptoAccountPlan to update rollup fields on account plan
@@ -125,13 +119,9 @@ public with sharing class FS_OpportunityHelper {
             }
             
             
-            if(varFS_Record)
+            if(varFS_Record && isEnabled())
             {
-             //Check 'NAFS Opportunity Trigger Settings'in custom settings. If enabled then call the method
-            FSOpportunityTriggerSettings__c Settings=FSOpportunityTriggerSettings__c.getinstance('isEnabled');
-            boolean Enabled=Settings.Enabled__c;
-            if(Enabled)
-            {
+           
             FS_OpportunityStages__c oppStages=FS_OpportunityStages__c.getInstance('FS_Stages');    
             string STATUS_CLOSED_LOST=oppStages.FS_Stage_Closed__c;    
             //Get Accoun Plan deatils where associated opportunities that have been modified        
@@ -183,8 +173,7 @@ public with sharing class FS_OpportunityHelper {
                 ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'UpdateOppField', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
             }
            }
-          }  
-        }
+         }
     }
     /* * Method rollUptoDefinedObjective to update roll up fields on defined objective record
 *  @name rollUptoDefinedObjective
@@ -209,13 +198,9 @@ public with sharing class FS_OpportunityHelper {
               }
             } 
             
-            if(varFS_Record)
+            if(varFS_Record && isEnabled())
             {
-             //Check 'NAFS Opportunity Trigger Settings'in custom settings. If enabled then call the method
-            FSOpportunityTriggerSettings__c Settings=FSOpportunityTriggerSettings__c.getinstance('isEnabled');
-            boolean Enabled=Settings.Enabled__c;
-            if(Enabled)
-            {
+           
             FS_OpportunityStages__c oppStages=FS_OpportunityStages__c.getInstance('FS_Stages');    
             string STATUS_CLOSED_LOST=oppStages.FS_Stage_Closed__c;    
             //Get Accoun Plan deatils where associated opportunities have been modified        
@@ -259,7 +244,6 @@ public with sharing class FS_OpportunityHelper {
                 ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'UpdateOppField', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
             } 
            }        
-        }
        } 
     }
     /* * Method copyLineItemToExistingOpp for MABE process to copy line item ,create contract product
@@ -304,12 +288,8 @@ public with sharing class FS_OpportunityHelper {
         
         listNewOpportunity=utilMabe.getNewClosedOpportunity(listNewTrigger,oppOldMap,newRecordTypeId);//Get list of opportunities with New record type which has been closed          
         
-        if(!listNewOpportunity.isEmpty()){
-         //Check 'NAFS Opportunity Trigger Settings'in custom settings. If enabled then call the method
-        FSOpportunityTriggerSettings__c Settings=FSOpportunityTriggerSettings__c.getinstance('isEnabled');
-        boolean Enabled=Settings.Enabled__c;
-        if(Enabled)
-        {
+        if(!listNewOpportunity.isEmpty() && isEnabled()){
+       
             setContractId=utilMabe.getContractList(listNewOpportunity);//Get list of contracts for closed opportunities           
             //Get list of oppotunities with Existing recordtype
             listExistingOpportunity=[select id,stagename,accountid,ContractId from Opportunity where recordtypeid=:existingRecordTypeId and contractId in :setContractId];
@@ -384,7 +364,6 @@ public with sharing class FS_OpportunityHelper {
             System.debug( ERROR_MESSAGE +e.getMessage() );
             ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'MA-BE Process', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
         } 
-       }  
       }        
     }
     
@@ -402,19 +381,27 @@ public with sharing class FS_OpportunityHelper {
                 mapAccOpp.put(opp.AccountId, opp);
             }
         }
-        if(listAccId.size()>0){
-         //Check 'NAFS Opportunity Trigger Settings'in custom settings. If enabled then call the method
-            FSOpportunityTriggerSettings__c Settings=FSOpportunityTriggerSettings__c.getinstance('isEnabled');
-            boolean Enabled=Settings.Enabled__c;
-            if(Enabled)
-            {
+        if(listAccId.size()>0 && isEnabled()){
+         
+           
             existingOppId = [Select ID, AccountId from Opportunity where RecordTypeId =: oppRecordTypeId and AccountId =: listAccId and ContractId =: listConId];
             for(Opportunity opp :existingOppId){
                 if(mapAccOpp.get(opp.AccountId) != null){
                     mapAccOpp.get(opp.AccountId).addError('Only one Existing type of Opportunity allowed for the same Account and Contract');
                 }
             }  
-          }            
-        }
+         }
+    }
+    
+    Private boolean isEnabled()
+    {
+    //Check 'NAFS Opportunity Trigger Settings'in custom settings. If enabled then call the method
+            FSOpportunityTriggerSettings__c Settings=FSOpportunityTriggerSettings__c.getinstance('isEnabled');
+            if(Settings!=null)
+            {
+            return Settings.Enabled__c;
+            }
+            else 
+            return False;
     }
 }
