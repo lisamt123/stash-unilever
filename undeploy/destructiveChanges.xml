@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
-     <types>
-        <members>Unilever_Warehouse</members>
-        <name>dashboards</name>
-    </types>
     <types>
-    	<members>WU_Warehouse_Excellence_Team</members>
-    	<members>WU_Warehouse_Leadership_Team</members>
+    	<members>WU_Home_Page_for_warehouse_excellence_Team.dashboard</members>
+    	<members>Global_View_Dashboard1.dashboard</members>
+		<name>dashboards</name>
     </types>
 	    <version>37.0</version>
 </Package>
