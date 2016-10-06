@@ -1,7 +1,8 @@
 global with sharing class AR_ProgressBarHandler {
     public List<Step> steps {get;set;}
     public Integer currentStep {get;set;}
-    
+    public String Result = '>>> Result: ';
+   // public String One = 'one';
     
     
     // FIELD SETS ORGANIZATION
@@ -173,64 +174,64 @@ global with sharing class AR_ProgressBarHandler {
         }
         
         public String getStepLabel()
-   		{
-    	if(stepNumber == 1)
-    	{
-    		return System.Label.ar_stepOne;
-    	}
-    	
-    	if(stepNumber == 2)
-    	{
-    		return System.Label.ar_stepTwo;
-    	}
-    	
-    	if(stepNumber == 3)
-    	{
-    		return System.Label.ar_stepThree;
-    	}
-    	
-    	
-    	if(stepNumber == 4)
-    	{
-    		return System.Label.ar_stepFour;
-    	}
-    	
-    	if(stepNumber == 5)
-    	{
-    		return System.Label.ar_stepFive;
-    	}
-    	
-    	if(stepNumber == 6)
-    	{
-    		return System.Label.ar_stepSix;
-    	}
-    	
-    	if(stepNumber == 7)
-    	{
-    		return System.Label.ar_stepSeven;
-    	}
-    	if(stepNumber == 8)
-    	{
-    		return System.Label.ar_stepEight;
-    	}
-    	if(stepNumber == 9)
-    	{
-    		return System.Label.ar_stepNine;
-    	}
-    	if(stepNumber == 10)
-    	{
-    		return System.Label.ar_stepTen;
-    	}
-    	if(stepNumber == 11)
-    	{
-    		return System.Label.ar_stepEleven;
-    	}
-    	if(stepNumber == 12)
-    	{
-    		return System.Label.ar_stepTwelve;
-    	}
-    	return 'none';
-    	}
+        {
+        if(stepNumber == 1)
+        {
+            return System.Label.ar_stepOne;
+        }
+        
+        if(stepNumber == 2)
+        {
+            return System.Label.ar_stepTwo;
+        }
+        
+        if(stepNumber == 3)
+        {
+            return System.Label.ar_stepThree;
+        }
+        
+        
+        if(stepNumber == 4)
+        {
+            return System.Label.ar_stepFour;
+        }
+        
+        if(stepNumber == 5)
+        {
+            return System.Label.ar_stepFive;
+        }
+        
+        if(stepNumber == 6)
+        {
+            return System.Label.ar_stepSix;
+        }
+        
+        if(stepNumber == 7)
+        {
+            return System.Label.ar_stepSeven;
+        }
+        if(stepNumber == 8)
+        {
+            return System.Label.ar_stepEight;
+        }
+        if(stepNumber == 9)
+        {
+            return System.Label.ar_stepNine;
+        }
+        if(stepNumber == 10)
+        {
+            return System.Label.ar_stepTen;
+        }
+        if(stepNumber == 11)
+        {
+            return System.Label.ar_stepEleven;
+        }
+        if(stepNumber == 12)
+        {
+            return System.Label.ar_stepTwelve;
+        }
+        return 'none';
+        }
     }
     
     // ------------------------------------------------------ FINISH INNER CLASS --------------------------------------------------------
@@ -462,30 +463,30 @@ global with sharing class AR_ProgressBarHandler {
         Map<String,Set<String>> tmp_ExcludeMap = new Map<String,Set<String>>();
         for(AR_Excluded_Fields__c f:tmp_mcs)
         {
-        	if(!tmp_ExcludeMap.containsKey(f.ObjectName__c))
-        	{
-        		tmp_ExcludeMap.put(f.ObjectName__c,new Set<String>());
-        	}
-        	tmp_ExcludeMap.get(f.ObjectName__c).add(f.FieldName__c);
+            if(!tmp_ExcludeMap.containsKey(f.ObjectName__c))
+            {
+                tmp_ExcludeMap.put(f.ObjectName__c,new Set<String>());
+            }
+            tmp_ExcludeMap.get(f.ObjectName__c).add(f.FieldName__c);
         }
         //change
         
         // loop over each field in the set
         for(Schema.FieldSetMember fsMember : fieldList) {
-        	if(!tmp_ExcludeMap.containsKey(objName) ||(tmp_ExcludeMap.containsKey(objName) && !tmp_ExcludeMap.get(objName).contains(fsMember.getFieldPath())) )
-        	{
-	            String field = fsMember.getFieldPath();
-	            boolean isCompleted = obj.get( field ) != null && String.valueOf( obj.get(field) ).stripHtmlTags().trim() != '';
-	            
-	            system.debug(logginglevel.info, 'Checking field: ' + field + ' | completed: ' + (obj.get( field ) != null) + ' | value: "'+obj.get(field)+'"');
-	            
-	            // has value?
-	            if(isCompleted) completed++;
-        	}
-        	else
-        	{
-        		tmp_NumberofExcludetFields = tmp_NumberofExcludetFields + 1;
-        	}
+            if(!tmp_ExcludeMap.containsKey(objName) ||(tmp_ExcludeMap.containsKey(objName) && !tmp_ExcludeMap.get(objName).contains(fsMember.getFieldPath())) )
+            {
+                String field = fsMember.getFieldPath();
+                boolean isCompleted = obj.get( field ) != null && String.valueOf( obj.get(field) ).stripHtmlTags().trim() != '';
+                
+                system.debug(logginglevel.info, 'Checking field: ' + field + ' | completed: ' + (obj.get( field ) != null) + ' | value: "'+obj.get(field)+'"');
+                
+                // has value?
+                if(isCompleted) completed++;
+            }
+            else
+            {
+                tmp_NumberofExcludetFields = tmp_NumberofExcludetFields + 1;
+            }
         }
         
         // RESULTS!
@@ -493,7 +494,7 @@ global with sharing class AR_ProgressBarHandler {
         Integer FieldListSize = fieldList.size();
         if(tmp_ExcludeMap.containsKey(objName))
         {
-        	FieldListSize = fieldList.size() - tmp_NumberofExcludetFields;
+            FieldListSize = fieldList.size() - tmp_NumberofExcludetFields;
         }
         //change 
         if(completed == 0)
@@ -553,26 +554,28 @@ global with sharing class AR_ProgressBarHandler {
                 if(((ar_Application__c)app.obj).Agree_to_comply_Unilever_Supplier_Code__c == 'Yes')
                     result = AR_ProgressBarHandler.STATUS_COMPLETED;
             }
-            system.debug(logginglevel.info, '>>> Result: ' + result);
+            system.debug(logginglevel.info, Result + result);
             return result;
         }
     }
     // general information
     public class GeneralInformationValidation extends CustomValidation {
+    
+          String One = 'one';
         public override String validate(Map<String,AR_SObjectHolder> formObjects, Map<String,List<AR_SObjectHolder>> formObjectLists, Map<String,Map<String,List<Schema.FieldSetMember>>> fieldSetMap) {
             system.debug(logginglevel.info, '### Validating General Information...');
             String result = AR_ProgressBarHandler.STATUS_UNFINISHED;
             if(formObjects.containsKey('ar_Application__c')) {
                 AR_SObjectHolder app = (AR_SObjectHolder)formObjects.get('ar_Application__c');
                 system.debug(logginglevel.info, '>>> General Information files:');
-                Attachment att1 = app.getFiles().get('one');
+                Attachment att1 = app.getFiles().get(One);
                 Attachment att2 = app.getFiles().get('two');
                 system.debug(logginglevel.info, '>>> Stracture Chart Length (file1) ' + att1.id);
                 system.debug(logginglevel.info, '>>> Industry Qualification Length (file2) ' + att2.id);
                 if(att1.id != null)
                     result = AR_ProgressBarHandler.STATUS_COMPLETED;
             }
-            system.debug(logginglevel.info, '>>> Result: ' + result);
+            system.debug(logginglevel.info, Result + result);
             return result;
         }
     }
@@ -588,12 +591,14 @@ global with sharing class AR_ProgressBarHandler {
                 if(val!= null && val != '')
                     result = AR_ProgressBarHandler.STATUS_COMPLETED;
             }
-            system.debug(logginglevel.info, '>>> Result: ' + result);
+            system.debug(logginglevel.info, Result + result);
             return result;
         }
     }
     // insurance (step 6)
     public class InsuranceValidation extends CustomValidation {
+    
+        String One = 'one';
         public override String validate(Map<String,AR_SObjectHolder> formObjects, Map<String,List<AR_SObjectHolder>> formObjectLists, Map<String,Map<String,List<Schema.FieldSetMember>>> fieldSetMap) {
             system.debug(logginglevel.info, '### Validating Insurance...');
             String result = AR_ProgressBarHandler.STATUS_UNFINISHED;
@@ -604,8 +609,8 @@ global with sharing class AR_ProgressBarHandler {
             if(policies != null) {
                 Integer policiesCompleted = 0;
                 for(AR_SObjectHolder policy : policies) {
-                    system.debug(logginglevel.info, 'Policy: ' + policy.obj.get('Policy__c') + ' File length: ' + policy.getFiles().get('one'));
-                    if(policy.getFiles().get('one').id != null)
+                    system.debug(logginglevel.info, 'Policy: ' + policy.obj.get('Policy__c') + ' File length: ' + policy.getFiles().get(One));
+                    if(policy.getFiles().get(One).id != null)
                         policiesCompleted++;
                 }
                 system.debug(logginglevel.info, 'Policies completed: ' + policiesCompleted);
@@ -629,19 +634,21 @@ global with sharing class AR_ProgressBarHandler {
             if(policiesStatus == AR_ProgressBarHandler.STATUS_COMPLETED && additionalInfoStatus == AR_ProgressBarHandler.STATUS_COMPLETED)
                 result = AR_ProgressBarHandler.STATUS_COMPLETED;
                 
-            system.debug(logginglevel.info, '>>> Result: ' + result);
+            system.debug(logginglevel.info, Result + result);
             return result;
         }
     }
     // supplier info (step 7)
     public class SupplierInfoValidation extends CustomValidation {
+    
+        String One = 'one';
         public override String validate(Map<String,AR_SObjectHolder> formObjects, Map<String,List<AR_SObjectHolder>> formObjectLists, Map<String,Map<String,List<Schema.FieldSetMember>>> fieldSetMap) {
             system.debug(logginglevel.info, '### Validating Supplier Info...');
             String result = AR_ProgressBarHandler.STATUS_UNFINISHED;
             if(formObjectLists.containsKey('ar_Supplier_Info__c')) {
                 Integer files = 0; // one file per row
                 for(AR_SObjectHolder holder : formObjectLists.get('ar_Supplier_Info__c')) {
-                    Attachment att1 = holder.getFiles().get('one');
+                    Attachment att1 = holder.getFiles().get(One);
                     system.debug(logginglevel.info, '>>> Rates file Length (file1) ' + att1.id);
                     if(att1.id != null)
                         files++;
@@ -649,18 +656,19 @@ global with sharing class AR_ProgressBarHandler {
                 if(files == formObjectLists.get('ar_Supplier_Info__c').size())
                     result = AR_ProgressBarHandler.STATUS_COMPLETED;
             }
-            system.debug(logginglevel.info, '>>> Result: ' + result);
+            system.debug(logginglevel.info, Result + result);
             return result;
         }
     }
     // agency expertise
     public class AgencyExpertiseValidation extends CustomValidation {
+    String One = 'one';
         public override String validate(Map<String,AR_SObjectHolder> formObjects, Map<String,List<AR_SObjectHolder>> formObjectLists, Map<String,Map<String,List<Schema.FieldSetMember>>> fieldSetMap) {
             system.debug(logginglevel.info, '### Validating Agency Expertise...');
             String result = AR_ProgressBarHandler.STATUS_UNFINISHED;
             if(formObjects.containsKey('ar_Experience__c')) {
                 AR_SObjectHolder exp = (AR_SObjectHolder)formObjects.get('ar_Experience__c');
-                Attachment att1 = exp.getFiles().get('one');
+                Attachment att1 = exp.getFiles().get(One);
                 Attachment att2 = exp.getFiles().get('two');
                 Attachment att3 = exp.getFiles().get('three');
                 Attachment att4 = exp.getFiles().get('four');
@@ -671,7 +679,7 @@ global with sharing class AR_ProgressBarHandler {
                 if(att1.id != null && att2.id != null && att3.id != null && att4.id != null)
                     result = AR_ProgressBarHandler.STATUS_COMPLETED;
             }
-            system.debug(logginglevel.info, '>>> Result: ' + result);
+            system.debug(logginglevel.info, Result + result);
             return result;
         }
     }
@@ -684,6 +692,7 @@ global with sharing class AR_ProgressBarHandler {
             String projectStatus = AR_ProgressBarHandler.STATUS_UNFINISHED;
             // validation on application
             if(formObjects.containsKey('ar_Application__c')) {
+            String One = 'one';
                 AR_SObjectHolder app = (AR_SObjectHolder)formObjects.get('ar_Application__c');
                 Attachment att3 = app.getFiles().get('three');
                 system.debug(logginglevel.info, '>>> Cover photo (file3) ' + att3.id);
@@ -700,32 +709,32 @@ global with sharing class AR_ProgressBarHandler {
                 
                 // projects
                 // lists to validate
-            	List<AR_SObjectHolder> projectRecords = formObjectLists.get('ar_Experience__c');
-	            // fieldsets to validate
-            	List<Schema.FieldSetMember> project_fieldMembers = fieldSetMap.get('ar_Experience__c').get('project');
+                List<AR_SObjectHolder> projectRecords = formObjectLists.get('ar_Experience__c');
+                // fieldsets to validate
+                List<Schema.FieldSetMember> project_fieldMembers = fieldSetMap.get('ar_Experience__c').get('project');
                 
-				// validate project fieldset
-            	if(projectRecords != null && project_fieldMembers != null) {
-                	projectStatus = checkObjectListData( projectRecords, project_fieldMembers, 1); // minimum 1 project is required but all fields must be completed
-                	
-                	// validate project files. Only main image is required
-                	Integer files = 0;
-                	system.debug(logginglevel.info, 'Checking projects main images...');
-                	for(AR_SObjectHolder holder : formObjectLists.get('ar_Experience__c')) {
-	                    Attachment att1 = holder.getFiles().get('one');
-	                    system.debug(logginglevel.info, '>>> Main project image (file1) ' + att1.id);
-	                    if(att1.id != null)
-	                        files++;
-	                }
-	                
-	                // if all projects have all fields completed and main image uploaded
-	                if(projectStatus == AR_ProgressBarHandler.STATUS_COMPLETED && files == projectRecords.size())
-	                	projectStatus = AR_ProgressBarHandler.STATUS_COMPLETED;
-	                else
-	                	projectStatus = AR_ProgressBarHandler.STATUS_UNFINISHED;
-            	}
- 				system.debug(logginglevel.info, '>>> Project status: ' + projectStatus);
- 				
+                // validate project fieldset
+                if(projectRecords != null && project_fieldMembers != null) {
+                    projectStatus = checkObjectListData( projectRecords, project_fieldMembers, 1); // minimum 1 project is required but all fields must be completed
+                    
+                    // validate project files. Only main image is required
+                    Integer files = 0;
+                    system.debug(logginglevel.info, 'Checking projects main images...');
+                    for(AR_SObjectHolder holder : formObjectLists.get('ar_Experience__c')) {
+                        Attachment att1 = holder.getFiles().get(One);
+                        system.debug(logginglevel.info, '>>> Main project image (file1) ' + att1.id);
+                        if(att1.id != null)
+                            files++;
+                    }
+                    
+                    // if all projects have all fields completed and main image uploaded
+                    if(projectStatus == AR_ProgressBarHandler.STATUS_COMPLETED && files == projectRecords.size())
+                        projectStatus = AR_ProgressBarHandler.STATUS_COMPLETED;
+                    else
+                        projectStatus = AR_ProgressBarHandler.STATUS_UNFINISHED;
+                }
+                system.debug(logginglevel.info, '>>> Project status: ' + projectStatus);
+                
                 if(att3.id != null && isStrategicCapabilitiesOk && isVimeoOk && isExpertiseOk && isAwardsOk) {
                     applicationStatus = AR_ProgressBarHandler.STATUS_COMPLETED;
                 }
@@ -736,7 +745,7 @@ global with sharing class AR_ProgressBarHandler {
                 result = AR_ProgressBarHandler.STATUS_COMPLETED;
             }
             
-            system.debug(logginglevel.info, '>>> Result: ' + result);
+            system.debug(logginglevel.info, Result + result);
             return result;
         }
     }
@@ -781,7 +790,7 @@ global with sharing class AR_ProgressBarHandler {
             if(taskStatus == AR_ProgressBarHandler.STATUS_COMPLETED && artworkStatus == AR_ProgressBarHandler.STATUS_COMPLETED && CountryStatus == AR_ProgressBarHandler.STATUS_COMPLETED)
                 result = AR_ProgressBarHandler.STATUS_COMPLETED;
                 
-            system.debug(logginglevel.info, '>>> Result: ' + result);
+            system.debug(logginglevel.info, Result + result);
             return result;
         }
     }
