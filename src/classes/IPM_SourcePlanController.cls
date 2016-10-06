@@ -35,6 +35,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     public string sSourcingUnit{get;set;}
     public string sFilterColumn{get;set;}
     public string sSortOrder{get;set;}
+	public List<SelectOption> SourcingUnits{get;set;}
     /********************************************************************************************
     @Description-Constructor  
     *********************************************************************************************/
@@ -75,13 +76,14 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
             allCountryMap.put(country.Country_Name__c,country.id);
         }
         createProjectProductOnLoad();
+		getAllSourcingUnits(); 
     }
     /***************************************************************************************************************************
     @Description:get all source unit names
     ****************************************************************************************************************************/
     public void getSourceUnit(){
         sourceUnitsList = new list<IPM_SourcingUnit__c>();
-        sourceUnitsList =[SELECT Source_Unit_Name__c FROM IPM_SourcingUnit__c WHERE Source_Unit_Name__c Like: '%'+searchUnit_STR +'%' LIMIT 1000];
+        sourceUnitsList =[SELECT Source_Unit_Name__c FROM IPM_SourcingUnit__c WHERE Source_Unit_Name__c Like: '%'+searchUnit_STR +'%' order by Source_Unit_Name__c ASC LIMIT 1000];
         bIsPDLApproved=false;
         getPDLApprovedStatus();
         isCentralTeam=IPM_SourcePlanController_Helper.isCentralTeamMember();        
@@ -126,7 +128,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
             prefixKeyMap.put(r.getName(), r.getKeyPrefix());
         }
         String sPageName = prefixKeyMap.get('IPM_SourcingUnit__c');
-    	PageReference pageRef = new PageReference('/' + sPageName + '/o');
+    	PageReference pageRef = new PageReference('/' + sPageName );
         return pageRef;
     } 
     public void getPDLApprovedStatus()
@@ -135,36 +137,44 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     	if(lstPDlDocument!=null)
         	bIsPDLApproved = true;        
     }
-    public List<SelectOption> getSourcingUnits()
+    public void getAllSourcingUnits()
     {
         Set<String> setOptions = new Set<String>();
-        List<SelectOption> lstOptions = new List<SelectOption>();
-        lstOptions.add(new SelectOption('Select Sourcing Unit','Select Sourcing Unit'));
-        for (list<sourceUnitWrapper> lstSourcingPlan : sourceUnitMap.values())
-        {
-            for(sourceUnitWrapper oSourcingPlan : lstSourcingPlan){
-            	if(oSourcingPlan.sourcingPlan!=null && oSourcingPlan.sourcingPlan.Id!=null && oSourcingPlan.sourcingPlan.IPM_SourcingUnit__c!=null && !setOptions.contains(oSourcingPlan.sourcingPlan.IPM_SourcingUnit__c))
-            		{
-            			lstOptions.add(new SelectOption(oSourcingPlan.sourcingPlan.IPM_SourcingUnit__c,oSourcingPlan.sourcingPlan.IPM_SourcingUnit__c));
-            			setOptions.add(oSourcingPlan.sourcingPlan.IPM_SourcingUnit__c);
-            		}
-            }
-        }        
-        return lstOptions;
+        SourcingUnits = new List<SelectOption>(); 
+        SourcingUnits.add(new SelectOption('Select Sourcing Unit','Select Sourcing Unit'));
+        list<IPM_SourcingPlan__c> SourcePlansList = new list<IPM_SourcingPlan__c>();
+        SourcePlansList =[SELECT IPM_ProductPlan__r.IPM_Project_Product__c,IPM_CapabilityConfirmed__c,IPM_SourcingUnit__c,IPM_ProductPlan__r.IPM_Country__c,IPM_ProductPlan__r.IPM_Country__r.Country_Name__c FROM IPM_SourcingPlan__c WHERE IPM_ProductPlan__r.IPM_Project_Product__r.IPM_Project__c =:projectId order by IPM_SourcingUnit__c ASC LIMIT 10000];
+       
+         for(IPM_SourcingPlan__c oSourcingPlan : SourcePlansList){
+        	if(!setOptions.contains(oSourcingPlan.IPM_SourcingUnit__c))
+        		{
+        			SourcingUnits.add(new SelectOption(oSourcingPlan.IPM_SourcingUnit__c,oSourcingPlan.IPM_SourcingUnit__c));
+        			setOptions.add(oSourcingPlan.IPM_SourcingUnit__c);
+        		}
+        }    
+               
+       
     }
     public void updateCapabilityForSourcingUnit()
     {
-        List<IPM_SourcingPlan__c> lstSourcingPlanToUpdate = new List<IPM_SourcingPlan__c>();
+        
+        list<IPM_SourcingPlan__c> SourcePlansList = new list<IPM_SourcingPlan__c>();
+        SourcePlansList =[SELECT IPM_ProductPlan__r.IPM_Project_Product__c,IPM_CapabilityConfirmed__c,IPM_SourcingUnit__c,IPM_ProductPlan__r.IPM_Country__c,IPM_ProductPlan__r.IPM_Country__r.Country_Name__c FROM IPM_SourcingPlan__c WHERE IPM_ProductPlan__r.IPM_Project_Product__r.IPM_Project__c =:projectId AND IPM_SourcingUnit__c =: sSourcingUnit LIMIT 10000];
         for (list<sourceUnitWrapper> lstSourcingPlan : sourceUnitMap.values())
         {
             for(sourceUnitWrapper oSourcingPlan : lstSourcingPlan){
-                if(oSourcingPlan.sourcingPlan.Id==sSourcingUnit){
+                if(oSourcingPlan.sourcingPlan.IPM_SourcingUnit__c==sSourcingUnit){
                     oSourcingPlan.sourcingPlan.IPM_CapabilityConfirmed__c = capabilityFlag;
-            		lstSourcingPlanToUpdate.add(oSourcingPlan.sourcingPlan);
-                }
+            	}
             }
         }
-        update lstSourcingPlanToUpdate;        
+        for(IPM_SourcingPlan__c srcPlan: SourcePlansList )
+        {
+        	srcPlan.IPM_CapabilityConfirmed__c = capabilityFlag;
+        }
+        if(!SourcePlansList.isEmpty()){
+        	update SourcePlansList;
+        }       
     }
     /***************************************************************************************************************************
     @Description:create new project product when user click on Add Row
@@ -296,6 +306,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     public void createProjectProductOnLoad(){
         sizeMeasureList = IPM_SourcePlanController_Helper.getAllSize();
         isEditable = IPM_SourcePlanController_Helper.getUserType(projectId,isEditable);
+		isEditable = IPM_SourcePlanController_Helper.getCentralBPUsers(isEditable);
         getSourceUnit();  
         allSourceUnitsMap = IPM_SourcePlanController_Helper.getMapofSourceUnit(sourceUnitsList);
         map<id,set<string>> productNCountryMap = new map<id,set<string>>();
@@ -449,7 +460,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         wrapperKeys = sourcePlanMap.keyset();   
         getProductCAfterRowDelete();  
         getUpdatedNotAssignedSUnits();
-        
+        getAllSourcingUnits();
     
     }
     /*****************************************************************************************************************************
@@ -541,10 +552,11 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
             {
                 upsert producList;
                 //call a method to save product country mapping
-                IPM_SourcePlanController_Helper.saveProductCountry(allCountryMap,producList,holdProductCountry_STR);
+                saveProductCountry(producList,holdProductCountry_STR);
                 //call a method to save source unit and source into
-                IPM_SourcePlanController_Helper.saveSourceUnit(allSourceUnitsMap,row_Index,producList,sourceUnitMap);
+                saveSourceUnit(producList);
                 isSaveSuccess = true;
+				getAllSourcingUnits();
                 for(sourcePlanWrapper sourceClass: sourcePlanMap.values()){
                     if(sourceClass.productProsition == row_Index){
                         sourceClass.readModeRow = false;
@@ -558,6 +570,125 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_SOURCEPLAN_CLASS_STR,
                         'saveRow',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
             }
+    }
+	/***************************************************************************************************************************
+    @Description:save product country mapping data
+    ****************************************************************************************************************************/
+    public void saveProductCountry(list<IPM_Project_Product__c> producList,string holdProductCountry_STR){
+        list<string> holdProductCoun = new list<string>();
+        holdProductCoun = holdProductCountry_STR.split(IPM_ConstantUtils.Delimiter);
+        list<IPM_ProductPlan__c> productPlanList = new list<IPM_ProductPlan__c>();
+        list<IPM_ProductPlan__c> getExistingProdPlanList = new list<IPM_ProductPlan__c>();
+        getExistingProdPlanList =[SELECT IPM_Country__c,IPM_Country__r.Country_Name__c FROM IPM_ProductPlan__c WHERE IPM_Project_Product__c =:producList[0].id AND IPM_Country__r.isActive__c = true LIMIT 500];
+        set<string> existCountryName = new set<string>();
+        set<string> removeExistingConSet = new set<string>();
+        set<string> deleteProdContSet = new set<string>();
+        
+        for(IPM_ProductPlan__c existProd:getExistingProdPlanList)
+        {
+            existCountryName.add(existProd.IPM_Country__r.Country_Name__c);
+        } 
+        
+        for(string proSTR:holdProductCoun)
+        { 
+            if(!existCountryName.contains(proSTR)){
+                IPM_ProductPlan__c productPlan = new IPM_ProductPlan__c();
+                productPlan.IPM_Project_Product__c = producList[0].id;
+                productPlan.IPM_Country__c = allCountryMap.get(proSTR);
+                productPlanList.add(productPlan);
+            }
+            removeExistingConSet.add(proSTR);
+        }
+        for(string exisCnt:existCountryName)
+        {
+            if(!removeExistingConSet.Contains(exisCnt))
+            {
+                deleteProdContSet.add(exisCnt);
+            }
+        }
+        list<IPM_ProductPlan__c> deleteProdPlanList = new list<IPM_ProductPlan__c>();
+        deleteProdPlanList =[SELECT id FROM IPM_ProductPlan__c WHERE IPM_Project_Product__c =:producList[0].id AND IPM_Country__r.Country_Name__c IN : deleteProdContSet LIMIT 500];
+        
+        if(!productPlanList.isEmpty())
+        {
+            insert productPlanList;
+        }
+        if(!deleteProdPlanList.isEmpty())
+        {
+            delete deleteProdPlanList; 
+        } 
+    }
+    /***************************************************************************************************************************
+    @Description:save product country mapping data
+    ****************************************************************************************************************************/
+    public void saveSourceUnit(list<IPM_Project_Product__c> producList){
+        list<sourceUnitWrapper> srcUnitList = new list<sourceUnitWrapper>();
+        srcUnitList = sourceUnitMap.get(row_Index); 
+        map<id,IPM_ProductPlan__c> ProdPlanMap = new map<id,IPM_ProductPlan__c>([SELECT id,IPM_Country__c,IPM_Country__r.Country_Name__c FROM IPM_ProductPlan__c WHERE IPM_Project_Product__c =:producList[0].id LIMIT 1000]);
+        map<string,id> countryProductPalnMap = new map<string,id>();
+        for(IPM_ProductPlan__c prodPlan:ProdPlanMap.Values())
+        {
+            if(!countryProductPalnMap.containsKey(prodPlan.IPM_Country__r.Country_Name__c))
+            {
+                countryProductPalnMap.put(prodPlan.IPM_Country__r.Country_Name__c,prodPlan.id);
+            }
+        }
+        list<IPM_SourcingPlan__c> deleteSourcePlansList = new list<IPM_SourcingPlan__c>();
+        deleteSourcePlansList =[SELECT ID,IPM_SourcingUnit__c,IPM_ProductPlan__r.IPM_Country__c,IPM_ProductPlan__r.IPM_Country__r.Country_Name__c FROM IPM_SourcingPlan__c WHERE IPM_ProductPlan__c IN :ProdPlanMap.keyset() LIMIT 10000];
+        Map<string,IPM_SourcingPlan__c> countrySourcePlanMap = new Map<string,IPM_SourcingPlan__c>();
+        for(IPM_SourcingPlan__c sourceP:deleteSourcePlansList)
+        {
+            
+            if(!countrySourcePlanMap.containsKey(sourceP.IPM_SourcingUnit__c+sourceP.IPM_ProductPlan__r.IPM_Country__r.Country_Name__c))
+            {
+                countrySourcePlanMap.put(sourceP.IPM_SourcingUnit__c+sourceP.IPM_ProductPlan__r.IPM_Country__r.Country_Name__c,sourceP);
+            }
+        }
+        
+        //call save source unit part one 
+        saveSourceUnitPartOne(countryProductPalnMap,producList,srcUnitList,countrySourcePlanMap);
+        
+    }
+    /***************************************************************************************************************************
+    @Description:save product country mapping data
+    ****************************************************************************************************************************/
+    public void saveSourceUnitPartOne(map<string,id> countryProductPalnMap,list<IPM_Project_Product__c> producList,list<sourceUnitWrapper> srcUnitList,Map<string,IPM_SourcingPlan__c> countrySourcePlanMap){
+        list<IPM_SourcingPlan__c> sourcePlansList = new list<IPM_SourcingPlan__c>();
+        list<IPM_SourcingPlan__c> sourcePlansListToUpdate = new list<IPM_SourcingPlan__c>();
+        list<string> getSourceinto = new list<string>(); 
+        for(sourceUnitWrapper srcUnitClass:srcUnitList){ 
+            getSourceinto = new list<string>(); 
+            getSourceinto = srcUnitClass.sourceCountries.split(IPM_ConstantUtils.Delimiter);
+            if(!string.IsBlank(srcUnitClass.sourcingPlan.IPM_SourcingUnit__c) && srcUnitClass.sourceCountries !='' ){
+                for(string srcUnit:getSourceinto) 
+                {
+                    if(!countrySourcePlanMap.containsKey(srcUnitClass.sourcingPlan.IPM_SourcingUnit__c+srcUnit))
+                    {
+                        IPM_SourcingPlan__c sourPlan = new IPM_SourcingPlan__c();
+                        sourPlan.IPM_SourcingUnit__c = srcUnitClass.sourcingPlan.IPM_SourcingUnit__c;
+                        sourPlan.IPM_Sourcing_Unit__c = allSourceUnitsMap.get(srcUnitClass.sourcingPlan.IPM_SourcingUnit__c);
+                        sourPlan.IPM_ProductPlan__c = countryProductPalnMap.get(srcUnit);
+                        sourPlan.IPM_CapabilityConfirmed__c = srcUnitClass.sourcingPlan.IPM_CapabilityConfirmed__c;
+                        sourcePlansList.add(sourPlan);
+                    }else
+                    {
+                        countrySourcePlanMap.remove(srcUnitClass.sourcingPlan.IPM_SourcingUnit__c+srcUnit);
+                        sourcePlansListToUpdate.add(srcUnitClass.sourcingPlan);
+                    }
+                }
+            }
+            
+        }   
+        if(!countrySourcePlanMap.Values().isEmpty()){
+            delete countrySourcePlanMap.Values();
+        }
+        if(!sourcePlansList.isEmpty()){
+            insert sourcePlansList;
+        }
+        if(!sourcePlansListToUpdate.isEmpty()){
+        	update sourcePlansListToUpdate;
+        }
+        
     }
     /***************************************************************************************************************************
     @Description:clone product record row and enable edit mode

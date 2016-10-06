@@ -591,9 +591,10 @@ public with sharing class IPM_RolloutTriggerHandler
             //If it is a non Key and Phase is not ideas, We need to add Financials Corresponding to rollouts.   
             if((associatedPhase != IPM_ConstantUtils.PHASE_IDEAS  && !localRollout.IPM_Project_GKM__c.equalsIgnoreCase(IPM_ConstantUtils.GKM_3)) ||
 			    (localRollout.IPM_Project_GKM__c.equalsIgnoreCase(IPM_ConstantUtils.GKM_3) && 
-				 associatedPhase != IPM_ConstantUtils.PHASE_MARKET_READY && 
-				 associatedPhase != IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT && 
-				 associatedPhase != IPM_ConstantUtils.PHASE_PLE   )
+				 (associatedPhase == IPM_ConstantUtils.PHASE_MARKET_READY || 
+				  associatedPhase == IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT || 
+				  associatedPhase == IPM_ConstantUtils.PHASE_PLE   )
+				 )
 				)
 			{
                 createRolloutFinancials(localRollout.IPM_Rollout_Project__c,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);

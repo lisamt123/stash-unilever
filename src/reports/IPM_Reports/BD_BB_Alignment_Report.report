@@ -91,6 +91,12 @@
         <field>IPM_Analytics__c$IPM_Charter_Approved_Date__c</field>
     </columns>
     <columns>
+        <field>IPM_Analytics__c$IPM_Product_Design_Lock_Due_Date__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Product_DesignLock_Completed_On_Date__c</field>
+    </columns>
+    <columns>
         <field>IPM_Analytics__c$IPM_Expected_Contract_Approval_Date__c</field>
     </columns>
     <columns>
