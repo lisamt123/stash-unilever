@@ -21245,7 +21245,7 @@ OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilev
         <fullName>FS_Account_Lock</fullName>
         <active>true</active>
         <description>Prevents users from editing Account records unless they are System Admin or integration.</description>
-        <errorConditionFormula>IF( ISNEW() || CreatedDate = LastModifiedDate || $Profile.Name=&quot;Generic API Only&quot; || $Profile.Name=&quot;System Administrator&quot; || $Profile.Name=&quot;Unilever Food Solution - Russia&quot;, false , IF( (RecordType.DeveloperName  = &quot;Operators&quot; || RecordType.DeveloperName = &quot;Distributor&quot;) &amp;&amp; (ISPICKVAL(Status__c , &quot;Temporary&quot;) || ISPICKVAL(Status__c,&quot;Active&quot;)), true, false ) )</errorConditionFormula>
+        <errorConditionFormula>IF( ISNEW() || CreatedDate = LastModifiedDate || $Profile.Name=&quot;Generic API Only&quot; || $Profile.Name=&quot;System Administrator&quot; || $Permission.FS_Admin ||$Profile.Name=&quot;Unilever Food Solution - Russia&quot;, false , IF( (RecordType.DeveloperName  = &quot;Operators&quot; || RecordType.DeveloperName = &quot;Distributor&quot;) &amp;&amp; (ISPICKVAL(Status__c , &quot;Temporary&quot;) || ISPICKVAL(Status__c,&quot;Active&quot;)), true, false ) )</errorConditionFormula>
         <errorMessage>You do not have access to edit this record. Please contact your system administrator.</errorMessage>
     </validationRules>
     <validationRules>
