@@ -358,14 +358,14 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         nonKeyAnalytic.IPM_Target_Launch_Year_BD__c = parent.IPM_Target_Launch_Year_BD__c;
         if(parent.IPM_GKM__c==IPM_Utils.GATE_KEEPING_MODEL_3)
         {
-        nonKeyAnalytic.IPM_Project_Id__c = '';
+        
         nonKeyAnalytic.IPM_Parent_Project_Name__c = nonKeyFinancial.Global_External_Id__c;
         nonKeyAnalytic.IPM_Company__c = nonKeyFinancial.IPM_Parent_Company_Card__c;
         nonKeyAnalytic.IPM_Phase__c = projectRollout.IPM_Project__r.IPM_Phase__c;
         }
         else
         {
-        nonKeyAnalytic.IPM_Project_Id__c = parentAnalytic.IPM_Project_Id__c;
+        
         nonKeyAnalytic.IPM_Parent_Project_Name__c = parent.IPM_Project_Name__c;
         nonKeyAnalytic.IPM_Company__c = parent.IPM_Company__c;
         nonKeyAnalytic.IPM_Phase__c = parentAnalytic.IPM_Phase__c;
@@ -480,7 +480,6 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                 otifAnalyticRollOut.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
                 //otifAnalyticRollOut.IPM_Business_Impact__c=parent.IPM_Business_Impact__c;
                 //Copy values From Parent project
-                otifAnalyticRollOut.IPM_Project_Id__c = parent.IPM_Project_Id__c;                    
                 otifAnalyticRollOut.IPM_Project_Description__c = parent.IPM_Project_Description__c;
                 otifAnalyticRollOut.IPM_Project_Type__c = IPM_Utils.Rollout;
                 otifAnalyticRollOut.IPM_Category_Group__c = parent.IPM_Category_Group__c;
@@ -1527,7 +1526,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 		{
 				if(pr.IPM_Project_GKM__c == IPM_Utils.GATE_KEEPING_MODEL_3 && pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE)
                 {
-                otifAnalyticRollOut.IPM_Project_Id__c = '';
+                
                 otifAnalyticRollOut.IPM_Business_Impact__c = '';	
                 otifAnalyticRollOut.IPM_Company__c = pr.IPM_Project__r.IPM_Company_Card__r.Name;
                	otifAnalyticRollOut.IPM_Parent_Project_Name__c = pr.IPM_Project__r.IPM_Project_name__c;
