@@ -297,11 +297,19 @@
         <columns>Consumer_Product_Descriptor_no_size__c</columns>
         <columns>Active_for_CEC__c</columns>
         <columns>GTIN_EAN_UPC_Code__c</columns>
+        <columns>Category_Search__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Global_CPG_Code__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>ISO_Country_Code__c</field>
             <operation>equals</operation>
             <value>AU</value>
+        </filters>
+        <filters>
+            <field>Active_for_CEC__c</field>
+            <operation>equals</operation>
+            <value>1</value>
         </filters>
         <label>ANZ Product List</label>
         <language>en_US</language>
