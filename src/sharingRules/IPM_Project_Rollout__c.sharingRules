@@ -14,6 +14,34 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>IPM_Food_Dressing_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To give access to Business Partners for Dressings</description>
+        <label>IPM_Food_Dressing_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_Food_Dressing_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Dressings</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Food_Other_Foods_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To give access to Business Partners for Other Foods</description>
+        <label>IPM_Food_Other_Foods_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_Food_Other_Foods_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Other Foods</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>IPM_Food_Savoury</fullName>
         <accessLevel>Read</accessLevel>
         <label>IPM Food Savoury</label>
@@ -27,11 +55,39 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>IPM_Food_Savoury_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To give access to Business Partners for Savoury</description>
+        <label>IPM_Food_Savoury_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_Food_Savoury_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Savoury</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>IPM_Food_Spreads</fullName>
         <accessLevel>Read</accessLevel>
         <label>IPM Food Spreads</label>
         <sharedTo>
             <group>IPM_Food_Spreads</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Spreads</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Food_Spreads_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To give access to Business Partners for Spreads</description>
+        <label>IPM_Food_Spreads_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_Food_Spreads_Business_Partners</group>
         </sharedTo>
         <criteriaItems>
             <field>IPM_Small_C__c</field>
@@ -157,6 +213,76 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>IPM_PC_Deo_Fragrance_Business_Partners</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>To give access to Business Partners for Deodorants &amp; Fragrances</description>
+        <label>IPM_PC_Deo_Fragrance_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_PC_Deo_Fragrance_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Deodorants &amp; Fragrances</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_PC_Hair_Care_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To give access to Business Partners for Hair Care</description>
+        <label>IPM_PC_Hair_Care_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_PC_Hair_Care_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Hair Care</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_PC_Oral_Care_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To give access to Business Partners for Oral Care</description>
+        <label>IPM_PC_Oral_Care_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_PC_Oral_Care_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Oral Care</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_PC_Skin_Care_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To give access to Business Partners for Skin Care</description>
+        <label>IPM_PC_Skin_Care_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_PC_Skin_Care_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Skin Care</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_PC_Skin_Cleansing_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To give access to Business Partners for Skin Cleansing</description>
+        <label>IPM_PC_Skin_Cleansing_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_PC_Skin_Cleansing_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Skin Cleansing</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>IPM_Personal_Care_Deodorants_Fragrances</fullName>
         <accessLevel>Read</accessLevel>
         <label>IPM Personal Care Deodorants &amp; Fragrances</label>
@@ -232,6 +358,62 @@
             <field>IPM_Small_C__c</field>
             <operation>equals</operation>
             <value>Skin Cleansing</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Refr_Beverages_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To give access to Business Partners for Tea and Soy &amp; Fruit Beverages</description>
+        <label>IPM_Refr_Beverages_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_Refr_Beverages_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Tea and Soy &amp; Fruit Beverages</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Refr_Coffee_Snacks_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To give access to Business Partners for Coffee &amp; Snacks</description>
+        <label>IPM_Refr_Coffee_Snacks_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_Refr_Coffee_Snacks_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Coffee &amp; Snacks</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Refr_Ice_Cream_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To give access to Business Partners for Ice Cream</description>
+        <label>IPM_Refr_Ice_Cream_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_Refr_Ice_Cream_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Ice Cream</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IPM_Refr_Water_Purify_Business_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>To give access to Business Partners for Water Purification Category</description>
+        <label>IPM_Refr_Water_Purify_Business_Partners</label>
+        <sharedTo>
+            <group>IPM_Refr_Water_Purify_Business_Partners</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>IPM_Small_C__c</field>
+            <operation>equals</operation>
+            <value>Water Purification Category</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
