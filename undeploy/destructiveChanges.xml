@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
     <types>
-    	<members>Global_View_Dashboard1.dashboard</members>
-		<name>Dashboard</name>
-    </types>
-	<types>
-    	<members>Global_View_Dashboard1.dashboard</members>
+    	<members>WU_Home_Page_for_warehouse_excellence_Team</members>
+		<members>Global_View_Dashboard1</members>
 		<name>Dashboard</name>
     </types>
 	    <version>37.0</version>
