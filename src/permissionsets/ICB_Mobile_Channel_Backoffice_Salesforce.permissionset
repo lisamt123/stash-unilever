@@ -50458,10 +50458,7 @@
         <apexPage>ChangePassword</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>Chatter</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
+    
     <pageAccesses>
         <apexPage>ChatterConfig</apexPage>
         <enabled>false</enabled>
