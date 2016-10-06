@@ -93,6 +93,21 @@
         
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Sector__c</field>
+            <table>IPM_Analytics__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Sub_Sector__c</field>
+            <table>IPM_Analytics__c</table>
+        </columns>
+       <columns>
+            <checkedByDefault>false</checkedByDefault>/
+            <field>IPM_Market_Name__c</field>
+            <table>IPM_Analytics__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>Brand Positioning</displayNameOverride>
             <field>IPM_Brand_Positioning__c</field>
             <table>IPM_Analytics__c</table>
@@ -175,6 +190,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+			<displayNameOverride>Product Design Lock - Completed On Date</displayNameOverride>
             <field>IPM_Product_DesignLock_Completed_On_Date__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
@@ -779,22 +795,7 @@
             <field>Owner</field>
             <table>IPM_Analytics__c</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Market_Name__c</field>
-            <table>IPM_Analytics__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Sector__c</field>
-            <table>IPM_Analytics__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Sub_Sector__c</field>
-            <table>IPM_Analytics__c</table>
-        </columns>
-       
+        
         <masterLabel>IPM Analytics</masterLabel>
     </sections>
 </ReportType>
