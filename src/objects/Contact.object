@@ -144,6 +144,10 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>CurrencyIsoCode</fullName>
+        <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
         <fullName>Day_Rate__c</fullName>
         <externalId>false</externalId>
         <label>Day Rate</label>
@@ -174,7 +178,6 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -613,86 +616,9 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>MultiselectPicklist</type>
         <visibleLines>5</visibleLines>
-    </fields>
-    <fields>
-        <fullName>FS_Decision_Maker__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Created to identify the decision maker of accounts</description>
-        <externalId>false</externalId>
-        <label>Decision Maker</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>FS_PIEncryptKey__c</fullName>
-        <externalId>false</externalId>
-        <label>FS_EncryptKey</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FS_Position__c</fullName>
-        <description>To create contact for Russian and US FS users.</description>
-        <externalId>false</externalId>
-        <label>Position</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Buyer</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Seller</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Director</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Manager</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Technologist</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Brand - chef</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Chef</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sous chef</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_RefId__c</fullName>
-        <caseSensitive>true</caseSensitive>
-        <description>Stores the Russian PII contact Reference id</description>
-        <externalId>true</externalId>
-        <label>RefId</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Fax</fullName>
@@ -715,7 +641,6 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -802,7 +727,6 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -828,7 +752,6 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -888,7 +811,6 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -924,7 +846,6 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -948,7 +869,6 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -972,7 +892,6 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -1008,7 +927,6 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -1026,9 +944,12 @@
                 <fullName>Ice Cream Salesman</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Console</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -1160,7 +1081,6 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -1223,6 +1143,361 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Contact_Source__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Contact Source</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Fcbk_Image_Url__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Facebook Image Url</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Fcbk_Picture__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(sf4twitter__Fcbk_Profile_Url__c,
+IF( ( NOT( ISBLANK( sf4twitter__Fcbk_Image_Url__c  ) )), IMAGE( sf4twitter__Fcbk_Image_Url__c  ,sf4twitter__Fcbk_Profile_Url__c, 48, 48), sf4twitter__Fcbk_Profile_Url__c )
+,&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Facebook Picture</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Fcbk_Profile_Url__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Facebook Profile Url</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Fcbk_User_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>Facebook User Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Fcbk_Username__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Facebook Username</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Follow_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Click on link to change following status</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(
+&apos;javascript:window.location=&quot;/apex/sf4twitter__TwitterFollow?cid=&apos; + Id + &apos;&quot; + ( ( (new RegExp(&quot;[\\?&amp;]isdtp=([^&amp;#]*)&quot;)).exec(window.location.href) == null )?&quot;&quot;: &quot;&amp;isdtp=vw&quot;) &apos;, 
+IF(sf4twitter__followed__c == true,&apos;Yes&apos;, &apos;No&apos; ), 
+&apos;_self&apos;  )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Click on link to change following status</inlineHelpText>
+        <label>Following On Twitter</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Influencer_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Influencer Type</label>
+        <picklist>
+            <controllingField>sf4twitter__Influencer__c</controllingField>
+            <picklistValues>
+                <fullName>Reporter</fullName>
+                <default>false</default>
+                <controllingFieldValues>Yes</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>Yes</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Influencer__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this Contact an Influencer (ie Reporter?)</inlineHelpText>
+        <label>Influencer</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Klout_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Klout Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Klout_Score__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF( ABS( sf4twitter__Klout_Number__c )  &gt; 0, TEXT( sf4twitter__Klout_Number__c ) + &apos;  &apos; + IMAGE($Setup.sf4twitter__Twitter_Public_Configuration__c.sf4twitter__Klout_Score_logo__c,&apos;Klout&apos;,17,90), &apos;&apos; )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Klout Score</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Languages__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Languages</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Level__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Secondary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tertiary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Primary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Origin__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Origin</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Facebook</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Twitter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Research_this_Contact__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;http://www.linkedin.com/pub/dir/&quot; &amp;  FirstName  &amp; &quot;/&quot; &amp;  LastName, IMAGE(&quot;/resource/linkedin&quot;, &quot;Lookup Contact on LinkedIn&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Research This Contact</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Twitter_Bio__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Twitter Bio</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Twitter_Creation_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Twitter Creation Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Twitter_Follower_Count__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Twitter Follower Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Twitter_Following_count__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Twitter Following Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Twitter_Image_Url__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Twitter Image Url</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Twitter_Last_Tweet__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Twitter Last Tweet</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Twitter_Location__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Twitter Location</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Twitter_Picture__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&apos;http://twitter.com/&apos; + sf4twitter__Twitter_Username__c,
+IF( ( NOT( ISBLANK( sf4twitter__Twitter_Image_Url__c ) )), IMAGE( sf4twitter__Twitter_Image_Url__c ,&apos;http://twitter.com/&apos; + sf4twitter__Twitter_Username__c, 48, 48), 
+IF( NOT( ISBLANK( sf4twitter__Twitter_Username__c ) ), &apos;http://twitter.com/&apos; + sf4twitter__Twitter_Username__c, &apos;&apos; ) )
+,&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Twitter Picture</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Twitter_Status_count__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Twitter Status Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Twitter_User_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>Twitter User Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__Twitter_Username__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Twitter Username</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sf4twitter__followed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checked if the user is being followed by any account</description>
+        <externalId>false</externalId>
+        <label>Followed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>smagicinteract__SMSOptOut__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>SMS Opt Out</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
     </fields>
     <listViews>
         <fullName>AllContacts</fullName>
@@ -1402,6 +1677,21 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>ICB_Type__c</picklist>
             <values>
                 <fullName>Ice Cream Salesman</fullName>
@@ -1483,657 +1773,6 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <recordTypes>
-        <fullName>FS_Contact</fullName>
-        <active>true</active>
-        <description>A contact belonging to Russia</description>
-        <label>FS_Contact</label>
-        <picklistValues>
-            <picklist>Day_Rate__c</picklist>
-            <values>
-                <fullName>0- 250</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>1k- 2%2E5k</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2%2E5- 5k</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>250- 500</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>500- 1k</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5k %2B</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Expertise__c</picklist>
-            <values>
-                <fullName>Accessory design</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Acupuncture</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Agency</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Architecture</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Aromatherapy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Art Consultant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Art Direction</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Artist in residence</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Artist%2C Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Athlete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Audio</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Beautician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Blogger</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Carpenter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Catering</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chef</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cinematographer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cocktail Maker</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Comedian</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Consultant</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Copywriter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cosmetic Surgeon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dancer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dental Hygienist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dentist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dermatologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Digital</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dry Cleaner</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Economist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Editor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Energy Healer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Facialist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Facilitator</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Fashion Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Filming %26 Production</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Florist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Gastronomy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Graffiti Artist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Graphic Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hair Salon</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hair Stylist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hairdresser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Illustrator %26 Sketch Artist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Interior Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Jewellery design</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Journalist%2C Lifestyle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Journalist%2C Reporter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Leadership</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Makeup Artist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Male Grooming</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Massage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Medispa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Midwife</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mobile Beauty</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Model</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Model Agency</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Motivational Speaker</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Music</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Musician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nail artist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Naturopath</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Neurologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Nutritionist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Painter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Performance Artist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Perfumer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Personal Trainer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Photographer%2C Beauty</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Photographer%2C Fashion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Photographer%2C Fine Art</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Photographer%2C Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Photographer%2C Portraiture</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Physiotherapist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pitch</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Poet</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Product %26 Pack Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Psychologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Public Relations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Public Speaking</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sailor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sculptor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Semiotician</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Set Design</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shiatsu</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sleep Expert</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sociologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sommelier</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sound Artist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sound Designer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sports Psychologist</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Storyteller</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Stylist%2C Hair</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Stylist%2C Wardrobe</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sustainability</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TV Presenter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Teacher</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Theatre</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Trend Expert</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unilever</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Visualiser</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Writer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yoga Teacher</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_Position__c</picklist>
-            <values>
-                <fullName>Brand - chef</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Buyer</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Chef</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Director</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manager</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sous chef</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Technologist</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Homebase__c</picklist>
-            <values>
-                <fullName>Amsterdam</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Berlin</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Brussels</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Buenos Aires</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Geneva</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hong Kong</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>London</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Miami</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New York</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Paris</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sao Paulo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Seoul</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Shanghai</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tokyo</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>LeadSource</picklist>
-            <values>
-                <fullName>Advertisement</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Employee Referral</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>External Referral</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Partner</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Public Relations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Seminar - Internal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Seminar - Partner</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Trade Show</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Web</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Word of mouth</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Name</picklist>
-            <values>
-                <fullName>Dr%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Miss</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mr%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mr%2E%2FMs%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mrs%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ms%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Prof%2E</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Relationship__c</picklist>
-            <values>
-                <fullName>Do not recommend</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Have met but not worked with</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Highly recommend</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Never met %2F No connection</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Never met but share a mutual connection</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>    
-    
-    
-    
-    
     <recordTypes>
         <fullName>ICB_Operator</fullName>
         <active>true</active>
@@ -2582,41 +2221,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Position__c</picklist>
-            <values>
-                <fullName>Brand - chef</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Buyer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chef</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Director</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Manager</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Seller</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sous chef</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Technologist</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Gender__c</picklist>
             <values>
                 <fullName>Female</fullName>
@@ -2790,7 +2394,22 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Console</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Ice Cream Salesman</fullName>
                 <default>false</default>
@@ -2898,6 +2517,58 @@
             </values>
             <values>
                 <fullName>Never met but share a mutual connection</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sf4twitter__Influencer_Type__c</picklist>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporter</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sf4twitter__Influencer__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sf4twitter__Level__c</picklist>
+            <values>
+                <fullName>Primary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tertiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sf4twitter__Origin__c</picklist>
+            <values>
+                <fullName>Facebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Twitter</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3523,7 +3194,22 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Console</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Ice Cream Salesman</fullName>
                 <default>true</default>
@@ -3627,6 +3313,58 @@
             </values>
             <values>
                 <fullName>Never met but share a mutual connection</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sf4twitter__Influencer_Type__c</picklist>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporter</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sf4twitter__Influencer__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sf4twitter__Level__c</picklist>
+            <values>
+                <fullName>Primary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tertiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sf4twitter__Origin__c</picklist>
+            <values>
+                <fullName>Facebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Twitter</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4252,6 +3990,21 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>ICB_Type__c</picklist>
             <values>
                 <fullName>Ice Cream Salesman</fullName>
@@ -4360,6 +4113,58 @@
             </values>
             <values>
                 <fullName>Never met but share a mutual connection</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sf4twitter__Influencer_Type__c</picklist>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporter</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sf4twitter__Influencer__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sf4twitter__Level__c</picklist>
+            <values>
+                <fullName>Primary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tertiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sf4twitter__Origin__c</picklist>
+            <values>
+                <fullName>Facebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Twitter</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4984,6 +4789,21 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>ICB_Type__c</picklist>
             <values>
                 <fullName>Ice Cream Salesman</fullName>
@@ -5200,7 +5020,26 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Console</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Ice Cream Salesman</fullName>
                 <default>false</default>
@@ -5561,5 +5400,255 @@ TEXT(11 - MOD(((VALUE(MID(CPF__c , 1, 1))*11)+
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
         <url>http://weather.yahoo.com/search/weather2?p={!Contact_MailingPostalCode}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>sf4twitter__Get_Author_Info</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Get Author Info</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.location = &apos;/apex/sf4twitter__TwitterUpdateTwitterInfo?records={!Contact.Id}&amp;retURL=&apos; + encodeURIComponent(window.location);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>sf4twitter__Get_Author_Info_Massive</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Get Author Info</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>var records = {!GETRECORDIDS( $ObjectType.Contact)}; 
+if (records.length == 0) { 
+  alert(&quot;{!$Label.sf4twitter__TWITTER_SELECT_A_RECORD}&quot;) ; 
+} 
+else if(records.length &gt; 100){ 
+  alert(&quot;{!SUBSTITUTE($Label.sf4twitter__TWITTER_SELECT_LESS_RECORD, &apos;{0}&apos;, &apos;100&apos;)}&quot;); 
+} 
+else {
+	if(document.getElementsByName(&apos;fcf&apos;)[0] == null){ 
+	elementName = &apos;is:islv:inlineSchedulerListView:enhancedList:fcf&apos;; 
+	}else{ 
+		elementName =&apos;fcf&apos;; 
+	} 
+	var listViewFilters = document.getElementsByName(elementName)[0];
+
+	var filterId = listViewFilters.options[listViewFilters.selectedIndex].value;
+	var url = new String(window.location);
+	if (url.search(/fcf=[^&amp;]+/) &gt;= 0) {
+		url = url.replace(/fcf=[^&amp;]+/, &apos;fcf=&apos; + filterId);
+	} else {
+		if (url.indexOf(&apos;?&apos;) == -1) {
+			url += &apos;?&apos;
+		}
+		url += &apos;&amp;fcf=&apos; + filterId;
+	}
+        window.location = &apos;/apex/sf4twitter__TwitterUpdateTwitterInfo?records=&apos; + records + &apos;&amp;retURL=&apos; + encodeURIComponent(url);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>sf4twitter__Get_Klout_Score</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Get Klout Score</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>if ({!IF(ISPICKVAL(Contact.sf4twitter__Origin__c,&apos;Facebook&apos;),&apos;true&apos;,&apos;false&apos;)}) { 
+alert(&apos;{!$Label.sf4twitter__FUNCTION_ONLY_FOR_TWITTER_CONVERSATION}&apos;); 
+} else{ 
+window.location = &apos;/apex/sf4twitter__SocialKlout?cList={!Contact.Id}&amp;retURL=&apos; + encodeURIComponent(window.location); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>sf4twitter__Get_Klout_Score_Massive</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Get Klout Score</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>var records = {!GETRECORDIDS( $ObjectType.Contact )}; 
+if (records.length == 0) { 
+alert(&quot;{!$Label.sf4twitter__TWITTER_SELECT_A_RECORD}&quot;) ; 
+} 
+else if(records.length &gt; 5){ 
+alert(&quot;{!SUBSTITUTE($Label.sf4twitter__TWITTER_SELECT_LESS_RECORD, &apos;{0}&apos;, &apos;5&apos;)}&quot;); 
+} 
+else { 
+	if(document.getElementsByName(&apos;fcf&apos;)[0] == null){ 
+	elementName = &apos;is:islv:inlineSchedulerListView:enhancedList:fcf&apos;; 
+	}else{ 
+		elementName =&apos;fcf&apos;; 
+	} 
+	var listViewFilters = document.getElementsByName(elementName)[0];
+
+var filterId = listViewFilters.options[listViewFilters.selectedIndex].value; 
+var url = new String(window.location); 
+if (url.search(/fcf=[^&amp;]+/) &gt;= 0) { 
+url = url.replace(/fcf=[^&amp;]+/, &apos;fcf=&apos; + filterId); 
+} else { 
+if (url.indexOf(&apos;?&apos;) == -1) { 
+url += &apos;?&apos; 
+} 
+url += &apos;&amp;fcf=&apos; + filterId; 
+} 
+window.location = &apos;/apex/sf4twitter__SocialKlout?cList=&apos; + records + &apos;&amp;retURL=&apos; + encodeURIComponent(url); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>sf4twitter__Get_Twitter_Username</fullName>
+        <availability>online</availability>
+        <description>Allow a CRM users to search twitter to find the Contact&apos;s
+twitter user name.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Get Twitter Username</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>var results = (new RegExp(&quot;[\\?&amp;]isdtp=([^&amp;#]*)&quot;)).exec(window.location.href);
+if ( results == null ){
+window.location = &apos;/apex/sf4twitter__TwitterGetUsername?cid={!Contact.Id}&amp;retURL=&apos; + encodeURIComponent(window.location);
+}else{
+window.location = &apos;/apex/sf4twitter__TwitterGetUsername?cid={!Contact.Id}&amp;isdtp=&apos;+results[1]+&apos;&amp;retURL=&apos; + encodeURIComponent(window.location);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>sf4twitter__Search_Twitter_Username</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Search Twitter Username</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://twitter.com/search/users?q={!Contact.FirstName}+{!Contact.LastName}&amp;category=people&amp;source=find_on_twitter</url>
+    </webLinks>
+    <webLinks>
+        <fullName>smagicinteract__Send_Bulk_SMS</fullName>
+        <availability>online</availability>
+        <description>sms to multiple contacts</description>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send Bulk SMS</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/14.0/apex.js&quot;)} 
+function loadJqueryDynamically(){ 
+
+var newscript = document.createElement(&apos;script&apos;); 
+newscript.type = &apos;text/javascript&apos;; 
+newscript.async = false; 
+newscript.src = &apos;{!URLFOR(&apos;/resource/smagicinteract__smJQuery/js/jquery-1.10.2.js&apos;)}&apos;; 
+(document.getElementsByTagName(&apos;head&apos;)[0]||document.getElementsByTagName(&apos;body&apos;)[0]).appendChild(newscript); 
+
+var newscript1 = document.createElement(&apos;script&apos;); 
+newscript1.type = &apos;text/javascript&apos;; 
+newscript1.async = false; 
+newscript1.src = &apos;{!URLFOR(&apos;/resource/smagicinteract__smJQuery/js/jquery-ui-1.10.4.custom.min.js&apos;)} &apos;; 
+(document.getElementsByTagName(&apos;head&apos;)[0]||document.getElementsByTagName(&apos;body&apos;)[0]).appendChild(newscript1); 
+
+var newscript2 = document.createElement(&apos;script&apos;); 
+newscript2.type = &apos;text/javascript&apos;; 
+newscript2.async = false; 
+newscript2.src = &apos;{!URLFOR(&apos;/resource/smagicinteract__sendSMSJS&apos;)}&apos;; 
+(document.getElementsByTagName(&apos;head&apos;)[0]||document.getElementsByTagName(&apos;body&apos;)[0]).appendChild(newscript2); 
+newscript2.onload = showPage; 
+
+} 
+
+
+loadJqueryDynamically(); 
+
+function showPage() { 
+
+var records = {!GETRECORDIDS($ObjectType.Contact)}; 
+if (records[0] == null) 
+{ 
+alert(&quot;Please select at least one contact.&quot;) 
+} 
+else{ 
+var packagePrefix = &quot;smagicinteract__&quot;; 
+var recordType = &quot;Contact&quot;; 
+var recordIds = &quot;&quot;; 
+var nameField = &apos;Name&apos;; 
+var mobileField = &apos;MobilePhone&apos;; 
+var optOutField = &apos;smagicinteract__SMSOptOut__c&apos;; 
+var optOutDefaultValue = &apos;yes&apos;; 
+var smsType = &apos;&apos;; 
+var userId = &apos;{!$User.Id}&apos;; 
+var elementIdVar = &apos;&apos;; 
+var showUserDropDown = false; 
+var dialogTitle = &apos;&apos;; 
+var queryString = &apos;&apos;; 
+
+for (var n in records) { 
+if(n == &apos;remove&apos; || n == &apos;indexOf&apos;) continue; 
+recordIds = recordIds + records[n]; 
+
+if (n != records.length-1) { 
+recordIds = recordIds + &quot;,&quot;; 
+} 
+} 
+
+var cssUrl = &apos;{!URLFOR(&apos;/resource/smagicinteract__smJQuery/css/sm-theme/jquery-ui-1.10.4.custom.min.css&apos;)}&apos;; 
+
+var unrelatedObjectAPIName = &apos;&apos;; 
+
+if({!$Permission.smagicinteract__AllowToSendBulkMessage}) { 
+sendSMS(recordType, recordIds, userId, nameField, mobileField, optOutField, optOutDefaultValue, smsType, elementIdVar, packagePrefix, showUserDropDown, dialogTitle, cssUrl, unrelatedObjectAPIName); 
+} 
+else { 
+alert(&apos;You cannot Send SMS. Please contact system admin&apos;); 
+} 
+
+} 
+
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>smagicinteract__Send_SMS</fullName>
+        <availability>online</availability>
+        <description>send to individual</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send SMS</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/14.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/14.0/apex.js&quot;)} 
+{!REQUIRESCRIPT(&apos;/resource/smagicinteract__smJQuery/js/jquery-1.10.2.js&apos;)} 
+{!REQUIRESCRIPT(&apos;/resource/smagicinteract__smJQuery/js/jquery-ui-1.10.4.custom.min.js&apos;)} 
+{!REQUIRESCRIPT(&quot;/resource/smagicinteract__sendSMSJS&quot;)} 
+
+var packagePrefix = &quot;smagicinteract__&quot;; 
+var recordType = &apos;contact&apos;; 
+var idToUpdate = &apos;{!Contact.Id}&apos; 
+var nameField = &apos;Name&apos;; 
+var mobileField = &apos;MobilePhone&apos;; 
+var optOutField = &apos;smagicinteract__SMSOptOut__c&apos;;
+var optOutDefaultValue = &apos;yes&apos;;
+var smsType = &apos;&apos;; 
+var userId = &apos;{!$User.Id}&apos;; 
+var elementIdVar = &apos;&apos;; 
+var showUserDropDown = false; 
+var dialogTitle = &apos;&apos;;
+var cssUrl = &apos;{!URLFOR(&apos;/resource/smagicinteract__smJQuery/css/sm-theme/jquery-ui-1.10.4.custom.min.css&apos;)}&apos;;
+var unrelatedObjectAPIName = &apos;&apos;;
+
+sendSMS(recordType, idToUpdate, userId, nameField, mobileField, optOutField, optOutDefaultValue, smsType, elementIdVar, packagePrefix, showUserDropDown, dialogTitle, cssUrl, unrelatedObjectAPIName);</url>
     </webLinks>
 </CustomObject>
