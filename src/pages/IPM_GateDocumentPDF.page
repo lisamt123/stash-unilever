@@ -613,7 +613,7 @@
         .teamHeading .pageTitlefont{font-size: 2em;color: #253A79;font-weight:bold;}
         
         /* Source Plan Styles */
-        .marketingHeader {width: 490px;}
+        .proName{padding-left:5px;}
         .chainHeader {width: 270px;}
         .padzero {padding: 0;}
         .col-sm-12{width:100%;}
@@ -627,11 +627,11 @@
         .table>thead>tr>th span {float: left;display: inline-block;}
         .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding: 2px 5px;vertical-align: middle;word-wrap:break-word;word-break: break-word;color: rgb(102, 102, 102);}
         .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th{padding: 2px 5px;vertical-align: middle;}
-        table.table.table-bordered.productsource th {padding-top: 35px;background-color: #f2f8fc;border: 2px solid #ddd;text-align: center;}
+        table.table.table-bordered.productsource th {padding-top: 14px;background-color: #f2f8fc;border: 2px solid #ddd;text-align: center;}
         table.table.table-bordered.productsource th span {display: block;text-align: center;width: 100%;}
         table.table.table-bordered.productsource th span {display: block;text-align: center;width: 100%;}
-        table.table.table-bordered.productsource.darkoverlay th {background-color: #dceefa;border: 2px solid #ddd;padding-top: 47px;}
-        .table>thead>tr>th>div.capcon {width: 75px;margin: 0 auto;background-color: #ececec;color: #555;vertical-align: middle;padding: 2px 0 2px;height: auto;}
+        table.table.table-bordered.productsource.darkoverlay th {background-color: #dceefa;border: 2px solid #ddd;padding-top: 10px;}
+        .table>thead>tr>th>div.capcon {width: 75px;margin: 0 auto;background-color: #ececec;color: #555;vertical-align: middle;text-align:center;padding: 2px 0 2px;height: auto;}
         .tobe {margin-bottom: 40px;position: absolute;left: 0;margin-left:40px;right: 0;top: 43px;background-color: #f2f8fc;width: 465px;height: 0;padding: 8px 0px;}
         .line {height: 0;border: 1px solid #ccc;position: relative;}
         .line span {position: absolute;text-align: center;top: -8px;left: 0;right: 0;width: 150px;margin-left:140px;background-color: #f2f8fc;}
@@ -640,11 +640,12 @@
         .line.dark span {background-color: #dceefa;width: 160px;margin-left:45px;}
         table.table.table-bordered.productsourcegrey tr {background-color: #efefef;}
         table.table.table-bordered.productsourcegrey tr td {border: none;text-align: center;}
-        .teamHeading{float:left;margin-bottom:20px;}
+        .teamHeading{float:left;margin-bottom:10px;}
         .teamHeading .pageTitlefont{font-size: 2em;color: #253A79;font-weight:bold;}
         .goldenCheckcontainer{margin-top:2px;}
         .goldenCheckcontainer label.goldbox {width: 80%;background: #FBBE2E;color: #000;border: 1px solid #E28A3C;padding: 5px;font-size: 8px !important;}
         .goldenCheckcontainer label {width:100%;background: #999;padding:4px 18px;height: 29px;}  
+        .alignCenter{text-align:center;}  
     </style>
 </head>
 <body class="docBody">
