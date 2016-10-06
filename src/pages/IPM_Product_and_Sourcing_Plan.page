@@ -264,7 +264,7 @@
                                                                     </apex:repeat>
                                                                     <tr>
                                                                         <td class="alignAddicn">
-                                                                            <span class="fa fa-plus addicn hovertip" title="Add another Sourcing Unit for this product" onclick="addNewSourceUnit('{!rowNum}');"></span>
+                                                                            <span class="fa fa-plus addicn hovertip" title="Add another Sourcing Unit for this product" onclick="addNewSourceUnit('{!wrKey}');"></span>
                                                                         </td>
                                                                         <td></td>
                                                                         <td></td>
