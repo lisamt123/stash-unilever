@@ -19,6 +19,8 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
 //This method creates required global, regional and local projects and rollouts, also related financials. These records are then accessed across the testmethods.
     @testSetup static void financialSetUp() 
      {
+     	 test.startTest();
+     	 
          userList = IPM_TestFactory_Helper.createUserList();
          system.assertNotEquals(userList[0],null,'User not created');
          //asserts based on Hard coded names from helper can be a risk, if helper changes then assert will fail.
@@ -34,14 +36,18 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             insert globalProjectList;
          }
          
+         IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
+       	 IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
          createRegionalAndLocalRollouts(globalProjectList);
-         
+         IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+         IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
+         test.stopTest();
          
      }
      
      static void createRegionalAndLocalRollouts(List<IPM_Project__c>globalProjectList)  
      {
-         	Test.startTest();
+         	
             System.runAs(userList[0])
             {
                 // Create Regional Rollouts for Created Global project.
@@ -118,6 +124,8 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             liGlobIds.add(g.id);
         }
         
+        
+        
         IPM_TestFactory_Helper.initiateProjectPhaseChange(liGlobIds,userList[0]);
         
         //assert preparation
@@ -127,7 +135,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             system.assertEquals(localRollout.KeyMCO__c, true,'MCO not updated');
             system.assertEquals(localRollout.IPM_Regional_PL__c, userList[2].Id, 'regional PL not updated');
         }
-        Test.stopTest(); 
+        
      }
 
 
@@ -136,9 +144,9 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
         regionalProjectList = IPM_TestFactory_Helper.projectSetUpRegional(5,UserList[0]);
         System.runAs(userList[0])
         {
-            insert regionalProjectList;
+        	insert regionalProjectList;
+            System.Debug('@@@@@regionalProjectList==>   ' + regionalProjectList);
             /******************************** Create Local Rollouts for Created Regional Original project ****************************************/
-            
             projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c from IPM_Project__c where IPMProject_Span__c =: IPM_ConstantUtils.PROJECT_SPAN_REGIONAL];
             
             // Create local Rollouts for Created regional Rollouts.
@@ -207,7 +215,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             liEX.add(new IPM_Exchange_Rate__c(Name='USD', Currency_Code__c='USD',Exchange_Rate__c=1.3));         
             insert liEX;   
             system.assertEquals(3, [Select count() from IPM_Exchange_Rate__c limit 100] , 'Exchange rates are not added.');
-            
+           
         }
     }
      //Use case: Local Rollout project in market ready phase 
@@ -248,7 +256,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             sic.saveRecords();
             List<IPM_MarketPerformanceBreakdown__c> marketPerforBreakdownList=[SELECT Name FROM IPM_MarketPerformanceBreakdown__c WHERE ID=:sic.marketPerformanceBreakdownList[0].ID LIMIT 1];
             system.assertNotEquals(marketPerforBreakdownList[0].Name,sic.marketPerformanceBreakdownList[0].Name,'Name is saved');//negative test
-            
+            Test.stopTest();
             sic.marketPerformanceBreakdownList[0].Name=sic.marketPerformanceBreakdownList[0].id;
             sic.marketPerformanceBreakdownList[0].InnovationValueShare__c=101;
             sic.marketPerformanceBreakdownList[0].InnovationVolumeShare__c=101;
@@ -259,7 +267,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             List<IPM_MarketPerformanceBreakdown__c> marketPerformanceBkList=[SELECT InnovationValueShare__c,InnovationVolumeShare__c FROM IPM_MarketPerformanceBreakdown__c WHERE ID=:sic.marketPerformanceBreakdownList[0].ID LIMIT 1];
             system.assertNotEquals(marketPerformanceBkList[0].InnovationValueShare__c,101,'innovation value share is saved');//positive test
             system.assertNotEquals(marketPerformanceBkList[0].InnovationVolumeShare__c,101,'innovation volume share is saved');//positive test
-            Test.stopTest();
+            
                
         }
         
@@ -272,12 +280,14 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
         System.runAs([Select Id from User where email =: TEST_USER_EMAIL limit 1][0])
         {
             Test.startTest();
+            
             Test.setCurrentPageReference(Page.IPM_ProjectDocumentSectionEditor);
             projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c from IPM_Project__c where IPMProject_Span__c =: IPM_ConstantUtils.PROJECT_SPAN_REGIONAL limit 1];
             Apexpages.currentpage().getparameters().put(IPM_ConstantUtils.SF_ID,projectList[0].Id);
             IPM_MarketPerformaceController marketPerformanceController = new IPM_MarketPerformaceController();
             List<IPM_MarketPerformance__c> lstMarketPerformance = [Select Id, IPMProjectRollout__r.Regional_Project__c from IPM_MarketPerformance__c where IPMProjectRollout__r.Regional_Project__c =:projectList[0].Id limit 1000];
             System.assertEquals(marketPerformanceController.lstMarketPerformaceData.size() , lstMarketPerformance.size() , 'Market performance data created do not match.');
+            
             Test.stopTest();
         }
     }
