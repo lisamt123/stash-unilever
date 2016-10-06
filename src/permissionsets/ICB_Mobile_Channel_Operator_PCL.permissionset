@@ -52607,10 +52607,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>FourAcres_App</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>GEL_Global_Exception_Log__c</tab>
         <visibility>None</visibility>
     </tabSettings>
