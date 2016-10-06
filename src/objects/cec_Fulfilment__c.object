@@ -525,6 +525,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Latvia</fullName>
                 <default>false</default>
             </picklistValues>
@@ -654,6 +658,7 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1581,6 +1586,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Latvia</controllingFieldValues>
                 <controllingFieldValues>Lithuania</controllingFieldValues>
                 <controllingFieldValues>Luxembourg</controllingFieldValues>
@@ -1629,6 +1635,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

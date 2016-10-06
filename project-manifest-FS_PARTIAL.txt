@@ -1,3 +1,16 @@
 src
 src/permissionsets
 src/permissionsets/FS_Admin.permissionset
+src/profiles
+src/profiles/Unilever Food Solution - NA.profile
+src/profiles/Unilever Food Solution - Russia.profile
+src/workflows
+src/workflows/Opportunity.workflow
+src/triggers/OpportunityTrigger.trigger
+src/triggers/OpportunityTrigger.trigger-meta.xml
+src/classes/FS_OpportunityHelper.cls
+src/classes/FS_OpportunityHelper.cls-meta.xml
+src/objects
+src/objects/Opportunity.object
+src/layouts
+src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout

@@ -16,14 +16,12 @@ public with sharing class ICB_Cockpit_CC_DAO
     private static final String CONST_STAGE_CLOSED;
     private static final String CONST_STAGE_PENDING;
     private static final String CONST_STAGE_AVAILABLE;
-    private static String productRecId;
     
     Static
     {
         CONST_STAGE_CLOSED = 'Closed';
         CONST_STAGE_PENDING = 'Pending';
         CONST_STAGE_AVAILABLE = 'Available';
-        productRecId = Schema.SObjectType.Product2.getRecordTypeInfosByName().get('Mobile Channel').getRecordTypeId();
     }
     
     /*******************************************************************
@@ -40,13 +38,12 @@ public with sharing class ICB_Cockpit_CC_DAO
                                                 CreatedDate,
                                                 StageName,
                                                 ICB_Contact__c,
-                                     			      ICB_Contact__r.ICB_Type__c,
+                                     			ICB_Contact__r.ICB_Type__c,
                                                 OwnerId,
                                                 Amount,
                                                 ICB_OLD_QUANTITY_RETURNED__c,
                                                 ICB_Total_Sold_Price__c,
-                                           			ICB_Sales_Locale__c,
-                                           			ICB_Sales_Locale_List__c
+                                           		ICB_Sales_Locale__c
                                       FROM Opportunity 
                                       WHERE ICB_Contact__c =: mapContact.keySet() 
                                       AND (StageName = :CONST_STAGE_PENDING OR StageName = :CONST_STAGE_AVAILABLE OR StageName = :CONST_STAGE_CLOSED)
@@ -69,11 +66,10 @@ public with sharing class ICB_Cockpit_CC_DAO
                                                 OwnerId,
                                                 Amount,	
                                                 ICB_Contact__c,
-                                     			      ICB_Contact__r.ICB_Type__c,
+                                     			ICB_Contact__r.ICB_Type__c,
                                                 ICB_OLD_QUANTITY_RETURNED__c,
                                                 ICB_Total_Sold_Price__c,
-                                     			      ICB_Sales_Locale__c,
-                                     			      ICB_Sales_Locale_List__c
+                                     			ICB_Sales_Locale__c
                                       FROM Opportunity 
                                       WHERE ICB_Contact__c =: mapContact.keySet()
                                       AND (StageName = :CONST_STAGE_PENDING OR StageName = :CONST_STAGE_AVAILABLE)];
@@ -148,7 +144,6 @@ public with sharing class ICB_Cockpit_CC_DAO
                                                                     ICB_Quantity_Unit__c 
                                                             FROM ICB_Inventory_Line_Item__c 
                                                             WHERE ICB_Inventory__r.Name =: accountName 
-                                                            AND  ICB_Product__r.RecordTypeId =: productRecId 
                                                             AND ICB_Product__r.isActive = true ORDER BY ICB_Product__r.Name];
         System.debug('Exiting <getInventoriesIventoryLineItem>: ' + JSON.serializePretty(inventoryList));
         return inventoryList;
@@ -164,13 +159,13 @@ public with sharing class ICB_Cockpit_CC_DAO
          System.debug('Entering <updateOppItemListOppItem>');
         List<OpportunityLineItem> oppItemList = [SELECT 	Id,
                                                            OpportunityId,
-                                                 		       Opportunity.ICB_Contact__c,
+                                                 		   Opportunity.ICB_Contact__c,
                                                            TotalPrice, 
                                                            ICB_STATUS_SALES__c,
                                                            ICB_ITEMS_RETURNED__c,
                                                            PriceBookEntry.Name,
                                                            Quantity,
-                                                 		       Product2Id,
+                                                           Product2Id,
                                                            PriceBookEntryId 
                                                    FROM OpportunityLineItem 
                                                    WHERE PriceBookEntryId =: mapPriceBook.keySet() 

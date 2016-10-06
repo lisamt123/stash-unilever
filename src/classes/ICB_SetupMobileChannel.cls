@@ -1,17 +1,18 @@
 /**********************************************************************
 Name: ICB_SetupMobileChannel
 Copyright © 2016 Unilever
-
+**********************************************************************
 Purpose: Class used on the trigger SetupMobileChannel
-
+**********************************************************************
 History 
-
+**********************************************************************
 VERSION AUTHOR 				DATE 		DETAIL Description	
 1.0 	CARLOS HENRIQUE  02/09/2016  INITIAL DEVELOPMENT.
 ***********************************************************************/
 public with sharing class ICB_SetupMobileChannel {
     
     public static final ICB_SetupMobileChannel instance = new ICB_SetupMobileChannel();
+
     
     public ICB_SetupMobileChannel() {}
     
@@ -145,5 +146,32 @@ public with sharing class ICB_SetupMobileChannel {
             
         }
     }
-    
+    public void disabledUser(List<Contact> contactList)
+    {
+        List<Id> userIdList = new List<Id>();
+        
+        for(User user : [Select Id,ContactId,IsPortalEnabled,IsActive from User Where ContactId IN: contactList])
+        {
+            for(Contact contact : contactList)
+            {
+                if((user.ContactId == contact.Id) && (contact.ICB_Status__c == 'Inactive'))
+                {
+                    userIdList.add(user.Id);   
+                }
+            }
+        }
+        updateUser(userIdList);
+    }
+    @future
+    private static void updateUser(List<Id> listIdUser)
+    {
+        List<User> userList = new List<User>();
+        for(User user : [Select Id,IsPortalEnabled,IsActive from User Where Id IN: listIdUser])
+        {
+            user.IsPortalEnabled = false;
+            user.IsActive = false;
+            userList.add(user);
+        }
+        Database.update(userList);
+    }
 }

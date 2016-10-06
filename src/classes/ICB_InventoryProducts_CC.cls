@@ -1,11 +1,11 @@
 /**********************************************************************
 Name: ICB_InventoryProducts_CC
 Copyright © 2016 Unilever
-
+**********************************************************************
 Purpose:
 Controller class for lightning component 
 ICB_ProductInvetoryBody.cmp
-
+**********************************************************************
 History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
 1.0    Thiago Oliveira 04/08/2016  Class creation  
@@ -38,6 +38,10 @@ public with sharing class ICB_InventoryProducts_CC
         try
         {
             String strUserId = UserInfo.getUserId();
+           
+            
+            
+            
             String strContactId = ICB_ContactDAO.getInstance().getContactId(strUserId);
             contato = ICB_ContactDAO.getInstance().getContact(strContactId);
             String strAccountName = ICB_AccountDAO.getInstance().getAccount(contato);
