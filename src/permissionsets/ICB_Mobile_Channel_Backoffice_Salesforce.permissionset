@@ -1816,10 +1816,7 @@
         <apexClass>BET_UpsertBETControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>BasicMenuItem</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+    
     <classAccesses>
         <apexClass>BrandCentreExtension</apexClass>
         <enabled>false</enabled>
