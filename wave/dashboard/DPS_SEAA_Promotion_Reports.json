@@ -2982,7 +2982,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
                         ]
                     ]
@@ -3053,7 +3053,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
                         ]
                     ]
@@ -3093,7 +3093,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
                         ],
                         [
@@ -3171,6 +3171,22 @@
                         [
                             "Product_category",
                             "{{ selection(Product_category_16) }}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{selection(Product_market_56)}}"
+                        ],
+                        [
+                            "Product_brand",
+                            "{{selection(Product_brand_57)}}"
+                        ],
+                        [
+                            "Product_sector",
+                            "{{selection(Product_sector_58)}}"
+                        ],
+                        [
+                            "SKU",
+                            "{{selection(SKU_84)}}"
                         ],
                         [
                             "Country",
@@ -3295,7 +3311,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
                         ],
                         [
@@ -3373,6 +3389,22 @@
                         [
                             "Product_category",
                             "{{ selection(Product_category_16) }}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{selection(Product_market_56)}}"
+                        ],
+                        [
+                            "Product_brand",
+                            "{{selection(Product_brand_57)}}"
+                        ],
+                        [
+                            "Product_sector",
+                            "{{selection(Product_sector_58)}}"
+                        ],
+                        [
+                            "SKU",
+                            "{{selection(SKU_84)}}"
                         ],
                         [
                             "Country",
@@ -4241,7 +4273,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
                         ],
                         [
@@ -4285,7 +4317,7 @@
                             "{{ selection(Subchannel_10) }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ selection(Store_type_46) }}"
                         ],
                         [
@@ -4321,6 +4353,22 @@
                             "{{ selection(Product_category_16) }}"
                         ],
                         [
+                            "Product_market",
+                            "{{selection(Product_market_56)}}"
+                        ],
+                        [
+                            "Product_brand",
+                            "{{selection(Product_brand_57)}}"
+                        ],
+                        [
+                            "Product_sector",
+                            "{{selection(Product_sector_58)}}"
+                        ],
+                        [
+                            "SKU",
+                            "{{selection(SKU_84)}}"
+                        ],
+                        [
                             "Country",
                             "{{ selection(Country_21)}}"
                         ],
@@ -4337,7 +4385,7 @@
                             "{{ selection(Channel_27)}}"
                         ],
                         [
-                            "Category",
+                            "Product_category",
                             "{{ selection(Product_category_26)}}"
                         ],
                         [
@@ -4560,7 +4608,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
                         ]
                     ]
@@ -4659,7 +4707,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
                         ]
                     ]
@@ -4962,7 +5010,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
                         ]
                     ]
@@ -5172,7 +5220,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
                         ],
                         [
@@ -5250,6 +5298,22 @@
                         [
                             "Product_category",
                             "{{ selection(Product_category_16) }}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{selection(Product_market_56)}}"
+                        ],
+                        [
+                            "Product_brand",
+                            "{{selection(Product_brand_57)}}"
+                        ],
+                        [
+                            "Product_sector",
+                            "{{selection(Product_sector_58)}}"
+                        ],
+                        [
+                            "SKU",
+                            "{{selection(SKU_84)}}"
                         ],
                         [
                             "Country",
@@ -5312,7 +5376,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
                         ],
                         [
@@ -5390,6 +5454,22 @@
                         [
                             "Product_category",
                             "{{ selection(Product_category_16) }}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{selection(Product_market_56)}}"
+                        ],
+                        [
+                            "Product_brand",
+                            "{{selection(Product_brand_57)}}"
+                        ],
+                        [
+                            "Product_sector",
+                            "{{selection(Product_sector_58)}}"
+                        ],
+                        [
+                            "SKU",
+                            "{{selection(SKU_84)}}"
                         ],
                         [
                             "Country",
@@ -5590,7 +5670,7 @@
                             "=="
                         ],
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
                         ],
                         [
@@ -5668,6 +5748,22 @@
                         [
                             "Product_category",
                             "{{ selection(Product_category_16) }}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{selection(Product_market_56)}}"
+                        ],
+                        [
+                            "Product_brand",
+                            "{{selection(Product_brand_57)}}"
+                        ],
+                        [
+                            "Product_sector",
+                            "{{selection(Product_sector_58)}}"
+                        ],
+                        [
+                            "SKU",
+                            "{{selection(SKU_84)}}"
                         ],
                         [
                             "Country",
@@ -5783,7 +5879,7 @@
                             "=="
                         ],
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
                         ]
                     ],
@@ -5824,8 +5920,100 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_52) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_2) }}"
+                        ],
+                        [
+                            "City",
+                            "{{ selection(City_5) }}"
+                        ],
+                        [
+                            "Commune",
+                            "{{ selection(Commune_42) }}"
+                        ],
+                        [
+                            "Customer_type",
+                            "{{ selection(Customer_type_11) }}"
+                        ],
+                        [
+                            "Trade_Format",
+                            "{{ selection(Trade_Format_8) }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ selection(X4P_5P_6P_80) }}"
+                        ],
+                        [
+                            "Top_Customer",
+                            "{{ selection(Top_Customer_49) }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ selection(Customer_48) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_9) }}"
+                        ],
+                        [
+                            "Subchannel",
+                            "{{ selection(Subchannel_10) }}"
+                        ],
+                        [
+                            "Store_type",
+                            "{{ selection(Store_type_46) }}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ selection(Sales_region_44) }}"
+                        ],
+                        [
+                            "Sales_area",
+                            "{{ selection(Sales_area_6) }}"
+                        ],
+                        [
+                            "Sales_territory",
+                            "{{ selection(Sales_territory_7) }}"
+                        ],
+                        [
+                            "Field_Execution_Manager",
+                            "{{ selection(Field_Execution_Manager_53) }}"
+                        ],
+                        [
+                            "Store_Operations_Manager",
+                            "{{ selection(Store_Operations_Manager_54) }}"
+                        ],
+                        [
+                            "Field_Sales_Manager",
+                            "{{ selection(Field_Sales_Manager_55) }}"
+                        ],
+                        [
+                            "Product_division",
+                            "{{ selection(Product_division_15) }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ selection(Product_category_16) }}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{selection(Product_market_56)}}"
+                        ],
+                        [
+                            "Product_brand",
+                            "{{selection(Product_brand_57)}}"
+                        ],
+                        [
+                            "Product_sector",
+                            "{{selection(Product_sector_58)}}"
+                        ],
+                        [
+                            "SKU",
+                            "{{selection(SKU_84)}}"
                         ]
                     ]
                 },
@@ -5908,7 +6096,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb23000000AMAICA4"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [

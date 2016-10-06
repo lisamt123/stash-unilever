@@ -2903,6 +2903,12 @@
                     ],
                     "groups": [
                         "Product_brand"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -3118,6 +3124,12 @@
                     ],
                     "groups": [
                         "X4P_5P_6P"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -3296,7 +3308,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ],
                         [
@@ -3445,7 +3457,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ],
                         [
@@ -3562,6 +3574,12 @@
                     ],
                     "groups": [
                         "Store_Operations_Managers"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -3597,7 +3615,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ],
                         [
@@ -3742,6 +3760,12 @@
                     ],
                     "groups": [
                         "Sales_area"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -3787,7 +3811,7 @@
                             "=="
                         ],
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ],
                         [
@@ -3954,7 +3978,7 @@
                             "=="
                         ],
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ],
                         [
@@ -4285,6 +4309,12 @@
                     ],
                     "groups": [
                         "Product_division"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -4522,7 +4552,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ],
                         [
@@ -4583,7 +4613,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ],
                         [
@@ -4728,6 +4758,12 @@
                     ],
                     "groups": [
                         "City"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -4759,6 +4795,12 @@
                     ],
                     "groups": [
                         "Sales_territory"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -4818,6 +4860,12 @@
                     ],
                     "groups": [
                         "Sales_region"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -4853,7 +4901,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ]
                     ]
@@ -4886,6 +4934,12 @@
                     ],
                     "groups": [
                         "Product_category"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -4917,6 +4971,12 @@
                     ],
                     "groups": [
                         "Country"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -4952,7 +5012,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ],
                         [
@@ -5073,7 +5133,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ],
                         [
@@ -5218,6 +5278,12 @@
                     ],
                     "groups": [
                         "Subchannel"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -5249,6 +5315,12 @@
                     ],
                     "groups": [
                         "Customer_Type"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -5280,6 +5352,12 @@
                     ],
                     "groups": [
                         "Product_market"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -5311,6 +5389,12 @@
                     ],
                     "groups": [
                         "Trade_Format"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -5342,6 +5426,12 @@
                     ],
                     "groups": [
                         "Store_type"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -5373,6 +5463,12 @@
                     ],
                     "groups": [
                         "Customer"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -5404,6 +5500,12 @@
                     ],
                     "groups": [
                         "Product_sector"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -5435,6 +5537,12 @@
                     ],
                     "groups": [
                         "Local_Outlet_Name"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -5466,6 +5574,12 @@
                     ],
                     "groups": [
                         "Top_Customer"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -5501,7 +5615,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ],
                         [
@@ -5837,6 +5951,12 @@
                     ],
                     "groups": [
                         "Field_Sales_Manager"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -5868,6 +5988,12 @@
                     ],
                     "groups": [
                         "SKU"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -5899,6 +6025,12 @@
                     ],
                     "groups": [
                         "Commune"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -5934,7 +6066,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ],
                         [
@@ -6036,7 +6168,7 @@
                         "url": "/services/data/v38.0/wave/datasets/0Fb23000000AM87CAG"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -6066,7 +6198,7 @@
                     ]
                 ],
                 "type": "aggregate",
-                "useGlobal": true,
+                "useGlobal": false,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
                     "options": {}
@@ -6096,7 +6228,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
                         ],
                         [
@@ -6213,6 +6345,12 @@
                     ],
                     "groups": [
                         "Field_Execution_Manager"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
@@ -6244,6 +6382,12 @@
                     ],
                     "groups": [
                         "Channel"
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            "{{ selection(Date_of_audit_Year_Date_of_audit_Month_31) }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
