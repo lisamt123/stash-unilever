@@ -29,7 +29,6 @@ private class CoreNTLandingPageControllerTest{
         //Create the Data for Testing.   
         ApexPages.StandardController stdController = new ApexPages.StandardController(ntpObject);
         CoreNTLandingPageController coreNTObject = new CoreNTLandingPageController(stdController);
-        
         PermissionSetAssignment projManager=new PermissionSetAssignment();
         projManager.AssigneeId=UserInfo.getUserId();
         projManager.PermissionSetId=[SELECT ID FROM PermissionSet WHERE Name=:'CoreNTProjectManager' Limit 1].ID;

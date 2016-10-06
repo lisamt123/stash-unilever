@@ -13,7 +13,7 @@ CORE_NT_Task__c newTaskDetail;
         newTaskDetail = lstNewTaskDetail.get(id); 
     }
     //System.debug('new Task detail'+newTaskDetail);               
-    if(oldTaskDetail.Complete__c == false && newTaskDetail.Complete__c == true){
+    if(oldTaskDetail.Complete__c != newTaskDetail.Complete__c){
         AggregateResult taskCount=[SELECT count(Id) FROM CORE_NT_Task__c WHERE ProjectId__c = :newTaskDetail.ProjectId__c ];
         AggregateResult taskCompletedCount=[SELECT count(Id) FROM CORE_NT_Task__c WHERE ProjectId__c = :newTaskDetail.ProjectId__c and Complete__c=true ];
         List<CORE_NT_Project__c> projectPercent=[SELECT PercentComplete__c FROM CORE_NT_Project__c WHERE Id =:newTaskDetail.ProjectId__c];
