@@ -156,7 +156,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
                         }
                    }
                    //Evaluate for Due Date Rollup
-                   if((incomingMilestone.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && IPM_ConstantUtils.ROLLUP_MILESTONES.indexOf(incomingMilestone.IPM_Name__c) != -1) && (Trigger.isInsert || (incomingMilestone.IPM_Due_Date__c <oldMilestone.IPM_Due_Date__c))){
+                   if(Trigger.isInsert || (incomingMilestone.IPM_Due_Date__c <oldMilestone.IPM_Due_Date__c)){
                         if(!mapDueDateRollupMilestones.containskey(incomingMilestone.IPM_Project__c)){
                             list<IPM_Milestone__c> temp = new list<IPM_Milestone__c>();
                             temp.add(incomingMilestone);

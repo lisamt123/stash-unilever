@@ -534,7 +534,7 @@ public with sharing class IPM_MilestoneHelper
     set<id> setParentProjIds = new set<id>();
     map<id,id> mapprojParent = new map<id,id>();
     map<id,list<IPM_Milestone__c>> mapProjchildMilestones = new map<id, list<IPM_Milestone__c>>();
-   
+    list<IPM_Milestone__c> lstUpdateMilestones = new list<IPM_Milestone__C>();
     map<id, IPM_Milestone__c> mapUpdateML = new map<id, IPM_Milestone__c>();
 
     for(IPM_Project__c proj :[select id, IPM_Parent_Project__c from IPM_Project__c where id in :mapprojMilestones.keySet() and IPM_ProjectGKM__c = : IPM_ConstantUtils.GKM_2 and IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT]){
@@ -551,11 +551,12 @@ public with sharing class IPM_MilestoneHelper
     }
 
     if(!setParentProjIds.isEmpty()){
-        for(IPM_Milestone__c ml : [select IPM_Project__c, IPM_Project__r.IPM_Phase__c, IPM_Due_Date__c, IPM_Phase__c  from IPM_Milestone__c where IPM_Project__c in :setParentProjIds]){
+        for(IPM_Milestone__c ml : [select IPM_Project__c, IPM_Name__c, IPM_Project__r.IPM_Phase__c, IPM_Due_Date__c, IPM_Phase__c  from IPM_Milestone__c where IPM_Project__c in :setParentProjIds]){
             if(ml.IPM_Phase__c == ml.IPM_Project__r.IPM_Phase__c){
                 for(IPM_Milestone__c childMl :mapProjchildMilestones.get(ml.IPM_Project__c)){
                     if(ml.IPM_Name__c == childMl.IPM_Name__c && (ml.IPM_Due_Date__c==null || ml.IPM_Due_Date__c > childMl.IPM_Due_Date__c)){
                         ml.IPM_Due_Date__c = childMl.IPM_Due_Date__c;
+                        ml.IPM_Planned_Date__c = childMl.IPM_Due_Date__c;
                         mapUpdateML.put(ml.id, ml);
                     }
                 }
