@@ -228,11 +228,17 @@
 																				<span class="deleteRow fa fa-times" onClick="deleteSourceUnit('{!wrKey}','{!sUnitRow}')"></span>
                                                                             </td>
                                                                             <td width="6%" class="custSrcWidth">
-                                                                                <div class="approvalCheckcontainer">
-                                                                                    <apex:inputCheckbox id="approvalCheckBox" styleClass="greenBoxCheck" value="{!sourcep.sourcingPlan.IPM_CapabilityConfirmed__c}" rendered="{!bIsPDLApproved}"/>
-                                                                                    <apex:outputLabel for="approvalCheckBox"></apex:outputLabel>
-                                                                                </div>                                                                                
-                                                                                <apex:outputText rendered="{!NOT(bIsPDLApproved)}" Value="Not Yet"></apex:outputText>
+	                                                                            <apex:outputPanel rendered="{!bIsPDLApproved}">
+	                                                                                <div class="approvalCheckcontainer">
+	                                                                                    <apex:inputCheckbox id="approvalCheckBox" styleClass="greenBoxCheck" value="{!sourcep.sourcingPlan.IPM_CapabilityConfirmed__c}" />
+	                                                                                    <apex:outputLabel for="approvalCheckBox"></apex:outputLabel>
+	                                                                                </div>                                                                                
+	                                                                            </apex:outputPanel> 
+	                                                                            <apex:outputPanel rendered="{!NOT(bIsPDLApproved)}">
+	                                                                             	<div class="goldenCheckcontainer">
+	                                                                            		<apex:outputLabel for="goldenCheckBox">Not Yet</apex:outputLabel>
+	                                                                            	</div>
+	                                                                            </apex:outputPanel>
                                                                             </td>
                                                                             <td width="13%">
                                                                                 <apex:outputPanel layout="block" styleClass="noPadright noPadleft dropdown sourcedcntryContainer ipmDropDown" id="srcCountrylist">                                       
@@ -318,9 +324,16 @@
                                                                     <tr>
                                                                         <td width="13%"><span> {!sourcep.sourcingPlan.IPM_SourcingUnit__c}</span></td>
                                                                         <td width="6%" class="custSrcWidth">
-                                                                            <div class="approvalCheckcontainer noPointer">
-                                                                                 <label class="{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'greenBox','')}">{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Yes','Not Yet')}</label>
-                                                                            </div>
+	                                                                        <apex:outputPanel rendered="{!bIsPDLApproved}">
+	                                                                            <div class="approvalCheckcontainer noPointer">
+	                                                                                 <label class="{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'greenBox','')}">{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Yes','Not Yet')}</label>
+	                                                                            </div>
+	                                                                        </apex:outputPanel>
+	                                                                        <apex:outputPanel rendered="{!NOT(bIsPDLApproved)}">
+	                                                                             	<div class="goldenCheckcontainer">
+	                                                                            		<apex:outputLabel for="goldenCheckBox">Not Yet</apex:outputLabel>
+	                                                                            	</div>
+	                                                                        </apex:outputPanel>
                                                                         </td>
                                                                         <td width="13%">
                                                                             <span>{!sourcep.sourceCountries}</span>
