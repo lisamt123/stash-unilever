@@ -430,7 +430,6 @@ private class IPM_ProjDocSectionController_Test{
             projDocSecControl.delet();
             Delete a;
             projDocSecControl.delet();
-            projDocSecControl.isTaskComplete = TRUE;
             // Task Update
             List<IPM_Task__c> taskToUpdate = [Select IPM_Type_of_Task__c,IPM_Completed__c,IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Project__c from IPM_Task__c LIMIT 1000];
             taskToUPdate[0].IPM_Completed__c = TRUE;
