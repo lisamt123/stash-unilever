@@ -13,6 +13,7 @@ src/permissionsets/ICB_Mobile_Channel_Console_PCL.permissionset
 src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset
 src/triggers
 src/triggers/ICB_Setup_Mobile_Channel.trigger
+src/triggers/ICB_Setup_Mobile_Channel.trigger-meta.xml
 src/classes
 src/classes/ICB_Cockpit_CC.cls
 src/classes/ICB_Cockpit_CC.cls-meta.xml

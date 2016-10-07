@@ -321,8 +321,9 @@ public with sharing class ICB_ContactPartnerUserCreation
                 }
             }
         }
+        System.debug('Valor do contato: '+listContact );
+        Database.update(listContact,false);
         System.debug('Exiting <updateContact><listContact>: ' + JSON.serializePretty(listContact));
-        System.debug('Exiting <updateContact><save>: ' + JSON.serializePretty(save));
     }
 
      /*******************************************************************
