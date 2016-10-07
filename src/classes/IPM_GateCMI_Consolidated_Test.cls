@@ -8,12 +8,10 @@ private class IPM_GateCMI_Consolidated_Test{
 
     private static IPM_Project__c project;// Project object initialization
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
-    private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
+    
     private static IPM_GateCMI_Consolidated ipm_gatecmiConsolidated;
     private static final string TEST_COMMENTS_STR='TestComments1';
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
-    private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
-    private static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static User globalUser;
     private static User stdUserForgatecmiConsolidated;
@@ -65,7 +63,7 @@ private class IPM_GateCMI_Consolidated_Test{
         insert companyCardList;
         List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
         System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
-        
+        List<IPM_Project__c>projectList=new list<IPM_Project__c>();
         IPM_TestFactory_Helper.getProjectMasterData();
         projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForgatecmiConsolidated);
         System.runAs(stdUserForgatecmiConsolidated) {
@@ -95,6 +93,7 @@ private class IPM_GateCMI_Consolidated_Test{
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
         
         system.runAs(globalUser){
+            List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
             projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r )
             from IPM_Project__c where Name in:projectNameSet];
             project=projectListObj[0];
@@ -103,6 +102,7 @@ private class IPM_GateCMI_Consolidated_Test{
            insert ParentProject;
            List<IPM_Project__c>parProList=[select Id,Name from IPM_Project__c where Id=:ParentProject.Id];
            System.assertEquals(parProList[0].Name,'parent project','parent project not created');
+           List<IPM_Project__c> projlList=new List<IPM_Project__c>();
             projlList=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
             System.assertEquals(projlList[0].id,project.id);//positive test
             for(IPM_Project__c projectObj : projectListObj) {
@@ -125,7 +125,6 @@ private class IPM_GateCMI_Consolidated_Test{
             insert projectDocSecConListObj;
             
             List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_Content_Type__c,IPM_CMI_Country__c,IPM_Gate_CMI__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecConListObj.Id];
-            system.debug('** conList:: '+ conList);
             System.assertEquals(conList[0].IPM_Content_Type__c,IPM_ConstantUtils.CMIGATE_CONTENT_TYPE,'content not created');
             
             ipm_gatecmiConsolidated=new IPM_GateCMI_Consolidated();
@@ -164,14 +163,9 @@ private class IPM_GateCMI_Consolidated_Test{
     static testMethod void dotest2(){
         initializeTestMethodData();
         Test.startTest();
-        //projectList = [SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c,IPM_Project_Name__c FROM IPM_Project__c WHERE Name in:projectNameSet];   
         system.RunAs(globalUser){
-        
-        //system.debug('** projectList:: '+ projectList);
-        system.debug('** ParentProject.Id:: '+ParentProject.Id);
+        List<IPM_Project__c>projectList=new list<IPM_Project__c>();
         projectList = [SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c,IPM_Project_Name__c FROM IPM_Project__c WHERE id = :ParentProject.Id ];   
-        
-        system.debug('** Prooject List:: '+ projectList);
         
         projectDocSecListObj[0].IPM_Master_Section_External_Id__c=IPM_ConstantUtils.CMI_SECTION;
         projectDocSecListObj[0].IPM_CMI_Selected_Countries__c='IND';
