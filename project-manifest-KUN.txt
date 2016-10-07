@@ -1,6 +1,7 @@
 src/reports
 src/reports/KUN_All_Infomation
 src/reports/KUN_All_Infomation/KUN_All_Info.report
+src/reports/KUN_All_Infomation-meta.xml
 src/reports/KUN_Capability_Reports
 src/reports/KUN_Capability_Reports/KUN_Capability_Deliver.report
 src/reports/KUN_Capability_Reports/KUN_Capability_Make.report
@@ -10,6 +11,7 @@ src/reports/KUN_Capability_Reports/src/reports/KUN_Capability_Reports/KUN_Capabi
 src/reports/KUN_Capability_Reports/KUN_Capability_Purchase_to_Pay_P2P.report
 src/reports/KUN_Capability_Reports/KUN_Capability_Record_to_Report_R2R.report
 src/reports/KUN_Capability_Reports/KUN_Capability_Supply_Chain_Finance_S.report
+src/reports/KUN_Capability_Reports-meta.xml
 src/reports/KUN_Community_Reports
 src/reports/KUN_Community_Reports/KUN_data_Bangladesh.report
 src/reports/KUN_Community_Reports/KUN_data_China.report
