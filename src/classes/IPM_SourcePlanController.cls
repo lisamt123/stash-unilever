@@ -75,6 +75,8 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
             }
             allCountryMap.put(country.Country_Name__c,country.id);
         }
+		sFilterColumn = 'IPM_Product_Name__c';
+        sSortOrder ='asc';
         createProjectProductOnLoad();
 		getAllSourcingUnits(); 
     }
@@ -88,36 +90,6 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         getPDLApprovedStatus();
         isCentralTeam=IPM_SourcePlanController_Helper.isCentralTeamMember();        
     }
-    public void sortTable()
-    {
-    	String sQuery = 'SELECT IPM_Of_gTO__c,IPM_Format__c,IPM_Formulation__c,IPM_GoldenPrototype__c,IPM_Project__c,IPM_Packing__c,IPM_Product_Name__c,IPM_ProductSize__c,IPM_ProductSizeMetrics__c,(SELECT IPM_Country__r.Country_Name__c,IPM_Project_Product__c FROM IPM_ProductPlans__r WHERE IPM_Country_Null__c = false and IPM_Country__r.isActive__c = true) FROM IPM_Project_Product__c WHERE IPM_Project__c =:projectId order by ' + sFilterColumn + ' '+ sSortOrder + ' limit 1000'; 
-    	sourcePlanMap = new map<integer,sourcePlanWrapper>();
-    	set<id> productPlanIds = new set<id>();
-    	map<id,set<string>> productNCountryMap = new map<id,set<string>>();
-    	List<IPM_Project_Product__c> projectProductList = new List<IPM_Project_Product__c> ();
-    	projectProductList = Database.Query(sQuery);
-             
-        IF(projectProductList.isEmpty())
-        {
-            createProjectProduct(); 
-        }
-        else{
-            for(IPM_Project_Product__c product:projectProductList)
-            {
-                for(IPM_ProductPlan__c prod:product.IPM_ProductPlans__r){
-                        
-                    if(!productNCountryMap.containsKey(prod.IPM_Project_Product__c))
-                    {
-                        productNCountryMap.put(prod.IPM_Project_Product__c,new set<string>());  
-                    }
-                    productNCountryMap.get(prod.IPM_Project_Product__c).add(prod.IPM_Country__r.Country_Name__c);
-                    productPlanIds.add(prod.id);
-                }    
-            }
-        	loadDataToTable(productPlanIds,projectProductList,productNCountryMap);                       
-        }
-    }
-    
     public pageReference updateSourcinngUnit()
     {
         Map<String, Schema.SObjectType> gd = Schema.getGlobalDescribe(); 
@@ -312,10 +284,9 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         map<id,set<string>> productNCountryMap = new map<id,set<string>>();
         set<id> productPlanIds = new set<id>();
         List<IPM_Project_Product__c> projectProductList = new List<IPM_Project_Product__c> ();
-        projectProductList = [SELECT IPM_Of_gTO__c,IPM_Format__c,IPM_Formulation__c,IPM_GoldenPrototype__c,IPM_Project__c,IPM_Packing__c,
-                                    IPM_Product_Name__c,IPM_ProductSize__c,IPM_ProductSizeMetrics__c,
-                                    (SELECT IPM_Country__r.Country_Name__c,IPM_Project_Product__c FROM IPM_ProductPlans__r WHERE IPM_Country_Null__c = false and IPM_Country__r.isActive__c = true) FROM IPM_Project_Product__c WHERE IPM_Project__c =:projectId limit 1000];
-             
+        String sQuery = 'SELECT IPM_Is_PDL_Approved__c,IPM_Of_gTO__c,IPM_Format__c,IPM_Formulation__c,IPM_GoldenPrototype__c,IPM_Project__c,IPM_Packing__c,IPM_Product_Name__c,IPM_ProductSize__c,IPM_ProductSizeMetrics__c,(SELECT IPM_Country__r.Country_Name__c,IPM_Project_Product__c FROM IPM_ProductPlans__r WHERE IPM_Country_Null__c = false and IPM_Country__r.isActive__c = true) FROM IPM_Project_Product__c WHERE IPM_Project__c =:projectId order by ' + sFilterColumn + ' '+ sSortOrder + ' limit 1000';
+        projectProductList = database.Query(sQuery);
+        sourcePlanMap.clear();     
         IF(projectProductList.isEmpty())
         {
             createProjectProduct(); 
@@ -656,6 +627,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         list<IPM_SourcingPlan__c> sourcePlansList = new list<IPM_SourcingPlan__c>();
         list<IPM_SourcingPlan__c> sourcePlansListToUpdate = new list<IPM_SourcingPlan__c>();
         list<string> getSourceinto = new list<string>(); 
+		set<id> uniqueSourcePId = new set<id>();
         for(sourceUnitWrapper srcUnitClass:srcUnitList){ 
             getSourceinto = new list<string>(); 
             getSourceinto = srcUnitClass.sourceCountries.split(IPM_ConstantUtils.Delimiter);
@@ -673,7 +645,11 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
                     }else
                     {
                         countrySourcePlanMap.remove(srcUnitClass.sourcingPlan.IPM_SourcingUnit__c+srcUnit);
-                        sourcePlansListToUpdate.add(srcUnitClass.sourcingPlan);
+                        if(!uniqueSourcePId.contains(srcUnitClass.sourcingPlan.id))
+                        {
+                        	sourcePlansListToUpdate.add(srcUnitClass.sourcingPlan);
+                        	uniqueSourcePId.add(srcUnitClass.sourcingPlan.id); 
+                        }
                     }
                 }
             }
