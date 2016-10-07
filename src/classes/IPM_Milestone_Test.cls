@@ -9,7 +9,7 @@
 @isTest(SeeAllData=false)
 private class IPM_Milestone_Test
 {
-    
+     
     private static User stdUserForMilestone;
     private static IPM_Milestone__c IPM2,IPM3,milestone1;
     private static final Id mileStoneRecordType=Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId();
@@ -57,10 +57,12 @@ private class IPM_Milestone_Test
             IPM_Milestone__c miniMilestone= new IPM_Milestone__c();
             miniMilestone.RecordTypeId = mileStoneRecordType;
             miniMilestone.name = 'Mini Milestone' + i;
-            if(i == 4){
+            if(i == 4)
+            {    
                 miniMilestone.IPM_Due_Date__c = null;
             }
-            else{
+            else
+            {
                  miniMilestone.IPM_Due_Date__c = system.today().adddays(-2);
             }
             
@@ -97,13 +99,25 @@ private class IPM_Milestone_Test
                 miniMilestone.name = 'Mini Milestone' + i;
                 miniMilestone.IPM_Due_Date__c = system.today().adddays(-2);
                 miniMilestone.IPM_Phase__c = masterMilestones[i].IPM_Phase__c;
-                if(i == 4){
-                    miniMilestone.IPM_Due_Date__c = null;
+                if(i == 4)
+                {
+                    miniMilestone.IPM_Due_Date__c = System.today().addDays(+5);
+                    miniMilestone.IPM_Phase__c = 'Market Ready';
+                }
+                if(i == 3)
+                {
+                   miniMilestone.IPM_Due_Date__c = System.today().addDays(+4);
                     miniMilestone.IPM_Phase__c = 'Capability';
-                }else if(i==3){
+                }
+                else if(i==2)
+                {
+                	miniMilestone.IPM_Due_Date__c = System.today().addDays(+3);
                     miniMilestone.IPM_Phase__c = 'Feasibility';
-                } else if(i==1){
-                    miniMilestone.IPM_Phase__c = 'Initiation';
+                } 
+                else if(i==1)
+                {
+                	miniMilestone.IPM_Due_Date__c = System.today().addDays(+2);
+                    miniMilestone.IPM_Phase__c = 'Ideas';
                 }
                  
                  miniMilestone.IPM_Milestone__c = masterMilestones[i].id;
@@ -126,7 +140,7 @@ private class IPM_Milestone_Test
     /********************************************************************************
     *@Description : Method Covering Explicit calls and Wrapper of IPM_MIlestone Class which has been used for EDIT MIlestone and Add Mini/Adhoc Milestone pages
     *********************************************************************************/           
-    public static testmethod void IPM_MilestoneTest(){
+        public static testmethod void IPM_MilestoneTest(){
         Test.startTest();
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         //Get the project data
@@ -193,7 +207,7 @@ private class IPM_Milestone_Test
             for(Integer i = 0; i < 5; i++){
                 IPM_Milestone.MilestoneWrapper ipmMSWrap = new IPM_Milestone.MilestoneWrapper();
                 if(ipmMSWrap.mile.IPM_Due_Date__c != null){
-                	ipmMSWrap.checked = true;
+                    ipmMSWrap.checked = true;
                 }
                 
                 ipmMSWrap.mile = miniMSList[i];
@@ -275,17 +289,21 @@ private class IPM_Milestone_Test
         IPM_Milestone__c milestone,mile;
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        //Get the project data
-        IPM_Project__c project = [SELECT Id, Name, IPM_PM_Approach__c, IPM_Phase__c from IPM_project__c WHERE Name IN: projectNameSet ];
         
         // get the running user information
         User globalUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];  
+        IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
         
-        System.runAs(globalUser){
+   
             
+            //Get the project data
+        	IPM_Project__c project = [SELECT Id, Name, IPM_PM_Approach__c, IPM_Phase__c from IPM_project__c WHERE Name IN: projectNameSet ];
+        	
+        
             Map<String, IPM_Milestone__c> ipmMilestoneMap = new Map<String, IPM_Milestone__c>();
             
-            List<IPM_Milestone__c> msList = [Select Id, Name, IPM_Name__c, IPM_Phase__c, IPM_Project__c from IPM_Milestone__c WHERE IPM_Project__c =: project.Id AND IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD];
+            List<IPM_Milestone__c> msList = [Select Id, IPM_Due_Date__c,Name, IPM_Name__c, IPM_Phase__c, IPM_Project__c from IPM_Milestone__c WHERE IPM_Project__c =: project.Id AND IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD];
+        
             
             System.assertEquals(!msList.isEmpty(),true, 'Milstone records not visible to global leader user');
             
@@ -347,8 +365,8 @@ private class IPM_Milestone_Test
             miles.IPM_Name__c = IPM_Utils.MarketReadyGateApproval;
             miles.IPM_Due_Date__c = system.today();
             miles.IPM_Type_of_Milestone__c = null;
-            //miles.IPM_Project__c = project.Id;
-            //insert miles;
+            miles.IPM_Project__c = project.Id;
+            insert miles;
             
             IPM_Milestone milestoneCtrl1new = new IPM_Milestone(new ApexPages.StandardController(miles));
             milestoneCtrl1new.saveMilestones();
@@ -383,7 +401,7 @@ private class IPM_Milestone_Test
             IPM_Milestone adhocMilestoneCtrlvalidate = new IPM_Milestone(new ApexPages.StandardController(adhocMilestone));
             System.Assertequals(adhocMilestoneCtrlvalidate.validateMilestone() ,true,'Milestone Validation Failed');
             
-        }  
+       
         
         Test.stopTest();
     }

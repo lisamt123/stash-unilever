@@ -10,7 +10,11 @@
 <apex:form >    
     <!-- all action functions -->
     <apex:actionfunction action="{!createProjectProduct}" rerender="sourceProductTable,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" name="createNewRow"/>
-    <apex:actionfunction action="{!sortTable}" rerender="sourceProductTable,scriptLoad" name="sortTable" >
+    <apex:actionfunction action="{!removeSourceUnit}" status="loader" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" rerender="sourceProduct,sourceProductTable,scriptLoad" name="deleteSourceUnit" >
+         <apex:param name="productRowNumber" assignTo="{!row_Index}" value=""/>
+         <apex:param name="sUnitIndex" assignTo="{!sourceUnitIndex}" value=""/>
+    </apex:actionfunction>
+	<apex:actionfunction action="{!createProjectProductOnLoad}" status="loader" rerender="sourceProduct,sourceProductTable,scriptLoad" name="jSortTable" >
     	 <apex:param name="sFilter" assignTo="{!sFilterColumn}" value=""/>
     	 <apex:param name="sOrder" assignTo="{!sSortOrder}" value=""/>
     </apex:actionfunction>
@@ -111,13 +115,13 @@
                             <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsource ">
                                 <thead> 
                                     <tr>
-                                        <th scope="col" width="10%" ><span>{!$Label.IPM_Product_Name}</span><span onclick="jSortTable('IPM_Product_Name__c',this);" class="{! If(sFilterColumn=='IPM_Product_Name__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
-                                        <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Format}</span><span onclick="jSortTable('IPM_Format__c',this);" class="{! If(sFilterColumn=='IPM_Format__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
-                                        <th scope="col"  width="12%"><span>{!$Label.IPM_Product_Formulation}</span><span onclick="jSortTable('IPM_Formulation__c',this);" class="{! If(sFilterColumn=='IPM_Formulation__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
-                                        <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Packaging}</span><span onclick="jSortTable('IPM_Packing__c',this);" class="{! If(sFilterColumn=='IPM_Packing__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col" width="10%" ><span>{!$Label.IPM_Product_Name}</span><span onclick="jSortTable('IPM_Product_Name__c','{! If (AND(sFilterColumn=='IPM_Product_Name__c',sSortOrder == 'asc'),'desc','asc')}');" class="{! If(sFilterColumn=='IPM_Product_Name__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Format}</span><span onclick="jSortTable('IPM_Format__c','{! If (AND(sFilterColumn=='IPM_Format__c',sSortOrder == 'asc'),'desc','asc')}');" class="{! If(sFilterColumn=='IPM_Format__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col"  width="12%"><span>{!$Label.IPM_Product_Formulation}</span><span onclick="jSortTable('IPM_Formulation__c','{! If (AND(sFilterColumn=='IPM_Formulation__c',sSortOrder == 'asc'),'desc','asc')}');" class="{! If(sFilterColumn=='IPM_Formulation__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Packaging}</span><span onclick="jSortTable('IPM_Packing__c','{! If (AND(sFilterColumn=='IPM_Packing__c',sSortOrder == 'asc'),'desc','asc')}');" class="{! If(sFilterColumn=='IPM_Packing__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
                                         <th scope="col"  width="18%"><span>{!$Label.IPM_Product_Size}</span></th>
                                         <th scope="col"  width="10%"><span>{!$Label.IPM_Product_of_GTo}</span></th>
-                                        <th scope="col" width="10%" ><span>{!$Label.IPM_Product_Golden_Prototype}</span><span onclick="jSortTable('IPM_GoldenPrototype__c',this);" class="{! If(sFilterColumn=='IPM_GoldenPrototype__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
+                                        <th scope="col" width="10%" ><span>{!$Label.IPM_Product_Golden_Prototype}</span><span onclick="jSortTable('IPM_GoldenPrototype__c','{! If (AND(sFilterColumn=='IPM_GoldenPrototype__c',sSortOrder == 'asc'),'desc','asc')}');" class="{! If(sFilterColumn=='IPM_GoldenPrototype__c', If(sSortOrder == 'asc','fa fa-sort-desc','fa fa-sort-asc') ,'fa fa-sort-asc')}" ></span></th>
                                         <th scope="col"  width="20%"><span>{!$Label.IPM_Product_Country_Mapping}</span></th>
                                     </tr>
                                 </thead>               
@@ -208,6 +212,7 @@
                                                                 <tbody>
                                                                     
                                                                     <apex:variable value="{!0}" var="num"/>
+																	<apex:variable value="{!0}" var="sUnitRow"/>
                                                                     <apex:repeat value="{!sourceUnitMap[wrKey]}" var="sourcep">
                                                                         <apex:variable value="{!num+1}" var="num"/>
                                                                         <tr>                                                                
@@ -220,6 +225,7 @@
                                                                                         </apex:repeat>
                                                                                     </apex:outputPanel>
                                                                                 </apex:outputPanel>
+																				<span class="deleteRow fa fa-times" onClick="deleteSourceUnit('{!wrKey}','{!sUnitRow}')"></span>
                                                                             </td>
                                                                             <td width="6%" class="custSrcWidth">
                                                                                 <div class="approvalCheckcontainer">
@@ -261,6 +267,7 @@
                                                                                 </apex:outputPanel> 
                                                                             </td>
                                                                         </tr>
+																		<apex:variable value="{!sUnitRow+1}" var="sUnitRow"/>
                                                                     </apex:repeat>
                                                                     <tr>
                                                                         <td class="alignAddicn">
@@ -377,7 +384,6 @@
     </div>
 </apex:form>
 <apex:outputPanel id="scriptLoad">
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.sourceplan.clearsearch.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Source_Plan.js')}" type="text/javascript"></script>
     <script>

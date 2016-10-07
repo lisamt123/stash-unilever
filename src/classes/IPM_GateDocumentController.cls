@@ -301,7 +301,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         //Getting Project Document Sections  
         getProjectDocumentSection();
         getDocumentSectionMap();
-        gateDocumentData(project.Id);
+        
         If(projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_NOT_STARTED || projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_APPROVED){
             bDocStatusNotStartedOrApproved = true;
             //For Storing Filled-In Percentage Calculation in Project Object 
@@ -817,7 +817,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     */  
     public PageReference exportToPdf(){ 
         try{
-            PageReference url = null;
+            PageReference url;
             url = Page.IPM_GateDocumentPDF;
             url.setRedirect(false);
             gateDocumentData(project.Id);

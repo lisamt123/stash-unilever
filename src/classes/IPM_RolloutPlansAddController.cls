@@ -1961,11 +1961,9 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             
             String rolloutName = '';
             
-            if(!isProjectGKM3){
-                rolloutName = getRegionalRolloutName(countryCode); 
-            }else{
-                rolloutName = project.IPM_Project_Name__c;
-            }
+            
+            rolloutName = getRegionalRolloutName(countryCode); 
+            
             
             return rolloutName + IPM_ConstantUtils.UNDERSCORE + shortName;
         }
@@ -1987,11 +1985,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     */
     @TestVisible private String getCountryExternalId(String countryCode){  
         String externalId = '';
-        if(!isProjectGKM3){
-            externalId = getRegionalRolloutName(countryCode) + IPM_ConstantUtils.UNDERSCORE + countryCode;
-        }else{
-            externalId = project.IPM_Project_Name__c + IPM_ConstantUtils.UNDERSCORE + countryCode; 
-        }   
+            externalId = getRegionalRolloutName(countryCode) + IPM_ConstantUtils.UNDERSCORE + countryCode; 
         return externalId;   
     }
     
