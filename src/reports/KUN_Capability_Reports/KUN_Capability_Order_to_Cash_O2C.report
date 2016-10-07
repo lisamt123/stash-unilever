@@ -7,16 +7,13 @@
         <field>User$Email</field>
     </columns>
     <columns>
-        <field>User.KUN_Profiles_User__r$Position__c</field>
-    </columns>
-    <columns>
-        <field>User.KUN_Profiles_User__r$Cluster__c</field>
+        <field>User$Country</field>
     </columns>
     <columns>
         <field>User.KUN_Profiles_User__r$MCO__c</field>
     </columns>
     <columns>
-        <field>User$Country</field>
+        <field>User.KUN_Profiles_User__r$Name</field>
     </columns>
     <columns>
         <field>User.KUN_Profiles_User__r$E2E_Process__c</field>
@@ -25,28 +22,25 @@
         <field>User.KUN_Profiles_User__r$Capability__c</field>
     </columns>
     <columns>
-        <field>User.KUN_Profiles_User__r$Site__c</field>
+        <field>User.KUN_Profiles_User__r$Local_Process_Area__c</field>
     </columns>
     <columns>
-        <field>User.KUN_Profiles_User__r$Local_Process_Area__c</field>
+        <field>User.KUN_Profiles_User__r$Site__c</field>
     </columns>
     <columns>
         <field>User.KUN_Profiles_User__r$Employee_Type__c</field>
     </columns>
-    <columns>
-        <field>User.KUN_Profiles_User__r$English_speaking__c</field>
-    </columns>
     <currency>EUR</currency>
     <filter>
         <criteriaItems>
-            <column>User$Country</column>
+            <column>User.KUN_Profiles_User__r$Capability__c</column>
             <operator>equals</operator>
-            <value>Thailand</value>
+            <value>Order-to-Cash (O2C)</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
-    <name>KUN data -Thailand</name>
+    <name>KUN Capability - Order-to-Cash (O2C)</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -55,7 +49,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>User.KUN_Profiles_User__r$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>User$ChatterAdoptionStageModifiedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
     </timeFrameFilter>
 </Report>
