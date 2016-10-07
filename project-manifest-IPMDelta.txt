@@ -1,14 +1,4 @@
 src
 src/classes
-src/classes/IPM_ProjectOverviewCtrl.cls
-src/classes/IPM_ProjectOverviewCtrl.cls-meta.xml
-src/classes/IPM_Utils.cls
-src/classes/IPM_Utils.cls-meta.xml
-src/components
-src/components/IPM_BCC_Consolidate.component
-src/components/IPM_BCC_Consolidate.component-meta.xml
-src/pages
-src/pages/IPM_Product_and_Sourcing_Plan.page
-src/pages/IPM_Product_and_Sourcing_Plan.page-meta.xml
-src/permissionsets
-src/permissionsets/IPM_Central_Team.permissionset
+src/classes/IPM_MilestoneHelper.cls
+src/classes/IPM_MilestoneHelper.cls-meta.xml

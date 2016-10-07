@@ -552,7 +552,7 @@ public with sharing class IPM_MilestoneHelper
 
     if(!setParentProjIds.isEmpty()){
         for(IPM_Milestone__c ml : [select IPM_Project__c, IPM_Name__c, IPM_Project__r.IPM_Phase__c, IPM_Due_Date__c, IPM_Phase__c  from IPM_Milestone__c where IPM_Project__c in :setParentProjIds]){
-            if(ml.IPM_Phase__c == ml.IPM_Project__r.IPM_Phase__c){
+            if((ml.IPM_Name__c == IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE && ml.IPM_Due_Date_Feasibility__c==null) || ( ml.IPM_Name__c == IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE && ml.IPM_Due_Date_Capability__c==null) ){
                 for(IPM_Milestone__c childMl :mapProjchildMilestones.get(ml.IPM_Project__c)){
                     if(ml.IPM_Name__c == childMl.IPM_Name__c && (ml.IPM_Due_Date__c==null || ml.IPM_Due_Date__c > childMl.IPM_Due_Date__c)){
                         ml.IPM_Due_Date__c = childMl.IPM_Due_Date__c;
