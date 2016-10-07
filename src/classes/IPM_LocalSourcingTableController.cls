@@ -15,7 +15,6 @@ public with sharing class IPM_LocalSourcingTableController {
     
     public void getProjectSourcingPlan()
     {
-        MAP<ID,List<string>> mapProduct = new MAP<ID,List<string>>();
         lstSourcingPlanWrapper = new List<SourcingPlanWrapper>();       
         list<IPM_Country__c> lstCountry = [ Select ID From IPM_Country__c Where IPM_Local_Project__c =: proId ];        
         Set<Id> lstCountryIDs = (new Map<Id,IPM_Country__c>(lstCountry)).keySet();      
