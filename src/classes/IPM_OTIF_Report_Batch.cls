@@ -475,7 +475,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                // otifAnalyticRollOut.IPM_Company__c = pr.IPM_Company_Card__r.Name; // as per the update it will be populated by Unilever report tool
                 otifAnalyticRollOut.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
                 if(pr.Target_LaunchYear__c != null){
-                    otifAnalyticRollO07-10-2016ut.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;
+                    otifAnalyticRollOut.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c);
                 }
                 //otifAnalyticRollOut.IPM_Parent_Project_Name__c = (pr.IPM_Project_GKM__c == IPM_Utils.GATE_KEEPING_MODEL_3)?pr.IPM_Project__r.IPM_Project_name__c:pr.IPM_Parent_Project_Name__c; 
                 otifAnalyticRollOut.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
