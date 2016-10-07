@@ -18745,6 +18745,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FS_Defined_Objective__c.FS_Objective_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FS_Defined_Objective__c.Status_Indication__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -45700,7 +45705,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Event.ICB_IceCreamVisit</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Everyday_Activity__c.Boosting_Wellbeing</recordType>

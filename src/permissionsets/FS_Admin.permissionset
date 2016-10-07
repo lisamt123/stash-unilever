@@ -18749,6 +18749,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FS_Defined_Objective__c.FS_Objective_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FS_Defined_Objective__c.Status_Indication__c</field>
         <readable>true</readable>
     </fieldPermissions>
