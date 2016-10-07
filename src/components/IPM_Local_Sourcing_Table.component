@@ -1,4 +1,4 @@
-<apex:component controller="IPMLocalSourcingTableController">
+<apex:component controller="IPM_LocalSourcingTableController">
 <apex:attribute name="projId" description="projectId" type="String" assignTo="{!proId}"/>
     <apex:outputPanel layout="block" styleClass="srcPlanTitle">
         {!$Label.IPM_Local_Sourcing_Plan_Table_Header}
@@ -7,22 +7,25 @@
         <thead> 
             <tr>
                 <th scope="col">                    
-                    <span class="finproject">Name</span>
+                    <span class="finproject">{!$Label.IPM_Product_Name}</span>
                 </th>
                 <th scope="col">
-                    <span class="finproject">Format</span>
+                    <span class="finproject">{!$Label.IPM_Product_Format}</span>
                 </th>
                 <th scope="col">
-                    <span class="finproject">Formulation</span>
+                    <span class="finproject">{!$Label.IPM_Product_Formulation}</span>
                 </th>
                 <th scope="col">
-                    <span class="finproject">Packaging</span>
+                    <span class="finproject">{!$Label.IPM_Product_Packaging}</span>
                 </th>
                 <th scope="col">
-                    <span class="finproject">Size</span>
+                    <span class="finproject">{!$Label.IPM_Product_Size}</span>
                 </th>
                 <th scope="col">
-                    <span class="finproject">Sourcing Unit</span>
+                    <span class="finproject">{!$Label.IPM_Product_Golden_Prototype}</span>
+                </th>
+                <th scope="col">
+                    <span class="finproject">{!$Label.IPM_Sourcing_Units}</span>
                 </th>
                 <th scope="col">
                     <span class="finproject">Approval</span>
@@ -49,6 +52,9 @@
                     </td>
                     <td class="pl15">
                         <apex:outputText value="{!SourcingPlan.size}"/>    
+                    </td>
+                    <td class="pl15">
+                        <span class="{!if(SourcingPlan.goldenProtype,'goldenCheck','srcGreyBg')}">{!if(SourcingPlan.goldenProtype,'Golden',' ')}</span>   
                     </td>
                     <td class="pl15">
                         <apex:outputText value="{!SourcingPlan.sourcingUnit}"/>    
