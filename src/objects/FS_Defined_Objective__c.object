@@ -213,6 +213,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_Objective_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(YEAR(DATEVALUE(CreatedDate))) &amp; &quot; - &quot; &amp; TEXT(FS_Objective_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Objective Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_Objective_Start_Date__c</fullName>
         <externalId>false</externalId>
         <label>Objective Start Date</label>
