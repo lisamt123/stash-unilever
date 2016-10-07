@@ -279,7 +279,6 @@
                 <fullName>In Progress</fullName>
                 <default>false</default>
             </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <required>true</required>
