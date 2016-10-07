@@ -1008,7 +1008,6 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -1026,9 +1025,12 @@
                 <fullName>Ice Cream Salesman</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Console</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -1398,17 +1400,6 @@
             </values>
             <values>
                 <fullName>Yes%2C one or more regular devices</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ICB_Type__c</picklist>
-            <values>
-                <fullName>Ice Cream Salesman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operator</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2130,15 +2121,26 @@
             </values>
         </picklistValues>
     </recordTypes>    
-    
-    
-    
-    
-    <recordTypes>
+     <recordTypes>
         <fullName>ICB_Operator</fullName>
         <active>true</active>
         <description>Ice Cream Operator Record Type</description>
         <label>Ice Cream Operator</label>
+        <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Day_Rate__c</picklist>
             <values>
@@ -2796,8 +2798,8 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Operator</fullName>
-                <default>true</default>
+                <fullName>Console</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -2907,6 +2909,17 @@
         <active>true</active>
         <description>Ice Cream Salesman Record Type</description>
         <label>Ice Cream Salesman</label>
+        <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Day_Rate__c</picklist>
             <values>
@@ -3524,9 +3537,9 @@
         </picklistValues>
         <picklistValues>
             <picklist>ICB_Type__c</picklist>
-            <values>
+           <values>
                 <fullName>Ice Cream Salesman</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -4251,17 +4264,7 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>ICB_Type__c</picklist>
-            <values>
-                <fullName>Ice Cream Salesman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operator</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
+        
         <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
@@ -4983,17 +4986,7 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>ICB_Type__c</picklist>
-            <values>
-                <fullName>Ice Cream Salesman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operator</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
+        
         <picklistValues>
             <picklist>LeadSource</picklist>
             <values>

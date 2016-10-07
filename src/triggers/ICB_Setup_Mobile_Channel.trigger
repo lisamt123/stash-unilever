@@ -9,4 +9,5 @@ trigger ICB_Setup_Mobile_Channel on Contact (after insert, after update) {
        		ICB_SetupMobileChannel.getInstance().disabledUser(Trigger.new);	
        	}
     }
+    
 }
