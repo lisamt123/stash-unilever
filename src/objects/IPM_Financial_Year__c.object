@@ -244,6 +244,16 @@
         </displayedFields>
         <label>IPM_Financial_Year_FS</label>
     </fieldSets>
+    <fieldSets>
+        <fullName>Misalignment_Financial_Fields</fullName>
+        <description>This fieldset stores all the fields which are considered for misalignment, (basically the difference fields, which couldn&apos;t be accomodated in Total Difference Formula field, due to salesforce limitations.</description>
+        <displayedFields>
+            <field>Volume_Tons_Difference__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Misalignment Financial Fields</label>
+    </fieldSets>
     <fields>
         <fullName>AP_of_TO_Charter__c</fullName>
         <defaultValue>0</defaultValue>

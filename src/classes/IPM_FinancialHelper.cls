@@ -3,10 +3,10 @@
 * @Name IPM_FinancialHelper
 * @CreateDate :  05/01/2016
 * @Description:  This class is a Helper Class used by Financial Handler to perform operations like 
-*   			 checking if consolidated fields changed,  Doing the actual consolidation.
-*  				 Creating new Consolidated Financial Years based on Change in TLD
-* 				 Create new Financial Years based on Sustainability Period.  
-*   			 Creation relationship maps between Consolidated and associated Financials.
+*                checking if consolidated fields changed,  Doing the actual consolidation.
+*                Creating new Consolidated Financial Years based on Change in TLD
+*                Create new Financial Years based on Sustainability Period.  
+*                Creation relationship maps between Consolidated and associated Financials.
 * @Version 1.0
 ******************************************************************************************************/
 
@@ -59,8 +59,8 @@ public with sharing class IPM_FinancialHelper
             processIPMFinancialYears(financial,upsertFinancialYearMap);
         }  
     }
-	
-	/*******************************************************************************************************
+    
+    /*******************************************************************************************************
     * @description      Method to handle after update  Trigger context for IPM_Financial__c object. 
                         Deletes  Financial Year records falling before TLD of consolidated financials
                         
@@ -82,19 +82,19 @@ public with sharing class IPM_FinancialHelper
         List<String> globalConsilidatedExtIds = new List<String>();
         
         for(IPM_Financial__c fin :finListWithRollout){
-        	if(fin.IPM_Project_Rollout__c != null){
-        		rolloutIds.add(fin.IPM_Project_Rollout__c);
-        	}
-        	if(fin.Regional_Project__c != null){
-        		regionalProjIds.add(fin.Regional_Project__c);
-        	}
-        	if(fin.Global_External_Id__c != null){
-        		globalConsilidatedExtIds.add(fin.Global_External_Id__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE);
-        	}
+            if(fin.IPM_Project_Rollout__c != null){
+                rolloutIds.add(fin.IPM_Project_Rollout__c);
+            }
+            if(fin.Regional_Project__c != null){
+                regionalProjIds.add(fin.Regional_Project__c);
+            }
+            if(fin.Global_External_Id__c != null){
+                globalConsilidatedExtIds.add(fin.Global_External_Id__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE);
+            }
         }
         
         finList = [Select Id ,recordtypeId,Financial_External_ID__c,Target_Launch_Date__c ,Project_Sustainability_Period__c,Global_External_Id__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.IPM_Rollout_Project__c,Regional_Project__c , Regional_Project__r.IPM_Project_Name__c, Parent_Project__c , Parent_Project__r.IPM_Project_Name__c, ( Select Id,Name from IPM_Financial_Years__r where Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR AND  (NOT Name like '%Y%') order by Name) from IPM_Financial__c 
-        								  where IPM_Project_Rollout__c IN :rolloutIds OR Regional_Project__c IN :regionalProjIds or Financial_External_ID__c IN :globalConsilidatedExtIds Limit 1000 ];
+                                          where IPM_Project_Rollout__c IN :rolloutIds OR Regional_Project__c IN :regionalProjIds or Financial_External_ID__c IN :globalConsilidatedExtIds Limit 1000 ];
         
         
         
@@ -104,26 +104,26 @@ public with sharing class IPM_FinancialHelper
         Map<String, Set<String>> consoltdFinNameToValidCalendarYearsMap  = new Map<String, Set<String>>();
                 
         for(IPM_Financial__c fin: finList){
-        	if(fin.recordtypeId == consolidatedFinRecordTypeId){
-        		consolidatedFinList.add(fin);
-        	}
-        	else{
-        		nonConsolidatedFinList.add(fin);
-        	}
+            if(fin.recordtypeId == consolidatedFinRecordTypeId){
+                consolidatedFinList.add(fin);
+            }
+            else{
+                nonConsolidatedFinList.add(fin);
+            }
         }
         
         
         consoltdFinNameToValidCalendarYearsMap = getConsoltdFinNameToValidCalendarYearsMap(nonConsolidatedFinList);
 
         for(IPM_Financial__c consltdfin: consolidatedFinList){
-        	if(consoltdFinNameToValidCalendarYearsMap.containsKey(consltdfin.Financial_External_ID__c)){
-				for(IPM_Financial_Year__c finYear :consltdfin.IPM_Financial_Years__r){
-	            	if(!consoltdFinNameToValidCalendarYearsMap.get(consltdfin.Financial_External_ID__c).contains(finYear.Name)){
-	            		deleteIPMFinancialYears.add(finYear);
-	            	}
-	            }
-        	}
-        	
+            if(consoltdFinNameToValidCalendarYearsMap.containsKey(consltdfin.Financial_External_ID__c)){
+                for(IPM_Financial_Year__c finYear :consltdfin.IPM_Financial_Years__r){
+                    if(!consoltdFinNameToValidCalendarYearsMap.get(consltdfin.Financial_External_ID__c).contains(finYear.Name)){
+                        deleteIPMFinancialYears.add(finYear);
+                    }
+                }
+            }
+            
         }
         
         
@@ -537,13 +537,10 @@ public with sharing class IPM_FinancialHelper
         
         if(projList!=null && !projList.isEmpty())
         {
-        	System.debug(LoggingLevel.ERROR,'Skip Trigger----->>>'+IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION);
-            
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             update projList;
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
             
-            System.debug(LoggingLevel.ERROR,'Skip Trigger----->>>'+IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION);
         } 
     }
     
@@ -893,39 +890,14 @@ public with sharing class IPM_FinancialHelper
                {
                		projIdsforY3iToSync.add(ipmFinRec.Parent_Project__c);  
                }
-    		} 
-    		
-    		if(!projIdsforY3iToSync.isEmpty())  
-    		{   //skip project trigger on stoppage..
-    		 	IPM_Utils.updateProjectY3ITOValue(projIdsforY3iToSync);  
-    		}
-    		
-    }
-    
-    
-   public static List<IPM_Financial__c> updateManualMisalignment(List<IPM_Financial__c> newFinancials)
-    {
-        List<IPM_Financial__c> listFinancial = new List<IPM_Financial__c>();
-        if(!newFinancials.isEmpty()){
-        listFinancial = [SELECT Id, Volume_Unit_Difference__c, NPV_Difference__c, IRR_Difference__c, Payback_Difference__c, CAPEX_Difference__c, BIC_Difference__c,  Total_FY_Difference__c, MisalignmentManual__c FROM IPM_Financial__c WHERE ID IN : newFinancials];
-        
-        }
-        List<IPM_Financial__c> updatedFinancials = new List<IPM_Financial__c>(); 
-        for(IPM_Financial__c financial : listFinancial)
-        {
+            } 
             
-            Decimal TotalDiffrence = financial.Volume_Unit_Difference__c + financial.NPV_Difference__c + financial.IRR_Difference__c + financial.Payback_Difference__c + financial.CAPEX_Difference__c + financial.BIC_Difference__c + financial.Total_FY_Difference__c;
-            Boolean tempMisalignment   = TotalDiffrence > 0 ? true : false;
-            if(financial.MisalignmentManual__c != tempMisalignment) 
-            {
-                financial.MisalignmentManual__c = tempMisalignment;
-                updatedFinancials.add(financial);
+            if(!projIdsforY3iToSync.isEmpty())  
+            {   //skip project trigger on stoppage..
+                IPM_Utils.updateProjectY3ITOValue(projIdsforY3iToSync);  
             }
             
-        }
-        
-        return updatedFinancials;
-    } 
+    }
     
 
     //Helper method for deleteFinancialyears() method 

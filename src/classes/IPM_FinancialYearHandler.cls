@@ -6,7 +6,7 @@
 */
 public with sharing class IPM_FinancialYearHandler implements ITrigger
 {    
-    public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
+    public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>(); 
     
     //@description:Constructor
     public IPM_FinancialYearHandler ()
@@ -60,6 +60,14 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
             IPM_FinancialYearHelper.updateFinancialActionStandard((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
             IPM_FinancialYearHelper.updateGlobalFinancialActionStandards((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
             IPM_FinancialYearHelper.initialiseFYConsolidation((List<IPM_Financial_Year__c>)Trigger.new,oldFinancialMap,null,upsertconsolidatedFinancialYearMap);
+            
+            // Manual Misalignment - Set the manualMisalignment field to true if there is any misalignment between the financials at Global/Regional and Local level
+            List<IPM_Financial__c> newFinancialLst = IPM_FinancialYearHelper.updateManualMisalignment((List<IPM_Financial_Year__c>) Trigger.new);
+            if(!newFinancialLst.isEmpty()){
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
+                update newFinancialLst;
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
+            }
         }
         else if(Trigger.isDelete && !deleteFinancialYearMap.isEmpty()) 
         { 			   			IPM_FinancialYearHelper.initialiseFYConsolidation(deleteFinancialYearMap.values(),null,deleteFinancialYearMap,upsertconsolidatedFinancialYearMap);
