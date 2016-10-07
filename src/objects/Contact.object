@@ -915,7 +915,7 @@
         <picklist>
             <picklistValues>
                 <fullName>Inactive</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Active</fullName>
@@ -5277,6 +5277,14 @@ TEXT(11 - MOD(((VALUE(MID(CPF__c , 1, 1))*11)+
         <description>The E-mail must have at least 4 characters before the @ sign.</description>
         <errorConditionFormula>AND( OR( RecordType.DeveloperName = 	&quot;ICB_Operator&quot;,RecordType.DeveloperName = 	&quot;ICB_Salesman&quot;) ,(LEN(LEFT(Email, FIND(&quot;@&quot;, Email))))&lt;5)</errorConditionFormula>
         <errorMessage>The E-Mail must have at least 4 characters before the @</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ICB_No_Change_Status</fullName>
+        <active>true</active>
+        <description>Prevents change the field status</description>
+        <errorConditionFormula>AND(ISCHANGED(ICB_Status__c) ,  ICB_Cause__c = &apos;Inactive&apos;, ISPICKVAL(ICB_Status__c, &apos;Active&apos;)  )</errorConditionFormula>
+        <errorDisplayField>ICB_Status__c</errorDisplayField>
+        <errorMessage>You may not modify the status</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Mandatory_Birthdate_Spark_Salesman</fullName>

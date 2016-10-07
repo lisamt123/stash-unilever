@@ -19,6 +19,7 @@ global with sharing class ICB_PartnerUserCreation_BatchSchedule implements Sched
     global void execute(SchedulableContext schContext) 
     {
         ICB_ContactPartnerUserCreation.getInstance().userCreation();
+        ICB_ContactPartnerUserCreation.getInstance().disabledUser();
     }
     
 }
