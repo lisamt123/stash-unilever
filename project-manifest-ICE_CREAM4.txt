@@ -62,8 +62,6 @@ src/aura/ICB_MobileChannelHeader/ICB_MobileChannelHeaderController.js
 src/aura/ICB_MobileChannelHeader/ICB_MobileChannelHeaderHelper.js
 src/objects
 src/objects/Asset.object
-src/objects/Contact.object
-src/objects/Product2.object
 src/labels
 src/labels/ICB.labels
 src/translations
