@@ -1584,12 +1584,19 @@ ISPICKVAL(FS_Status__c, &apos;Completed&apos;) ,ISPICKVAL(FS_Status__c, &apos;Ap
     <label>Defined Objective</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>FS_Objective_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>FS_Account_Plan__c</columns>
+        <columns>FS_Customer__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>FS_No_of_Opportunities__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>DO-{0000}</displayFormat>
-        <label>Defined Objective Name</label>
+        <label>Defined Objective Reference</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>AutoNumber</type>
     </nameField>
