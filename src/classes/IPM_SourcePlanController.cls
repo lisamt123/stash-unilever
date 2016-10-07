@@ -87,7 +87,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     ****************************************************************************************************************************/
     public void getSourceUnit(){
         sourceUnitsList = new list<IPM_SourcingUnit__c>();
-        sourceUnitsList =[SELECT Source_Unit_Name__c FROM IPM_SourcingUnit__c WHERE Source_Unit_Name__c Like: '%'+searchUnit_STR +'%' order by Source_Unit_Name__c ASC LIMIT 1000];
+        sourceUnitsList =[SELECT Source_Unit_Name__c FROM IPM_SourcingUnit__c WHERE Source_Unit_Name__c Like: '%'+searchUnit_STR +'%' AND Status__c = true order by Source_Unit_Name__c ASC LIMIT 1000];
         bIsPDLApproved=false;
         getPDLApprovedStatus();
         isCentralTeam=IPM_SourcePlanController_Helper.isCentralTeamMember();        
