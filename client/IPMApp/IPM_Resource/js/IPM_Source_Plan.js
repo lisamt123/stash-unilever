@@ -49,6 +49,8 @@ function firstsrcplan(){
             jq(this).attr('checked','checked');
             jq(this).next('label').addClass('greenBox');
             jq(this).next('label').text('Yes');
+        }else{
+            jq(this).next('label').text('Not yet');
         }
     });        
     jq(document).on('click', '.goldenCheckcontainer input[type="checkbox"]:not(:disabled)', function() {
@@ -75,17 +77,15 @@ function firstsrcplan(){
             chkInput1.next('label').text('Not yet');
         }
     });
-    jq('.srcUnitBox').clearSearch();
-    jq(document).on("focus click", ".srcUnitBox", function(e) {
-        jq(this).parent().next('.srcList').show();
+    jq(document).on("click", ".srcUnitBox", function(e) {
+        jq(this).next('.srcList').show();
     });
     jq('.srcList div').on("click", "div", function(e) {
         var srcplanValue = jq(this).text();
-        jq(this).parents().prev('div').find('.srcUnitBox').val(srcplanValue);
-        jq(this).parents().prev('div').find('.srcUnitBox').focus();
+        jq(this).parents().prev('.srcUnitBox').val(srcplanValue);
     });
     jq(document).on("keyup", ".srcUnitBox", function(e) {
-        jq(this).parent().next('.srcList').show();
+        jq(this).next('.srcList').show();
     });
     jq(document).click(function(e) {
         if( jq(e.target).hasClass('srcUnitBox')){

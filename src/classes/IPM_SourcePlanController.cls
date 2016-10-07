@@ -36,6 +36,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     public string sFilterColumn{get;set;}
     public string sSortOrder{get;set;}
 	public List<SelectOption> SourcingUnits{get;set;}
+	public integer sourceUnitIndex{get;set;}
     /********************************************************************************************
     @Description-Constructor  
     *********************************************************************************************/
@@ -43,6 +44,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         totalRowsInTable = 0;
         wrapperPosition = 0;
         row_Index = null;
+		sourceUnitIndex = null;
         isEditable = false;
         isDuplicateRow = false;
         gTOMoreThan = false;
@@ -823,7 +825,22 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         }
         return getProdCSet;
     }   
-    
+    /*****************************************************************************************************************************
+    @Description-remove source unit from map of source unit
+    ******************************************************************************************************************************/
+    public void removeSourceUnit(){
+    	try
+    	{
+    		sourceUnitMap.get(row_Index).remove(sourceUnitIndex);
+    	}
+    	catch(exception ex)
+    	{
+       			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_SOURCEPLAN_CLASS_STR,
+                        'removeSourceUnit',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
+       }
+    	
+    } 
     /*****************************************************************************************************************************
     @Description-create a wrapper class for project product and product plan related records
     ******************************************************************************************************************************/
