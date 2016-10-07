@@ -42,6 +42,8 @@ src/pages/Kun_HomeView.page
 src/pages/Kun_HomeView.page-meta.xml
 src/pages/KUN_Profile_VF.page
 src/pages/KUN_Profile_VF.page-meta.xml
+src/pages/KUN_Profile_View.page
+src/pages/KUN_Profile_View.page-meta.xml
 src/permissionsets
 src/permissionsets/KUN_APP_Administrator.permissionset
 src/permissionsets/KUN_Super_Administrator.permissionset
@@ -73,3 +75,5 @@ src/tabs/KUN_Profile_tab.tab
 src/triggers
 src/triggers/KUN_ProfileTrigger.trigger
 src/triggers/KUN_ProfileTrigger.trigger-meta.xml
+src/objects
+src/objects/KUN_GA__c.object
