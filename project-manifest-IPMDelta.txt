@@ -10,6 +10,8 @@ src/classes/IPM_List_Milestones_Test.cls
 src/classes/IPM_List_Milestones_Test.cls-meta.xml
 src/classes/IPM_LocalSourcingTableController.cls
 src/classes/IPM_LocalSourcingTableController.cls-meta.xml
+src/classes/IPM_MilestoneHandler.cls
+src/classes/IPM_MilestoneHandler.cls-meta.xml
 src/classes/IPM_MilestoneHelper.cls
 src/classes/IPM_MilestoneHelper.cls-meta.xml
 src/classes/IPM_Milestone_Test.cls
@@ -36,8 +38,6 @@ src/customMetadata/IPM_Category_Thresholds.IPM_Global_Threshold_Beverages_Refres
 src/customMetadata/IPM_Category_Thresholds.IPM_Global_Threshold_Ice_Cream_Refresh.md
 src/customMetadata/IPM_Category_Thresholds.IPM_Regional_Threshold_Beverages_Refresh.md
 src/customMetadata/IPM_Category_Thresholds.IPM_Regional_Threshold_Ice_Cream_Refresh.md
-src/flows
-src/flows/IPM_Notify_Local_Rollout_Project_Created-17.flow
 src/layouts
 src/layouts/IPM_SourcingUnit__c-IPM SourcingUnit Layout.layout
 src/pages
