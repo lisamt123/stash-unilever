@@ -1,3 +1,0 @@
-src/classes
-src/classes/CPA_CR_TriggerUtil.cls
-src/classes/CPA_CR_TriggerUtil.cls-meta.xml

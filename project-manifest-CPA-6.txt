@@ -69,6 +69,3 @@ src/email/CPA_Email_Template/CPA_Reminder_to_respond_to_PWORF.email
 src/email/CPA_Email_Template/CPA_Reminder_to_respond_to_PWORF.email-meta.xml
 src/email/CPA_Email_Template/CPA_Reminder_to_submit_PWO.email
 src/email/CPA_Email_Template/CPA_Reminder_to_submit_PWO.email-meta.xml
-
-
-

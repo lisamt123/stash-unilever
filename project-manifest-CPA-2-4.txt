@@ -1,3 +1,0 @@
-src/classes
-src/classes/CPA_PWORF_PWO_UtilMethods_Test.cls
-src/classes/CPA_PWORF_PWO_UtilMethods_Test.cls-meta.xml
