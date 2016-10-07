@@ -12,13 +12,13 @@ public with sharing class AR_UniNonUniExperienceController extends AR_Applicatio
         this.agencyULExperienceObject = new AR_SObjectHolder(GetCleanExperienceObject());
     }
     
-    private void loadMyFieldSets() {
+    public void loadMyFieldSets() {
         fieldSetMap = new Map<String,Map<String,List<Schema.FieldSetMember>>>();
         this.FieldSetMap.put('ar_Experience__c',AR_MetaDataHandler.GetAllExperienceFieldsets());
         this.fieldSetMap.put('ar_Application__c',AR_MetaDataHandler.GetAllApplicationFieldsets());
     }
     
-    private void loadMyData() {
+    public void loadMyData() {
         AR_ObjectSelectHandler2 tmp_DataHandler = new AR_ObjectSelectHandler2(application.getId());
         
         // record type
@@ -48,7 +48,7 @@ public with sharing class AR_UniNonUniExperienceController extends AR_Applicatio
         addFormList('ar_Experience__c#NonULExperience', nonUniExperienceObjectList);
     }
     
-    private void saveMyData() {
+    public void saveMyData() {
         
         System.debug(logginglevel.info,'Saving application...');
         // Upsert uni experience and non uni experience in same DML
@@ -123,8 +123,8 @@ public with sharing class AR_UniNonUniExperienceController extends AR_Applicatio
     
     public void cleanExperienceObject()
     {
-    	String Value = ((ar_Experience__c)this.agencyULExperienceObject.obj).unilever_non_unilever__c;
-    	this.agencyULExperienceObject = new AR_SObjectHolder(GetCleanExperienceObject());
-    	agencyULExperienceObject.obj.put('unilever_non_unilever__c',Value);
+      String Value = ((ar_Experience__c)this.agencyULExperienceObject.obj).unilever_non_unilever__c;
+      this.agencyULExperienceObject = new AR_SObjectHolder(GetCleanExperienceObject());
+      agencyULExperienceObject.obj.put('unilever_non_unilever__c',Value);
     }
 }
