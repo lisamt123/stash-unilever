@@ -645,7 +645,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
                     }else
                     {
                         countrySourcePlanMap.remove(srcUnitClass.sourcingPlan.IPM_SourcingUnit__c+srcUnit);
-                        if(!uniqueSourcePId.contains(srcUnitClass.sourcingPlan.id))
+                        if(srcUnitClass.sourcingPlan.id !=null && !uniqueSourcePId.contains(srcUnitClass.sourcingPlan.id))
                         {
                         	sourcePlansListToUpdate.add(srcUnitClass.sourcingPlan);
                         	uniqueSourcePId.add(srcUnitClass.sourcingPlan.id); 
