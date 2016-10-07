@@ -845,20 +845,25 @@ public with sharing class IPM_ProjectOverviewCtrl {
         
         if( project.IPM_ShowProjectStop__c && isProjLeader && currentProjecttype != null && String.isBlank(currentProjecttype.IPM_Gate_Document__c) && !projectPhasesToBeExcluded.contains(project.IPM_Phase__c))
         {   
-        	stopButtonHoverText=String.format(Label.IPM_Stop_project_hover_text,new List<String>{project.IPMProject_Span__c,project.IPMProject_Span__c});
-			Map<Id,IPM_Project_Rollout__c> assocoiatedRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
-			assocoiatedRolloutMap.putAll(project.IPM_Project_Rollout__r);
-			assocoiatedRolloutMap.putAll(project.Regional_Project_Rollout__r);
-			assocoiatedRolloutMap.remove(null);
-			
-			Integer activeRolloutCounter = 0;
-			for(IPM_Project_Rollout__c	ipmPrjRLout :assocoiatedRolloutMap.values())
-				{
-						if(ipmPrjRLout.isActive__c)
-						{
-					activeRolloutCounter++;
-				}
-			}
+            stopButtonHoverText=String.format(Label.IPM_Stop_project_hover_text,new List<String>{project.IPMProject_Span__c,project.IPMProject_Span__c});
+            Map<Id,IPM_Project_Rollout__c> assocoiatedRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
+            assocoiatedRolloutMap.putAll(project.IPM_Project_Rollout__r);
+            assocoiatedRolloutMap.putAll(project.Regional_Project_Rollout__r);
+            assocoiatedRolloutMap.remove(null);
+            
+            Integer activeRolloutCounter = 0;
+            Boolean isGKM3 = (project.IPM_ProjectGKM__c == IPM_ConstantUtils.GATE_KEEPING_MODEL_3);
+            
+            for(IPM_Project_Rollout__c  ipmPrjRLout :assocoiatedRolloutMap.values())
+            {
+                 if(ipmPrjRLout.isActive__c)
+                 {
+                    if(!isGKM3 || (ipmPrjRLout.IPM_Rollout_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && isGKM3))
+                    {
+                        activeRolloutCounter++; 
+                    }
+                 }
+            }
     
 			
 			if(activeRolloutCounter == 0)
