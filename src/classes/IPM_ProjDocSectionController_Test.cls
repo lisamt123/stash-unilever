@@ -183,7 +183,7 @@ private class IPM_ProjDocSectionController_Test{
             projDocSecControl.project.name='testwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddata';
             projDocSecControl.save(); 
  			projectListObj = [Select Id, Name, IPM_Phase__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_ProjectGKM__c,IPM_CompanyCardText__c, IPM_Technical_Project_Leader__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r)
-            from IPM_Project__c]; 
+            from IPM_Project__c LIMIT 10]; 
             for(Integer i = 0; i< projectListObj.size();i++){
                 projectListObj[i].IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
             }
@@ -219,7 +219,7 @@ private class IPM_ProjDocSectionController_Test{
             pRef.getparameters().put(PROJ_DOC_SEC_ID_STR, testSection.Id);
             Test.setCurrentPage(pRef );
             projectListObj = [Select Id, Name, IPM_Phase__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_ProjectGKM__c,IPM_CompanyCardText__c, IPM_Technical_Project_Leader__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r)
-            from IPM_Project__c]; 
+            from IPM_Project__c LIMIT 100]; 
             for(Integer i = 0; i< projectListObj.size();i++){
                 projectListObj[i].IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
             }
@@ -432,7 +432,7 @@ private class IPM_ProjDocSectionController_Test{
             projDocSecControl.delet();
             projDocSecControl.isTaskComplete = TRUE;
             // Task Update
-            List<IPM_Task__c> taskToUpdate = [Select IPM_Type_of_Task__c,IPM_Completed__c,IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Project__c from IPM_Task__c];
+            List<IPM_Task__c> taskToUpdate = [Select IPM_Type_of_Task__c,IPM_Completed__c,IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Project__c from IPM_Task__c LIMIT 1000];
             taskToUPdate[0].IPM_Completed__c = TRUE;
             taskToUPdate[0].IPM_Completed_Date__c = System.today();
             update taskToUpdate;
