@@ -286,7 +286,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         map<id,set<string>> productNCountryMap = new map<id,set<string>>();
         set<id> productPlanIds = new set<id>();
         List<IPM_Project_Product__c> projectProductList = new List<IPM_Project_Product__c> ();
-        String sQuery = 'SELECT IPM_Is_PDL_Approved__c,IPM_Of_gTO__c,IPM_Format__c,IPM_Formulation__c,IPM_GoldenPrototype__c,IPM_Project__c,IPM_Packing__c,IPM_Product_Name__c,IPM_ProductSize__c,IPM_ProductSizeMetrics__c,(SELECT IPM_Country__r.Country_Name__c,IPM_Project_Product__c FROM IPM_ProductPlans__r WHERE IPM_Country_Null__c = false and IPM_Country__r.isActive__c = true) FROM IPM_Project_Product__c WHERE IPM_Project__c =:projectId order by ' + sFilterColumn + ' '+ sSortOrder + ' limit 1000';
+        String sQuery = 'SELECT IPM_Of_gTO__c,IPM_Format__c,IPM_Formulation__c,IPM_GoldenPrototype__c,IPM_Project__c,IPM_Packing__c,IPM_Product_Name__c,IPM_ProductSize__c,IPM_ProductSizeMetrics__c,(SELECT IPM_Country__r.Country_Name__c,IPM_Project_Product__c FROM IPM_ProductPlans__r WHERE IPM_Country_Null__c = false and IPM_Country__r.isActive__c = true) FROM IPM_Project_Product__c WHERE IPM_Project__c =:projectId order by ' + sFilterColumn + ' '+ sSortOrder + ' limit 1000';
         projectProductList = database.Query(sQuery);
         sourcePlanMap.clear();     
         IF(projectProductList.isEmpty())
