@@ -309,10 +309,12 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             }
 
             //Global Project Business Impact Global will be copy to Global,Regional & Local project
-           analyticObj.IPM_Business_Impact_BD__c =(p.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)?setBusinessImpact(p):EMPTY_STRING;
+	        
+			analyticObj.IPM_Business_Impact_BD__c =(p.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)?setBusinessImpact(p):EMPTY_STRING;
+			
+	           
            if(projFinmap.containskey(p.Id)){ 
-                //analyticObj.IPM_Business_Impact_BD__c =(String.isNotBlank(p.IPM_Project_Type__c) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?projFinMap.get(p.id).Business_Impact_Global__c:EMPTY_STRING; 
-                analyticObj.IPM_Target_Launch_Date_Aligned__c = (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?(projFinMap.get(p.id).Misaligned__c? NO:((p.IPM_Misalligned__c== YES) ? YES : NO)):null; // Auto_Aligned will only be checked for local projects
+             	analyticObj.IPM_Target_Launch_Date_Aligned__c = (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?(projFinMap.get(p.id).Misaligned__c? NO:((p.IPM_Misalligned__c== YES) ? YES : NO)):null; // Auto_Aligned will only be checked for local projects
                 analyticObj.IPM_Financials_Aligned__c = (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?(projFinMap.get(p.id).Misaligned__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO):null;
                 // CPP BD
                 analyticObj.IPM_Company_Project_Priority_BD__c = (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?projFinMap.get(p.id).IPM_CPP_Regional__c:null;
@@ -422,7 +424,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		analyticObj.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
         //Copy values From Parent project
         analyticObj.IPM_Project_Id__c = parent.IPM_Project_Id__c;                    
-        analyticObj.IPM_Project_Description__c = parent.IPM_Project_Description__c;
+        analyticObj.IPM_Project_Description__c  = parent.IPM_Project_Description__c;
         analyticObj.IPM_Project_Type__c = IPM_Utils.Rollout;
         analyticObj.IPM_Category_Group__c = parent.IPM_Category_Group__c;
         analyticObj.IPM_Category__c = parent.IPM_Category__c;
@@ -1035,7 +1037,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 	                                                                                                     Year__c,Gross_Profit_Global__c,Gross_Profit_Regional__c,
 	                                                                                                     Gross_Profit_Local__c,Turnover_Global__c,
 	                                                                                                     Turnover_Local__c,Turnover_Regional__c,Year_Type__c,
-	                                                                                                     PL_Type__c FROM IPM_Financial_Year__C 
+	                                                                                                     PL_Type__c FROM IPM_Financial_Year__c 
                                                                                                         WHERE IPM_Financial__c IN: finIdSet Limit 50000]);
                                                 
             for(IPM_Financial_Year__c fiyr:projRolloutFinYearList){
@@ -1371,6 +1373,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 	{
 	  if(pr.IPM_Project_GKM__c != IPM_Utils.GATE_KEEPING_MODEL_3)
 		{    
+			 analyticObj.IPM_Gate_Keeping_Model__c = parent.IPM_Gate_Keeping_Model__c;
 			 analyticObj.IPM_Brand_Positioning__c = parent.IPM_Brand_Positioning__c;
 			 analyticObj.IPM_Company__c = pr.IPM_Company_Card__r.Name;
 			 analyticObj.IPM_Parent_Project_Name__c = pr.IPM_Parent_Project_Name__c;
