@@ -22,6 +22,7 @@ src/classes/IPM_ProjectRolloutHandler.cls
 src/classes/IPM_ProjectRolloutHandler.cls-meta.xml
 src/classes/IPM_RolloutTriggerHandler.cls
 src/classes/IPM_RolloutTriggerHandler.cls-meta.xml
+src/classes/IPM_SourcePlanController.cls
+src/classes/IPM_SourcePlanController.cls-meta.xml
 src/objects
 src/objects/IPM_Financial_Year__c.object
-src/objects/IPM_Project_Product__c.object
