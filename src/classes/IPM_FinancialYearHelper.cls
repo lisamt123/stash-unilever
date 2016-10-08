@@ -11,7 +11,8 @@ public with sharing class IPM_FinancialYearHelper
     private static final String UPDATE_FINANCIAL_ACTION_STANDARD_STR = 'updateFinancialActionStandard';
     private static final String CLASS_NAME = IPM_FinancialYearHelper.Class.getName(); //Class Name for Exception Logging
     private static Boolean IS_RECURSSIVE = false;
-    
+    private static final String IPM_FINANCIAL_YEAR_STR = 'IPM_Financial_Year__c';
+	
     // used to find which financial has value invalid at which span and accordinglys set that invalid flag on financial as true
     private static Map<String, Set<String>> spanTofinExtIdMap = new Map<String, Set<String> >{'Global' => new Set<String>{},
     																   						  'Regional' => new Set<String>{},
@@ -97,8 +98,8 @@ public with sharing class IPM_FinancialYearHelper
             
             for(IPM_Financial_Year__c financialYear : completeFinancialYearList) 
             {                                                      
-                IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials('IPM_Financial_Year__c','External_Id__c',financialYear,consolidatedFinancialYearMap,consolidatedToRelatedFinancialYearMap,'Global_External_Id__c',financialYear.IPM_Financial__r.RecordTypeId);
-                IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials('IPM_Financial_Year__c','External_Id__c',financialYear,consolidatedFinancialYearMap,consolidatedToRelatedFinancialYearMap,'Regional_External_Id__c',financialYear.IPM_Financial__r.RecordTypeId);
+                IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials(IPM_FINANCIAL_YEAR_STR,'External_Id__c',financialYear,consolidatedFinancialYearMap,consolidatedToRelatedFinancialYearMap,'Global_External_Id__c',financialYear.IPM_Financial__r.RecordTypeId);
+                IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials(IPM_FINANCIAL_YEAR_STR,'External_Id__c',financialYear,consolidatedFinancialYearMap,consolidatedToRelatedFinancialYearMap,'Regional_External_Id__c',financialYear.IPM_Financial__r.RecordTypeId);
             }
                
             for(String consolidatedFinancialYearKey : consolidatedFinancialYearMap.KeySet())
@@ -110,7 +111,7 @@ public with sharing class IPM_FinancialYearHelper
                         
                     if(!relatedDefaultFinancialsYear.isEmpty())
                     {
-                        IPM_FinancialUtils.processConsolidation('IPM_Financial_Year__c','External_Id__c',consolidatedFinancialYearKey,consolidatedFinancialYear,relatedDefaultFinancialsYear,upsertconsolidatedFinancialYearMap,changedFinancialFieldSet);    
+                        IPM_FinancialUtils.processConsolidation(IPM_FINANCIAL_YEAR_STR,'External_Id__c',consolidatedFinancialYearKey,consolidatedFinancialYear,relatedDefaultFinancialsYear,upsertconsolidatedFinancialYearMap,changedFinancialFieldSet);    
                     }
                     else
                     {
@@ -562,9 +563,9 @@ public with sharing class IPM_FinancialYearHelper
         //prepare the financial year subQuery
         finYearFSM = SObjectType.IPM_Financial_Year__c.FieldSets.Misalignment_Financial_Fields.getFields();
             
-        String finYearSubQuery = '('+IPM_Utils.getSOQLQueryFromFieldSet('Misalignment_Financial_Fields','IPM_Financial_Year__c',false);
+        String finYearSubQuery = '('+IPM_Utils.getSOQLQueryFromFieldSet('Misalignment_Financial_Fields',IPM_FINANCIAL_YEAR_STR,false);
         
-        finYearSubQuery = finYearSubQuery.replace('IPM_Financial_Year__c', 'IPM_Financial_Years__r ) ');
+        finYearSubQuery = finYearSubQuery.replace(IPM_FINANCIAL_YEAR_STR, 'IPM_Financial_Years__r ) ');
         
         String finQuery = 'SELECT Id, Volume_Unit_Difference__c, NPV_Difference__c, IRR_Difference__c, Payback_Difference__c, CAPEX_Difference__c, BIC_Difference__c,  Total_FY_Difference__c, MisalignmentManual__c, '+finYearSubQuery+' FROM IPM_Financial__c WHERE ID IN :finIdSet LIMIT 1000';
         
