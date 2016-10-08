@@ -16236,12 +16236,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contact.ICB_Cause__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contact.ICB_Community_User__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.ICB_Education_Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.ICB_Fail__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -16262,6 +16272,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.ICB_Sales_Locale__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.ICB_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -41342,6 +41357,10 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Pricebook2.Price_Book</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Product2.ICB_MobileChannel</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
