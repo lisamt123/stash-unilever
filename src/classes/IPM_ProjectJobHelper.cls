@@ -200,7 +200,7 @@ public without sharing class IPM_ProjectJobHelper
         Set<String> projectExternalIdSet = new Set<String>(); 
         if(rolloutIdSet!=null && !rolloutIdSet.isEmpty())
         {
-            rolloutWhereClause = rolloutWhereClause + ' AND Id in:rolloutIdSet '; 
+            rolloutWhereClause = rolloutWhereClause + ' AND Id in:rolloutIdSet AND isActive__c= true '; 
         }
          
         rolloutWhereClause = rolloutQuery + rolloutWhereClause + ' limit 50000';

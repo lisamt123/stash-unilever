@@ -128,6 +128,11 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
 		newRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;   
 		newRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;  
 	}            
+	if(!newRollout.isActive__c)
+	{
+		newRollout.IPM_Project_Job_Status__c = null;   
+		newRollout.IPM_RolloutJobType__c = null;	
+	}             
     }
     
     /**

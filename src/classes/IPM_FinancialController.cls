@@ -20,7 +20,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Boolean isy0ProfitInvalid {get;set;} //Boolean variable to highlight the y0Profit cell if the value is invalid
     public Boolean isy0GrossProfitInvalid {get;set;} //Boolean variable to highlight the y0GrossProfit cell if the value is invalid
     public Boolean showNonKeyBusinessCaseChangedAlert {get;set;} //Boolean variable to highlight that the Non Key Business Case has been changed in GKM3 model
-    
     public List<RolloutWrapper> lstRolloutWrappers {get; set;} //List of Rollout Wrappers that becomes visible for the current view
     public  Map<String, IPM_Financial__c> mapConsolidatedFinancials {get; set;} //Map of All CONSOLIDATED type financials.
     public  Map<String, IPM_Financial__c> mapDefaultFinancials {get; set;} //Map of  Defualt type financials. created by Kt
@@ -1632,7 +1631,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         //These values are used for red/soft vaildations on consolidated financials
         //@Param1 : financialExternalId + Field Name (only field name is not necessary since, for consolidated financials can have may rollup financials. 
         //                                           if any of the rolloup financials have error in a cell the corresponding financial cells needs to be highlighted red/yellow. 
-        //											 So financila external id of the rollup financial and field/cell name is used to create a unique key)
+        //                                           So financila external id of the rollup financial and field/cell name is used to create a unique key)
         //@Param2 : currentFinancial : So as to check the currentfinancial values and whether it is a consolidated financial
         //@Param3 : currentTab :  Since the validations need to happen only for editabel financials i.e. currentTab = 'myView'
         
@@ -1979,8 +1978,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               
               //set the isFinancialInvalid__c flag on the financial (as true or false). If the new value is different from the old one then update the financial record
               //method checkIsFinancialInvalid sets the flag appropriately
-			  checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
-			
+              checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
+            
               financialsToUpdateSet.clear();
               //logic to calculate the consolidated financials validation cells value
               if(!currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)  &&  (projectType!= null && !projectType.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) )){
@@ -3009,8 +3008,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
                 if(rolloutList!=null && !rolloutList.isEmpty())
                 {
-                	mcoCountryRolloutPlan = rolloutList[0];
-                	localRolloutProject = rolloutList[0].Local_Project__r;
+                    mcoCountryRolloutPlan = rolloutList[0];
+                    localRolloutProject = rolloutList[0].Local_Project__r;
                 }
             }
             // check for the misalignment
@@ -3299,6 +3298,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     ***************************************************************************************************************/
     public Set<IPM_Financial__c> getConsolidatedValidationCells(IPM_Financial__c currentFinancial){
         try{
+            
+            
             String globalConsolidatedFinExtId = currentFinancial.Global_External_Id__c+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
             String regionalConsolidatedFinExtId = currentFinancial.Regional_External_Id__c+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
             
@@ -3542,6 +3543,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                
                isCAPEXInvalid = true;
                yellowValidationCellsString = yellowValidationCellsString + finToValidate.Financial_External_ID__c + IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.SEMICOLON;
+               
             }
             
             //calcualte other summary table validations for IRR, NPV and Payback values
@@ -3773,13 +3775,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFin);
                 validateFinancialSummaryTable(currentFin);
                 
-                
-                //fetch the consolidated financials and then up
-                List<String> finExtIdSplit = currentFin.Financial_External_ID__c.split(IPM_ConstantUtils.UNDERSCORE);
-                
+               
                 //fetch the extenralId of the corresponding consolidated financials
-                String globalConsolidatedFinExtId = finExtIdSplit.get(0)+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
-                String regionalConsolidatedFinExtId = finExtIdSplit.get(0)+IPM_ConstantUtils.UNDERSCORE+finExtIdSplit.get(1)+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
+                String globalConsolidatedFinExtId = currentFin.Global_External_Id__c+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
+            	String regionalConsolidatedFinExtId = IPM_ConstantUtils.BLANK;
+            	if(currentFin.Regional_External_Id__c !=null){
+            		regionalConsolidatedFinExtId = currentFin.Regional_External_Id__c+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
+            	}
+            	
                 
                 
                 //prepare financial external Ids for the red and yellow validations
@@ -3902,17 +3905,17 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         Boolean isfinEditable;
         getCurrentFinancialType(finToEvaluate);
 
-   		if(!String.IsBlank(editVisibilitystr) && editVisibilitystr.contains(currentFinancialType)){
-   			isfinEditable = true;
-   		}        	    
-	    else{
-	        isfinEditable = false;
-	    }
+        if(!String.IsBlank(editVisibilitystr) && editVisibilitystr.contains(currentFinancialType)){
+            isfinEditable = true;
+        }               
+        else{
+            isfinEditable = false;
+        }
         
 
-		if(isEditMode!= null && !isEditMode && isProjectStop!=null && !isProjectStop && toShowEditButton!= null && toShowEditButton && isfinEditable && isEditable){
+        if(isEditMode!= null && !isEditMode && isProjectStop!=null && !isProjectStop && toShowEditButton!= null && toShowEditButton && isfinEditable && isEditable){
             return true;
-    	}
+        }
         else{
             return false;
         }

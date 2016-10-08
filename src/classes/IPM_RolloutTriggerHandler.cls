@@ -400,6 +400,11 @@ public with sharing class IPM_RolloutTriggerHandler
         
         for(IPM_Project_Rollout__c projectRollout : NewProjectRollouts)
         {
+            if(!projectRollout.isActive__c)
+            {
+            	projectRollout.IPM_RolloutJobType__c = null ;
+            	projectRollout.IPM_Project_Job_Status__c = null;
+            }
             if(projectRollout.IPM_Project__c != null)
             {
                 projectidset.add(projectRollout.IPM_Project__c);

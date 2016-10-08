@@ -1248,6 +1248,7 @@ public class IPM_ConstantUtils {
     public static final String Original_SHIPTO_TRADE_TLD = 'Target Launch Date(Ship to Trade)';
     public static final String ADDITIONAL_MILESTONE_PDL = 'Product Design Lock Milestone (Mandatory for Personal Care)';
     public static final String PERSONAL_CARE = 'Personal Care';
+    public static final String SHIPTO_TLD ='Target Launch Date (Ship to Trade)';
     
     //Release-03:REQ03839/REQ03840
     public static final string ROLLUP_MILESTONES ='Contract Gate Approval;Market Ready Gate Approval';

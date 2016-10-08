@@ -6,8 +6,7 @@
 */
 public with sharing class IPM_FinancialHandler implements ITrigger
 {   
-	
-    
+
     //removed DEFAULT_FINANCIAL_RECORDTYPE for SONAR Issue
     private static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
     private static final String DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId(); //Recordtype Id for Default on IPM_Financial__c object
@@ -77,13 +76,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         if(Trigger.isInsert || Trigger.isUpdate)
         {  
             List<IPM_Financial__c> newFinancialList = (List<IPM_Financial__c>) Trigger.new;
-            
-            // Manual Misalignment
-            List<IPM_Financial__c> newFinancial = IPM_FinancialHelper.updateManualMisalignment(newFinancialList);
-           
-            if(!newFinancial.isEmpty()){
-                update newFinancial;
-            } 
+             
             
             if(Trigger.isInsert)
             {
@@ -441,7 +434,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 				approvalfieldchanged(financial, oldFinancial, approvalChangedFinancialMap, changedFinancialSet, financialToApprovalChangeFieldMap);
 				// CopyOver Field Changes
 				copyOverFieldChange(financial, oldFinancial, copyOverChangedFinancialMap, changedFinancialSet, financialTocopyOverChangedFieldMap);
-				System.debug('financialToApprovalChangeFieldMap::'+ financialToApprovalChangeFieldMap);
+                
 				// addtional Field Changes
 				additionalFieldChange(financial, oldFinancial, additionalFieldChangedFinancialMap, changedFinancialSet, financialToaddtChangedFieldMap);
 				// Active Field Changes
