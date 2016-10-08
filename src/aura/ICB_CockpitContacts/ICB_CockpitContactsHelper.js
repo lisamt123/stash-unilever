@@ -126,7 +126,7 @@
             "idAccount" : selectedStore.contactItem.AccountId,
             "inventoryList" : listJSON
         });
-       
+        
         action.setCallback(this,function(response){
             var state = response.getState();
             if(component.isValid() && state === "SUCCESS"){
