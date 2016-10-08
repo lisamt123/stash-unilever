@@ -5028,7 +5028,7 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
     <listViews>
         <fullName>IPM_a7I0L000000GuMk_IPM_Project_Document_Section_Content</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000GuMk</label>
+        <label>IPM_MACALLAN</label>
         <queue>IPM_a7I0L000000GuMk</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -5147,6 +5147,60 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
         <filterScope>Queue</filterScope>
         <label>IPM_a7I0L000000GvAp</label>
         <queue>IPM_a7I0L000000GvAp</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GvB4_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_CHANEL</label>
+        <queue>IPM_a7I0L000000GvB4</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GvBE_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GvBE</label>
+        <queue>IPM_a7I0L000000GvBE</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GvBJ_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_T20_SAS</label>
+        <queue>IPM_a7I0L000000GvBJ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GvBY_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GvBY</label>
+        <queue>IPM_a7I0L000000GvBY</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GvBd_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_CLN HAPPY COW_NA</label>
+        <queue>IPM_a7I0L000000GvBd</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GvBs_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SUN RISE_LA</label>
+        <queue>IPM_a7I0L000000GvBs</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

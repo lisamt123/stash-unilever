@@ -11315,12 +11315,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contact.ICB_Cause__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contact.ICB_Community_User__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.ICB_Education_Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.ICB_Fail__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -11341,6 +11351,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.ICB_Sales_Locale__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.ICB_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -34716,6 +34731,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Product2-Product Layout</layout>
+        <recordType>Product2.ICB_MobileChannel</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product2-Product Layout</layout>
         <recordType>Product2.Products</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -37436,6 +37455,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Pricebook2.Price_Book</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Product2.ICB_MobileChannel</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

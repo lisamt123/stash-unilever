@@ -7,10 +7,11 @@ trigger feedItem_before_insert on FeedItem (before insert) {
             uw_TriggerHandler handler = new uw_TriggerHandler();
             handler.handleFeedItemBeforeInsert(Trigger.new);
        
-         // Ask paul Logic handler Call   
+         // Auto Question Logic handler Call   
             Core_NC_NewsArticleCommentCount handlerFeed=new Core_NC_NewsArticleCommentCount();
+              if(!Test.isRunningTest()){ 
             handlerFeed.chatterPostAskPaul(Trigger.new);
-          
+          }
          
     }
 }

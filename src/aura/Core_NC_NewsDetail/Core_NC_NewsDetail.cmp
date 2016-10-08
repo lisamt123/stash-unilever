@@ -31,7 +31,7 @@
         .slds .slds-publisher__actions > .slds-button {
         margin-left: 0.1rem !important;
         margin-top: 10px;
-        }      
+        }
          .slds .slds-publisher .slds-publisher__toggle-visibility li:nth-last-child(1) {
         display: none!important;
         } 
@@ -102,7 +102,7 @@
                                     <!--<a href="javascript:void(0)" onclick="{!c.navigateToComment}" > 
                                         <img src="/resource/NewsCenterIcons/Comment_active.svg" class="LinkImageStyle"/>&nbsp;Comment1
                                     </a>-->
-                                    <div onclick="{!c.navigateToMiddleElement}" > 
+                                    <div> 
                                     	<img src="/resource/NewsCenterIcons/Comment_active.svg" class="LinkImageStyle"/>&nbsp;Comment
 									</div>
                                     
@@ -147,7 +147,7 @@
                                     </aura:if>
                                 </td>
                                 <td class="centerAlign">
-                                    <div onclick="{!c.navigateToMiddleElement}" > 
+                                    <div> 
                                     	<img src="/resource/NewsCenterIcons/Comment_active.svg" class="LinkImageStyle"/>&nbsp;Comment
 									</div>
                                 </td>
@@ -206,9 +206,9 @@
                         <div onclick="{!c.postChatterInfo}">  POST </div> 
                     <forceChatter:feed type="Record" subjectId="{!v.newsId}"/> -->
                 <!-- Ligthning Chatter Feed:News App Enhancements -->
-                    <c:ChatterPublisherCmp subjectId="{!v.newsId}" feedType="Record"/>  
-                    <c:ChatterFeedCmp subjectId="{!v.newsId}" feedType="Record"/> 
+                	<c:ChatterPublisherCmp subjectId="{!v.newsId}" feedType="Record"/>  
+                	<c:ChatterFeedCmp subjectId="{!v.newsId}" feedType="Record"/> 
             </div>
-        </div>                 
+    	</div>                 
     </div>
 </aura:component>

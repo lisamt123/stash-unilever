@@ -756,6 +756,16 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>ICB_Cause__c</fullName>
+        <externalId>false</externalId>
+        <label>Cause</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>ICB_Community_User__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Verify if the user is part of the Ice cream community.</description>
@@ -803,6 +813,14 @@
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Fail__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Fail</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>ICB_Internet_Access__c</fullName>
@@ -891,6 +909,29 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>ICB_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>ICB_Type__c</fullName>
         <description>Spark Project - Mobility to Mobile Channel - Used to indicate if partner contact is an operator or a salesman.</description>
         <externalId>false</externalId>
@@ -902,6 +943,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Ice Cream Salesman</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Console</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1633,6 +1678,21 @@ IF( NOT( ISBLANK( sf4twitter__Twitter_Username__c ) ), &apos;http://twitter.com/
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>ICB_Type__c</picklist>
             <values>
                 <fullName>Ice Cream Salesman</fullName>
@@ -2335,7 +2395,26 @@ IF( NOT( ISBLANK( sf4twitter__Twitter_Username__c ) ), &apos;http://twitter.com/
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Console</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Ice Cream Salesman</fullName>
                 <default>false</default>
@@ -3120,7 +3199,26 @@ IF( NOT( ISBLANK( sf4twitter__Twitter_Username__c ) ), &apos;http://twitter.com/
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Console</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Ice Cream Salesman</fullName>
                 <default>true</default>
@@ -3898,6 +3996,21 @@ IF( NOT( ISBLANK( sf4twitter__Twitter_Username__c ) ), &apos;http://twitter.com/
             <values>
                 <fullName>Yes%2C one or more regular devices</fullName>
                 <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -4685,6 +4798,21 @@ IF( NOT( ISBLANK( sf4twitter__Twitter_Username__c ) ), &apos;http://twitter.com/
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>ICB_Type__c</picklist>
             <values>
                 <fullName>Ice Cream Salesman</fullName>
@@ -4898,6 +5026,21 @@ IF( NOT( ISBLANK( sf4twitter__Twitter_Username__c ) ), &apos;http://twitter.com/
             <values>
                 <fullName>Yes%2C one or more regular devices</fullName>
                 <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
