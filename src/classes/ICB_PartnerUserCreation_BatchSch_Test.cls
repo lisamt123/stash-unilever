@@ -65,8 +65,10 @@ public class ICB_PartnerUserCreation_BatchSch_Test
         Database.update(contactOld);
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Permission_Salesman','ICB Mobile Channel Salesman');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Permission_Operator','ICB Mobile Channel Operator PCL');
+        ICB_SobjectInstance_SP2_Test.insertContactTypes('Permission_Console','ICB Mobile Channel Console PCL');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Type_Salesman','Ice Cream Salesman');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Type_Operator','Operator');
+        ICB_SobjectInstance_SP2_Test.insertContactTypes('Type_Console','Console');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('User_Email','@operadorkibon.com');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Profile_Community','Partner Community Login Basic');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('RecordType','Ice Cream');
