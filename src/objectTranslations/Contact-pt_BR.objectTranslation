@@ -821,6 +821,10 @@
         <errorMessage>O E-Mail deve ter pelo menos 4 caracteres antes do @</errorMessage>
         <name>EMail_minimum_size</name>
     </validationRules>
+	<validationRules>
+        <errorMessage>Não é permitido modificar o status</errorMessage>
+        <name>ICB_No_Change_Status</name>
+    </validationRules>
     <validationRules>
         <errorMessage>A Data de Nascimento é obrigatória.</errorMessage>
         <name>Mandatory_Birthdate_Spark_Salesman</name>
