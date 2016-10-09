@@ -40,7 +40,7 @@
         <language>en_US</language>
     </filter>
     <format>Tabular</format>
-    <name>KUN Capability - Supply Chain Finance (S</name>
+    <name>KUN Capability - Supply Chain Finance</name>
     <params>
         <name>co</name>
         <value>1</value>
