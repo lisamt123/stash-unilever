@@ -27,3 +27,5 @@ src/reports/KUN_Community_Reports/KUn_data_Vietnam.report
 src/reports/KUN_Community_Reports-meta.xml
 src/reportTypes
 src/reportTypes/KUN_Profiles_with_User_Info.reportType
+src/objects
+src/objects/KUN_Profile__c.object
