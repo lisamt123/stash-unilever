@@ -30,10 +30,6 @@
         <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
         <content>Oblix_CampaignRedirectToMain_List</content>
@@ -642,6 +638,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -719,6 +716,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -769,6 +767,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -888,6 +887,7 @@ IF(ISPICKVAL(Campaign_Status__c, &quot;Cancelled&quot;), &quot;Cancelled&quot;,&
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -982,6 +982,7 @@ IF(ISPICKVAL(Campaign_Status__c, &quot;Cancelled&quot;), &quot;Cancelled&quot;,&
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1015,6 +1016,7 @@ IF(ISPICKVAL(Campaign_Status__c, &quot;Cancelled&quot;), &quot;Cancelled&quot;,&
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1047,6 +1049,7 @@ IF(ISPICKVAL(Campaign_Status__c, &quot;Cancelled&quot;), &quot;Cancelled&quot;,&
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1258,6 +1261,7 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1333,6 +1337,7 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1706,6 +1711,7 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1740,6 +1746,7 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1773,6 +1780,7 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1806,6 +1814,7 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1849,6 +1858,7 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1882,6 +1892,7 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1915,6 +1926,7 @@ ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1976,6 +1988,7 @@ $Profile.Name &lt;&gt; &apos;System Administrator&apos;
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2077,6 +2090,7 @@ $Profile.Name &lt;&gt; &apos;System Administrator&apos;
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -2109,6 +2123,7 @@ $Profile.Name &lt;&gt; &apos;System Administrator&apos;
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -2142,6 +2157,7 @@ $Profile.Name &lt;&gt; &apos;System Administrator&apos;
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -2191,6 +2207,7 @@ $Profile.Name &lt;&gt; &apos;System Administrator&apos;
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

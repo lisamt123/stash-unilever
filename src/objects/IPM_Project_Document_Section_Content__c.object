@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -171,6 +167,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -243,6 +240,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -531,6 +529,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -607,6 +606,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -766,6 +766,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -914,6 +915,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -1060,6 +1062,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -1197,6 +1200,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -1231,6 +1235,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -1382,6 +1387,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -1471,6 +1477,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -1561,6 +1568,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -1639,6 +1647,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -1746,6 +1755,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -2053,6 +2063,7 @@ CASE(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -2284,6 +2295,7 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -2384,6 +2396,7 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -2430,6 +2443,7 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>

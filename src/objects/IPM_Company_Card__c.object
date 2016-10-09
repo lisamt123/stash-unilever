@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -68,6 +64,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -132,6 +129,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -156,6 +154,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -202,6 +201,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -658,6 +658,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1698,6 +1699,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2754,6 +2756,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2786,6 +2789,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2843,6 +2847,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2999,6 +3004,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -3075,6 +3081,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -3120,6 +3127,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -3191,6 +3199,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

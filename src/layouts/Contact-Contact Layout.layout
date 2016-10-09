@@ -39,15 +39,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ICB_Fail__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>ICB_Status__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ICB_Cause__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -74,6 +66,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>CNPJ__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ICB_Cause__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
