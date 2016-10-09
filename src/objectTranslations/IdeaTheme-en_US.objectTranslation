@@ -82,25 +82,6 @@
         <name>Promoted__c</name>
     </fields>
     <fields>
-        <name>Status</name>
-        <picklistValues>
-            <masterLabel>Active</masterLabel>
-            <translation><!-- Active --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Archived</masterLabel>
-            <translation><!-- Archived --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Closed</masterLabel>
-            <translation><!-- Closed --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>New</masterLabel>
-            <translation><!-- New --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <help><!-- Enter the URL of the Video to be embedded on Idea Themes Landing Page --></help>
         <label><!-- Video URL --></label>
         <name>Video_URL__c</name>

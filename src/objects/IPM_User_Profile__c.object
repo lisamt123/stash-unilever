@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -296,6 +292,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -325,6 +322,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -387,6 +385,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -419,6 +418,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -465,6 +465,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

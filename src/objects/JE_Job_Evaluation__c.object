@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -158,6 +154,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Advertising_Promotion__c 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -272,6 +269,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Advertising_Promotion__c 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -316,6 +314,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Advertising_Promotion__c 
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -874,6 +873,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Advertising_Promotion__c 
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -918,6 +918,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Advertising_Promotion__c 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -983,6 +984,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Advertising_Promotion__c 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1055,6 +1057,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;, CASE( Geographic_Scope__c , &q
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1154,6 +1157,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;, CASE( Geographic_Scope__c , &q
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1207,6 +1211,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;, CASE( Geographic_Scope__c , &q
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1328,6 +1333,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;, CASE( Geographic_Scope__c , &q
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1405,6 +1411,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;, CASE( Geographic_Scope__c , &q
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1465,6 +1472,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;, CASE( Geographic_Scope__c , &q
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1507,6 +1515,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;, CASE( Geographic_Scope__c , &q
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1596,6 +1605,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;, CASE( Geographic_Scope__c , &q
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1684,6 +1694,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( Job_Grade_of_Line_Manager
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1765,6 +1776,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( Job_Grade_of_Line_Manager
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1781,6 +1793,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( Job_Grade_of_Line_Manager
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1875,6 +1888,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( No_of_Brands__c , &quot;S
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2018,6 +2032,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( No_of_Employees_Managed__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2099,6 +2114,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( No_of_Employees_Managed__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2184,6 +2200,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( No_of_Employees_Managed__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2265,6 +2282,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( No_of_Employees_Managed__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2338,6 +2356,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( No_of_Employees_Managed__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2476,6 +2495,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( No_of_Employees_Managed__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2561,6 +2581,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( No_of_Employees_Managed__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2683,6 +2704,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2768,6 +2790,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2853,6 +2876,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2881,6 +2905,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2966,6 +2991,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3003,6 +3029,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3105,6 +3132,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3172,6 +3200,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3253,6 +3282,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3366,6 +3396,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3443,6 +3474,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3524,6 +3556,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3609,6 +3642,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3777,6 +3811,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3923,6 +3958,7 @@ CASE( RecordTypeId , &quot;012E0000000654O&quot;,CASE( Turnover_Direct_Accountab
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -4038,6 +4074,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Turnover_LM_s_Accountabil
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -4119,6 +4156,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Turnover_LM_s_Accountabil
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -4235,6 +4273,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( UL_Grade__c  , &quot;2A&q
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -4326,6 +4365,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -4428,6 +4468,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

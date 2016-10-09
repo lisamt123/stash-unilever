@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -103,6 +99,7 @@ CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;,
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -205,6 +202,7 @@ CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;,
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
@@ -233,6 +231,7 @@ CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;,
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -369,6 +368,7 @@ CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;,
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -454,6 +454,7 @@ CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;,
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -509,6 +510,7 @@ CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;,
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>

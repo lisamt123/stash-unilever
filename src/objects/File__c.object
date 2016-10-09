@@ -23,10 +23,6 @@
         <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -269,6 +265,7 @@ Feed_ID__c=&quot;&quot;, &quot;/img/samples/light_red.gif&quot;, &quot;/img/samp
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -365,6 +362,7 @@ Feed_ID__c=&quot;&quot;, &quot;/img/samples/light_red.gif&quot;, &quot;/img/samp
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -389,6 +387,7 @@ Feed_ID__c=&quot;&quot;, &quot;/img/samples/light_red.gif&quot;, &quot;/img/samp
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

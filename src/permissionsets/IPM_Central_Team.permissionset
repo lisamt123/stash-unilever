@@ -36006,7 +36006,7 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Product2.ICB_MobileChannel</recordType>
+        <recordType>Product2.ICB_Mobile_Channel</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

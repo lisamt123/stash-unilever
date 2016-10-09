@@ -1,53 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
-        <name>AccountSource</name>
-        <picklistValues>
-            <masterLabel>Advertisement</masterLabel>
-            <translation><!-- Advertisement --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Employee Referral</masterLabel>
-            <translation><!-- Employee Referral --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>External Referral</masterLabel>
-            <translation><!-- External Referral --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Partner</masterLabel>
-            <translation><!-- Partner --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Public Relations</masterLabel>
-            <translation><!-- Public Relations --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Seminar - Internal</masterLabel>
-            <translation><!-- Seminar - Internal --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Seminar - Partner</masterLabel>
-            <translation><!-- Seminar - Partner --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Trade Show</masterLabel>
-            <translation><!-- Trade Show --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Web</masterLabel>
-            <translation><!-- Web --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Word of mouth</masterLabel>
-            <translation><!-- Word of mouth --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Account Record Count --></label>
         <name>Account_Record_Count__c</name>
     </fields>
@@ -903,137 +856,6 @@
         <name>ICB_Mobile_Channel__c</name>
     </fields>
     <fields>
-        <name>Industry</name>
-        <picklistValues>
-            <masterLabel>Agriculture</masterLabel>
-            <translation><!-- Agriculture --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Apparel</masterLabel>
-            <translation><!-- Apparel --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Banking</masterLabel>
-            <translation><!-- Banking --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Biotechnology</masterLabel>
-            <translation><!-- Biotechnology --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Chemicals</masterLabel>
-            <translation><!-- Chemicals --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Communications</masterLabel>
-            <translation><!-- Communications --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Construction</masterLabel>
-            <translation><!-- Construction --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Consulting</masterLabel>
-            <translation><!-- Consulting --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Education</masterLabel>
-            <translation><!-- Education --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Electronics</masterLabel>
-            <translation><!-- Electronics --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Energy</masterLabel>
-            <translation><!-- Energy --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Engineering</masterLabel>
-            <translation><!-- Engineering --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Entertainment</masterLabel>
-            <translation><!-- Entertainment --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Environmental</masterLabel>
-            <translation><!-- Environmental --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Finance</masterLabel>
-            <translation><!-- Finance --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Food &amp; Beverage</masterLabel>
-            <translation><!-- Food &amp; Beverage --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Government</masterLabel>
-            <translation><!-- Government --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Healthcare</masterLabel>
-            <translation><!-- Healthcare --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Hospitality</masterLabel>
-            <translation><!-- Hospitality --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Insurance</masterLabel>
-            <translation><!-- Insurance --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Machinery</masterLabel>
-            <translation><!-- Machinery --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Manufacturing</masterLabel>
-            <translation><!-- Manufacturing --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Media</masterLabel>
-            <translation><!-- Media --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Not For Profit</masterLabel>
-            <translation><!-- Not For Profit --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Recreation</masterLabel>
-            <translation><!-- Recreation --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Retail</masterLabel>
-            <translation><!-- Retail --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Shipping</masterLabel>
-            <translation><!-- Shipping --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Technology</masterLabel>
-            <translation><!-- Technology --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Telecommunications</masterLabel>
-            <translation><!-- Telecommunications --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Transportation</masterLabel>
-            <translation><!-- Transportation --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Utilities</masterLabel>
-            <translation><!-- Utilities --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <help>Selezionare il tipo di consumatore</help>
         <label>Consumatore noto</label>
         <name>Known_Consumer__c</name>
@@ -1128,25 +950,6 @@
         <name>Overall_Rating__c</name>
     </fields>
     <fields>
-        <name>Ownership</name>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Private</masterLabel>
-            <translation><!-- Private --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Public</masterLabel>
-            <translation><!-- Public --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Subsidiary</masterLabel>
-            <translation><!-- Subsidiary --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <help><!-- Please clarify the ownership status of the company, identifying any network or holding company, where appropriate. --></help>
         <label><!-- Ownership Status --></label>
         <name>Ownership_Status__c</name>
@@ -1218,21 +1021,6 @@
         <picklistValues>
             <masterLabel>Yes</masterLabel>
             <translation><!-- Yes --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <name>Rating</name>
-        <picklistValues>
-            <masterLabel>Cold</masterLabel>
-            <translation><!-- Cold --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Hot</masterLabel>
-            <translation><!-- Hot --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Warm</masterLabel>
-            <translation><!-- Warm --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1351,77 +1139,6 @@
     <fields>
         <label><!-- Total Rating Score --></label>
         <name>Total_Rating_Score__c</name>
-    </fields>
-    <fields>
-        <name>Type</name>
-        <picklistValues>
-            <masterLabel>Analyst</masterLabel>
-            <translation><!-- Analyst --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Association</masterLabel>
-            <translation><!-- Association --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Competitor</masterLabel>
-            <translation><!-- Competitor --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Customer</masterLabel>
-            <translation><!-- Customer --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Integrator</masterLabel>
-            <translation><!-- Integrator --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Investor</masterLabel>
-            <translation><!-- Investor --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Legal</masterLabel>
-            <translation><!-- Legal --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Logistic</masterLabel>
-            <translation><!-- Logistic --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Partner</masterLabel>
-            <translation><!-- Partner --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Press</masterLabel>
-            <translation><!-- Press --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Prospect</masterLabel>
-            <translation><!-- Prospect --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Reseller</masterLabel>
-            <translation><!-- Reseller --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Retailer</masterLabel>
-            <translation><!-- Retailer --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Shop</masterLabel>
-            <translation><!-- Shop --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Shop In Shop</masterLabel>
-            <translation><!-- Shop In Shop --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>UL Careline</masterLabel>
-            <translation><!-- UL Careline --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <label><!-- Branch --></label>

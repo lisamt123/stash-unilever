@@ -669,189 +669,6 @@
         <name>NewAccountFlag__c</name>
     </fields>
     <fields>
-        <name>Origin</name>
-        <picklistValues>
-            <masterLabel>Chat</masterLabel>
-            <translation><!-- Chat --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email</masterLabel>
-            <translation><!-- Email --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email ANZ</masterLabel>
-            <translation><!-- Email ANZ --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Baltics</masterLabel>
-            <translation><!-- Email Baltics --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Bangladesh</masterLabel>
-            <translation><!-- Email Bangladesh --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Benelux</masterLabel>
-            <translation><!-- Email Benelux --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Brazil</masterLabel>
-            <translation><!-- Email Brazil --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Cyprus</masterLabel>
-            <translation><!-- Email Cyprus --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Czech Republic</masterLabel>
-            <translation><!-- Email Czech Republic --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email DACH</masterLabel>
-            <translation><!-- Email DACH --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email France</masterLabel>
-            <translation><!-- Email France --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Greece</masterLabel>
-            <translation><!-- Email Greece --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Hungary</masterLabel>
-            <translation><!-- Email Hungary --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email India</masterLabel>
-            <translation><!-- Email India --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Indonesia</masterLabel>
-            <translation><!-- Email Indonesia --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Italy</masterLabel>
-            <translation><!-- Email Italy --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Middle Americas</masterLabel>
-            <translation><!-- Email Middle Americas --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Nordic</masterLabel>
-            <translation><!-- Email Nordic --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email North America</masterLabel>
-            <translation><!-- Email North America --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email North America CS</masterLabel>
-            <translation><!-- Email North America CS --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Pakistan</masterLabel>
-            <translation><!-- Email Pakistan --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Philippines</masterLabel>
-            <translation><!-- Email Philippines --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Poland</masterLabel>
-            <translation><!-- Email Poland --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Portugal</masterLabel>
-            <translation><!-- Email Portugal --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email South Africa</masterLabel>
-            <translation><!-- Email South Africa --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Southern Cone</masterLabel>
-            <translation><!-- Email Southern Cone --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Spain</masterLabel>
-            <translation><!-- Email Spain --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Sri Lanka</masterLabel>
-            <translation><!-- Email Sri Lanka --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email TO France</masterLabel>
-            <translation><!-- Email TO France --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Thailand</masterLabel>
-            <translation><!-- Email Thailand --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email UK</masterLabel>
-            <translation><!-- Email UK --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Email Vietnam</masterLabel>
-            <translation><!-- Email Vietnam --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Face to face</masterLabel>
-            <translation><!-- Face to face --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Fax</masterLabel>
-            <translation><!-- Fax --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Interactive Voice Response</masterLabel>
-            <translation><!-- Interactive Voice Response --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Letter</masterLabel>
-            <translation><!-- Letter --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Phone</masterLabel>
-            <translation><!-- Phone --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>SMS / Text Messages</masterLabel>
-            <translation><!-- SMS / Text Messages --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Social</masterLabel>
-            <translation><!-- Social --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Social Media North America</masterLabel>
-            <translation><!-- Social Media North America --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Store</masterLabel>
-            <translation><!-- Store --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Web</masterLabel>
-            <translation><!-- Web --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Web North America</masterLabel>
-            <translation><!-- Web North America --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>White Mail</masterLabel>
-            <translation><!-- White Mail --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Original Description --></label>
         <name>Original_Description__c</name>
     </fields>
@@ -1029,21 +846,6 @@
         <name>Personal_Care__c</name>
     </fields>
     <fields>
-        <name>Priority</name>
-        <picklistValues>
-            <masterLabel>1 - High</masterLabel>
-            <translation><!-- 1 - High --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>2 - Medium</masterLabel>
-            <translation><!-- 2 - Medium --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>3 - Low</masterLabel>
-            <translation><!-- 3 - Low --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Product CPG Code --></label>
         <name>Product_CPG_Code__c</name>
     </fields>
@@ -1212,33 +1014,6 @@
         <name>Purchase_Date__c</name>
     </fields>
     <fields>
-        <name>Reason</name>
-        <picklistValues>
-            <masterLabel>Complaint</masterLabel>
-            <translation><!-- Complaint --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Duplicate</masterLabel>
-            <translation><!-- Duplicate --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Enquiry</masterLabel>
-            <translation><!-- Enquiry --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Existing problem</masterLabel>
-            <translation><!-- Existing problem --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Praise</masterLabel>
-            <translation><!-- Praise --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Suggestion</masterLabel>
-            <translation><!-- Suggestion --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Reason Code Retention Days --></label>
         <name>Reason_Code_Retention_Days__c</name>
     </fields>
@@ -1376,53 +1151,6 @@
         <name>Social_Response_Survey_URL__c</name>
     </fields>
     <fields>
-        <name>Status</name>
-        <picklistValues>
-            <masterLabel>Awaiting Factory Response</masterLabel>
-            <translation><!-- Awaiting Factory Response --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Awaiting Information from Consumer</masterLabel>
-            <translation><!-- Awaiting Information from Consumer --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Awaiting Knowledge Response</masterLabel>
-            <translation><!-- Awaiting Knowledge Response --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Closed</masterLabel>
-            <translation><!-- Closed --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Closed as Duplicate</masterLabel>
-            <translation><!-- Closed as Duplicate --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Escalated</masterLabel>
-            <translation><!-- Escalated --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>In Progress</masterLabel>
-            <translation><!-- In Progress --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>New</masterLabel>
-            <translation><!-- New --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>On Hold</masterLabel>
-            <translation><!-- On Hold --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Pending with Courier</masterLabel>
-            <translation><!-- Pending with Courier --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Review Needed</masterLabel>
-            <translation><!-- Review Needed --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Store Location --></label>
         <name>Store_Location__c</name>
     </fields>
@@ -1446,21 +1174,6 @@
     <fields>
         <label><!-- Transient External Id --></label>
         <name>Transient_External_Id__c</name>
-    </fields>
-    <fields>
-        <name>Type</name>
-        <picklistValues>
-            <masterLabel>Feature Request</masterLabel>
-            <translation><!-- Feature Request --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Problem</masterLabel>
-            <translation><!-- Problem --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Question</masterLabel>
-            <translation><!-- Question --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <label><!-- UPC Code Detail --></label>
