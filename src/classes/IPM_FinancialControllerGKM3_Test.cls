@@ -1,11 +1,10 @@
 /*
 * @author       Cognizant 
-* @date         15/04/2015
+* @date         10/10/2016
 * @description  This class is used to test the functionality of IPM_FinancialController class 
 */
 @isTest 
-public class IPM_FinancialController_Test { 
-    
+public class IPM_FinancialControllerGKM3_Test { 
     
     private static final string SELCTED_CURRENCY_EUR = 'EUR';
     private static final string SELCTED_CURRENCY_GBP = 'GBP';
@@ -13,12 +12,12 @@ public class IPM_FinancialController_Test {
     private static final string SUST_PERIOD_3 = '3';
     private static final string SUST_PERIOD_5 = '5';
     private static final string DOC_SECTION = 'Charter';
-    private static final string TEST_COMMENTS = 'TestComments1';
+    private static final string TEST_COMMENTS = 'GKM3TestComments1';
     private static final integer EXEC_PART_2 = 2;
     private static final integer EXEC_PART_3 = 3;
     private static final integer EXEC_PART_4 = 4;
     private static final integer EXEC_PART_5 = 5;
-    private static final integer EXEC_PART_6 = 6;
+	
     private static final string INVALID_PROJECT_NAME = 'Invalid project name';
     private static final string INVALID_SPAN_NAME = 'Invalid span name';
     private static final string INVALID_PROJECT_TYPE = 'Invalid project type';
@@ -41,6 +40,7 @@ public class IPM_FinancialController_Test {
     //This method creates required global, regional and local projects and rollouts, also related financials. These records are then accessed across the testmethods.
     @testSetup static void financialSetUp() 
      {
+		Test.startTest();  
         User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
         // Create an instances of standard Users for Allocation to Project Leaders.
         List<IPM_Project__c> globalProjectList = new List<IPM_Project__c>();
@@ -62,33 +62,29 @@ public class IPM_FinancialController_Test {
 
             update userList;
         } 
-
-        
         // Create Company Card information(Master Data)
-        IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
-        IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
-        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+        IPM_Company_Card__c globalCompanyCardGKM3 = IPM_TestFactory_Helper.createGKM3GlobalCompanyCard(false);
+        IPM_Company_Card__c localCompanyCardGKM3 = IPM_TestFactory_Helper.createGKM3LocalCompanyCard(false);
         
-        List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+        List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCardGKM3,localCompanyCardGKM3};
         insert companyCardList;
-          
-        IPM_TestFactory_Helper.getProjectMasterData();
-
+        
+		IPM_TestFactory_Helper.getProjectMasterDataForGKM3();
+		
         IPM_TestFactory_Helper.shareMasterProject(userList); 
          
-        
          //User at index 0 is Global Project Leader and hence assert is not done based on hard coded names
          
         System.runAs(userList[0])
         {
-            Test.startTest();   
+             
             
-            globalProjectList = IPM_TestFactory_Helper.projectSetUp(1,userList[0]);
+            globalProjectList = IPM_TestFactory_Helper.projectSetUpGKM3(1,userList[0]);            
             system.assertNotEquals(globalProjectList,null, 'Global projects not created');
             for(IPM_Project__c p:globalProjectList){
                 p.IPM_Answer_of_Q1__c='test question';
-                p.IPM_ProjectGKM__c='GKM2';
             }
+           
             insert globalProjectList;
 
             // Create Regional Rollouts for Created Global project.
@@ -165,8 +161,9 @@ public class IPM_FinancialController_Test {
             //assert on counti is sufficient, additional soql can be a risk for SOQL gov limit as this method has loads of queries.
             system.assert(countryList.size()>0, 'country records not created');
 
-            Test.stopTest();
+            
         }
+        Test.stopTest();
      } 
      
 
@@ -223,15 +220,15 @@ public class IPM_FinancialController_Test {
         {
 
              //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-             IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c,IPM_GateKeeping_Model__c,IPM_Phase__c, IPM_ProjectGKM__c, IPM_CompanyCardText__c from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original'  and Name='TestComments1' limit 1];
+             IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c,IPM_GateKeeping_Model__c,IPM_Phase__c, IPM_ProjectGKM__c, IPM_CompanyCardText__c from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original'  and Name='GKM3TestComments1' limit 1];
              system.assert(globalOriginal!=null, 'Global original project not created');
-             system.assertEquals(globalOriginal.name, 'TestComments1', INVALID_PROJECT_NAME);
+             system.assertEquals(globalOriginal.name, 'GKM3TestComments1', INVALID_PROJECT_NAME);
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c globFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
-             Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='TestComments1_LA_BR'];
+             Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='GKM3TestComments1_LA_BR'];
              system.assert(globFin!=null,'Finance record for global project not created.');
-             system.assertEquals(globFin.Financial_External_ID__c, 'TestComments1_LA_BR');
+             system.assertEquals(globFin.Financial_External_ID__c, 'GKM3TestComments1_LA_BR');
              
              setPage(globalOriginal.id);
              IPM_FinancialController ipmFinCon = new IPM_FinancialController();
@@ -255,17 +252,7 @@ public class IPM_FinancialController_Test {
              //private method testCatch has ASSERTS statements so no duplicates here
              testCatch(globalOriginal, ipmFinCon);
             
-             // Test the fuctionality confirm button on financial page by TLD Change 
-             List<IPM_Project_Rollout__c> regionalRolloutList = [SELECT Id, Target_Launch_Date__c FROM IPM_Project_Rollout__c WHERE IPM_Project__c =: globalOriginal.id ]; 
-             regionalRolloutList[0].Target_Launch_Date__c = System.today().addMonths(1);
-             update regionalRolloutList;
              
-             IPM_Project_Type__c projectType = IPM_Utils.retrieveProjectType(globalOriginal);
-             // Test assert to show confirm button to on financial page 
-            // system.assert(projectType.IPM_Financial_Confirm_button__c);
-            //system.debug('PS::projectType.IPM_Financial_Confirm_button__c='+projectType.IPM_Financial_Confirm_button__c);
-            //system.debug('PS::ipmFinCon.showMisalignedConfirmbtn='+ipmFinCon.showMisalignedConfirmbtn);
-            system.assertEquals(projectType.IPM_Financial_Confirm_button__c, ipmFinCon.showMisalignedConfirmbtn, ''+globalOriginal);
              
         }
 
@@ -282,16 +269,16 @@ public class IPM_FinancialController_Test {
         System.runAs(globalProjectLeader)
         {
             //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-             IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name='TestComments1' limit 1];
+             IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name='GKM3TestComments1' limit 1];
 
              system.assert(globalOriginal!=null, 'Global project not created');
-             system.assertEquals(globalOriginal.name, 'TestComments1', INVALID_PROJECT_NAME);
+             system.assertEquals(globalOriginal.name, 'GKM3TestComments1', INVALID_PROJECT_NAME);
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c globFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
-             Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='TestComments1_LA_CONSOLIDATED'];
+             Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='GKM3TestComments1_LA_CONSOLIDATED'];
              system.assert(globFin!=null, 'Finance record not found.');
-             system.assertEquals(globFin.Financial_External_ID__c, 'TestComments1_LA_CONSOLIDATED', INVALID_FINACIAL_EXT_ID);
+             system.assertEquals(globFin.Financial_External_ID__c, 'GKM3TestComments1_LA_CONSOLIDATED', INVALID_FINACIAL_EXT_ID);
              
              setPage(globalOriginal.id);
              IPM_FinancialController ipmFinCon = new IPM_FinancialController();
@@ -304,7 +291,6 @@ public class IPM_FinancialController_Test {
              callCtrlAction(ipmFinCon, EXEC_PART_2);
              callCtrlAction(ipmFinCon, EXEC_PART_3);
              callCtrlAction(ipmFinCon, EXEC_PART_4);
-             callCtrlAction(ipmFinCon, EXEC_PART_6);
              
              ipmFinCon.updateMisalignmentByFinanceLeader();
              ipm_project__c sel = [select IPM_Project_Type__c,IPMProject_Span__c, MisAligned_Confirmed_By_Finance_Leader__c from ipm_project__c where id = :globalOriginal.id];
@@ -322,200 +308,13 @@ public class IPM_FinancialController_Test {
              system.assertEquals(true, ipmFinCon.isConsolidatedOrNonkey, eitherConsolidatedNonKeyMsg);
              system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , TLDNullMsg);
              system.assertEquals(false,ipmFinCon.showNext , showNextMsg);
-             system.assertEquals(false,ipmFinCon.showPrevious, showPreviousMsg);
-             
+             system.assertEquals(false,ipmFinCon.showPrevious, showPreviousMsg);             
              
              
         }
          
      }
      
-     
-     //Use case: Regional Rollout Feasibility phase and NON consilidate financnials
-     static testMethod void testregionalRolloutNONConsolidate()
-     {
-        List<String> emailList = new List<String>{GLOBAL_PL_EMAIL_ID,REGIONAL_PL_EMAIL_ID,LOCAL_PL_EMAIL_ID};
-
-        Test.startTest();
-
-        User globalProjectLeader =null; User regionalProjectLeader =null;  User localProjectLeader =null;
-
-        for(User linkedUser : [Select Id,email from User where email in :emailList])
-        {
-            if(linkedUser.email == GLOBAL_PL_EMAIL_ID)
-            {
-                globalProjectLeader = linkedUser;
-            }
-            else if(linkedUser.email == REGIONAL_PL_EMAIL_ID)
-            {
-                regionalProjectLeader = linkedUser;
-            }
-            else
-            {
-                localProjectLeader = linkedUser;
-            }
-        }
-		
-        IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader}); 
-
-        System.runAs(globalProjectLeader)
-        {
-            List<IPM_Project_Rollout__c> rolloutList = new List<IPM_Project_Rollout__c>();
-
-            Id regionalRecordType = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).RecordTypeId;
-
-            IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c,
-                (Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r where recordTypeId =:regionalRecordType )  
-                FROM IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name='TestComments1' limit 1];
-
-            for(IPM_Project_Rollout__c rollout : globalOriginal.IPM_Project_Rollout__r)        
-            {
-                rollout.IPM_Regional_PL__c = regionalProjectLeader.ID;
-                rolloutList.add(rollout);
-            }
-
-            update rolloutList;
-
-            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(new List<Id>{globalOriginal.Id},globalProjectLeader); 
-            
-            update projectListPhaseChange;
-        }
-
-        Test.stopTest();
-        
-        //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-
-        IPM_Project__c regionalRolloutNC = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c,
-        									IPM_Target_Launch_Dates__c, IPM_Phase__c, IPM_ProjectGKM__c, IPM_GateKeeping_Model__c, IPM_CompanyCardText__c
-        									from IPM_Project__c where IPMProject_Span__c='Regional' and IPM_Project_Type__c='Rollout' and Name='TestComments1_LA' limit 1];
-        system.assert(regionalRolloutNC!=null,'Regional rollout record for non consolidate not found');
-        system.assertEquals(regionalRolloutNC.name, 'TestComments1_LA', INVALID_PROJECT_NAME);
-             
-         //Finance record for global project which is NON consolidate             
-         IPM_Financial__c regionalRolloutNCFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
-         Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='TestComments1_LA_BR'];
-         system.assert(regionalRolloutNCFin!=null, 'Finance record for regional rollout project could not be found');
-         system.assertEquals(regionalRolloutNCFin.Financial_External_ID__c, 'TestComments1_LA_BR', 'Invalid financial external id found');
-             
-         IPM_FinancialController ipmFinCon = new IPM_FinancialController();
-         ipmFinCon.project = regionalRolloutNC;
-         ipmFinCon.currentfinancial = regionalRolloutNCFin;
-         ipmFinCon.currentfinancialid = regionalRolloutNCFin.id;
-         ipmFinCon.isConsolidatedOrNonkey = false;
-         
-         //asserts are in source method for callCtrlAction calls    
-         callCtrlAction(ipmFinCon, EXEC_PART_4);
-         callCtrlAction(ipmFinCon, EXEC_PART_5);
-         callCtrlAction(ipmFinCon, EXEC_PART_6);
-         
-         //asserts are in source method to check tab load
-         //Load Tab MyView
-         loadTab(regionalRolloutNC.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
-         //Load Tab TopDown
-         loadTab(regionalRolloutNC.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
-         //Load Tab Rollup
-         loadTab(regionalRolloutNC.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
-         
-         system.assertEquals(false, ipmFinCon.isConsolidatedOrNonkey, eitherConsolidatedNonKeyMsg);
-         system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , TLDNullMsg);
-         system.assertEquals(false,ipmFinCon.showNext , showNextMsg);
-         system.assertEquals(false,ipmFinCon.showPrevious, showPreviousMsg);
-         
-     }
-     
-     
-     //Use case: Regional Rollout Feasibility phase and consilidate financnials
-     static testMethod void testRegionalRolloutConsolidate()
-     {
-        List<String> emailList = new List<String>{GLOBAL_PL_EMAIL_ID,REGIONAL_PL_EMAIL_ID,LOCAL_PL_EMAIL_ID};
-
-        Test.startTest();
-
-        User globalProjectLeader =null; User regionalProjectLeader =null;  User localProjectLeader =null;
-
-        for(User linkedUser : [Select Id,email from User where email in :emailList])  
-        {
-            if(linkedUser.email == GLOBAL_PL_EMAIL_ID)
-            {
-                globalProjectLeader = linkedUser;
-            }
-            else if(linkedUser.email == REGIONAL_PL_EMAIL_ID)
-            {
-                regionalProjectLeader = linkedUser;
-            }
-            else
-            {
-                localProjectLeader = linkedUser;
-            }
-        }
-
-
-        IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader}); 
-
-        System.runAs(globalProjectLeader)
-        { 
-            List<IPM_Project_Rollout__c> rolloutList = new List<IPM_Project_Rollout__c>();
-
-            Id regionalRecordType = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).RecordTypeId;
-
-            IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, 
-            	IPM_Target_Launch_Dates__c, IPM_Phase__c, IPM_ProjectGKM__c, IPM_GateKeeping_Model__c, IPM_CompanyCardText__c,
-                (Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r where recordTypeId =:regionalRecordType )  
-                FROM IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name='TestComments1' limit 1];
-
-            for(IPM_Project_Rollout__c rollout : globalOriginal.IPM_Project_Rollout__r)        
-            {
-                rollout.IPM_Regional_PL__c = regionalProjectLeader.ID;
-                rolloutList.add(rollout);
-            } 
-
-            update rolloutList;
-
-            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(new List<Id>{globalOriginal.Id},globalProjectLeader); 
-            
-            update projectListPhaseChange;
-        }
-
-        Test.stopTest();
-            
-         //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-         IPM_Project__c regionalRollout = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c, 
-         								   IPM_Parent_Project__c, IPM_Phase__c, IPM_ProjectGKM__c, IPM_GateKeeping_Model__c, IPM_CompanyCardText__c  
-         								   from IPM_Project__c where IPMProject_Span__c='Regional' and IPM_Project_Type__c='Rollout' and Name='TestComments1_LA' limit 1];
-         system.assert(regionalRollout!=null,'Regional rollout consolidate record not found.');
-         system.assertEquals(regionalRollout.name, 'TestComments1_LA', INVALID_PROJECT_NAME);
-         
-         regionalRollout.BI__c = PROJECT_BI_LARGE;
-         update regionalRollout;
-         IPM_Project__c sel = [select BI__c from IPM_Project__c where id=:regionalRollout.id];
-         system.assertEquals(sel.BI__c, PROJECT_BI_LARGE,'BI did not update');
-         
-         //Finance record for global project which is NON consolidate             
-         IPM_Financial__c regFinCon = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
-         Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c, Parent_Project__c from IPM_Financial__c where Financial_External_ID__c='TestComments1_LA_CONSOLIDATED'];
-         system.assert(regFinCon!=null,'Finance record for regional rollout not found.');
-         system.assertEquals(regFinCon.Financial_External_ID__c, 'TestComments1_LA_CONSOLIDATED', INVALID_FINACIAL_EXT_ID);
-         
-         setPage(regionalRollout.id);
-         IPM_FinancialController ipmFinCon = new IPM_FinancialController();
-         ipmFinCon.project = regionalRollout;
-         ipmFinCon.currentfinancial = regFinCon;
-         ipmFinCon.currentfinancialid = regFinCon.id;
-         ipmFinCon.isConsolidatedOrNonkey = true;
-         
-         //asserts are in source method for callCtrlAction calls    
-         callCtrlAction(ipmFinCon, EXEC_PART_4);
-         callCtrlAction(ipmFinCon, EXEC_PART_5); 
-         callCtrlAction(ipmFinCon, EXEC_PART_6);
-         
-         //asserts are in source method to check tab load
-         //Load Tab MyView
-         loadTab(regionalRollout.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
-         //Load Tab TopDown
-         loadTab(regionalRollout.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
-         //Load Tab Rollup
-         loadTab(regionalRollout.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
-     }
     
      static void testCurrency()
      {
@@ -558,6 +357,7 @@ public class IPM_FinancialController_Test {
         
     }
      
+   
     /* static testMethod void testGlobalOriginalNONConsolidate(){}*/
     
     private static pageReference setPage(Id id){ 
@@ -643,38 +443,6 @@ public class IPM_FinancialController_Test {
             system.assertEquals(ipmFinCon.isNavigation, false, INCORRECT_NAVIGATION_RESULT);
             
         } 
-       /* if (part == EXEC_PART_6){ //only for certain type
-                //This fails 
-                ipmFinCon.fieldsuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
-                IPM_FinancialWrapper finWrapper = new IPM_FinancialWrapper();
-                List<IPM_FinancialValueWrapper> liFinValWrGPL = new List<IPM_FinancialValueWrapper>();
-                IPM_FinancialValueWrapper finvalwrGPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,TEST_STR,currentFinancial,IPM_ConstantUtils.TAB_MYVIEW_NAME);
-                liFinValWrGPL.add(finvalwrGPL);
-                finWrapper.lstGrossPLVolume = liFinValWrGPL;
-                
-                List<IPM_FinancialValueWrapper> liFinValWrINCPL = new List<IPM_FinancialValueWrapper>();
-                IPM_FinancialValueWrapper finvalwrINCPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,TEST_STR,currentFinancial,IPM_ConstantUtils.TAB_MYVIEW_NAME);
-                liFinValWrINCPL.add(finvalwrINCPL);
-                finWrapper.lstIncrementalPLVolume = liFinValWrINCPL;
-
-                //This works
-                ipmFinCon.fieldsuffix = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-                IPM_FinancialValueWrapper lstGrossPLVolumeTon = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,TEST_STR,currentFinancial,IPM_ConstantUtils.TAB_MYVIEW_NAME);
-                finWrapper.lstGrossPLVolumeTons = new List<IPM_FinancialValueWrapper>{lstGrossPLVolumeTon};
-                
-                IPM_FinancialValueWrapper lstGrossPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,TEST_STR,currentFinancial,IPM_ConstantUtils.TAB_MYVIEW_NAME);
-                finWrapper.lstGrossPLVolume = new List<IPM_FinancialValueWrapper>{lstGrossPL};
-                    
-                IPM_FinancialValueWrapper lstIncrementalPLVolumeTon = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,TEST_STR,currentFinancial,IPM_ConstantUtils.TAB_MYVIEW_NAME);
-                finWrapper.lstIncrementalPLVolumeTons = new List<IPM_FinancialValueWrapper>{lstIncrementalPLVolumeTon};
-                
-                IPM_FinancialValueWrapper lstIncrementalPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,TEST_STR,currentFinancial,IPM_ConstantUtils.TAB_MYVIEW_NAME);
-                finWrapper.lstIncrementalPLVolume = new List<IPM_FinancialValueWrapper>{lstIncrementalPL};
-                //ipmFinCon.populateVolumeType(finWrapper);
-                ipmFinCon.financialsInnovation = finWrapper;
-                ipmFinCon.updateVolumeType();
-                //Cannot be asserted as this function is called from vf page to Re-render content panel
-        }*/
     }
     
      //Parameterised function to load different tabs on Financial page.
