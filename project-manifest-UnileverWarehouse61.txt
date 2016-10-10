@@ -1,4 +1,0 @@
-src/permissionsets
-src/permissionsets/WU_Warehouse_Excellence_Operations.permissionset
-
-
