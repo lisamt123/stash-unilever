@@ -66,7 +66,6 @@
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
 	  <runTest>CORE_NewsApp_Test</runTest>
-	   <runTest>CORE_NewsArticle_Test</runTest>
     </sf:deploy>
   </target>  
 
