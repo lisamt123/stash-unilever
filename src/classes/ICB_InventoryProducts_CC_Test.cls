@@ -14,7 +14,6 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 @isTest
 public class ICB_InventoryProducts_CC_Test 
 {
-    
     private static Account acc;
     private static Contact contact;
     private static User user;

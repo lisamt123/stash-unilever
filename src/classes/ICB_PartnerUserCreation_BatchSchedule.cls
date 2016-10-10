@@ -21,5 +21,4 @@ global with sharing class ICB_PartnerUserCreation_BatchSchedule implements Sched
         ICB_ContactPartnerUserCreation.getInstance().userCreation();
         ICB_ContactPartnerUserCreation.getInstance().disabledUser();
     }
-    
 }

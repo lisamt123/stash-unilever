@@ -5,6 +5,7 @@ src/translations/pt_BR.translation
 src/objects
 src/objects/Contact.object
 src/objects/Product2.object
+src/objects/ICB_ContactTypes__c.object
 src/labels
 src/labels/ICB.labels
 src/permissionsets
@@ -50,6 +51,7 @@ src/aura/ICB_CockpitContacts/ICB_CockpitContacts.cmp
 src/aura/ICB_CockpitContacts/ICB_CockpitContacts.cmp-meta.xml
 src/aura/ICB_CockpitContacts/ICB_CockpitContactsController.js
 src/aura/ICB_CockpitContacts/ICB_CockpitContactsHelper.js
+src/aura/ICB_CockpitContacts/ICB_CockpitContacts.css
 src/aura/ICB_Inventory/ICB_Inventory.cmp
 src/aura/ICB_Inventory/ICB_Inventory.cmp-meta.xml
 src/aura/ICB_Inventory/ICB_InventoryController.js
