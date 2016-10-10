@@ -34,7 +34,7 @@ public with sharing class IPM_Resource_Allocation {
     private static final string PERCENTAGE_SLASH='%\'';
 	private static final String MCO_STRING = ' IPM_Company_Card__r.IPM_MCO__c = \'';
 	private static final String BCKWRD_SLASH = '\'';  
-    private static final string QUERY_LIMIT=' limit 50000';
+    private static final string QUERY_LIMIT=' limit 100';
     private static final string GKM3_CAT='Personal Care' ;
     private static final string MY_MCO='myMCO' ;
 	private static final string GKM3=IPM_ConstantUtils.GATE_KEEPING_MODEL_3;
