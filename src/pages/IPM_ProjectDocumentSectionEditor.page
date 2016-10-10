@@ -93,7 +93,7 @@
                                     <div class="col-sm-10 greytxt pull-left">
                                         <apex:outputText value="{!projDocSec.IPM_Section__r.IPM_Section_Help_Text__c}"/>
                                         <br/> <br/>
-                                       <apex:outputText value="{!$Label.IPM_LocalSourcingTable_Help_Text}" rendered="{!project.IPMProject_Span__c=='Local' && project.IPM_ProjectGKM__c=='GKM3'}"></apex:outputText>
+                                       <apex:outputText value="{!$Label.IPM_LocalSourcingTable_Help_Text}" rendered="{! projDocSec.IPM_Section_Sequence__c =='5.1' && project.IPMProject_Span__c=='Local' && project.IPM_ProjectGKM__c=='GKM3'}"></apex:outputText>
                                     </div>
                                     <div class="col-sm-2 SecButtonSet pull-right">
                                         <div class="row">                          
@@ -733,7 +733,7 @@
                     <c:IPM_OTIFSectionStatus otfType="Section" getSectionId="{!projDocSec.Id}" isEdtable="{!IsEditableOutC}" rendered="{!projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'}"></c:IPM_OTIFSectionStatus>
                 </div>
                 
-                <apex:outputPanel rendered="{!project.IPMProject_Span__c=='Local' && project.IPM_ProjectGKM__c=='GKM3'}">
+                <apex:outputPanel rendered="{!project.IPMProject_Span__c=='Local' && project.IPM_ProjectGKM__c=='GKM3' && projDocSec.IPM_Section_Sequence__c =='5.1'}">
                 	<c:IPM_Local_Sourcing_Table projId="{!projectId}"></c:IPM_Local_Sourcing_Table>
                 </apex:outputPanel>
             </apex:form> 
