@@ -1131,8 +1131,7 @@ public without sharing class IPM_Utils {
                     && finYr.IPM_Financial__r.IPM_Project_Rollout__c == null && finYr.IPM_Financial__r.Regional_Project__c == null && finYr.IPM_Financial__r.Local_Project__c == null
                     && finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null ) 
                 {
-                    iTOValue = finYr.IPM_Financial__r.Parent_Project__r.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS ? (finYr.Turnover_Global__c)/1000 : (finYr.Turnover_Regional__c)/1000; 
-
+					iTOValue = (finYr.IPM_Financial__r.Parent_Project__r.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS || finYr.IPM_Financial__r.Parent_Project__r.IPM_ProjectGKM__c==IPM_ConstantUtils.GKM_3 )? (finYr.Turnover_Global__c)/1000 : (finYr.Turnover_Regional__c)/1000; 
                     projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
                 }
                 
