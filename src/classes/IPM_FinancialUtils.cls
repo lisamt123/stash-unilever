@@ -217,7 +217,7 @@ public with sharing class IPM_FinancialUtils
     * @description  Used for enable or disable Countries checkbox on Top Down Tab.
     */
     
-    public static boolean showEnableCheckboxes(String Project_GKM,String IPM_Phase, String finType){
+    public static boolean isCheckboxToBeDisabled(String Project_GKM,String IPM_Phase, String finType){
     	
     	if(Project_GKM == 'GKM3')
     	{
@@ -229,6 +229,10 @@ public with sharing class IPM_FinancialUtils
     			else {
     				return true;
     				}
+    		}
+    		// @description: Used to enable countries checkboxes editable for GKM3 Idea phase.
+    		else if(IPM_Phase == 'Ideas'){
+    			return false;
     		}
     		return true;
     	}
