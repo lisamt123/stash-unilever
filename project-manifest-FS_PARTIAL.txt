@@ -1,16 +1,23 @@
 src
+src/objects
+src/objects/FS_Account_Plan__c.object
+src/objects/FS_Defined_Objective__c.object
+src/layouts
+src/layouts/FS_Account_Plan__c-Account Plan Layout.layout
+src/layouts/FS_Account_Plan__c-Distributor Account Plan Feed Based.layout
+src/layouts/FS_Account_Plan__c-Distributor Account Plan Layout.layout
+src/layouts/FS_Account_Plan__c-Operator Account Plan Feed Based.layout
+src/layouts/FS_Account_Plan__c-Operator Account Plan Layout.layout
+src/layouts/FS_Defined_Objective__c-Defined Objective Layout.layout
+src/layouts/FS_Defined_Objective__c-Distributor Objective Feed Based.layout
+src/layouts/FS_Defined_Objective__c-Distributor Objective.layout
+src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout
+src/layouts/FS_Defined_Objective__c-Operator Objective.layout
+src/layouts/FS_Defined_Objective__c-Risk.layout
 src/permissionsets
 src/permissionsets/FS_Admin.permissionset
-src/profiles
-src/profiles/Unilever Food Solution - NA.profile
-src/profiles/Unilever Food Solution - Russia.profile
-src/workflows
-src/workflows/Opportunity.workflow
-src/triggers/OpportunityTrigger.trigger
-src/triggers/OpportunityTrigger.trigger-meta.xml
-src/classes/FS_OpportunityHelper.cls
-src/classes/FS_OpportunityHelper.cls-meta.xml
-src/objects
-src/objects/Opportunity.object
-src/layouts
-src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout
+src/permissionsets/FS_AFM.permissionset
+src/permissionsets/FS_Integration_User.permissionset
+src/permissionsets/FS_Marketing.permissionset
+src/permissionsets/FS_Sales_Rep.permissionset
+src/permissionsets/FS_SCP_And_Corp.permissionset
