@@ -24,7 +24,7 @@ src/classes/WU_LeadershipPermission.cls-meta.xml
 
 src/objects
 src/objects/WU_Master_Warehouse__c.object
-src/objects/User.object
+src/objects/user.object
 
 src/pages
 src/pages/WU_LeadershipCheck.page

@@ -56,7 +56,6 @@ public with sharing class CI_R2R_Innovation_TriggerHandler implements ITrigger{
     mapsme.put('Period-End','PE');
     mapsme.put('Project','PT');
     mapsme.put('SAP Roles','SR');
-    mapsme.put('Tax','TX');
     mapsme.put('Tools','PT');
     mapsme.put('GPM','GPM');
     mapsme.put('SCOA','SCOA');

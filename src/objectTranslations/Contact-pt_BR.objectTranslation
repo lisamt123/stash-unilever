@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+	<fields>
+        <label>Status da Criação do Usuário</label>
+        <name>ICB_Cause__c</name>
+    </fields>
+    <fields>
+        <label>Status</label>
+        <name>ICB_Status__c</name>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation>Inativo</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation>Ativo</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fail</masterLabel>
+            <translation>Falha</translation>
+        </picklistValues>
+    </fields>
+     <fields>
+        <label>Fail</label>
+        <name>ICB_Fail__c</name>
+    </fields>
     <fields>
         <help><!-- This field is for Agency contact who will receive the notification after approval process. --></help>
         <label><!-- Send Email Notifcation --></label>
@@ -464,11 +488,11 @@
         <name>Gender__c</name>
         <picklistValues>
             <masterLabel>Female</masterLabel>
-            <translation><!-- Female --></translation>
+            <translation>Feminino</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Male</masterLabel>
-            <translation><!-- Male --></translation>
+            <translation>Masculino</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -829,4 +853,5 @@
         <label><!-- YahooWeather --></label>
         <name>YahooWeather</name>
     </webLinks>
+    
 </CustomObjectTranslation>

@@ -48,7 +48,7 @@
             <div class="slds-text-heading--small" style="padding-left: 4px;">{!v.campaignTitle}</div>
         </div>
         <div class="slds-no-flex">
-            <div  class=" slds-dropdown-trigger--click slds-is-open slds-dropdown--right filter"  aria-expanded="true">               
+            <div  class=" slds-dropdown-trigger--click slds-is-open slds-dropdown--right filter new-class-filter"  aria-expanded="true">               
                 <button class="slds-button slds-button--icon-border-filled " onclick="{!c.showFilterMenu}" aria-haspopup="true" >
                     <img src="/resource/CORE_IC_IdeasLigthtning/utility/filterList_60.png" class="slds-button__icon slds-button__icon--hint" />
                 </button>

@@ -35,6 +35,9 @@
     </style>    
     <aura:attribute name="ApprovalData" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
     <aura:attribute name="retainfilterValue" type="string"/>
+    <!-- Winter'17 fix start-->
+    <aura:attribute name="isDesktop" type="String"/>
+    <!-- Winter'17 fix end-->
     <div onclick="{!c.navigateToDetail}"> 
         
         <ui:outputText aura:id="reqlId" value="{!v.ApprovalData.RequestId}"  class="hiddenClass"/>

@@ -5,7 +5,7 @@ This Visualforce page is used to display the comments captured through tracking 
 VERSION   AUTHOR   DATE    
 1.0       Chandana July-2016   
 ------------------------------------------------------------------------->
-<apex:page standardController="CI_R2R_Innovation__c" extensions="CI_R2R_GetHistory" showChat="false">
+ <apex:page standardController="CI_R2R_Innovation__c" extensions="CI_R2R_GetHistory" showChat="false">
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
   <script>  
@@ -60,7 +60,7 @@ a:visited {
     color: #0254EB
 }
 .morecontent span {
-    display: none;    
+    display: none;     
 }
 .more {
     font-weight: bold;
@@ -72,6 +72,6 @@ a:visited {
 .morelink:hover {
     text-decoration: none;
 }
-</style>
+</style> 
 
 </apex:page>

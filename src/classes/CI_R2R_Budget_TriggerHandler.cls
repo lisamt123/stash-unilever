@@ -45,7 +45,9 @@ public with sharing class CI_R2R_Budget_TriggerHandler implements ITrigger{
                 //system.debug('ffffffffffff'+mapinn.get(Budget.CI_R2R_Innovation__c).R2R_SME_Area__c+ Budget.ICC_Number2__c + Budget.Company_Code__c);
                 if(mapbudget.containsKey(mapinn.get(Budget.CI_R2R_Innovation__c).R2R_SME_Area__c + Budget.ICC_Number2__c + Budget.Company_Code__c)){
                 Budget.Cost_Centre__c= mapbudget.get(mapinn.get(Budget.CI_R2R_Innovation__c).R2R_SME_Area__c + Budget.ICC_Number2__c + Budget.Company_Code__c);
-                
+                }
+                else{
+                    Budget.addError('Combination of ICC Number,Company Code and SME doesnot exist');
                 }
             }
          }        

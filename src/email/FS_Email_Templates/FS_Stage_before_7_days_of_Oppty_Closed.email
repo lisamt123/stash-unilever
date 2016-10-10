@@ -1,0 +1,6 @@
+Hi {!Opportunity.OwnerFullName},
+
+This is a notification for opportunity one week before the closed date
+This Opportunity for {!Opportunity.Account} is at Stage {!Opportunity.StageName} and the Close Date is one week away. 
+
+{!Opportunity.Link}

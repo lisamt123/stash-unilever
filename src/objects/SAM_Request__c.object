@@ -434,7 +434,7 @@
         <fullName>fml_Cross_Charge_Amount_for_report__c</fullName>
         <description>For finance report</description>
         <externalId>false</externalId>
-        <formula>txt_Cross_Charge_Amount_in_euros__c +  rol_Total_CAPEX_in_for_X_type__c</formula>
+        <formula>txt_Cross_Charge_Amount_in_euros__c +  fml_Total_Applicable_Cross_Charge__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Cross Charge Amount (€)</label>
         <precision>18</precision>
@@ -467,6 +467,20 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fml_Total_Applicable_Cross_Charge__c</fullName>
+        <externalId>false</externalId>
+        <formula>rol_Total_Annual_Maint_in_for_X_type__c +  rol_Total_CAPEX_in_for_X_type__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Applicable Cross Charge (€)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -2674,6 +2688,22 @@ For SAM User: Write/View response for the query</inlineHelpText>
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>rol_Total_Annual_Maint_in_for_X_type__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Annual Maint in € for X type</label>
+        <summarizedField>SAM_Quote_Line_Item__c.Total_Annual_Maint__c</summarizedField>
+        <summaryFilterItems>
+            <field>SAM_Quote_Line_Item__c.pkl_Charging_Type__c</field>
+            <operation>equals</operation>
+            <value>Cross Charge Applicable (X)</value>
+        </summaryFilterItems>
+        <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>rol_Total_CAPEX_in__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Vertical summation of all the line items w.r.t Total CAPEX (€)</inlineHelpText>
@@ -2689,7 +2719,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
         <fullName>rol_Total_CAPEX_in_for_X_type__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Sum of Total CAPEX (€) values of all line items in quote where Charging Type is Cross Charge Applicable (X)</inlineHelpText>
-        <label>Total Applicable Cross Charge (€)</label>
+        <label>Total CAPEX in € for X type</label>
         <summarizedField>SAM_Quote_Line_Item__c.fml_Total_CAPEX__c</summarizedField>
         <summaryFilterItems>
             <field>SAM_Quote_Line_Item__c.pkl_Charging_Type__c</field>
@@ -40835,15 +40865,27 @@ Text( pkl_Status__c)&lt;&gt; $Label.SAM_Closed
         <errorMessage>Reason For Closure is mandatory</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>SAM_Requester_Alpha</fullName>
+        <fullName>SAM_RequesterEmail_Modify_Validation</fullName>
         <active>true</active>
+        <description>Requester Email Id cannot be modified by Non-creator of the request</description>
+        <errorConditionFormula>AND( 
+ISCHANGED(  eml_Requester_Email_Id__c ), 
+CreatedById &lt;&gt; OwnerId, 
+txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot; 
+)</errorConditionFormula>
+        <errorDisplayField>eml_Requester_Email_Id__c</errorDisplayField>
+        <errorMessage>Cannot modify</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Requester_Alpha</fullName>
+        <active>false</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Query_Requestor__c ) ) ),(NOT( REGEX( txt_Query_Requestor__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Query_Requestor__c</errorDisplayField>
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Requester_Email_UL</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND((NOT(ISBLANK( eml_Requester_Email_Id__c ))),NOT(REGEX( eml_Requester_Email_Id__c ,&apos;([a-zA-Z0-9_\\-\\.]+)@unilever.com&apos;)))</errorConditionFormula>
         <errorDisplayField>eml_Requester_Email_Id__c</errorDisplayField>
         <errorMessage>Please enter Unilever email id</errorMessage>

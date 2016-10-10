@@ -48,7 +48,8 @@ public  class SAM_InformationController_Test {
         
         SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
         insert objRequest;
-        objRequest.txt_Master_Clarity_Id__c = '123';
+        //objRequest.txt_Master_Clarity_Id__c = NULL;
+        objRequest.txt_Master_Clarity_Id__c = '0';
         objRequest.pkl_Deployments__c = 'Cloud';
         objRequest.mpkl_Cloud_Platforms__c = null;
         update objRequest;

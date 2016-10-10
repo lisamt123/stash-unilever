@@ -27,15 +27,12 @@
                 <field>txt_Edition__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Readonly</behavior>
+                <field>pkl_Instance_Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>pkl_Physical_instance__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_Physical_Server_Name__c</field>
+                <field>txt_Physical_Machine_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -61,11 +58,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>pkl_Hard_Partitioning__c</field>
+                <field>pkl_Hard_Partitioning_new__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_Diagnostic__c</field>
+                <field>txt_Diagnostic_new__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -88,15 +85,11 @@
                 <field>txt_Version__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>num_License_Quantity__c</field>
+            </layoutItems>
+            <layoutItems>
                 <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>pkl_Virtual_instance__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_Virtual_Server_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
@@ -121,11 +114,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_Partitioning__c</field>
+                <field>txt_Partitioning_new__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_Tuning__c</field>
+                <field>txt_Tuning_new__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

@@ -41,6 +41,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>fml_SAM_demand_manager__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Ticket_Age__c</field>
             </layoutItems>
         </layoutColumns>

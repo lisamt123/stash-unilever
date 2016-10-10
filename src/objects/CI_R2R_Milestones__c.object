@@ -66,6 +66,16 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+		<length>131072</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+		<visibleLines>7</visibleLines>
+    </fields>
+    <fields>
         <fullName>Milestone_Description__c</fullName>
         <externalId>false</externalId>
         <label>Milestone Description</label>
@@ -80,6 +90,8 @@
         <formula>IMAGE(CASE(RAG__c,&quot;Green&quot;, &quot;/img/samples/color_green.gif&quot;, 
 &quot;Amber&quot;, &quot;/img/samples/color_yellow.gif&quot;, 
 &quot;Red&quot;, &quot;/img/samples/color_red.gif&quot;, 
+&quot;NA&quot;, &quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHmrhXnCAeeK606bQNDHNKSt8P-xddQan-FlU3jczon211tAee&quot;, 
+&quot;Null&quot;, &quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHmrhXnCAeeK606bQNDHNKSt8P-xddQan-FlU3jczon211tAee&quot;, 
 &quot;/s.gif&quot;), 
 &quot;status color&quot;,30, 80)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -89,7 +101,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
+    <fields>
         <fullName>RAG__c</fullName>
         <externalId>false</externalId>
         <label>RAG</label>
@@ -106,11 +118,26 @@
                 <fullName>Green</fullName>
                 <default>false</default>
             </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
+			<picklistValues>
+                <fullName>Null</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Target_Closure_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Closure Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <label>CI_R2R Milestones</label>
     <listViews>

@@ -16,7 +16,6 @@
         <tbody>
             <aura:iteration var="wrapper" items="{!v.listContacts}" indexVar="index">
                 <tr>
-                    
                     <td scope="row" class ="BorderBlue">
                         <img src="{!wrapper.urlImage}" class=" image--align ImagePhoto"/>
                         
@@ -87,12 +86,12 @@
                         <div class="slds-truncate slds-grid btnCollor">
                             <aura:if isTrue="{!and(wrapper.oppItem.StageName != 'Pending',wrapper.oppItem.StageName != 'Available')}">
                                 <div data-record="{!index}" onclick="{!c.solicitation}" >
-                                    <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_REQUEST}"  disabled="false"/>
+                                    <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_REQUEST}"  disabled="{!v.disabled}"/>
                                 </div>
                                 
                                 <aura:set attribute="else">
                                     <div data-record="{!index}" onclick="{!c.updatedItem}">
-                                        <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_UPDATE_INVENTORY}" disabled="false"  />
+                                        <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_UPDATE_INVENTORY}" disabled="{!v.disabled}"  />
                                     </div>
                                 </aura:set>
                             </aura:if>

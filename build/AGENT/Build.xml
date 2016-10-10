@@ -66,17 +66,6 @@
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
       <runTest>AA_AgentAppService_Test</runTest>
-      <runTest>AA_AutoCompleteController_Test</runTest>
-      <runTest>AA_Constants_Test</runTest>
-      <runTest>AA_DatabaseServiceUtil_Test</runTest>
-	  <runTest>AA_ExecuteApprovalProcess_tst</runTest>
-	  <runTest>AA_FileUploadUtility_Test</runTest>
-	  <runTest>AA_RestRequestController_Test</runTest>
-	  <runTest>AA_WrapperClass_Test</runTest>
-	  <runTest>AA_Agent_Report_util_Test</runTest>
-	  <runTest>AA_ApplicationWrapperObjLtng_Test</runTest>
-	  <runTest>aa_Agent_Report_Trigger_Handler_Test</runTest>
     </sf:deploy>
-  </target>  
-
+  </target>
 </project>

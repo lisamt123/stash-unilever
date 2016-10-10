@@ -124,19 +124,13 @@
         var brandId=component.get("v.competitorBrandId");
         console.log("brandId: "+brandId);
         if(brandId===component.get("v.otherCompetitorBrandId"))
-        {	console.log("inside other brand");
+        {
          component.set("v.others",true);
          component.set("v.Brand",false);
          component.set("v.disableOnBrandChange", true);
         }
-        /*else
-        {	
-            component.set("v.others",false);
-            component.set("v.Brand",true);
-        }*/
-        //To display the competitor name according to brand selection
         else if(brandId !=='null' && brandId !==component.get("v.otherCompetitorBrandId"))
-        {	console.log("inside perticular brand");
+        {
          component.set("v.others",false);
          component.set("v.Brand",true);
          
@@ -162,8 +156,19 @@
              }
              component.set("v.competitorNameList", newBrandNameList);
              component.set("v.categoryList", newCategoryList);
-             component.find("competitorName").set("v.value",newBrandNameList[0].Id);
-             component.find("category").set("v.value",newCategoryList[0].Id);
+             if(newBrandNameList.length > 0){
+             	component.find("competitorName").set("v.value",newBrandNameList[0].Id);
+             }
+             else if(newBrandNameList.length === 0) {
+                 component.set("v.disableOnBrandChange", true);
+             }
+             if(newCategoryList.length > 0){
+             	component.find("category").set("v.value",newCategoryList[0].Id);
+             }
+             else if(newCategoryList.length === 0) {
+                 component.set("v.disableOnBrandChange", true);
+             }
+             
          });
          $A.enqueueAction(action);
         }        
@@ -181,7 +186,9 @@
             }
     },
     cancel: function(component, event, helper) {
-        var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
+       // var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
+       // winter 17' critical update issue
+       var selectEvent =  component.getEvent("navigateToPageDetailEvent");
         selectEvent.setParams({"navigate":"AA_LandingPageComponent","filterType":component.get("v.filterType"),"applyFilter":component.get("v.applyFilter"),"sortType":component.get("v.sortType"),"limitRecords":component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"clusterId":component.get("v.clusterId"),"countryId":component.get("v.countryId")}).fire();
     },
     handleSelectedUsers : function(component, event, helper) {
@@ -272,7 +279,7 @@
            || navigator.userAgent.match(/webOS/i)
            || navigator.userAgent.match(/iPhone/i)
            || navigator.userAgent.match(/iPad/i)){
-            helper.scrollToLocation(component, "top");            
+          helper.scrollToLocation(component, "top");            
         }
         if(navigator.userAgent.match(/iPod/i)
            || navigator.userAgent.match(/BlackBerry/i)
@@ -371,7 +378,9 @@
                 component.set("v.disableButton",false);
                 component.set("v.successMessage","true");     
                 setTimeout(function() {
-                    var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
+                    // var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
+                    // winter 17' critical update issue
+                    var selectEvent =  component.getEvent("navigateToPageDetailEvent");
                     selectEvent.setParams({"navigate":"AA_LandingPageComponent","filterType":component.get("v.filterType"),"sortType":component.get("v.sortType"),"limitRecords":component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"clusterId":component.get("v.clusterId"),"countryId":component.get("v.countryId")}).fire();
                 },3000);
             }
