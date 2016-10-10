@@ -56,7 +56,7 @@ src/layouts/CPA_HLE_Request__c-HLE Answered.layout
 src/layouts/CPA_HLE_Request__c-HLE Cancelled.layout
 src/layouts/CPA_HLE_Request__c-HLE.layout
 src/layouts/CPA_PWORF__c-Other Read Only Layout.layout
-src/layouts/CPA_PWORF__c-RA Read Only Layout.layout 
+src/layouts/CPA_PWORF__c-RA Read Only Layout.layout
 src/permissionsets
 src/permissionsets/CPA_ADM.permissionset
 src/permissionsets/CPA_SMT.permissionset

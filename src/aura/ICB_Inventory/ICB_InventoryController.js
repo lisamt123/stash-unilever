@@ -2,6 +2,7 @@
     decrementValue : function(component, event, helper) {
         console.log('Entering <decrementValue>');
         var operation = component.get("v.operation");
+        var contact = component.get("v.contact");
         if(operation === "closed"){
             helper.decrementValueClosed(component,event);
         }else{

@@ -12,6 +12,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
+                <field>FS_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
         </layoutColumns>
@@ -53,6 +57,7 @@
     </layoutSections>
     <miniLayout>
         <fields>FS_Customer__c</fields>
+        <fields>FS_Status__c</fields>
     </miniLayout>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

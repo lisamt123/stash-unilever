@@ -19,8 +19,8 @@
     },
     solicitation : function(component, event, helper) {
         console.log('Entering <solicitation>');
-        var indexContact = component.get("v.indexContact");
-        var listContact = component.get("v.listContacts");
+        //var indexContact = component.get("v.indexContact");
+        //var listContact = component.get("v.listContacts");
        
         //if(!listContact[indexContact].isDisabled){
             helper.createOpportunity(component, event);
@@ -36,5 +36,8 @@
             
         //}
         console.log('Exit <updatedItem>');
+    },
+    reload : function(component){
+        location.reload(true);
     }
 })

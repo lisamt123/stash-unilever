@@ -85,14 +85,22 @@
                     <td >
                         <div class="slds-truncate slds-grid btnCollor">
                             <aura:if isTrue="{!and(wrapper.oppItem.StageName != 'Pending',wrapper.oppItem.StageName != 'Available')}">
-                                <div data-record="{!index}" onclick="{!c.solicitation}" >
-                                    <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_REQUEST}"  disabled="{!v.disabled}"/>
-                                </div>
                                 
+                                
+                                <div data-record="{!index}" onclick="{!c.solicitation}" >
+                                    <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_REQUEST}"  disabled="false"/>
+                                </div>
                                 <aura:set attribute="else">
-                                    <div data-record="{!index}" onclick="{!c.updatedItem}">
-                                        <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_UPDATE_INVENTORY}" disabled="{!v.disabled}"  />
-                                    </div>
+                                    <aura:if isTrue="{!wrapper.oppItem.StageName == 'Available'}">
+                                        <div data-record="{!index}" onclick="{!c.updatedItem}">
+                                             <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_UPDATE_INVENTORY}" disabled="false" />
+                                        </div>
+                                    </aura:if>
+                                    <aura:if isTrue="{!wrapper.oppItem.StageName == 'Pending'}">
+                                        <div onclick="{!c.reload}">
+                                             <ui:button label="{!$Label.c.ICB_UPDATE_INVENTORY}" disabled="false" />
+                                        </div>
+                                    </aura:if>
                                 </aura:set>
                             </aura:if>
                          
