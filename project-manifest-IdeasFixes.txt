@@ -1,0 +1,8 @@
+src
+src/aura
+src/aura/CORE_IC_IdeaTemplate
+src/aura/CORE_IC_IdeaTemplate/CORE_IC_IdeaTemplate.cmp
+src/aura/CORE_IC_IdeaTemplate/CORE_IC_IdeaTemplate.cmp-meta.xml
+src/aura/CORE_IC_IdeaTemplate/CORE_IC_IdeaTemplate.css
+src/aura/CORE_IC_IdeaTemplate/CORE_IC_IdeaTemplateController.js
+src/aura/CORE_IC_IdeaTemplate/CORE_IC_IdeaTemplateHelper.js
