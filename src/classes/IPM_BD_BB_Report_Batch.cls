@@ -437,7 +437,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         analyticObj.IPM_BET_First_Released_On_Date__c = parent.IPM_BET_First_Released_On_Date__c;
         analyticObj.IPM_BET_Final_Release_Due_date__c = parent.IPM_BET_Final_Release_Due_date__c;
         analyticObj.IPM_BET_Final_Released_On_date__c = parent.IPM_BET_Final_Released_On_date__c;
-        analyticObj.IPM_Gate_Keeping_Model__c = parent.IPM_Gate_Keeping_Model__c;
+       
       
        analyticObj = setrolloutdetailsGKM3(pr,analyticObj,parent);     
        if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
