@@ -44,15 +44,15 @@ src/classes/CPA_ConstantsForContractingAppClasses.cls-meta.xml
 src/classes/CPA_HLERequInformationController.cls
 src/classes/CPA_HLERequInformationController.cls-meta.xml
 src/classes/CPA_testPWORFClass_util.cls
-src/classes/CPA_testPWORFClass_util.cls-meta.xml 
+src/classes/CPA_testPWORFClass_util.cls-meta.xml
 src/objects
 src/objects/CPA_HLE_Request__c.object
 src/objects/CPA_LOI__c.object
 src/objects/CPA_PWORF__c.object
 src/objects/CPA_CR__c.object
-src/objects/CPA_project_work_order__c.object 
+src/objects/CPA_project_work_order__c.object
 src/layouts
-src/layouts/HCPA_HLE_Request__c-HLE Answered.layout
+src/layouts/CPA_HLE_Request__c-HLE Answered.layout
 src/layouts/CPA_HLE_Request__c-HLE Cancelled.layout
 src/layouts/CPA_HLE_Request__c-HLE.layout
 src/layouts/CPA_PWORF__c-Other Read Only Layout.layout
@@ -60,7 +60,7 @@ src/layouts/CPA_PWORF__c-RA Read Only Layout.layout
 src/permissionsets
 src/permissionsets/CPA_ADM.permissionset
 src/permissionsets/CPA_SMT.permissionset
-src/permissionsets/CPA_ULPM.permissionset 
+src/permissionsets/CPA_ULPM.permissionset
 src/email
 src/email/CPA_Email_Template
 src/email/CPA_Email_Template/CPA_Reminder_to_enter_a_Clarity_ID.email

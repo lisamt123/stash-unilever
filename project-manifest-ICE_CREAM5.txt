@@ -1,0 +1,8 @@
+src/permissionsets
+src/permissionsets/ICB_Mobile_Channel_Console_PCL.permissionset
+src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset
+src/objects
+src/objects/Contact.object
+src/objects/Product2.object
+src/objectTranslations
+src/objectTranslations/Contact-pt_BR.objectTranslation
