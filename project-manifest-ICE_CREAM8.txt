@@ -1,5 +1,3 @@
-src/objectTranslations
-src/objectTranslations/Contact-pt_BR.objectTranslation
 src/translations
 src/translations/pt_BR.translation
 src/objects
@@ -8,10 +6,6 @@ src/objects/Product2.object
 src/objects/ICB_ContactTypes__c.object
 src/labels
 src/labels/ICB.labels
-src/permissionsets
-src/permissionsets/ICB_Mobile_Channel_Backoffice_Salesforce.permissionset
-src/permissionsets/ICB_Mobile_Channel_Console_PCL.permissionset
-src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset
 src/triggers
 src/triggers/ICB_Setup_Mobile_Channel.trigger
 src/triggers/ICB_Setup_Mobile_Channel.trigger-meta.xml
