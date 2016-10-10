@@ -1,31 +1,31 @@
-<apex:page controller="IPM_GateDocumentController" sidebar="false"  renderAs="PDF" standardStylesheets="false" applyHtmlTag="false" showHeader="false" applyBodyTag="false" readOnly="true" extensions="IPM_GetHelpDoc">
-<html>
-<head>   
-    <style type="text/css" media="print">
-        @page { 
-            margin-top:15mm; 
-            margin-bottom:25mm;          
-            margin-left: 0mm; 
-            margin-right: 0mm;     
-            background-image: url('{!URLFOR($Resource.IPM_Resource, 'images/pebbleline.png')}');
-            background-repeat: repeat-y;
-            background-position: -5px 0;
-            @top-center{
-                 content: element(header); 
-                 width:100%;                                   
-                 overflow:visible;                 
-             }
-            @top-right {                 
-                 content: element(secProd); 
-            }
-            /*@top-left{
-                  content: element(secLogo); 
-             }*/
-             @bottom-center{
-                 content: element(footer);
-                 color:#666666!important;
-             }
-             @bottom-left{                
+<apex:page controller="IPM_GateDocumentController" action="{!prepareDataForReadOnlyView}" sidebar="false" renderAs="PDF"   standardStylesheets="false" applyHtmlTag="false" showHeader="false" applyBodyTag="false" readOnly="true" extensions="IPM_GetHelpDoc">
+    <html>
+        <head>   
+            <style type="text/css" media="print">
+                @page { 
+                margin-top:15mm; 
+                margin-bottom:25mm;          
+                margin-left: 0mm; 
+                margin-right: 0mm;     
+                background-image: url('{!URLFOR($Resource.IPM_Resource, 'images/pebbleline.png')}');
+                background-repeat: repeat-y;
+                background-position: -5px 0;
+                @top-center{
+                content: element(header); 
+                width:100%;                                   
+                overflow:visible;                 
+                }
+                @top-right {                 
+                content: element(secProd); 
+                }
+                /*@top-left{
+                content: element(secLogo); 
+                }*/
+                @bottom-center{
+                content: element(footer);
+                color:#666666!important;
+                }
+                @bottom-left{                
                 content: "Pg. " counter(page) " / " counter(pages);
                 font-family:sans-serif ;
                 font-size:9pt;

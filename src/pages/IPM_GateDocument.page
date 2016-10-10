@@ -77,12 +77,15 @@
                                                 <a class="icoButton paper-clip clipinfo" title="{!$Label.IPM_AllSummaryAttachDwnldBttn_Hovertext}" 
                                                        onclick="showAllCurrentDocSummaryAttch();" data-toggle="modal" data-target="{!if(showSummaryAttach,'#ipmAttachmentModal','#ipmNoAttachmentModal')}" data-backdrop="static" data-keyboard="false"></a>
                                                 <apex:actionfunction name="showAllCurrentDocSummaryAttch"  rerender="attsec" /> 
-                                            <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download" title="{!if(isPDLDocument=true,'Download',$Label.IPM_Download_with_Appendix)}" rendered="{!isPDFDownload}">
+                                            <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download" title="{!if(isPDLDocument=true,'Download',$Label.IPM_Download_with_Appendix)}" rendered="{!AND(isPDFDownload,NOT(isPDLapproved))}">
                                                 <apex:param name="withAppendix" AssignTo="{!isWithAppendix}" Value="True"/>
                                             </apex:commandLink> 
                                             <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download-gate" title="{!$Label.IPM_Download_without_Appendix}" rendered="{!isDisplayWithoutAppendix}">
                                                 <apex:param name="withOutAppendix" AssignTo="{!isWithAppendix}" Value="False"/>
                                             </apex:commandLink>  
+                                            <apex:outputPanel rendered="{!isPDLapproved}">
+                                                <apex:outputLink styleClass="icoButton download" value="/servlet/servlet.FileDownload?file={!pdlpdf.Id}" target="_blank" rendered="{!isPDLapproved}" ></apex:outputLink>
+                                            </apex:outputPanel>
                                                 <!-- CR0434 end here-->   
                                                 
                                                 <!-- To place the help symbol in the top right hand corner of page -->

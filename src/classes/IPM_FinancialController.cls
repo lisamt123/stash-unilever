@@ -1850,7 +1850,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             //Calculate whether to show the checkboxes for countries corresponding to the financials
             showcheckbox = IPM_FinancialUtils.showCountryCheckboxes(project.IPM_ProjectGKM__c,project.IPM_Phase__c);
             //calculate whether show the checkboxes as editable
-            disablecheckbox =  IPM_FinancialUtils.showEnableCheckboxes(project.IPM_ProjectGKM__c,project.IPM_Phase__c,currentFinancialType);
+            disablecheckbox =  IPM_FinancialUtils.isCheckboxToBeDisabled(project.IPM_ProjectGKM__c,project.IPM_Phase__c,currentFinancialType);
                         
 	softValidate(currentFinancial);
         } 

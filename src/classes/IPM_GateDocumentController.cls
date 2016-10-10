@@ -138,6 +138,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public transient boolean isPDLDocument{get;set;}
     public List<IPM_Project_Claim__c> projectClaimList{get; set;}
     public Boolean hideAppendix{get;set;} 
+    public boolean isPDLApproved{get;set;}//check whether PDL document is approved or not
+    public Attachment pdlPDF{get;set;} // show PDL attachment
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -201,6 +203,17 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                               and IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER
                               and IPM_Default_Section__c=true
 		];
+        }
+        //for PDL pdf
+        if(isPDLApproved!=null && isPDLApproved)
+        {
+        	pdlPDF = [Select id,body from Attachment WHERE ParentId =:projectDoc.Id];
+        }
+        if(ApexPages.currentPage().getParameters().get('setStatus') != null)
+        {
+            projectDoc.IPM_Document_Status__c = ApexPages.currentPage().getParameters().get('SetStatus');
+            projectDoc.IPM_Approved_Comments__c =  ApexPages.currentPage().getParameters().get('StatusComments');
+            projectDoc.IPM_Approval_Date__c =  Date.parse(ApexPages.currentPage().getParameters().get('StatusDate'));  
         }
         for(IPM_Project_Document_Section__c filterCount:filtersCountList){
             if(filterCount.IPM_Section__c!=null && filterCount.IPM_Section__r.IPM_Negotiable__c!=null && !filterCount.IPM_Section__r.IPM_Negotiable__c){
@@ -363,6 +376,11 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 			if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK.Equals(printDoc))
             {
                 isPDLDocument =true;
+                IPM_Project_Document__c PDLdoc = [Select IPM_Document_Status__c from IPM_Project_Document__c where IPM_GateDocuments__c=:printDoc and IPM_Project__c=:projectId];
+                if(PDLdoc.IPM_Document_Status__c==IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED)
+                {
+                    isPDLapproved = true;
+                }
             }
             getIpmuserType();  
             gateDocument=printDoc;
@@ -816,7 +834,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     
     */  
     public PageReference exportToPdf(){ 
-        try{
+        try
+        {
             PageReference url;
             url = Page.IPM_GateDocumentPDF;
             url.setRedirect(false);
@@ -834,6 +853,10 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         }
     }
     
+    public void prepareDataForReadOnlyView()
+    {
+        gateDocumentData(projectId);
+    }
     /****************************************************
     @description For Exporting Gate Document Data in PDF
     @param Project Id
