@@ -103,8 +103,7 @@
                                     </aura:if>
                                 </aura:set>
                             </aura:if>
-                         
-                            <div data-record="{!index}" onclick="{!c.menuOpenClose}" class=" btnCollor slds-truncate slds-grid">
+                         	<div data-record="{!index}" onclick="{!c.menuOpenClose}" class=" btnCollor slds-truncate slds-grid">
                                 <!--<aura:renderIf isTrue="{!wrapper.spinnerShow}">
                                     <ui:spinner/>-->
                                     <!--<aura:set attribute="else">-->

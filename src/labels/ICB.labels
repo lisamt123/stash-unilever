@@ -611,6 +611,5 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ICB PENDING</shortDescription>
-        <value>Pending</value>
-        
+        <value>Pending</value> 
     </labels>

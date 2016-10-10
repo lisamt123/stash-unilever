@@ -11,7 +11,6 @@ VERSION AUTHOR 				DATE 		DETAIL Description
 @IsTest
 public class ICB_ContactPartnerUserCreation_Test 
 {
-    
     private static Account acc;
     private static Contact contactNew;
     private static Contact contactOld;

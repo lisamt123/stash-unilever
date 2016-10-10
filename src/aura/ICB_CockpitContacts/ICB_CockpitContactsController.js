@@ -9,7 +9,6 @@
         //component.set("v.spinnerShow", true);
         helper.changeButton(component,event,"button"); 
         console.log('Exit <menuOpenClose>');
-        
     },
     changeCheckBox : function(component, event, helper) {
         console.log('Entering <changeCheckBox>');

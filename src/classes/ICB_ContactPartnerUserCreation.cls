@@ -12,7 +12,6 @@ VERSION AUTHOR 				DATE 		DETAIL Description
 ***********************************************************************/
 public with sharing class ICB_ContactPartnerUserCreation 
 {
-
     private static String profileCommunity;
     private static String UserEmail;
 
@@ -308,10 +307,13 @@ public with sharing class ICB_ContactPartnerUserCreation
             
             setEmail.add(cont.Email);
         }
+        System.debug('Valor do setEmail: '+setEmail);
         for(User user : [Select Email,ContactId From User Where Email =: setEmail])
         {
+            System.debug('Valor do user: '+user);
             for(String contId : mapContact.keySet())
             {
+                System.debug('Valor do contId: '+contId);
                 if(mapContact.get(contId).Email == user.Email)
                 {
                     mapContact.get(contId).ICB_Cause__c = Label.ICB_Email_Duplicated;   
