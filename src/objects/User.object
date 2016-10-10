@@ -245,7 +245,7 @@
     </fields>
     <fields>
         <fullName>Debit_Card_Refund_Limit__c</fullName>
-        <description>CEC Debit Card Refund Limit is used to capture the user’s refund limit</description>
+        <description>CEC Debit Card Refund Limit is used to capture the userâ€™s refund limit</description>
         <externalId>false</externalId>
         <label>Debit Card Refund Limit</label>
         <precision>3</precision>
@@ -257,7 +257,7 @@
     </fields>
     <fields>
         <fullName>E_Voucher_Refund_Limit__c</fullName>
-        <description>CEC E-Voucher Refund Limit capture&apos;s the user’s refund limit</description>
+        <description>CEC E-Voucher Refund Limit capture&apos;s the userâ€™s refund limit</description>
         <externalId>false</externalId>
         <label>E-Voucher Refund Limit</label>
         <precision>3</precision>
