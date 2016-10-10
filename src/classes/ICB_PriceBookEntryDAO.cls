@@ -21,9 +21,7 @@ public with sharing class ICB_PriceBookEntryDAO {
     public static ICB_PriceBookEntryDAO getInstance(){
         return instance;
     }
-    
     public List<PriceBookEntry> getPricebook(String AccountNameParam){
-        
         return [SELECT UnitPrice, 
                 ICB_Purchase_Price__c,
                 PriceBook2.Name,

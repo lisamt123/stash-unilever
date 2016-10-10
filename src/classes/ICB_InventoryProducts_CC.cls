@@ -33,16 +33,16 @@ public with sharing class ICB_InventoryProducts_CC
         
         ICB_Inventory__c  inventory = new ICB_Inventory__c();
         List<ICB_Inventory_Line_Item__c> inventoryLineItem = new List<ICB_Inventory_Line_Item__c>();
-        
+        contact contato = new contact();
         try
         {
            
-            /*
+            String strUserId = UserInfo.getUserId();
             String strContactId = ICB_ContactDAO.getInstance().getContactId(strUserId);
             contato = ICB_ContactDAO.getInstance().getContact(strContactId);
             String strAccountName = ICB_AccountDAO.getInstance().getAccount(contato);
             inventory = ICB_InventoryDAO.getInstance().getInventory(strAccountName);
-            */
+            
             //inventory.id = 'a0c3C0000004SgQQAU';
             
             inventoryLineItem = ICB_InventoryLineItemDAO.getInstance().getIventoryLineList(inventory);

@@ -85,7 +85,6 @@ public with sharing class ICB_PriceBookCreation {
             system.debug('Exiting <changeProductStructure>: ');
         }
     }
-    
     /*******************************************************************
     Purpose: Create Inventory Line Item
     Parameters: Inventory Id , Product Id.

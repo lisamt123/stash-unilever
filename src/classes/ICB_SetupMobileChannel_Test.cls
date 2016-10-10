@@ -14,7 +14,6 @@ public class ICB_SetupMobileChannel_Test {
 	private static Account acc;
     private static Contact contactNew;
     private static Contact contactOld;
-    
     Static
     {
         acc = new Account();

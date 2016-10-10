@@ -4,7 +4,6 @@ trigger ICB_Setup_Mobile_Channel on Contact (after insert, after update) {
     if(Trigger.isAfter) 
     {              
         ICB_SetupMobileChannel.getInstance().initiateMethod(Trigger.new);   
-       
     }
     
 }

@@ -14,7 +14,6 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 @isTest
 public class ICB_Cockpit_CC_Test 
 {
-
     private static Account acc;
     private static Contact contactOperator;
     private static Contact contactSales;
