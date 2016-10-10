@@ -116,6 +116,10 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>IPM SourcingUnit</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>Source_Unit_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Category__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
