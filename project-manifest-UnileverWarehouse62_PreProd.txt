@@ -11,7 +11,7 @@ src/pages/WU_MultiCreateMultiEdit.page
 src/pages/WU_MultiCreateMultiEdit.page-meta.xml
 src/pages/WU_LeadershipCheck.page
 src/pages/WU_LeadershipCheck.page-meta.xml
-src/pages/WU_WarehouseSearchPage.page            
+src/pages/WU_WarehouseSearchPage.page
 src/pages/WU_WarehouseSearchPage.page-meta.xml
 src/objects
 src/objects/User.object 
