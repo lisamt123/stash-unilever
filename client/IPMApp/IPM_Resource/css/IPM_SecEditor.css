@@ -867,7 +867,7 @@ div.metric table.ecoDesignCountry tbody tr td div.cellWidth:first-child{
 .srcplanTable thead th{height: 40px;background-color: #dceefa;font-size: 12px;}
 .srcplanTable{font-size: 12px;}
 .table.srcplanTable>thead>tr>th:first-child{padding-left:5px;}
-.srcPlanTitle{padding-bottom: 5px;color: #253b78;border-bottom: 1px solid #7EA19D;float: left;width: 100%;font-size: 14px;margin-bottom: 10px;font-weight: bold;}
+.srcPlanTitle{padding-bottom: 5px;color: #253b78;border-bottom: 1px solid #7EA19D;float: left;width: 100%;font-size: 14px;margin-bottom: 20px;font-weight: bold;}
 .srcApprGreenbg{background:#A3C24B;padding: 5px;color: #fff;width: 49px;display: block;text-align: center;}
 .srcApprRedbg{background:red;padding: 5px;color: #fff;width: 49px;display: block;text-align: center;}
 .goldenCheck{background: #FBBE2E;color: #000;border: 1px solid #E28A3C;padding: 5px;font-size: 11px;margin: 0;width: 50px;display: block;}
