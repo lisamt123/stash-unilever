@@ -16,7 +16,6 @@ public with sharing class ICB_SetupMobileChannel {
     
     public ICB_SetupMobileChannel() {}
     
-    
     // Get Instance method to return a static final instance of this object. 
     public static ICB_SetupMobileChannel getInstance(){
         return instance;
@@ -146,4 +145,5 @@ public with sharing class ICB_SetupMobileChannel {
             
         }
     }
+   
 }

@@ -32,8 +32,7 @@
                                                             value="{!inventory.quantity}" />
                                             </aura:set>
                                         </aura:renderIf>-->
-                    
-                </div>
+                 </div>
                 <aura:if isTrue="{!v.contact.oppItem.StageName == 'Available' || v.contact.oppItem == null}">
                     <div  class="slds-truncate ButtonInventory" data-record="{!index}" onclick="{!c.incrementValue}">
                         <ui:button aura:id="pos" >

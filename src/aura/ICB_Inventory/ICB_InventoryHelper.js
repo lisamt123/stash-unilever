@@ -25,7 +25,6 @@
         component.set("v.inventory",inventory); 
         console.log('Exit Helper <decrementValueOpen>');
     },
-    
     incrementValueClosed : function(component,event){
         console.log('Entering Helper <incrementValueClosed>');
         var inventory = component.get("v.inventory");

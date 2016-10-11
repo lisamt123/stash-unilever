@@ -433,9 +433,6 @@ public with sharing class ICB_Cockpit_CC
         Database.update(listUpdateIvt);
         System.debug('Exiting <updateInventory>: ');
     }
-    
-    
-    
      /*******************************************************************
     Purpose: Return names of products to used for retrieve price books 
     Parameters: @listInventory(list of items)

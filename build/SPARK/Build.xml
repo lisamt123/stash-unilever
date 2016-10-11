@@ -40,7 +40,6 @@
   <import file="${basedir}/lib/run_tests.xml"/>
   <import file="${basedir}/lib/package_generator.xml"/>
 
-
   <target name="validate">
     <echo level="info">Agent App Lightning Deployment</echo>
     <sf:deploy username="${sf.username}"

@@ -13,7 +13,6 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 ***********************************************************************/
 global with sharing class ICB_ReturnStock_Batch implements Database.Batchable<sObject>
 {
-   
     /*******************************************************************
      Purpose: This method execute the class ICB_ReturnStock.
      Parameters: [Database.Batchablecontext]
