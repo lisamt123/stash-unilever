@@ -370,6 +370,5 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewPublicReports</name>
-    </userPermissions>
-    
+    </userPermissions>   
 </PermissionSet>
