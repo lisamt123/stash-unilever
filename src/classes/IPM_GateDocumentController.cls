@@ -24,7 +24,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public List<IPM_Project_Document_Section__c> projSubSectionList {get; set;} //Contains All Sub-Header Project Document Sections 
     public List<IPM_Project_Document_Section__c> projSubLevelSectionList{get;set;}
     public List<IPM_Project_Document_Section__c> projDocSectionList {get; set;} //Contains All Project Document Sections Used for Gate Document PDF
-    public transient List<IPM_Project_Document_Section__c> projDocAppdxSectionList {get; set;} //Contains All Project Document Sections Related to Appendix
+    public List<IPM_Project_Document_Section__c> projDocAppdxSectionList {get; set;} //Contains All Project Document Sections Related to Appendix
     public String dueDate{get;set;}
     public Boolean DueDateMsg{get;set;}
     //Type
@@ -140,6 +140,11 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public Boolean hideAppendix{get;set;} 
     public boolean isPDLApproved{get;set;}//check whether PDL document is approved or not
     public Attachment pdlPDF{get;set;} // show PDL attachment
+    transient string httpsStr = 'https://';
+    transient string hostStr = 'Host';
+    transient string baseUrl;
+    Public string downloadPdfWithAppendixStr{get;set;}
+    Public string downloadPdfWithoutAppendixStr{get;set;}
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -314,7 +319,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         //Getting Project Document Sections  
         getProjectDocumentSection();
         getDocumentSectionMap();
-        
+        gateDocumentData(project.Id);
         If(projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_NOT_STARTED || projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_APPROVED){
             bDocStatusNotStartedOrApproved = true;
             //For Storing Filled-In Percentage Calculation in Project Object 
@@ -345,8 +350,18 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
           IPM_CustomPermission custPermission = new IPM_CustomPermission();
           reactivateProjectFlag = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
        }
-      isRedStylingApplicable=((IPM_ConstantUtils.STATUS_APPROVED.equals(projectDoc.IPM_Document_Status__c) ? projectDoc.IPM_Category_Status_while_Approved__c:project.IPM_Threshold_Status__c)== Label.IPM_BelowThreshold) && (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL) ;
-       chkClaims(); 
+        
+        if(ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER) != null) {
+            if(ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER) == IPM_ConstantUtils.IPM_true) {isWithAppendix = true;}
+            else {isWithAppendix = false;}
+        }
+        
+        baseUrl = httpsStr + string.valueOf(ApexPages.currentPage().getHeaders().get(hostStr));
+        downloadPdfWithAppendixStr = baseUrl + exportToPdf(IPM_ConstantUtils.IPM_true);
+        downloadPdfWithoutAppendixStr = baseUrl + exportToPdf(IPM_ConstantUtils.IPM_false);
+        
+        chkClaims(); 
+        
     } 
     
     public void chkClaims(){
@@ -833,17 +848,18 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     @Business Rule: This functions is used to Display the data in for the Gate Documetn PDF, i which data needs to be pulled from Various entities, hence it is complex.
     
     */  
-    public PageReference exportToPdf(){ 
+    public string exportToPdf(String bool){ 
         try
         {
             PageReference url;
-            url = Page.IPM_GateDocumentPDF;
+            url = Page.IPM_GateDocumentPDFDownload;
             url.setRedirect(false);
-            gateDocumentData(project.Id);
-            //PDF Download Parameters
-            url.getParameters().put('DocumentType','PDF');	
-            Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.ATTACHMENT_CONTENT_DISPOSITION, IPM_ConstantUtils.ATTACHMENT_FILE_NAME+project.IPM_Project_Name__c+ '_'+projectDoc.IPM_GateDocuments__c+IPM_ConstantUtils.ATTACHMENT_DOCUMENT+system.today().format()+IPM_ConstantUtils.ATTACHMENT_FILE_TYPE);
-            return url;
+            url.getParameters().put(IPM_ConstantUtils.ID_PARAMETER, ProjectId);
+            url.getParameters().put(IPM_ConstantUtils.PRINTDOC_PARAMETER, PrintDoc);
+            url.getParameters().put(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER, bool);
+            url.getParameters().put(IPM_ConstantUtils.PROJECTNAME_PARAMETER, project.IPM_Project_Name__c);
+            url.getParameters().put(IPM_ConstantUtils.PROJECTGATEDOCUMENT_PARAMETER, projectDoc.IPM_GateDocuments__c);
+            return url.getUrl();
         }
         catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
@@ -852,6 +868,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             return null;
         }
     }
+    
     
     public void prepareDataForReadOnlyView()
     {

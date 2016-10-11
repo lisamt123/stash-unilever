@@ -43,6 +43,8 @@ public class IPM_ConstantUtils {
     public static final String COMMENT_TYPE='TextPost';
     public static String PRINTDOC_PARAMETER = 'printDoc';
     public static String ISWITHAPPENDIX_PARAMETER = 'isWithAppendix';
+    public static String PROJECTNAME_PARAMETER = 'ProjectName';
+    public static String PROJECTGATEDOCUMENT_PARAMETER = 'ProjectGateDocument';
     
     //used across classes to get the gate document type
     public static final String CHARTER_GATE='Charter';
@@ -397,6 +399,7 @@ public class IPM_ConstantUtils {
     public static String ATTACHMENT_FILE_NAME='attachment; filename=';
     public static String ATTACHMENT_DOCUMENT='document-';
     public static String ATTACHMENT_FILE_TYPE='.pdf';
+    public static String ATTACHMENT_FILE_APPLICATION_TYPE='application/x-pdf#';
     
     // for the 6P types in Customer Channel
     public static final String PROPOSITION_TYPE='prepos';
