@@ -31,7 +31,7 @@ public with sharing class IPM_Resource_Allocation {
     private static final string BEGIN_QUERY_TEAM ='SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,IPM_User__r.email,';
     private static final string MID_QUERY_TEAM =' IPM_User__r.SmallPhotoUrl,';
     private static final string PERCENTAGE_SLASH='%\'';
-    private static final string QUERY_LIMIT=' limit 50000';
+    private static final string QUERY_LIMIT=' limit 999';
     //@description:To store project id FROM url parameter
 
     public String projectID{get;set;}
