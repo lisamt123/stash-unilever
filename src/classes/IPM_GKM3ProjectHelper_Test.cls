@@ -5,7 +5,6 @@
 **/
 @isTest
 private class IPM_GKM3ProjectHelper_Test{
-    private static List<IPM_Project__c>projectList=new list<IPM_Project__c>(); 
     private static final string GLOBAL_PL_EMAIL_ID = 'globalProjectLeader@unilever.com.test';
     private static final string REGIONAL_PL_EMAIL_ID = 'regionalProjectLeader@unilever.com.test';
     private static final string LOCAL_PL_EMAIL_ID = 'localProjectLeader@unilever.com.test';
@@ -25,13 +24,13 @@ private class IPM_GKM3ProjectHelper_Test{
         List<User> userList = new List<User>();
         System.runAs(adminUser)
         {   
-            User globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            User globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
             globalProjectLeader.email = GLOBAL_PL_EMAIL_ID;
 
-            User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
             regionalProjectLeader.email = REGIONAL_PL_EMAIL_ID;
 
-            User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
             localProjectLeader.email = LOCAL_PL_EMAIL_ID;
 
             userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
@@ -120,7 +119,7 @@ private class IPM_GKM3ProjectHelper_Test{
             
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
             {
-                String geoExternalId = ''; 
+                String geoExternalId = IPM_ConstantUtils.BLANK; 
                 if(localRollout.IPM_Rollout_Project__c.contains('AFR'))
                 {
                     geoExternalId = 'AGO';
@@ -173,8 +172,6 @@ private class IPM_GKM3ProjectHelper_Test{
         System.runAs(globalProjectLeader){       
             Test.startTest();
             
-            List<IPM_Project_Rollout__c> rolloutList = new List<IPM_Project_Rollout__c>();
-
             Id locallRecordType = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).RecordTypeId;
             IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, 
                 IPM_Target_Launch_Dates__c, IPM_Phase__c, IPM_ProjectGKM__c, IPM_GateKeeping_Model__c, IPM_CompanyCardText__c,
