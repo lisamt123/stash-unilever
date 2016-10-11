@@ -440,20 +440,47 @@ Throws [Exceptions]:
 ********************************************************************/
 /*function for the news starts here*/
     public List<KUN_Links> getNews(){
-        List<KUN_Activities__c> molstNews=[SELECT id,Name,Short_Description__c,(SELECT Id FROM attachments ORDER BY Createddate DESC LIMIT 1) FROM KUN_Activities__c WHERE RecordType.developername='KUN_News_RT' AND Active__C=true ORDER BY CreatedDate DESC LIMIT 5];
+        Integer pdfCounter = 0;
+        ID pdfid;
+        KUN_Activities__c moPdfItem;
         List<KUN_Links> mowrplstNews=new  list<KUN_Links>();
+        try{
+        //Get Image attachments records
+        List<KUN_Activities__c> molstNews=[SELECT id,Name,Short_Description__c,(SELECT Id FROM attachments WHERE name like '%.jpg' ORDER BY Createddate DESC LIMIT 1) FROM KUN_Activities__c WHERE RecordType.developername='KUN_News_RT' AND Active__C=true ORDER BY CreatedDate DESC LIMIT 5];
+        
+        //Get PDF news format attachments records
+        List<KUN_Activities__c> molstpdfNews=[SELECT id,Name,Short_Description__c,(SELECT Id FROM attachments WHERE name like '%.pdf' ORDER BY Createddate DESC LIMIT 1) FROM KUN_Activities__c WHERE RecordType.developername='KUN_News_RT' AND Active__C=true ORDER BY CreatedDate DESC LIMIT 5];
+
         for(KUN_Activities__c moItem:molstNews){
             KUN_Links moNews=new  KUN_Links();
             moNews.CSSStyle=(mowrplstNews.size()==0)?'item active':'item';
-            moNews.LinkURL='/'+moItem.Id;
-            if(!getIsForceUI())moNews.LinkURL='javascript:sforce.one.navigateToSObject(\''+moItem.Id+'\')';
+            if(molstpdfNews.size() > 0)
+                moPdfItem = molstpdfNews[pdfCounter++];
+            
             moNews.Title=moItem.Name;
             moNews.ShortDescription=moItem.Short_Description__c;
             for(attachment a:moItem.attachments){
                 moNews.Id=a.Id;
                 moNews.URL='/servlet/servlet.FileDownload?file='+a.Id;
+                if ( moPdfItem != NULL && moPdfItem.attachments.size()>0){
+                attachment p = moPdfItem.attachments;                
+                pdfid = p.id;
+                }
+                else{
+                pdfid = moItem.Id;
+                ApexPages.Message myMsg=new  ApexPages.Message(ApexPages.Severity.ERROR,'There is no pdf news associated for news ' + moItem.Name + ', Please Contact Community Administrator.');
+                ApexPages.addMessage(myMsg);                
+                }
             }
+            moNews.LinkURL= '/servlet/servlet.FileDownload?file='+pdfid;
+            if(!getIsForceUI())moNews.LinkURL='javascript:sforce.one.navigateToSObject(\''+pdfid+'\')';
             mowrplstNews.add(moNews);
+        }
+        }
+        catch(Exception e){
+            // Generic exception handling code here.
+            ApexPages.Message myMsg=new  ApexPages.Message(ApexPages.Severity.ERROR,'The following exception has occurred: '+e.getMessage());
+            ApexPages.addMessage(myMsg);
         }
         return mowrplstNews;
     }

@@ -710,11 +710,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Organization_Role__c</field>
-            <table>User.KUN_Profiles_User__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>KUN_Role_Type__c</field>
             <table>User.KUN_Profiles_User__r</table>
         </columns>

@@ -40,7 +40,6 @@
   <import file="${basedir}/lib/run_tests.xml"/>
   <import file="${basedir}/lib/package_generator.xml"/>
 
-
   <target name="validate">
     <echo level="info">Agent App Lightning Deployment</echo>
     <sf:deploy username="${sf.username}"
@@ -65,6 +64,14 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
+      <runTest>ICB_Cockpit_CC_Test</runTest>
+      <runTest>ICB_ContactPartnerUserCreation_Test</runTest>
+      <runTest>ICB_PartnerUserCreation_BatchSch_Test</runTest>
+      <runTest>ICB_ReturnStock_Batch_Test</runTest>
+      <runTest>ICB_PriceBookCreation_Test</runTest>
+      <runTest>ICB_InventoryProducts_CC_Test</runTest>
+      <runTest>ICB_PriceBookCreation_Test</runTest>
+      <runTest>ICB_SetupMobileChannel_Test</runTest>
     </sf:deploy>
   </target>  
 </project>

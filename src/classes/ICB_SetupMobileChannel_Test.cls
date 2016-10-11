@@ -14,7 +14,6 @@ public class ICB_SetupMobileChannel_Test {
 	private static Account acc;
     private static Contact contactNew;
     private static Contact contactOld;
-    
     Static
     {
         acc = new Account();
@@ -32,7 +31,6 @@ public class ICB_SetupMobileChannel_Test {
         //contactUser.updateUser(new List<Contact>{contactOld}, new List<Contact>{contactNew});
         contactUser.initiateMethod(new List<Contact>{contactOld});
         ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community Login User',contactOld.Id,'Test Operator','User OP','tuop','user.operator@email.com', 'user.operator@unilever.com','testOperator');
-        contactUser.disabledUser(new List<Contact>{contactOld});
         System.assertNotEquals(null, [Select Id From User where ContactId =: contactOld.Id]);
         System.Test.stopTest();
     }
@@ -57,7 +55,9 @@ public class ICB_SetupMobileChannel_Test {
         contactOld.FirstName = 'Test Old';
         contactOld.ICB_Status__c = 'Inactive';
         Database.update(contactOld);
-       
+       	Product2 product = ICB_SobjectInstance_SP2_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png',ICB_RecordTypeMemory.getRecType('Product2', 'ICB_MobileChannel'));
+        String priceBook2Id = Test.getStandardPricebookId();
+        ICB_SobjectInstance_SP2_Test.insertPriceBookEntry(product.Id,priceBook2Id);
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Permission_Salesman','ICB Mobile Channel Salesman');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Permission_Operator','ICB Mobile Channel Operator PCL');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Type_Salesman','Ice Cream Salesman');

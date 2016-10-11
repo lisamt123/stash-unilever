@@ -11,7 +11,6 @@ VERSION AUTHOR 				DATE 		DETAIL Description
 @IsTest
 public class ICB_ContactPartnerUserCreation_Test 
 {
-    
     private static Account acc;
     private static Contact contactNew;
     private static Contact contactOld;
@@ -42,6 +41,7 @@ public class ICB_ContactPartnerUserCreation_Test
         contactUser.createNewUser(new List<Contact>{contactOld});
         //contactUser.updateUser(new List<Contact>{contactOld}, new List<Contact>{contactNew});
         contactUser.userCreation();
+        contactUser.disabledUser();
         System.assertNotEquals(null, [Select Id From User where ContactId =: contactOld.Id]);
         System.Test.stopTest();
     }
@@ -71,19 +71,30 @@ public class ICB_ContactPartnerUserCreation_Test
     private static void createInstances()
     {
         acc = ICB_SobjectInstance_SP2_Test.insertAccount('Catanduva Distribuidora', ICB_RecordTypeMemory.getRecType('Account', 'Standard'));
-        contactNew = ICB_SobjectInstance_SP2_Test.insertContact('Test New', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, 'ICB_Operator'), acc.Id,'Operator', 'teste.new@unilever.com');
+        contactNew = ICB_SobjectInstance_SP2_Test.insertContact('Test New', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, 'ICB_Operator'), 
+                                                                acc.Id,'Operator', 'teste.new@unilever.com');
         //contactNew.Email = 'teste.new@unilever.com';
         contactNew.FirstName = 'Test New';
+        contactNew.ICB_Community_User__c = false;
+        contactNew.ICB_Fail__c = false;
+        contactNew.ICB_Cause__c = '';
         Database.update(contactNew);
-        contactOld = ICB_SobjectInstance_SP2_Test.insertContact('Test Old', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, 'ICB_Operator'), acc.Id,'Operator', 'teste.old@unilever.com');
+        contactOld = ICB_SobjectInstance_SP2_Test.insertContact('Test Old', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, 'ICB_Operator'), 
+                                                                acc.Id,'Operator', 'teste.old@unilever.com');
         //contactOld.Email = 'teste.old@unilever.com';
         contactOld.FirstName = 'Test Old';
+        contactOld.ICB_Community_User__c = false;
+        contactOld.ICB_Fail__c = false;
+        contactOld.ICB_Cause__c = '';
         Database.update(contactOld);
-        
+        ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community Login User',contactNew.Id,'Test Operator','User OP',
+                                                                'tuop','user.operator@email.com', 'teste.new@unilever.com','testOperator');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Permission_Salesman','ICB Mobile Channel Salesman');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Permission_Operator','ICB Mobile Channel Operator PCL');
+         ICB_SobjectInstance_SP2_Test.insertContactTypes('Permission_Console','ICB Mobile Channel Console PCL');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Type_Salesman','Ice Cream Salesman');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Type_Operator','Operator');
+        ICB_SobjectInstance_SP2_Test.insertContactTypes('Type_Console','Console');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('User_Email','@operadorkibon.com');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Profile_Community','Partner Community Login Basic');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('RecordType','Ice Cream');

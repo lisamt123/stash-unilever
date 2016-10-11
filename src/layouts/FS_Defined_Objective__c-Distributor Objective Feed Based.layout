@@ -66,12 +66,12 @@
                 <behavior>Edit</behavior>
                 <field>FS_Volume__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_Sub_Sector__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_Objective_Name__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_Status__c</field>
@@ -228,6 +228,7 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
+        <excludeButtons>NewEvent</excludeButtons>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>ACTIVITY.TASK</fields>
