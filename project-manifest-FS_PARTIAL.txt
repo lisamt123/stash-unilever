@@ -15,7 +15,6 @@ src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout
 src/layouts/FS_Defined_Objective__c-Operator Objective.layout
 src/layouts/FS_Defined_Objective__c-Risk.layout
 src/permissionsets
-src/permissionsets/FS_Admin.permissionset
 src/permissionsets/FS_AFM.permissionset
 src/permissionsets/FS_Integration_User.permissionset
 src/permissionsets/FS_Marketing.permissionset
