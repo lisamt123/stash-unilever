@@ -417,7 +417,7 @@
         <recordType>WU_Master_Warehouse__c.New_Warehouse_Capacity</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <userLicense>Salesforce</userLicense>
+    <license>Salesforce</license>
     <userPermissions>
         <enabled>true</enabled>
         <name>ApiEnabled</name>
