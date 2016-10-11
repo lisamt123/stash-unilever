@@ -239,9 +239,9 @@
                                                             <span class="rollsubhead wordwrap">
                                                                 <strong>
                                                                     <apex:outputLink value="{!URLFOR($Page.IPM_ProjectOverview,null,[id=localRollout.Local_Project__c])}" styleClass="noDecoration" target="_blank" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}">
-                                                                        {!localRollout.IPM_Rollout_Project__c}            
+                                                                        {!localRollout.Name}            
                                                                     </apex:outputLink>
-                                                                    <apex:outputText rendered="{!(localRollout.Local_Project__c == null)}" > {!localRollout.IPM_Rollout_Project__c}</apex:outputText>
+                                                                    <apex:outputText rendered="{!(localRollout.Local_Project__c == null)}" > {!localRollout.Name}</apex:outputText>
                                                                 </strong>
                                                             </span>
                                                         </div>

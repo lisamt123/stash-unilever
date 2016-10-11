@@ -164,10 +164,10 @@
                                                 <div>               
                                                     <span class="rollsubhead wordwrap" title="{!IF(AND(project.IPM_ProjectGKM__c = 'GKM3',NOT(lstcompleteRollout[localRolloutId].KeyMCO__c),project.IPM_Phase__c != 'Market Ready',project.IPM_Phase__c != 'Market Deployment',project.IPM_Phase__c != 'PLE'),$Label.IPM_Non_Key_Project_Creation_GKM3, '')}">
                                                         <apex:outputLink value="{!URLFOR($Page.IPM_ProjectOverview,null,[id=lstcompleteRollout[localRolloutId].Local_Project__c])}" styleClass="noDecoration" target="_blank" rendered="{!IF(lstcompleteRollout[localRolloutId].Local_Project__c != null, true, false)}"><!-- {!IF(lstcompleteRollout[localRolloutId].Local_Project__c != null, true, false)} -->
-                                                            {!lstcompleteRollout[localRolloutId].IPM_Rollout_Project__c}
+                                                            {!lstcompleteRollout[localRolloutId].Name}
                                                         </apex:outputLink>
                                                         <apex:outputText rendered="{!IF(lstcompleteRollout[localRolloutId].Local_Project__c != null, false, true)}"> <!-- {!IF(lstcompleteRollout[localRolloutId].Local_Project__c != null, false, true)} --> 
-                                                            {!lstcompleteRollout[localRolloutId].IPM_Rollout_Project__c} 
+                                                            {!lstcompleteRollout[localRolloutId].Name} 
                                                         </apex:outputText>
                                                     </span>
                                                 </div>
