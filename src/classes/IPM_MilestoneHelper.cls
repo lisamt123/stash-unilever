@@ -595,7 +595,6 @@ public with sharing class IPM_MilestoneHelper
     set<id> setParentProjIds = new set<id>();
     map<id,id> mapprojParent = new map<id,id>();
     map<id,list<IPM_Milestone__c>> mapProjchildMilestones = new map<id, list<IPM_Milestone__c>>();
-    list<IPM_Milestone__c> lstUpdateMilestones = new list<IPM_Milestone__C>();
     map<id, IPM_Milestone__c> mapUpdateML = new map<id, IPM_Milestone__c>();
 
     for(IPM_Project__c proj :[select id, IPM_Parent_Project__c from IPM_Project__c where id in :mapprojMilestones.keySet() and IPM_ProjectGKM__c = : IPM_ConstantUtils.GKM_2 and IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT]){
