@@ -3982,7 +3982,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Bangladesh_Escalation_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Bangladesh</role>
             <role>CEC_User_Bangladesh</role>
@@ -7478,7 +7477,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Vietnam_Escalation_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Vietnam</role>
             <role>CEC_User_Vietnam</role>
