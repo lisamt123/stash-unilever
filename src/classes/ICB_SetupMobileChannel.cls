@@ -16,7 +16,6 @@ public with sharing class ICB_SetupMobileChannel {
     
     public ICB_SetupMobileChannel() {}
     
-    
     // Get Instance method to return a static final instance of this object. 
     public static ICB_SetupMobileChannel getInstance(){
         return instance;
@@ -146,32 +145,5 @@ public with sharing class ICB_SetupMobileChannel {
             
         }
     }
-    public void disabledUser(List<Contact> contactList)
-    {
-        List<Id> userIdList = new List<Id>();
-        
-        for(User user : [Select Id,ContactId,IsPortalEnabled,IsActive from User Where ContactId IN: contactList])
-        {
-            for(Contact contact : contactList)
-            {
-                if((user.ContactId == contact.Id) && (contact.ICB_Status__c == 'Inactive'))
-                {
-                    userIdList.add(user.Id);   
-                }
-            }
-        }
-        updateUser(userIdList);
-    }
-    @future
-    private static void updateUser(List<Id> listIdUser)
-    {
-        List<User> userList = new List<User>();
-        for(User user : [Select Id,IsPortalEnabled,IsActive from User Where Id IN: listIdUser])
-        {
-            user.IsPortalEnabled = false;
-            user.IsActive = false;
-            userList.add(user);
-        }
-        Database.update(userList);
-    }
+   
 }
