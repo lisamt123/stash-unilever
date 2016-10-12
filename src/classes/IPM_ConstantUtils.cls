@@ -9,6 +9,7 @@ public class IPM_ConstantUtils {
     public static String IPM_true = 'true';
     public static String IPM_false = 'false';
     public static String IPM_STOPPED = 'Stopped';
+    public static String ID_PARAMETER = 'Id';
     //UI Compatibilty
     public static String UA_COMPATIBLE='X-UA-Compatible';
     public static String IE_EDGE='IE=edge';
@@ -40,13 +41,17 @@ public class IPM_ConstantUtils {
     public static String PD_STATUS_STOPPED = IPM_STOPPED;
     public static String GD_ATTACHMENT_SUFFIX = 'Gate_Document';
     public static final String COMMENT_TYPE='TextPost';
+    public static String PRINTDOC_PARAMETER = 'printDoc';
+    public static String ISWITHAPPENDIX_PARAMETER = 'isWithAppendix';
+    public static String PROJECTNAME_PARAMETER = 'ProjectName';
+    public static String PROJECTGATEDOCUMENT_PARAMETER = 'ProjectGateDocument';
     
     //used across classes to get the gate document type
     public static final String CHARTER_GATE='Charter';
     public static final String CONTRACT_GATE='Contract';
     public static final String MARKET_READY_GATE='Market Ready';
     public static final String MARKET_DEPLOYMENT_GATE='Market Deployment';
-    
+    public static final String PDL_DOCUMENT='PDL';
     public static final String PRODUCT_DESIGN_LOCK_DOCUMENT='Product Design Lock';
     //used across classes to get the Section Status
     public static final String GATE='Gate';
@@ -382,6 +387,7 @@ public class IPM_ConstantUtils {
     public static String FINANCE_MEMBER_CONSTANT ='Finance Member';
     public static String HHC_CONSTANT = 'HHC';
     public static String HOUSEHOLDCARE_CONSTANT = 'Household Care';
+    public static String SKINCARE_CONSTANT = 'Skin Care';
     public static String LAUNDRY_CONSTANT = 'Laundry';
     
     //For Financial
@@ -393,6 +399,7 @@ public class IPM_ConstantUtils {
     public static String ATTACHMENT_FILE_NAME='attachment; filename=';
     public static String ATTACHMENT_DOCUMENT='document-';
     public static String ATTACHMENT_FILE_TYPE='.pdf';
+    public static String ATTACHMENT_FILE_APPLICATION_TYPE='application/x-pdf#';
     
     // for the 6P types in Customer Channel
     public static final String PROPOSITION_TYPE='prepos';

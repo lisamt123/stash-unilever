@@ -6,18 +6,18 @@
 *************************************************
 -->
 <apex:page controller="IPM_GateDocumentController" sidebar="false" standardStylesheets="false" cache="false" extensions="IPM_GetHelpDoc">
-
-<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Filter.css')}"/>
     
-    <apex:composition template="IPM_TemplateRevamp"> 
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Filter.css')}"/>
+    
+    <apex:composition template="IPM_TemplateRevamp">  
         <apex:define name="body">
-        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>            
+            <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>            
             <apex:form >
                 <div class='cust-overlay'></div> 
                 <apex:pageMessages />
-                    <div class="gradientbg">  
-                            <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument" />  
-                    </div>
+                <div class="gradientbg">  
+                    <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument" />  
+                </div>
                 
                 <!-- - Ship to PLE Modal starts here------ -->
                 <div id="shipToPLE" class="modal fade">
@@ -59,10 +59,11 @@
                             <div class="panel-group pageHeadToolbar clearfix">
                                 <div class="row">
                                     <div class="col-sm-6 pull-left noPadright headerLeft">
-                                        <h2 class="pageTitle">
+                                        <h2 class="pageTitle"> 
                                             {!projectDoc.IPM_GateDocuments__c} {!if(isPDLDocument=true,'(PDL)','')} {!$Label.IPM_Document}
                                         </h2>
                                         <div class="SecFillProgress">
+                                            
                                             <div class="fillProgress"><apex:outputText Value="{!IF(OR(bDocStatusNotStartedOrApproved,isPDLDocument=true),filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText><span>%</span></div>
                                             <div class="fillProgressTxt"> {!$Label.IPM_FILLED_IN}</div>
                                         </div>
@@ -77,12 +78,9 @@
                                                 <a class="icoButton paper-clip clipinfo" title="{!$Label.IPM_AllSummaryAttachDwnldBttn_Hovertext}" 
                                                        onclick="showAllCurrentDocSummaryAttch();" data-toggle="modal" data-target="{!if(showSummaryAttach,'#ipmAttachmentModal','#ipmNoAttachmentModal')}" data-backdrop="static" data-keyboard="false"></a>
                                                 <apex:actionfunction name="showAllCurrentDocSummaryAttch"  rerender="attsec" /> 
-                                            <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download" title="{!if(isPDLDocument=true,'Download',$Label.IPM_Download_with_Appendix)}" rendered="{!AND(isPDFDownload,NOT(isPDLapproved))}">
-                                                <apex:param name="withAppendix" AssignTo="{!isWithAppendix}" Value="True"/>
-                                            </apex:commandLink> 
-                                            <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download-gate" title="{!$Label.IPM_Download_without_Appendix}" rendered="{!isDisplayWithoutAppendix}">
-                                                <apex:param name="withOutAppendix" AssignTo="{!isWithAppendix}" Value="False"/>
-                                            </apex:commandLink>  
+                                            <apex:outputLink styleClass="icoButton download" title="{!if(isPDLDocument=true,'Download',$Label.IPM_Download_with_Appendix)}" rendered="{!AND(isPDFDownload,NOT(isPDLapproved))}" value="{!downloadPdfWithAppendixStr}" ></apex:outputLink>
+                                            <apex:outputLink styleClass="icoButton download-gate" title="{!$Label.IPM_Download_without_Appendix}" rendered="{!isDisplayWithoutAppendix}" value="{!downloadPdfWithoutAppendixStr}" ></apex:outputLink>
+                                            
                                             <apex:outputPanel rendered="{!isPDLapproved}">
                                                 <apex:outputLink styleClass="icoButton download" value="/servlet/servlet.FileDownload?file={!pdlpdf.Id}" target="_blank" rendered="{!isPDLapproved}" ></apex:outputLink>
                                             </apex:outputPanel>

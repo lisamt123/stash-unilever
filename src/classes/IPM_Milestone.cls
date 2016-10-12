@@ -541,7 +541,7 @@ public with sharing class IPM_Milestone {
                                     // Due date validation check with previous milestones 
                                     if(previousPhases.contains(milestone.IPM_Phase__c))
                                     {
-                                        if(milestone.IPM_Due_Date__c >= milestoneDueDate)
+                                        if(milestone.IPM_Due_Date__c > milestoneDueDate)
                                         {
                                             String errorMessage = Label.IPM_Milestone_DueDate_Validation;
                                             // Phase 2.0 changes related to REQ03114 - if charter due date is already entered and PDL due date is being edited
@@ -557,7 +557,7 @@ public with sharing class IPM_Milestone {
                                     else
                                     {
                                         // Due date validation check with next milestones 
-                                        if(milestone.IPM_Due_Date__c <= milestoneDueDate)
+                                        if(milestone.IPM_Due_Date__c < milestoneDueDate)
                                         {
                                             String errorMessage = Label.IPM_Milestone_FutureDueDate_Validation;
                                             //Phase 2.0 changes related to REQ03114 - if PDL due date is already entered and charter due date is being edited

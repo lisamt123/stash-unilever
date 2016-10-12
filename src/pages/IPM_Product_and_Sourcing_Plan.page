@@ -235,8 +235,8 @@
 	                                                                                </div>                                                                                
 	                                                                            </apex:outputPanel> 
 	                                                                            <apex:outputPanel rendered="{!NOT(bIsPDLApproved)}">
-	                                                                             	<div class="goldenCheckcontainer">
-	                                                                            		<apex:outputLabel for="goldenCheckBox">Not Yet</apex:outputLabel>
+	                                                                             	<div class="greyCapabilityConfirm">
+	                                                                            		<apex:outputLabel >Not Yet</apex:outputLabel>
 	                                                                            	</div>
 	                                                                            </apex:outputPanel>
                                                                             </td>
@@ -330,8 +330,8 @@
 	                                                                            </div>
 	                                                                        </apex:outputPanel>
 	                                                                        <apex:outputPanel rendered="{!NOT(bIsPDLApproved)}">
-	                                                                             	<div class="goldenCheckcontainer">
-	                                                                            		<apex:outputLabel for="goldenCheckBox">Not Yet</apex:outputLabel>
+	                                                                             	<div class="greyCapabilityConfirm">
+	                                                                            		<apex:outputLabel >Not Yet</apex:outputLabel>
 	                                                                            	</div>
 	                                                                        </apex:outputPanel>
                                                                         </td>
