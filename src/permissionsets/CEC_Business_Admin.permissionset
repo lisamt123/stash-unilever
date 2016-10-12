@@ -7,7 +7,6 @@
     <classAccesses>
         <apexClass>CEC_AlertActionBatchScheduler</apexClass>
         <enabled>false</enabled>
-<<<<<<< HEAD
         <externalDataSource>Unilever_OneDrive</externalDataSource>
     </externalDataSourceAccesses>
     <externalDataSourceAccesses>
@@ -6449,7 +6448,6 @@
         <field>mdm_Reason_Code__c.Retention_Days__c</field>
         <readable>false</readable>
     </fieldPermissions>
-=======
     </classAccesses>
     <classAccesses>
         <apexClass>CEC_AlertActionHelper</apexClass>
@@ -6728,7 +6726,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <description>Business Admin User</description>
->>>>>>> develop
     <fieldPermissions>
     <editable>true</editable>
     <field>CEC_E_Voucher_Details__c.Account_Id__c</field>
