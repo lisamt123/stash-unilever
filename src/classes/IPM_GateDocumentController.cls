@@ -151,49 +151,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public IPM_GateDocumentController()
     {
         super();
-        isPDLDocument = false;
-        hideAppendix = false;
-        showAttach=false;
-        showSummaryAttach=false;
-        isReadable=true;
-        IsUpdateStatus=false;
-        isPDFDownload=true;
-        isExemptFromThresholdITO=false;
-        bDocStatusNotStartedOrApproved = false;
-        isDisplayWithoutAppendix=false;//phase 2.0
-        isWithAppendix=true;
-		showBBCtable = false;
-        //Total filter counts
-        NonNegotiableCount=0;
-        OptionalCount=0;
-        NotstartedCount=0;
-        FilledinCount=0;
-        ExcludedCount=0;
-        BDCount=0;
-        CMICount=0;
-        CDCount=0;
-        RnDCount=0;
-        FinanceCount=0;
-        BBCount=0;
-        SCCount=0;
-        PLCount=0;
-        FilledinPer=0;
-        
-        IntroNegotiable=0;
-        IntroOptional=0;
-        ExterNegotiable=0;
-        ExterOptional=0;
-        MixNegotiable=0;
-        MixOptional=0;
-        DeploNegotiable=0;
-        DeploOptional=0;
-        TechNegotiable=0;
-        TechOptional=0;
-        FinNegotiable=0;
-        FinOptional=0;
-        ProMNegotiable=0;
-        ProMOptional=0;
-        
+        initializeVariables();
+		
         //To Retrieve Project, Project Document Record
         getProjectDocument();
         if(projectDoc != null){
@@ -360,6 +319,51 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         
     } 
     
+	public void initializeVariables() {
+		isPDLDocument = false;
+        hideAppendix = false;
+        showAttach=false;
+        showSummaryAttach=false;
+        isReadable=true;
+        IsUpdateStatus=false;
+        isPDFDownload=true;
+        isExemptFromThresholdITO=false;
+        bDocStatusNotStartedOrApproved = false;
+        isDisplayWithoutAppendix=false;//phase 2.0
+        isWithAppendix=true;
+		showBBCtable = false;
+        //Total filter counts
+        NonNegotiableCount=0;
+        OptionalCount=0;
+        NotstartedCount=0;
+        FilledinCount=0;
+        ExcludedCount=0;
+        BDCount=0;
+        CMICount=0;
+        CDCount=0;
+        RnDCount=0;
+        FinanceCount=0;
+        BBCount=0;
+        SCCount=0;
+        PLCount=0;
+        FilledinPer=0;
+        
+        IntroNegotiable=0;
+        IntroOptional=0;
+        ExterNegotiable=0;
+        ExterOptional=0;
+        MixNegotiable=0;
+        MixOptional=0;
+        DeploNegotiable=0;
+        DeploOptional=0;
+        TechNegotiable=0;
+        TechOptional=0;
+        FinNegotiable=0;
+        FinOptional=0;
+        ProMNegotiable=0;
+        ProMOptional=0;
+	}
+	
     public void chkClaims(){
     	projectClaimList = [SELECT Id, IPM_Claim__c, IPM_Project__c FROM IPM_Project_Claim__c WHERE IPM_Project__c=:projectId];
 		if(projectClaimList.isEmpty()){
