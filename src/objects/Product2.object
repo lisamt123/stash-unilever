@@ -10110,5 +10110,4 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <searchResultsAdditionalFields>PRODUCT2.DESCRIPTION</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PRODUCT2.FAMILY</searchResultsAdditionalFields>
     </searchLayouts>
-    
 </CustomObject>
