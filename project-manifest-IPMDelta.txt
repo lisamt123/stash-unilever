@@ -1,23 +1,19 @@
 src
 src/classes
 
-src/classes/IPM_FinancialControllerGKM3_Test.cls
-src/classes/IPM_FinancialControllerGKM3_Test.cls-meta.xml
+
 src/classes/IPM_FinancialControllerRegional_Test.cls
 src/classes/IPM_FinancialControllerRegional_Test.cls-meta.xml
-src/classes/IPM_FinancialControllerSoftVldtns_Test.cls
-src/classes/IPM_FinancialControllerSoftVldtns_Test.cls-meta.xml
+
 src/classes/IPM_FinancialController_Test.cls
 src/classes/IPM_FinancialController_Test.cls-meta.xml
-src/classes/IPM_GKM3ProjectHelper_Test.cls
-src/classes/IPM_GKM3ProjectHelper_Test.cls-meta.xml
+
 
 
 
 src/classes/IPM_MilestoneHandler_Test.cls
 src/classes/IPM_MilestoneHandler_Test.cls-meta.xml
-src/classes/IPM_MilestoneHelper.cls
-src/classes/IPM_MilestoneHelper.cls-meta.xml
+
 src/classes/IPM_Milestone_Test.cls
 src/classes/IPM_Milestone_Test.cls-meta.xml
 src/classes/IPM_PerformanceBreakdownController_Test.cls
