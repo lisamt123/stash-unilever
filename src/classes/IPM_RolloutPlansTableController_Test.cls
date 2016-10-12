@@ -11,10 +11,8 @@ private class IPM_RolloutPlansTableController_Test{
     * @description For Running Test Script
     */ 
     private static User stdUserForRollout;
-    private static User stdUserforRolloutGKm3;
     private static List<IPM_Project__c > projectList;
     private static List<IPM_Project_Rollout__c> localRolloutList;
-    private static List<IPM_Project_Rollout__c> localRolloutListGKM3;
     private static Map<Id, IPM_Project_Rollout__c> mapNewProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
     public static Map<Id, IPM_Project_Rollout__c> mapOldProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
     
@@ -23,10 +21,9 @@ private class IPM_RolloutPlansTableController_Test{
     private static final String TESTPROJECT = 'TestComments1';
     
     private static Set<Id> regRolloutIds = New Set<Id>();
-    private static Set<Id> regRolloutIdsGKM3 = New Set<Id>();
     private static final String ID_PARAMETER = 'Id';
     private static  PageReference pageRef = Page.ipm_rolloutplansadd;
-   // PageReference pageRef = new PageReference('/apex/ipm_rolloutplansadd?id='+projectList[0].Id);
+
     
     @testSetup static void projectSetUp()  
     {
@@ -145,7 +142,7 @@ private class IPM_RolloutPlansTableController_Test{
             
             List<String> milestoneNames = new List<String>{IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE};
             List<IPM_Milestone__c> milestones = [Select Id,IPM_Active__c, IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: projectList[0].Id and IPM_Active__c = true and IPM_Due_Date_isNull__c = :IPM_ConstantUtils.IPM_false and IPM_Name__c in: milestoneNames limit 50000];
-        
+            System.assert(milestones.size()>0,'Milestone not Created');
             
             System.assertEquals(projectList[0].IPM_Phase__c,'Ideas','Project Phase is not ideas');
             
@@ -179,7 +176,7 @@ private class IPM_RolloutPlansTableController_Test{
                 }
             }
             IPM_RolloutPlansTableController irp2= new IPM_RolloutPlansTableController();
-
+            irp2.isEditMode = TRUE;
             
             update projectRolloutList;
             List<IPM_Project_Rollout__c> rolloutAssertList = [Select Id from IPM_Project_Rollout__c where IPM_Project_Job_Status__c =:IPM_ConstantUtils.JOB_STATUS_ELIGIBLE];

@@ -95,13 +95,9 @@ private class IPM_RolloutPlansAddController_Test
                 // Setting up the page Reference to the current page
                 Test.setCurrentPage(pageRef);
                 ApexPages.currentPage().getParameters().put('Id',projectAssertList[0].id);
-               
-                // Retrieve the project type of the project
-                IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(projectAssertList[0]);   
-                    
-               IPM_RolloutPlansAddController irp = new IPM_RolloutPlansAddController();
-               IPM_RolloutPlansAddController irp2 ;
-
+                IPM_RolloutPlansAddController irp = new IPM_RolloutPlansAddController();
+                IPM_RolloutPlansAddController irp2 ;
+ 
 		
 		if(isRegionalProj)  
 		{ 
