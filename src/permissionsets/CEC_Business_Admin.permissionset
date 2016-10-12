@@ -4,15 +4,6 @@
         <application>CEC_Admin</application>
         <visible>true</visible>
     </applicationVisibilities>
-    <classAccesses>
-        <apexClass>CEC_AlertActionBatchScheduler</apexClass>
-        <enabled>false</enabled>
-        <externalDataSource>Unilever_OneDrive</externalDataSource>
-    </externalDataSourceAccesses>
-    <externalDataSourceAccesses>
-        <enabled>false</enabled>
-        <externalDataSource>Unilever_SFDev</externalDataSource>
-    </externalDataSourceAccesses>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.AccountNumber</field>
