@@ -75,7 +75,6 @@
     padding: 9px 10px 10px 10px;
     height: 40px;
     text-shadow: none;
-    
     display: initial;
 }
 .THIS .Border{
@@ -85,7 +84,6 @@
  .THIS .ImageHidden{
         display : none !important;
     }
-
 @media(max-width:700px){
     .THIS .hidden{
         display : none !important;

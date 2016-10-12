@@ -9184,6 +9184,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>IPM_LocalRolloutPlansTablePage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>IPM_MyToDoList</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -9229,6 +9233,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>IPM_RolloutPlansRegional</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>IPM_RolloutPlansTablePage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>

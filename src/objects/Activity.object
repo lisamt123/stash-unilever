@@ -110,7 +110,142 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Activities</relationshipLabel>
+        <relationshipName>Activity_Relationship</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FS_Distributorname__c</fullName>
+        <externalId>false</externalId>
+        <label>Distributor name</label>
+        <picklist>
+            <controllingField>FS_VisitwithDSR__c</controllingField>
+            <picklistValues>
+                <fullName>East West SPb</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MARRusia S-Pete</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Uhrenholt S-Pete</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Integrita SPb</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Alidi-Nord</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>East West Moscow</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MARRusia Moscow</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Uhrenholt Moscow</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TD Global Market</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Globalfoods Moscow</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lotos</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_SurveyName__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Survey Name</label>
+        <referenceTo>Survey__c</referenceTo>
+        <relationshipLabel>Activities</relationshipLabel>
+        <relationshipName>Activities</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FS_Task_Type__c</fullName>
+        <description>It gives values of different task types which can be selected on an activity</description>
+        <externalId>false</externalId>
+        <label>Task Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Locally Led</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Centrally Led</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_VisitwithChef__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>for fs-931(to update the description)</description>
+        <externalId>false</externalId>
+        <label>Visit with Chef</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FS_VisitwithDSR__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>for fs 931(have to change)</description>
+        <externalId>false</externalId>
+        <label>Visit with DSR</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FS_Website__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_SurveyName__r.URL__c+&apos;id=&apos;+FS_SurveyName__r.Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Website1</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>ICB_AccountIDReference__c</fullName>
@@ -327,6 +462,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>

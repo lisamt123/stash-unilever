@@ -172,6 +172,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>SAM_Quote_Line_Item__c.fml_Applicable_Cross_Charge__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SAM_Quote_Line_Item__c.fml_DO_detail_validation__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -478,6 +483,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Request_Line_Item__c.pkl_SID_Details_SAP__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request_Line_Item__c.pkl_SQL_Server_Farm__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

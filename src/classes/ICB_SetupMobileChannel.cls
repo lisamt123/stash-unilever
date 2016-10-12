@@ -1,20 +1,20 @@
 /**********************************************************************
 Name: ICB_SetupMobileChannel
 Copyright © 2016 Unilever
-
+**********************************************************************
 Purpose: Class used on the trigger SetupMobileChannel
-
+**********************************************************************
 History 
-
+**********************************************************************
 VERSION AUTHOR 				DATE 		DETAIL Description	
 1.0 	CARLOS HENRIQUE  02/09/2016  INITIAL DEVELOPMENT.
 ***********************************************************************/
 public with sharing class ICB_SetupMobileChannel {
     
     public static final ICB_SetupMobileChannel instance = new ICB_SetupMobileChannel();
+
     
     public ICB_SetupMobileChannel() {}
-    
     
     // Get Instance method to return a static final instance of this object. 
     public static ICB_SetupMobileChannel getInstance(){
@@ -145,5 +145,5 @@ public with sharing class ICB_SetupMobileChannel {
             
         }
     }
-    
+   
 }

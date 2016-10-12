@@ -654,6 +654,13 @@
         <shortDescription>If Duplicate accounts found display this error message</shortDescription>
         <value>[ERR001] Multiple consumer records exist with the same email, a manual update is required.</value>
     </labels>
+	<labels>
+        <fullName>CEC_MatchingResponse_DuplicateAccountMobileNumber</fullName>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC_MatchingResponse_DuplicateAccountMobileNumber</shortDescription>
+        <value>Multiple consumer records exist with the same mobile number, a manual update is required.</value>
+    </labels>
     <labels>
         <fullName>CEC_Missing_Information</fullName>
         <categories>CEC: VF Page Global Display</categories>
