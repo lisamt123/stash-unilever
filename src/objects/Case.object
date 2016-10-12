@@ -4053,14 +4053,19 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC Benelux queue In afwachting</label>
         <language>nl_NL</language>
+        <sharedTo>
+            <role>CEC_Manager_Benelux</role>
+            <role>CEC_User_Benelux</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Brazil_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Brazil Escalation Queue</label>
+        <language>en_US</language>
         <queue>CEC_Brazil_Escalation_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <roleAndSubordinatesInternal>CEC_Manager_Brazil</roleAndSubordinatesInternal>
         </sharedTo>
     </listViews>
     <listViews>
@@ -4344,7 +4349,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France - Awaiting Knowledge Response</label>
         <language>fr</language>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
@@ -4395,7 +4399,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France - In Progress</label>
         <language>fr</language>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
@@ -4419,7 +4422,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France - Escalated</label>
         <language>fr</language>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
@@ -4497,7 +4499,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France - On Hold</label>
         <language>fr</language>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
@@ -4521,7 +4522,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France - Pending with Courier</label>
         <language>fr</language>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
@@ -4545,7 +4545,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_France_Queue</queue>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_Europe</role>
             <role>CEC_Manager_France</role>
             <role>CEC_Manager_HGS_Europe</role>
@@ -4571,7 +4570,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France - Review needed</label>
         <language>fr</language>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
@@ -4675,7 +4673,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC France - To be reassigned</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
@@ -4723,7 +4720,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Greece_Queue</queue>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_Europe</role>
             <role>CEC_Manager_Greece</role>
             <role>CEC_Manager_HGS_Europe</role>
@@ -4803,7 +4799,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Indonesia_Escalation_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Indonesia</role>
             <role>CEC_User_Indonesia</role>
@@ -4829,7 +4824,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Indonesia_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Indonesia</role>
             <role>CEC_User_Indonesia</role>
@@ -4871,9 +4865,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_Middle_Americas_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Middle Americas Escalation Queue</label>
+        <language>en_US</language>
         <queue>CEC_Middle_Americas_Escalation_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Manager_Middle_Americas</role>
+            <role>CEC_User_Middle_Americas</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -6262,7 +6258,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Pakistan_Escalations_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Pakistan</role>
             <role>CEC_User_Pakistan</role>
@@ -6280,7 +6275,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Pakistan_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Pakistan</role>
             <role>CEC_User_Pakistan</role>
@@ -7064,6 +7058,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC South Africa Home and Personal Queue</label>
         <language>en_US</language>
         <queue>CEC_South_Africa_Home_and_Personal_Queue</queue>
+        <sharedTo>
+            <role>CEC_Manager_South_Africa</role>
+            <role>CEC_User_South_Africa</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Southern_Cone_Argentina_Escalation</fullName>
@@ -7143,7 +7141,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>es_MX</language>
         <queue>CEC_Southern_Cone_Escalation_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Manager_Southern_Cone</role>
+            <role>CEC_User_Southern_Cone</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -7224,6 +7223,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC Southern Cone Queue</label>
         <language>en_US</language>
         <queue>CEC_Southern_Cone_Queue</queue>
+        <sharedTo>
+            <role>CEC_Manager_Southern_Cone</role>
+            <role>CEC_User_Southern_Cone</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Southern_Cone_Uruguay_Escalation</fullName>
@@ -7319,7 +7322,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Thailand_Escalation_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Thailand</role>
             <role>CEC_User_Thailand</role>
@@ -7344,7 +7346,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Thailand_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Thailand</role>
             <role>CEC_User_Thailand</role>
@@ -7445,7 +7446,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.TYPE</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
@@ -7458,6 +7459,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC UKI All New Cases</label>
         <language>en_US</language>
+        <queue>CEC_General_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Europe</role>
@@ -7494,7 +7496,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Vietnam_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Vietnam</role>
             <role>CEC_User_Vietnam</role>
@@ -7699,6 +7700,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>Casos pendientes - Argentina</label>
         <language>es_MX</language>
+        <sharedTo>
+            <role>CEC_Manager_Southern_Cone</role>
+            <role>CEC_User_Southern_Cone</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>DACH_Vacation_Queue_2</fullName>
@@ -7932,29 +7937,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>Emails Q&amp;A</label>
         <language>es_MX</language>
-    </listViews>
-    <listViews>
-        <fullName>Escalations_Queue</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.LAST_UPDATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>contains</operation>
-            <value>CEC UKI Escalation Queue,Thornhi,SDouglas,Latter</value>
-        </filters>
-        <label>Escalations Queue</label>
-        <language>en_US</language>
         <sharedTo>
-            <role>CEC_Manager_UK</role>
+            <role>CEC_Manager_Southern_Cone</role>
+            <role>CEC_User_Southern_Cone</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -8169,39 +8154,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>Leavers_cases</fullName>
-        <booleanFilter>1 AND (2 or 3)</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.LAST_UPDATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>contains</operation>
-            <value>soshea,gchar,rrana,sakba,jconnoll,llopez,jroberts,bgree,ecooper,adaleri,clindero</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>contains</operation>
-            <value>hkarim,GColquho,aanju,habdi</value>
-        </filters>
-        <label>Leavers cases</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_UK</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>MAILS_EN_COLA</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -8229,6 +8181,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>mails en cola Spain agosto</label>
         <language>es</language>
         <queue>CEC_Spain_Queue</queue>
+        <sharedTo>
+            <role>CEC_Manager_Spain</role>
+            <role>CEC_User_Spain</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Michaels_Queue</fullName>
@@ -8369,6 +8325,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>My Open Cases - SMS - DO NOT EDIT</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_Philippines</role>
+            <role>CEC_User_Philippines</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>My_Open_Cases_SMS_DO_NOT_EDIT</fullName>
@@ -8385,6 +8345,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>My Open Cases - E-MAIL - DO NOT EDIT</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_Philippines</role>
+            <role>CEC_User_Philippines</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>My_Open_Cases_SMS_DO_NOT_EDIT1</fullName>
@@ -8401,6 +8365,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>My Open Cases - SOCIAL - DO NOT EDIT</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_Philippines</role>
+            <role>CEC_User_Philippines</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>My_Open_Casestemp_DO_NOT_EDIT</fullName>
@@ -8498,7 +8466,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
@@ -8506,6 +8474,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>NA Chat View</label>
         <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <role>CEC_Manager_North_America</role>
         </sharedTo>
@@ -8541,7 +8510,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
             <operation>equals</operation>
@@ -8554,6 +8523,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC Nordic Queue - Finland V2</label>
         <language>en_US</language>
+        <queue>CEC_Nordic_Queue</queue>
         <sharedTo>
             <group>CEC_Nordic_Visibility</group>
         </sharedTo>
@@ -8955,24 +8925,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>cec_case</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.CASE_NUMBER</field>
-            <operation>equals</operation>
-            <value>03167439,03165310</value>
-        </filters>
-        <label>cec case</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
         <fullName>cec_czech</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -9007,7 +8959,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.SUBJECT</field>
             <operation>contains</operation>
@@ -9020,6 +8972,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>spam pp Spain</label>
         <language>es</language>
+        <queue>CEC_Spain_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Europe</role>
