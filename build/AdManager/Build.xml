@@ -41,11 +41,8 @@
   <import file="${basedir}/lib/package_generator.xml"/>
 
 
-<!-- ***************************************************************************** -->
-  <!-- Validate the  set of FS meta-data before deployment                          -->
-  <!-- ***************************************************************************** -->
   <target name="validate">
-    <echo level="info">Testing the deployment of FS</echo>
+    <echo level="info">Agent App Lightning Deployment</echo>
     <sf:deploy username="${sf.username}"
       password="${sf.password}"
       serverurl="${sf.serverurl}"
@@ -56,9 +53,9 @@
       autoUpdatePackage="true"
       ignoreWarnings="true"
       deployRoot="src"
-      pollWaitMillis="10000"
-      maxPoll="4000">
-	  <runTest>CommunitiesLandingControllerTest</runTest>
+      pollWaitMillis="${sfdc.pollWaitMillis}"
+      maxPoll="${sfdc.maxPoll}">
+      <runTest>CommunitiesLandingControllerTest</runTest>
       <runTest>CommunitiesLoginControllerTest</runTest>
       <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
       <runTest>CommunitiesSelfRegControllerTest</runTest>
@@ -68,24 +65,17 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-	  <runTest>GSurveysController_Test</runTest>
-	  <runTest>SurveyManagerController_Test</runTest>
-	  <runTest>FS_AccountPlanningTest</runTest>
-	  <runTest>FS_ContactDetail_Test</runTest>
-	  <runTest>FS_CreateContact_CC_Test</runTest>
-	  <runTest>FS_GenerateMDMRequest_CX_Test</runTest>
-	  <runTest>FS_SendEmailWithMDMRequest_CX_Test</runTest>
-	  <runTest>FS_TPRCalculationTest</runTest>
-	  <runTest>FS_ProductSubSector_Test</runTest>
-	  <runTest>FS_OpportunityHelperTest</runTest>
-	  <runTest>FS_NewMonthlyClaimCaseSchedule_Test</runTest>
-	  <runTest>FS_MonthlyPlanningRussia_CX_Test</runTest>
-	  <runTest>FS_ContractProductHelper_Test</runTest>
-	  <runTest>FS_ContactExtend_CX_Test</runTest>
-	  <runTest>FS_ClaimedCasesForeCastingSchedule_Test</runTest>
-	  <runTest>FS_CentrallyLedChildAccountTest</runTest>
-	  <runTest>FS_MABETest</runTest>	  
-  </sf:deploy>
-  <!--<antcall target="generatePackage"/>-->
-  </target>
+      <runTest>Amr_AdManagerController_Test.cls</runTest>
+	  <runTest>Amr_CAPJobPortfolioController_Test.cls</runTest>
+	  <runTest>Amr_EmailSendingClass_Test.cls</runTest>
+	  <runTest>Amr_JobSheetController_Test.cls</runTest>
+	  <runTest>Amr_NewSaving_Test.cls</runTest>
+	  <runTest>Amr_RAPJobPortfolioController_Test.cls</runTest>
+	  <runTest>Amr_ReportTrigger_Test.cls</runTest>
+	  <runTest>Amr_SavingSummaryController_Test.cls</runTest>
+	  <runTest>Amr_SubmittedSavingController_Test.cls</runTest>
+	  <runTest>Amr_TriggerFactory_Test.cls</runTest>
+    </sf:deploy>
+  </target>  
+
 </project>
