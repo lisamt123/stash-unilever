@@ -150,11 +150,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     */
     public IPM_GateDocumentController()
     {
-        super();    
-        intialize();
-    } 
-    public void intialize()
-    { 
+        super();
         isPDLDocument = false;
         hideAppendix = false;
         showAttach=false;
@@ -166,7 +162,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         bDocStatusNotStartedOrApproved = false;
         isDisplayWithoutAppendix=false;//phase 2.0
         isWithAppendix=true;
-	showBBCtable = false;
+		showBBCtable = false;
         //Total filter counts
         NonNegotiableCount=0;
         OptionalCount=0;
