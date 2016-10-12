@@ -183,6 +183,11 @@ public class IPM_TestFactory_Helper
     public static final String CATEGORY_PLATFORM_REVITAL ='Revitalisation';
     public static final String CATEGORY_PICKLIST ='IPM_Category_Picklist__c';
     public static final String CATEGORY_PLATFORM ='IPM_Category_Platform__c';
+    public static final String IPMNEGOTIABLE ='IPM_Negotiable__c';
+    public static final String TESTSTR ='Test';
+    public static final String ISMASTER = 'is_master__c';
+    public static final String ACTIONCUSTOMERFEEDBACK = 'Action Customer Feedback';
+    public static final String PRODUCT = 'Product';
     
     public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     public static List<IPM_Financial__c> finList = new List<IPM_Financial__c>();
@@ -446,7 +451,7 @@ public class IPM_TestFactory_Helper
     **************************************************************************************************/
     public static IPM_Section__c createIPMSection(Boolean doInsert) {
         Map<String,Object> sectMap =  new Map<String,Object>{IPM_SECTION_SEQUENCE=> IPM_ConstantUtils.IDEAS_SEQUENCE, 
-            IPM_SECTION_Name => IDEA_GRAPHIC, 'IPM_Negotiable__c' => FALSE};
+            IPM_SECTION_Name => IDEA_GRAPHIC, IPMNEGOTIABLE => FALSE};
         IPM_Section__c secMast = (IPM_Section__c)IPM_TestFactory.createSObject('IPM_Section__c',sectMap,FALSE);
         if(doInsert) { 
             insert secMast;
@@ -463,7 +468,7 @@ public class IPM_TestFactory_Helper
         
         for(Integer i = 1; i <= 3; i++)
         {
-            Map<String,Object> projMap =  new Map<String,Object>{NAME => 'test'+ i,IPM_PROJECT_NAME=>'test' + i,
+            Map<String,Object> projMap =  new Map<String,Object>{NAME => TESTSTR+ i,IPM_PROJECT_NAME=>TESTSTR + i,
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
                 IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),IPM_PROJECT_SPAN=>C_GLOBAL, 
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => 'Global Company Card',
@@ -685,8 +690,8 @@ public class IPM_TestFactory_Helper
                 {
                     if(rollout.recordTypeId == Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).RecordTypeId)
                     {
-                        //rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-                        //rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE; 
+                        rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+                        rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE; 
                         projectRolloutList.add(rollout);
                     }
                 }
@@ -1751,7 +1756,7 @@ public class IPM_TestFactory_Helper
                 'IPM_Question__c'=>new List<Object>{'Test POS Question1','Test POS Question2','Test RQS Question'},
                 'IPM_HelpText_Yes__c'=>new List<Object>{'Help Text Yes','Help Text Yes','Help Text Yes'},
                 'IPM_HelpText_No__c'=>new List<Object>{'help Text No','help Text No','help Text No'},
-                'Is_Master__c'=>new List<Object>{true,true,true},
+                ISMASTER=>new List<Object>{true,true,true},
                 'IPM_HelpText_Partly__c'=>new List<Object>{'help text partly','help text partly','help text partly'},
                 //IPM_PROJECT=>new List<Object>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING},
                 IPM_PROJECT=>new List<Object>{projectId,projectId,projectId},
@@ -1772,7 +1777,7 @@ public class IPM_TestFactory_Helper
     * @description To insert IPM_Gate_CMI__c
     **************************************************************************************************/
     public static IPM_Gate_CMI__c createGateCMI(Id projId, Boolean doInsert){
-        Map<String,Object> GateCMIMap =  new Map<String,Object>{'Test__c'=>'Test', 'KPI__c'=>'testkpi', 'Gate__c'=>CONTRACT};
+        Map<String,Object> GateCMIMap =  new Map<String,Object>{'Test__c'=>TESTSTR, 'KPI__c'=>'testkpi', 'Gate__c'=>CONTRACT};
         if(projId != null) {GateCMIMap.put(IPM_PROJECT, projId);}
         IPM_Gate_CMI__c GateCMI  = (IPM_Gate_CMI__c)IPM_TestFactory.createSObject('IPM_Gate_CMI__c',GateCMIMap,false);  
         if(doInsert) { 
@@ -1786,7 +1791,7 @@ public class IPM_TestFactory_Helper
     * @description To insert IPM_Gate_CMI_KPI_Inputs__c
     **************************************************************************************************/
     public static IPM_Gate_CMI_KPI_Inputs__c createGateCMIKPIInputs(Boolean doInsert){
-        Map<String,Object> GateCMIKPIInputsMap =  new Map<String,Object>{NAME=>'settings1','IPM_Test__c'=>'Test', 'IPM_KPI__c'=>'testkpi', 'IPM_Inputs__c'=>'Test Input1,Test Input2'};
+        Map<String,Object> GateCMIKPIInputsMap =  new Map<String,Object>{NAME=>'settings1','IPM_Test__c'=>TESTSTR, 'IPM_KPI__c'=>'testkpi', 'IPM_Inputs__c'=>'Test Input1,Test Input2'};
         
         IPM_Gate_CMI_KPI_Inputs__c GateCMIKPIInputs  = (IPM_Gate_CMI_KPI_Inputs__c)IPM_TestFactory.createSObject('IPM_Gate_CMI_KPI_Inputs__c',GateCMIKPIInputsMap,false);   
         if(doInsert) { 
@@ -1800,7 +1805,7 @@ public class IPM_TestFactory_Helper
     * @description to insert sample data of IPM_CorePara_helps_example__c
     **************************************************************************************************/
     public static IPM_CorePara_helps_example__c createCoreParamHelpExapmle(Boolean doInsert){
-        Map<String,Object> coreParamHelpExapmleMap =  new Map<String,Object>{'IPM_Answer__c'=>'ImprovementTest','IPM_Core_Parameter_Helps__c'=>'Test', 'IPM_Core_Parameter_Help__c'=>'testkpi'};
+        Map<String,Object> coreParamHelpExapmleMap =  new Map<String,Object>{'IPM_Answer__c'=>'ImprovementTest','IPM_Core_Parameter_Helps__c'=>TESTSTR, 'IPM_Core_Parameter_Help__c'=>'testkpi'};
         
         IPM_CorePara_helps_example__c coreParamHelpExapmle  = (IPM_CorePara_helps_example__c)IPM_TestFactory.createSObject('IPM_CorePara_helps_example__c',coreParamHelpExapmleMap,false);   
         if(doInsert) { 
@@ -2060,8 +2065,8 @@ public class IPM_TestFactory_Helper
     
     public static void shareMasterProject(List<User> userList)
     {
-        List<IPM_Project__c> masterProjectList =  [Select Id from IPM_Project__c where IPM_Project_Name__c ='IPM_MasterProjectGKM3' OR IPM_Project_Name__c ='IPM_MasterProject'];
-        System.assert(masterProjectList.size()==1 || masterProjectList.size()==2);
+        List<IPM_Project__c> masterProjectList =  [Select Id from IPM_Project__c where IPM_Project_Name__c ='IPM_MasterProject'];
+        System.assertEquals(masterProjectList.size(),1);
         
         List<IPM_Project__Share> masterProjectShareList = new List<IPM_Project__Share>();
         for(User lUser : userList)
@@ -2150,10 +2155,10 @@ public class IPM_TestFactory_Helper
             IPM_PHASE => new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT},
             IPM_PROJECT_TEMPLATE => new List<Id>{projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id},
             'IPM_Task_Complexity__c' => new List<String>{FULL,FULL,FULL,FULL,FULL,LITE,LITE,LITE,LITE,LITE},
-            'IPM_Task_Name__c' =>new List<String>{'Develop and lock concept','Develop packaging brief ','Action customer feedback','Full stock building','Identify target audience','Prepare for consumer concept','Ensure Customer appeal is clear','Factory commissioning','Action customer feedback','Respond to questions from BB to any open ends'},
+            'IPM_Task_Name__c' =>new List<String>{'Develop and lock concept','Develop packaging brief ',ACTIONCUSTOMERFEEDBACK,'Full stock building','Identify target audience','Prepare for consumer concept','Ensure Customer appeal is clear','Factory commissioning',ACTIONCUSTOMERFEEDBACK,'Respond to questions from BB to any open ends'},
             'IPM_Task_Type__c' => new List<String>{NON_NEGOTIABLE,NON_NEGOTIABLE,NON_NEGOTIABLE,NON_NEGOTIABLE,NON_NEGOTIABLE,NEGOTIABLE,NEGOTIABLE,NEGOTIABLE,NEGOTIABLE,NEGOTIABLE},
             'IPM_Type_of_Gate__c' =>new List<String>{CHARTER,CONTRACT,MARKET_READY,MARKET_DEPLOYMENT,CHARTER,CONTRACT,MARKET_READY,MARKET_DEPLOYMENT},
-            NAME => new List<String>{'Develop and lock concept','Develop packaging brief ','Action customer feedback','Full stock building','Identify target audience','Ensure Customer appeal is clear','Factory commissioning','Respond to questions from BB to any open ends'},
+            NAME => new List<String>{'Develop and lock concept','Develop packaging brief ',ACTIONCUSTOMERFEEDBACK,'Full stock building','Identify target audience','Ensure Customer appeal is clear','Factory commissioning','Respond to questions from BB to any open ends'},
             RECORD_TYPE_ID => new List<Id>{taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType},
             IPM_PROJECT => new List<Id>{masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id}
         };
@@ -2204,8 +2209,8 @@ public class IPM_TestFactory_Helper
         
         List<String> SequenceList = new List<String>{STRINGVALUE_1,STRINGVALUE_1_1,STRINGVALUE_1_2,STRINGVALUE_1_3,STRINGVALUE_1_4,STRINGVALUE_2,STRINGVALUE_2_1,STRINGVALUE_2_2,THREE,STRINGVALUE_3_1,STRINGVALUE_3_2,STRINGVALUE_3_3,STRINGVALUE_3_4,STRINGVALUE_3_5,STRINGVALUE_4,STRINGVALUE_4_1,STRINGVALUE_4_2,STRINGVALUE_5,STRINGVALUE_5_1,STRINGVALUE_5_2,STRINGVALUE_5_3,STRINGVALUE_6,STRINGVALUE_6_1,STRINGVALUE_6_2,STRINGVALUE_6_3,STRINGVALUE_7,STRINGVALUE_7_1,STRINGVALUE_7_2,STRINGVALUE_7_3,STRINGVALUE_7_4};        
 
-        Map<String,String> sectionNameMap = new Map<String,String>{STRINGVALUE_1=>'Introduction',STRINGVALUE_1_1=>'Idea / Graphic',STRINGVALUE_1_2=>'Feedback from Last Gate',STRINGVALUE_1_2=>'Justification',STRINGVALUE_1_3=>'Key Changes since Contract Gate',STRINGVALUE_1_3=>'Feedback from BOSSCARD',STRINGVALUE_1_3=>'Key Issues Needing Focus in Gate Meeting',STRINGVALUE_1_3=>'Key Changes since Market Ready Gate',STRINGVALUE_1_4=>'Gate Keeper Checklist',STRINGVALUE_2=>EXTERNAL,STRINGVALUE_2_1=>'Competitors',STRINGVALUE_2_1=>'Competitors',STRINGVALUE_2_2=>'Customers',STRINGVALUE_2_2=>'Customers/Channels',THREE=>'Mix',STRINGVALUE_3_1=>'Proposition',STRINGVALUE_3_2=>'Pack',STRINGVALUE_3_2=>'Product',STRINGVALUE_3_2=>'Pack',STRINGVALUE_3_3=>'Product',STRINGVALUE_3_3=>'Mix Qualification Plan and Action Standards (Table)',STRINGVALUE_3_4=>'Price',STRINGVALUE_3_4=>'Degree of Commonality',STRINGVALUE_3_5=>'Full Mix',STRINGVALUE_4=>'Deployment',STRINGVALUE_4_1=>'Promotion Guidance for Deployment - PRELIMINARY',STRINGVALUE_4_2=>'Place Guidance for Deployment',STRINGVALUE_4_2=>'Place',STRINGVALUE_5=>'Technical',STRINGVALUE_5=>'Technical',STRINGVALUE_5_1=>'R&D Technical  Readiness',STRINGVALUE_5_1=>'R&D Initial Outline (Product/Pack)',STRINGVALUE_5_1=>'R&D Feasibility',STRINGVALUE_5_2=>'Supply Chain Technical  Readiness',STRINGVALUE_5_2=>'Supply Chain Initial Outline',STRINGVALUE_5_2=>'Supply Chain Feasibility',STRINGVALUE_5_3=>'Environmental Impact',STRINGVALUE_6=>'Financial',STRINGVALUE_6_1=>'Business Case vs. Action Standards',STRINGVALUE_6_2=>'Assumptions, Risks, Sensitivities',STRINGVALUE_6_2=>'Initial Estimate of Opportunity',STRINGVALUE_6_2=>'Business Waste',STRINGVALUE_6_3=>'BD/BB Alignment',STRINGVALUE_6_3=>'Monitoring Performance in Market',STRINGVALUE_7=>'Project Management',STRINGVALUE_7_1=>'Rollout Plans',STRINGVALUE_7_1=>'Risk',STRINGVALUE_7_2=>'Country Feedback & Requirements',STRINGVALUE_7_2=>'Milestones',STRINGVALUE_7_3=>'Regional BD Team FB & Reqs',STRINGVALUE_7_3=>'Regional BD Team Feedback to Global',STRINGVALUE_7_3=>'OTIF',STRINGVALUE_7_4=>'Human Resources',STRINGVALUE_8=>'Appendix',STRINGVALUE_8_1=>'BD/BB Alignment',STRINGVALUE_8_1=>'CUs and Complexity',STRINGVALUE_8_1=>'Customers / Channels',STRINGVALUE_8_1=>'Milestones',STRINGVALUE_8_2=>'Rollout Plans',STRINGVALUE_8_2=>'Consumer Evidence - Concept',STRINGVALUE_8_2=>'Assortment Strategy',STRINGVALUE_8_3=>'Monitoring Performance in Market',STRINGVALUE_8_4=>'Mix Qualification Plan and Action Standards (Table)',STRINGVALUE_8_5=>'Environmental Impact',STRINGVALUE_8_6=>'Pack/Graphics',STRINGVALUE_8_6=>'Initial Estimate of Opportunity',STRINGVALUE_8_7=>'Risk',STRINGVALUE_8_7=>'Regional BD Team FB & Reqs',STRINGVALUE_1_2_1=>'Consumer Need',STRINGVALUE_1_2_1=>'Fit with National Category Building Plan (NCBP)',STRINGVALUE_1_2_2=>'Strategic Fit',STRINGVALUE_1_2_2=>'Fit with BMP Jobs to be Done',STRINGVALUE_2_2_2=>'Trade Story',STRINGVALUE_3_1_1=>'Target Audience',STRINGVALUE_3_1_2=>CONCEPT,STRINGVALUE_3_1_3=>'Consumer Evidence - Concept',STRINGVALUE_3_1_3=>'Communication',STRINGVALUE_3_1_5=>'Consumer Evidence - Communication',STRINGVALUE_3_1_5=>'Trademarks',STRINGVALUE_3_2_1=>'CUs and Complexity',STRINGVALUE_3_2_2=>'Consumer Evidence - Pack',STRINGVALUE_3_3_2=>'Consumer Evidence - Product',STRINGVALUE_3_4_1=>'Proposed Pricing',STRINGVALUE_3_4_2=>'Consumer Evidence - Price',STRINGVALUE_3_4_2=>'Other Price Rationale (beyond consumer evidence shown in 3.5 below)',STRINGVALUE_4_2_1=>'Assortment Strategy',STRINGVALUE_4_2_2=>'Merchandising Strategy',STRINGVALUE_4_2_3=>'Trade Promotion Strategy',STRINGVALUE_6_2_1=>'Assumptions',STRINGVALUE_6_2_2=>'Sensitivity Analysis'};
-        Map<String,String> sectionExternalIDMap = new Map<String,String>{STRINGVALUE_1=>'Introduction',STRINGVALUE_1_1=>'Idea_Graphic',STRINGVALUE_1_2=>'Feedback_from_Last_Gate',STRINGVALUE_1_2=>'Country_Strategic_Context',STRINGVALUE_1_3=>'Key_Changes_since_Contract_Gate',STRINGVALUE_1_3=>'Feedback_from_BOSSCARD',STRINGVALUE_1_3=>'Key_Issues_needing_focus_in_Gate_Meeting',STRINGVALUE_1_3=>'Key_Changes_since_Market_Ready_Gate',STRINGVALUE_1_4=>'Gate_Keeper_Checklist',STRINGVALUE_2=>EXTERNAL,STRINGVALUE_2_1=>'Competitors',STRINGVALUE_2_1=>'Competitor',STRINGVALUE_2_2=>'Customers',STRINGVALUE_2_2=>'Customers_Channels',THREE=>'Mix',STRINGVALUE_3_1=>'Proposition',STRINGVALUE_3_2=>'Pack',STRINGVALUE_3_2=>'Product',STRINGVALUE_3_2=>'Pack_Graphics',STRINGVALUE_3_3=>'Product_Sub_Header',STRINGVALUE_3_3=>'Mix_Qualification_Plan_and_Action_Standards',STRINGVALUE_3_4=>'Price',STRINGVALUE_3_4=>'Degree_of_Commonality',STRINGVALUE_3_5=>'Full_Mix',STRINGVALUE_4=>'Deployment',STRINGVALUE_4_1=>'Promotion_Guidance_for_Deployment',STRINGVALUE_4_2=>'Place_Guidance_for_Deployment',STRINGVALUE_4_2=>'Place',STRINGVALUE_5=>'Technical_Header',STRINGVALUE_5=>'Technical',STRINGVALUE_5_1=>'R&D_Technical_Readiness',STRINGVALUE_5_1=>'R&D_Initial_Outline_Product_Pack',STRINGVALUE_5_1=>'R&D_Feasibility',STRINGVALUE_5_2=>'Supply_Chain_Technical_Readiness',STRINGVALUE_5_2=>'Supply_Chain_Initial_Outline',STRINGVALUE_5_2=>'Supply_Chain_Feasibility',STRINGVALUE_5_3=>'Environmental_Impact',STRINGVALUE_6=>'Financial',STRINGVALUE_6_1=>'Business_Case_Action_Standards',STRINGVALUE_6_2=>'Assumptions_Risks_Sensitivities',STRINGVALUE_6_2=>'Initial_Estimate_of_Opportunity',STRINGVALUE_6_2=>'Business_Waste',STRINGVALUE_6_3=>'BD/BB_Alignment',STRINGVALUE_6_3=>'Monitoring_Performance_in_Market',STRINGVALUE_7=>'Project_Management',STRINGVALUE_7_1=>'Rollout_Plans',STRINGVALUE_7_1=>'Risk',STRINGVALUE_7_2=>'Country_Feedback_Requirements',STRINGVALUE_7_2=>'Milestones',STRINGVALUE_7_3=>'Regional_BD_Team_FB_Req',STRINGVALUE_7_3=>'Regional_BD_Team_Feedback_to_Global',STRINGVALUE_7_3=>'OTIF_Status',STRINGVALUE_7_4=>'Human_Resources',STRINGVALUE_8=>'Appendix',STRINGVALUE_8_1=>'BD/BB_Alignment_Appendix',STRINGVALUE_8_1=>'CU_And_Complexity_Appendix',STRINGVALUE_8_1=>'Customers_Channels_Appendix',STRINGVALUE_8_1=>'Milestones_Appendix',STRINGVALUE_8_2=>'Rollout_Plans_Appendix',STRINGVALUE_8_2=>'Consumer_Evidence_Concept_Appendix',STRINGVALUE_8_2=>'Assortment_Strategy_Appendix',STRINGVALUE_8_3=>'Monitoring_Performance_in_Market_Appendix',STRINGVALUE_8_4=>'Mix_Qualification_Plan_and_Action_Standards_Appendix',STRINGVALUE_8_5=>'Environmental_Impact_Appendix',STRINGVALUE_8_6=>'Pack_Graphics_Appendix',STRINGVALUE_8_6=>'Initial_Estimate_of_Opportunity_Appendix',STRINGVALUE_8_7=>'Risk_Appendix',STRINGVALUE_8_7=>'Regional_BD_Team_FB_Req_Appendix',STRINGVALUE_1_2_1=>'Consumer_Need',STRINGVALUE_1_2_1=>'Fit_with_National_Category_Building_Plan',STRINGVALUE_1_2_2=>'Strategic_Fit',STRINGVALUE_1_2_2=>'Fit_with_BMP_Jobs_to_be_Done',STRINGVALUE_2_2_2=>'Trade_Story',STRINGVALUE_3_1_1=>'Target_Audience',STRINGVALUE_3_1_2=>CONCEPT,STRINGVALUE_3_1_3=>'Consumer_Evidence_Concept',STRINGVALUE_3_1_3=>'Communication',STRINGVALUE_3_1_5=>'Consumer_Evidence_Communication',STRINGVALUE_3_1_5=>'Trademarks',STRINGVALUE_3_2_1=>'CU_And_Complexity',STRINGVALUE_3_2_2=>'Consumer_Evidence_Pack',STRINGVALUE_3_3_2=>'Consumer_Evidence_Product',STRINGVALUE_3_4_1=>'Proposed_Pricing',STRINGVALUE_3_4_2=>'Consumer_Evidence_Price',STRINGVALUE_3_4_2=>'Other_Price_Rationale',STRINGVALUE_4_2_1=>'Assortment_Strategy',STRINGVALUE_4_2_2=>'Merchandising_Strategy',STRINGVALUE_4_2_3=>'Trade_Promotion_Strategy',STRINGVALUE_6_2_1=>'Assumptions',STRINGVALUE_6_2_2=>'Sensitivity_Analysis'}; 
+        Map<String,String> sectionNameMap = new Map<String,String>{STRINGVALUE_1=>'Introduction',STRINGVALUE_1_1=>'Idea / Graphic',STRINGVALUE_1_2=>'Feedback from Last Gate',STRINGVALUE_1_2=>'Justification',STRINGVALUE_1_3=>'Key Changes since Contract Gate',STRINGVALUE_1_3=>'Feedback from BOSSCARD',STRINGVALUE_1_3=>'Key Issues Needing Focus in Gate Meeting',STRINGVALUE_1_3=>'Key Changes since Market Ready Gate',STRINGVALUE_1_4=>'Gate Keeper Checklist',STRINGVALUE_2=>EXTERNAL,STRINGVALUE_2_1=>'Competitors',STRINGVALUE_2_1=>'Competitors',STRINGVALUE_2_2=>'Customers',STRINGVALUE_2_2=>'Customers/Channels',THREE=>'Mix',STRINGVALUE_3_1=>'Proposition',STRINGVALUE_3_2=>'Pack',STRINGVALUE_3_2=>PRODUCT,STRINGVALUE_3_2=>'Pack',STRINGVALUE_3_3=>PRODUCT,STRINGVALUE_3_3=>'Mix Qualification Plan and Action Standards (Table)',STRINGVALUE_3_4=>'Price',STRINGVALUE_3_4=>'Degree of Commonality',STRINGVALUE_3_5=>'Full Mix',STRINGVALUE_4=>'Deployment',STRINGVALUE_4_1=>'Promotion Guidance for Deployment - PRELIMINARY',STRINGVALUE_4_2=>'Place Guidance for Deployment',STRINGVALUE_4_2=>'Place',STRINGVALUE_5=>'Technical',STRINGVALUE_5=>'Technical',STRINGVALUE_5_1=>'R&D Technical  Readiness',STRINGVALUE_5_1=>'R&D Initial Outline (Product/Pack)',STRINGVALUE_5_1=>'R&D Feasibility',STRINGVALUE_5_2=>'Supply Chain Technical  Readiness',STRINGVALUE_5_2=>'Supply Chain Initial Outline',STRINGVALUE_5_2=>'Supply Chain Feasibility',STRINGVALUE_5_3=>'Environmental Impact',STRINGVALUE_6=>'Financial',STRINGVALUE_6_1=>'Business Case vs. Action Standards',STRINGVALUE_6_2=>'Assumptions, Risks, Sensitivities',STRINGVALUE_6_2=>'Initial Estimate of Opportunity',STRINGVALUE_6_2=>'Business Waste',STRINGVALUE_6_3=>'BD/BB Alignment',STRINGVALUE_6_3=>'Monitoring Performance in Market',STRINGVALUE_7=>'Project Management',STRINGVALUE_7_1=>'Rollout Plans',STRINGVALUE_7_1=>'Risk',STRINGVALUE_7_2=>'Country Feedback & Requirements',STRINGVALUE_7_2=>'Milestones',STRINGVALUE_7_3=>'Regional BD Team FB & Reqs',STRINGVALUE_7_3=>'Regional BD Team Feedback to Global',STRINGVALUE_7_3=>'OTIF',STRINGVALUE_7_4=>'Human Resources',STRINGVALUE_8=>'Appendix',STRINGVALUE_8_1=>'BD/BB Alignment',STRINGVALUE_8_1=>'CUs and Complexity',STRINGVALUE_8_1=>'Customers / Channels',STRINGVALUE_8_1=>'Milestones',STRINGVALUE_8_2=>'Rollout Plans',STRINGVALUE_8_2=>'Consumer Evidence - Concept',STRINGVALUE_8_2=>'Assortment Strategy',STRINGVALUE_8_3=>'Monitoring Performance in Market',STRINGVALUE_8_4=>'Mix Qualification Plan and Action Standards (Table)',STRINGVALUE_8_5=>'Environmental Impact',STRINGVALUE_8_6=>'Pack/Graphics',STRINGVALUE_8_6=>'Initial Estimate of Opportunity',STRINGVALUE_8_7=>'Risk',STRINGVALUE_8_7=>'Regional BD Team FB & Reqs',STRINGVALUE_1_2_1=>'Consumer Need',STRINGVALUE_1_2_1=>'Fit with National Category Building Plan (NCBP)',STRINGVALUE_1_2_2=>'Strategic Fit',STRINGVALUE_1_2_2=>'Fit with BMP Jobs to be Done',STRINGVALUE_2_2_2=>'Trade Story',STRINGVALUE_3_1_1=>'Target Audience',STRINGVALUE_3_1_2=>CONCEPT,STRINGVALUE_3_1_3=>'Consumer Evidence - Concept',STRINGVALUE_3_1_3=>'Communication',STRINGVALUE_3_1_5=>'Consumer Evidence - Communication',STRINGVALUE_3_1_5=>'Trademarks',STRINGVALUE_3_2_1=>'CUs and Complexity',STRINGVALUE_3_2_2=>'Consumer Evidence - Pack',STRINGVALUE_3_3_2=>'Consumer Evidence - Product',STRINGVALUE_3_4_1=>'Proposed Pricing',STRINGVALUE_3_4_2=>'Consumer Evidence - Price',STRINGVALUE_3_4_2=>'Other Price Rationale (beyond consumer evidence shown in 3.5 below)',STRINGVALUE_4_2_1=>'Assortment Strategy',STRINGVALUE_4_2_2=>'Merchandising Strategy',STRINGVALUE_4_2_3=>'Trade Promotion Strategy',STRINGVALUE_6_2_1=>'Assumptions',STRINGVALUE_6_2_2=>'Sensitivity Analysis'};
+        Map<String,String> sectionExternalIDMap = new Map<String,String>{STRINGVALUE_1=>'Introduction',STRINGVALUE_1_1=>'Idea_Graphic',STRINGVALUE_1_2=>'Feedback_from_Last_Gate',STRINGVALUE_1_2=>'Country_Strategic_Context',STRINGVALUE_1_3=>'Key_Changes_since_Contract_Gate',STRINGVALUE_1_3=>'Feedback_from_BOSSCARD',STRINGVALUE_1_3=>'Key_Issues_needing_focus_in_Gate_Meeting',STRINGVALUE_1_3=>'Key_Changes_since_Market_Ready_Gate',STRINGVALUE_1_4=>'Gate_Keeper_Checklist',STRINGVALUE_2=>EXTERNAL,STRINGVALUE_2_1=>'Competitors',STRINGVALUE_2_1=>'Competitor',STRINGVALUE_2_2=>'Customers',STRINGVALUE_2_2=>'Customers_Channels',THREE=>'Mix',STRINGVALUE_3_1=>'Proposition',STRINGVALUE_3_2=>'Pack',STRINGVALUE_3_2=>PRODUCT,STRINGVALUE_3_2=>'Pack_Graphics',STRINGVALUE_3_3=>'Product_Sub_Header',STRINGVALUE_3_3=>'Mix_Qualification_Plan_and_Action_Standards',STRINGVALUE_3_4=>'Price',STRINGVALUE_3_4=>'Degree_of_Commonality',STRINGVALUE_3_5=>'Full_Mix',STRINGVALUE_4=>'Deployment',STRINGVALUE_4_1=>'Promotion_Guidance_for_Deployment',STRINGVALUE_4_2=>'Place_Guidance_for_Deployment',STRINGVALUE_4_2=>'Place',STRINGVALUE_5=>'Technical_Header',STRINGVALUE_5=>'Technical',STRINGVALUE_5_1=>'R&D_Technical_Readiness',STRINGVALUE_5_1=>'R&D_Initial_Outline_Product_Pack',STRINGVALUE_5_1=>'R&D_Feasibility',STRINGVALUE_5_2=>'Supply_Chain_Technical_Readiness',STRINGVALUE_5_2=>'Supply_Chain_Initial_Outline',STRINGVALUE_5_2=>'Supply_Chain_Feasibility',STRINGVALUE_5_3=>'Environmental_Impact',STRINGVALUE_6=>'Financial',STRINGVALUE_6_1=>'Business_Case_Action_Standards',STRINGVALUE_6_2=>'Assumptions_Risks_Sensitivities',STRINGVALUE_6_2=>'Initial_Estimate_of_Opportunity',STRINGVALUE_6_2=>'Business_Waste',STRINGVALUE_6_3=>'BD/BB_Alignment',STRINGVALUE_6_3=>'Monitoring_Performance_in_Market',STRINGVALUE_7=>'Project_Management',STRINGVALUE_7_1=>'Rollout_Plans',STRINGVALUE_7_1=>'Risk',STRINGVALUE_7_2=>'Country_Feedback_Requirements',STRINGVALUE_7_2=>'Milestones',STRINGVALUE_7_3=>'Regional_BD_Team_FB_Req',STRINGVALUE_7_3=>'Regional_BD_Team_Feedback_to_Global',STRINGVALUE_7_3=>'OTIF_Status',STRINGVALUE_7_4=>'Human_Resources',STRINGVALUE_8=>'Appendix',STRINGVALUE_8_1=>'BD/BB_Alignment_Appendix',STRINGVALUE_8_1=>'CU_And_Complexity_Appendix',STRINGVALUE_8_1=>'Customers_Channels_Appendix',STRINGVALUE_8_1=>'Milestones_Appendix',STRINGVALUE_8_2=>'Rollout_Plans_Appendix',STRINGVALUE_8_2=>'Consumer_Evidence_Concept_Appendix',STRINGVALUE_8_2=>'Assortment_Strategy_Appendix',STRINGVALUE_8_3=>'Monitoring_Performance_in_Market_Appendix',STRINGVALUE_8_4=>'Mix_Qualification_Plan_and_Action_Standards_Appendix',STRINGVALUE_8_5=>'Environmental_Impact_Appendix',STRINGVALUE_8_6=>'Pack_Graphics_Appendix',STRINGVALUE_8_6=>'Initial_Estimate_of_Opportunity_Appendix',STRINGVALUE_8_7=>'Risk_Appendix',STRINGVALUE_8_7=>'Regional_BD_Team_FB_Req_Appendix',STRINGVALUE_1_2_1=>'Consumer_Need',STRINGVALUE_1_2_1=>'Fit_with_National_Category_Building_Plan',STRINGVALUE_1_2_2=>'Strategic_Fit',STRINGVALUE_1_2_2=>'Fit_with_BMP_Jobs_to_be_Done',STRINGVALUE_2_2_2=>'Trade_Story',STRINGVALUE_3_1_1=>'Target_Audience',STRINGVALUE_3_1_2=>CONCEPT,STRINGVALUE_3_1_3=>'Consumer_Evidence_Concept',STRINGVALUE_3_1_3=>'Communication',STRINGVALUE_3_1_5=>'Consumer_Evidence_Communication',STRINGVALUE_3_1_5=>'Trademarks',STRINGVALUE_3_2_1=>'CU_And_Complexity',STRINGVALUE_3_2_2=>'Consumer_Evidence_Pack',STRINGVALUE_3_3_2=>'Consumer_Evidence_Product',STRINGVALUE_3_4_1=>'Proposed_Pricing',STRINGVALUE_3_4_2=>'Consumer_Evidence_Price',STRINGVALUE_3_4_2=>'Other_Price_Rationale',STRINGVALUE_4_2_1=>'Assortment_Strategy',STRINGVALUE_4_2_2=>'Merchandising_Strategy',STRINGVALUE_4_2_3=>'Trade_Promotion_Strategy',STRINGVALUE_6_2_1=>'Assumptions',STRINGVALUE_6_2_2=>'Sensitivity_Analysis'}; 
         Map<String,Boolean> sectionNegotiableMap = new Map<String,Boolean>{STRINGVALUE_1=>FALSE,STRINGVALUE_1_1=>FALSE,STRINGVALUE_1_2=>FALSE,STRINGVALUE_1_2=>FALSE,STRINGVALUE_1_3=>FALSE,STRINGVALUE_1_3=>FALSE,STRINGVALUE_1_3=>FALSE,STRINGVALUE_1_3=>FALSE,STRINGVALUE_1_4=>TRUE,STRINGVALUE_2=>TRUE,STRINGVALUE_2_1=>TRUE,STRINGVALUE_2_1=>TRUE,STRINGVALUE_2_2=>FALSE,STRINGVALUE_2_2=>TRUE,THREE=>FALSE,STRINGVALUE_3_1=>FALSE,STRINGVALUE_3_2=>FALSE,STRINGVALUE_3_2=>TRUE,STRINGVALUE_3_2=>FALSE,STRINGVALUE_3_3=>FALSE,STRINGVALUE_3_3=>FALSE,STRINGVALUE_3_4=>FALSE,STRINGVALUE_3_4=>TRUE,STRINGVALUE_3_5=>FALSE,STRINGVALUE_4=>TRUE,STRINGVALUE_4_1=>TRUE,STRINGVALUE_4_2=>TRUE,STRINGVALUE_4_2=>TRUE,STRINGVALUE_5=>FALSE,STRINGVALUE_5=>FALSE,STRINGVALUE_5_1=>FALSE,STRINGVALUE_5_1=>FALSE,STRINGVALUE_5_1=>FALSE,STRINGVALUE_5_2=>FALSE,STRINGVALUE_5_2=>FALSE,STRINGVALUE_5_2=>FALSE,STRINGVALUE_5_3=>TRUE,STRINGVALUE_6=>TRUE,STRINGVALUE_6_1=>FALSE,STRINGVALUE_6_2=>FALSE,STRINGVALUE_6_2=>FALSE,STRINGVALUE_6_2=>TRUE,STRINGVALUE_6_3=>TRUE,STRINGVALUE_6_3=>TRUE,STRINGVALUE_7=>FALSE,STRINGVALUE_7_1=>TRUE,STRINGVALUE_7_1=>FALSE,STRINGVALUE_7_2=>TRUE,STRINGVALUE_7_2=>TRUE,STRINGVALUE_7_3=>TRUE,STRINGVALUE_7_3=>TRUE,STRINGVALUE_7_3=>FALSE,STRINGVALUE_7_4=>TRUE,STRINGVALUE_8=>FALSE,STRINGVALUE_8_1=>TRUE,STRINGVALUE_8_1=>FALSE,STRINGVALUE_8_1=>TRUE,STRINGVALUE_8_1=>TRUE,STRINGVALUE_8_2=>TRUE,STRINGVALUE_8_2=>TRUE,STRINGVALUE_8_2=>TRUE,STRINGVALUE_8_3=>TRUE,STRINGVALUE_8_4=>FALSE,STRINGVALUE_8_5=>FALSE,STRINGVALUE_8_6=>FALSE,STRINGVALUE_8_6=>FALSE,STRINGVALUE_8_7=>FALSE,STRINGVALUE_8_7=>TRUE,STRINGVALUE_1_2_1=>FALSE,STRINGVALUE_1_2_1=>TRUE,STRINGVALUE_1_2_2=>TRUE,STRINGVALUE_1_2_2=>TRUE,STRINGVALUE_2_2_2=>FALSE,STRINGVALUE_3_1_1=>FALSE,STRINGVALUE_3_1_2=>TRUE,STRINGVALUE_3_1_3=>TRUE,STRINGVALUE_3_1_3=>TRUE,STRINGVALUE_3_1_5=>TRUE,STRINGVALUE_3_1_5=>FALSE,STRINGVALUE_3_2_1=>TRUE,STRINGVALUE_3_2_2=>TRUE,STRINGVALUE_3_3_2=>TRUE,STRINGVALUE_3_4_1=>FALSE,STRINGVALUE_3_4_2=>TRUE,STRINGVALUE_3_4_2=>TRUE,STRINGVALUE_4_2_1=>TRUE,STRINGVALUE_4_2_2=>TRUE,STRINGVALUE_4_2_3=>TRUE,STRINGVALUE_6_2_1=>FALSE,STRINGVALUE_6_2_2=>TRUE}; 
         Map<String,String> sectionFunctionalMap = new Map<String,String>{STRINGVALUE_1=>EMPTY_STRING,STRINGVALUE_1_1=>PL,STRINGVALUE_1_2=>PL,STRINGVALUE_1_2=>BD,STRINGVALUE_1_3=>BD,STRINGVALUE_1_3=>PL,STRINGVALUE_1_3=>PL,STRINGVALUE_1_3=>BB,STRINGVALUE_1_4=>PL,STRINGVALUE_2=>EMPTY_STRING,STRINGVALUE_2_1=>BD,STRINGVALUE_2_1=>BD,STRINGVALUE_2_2=>BD,STRINGVALUE_2_2=>CD,THREE=>EMPTY_STRING,STRINGVALUE_3_1=>CMI,STRINGVALUE_3_2=>CMI,STRINGVALUE_3_2=>CMI,STRINGVALUE_3_2=>BB,STRINGVALUE_3_3=>BB,STRINGVALUE_3_3=>CMI,STRINGVALUE_3_4=>CMI,STRINGVALUE_3_4=>BD,STRINGVALUE_3_5=>CMI,STRINGVALUE_4=>EMPTY_STRING,STRINGVALUE_4_1=>BD,STRINGVALUE_4_2=>BD,STRINGVALUE_4_2=>BD,STRINGVALUE_5=>EMPTY_STRING,STRINGVALUE_5=>R_D,STRINGVALUE_5_1=>R_D,STRINGVALUE_5_1=>R_D,STRINGVALUE_5_1=>R_D,STRINGVALUE_5_2=>SC,STRINGVALUE_5_2=>SC,STRINGVALUE_5_2=>SC,STRINGVALUE_5_3=>R_D,STRINGVALUE_6=>EMPTY_STRING,STRINGVALUE_6_1=>FINANCE,STRINGVALUE_6_2=>FINANCE,STRINGVALUE_6_2=>FINANCE,STRINGVALUE_6_2=>BB,STRINGVALUE_6_3=>FINANCE,STRINGVALUE_6_3=>BB,STRINGVALUE_7=>EMPTY_STRING,STRINGVALUE_7_1=>PL,STRINGVALUE_7_1=>BB,STRINGVALUE_7_2=>BB,STRINGVALUE_7_2=>BB,STRINGVALUE_7_3=>BD,STRINGVALUE_7_3=>BD,STRINGVALUE_7_3=>BB,STRINGVALUE_7_4=>PL,STRINGVALUE_8=>EMPTY_STRING,STRINGVALUE_8_1=>FINANCE,STRINGVALUE_8_1=>BD,STRINGVALUE_8_1=>CD,STRINGVALUE_8_1=>BD,STRINGVALUE_8_2=>BD,STRINGVALUE_8_2=>CMI,STRINGVALUE_8_2=>CD,STRINGVALUE_8_3=>BB,STRINGVALUE_8_4=>CMI,STRINGVALUE_8_5=>'RnD',STRINGVALUE_8_6=>BD,STRINGVALUE_8_6=>FINANCE,STRINGVALUE_8_7=>BD,STRINGVALUE_8_7=>BD,STRINGVALUE_1_2_1=>BD,STRINGVALUE_1_2_1=>BB,STRINGVALUE_1_2_2=>BD,STRINGVALUE_1_2_2=>BB,STRINGVALUE_2_2_2=>CD,STRINGVALUE_3_1_1=>BD,STRINGVALUE_3_1_2=>BD,STRINGVALUE_3_1_3=>CMI,STRINGVALUE_3_1_3=>BB,STRINGVALUE_3_1_5=>CMI,STRINGVALUE_3_1_5=>BD,STRINGVALUE_3_2_1=>BD,STRINGVALUE_3_2_2=>CMI,STRINGVALUE_3_3_2=>CMI,STRINGVALUE_3_4_1=>BD,STRINGVALUE_3_4_2=>CMI,STRINGVALUE_3_4_2=>BB,STRINGVALUE_4_2_1=>CD,STRINGVALUE_4_2_2=>CD,STRINGVALUE_4_2_3=>CD,STRINGVALUE_6_2_1=>FINANCE,STRINGVALUE_6_2_2=>FINANCE};
         
@@ -2213,7 +2218,7 @@ public class IPM_TestFactory_Helper
         
         Map<String,List<Object>> sectionMasterMap = new Map<String,List<Object>>{
             'External_ID__c' => new List<Object>(),IPM_DOCUMENT_TEMPLATE => new List<Object>(),'IPM_FunctionalRole__c' => new List<Object>(),
-            'IPM_Negotiable__c' => new List<Object>(),IPM_SECTION_Name => new List<Object>(),IPM_SECTION_SEQUENCE=>new List<Object>(),
+            IPMNEGOTIABLE => new List<Object>(),IPM_SECTION_Name => new List<Object>(),IPM_SECTION_SEQUENCE=>new List<Object>(),
             'IPM_Section_Type__c' => new List<Object>(),'ProjectSpan__c' => new List<Object>() };
         
         for(IPM_Document_Template__c tempDoc : documentTemplateList)
@@ -2232,7 +2237,7 @@ public class IPM_TestFactory_Helper
                 
                 if(sectionNegotiableMap.containsKey(SequenceList.get(counter)))
                 {
-                    sectionMasterMap.get('IPM_Negotiable__c').add(sectionNegotiableMap.get(SequenceList.get(counter)));
+                    sectionMasterMap.get(IPMNEGOTIABLE).add(sectionNegotiableMap.get(SequenceList.get(counter)));
                 }
                 
                 if(sectionNameMap.containsKey(SequenceList.get(counter)))
@@ -2293,14 +2298,14 @@ public class IPM_TestFactory_Helper
         
         Map<String,List<Object>> questionnaireMap = new Map<String,List<Object>>{RECORD_TYPE_ID => new List<Id>(),
             'IPM_Charter_Score__c' => new List<Integer>(),'IPM_Contract_Score__c' => new List<Integer>(),'IPM_Market_Deployment_Score__c' => new List<Integer>(),'IPM_Market_Ready_Score__c' => new List<Integer>(),
-            'Is_Master__c' => new List<Boolean>(),IPM_PROJECT => new List<Id>(),'IPM_Score__c' => new List<Integer>(), 'DependentFieldAPIName__c' => new List<String>() };
+            ISMASTER => new List<Boolean>(),IPM_PROJECT => new List<Id>(),'IPM_Score__c' => new List<Integer>(), 'DependentFieldAPIName__c' => new List<String>() };
         
         for(Id recordId : recordIdList)
         {
             for(Integer counter=0;counter < 3;counter++)
             {
                 questionnaireMap.get(RECORD_TYPE_ID).add(recordId);  
-                questionnaireMap.get('Is_Master__c').add(true);
+                questionnaireMap.get(ISMASTER).add(true);
                 questionnaireMap.get('IPM_Score__c').add(counter);
                 questionnaireMap.get('IPM_Charter_Score__c').add(counter);
                 questionnaireMap.get('IPM_Contract_Score__c').add(counter);
@@ -2339,7 +2344,7 @@ public class IPM_TestFactory_Helper
     }
     
     
-    /**************************************************************************************************************************************************
+   /**************************************************************************************************************************************************
     * @description To get  project master data for GKM3 
     **************************************************************************************************/
     public static void getProjectMasterDataForGKM3()
@@ -2377,7 +2382,7 @@ public class IPM_TestFactory_Helper
         
         
         // Create Master Project For sharing to work for master tasks and milestones.
-        Map<String,Object> masterProjectMap =  new Map<String,Object>{IPM_PROJECT_NAME => 'IPM_MasterProjectGKM3','IPM_Phase__c' => IDEAS,'IPM_Category_Group__c' => SKINCARE,'IPM_PM_Approach__c' => EXTERNAL,'IPM_IsCompleted__c' => true,'IPM_Fast_Track_Project__c' => false,'IPM_Market_Type__c' =>IPM_ConstantUtils.MARKETTYPE_DEVELOPING,IPM_TARGET_LAUNCH_DATES => System.today()+100,IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_PROJECT_SPAN => IPM_ConstantUtils.SpanGlobal ,CATEGORY_PICKLIST => IPM_ConstantUtils.SKINCARE_CONSTANT};
+        Map<String,Object> masterProjectMap =  new Map<String,Object>{IPM_PROJECT_NAME => 'IPM_MasterProject','IPM_Phase__c' => IDEAS,'IPM_Category_Group__c' => SKINCARE,'IPM_PM_Approach__c' => EXTERNAL,'IPM_IsCompleted__c' => true,'IPM_Fast_Track_Project__c' => false,'IPM_Market_Type__c' =>IPM_ConstantUtils.MARKETTYPE_DEVELOPING,IPM_TARGET_LAUNCH_DATES => System.today()+100,IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_PROJECT_SPAN => IPM_ConstantUtils.SpanGlobal ,CATEGORY_PICKLIST => IPM_ConstantUtils.SKINCARE_CONSTANT};
         
         IPM_Project__c masterProjectObj = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,masterProjectMap,true);
         masterProjectObj.IPM_Category_Picklist__c = IPM_ConstantUtils.SKINCARE_CONSTANT;        
@@ -2386,22 +2391,32 @@ public class IPM_TestFactory_Helper
         IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = false;
         
         // validate whether project is successfully inserted.
-        List<IPM_Project__c> masterProjectList =  [Select Id from IPM_Project__c where IPM_Project_Name__c ='IPM_MasterProjectGKM3'];
+        List<IPM_Project__c> masterProjectList =  [Select Id from IPM_Project__c where IPM_Project_Name__c ='IPM_MasterProject'];
         
         System.assertEquals(masterProjectList.size(),1);
-        
-        Map<String,List<Object>> taskMasterMap = new Map<String,List<Object>>{
+		
+		IPM_TestFactory_Helper.createTasksForMasterTamplate(masterProjectList[0]);
+		IPM_TestFactory_Helper.createSectionForMasterTemplate();
+        IPM_TestFactory_Helper.createMilestoneForMasterTemplate(masterProjectList[0]);
+        IPM_TestFactory_Helper.createQuestionnaireForMasterTemplate(masterProjectList[0]);
+        IPM_TestFactory_Helper.loadDataForMasterTemplate();
+        projectMetadataList = IPM_TestFactory_Helper.createIPMProjectMetadata();
+    }
+	
+	//This method is used for create Tasks for Master data
+    public static void createTasksForMasterTamplate(IPM_Project__c masterPro){
+		Map<String,List<Object>> taskMasterMap = new Map<String,List<Object>>{
             'IPM_Function__c' => new List<String>{BD,R_D,SC,CD,CMI,CMI,FINANCE,BB,R_D,CMI},
             'IPM_Is_Master__c' => new List<Boolean>{true,true,true,true,true,true,true,true,true,true},
             IPM_PHASE => new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT},
             IPM_PROJECT_TEMPLATE => new List<Id>{projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id},
             'IPM_Task_Complexity__c' => new List<String>{FULL,FULL,FULL,FULL,FULL,LITE,LITE,LITE,LITE,LITE},
-            'IPM_Task_Name__c' =>new List<String>{'Develop and lock concept','Develop packaging brief ','Action customer feedback','Full stock building','Identify target audience','Prepare for consumer concept','Ensure Customer appeal is clear','Factory commissioning','Action customer feedback','Respond to questions from BB to any open ends'},
+            'IPM_Task_Name__c' =>new List<String>{'Develop and lock concept','Develop packaging brief ',ACTIONCUSTOMERFEEDBACK,'Full stock building','Identify target audience','Prepare for consumer concept','Ensure Customer appeal is clear','Factory commissioning',ACTIONCUSTOMERFEEDBACK,'Respond to questions from BB to any open ends'},
             'IPM_Task_Type__c' => new List<String>{NON_NEGOTIABLE,NON_NEGOTIABLE,NON_NEGOTIABLE,NON_NEGOTIABLE,NON_NEGOTIABLE,NEGOTIABLE,NEGOTIABLE,NEGOTIABLE,NEGOTIABLE,NEGOTIABLE},
             'IPM_Type_of_Gate__c' =>new List<String>{CHARTER,CONTRACT,MARKET_READY,MARKET_DEPLOYMENT,CHARTER,CONTRACT,MARKET_READY,MARKET_DEPLOYMENT},
-            NAME => new List<String>{'Develop and lock concept','Develop packaging brief ','Action customer feedback','Full stock building','Identify target audience','Ensure Customer appeal is clear','Factory commissioning','Respond to questions from BB to any open ends'},
+            NAME => new List<String>{'Develop and lock concept','Develop packaging brief ',ACTIONCUSTOMERFEEDBACK,'Full stock building','Identify target audience','Ensure Customer appeal is clear','Factory commissioning','Respond to questions from BB to any open ends'},
             RECORD_TYPE_ID => new List<Id>{taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType,taskMasterRecordType},
-            IPM_PROJECT => new List<Id>{masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id}
+            IPM_PROJECT => new List<Id>{masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id}
         };
         
         taskTemplateList = (List<IPM_Task__c>)IPM_TestFactory.createSObjectList('IPM_Task__c',taskMasterMap,false);
@@ -2436,7 +2451,11 @@ public class IPM_TestFactory_Helper
         
         System.assertEquals(phaseToTaskList.get(IDEAS).size(), 2);
         System.assertEquals(complexityToTaskList.get(FULL).size(), 5);
-        
+	}
+	
+	//This method is used for create Sections for Master data
+	public static void createSectionForMasterTemplate(){
+		
         Map<String,String> sectionTypeMap = new Map<String,String>{STRINGVALUE_1=>HEADER,STRINGVALUE_2=>HEADER,THREE=>HEADER,STRINGVALUE_4=>HEADER,STRINGVALUE_5=>HEADER,STRINGVALUE_6=>HEADER,STRINGVALUE_7=>HEADER,
             STRINGVALUE_8=>HEADER,STRINGVALUE_1_2=>SUB_HEADER,STRINGVALUE_2_2=>SUB_HEADER,STRINGVALUE_3_1=>SUB_HEADER,STRINGVALUE_3_2=>SUB_HEADER,STRINGVALUE_3_3=>SUB_HEADER,STRINGVALUE_3_4=>SUB_HEADER,
             STRINGVALUE_4_2=>SUB_HEADER,STRINGVALUE_6_2=>SUB_HEADER,STRINGVALUE_1_1=>TEXT,STRINGVALUE_1_2=>TEXT,STRINGVALUE_1_3=>TEXT,STRINGVALUE_2_1=>TEXT,STRINGVALUE_3_2=>TEXT,STRINGVALUE_3_4=>TEXT,STRINGVALUE_3_5=>TEXT,
@@ -2450,8 +2469,8 @@ public class IPM_TestFactory_Helper
         
         List<String> SequenceList = new List<String>{STRINGVALUE_1,STRINGVALUE_1_1,STRINGVALUE_1_2,STRINGVALUE_1_3,STRINGVALUE_1_4,STRINGVALUE_2,STRINGVALUE_2_1,STRINGVALUE_2_2,THREE,STRINGVALUE_3_1,STRINGVALUE_3_2,STRINGVALUE_3_3,STRINGVALUE_3_4,STRINGVALUE_3_5,STRINGVALUE_4,STRINGVALUE_4_1,STRINGVALUE_4_2,STRINGVALUE_5,STRINGVALUE_5_1,STRINGVALUE_5_2,STRINGVALUE_5_3,STRINGVALUE_6,STRINGVALUE_6_1,STRINGVALUE_6_2,STRINGVALUE_6_3,STRINGVALUE_7,STRINGVALUE_7_1,STRINGVALUE_7_2,STRINGVALUE_7_3,STRINGVALUE_7_4};        
 
-        Map<String,String> sectionNameMap = new Map<String,String>{STRINGVALUE_1=>'Introduction',STRINGVALUE_1_1=>'Idea / Graphic',STRINGVALUE_1_2=>'Feedback from Last Gate',STRINGVALUE_1_2=>'Justification',STRINGVALUE_1_3=>'Key Changes since Contract Gate',STRINGVALUE_1_3=>'Feedback from BOSSCARD',STRINGVALUE_1_3=>'Key Issues Needing Focus in Gate Meeting',STRINGVALUE_1_3=>'Key Changes since Market Ready Gate',STRINGVALUE_1_4=>'Gate Keeper Checklist',STRINGVALUE_2=>EXTERNAL,STRINGVALUE_2_1=>'Competitors',STRINGVALUE_2_1=>'Competitors',STRINGVALUE_2_2=>'Customers',STRINGVALUE_2_2=>'Customers/Channels',THREE=>'Mix',STRINGVALUE_3_1=>'Proposition',STRINGVALUE_3_2=>'Pack',STRINGVALUE_3_2=>'Product',STRINGVALUE_3_2=>'Pack',STRINGVALUE_3_3=>'Product',STRINGVALUE_3_3=>'Mix Qualification Plan and Action Standards (Table)',STRINGVALUE_3_4=>'Price',STRINGVALUE_3_4=>'Degree of Commonality',STRINGVALUE_3_5=>'Full Mix',STRINGVALUE_4=>'Deployment',STRINGVALUE_4_1=>'Promotion Guidance for Deployment - PRELIMINARY',STRINGVALUE_4_2=>'Place Guidance for Deployment',STRINGVALUE_4_2=>'Place',STRINGVALUE_5=>'Technical',STRINGVALUE_5=>'Technical',STRINGVALUE_5_1=>'R&D Technical  Readiness',STRINGVALUE_5_1=>'R&D Initial Outline (Product/Pack)',STRINGVALUE_5_1=>'R&D Feasibility',STRINGVALUE_5_2=>'Supply Chain Technical  Readiness',STRINGVALUE_5_2=>'Supply Chain Initial Outline',STRINGVALUE_5_2=>'Supply Chain Feasibility',STRINGVALUE_5_3=>'Environmental Impact',STRINGVALUE_6=>'Financial',STRINGVALUE_6_1=>'Business Case vs. Action Standards',STRINGVALUE_6_2=>'Assumptions, Risks, Sensitivities',STRINGVALUE_6_2=>'Initial Estimate of Opportunity',STRINGVALUE_6_2=>'Business Waste',STRINGVALUE_6_3=>'BD/BB Alignment',STRINGVALUE_6_3=>'Monitoring Performance in Market',STRINGVALUE_7=>'Project Management',STRINGVALUE_7_1=>'Rollout Plans',STRINGVALUE_7_1=>'Risk',STRINGVALUE_7_2=>'Country Feedback & Requirements',STRINGVALUE_7_2=>'Milestones',STRINGVALUE_7_3=>'Regional BD Team FB & Reqs',STRINGVALUE_7_3=>'Regional BD Team Feedback to Global',STRINGVALUE_7_3=>'OTIF',STRINGVALUE_7_4=>'Human Resources',STRINGVALUE_8=>'Appendix',STRINGVALUE_8_1=>'BD/BB Alignment',STRINGVALUE_8_1=>'CUs and Complexity',STRINGVALUE_8_1=>'Customers / Channels',STRINGVALUE_8_1=>'Milestones',STRINGVALUE_8_2=>'Rollout Plans',STRINGVALUE_8_2=>'Consumer Evidence - Concept',STRINGVALUE_8_2=>'Assortment Strategy',STRINGVALUE_8_3=>'Monitoring Performance in Market',STRINGVALUE_8_4=>'Mix Qualification Plan and Action Standards (Table)',STRINGVALUE_8_5=>'Environmental Impact',STRINGVALUE_8_6=>'Pack/Graphics',STRINGVALUE_8_6=>'Initial Estimate of Opportunity',STRINGVALUE_8_7=>'Risk',STRINGVALUE_8_7=>'Regional BD Team FB & Reqs',STRINGVALUE_1_2_1=>'Consumer Need',STRINGVALUE_1_2_1=>'Fit with National Category Building Plan (NCBP)',STRINGVALUE_1_2_2=>'Strategic Fit',STRINGVALUE_1_2_2=>'Fit with BMP Jobs to be Done',STRINGVALUE_2_2_2=>'Trade Story',STRINGVALUE_3_1_1=>'Target Audience',STRINGVALUE_3_1_2=>CONCEPT,STRINGVALUE_3_1_3=>'Consumer Evidence - Concept',STRINGVALUE_3_1_3=>'Communication',STRINGVALUE_3_1_5=>'Consumer Evidence - Communication',STRINGVALUE_3_1_5=>'Trademarks',STRINGVALUE_3_2_1=>'CUs and Complexity',STRINGVALUE_3_2_2=>'Consumer Evidence - Pack',STRINGVALUE_3_3_2=>'Consumer Evidence - Product',STRINGVALUE_3_4_1=>'Proposed Pricing',STRINGVALUE_3_4_2=>'Consumer Evidence - Price',STRINGVALUE_3_4_2=>'Other Price Rationale (beyond consumer evidence shown in 3.5 below)',STRINGVALUE_4_2_1=>'Assortment Strategy',STRINGVALUE_4_2_2=>'Merchandising Strategy',STRINGVALUE_4_2_3=>'Trade Promotion Strategy',STRINGVALUE_6_2_1=>'Assumptions',STRINGVALUE_6_2_2=>'Sensitivity Analysis'};
-        Map<String,String> sectionExternalIDMap = new Map<String,String>{STRINGVALUE_1=>'Introduction',STRINGVALUE_1_1=>'Idea_Graphic',STRINGVALUE_1_2=>'Feedback_from_Last_Gate',STRINGVALUE_1_2=>'Country_Strategic_Context',STRINGVALUE_1_3=>'Key_Changes_since_Contract_Gate',STRINGVALUE_1_3=>'Feedback_from_BOSSCARD',STRINGVALUE_1_3=>'Key_Issues_needing_focus_in_Gate_Meeting',STRINGVALUE_1_3=>'Key_Changes_since_Market_Ready_Gate',STRINGVALUE_1_4=>'Gate_Keeper_Checklist',STRINGVALUE_2=>EXTERNAL,STRINGVALUE_2_1=>'Competitors',STRINGVALUE_2_1=>'Competitor',STRINGVALUE_2_2=>'Customers',STRINGVALUE_2_2=>'Customers_Channels',THREE=>'Mix',STRINGVALUE_3_1=>'Proposition',STRINGVALUE_3_2=>'Pack',STRINGVALUE_3_2=>'Product',STRINGVALUE_3_2=>'Pack_Graphics',STRINGVALUE_3_3=>'Product_Sub_Header',STRINGVALUE_3_3=>'Mix_Qualification_Plan_and_Action_Standards',STRINGVALUE_3_4=>'Price',STRINGVALUE_3_4=>'Degree_of_Commonality',STRINGVALUE_3_5=>'Full_Mix',STRINGVALUE_4=>'Deployment',STRINGVALUE_4_1=>'Promotion_Guidance_for_Deployment',STRINGVALUE_4_2=>'Place_Guidance_for_Deployment',STRINGVALUE_4_2=>'Place',STRINGVALUE_5=>'Technical_Header',STRINGVALUE_5=>'Technical',STRINGVALUE_5_1=>'R&D_Technical_Readiness',STRINGVALUE_5_1=>'R&D_Initial_Outline_Product_Pack',STRINGVALUE_5_1=>'R&D_Feasibility',STRINGVALUE_5_2=>'Supply_Chain_Technical_Readiness',STRINGVALUE_5_2=>'Supply_Chain_Initial_Outline',STRINGVALUE_5_2=>'Supply_Chain_Feasibility',STRINGVALUE_5_3=>'Environmental_Impact',STRINGVALUE_6=>'Financial',STRINGVALUE_6_1=>'Business_Case_Action_Standards',STRINGVALUE_6_2=>'Assumptions_Risks_Sensitivities',STRINGVALUE_6_2=>'Initial_Estimate_of_Opportunity',STRINGVALUE_6_2=>'Business_Waste',STRINGVALUE_6_3=>'BD/BB_Alignment',STRINGVALUE_6_3=>'Monitoring_Performance_in_Market',STRINGVALUE_7=>'Project_Management',STRINGVALUE_7_1=>'Rollout_Plans',STRINGVALUE_7_1=>'Risk',STRINGVALUE_7_2=>'Country_Feedback_Requirements',STRINGVALUE_7_2=>'Milestones',STRINGVALUE_7_3=>'Regional_BD_Team_FB_Req',STRINGVALUE_7_3=>'Regional_BD_Team_Feedback_to_Global',STRINGVALUE_7_3=>'OTIF_Status',STRINGVALUE_7_4=>'Human_Resources',STRINGVALUE_8=>'Appendix',STRINGVALUE_8_1=>'BD/BB_Alignment_Appendix',STRINGVALUE_8_1=>'CU_And_Complexity_Appendix',STRINGVALUE_8_1=>'Customers_Channels_Appendix',STRINGVALUE_8_1=>'Milestones_Appendix',STRINGVALUE_8_2=>'Rollout_Plans_Appendix',STRINGVALUE_8_2=>'Consumer_Evidence_Concept_Appendix',STRINGVALUE_8_2=>'Assortment_Strategy_Appendix',STRINGVALUE_8_3=>'Monitoring_Performance_in_Market_Appendix',STRINGVALUE_8_4=>'Mix_Qualification_Plan_and_Action_Standards_Appendix',STRINGVALUE_8_5=>'Environmental_Impact_Appendix',STRINGVALUE_8_6=>'Pack_Graphics_Appendix',STRINGVALUE_8_6=>'Initial_Estimate_of_Opportunity_Appendix',STRINGVALUE_8_7=>'Risk_Appendix',STRINGVALUE_8_7=>'Regional_BD_Team_FB_Req_Appendix',STRINGVALUE_1_2_1=>'Consumer_Need',STRINGVALUE_1_2_1=>'Fit_with_National_Category_Building_Plan',STRINGVALUE_1_2_2=>'Strategic_Fit',STRINGVALUE_1_2_2=>'Fit_with_BMP_Jobs_to_be_Done',STRINGVALUE_2_2_2=>'Trade_Story',STRINGVALUE_3_1_1=>'Target_Audience',STRINGVALUE_3_1_2=>CONCEPT,STRINGVALUE_3_1_3=>'Consumer_Evidence_Concept',STRINGVALUE_3_1_3=>'Communication',STRINGVALUE_3_1_5=>'Consumer_Evidence_Communication',STRINGVALUE_3_1_5=>'Trademarks',STRINGVALUE_3_2_1=>'CU_And_Complexity',STRINGVALUE_3_2_2=>'Consumer_Evidence_Pack',STRINGVALUE_3_3_2=>'Consumer_Evidence_Product',STRINGVALUE_3_4_1=>'Proposed_Pricing',STRINGVALUE_3_4_2=>'Consumer_Evidence_Price',STRINGVALUE_3_4_2=>'Other_Price_Rationale',STRINGVALUE_4_2_1=>'Assortment_Strategy',STRINGVALUE_4_2_2=>'Merchandising_Strategy',STRINGVALUE_4_2_3=>'Trade_Promotion_Strategy',STRINGVALUE_6_2_1=>'Assumptions',STRINGVALUE_6_2_2=>'Sensitivity_Analysis'}; 
+        Map<String,String> sectionNameMap = new Map<String,String>{STRINGVALUE_1=>'Introduction',STRINGVALUE_1_1=>'Idea / Graphic',STRINGVALUE_1_2=>'Feedback from Last Gate',STRINGVALUE_1_2=>'Justification',STRINGVALUE_1_3=>'Key Changes since Contract Gate',STRINGVALUE_1_3=>'Feedback from BOSSCARD',STRINGVALUE_1_3=>'Key Issues Needing Focus in Gate Meeting',STRINGVALUE_1_3=>'Key Changes since Market Ready Gate',STRINGVALUE_1_4=>'Gate Keeper Checklist',STRINGVALUE_2=>EXTERNAL,STRINGVALUE_2_1=>'Competitors',STRINGVALUE_2_1=>'Competitors',STRINGVALUE_2_2=>'Customers',STRINGVALUE_2_2=>'Customers/Channels',THREE=>'Mix',STRINGVALUE_3_1=>'Proposition',STRINGVALUE_3_2=>'Pack',STRINGVALUE_3_2=>PRODUCT,STRINGVALUE_3_2=>'Pack',STRINGVALUE_3_3=>PRODUCT,STRINGVALUE_3_3=>'Mix Qualification Plan and Action Standards (Table)',STRINGVALUE_3_4=>'Price',STRINGVALUE_3_4=>'Degree of Commonality',STRINGVALUE_3_5=>'Full Mix',STRINGVALUE_4=>'Deployment',STRINGVALUE_4_1=>'Promotion Guidance for Deployment - PRELIMINARY',STRINGVALUE_4_2=>'Place Guidance for Deployment',STRINGVALUE_4_2=>'Place',STRINGVALUE_5=>'Technical',STRINGVALUE_5=>'Technical',STRINGVALUE_5_1=>'R&D Technical  Readiness',STRINGVALUE_5_1=>'R&D Initial Outline (Product/Pack)',STRINGVALUE_5_1=>'R&D Feasibility',STRINGVALUE_5_2=>'Supply Chain Technical  Readiness',STRINGVALUE_5_2=>'Supply Chain Initial Outline',STRINGVALUE_5_2=>'Supply Chain Feasibility',STRINGVALUE_5_3=>'Environmental Impact',STRINGVALUE_6=>'Financial',STRINGVALUE_6_1=>'Business Case vs. Action Standards',STRINGVALUE_6_2=>'Assumptions, Risks, Sensitivities',STRINGVALUE_6_2=>'Initial Estimate of Opportunity',STRINGVALUE_6_2=>'Business Waste',STRINGVALUE_6_3=>'BD/BB Alignment',STRINGVALUE_6_3=>'Monitoring Performance in Market',STRINGVALUE_7=>'Project Management',STRINGVALUE_7_1=>'Rollout Plans',STRINGVALUE_7_1=>'Risk',STRINGVALUE_7_2=>'Country Feedback & Requirements',STRINGVALUE_7_2=>'Milestones',STRINGVALUE_7_3=>'Regional BD Team FB & Reqs',STRINGVALUE_7_3=>'Regional BD Team Feedback to Global',STRINGVALUE_7_3=>'OTIF',STRINGVALUE_7_4=>'Human Resources',STRINGVALUE_8=>'Appendix',STRINGVALUE_8_1=>'BD/BB Alignment',STRINGVALUE_8_1=>'CUs and Complexity',STRINGVALUE_8_1=>'Customers / Channels',STRINGVALUE_8_1=>'Milestones',STRINGVALUE_8_2=>'Rollout Plans',STRINGVALUE_8_2=>'Consumer Evidence - Concept',STRINGVALUE_8_2=>'Assortment Strategy',STRINGVALUE_8_3=>'Monitoring Performance in Market',STRINGVALUE_8_4=>'Mix Qualification Plan and Action Standards (Table)',STRINGVALUE_8_5=>'Environmental Impact',STRINGVALUE_8_6=>'Pack/Graphics',STRINGVALUE_8_6=>'Initial Estimate of Opportunity',STRINGVALUE_8_7=>'Risk',STRINGVALUE_8_7=>'Regional BD Team FB & Reqs',STRINGVALUE_1_2_1=>'Consumer Need',STRINGVALUE_1_2_1=>'Fit with National Category Building Plan (NCBP)',STRINGVALUE_1_2_2=>'Strategic Fit',STRINGVALUE_1_2_2=>'Fit with BMP Jobs to be Done',STRINGVALUE_2_2_2=>'Trade Story',STRINGVALUE_3_1_1=>'Target Audience',STRINGVALUE_3_1_2=>CONCEPT,STRINGVALUE_3_1_3=>'Consumer Evidence - Concept',STRINGVALUE_3_1_3=>'Communication',STRINGVALUE_3_1_5=>'Consumer Evidence - Communication',STRINGVALUE_3_1_5=>'Trademarks',STRINGVALUE_3_2_1=>'CUs and Complexity',STRINGVALUE_3_2_2=>'Consumer Evidence - Pack',STRINGVALUE_3_3_2=>'Consumer Evidence - Product',STRINGVALUE_3_4_1=>'Proposed Pricing',STRINGVALUE_3_4_2=>'Consumer Evidence - Price',STRINGVALUE_3_4_2=>'Other Price Rationale (beyond consumer evidence shown in 3.5 below)',STRINGVALUE_4_2_1=>'Assortment Strategy',STRINGVALUE_4_2_2=>'Merchandising Strategy',STRINGVALUE_4_2_3=>'Trade Promotion Strategy',STRINGVALUE_6_2_1=>'Assumptions',STRINGVALUE_6_2_2=>'Sensitivity Analysis'};
+        Map<String,String> sectionExternalIDMap = new Map<String,String>{STRINGVALUE_1=>'Introduction',STRINGVALUE_1_1=>'Idea_Graphic',STRINGVALUE_1_2=>'Feedback_from_Last_Gate',STRINGVALUE_1_2=>'Country_Strategic_Context',STRINGVALUE_1_3=>'Key_Changes_since_Contract_Gate',STRINGVALUE_1_3=>'Feedback_from_BOSSCARD',STRINGVALUE_1_3=>'Key_Issues_needing_focus_in_Gate_Meeting',STRINGVALUE_1_3=>'Key_Changes_since_Market_Ready_Gate',STRINGVALUE_1_4=>'Gate_Keeper_Checklist',STRINGVALUE_2=>EXTERNAL,STRINGVALUE_2_1=>'Competitors',STRINGVALUE_2_1=>'Competitor',STRINGVALUE_2_2=>'Customers',STRINGVALUE_2_2=>'Customers_Channels',THREE=>'Mix',STRINGVALUE_3_1=>'Proposition',STRINGVALUE_3_2=>'Pack',STRINGVALUE_3_2=>PRODUCT,STRINGVALUE_3_2=>'Pack_Graphics',STRINGVALUE_3_3=>'Product_Sub_Header',STRINGVALUE_3_3=>'Mix_Qualification_Plan_and_Action_Standards',STRINGVALUE_3_4=>'Price',STRINGVALUE_3_4=>'Degree_of_Commonality',STRINGVALUE_3_5=>'Full_Mix',STRINGVALUE_4=>'Deployment',STRINGVALUE_4_1=>'Promotion_Guidance_for_Deployment',STRINGVALUE_4_2=>'Place_Guidance_for_Deployment',STRINGVALUE_4_2=>'Place',STRINGVALUE_5=>'Technical_Header',STRINGVALUE_5=>'Technical',STRINGVALUE_5_1=>'R&D_Technical_Readiness',STRINGVALUE_5_1=>'R&D_Initial_Outline_Product_Pack',STRINGVALUE_5_1=>'R&D_Feasibility',STRINGVALUE_5_2=>'Supply_Chain_Technical_Readiness',STRINGVALUE_5_2=>'Supply_Chain_Initial_Outline',STRINGVALUE_5_2=>'Supply_Chain_Feasibility',STRINGVALUE_5_3=>'Environmental_Impact',STRINGVALUE_6=>'Financial',STRINGVALUE_6_1=>'Business_Case_Action_Standards',STRINGVALUE_6_2=>'Assumptions_Risks_Sensitivities',STRINGVALUE_6_2=>'Initial_Estimate_of_Opportunity',STRINGVALUE_6_2=>'Business_Waste',STRINGVALUE_6_3=>'BD/BB_Alignment',STRINGVALUE_6_3=>'Monitoring_Performance_in_Market',STRINGVALUE_7=>'Project_Management',STRINGVALUE_7_1=>'Rollout_Plans',STRINGVALUE_7_1=>'Risk',STRINGVALUE_7_2=>'Country_Feedback_Requirements',STRINGVALUE_7_2=>'Milestones',STRINGVALUE_7_3=>'Regional_BD_Team_FB_Req',STRINGVALUE_7_3=>'Regional_BD_Team_Feedback_to_Global',STRINGVALUE_7_3=>'OTIF_Status',STRINGVALUE_7_4=>'Human_Resources',STRINGVALUE_8=>'Appendix',STRINGVALUE_8_1=>'BD/BB_Alignment_Appendix',STRINGVALUE_8_1=>'CU_And_Complexity_Appendix',STRINGVALUE_8_1=>'Customers_Channels_Appendix',STRINGVALUE_8_1=>'Milestones_Appendix',STRINGVALUE_8_2=>'Rollout_Plans_Appendix',STRINGVALUE_8_2=>'Consumer_Evidence_Concept_Appendix',STRINGVALUE_8_2=>'Assortment_Strategy_Appendix',STRINGVALUE_8_3=>'Monitoring_Performance_in_Market_Appendix',STRINGVALUE_8_4=>'Mix_Qualification_Plan_and_Action_Standards_Appendix',STRINGVALUE_8_5=>'Environmental_Impact_Appendix',STRINGVALUE_8_6=>'Pack_Graphics_Appendix',STRINGVALUE_8_6=>'Initial_Estimate_of_Opportunity_Appendix',STRINGVALUE_8_7=>'Risk_Appendix',STRINGVALUE_8_7=>'Regional_BD_Team_FB_Req_Appendix',STRINGVALUE_1_2_1=>'Consumer_Need',STRINGVALUE_1_2_1=>'Fit_with_National_Category_Building_Plan',STRINGVALUE_1_2_2=>'Strategic_Fit',STRINGVALUE_1_2_2=>'Fit_with_BMP_Jobs_to_be_Done',STRINGVALUE_2_2_2=>'Trade_Story',STRINGVALUE_3_1_1=>'Target_Audience',STRINGVALUE_3_1_2=>CONCEPT,STRINGVALUE_3_1_3=>'Consumer_Evidence_Concept',STRINGVALUE_3_1_3=>'Communication',STRINGVALUE_3_1_5=>'Consumer_Evidence_Communication',STRINGVALUE_3_1_5=>'Trademarks',STRINGVALUE_3_2_1=>'CU_And_Complexity',STRINGVALUE_3_2_2=>'Consumer_Evidence_Pack',STRINGVALUE_3_3_2=>'Consumer_Evidence_Product',STRINGVALUE_3_4_1=>'Proposed_Pricing',STRINGVALUE_3_4_2=>'Consumer_Evidence_Price',STRINGVALUE_3_4_2=>'Other_Price_Rationale',STRINGVALUE_4_2_1=>'Assortment_Strategy',STRINGVALUE_4_2_2=>'Merchandising_Strategy',STRINGVALUE_4_2_3=>'Trade_Promotion_Strategy',STRINGVALUE_6_2_1=>'Assumptions',STRINGVALUE_6_2_2=>'Sensitivity_Analysis'}; 
         Map<String,Boolean> sectionNegotiableMap = new Map<String,Boolean>{STRINGVALUE_1=>FALSE,STRINGVALUE_1_1=>FALSE,STRINGVALUE_1_2=>FALSE,STRINGVALUE_1_2=>FALSE,STRINGVALUE_1_3=>FALSE,STRINGVALUE_1_3=>FALSE,STRINGVALUE_1_3=>FALSE,STRINGVALUE_1_3=>FALSE,STRINGVALUE_1_4=>TRUE,STRINGVALUE_2=>TRUE,STRINGVALUE_2_1=>TRUE,STRINGVALUE_2_1=>TRUE,STRINGVALUE_2_2=>FALSE,STRINGVALUE_2_2=>TRUE,THREE=>FALSE,STRINGVALUE_3_1=>FALSE,STRINGVALUE_3_2=>FALSE,STRINGVALUE_3_2=>TRUE,STRINGVALUE_3_2=>FALSE,STRINGVALUE_3_3=>FALSE,STRINGVALUE_3_3=>FALSE,STRINGVALUE_3_4=>FALSE,STRINGVALUE_3_4=>TRUE,STRINGVALUE_3_5=>FALSE,STRINGVALUE_4=>TRUE,STRINGVALUE_4_1=>TRUE,STRINGVALUE_4_2=>TRUE,STRINGVALUE_4_2=>TRUE,STRINGVALUE_5=>FALSE,STRINGVALUE_5=>FALSE,STRINGVALUE_5_1=>FALSE,STRINGVALUE_5_1=>FALSE,STRINGVALUE_5_1=>FALSE,STRINGVALUE_5_2=>FALSE,STRINGVALUE_5_2=>FALSE,STRINGVALUE_5_2=>FALSE,STRINGVALUE_5_3=>TRUE,STRINGVALUE_6=>TRUE,STRINGVALUE_6_1=>FALSE,STRINGVALUE_6_2=>FALSE,STRINGVALUE_6_2=>FALSE,STRINGVALUE_6_2=>TRUE,STRINGVALUE_6_3=>TRUE,STRINGVALUE_6_3=>TRUE,STRINGVALUE_7=>FALSE,STRINGVALUE_7_1=>TRUE,STRINGVALUE_7_1=>FALSE,STRINGVALUE_7_2=>TRUE,STRINGVALUE_7_2=>TRUE,STRINGVALUE_7_3=>TRUE,STRINGVALUE_7_3=>TRUE,STRINGVALUE_7_3=>FALSE,STRINGVALUE_7_4=>TRUE,STRINGVALUE_8=>FALSE,STRINGVALUE_8_1=>TRUE,STRINGVALUE_8_1=>FALSE,STRINGVALUE_8_1=>TRUE,STRINGVALUE_8_1=>TRUE,STRINGVALUE_8_2=>TRUE,STRINGVALUE_8_2=>TRUE,STRINGVALUE_8_2=>TRUE,STRINGVALUE_8_3=>TRUE,STRINGVALUE_8_4=>FALSE,STRINGVALUE_8_5=>FALSE,STRINGVALUE_8_6=>FALSE,STRINGVALUE_8_6=>FALSE,STRINGVALUE_8_7=>FALSE,STRINGVALUE_8_7=>TRUE,STRINGVALUE_1_2_1=>FALSE,STRINGVALUE_1_2_1=>TRUE,STRINGVALUE_1_2_2=>TRUE,STRINGVALUE_1_2_2=>TRUE,STRINGVALUE_2_2_2=>FALSE,STRINGVALUE_3_1_1=>FALSE,STRINGVALUE_3_1_2=>TRUE,STRINGVALUE_3_1_3=>TRUE,STRINGVALUE_3_1_3=>TRUE,STRINGVALUE_3_1_5=>TRUE,STRINGVALUE_3_1_5=>FALSE,STRINGVALUE_3_2_1=>TRUE,STRINGVALUE_3_2_2=>TRUE,STRINGVALUE_3_3_2=>TRUE,STRINGVALUE_3_4_1=>FALSE,STRINGVALUE_3_4_2=>TRUE,STRINGVALUE_3_4_2=>TRUE,STRINGVALUE_4_2_1=>TRUE,STRINGVALUE_4_2_2=>TRUE,STRINGVALUE_4_2_3=>TRUE,STRINGVALUE_6_2_1=>FALSE,STRINGVALUE_6_2_2=>TRUE}; 
         Map<String,String> sectionFunctionalMap = new Map<String,String>{STRINGVALUE_1=>EMPTY_STRING,STRINGVALUE_1_1=>PL,STRINGVALUE_1_2=>PL,STRINGVALUE_1_2=>BD,STRINGVALUE_1_3=>BD,STRINGVALUE_1_3=>PL,STRINGVALUE_1_3=>PL,STRINGVALUE_1_3=>BB,STRINGVALUE_1_4=>PL,STRINGVALUE_2=>EMPTY_STRING,STRINGVALUE_2_1=>BD,STRINGVALUE_2_1=>BD,STRINGVALUE_2_2=>BD,STRINGVALUE_2_2=>CD,THREE=>EMPTY_STRING,STRINGVALUE_3_1=>CMI,STRINGVALUE_3_2=>CMI,STRINGVALUE_3_2=>CMI,STRINGVALUE_3_2=>BB,STRINGVALUE_3_3=>BB,STRINGVALUE_3_3=>CMI,STRINGVALUE_3_4=>CMI,STRINGVALUE_3_4=>BD,STRINGVALUE_3_5=>CMI,STRINGVALUE_4=>EMPTY_STRING,STRINGVALUE_4_1=>BD,STRINGVALUE_4_2=>BD,STRINGVALUE_4_2=>BD,STRINGVALUE_5=>EMPTY_STRING,STRINGVALUE_5=>R_D,STRINGVALUE_5_1=>R_D,STRINGVALUE_5_1=>R_D,STRINGVALUE_5_1=>R_D,STRINGVALUE_5_2=>SC,STRINGVALUE_5_2=>SC,STRINGVALUE_5_2=>SC,STRINGVALUE_5_3=>R_D,STRINGVALUE_6=>EMPTY_STRING,STRINGVALUE_6_1=>FINANCE,STRINGVALUE_6_2=>FINANCE,STRINGVALUE_6_2=>FINANCE,STRINGVALUE_6_2=>BB,STRINGVALUE_6_3=>FINANCE,STRINGVALUE_6_3=>BB,STRINGVALUE_7=>EMPTY_STRING,STRINGVALUE_7_1=>PL,STRINGVALUE_7_1=>BB,STRINGVALUE_7_2=>BB,STRINGVALUE_7_2=>BB,STRINGVALUE_7_3=>BD,STRINGVALUE_7_3=>BD,STRINGVALUE_7_3=>BB,STRINGVALUE_7_4=>PL,STRINGVALUE_8=>EMPTY_STRING,STRINGVALUE_8_1=>FINANCE,STRINGVALUE_8_1=>BD,STRINGVALUE_8_1=>CD,STRINGVALUE_8_1=>BD,STRINGVALUE_8_2=>BD,STRINGVALUE_8_2=>CMI,STRINGVALUE_8_2=>CD,STRINGVALUE_8_3=>BB,STRINGVALUE_8_4=>CMI,STRINGVALUE_8_5=>'RnD',STRINGVALUE_8_6=>BD,STRINGVALUE_8_6=>FINANCE,STRINGVALUE_8_7=>BD,STRINGVALUE_8_7=>BD,STRINGVALUE_1_2_1=>BD,STRINGVALUE_1_2_1=>BB,STRINGVALUE_1_2_2=>BD,STRINGVALUE_1_2_2=>BB,STRINGVALUE_2_2_2=>CD,STRINGVALUE_3_1_1=>BD,STRINGVALUE_3_1_2=>BD,STRINGVALUE_3_1_3=>CMI,STRINGVALUE_3_1_3=>BB,STRINGVALUE_3_1_5=>CMI,STRINGVALUE_3_1_5=>BD,STRINGVALUE_3_2_1=>BD,STRINGVALUE_3_2_2=>CMI,STRINGVALUE_3_3_2=>CMI,STRINGVALUE_3_4_1=>BD,STRINGVALUE_3_4_2=>CMI,STRINGVALUE_3_4_2=>BB,STRINGVALUE_4_2_1=>CD,STRINGVALUE_4_2_2=>CD,STRINGVALUE_4_2_3=>CD,STRINGVALUE_6_2_1=>FINANCE,STRINGVALUE_6_2_2=>FINANCE};
         
@@ -2459,7 +2478,7 @@ public class IPM_TestFactory_Helper
         
         Map<String,List<Object>> sectionMasterMap = new Map<String,List<Object>>{
             'External_ID__c' => new List<Object>(),IPM_DOCUMENT_TEMPLATE => new List<Object>(),'IPM_FunctionalRole__c' => new List<Object>(),
-            'IPM_Negotiable__c' => new List<Object>(),IPM_SECTION_Name => new List<Object>(),IPM_SECTION_SEQUENCE=>new List<Object>(),
+            IPMNEGOTIABLE => new List<Object>(),IPM_SECTION_Name => new List<Object>(),IPM_SECTION_SEQUENCE=>new List<Object>(),
             'IPM_Section_Type__c' => new List<Object>(),'ProjectSpan__c' => new List<Object>() };
         
         for(IPM_Document_Template__c tempDoc : documentTemplateList)
@@ -2478,7 +2497,7 @@ public class IPM_TestFactory_Helper
                 
                 if(sectionNegotiableMap.containsKey(SequenceList.get(counter)))
                 {
-                    sectionMasterMap.get('IPM_Negotiable__c').add(sectionNegotiableMap.get(SequenceList.get(counter)));
+                    sectionMasterMap.get(IPMNEGOTIABLE).add(sectionNegotiableMap.get(SequenceList.get(counter)));
                 }
                 
                 if(sectionNameMap.containsKey(SequenceList.get(counter)))
@@ -2512,10 +2531,14 @@ public class IPM_TestFactory_Helper
         sectionTemplateList = (List<IPM_Section__c>)IPM_TestFactory.createSObjectList('IPM_Section__c',sectionMasterMap,false);
         
         insert sectionTemplateList;
+	} 
+	
+	//This method is used for create Milestone for Master data
+	public static void createMilestoneForMasterTemplate(IPM_Project__c masterPro){
+		
         
         Map<String,List<Object>> milestoneTemplateMap = new Map<String,List<Object>>
         {
-            //'IPM_Category__c' => new List<String>{SKINCARE,SKINCARE,SKINCARE,SKINCARE,SKINCARE,SKINCARE,HAIRCARE,HAIRCARE,HAIRCARE,HAIRCARE,HAIRCARE}, 
             'IPM_Category__c' => new List<String>{PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE},
             'IPM_Name__c' => new List<String>{'Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval','Market Deployment Gate Approval','Post Launch Evaluation','Target Launch Date(Ship to Trade)','Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval','Post Launch Evaluation','Ship To Trade (Target Launch Date)'},
             'IPM_No_Of_Days_for_Developing_Emerging__c' => new List<String>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-120',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-120',EMPTY_STRING,EMPTY_STRING},
@@ -2526,7 +2549,7 @@ public class IPM_TestFactory_Helper
             'IPM_Type_of_gate__c' => new List<String>{CHARTER,CONTRACT,MARKET_READY,MARKET_DEPLOYMENT,EMPTY_STRING,EMPTY_STRING,CHARTER,CONTRACT,MARKET_READY,EMPTY_STRING,EMPTY_STRING},
             'IPM_Type_of_Milestone__c' => new List<String>{STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD},
             IPM_PROJECT_TYPE => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE},
-            IPM_PROJECT => new List<Id>{masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id},
+            IPM_PROJECT => new List<Id>{masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id},
             RECORD_TYPE_ID => new List<Id>{SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE} 
         };
         
@@ -2534,20 +2557,22 @@ public class IPM_TestFactory_Helper
         
         
         insert milestoneTemplateList;
-        
-        
-        List<Id> recordIdList = new List<Id>{recTypeRnD,recTypeIDPOS,recTypeIDRQS,recTypeIDCR,recTypeRnDFeasibility,recTypeSCFeasibility,recTypeRisk,recTypeGKC};
+	}
+	
+	//This method is used for create Questionnaire for Master data
+	public static void createQuestionnaireForMasterTemplate(IPM_Project__c masterPro){
+		List<Id> recordIdList = new List<Id>{recTypeRnD,recTypeIDPOS,recTypeIDRQS,recTypeIDCR,recTypeRnDFeasibility,recTypeSCFeasibility,recTypeRisk,recTypeGKC};
         
         Map<String,List<Object>> questionnaireMap = new Map<String,List<Object>>{RECORD_TYPE_ID => new List<Id>(),
             'IPM_Charter_Score__c' => new List<Integer>(),'IPM_Contract_Score__c' => new List<Integer>(),'IPM_Market_Deployment_Score__c' => new List<Integer>(),'IPM_Market_Ready_Score__c' => new List<Integer>(),
-            'Is_Master__c' => new List<Boolean>(),IPM_PROJECT => new List<Id>(),'IPM_Score__c' => new List<Integer>(), 'DependentFieldAPIName__c' => new List<String>() };
+            ISMASTER => new List<Boolean>(),IPM_PROJECT => new List<Id>(),'IPM_Score__c' => new List<Integer>(), 'DependentFieldAPIName__c' => new List<String>() };
         
         for(Id recordId : recordIdList)
         {
             for(Integer counter=0;counter < 3;counter++)
             {
                 questionnaireMap.get(RECORD_TYPE_ID).add(recordId);  
-                questionnaireMap.get('Is_Master__c').add(true);
+                questionnaireMap.get(ISMASTER).add(true);
                 questionnaireMap.get('IPM_Score__c').add(counter);
                 questionnaireMap.get('IPM_Charter_Score__c').add(counter);
                 questionnaireMap.get('IPM_Contract_Score__c').add(counter);
@@ -2556,7 +2581,7 @@ public class IPM_TestFactory_Helper
               
                 questionnaireMap.get('DependentFieldAPIName__c').add('');
      
-                questionnaireMap.get(IPM_PROJECT).add(masterProjectList[0].Id); 
+                questionnaireMap.get(IPM_PROJECT).add(masterPro.Id); 
             }
         }
         
@@ -2572,10 +2597,12 @@ public class IPM_TestFactory_Helper
          
         System.debug('questionnaireTemplateList2::' + questionnaireTemplateList ); 
         insert questionnaireTemplateList;
-        if(!isDataLoaded){
+	}
+	
+	// This method is used for load static resource data
+	public static void loadDataForMasterTemplate(){
+		 if(!isDataLoaded){
 	        mdmGeoList = Test.loadData(MDM_Geography__c.sObjectType, 'IPM_Unilever_Geo');
-	        
-	        projectMetadataList = IPM_TestFactory_Helper.createIPMProjectMetadata();
 	        
 	        projectTypeList = Test.loadData(IPM_Project_Type__c.sObjectType, 'IPM_ProjectType'); 
 	        
@@ -2585,7 +2612,12 @@ public class IPM_TestFactory_Helper
 	        
 	        gateDocumentSectionAccess = Test.loadData(IPM_Gate_Document_Section_Access__c.sObjectType, 'IPM_GateDocumentSectionAccess');
     	}
-    }
+	}
+    
+    
+    
+    
+    
     
     
     /***********************************************************************************************************************************************************
