@@ -57,7 +57,7 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.ICB_Cause__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -377,4 +377,5 @@
         <enabled>true</enabled>
         <name>ViewPublicReports</name>
     </userPermissions>
+    
 </PermissionSet>
