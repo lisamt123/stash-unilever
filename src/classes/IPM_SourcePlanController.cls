@@ -65,7 +65,12 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         wrapperKeys = new set<integer>() ;
         allCountryList =[SELECT Country_Name__c FROM IPM_Country__c WHERE IPM_Project__c =:projectId AND isActive__c = true order by Country_Name__c ASC LIMIT 1000];
         productPlanList =[SELECT IPM_Country__r.Country_Name__c FROM IPM_ProductPlan__c WHERE IPM_Project_Product__r.IPM_Project__c =:projectId  and IPM_Country__r.isActive__c = true order by IPM_Country__r.Country_Name__c ASC LIMIT 1000];
-        for(IPM_ProductPlan__c prodPlan:productPlanList)
+        if(allCountryList.isEmpty()){
+        	allCountryList =[SELECT Country_Name__c FROM IPM_Country__c WHERE IPM_Local_Project__c =:projectId AND isActive__c = true order by Country_Name__c ASC LIMIT 1000];	
+        	Set<Id> lstCountryIDs = (new Map<Id,IPM_Country__c>(allCountryList)).keySet();
+        	productPlanList =[SELECT IPM_Country__r.Country_Name__c FROM IPM_ProductPlan__c WHERE IPM_Country__c in : lstCountryIDs  and IPM_Country__r.isActive__c = true order by IPM_Country__r.Country_Name__c ASC LIMIT 1000];
+        }
+		for(IPM_ProductPlan__c prodPlan:productPlanList)
         {
             allProductCountrySet.add(prodPlan.IPM_Country__r.Country_Name__c);
         }
@@ -293,6 +298,13 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         List<IPM_Project_Product__c> projectProductList = new List<IPM_Project_Product__c> ();
         String sQuery = 'SELECT IPM_Of_gTO__c,IPM_Format__c,IPM_Formulation__c,IPM_GoldenPrototype__c,IPM_Project__c,IPM_Packing__c,IPM_Product_Name__c,IPM_ProductSize__c,IPM_ProductSizeMetrics__c,(SELECT IPM_Country__r.Country_Name__c,IPM_Project_Product__c FROM IPM_ProductPlans__r WHERE IPM_Country_Null__c = false and IPM_Country__r.isActive__c = true) FROM IPM_Project_Product__c WHERE IPM_Project__c =:projectId order by ' + sFilterColumn + ' '+ sSortOrder + ' limit 1000';
         projectProductList = database.Query(sQuery);
+		if(projectProductList.isEmpty()){
+        	list<IPM_Country__c> lstCountry = [ Select ID From IPM_Country__c Where IPM_Local_Project__c =: projectId ];        
+	        Set<Id> lstCountryIDs = (new Map<Id,IPM_Country__c>(lstCountry)).keySet();      
+	        id parentProId = project.IPM_Parent_Project__c;
+	        projectProductList = [SELECT IPM_Is_PDL_Approved__c,IPM_Of_gTO__c,IPM_Format__c,IPM_Formulation__c,IPM_GoldenPrototype__c,IPM_Project__c,IPM_Packing__c,IPM_Product_Name__c,IPM_ProductSize__c,IPM_ProductSizeMetrics__c,(SELECT IPM_Country__r.Country_Name__c,IPM_Project_Product__c FROM IPM_ProductPlans__r WHERE IPM_Country_Null__c = false and IPM_Country__r.isActive__c = true AND IPM_Country__c IN : lstCountryIDs) FROM IPM_Project_Product__c WHERE  IPM_Project__c =:parentProId order by IPM_Product_Name__c asc limit 1000];
+	          
+	    }
         sourcePlanMap.clear();     
         IF(projectProductList.isEmpty())
         {

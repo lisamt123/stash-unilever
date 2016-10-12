@@ -88,7 +88,7 @@
                             <div class="totalrow">{!$Label.IPM_Total_rows_in_table} {!totalRowsInTable}</div>
                         </div>
                         
-                        <div class="confirmGreyBg mrgnBottom">
+                        <apex:outputpanel styleClass="confirmGreyBg mrgnBottom" rendered="{!bIsPDLApproved}">
                             <span class="confirmCapabilityTitle">Confirm Capability for all Sourcing Units</span> 
                             <span class="SecButtonSet confirmInfo infoMarTop">
                                 <a class="icoButton info" title="{!$Label.IPM_Confirm_Capability_Help_Text}"></a>
@@ -106,7 +106,7 @@
                                     <input type="button" class="ipmButton primary" value="Confirm" onclick="updateCapabilityForSourcingUnit();" />
                                 </div>
                             </div>
-                        </div>
+                        </apex:outputpanel>
                         <div class="srcErrBox">
                             <apex:pagemessages id="pgmsg"/>
                         </div>

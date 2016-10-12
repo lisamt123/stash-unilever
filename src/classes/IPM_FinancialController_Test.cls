@@ -6,7 +6,7 @@
 @isTest 
 public class IPM_FinancialController_Test { 
     
-    //private static final string TEST_STR = 'test';
+    
     private static final string SELCTED_CURRENCY_EUR = 'EUR';
     private static final string SELCTED_CURRENCY_GBP = 'GBP';
     private static final string PROJECT_BI_LARGE = 'Large';
@@ -417,9 +417,9 @@ public class IPM_FinancialController_Test {
          loadTab(regionalRolloutNC.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
          
          system.assertEquals(false, ipmFinCon.isConsolidatedOrNonkey, eitherConsolidatedNonKeyMsg);
-	     system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , TLDNullMsg);
-	     system.assertEquals(false,ipmFinCon.showNext , showNextMsg);
-	     system.assertEquals(false,ipmFinCon.showPrevious, showPreviousMsg);
+         system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , TLDNullMsg);
+         system.assertEquals(false,ipmFinCon.showNext , showNextMsg);
+         system.assertEquals(false,ipmFinCon.showPrevious, showPreviousMsg);
          
      }
      
@@ -453,7 +453,7 @@ public class IPM_FinancialController_Test {
         IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader}); 
 
         System.runAs(globalProjectLeader)
-        {
+        { 
             List<IPM_Project_Rollout__c> rolloutList = new List<IPM_Project_Rollout__c>();
 
             Id regionalRecordType = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).RecordTypeId;
@@ -467,7 +467,7 @@ public class IPM_FinancialController_Test {
             {
                 rollout.IPM_Regional_PL__c = regionalProjectLeader.ID;
                 rolloutList.add(rollout);
-            }
+            } 
 
             update rolloutList;
 

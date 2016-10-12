@@ -129,7 +129,7 @@ private class IPM_FinancialControllerRegional_Test {
 		String fieldLiteral = IPM_ConstantUtils.FIELD_LITERAL_VOLUME;
 		List<IPM_Project__c> lstProject = [SELECT Id, IPM_Project_Job_Status__c, IPMProject_Span__c, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c From IPM_Project__c WHERE Name in: regionalProjectNameSet limit 1];
         
-        List<IPM_Financial__c> Fins = [SELECT Id,Local_Project__c, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c FROM IPM_Financial__c WHERE Local_Project__c =: lstProject[0].Id  Or Parent_Project__c  =: lstProject[0].Id  Or Regional_Project__c =: lstProject[0].Id];
+        List<IPM_Financial__c> Fins = [SELECT Id,Local_Project__c, Yellow_Validation_Cells_Global__c,Red_Validation_Cells_Global__c, Yellow_Validation_Cells_Regional__c,Red_Validation_Cells_Regional__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c FROM IPM_Financial__c WHERE Local_Project__c =: lstProject[0].Id  Or Parent_Project__c  =: lstProject[0].Id  Or Regional_Project__c =: lstProject[0].Id];
         IPM_Financial__c consolidatedFin = Fins[0]; 
         
 		IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
