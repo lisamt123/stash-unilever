@@ -71,17 +71,14 @@ public with sharing class CPA_attachment_Trigger_Handler
         for(sobject objAtt : trigger.old){
             Attachment objAttachemt = (Attachment)objAtt;
             string srtTemp = objAttachemt.ParentId;
-            if(objAttachemt !=null && objAttachemt.Name.startswith('Commercial')  ){
-                if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID))
-                {
+            if(objAttachemt !=null && objAttachemt.Name.startswith('Commercial') 
+            &&(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
                     lstAttachmentRead.add(objAttachemt);
-                }
             }
-          if(objAttachemt !=null && objAttachemt.ContentType!=null && objAttachemt.ContentType.contains('pdf')  ){
-              if( srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)){
-               lstAttachmentRead1.add(objAttachemt);
-              }
-                        
+          if(objAttachemt !=null && objAttachemt.ContentType!=null && objAttachemt.ContentType.contains('pdf')  
+          &&(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
+         
+                 lstAttachmentRead1.add(objAttachemt);
              }
              if(objAttachemt !=null &&  srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_LOI_ID) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
                  
@@ -89,7 +86,7 @@ public with sharing class CPA_attachment_Trigger_Handler
              }
             
         }
-        IF(lstAttachmentRead!= NULL && lstAttachmentRead.size()>0){
+        if(lstAttachmentRead!= NULL && lstAttachmentRead.size()>0){
             CPA_AttachmentUtil.deleteCommericalData(lstAttachmentRead);
         }
         if(lstAttachmentRead1 != null && lstAttachmentRead1.size()>0){
