@@ -93,7 +93,7 @@
                             <span class="SecButtonSet confirmInfo infoMarTop">
                                 <a class="icoButton info" title="{!$Label.IPM_Confirm_Capability_Help_Text}"></a>
                             </span>
-                            <div>
+                            <apex:outputpanel id="confirmSUnit">
                                 <div class="drpDownContainer">
                                    
                                     <apex:selectList styleClass="srcingSlectlist" value="{!sSourcingUnit}" size="1" multiselect="false" onchange="displayCapabilitySection(this,event);">
@@ -102,10 +102,10 @@
                                 </div>
                                 <div id="iddivCapability" class="hdnCheckboxDiv">
                                    <apex:inputCheckbox id="srcingGreyCheckBox" styleClass="srcingGreyCheck" value="{!capabilityFlag}"/>
-                                    <apex:outputLabel for="srcingGreyCheckBox"></apex:outputLabel>               
+                                    <apex:outputLabel for="srcingGreyCheckBox">Not Yet</apex:outputLabel>               
                                     <input type="button" class="ipmButton primary" value="Confirm" onclick="updateCapabilityForSourcingUnit();" />
                                 </div>
-                            </div>
+                            </apex:outputpanel>
                         </apex:outputpanel>
                         <div class="srcErrBox">
                             <apex:pagemessages id="pgmsg"/>
