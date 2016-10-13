@@ -2,7 +2,7 @@ global with sharing class AR_ProgressBarHandler {
     public List<Step> steps {get;set;}
     public Integer currentStep {get;set;}
     public String Result = '>>> Result: ';
-   // public String One = 'one';
+    public static String One = 'one';
     
     
     // FIELD SETS ORGANIZATION
@@ -561,7 +561,7 @@ global with sharing class AR_ProgressBarHandler {
     // general information
     public class GeneralInformationValidation extends CustomValidation {
     
-          String One = 'one';
+        //  String One = 'one';
         public override String validate(Map<String,AR_SObjectHolder> formObjects, Map<String,List<AR_SObjectHolder>> formObjectLists, Map<String,Map<String,List<Schema.FieldSetMember>>> fieldSetMap) {
             system.debug(logginglevel.info, '### Validating General Information...');
             String result = AR_ProgressBarHandler.STATUS_UNFINISHED;
@@ -598,7 +598,7 @@ global with sharing class AR_ProgressBarHandler {
     // insurance (step 6)
     public class InsuranceValidation extends CustomValidation {
     
-        String One = 'one';
+      //  String One = 'one';
         public override String validate(Map<String,AR_SObjectHolder> formObjects, Map<String,List<AR_SObjectHolder>> formObjectLists, Map<String,Map<String,List<Schema.FieldSetMember>>> fieldSetMap) {
             system.debug(logginglevel.info, '### Validating Insurance...');
             String result = AR_ProgressBarHandler.STATUS_UNFINISHED;
@@ -641,7 +641,7 @@ global with sharing class AR_ProgressBarHandler {
     // supplier info (step 7)
     public class SupplierInfoValidation extends CustomValidation {
     
-        String One = 'one';
+       // String One = 'one';
         public override String validate(Map<String,AR_SObjectHolder> formObjects, Map<String,List<AR_SObjectHolder>> formObjectLists, Map<String,Map<String,List<Schema.FieldSetMember>>> fieldSetMap) {
             system.debug(logginglevel.info, '### Validating Supplier Info...');
             String result = AR_ProgressBarHandler.STATUS_UNFINISHED;
@@ -662,7 +662,7 @@ global with sharing class AR_ProgressBarHandler {
     }
     // agency expertise
     public class AgencyExpertiseValidation extends CustomValidation {
-    String One = 'one';
+    //String One = 'one';
         public override String validate(Map<String,AR_SObjectHolder> formObjects, Map<String,List<AR_SObjectHolder>> formObjectLists, Map<String,Map<String,List<Schema.FieldSetMember>>> fieldSetMap) {
             system.debug(logginglevel.info, '### Validating Agency Expertise...');
             String result = AR_ProgressBarHandler.STATUS_UNFINISHED;
@@ -692,7 +692,7 @@ global with sharing class AR_ProgressBarHandler {
             String projectStatus = AR_ProgressBarHandler.STATUS_UNFINISHED;
             // validation on application
             if(formObjects.containsKey('ar_Application__c')) {
-            String One = 'one';
+          //  String One = 'one';
                 AR_SObjectHolder app = (AR_SObjectHolder)formObjects.get('ar_Application__c');
                 Attachment att3 = app.getFiles().get('three');
                 system.debug(logginglevel.info, '>>> Cover photo (file3) ' + att3.id);
