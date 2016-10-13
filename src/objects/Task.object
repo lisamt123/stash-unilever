@@ -121,6 +121,11 @@
                 <default>false</default>
                 <closed>false</closed>
             </picklistValues>
+            <picklistValues>
+                <fullName>Checked</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
@@ -138,6 +143,38 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Send Quote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prepare business review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Organize materials for upcoming meeting or presentation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prep for meetings or presentations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Conduct analysis on sales volume for promotional planning or forecasting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Compliance administration</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Coordinate field based support</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Write, review and maintain strategic account plan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Verify win implementation schedule</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -166,6 +203,10 @@
                 <fullName>Other</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Personal Task</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
@@ -178,6 +219,232 @@
         <fullName>WhoId</fullName>
         <type>Lookup</type>
     </fields>
+    <recordTypes>
+        <fullName>FS_Task</fullName>
+        <active>true</active>
+        <description>Task for Food Solutions</description>
+        <label>FS Task</label>
+        <picklistValues>
+            <picklist>Call_Type__c</picklist>
+            <values>
+                <fullName>Claims Recontacts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound Call - Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound Call - Primary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound Mail - Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Call - Answerphone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Call - Not Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Call - Not Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound Recontact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound call - Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recommended Alternative Products %2F Stores</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary Contact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Distributorname__c</picklist>
+            <values>
+                <fullName>Alidi-Nord</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>East West Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>East West SPb</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Globalfoods Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integrita SPb</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lotos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MARRusia Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MARRusia S-Pete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TD Global Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uhrenholt Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uhrenholt S-Pete</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Task_Type__c</picklist>
+            <values>
+                <fullName>Centrally Led</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Locally Led</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Concluded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Checked</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Compliance administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Conduct analysis on sales volume for promotional planning or forecasting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Coordinate field based support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Organize materials for upcoming meeting or presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prep for meetings or presentations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prepare business review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verify win implementation schedule</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Write%2C review and maintain strategic account plan</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Personal Task</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <sharingModel>Private</sharingModel>
     <webLinks>
         <fullName>sf4twitter__Send_Twitter_Message</fullName>

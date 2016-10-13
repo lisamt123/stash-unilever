@@ -9236,7 +9236,7 @@
         </picklistValues>
     </globalPicklists>
     <quickActions>
-        <label><!-- Approve --></label>
+        <label>Согласовать</label>
         <name>Approve</name>
     </quickActions>
     <quickActions>
@@ -9284,11 +9284,11 @@
         <name>Publisher_Action</name>
     </quickActions>
     <quickActions>
-        <label><!-- Reassign --></label>
+        <label>Переназначить</label>
         <name>Reassign</name>
     </quickActions>
     <quickActions>
-        <label><!-- Reject --></label>
+        <label>Отменить</label>
         <name>Reject</name>
     </quickActions>
     <reportTypes>

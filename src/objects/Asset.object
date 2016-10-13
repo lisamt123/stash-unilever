@@ -126,6 +126,14 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Marketing Funds</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Impulse</fullName>
                 <default>false</default>
             </picklistValues>

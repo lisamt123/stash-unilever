@@ -38,6 +38,54 @@
         <name>AF_Send_Email_Notification__c</name>
     </fields>
     <fields>
+        <label><!-- CHD Contact ID --></label>
+        <name>CHD__CHD_Contact_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD ID --></label>
+        <name>CHD__CHD_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Cell Phone --></label>
+        <name>CHD__Cell_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Email --></label>
+        <name>CHD__Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD First Name --></label>
+        <name>CHD__First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Gender --></label>
+        <name>CHD__Gender__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Is Nominative --></label>
+        <name>CHD__Is_Nominative__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Last Name --></label>
+        <name>CHD__Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Phone --></label>
+        <name>CHD__Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Primary Contact --></label>
+        <name>CHD__Primary_Contact__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Suffix --></label>
+        <name>CHD__Suffix__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Title --></label>
+        <name>CHD__Title__c</name>
+    </fields>
+    <fields>
         <help><!-- Please type numbers only --></help>
         <label><!-- CNPJ --></label>
         <name>CNPJ__c</name>
@@ -490,6 +538,54 @@
             <masterLabel>Yoga Teacher</masterLabel>
             <translation><!-- Yoga Teacher --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Decision Maker --></label>
+        <name>FS_Decision_Maker__c</name>
+    </fields>
+    <fields>
+        <label><!-- FS_EncryptKey --></label>
+        <name>FS_PIEncryptKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- Position --></label>
+        <name>FS_Position__c</name>
+        <picklistValues>
+            <masterLabel>Brand - chef</masterLabel>
+            <translation><!-- Brand - chef --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buyer</masterLabel>
+            <translation><!-- Buyer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chef</masterLabel>
+            <translation><!-- Chef --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director</masterLabel>
+            <translation><!-- Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manager</masterLabel>
+            <translation><!-- Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seller</masterLabel>
+            <translation><!-- Seller --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sous chef</masterLabel>
+            <translation><!-- Sous chef --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Technologist</masterLabel>
+            <translation><!-- Technologist --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- RefId --></label>
+        <name>FS_RefId__c</name>
     </fields>
     <fields>
         <label><!-- Gender --></label>
@@ -983,6 +1079,10 @@
         <name>Agency_Contact</name>
     </recordTypes>
     <recordTypes>
+        <label><!-- FS_Contact --></label>
+        <name>FS_Contact</name>
+    </recordTypes>
+    <recordTypes>
         <label><!-- Ice Cream Operator --></label>
         <name>ICB_Operator</name>
     </recordTypes>
@@ -1013,6 +1113,10 @@
     <validationRules>
         <errorMessage><!-- The E-Mail must have at least 4 characters before the @ --></errorMessage>
         <name>EMail_minimum_size</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You may not modify the status --></errorMessage>
+        <name>ICB_No_Change_Status</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Birthdate is mandatory. Please fill in an appropriate value. --></errorMessage>

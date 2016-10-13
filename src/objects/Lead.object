@@ -850,6 +850,13 @@ IF( NOT( ISBLANK( sf4twitter__Twitter_Username__c ) ), &apos;http://twitter.com/
         <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWriteTransfer</sharingModel>
+    <validationRules>
+        <fullName>FS_Lead_Owner_Change_Lock</fullName>
+        <active>true</active>
+        <description>Created for lead owner change lock for sales rep user</description>
+        <errorConditionFormula>AND(ISCHANGED(OwnerId),CONTAINS($UserRole.Name,&apos;Sales Rep&apos;))</errorConditionFormula>
+        <errorMessage>You do not have access to change the Lead owner.</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>AltavistaNews</fullName>
         <availability>online</availability>
