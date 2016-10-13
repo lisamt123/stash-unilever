@@ -97,6 +97,8 @@ boolean callFromVF = false;
             if(pworfRec.txt_Unilever_Project_Manager_Name__c == null){
                 objectMap.put(CPA_ConstantsForContractingAppClasses.ULPMENAME,CPA_ConstantsForContractingAppClasses.MANDATORY);
             }
+            }
+            if((pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED || pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.WITHHOLD)  || !callFromVF){
             if(pworfRec.eml_Unilever_Project_Manager_Email__c == null){
                 objectMap.put(CPA_ConstantsForContractingAppClasses.ULPMEMAIL,CPA_ConstantsForContractingAppClasses.MANDATORY);
             }
@@ -261,7 +263,9 @@ boolean callFromVF = false;
                 if(pworfRec.pkl_Process_Office_Area_E2E__c ==CPA_ConstantsForContractingAppClasses.STRSELECT || pworfRec.pkl_Process_Office_Area_E2E__c ==null){    
                     objectMap.put(CPA_ConstantsForContractingAppClasses.PROCESSOFFICEAREAE2E ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
-                           
+                }
+                
+                if(pworfRec.RecordTypeid == AllrecordType){          
                 if(pworfRec.mpkl_Project_Phases__c ==null ){  
                     objectMap.put(CPA_ConstantsForContractingAppClasses.PROJECTPHASES ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }                   
