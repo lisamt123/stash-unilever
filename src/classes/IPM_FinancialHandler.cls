@@ -76,7 +76,13 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         if(Trigger.isInsert || Trigger.isUpdate)
         {  
             List<IPM_Financial__c> newFinancialList = (List<IPM_Financial__c>) Trigger.new;
-             
+            
+            // Manual Misalignment
+            List<IPM_Financial__c> newFinancial = IPM_FinancialHelper.updateManualMisalignment(newFinancialList);
+           
+            if(!newFinancial.isEmpty()){
+                update newFinancial;
+            } 
             
             if(Trigger.isInsert)
             {
