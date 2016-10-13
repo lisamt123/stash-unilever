@@ -123,6 +123,8 @@ public with sharing class CPA_attachment_Trigger_Handler
                  if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_LOI_ID) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
                             lstAttachmentLOI.add(objAttachemt);
                 }
+                }
+          if(triggerShouldExecute){
                 
             }
             if(lstAttachmentRead!=null && lstAttachmentRead.size()>0){
