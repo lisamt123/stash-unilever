@@ -106,7 +106,7 @@ private class CPA_Contract_UtilMethods_Test {
             
             CPA_CR__c objCR = CPA_testContractClass.createCR(objPWO);
             insert objCR;
-            CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
+            //CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
             objCR.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
             objCR.num_Effort_Cost__c =20;
             update objCR;
@@ -296,6 +296,7 @@ private class CPA_Contract_UtilMethods_Test {
             CPA_CR__c objCR = CPA_testContractClass.createCR(objPWO);
             insert objCR;
             CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
+        System.assert(pwo!=null);
             objCR.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
             objCR.num_Effort_Cost__c =20;
             update objCR;
