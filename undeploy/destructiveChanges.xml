@@ -30,5 +30,8 @@
 		<members>FA_Course__c</members>
         <name>CustomObject</name>  
 		</types>  
+		<type>
+		<member>Four_Acres_Collaboration</member>
+		<name>CustomApplication</name>
 	    <version>37.0</version>
 </Package>
