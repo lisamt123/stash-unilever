@@ -495,6 +495,7 @@
 	.fieldLabel{padding-top: 7px;font-weight: bold;font-size: 0.83em;}
 	.inputField{margin:0 0 10px 0;}
 	.table>thead>tr>th:first-child {padding-left: 10px;}
+	.glbPLDtableHead.table>thead>tr>th:first-child {padding-left: 5px;}
 	.ipmSelect { border:1px solid #dce3e2;border-radius:3px;-webkit-border-radius:3px;-webkit-border-radius:3px;position:relative; z-index:0; display:inline-block;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;}
 	.cmiTable.table>thead>tr>th>div{border-right: 1px #ddd solid ;}
 	.CMIcountryAccordian{border: 0px #dce3e2 solid;margin: -11px 0;} 
@@ -856,9 +857,9 @@ div.metric table.ecoDesignCountry tbody tr td div.cellWidth:first-child{
 .glbPLDdrpdown{margin-top: -20px;}
 .glbPLDdrpdown>tbody>tr:nth-child(even) {background: #f8f8f8;}
 .selectClaim{position:relative;}
-.gatepdlContainer{width: 100%;float: left;height: 100%;}
+.gatepdlContainer{width: 100%;float: left;height: 100%;padding-left: 15px;}
 .claimList{width:100%;}
-.paddleft{padding:0px 20px;}
+.paddleft{padding-left:15px;}
 .noteclaim label {font-weight:normal; padding:5px 0px;}
 .globalclaim {font-weight: bold;border-bottom: 2px solid #ddd;}
 .channelList.claimList  ul {height: auto;min-height:auto;}
