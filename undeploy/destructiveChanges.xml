@@ -29,6 +29,10 @@
 		<members>FA_UserPreference__c</members>
 		<members>FA_Course__c</members>
         <name>CustomObject</name>  
-		</types>  
+    </types>  
+    <types>
+        <members>EA_SendFeedback_Notification_trigger</members>
+        <name>ApexTrigger</name>
+     </types>
 	    <version>37.0</version>
 </Package>
