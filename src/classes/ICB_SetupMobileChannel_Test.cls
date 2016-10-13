@@ -34,7 +34,14 @@ public class ICB_SetupMobileChannel_Test {
         System.assertNotEquals(null, [Select Id From User where ContactId =: contactOld.Id]);
         System.Test.stopTest();
     }
-    
+    public static testMethod void errorScenario_Test()
+    {
+        System.Test.startTest();
+        ICB_SetupMobileChannel contactUser = new ICB_SetupMobileChannel();
+        System.assertNotEquals(null,ICB_SetupMobileChannel.getInstance());
+        contactUser.initiateMethod(null);
+        System.Test.stopTest();
+    }
      /*******************************************************************
     Purpose: Method to instance all objects used for tests
 	Parameters: [NONE]
