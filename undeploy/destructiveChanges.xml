@@ -29,9 +29,10 @@
 		<members>FA_UserPreference__c</members>
 		<members>FA_Course__c</members>
         <name>CustomObject</name>  
-		</types>  
-		<type>
-		<member>Four_Acres_Collaboration</member>
+	</types>  
+	<types>
+		<members>Four_Acres_Collaboration</members>
 		<name>CustomApplication</name>
+	</types>
 	    <version>37.0</version>
 </Package>
