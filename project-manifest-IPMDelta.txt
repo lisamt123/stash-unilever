@@ -12,8 +12,7 @@ src/classes/IPM_RolloutPlansAddController_Test.cls
 src/classes/IPM_RolloutPlansAddController_Test.cls-meta.xml
 src/classes/IPM_RolloutPlansTableController_Test.cls
 src/classes/IPM_RolloutPlansTableController_Test.cls-meta.xml
-src/classes/IPM_RolloutPlansTableController_TestGKM3.cls
-src/classes/IPM_RolloutPlansTableController_TestGKM3.cls-meta.xml
+
 src/classes/IPM_SourcePlanController.cls
 src/classes/IPM_SourcePlanController.cls-meta.xml
 
