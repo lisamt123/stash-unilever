@@ -19,7 +19,7 @@ src/pages/WU_WarehouseSearchPage.page-meta.xml
 src/objects
 src/objects/User.object                   
 src/objects/WU_Master_Warehouse__c.object
-src/objects/WU_Warehouse_Capacity_Detail__c                                    
+src/objects/WU_Warehouse_Capacity_Detail__c.object                                   
   
 
 
