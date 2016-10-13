@@ -31,7 +31,7 @@
         <name>CustomObject</name>  
 	</types>  
 	<types>
-		<member>Four_Acres_Collaboration</member>
+		<members>Four_Acres_Collaboration</members>
 		<name>CustomApplication</name>
 	</types>
 	    <version>37.0</version>
