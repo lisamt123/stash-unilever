@@ -151,20 +151,27 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY){
             buttonLabel = Label.IPM_OVER_FIN_BC_F_OR_C_GKM3;
         }
-        if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_PLE ){
-            if(currentFinancial.Added_At_Stage__c == IPM_ConstantUtils.PHASE_MARKET_READY||currentFinancial.Added_At_Stage__c == IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT||currentFinancial.Added_At_Stage__c == IPM_ConstantUtils.PHASE_PLE ){
-                buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3;
-            }
-            else{
-                if(currentFinancial.IsKeyFinancialAtCapability__c){
-                    buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3;
-                }
-                else{
-                    buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_NONKEY_GKM3;
-                }
-            }
-        }
-        return buttonLabel;        
+		else{
+			if(((currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_CAPABILITY ||
+		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_FEASIBILITY ||
+		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS ) &&
+		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c ) ||
+				(currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_MARKET_READY ||
+		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT ||
+		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.PHASE_PLE 
+		        ))
+				{
+					buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3;
+		        }
+		    else if((currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_CAPABILITY ||
+		             currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_FEASIBILITY ||
+		             currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS ) &&
+		             !currentFinancial.Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c)
+		        {
+					buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_NONKEY_GKM3;
+		        }
+		    }
+		return buttonLabel;       
     }
     
     public boolean isProjectStop {
