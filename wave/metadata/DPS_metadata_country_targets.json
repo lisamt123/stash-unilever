@@ -1,0 +1,117 @@
+{
+  "fileFormat": {
+    "charsetName": "UTF-8",
+    "fieldsEnclosedBy": "\"",
+    "fieldsDelimitedBy": ",",
+    "linesTerminatedBy": "\n",
+    "numberOfLinesToIgnore": 1
+  },
+  "objects": [
+    {
+      "rowLevelSecurityFilter": null,
+      "connector": "Salesforce connector",
+      "description": "Pack Raw",
+      "label": "Pack Raw",
+      "name": "edgemartfc3fb5ee",
+      "fields": [
+        {
+          "description": null,
+          "fullyQualifiedName": "edgemartfc3fb5ee.Record_Id",
+          "label": "Record_Id",
+          "name": "Record_Id",
+          "isSystemField": null,
+          "defaultValue": null,
+          "isUniqueId": true,
+          "isMultiValue": false,
+          "multiValueSeparator": null,
+          "type": "Text",
+          "precision": null,
+          "scale": null,
+          "format": null,
+          "fiscalMonthOffset": null
+        },
+        {
+          "description": null,
+          "fullyQualifiedName": "edgemartfc3fb5ee.Country",
+          "label": "Country",
+          "name": "Country",
+          "isSystemField": null,
+          "defaultValue": null,
+          "isUniqueId": null,
+          "isMultiValue": false,
+          "multiValueSeparator": null,
+          "type": "Text",
+          "precision": null,
+          "scale": null,
+          "format": null,
+          "fiscalMonthOffset": null
+        },
+        {
+          "description": null,
+          "fullyQualifiedName": "edgemartfc3fb5ee.Date",
+          "label": "Date",
+          "name": "Date",
+          "isSystemField": null,
+          "defaultValue": null,
+          "isUniqueId": null,
+          "isMultiValue": false,
+          "multiValueSeparator": null,
+          "type": "Text",
+          "precision": null,
+          "scale": null,
+          "format": null,
+          "fiscalMonthOffset": null
+        },
+        {
+          "description": null,
+          "fullyQualifiedName": "edgemartfc3fb5ee.Compliance_Target",
+          "label": "Compliance Target",
+          "name": "Compliance_Target",
+          "isSystemField": null,
+          "defaultValue": 0,
+          "isUniqueId": null,
+          "isMultiValue": false,
+          "multiValueSeparator": null,
+          "type": "Numeric",
+          "precision": 18,
+          "scale": 3,
+          "format": null,
+          "fiscalMonthOffset": null
+        },
+        {
+          "description": null,
+          "fullyQualifiedName": "edgemartfc3fb5ee.Total_Enrollment_Target",
+          "label": "Total Enrollment Target",
+          "name": "Total_Enrollment_Target",
+          "isSystemField": null,
+          "defaultValue": 0,
+          "isUniqueId": null,
+          "isMultiValue": false,
+          "multiValueSeparator": null,
+          "type": "Numeric",
+          "precision": 18,
+          "scale": 3,
+          "format": null,
+          "fiscalMonthOffset": null
+        },
+        {
+          "description": null,
+          "fullyQualifiedName": "edgemartfc3fb5ee.Total_Enrollment_Compliance",
+          "label": "Total Enrollment Compliance",
+          "name": "Total_Enrollment_Compliance",
+          "isSystemField": null,
+          "defaultValue": 0,
+          "isUniqueId": null,
+          "isMultiValue": false,
+          "multiValueSeparator": null,
+          "type": "Numeric",
+          "precision": 18,
+          "scale": 3,
+          "format": null,
+          "fiscalMonthOffset": null
+        }
+      ],
+      "fullyQualifiedName": "edgemartfc3fb5ee"
+    }
+  ]
+}

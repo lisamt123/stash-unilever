@@ -11,8 +11,7 @@
     },
     changeCheckBox : function(component, event, helper) {
         console.log('Entering <changeCheckBox>');
-        helper.changeCheck(component,event,"checkbox"); 
-        location.reload(true);
+        helper.changeCheck(component,event,"checkbox");
         console.log('Exit <changeCheckBox>');
     }
 })

@@ -14,7 +14,6 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 @isTest
 public class ICB_ReturnStock_Batch_Test 
 {
-  
     /*******************************************************************
     Purpose: Test class ICB_ReturnStock_Batch
 	Parameters: [NONE]
@@ -42,7 +41,7 @@ public class ICB_ReturnStock_Batch_Test
     {
         Account acc = ICB_SobjectInstance_SP2_Test.insertAccount('Catanduva Distribuidora', ICB_RecordTypeMemory.getRecType('Account', 'Standard'));
         System.assertNotEquals(null,acc);
-        Product2 product = ICB_SobjectInstance_SP2_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png');
+        Product2 product = ICB_SobjectInstance_SP2_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png',ICB_RecordTypeMemory.getRecType('Product2', 'ICB_MobileChannel'));
         System.assertNotEquals(null,product);
         ICB_Inventory__c inventory = ICB_SobjectInstance_SP2_Test.insertInventory(acc.Name);
         System.assertNotEquals(null,inventory);

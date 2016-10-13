@@ -16,7 +16,6 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 ***********************************************************************/
 public with sharing class ICB_Cockpit_CC 
 {    
-    
     private static final String CONST_STATUS_ITEM_OPP_SOLD_PENDING;
     private static final String CONST_STATUS_ITEM_OPP_SOLD;
     private static final String CONST_EMPTY;
@@ -161,27 +160,44 @@ public with sharing class ICB_Cockpit_CC
         System.debug('Entering <createOpportunity> 5: ' + inventoryList);
         
         Opportunity opp = new Opportunity();
+        Boolean isValid = false;
         
         try
         {
-            Id priceBookId = [Select Id From PriceBook2 Where Name =: accountName].Id;
+            for(ICB_Wrapper_Cockpit_CC wrapper : ICB_Cockpit_Helper.deserializeJSON(inventoryList))
+            {
+                if(wrapper.quantity > 0)
+                {
+                    isValid = true;
+                    break;
+                }
+            }
+            if(isValid)
+            {
+                Id priceBookId = [Select Id From PriceBook2 Where Name =: accountName].Id;
+                
+                opp.Name = oppName;
+                opp.AccountId = idAccount;
+                opp.OwnerId = UserInfo.getUserId();
+                opp.StageName = CONST_STAGE_PENDING;
+                opp.CloseDate = System.today(); 
+                opp.Pricebook2Id = priceBookId;
+                opp.ICB_OLD_QUANTITY_RETURNED__c = 0;
+                opp.ICB_Contact__c = idContact;
+                opp.ICB_Sales_Locale__c = mapContact.get(idContact).ICB_Sales_Locale__c;
+                
+                Database.upsert(opp);
+                createOppItem(opp.id,inventoryList);
+                getInventories(accountName, CONST_SOLICITATION, idContact);
+                updateInventory(inventoryList,CONST_DECREMENT);
+                System.debug('Exiting <createOpportunity>: ');
+                return opp;
+            }
+            else
+            {
+                return null;
+            }
             
-            opp.Name = oppName;
-            opp.AccountId = idAccount;
-            opp.OwnerId = UserInfo.getUserId();
-            opp.StageName = CONST_STAGE_PENDING;
-            opp.CloseDate = System.today(); 
-            opp.Pricebook2Id = priceBookId;
-            opp.ICB_OLD_QUANTITY_RETURNED__c = 0;
-            opp.ICB_Contact__c = idContact;
-            opp.ICB_Sales_Locale__c = mapContact.get(idContact).ICB_Sales_Locale__c;
-            
-            Database.upsert(opp);
-            createOppItem(opp.id,inventoryList);
-            getInventories(accountName, CONST_SOLICITATION, idContact);
-            updateInventory(inventoryList,CONST_DECREMENT);
-            System.debug('Exiting <createOpportunity>: ');
-            return opp;
         }
         catch(Exception e)
         {
@@ -417,9 +433,6 @@ public with sharing class ICB_Cockpit_CC
         Database.update(listUpdateIvt);
         System.debug('Exiting <updateInventory>: ');
     }
-    
-    
-    
      /*******************************************************************
     Purpose: Return names of products to used for retrieve price books 
     Parameters: @listInventory(list of items)

@@ -12,6 +12,7 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 public with sharing class ICB_PriceBookCreation {
     
     private static Product2 prod = null;
+    private static Set<Id> setIvt = new Set<Id>();
     
     public ICB_PriceBookCreation() {
     }
@@ -25,45 +26,58 @@ public with sharing class ICB_PriceBookCreation {
     public static void changeProductStructure(List<Id> product) 
     {
         try { 
-            system.debug('Entering <changeProductStructure>');
-            List<ICB_Inventory_Line_Item__c> iltList 	= new List<ICB_Inventory_Line_Item__c>();
-            List<ICB_Inventory_Line_Item__c> vInventory = new List<ICB_Inventory_Line_Item__c>();
-            
-            //get the info of the Product 
-            prod = ICB_Product2DAO.getInstance().getProduct(product.get(0));
-            
-            
-            if (prod.IsActive) 
+            if(currentProduct(product.get(0)))
             {
-
-                vInventory = ICB_InventoryLineItemDAO.getInstance().getProductInfo(product.get(0));
-				system.debug('vInventory'+ vInventory);
-                if(!vInventory.isEmpty()) {
-                    updateInventory(true, vInventory, iltList);                       
-                }
+                system.debug('Entering <changeProductStructure>');
+                List<ICB_Inventory_Line_Item__c> iltList 	= new List<ICB_Inventory_Line_Item__c>();
+                List<ICB_Inventory_Line_Item__c> vInventory = new List<ICB_Inventory_Line_Item__c>();
                 
-                //Create the StandardPriceBook(true) and the PriceBookEntry(False). 
-                priceBookCreation(true);         
-                priceBookCreation(false);        
+                //get the info of the Product 
+                prod = ICB_Product2DAO.getInstance().getProduct(product.get(0));
                 
-                List<ICB_Inventory_Line_Item__c> UpdateInventory = new List<ICB_Inventory_Line_Item__c>(); 
-                //Iterate over the Inventorys and insert the product on each of them.
-                for(AggregateResult aggregateInventory : ICB_InventoryLineItemDAO.getInstance().getInventoryReference()) 
+                
+                if (prod.IsActive) 
                 {
-
-                    UpdateInventory.add(createInventoryLI((Id) aggregateInventory.get('ICB_Inventory__c'), prod.Id));
-                }
-                system.debug('iltList:'+ UpdateInventory);
-                Database.insert(UpdateInventory);
-                
-            } 
-            else 
-            {
-                if(prod.Id != null)
+                    
+                    vInventory = ICB_InventoryLineItemDAO.getInstance().getProductInfo(product.get(0));
+                    system.debug('vInventory'+ vInventory);
+                    if(!vInventory.isEmpty()) {
+                        updateInventory(true, vInventory, iltList);                       
+                    }
+                    
+                    //Create the StandardPriceBook(true) and the PriceBookEntry(False). 
+                    priceBookCreation(true);         
+                    priceBookCreation(false);        
+                    
+                    List<ICB_Inventory_Line_Item__c> UpdateInventory = new List<ICB_Inventory_Line_Item__c>(); 
+                    populateSet(prod.Id);
+                    //Iterate over the Inventorys and insert the product on each of them.
+                    for(AggregateResult aggregateInventory : ICB_InventoryLineItemDAO.getInstance().getInventoryReference()) 
+                    {
+                        if(!setIvt.contains((Id) aggregateInventory.get('ICB_Inventory__c')))
+                        {
+                            UpdateInventory.add(createInventoryLI((Id) aggregateInventory.get('ICB_Inventory__c'), prod.Id));
+                        }
+                    }
+                    system.debug('iltList:'+ UpdateInventory);
+                    Database.insert(UpdateInventory);
+                    
+                } 
+                else 
                 {
-                    updateInventory(false, ICB_InventoryLineItemDAO.getInstance().getProductInfo(prod.Id), iltList);
+                    if(prod.Id != null)
+                    {
+                        updateInventory(false, ICB_InventoryLineItemDAO.getInstance().getProductInfo(prod.Id), iltList);
+                    }
                 }
             }
+            else
+            {
+                prod = ICB_Product2DAO.getInstance().getProduct(product.get(0));
+                prod.IsActive = true;
+                Database.update(prod);
+            }
+            
             
         } catch (Exception e) {
             
@@ -71,7 +85,6 @@ public with sharing class ICB_PriceBookCreation {
             system.debug('Exiting <changeProductStructure>: ');
         }
     }
-    
     /*******************************************************************
     Purpose: Create Inventory Line Item
     Parameters: Inventory Id , Product Id.
@@ -106,9 +119,10 @@ public with sharing class ICB_PriceBookCreation {
             Map<Id, Set<String>> mapProductPB 			= new Map<Id, Set<String>>();
             List<PricebookEntry> pbeList 				= new List<PricebookEntry>();
             List<PriceBookEntry> listPriceBook 			= ICB_PriceBookEntryDAO.getInstance().getPricebookEntry(value);
-
+            Set<String> setNameProd = new Set<String>();
             for(PriceBookEntry vPBEntry : listPriceBook)
             {
+                setNameProd.add(vPBEntry.Name);
                 if(mapProductPB.containsKey(vPBEntry.PriceBook2Id)) 
                 {
                     Set<String> valueId = mapProductPB.get(vPBEntry.PriceBook2Id);
@@ -124,8 +138,8 @@ public with sharing class ICB_PriceBookCreation {
             
             for(PriceBook2 vPB2 : ICB_PriceBookEntryDAO.getInstance().getActivePricebook(value)) 
             {
-                Set<String> lista = mapProductPB.get(vPB2.Id);
-                if(!lista.contains(prod.Name)) 
+                //Set<String> lista = mapProductPB.get(vPB2.Id);
+                if(!setNameProd.contains(prod.Name)) 
                 {
                     pbeList.add(create(vPB2.Id, prod));
                 }
@@ -195,4 +209,29 @@ public with sharing class ICB_PriceBookCreation {
         }
         
     }
+    /*******************************************************************
+    Purpose: validate if current product not have opportunity line item 
+    Parameters: Id
+    Returns: Boolean
+    Throws [Exceptions]: [NONE]
+	********************************************************************/
+    private static Boolean currentProduct(Id prodId)
+    {
+        List<OpportunityLineItem> oppLineItem = [Select id from OpportunityLineItem Where Product2Id =: prodId AND ICB_IS_CLOSED__C = false];
+        
+        return oppLineItem.isEmpty();
+    }
+    /*******************************************************************
+    Purpose: add value in set for using in method of creation product stock
+    Parameters: Id
+    Returns: [VOID]
+    Throws [Exceptions]: [NONE]
+	********************************************************************/
+    private static void populateSet(Id prodId)
+    {
+        for(ICB_Inventory_Line_Item__c ivt : [Select ICB_Inventory__c from ICB_Inventory_Line_Item__c Where ICB_Product__c =:prodId])
+        {
+           setIvt.add(ivt.ICB_Inventory__c);
+        }
+     }
 }

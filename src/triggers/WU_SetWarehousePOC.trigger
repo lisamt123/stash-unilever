@@ -33,6 +33,7 @@ trigger WU_SetWarehousePOC on WU_Master_Warehouse__c(After Insert,Before Insert,
                 }
                 if(!sendMail.isEmpty()){
                     WU_SetWarehousePOCHandler.sendEmailSecPOC(trigger.new);
+                    WU_SetWarehousePOCHandler.sendRejectionEmailSecPOC(trigger.new);
                 }    
                 WU_CreateCapacityDetails duplicateCheck = new WU_CreateCapacityDetails();
                 duplicateCheck.checkInsertRecordOrDisplayError(trigger.new, trigger.newMap,trigger.oldMap); 

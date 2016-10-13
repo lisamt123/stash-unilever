@@ -14,7 +14,7 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 @isTest
 public class CEC_CaseTriggerHelperExtTest {
     
-	@testSetup static void setUpTestData() {
+  @testSetup static void setUpTestData() {
         
         User u = CEC_TestDataFactory.createStandardCECTestUser();
         System.runAs(u) {
@@ -54,12 +54,12 @@ public class CEC_CaseTriggerHelperExtTest {
                
                 insert newcase;
                 
-             	Test.startTest();
+               Test.startTest();
                     newcase.Social_Media_External_Id__c= 'unitedkingdom.knorr';
                     update newcase;
              
-             		System.assertEquals('unitedkingdom.knorr@unilever.com', [SELECT Transient_External_Id__c FROM Case WHERE Id =:newcase.Id].Transient_External_Id__c);
-             		System.assertEquals(cbm.Id, [SELECT Case_Brand_Mapping__c FROM Case WHERE Id =:newcase.Id].Case_Brand_Mapping__c);	
+                 System.assertEquals('unitedkingdom.knorr@unilever.com', [SELECT Transient_External_Id__c FROM Case WHERE Id =:newcase.Id].Transient_External_Id__c);
+                 System.assertEquals(cbm.Id, [SELECT Case_Brand_Mapping__c FROM Case WHERE Id =:newcase.Id].Case_Brand_Mapping__c);  
              Test.stopTest();
              
          }
