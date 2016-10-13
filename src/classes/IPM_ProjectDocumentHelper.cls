@@ -268,6 +268,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                 
                                     for(IPM_Section__c section : associatedSectionList)
                                     {
+                                        skipProjSec =  true;
                                         IPM_Project_Document_Section__c projDocSect = new IPM_Project_Document_Section__c();
                                         checkExistingProjectDocumentSection(project,projDocSect,existingProjectDocument,section,matchedDocumentSectionsSet);
                                         

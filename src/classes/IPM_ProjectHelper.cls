@@ -932,6 +932,7 @@ public with sharing class IPM_ProjectHelper
                         }
                         else
                         {
+                            uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
                             if(KEY_POSTFIX=='NONKEY' && projectToRolloutMap.containsKey(project.Id))
                             {
                                 for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
@@ -1272,7 +1273,7 @@ public with sharing class IPM_ProjectHelper
                                                 globalProject = project.Id;
                                             }
                                             
-                                            if(localProject !=null && financialObj.get('Local_Project__c') != localProject && insertFieldAPIs.contains('Local_Project__c'))
+                                            if(localProject !=null && financialObj.get('Local_Project__c') != localProject && insertFieldAPIsLowercase.contains('Local_Project__c'.toLowerCase()))
                                             {   
                                              
                                                 financialObj.Local_Project__c = localProject;
