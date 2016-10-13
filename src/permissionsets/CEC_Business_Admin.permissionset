@@ -6439,7 +6439,6 @@
         <field>mdm_Reason_Code__c.Retention_Days__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    </classAccesses>
     <classAccesses>
         <apexClass>CEC_AlertActionHelper</apexClass>
         <enabled>true</enabled>
