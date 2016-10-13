@@ -1107,7 +1107,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                     (SELECT 
                                                         Id,Name,recordTypeID,Financial_External_ID__c,                                    
                                                         Status__c,IPM_Key_Financial__c,Status_Global__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
-                                                        FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS  AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )
+                                                        FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS AND Charter_Approved__c = true  
                                                         ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                                     FROM IPM_Project_Rollout__c
                                                     WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )  
