@@ -118,6 +118,8 @@ public map<String,double> mapThreshold;
             if(crRec.pkl_Project_Phases__c  == null){  
                  RequiredFieldMap.put( 'Project Phases' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             }
+            }
+            if((crRec.pkl_Status__c == 'Saved' || crRec.pkl_Status__c == 'Returned')|| !callFromVF){
            /* if(crRec.PWO_number__c  == null)  
                  RequiredFieldMap.put( 'PWO number' ,CPA_ConstantsForContractingAppClasses.MANDATORY);*/
             if(crRec.Region_impacted__c  == null){ 
