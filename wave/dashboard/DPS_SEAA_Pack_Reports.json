@@ -2901,10 +2901,10 @@
             "Product_sector_53": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -2932,10 +2932,10 @@
             "Channel_11": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -2952,14 +2952,41 @@
                         "Channel"
                     ],
                     "filters": [
-                        [
-                            "Date_of_audit_Month",
-                            "{{ selection(Date_Year_Date_Month_14) }}"
-                        ]
+                      [
+                          "Date_of_audit",
+                          [
+                            "{{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                          ],
+                          ">=<="
+                      ],
+                      [
+                          "Country",
+                          "{{ column(Country_39.selection,[\"Country\"]).asObject() }}"
+                      ],
+                      [
+                          "X4P_5P_6P",
+                          "{{ column(X4P_5P_6P_48.selection,[\"X4P_5P_6P\"]).asObject()}}"
+                      ],
+                      [
+                          "Sales_region",
+                          "{{ column(Region_51.selection,[\"Sales_region\"]).asObject()}}"
+                      ],
+                      [
+                          "Channel",
+                          "{{ column(Channel_12.selection,[\"Channel\"]).asObject()}}"
+                      ],
+                      [
+                          "Product_category",
+                          "{{ column(Product_category_9.selection,[\"Product_category\"]).asObject()}}"
+                      ],
+                      [
+                          "Customer",
+                          "{{ column(Customer_13.selection,[\"Customer\"]).asObject()}}"
+                      ]
                     ]
                 },
                 "selectMode": "single",
-                "type": "aggregate",
+                "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "vbar",
@@ -2969,10 +2996,10 @@
             "Date_of_audit_Year_Date_of_audit_Month_37": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": false,
@@ -3165,10 +3192,10 @@
             "Channel_12": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -3322,10 +3349,10 @@
             "Top_Customer_70": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -3353,10 +3380,10 @@
             "Subchannel_26": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -3384,10 +3411,10 @@
             "Date_of_audit_Year_Date_of_audit_Month_38": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -3548,10 +3575,10 @@
             "NPD_Compliance_69": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -3579,10 +3606,10 @@
             "X4P_5P_6P_47": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -3610,10 +3637,10 @@
             "Region_50": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -3630,14 +3657,41 @@
                         "Sales_region"
                     ],
                     "filters": [
-                        [
-                            "Date_of_audit_Month",
-                            "{{ selection(Date_Year_Date_Month_14) }}"
-                        ]
+                      [
+                          "Date_of_audit",
+                          [
+                            "{{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                          ],
+                          ">=<="
+                      ],
+                      [
+                          "Country",
+                          "{{ column(Country_39.selection,[\"Country\"]).asObject() }}"
+                      ],
+                      [
+                          "X4P_5P_6P",
+                          "{{ column(X4P_5P_6P_48.selection,[\"X4P_5P_6P\"]).asObject()}}"
+                      ],
+                      [
+                          "Sales_region",
+                          "{{ column(Region_51.selection,[\"Sales_region\"]).asObject()}}"
+                      ],
+                      [
+                          "Channel",
+                          "{{ column(Channel_12.selection,[\"Channel\"]).asObject()}}"
+                      ],
+                      [
+                          "Product_category",
+                          "{{ column(Product_category_9.selection,[\"Product_category\"]).asObject()}}"
+                      ],
+                      [
+                          "Customer",
+                          "{{ column(Customer_13.selection,[\"Customer\"]).asObject()}}"
+                      ]
                     ]
                 },
                 "selectMode": "single",
-                "type": "aggregate",
+                "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "vbar",
@@ -3647,10 +3701,10 @@
             "Product_category_10": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -3667,14 +3721,41 @@
                         "Product_category"
                     ],
                     "filters": [
-                        [
-                            "Date_of_audit_Month",
-                            "{{ selection(Date_Year_Date_Month_14) }}"
-                        ]
+                      [
+                          "Date_of_audit",
+                          [
+                            "{{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                          ],
+                          ">=<="
+                      ],
+                      [
+                          "Country",
+                          "{{ column(Country_39.selection,[\"Country\"]).asObject() }}"
+                      ],
+                      [
+                          "X4P_5P_6P",
+                          "{{ column(X4P_5P_6P_48.selection,[\"X4P_5P_6P\"]).asObject()}}"
+                      ],
+                      [
+                          "Sales_region",
+                          "{{ column(Region_51.selection,[\"Sales_region\"]).asObject()}}"
+                      ],
+                      [
+                          "Channel",
+                          "{{ column(Channel_12.selection,[\"Channel\"]).asObject()}}"
+                      ],
+                      [
+                          "Product_category",
+                          "{{ column(Product_category_9.selection,[\"Product_category\"]).asObject()}}"
+                      ],
+                      [
+                          "Customer",
+                          "{{ column(Customer_13.selection,[\"Customer\"]).asObject()}}"
+                      ]
                     ]
                 },
                 "selectMode": "single",
-                "type": "aggregate",
+                "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "vbar",
@@ -3684,10 +3765,10 @@
             "X4P_5P_6P_46": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -3704,14 +3785,41 @@
                         "X4P_5P_6P"
                     ],
                     "filters": [
-                        [
-                            "Date_of_audit_Month",
-                            "{{ selection(Date_Year_Date_Month_14) }}"
-                        ]
+                      [
+                          "Date_of_audit",
+                          [
+                            "{{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                          ],
+                          ">=<="
+                      ],
+                      [
+                          "Country",
+                          "{{ column(Country_39.selection,[\"Country\"]).asObject() }}"
+                      ],
+                      [
+                          "X4P_5P_6P",
+                          "{{ column(X4P_5P_6P_48.selection,[\"X4P_5P_6P\"]).asObject()}}"
+                      ],
+                      [
+                          "Sales_region",
+                          "{{ column(Region_51.selection,[\"Sales_region\"]).asObject()}}"
+                      ],
+                      [
+                          "Channel",
+                          "{{ column(Channel_12.selection,[\"Channel\"]).asObject()}}"
+                      ],
+                      [
+                          "Product_category",
+                          "{{ column(Product_category_9.selection,[\"Product_category\"]).asObject()}}"
+                      ],
+                      [
+                          "Customer",
+                          "{{ column(Customer_13.selection,[\"Customer\"]).asObject()}}"
+                      ]
                     ]
                 },
                 "selectMode": "single",
-                "type": "aggregate",
+                "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
@@ -3721,10 +3829,10 @@
             "Region_51": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -3874,10 +3982,10 @@
             "Customer_13": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -4049,10 +4157,10 @@
             "Store_Operations_Manager_72": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -4080,10 +4188,10 @@
             "Product_division_30": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -4111,10 +4219,10 @@
             "Product_market_52": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -4142,10 +4250,10 @@
             "Customer_14": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -4175,6 +4283,37 @@
                                 ]
                             ],
                             "=="
+                        ],
+                        [
+                            "Date_of_audit",
+                            [
+                              "{{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                            ],
+                            ">=<="
+                        ],
+                        [
+                            "Country",
+                            "{{ column(Country_39.selection,[\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ column(X4P_5P_6P_48.selection,[\"X4P_5P_6P\"]).asObject()}}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ column(Region_51.selection,[\"Sales_region\"]).asObject()}}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ column(Channel_12.selection,[\"Channel\"]).asObject()}}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ column(Product_category_9.selection,[\"Product_category\"]).asObject()}}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ column(Customer_13.selection,[\"Customer\"]).asObject()}}"
                         ]
                     ],
                     "order": [
@@ -4187,7 +4326,7 @@
                     ]
                 },
                 "selectMode": "single",
-                "type": "aggregate",
+                "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "vbar",
@@ -4197,13 +4336,13 @@
             "Date_Year_Date_Month_14": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
-                "isFacet": true,
+                "isFacet": false,
                 "isGlobal": false,
                 "query": {
                     "measures": [
@@ -4223,15 +4362,15 @@
                     [
                         [
                             "month",
-                            0
+                            -1
                         ],
                         [
                             "month",
-                            0
+                            -1
                         ]
                     ]
                 ],
-                "type": "aggregate",
+                "type": "aggregateflex",
                 "useGlobal": false,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
@@ -4241,10 +4380,10 @@
             "Product_category_SKU_2": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -4283,10 +4422,10 @@
             "Product_category_SKU_1": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -4489,10 +4628,10 @@
             "Product_category_31": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -4520,10 +4659,10 @@
             "X4P_5P_6P_48": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -4673,10 +4812,10 @@
             "Trade_Format_24": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -4704,10 +4843,10 @@
             "Sales_region_63": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -4735,10 +4874,10 @@
             "Diff_18": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ANQCCA4",
+                        "id": "0Fb2C00000011MUSAY",
                         "label": "PS_OVERALL_COMPLIANCE_LV",
                         "name": "PS_OVERALL_COMPLIANCE_LV",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ANQCCA4"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011MUSAY"
                     }
                 ],
                 "isFacet": false,
@@ -4766,10 +4905,10 @@
             "Customer_29": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -4797,10 +4936,10 @@
             "Channel_25": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -4828,10 +4967,10 @@
             "Country_39": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -4849,7 +4988,7 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
+                            "Date_of_audit",
                             "{{ selection(Date_Year_Date_Month_14) }}"
                         ],
                         [
@@ -4981,10 +5120,10 @@
             "Field_Execution_Manager_71": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -5012,10 +5151,10 @@
             "Product_category_SKU_4": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -5218,10 +5357,10 @@
             "Store_type_65": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -5249,10 +5388,10 @@
             "Product_category_SKU_3": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -5455,10 +5594,10 @@
             "Product_brand_54": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -5486,10 +5625,10 @@
             "Local_Outlet_Name_67": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -5517,10 +5656,10 @@
             "Commune_62": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -5548,10 +5687,10 @@
             "Customer_type_27": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -5579,10 +5718,10 @@
             "SKU_68": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -5610,10 +5749,10 @@
             "Sales_area_23": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -5641,10 +5780,10 @@
             "all_60": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -5674,10 +5813,10 @@
             "Field_Sales_Manager_73": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -5705,10 +5844,10 @@
             "Product_category_9": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -5858,10 +5997,10 @@
             "CustomerMobile_14": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -5902,10 +6041,10 @@
             "City_21": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -5933,10 +6072,10 @@
             "CustomerMobile_13": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALmkCAG",
-                        "label": "DPS_PACK_SCORE",
+                        "id": "0Fb2C00000011GMSAY",
+                        "label": "PACK_SCORE",
                         "name": "PACK_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
                     }
                 ],
                 "isFacet": true,
@@ -5977,10 +6116,10 @@
             "Country_3": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -5998,13 +6137,40 @@
                     ],
                     "filters": [
                         [
-                            "Date_of_audit_Month",
-                            "{{ selection(Date_Year_Date_Month_14) }}"
+                            "Date_of_audit",
+                            [
+                              "{{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                            ],
+                            ">=<="
+                        ],
+                        [
+                            "Country",
+                            "{{ column(Country_39.selection,[\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ column(X4P_5P_6P_48.selection,[\"X4P_5P_6P\"]).asObject()}}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ column(Region_51.selection,[\"Sales_region\"]).asObject()}}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ column(Channel_12.selection,[\"Channel\"]).asObject()}}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ column(Product_category_9.selection,[\"Product_category\"]).asObject()}}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ column(Customer_13.selection,[\"Customer\"]).asObject()}}"
                         ]
                     ]
                 },
                 "selectMode": "single",
-                "type": "aggregate",
+                "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
@@ -6014,10 +6180,10 @@
             "Sales_territory_22": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -6045,10 +6211,10 @@
             "Country_18": {
                 "datasets": [
                     {
-                        "id": "0Fb23000000ALniCAG",
+                        "id": "0Fb2C00000011EfSAI",
                         "label": "PACK_COMPLIANCE",
                         "name": "PACK_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
                     }
                 ],
                 "isFacet": true,
@@ -6084,7 +6250,7 @@
         "widgets": {
             "link_place": {
                 "parameters": {
-                    "destination": "0FK2300000000eGGAQ",
+                    "destination": "0FK2C000000004NWAQ",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -6155,7 +6321,7 @@
                 "parameters": {
                     "alignmentX": "left",
                     "alignmentY": "top",
-                    "documentId": "015230000008yDA",
+                    "documentId": "0152C0000008wzM",
                     "fit": "fitwidth"
                 },
                 "type": "container"
@@ -6404,7 +6570,7 @@
             },
             "link_promo": {
                 "parameters": {
-                    "destination": "0FK2300000000e6GAA",
+                    "destination": "0FK2C000000004DWAQ",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -6427,7 +6593,7 @@
                     "compact": false,
                     "exploreLink": true,
                     "measureField": "Percent_Diff",
-                    "numberColor": "{{cell(NPD_Compliance_69.result, 0, \"color\").asString()}}",
+                    "numberColor": "#FFFFFF",
                     "numberSize": 32,
                     "step": "NPD_Compliance_69",
                     "textAlignment": "center",
@@ -6450,14 +6616,14 @@
                 "parameters": {
                     "alignmentX": "center",
                     "alignmentY": "center",
-                    "documentId": "015230000008yE8",
+                    "documentId": "0152C0000008wzD",
                     "fit": "fitheight"
                 },
                 "type": "image"
             },
             "link_pack": {
                 "parameters": {
-                    "destination": "0FK2300000000lHGAQ",
+                    "destination": "0FK2C0000000048WAA",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -6593,7 +6759,7 @@
                 "parameters": {
                     "alignmentX": "center",
                     "alignmentY": "top",
-                    "documentId": "015230000008yO3",
+                    "documentId": "0152C0000008wzE",
                     "fit": "fitheight"
                 },
                 "type": "image"
@@ -6770,7 +6936,7 @@
             },
             "link_price": {
                 "parameters": {
-                    "destination": "0FK2300000000l7GAA",
+                    "destination": "0FK2C000000004IWAQ",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -6872,7 +7038,7 @@
                 "parameters": {
                     "alignmentX": "center",
                     "alignmentY": "center",
-                    "documentId": "015230000008yKa",
+                    "documentId": "0152C0000008wzA",
                     "fit": "fitheight"
                 },
                 "type": "image"
@@ -7062,7 +7228,7 @@
             },
             "link_overall": {
                 "parameters": {
-                    "destination": "0FK2300000000kiGAA",
+                    "destination": "0FK2C000000004hWAA",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -7393,7 +7559,7 @@
             },
             "link_proposition": {
                 "parameters": {
-                    "destination": "0FK2300000000eBGAQ",
+                    "destination": "0FK2C000000004XWAQ",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -7500,14 +7666,14 @@
                 "parameters": {
                     "alignmentX": "center",
                     "alignmentY": "top",
-                    "documentId": "015230000008yDA",
+                    "documentId": "0152C0000008wzM",
                     "fit": "fitheight"
                 },
                 "type": "image"
             },
             "link_product": {
                 "parameters": {
-                    "destination": "0FK2300000000kYGAQ",
+                    "destination": "0FK2C000000004SWAQ",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -7538,7 +7704,7 @@
                 "parameters": {
                     "alignmentX": "center",
                     "alignmentY": "top",
-                    "documentId": "015230000008yDA",
+                    "documentId": "0152C0000008wzM",
                     "fit": "fitheight"
                 },
                 "type": "image"
@@ -7560,7 +7726,7 @@
                 "parameters": {
                     "alignmentX": "center",
                     "alignmentY": "top",
-                    "documentId": "015230000008yDA",
+                    "documentId": "0152C0000008wzM",
                     "fit": "original"
                 },
                 "type": "image"
@@ -7756,7 +7922,7 @@
                     "compact": false,
                     "exploreLink": false,
                     "measureField": "Percent_Diff",
-                    "numberColor": "{{cell(Diff_18.result, 0, \"color\").asString()}}",
+                    "numberColor": "#FFFFFF",
                     "numberSize": 32,
                     "step": "Diff_18",
                     "textAlignment": "center",
@@ -7815,7 +7981,7 @@
                 "parameters": {
                     "alignmentX": "center",
                     "alignmentY": "top",
-                    "documentId": "0152300000054Mu",
+                    "documentId": "0152C0000008wzL",
                     "fit": "fitheight"
                 },
                 "type": "image"
@@ -8344,22 +8510,22 @@
     },
     "datasets": [
         {
-            "id": "0Fb23000000ALmkCAG",
-            "label": "DPS_PACK_SCORE",
-            "name": "PACK_SCORE",
-            "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALmkCAG"
-        },
-        {
-            "id": "0Fb23000000ALniCAG",
+            "id": "0Fb2C00000011EfSAI",
             "label": "PACK_COMPLIANCE",
             "name": "PACK_COMPLIANCE",
-            "url": "/services/data/v38.0/wave/datasets/0Fb23000000ALniCAG"
+            "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
         },
         {
-            "id": "0Fb23000000ANQCCA4",
+            "id": "0Fb2C00000011GMSAY",
+            "label": "PACK_SCORE",
+            "name": "PACK_SCORE",
+            "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
+        },
+        {
+            "id": "0Fb2C00000011MUSAY",
             "label": "PS_OVERALL_COMPLIANCE_LV",
             "name": "PS_OVERALL_COMPLIANCE_LV",
-            "url": "/services/data/v38.0/wave/datasets/0Fb23000000ANQCCA4"
+            "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011MUSAY"
         }
     ]
 }
