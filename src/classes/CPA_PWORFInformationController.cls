@@ -105,7 +105,8 @@ boolean callFromVF = false;
             }               
             if(pworfRec.txt_Cost_Centre__c != null && (pworfRec.pkl_Cost_Centre_Details__c ==CPA_ConstantsForContractingAppClasses.STRSELECT || pworfRec.pkl_Cost_Centre_Details__c ==null)){ 
                 objectMap.put(CPA_ConstantsForContractingAppClasses.COSTCENTERDETAILS,CPA_ConstantsForContractingAppClasses.MANDATORY);
-            }               
+            } 
+          
             if(pworfRec.txt_Cost_Centre__c ==null && pworfRec.txt_ICC_Number__c ==null){  
                 objectMap.put(CPA_ConstantsForContractingAppClasses.COSTCENTER,CPA_ConstantsForContractingAppClasses.MANDATORYIFICCNOISPROVIDED);
                 objectMap.put(CPA_ConstantsForContractingAppClasses.ICCNUMBER,CPA_ConstantsForContractingAppClasses.MANDATORYIFCOSTCENTNOTPROVIDED);
@@ -155,7 +156,10 @@ boolean callFromVF = false;
             }    
             if(pworfRec.txt_Large_Project_discount_details__c== null  &&  pworfRec.pkl_Large_Project_Discount__c== CPA_ConstantsForContractingAppClasses.YES){
                 objectMap.put(CPA_ConstantsForContractingAppClasses.LARGEPROJECTDISCOUNTDETAILS ,CPA_ConstantsForContractingAppClasses.LARGEPROJECTDISCOUNTDETAILSMANDATORY);
-            }    
+            } 
+            }
+          if((pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED || pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.WITHHOLD)  || !callFromVF){
+             
             if(pworfRec.RecordTypeid == RArecordType){
                 if((pworfRec.pkl_Access_to_Unilever_personal_data__c==null)){
                     objectMap.put(CPA_ConstantsForContractingAppClasses.ACCESSTOUNILPERDATA ,CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -196,6 +200,7 @@ boolean callFromVF = false;
                 if(pworfRec.mpkl_Project_Phases__c != null && (pworfRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.PLAN) && pworfRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.ANALYSE)) && pworfRec.Expected_Start_Date_for_Plan_and_Analyse__c == null ){
                     objectMap.put(CPA_ConstantsForContractingAppClasses.EXPECTEDPASTARTDATE ,'Mandatory, when project phases contains Plan and Analyse');
                 }
+                             
                 if(pworfRec.Impact_if_expected_business_go_live_date__c == null){
                     objectMap.put(CPA_ConstantsForContractingAppClasses.IMPACTIFGOLIVEDATENOTMET ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
@@ -256,6 +261,7 @@ boolean callFromVF = false;
                 if(pworfRec.pkl_Process_Office_Area_E2E__c ==CPA_ConstantsForContractingAppClasses.STRSELECT || pworfRec.pkl_Process_Office_Area_E2E__c ==null){    
                     objectMap.put(CPA_ConstantsForContractingAppClasses.PROCESSOFFICEAREAE2E ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
+                           
                 if(pworfRec.mpkl_Project_Phases__c ==null ){  
                     objectMap.put(CPA_ConstantsForContractingAppClasses.PROJECTPHASES ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }                   
