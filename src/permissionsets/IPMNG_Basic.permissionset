@@ -459,6 +459,10 @@
         <apexClass>IPM_GateDocumentController_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>IPM_GateDocumentPDFDownloadController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>IPM_GateDocumentRiskManagement</apexClass>
         <enabled>true</enabled>
@@ -9441,6 +9445,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>IPM_GateDocumentPDF</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
+        <apexPage>IPM_GateDocumentPDFDownload</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
