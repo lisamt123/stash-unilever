@@ -635,7 +635,6 @@
         <recordType>Product2.Products</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-
     <tabSettings>
         <tab>ICB_Close_Sales</tab>
         <visibility>Visible</visibility>
