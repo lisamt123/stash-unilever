@@ -181,16 +181,6 @@ public with sharing class IPM_FinancialUtils
 	    {
 	        financialYear.put(volumeTypeAPIName,newVolumeType); 
 	        // If the Volume Type is changed to Tons, we need to make Units as 0
-	        if(newVolumeType != null && newVolumeType.equalsIgnoreCase(IPM_ConstantUtils.TOTALTONS))
-	        {
-	            String impactedStatAPI = IPM_ConstantUtils.FIELD_LITERAL_VOLUME + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX;
-	            financialYear.put(impactedStatAPI,0);
-	        }
-	        else
-	        {
-	            String impactedStatAPI = IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX;
-	            financialYear.put(impactedStatAPI,0);
-	        }               
 	        upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
 	    }
     }
