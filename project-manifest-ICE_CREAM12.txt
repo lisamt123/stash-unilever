@@ -1,4 +1,2 @@
 src/permissionsets
 src/permissionsets/ICB_Mobile_Channel_Console_PCL.permissionset
-src/objects
-src/objects/Product2.object
