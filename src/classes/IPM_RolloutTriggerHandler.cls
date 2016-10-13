@@ -272,8 +272,7 @@ public with sharing class IPM_RolloutTriggerHandler
         
         Set<String> setRegionalRolloutNames = new Set<String>();
         Set<String> setRegionalProjectNames = new Set<String>();
-        
-        
+        Set<Id> globalParentProjIds = new Set<Id>();
         for(IPM_Project_Rollout__c projectRollout : mapNewProjectRollouts.values())
         {   
             if(projectRollout.RecordTypeId == REGIONAL_ROLLOUT_RECORDTYPE && projectRollout.IPM_Project__c !=null)
@@ -282,6 +281,11 @@ public with sharing class IPM_RolloutTriggerHandler
             }
             else if(projectRollout.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
             {
+                if(!projectRollout.isActive__c && mapOldProjectRollouts.get(projectRollout.Id).isActive__c!=projectRollout.isActive__c)
+                {
+                	globalParentProjIds.add(projectRollout.IPM_Project__c);
+                }
+                
                 if(projectRollout.Regional_Project__c !=null)
                 {
                     setRegionalProjectNames.add(projectRollout.Regional_Rollout_External_Id__c);
@@ -382,6 +386,10 @@ public with sharing class IPM_RolloutTriggerHandler
         {
             IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
             syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
+        }
+        if(!globalParentProjIds.isEmpty())
+        {
+        	processRegRLOutsOnLocalDeactivation(globalParentProjIds);
         }
           //  EPIC172 implementation end 
        
