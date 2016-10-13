@@ -761,7 +761,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
 
               IPM_StopProjectHelper.processUnArchival(unArchievedProjectMap);  
 
-            //call update project name in all objects records
+			  set<id> archivalprojIds = new set<id>();
+              archivalprojIds.addAll(archievedProjectMap.keySet());
+              archivalprojIds.addAll(unArchievedProjectMap.keySet());
+              IPM_MilestoneHelper.rollupMilestoneDuedate(archivalprojIds);
+			//call update project name in all objects records
             if(!updateNewProNameMap.IsEmpty()){
                 IPM_UpdateGlobalProjectName.updateProjectName(updateNewProNameMap,oldprojectnameMap);
                 IPM_ChatterFeedHelper.notifyProjectNameChange(changedNameProjectList);

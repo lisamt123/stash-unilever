@@ -157,18 +157,11 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
                    }
                    //Evaluate for Due Date Rollup
                    if(Trigger.isInsert || (incomingMilestone.IPM_Due_Date__c <oldMilestone.IPM_Due_Date__c)){
-                        if(!mapDueDateRollupMilestones.containskey(incomingMilestone.IPM_Project__c)){
-                            list<IPM_Milestone__c> temp = new list<IPM_Milestone__c>();
-                            temp.add(incomingMilestone);
-                            mapDueDateRollupMilestones.put(incomingMilestone.IPM_Project__c, temp);      
-                        }   
-                        else{
-                            mapDueDateRollupMilestones.get(incomingMilestone.IPM_Project__c).add(incomingMilestone);
-                        }
+                       setProjIds.add(incomingMilestone.IPM_Project__c);
                    }
-                }
-                if(!mapDueDateRollupMilestones.isEmpty()){
-                    IPM_MilestoneHelper.rollupMilestoneDuedate(mapDueDateRollupMilestones);
+				}
+                if(!setProjIds.isEmpty()){
+                    IPM_MilestoneHelper.rollupMilestoneDuedate(setProjIds);
                 }
             }
             /* Map with all the projects related to updated milestones */           

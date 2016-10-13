@@ -589,42 +589,44 @@ public with sharing class IPM_MilestoneHelper
     /*@Method Name: rollupMilestoneDuedate
       @Date: 5th Oct 2016
       @Description: This method will be called from IPM_MilestoneHandler to update minimum due date from Rollout Mielstone to Gloabl Original Projects corresponding Milestones (Contract Gate Milestone & Market Ready Gate Milestone) for GKM2 projects  
-      @param1 :Map of <Id of Project of incoming Milestones> 
+      @param1 :Set of <Id of affected Project> 
     */
-    public static void rollupMilestoneDuedate(map<id, list<IPM_Milestone__c>> mapprojMilestones){
-    set<id> setParentProjIds = new set<id>();
-    map<id,id> mapprojParent = new map<id,id>();
-    map<id,list<IPM_Milestone__c>> mapProjchildMilestones = new map<id, list<IPM_Milestone__c>>();
-    map<id, IPM_Milestone__c> mapUpdateML = new map<id, IPM_Milestone__c>();
-
-    for(IPM_Project__c proj :[select id, IPM_Parent_Project__c from IPM_Project__c where id in :mapprojMilestones.keySet() and IPM_ProjectGKM__c = : IPM_ConstantUtils.GKM_2 and IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT]){
-        setParentProjIds.add(proj.IPM_Parent_Project__c);
-        mapprojParent.put(proj.id,proj.IPM_Parent_Project__c);
-        if(!mapProjchildMilestones.containsKey(proj.IPM_Parent_Project__c)){
-            list<IPM_Milestone__c> temp = new list<IPM_Milestone__c>();
-            temp = mapprojMilestones.get(proj.id);
-            mapProjchildMilestones.put(proj.IPM_Parent_Project__c, temp);   
+    public static void rollupMilestoneDuedate(set<id> setProjIds){
+        set<id> setParentProjIds = new set<id>();
+        map<string, map<string, date>> mapProjMlDuedate = new map<string, map<string, date>>(); 
+        list<IPM_Milestone__c> lstUpdateMiles = new list<IPM_Milestone__c>();
+        
+        //Get all parent project Ids.
+        for(IPM_Project__c proj :[select id, IPM_Parent_Project__c from IPM_Project__c where id in :setProjIds and IPM_ProjectGKM__c = : IPM_ConstantUtils.GKM_2 and IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT LIMIT 50000]){
+            setParentProjIds.add(proj.IPM_Parent_Project__c);
         }
-        else{
-            mapProjchildMilestones.get(proj.IPM_Parent_Project__c).addAll(mapprojMilestones.get(proj.id));
+        //Get Minimum Milestone date for Parent project for each Regional Milestone type
+        AggregateResult[] groupedResults = [select min(IPM_Due_Date__c) duedate, IPM_Project__r.IPM_Parent_Project__c parent, IPM_Name__c from IPM_Milestone__c where IPM_Project__c in :setProjIds and IPM_project__r.IPM_ProjectGKM__c = : IPM_ConstantUtils.GKM_2 and IPM_Project__r.IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT and IPM_Project__r.is_archieved__c = false group by IPM_Project__r.IPM_Parent_Project__c, IPM_Name__c LIMIT 50000]; 
+    
+        //Populate Map for each project with miniim regional Milestone date for each Milestone type
+        for (AggregateResult ar : groupedResults)  {
+            if(IPM_ConstantUtils.ROLLUP_MILESTONES.contains(string.valueOf(ar.get('IPM_Name__c'))) &&   mapProjMlDuedate.containsKey(string.valueOf(ar.get('IPM_Project__r.IPM_Parent_Project__c')))){
+                mapProjMlDuedate.get(string.valueOf(ar.get('IPM_Project__r.IPM_Parent_Project__c'))).put(string.valueOf(ar.get('IPM_Name__c')), date.valueOf(ar.get('expr0'))); 
+            }
+            else if (IPM_ConstantUtils.ROLLUP_MILESTONES.contains(string.valueOf(ar.get('IPM_Name__c'))) ){
+                map<string, date> temp = new map<string, date>();
+                temp.put(string.valueOf(ar.get('IPM_Name__c')), date.valueOF(ar.get('expr0')));
+                mapProjMlDuedate.put(string.valueOf(ar.get('IPM_Project__r.IPM_Parent_Project__c')), temp);
+            }
         }
-    }
-
-    if(!setParentProjIds.isEmpty()){
-        for(IPM_Milestone__c ml : [select IPM_Project__c, IPM_Name__c,IPM_Due_Date_Feasibility__c, IPM_Project__r.IPM_Phase__c, IPM_Due_Date__c,IPM_Due_Date_Capability__c, IPM_Phase__c  from IPM_Milestone__c where IPM_Project__c in :setParentProjIds]){
-            if((ml.IPM_Name__c == IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE && ml.IPM_Due_Date_Feasibility__c==null) || ( ml.IPM_Name__c == IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE && ml.IPM_Due_Date_Capability__c==null) ){
-                for(IPM_Milestone__c childMl :mapProjchildMilestones.get(ml.IPM_Project__c)){
-                    if(ml.IPM_Name__c == childMl.IPM_Name__c && (ml.IPM_Due_Date__c==null || ml.IPM_Due_Date__c > childMl.IPM_Due_Date__c)){
-                        ml.IPM_Due_Date__c = childMl.IPM_Due_Date__c;
-                        ml.IPM_Planned_Date__c = childMl.IPM_Due_Date__c;
-                        mapUpdateML.put(ml.id, ml);
-                    }
+        
+        //Update Milestone dates for parent Milestones
+        if(!setParentProjIds.isEmpty()){
+            for(IPM_Milestone__c ml : [select IPM_Project__c, IPM_Name__c,IPM_Due_Date_Feasibility__c, IPM_Project__r.IPM_Phase__c, IPM_Due_Date__c,IPM_Due_Date_Capability__c, IPM_Phase__c  from IPM_Milestone__c where IPM_Project__c in :setParentProjIds and ((IPM_Name__c =:IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE and IPM_Due_Date_Feasibility__c=null) OR (IPM_Name__c = :IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE AND IPM_Due_Date_Capability__c=null)) LIMIT 50000]){
+                if(mapProjMlDuedate.containsKey(ml.IPM_Project__c) && mapProjMlDuedate.get(ml.IPM_Project__c).containskey(ml.IPM_Name__c)){
+                    ml.IPM_Due_Date__c = mapProjMlDuedate.get(ml.IPM_Project__c).get(ml.IPM_Name__c);
+                    ml.IPM_Planned_Date__c = mapProjMlDuedate.get(ml.IPM_Project__c).get(ml.IPM_Name__c);
+                    lstUpdateMiles.add(ml);
                 }
             }
         }
-    }
-    if(!mapUpdateML.isEmpty()){
-        update mapUpdateML.values();
-    }    
+        if(!lstUpdateMiles.isEmpty()){
+            update lstUpdateMiles;
+        }
     }
 }
