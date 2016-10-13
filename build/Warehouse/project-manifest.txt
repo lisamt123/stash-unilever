@@ -5,7 +5,7 @@ src/classes/WU_MultiCreateMultiEdit3.cls-meta.xml
 src/classes/WU_LeadershipPermission.cls
 src/classes/WU_LeadershipPermission.cls-meta.xml
 src/classes/WU_WarehouseSearchController.cls
-src/classes/WU_WarehouseSearchController.cls-meta.xml          
+src/classes/WU_WarehouseSearchController.cls-meta.xml
 src/pages
 src/pages/WU_MultiCreateMultiEdit.page
 src/pages/WU_MultiCreateMultiEdit.page-meta.xml
