@@ -22,7 +22,6 @@ global with sharing class ICB_ReturnStock_Batch implements Database.Batchable<sO
     global List<OpportunityLineItem> start (Database.Batchablecontext bc)
     {
         //String oppDate = String.valueOf();
-        String status = 'Inactive';
         return [Select Id, ICB_ITEMS_RETURNED__c,Product2Id,Product2.CreatedDate,Opportunity.Account.Name From OpportunityLineItem Where Opportunity.CloseDate =: System.today()];
     }
     
