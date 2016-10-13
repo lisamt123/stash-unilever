@@ -5212,8 +5212,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>Email,Email North America,Email North America CS,Web,Web North America</value>
+            <operation>notEqual</operation>
+            <value>Social,Social Media North America</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -5274,13 +5274,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>Email,Email North America,Email North America CS,Web,Web North America</value>
+            <operation>notEqual</operation>
+            <value>Social,Social Media North America</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New,In Progress</value>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
@@ -5406,7 +5406,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Brand__c</field>
             <operation>contains</operation>
@@ -5425,11 +5425,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New</value>
+            <value>New,In Progress</value>
         </filters>
         <label>CEC North America Ben &amp; Jerrys Scoop</label>
         <language>en_US</language>
-        <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
@@ -5463,7 +5462,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,Escalated</value>
+            <value>New,In Progress</value>
         </filters>
         <filters>
             <field>Brand__c</field>
@@ -5693,7 +5692,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_North_America_Helpdesk_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
@@ -5918,7 +5916,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Queue_Case</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND (4 OR 5)</booleanFilter>
+        <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
         <columns>Country__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
@@ -5926,6 +5924,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>CASES.LAST_UPDATE</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.ORIGIN</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
@@ -5936,13 +5935,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>Case_Brand__c</field>
-            <operation>notEqual</operation>
-            <value>Bazaar Trigger</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>notEqual</operation>
-            <value>Bazaar Voice</value>
+            <operation>notContain</operation>
+            <value>Bazaar</value>
         </filters>
         <filters>
             <field>Country__c</field>
@@ -6188,6 +6182,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CREATEDBY_USER.ALIAS</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
         <label>CEC North America Supervisor Queue</label>
         <language>en_US</language>
         <queue>CEC_North_America_Supervisor_Queue</queue>
@@ -6232,18 +6231,20 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Tier_2_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC North America Tier 2 Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Tier_2_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Manager_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Tier_3_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC North America Tier 3 Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Tier_3_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Manager_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -6711,7 +6712,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Philippines_Escalation_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Philippines</role>
             <role>CEC_User_Philippines</role>
@@ -6778,7 +6778,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Philippines_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Philippines</role>
             <role>CEC_User_Philippines</role>
@@ -6812,7 +6811,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Philippines_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Philippines</role>
             <role>CEC_User_Philippines</role>
@@ -6828,7 +6826,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>Consumer_Email__c</columns>
         <columns>Search_Phone__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.SUBJECT</field>
             <operation>contains</operation>
@@ -6841,8 +6839,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC Philippines Test</label>
         <language>en_US</language>
+        <queue>CEC_Philippines_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Philippines</role>
             <role>CEC_User_Philippines</role>
@@ -6868,7 +6866,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Philippines_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Philippines</role>
             <role>CEC_User_Philippines</role>
@@ -8535,7 +8532,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_North_America_Canada_DIN_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
         </sharedTo>
@@ -8610,6 +8606,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC Philippines - PUREIT</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_Philippines</role>
+            <role>CEC_User_Philippines</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Review_Needed</fullName>

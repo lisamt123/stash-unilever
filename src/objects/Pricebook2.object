@@ -52,8 +52,13 @@
     </fields>
     <fields>
         <fullName>Name</fullName>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
     </fields>
+    <recordTypes>
+        <fullName>FS_Pricebook</fullName>
+        <active>true</active>
+        <label>FS Pricebook</label>
+    </recordTypes>
     <recordTypes>
         <fullName>Price_Book</fullName>
         <active>true</active>
@@ -78,5 +83,5 @@
         <searchResultsAdditionalFields>PRICEBOOK2.LAST_UPDATE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PRICEBOOK2.IS_ACTIVE</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadSelect</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>

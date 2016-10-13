@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
+        <label><!-- Currency --></label>
+        <name>AccountCurrency__c</name>
+    </fields>
+    <fields>
         <label><!-- Account Record Count --></label>
         <name>Account_Record_Count__c</name>
     </fields>
@@ -172,6 +176,554 @@
     <fields>
         <label>Opt In Marketing</label>
         <name>CEC_Marketing_Opt_In__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Address2 --></label>
+        <name>CHD__Address2__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Address3 --></label>
+        <name>CHD__Address3__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Address --></label>
+        <name>CHD__Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Alcohol --></label>
+        <name>CHD__Alcohol__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Annual Sales --></label>
+        <name>CHD__Annual_Sales__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Attire --></label>
+        <name>CHD__Attire__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Average Check --></label>
+        <name>CHD__Average_Check__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Average Daily Census --></label>
+        <name>CHD__Average_Daily_Census__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Banquet Facility --></label>
+        <name>CHD__Banquet_Facility__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Bar --></label>
+        <name>CHD__Bar__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Buffet --></label>
+        <name>CHD__Buffet__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Business Change --></label>
+        <name>CHD__Business_Change__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Business Name --></label>
+        <name>CHD__Business_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD ID --></label>
+        <name>CHD__CHD_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD PID --></label>
+        <name>CHD__CHD_PID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Previous ID --></label>
+        <name>CHD__CHD_Previous_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Chain ID --></label>
+        <name>CHD__Chain_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Chain Name --></label>
+        <name>CHD__Chain_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD City --></label>
+        <name>CHD__City__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Coast --></label>
+        <name>CHD__Coast__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Comments --></label>
+        <name>CHD__Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Complimentary Breakfast --></label>
+        <name>CHD__Complimentary_Breakfast__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Confidence Level --></label>
+        <name>CHD__Confidence_Level__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Country --></label>
+        <name>CHD__Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD County Code --></label>
+        <name>CHD__County_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Creation Date --></label>
+        <name>CHD__Creation_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD CreditSafe ID --></label>
+        <name>CHD__CreditSafe_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD CreditSafe Score --></label>
+        <name>CHD__CreditSafe_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Credit Rating --></label>
+        <name>CHD__Credit_Rating__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Customer Status --></label>
+        <name>CHD__Customer_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Dayparts --></label>
+        <name>CHD__Dayparts__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Delivery Status --></label>
+        <name>CHD__Delivery_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Employees --></label>
+        <name>CHD__Employees__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Enrollment (non comm) --></label>
+        <name>CHD__Enrollment__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Fax --></label>
+        <name>CHD__Fax__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Free Reduced Meals (non comm) --></label>
+        <name>CHD__Free_Reduced_Meals__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD GPO ID --></label>
+        <name>CHD__GPO_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD GPO (non comm) --></label>
+        <name>CHD__GPO__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Gas Station --></label>
+        <name>CHD__Gas_Station__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD HC System --></label>
+        <name>CHD__HC_System__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Insee --></label>
+        <name>CHD__Insee__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Last Update --></label>
+        <name>CHD__Last_Update__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Latitude --></label>
+        <name>CHD__Latitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Legal Name --></label>
+        <name>CHD__Legal_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Location PID --></label>
+        <name>CHD__Location_PID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Longitude --></label>
+        <name>CHD__Longitude__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD MSA --></label>
+        <name>CHD__MSA__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Market Segment --></label>
+        <name>CHD__Market_Segment__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Menu Options --></label>
+        <name>CHD__Menu_Items__c</name>
+        <picklistValues>
+            <masterLabel>gluten_free_options</masterLabel>
+            <translation><!-- gluten_free_options --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>healthy_options</masterLabel>
+            <translation><!-- healthy_options --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>kids_menu</masterLabel>
+            <translation><!-- kids_menu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>lowfat_options</masterLabel>
+            <translation><!-- lowfat_options --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>organic_options</masterLabel>
+            <translation><!-- organic_options --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>vegan_options</masterLabel>
+            <translation><!-- vegan_options --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>vegetarian_options</masterLabel>
+            <translation><!-- vegetarian_options --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CHD Menu --></label>
+        <name>CHD__Menu__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Additional Fields --></label>
+        <name>CHD__Misc_Services__c</name>
+        <picklistValues>
+            <masterLabel>free_parking</masterLabel>
+            <translation><!-- free_parking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>garage_parking</masterLabel>
+            <translation><!-- garage_parking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>good_for_groups</masterLabel>
+            <translation><!-- good_for_groups --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>good_for_kids</masterLabel>
+            <translation><!-- good_for_kids --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>has_tv</masterLabel>
+            <translation><!-- has_tv --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>open_24_hours</masterLabel>
+            <translation><!-- open_24_hours --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>parking</masterLabel>
+            <translation><!-- parking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>parking_lot</masterLabel>
+            <translation><!-- parking_lot --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>private_room</masterLabel>
+            <translation><!-- private_room --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>valet_parking</masterLabel>
+            <translation><!-- valet_parking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>validated_parking</masterLabel>
+            <translation><!-- validated_parking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>wheelchair_accessible</masterLabel>
+            <translation><!-- wheelchair_accessible --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CHD NPAI --></label>
+        <name>CHD__NPAI__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD National Number --></label>
+        <name>CHD__National_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Normalization Code --></label>
+        <name>CHD__Normalization_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Number of Beds (non comm) --></label>
+        <name>CHD__Number_of_Beds__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Number of Meals Day (non comm) --></label>
+        <name>CHD__Number_of_Meals_Day__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Number of Meals --></label>
+        <name>CHD__Number_of_Meals__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Number of Rooms --></label>
+        <name>CHD__Number_of_Rooms__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Number of Schools (non comm) --></label>
+        <name>CHD__Number_of_Schools__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Number of Seats --></label>
+        <name>CHD__Number_of_Seats__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Open Date --></label>
+        <name>CHD__Open_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Operation Type (non comm) --></label>
+        <name>CHD__Operation_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Outdoor Seating --></label>
+        <name>CHD__Outdoor_Seating__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Owner ID --></label>
+        <name>CHD__Owner_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Owner PID --></label>
+        <name>CHD__Owner_PID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Ownership Change Flag --></label>
+        <name>CHD__Ownership_Change_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Ownership (non comm) --></label>
+        <name>CHD__Ownership__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Phone Area Code --></label>
+        <name>CHD__Phone_Area_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Phone --></label>
+        <name>CHD__Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Plus4 --></label>
+        <name>CHD__Plus4__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Pool --></label>
+        <name>CHD__Pool__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Postal Code --></label>
+        <name>CHD__Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Postal Normalized --></label>
+        <name>CHD__Postal_Normalized__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Primary GPO --></label>
+        <name>CHD__Primary_GPO__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Rating --></label>
+        <name>CHD__Rating__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD State/Province --></label>
+        <name>CHD__Region1__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Region --></label>
+        <name>CHD__Region__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Sector --></label>
+        <name>CHD__Sector__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Services Required --></label>
+        <name>CHD__Services_Offered__c</name>
+        <picklistValues>
+            <masterLabel>accepts_credit_cards</masterLabel>
+            <translation><!-- accepts_credit_cards --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>catering</masterLabel>
+            <translation><!-- catering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>delivery</masterLabel>
+            <translation><!-- delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>outdoor_seating</masterLabel>
+            <translation><!-- outdoor_seating --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>take_out</masterLabel>
+            <translation><!-- take_out --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>takes_reservations</masterLabel>
+            <translation><!-- takes_reservations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>wifi</masterLabel>
+            <translation><!-- wifi --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CHD Simplified Menu --></label>
+        <name>CHD__Simplified_Menu__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Ski Station --></label>
+        <name>CHD__Ski_Station__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Booking --></label>
+        <name>CHD__Social_Booking__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Delivery --></label>
+        <name>CHD__Social_Delivery__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Facebook --></label>
+        <name>CHD__Social_Facebook__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Food Inspection --></label>
+        <name>CHD__Social_Food_Inspection__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Foursquare --></label>
+        <name>CHD__Social_Foursquare__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Google Places --></label>
+        <name>CHD__Social_Google_Places__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Hotels --></label>
+        <name>CHD__Social_Hotels__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Instagram --></label>
+        <name>CHD__Social_Instagram__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Lafourchette --></label>
+        <name>CHD__Social_Lafourchette__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Local Directory --></label>
+        <name>CHD__Social_Local_Directory__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Menu --></label>
+        <name>CHD__Social_Menu__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Michelin --></label>
+        <name>CHD__Social_Michelin__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Opentable --></label>
+        <name>CHD__Social_Opentable__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Reservation --></label>
+        <name>CHD__Social_Reservation__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Tripadvisor --></label>
+        <name>CHD__Social_Tripadvisor__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Twitter --></label>
+        <name>CHD__Social_Twitter__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Yellowpages --></label>
+        <name>CHD__Social_Yellowpages__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Yelp --></label>
+        <name>CHD__Social_Yelp__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Social Zomato --></label>
+        <name>CHD__Social_Zomato__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Source --></label>
+        <name>CHD__Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Square Footage --></label>
+        <name>CHD__Square_Footage__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Tennis --></label>
+        <name>CHD__Tennis__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Total Patient Days --></label>
+        <name>CHD__Total_Patient_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Units --></label>
+        <name>CHD__Units__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Urban Area Name --></label>
+        <name>CHD__Urban_Area_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Urban Area Type --></label>
+        <name>CHD__Urban_Area_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD VAT Number --></label>
+        <name>CHD__VAT_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Website --></label>
+        <name>CHD__Website__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Years In Business --></label>
+        <name>CHD__Years_In_Business__c</name>
+    </fields>
+    <fields>
+        <label><!-- Channel --></label>
+        <name>Channel__c</name>
     </fields>
     <fields>
         <label>Enfants de moins de 12 ans</label>
@@ -654,6 +1206,14 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Customer Legal Code --></label>
+        <name>CustomerLegalCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Legal Name --></label>
+        <name>CustomerLegalName__c</name>
+    </fields>
+    <fields>
         <label><!-- D &amp; B Duns Number --></label>
         <name>D_B_Duns_Number__c</name>
     </fields>
@@ -807,6 +1367,18 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Distributor Program --></label>
+        <name>DistributorProgram__c</name>
+        <picklistValues>
+            <masterLabel>TBD</masterLabel>
+            <translation><!-- TBD --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Division --></label>
+        <name>Division__c</name>
+    </fields>
+    <fields>
         <label><!-- Document Number --></label>
         <name>Document_Number__c</name>
     </fields>
@@ -824,12 +1396,821 @@
         <name>External_Id__c</name>
     </fields>
     <fields>
+        <label><!-- ABC Segmentation --></label>
+        <name>FS_ABCSegmentation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount Of Visitors --></label>
+        <name>FS_AmountOfVisitors__c</name>
+    </fields>
+    <fields>
+        <help><!-- Add request comments for required changes to Approval Request. --></help>
+        <label><!-- Approval Request Comments --></label>
+        <name>FS_ApprovalRequestComments__c</name>
+    </fields>
+    <fields>
+        <help><!-- Customized Products = 0
+Branded Porducts = 2.5
+Branded are essential = 5 --></help>
+        <label><!-- Brands Relevance --></label>
+        <name>FS_BrandsRelevance__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.5</masterLabel>
+            <translation><!-- 2.5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Buying Group --></label>
+        <name>FS_BuyingGroup__c</name>
+        <relationshipLabel><!-- Accounts (Buying Group) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CHD Number --></label>
+        <name>FS_CHDNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Chain Targeting Model --></label>
+        <name>FS_ChainTargetingModel__c</name>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Low = 0
+Medium = 2.5
+High = 5 --></help>
+        <label><!-- Compliance levels --></label>
+        <name>FS_Compliancelevels__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.5</masterLabel>
+            <translation><!-- 2.5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Controlling Account --></label>
+        <name>FS_ControllingAccountCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Convenience Factor --></label>
+        <name>FS_ConvenienceFactor__c</name>
+    </fields>
+    <fields>
+        <help><!-- Auto Number to create Account ID for Food Solutions --></help>
+        <label><!-- FS Customer Number --></label>
+        <name>FS_Customer_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distribution Group Area --></label>
+        <name>FS_DistributionGroupArea__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distributor Type --></label>
+        <name>FS_Distributor_Type__c</name>
+        <picklistValues>
+            <masterLabel>C&amp;C</masterLabel>
+            <translation><!-- C&amp;C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct</masterLabel>
+            <translation><!-- Direct --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Logist</masterLabel>
+            <translation><!-- Logist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation><!-- Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slabco</masterLabel>
+            <translation><!-- Slabco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategic</masterLabel>
+            <translation><!-- Strategic --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- No interest in FOH = 0
+Some interest in FOH = 2.5 
+FOH Highly relevant = 5 --></help>
+        <label><!-- FOH Relevance --></label>
+        <name>FS_FOHRelevance__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.5</masterLabel>
+            <translation><!-- 2.5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Food Turnover --></label>
+        <name>FS_FoodTurnover__c</name>
+    </fields>
+    <fields>
+        <label><!-- Food Price Value --></label>
+        <name>FS_Food_Price_Value__c</name>
+    </fields>
+    <fields>
+        <help><!-- Below Mkt Avg = 0
+In line with Mkt = 2.5
+Above Mkt Avg = 5 --></help>
+        <label><!-- Growth Track Record --></label>
+        <name>FS_GrowthTrackRecord__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.5</masterLabel>
+            <translation><!-- 2.5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- INN --></label>
+        <name>FS_INN__c</name>
+    </fields>
+    <fields>
+        <help><!-- Multiple WHS = 0
+Specif Distributor = 2.5
+Customer Delivers Directly = 5 --></help>
+        <label><!-- Logistic &amp; Administrative Complexity --></label>
+        <name>FS_LogisticAdministrativeComplexity__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.5</masterLabel>
+            <translation><!-- 2.5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Master Code --></label>
+        <name>FS_MasterCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Master Name --></label>
+        <name>FS_MasterName__c</name>
+    </fields>
+    <fields>
+        <help><!-- 0-25% = 0
+ &gt;25  &lt;65% = 2.5  
+&gt;65% = 5 --></help>
+        <label><!-- Number of Categories --></label>
+        <name>FS_NumberofCategories__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.5</masterLabel>
+            <translation><!-- 2.5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Operator Outlet --></label>
+        <name>FS_OperatorOutlet__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Displaying Parent Account owner from parentaccount lookup --></help>
+        <label><!-- Parent Account Owner --></label>
+        <name>FS_ParentAccountOwner__c</name>
+    </fields>
+    <fields>
+        <help><!-- According to your local thresholds --></help>
+        <label><!-- Potential Reach --></label>
+        <name>FS_PotentialReach__c</name>
+    </fields>
+    <fields>
+        <label><!-- UFS Potential Share (EUR) --></label>
+        <name>FS_PotentialShareEUR__c</name>
+    </fields>
+    <fields>
+        <label><!-- UFS Potential Share (RUB) --></label>
+        <name>FS_PotentialShareRUB__c</name>
+    </fields>
+    <fields>
+        <label><!-- UFS Potential Share --></label>
+        <name>FS_PotentialShare__c</name>
+    </fields>
+    <fields>
+        <label><!-- Potential Value Size --></label>
+        <name>FS_PotentialValueSize__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proposed Account Owner --></label>
+        <name>FS_ProposedAccountOwner__c</name>
+        <relationshipLabel><!-- Accounts (Proposed Account Owner) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Route to Market | Only Russia | Populated via Softserve --></help>
+        <label><!-- RTM --></label>
+        <name>FS_RTM__c</name>
+        <picklistValues>
+            <masterLabel>C&amp;C</masterLabel>
+            <translation><!-- C&amp;C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chains</masterLabel>
+            <translation><!-- Chains --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Independent</masterLabel>
+            <translation><!-- Independent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slabco</masterLabel>
+            <translation><!-- Slabco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesaler</masterLabel>
+            <translation><!-- Wholesaler --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- RFS Region --></label>
+        <name>FS_RusianRegion__c</name>
+        <picklistValues>
+            <masterLabel>Belorussia</masterLabel>
+            <translation><!-- Belorussia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CFO</masterLabel>
+            <translation><!-- CFO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Far East</masterLabel>
+            <translation><!-- Far East --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Moscow</masterLabel>
+            <translation><!-- Moscow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NW</masterLabel>
+            <translation><!-- NW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sibir</masterLabel>
+            <translation><!-- Sibir --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South</masterLabel>
+            <translation><!-- South --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>St.Pete</masterLabel>
+            <translation><!-- St.Pete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ukraine</masterLabel>
+            <translation><!-- Ukraine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Volga</masterLabel>
+            <translation><!-- Volga --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>FS_RussianCity__c</name>
+        <picklistValues>
+            <masterLabel>ABAKAN</masterLabel>
+            <translation><!-- ABAKAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ARKHANGELSK</masterLabel>
+            <translation><!-- ARKHANGELSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ARMAVIR</masterLabel>
+            <translation><!-- ARMAVIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ASTRAKHAN</masterLabel>
+            <translation><!-- ASTRAKHAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BARNAUL</masterLabel>
+            <translation><!-- BARNAUL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BELGOROD</masterLabel>
+            <translation><!-- BELGOROD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BIYSK</masterLabel>
+            <translation><!-- BIYSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BLAGOVESCHENSK</masterLabel>
+            <translation><!-- BLAGOVESCHENSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BRATSK</masterLabel>
+            <translation><!-- BRATSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BRYANSK</masterLabel>
+            <translation><!-- BRYANSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHEBOKSARY</masterLabel>
+            <translation><!-- CHEBOKSARY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHELYABINSK</masterLabel>
+            <translation><!-- CHELYABINSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHEREPOVETS</masterLabel>
+            <translation><!-- CHEREPOVETS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHERKASSY</masterLabel>
+            <translation><!-- CHERKASSY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHERNIGOV</masterLabel>
+            <translation><!-- CHERNIGOV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHERNOVTSY</masterLabel>
+            <translation><!-- CHERNOVTSY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHITA</masterLabel>
+            <translation><!-- CHITA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DNEPROPETROVSK</masterLabel>
+            <translation><!-- DNEPROPETROVSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DONETSK</masterLabel>
+            <translation><!-- DONETSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EKATERINBURG</masterLabel>
+            <translation><!-- EKATERINBURG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ELISTA</masterLabel>
+            <translation><!-- ELISTA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GROZNIY</masterLabel>
+            <translation><!-- GROZNIY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IRKUTSK</masterLabel>
+            <translation><!-- IRKUTSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IVANOVO</masterLabel>
+            <translation><!-- IVANOVO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KALININGRAD</masterLabel>
+            <translation><!-- KALININGRAD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KALUGA</masterLabel>
+            <translation><!-- KALUGA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KEMEROVO</masterLabel>
+            <translation><!-- KEMEROVO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KHABAROVSK</masterLabel>
+            <translation><!-- KHABAROVSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KOSTROMA</masterLabel>
+            <translation><!-- KOSTROMA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KRASNODAR</masterLabel>
+            <translation><!-- KRASNODAR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KRASNOYARSK</masterLabel>
+            <translation><!-- KRASNOYARSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KURGAN</masterLabel>
+            <translation><!-- KURGAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KURSK</masterLabel>
+            <translation><!-- KURSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIPETSK</masterLabel>
+            <translation><!-- LIPETSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MAGADAN</masterLabel>
+            <translation><!-- MAGADAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MINSK</masterLabel>
+            <translation><!-- MINSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MOSCOW</masterLabel>
+            <translation><!-- MOSCOW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MURMANSK</masterLabel>
+            <translation><!-- MURMANSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NOVGOROD VELIKIY</masterLabel>
+            <translation><!-- NOVGOROD VELIKIY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NOVOSIBIRSK</masterLabel>
+            <translation><!-- NOVOSIBIRSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OMSK</masterLabel>
+            <translation><!-- OMSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OREL</masterLabel>
+            <translation><!-- OREL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PETROPAVLOVSK-KAMCHATSKY</masterLabel>
+            <translation><!-- PETROPAVLOVSK-KAMCHATSKY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PETROZAVODSK</masterLabel>
+            <translation><!-- PETROZAVODSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PSKOV</masterLabel>
+            <translation><!-- PSKOV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ROSTOV-ON-DON</masterLabel>
+            <translation><!-- ROSTOV-ON-DON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RYAZAN</masterLabel>
+            <translation><!-- RYAZAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAINT-PETERSBURG</masterLabel>
+            <translation><!-- SAINT-PETERSBURG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEVASTOPOL</masterLabel>
+            <translation><!-- SEVASTOPOL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SIMFEROPOL</masterLabel>
+            <translation><!-- SIMFEROPOL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SMOLENSK</masterLabel>
+            <translation><!-- SMOLENSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SYKTYVKAR</masterLabel>
+            <translation><!-- SYKTYVKAR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TAMBOV</masterLabel>
+            <translation><!-- TAMBOV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TOMSK</masterLabel>
+            <translation><!-- TOMSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TULA</masterLabel>
+            <translation><!-- TULA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TVER</masterLabel>
+            <translation><!-- TVER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TYUMEN</masterLabel>
+            <translation><!-- TYUMEN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ULAN-UDE</masterLabel>
+            <translation><!-- ULAN-UDE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VLADIMIR</masterLabel>
+            <translation><!-- VLADIMIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VLADIVOSTOK</masterLabel>
+            <translation><!-- VLADIVOSTOK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VOLGOGRAD</masterLabel>
+            <translation><!-- VOLGOGRAD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VOLOGDA</masterLabel>
+            <translation><!-- VOLOGDA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VORONEZH</masterLabel>
+            <translation><!-- VORONEZH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YAKUTSK</masterLabel>
+            <translation><!-- YAKUTSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YAROSLAVL</masterLabel>
+            <translation><!-- YAROSLAVL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YUZHNO-SAKHALINSK</masterLabel>
+            <translation><!-- YUZHNO-SAKHALINSK --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- RFS Zone --></label>
+        <name>FS_RussianZone__c</name>
+        <picklistValues>
+            <masterLabel>Moscow &amp; CFO</masterLabel>
+            <translation><!-- Moscow &amp; CFO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sibir &amp; Far East</masterLabel>
+            <translation><!-- Sibir &amp; Far East --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>St.Pete &amp; NW &amp; Bel</masterLabel>
+            <translation><!-- St.Pete &amp; NW &amp; Bel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ukraine</masterLabel>
+            <translation><!-- Ukraine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Volga &amp; South</masterLabel>
+            <translation><!-- Volga &amp; South --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Operator Segment(Russia) --></label>
+        <name>FS_SegmentRussia__c</name>
+        <picklistValues>
+            <masterLabel>Canteens</masterLabel>
+            <translation><!-- Canteens --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotels</masterLabel>
+            <translation><!-- Hotels --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Offices</masterLabel>
+            <translation><!-- Offices --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pubs/Bars/Entertaining center/Caffee</masterLabel>
+            <translation><!-- Pubs/Bars/Entertaining center/Caffee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QSR</masterLabel>
+            <translation><!-- QSR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurants</masterLabel>
+            <translation><!-- Restaurants --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Take Away</masterLabel>
+            <translation><!-- Take Away --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Travel</masterLabel>
+            <translation><!-- Travel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesalers</masterLabel>
+            <translation><!-- Wholesalers --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sold-to code --></label>
+        <name>FS_SoldToCode__c</name>
+    </fields>
+    <fields>
+        <help><!-- Transactional = 0 
+At least 2 out of 4 = 2.5
+At least 3 out of 4 = 5 --></help>
+        <label><!-- Strategic Initiatives --></label>
+        <name>FS_StrategicInitiatives__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.5</masterLabel>
+            <translation><!-- 2.5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Operator Sub Segment(Russia) --></label>
+        <name>FS_SubSegmentRussia__c</name>
+        <picklistValues>
+            <masterLabel>Бар / Паб</masterLabel>
+            <translation><!-- Бар / Паб --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Бортовое питание - Авиа</masterLabel>
+            <translation><!-- Бортовое питание - Авиа --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Бортовое питание - Водный транспорт</masterLabel>
+            <translation><!-- Бортовое питание - Водный транспорт --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Бортовое питание - Ж/Д</masterLabel>
+            <translation><!-- Бортовое питание - Ж/Д --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Бортовое питание – Заправки</masterLabel>
+            <translation><!-- Бортовое питание – Заправки --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Гостиница 0-3*</masterLabel>
+            <translation><!-- Гостиница 0-3* --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Гостиница 4-5*</masterLabel>
+            <translation><!-- Гостиница 4-5* --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Доставка еды на дом/офис</masterLabel>
+            <translation><!-- Доставка еды на дом/офис --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Кейтеринг</masterLabel>
+            <translation><!-- Кейтеринг --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Коммерческая столовая</masterLabel>
+            <translation><!-- Коммерческая столовая --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Кофейни</masterLabel>
+            <translation><!-- Кофейни --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Кулинария на точке продаж</masterLabel>
+            <translation><!-- Кулинария на точке продаж --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Оптовик</masterLabel>
+            <translation><!-- Оптовик --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Офисы</masterLabel>
+            <translation><!-- Офисы --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Пищевое производство</masterLabel>
+            <translation><!-- Пищевое производство --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Развлекательный центр</masterLabel>
+            <translation><!-- Развлекательный центр --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ресторан гастрономический (премиальный)</masterLabel>
+            <translation><!-- Ресторан гастрономический (премиальный) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ресторан повседневный</masterLabel>
+            <translation><!-- Ресторан повседневный --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Социальная столовая</masterLabel>
+            <translation><!-- Социальная столовая --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Спорт</masterLabel>
+            <translation><!-- Спорт --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Стрит-фуд</masterLabel>
+            <translation><!-- Стрит-фуд --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Фаст-фуд</masterLabel>
+            <translation><!-- Фаст-фуд --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Фри-фло, рестораны самообслуживания</masterLabel>
+            <translation><!-- Фри-фло, рестораны самообслуживания --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Top Client --></label>
+        <name>FS_Top_Client__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hierarchy Level --></label>
+        <name>FS_hierarchyLevel__c</name>
+        <picklistValues>
+            <masterLabel>Customer Group</masterLabel>
+            <translation><!-- Customer Group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Number</masterLabel>
+            <translation><!-- Customer Number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KCH Level 1</masterLabel>
+            <translation><!-- KCH Level 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KCH Level 4</masterLabel>
+            <translation><!-- KCH Level 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KCH Level 6</masterLabel>
+            <translation><!-- KCH Level 6 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Off Invoice --></label>
+        <name>FS_offInvoice__c</name>
+    </fields>
+    <fields>
+        <label><!-- On Invoice --></label>
+        <name>FS_onInvoice__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supply Cost --></label>
+        <name>FS_supplyCost__c</name>
+    </fields>
+    <fields>
         <label><!-- Featured --></label>
         <name>Featured__c</name>
     </fields>
     <fields>
         <label><!-- General Email --></label>
         <name>General_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global Unique ID --></label>
+        <name>Global_Unique_ID__c</name>
     </fields>
     <fields>
         <label><!-- Gortons Opt-in --></label>
@@ -854,6 +2235,22 @@
     <fields>
         <label><!-- Mobile Channel --></label>
         <name>ICB_Mobile_Channel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Banner --></label>
+        <name>KeyCustomerLevel4Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- BannerName --></label>
+        <name>KeyCustomerLevel4Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key Customer Level 6 Code --></label>
+        <name>KeyCustomerLevel6Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key Customer Level 6 Name --></label>
+        <name>KeyCustomerLevel6Name__c</name>
     </fields>
     <fields>
         <help>Sélectionner le type de consommateur</help>
@@ -928,6 +2325,11 @@
     <fields>
         <label>N° de série Machine</label>
         <name>Machine_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Master Account --></label>
+        <name>Master__c</name>
+        <relationshipLabel><!-- Accounts (Master) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Mobile Phone No Special Char --></label>
@@ -1028,13 +2430,181 @@
         <name>Ratings_and_Reviews_Username__c</name>
     </fields>
     <fields>
+        <label><!-- NFS Region --></label>
+        <name>Region__c</name>
+        <picklistValues>
+            <masterLabel>10007 Custom</masterLabel>
+            <translation><!-- 10007 Custom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10100 Non-Comm Region 2</masterLabel>
+            <translation><!-- 10100 Non-Comm Region 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10200 Retail FS</masterLabel>
+            <translation><!-- 10200 Retail FS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10500 Redistribution - US</masterLabel>
+            <translation><!-- 10500 Redistribution - US --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10600 Travel</masterLabel>
+            <translation><!-- 10600 Travel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10610 Club Stores - US</masterLabel>
+            <translation><!-- 10610 Club Stores - US --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10620 Cash &amp; Carry</masterLabel>
+            <translation><!-- 10620 Cash &amp; Carry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10800 C-Store</masterLabel>
+            <translation><!-- 10800 C-Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53000 East</masterLabel>
+            <translation><!-- 53000 East --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53010 Mid Atlantic</masterLabel>
+            <translation><!-- 53010 Mid Atlantic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53015 Tri State</masterLabel>
+            <translation><!-- 53015 Tri State --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53020 New England</masterLabel>
+            <translation><!-- 53020 New England --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54100 Obsolete/Inactive</masterLabel>
+            <translation><!-- 54100 Obsolete/Inactive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54200 Pepsi</masterLabel>
+            <translation><!-- 54200 Pepsi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55000 West Zone Leader</masterLabel>
+            <translation><!-- 55000 West Zone Leader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55005 Non-Comm Region 3</masterLabel>
+            <translation><!-- 55005 Non-Comm Region 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55015 Midwest</masterLabel>
+            <translation><!-- 55015 Midwest --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55020 North central</masterLabel>
+            <translation><!-- 55020 North central --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55030 South Central</masterLabel>
+            <translation><!-- 55030 South Central --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55035 Mountain</masterLabel>
+            <translation><!-- 55035 Mountain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55040 West</masterLabel>
+            <translation><!-- 55040 West --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55045 West Client delivery</masterLabel>
+            <translation><!-- 55045 West Client delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56005 Non-Comm Region 1</masterLabel>
+            <translation><!-- 56005 Non-Comm Region 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56010 Military</masterLabel>
+            <translation><!-- 56010 Military --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56015 Buying Groups</masterLabel>
+            <translation><!-- 56015 Buying Groups --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56020 Corporate Accounts</masterLabel>
+            <translation><!-- 56020 Corporate Accounts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56025 OCS</masterLabel>
+            <translation><!-- 56025 OCS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59000 South CDM</masterLabel>
+            <translation><!-- 59000 South CDM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59005 East CDM</masterLabel>
+            <translation><!-- 59005 East CDM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59010 Redistribution - CA</masterLabel>
+            <translation><!-- 59010 Redistribution - CA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59015 Southeast</masterLabel>
+            <translation><!-- 59015 Southeast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59020 Canada CDM</masterLabel>
+            <translation><!-- 59020 Canada CDM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59025 Club Stores - CA</masterLabel>
+            <translation><!-- 59025 Club Stores - CA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59040 South</masterLabel>
+            <translation><!-- 59040 South --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59045 Canada Zone Leader</masterLabel>
+            <translation><!-- 59045 Canada Zone Leader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>82100 Disposal</masterLabel>
+            <translation><!-- 82100 Disposal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>82200 Exited</masterLabel>
+            <translation><!-- 82200 Exited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89010 Canada West</masterLabel>
+            <translation><!-- 89010 Canada West --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89015 Canada Central</masterLabel>
+            <translation><!-- 89015 Canada Central --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89020 Canada East</masterLabel>
+            <translation><!-- 89020 Canada East --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89100 Intercompany</masterLabel>
+            <translation><!-- 89100 Intercompany --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label>Date d&apos;inscription</label>
         <name>Registration_Date__c</name>
     </fields>
     <fields>
         <label><!-- Responsible Unilever Employee --></label>
         <name>Responsible_Unilever_Employee__c</name>
-        <relationshipLabel><!-- Accounts --></relationshipLabel>
+        <relationshipLabel><!-- Accounts (Responsible Unilever Employee) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Retention Date --></label>
@@ -1069,12 +2639,388 @@
         <name>SAP_ID__c</name>
     </fields>
     <fields>
+        <label><!-- SMS Search Mobile Number --></label>
+        <name>SMS_Search_Mobile_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales_ORG --></label>
+        <name>Sales_ORG__c</name>
+    </fields>
+    <fields>
+        <label><!-- Segment --></label>
+        <name>Segment__c</name>
+        <picklistValues>
+            <masterLabel>A-Center Led</masterLabel>
+            <translation><!-- A-Center Led --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B-Local Led</masterLabel>
+            <translation><!-- B-Local Led --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C-Liquidator</masterLabel>
+            <translation><!-- C-Liquidator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canteens</masterLabel>
+            <translation><!-- Canteens --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contract Caterers</masterLabel>
+            <translation><!-- Contract Caterers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cruise Travel Leisure</masterLabel>
+            <translation><!-- Cruise Travel Leisure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D-Redistribution</masterLabel>
+            <translation><!-- D-Redistribution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E-Office Coffee System</masterLabel>
+            <translation><!-- E-Office Coffee System --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Education Healthcare BusInd</masterLabel>
+            <translation><!-- Education Healthcare BusInd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>F-Specialty</masterLabel>
+            <translation><!-- F-Specialty --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>G-C Store</masterLabel>
+            <translation><!-- G-C Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GPO</masterLabel>
+            <translation><!-- GPO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>H-Retail Food Service</masterLabel>
+            <translation><!-- H-Retail Food Service --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotels</masterLabel>
+            <translation><!-- Hotels --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>I-Meal Replacement Solution</masterLabel>
+            <translation><!-- I-Meal Replacement Solution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>M-Manufacturers</masterLabel>
+            <translation><!-- M-Manufacturers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Military</masterLabel>
+            <translation><!-- Military --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O-Operator/Restaurant</masterLabel>
+            <translation><!-- O-Operator/Restaurant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OCS</masterLabel>
+            <translation><!-- OCS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Offices</masterLabel>
+            <translation><!-- Offices --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pubs/Bars/Entertaining center/Caffee</masterLabel>
+            <translation><!-- Pubs/Bars/Entertaining center/Caffee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QSR</masterLabel>
+            <translation><!-- QSR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>R-Club</masterLabel>
+            <translation><!-- R-Club --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurant</masterLabel>
+            <translation><!-- Restaurant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurants</masterLabel>
+            <translation><!-- Restaurants --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retail Foodservice</masterLabel>
+            <translation><!-- Retail Foodservice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>S-C&amp;C</masterLabel>
+            <translation><!-- S-C&amp;C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Take Away</masterLabel>
+            <translation><!-- Take Away --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Travel</masterLabel>
+            <translation><!-- Travel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesalers</masterLabel>
+            <translation><!-- Wholesalers --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Account Type Unknown</masterLabel>
+            <translation><!-- Account Type Unknown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marked For Deletion</masterLabel>
+            <translation><!-- Marked For Deletion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Target</masterLabel>
+            <translation><!-- Target --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Temporary</masterLabel>
+            <translation><!-- Temporary --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Strategic Capabilities Video --></label>
         <name>Strategic_Capabilities_Video__c</name>
     </fields>
     <fields>
         <label><!-- Strategic Capabilities --></label>
         <name>Strategic_Capabilities__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Segment --></label>
+        <name>SubSegment__c</name>
+        <picklistValues>
+            <masterLabel>Airlines</masterLabel>
+            <translation><!-- Airlines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business &amp; Industry</masterLabel>
+            <translation><!-- Business &amp; Industry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C Stores</masterLabel>
+            <translation><!-- C Stores --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canadian Military</masterLabel>
+            <translation><!-- Canadian Military --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Casual Dining</masterLabel>
+            <translation><!-- Casual Dining --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Catering</masterLabel>
+            <translation><!-- Catering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commissaries</masterLabel>
+            <translation><!-- Commissaries --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Correction Center</masterLabel>
+            <translation><!-- Correction Center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cruise Lines</masterLabel>
+            <translation><!-- Cruise Lines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Education</masterLabel>
+            <translation><!-- Education --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Education (C&amp;U)</masterLabel>
+            <translation><!-- Education (C&amp;U) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Education (K-12)</masterLabel>
+            <translation><!-- Education (K-12) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Entertainment</masterLabel>
+            <translation><!-- Entertainment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fast Casual</masterLabel>
+            <translation><!-- Fast Casual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fine Dining</masterLabel>
+            <translation><!-- Fine Dining --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Healthcare</masterLabel>
+            <translation><!-- Healthcare --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Healthcare/Hospital</masterLabel>
+            <translation><!-- Healthcare/Hospital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotels</masterLabel>
+            <translation><!-- Hotels --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International</masterLabel>
+            <translation><!-- International --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mid-Scale Dining</masterLabel>
+            <translation><!-- Mid-Scale Dining --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Miscellaneous</masterLabel>
+            <translation><!-- Miscellaneous --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi Segment Contract Caterer</masterLabel>
+            <translation><!-- Multi Segment Contract Caterer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QSR</masterLabel>
+            <translation><!-- QSR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurants</masterLabel>
+            <translation><!-- Restaurants --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior Living</masterLabel>
+            <translation><!-- Senior Living --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sports &amp; Leisure</masterLabel>
+            <translation><!-- Sports &amp; Leisure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supermarkets</masterLabel>
+            <translation><!-- Supermarkets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US Military</masterLabel>
+            <translation><!-- US Military --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesaler</masterLabel>
+            <translation><!-- Wholesaler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Workplace Canteens</masterLabel>
+            <translation><!-- Workplace Canteens --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Бар / Паб</masterLabel>
+            <translation><!-- Бар / Паб --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Бортовое питание - Авиа</masterLabel>
+            <translation><!-- Бортовое питание - Авиа --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Бортовое питание - Водный транспорт</masterLabel>
+            <translation><!-- Бортовое питание - Водный транспорт --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Бортовое питание - Ж/Д</masterLabel>
+            <translation><!-- Бортовое питание - Ж/Д --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Бортовое питание – Заправки</masterLabel>
+            <translation><!-- Бортовое питание – Заправки --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Гостиница 0-3*</masterLabel>
+            <translation><!-- Гостиница 0-3* --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Гостиница 4-5*</masterLabel>
+            <translation><!-- Гостиница 4-5* --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Доставка еды на дом/офис</masterLabel>
+            <translation><!-- Доставка еды на дом/офис --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Кейтеринг</masterLabel>
+            <translation><!-- Кейтеринг --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Коммерческая столовая</masterLabel>
+            <translation><!-- Коммерческая столовая --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Кофейни</masterLabel>
+            <translation><!-- Кофейни --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Кулинария на точке продаж</masterLabel>
+            <translation><!-- Кулинария на точке продаж --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Оптовик</masterLabel>
+            <translation><!-- Оптовик --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Офисы</masterLabel>
+            <translation><!-- Офисы --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Пищевое производство</masterLabel>
+            <translation><!-- Пищевое производство --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Развлекательный центр</masterLabel>
+            <translation><!-- Развлекательный центр --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ресторан гастрономический (премиальный)</masterLabel>
+            <translation><!-- Ресторан гастрономический (премиальный) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ресторан повседневный</masterLabel>
+            <translation><!-- Ресторан повседневный --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Социальная столовая</masterLabel>
+            <translation><!-- Социальная столовая --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Спорт</masterLabel>
+            <translation><!-- Спорт --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Стрит-фуд</masterLabel>
+            <translation><!-- Стрит-фуд --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Фаст-фуд</masterLabel>
+            <translation><!-- Фаст-фуд --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Фри-фло, рестораны самообслуживания</masterLabel>
+            <translation><!-- Фри-фло, рестораны самообслуживания --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Subcategories --></label>
@@ -1131,6 +3077,178 @@
     <fields>
         <label>Moment thé de la semaine</label>
         <name>Tea_moment_of_the_week__c</name>
+    </fields>
+    <fields>
+        <label><!-- NFS Territory --></label>
+        <name>Territory__c</name>
+        <picklistValues>
+            <masterLabel>10007</masterLabel>
+            <translation><!-- 10007 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10100</masterLabel>
+            <translation><!-- 10100 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10200</masterLabel>
+            <translation><!-- 10200 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10500</masterLabel>
+            <translation><!-- 10500 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10600</masterLabel>
+            <translation><!-- 10600 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10610</masterLabel>
+            <translation><!-- 10610 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10620</masterLabel>
+            <translation><!-- 10620 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10800</masterLabel>
+            <translation><!-- 10800 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53000</masterLabel>
+            <translation><!-- 53000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53010</masterLabel>
+            <translation><!-- 53010 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53015</masterLabel>
+            <translation><!-- 53015 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53020</masterLabel>
+            <translation><!-- 53020 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54100</masterLabel>
+            <translation><!-- 54100 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54200</masterLabel>
+            <translation><!-- 54200 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55000</masterLabel>
+            <translation><!-- 55000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55005</masterLabel>
+            <translation><!-- 55005 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55015</masterLabel>
+            <translation><!-- 55015 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55020</masterLabel>
+            <translation><!-- 55020 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55030</masterLabel>
+            <translation><!-- 55030 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55035</masterLabel>
+            <translation><!-- 55035 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55040</masterLabel>
+            <translation><!-- 55040 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55045</masterLabel>
+            <translation><!-- 55045 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56005</masterLabel>
+            <translation><!-- 56005 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56010</masterLabel>
+            <translation><!-- 56010 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56015</masterLabel>
+            <translation><!-- 56015 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56020</masterLabel>
+            <translation><!-- 56020 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56025</masterLabel>
+            <translation><!-- 56025 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59000</masterLabel>
+            <translation><!-- 59000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59005</masterLabel>
+            <translation><!-- 59005 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59010</masterLabel>
+            <translation><!-- 59010 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59015</masterLabel>
+            <translation><!-- 59015 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59020</masterLabel>
+            <translation><!-- 59020 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59025</masterLabel>
+            <translation><!-- 59025 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59040</masterLabel>
+            <translation><!-- 59040 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59045</masterLabel>
+            <translation><!-- 59045 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>82100</masterLabel>
+            <translation><!-- 82100 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>82200</masterLabel>
+            <translation><!-- 82200 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89004</masterLabel>
+            <translation><!-- 89004 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89010</masterLabel>
+            <translation><!-- 89010 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89015</masterLabel>
+            <translation><!-- 89015 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89020</masterLabel>
+            <translation><!-- 89020 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89100</masterLabel>
+            <translation><!-- 89100 --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Total Rating Count --></label>
@@ -1392,6 +3510,66 @@
         <label><!-- Year Established --></label>
         <name>Year_Established__c</name>
     </fields>
+    <fields>
+        <label><!-- NFS Zone --></label>
+        <name>Zone__c</name>
+        <picklistValues>
+            <masterLabel>55 West</masterLabel>
+            <translation><!-- 55 West --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56 OCS</masterLabel>
+            <translation><!-- 56 OCS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>57 Canada</masterLabel>
+            <translation><!-- 57 Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>58 South</masterLabel>
+            <translation><!-- 58 South --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59 East</masterLabel>
+            <translation><!-- 59 East --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>80 Intercompany - FS</masterLabel>
+            <translation><!-- 80 Intercompany - FS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>81 Redistribution</masterLabel>
+            <translation><!-- 81 Redistribution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>82 Disposal/Exited</masterLabel>
+            <translation><!-- 82 Disposal/Exited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>83 Non-Comm</masterLabel>
+            <translation><!-- 83 Non-Comm --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>84 Corp Accts/BG</masterLabel>
+            <translation><!-- 84 Corp Accts/BG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>85 Club, Cash &amp; Carry</masterLabel>
+            <translation><!-- 85 Club, Cash &amp; Carry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>86 Specialty Channels</masterLabel>
+            <translation><!-- 86 Specialty Channels --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>87 Custom</masterLabel>
+            <translation><!-- 87 Custom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>88 Retail Foodservice</masterLabel>
+            <translation><!-- 88 Retail Foodservice --></translation>
+        </picklistValues>
+    </fields>
     <layouts>
         <layout>Person Account Layout</layout>
         <layoutType>PersonAccount</layoutType>
@@ -1445,6 +3623,18 @@
         <name>Business_Account</name>
     </recordTypes>
     <recordTypes>
+        <label><!-- Distributor --></label>
+        <name>Distributor</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Operator Russia --></label>
+        <name>FS_OperatorRussia</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Operator --></label>
+        <name>Operators</name>
+    </recordTypes>
+    <recordTypes>
         <label><!-- Pitch Agency --></label>
         <name>Pitch_Agency</name>
     </recordTypes>
@@ -1461,6 +3651,26 @@
         <name>UID_Secondary_Account</name>
     </recordTypes>
     <validationRules>
+        <errorMessage><!-- Don&apos;t Update the Account Name / Account Currency . --></errorMessage>
+        <name>FS_AccountNameChangeLock</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You do not have access to edit this record. Please contact your system administrator. --></errorMessage>
+        <name>FS_Account_Lock</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You do not have access to change the account owner. --></errorMessage>
+        <name>FS_Account_Owner_Change_Lock</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Вам необходимо заполнить адрес для создания новой учетной записи оператора. --></errorMessage>
+        <name>FS_Billing_Street_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You have no access to change the city. --></errorMessage>
+        <name>FS_UserNotabletochangetheCity</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Invalid CPF number (Should contain 11 digit numeric value) --></errorMessage>
         <name>LocalIdentifier_Length_Validation</name>
     </validationRules>
@@ -1468,9 +3678,26 @@
         <errorMessage><!-- Either Email or Phone must be filled in. --></errorMessage>
         <name>Pitch_Email_or_Phone_Mandatory</name>
     </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Check whether the Following details are filled or not:
+Shipping Street,
+Shipping City,
+Shipping State/Province,
+Shipping Zip/Postal Code,
+Shipping Country --></errorMessage>
+        <name>Shipping_Address_Validation_for_US</name>
+    </validationRules>
     <webLinks>
         <label><!-- AltavistaNews --></label>
         <name>AltavistaNews</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Billing --></label>
+        <name>CHD__Billing</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Search_on_FindAPI --></label>
+        <name>E2F__Search_on_FindAPI</name>
     </webLinks>
     <webLinks>
         <label><!-- GoogleMaps --></label>
@@ -1487,6 +3714,10 @@
     <webLinks>
         <label><!-- HooversProfile --></label>
         <name>HooversProfile</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Merge_Accts --></label>
+        <name>Merge_Accts</name>
     </webLinks>
     <webLinks>
         <label><!-- YahooMaps --></label>

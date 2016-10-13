@@ -19,6 +19,35 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Share_US_Distributors_with_ALL_of_NAFS</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Share US Distributors with ALL of NAFS</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Distributor</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Sales_ORG__c</field>
+            <operation>equals</operation>
+            <value>0002</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Sales_ORG__c</field>
+            <operation>equals</operation>
+            <value>0003</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Share_with_CMCO_Super_User</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
