@@ -127,7 +127,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         SourcingUnits = new List<SelectOption>(); 
         SourcingUnits.add(new SelectOption('Select Sourcing Unit','Select Sourcing Unit'));
         list<IPM_SourcingPlan__c> SourcePlansList = new list<IPM_SourcingPlan__c>();
-        SourcePlansList =[SELECT IPM_ProductPlan__r.IPM_Project_Product__c,IPM_CapabilityConfirmed__c,IPM_SourcingUnit__c,IPM_ProductPlan__r.IPM_Country__c,IPM_ProductPlan__r.IPM_Country__r.Country_Name__c FROM IPM_SourcingPlan__c WHERE IPM_ProductPlan__r.IPM_Project_Product__r.IPM_Project__c =:projectId order by IPM_SourcingUnit__c ASC LIMIT 10000];
+        SourcePlansList =[SELECT IPM_ProductPlan__r.IPM_Project_Product__c,IPM_CapabilityConfirmed__c,IPM_SourcingUnit__c,IPM_ProductPlan__r.IPM_Country__c,IPM_ProductPlan__r.IPM_Country__r.Country_Name__c FROM IPM_SourcingPlan__c WHERE IPM_ProductPlan__r.IPM_Project_Product__r.IPM_Project__c =:projectId and IPM_ProductPlan__r.IPM_Country__c !=null order by IPM_SourcingUnit__c ASC LIMIT 10000];
        
          for(IPM_SourcingPlan__c oSourcingPlan : SourcePlansList){
         	if(!setOptions.contains(oSourcingPlan.IPM_SourcingUnit__c))
