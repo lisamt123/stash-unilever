@@ -17,7 +17,7 @@ static testMethod void  WU_LeadershipPermission(){
       isActive=true,LanguageLocaleKey='en_US',
       UserName='testuserarc@test123321.com');
       insert u;        
-      
+      system.assert(u!=null,true);
      System.runAs(u)
      { 
         ApexPages.StandardController sc = new ApexPages.StandardController(u);
@@ -36,7 +36,7 @@ static testMethod void  WU_LeadershipPermission(){
       isActive=true,LanguageLocaleKey='en_US',
       UserName='testuserarc@test123321.com');
       insert u;        
-      
+      system.assert(u!=null,true);
      System.runAs(u)
      { 
         ApexPages.StandardController sc = new ApexPages.StandardController(u);
