@@ -1,3 +1,10 @@
+client
+client/IPMApp
+client/IPMApp/IPM_Resource
+client/IPMApp/IPM_Resource/css
+client/IPMApp/IPM_Resource/css/IPM_MilestonesAndTasks.css
+client/IPMApp/IPM_Resource/css/IPM_SecEditor.css
+project-manifest-IPMDelta.txt
 src
 src/classes
 src/classes/IPM_BD_BB_Report_Batch.cls
@@ -39,6 +46,7 @@ src/flows
 src/flows/IPM_Notify_Local_Rollout_Project_Created-18.txt
 src/labels
 src/labels/CustomLabels.labels
+src/labels/IPM.labels
 src/objects
 src/objects/IPM_Project_Type__c.object
 src/pages
