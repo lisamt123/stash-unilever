@@ -127,7 +127,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         SourcingUnits = new List<SelectOption>(); 
         SourcingUnits.add(new SelectOption('Select Sourcing Unit','Select Sourcing Unit'));
         list<IPM_SourcingPlan__c> SourcePlansList = new list<IPM_SourcingPlan__c>();
-        SourcePlansList =[SELECT IPM_ProductPlan__r.IPM_Project_Product__c,IPM_CapabilityConfirmed__c,IPM_SourcingUnit__c,IPM_ProductPlan__r.IPM_Country__c,IPM_ProductPlan__r.IPM_Country__r.Country_Name__c FROM IPM_SourcingPlan__c WHERE IPM_ProductPlan__r.IPM_Project_Product__r.IPM_Project__c =:projectId order by IPM_SourcingUnit__c ASC LIMIT 10000];
+        SourcePlansList =[SELECT IPM_ProductPlan__r.IPM_Project_Product__c,IPM_CapabilityConfirmed__c,IPM_SourcingUnit__c,IPM_ProductPlan__r.IPM_Country__c,IPM_ProductPlan__r.IPM_Country__r.Country_Name__c FROM IPM_SourcingPlan__c WHERE IPM_ProductPlan__r.IPM_Project_Product__r.IPM_Project__c =:projectId and IPM_ProductPlan__r.IPM_Country__c !=null order by IPM_SourcingUnit__c ASC LIMIT 10000];
        
          for(IPM_SourcingPlan__c oSourcingPlan : SourcePlansList){
         	if(!setOptions.contains(oSourcingPlan.IPM_SourcingUnit__c))
@@ -164,22 +164,22 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     @Description:create new project product when user click on Add Row
     ****************************************************************************************************************************/
     public void createProjectProduct(){
-        if(!isDuplicateRow){
-            IPM_Project_Product__c projectProduct = new IPM_Project_Product__c ();
-            projectProduct.IPM_Project__c = projectId;
-            string countryStr=IPM_ConstantUtils.BLANK;
-            IPM_SourcingPlan__c sourcePlan = new IPM_SourcingPlan__c();
-            list<string> sourceIntoList = new list<string>();
-            for(sourcePlanWrapper sourceC: sourcePlanMap.values()){
-                sourceC.readModeRow = false; 
-            }
-            sourceUnitMap.put(wrapperPosition, new list<sourceUnitWrapper>());
-            sourceUnitMap.get(wrapperPosition).add(new sourceUnitWrapper(sourcePlan,countryStr));
-            sourcePlanMap.put(wrapperPosition,new sourcePlanWrapper(wrapperPosition,true,false,projectProduct,countryStr,sourceIntoList));
-            wrapperPosition++; 
-            totalRowsInTable = sourcePlanMap.size(); 
-       		wrapperKeys = sourcePlanMap.keyset(); 
-        } 
+        
+		IPM_Project_Product__c projectProduct = new IPM_Project_Product__c ();
+		projectProduct.IPM_Project__c = projectId;
+		string countryStr=IPM_ConstantUtils.BLANK;
+		IPM_SourcingPlan__c sourcePlan = new IPM_SourcingPlan__c();
+		list<string> sourceIntoList = new list<string>();
+		for(sourcePlanWrapper sourceC: sourcePlanMap.values()){
+			sourceC.readModeRow = false; 
+		}
+		sourceUnitMap.put(wrapperPosition, new list<sourceUnitWrapper>());
+		sourceUnitMap.get(wrapperPosition).add(new sourceUnitWrapper(sourcePlan,countryStr));
+		sourcePlanMap.put(wrapperPosition,new sourcePlanWrapper(wrapperPosition,true,false,projectProduct,countryStr,sourceIntoList));
+		wrapperPosition++; 
+		totalRowsInTable = sourcePlanMap.size(); 
+		wrapperKeys = sourcePlanMap.keyset(); 
+        
         
         
     }
@@ -445,6 +445,11 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
             }
         }
         sourcePlanMap.remove(row_Index);
+		for(sourcePlanWrapper sourcPlan: sourcePlanMap.values())
+        {
+        	sourcPlan.isDuplicateRow = false;
+        }
+        isDuplicateRow = false;
         sourceUnitMap.remove(row_Index);
         totalRowsInTable = sourcePlanMap.size(); 
         wrapperKeys = sourcePlanMap.keyset();   
@@ -457,28 +462,28 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     @Description:enable edit mode of selected row
     ******************************************************************************************************************************/
     public void editModeRow(){
-        if(!isDuplicateRow){
-        	integer holdIndex = null;
-        	holdIndex = row_Index;
-        	row_Index = null;
-        	for(sourcePlanWrapper sourceClass: sourcePlanMap.values()){
-	            if(sourceClass.readModeRow){
-	               row_Index = sourceClass.productProsition ;
-	               break;
-	            }
-        	}
-        	if(row_Index !=null)
-        	{
-        		saveRow();
-        		if(isSaveSuccess){
-	            	editModeRowAfterSave(holdIndex);
-           		}
-        	}else{
-        		editModeRowAfterSave(holdIndex);
-        	}
-        	
-           row_Index = holdIndex; 
-        }   
+        
+		integer holdIndex = null;
+		holdIndex = row_Index;
+		row_Index = null;
+		for(sourcePlanWrapper sourceClass: sourcePlanMap.values()){
+			if(sourceClass.readModeRow){
+			   row_Index = sourceClass.productProsition ;
+			   break;
+			}
+		}
+		if(row_Index !=null)
+		{
+			saveRow();
+			if(isSaveSuccess){
+				editModeRowAfterSave(holdIndex);
+			}
+		}else{
+			editModeRowAfterSave(holdIndex);
+		}
+		
+	   row_Index = holdIndex; 
+	  
         
     }
     /*****************************************************************************************************************************
@@ -732,30 +737,30 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     @Description:clone product record row and enable edit mode
     ****************************************************************************************************************************/
     public void cloneProjectProduct(){
-        if(!isDuplicateRow){
-        	integer holdIndex = null;
-        	holdIndex = row_Index;
-        	row_Index = null;
-        	for(sourcePlanWrapper sourceClass: sourcePlanMap.values()){
-	            if(sourceClass.readModeRow){
-	               row_Index = sourceClass.productProsition ;
-	               break;
-	            }
-        	}
-        	if(row_Index !=null)
-        	{
-        		saveRow();
-        		if(isSaveSuccess)
-	        	{
-	        		cloneProjectProductAfterSave(holdIndex);
-	        	}
-        	}else{
-        	 	cloneProjectProductAfterSave(holdIndex);
-        	}
-        	row_Index = holdIndex;
-        	totalRowsInTable = sourcePlanMap.size(); 
-			wrapperKeys = sourcePlanMap.keyset();   
-        }
+        
+		integer holdIndex = null;
+		holdIndex = row_Index;
+		row_Index = null;
+		for(sourcePlanWrapper sourceClass: sourcePlanMap.values()){
+			if(sourceClass.readModeRow){
+			   row_Index = sourceClass.productProsition ;
+			   break;
+			}
+		}
+		if(row_Index !=null)
+		{
+			saveRow();
+			if(isSaveSuccess)
+			{
+				cloneProjectProductAfterSave(holdIndex);
+			}
+		}else{
+			cloneProjectProductAfterSave(holdIndex);
+		}
+		row_Index = holdIndex;
+		totalRowsInTable = sourcePlanMap.size(); 
+		wrapperKeys = sourcePlanMap.keyset();   
+        
         
     }
      /***************************************************************************************************************************

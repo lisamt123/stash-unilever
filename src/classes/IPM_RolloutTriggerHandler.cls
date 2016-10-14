@@ -213,12 +213,14 @@ public with sharing class IPM_RolloutTriggerHandler
         String rolloutWhereClause = ' WHERE Id in :lstProjectRollouts LIMIT 50000';
         rolloutQuery = rolloutQuery + rolloutWhereClause;
         
-        lstProjectRollouts = database.query(rolloutQuery);
+        List<IPM_Project_Rollout__c> projectRollouts = new List<IPM_Project_Rollout__c>();
+        
+        projectRollouts = database.query(rolloutQuery);
         
         Map<String,IPM_Financial__c> existingFinancialMap = new Map<String,IPM_Financial__c>();
-        existingFinancialMap = getExistingFinancialMap(lstProjectRollouts);
+        existingFinancialMap = getExistingFinancialMap(projectRollouts);
         
-        for (IPM_Project_Rollout__c projectRollout : lstProjectRollouts)
+        for (IPM_Project_Rollout__c projectRollout : projectRollouts)
         {       
             ///Regional Rollout. Validate consolidated financials is present or not. If no create one.
             if(projectRollout.RecordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
@@ -272,8 +274,7 @@ public with sharing class IPM_RolloutTriggerHandler
         
         Set<String> setRegionalRolloutNames = new Set<String>();
         Set<String> setRegionalProjectNames = new Set<String>();
-        
-        
+        Set<Id> globalParentProjIds = new Set<Id>();
         for(IPM_Project_Rollout__c projectRollout : mapNewProjectRollouts.values())
         {   
             if(projectRollout.RecordTypeId == REGIONAL_ROLLOUT_RECORDTYPE && projectRollout.IPM_Project__c !=null)
@@ -282,6 +283,11 @@ public with sharing class IPM_RolloutTriggerHandler
             }
             else if(projectRollout.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
             {
+                if(!projectRollout.isActive__c && mapOldProjectRollouts.get(projectRollout.Id).isActive__c!=projectRollout.isActive__c)
+                {
+                	globalParentProjIds.add(projectRollout.IPM_Project__c);
+                }
+                
                 if(projectRollout.Regional_Project__c !=null)
                 {
                     setRegionalProjectNames.add(projectRollout.Regional_Rollout_External_Id__c);
@@ -382,6 +388,10 @@ public with sharing class IPM_RolloutTriggerHandler
         {
             IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
             syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
+        }
+        if(!globalParentProjIds.isEmpty())
+        {
+        	processRegRLOutsOnLocalDeactivation(globalParentProjIds);
         }
           //  EPIC172 implementation end 
        
@@ -1154,6 +1164,41 @@ public with sharing class IPM_RolloutTriggerHandler
     }
     
     
+    /*****************************************************************************************************************************************************
+    @description :This   deactivates regional rollout  if all the child local rollouts are deactivated
+    @param : globalProjIdSet - parent global project Ids of local rollouts being deactivated
+    *****************************************************************************************************************************************************/
+    public static void processRegRLOutsOnLocalDeactivation(Set<Id> globalProjIdSet)
+    {
+    	List<IPM_Project_Rollout__c> deactivateRegRLOutList = new List<IPM_Project_Rollout__c>();
+    	List<IPM_Project_Rollout__c> regRLoutList = new List<IPM_Project_Rollout__c>();
+    	regRLoutList = [Select id , isActive__c,(Select Id, isActive__c from Local_Rollouts__r) from IPM_Project_Rollout__c  where IPM_Project__c IN :globalProjIdSet AND recordtype.Name=:IPM_ConstantUtils.REGIONAL_ROLLOUT_RT AND isActive__c=true];
+    	
+    	for(IPM_Project_Rollout__c regRollout :regRLoutList )
+    	{
+			Boolean isActiveFound = false;
+			
+			for(IPM_Project_Rollout__c localRollout :regRollout.Local_Rollouts__r)
+			{
+				if(localRollout.isActive__c)
+				{
+					isActiveFound= true;
+					break;
+				}
+			}
+			
+			if(!isActiveFound)
+			{
+				regRollout.isActive__c=false;
+				deactivateRegRLOutList.add(regRollout);
+			}
+    	}
+    	
+    	if(!deactivateRegRLOutList.isEmpty())
+    	{
+    	 	update deactivateRegRLOutList; 
+    	}
     
-       
+    }
+    
 }

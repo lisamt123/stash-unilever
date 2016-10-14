@@ -873,7 +873,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                         showValidation=false;
                         localBCProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
                     } 
-					if(fin.Gate_Keeping_Model__c != 'GKM3'){
 						//Financial alignment
 						//bypassed the check for GKM3 - Interim
 						if(fin.Misaligned__c){
@@ -891,7 +890,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 							tldAlignment=true;  
 							totalTLDProject=totalTLDProject+1;
 						}
-					}
+				
                 }
 			showValidationMessage(localProjects, localProjectsTLD, localProjectBC);
                 //to display bd/bb alignment section on page

@@ -1327,30 +1327,6 @@ public with sharing class IPM_ProjectHelper
                                     }                                               
                                 }
                                 
-                                
-                                else{
-                                
-                                	
-                                	// to identify finanical as a key or non-key.
-                                	
-                                	IPM_Financial__c financialObj = finUniqueKeyToFinancialMap.get(financeUniqueKey);
-
-                                    if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY) {
-                                        
-
-                                        Map<Id,IPM_Project_Rollout__c> mapProjectRollout = projectToRolloutMap.get(project.id);
-                                        for(IPM_Project_Rollout__c oRollout : mapProjectRollout.values()){
-                                            if(oRollout.Name == financeUniqueKey && oRollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE){
-
-                                                financialObj.IsKeyFinancialAtCapability__c = oRollout.KeyMCO__c;
-                                                
-                                                financialsToUpsert.put(financialObj.Financial_External_Id__c,financialObj);
-                                                break;
-                                                
-                                            }
-                                        }
-                                    }                                               
-                                }
                             }
                         }
                     }

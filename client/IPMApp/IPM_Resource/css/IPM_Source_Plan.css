@@ -481,3 +481,11 @@ input.icoButton.clone{position:relative; background:url(../images/ico-clone.svg)
 @media (min-width: 1024px) and (max-width: 1300px) {
 
 }
+.greyCapabilityConfirm {
+    width: 90%;
+    background: #999;
+    padding: 5px;
+    height: 29px;
+    margin: 0;
+	color:#fff;
+}

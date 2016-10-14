@@ -3,7 +3,7 @@
 * @date:  11/10/2016
 * @description: Used for PDF File Name Logic
 ***************************************************/
-public class IPM_GateDocumentPDFDownloadController {
+public with sharing class IPM_GateDocumentPDFDownloadController {
     
     public string fileName{get;set;}
             

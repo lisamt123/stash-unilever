@@ -151,20 +151,27 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY){
             buttonLabel = Label.IPM_OVER_FIN_BC_F_OR_C_GKM3;
         }
-        if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_PLE ){
-            if(currentFinancial.Added_At_Stage__c == IPM_ConstantUtils.PHASE_MARKET_READY||currentFinancial.Added_At_Stage__c == IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT||currentFinancial.Added_At_Stage__c == IPM_ConstantUtils.PHASE_PLE ){
-                buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3;
-            }
-            else{
-                if(currentFinancial.IsKeyFinancialAtCapability__c){
-                    buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3;
-                }
-                else{
-                    buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_NONKEY_GKM3;
-                }
-            }
-        }
-        return buttonLabel;        
+		else{
+			if(((currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_CAPABILITY ||
+		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_FEASIBILITY ||
+		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS ) &&
+		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c ) ||
+				(currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_MARKET_READY ||
+		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT ||
+		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.PHASE_PLE 
+		        ))
+				{
+					buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3;
+		        }
+		    else if((currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_CAPABILITY ||
+		             currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_FEASIBILITY ||
+		             currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS ) &&
+		             !currentFinancial.Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c)
+		        {
+					buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_NONKEY_GKM3;
+		        }
+		    }
+		return buttonLabel;       
     }
     
     public boolean isProjectStop {
@@ -1107,7 +1114,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                     (SELECT 
                                                         Id,Name,recordTypeID,Financial_External_ID__c,                                    
                                                         Status__c,IPM_Key_Financial__c,Status_Global__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
-                                                        FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS  AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )
+                                                        FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS AND Charter_Approved__c = true  
                                                         ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                                     FROM IPM_Project_Rollout__c
                                                     WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )  
@@ -3124,7 +3131,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         if(volumeUnit!=null && volumeUnit.equalsIgnoreCase(IPM_ConstantUtils.TotalTons))    
         {
             finWrapper.y0VolumeTons = finWrapper.y0Volume;
-            finWrapper.y0Volume = 0;
             
             for(Integer i=0;i<finWrapper.lstGrossPLVolume.size();i++)
             {
@@ -3132,21 +3138,18 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 IPM_FinancialValueWrapper finVolTonsWrapper = finWrapper.lstGrossPLVolumeTons.get(i);
                 
                 finVolTonsWrapper.value = finVolWrapper.value;
-                finVolWrapper.value = 0;
             }
             for(Integer i=0;i<finWrapper.lstIncrementalPLVolume.size();i++)
             {
                 IPM_FinancialValueWrapper finVolWrapper = finWrapper.lstIncrementalPLVolume.get(i);
                 IPM_FinancialValueWrapper finVolTonsWrapper = finWrapper.lstIncrementalPLVolumeTons.get(i);
                 
-                finVolTonsWrapper.value = finVolWrapper.value;
-                finVolWrapper.value = 0;        
+                finVolTonsWrapper.value = finVolWrapper.value;     
             }
         }
         else
         {
             finWrapper.y0Volume = finWrapper.y0VolumeTons;
-            finWrapper.y0VolumeTons = 0;
             
             for(Integer i=0;i<finWrapper.lstGrossPLVolumeTons.size();i++) 
             {
@@ -3154,7 +3157,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 IPM_FinancialValueWrapper finVolWrapper = finWrapper.lstGrossPLVolume.get(i);
                 
                 finVolWrapper.value = finVolTonsWrapper.value;
-                finVolTonsWrapper.value = 0;    
+    
             }
             for(Integer i=0;i<finWrapper.lstIncrementalPLVolumeTons.size();i++)
             {
@@ -3162,7 +3165,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 IPM_FinancialValueWrapper finVolWrapper = finWrapper.lstIncrementalPLVolume.get(i);
                 
                 finVolWrapper.value = finVolTonsWrapper.value;
-                finVolTonsWrapper.value = 0;
+
             }
         }
     }
