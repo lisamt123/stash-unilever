@@ -24,6 +24,8 @@ src/classes/IPM_MilestoneHelper.cls
 src/classes/IPM_MilestoneHelper.cls-meta.xml
 src/classes/IPM_OTIF_Report_Batch.cls
 src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
+src/classes/IPM_OTIF_Report_Batch_Test.cls
+src/classes/IPM_OTIF_Report_Batch_Test.cls-meta.xml
 src/classes/IPM_ProjectDocumentHelper.cls
 src/classes/IPM_ProjectDocumentHelper.cls-meta.xml
 src/classes/IPM_ProjectHandler.cls
