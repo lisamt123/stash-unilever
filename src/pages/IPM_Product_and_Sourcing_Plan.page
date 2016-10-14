@@ -133,7 +133,7 @@
                             <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered productsource darkoverlay">
                                 <thead> 
                                     <tr>
-                                        <th scope="col"  width="40%"><span class="mainsrcUnitTip" title="If a Sourcing Unit you require does not appear in this list please contact the IPM Central Team">{!$Label.IPM_Sourcing_Units}</span></th>
+                                        <th scope="col"  width="40%"><span class="mainsrcUnitTip" title="{!$Label.IPM_Sourcing_Unit_Help_Text}">{!$Label.IPM_Sourcing_Units}</span></th>
                                         <th scope="col" width="20%"><div class="capcon approvalTip" title="Enter edit mode for any row and click the value to change between 'Not yet' and 'Yes'">{!$Label.IPM_Capability_Confirmed}</div></th>
                                         <th scope="col" width="40%"><span class="srcedintoTip" title="The countries available in this list are populated by the Product / Country Mapping column. If a required country is not present please work with the Project Marketer to have the countries mapped to the Product.">{!$Label.IPM_Sourced_Into}</span></th>
                                     </tr>
@@ -277,7 +277,7 @@
                                                                     </apex:repeat>
                                                                     <tr>
                                                                         <td class="alignAddicn">
-                                                                            <span class="fa fa-plus addicn hovertip" title="Add another Sourcing Unit for this product" onclick="addNewSourceUnit('{!wrKey}');"></span>
+                                                                            <span class="fa fa-plus addicn hovertip" title="Add another Sourcing Unit for this product" onclick="jAddNewSourceUnit('{!wrKey}',this);"></span>
                                                                         </td>
                                                                         <td></td>
                                                                         <td></td>

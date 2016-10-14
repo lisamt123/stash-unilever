@@ -39,6 +39,8 @@ src/flows
 src/flows/IPM_Notify_Local_Rollout_Project_Created-18.txt
 src/labels
 src/labels/CustomLabels.labels
+src/objects
+src/objects/IPM_Project_Type__c.object
 src/pages
 src/pages/IPM_Product_and_Sourcing_Plan.page
 src/pages/IPM_Product_and_Sourcing_Plan.page-meta.xml
