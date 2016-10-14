@@ -78,6 +78,7 @@ function firstsrcplan(){
         }
     });
     jq(document).on("click", ".srcUnitBox", function(e) {
+        jq('.srcList').hide();
         jq(this).next('.srcList').show();
     });
     jq('.srcList div').on("click", "div", function(e) {
@@ -111,11 +112,14 @@ function firstsrcplan(){
             "z-index": "999"
         })
     });
+    srcedcntrylistcheck();
 }
 
 function scndsrcplan(){
     jq(document).on('show.bs.dropdown', '.sourcedcntryContainer', function(){
+        jq(".srcedcntrymainlist").hide();
         jq(this).find('.srcedcntrymainlist').show(); 
+        srcedcntrylistcheck();
     });
     jq(document).click(function(e) {
         if( e.target.id !== 'srcedcntryullist') {
@@ -147,40 +151,25 @@ function scndsrcplan(){
                 jq(".srcedcntrymainlist").hide();
                 jq(this).closest('.srcedcntrylist').prev('.srcedhiddencntry').val(srcedcntryvalue+';'); 
             }); 
-        getNotAssignedC(srcedcntryvalue);
+            getNotAssignedC(srcedcntryvalue);
         });
     });
-    jq(".srcedfilterActionscc .ipmDropbuttonscc").each(function(e){
-        jq(document).on('click', '.srcedfilterActionscc .ipmDropresetcc', function(e){
-            e.stopPropagation();
-            jq(".srcedcntrymainlist input:checkbox").each(function() {
-                 jq(this).prop('checked', false);
-               jq(this).next('label').removeClass('selected');
-                jq('.srcedcntryValues').text(IPMAppPS.selectLabel);
+    jq(".srcedfilterActionscc .ipmDropresetcc").each(function(e){
+        jq(this).click(function(e) {
+            jq(this).parents('.getHdnVal').prev().find('input[type=checkbox]').each(function() {
+                jq(this).prop('checked', false);
+                jq(this).next('label').removeClass('selected');
             });
+            e.stopPropagation();
         });
     });
-    jq(".srcedhiddencntry").each(function(e){
-        if( jq(this) !== null && jQuery.type(jq(this)) !== 'undefined') 
-        {
-            var srcedcntrylist = jq(this).val();
-            if(jQuery.type(srcedcntrylist) !== "undefined" && srcedcntrylist.length > 0 )
-            {
-                jq(this).closest('.srcedcntrymainlist').prev().find('.srcedcntryValues').text(srcedcntrylist);
-                var brandArray = srcedcntrylist.split(';');  
-                jq(this).next().find("input[type=checkbox]").each(function(e){
-                    var checkboxObj = jq(this);
-                    jq.each( brandArray, function( i, savedBrandPosition ){
-                        if(checkboxObj.val() === savedBrandPosition)
-                            {
-                             checkboxObj.prop('checked',true);
-                                return false;
-                            }
-                    }); 
-                });
-            }
-        }
-    }); 
+    jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e){
+        jq(".procntrylist input:checkbox").each(function() {
+            jq(this).prop('checked', false);
+            jq(this).next('label').removeClass('selected');
+        });
+        e.stopPropagation();
+    });
     jq(".hovertip").tooltip({ position: {  my: 'center bottom-15', at: 'center top'},tooltipClass:'apprUnitTip'});
     jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10'},tooltipClass:'srcunitTip'});
     jq(".approvalTip").tooltip({ position: {  my: 'center bottom', at: 'center top'},tooltipClass:'apprUnitTip'});
@@ -194,7 +183,8 @@ function thirdsrcplan(){
             e.stopPropagation();
     });
     jq(document).on('show.bs.dropdown', '.productcntrylistcontainer', function(){
-        jq(this).find('.cntrymainlist').show(); 
+        jq(this).find('.cntrymainlist').show();
+        checkboxSelection();
     });
     jq(document).click(function(e) {
         if( e.target.id !== 'cntryullist') {
@@ -250,14 +240,6 @@ function thirdsrcplan(){
     });
 }
 function checkboxSelection(){
-    jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e){
-        e.stopPropagation();
-        jq(".cntrymainlist input:checkbox").each(function() {
-             jq(this).prop('checked', false);
-           jq(this).next('label').removeClass('selected');
-            jq('.cntryValues').text(IPMAppPS.selectLabel);
-        });
-    });   
     if( jq('.hiddencntry') !== null && jQuery.type(jq('.hiddencntry')) !== 'undefined') 
     {
         var maincntrylist = jq('.hiddencntry').val();   
@@ -284,4 +266,33 @@ function checkboxSelection(){
         jq('.mainsrcUnitTip').tooltip( "close");
         jq('.srcedintoTip').tooltip( "close");
     });
+}
+function srcedcntrylistcheck(){
+    jq(".srcedhiddencntry").each(function(e){
+        if( jq(this) !== null && jQuery.type(jq(this)) !== 'undefined') 
+        {
+            var srcedcntrylist = jq(this).val();
+            if(jQuery.type(srcedcntrylist) !== "undefined" && srcedcntrylist.length > 0 )
+            {
+                jq(this).closest('.srcedcntrymainlist').prev().find('.srcedcntryValues').text(srcedcntrylist);
+                var brandArray = srcedcntrylist.split(';');  
+                jq(this).next().find("input[type=checkbox]").each(function(e){
+                    var checkboxObj = jq(this);
+                    jq.each( brandArray, function( i, savedBrandPosition ){
+                        if(checkboxObj.val() === savedBrandPosition)
+                            {
+                             checkboxObj.prop('checked',true);
+                                return false;
+                            }
+                    }); 
+                });
+            }
+        }
+    });
+}
+function jAddNewSourceUnit(rowIndex,thisVal) 
+{ 
+    if(jq(thisVal).closest('tbody').children('tr').length<21){ 
+            addNewSourceUnit(rowIndex);     
+    } 
 }
