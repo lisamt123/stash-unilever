@@ -1197,5 +1197,6 @@ public with sharing class IPM_RolloutTriggerHandler
     	 	update deactivateRegRLOutList; 
     	}
     
-       
+    }
+    
 }

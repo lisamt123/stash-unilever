@@ -22,6 +22,17 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>CopyLeastMSDueDate__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Provide span for project, where least milestones due date need to be copied.</inlineHelpText>
+        <label>Copy Least MS Due Date</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FinancialCopyOverPrefix__c</fullName>
         <description>Copy Over prefix for financial</description>
         <externalId>false</externalId>
