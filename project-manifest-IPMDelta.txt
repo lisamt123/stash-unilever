@@ -8,10 +8,16 @@ src/classes/IPM_FinancialController.cls
 src/classes/IPM_FinancialController.cls-meta.xml
 src/classes/IPM_FinancialHandler.cls
 src/classes/IPM_FinancialHandler.cls-meta.xml
+src/classes/IPM_FinancialHelper.cls
+src/classes/IPM_FinancialHelper.cls-meta.xml
 src/classes/IPM_FinancialUtils.cls
 src/classes/IPM_FinancialUtils.cls-meta.xml
+src/classes/IPM_GateDocumentController.cls
+src/classes/IPM_GateDocumentController.cls-meta.xml
 src/classes/IPM_GateDocumentPDFDownloadController.cls
 src/classes/IPM_GateDocumentPDFDownloadController.cls-meta.xml
+src/classes/IPM_Milestone.cls
+src/classes/IPM_Milestone.cls-meta.xml
 src/classes/IPM_MilestoneHandler.cls
 src/classes/IPM_MilestoneHandler.cls-meta.xml
 src/classes/IPM_MilestoneHelper.cls
