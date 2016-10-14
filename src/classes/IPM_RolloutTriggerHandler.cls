@@ -213,12 +213,14 @@ public with sharing class IPM_RolloutTriggerHandler
         String rolloutWhereClause = ' WHERE Id in :lstProjectRollouts LIMIT 50000';
         rolloutQuery = rolloutQuery + rolloutWhereClause;
         
-        lstProjectRollouts = database.query(rolloutQuery);
+        List<IPM_Project_Rollout__c> projectRollouts = new List<IPM_Project_Rollout__c>();
+        
+        projectRollouts = database.query(rolloutQuery);
         
         Map<String,IPM_Financial__c> existingFinancialMap = new Map<String,IPM_Financial__c>();
-        existingFinancialMap = getExistingFinancialMap(lstProjectRollouts);
+        existingFinancialMap = getExistingFinancialMap(projectRollouts);
         
-        for (IPM_Project_Rollout__c projectRollout : lstProjectRollouts)
+        for (IPM_Project_Rollout__c projectRollout : projectRollouts)
         {       
             ///Regional Rollout. Validate consolidated financials is present or not. If no create one.
             if(projectRollout.RecordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
