@@ -65,16 +65,16 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-      <runTest>Amr_AdManagerController_Test.cls</runTest>
-	  <runTest>Amr_CAPJobPortfolioController_Test.cls</runTest>
-	  <runTest>Amr_EmailSendingClass_Test.cls</runTest>
-	  <runTest>Amr_JobSheetController_Test.cls</runTest>
-	  <runTest>Amr_NewSaving_Test.cls</runTest>
-	  <runTest>Amr_RAPJobPortfolioController_Test.cls</runTest>
-	  <runTest>Amr_ReportTrigger_Test.cls</runTest>
-	  <runTest>Amr_SavingSummaryController_Test.cls</runTest>
-	  <runTest>Amr_SubmittedSavingController_Test.cls</runTest>
-	  <runTest>Amr_TriggerFactory_Test.cls</runTest>
+      <runTest>Amr_AdManagerController_Test</runTest>
+	  <runTest>Amr_CAPJobPortfolioController_Test</runTest>
+	  <runTest>Amr_EmailSendingClass_Test</runTest>
+	  <runTest>Amr_JobSheetController_Test</runTest>
+	  <runTest>Amr_NewSaving_Test</runTest>
+	  <runTest>Amr_RAPJobPortfolioController_Test</runTest>
+	  <runTest>Amr_ReportTrigger_Test</runTest>
+	  <runTest>Amr_SavingSummaryController_Test</runTest>
+	  <runTest>Amr_SubmittedSavingController_Test</runTest>
+	  <runTest>Amr_TriggerFactory_Test</runTest>
     </sf:deploy>
   </target>  
 
