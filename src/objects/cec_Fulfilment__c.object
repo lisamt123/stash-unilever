@@ -522,6 +522,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Latvia</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1584,6 +1588,7 @@ Case__r.Account.PersonContact.MailingCountry</formula>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Ireland</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Latvia</controllingFieldValues>
                 <controllingFieldValues>Lithuania</controllingFieldValues>
                 <controllingFieldValues>Luxembourg</controllingFieldValues>
@@ -1712,6 +1717,44 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Benelux_Quality_Check_cec_Fulfilment</fullName>
+        <columns>NAME</columns>
+        <columns>Advisor_Name__c</columns>
+        <columns>isApproved__c</columns>
+        <columns>Full_Name__c</columns>
+        <columns>Enclosure1__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>QA_flag__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>isApproved__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>isSubmitted__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>Benelux</value>
+        </filters>
+        <label>CEC Benelux Quality Check</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Benelux</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_User_Benelux</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Brazil_Quality_Check_Queue_cec_Fulfilment</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Brazil Quality Check Queue</label>
@@ -1813,7 +1856,6 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         <columns>Full_Name__c</columns>
         <columns>Enclosure1__c</columns>
         <columns>UPDATEDBY_USER</columns>
-        <columns>Document_Approval__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>QA_flag__c</field>
@@ -2072,6 +2114,24 @@ Case__r.Account.PersonContact.MailingCountry</formula>
             <role>CEC_Manager_Europe</role>
             <role>CEC_Manager_Italy</role>
             <role>CEC_User_Italy</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Japan_Quality_Check_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Japan Quality Check</label>
+        <queue>CEC_Japan_Quality_Check</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Japan_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Japan Queue</label>
+        <queue>CEC_Japan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>

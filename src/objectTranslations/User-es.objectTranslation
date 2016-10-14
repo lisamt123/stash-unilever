@@ -63,6 +63,10 @@
         <name>Advisor_Correspondence_Display_Name__c</name>
     </fields>
     <fields>
+        <label><!-- CEC Disable Case Trigger --></label>
+        <name>CEC_Disable_Case_Trigger__c</name>
+    </fields>
+    <fields>
         <label><!-- CEC User Reference --></label>
         <name>CEC_User_Reference__c</name>
     </fields>
@@ -385,6 +389,10 @@
             <translation><!-- Italian --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Japanese</masterLabel>
+            <translation><!-- Japanese --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Moldavian</masterLabel>
             <translation><!-- Moldavian --></translation>
         </picklistValues>
@@ -673,6 +681,10 @@
         <picklistValues>
             <masterLabel>Italy</masterLabel>
             <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japan</masterLabel>
+            <translation><!-- Japan --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Middle Americas</masterLabel>

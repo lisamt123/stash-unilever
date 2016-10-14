@@ -208,6 +208,10 @@
             <translation><!-- Italy --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Japan</masterLabel>
+            <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Latvia</masterLabel>
             <translation><!-- Latvia --></translation>
         </picklistValues>

@@ -9,6 +9,10 @@
         <startsWith>Consonant</startsWith>
     </fields>
     <fields>
+        <label><!-- ACCC Survey --></label>
+        <name>ACCC_Survey__c</name>
+    </fields>
+    <fields>
         <label><!-- Action Taken --></label>
         <name>Action_Taken__c</name>
     </fields>
@@ -312,6 +316,10 @@
         <picklistValues>
             <masterLabel>Italy</masterLabel>
             <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japan</masterLabel>
+            <translation><!-- Japan --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Latvia</masterLabel>
@@ -735,6 +743,10 @@
             <translation><!-- Email Italy --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Japan</masterLabel>
+            <translation><!-- Email Japan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Middle Americas</masterLabel>
             <translation><!-- Email Middle Americas --></translation>
         </picklistValues>
@@ -889,6 +901,10 @@
         <picklistValues>
             <masterLabel>Ragu.us@mizkan.com</masterLabel>
             <translation><!-- Ragu.us@mizkan.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever.CEC@unilever.com</masterLabel>
+            <translation><!-- Unilever.CEC@unilever.com --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>UnileverConsumercare.CA@unilever.com</masterLabel>

@@ -2,5 +2,5 @@
 <WaveDashboard xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <content xsi:nil="true"/>
     <application>UL_Reports</application>
-    <masterLabel>Report 3</masterLabel>
+    <masterLabel>Report 3 - Key Page Load Times</masterLabel>
 </WaveDashboard>

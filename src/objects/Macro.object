@@ -178,6 +178,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Japan_Queue_Macro</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Japan Queue</label>
+        <queue>CEC_Japan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Nordic_Queue_Macro</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Nordic Queue</label>
