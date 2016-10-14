@@ -69,7 +69,7 @@
       <runTest>WU_MultiCreateMultiEdit3_Test</runTest>
       <runTest>WU_WarehouseSearchController_test</runTest>
       <runTest>WU_SetCurrentMonthBatch_Test</runTest>
-      <runTest>WU_SetCurrentMonthBatch_Scheduler_Test</runTest
+      <runTest>WU_SetCurrentMonthBatch_Scheduler_Test</runTest>
 	  
 	  
      
