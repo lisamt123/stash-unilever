@@ -597,7 +597,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
 6,
 IF(text(IPM_Phase__c)=&apos;Post Launch Evaluation&apos;,
 7,
--1)
+8)
 )
 )
 )
@@ -935,6 +935,15 @@ VALUE(IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developed&apos;, IPM_No
 IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apos;, IPM_No_Of_Days_for_Developing_Emerging__c , &apos;&apos;)))) &lt; 0 ), ISPICKVAL(IPM_Type_of_gate__c, &apos;Market Ready&apos;)), TRUE, FALSE)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Preferred Date Violated?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SystemSetDueDate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>SystemSetDueDate</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
