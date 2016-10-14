@@ -308,6 +308,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Middle Americas</fullName>
                 <default>false</default>
             </picklistValues>
@@ -754,6 +758,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Japan_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Japan Queue</label>
+        <queue>CEC_Japan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Middle_Americas_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Middle Americas Queue</label>
@@ -899,12 +912,8 @@
         <columns>Threshold__c</columns>
         <columns>OWNER.ALIAS</columns>
         <columns>Type__c</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>NAME</field>
-            <operation>contains</operation>
-            <value>TO BE DELETED</value>
-        </filters>
         <label>GH View</label>
         <language>en_US</language>
     </listViews>

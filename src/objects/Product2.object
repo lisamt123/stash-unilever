@@ -9451,7 +9451,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>ICB_Mobile_Channel</fullName>
+        <fullName>ICB_MobileChannel</fullName>
         <active>true</active>
         <description>Ice cream record type.</description>
         <label>Mobile Channel</label>

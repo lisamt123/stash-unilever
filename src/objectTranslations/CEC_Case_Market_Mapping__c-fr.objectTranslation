@@ -61,6 +61,10 @@
         <name>Company_Phone__c</name>
     </fields>
     <fields>
+        <label><!-- Consumer Phone Search Digits --></label>
+        <name>Consumer_Phone_Search_Digits__c</name>
+    </fields>
+    <fields>
         <label>Pays</label>
         <name>Country__c</name>
         <relationshipLabel><!-- Case Market Mappings --></relationshipLabel>

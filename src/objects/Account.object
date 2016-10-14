@@ -22651,6 +22651,7 @@ IF(ISCHANGED(OwnerId)=true &amp;&amp; (RecordType.DeveloperName = &quot;Distribu
         <active>false</active>
         <description>Billing Street Mandatory</description>
         <errorConditionFormula>AND($Profile.Name = &apos;Unilever Food Solution - Russia&apos;, BillingStreet = &apos;&apos;,  OR(RecordType.DeveloperName =&apos;Operators&apos;, RecordType.DeveloperName =&apos;FS_OperatorRussia&apos;))</errorConditionFormula>
+        <errorDisplayField>CurrencyIsoCode</errorDisplayField>
         <errorMessage>Вам необходимо заполнить адрес для создания новой учетной записи оператора.</errorMessage>
     </validationRules>
     <validationRules>

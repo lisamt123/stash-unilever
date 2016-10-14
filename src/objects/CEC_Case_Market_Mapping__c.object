@@ -179,6 +179,18 @@
         <type>Phone</type>
     </fields>
     <fields>
+        <fullName>Consumer_Phone_Search_Digits__c</fullName>
+        <description>CEC: For SMS Cases Search will be performed on the last N digitis</description>
+        <externalId>false</externalId>
+        <label>Consumer Phone Search Digits</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Country__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>CEC: contains the country value which will be used in webtocase scenario by integration team</description>
@@ -417,7 +429,6 @@
         <columns>DefaultCaseOwnerId__c</columns>
         <columns>CaseOrigin__c</columns>
         <columns>Tag__c</columns>
-        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -576,6 +587,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Japan_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Japan Queue</label>
+        <queue>CEC_Japan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Middle_Americas_Queue_CEC_Case_Market_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Middle Americas Queue</label>
@@ -607,7 +627,6 @@
         <columns>NAME</columns>
         <columns>CaseOrigin__c</columns>
         <columns>Country__c</columns>
-        <columns>DefaultAccountOwnerId__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
         <language>en_US</language>

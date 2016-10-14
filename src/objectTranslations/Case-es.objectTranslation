@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
+        <label><!-- ACCC Survey --></label>
+        <name>ACCC_Survey__c</name>
+    </fields>
+    <fields>
         <label>Acción tomada</label>
         <name>Action_Taken__c</name>
     </fields>
@@ -304,6 +308,10 @@
         <picklistValues>
             <masterLabel>Italy</masterLabel>
             <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japan</masterLabel>
+            <translation><!-- Japan --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Latvia</masterLabel>
@@ -698,6 +706,10 @@
         <picklistValues>
             <masterLabel>Ragu.us@mizkan.com</masterLabel>
             <translation><!-- Ragu.us@mizkan.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever.CEC@unilever.com</masterLabel>
+            <translation><!-- Unilever.CEC@unilever.com --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>UnileverConsumercare.CA@unilever.com</masterLabel>

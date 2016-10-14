@@ -171,6 +171,10 @@
             <translation><!-- Italy --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Japan</masterLabel>
+            <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Middle Americas</masterLabel>
             <translation><!-- Middle Americas --></translation>
         </picklistValues>

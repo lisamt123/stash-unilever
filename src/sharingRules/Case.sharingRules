@@ -75,7 +75,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Austria,Switzerland,Germany</value>
+            <value>Germany,Austria,Switzerland</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -162,6 +162,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Japan</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Japan</label>
+        <sharedTo>
+            <role>CEC_User_Japan</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Japan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Case_Country_Equals_Nordic</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Case Country Equals Nordic</label>
@@ -171,7 +184,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Finland,Denmark,Norway,Sweden</value>
+            <value>Sweden,Norway,Denmark,Finland</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -531,6 +544,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Japan_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Japan - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Japan</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Japan</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Middle_Americas_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Middle Americas - Manager</label>
@@ -748,6 +772,17 @@
         </sharedTo>
         <sharedFrom>
             <role>CEC_Manager_HGS_Europe</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_North_Asia_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Role Equals North Asia - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_North_Asia</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_North_Asia</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

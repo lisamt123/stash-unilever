@@ -188,6 +188,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Market_Equals_Japan_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Japan - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Japan</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>JP</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Market_Equals_Middle_Americas_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Middle Americas - Manager</label>
@@ -197,7 +210,7 @@
         <criteriaItems>
             <field>ISO_Country__c</field>
             <operation>equals</operation>
-            <value>CO,CR,EC,GT,HN,NI,PA,VE,SV</value>
+            <value>CO,CR,EC,GT,HN,NI,PA,VE</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -224,6 +237,19 @@
             <field>ISO_Country__c</field>
             <operation>equals</operation>
             <value>CA,MX,US</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_Pakistan_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Pakistan - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Pakistan</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>PK</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>

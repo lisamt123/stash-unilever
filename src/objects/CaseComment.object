@@ -69,6 +69,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Middle Americas</fullName>
                 <default>false</default>
             </picklistValues>
