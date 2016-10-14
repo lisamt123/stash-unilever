@@ -18,7 +18,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
     Map<Id,IPM_Project__c> ipmProjects = new Map<Id,IPM_Project__c>();//Map of IPM Project Id and IPM Project
     Map<id,IPM_Project__c> eligibleProjectMapForCopyOver = new Map<id,IPM_Project__c>();//Map of IPM Project Id and IPM Project
     Map<Id,IPM_Milestone__c> eligibleMilestoneMapForCopyOver = new Map<Id,IPM_Milestone__c>();//Map of IPM Milestone Id and IPM Milestone
-    Map<Id,list<IPM_Milestone__c>> mapDueDateRollupMilestones = new Map<Id,list<IPM_Milestone__c>>();//Map of IPM Milestone Id and IPM Milestone
+    set<id> setProjIds = new set<id>();//set project Ids
     
     /**
     * @description:bulkBefore

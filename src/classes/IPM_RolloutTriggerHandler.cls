@@ -1162,6 +1162,40 @@ public with sharing class IPM_RolloutTriggerHandler
     }
     
     
+    /*****************************************************************************************************************************************************
+    @description :This   deactivates regional rollout  if all the child local rollouts are deactivated
+    @param : globalProjIdSet - parent global project Ids of local rollouts being deactivated
+    *****************************************************************************************************************************************************/
+    public static void processRegRLOutsOnLocalDeactivation(Set<Id> globalProjIdSet)
+    {
+    	List<IPM_Project_Rollout__c> deactivateRegRLOutList = new List<IPM_Project_Rollout__c>();
+    	List<IPM_Project_Rollout__c> regRLoutList = new List<IPM_Project_Rollout__c>();
+    	regRLoutList = [Select id , isActive__c,(Select Id, isActive__c from Local_Rollouts__r) from IPM_Project_Rollout__c  where IPM_Project__c IN :globalProjIdSet AND recordtype.Name=:IPM_ConstantUtils.REGIONAL_ROLLOUT_RT AND isActive__c=true];
+    	
+    	for(IPM_Project_Rollout__c regRollout :regRLoutList )
+    	{
+			Boolean isActiveFound = false;
+			
+			for(IPM_Project_Rollout__c localRollout :regRollout.Local_Rollouts__r)
+			{
+				if(localRollout.isActive__c)
+				{
+					isActiveFound= true;
+					break;
+				}
+			}
+			
+			if(!isActiveFound)
+			{
+				regRollout.isActive__c=false;
+				deactivateRegRLOutList.add(regRollout);
+			}
+    	}
+    	
+    	if(!deactivateRegRLOutList.isEmpty())
+    	{
+    	 	update deactivateRegRLOutList; 
+    	}
     
        
 }
