@@ -119,6 +119,11 @@
         <field>Contact.ICB_Cause__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.ICB_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Asset.Description</field>
@@ -617,6 +622,10 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>ICB_Inventory__c.ICB_Inventory</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <recordType>Product2.ICB_MobileChannel</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
