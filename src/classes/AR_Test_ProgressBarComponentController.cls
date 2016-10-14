@@ -12,7 +12,7 @@
 	2013-09-20 13:55 (CET)	| Marc Saelzler 	| Initial development.
 */
 
-@isTest(SeeAllData=true)
+@isTest(SeeAllData=false)
 private class AR_Test_ProgressBarComponentController
 {
 	static testMethod void AR_Test_GeneralInformationController()
