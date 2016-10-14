@@ -6351,50 +6351,6 @@
                       "options": {}
                   }
               },
-              "CustomerMobile_14": {
-                  "datasets": [
-                      {
-                          "id": "0Fb2C00000011EfSAI",
-                          "label": "PACK_COMPLIANCE",
-                          "name": "PACK_COMPLIANCE",
-                          "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011EfSAI"
-                      }
-                  ],
-                  "isFacet": true,
-                  "isGlobal": false,
-                  "query": {
-                      "pigql": "q = load \"PACK_COMPLIANCE\"; q = filter q by 'Top_Customer' == \"Yes\"; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{selection(Date_Year_Date_Month_14)}}; q = group q by ('Customer'); q = foreach q generate 'Customer' as 'Customer', avg('NPD_Compliance') as 'avg_NPD'; q = order q by 'avg_NPD' desc;",
-                      "measures": [
-                          [
-                              "avg",
-                              "NPD",
-                              "avg_NPD",
-                              {
-                                  "display": "NPD Score"
-                              }
-                          ]
-                      ],
-                      "limit": 20,
-                      "groups": [
-                          "Customer"
-                      ],
-                      "order": [
-                          [
-                              -1,
-                              {
-                                  "ascending": false
-                              }
-                          ]
-                      ]
-                  },
-                  "selectMode": "single",
-                  "type": "aggregate",
-                  "useGlobal": true,
-                  "visualizationParameters": {
-                      "visualizationType": "hbar",
-                      "options": {}
-                  }
-              },
               "City_21": {
                   "datasets": [
                       {
@@ -6420,50 +6376,6 @@
                   "selectMode": "multi",
                   "start": [],
                   "type": "aggregateflex",
-                  "useGlobal": true,
-                  "visualizationParameters": {
-                      "visualizationType": "hbar",
-                      "options": {}
-                  }
-              },
-              "CustomerMobile_13": {
-                  "datasets": [
-                      {
-                          "id": "0Fb2C00000011GMSAY",
-                          "label": "PACK_SCORE",
-                          "name": "PACK_SCORE",
-                          "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011GMSAY"
-                      }
-                  ],
-                  "isFacet": true,
-                  "isGlobal": false,
-                  "query": {
-                      "pigql": "q = load \"PACK_SCORE\"; q = filter q by 'Top_Customer' == \"Yes\"; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{selection(Date_Year_Date_Month_14)}}; q = group q by ('Customer'); q = foreach q generate 'Customer' as 'Customer', avg('NPD') as 'avg_NPD'; q = order q by 'avg_NPD' desc;",
-                      "measures": [
-                          [
-                              "avg",
-                              "NPD",
-                              "avg_NPD",
-                              {
-                                  "display": "NPD Score"
-                              }
-                          ]
-                      ],
-                      "limit": 20,
-                      "groups": [
-                          "Customer"
-                      ],
-                      "order": [
-                          [
-                              -1,
-                              {
-                                  "ascending": false
-                              }
-                          ]
-                      ]
-                  },
-                  "selectMode": "single",
-                  "type": "aggregate",
                   "useGlobal": true,
                   "visualizationParameters": {
                       "visualizationType": "hbar",
@@ -6872,49 +6784,6 @@
                       "title": "Top Customer"
                   },
                   "type": "listselector"
-              },
-              "chartMobile_comCust": {
-                  "parameters": {
-                      "autoFitMode": "fit",
-                      "showValues": true,
-                      "legend": {
-                          "showHeader": true,
-                          "show": false,
-                          "position": "right-top",
-                          "inside": false
-                      },
-                      "axisMode": "multi",
-                      "visualizationType": "hbar",
-                      "exploreLink": false,
-                      "title": {
-                          "label": "",
-                          "align": "center",
-                          "subtitleLabel": ""
-                      },
-                      "trellis": {
-                          "enable": false,
-                          "type": "x",
-                          "chartsPerLine": 4
-                      },
-                      "measureAxis2": {
-                          "showTitle": true,
-                          "showAxis": true,
-                          "title": ""
-                      },
-                      "measureAxis1": {
-                          "showTitle": true,
-                          "showAxis": true,
-                          "title": ""
-                      },
-                      "step": "CustomerMobile_14",
-                      "theme": "wave",
-                      "dimensionAxis": {
-                          "showTitle": true,
-                          "showAxis": true,
-                          "title": ""
-                      }
-                  },
-                  "type": "chart"
               },
               "text_12": {
                   "parameters": {
@@ -8705,49 +8574,6 @@
                       "title": "Store Type"
                   },
                   "type": "listselector"
-              },
-              "chartMobile_scoreCust": {
-                  "parameters": {
-                      "autoFitMode": "fit",
-                      "showValues": true,
-                      "legend": {
-                          "showHeader": true,
-                          "show": false,
-                          "position": "right-top",
-                          "inside": false
-                      },
-                      "axisMode": "multi",
-                      "visualizationType": "hbar",
-                      "exploreLink": false,
-                      "title": {
-                          "label": "",
-                          "align": "center",
-                          "subtitleLabel": ""
-                      },
-                      "trellis": {
-                          "enable": false,
-                          "type": "x",
-                          "chartsPerLine": 4
-                      },
-                      "measureAxis2": {
-                          "showTitle": true,
-                          "showAxis": true,
-                          "title": ""
-                      },
-                      "measureAxis1": {
-                          "showTitle": true,
-                          "showAxis": true,
-                          "title": ""
-                      },
-                      "step": "CustomerMobile_13",
-                      "theme": "wave",
-                      "dimensionAxis": {
-                          "showTitle": true,
-                          "showAxis": true,
-                          "title": ""
-                      }
-                  },
-                  "type": "chart"
               },
               "dimfilter_salesRegion": {
                   "parameters": {
