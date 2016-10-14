@@ -254,7 +254,6 @@
                    <apex:repeat value="{!rolloutTolocalRolloutToCountryMap}" var="regionalRolloutID">
                     
                    <apex:variable var="regionalRollout" value="{!lstcompleteRollout[regionalRolloutID]}" /> 
-                   <apex:outputpanel rendered="{!showClusterNameMap[regionalRolloutID]}" layout="none">
                    <!--  <apex:repeat value="{!lstRegionalRollouts}" var="regionalRollout"> --> 
                     <div class="projectContainer">
                         <!-- Regional Rollout Header -->
