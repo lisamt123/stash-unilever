@@ -16,7 +16,9 @@
     <apex:attribute name="fieldSuffix" type="String" required="true" description="fieldSuffix - Global/Regional/Local"/>
     <apex:attribute name="showPrevious" type="Boolean" description="Flag "/>
     <apex:attribute name="showNext" type="Boolean" description="Flag "/>
-   
+    <apex:attribute name="isEditMode" type="Boolean" default="false" description="Edit Mode"/>
+    <apex:attribute name="exRate" type="Decimal" description="test"/>
+
     <!-- Project Name Header -->
     <div class="row">
         <c:IPM_FinancialTabHeader ipmFinancial="{!ipmFinancial}"
@@ -31,20 +33,27 @@
         colSpan="{!colSpan}"
         sustainabilityPeriod="{!sustainabilityPeriod}"
         isInnovation="TRUE"
-        isEditMode="FALSE"
+        isEditMode="{!isEditMode}"
         fieldSuffix="{!fieldSuffix}"
     />
 
     <c:IPM_FinancialSummaryTable ipmFinancial="{!ipmFinancial}"
         fieldSuffix="{!fieldSuffix}"
-        isEditMode="FALSE"
+        isEditMode="{!isEditMode}"
+        exRate="{!exRate}"
     />
     <apex:outputPanel id="financialYearNavigator" layout="block" styleClass="financialYearNavDiv pull-right">
+	        <!--
+	            This section will be rendered if the financial year has got more than 3 years records and is showing middle or last records
+	        -->
 	        <apex:outputPanel title="{!$Label.IPM_Consolidate_Show_Earlier_Years}" id="financialYearNavLeft1" layout="block" styleClass="financialYearNavLeftDiv pull-left" rendered="{!showPrevious}">
 	            <apex:outputPanel id="financialYearNavLeftArrow1">
 	               &#x21da; <apex:actionSupport event="onclick"  reRender="financialYearNavigator, refreshCalyear"  status="loadingStatus" oncomplete="previous();finScriptCallBack()" />
 	            </apex:outputPanel>
 	        </apex:outputPanel>
+	        <!--
+	            This section will be rendered if the financial year has got more than 3 years records and is showing middle or first records
+	        -->
 	        <apex:outputPanel title="{!$Label.IPM_Consolidate_Show_Later_Years}" id="financialYearNavRight1" layout="block" styleClass="financialYearNavRightDiv pull-right"  rendered="{!showNext}">
 	            <apex:outputPanel id="financialYearNavRightArrow1">
 	               &#x21db; <apex:actionSupport event="onclick"  reRender="financialYearNavigator, refreshCalyear"  status="loadingStatus" oncomplete="next();finScriptCallBack()" />
@@ -57,7 +66,7 @@
         colSpan="{!colSpan}"
         sustainabilityPeriod="{!sustainabilityPeriod}"
         isInnovation="FALSE"
-        isEditMode="FALSE"
+        isEditMode="{!isEditMode}"
         fieldSuffix="{!fieldSuffix}"
     />
     </apex:outputPanel>

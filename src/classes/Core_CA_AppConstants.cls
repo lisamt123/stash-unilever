@@ -1,5 +1,6 @@
 public with sharing class Core_CA_AppConstants {
 
+
     /* Service response error messages */
     public static final String ERROR_MSG_UNEXPECTED_ERROR_OCCURED = 'Unexcepted exception encountered, please try again later';
     public static final String SVC_RESP_MESSAGE_INVALID_SVCNAME = 'Invalid service requested, please check the service name requested for';
@@ -28,6 +29,7 @@ public with sharing class Core_CA_AppConstants {
     public static final String DATA_REQUEST_TYPE_PURCHASE_REQUEST = 'Ariba';
     public static final String DATA_REQUEST_TYPE_ARIBA = 'Purchase Request';
     public static final String DATA_REQUEST_TYPE_GTES = 'Expense';
+    public static final String DATA_REQUEST_TYPE_INVOICE = 'Invoice';
     public static final String Data_Role_Approver = 'APP';
     public static final String Data_Action_Approved = 'APPR';
     public static final String Data_Action_Rejected = 'REJC';

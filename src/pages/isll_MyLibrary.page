@@ -1,0 +1,18 @@
+<apex:page controller="isll_LibraryController" standardStylesheets="false" sidebar="false" docType="html-5.0" tabStyle="Sustainable_Living_Lab__tab">
+ <style style="text/css">
+	 .pageBlock{
+	 	width: 650px;
+	 }
+ </style>
+ 
+<apex:form >
+    	<apex:composition template="isll_TemplateMain">
+			<apex:define name="firstColumn">
+				<c:isll_CmsContentComponent cmsContentName="My Library" editable="false"/><br/>
+				<div class="pageBlock bPageBlock brandSecondaryBrd apexDefaultPageBlock secondaryPalette">
+					<c:isll_AllContentInLabComponent libraryTypeToDisplay="MyLibrary" columns="8" ></c:isll_AllContentInLabComponent>
+				</div>
+			</apex:define>
+    	</apex:composition> 
+    </apex:form>
+</apex:page>

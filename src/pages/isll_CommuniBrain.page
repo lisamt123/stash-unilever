@@ -1,0 +1,81 @@
+<apex:page standardStylesheets="false" sidebar="false" docType="html-5.0" tabStyle="Sustainable_Living_Lab__tab">
+<!--====================================================-->
+<!--Name:  isll_CommuniBrain                            -->
+<!--Copyright © 2013  Unilever                          -->
+<!--====================================================-->
+<!-- Purpose:                                           -->
+<!-- Communibrain page                                  -->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- VERSION        AUTHOR              DATE            DETAIL      RELEASE/CSR        -->
+<!-- 1.0            Liza Romanenko      17/07/2013      INITIAL DEVELOPMENT            -->
+<!--====================================================-->
+  
+    <style type="text/css">
+    	#chatterComponentDiv{
+    		width: 100%;
+    		position: relative;
+			  bottom: 97px;
+        padding-top: 54px;
+    	}
+
+      #theWordCloud{
+        padding-bottom: 20px;
+        height: 100%;
+      }
+
+      .feedcontainer{
+        height: 900px !important;
+      }
+
+    </style>
+    <apex:composition template="isll_TemplateMain">
+       
+        <apex:define name="firstColumn">
+          <apex:form >
+	            <div id = "CommunityTitle">
+	                <c:isll_CmsContentComponent cmsContentName="CommunityTitle" editable="true"/>
+	                <c:isll_CmsContentComponent cmsContentName="CommunityDescription" editable="true"/><br/>
+	            </div>
+	            
+              <!-- Commented out as per Phase 3 request. -->
+              <!--
+              <div id = "sustainExpertsHelp" class = "helpClass" rel="popover" data-content="These are the internal sustainable living experts" data-original-title="Sustainable Living Experts"> 
+  	            <div id = "sustainExperts">
+  	                <c:isll_CmsContentComponent cmsContentName="SustainabilityExpertsTitle" editable="true"/>
+  	            </div>
+  	            <c:isll_SustainabilityExpertsComponent editable="true"/>
+              </div>
+              -->
+	            
+	            <hr size="2" color = "#D8D8D8"/>
+	            <div id = "topInfluencersCloud">
+	                <c:isll_CmsContentComponent cmsContentName="TopInfluencersTitle" editable="true"/>
+	                <c:isll_TopInfluencersCloud numberOfInfluencersToShow="30"/><br/>
+	            </div>
+	            <c:isll_ModeratorComponent editable="true" /><br/><br/>
+	            <hr size="2" color = "#D8D8D8"/>
+               <div id = "topLibraryFiles" class = "helpClass" rel="popover" data-content="These are the internal sustainable living experts" data-original-title="Top Files"> 
+    	            <c:isll_CmsContentComponent cmsContentName="TopLibraryFilesTitle" editable="true"/><br/>
+    	            <c:isll_AllContentInLabComponent libraryTypeToDisplay="TopViewSorted" columns="3"/>
+              </div>
+	            <c:isll_AdditionalContentSmall />
+    	  </apex:form>
+        </apex:define>  
+        
+        
+        <apex:define name="secondColumn">
+        	<apex:form >
+               <div id = "theWordCloud">
+                 <c:isll_CmsContentComponent cmsContentName="Community_WordCloudTitle" editable="true"/>
+                <c:isll_WordCloudComponent /><br/>
+              </div>
+		    </apex:form>
+             	<div id = "chatterComponentDiv">
+              		<c:isll_ChatterComponent />
+               	</div>
+        </apex:define>
+    
+    </apex:composition>
+    
+</apex:page>

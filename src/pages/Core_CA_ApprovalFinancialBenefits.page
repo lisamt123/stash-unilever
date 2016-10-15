@@ -1,0 +1,217 @@
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
+    <meta http-equiv="content-type" content="text/html; charset=UTF8" />
+    <div class="iPhoneHomeScreenHeight" id="pageTop">
+        <div id="homePage1" class="headerBarBackground">
+            <table class="headerBarWidth">
+                <tr>
+                    <td class="headerBarRowAlign" >
+                        <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" ng-click="gotoDetailPage()" alt="back" class="homePageFilter" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+        <div class="template" ng-init="ProjectProposedIpixFeasibilityBudgetDisplay=false">            
+            <table class="homePageMenuWidth smallHeight" ng-click="ProjectProposedIpixFeasibilityBudgetDisplay = !ProjectProposedIpixFeasibilityBudgetDisplay">
+                <tr class="defaultBottomBorder">
+                    <td class="mediumWidth alignTop">
+                        <span class="detailSectionHeader"> {{'LBL_INCREMENT_TURNOVER' | translate}} </span>
+                    </td>
+                    <td class="mediumWidth alignTop">
+                        <span class="detailSectionHeader"> {{'LBL_COP'| translate}} </span>
+                        <span class="alignRight">
+                            <img class="arrowButtonStyle" ng-hide="ProjectProposedIpixFeasibilityBudgetDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                            <img class="arrowButtonStyle" ng-show="ProjectProposedIpixFeasibilityBudgetDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <div ng-hide="ProjectProposedIpixFeasibilityBudgetDisplay" >
+                <div class="responsiveRow">
+                    <div class="responsiveColumn">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.CompanyName.split(',')[0]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue">
+                                <label ng-if="approvalRequestData.CompanyName.split(',')[1] != null && approvalRequestData.CompanyName.split(',')[1] != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.CompanyName.split(',')[1] | replaceNullValue}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="responsiveColumn">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.Cop.split(',')[0]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.Cop.split(',')[1] != null && approvalRequestData.Cop.split(',')[1] != ''"> {{approvalRequestData.Currencies}}</label>  {{approvalRequestData.Cop.split(',')[1] | replaceNullValue}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="responsiveRow">
+                    <div class="responsiveColumn">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.CompanyName.split(',')[2]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.CompanyName.split(',')[3] != null && approvalRequestData.CompanyName.split(',')[3] != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.CompanyName.split(',')[3] | replaceNullValue}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="responsiveColumn">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.Cop.split(',')[2]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue"> <label ng-if="approvalRequestData.Cop.split(',')[3] != null && approvalRequestData.Cop.split(',')[3] != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.Cop.split(',')[3] | replaceNullValue}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="responsiveRow">
+                    <div class="responsiveColumn">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.CompanyName.split(',')[4]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.CompanyName.split(',')[5] != null && approvalRequestData.CompanyName.split(',')[5] != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.CompanyName.split(',')[5] | replaceNullValue}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="responsiveColumn">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.Cop.split(',')[4]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.Cop.split(',')[5] != null && approvalRequestData.Cop.split(',')[5] != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.Cop.split(',')[5] | replaceNullValue}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="responsiveRow">
+                    <div class="responsiveColumn">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.CompanyName.split(',')[6]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.CompanyName.split(',')[7]  != null && approvalRequestData.CompanyName.split(',')[7]  != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.CompanyName.split(',')[7] | replaceNullValue}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="responsiveColumn">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.Cop.split(',')[6]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue"> <label ng-if="approvalRequestData.Cop.split(',')[7]  != null && approvalRequestData.Cop.split(',')[7]  != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.Cop.split(',')[7] | replaceNullValue}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="template" ng-init="ProjectFinancesPanelDisplay=false">
+            <div class="defaultBottomBorder" ng-click="ProjectFinancesPanelDisplay = (ProjectFinancesPanelDisplay=='true' ? 'false' : 'true')">
+                <span>
+                    <label class="detailSectionHeader" >{{'LBL_TOTAL_FTE_REDUCTIONS' | translate}}</label>
+                </span>
+                <span class="alignRight">
+                    <img class="arrowButtonStyle" ng-hide="ProjectFinancesPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                    <img class="arrowButtonStyle" ng-show="ProjectFinancesPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                </span>
+            </div>
+            <div ng-hide="ProjectFinancesPanelDisplay" >
+                <div class="responsiveRow">
+                    <div class="responsiveDetailSectionData">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.RequestedBy.split(',')[0]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestedBy.split(',')[1] | replaceNullValue}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="responsiveDetailSectionData">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.RequestedBy.split(',')[2]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestedBy.split(',')[3] | replaceNullValue}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="responsiveRow">
+                    <div class="responsiveDetailSectionData">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.RequestedBy.split(',')[4]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestedBy.split(',')[5] | replaceNullValue}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="responsiveDetailSectionData">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.RequestedBy.split(',')[6]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestedBy.split(',')[7] | replaceNullValue}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="template" ng-init="NonFinincialIndicatorsPanelDisplay=false">
+            <div class="defaultBottomBorder" ng-click="NonFinincialIndicatorsPanelDisplay = (NonFinincialIndicatorsPanelDisplay=='true' ? 'false' : 'true')">
+                <span>
+                    <label class="detailSectionHeader" >{{'LBL_NON_FINANCIAL_INDIACTORS' | translate}}</label>
+                </span>
+                <span class="alignRight">
+                    <img class="arrowButtonStyle" ng-hide="NonFinincialIndicatorsPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
+                    <img class="arrowButtonStyle" ng-show="NonFinincialIndicatorsPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                </span>
+            </div>
+            <div ng-hide="NonFinincialIndicatorsPanelDisplay" >
+                <div class="responsiveRow">
+                    <div class="responsiveDetailSectionData">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{'LBL_SERVICE_LINE'| translate}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Purpose | replaceNullValue}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="responsiveDetailSectionData">
+                        <table class="responsiveDetailSectionTable">
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowLabel">{{'LBL_METRIC' | translate}}</td>
+                            </tr>
+                            <tr>
+                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Metric | replaceNullValue}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+    </div>
+</apex:page>

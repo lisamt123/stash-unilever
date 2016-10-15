@@ -59,6 +59,35 @@ public with sharing class IPM_FinancialHelper
             processIPMFinancialYears(financial,upsertFinancialYearMap);
         }  
     }
+	
+	/*******************************************************************************************************
+    * @description      Method to handle after update  Trigger context for IPM_Financial__c object. 
+                        Deletes  Financial Year records falling before TLD of consolidated financials
+                        
+    * @param1 newFinancials  List of Trigger.new records
+    * @return               NONE
+    ********************************************************************************************************/
+    public static void deleteFinancialYears(List<IPM_Financial__c> newFinancials)      
+    {
+        List<IPM_Financial_Year__c> deleteIPMFinancialYears = new List<IPM_Financial_Year__c>();
+        for(IPM_Financial__c financial : [Select Id ,Target_Launch_Date__c ,( Select Id,Name from IPM_Financial_Years__r where Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR AND  (NOT Name like '%Y%')) from IPM_Financial__c where Id IN :newFinancials  AND recordtypeId =:Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId()])
+        {
+            Integer tldYear =financial.Target_Launch_Date__c.year();
+            for(IPM_Financial_Year__c finYear :financial.IPM_Financial_Years__r)
+            {
+            	if(tldYear > Integer.valueOf(finYear.name)) 
+            	{
+            	  deleteIPMFinancialYears.add(finYear);
+            	}
+            
+            }
+            
+        }
+        if(deleteIPMFinancialYears!=null && !deleteIPMFinancialYears.isEmpty()) 
+        {
+          delete deleteIPMFinancialYears;
+        }  
+    }
     
       /******************************************************************************************************************
     * @description                                  Used for Creating Consolidated Calendar Years whenever TLD is changed. 
@@ -193,6 +222,10 @@ public with sharing class IPM_FinancialHelper
     
     public static void initializeConsolidation(List<IPM_Financial__c> consolidationChangedFinancialList,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial__c> upsertConsolidatedFinancialMap,Set<String> fieldsToConsolidate) 
     {
+        if(consolidationChangedFinancialList.isEmpty()){
+        	return;
+        }
+        
         Map<String,Map<Id,sObject>> consolidatedToRelatedFinancialMap = new Map<String,Map<Id,sObject>>();
         Map<String,sObject> consolidatedFinancialMap = new Map<String,sObject>();
         
@@ -251,6 +284,9 @@ public with sharing class IPM_FinancialHelper
         
     public static void updateFinancialYearVolumeType(Map<Id,IPM_Financial__c> volumeTypeChangedFinancialMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap)
     {
+        if(volumeTypeChangedFinancialMap.isEmpty()){
+        	return;
+        }
         for(IPM_Financial__c financial : volumeTypeChangedFinancialMap.values())
         { 
             if(financialDetailMap.containsKey(financial.Id))
@@ -285,6 +321,9 @@ public with sharing class IPM_FinancialHelper
     ************************************************************************************************************/
     public static void processSustainabilityPeriod(Map<Id,IPM_Financial__c> changedSustainabilityMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap)
     {
+        if(changedSustainabilityMap.isEmpty()){
+        	return;
+        }
         for(IPM_Financial__c financial : changedSustainabilityMap.values())
         {
             if(financialDetailMap.containsKey(financial.Id))
@@ -587,6 +626,10 @@ public with sharing class IPM_FinancialHelper
     ***************************************************************************************************************/
     public static void copyOverFinancialFields(Map<Id,IPM_Financial__c> changedFinancialMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap,Map<Id,Set<String>> financialToChangedFeilds)
     {
+        if(changedFinancialMap.isEmpty()){
+        	return;
+        }
+        
         for(Id financialID : changedFinancialMap.KeySet()) 
         {
             IPM_Financial__c changedFinancialDetail = financialDetailMap.get(financialID);
@@ -741,6 +784,70 @@ public with sharing class IPM_FinancialHelper
     private static String getFinancialYearExternalId(String financialExternalId,  String yearName, String yearType, String plType){
         return financialExternalId + '_' + yearName + '_' + yearType + '_' + plType;
     }
-    
+   
+   /***********************************************************************************************************************
+    * @description                  Method to update financial action standard whenever consoildate financial values change
+    * @param mapNewFinancials    	Map of Financial Records
+    * @return                       None
+    ***********************************************************************************************************************/
+   public static void updateGlobalFinancialActionStandards(Map<Id, IPM_Financial__c> mapNewFinancials){
+	   List<IPM_Financial__c> newFinList=new List<IPM_Financial__c>();
+	   Set<Id> projectIdSet=new Set<Id>();
+	   List<IPM_Financial_Action_Standards__c> updateFinActionStdsList=new List<IPM_Financial_Action_Standards__c>();
+	   for(IPM_Financial__c newFin:mapNewFinancials.values()){
+	   	if(newFin.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && newFin.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && (String.isNotBlank(newFin.Global_External_Id__c) || String.isNotBlank(newFin.Regional_External_Id__c))  && !newFin.Charter_Approved__c)
+        {   
+        	newFinList.add(newFin);
+        	projectIdSet.add(newFin.Parent_Project__c);
+        }         
+        	   
+        }
+        for(IPM_Financial_Action_Standards__c finActionStds:[SELECT Id,IPM_Financial_Year_Y1_Gross__c,IPM_Financial_Year_Y1_Gross__r.Regional_External_Id__c,IPM_Project__c,IPM_Project_Span__c,IPM_Financial_Action_Standard_Name__c,IPM_NPV_Action_Standard_Charter__c,IPM_IRR_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c FROM IPM_Financial_Action_Standards__c WHERE IPM_Project__c In:projectIdSet]){
+        	for(IPM_Financial__c fin:newFinList){
+        		if(finActionStds.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && finActionStds.IPM_Project__c==fin.Parent_Project__c && String.isBlank(fin.Regional_External_Id__c)){
+        			finActionStds.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Global__c;
+        			finActionStds.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Global__c;
+        			finActionStds.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Global__c;
+        			updateFinActionStdsList.add(finActionStds);
+        		}
+        		else if(finActionStds.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && finActionStds.IPM_Project__c==fin.Parent_Project__c && String.isNotBlank(fin.Regional_External_Id__c) && finActionStds.IPM_Financial_Year_Y1_Gross__r.Regional_External_Id__c==fin.Regional_External_Id__c){
+        			finActionStds.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Global__c;
+        			finActionStds.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Global__c;
+        			finActionStds.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Global__c;
+        			updateFinActionStdsList.add(finActionStds);
+        		}
+        	}
+        }
+        if(updateFinActionStdsList!=null && !updateFinActionStdsList.isEmpty()){
+        	update updateFinActionStdsList;
+        }            
+   	  }  
+   	/************************************************************************************************************************
+    * @description          Method to  sync project y3iTo with financial's Global,Regional and Local Y3iTo's
+    * @param                financial Ids 
+    *************************************************************************************************************************/
+    public static void updateAssoProjectY3iToValue(Set<Id> financialIds) 
+    {
+    		List<Id> projIdsforY3iToSync = new  List<Id>();
+    		for(IPM_Financial__c  ipmFinRec: [Select Id ,Local_Project__c,Regional_Project__c,Parent_Project__c from  IPM_Financial__c where Id IN: financialIds])
+    		{
+               if(ipmFinRec.Local_Project__c!=null)
+               {
+               		projIdsforY3iToSync.add(ipmFinRec.Local_Project__c);
+               }
+               if(ipmFinRec.Regional_Project__c!=null)
+               {
+               		projIdsforY3iToSync.add(ipmFinRec.Regional_Project__c);
+               }
+               if(ipmFinRec.Parent_Project__c!=null)  
+               {
+               		projIdsforY3iToSync.add(ipmFinRec.Parent_Project__c);  
+               } 
+    		} 
+    		if(!projIdsforY3iToSync.isEmpty()) 
+    		{ 
+    		 	IPM_Utils.updateProjectY3ITOValue(projIdsforY3iToSync); 
+    		}
+    }  
     
 }

@@ -13,14 +13,13 @@ public with sharing class AR_ObjectSelectHandler2 {
     private String RTTradeRegulatoryBodies;
     
     private String RTGeneral;
-  //private String RTNonUnilever;
+    private String RTNonUnilever;
     private String RTExperience;
     private String RTProject;
     
     private String RTTask;
     private String RTArtwork;
-    public String select1;
-        
+    
     //***************************
     //Constructor
     //***************************
@@ -52,7 +51,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         AR_SObjectHolder tmp_AppData = new AR_SObjectHolder();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
         tmp_FieldSet.add('Length_of_client_relationship__c');
@@ -86,7 +85,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         List<AR_SObjectHolder> tmp_ObjData = new List<AR_SObjectHolder>();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
@@ -117,7 +116,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         List<AR_SObjectHolder> tmp_ObjData = new List<AR_SObjectHolder>();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
@@ -143,7 +142,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         List<AR_SObjectHolder> tmp_ObjData = new List<AR_SObjectHolder>();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
@@ -168,7 +167,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         List<AR_SObjectHolder> tmp_ObjData = new List<AR_SObjectHolder>();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
@@ -194,7 +193,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         AR_SObjectHolder tmp_ObjData = new AR_SObjectHolder();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
@@ -224,7 +223,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         List<AR_SObjectHolder> tmp_DataList = new List<AR_SObjectHolder>();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
@@ -249,7 +248,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         List<AR_SObjectHolder> tmp_DataList = new List<AR_SObjectHolder>();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
@@ -278,7 +277,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         Set<String> tmp_FieldSet = p_FieldSet;
         tmp_FieldSet.add('Name');
         
-        String query = select1;
+        String query = 'SELECT ';
         
          for(String f : tmp_FieldSet) 
         {
@@ -308,7 +307,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         List<AR_SObjectHolder> tmp_DataList = new List<AR_SObjectHolder>();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
         
@@ -328,7 +327,7 @@ public with sharing class AR_ObjectSelectHandler2 {
     
     public List<AR_FixedRateCardHelper> SelectFixedRateCard(Set<String> p_FieldSet)
     {
-       // List<AR_SObjectHolder> tmp_DataList = new List<AR_SObjectHolder>();
+        List<AR_SObjectHolder> tmp_DataList = new List<AR_SObjectHolder>();
         Map<String,AR_FixedRateCardHelper> tmp_RateCardMap = new  Map<String,AR_FixedRateCardHelper>();
         
         Set<String> tmp_FieldSetForFRCC = new Set<String> ();
@@ -349,7 +348,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         
         for(ar_Fixed_Price_Rate_Card_Location__c Data:Database.query(queryFRCC))
         {
-            AR_SObjectHolder rc = new AR_SObjectHolder();
+        	AR_SObjectHolder rc = new AR_SObjectHolder();
             rc.obj = Data;
             AR_FixedRateCardHelper tmphelper = new AR_FixedRateCardHelper(rc);
             tmp_RateCardMap.put(Data.id,tmphelper);
@@ -357,7 +356,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         tmp_FieldSet.add('Order__c');
         tmp_FieldSet.add('Task_Group_short__c');
         tmp_FieldSet.add('RecordTypeId');
@@ -371,12 +370,12 @@ public with sharing class AR_ObjectSelectHandler2 {
         
         for(ar_Fixed_Price_Rate_Card__c Data:Database.query(query))
         {
-            if(tmp_RateCardMap.containskey(Data.FRC_Country__c))
-            {
-               AR_SObjectHolder rc = new AR_SObjectHolder();
-               rc.obj = Data;
-               tmp_RateCardMap.get(Data.FRC_Country__c).addObjtoList(rc);
-            }
+        	if(tmp_RateCardMap.containskey(Data.FRC_Country__c))
+        	{
+        	   AR_SObjectHolder rc = new AR_SObjectHolder();
+           	   rc.obj = Data;
+           	   tmp_RateCardMap.get(Data.FRC_Country__c).addObjtoList(rc);
+        	}
            
         }
         return tmp_RateCardMap.values();
@@ -387,7 +386,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         List<AR_SObjectHolder> tmp_DataList = new List<AR_SObjectHolder>();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
@@ -419,7 +418,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         List<AR_SObjectHolder> tmp_DataList = new List<AR_SObjectHolder>();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
@@ -449,7 +448,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         List<AR_SObjectHolder> tmp_DataList = new List<AR_SObjectHolder>();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
@@ -489,7 +488,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         List<AR_SObjectHolder> tmp_DataList = new List<AR_SObjectHolder>();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
@@ -514,7 +513,7 @@ public with sharing class AR_ObjectSelectHandler2 {
         List<AR_SObjectHolder> tmp_DataList = new List<AR_SObjectHolder>();
         Set<String> tmp_FieldSet = p_FieldSet;
         
-        String query = select1;
+        String query = 'SELECT ';
         
         tmp_FieldSet.add('Name');
         //tmp_FieldSet.add('Id');
@@ -552,7 +551,7 @@ public with sharing class AR_ObjectSelectHandler2 {
     
     public static Map<String,Map<String, RecordType>> getAllRecordTypeInfo() {
         Map<String,Map<String, RecordType>> info = new Map<String,Map<String, RecordType>>();
-        for(RecordType rt : [select id, name, developerName, sobjectType from RecordType limit 50000]) {
+        for(RecordType rt : [select id, name, developerName, sobjectType from RecordType]) {
             //info.put(rt.developerName, rt);
             if(info.containsKey(rt.sobjectType))
             {

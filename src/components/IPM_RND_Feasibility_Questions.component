@@ -33,6 +33,7 @@
   </tr>
   <tr>
       <td>           
+       <!-- Below rendered condition is used for showing slider -->       
            <apex:outputPanel rendered="{!isEditable}">                     
             <apex:outputPanel id="rndSlide" styleClass="sliderRND" > 
             <input type="hidden" name="RnD" value="{!que.IPM_GK_Answers__c}" />               
@@ -48,6 +49,7 @@
              </div> 
              </apex:outputPanel>
              </apex:outputPanel>
+             <!-- Below rendered condition is used for below output text -->
              <apex:outputText value="{!que.IPM_GK_Answers__c}" rendered="{!!isEditable}"/>             
     </td>
   </tr>  
@@ -56,6 +58,7 @@
 </table>   
 </div>
 </apex:outputPanel>
+<!-- Below rendered condition is used for calling action function-->
 <apex:actionFunction name="callupdateRnDList" action="{!updateGKchecklist}" reRender="" rendered="{!isEditable}" >
 <apex:param name="firstParam" assignTo="{!quesId}" value=""/>
 <apex:param name="secondParam" assignTo="{!ans}" value=""/>

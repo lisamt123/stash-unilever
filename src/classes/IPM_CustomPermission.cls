@@ -1,8 +1,8 @@
-/*******************************************************************************************
-*@Description:use for security to get permission assigned to current logged in user
+// /*************************************************************************************
+/*@Description:use for security to get permission assigned to current logged in user
 *@Author: Cognizant
 *@Created Date: 07/09/2015 
-*@Copyright ï¿½ 2015  Unilever  
+*@Copyright 2015  Unilever  
 *******************************************************************************************/
 
 public with sharing class IPM_CustomPermission {
@@ -33,7 +33,7 @@ public with sharing class IPM_CustomPermission {
         
         List<IPM_User_Profile__c>userProfileList=new List<IPM_User_Profile__c>();
         userProfileList=[SELECT ID FROM IPM_User_Profile__c WHERE IPM_User__c=:UserInfo.getUserId() 
-                                                    AND IPM_Central_Team__c=true LIMIT 1];
+                         AND (IPM_Central_Team__c=true OR IPM_User_Function__c=:IPM_ConstantUtils.PERMISSION_USER_ROLE_DEPUTY_BUSINESS_PARTNER) LIMIT 1];
         List<IPM_Company_Card__c>companyCardList=new List<IPM_Company_Card__c>();
         companyCardList=[SELECT ID FROM IPM_Company_Card__c WHERE IPM_Business_Partner__c=:UserInfo.getUserId() LIMIT 1];
         if(!userProfileList.isEmpty() || !companyCardList.isEmpty()){

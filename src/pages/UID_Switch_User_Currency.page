@@ -1,0 +1,32 @@
+<apex:page standardController="User" extensions="UID_Switch_User_Currency" showHeader="False">
+      
+<script type="text/javascript"> 
+  function Callmefunc(id) 
+   {   
+   var currencyValue = document.getElementById(id).value; 
+   setStandardCurrency(currencyValue);  
+   } 
+   
+   </script> 
+  
+  <apex:form >
+  
+      <apex:actionFunction name="setStandardCurrency" action="{!setCurrency}" rerender="OutPutText">
+        <apex:param name="setUserCurrency" assignTo="{!newUserCurrency}" value=""/>
+      </apex:actionFunction>
+      
+      <apex:pageBlock >
+              <apex:outputText id="OutPutText">Your current Currency is {!User.DefaultCurrencyIsoCode} </apex:outputText>
+              <br/>
+          <apex:pageBlockSection />
+          <br/>       
+              <apex:outputText >Please choose your desired currency: </apex:outputText>
+              <apex:inputField value="{!User.DefaultCurrencyIsoCode}" id="uidUserCurrencyId" label="" onchange="Callmefunc('{!$Component.uidUserCurrencyId}');"/>
+            <apex:pageBlockSection / >
+            <br/>
+              <apex:commandButton value="Save" action="{!save}"/>
+              <apex:commandButton value="Cancel" action="{!cancel}"/>
+      </apex:pageBlock>
+    
+  </apex:form>  
+</apex:page>

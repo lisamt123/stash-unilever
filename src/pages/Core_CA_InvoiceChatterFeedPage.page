@@ -1,0 +1,126 @@
+<apex:page showHeader="false" sidebar="false">
+
+<!--
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script>
+    $j = jQuery.noConflict();
+       
+    $j( document ).on( "click", ".topic", function(e) {         
+            var url=$j(this).attr('href'); 
+            if(url!=null){ 
+            return false;
+            }
+            else
+            { 
+            return false;
+            }
+    });
+    
+    $j( document ).on( "click", ".actorentitylink", function(e) {         
+            var url=$j(this).attr('href'); 
+            if(url!=null){ 
+            return false;
+            }
+            else
+            { 
+            return false;
+            }
+    });
+    
+    $j( document ).on( "click", ".linkPostLinkContainer", function(e) {         
+            var url=$j(this).attr('href'); 
+            if(url!=null){ 
+            return false;
+            }
+            else
+            { 
+            return false;
+            }
+    });
+</script>
+-->
+<style>
+    .feedPagePadding{
+        margin-bottom: 60px;
+        margin-left:10px; 
+        padding-top: 10px;
+        //width:100%;
+    }
+    .preamblecontainer.displayblock {
+          pointer-events: none;
+          cursor: default;
+    }
+    @media (max-width: 480px)
+        .feedPagePadding {
+            width: 95%;
+            margin-bottom: 60px;
+            margin-left:10px; 
+            padding-top: 10px;
+        }
+    }
+    input#richTextPlaceholderInput {
+        display: none;
+    }
+    #richTextPlaceholderInput {
+        display: none;
+    }
+    .publishercontainer.zen.defaultState.cxchattertextareacontainer.chattertextareacontainer, .comboMenu.zen-line.feedsupermenu, span.feeditemActionMenu  {
+        display: none;
+    }
+    
+    .contentPost .rightSideCell,.feedcontainer .feeditemfooter,.feedcontainer .feeditemextras .feedItemExtrasMetaText,.feedcommentactions .commentActionMenu .zen-select, .feedcontainer .feeditemusericon {
+        pointer-events: none;
+    }
+    .feedcontainer .feeditemextras .feeditemcommentplaceholder, .feedcontainer .feeditemcommentnew, td.moreFileActions-td {
+        display: none;
+    }
+   <!-- @media (max-width: 480px) { 
+        .feedPagePadding{
+            width: 448px;
+            margin-bottom: 60px;
+            margin-left:10px; 
+        }
+    }  
+    @media (max-width: 450px) { 
+        .feedPagePadding{
+            width: 398px;
+            margin-bottom: 60px;
+            margin-left:10px; 
+        }
+    }
+    @media (max-width: 400px) { 
+        .feedPagePadding{
+            width: 348px;
+            margin-bottom: 60px;
+            margin-left:10px; 
+        }
+    }  
+     @media (max-width: 350px) { 
+        .feedPagePadding{
+            width: 300px;
+            margin-bottom: 60px;
+            margin-left:10px; 
+        }
+    } -->      
+</style>
+<div class="feedPagePadding" >
+    <chatter:feed entityId="{!$CurrentPage.parameters.id}" showPublisher="true" />
+</div>
+<!--<script> 
+    document.addEventListener("click",handler,true);
+    function handler(e){
+        e.stopPropagation();
+        e.preventDefault();
+    }
+    
+    var testElements3 = document.getElementsByTagName("a"); 
+    for(var i = 0, j=testElements3.length; i<j; i++){          
+        testElements3[i].addEventListener("click", function(){           
+        event.preventDefault();
+        return false;
+      });
+    } 
+                     
+</script> -->
+   
+</apex:page>

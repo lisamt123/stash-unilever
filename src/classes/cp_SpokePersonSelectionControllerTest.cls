@@ -23,16 +23,16 @@
 private class cp_SpokePersonSelectionControllerTest {
 
     static testMethod void testAddToList() {
-        cp_Event__c event = buildGlobalEvent();
-        //cp_ULE_Contact__c  contact1 = buildRepContact('test1');
-        //cp_ULE_Contact__c  contact2 = buildRepContact('test1');
-        Test.startTest();
-           ApexPages.StandardController stdController = new ApexPages.StandardController(event);
-           cp_SpokePersonSelectionController ext         = new cp_SpokePersonSelectionController(stdController);
-           ext.selectedContacts.add( ext.allContacts[0]);
-           ext.OnSave();
-        Test.stopTest();
-        cp_Event__c anEvent = [Select Id, (Select id, Event__c,UnileverLeadershipExecutive__c, 
+    	cp_Event__c event = buildGlobalEvent();
+    	cp_ULE_Contact__c  contact1 = buildRepContact('test1');
+    	cp_ULE_Contact__c  contact2 = buildRepContact('test1');
+    	Test.startTest();
+    	   ApexPages.StandardController stdController = new ApexPages.StandardController(event);
+    	   cp_SpokePersonSelectionController ext         = new cp_SpokePersonSelectionController(stdController);
+    	   ext.selectedContacts.add( ext.allContacts[0]);
+    	   ext.OnSave();
+    	Test.stopTest();
+    	cp_Event__c anEvent = [Select Id, (Select id, Event__c,UnileverLeadershipExecutive__c, 
                                                 UnileverLeadershipExecutive__r.Name from ULE_Event_Reps__r) 
                               from  cp_Event__c 
                              where Id = :event.id];
@@ -41,7 +41,7 @@ private class cp_SpokePersonSelectionControllerTest {
     
     static testMethod void testRemovefromList() {
         cp_Event__c event = buildGlobalEvent();
-        //cp_ULE_Contact__c  contact1 = buildRepContact('test1');
+        cp_ULE_Contact__c  contact1 = buildRepContact('test1');
         cp_ULE_Contact__c  contact2 = buildRepContact('test1');
         buildULE(contact2.Id,event.Id);
         Test.startTest();
@@ -58,15 +58,15 @@ private class cp_SpokePersonSelectionControllerTest {
     }
     
     public static cp_ULE__c buildULE(Id contactId, Id eventId) {
-        cp_ULE__c ule = new cp_ULE__c(UnileverLeadershipExecutive__c = contactId, Event__c = eventId);
-        insert ule;
-        return ule;
+    	cp_ULE__c ule = new cp_ULE__c(UnileverLeadershipExecutive__c = contactId, Event__c = eventId);
+    	insert ule;
+    	return ule;
     }
     
     public static cp_ULE_Contact__c buildRepContact(String name) {
-        cp_ULE_Contact__c contact = new cp_ULE_Contact__c(Name=name, FirstName__c='firstName', Active_ULE__c = true);
-        insert contact;
-        return contact;
+    	cp_ULE_Contact__c contact = new cp_ULE_Contact__c(Name=name, FirstName__c='firstName', Active_ULE__c = true);
+    	insert contact;
+    	return contact;
     }
     
      public static cp_Event__c buildGlobalEvent() {

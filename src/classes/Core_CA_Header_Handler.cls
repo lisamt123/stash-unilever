@@ -15,19 +15,21 @@ public class Core_CA_Header_Handler{
     
         List<RecordType> aribaRecordType  = [SELECT Id FROM RecordType where Name ='Ariba' AND SobjectType = 'Core_Approval_Header__c'];
         List<RecordType> gtesRecordType   = [SELECT Id FROM RecordType where Name ='GTES' AND SobjectType = 'Core_Approval_Header__c'];
-        //List<RecordType> remedyRecordType = [SELECT Id FROM RecordType where Name ='Remedy' AND SobjectType = 'Core_Approval_Header__c'];
-         
+        List<RecordType> clarityRecordType  = [SELECT Id FROM RecordType where Name ='Clarity' AND SobjectType = 'Core_Approval_Header__c'];
+        List<RecordType> invoiceRecordType   = [SELECT Id FROM RecordType where Name ='Invoice' AND SobjectType = 'Core_Approval_Header__c'];
+        
         for(Core_Approval_Header__c headerRec : headerList){
           
-           //Assigning Record Type Id for Ariba source system. 
+           //Fetching Record Type Id for Selected Source System.
            if(headerRec.Source_System__c == 'GTES')
-                headerRec.RecordTypeId  = gtesRecordType[0].ID;          
-           //Assigning Record Type Id for Ariba source system.         
+                headerRec.RecordTypeId  = gtesRecordType[0].ID;                             
            if(headerRec.Source_System__c == 'Ariba')
                 headerRec.RecordTypeId  = aribaRecordType[0].ID;
-           //Assigning Record Type Id for Ariba source system.
-           //if(headerRec.Source_System__c == 'Remedy')
-                //headerRec.RecordTypeId  = remedyRecordType[0].Id;
+           if(headerRec.Source_System__c == 'Clarity')
+                headerRec.RecordTypeId  = clarityRecordType[0].ID;                             
+           if(headerRec.Source_System__c == 'Invoice')
+                headerRec.RecordTypeId  = invoiceRecordType[0].ID;
+           
            
            // Updating Name field with External System Value.
            headerRec.Name = headerRec.External_System_Id__c;           
@@ -132,7 +134,7 @@ public class Core_CA_Header_Handler{
            
            if(headerRec.Source_System__c=='GTES' && CORE_Chatter_Approval__c.getinstance('GTES_Notification').Text_Value__c=='Yes'){
                 //If Fully Approved field is True
-                if(headerRec.Fully_Approved__c==True){
+                if(headerRec.Fully_Approved__c){
                     /*List<EntitySubscription> lstEntitySubQuery=new List<EntitySubscription>();
                     lstEntitySubQuery=[SELECT Id,ParentId,SubscriberId FROM EntitySubscription WHERE ParentId = :headerRec.Id];
                     if(!lstEntitySubQuery.isempty()) lstEntitySubDelete.addAll(lstEntitySubQuery);*/
@@ -151,8 +153,8 @@ public class Core_CA_Header_Handler{
                 else setHeaderStatus.add(new Core_Approval_Header__c(id=headerRec.Id,Status__c='Submitted'));
             }
            
-           if(headerRec.Source_System__c=='Ariba' && CORE_Chatter_Approval__c.getinstance('Ariba_Notification').Text_Value__c == 'Yes'){
-                String strBody;
+           //if(headerRec.Source_System__c=='Ariba' && CORE_Chatter_Approval__c.getinstance('Ariba_Notification').Text_Value__c == 'Yes'){
+                //String strBody;
                 
                 /*trigger notification regarding invalid PR
                 if(headerRec.Invalid_PR__c == true){                   
@@ -209,7 +211,7 @@ public class Core_CA_Header_Handler{
                         lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL =baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
                 } */
                 
-             } 
+             //}
           }
           //insert the feed item record.
           if(!lstFeedItem.isEmpty()) Database.insert(lstFeedItem);
@@ -230,7 +232,12 @@ public class Core_CA_Header_Handler{
           //delete entity subscription record
           //if(!lstEntitySubDelete.isempty()) Database.delete(lstEntitySubDelete);
         }
-        catch(Exception ex){}
+        catch (Exception ex) {
+         while (ex.getCause() != null)
+         ex = ex.getCause();
+         System.Debug('Error:['+ ex.getMessage()+']');   
+    
+      }
     }
     
     public void handleAfterUpdate(map<Id,Core_Approval_Header__c> headerNew, map<Id,Core_Approval_Header__c> headerOld){
@@ -282,7 +289,7 @@ public class Core_CA_Header_Handler{
                 }
                 
                 //If Fully Approved field is True
-                if(newHeader.Fully_Approved__c==True && oldHeader.Fully_Approved__c==False){
+                if(newHeader.Fully_Approved__c && !oldHeader.Fully_Approved__c){
                     /*List<EntitySubscription> lstEntitySubQuery=new List<EntitySubscription>();
                     lstEntitySubQuery=[SELECT Id,ParentId,SubscriberId FROM EntitySubscription WHERE ParentId = :headerRec.Id];
                     if(!lstEntitySubQuery.isempty()) lstEntitySubDelete.addAll(lstEntitySubQuery);*/
@@ -303,7 +310,7 @@ public class Core_CA_Header_Handler{
            if(headerRec.Source_System__c=='Ariba' && CORE_Chatter_Approval__c.getinstance('Ariba_Notification').Text_Value__c == 'Yes'){
                 String strBody;
                 
-                if(oldHeader.Invalid_PR__c == false && newHeader.Invalid_PR__c == true){
+                if(!oldHeader.Invalid_PR__c  && newHeader.Invalid_PR__c){
                     //trigger notification regarding invalid PR
                     if(headerRec.Invalid_PR_Reason__c != null) 
                         strBody = CORE_Chatter_Approval__c.getinstance('Ariba-InvalidPR').Text_Value__c; 
@@ -322,7 +329,7 @@ public class Core_CA_Header_Handler{
                     //Clear the values of all active approver who have blank field value in action.
                     if( mapApprover.get(headerRec.Id) != null){                                                                          
                         for(Core_Approver_Details__c approverRec : mapApprover.get(headerRec.Id)){
-                            if(approverRec.role__c=='APP'&& approverRec.Is_Active__c == true && (approverRec.Action__c == '' || approverRec.Action__c == null) ){
+                            if(approverRec.role__c=='APP'&& approverRec.Is_Active__c && (approverRec.Action__c == '' || approverRec.Action__c == null) ){
                                 lstactiveApprover.add(new Core_Approver_Details__c(Id=approverRec.Id,Send_to_Source_System__c='',Status__c=''));        
                             }
                         }
@@ -392,7 +399,12 @@ public class Core_CA_Header_Handler{
             }
             Database.update(lstHeaderStatus);
         }
-    }
-    catch(Exception ex){}
+      }
+       catch (Exception ex) {
+         while (ex.getCause() != null)
+         ex = ex.getCause();
+         System.Debug('Error:['+ ex.getMessage()+']');   
+    
+      }
     }
 }

@@ -42,6 +42,8 @@ public with sharing class CEC_ProductRangeController{
     Public Integer pagesize = 0;
     // controls initial page load action
     Public Boolean onPageLoad = False;
+	// picklist constant
+	public final String picklistValueNone = '-None-';
     // initilises caseProduct list
     public List<mdm_Case_Product__c> CaseProducts  
     {  
@@ -81,8 +83,8 @@ public with sharing class CEC_ProductRangeController{
                 // initialize code variable on page load
                 code = caseRecord.CEC_Product__r.Global_CPG_Code__r.L7_Product_Category__c;
                 // initialize brand to none
-                brand = '-None-';
-                productTag = '-None-';
+                brand = picklistValueNone;
+                productTag = picklistValueNone;
                 
                 if(caseRecord.Product_ISO_Country_Code__c != null){
                     // query case products to create category and brand map
@@ -174,7 +176,7 @@ public with sharing class CEC_ProductRangeController{
             }
         }
         options.sort();
-        options.add(new selectOption('-None-','-None-'));
+        options.add(new selectOption(picklistValueNone,picklistValueNone));
         return options;
     }
     
@@ -182,7 +184,7 @@ public with sharing class CEC_ProductRangeController{
     // populate brand picklist values for vfpage
     public list<SelectOption> getBrands(){
         set<string> brands = new set<string>();
-        if(code!='-None-'){
+        if(code!=picklistValueNone){
             brands = cpgCodeToBrandMap.get(code);
         }else{
             for(set<String> bset : cpgCodeToBrandMap.values()){
@@ -198,7 +200,7 @@ public with sharing class CEC_ProductRangeController{
             }
         }
         options.sort();
-        options.add(new selectOption('-None-','-None-'));
+        options.add(new selectOption(picklistValueNone,picklistValueNone));
         return options;
     }
     
@@ -206,7 +208,7 @@ public with sharing class CEC_ProductRangeController{
     // populate tag picklist values for vfpage
     public list<SelectOption> getTags(){
         set<string> tags = new set<string>();
-        if(code != '-None-'){
+        if(code != picklistValueNone){
             tags = cpgCodeToTagMap.get(code);
         }else{
             for(set<String> tset : cpgCodeToTagMap.values()){
@@ -222,7 +224,7 @@ public with sharing class CEC_ProductRangeController{
             }
         }
         options.sort();
-        options.add(new selectOption('-None-','-None-'));
+        options.add(new selectOption(picklistValueNone,picklistValueNone));
         return options;
     }
     
@@ -241,7 +243,7 @@ public with sharing class CEC_ProductRangeController{
                     }
                 }
             }else{  // create product list based on user filters
-                if(code != '-None-' && brand != '-None-' && productTag != '-None-'){    //For selected code, brand and tag
+                if(code != picklistValueNone && brand != picklistValueNone && productTag != picklistValueNone){    //For selected code, brand and tag
                     searchList = [Select Id, Name, Brand__c, ISO_Country_Code__c, Global_CPG_Code__c, Category_Search__c, Product_Tag__c
                                     FROM mdm_Case_Product__c 
                                     WHERE ISO_Country_Code__c = :caseRecord.Product_ISO_Country_Code__c 
@@ -252,7 +254,7 @@ public with sharing class CEC_ProductRangeController{
                                     AND Product_Tag__c = :productTag
                                     AND IsDeleted = FALSE
                                     LIMIT 10000];
-                }else if(code != '-None-' && brand != '-None-' && productTag == '-None-'){  //For all active codes and brands in the country     
+                }else if(code != picklistValueNone && brand != picklistValueNone && productTag == picklistValueNone){  //For all active codes and brands in the country     
                     searchList = [Select Id, Name, Brand__c, ISO_Country_Code__c, Global_CPG_Code__c, Category_Search__c, Product_Tag__c
                                     FROM mdm_Case_Product__c 
                                     WHERE ISO_Country_Code__c = :caseRecord.Product_ISO_Country_Code__c 
@@ -262,7 +264,7 @@ public with sharing class CEC_ProductRangeController{
                                     AND Category_Search__c = :code
                                     AND IsDeleted = FALSE
                                     LIMIT 10000];
-                }else if(code != '-None-' && brand == '-None-' && productTag != '-None-'){  //For all active codes and tags in the country     
+                }else if(code != picklistValueNone && brand == picklistValueNone && productTag != picklistValueNone){  //For all active codes and tags in the country     
                     searchList = [Select Id, Name, Brand__c, ISO_Country_Code__c, Global_CPG_Code__c, Category_Search__c, Product_Tag__c
                                     FROM mdm_Case_Product__c 
                                     WHERE ISO_Country_Code__c = :caseRecord.Product_ISO_Country_Code__c 
@@ -273,7 +275,7 @@ public with sharing class CEC_ProductRangeController{
                                     AND Product_Tag__c = :productTag
                                     AND IsDeleted = FALSE
                                     LIMIT 10000];
-                }else if(code != '-None-' && brand == '-None-' && productTag == '-None-'){  //For all active product code
+                }else if(code != picklistValueNone && brand == picklistValueNone && productTag == picklistValueNone){  //For all active product code
                     searchList = [Select Id, Name, Brand__c, ISO_Country_Code__c, Global_CPG_Code__c, Category_Search__c, Product_Tag__c
                                     FROM mdm_Case_Product__c 
                                     WHERE ISO_Country_Code__c = :caseRecord.Product_ISO_Country_Code__c 
@@ -283,7 +285,7 @@ public with sharing class CEC_ProductRangeController{
                                     AND Category_Search__c = :code
                                     AND IsDeleted = FALSE
                                     LIMIT 10000];
-                }else if(code == '-None-' && brand != '-None-' && productTag != '-None-'){  //For all active brands and tags in the country     
+                }else if(code == picklistValueNone && brand != picklistValueNone && productTag != picklistValueNone){  //For all active brands and tags in the country     
                     searchList = [Select Id, Name, Brand__c, ISO_Country_Code__c, Global_CPG_Code__c, Category_Search__c, Product_Tag__c
                                     FROM mdm_Case_Product__c 
                                     WHERE ISO_Country_Code__c = :caseRecord.Product_ISO_Country_Code__c 
@@ -294,7 +296,7 @@ public with sharing class CEC_ProductRangeController{
                                     AND Product_Tag__c = :productTag
                                     AND IsDeleted = FALSE
                                     LIMIT 10000];
-                }else if(code == '-None-' && brand != '-None-' && productTag == '-None-'){  //For all active brands in the country     
+                }else if(code == picklistValueNone && brand != picklistValueNone && productTag == picklistValueNone){  //For all active brands in the country     
                     searchList = [Select Id, Name, Brand__c, ISO_Country_Code__c, Global_CPG_Code__c, Category_Search__c, Product_Tag__c
                                     FROM mdm_Case_Product__c 
                                     WHERE ISO_Country_Code__c = :caseRecord.Product_ISO_Country_Code__c 
@@ -304,7 +306,7 @@ public with sharing class CEC_ProductRangeController{
                                     AND Category_Search__c != ''
                                     AND IsDeleted = FALSE
                                     LIMIT 10000];
-                }else if(code == '-None-' && brand == '-None-' && productTag != '-None-'){//For all active product tags
+                }else if(code == picklistValueNone && brand == picklistValueNone && productTag != picklistValueNone){//For all active product tags
                     searchList = [Select Id, Name, Brand__c, ISO_Country_Code__c, Global_CPG_Code__c, Category_Search__c, Product_Tag__c
                                     FROM mdm_Case_Product__c 
                                     WHERE ISO_Country_Code__c = :caseRecord.Product_ISO_Country_Code__c 

@@ -1,0 +1,18 @@
+<apex:page standardController="CPA_HLE_Request__c" extensions="CPA_HLERequInformationController" > 
+ <apex:form >
+  <apex:pageBlock >
+      <apex:pageMessages />
+   
+       <apex:pageBlock rendered="{!mandatoryStringFlag != null}">
+        <apex:pageMessage summary="{!mandatoryStringFlag}"
+                      severity="warning"
+                      strength="3"
+                     rendered="{!mandatoryStringFlag != null}"/>
+            <apex:pageBlockTable value="{!RequiredFieldMap}" var="listItem" rendered="{!mandatoryStringFlag != null}">
+                <apex:column value="{!listItem}"  headerValue="Field Name" style="width:300px" />
+                <apex:column value="{!RequiredFieldMap[listItem]}" headerValue="Criteria"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>    
+    </apex:pageBlock> 
+ </apex:form> 
+</apex:page>

@@ -13,11 +13,11 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
    1.0   Jack Dermody      18/09/2014        INITIAL DEVELOPMENT           
 ***********************************************************************/
 public without sharing class FAU_EmailSender {
-    //Constructor
+	//Constructor
     public FAU_EmailSender()
-    {
-        
-    }  
+	{
+		
+	}  
 
     /*******************************************************************
        Purpose:     Send Email to Webparticipants (with Meeting Request)
@@ -115,7 +115,7 @@ public without sharing class FAU_EmailSender {
     ********************************************************************/
     public static Messaging.EmailFileAttachment createIcsAttachment(Datetime dtStart, Datetime dtEnd, String sLocation, String sSummary, String sDescription)
     {
-        Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
+    	Messaging.EmailFileAttachment attachment = new Messaging.EmailFileAttachment();
         attachment.filename = 'meeting.ics';
         attachment.ContentType = 'text/calendar;';
         attachment.inline = true;
@@ -128,10 +128,6 @@ public without sharing class FAU_EmailSender {
     ********************************************************************/
     private static Blob createIcsBlob(Datetime dtStart, Datetime dtEnd, String sLocation, String sSummary, String sDescription) {
         String txtInvite = '';
-        String T = 'T';
-        String Z='Z\n';//Modified by yugandhar,declared new string Z
-        String yyyymmdd = 'yyyyMMdd';// Changes made by Suman Sarita Mahapatra 28/04/2016 , to rectify "The String literal 'yyyymmdd' appears 5 times in this file; " in sonar.
-        String HMS = 'HHmmss'; // Changes made by Bibhu
 
         txtInvite += 'BEGIN:VCALENDAR\n';
         txtInvite += 'PRODID:-//Microsoft Corporation//Outlook 12.0 MIMEDIR//EN\n';
@@ -140,11 +136,11 @@ public without sharing class FAU_EmailSender {
         txtInvite += 'X-MS-OLK-FORCEINSPECTOROPEN:TRUE\n';
         txtInvite += 'BEGIN:VEVENT\n';
         txtInvite += 'CLASS:PUBLIC\n';
-        txtInvite += 'CREATED:' + datetime.now().formatGmt(yyyymmdd) + T + datetime.now().formatGmt('HMS') + Z;
-        txtInvite += 'DTEND:' + dtEnd.formatGmt(yyyymmdd) + T + dtEnd.formatGmt('HMS') + Z;
-        txtInvite += 'DTSTAMP:'+ datetime.now().formatGmt(yyyymmdd) + T + datetime.now().formatGmt('HMS') + Z;
-        txtInvite += 'DTSTART:' + dtStart.formatGmt(yyyymmdd) + T + dtStart.formatGmt('HMS') + Z;
-        txtInvite += 'LAST-MODIFIED:'+ datetime.now().formatGmt(yyyymmdd) + T + datetime.now().formatGmt('HMS') + Z;
+        txtInvite += 'CREATED:' + datetime.now().formatGmt('yyyyMMdd') + 'T' + datetime.now().formatGmt('HHmmss') + 'Z\n';
+        txtInvite += 'DTEND:' + dtEnd.formatGmt('yyyyMMdd') + 'T' + dtEnd.formatGmt('HHmmss') + 'Z\n';
+        txtInvite += 'DTSTAMP:'+ datetime.now().formatGmt('yyyyMMdd') + 'T' + datetime.now().formatGmt('HHmmss') + 'Z\n';
+        txtInvite += 'DTSTART:' + dtStart.formatGmt('yyyyMMdd') + 'T' + dtStart.formatGmt('HHmmss') + 'Z\n';
+        txtInvite += 'LAST-MODIFIED:'+ datetime.now().formatGmt('yyyyMMdd') + 'T' + datetime.now().formatGmt('HHmmss') + 'Z\n';
         txtInvite += 'LOCATION:'+ sLocation +'\n';
         txtInvite += 'PRIORITY:5\n';
         txtInvite += 'SEQUENCE:0\n';
@@ -188,8 +184,8 @@ public without sharing class FAU_EmailSender {
          // Send the emails in a transaction, then roll it back
         Savepoint beforeInserts = Database.setSavepoint();
 
-        List<Messaging.SendEmailResult> results = Messaging.sendEmail(lstMsgs, false); 
-                
+        List<Messaging.SendEmailResult> results = Messaging.sendEmail(lstMsgs, false);
+        
         Database.rollback(beforeInserts);
         System.Debug('##### FAU_EmailSender - After Rollback'); 
 
@@ -215,8 +211,8 @@ public without sharing class FAU_EmailSender {
         System.Debug('##### FAU_EmailSender - Before Second Send'); 
         List<Messaging.SendEmailResult> results1 = Messaging.sendEmail(lstMsgsToSend, false);
         if (!results1.get(0).isSuccess()) {
-        System.StatusCode statusCode = results1.get(0).getErrors()[0].getStatusCode();
-        String errorMessage = results1.get(0).getErrors()[0].getMessage();
+            System.StatusCode statusCode = results1.get(0).getErrors()[0].getStatusCode();
+            String errorMessage = results1.get(0).getErrors()[0].getMessage();
             System.Debug('##### FAU_EmailSender - Message Error:' + errorMessage); 
         }
         System.Debug('##### FAU_EmailSender - VEry End'); 

@@ -1,0 +1,212 @@
+<!--
+Copyright (c) 2014, salesforce.com, Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+    * Neither the name of the salesforce.com, Inc. nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<apex:page controller="PBS_MyProfileController_CC" docType="html-5.0" sidebar="false" showHeader="true" standardStylesheets="false">
+
+    <apex:composition template="PBS_Header_Template"/>
+    <div class="row bodyRow group">
+        
+        <div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>
+        <div class="col-xs-4 home-detail">
+            <ul>
+            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a></li>
+            </ul>
+        </div>
+    </div>
+    <apex:composition template="PBS_LMS_HeroTemplate">
+
+        <apex:define name="head">
+            <title>My Profile</title>
+            <style type="text/css">
+                #lms-nav-header {
+                    display: none;
+                }
+            </style>
+        </apex:define>
+
+        <apex:define name="hero-banner">
+            <div class="profile-data">
+                <h2>{!oUser.Name}</h2>
+                <ul>
+                    <li class="profile-title">{!oUser.Title}</li>
+                    <apex:outputPanel layout="none" rendered="{!oManager != null}">
+                        <li class="profile-manager"><span class="glyphicon glyphicon-chevron-up"></span><a href="javascript:almond.redirectHandlerWithStatus('{!$Page.PBS_MyProfile}?id={!oManager.Id}')"> {!oManager.Name}</a></li>
+                    </apex:outputPanel>
+                    <li class="profile-mail"><span class="glyphicon glyphicon-envelope"></span> {!oUser.Email}</li>
+                    
+                    <!-- DB 15/12/15 Commented out Chatter link as not currently functioning
+                    <li class="profile-mail"><span class="glyphicon glyphicon-comment"></span><a href="javascript:almond.redirectHandler('/{!oUser.Id}')"> @chatter</a></li>
+                    -->
+                
+                
+                </ul>
+                
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label for="geography" class="col-sm-2 control-label">Geography</label>
+                        <div class="col-sm-6">
+                            <select id="geography" class="form-control">
+                                <apex:repeat value="{!geographyOptions}" var="geoObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.Geography__c == geoObj}">
+                                        <option value="{!geoObj}" selected="selected">{!geoObj}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="none" rendered="{!profile.Geography__c != geoObj}">
+                                        <option value="{!geoObj}">{!geoObj}</option>
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="workLevel" class="col-sm-2 control-label">Work Level</label>
+                        <div class="col-sm-6">
+                            <select id="workLevel" class="form-control">
+                                <apex:repeat value="{!workLevelOptions}" var="wlObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.Work_Level__c == wlObj}">
+                                        <option value="{!wlObj}" selected="selected">{!wlObj}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="none" rendered="{!profile.Work_Level__c != wlObj}">
+                                        <option value="{!wlObj}">{!wlObj}</option>
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobProfile" class="col-sm-2 control-label">Job Profile</label>
+                        <div class="col-sm-6">
+                            <select id="jobProfile" class="form-control">
+                                <apex:repeat value="{!JobProfileOptions}" var="jbObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.user_role__c == jbObj.Id}">
+                                        <option value="{!jbObj.Id}" selected="selected">{!jbObj.Name}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="none" rendered="{!profile.user_role__c != jbObj.Id}">
+                                        <option value="{!jbObj.Id}">{!jbObj.Name}</option>
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                            </select>
+                        </div>
+                        <div class="col-sm-2" style="font-size: 11px; min-height: 35px; display: flex; justify-content: center; align-content: center; flex-direction: column;">
+                            <a href="http://apps.unilever.com/global/SCW/app/Pages/index.html" class="">Unsure Who You Are?</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="category" class="col-sm-2 control-label">Category</label>
+                        <div class="col-sm-6">
+                            <select id="category" class="form-control">
+                                <apex:repeat value="{!CategoryOptions}" var="caObj">
+                                    <apex:outputPanel layout="none" rendered="{!profile.Category__c == caObj}">
+                                        <option value="{!caObj}" selected="selected">{!caObj}</option>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="none" rendered="{!profile.Category__c != caObj}">
+                                        <option value="{!caObj}">{!caObj}</option>
+                                    </apex:outputPanel>
+                                </apex:repeat>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobProfile" class="col-sm-2 control-label">Buddy Name</label>
+                        <div class="col-sm-6">
+                            <input type="text" value="{!profile.buddy__c}" class="form-control" name="buddyName" id="buddyName" data-toggle="tooltip" title="Please enter your buddy name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <button type="submit" class="save-btn almond-primary-btn small-btn pull-right">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                function showModal(){$jk(".modal-backdrop").appendTo("#lms-template-wrapper"),$jk("#myModal").modal("show")}function hideModal(){$jk("#myModal").modal("hide")}var $jk=jQuery.noConflict(),availableOptions={};$jk(document).ready(function(){$jk('[data-toggle="tooltip"]').tooltip(),$jk(".save-btn").on("click",function(){showModal();var o=$jk("#geography").val(),a=$jk("#workLevel").val(),e=$jk("#jobProfile").val(),c=$jk("#category ").val(),l=$jk("#buddyName").val();PBS_MyProfileController_CC.storeUserProfile(o,a,e,c,l,function(o,a){o!==!0||(window.parent.postMessage({itemId:"home"},"*"),window.location="{!$Page.PC_ContainerPage}"),hideModal()})})});
+            </script>
+
+        </apex:define>
+
+        <apex:define name="hero-search">
+            <br /><br />
+            
+            <!-- <c:AchievementsUserSearchBar searchBarSize="md"/> -->
+        
+        </apex:define>
+
+        <apex:define name="hero-banner-badge">
+            <div id="hb-right" class="col-xs-12 col-sm-4 col-md-3">
+                <div class="thumb achievements-avatar" style="background:url({!JSENCODE(oUser.FullPhotoUrl)});background-size: cover;">
+                </div>
+            </div>
+        </apex:define>
+
+        
+
+        <apex:define name="body">
+
+            <apex:form id="theForm">
+
+                <apex:actionStatus id="status">
+                    <apex:facet name="start">
+                        <c:PBS_LMSStatus statusComponentId="{!$Component.status}"/>
+                    </apex:facet>
+                </apex:actionStatus>
+
+                <div class="row almond-nav" >
+                    <div class="btn-group col-xs-12 col-sm-12 col-md-12">
+                    
+                        <!-- DB 16/12/15 Commented out Achievments & Certifications
+                            <apex:repeat value="{!achievementTypes}" var="at">
+                                <apex:commandLink value="{!at.label}" action="{!changeAchievementType}" status="status" rerender="theForm" styleClass="btn btn-default col-xs-5 col-sm-3 col-md-3 {!IF(achievementType == at.name,'almond-nav-active','')}">
+                                    <apex:param value="{!at.name}" name="type"/>
+                                </apex:commandLink>
+                            </apex:repeat>
+                        -->
+
+                      
+                    </div>
+                </div>
+
+            </apex:form>
+
+           
+
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div style="padding:10px 0;">
+                                  <p>Saving data ...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </apex:define>
+
+    </apex:composition>
+</apex:page>

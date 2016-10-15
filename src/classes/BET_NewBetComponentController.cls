@@ -10,7 +10,10 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public with sharing class BET_NewBetComponentController {
 
-    
+    //FabricConditioner begin
+    private static Boolean fbEnabled = BET_FabricCoditioners__c.getOrgDefaults().Enabled__c;
+    //FabricConditioner end
+
     public BET_CategoryComponentData compData {get;set;}
     public Boolean goToMemberSelection {get;set;}
     public String retURL {get;set;}
@@ -100,7 +103,14 @@ public with sharing class BET_NewBetComponentController {
         System.debug('Entering proceedWithSave : ' + redirectToMembersComponent);
         
         compData.categoryMigrated = compData.category == null ? false : IPM_BETUpdateService.CategoryCheck(compData.category);
-                
+        
+        //FabricConditioner begin
+        try{
+            compData.fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(compData.category) : false;
+        }catch(Exception e){
+            compData.fabricConditionerCategory = false;
+        }
+        //FabricConditioner end
         System.debug(compData);
         bet = moveComponentDataToBET(bet,compData);
         List<String> errorMessages = validateBET(bet);

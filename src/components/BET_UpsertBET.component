@@ -69,7 +69,17 @@
                 <apex:inputText value="{!catName}" disabled="true"/> 
             </div>
         </div>
-        
+
+        <!-- FabricConditioner begin -->
+        <div class="form-item" style="{!IF(fabricConditionerCategory,'display:none;','display:none;')}">
+            <div class="item-label">
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Is_Fabric_Conditioners__c.Label}</apex:outputLabel>
+            </div>
+            <div class="item-input-checkbox">
+                <apex:outputField value="{!betobject.Is_Fabric_Conditioners__c}"/> 
+            </div>
+        </div>
+        <!-- FabricConditioner end -->
 
         <div class="form-item">
             <div class="item-label">
@@ -91,7 +101,9 @@
             </div>
         </div>
 
-        <div class="form-item">
+        <!-- FabricConditioner begin -->
+        <div class="form-item" style="{!IF(fabricConditionerCategory,'','')}">
+        <!-- FabricConditioner end -->
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.IPM_Project__c.Label}</apex:outputLabel>
             </div>

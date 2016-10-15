@@ -1,8 +1,8 @@
 /**
 *
-* Author:       Carmine Barbuto
-* Date:         31/01/2013
-* Description:  Test class used to create all test data.
+* Author:		Carmine Barbuto
+* Date:			31/01/2013
+* Description:	Test class used to create all test data.
 *
 **/
 @isTest
@@ -11,7 +11,7 @@ public class cp_TestData {
 
     // PLANNER EVENT
     public static cp_Event__c getTestPlannerEvent() {
-        cp_Event__c e           = getTestPlannerEvent('Global');
+        cp_Event__c e  			= getTestPlannerEvent('Global');
         
         return e;
     }
@@ -89,7 +89,7 @@ public class cp_TestData {
         insert cp_TestData.getTestPlanner('Brazil', 'MCO', UserInfo.getUserId());
         insert cp_TestData.getTestPlanner('Europe', 'Cluster', UserInfo.getUserId());
 
-        List<cp_Planner__c> allPlanners = [Select Id From cp_Planner__c Limit 200];
+        List<cp_Planner__c> allPlanners = [Select Id From cp_Planner__c];
 
         // Create an active ULE
         cp_ULE_Contact__c ule = cp_TestData.getTestULE();
@@ -122,7 +122,7 @@ public class cp_TestData {
 
         system.assertEquals(
             200,
-            [Select count() From cp_Event__c Limit 200],
+            [Select count() From cp_Event__c],
             'Not all events are created'
         );
 

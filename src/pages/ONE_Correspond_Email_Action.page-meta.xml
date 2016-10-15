@@ -7,7 +7,7 @@
     <label>ONE Correspond Email Action</label>
     <packageVersions>
         <majorNumber>5</majorNumber>
-        <minorNumber>3</minorNumber>
+        <minorNumber>4</minorNumber>
         <namespace>TH1</namespace>
     </packageVersions>
 </ApexPage>

@@ -1,46 +1,20 @@
-<!-- VF Created By Jamal -->
-<apex:page standardController="Oblix_Project_Assets__c" extensions="Oblix_Ctrl02OverrideAssetNew" id="Page" tabstyle="Oblix_Project_Assets__c">
- <apex:form id="myForm"> 
-  <!--<script type="text/javascript"> 
-  function openLookup(baseURL, width, modified, searchParam){
-    var originalbaseURL = baseURL;
-    var originalwidth = width;
-    var originalmodified = modified;
-    var originalsearchParam = searchParam;
-    var lookupType = baseURL.substr(baseURL.length-3, 3);
-    var asset = 'Asset';
-    var urllength = 2;
-    if (modified == '1') baseURL = baseURL + searchParam;
-    var isCustomLookup = false;
-    if(lookupType == "a6N"){// Following "001" is the lookup type for Account object so change this as per your standard or custom object
-      var urlArr = baseURL.split("&");
-      var txtId = '';
-      var spliter= '=';
-      if(urlArr.length > urllength) {
-        urlArr = urlArr[1].split(spliter);
-        txtId = urlArr[1];
-      }
-        baseURL ='{!$Page.Oblix_VF03CustomAssetLookup}'+"?txt="+ txtId;// "/apex/Oblix_VF03CustomAssetLookup?txt=" 
-      var assetType = '{!rtName}';// Following is the url of Custom Lookup page. You need to change that accordingly
-      var categoryType = '{!asset.Sub_Category__c}'; 
-      if( assetType != null && assetType != ''){ baseURL += "&assetType="+assetType; }
-      if(categoryType != null && categoryType != ''){ baseURL += "&subCategory="+categoryType; }
-      baseURL = baseURL + "&frm=" + escapeUTF("{!$Component.myForm}");// Following is the id of apex:form control "myForm". You need to change that accordingly
-      if (modified == '1') { baseURL = baseURL + "&lksearch=" + searchParam;}
-      if(txtId.indexOf(asset) > -1 ){isCustomLookup = true;}// Following is the ID of inputField that is the lookup to be customized as custom lookup
-    }
-    if(isCustomLookup == true){openPopup(baseURL, "lookup", 350, 480, "width="+width+",height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no", true);}
-    else {
-      if (modified == '1') originalbaseURL = originalbaseURL + originalsearchParam;
-      openPopup(originalbaseURL, "lookup", 350, 480, "width="+originalwidth+",height=480,toolbar=yes,status=yes,directories=no,menubar=yes,resizable=yes,scrollable=no", true);
-    } 
-  }
-</script>-->
+<!-- 
+//******************************************************************************************************
+//      THE CONTENT OF THIS PAGE HAS BEEN COMMENT OUT AS THIS PAGE IS NO LONGER USED
+//      AS PART OF CODE REFACTORING, NEW PAGES HAVE REPLACED THESE - DESTRUCTIVE CHANGES SHOULD REMOVE THIS
+//      S.M. 2016-03-30
+//****************************************************************************************************** 
+-->
+<apex:page standardController="Oblix_Project_Assets__c">
+<!--  <apex:page standardController="Oblix_Project_Assets__c" extensions="Oblix_Ctrl02OverrideAssetNew" id="Page" tabstyle="Oblix_Project_Assets__c">
+<apex:form id="myForm"> 
+
     <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_OverrideAssetNewLookup.js')}" />
   {!$Label.Oblix_Lbl_SOW_Marketing_Clone_Procedure}
 <apex:sectionHeader title="{!$Label.Oblix_Lbl_VF02_Project_Asset}"  subtitle="{!IF(asset.Id<>null, asset.Name, 'New Asset')}" />
     <apex:actionFunction action="{!NULL}" name="changeType" reRender="myForm"/>
-    <!-- ADMIN RT  -->
+    
+
     <apex:pageBlock title="Admin RT" rendered="{!asset.RecordTypeId == rt_Admin}">
         <apex:pageBlockButtons >
             <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"/>
@@ -55,7 +29,7 @@
          <apex:inputField id="Asset4" value="{!asset.FULL_Description__c}"  />
       </apex:pageBlockSection>
     </apex:pageBlock>
-    <!-- Audio Visual RT  -->
+
     <apex:pageBlock id="PageBlockAV" title="{!$Label.Oblix_Lbl_VF02_Project_Asset}" rendered="{!asset.RecordTypeId == rt_AudioVisuel}">        
       <apex:pageBlockButtons >
             <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"/>
@@ -71,7 +45,7 @@
          <apex:inputField id="Asset4" value="{!asset.FULL_Description__c}"  />
       </apex:pageBlockSection>
     </apex:PageBlock>
-    <!-- Static Imagery RT -->
+
      <apex:pageBlock id="PageBlockIm" title="{!$Label.Oblix_Lbl_VF02_Project_Asset}" rendered="{!asset.RecordTypeId == rt_StaticImagery}">        
       <apex:pageBlockButtons >
             <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"/>
@@ -87,7 +61,7 @@
          <apex:inputField id="Asset4" value="{!asset.FULL_Description__c}"  />
       </apex:pageBlockSection>
     </apex:PageBlock>
-    <!-- Experiential -->
+
      <apex:pageBlock id="PageBlockExp" title="{!$Label.Oblix_Lbl_VF02_Project_Asset}" rendered="{!asset.RecordTypeId == rt_Experiential}">        
       <apex:pageBlockButtons >
             <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"/>
@@ -102,7 +76,7 @@
          <apex:inputField id="Asset4" value="{!asset.FULL_Description__c}"  />
       </apex:pageBlockSection>
     </apex:PageBlock>
-    <!-- Digital -->
+
      <apex:pageBlock id="PageBlockDigital" title="{!$Label.Oblix_Lbl_VF02_Project_Asset}" rendered="{!asset.RecordTypeId == rt_Digital}">        
       <apex:pageBlockButtons >
             <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"/>
@@ -118,7 +92,7 @@
          <apex:inputField id="Asset4" value="{!asset.FULL_Description__c}"  />
       </apex:pageBlockSection>
     </apex:PageBlock>
-     <!-- Stimulus_Materials_Research_requirements -->
+
      <apex:pageBlock id="PageBlockResearchReq" title="{!$Label.Oblix_Lbl_VF02_Project_Asset}" rendered="{!asset.RecordTypeId == rt_Stimulus_Materials_Research_requirements}">        
       <apex:pageBlockButtons >
             <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"/>
@@ -134,6 +108,6 @@
          <apex:inputField id="Asset4" value="{!asset.FULL_Description__c}"  />
       </apex:pageBlockSection>
     </apex:PageBlock>
-  </apex:form>
+  </apex:form> -->
  
 </apex:page>

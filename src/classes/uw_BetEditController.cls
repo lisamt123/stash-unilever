@@ -46,7 +46,10 @@ public with sharing class uw_BetEditController {
     public Boolean currentUserIsOwner {get;set;}
     public Boolean currentUserIsBetADmin {get;set;}
 
-    
+    //FabricConditioner begin
+    private static Boolean fbEnabled = BET_FabricCoditioners__c.getOrgDefaults().Enabled__c;
+    //FabricConditioner end
+
     /*****************************************************************************************
     Purpose: Constructor 
     ******************************************************************************************/  
@@ -74,7 +77,7 @@ public with sharing class uw_BetEditController {
 
         initialOwnerId = initialBETShare.UserOrGroupId;
 
-        
+		
         categoryMigrated = bet.Product_Category__c == null ? false : IPM_BETUpdateService.CategoryCheck(bet.Product_Category__c);
         categoryNotMigrated = !categoryMigrated;
 
@@ -82,7 +85,10 @@ public with sharing class uw_BetEditController {
         compData.categoryMigrated = categoryMigrated;
         compData.categoryNotMigrated = categoryNotMigrated;
         
-        
+        //FabricConditioner begin
+        compData.fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(bet.Product_Category__c) : false;
+        //FabricConditioner end
+
         if(bet.Banner_1_Location__c == null){
             showClearBanner = false;
         }else{
@@ -277,7 +283,13 @@ public with sharing class uw_BetEditController {
         }catch(Exception e){
             compData.categoryMigrated = false;
         }
-        
+        //FabricConditioner begin
+        try{
+            compData.fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(compData.category) : false;
+        }catch(Exception e){
+            compData.fabricConditionerCategory = false;
+        }
+        //FabricConditioner end
     }
 
     /************************************************************

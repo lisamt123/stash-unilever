@@ -9,8 +9,9 @@ Purpose: This is the Handler class for cec_Fulfilment__c trigger
 History                                                            
 -------                                                            
 VERSION  AUTHOR            DATE            DETAIL               Description
-1.0 - Esther            16/10/2014      INITIAL DEVELOPMENT  CSR
-
+1.0 - Esther            16/10/2014      INITIAL DEVELOPMENT      CSR
+2.0 - Masood           09/03/2016      INITIAL DEVELOPMENT      Update debit card value
+3.0 - Mahesh           2nd june 2016   CSC-4518                 To calculate Total Enclosure Value
 ***********************************************************************/
 
 /**
@@ -29,10 +30,11 @@ This method is entry point for the actions to be executed before a cec_Fulfilmen
         
         
         /* Calling helper to check quality */
-        CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
-        if(!fulfilmentList.isEmpty())
-            fulfilmentHelper.qualityCheck(fulfilmentList);
-        
+    
+        if(!fulfilmentList.isEmpty()){
+            CEC_FulfilmentHelperExtension.qualityCheck(fulfilmentList);
+            CEC_FulfilmentHelperExtension.beforeInsUpdCalcEnclosure(fulfilmentList, null);
+        }
         
     }
     public void beforeUpdate(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap){
@@ -43,21 +45,23 @@ This method is entry point for the actions to be executed before a cec_Fulfilmen
         //if(!fulfilmentList.isEmpty())
         //Commented for CSC 3135
         //fulfilmentHelper.refundApprovalCheck(fulfilmentList,fulfilmentOldMap);
+        CEC_FulfilmentHelperExtension.beforeInsUpdCalcEnclosure(fulfilmentList,fulfilmentOldMap);
         fulfilmentHelper.deleteFulfilmentEnclosure(fulfilmentList,fulfilmentOldMap);
         fulfilmentHelper.upsertFulfilmentEnclosure(fulfilmentList,fulfilmentOldMap);
         fulfilmentHelper.convertRefundValueToWords(fulfilmentList,fulfilmentOldMap);
-        
+        fulfilmentHelper.updateDebitCardValue(fulfilmentList,fulfilmentOldMap);
+        CEC_FulfilmentHelperExtension.updateEvoucherValue(fulfilmentList,fulfilmentOldMap);
+        CEC_FulfilmentHelperExtension.updateAccountDetails(fulfilmentList,fulfilmentOldMap);  
+        CEC_FulfilmentHelperExtension.updateFulfilmentApprovedDate(fulfilmentList,fulfilmentOldMap);
     }   
-   
     
-    public void afterInsert(List<cec_Fulfilment__c> fulfilmentList){
-        
+    
+    public void afterInsert(List<cec_Fulfilment__c> fulfilmentList){        
         
         CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
         if(!fulfilmentList.isEmpty())
             fulfilmentHelper.insertFulfilmentEnclosure(fulfilmentList);
         
-        
-    }    
+    } 
     
 }

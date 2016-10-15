@@ -1,5 +1,13 @@
-<apex:page sidebar="false" controller="Oblix_Ctrl09_nonCampaignEdit" docType="html-5.0">
+<!-- 
+//******************************************************************************************************
+//      THE CONTENT OF THIS CLASS HAS BEEN COMMENT OUT AS THIS CLASS IS NO LONGER USED
+//      AS PART OF CODE REFACTORING, NEW CLASSES HAVE REPLACED THESE
+//      S.M. 2016-03-30
+//****************************************************************************************************** 
+-->
 
+<apex:page sidebar="false" controller="Oblix_Ctrl09_nonCampaignEdit" docType="html-5.0">
+<!-- 
   <apex:form id="jqueryId">
    
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -748,7 +756,7 @@
    <apex:outputPanel rendered="{!selectResource}">  <script> showTab = {!selectResource};</script>  </apex:outputPanel>
     <div class="Oblix_Container">
    
-     <div class="Oblix_header"><!-- 2 levels -->
+     <div class="Oblix_header">
        <div style="postion: relative; top:-200px; background: transparent;width: 95%;margin-left: auto;margin-right: auto;">
          <table width="95%" height="100%">
             <tr>
@@ -807,7 +815,6 @@
                 
                 <tr>
                     <td width="100%">
-                     <!-- Project details -->   
                              <apex:outputPanel id="projectDetailId">
                             <table width="100%">
                             <tr>
@@ -845,9 +852,6 @@
                            </table>
                             
                         </apex:outputPanel>
-                         <!-- End Project Details -->  
-                         
-                           <!-- Record Type Content -->
                            
                            
                            <apex:outputPanel id="Oblix_ItemsId">
@@ -865,8 +869,7 @@
                 
                 <apex:outputPanel id="allInputs">              
                            <div class="Oblix_recordType">
-                           <!-- <apex:COmmandButton action="{!AddToProjectAction}" reRender="Oblix_card"/>
-                           <apex:inputField value="{!assetJoe.Oblix_Quantity__c}" /> -->
+                           <apex:inputField value="{!assetJoe.Oblix_Quantity__c}" />
                             
                              
                            <table width="100%">
@@ -914,8 +917,6 @@
                                           <td  width="20%"></td>
                                           <td  width="5%"></td>
                                           <td  width="20%">
-                                          <!--   <input type="radio" name="activity" value="{!pick}"  />
-                                          <!--  <input type="radio" name="activity" value="{!pick}" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> -->
                                           </td>
                                     </tr>
                                     <tr height="50">
@@ -923,7 +924,6 @@
                                             <apex:inputField value="{!myAct.lookupActivity.Activities__c}"  styleclass="picklist_init" style="width:100%;" id="activityid"  onchange="if ($(this).val()=='Other'){ $('.otherr').prop('disabled', false);}else{ $('.otherr').prop('disabled', true);}"  />
                                           </td>
                                             <td>
-                                         <!--    <input type="radio" name="activity" value="{!nopick}" /> -->
                                           </td>
                                           <td >
                                             <apex:inputText style="width:90%;" value="{!myAct.lookupActivity.Other_Activities__c}" styleClass="input_init otherr"  id="otherId"   html-placeholder="{!$Label.Oblix_Lbl_Select_Other}" disabled="{!IF(myAct.lookupActivity.Activities__c=='Other',false,true)}"/>
@@ -931,11 +931,6 @@
                                      </tr>
                                      <tr height="50">
                                           
-                                          <!-- <td width="20%">
-                                            <apex:inputField value="{!newItem.OblixCountry__c}" styleclass="picklist_init" onchange="adupdate();blockme();" id="country"   style="min-width:60%;"/>
-                                          </td>
-                                          
-                                         -->
                                           <td>
                                                <apex:selectList size="1" value="{!myAct.selectedCountryname}" onchange="adupdate();blockme();" styleclass="picklist_init"   style="width:100%;"  id="country">
                                                    <apex:selectOptions value="{!countries }"/>
@@ -1025,8 +1020,6 @@
                                           <td  width="20%"></td>
                                           <td  width="5%"></td>
                                           <td  width="20%">
-                                          <!--   <input type="radio" name="activity" value="{!pick}"  />
-                                          <!--  <input type="radio" name="activity" value="{!pick}" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> -->
                                           </td>
                                     </tr>
                                      <tr height="50">
@@ -1050,8 +1043,6 @@
                                           </td>
                                           <td  width="5%"></td>
                                           <td  width="20%">
-                                          <!--   <input type="radio" name="activity" value="{!pick}"  />
-                                          <!--  <input type="radio" name="activity" value="{!pick}" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> -->
                                           </td>
                                     </tr>
                                      <tr height="50">
@@ -1086,7 +1077,7 @@
                                           <td  width="5%"></td>
                                           <td  width="20%">
                                            <apex:commandButton value="{!IF(edit2,'Update','Add')}" action="{!addToNew1}" styleclass="btn ui-button ui-state-default" onclick="blockme();" oncomplete="$.unblockUI()" 
-                                           rerender="Oblix_card,nameid1, myMessages1,saveStatus,country1,AD1, RT1,rater1, rate1, prcent,add1" disabled="{!IF(myRes.addVisible==false,true,false)}" id="add1"/>
+                                           rerender="Oblix_card,nameid1,result1, myMessages1,saveStatus,country1,AD1, RT1,rater1, rate1, prcent,add1" disabled="{!IF(myRes.addVisible==false,true,false)}" id="add1"/>
                                            
                                            </td>
                                     </tr>
@@ -1107,8 +1098,6 @@
                             </table>
                             </div>
                             </apex:outputPanel>
-                           <!-- End Record Type Content -->      
-                           <!-- Card Content -->              
                             <div class="Oblix_card">
                                 
                                 <apex:outputPanel id="Oblix_card">
@@ -1127,7 +1116,6 @@
                                                        
                                                        <span style="font-size:14px"> <apex:outputText value="{!asset.FTE__c}"/> {!if(asset.FTE__c!=null,'%','')} </span>
                                                        <span style="font-size:14px"> <apex:outputText value="{!asset.No_of_Hours_Required__c }"/> {!if(asset.No_of_Hours_Required__c !=null,$Label.Oblix_lbl_UIUX_hours,'')}</span>
-                                                    <!--   <apex:outputText value="{!asset.OblixCountry__c}" id="countryId2"/>            -->
                                                        
                                                        
                                                    </div>
@@ -1139,11 +1127,10 @@
                                                         <apex:param name="param1" assignTo="{!ElemToDel  }" value="{!rowNum}" />
                                                     </apex:commandButton>
                                                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!editItem}" reRender="countryId2,nameid,nameid1,otherId,activityid,name1,dr,Oblix_card,country,AD, RT,rater, rate, hours,result,Oblix_card,add,country1,AD1, RT1, rate1,rater1, prcent,result1,add1"
-                                                     onclick="{!IF(rtActivity==asset.recordTypeId,'showTab1();','showTab2();')}"  oncomplete="$.unblockUI()" id="edit"  ><!-- rendered="{!not(edit1 || edit2 )}" -->
+                                                     onclick="{!IF(rtActivity==asset.recordTypeId,'showTab1();','showTab2();')}"  oncomplete="$.unblockUI()" id="edit"  >
                                                          <apex:param name="param2" assignTo="{!elemToEdit}" value="{!rowNum}" />
                                                     </apex:commandButton>
                                                    </div>
-                                                  <!--style="{!IF((edit1 || edit2) && (elemToEdit == rownum) ,'background-color:#FBFBFB;','') }"-->
                                                      
                                           
     
@@ -1160,18 +1147,17 @@
                             </div>
                             </apex:outputPanel>
                             
-                          <!-- End Card Content --> 
                        </td>                     
                 </tr>
           </tbody>
         </table>     
     </div>   
  </div>
- </div><!--  End Container -->
+ </div>
 </apex:form>
 
 <script>
    function setFocusOnLoad() {}
 </script>
-
+ -->
 </apex:page>

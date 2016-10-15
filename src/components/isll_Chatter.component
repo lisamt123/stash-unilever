@@ -1,0 +1,140 @@
+<apex:component controller="isll_ChatterComponentController">
+<apex:attribute name="feedId" description="Chatter group Id" type="String" required="true" assignTo="{!chatterId}" />
+<apex:attribute name="filtered" description="Show if filtered by experts" type="Boolean" required="false" assignTo="{!isFiltered}" />
+
+<div class="chatterfeedshell">
+<div class="chatterexpando">
+<div class="feedpage zen">
+<div class="feedmain">
+<div class="cxfeedinnerwrapper">
+	<div class="feedcontainer cxfeedcontainer zen actionsOnHoverEnabled">
+		<apex:repeat value="{!expertsFeed}" var="feedItem">
+	<div class="cxfeeditem feeditem">
+	<span class="">
+		<span class="chatter-avatar feeditemusericon chatter-avatarRegular">
+			<a href="/{!feedItem.owner.Id}">
+				<img src="{!feedItem.owner.SmallPhotoUrl}" alt="Liza Romanenko" width="45" height="45" class="chatter-photo"/>
+			</a>
+		</span>
+	</span>
+<div class="feeditemcontent cxfeeditemcontent">
+	<div class="feeditembodyandfooter">
+ 	<div class="feeditembody">
+ 		<div class="preamblecontainer displayblock">
+			<span><span class="feeditemfirstentity">
+			<a href="/{!feedItem.owner.Id}" class="actorentitylink">{!feedItem.owner.Name}</a></span></span>
+		</div>
+		<span class="feeditemtext cxfeeditemtext">{!feedItem.item.Body}</span>
+		<apex:outputpanel rendered="{!feedItem.item.RelatedRecordId != null}">
+			<div class="feeditemaux cxfeeditemaux">
+				<span>
+					<table class="contentPost"><tbody>
+						<tr>
+							<td class="thumbnailCell">
+								<a href="javascript:Sfdc.ChatterFiles.showFilePreviewDialog({'overlayId':'docViewerOverlay','titleId':'title_1922724406','baseUrl':'/_swf/121310/sfc','versionId':'{!feedItem.item.RelatedRecordId}','previewMode':'chatter_bubble','isRunningTests':false,'flashParentDiv':'docViewerContainer','isAccessibilityMode':false,'fileType':'png','isImage':true})" class="contentThumbnail-a" onfocus="null" onmouseover="null" style="width: 87px; height: 103px;">
+									<img src="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB120BY90&versionId={!feedItem.item.RelatedRecordId}&operationContext=CHATTER" alt="Click to preview" class="contentThumbnail" title="Click to preview"/>
+									<div class="previewHover" title="Click to preview" style="width: 82px; height: 90px; position: relative; left: 0px; top: -99px; display: none;">
+									</div>
+								</a>
+							</td><td class="rightSideCell">
+								<table class="contentdetails"><tbody>
+									<tr>
+										<td>
+											<div class="contentFileTitle">
+												<a href="/{!feedItem.item.RelatedRecordId}" class="contentActionLink">
+													<span class="contentTitleLink">{!feedItem.item.ContentFileName}</span>
+												</a>
+											</div>
+										</td>
+									</tr><tr>
+										<td class="moreFileActions-td">
+											<a href="/sfc/servlet.shepherd/version/download/{!feedItem.item.RelatedRecordId}?asPdf=false&operationContext=CHATTER" class="contentActionLink" shouldstayinownframe="true">
+												<img src="/img/s.gif" alt="" width="1" height="1" class="chatterFileIcon downloadItemIcon"/>
+												<span class="contentActionLabel">Download </span>
+												<span class="contentActionLabel fileSize">({!ROUND(feedItem.item.ContentSize/1024, 0)}&nbsp;KB)</span>
+											</a>
+										</td>
+									</tr>	
+								</tbody></table>
+							</td>
+						</tr>
+					</tbody></table>
+				</span>
+			</div>
+		</apex:outputpanel>
+ 	</div>
+ 	<div class="feeditemfooter">
+ 		<span class="feeditemtimestamp">
+ 			<apex:outputText value="{0,date,dd MMM yyyy} at {1,date,HH:mm}">
+       <apex:param value="{!feedItem.item.CreatedDate}" />
+       <apex:param value="{!feedItem.item.CreatedDate}" />
+	</apex:outputText>
+ 		</span>
+ 	</div>
+ </div>
+ <div class="feeditemextras cxchattertextareacontainer chattertextareacontainer">
+ 	<div class="cxcomments feeditemcomments">
+ 		<apex:repeat value="{!feedItem.comments}" var="c">
+ 			<div class="feeditemcomment cxfeedcomment">
+ 				<a href="/{!c.comment.InsertedById}" class="feeditemcommentphoto">
+ 					<span class="chatter-avatarMedium chatter-avatar"><img src="{!c.comment.InsertedBy.SmallPhotoUrl}" alt="Liza Romanenko" width="30" height="30" class="chatter-photo"/></span></a>
+ 				<div class="feeditemcommentbody">
+ 					<div class="feedcommentuser"><a href="/{!c.comment.InsertedById}" class="actorentitylink">{!c.comment.InsertedBy.Name}</a></div>
+ 					<span class="feedcommenttext">{!c.comment.CommentBody}</span>
+ 					<apex:outputpanel rendered="{!c.comment.RelatedRecordId != null}">
+ 						<span>
+					<table class="contentPost"><tbody>
+						<tr>
+							<td class="thumbnailCell">
+								<a href="javascript:Sfdc.ChatterFiles.showFilePreviewDialog({'overlayId':'docViewerOverlay','titleId':'title_1922724406','baseUrl':'/_swf/121310/sfc','versionId':'{!c.comment.RelatedRecordId}','previewMode':'chatter_bubble','isRunningTests':false,'flashParentDiv':'docViewerContainer','isAccessibilityMode':false,'fileType':'png','isImage':true})" class="contentThumbnail-a" onfocus="null" onmouseover="null">
+															<img src="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB120BY90&versionId={!c.comment.RelatedRecordId}&operationContext=CHATTER" alt="Click to preview" class="contentThumbnail" title="Click to preview"/>																				
+														</a>
+													</td><td class="rightSideCell">
+														<table class="contentdetails"><tbody>
+															<tr>
+																<td>
+																	<div class="contentFileTitle">
+																		<a href="/{!c.comment.RelatedRecordId}" class="contentActionLink">
+																			<span class="contentTitleLink">{!c.file.Title}</span>
+																		</a>
+																	</div>
+																</td>
+															</tr><tr>
+																<td class="moreFileActions-td">
+																	<a href="/sfc/servlet.shepherd/version/download/{!c.comment.RelatedRecordId}?asPdf=false&operationContext=CHATTER" class="contentActionLink" shouldstayinownframe="true">
+																		<img src="/img/s.gif" alt="" width="1" height="1" class="chatterFileIcon downloadItemIcon"/>
+																		<span class="contentActionLabel">Download </span>
+																		<span class="contentActionLabel fileSize">({!ROUND(c.file.ContentSize/1024, 0)}&nbsp;KB)</span>
+																	</a>
+																</td>
+															</tr>	
+														</tbody></table>
+													</td>
+												</tr>
+											</tbody></table>
+										</span>
+			    					</apex:outputpanel>
+			    					<div class="feedcommentfooter feedItemExtrasMetaText">            
+							            <span class="feeditemtimestamp">
+							            	<apex:outputText value="{0,date,dd MMM yyyy} at {1,date,HH:mm}">
+										       <apex:param value="{!c.comment.CreatedDate}" />
+										       <apex:param value="{!c.comment.CreatedDate}" />
+											</apex:outputText>
+							            </span>
+							        </div>
+			    				</div>
+			    			</div>
+			    		</apex:repeat>
+			    	</div>
+			    </div>
+		    </div>
+		
+		</div>
+	</apex:repeat>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</apex:component>

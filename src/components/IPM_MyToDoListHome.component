@@ -21,12 +21,14 @@
         <div class="row">
             <div class="col-sm-12">
                 <apex:outputPanel id="noToDoPanel">
+                <!--Comment : If task records that should be shown on home page are zero then display message to user  -->
                 <apex:outputpanel rendered="{! if(AND(setCon.ResultSize==0,setControl.ResultSize==0, setCont.ResultSize==0),'true','false')}">
                     <div class="noRecordsMsg">{!$Label.IPM_NO}
                         {!$Label.IPM_Home_Todo}</div>
                     </apex:outPutPanel>
                     </apex:outputPanel>
                     <apex:outputPanel id="completePanel">
+                    <!--Comment : If task records that should be shown on home page are are greater than zero , then tasks should be visible on page  -->
                     <apex:outputpanel rendered="{! if(OR(setCon.ResultSize > 0,setControl.ResultSize > 0, setCont.ResultSize > 0),'true','false')}">
                         <div class="ipmAccordion">
                 <apex:outputPanel id="overduePanel">
@@ -43,8 +45,14 @@
                                 <div class="row recordBox">
                                  <div class="col-sm-12">
                                     <div class="col-xs-2 ipmCheckbox taskCheck">
-                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" /> 
-                                        <label for="{!p.Id}" tabindex="0"></label>
+                                    	<apex:outputPanel rendered="{!!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" /> 
+	                                        <label for="{!p.Id}" tabindex="0"></label>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" disabled="true"/> 
+	                                        <label for="{!p.Id}" tabindex="0"></label>
+                                        </apex:outputPanel>
                                     </div>
                                  <div class="col-sm-10">
                                     <span class="captions1 blockDisplay">
@@ -75,6 +83,7 @@
             </div>
         </div>
         </apex:repeat>
+        <!--Comment : if total no. of records are greater than no. of records shown on one page and tasks are not completed then pagination is visible  -->
         <apex:outputPanel id="overduePagination" rendered="{!if(setCon.ResultSize > setCon.PageSize && isCompleteTasks != 'Yes',true,false)}">  
             <table class="table ipmTable paginationTable">
                 <tbody>
@@ -133,9 +142,14 @@
                         <div class="row recordBox">
                             <div class="col-sm-12">
                                 <div class="col-xs-2 ipmCheckbox taskCheck">
-                                    <input type="checkbox" value="{!p.IPM_Completed__c}"
-                                        id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" />
-                                    <label for="{!p.Id}" tabindex="0"></label>
+                                	<apex:outputPanel rendered="{!!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                    <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" />
+	                                    <label for="{!p.Id}" tabindex="0"></label>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                    <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" disabled="true"/>
+	                                    <label for="{!p.Id}" tabindex="0"></label>
+                                    </apex:outputPanel>
                                 </div>
                                 <div class="col-sm-10">
                                  <span class="captions1 blockDisplay">
@@ -166,6 +180,7 @@
                 </div>
             </div>
         </apex:repeat>
+        <!--Comment : if total no. of records are greater than no. of records shown on one page and tasks are not completed then pagination is visible  -->
         <apex:outputPanel id="todayTskPagination" rendered="{!if(setControl.ResultSize > setControl.PageSize && isCompleteTasks != 'Yes',true,false)}"> 
             <table class="table ipmTable paginationTable">
                 <tbody>
@@ -222,9 +237,14 @@
                         <div class="row recordBox">
                             <div class="col-sm-12">
                                 <div class="col-xs-2 ipmCheckbox taskCheck">
-                                    <input type="checkbox" value="{!p.IPM_Completed__c}"
-                                        id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" />
-                                    <label for="{!p.Id}" tabindex="0"></label>
+                                	<apex:outputPanel rendered="{!!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                    <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" />
+	                                    <label for="{!p.Id}" tabindex="0"></label>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                    <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" disabled="true"/>
+	                                    <label for="{!p.Id}" tabindex="0"></label>
+                                    </apex:outputPanel>
                                 </div>
                                 <div class="col-sm-10">
                                     <span class="captions1 blockDisplay"><apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>

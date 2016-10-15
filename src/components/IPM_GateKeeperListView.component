@@ -79,10 +79,12 @@
         
             
             <td>
+              <!-- Below rendered condition is used for showing output text --> 
              <apex:outputText rendered="{!IF(OR(editTable=false,gk.IPM_Section_Sequence_Number__c!=null, gk.IPM_Section_Sequence_Number__c!='',isEditable=false),true,false)}"><div class="gkcStatus {!IF(gk.IPM_GK_Answers__c=='Not Applicable','Not Applicable',gk.IPM_GK_Answers__c)}">{!IF(gk.IPM_GK_Answers__c=='Not Applicable','Not Applicable',gk.IPM_GK_Answers__c)}</div></apex:outputText>     
 
             </td>
             <td>
+              <!-- Below rendered condition is used for showing output text --> 
              <apex:outputText value="{!gk.IPM_Comments__c}" rendered="{!IF(OR(editTable=false,gk.IPM_Section_Sequence_Number__c!=null, gk.IPM_Section_Sequence_Number__c!='',isEditable=false),true,false)}"/>  
             </td>
       </tr>

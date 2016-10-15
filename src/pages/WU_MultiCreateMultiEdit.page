@@ -1,0 +1,196 @@
+<apex:page controller="WU_MultiCreateMultiEdit3" >
+    <head>
+        <apex:includeScript value="/support/console/28.0/integration.js"/>
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"/>
+        <script src="{!URLFOR($Resource.jquery171min)}" type="text/javascript" ></script>
+    </head>
+    
+    <style>
+        .modalDialog {
+            position: fixed;
+            font-family: Arial, Helvetica, sans-serif;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 99999;
+            opacity:0;
+            -webkit-transition: opacity 400ms ease-in;
+            -moz-transition: opacity 400ms ease-in;
+            transition: opacity 400ms ease-in;
+            pointer-events: none;
+        }
+        
+        .modalDialog:target {
+            opacity:1;
+            pointer-events: auto;
+        }
+
+        .modalDialog > div {
+            width: 400px;
+            position: relative;
+            margin: 10% auto;
+            padding: 5px 20px 13px 20px;
+            border-radius: 10px;
+            background: #fff;
+            background: -moz-linear-gradient(#fff, #999);
+            background: -webkit-linear-gradient(#fff, #999);
+            background: -o-linear-gradient(#fff, #999);
+        }
+
+        .close {
+            background: #606061;
+            color: #FFFFFF;
+            line-height: 25px;
+            position: absolute;
+            right: -12px;
+            text-align: center;
+            top: -10px;
+            width: 24px;
+            text-decoration: none;
+            font-weight: bold;
+            -webkit-border-radius: 12px;
+            -moz-border-radius: 12px;
+            border-radius: 12px;
+            -moz-box-shadow: 1px 1px 3px #000;
+            -webkit-box-shadow: 1px 1px 3px #000;
+            box-shadow: 1px 1px 3px #000;
+        }
+        
+        .hidden{
+            display:none;
+        }
+        
+        .show{
+            display:block;
+        }
+
+        .BtnClass{ 
+            width:60px; 
+        }
+        .close:hover { 
+            background: #00d9ff; 
+        }
+        #datePicker{
+            z-index: 99999 !important;
+        }
+        
+        .dateFormat{
+            visibility:hidden;
+        }
+        
+    </style>
+    
+    <apex:form id="formId">
+
+        <apex:actionFunction name="setfieldstopopup" action="{!setfieldstopopup}"  reRender="pb_popup" oncomplete="hidefields();" status="actStatusId" >
+            <apex:param assignTo="{!selectedId}" name="fieldVal" value="" />
+            <apex:param assignTo="{!selectedField}" name="fieldselected" value="" />
+        </apex:actionFunction>
+        
+        <apex:actionStatus id="actStatusId" >
+                <apex:facet name="start" >
+                  <img src="/img/loading.gif" />                    
+                </apex:facet>
+            </apex:actionStatus>
+                     
+        
+        <div id="openModal" class="modalDialog">
+            <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <apex:pageBlock id="pb_popup" > 
+                    <apex:pageBlockSection columns="1" > 
+                        
+                        <apex:pageBlockSectionItem rendered="{!IF(selectedField == 'startdate',TRUE,FALSE)}" >
+                            <apex:outputLabel value="Utilization Start Date"  />
+                            <apex:inputField value="{!wrapperInstancePopup.objWUMasterWarehouse.WU_FromDate__c}" /> 
+                        </apex:pageBlockSectionItem>
+                        
+                         <apex:pageBlockSectionItem rendered="{!IF(selectedField == 'enddate',TRUE,FALSE)}" >
+                            <apex:outputLabel value="Utilization End Date"  />
+                            <apex:inputField value="{!wrapperInstancePopup.objWUMasterWarehouse.WU_ToDate__c}" /> 
+                        </apex:pageBlockSectionItem>
+
+                        <apex:pageBlockSectionItem >
+                            <apex:selectRadio layout="pageDirection"  value="{!selectedRecords}">
+                                <apex:selectOptions value="{!items}"/> 
+                            </apex:selectRadio>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+
+                    <div align="center" >   
+                        <apex:commandButton value="Ok" action="{!saveRecords}" styleClass="BtnClass" reRender="formId"/>
+                        <apex:commandButton value="Cancel" action="{!cancel}" styleClass="BtnClass" reRender="formId"/>
+                    </div>
+                </apex:pageBlock>
+            </div>
+        </div>
+
+        <apex:pageMessages escape="false" ></apex:pageMessages>
+        <apex:pageBlock title="Multiple Create / Update Warehouse Capacity Details" id="pgBlck">
+            <apex:pageBlockTable value="{!masterWarehouseWrapperList}" var="masterWH">
+                <apex:column >
+                    <apex:facet name="header">                            
+                        <apex:inputCheckbox onclick="selectAllCheckboxes(this, 'inputId')"/>                            
+                    </apex:facet>
+                <apex:inputCheckbox value="{!masterWH.IsSelected}" id="inputId" /> 
+                </apex:column>
+                <apex:column headerValue="Salesforce Id"> 
+                    <apex:outputLink value="/{!masterWH.objWUMasterWarehouse.id}">
+                        <apex:outputText value="{!masterWH.objWUMasterWarehouse.Name}"/>
+                    </apex:outputLink>
+                </apex:column>
+                <apex:column headerValue="SAP Code(s)" value="{!masterWH.objWUMasterWarehouse.WU_SAPCode_s__c}"/>
+                <apex:column headerValue="SAP Name" value="{!masterWH.objWUMasterWarehouse.WU_SAPName_s__c}"/>
+                <apex:column headerValue="Utilization Type">
+                    <apex:inputField value="{!masterWH.objWUMasterWarehouse.WU_Utilization_Type__c}" />
+                </apex:column>                
+                <apex:column headerValue="Utilization Start Date">
+                    <apex:inputField value="{!masterWH.objWUMasterWarehouse.WU_FromDate__c}" ondblclick="showpopup('{!masterWH.objWUMasterWarehouse.id}','startdate')"/> 
+                     
+                </apex:column>
+                <apex:column headerValue="Utilization End Date">
+                    <apex:inputField value="{!masterWH.objWUMasterWarehouse.WU_ToDate__c}" ondblclick="showpopup('{!masterWH.objWUMasterWarehouse.Id}','enddate')"/> 
+                </apex:column>
+                <apex:column headerValue="Current Pallet Utilization Count">
+                    <apex:inputField value="{!masterWH.objWUMasterWarehouse.WU_Current_Utilization__c}" /> 
+                </apex:column>
+                <apex:column headerValue="Average Utilization %">
+                    <apex:inputField value="{!masterWH.objWUMasterWarehouse.WU_Average_Current_Utilization__c}" /> 
+                </apex:column>
+            </apex:pageBlockTable>
+
+            <apex:pageBlockButtons location="bottom">
+            <apex:commandButton value="Save - New" action="{!createNewCapacityDetails}" reRender="formId"/>
+            <apex:commandButton value="Update - Existing" action="{!updateLatestCapacityDetails}" reRender="formId"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+
+    <script type="text/javascript">
+        function selectAllCheckboxes(obj,receivedInputID){
+            var inputCheckBox = document.querySelectorAll('input[type=checkbox]');               
+            for(var i=0; i<inputCheckBox.length; i++){          
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                     
+                    inputCheckBox[i].checked = obj.checked;
+                }
+            }
+        }
+        
+        function showpopup(masterId, fieldSelected){
+            setfieldstopopup(masterId, fieldSelected );
+        }
+
+        function hidefields (){ 
+            $(document).find('.datePicker').css('display','none');
+            $(document).find('#openModal').css({"opacity":"1", "pointer-events":"auto" });
+        }
+
+        $('.close').click(function(){
+            $(document).find('#openModal').css({"opacity":"0","pointer-events":""});
+        });
+        
+               
+    </script>
+</apex:page>

@@ -33,8 +33,7 @@
            
         var remoteTKClient = new remotetk.Client();
         window.RESOURCE_ROOT = "{!URLFOR($Resource.MyApprovalsSR, '')}";
-        if(window.RESOURCE_ROOT.indexOf("?") != -1)
-            window.RESOURCE_ROOT = window.RESOURCE_ROOT.substring(0, window.RESOURCE_ROOT.indexOf("?"));
+        if(window.RESOURCE_ROOT.indexOf("?") != -1) window.RESOURCE_ROOT = window.RESOURCE_ROOT.substring(0, window.RESOURCE_ROOT.indexOf("?"));
         
         window.LANGUAGE = LangLocKey.records.LanguageLocaleKey;
         <!--window.LANGUAGE = "en-AU";  -->
@@ -66,24 +65,17 @@
            var strHeaderId  = getQueryVariableforMobile('headerId');
            var strInterestedId = getQueryVariableforMobile('ipId');
        }
-       else{
-           var strHeaderId  = getQueryVariableforDesktop('headerId');
-           var strInterestedId = getQueryVariableforDesktop('ipId');
-       } 
-       
-     
+       else{ var strHeaderId  = getQueryVariableforDesktop('headerId');
+           var strInterestedId = getQueryVariableforDesktop('ipId'); }
        function getQueryVariableforMobile(param) {             
            var query = window.location.search.substring(1);
            var vars = query.split("&");
            for (var i=0;i<vars.length;i++) {
                var pair = vars[i].split("=");
                if (pair[0] == param) {
-                   return(pair[1]); 
-                }
-           } 
+                   return(pair[1]); } } 
            return(false);
        }
-         
        function getQueryVariableforDesktop(param) {         
            var query = window.location.hash.substring(1);         
            var query1 = query.split("?");
@@ -91,9 +83,7 @@
            for (var i=0;i<vars.length;i++) {
                var pair = vars[i].split("=");
                if (pair[0] == param) {
-                   return(pair[1]); 
-                }
-           } 
+                   return(pair[1]); } } 
            return(false);
        }    
     </script>

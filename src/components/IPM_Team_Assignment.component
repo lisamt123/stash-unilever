@@ -174,6 +174,7 @@
                                                                 <apex:outputpanel id="displayAissgnedM" rendered="{!IF(AND(uRole=lstMem.IPM_Role_Type__c) , 'true', 'false') }">
                                                                     <div class="custPosition noPadleft">
                                                                         <div class="memContainer">                                                                   
+                                                                        <!-- If Logged in user is core team member and user role is login user type then User can delete the member  -->                                                               
                                                                             <apex:outputPanel rendered="{! if(OR(isCoreMemEditable=true,uRole=loginusertype),'true','false')}">
                                                                                
                                                                                  <div class="SecButtonSet teamMemberButton" data-toggle="modal" data-target="#ipmModalDelete" title="Delete Member" data-backdrop="static" data-keyboard="false">
@@ -232,12 +233,12 @@
                             <div class="skipButtoncontainer1 txtAlignright pull-right">
                                 <apex:outputPanel rendered="{!isCoreMemEditable}">
                                 <div class="buttonmarRight noPadright pull-left">                                
-                                <apex:commandLink action="{!SaveTeamMembers}" value="{!$Label.IPM_Skip_for_now}" styleClass="milestones ipmButton" onComplete="closepopupteam();" reRender="gotomiles,PLShow,DPLShow,TPLShow,GateKShow" rendered="{!isCoreMemEditable}" />
+                                <apex:commandLink action="{!SaveTeamMembers}" value="{!$Label.IPM_Skip_for_now}" styleClass="milestones ipmButton" onClick="skipValidation();" onComplete="closepopupteam();" reRender="gotomiles,PLShow,DPLShow,TPLShow,GateKShow" rendered="{!isCoreMemEditable}" />
                             </div>
                         </apex:outputPanel> 
                         <div class="buttonmarRight backButton pull-left">
                                     
-                            <input type="button" onclick="skipTab(this)" class="coreparameters ipmButton" value="{!$Label.IPM_Back}"/>
+                            <input type="button" class="coreparameters ipmButton" value="{!$Label.IPM_Back}"/>
                         </div>
                         <div class="buttonmarRight pull-left">
                                   
@@ -245,7 +246,7 @@
                                 <a href="#" class="milestones ipmButton primary" onClick="custnextTab(this)">{!$Label.IPM_Continue}</a> 
                             </apex:outputPanel>
                                 
-                            <apex:commandLink action="{!SaveTeamMembers}" value="{!$Label.IPM_SAVE_AND_CONTINUE}" styleClass="milestones ipmButton primary" onComplete="closepopupteam();" reRender="gotomiles,PLShow,DPLShow,TPLShow,GateKShow" rendered="{!isCoreMemEditable}" />
+                            <apex:commandLink action="{!SaveTeamMembers}" value="{!$Label.IPM_SAVE_AND_CONTINUE}" styleClass="milestones ipmButton primary" onComplete="closepopupteam();" reRender="gotomiles,PLShow,DPLShow,TPLShow,GateKShow" rendered="{!isCoreMemEditable}" onClick="skipValidation();"/>
                         </div> 
                     </div>
                 </apex:outputPanel>

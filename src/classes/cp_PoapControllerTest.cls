@@ -1,43 +1,43 @@
 @isTest
 public class cp_PoapControllerTest {
-    
-    static testMethod void testcp_PoapController()
-    {
-        // Set up event data
-        cp_TestData.createTestData();
+	
+	static testMethod void testcp_PoapController()
+	{
+		// Set up event data
+		cp_TestData.createTestData();
 
-        PageReference poapPage = Page.cp_PoaP;
-        Test.setCurrentPageReference(poapPage);
+		PageReference poapPage = Page.cp_PoaP;
+		Test.setCurrentPageReference(poapPage);
 
-        Test.startTest();
+		Test.startTest();
 
-            // Instaniate controller
-            cp_PoapController poapCon = new cp_PoapController();
+			// Instaniate controller
+			cp_PoapController poapCon = new cp_PoapController();
 
-            // Get default planner for user
-            cp_PlannerPreference__c defaultPreference = cp_PoapController.defaultPreference;
+			// Get default planner for user
+			cp_PlannerPreference__c defaultPreference = cp_PoapController.defaultPreference;
 
-            system.assertEquals(
-                [Select Id From cp_Planner__c Order by Name Limit 1][0].Id,
-                defaultPreference.Planner__c,
-                'Default preference does not match what should be set.'
-            );
+			system.assertEquals(
+				[Select Id From cp_Planner__c Order by Name Limit 1][0].Id,
+				defaultPreference.Planner__c,
+				'Default preference does not match what should be set.'
+			);
 
-            // Test page variables
-            //Boolean addGlobal               = poapCon.addGlobal;
-            //Boolean globalOnly              = poapCon.globalOnly;
-            //List<SelectOption> firstMonths  = poapCon.getFirstMonthValues();
-            //List<SelectOption> lastMonths   = poapCon.getLastMonthValues();
-            //List<SelectOption> firstYears   = poapCon.getFirstYearValues();
-            //List<SelectOption> lastYears    = poapCon.getLastYearValues();
+			// Test page variables
+			Boolean addGlobal 				= poapCon.addGlobal;
+			Boolean globalOnly 				= poapCon.globalOnly;
+			List<SelectOption> firstMonths 	= poapCon.getFirstMonthValues();
+			List<SelectOption> lastMonths 	= poapCon.getLastMonthValues();
+			List<SelectOption> firstYears 	= poapCon.getFirstYearValues();
+			List<SelectOption> lastYears 	= poapCon.getLastYearValues();
 
-            // Get event table
-           // Component.Apex.OutputText eventTable = poapCon.getMyTable();
+			// Get event table
+			Component.Apex.OutputText eventTable = poapCon.getMyTable();
 
-            // Run page methods
-            poapCon.setPlanner();
+			// Run page methods
+			poapCon.setPlanner();
 
-        Test.stopTest();
-    }
+		Test.stopTest();
+	}
 
 }

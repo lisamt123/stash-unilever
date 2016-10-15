@@ -16,24 +16,74 @@ public with sharing virtual class Oblix_SWOPparentController {
     public Marketing_SOW__c selected_sow {get; set;}
     public Oblix_SOW_Projects__c selected_project {get;set;}
     public Oblix_CampaignStageLogic stage_identifier {get;set;}
-    
-    public Boolean hasEditAccess { 
-        get{
-            if(NULL == selected_sow){
-                return Oblix_PermissionHandler.hasEditAccess(null);
-            } else{
-                return Oblix_PermissionHandler.hasEditAccess(selected_sow.Id);
-            }
-        }
-    }
+    public List<Attachment> liso_attachments {get; set;}
+    public Id deleteAttachmentId {get; set;}
 
     public Boolean can_edit { 
         get{ 
             if(NULL == selected_sow){
                 return Oblix_PermissionHandler.hasEditAccess(null);
             } else{
-                return Oblix_PermissionHandler.hasEditAccess(selected_sow.Id);
+                return Oblix_PermissionHandler.hasEditAccess(selected_sow);
             }
+        }
+    }
+
+    public Boolean can_add_attachment{
+        get{
+            if(NULL == selected_sow){
+                return false;
+            } else {
+                return Oblix_PermissionHandler.canAddNewAttachment(selected_sow.SOW_Status__c);
+            }
+        }
+    }
+
+    public Boolean can_delete_attachment{
+        get{
+            if(NULL == selected_sow){
+                return false;
+            } else{
+                return Oblix_PermissionHandler.canDeleteAttachment(selected_sow.SOW_Status__c);
+            }
+        }
+    }
+
+    public Boolean can_see_financial_fields {
+        get{
+            if(NULL == selected_sow){
+                return false;
+            } else{
+                return Oblix_PermissionHandler.canSeeFinancialField(selected_sow.SOW_Status__c, selected_sow.Approved_version__c);
+            }
+        }
+    }
+
+    //Identifies NFY campaign that is in the middle of Roll Over process for which only
+    //Projected stages chevron should be editable. Above does not apply if that campaign is cloned.
+    public Boolean is_NFY_campaign_in_the_middle_of_rollover {
+        get {
+            return selected_project.Campaign_PFY__c <> NULL && selected_project.Campaign_PFY__r.Financial_Year__r.SOW_Status__c != Oblix_Utils.SOW_STATUS_FINALISED;
+        }
+    }
+
+    public Boolean can_see_advanced_links_during_rollover {
+        get {
+            return !is_NFY_campaign_in_the_middle_of_rollover || 
+                    (
+                        is_NFY_campaign_in_the_middle_of_rollover && 
+                        (
+                            Oblix_PermissionHandler.isSystemAdmin() || 
+                            Oblix_PermissionHandler.hasSuperUserpermissionSet()
+                        )
+                    ); 
+        }
+    }
+
+    //Only UL users can see warning about SOW going through a rollover if SOW has at least 1 B/Fwd Campaign
+    public Boolean can_see_rollover_warning {
+        get {
+            return !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasUL3permissionSet();
         }
     }
 
@@ -86,6 +136,8 @@ public with sharing virtual class Oblix_SWOPparentController {
         }
         catch(Exception ex){
                 return null;
+                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, ex.getMessage()));
+
         }
 
         return sow;
@@ -118,9 +170,37 @@ public with sharing virtual class Oblix_SWOPparentController {
         }
         catch(Exception ex){
             return null;
+                            ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, ex.getMessage()));
+
             //ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid Id or you do not have permission to view this record!'));
         }
         return sow_project;
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-26
+    * @description  retrieves attachments attached to this SOW
+    ********************************************************************************/
+    public List<Attachment> getSOWAttachments(Id sowId){
+        return [SELECT Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate, Description, OwnerId FROM Attachment WHERE ParentId = :sowId order by CreatedDate DESC];
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-26
+    * @description  deletes a single attachment attached to this SOW
+    ********************************************************************************/
+    public void deleteAttachment(){
+        system.debug('$$$ ' + deleteAttachmentId);
+        if(deleteAttachmentId != null){
+            try{
+                delete new Attachment(Id = deleteAttachmentId);
+                liso_attachments = getSOWAttachments(selected_sow.Id);
+            } catch (DmlException e){
+                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'You do not have permission to delete this attachment'));
+            }
+        }
     }
 
     /*******************************************************************************
@@ -129,17 +209,26 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @description  Check if the current context user does not have access to record
                     and redirect to permission denied page
     ********************************************************************************/
-    public PageReference checkUserHasPermissionToSOW(){
+    public virtual PageReference checkUserHasPermissionToSOW(){
 
         if (NULl == selected_sow){
-            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
-            permission_denied_page.setRedirect(true);
-            return permission_denied_page;            
+            return redirectToPermissionDeniedPage();
         }
         else{
             return null;
         }
 
+    }
+
+    /*******************************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-17
+    * @description  Send user to permission denied page
+    ********************************************************************************/
+    public PageReference redirectToPermissionDeniedPage(){
+        Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
+        permission_denied_page.setRedirect(true);
+        return permission_denied_page;   
     }
 
     /*******************************************************************************
@@ -151,9 +240,7 @@ public with sharing virtual class Oblix_SWOPparentController {
     public PageReference checkUserHasPermissionToProject(){
 
         if (NULl == selected_project){
-            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
-            permission_denied_page.setRedirect(true);
-            return permission_denied_page;            
+            return redirectToPermissionDeniedPage();            
         }
         else{
             return null;

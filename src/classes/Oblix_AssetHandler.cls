@@ -1,11 +1,9 @@
 public with sharing class Oblix_AssetHandler implements ITrigger {
  
-   public Oblix_AssetHandler() {}
-   
    @testVisible
    boolean triggerShouldExecute = true;
-   List<Oblix_SOW_Projects__c> lstProjectAgencies = new List<Oblix_SOW_Projects__c>();
-   List<Oblix_SOW_Projects__c> lstProjectAgenciesToUpdate = new List<Oblix_SOW_Projects__c>();
+   //List<Oblix_SOW_Projects__c> lstProjectAgencies = new List<Oblix_SOW_Projects__c>();
+   //List<Oblix_SOW_Projects__c> lstProjectAgenciesToUpdate = new List<Oblix_SOW_Projects__c>();
     /**
      * bulkBefore
      *
@@ -20,21 +18,25 @@ public with sharing class Oblix_AssetHandler implements ITrigger {
     public void bulkAfter()
     {
         if(Trigger.isInsert || Trigger.isUpdate ){
-            lstProjectAgencies = Oblix_TR03AssetProjectScoreCalculator.retrieveProjectAgency(Trigger.New);
+            //lstProjectAgencies = Oblix_TR03AssetProjectScoreCalculator.retrieveProjectAgency(Trigger.New);
+            return;
         }
         if(Trigger.isDelete){
-            lstProjectAgencies = Oblix_TR03AssetProjectScoreCalculator.retrieveProjectAgency(Trigger.Old);
+            //lstProjectAgencies = Oblix_TR03AssetProjectScoreCalculator.retrieveProjectAgency(Trigger.Old);
+            return;
         }
     }
         
     public void beforeInsert(SObject so)
     {
-        return;// Sonar Document empty method
+        Oblix_AssetHandlerLogic.setEnforceTriggerUpdate((Oblix_Project_Assets__c) so);
+        Oblix_AssetHandlerLogic.adjustAssetFields((Oblix_Project_Assets__c) so);
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        return;
+        Oblix_AssetHandlerLogic.setEnforceTriggerUpdate((Oblix_Project_Assets__c) so);
+        Oblix_AssetHandlerLogic.adjustAssetFields((Oblix_Project_Assets__c) so);
     }
      
 
@@ -45,20 +47,23 @@ public with sharing class Oblix_AssetHandler implements ITrigger {
     
     public void afterInsert(SObject so) 
     {
+        return;
         //Fire the trigger on After insert to calculate Project Score Asset
-        lstProjectAgenciesToUpdate= Oblix_TR03AssetProjectScoreCalculator.CalculateProjectScore((Oblix_Project_Assets__c)so, Trigger.New, lstProjectAgencies);
+        //lstProjectAgenciesToUpdate= Oblix_TR03AssetProjectScoreCalculator.CalculateProjectScore((Oblix_Project_Assets__c)so, Trigger.New, lstProjectAgencies);
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
+        return;
         //Fire the trigger on After Update to calculate Project Score Asset
-        lstProjectAgenciesToUpdate = Oblix_TR03AssetProjectScoreCalculator.CalculateProjectScore((Oblix_Project_Assets__c)so, Trigger.New, lstProjectAgencies);
+        //lstProjectAgenciesToUpdate = Oblix_TR03AssetProjectScoreCalculator.CalculateProjectScore((Oblix_Project_Assets__c)so, Trigger.New, lstProjectAgencies);
     }
     
     public void afterDelete(SObject so)
     {
+        return;
         //Fire the trigger on After Delete to re-calculate Project Score Asset
-        lstProjectAgenciesToUpdate = Oblix_TR03AssetProjectScoreCalculator.CalculateProjectScore((Oblix_Project_Assets__c)so, Trigger.Old, lstProjectAgencies);
+        //lstProjectAgenciesToUpdate = Oblix_TR03AssetProjectScoreCalculator.CalculateProjectScore((Oblix_Project_Assets__c)so, Trigger.Old, lstProjectAgencies);
     }
     
     /**
@@ -69,10 +74,6 @@ public with sharing class Oblix_AssetHandler implements ITrigger {
      */
     public void andFinally()
     {
-        System.debug('Entering FAU_ProgramHandler.andFinally');
-        if(triggerShouldExecute && Trigger.isAfter){
-                update lstProjectAgenciesToUpdate;
-        }
-        System.debug('Exiting Oblix_ProjectHandler.andFinally');
+        return;   
     }
 }

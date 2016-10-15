@@ -1,149 +1,5 @@
-<apex:page standardcontroller="Oblix_SOW_Projects__c" extensions="Oblix_Ctrl04OverrideProjectNew" sidebar="false">
-<apex:form id="myForm">
-    <head>
-   
-        
-        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_bootstrapMinCss)}" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-        <apex:stylesheet value="{!$Resource.Oblix_bootstrapMultiselectcss}" />
-        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_bootstrapMultiselectcss)}" />
-        <script type="text/javascript" src="{!URLFOR($Resource.Oblix_bootstrapMultiselectjs)}"></script>
-
-        
-    </head>
-    <script>
-         var country = '{!project.Campaign_Countries__c}';
-         var country = country.replace(';',','); 
-        $(document).ready(function() {
-           
-            setTimeout(function() {
-                  if(country != null && country != '') {
-                            getName(country);        
-                        }
-            }, 100);
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#example-filterBehavior').multiselect({
-                enableFiltering: true,
-                filterBehavior: 'value',
-                includeSelectAllOption: true,
-                maxHeight: '300',
-                onChange: function(option, checked, select) {
-                    if(!(country).match($(option).val())){
-                          country +=  $(option).val()+',';
-                     }else{
-                         country = country.replace($(option).val()+',','');
-                     }
-                 },
-                 onDropdownHide: function(event) {
-                    var array = $('#example-filterBehavior').val();
-                        country = country.replace(',,',',');
-                        if(country != 'undefined' && country != null){
-                            var result = '';
-                            for (var i = 0; i < country.length; i++) {
-                                result += country[i]+';';
-                            }
-                        getName(country); 
-                        myRegions(country);
-                        }
-                }
-            });    
-        }); 
-     </script>
-     <script>
-        function getName(selectedValue)
-        {
-            var sizeCountries = '{!lstCountries.size}';
-            var partices = $('.btn-group');
-            var ul = partices.find('.multiselect-container');
-              // alert(sizeCountries);
-               var resultSelected = selectedValue.toString();
-               var aray = resultSelected.split(',');
-              
-               for(var i = 1;i<=sizeCountries;i++){
-                  if((resultSelected).match($('a label input','li')[i].getAttribute('value'))){
-                          // alert('test');
-                           $('.multiselect-container li')[i+1].setAttribute('class','active');
-                           $('.multiselect span').text(selectedValue);
-                           $('.multiselect').attr('title',selectedValue);
-                           $('a label input','li')[i].setAttribute('checked','checked');
-                    }
-
-               }
-               if(aray.length>4){
-                    $('.multiselect span').text(aray.length-1+' Selected');
-                    $('.multiselect').attr('title',aray.length-1+' Selected');
-               }
-        }
-     </script>
-     
-     
-     <style>
-    
-     .btn{
-         padding: 6px 12px !important;
-     }
-     .multiselect-clear-filter{
-             background: #fff !important;
-             height: 32px !important;
-      }
-   
-    .btn-group.open > ul > li{
-        margin:0px !important
-    }
-    .multiselect{
-        min-width:170px;
-     }
-     .multiselect span{
-         float:left;
-     }    
-     .multiselect b{
-        float: right;
-        top: :5px;
-        margin: 5px;
-        }
-   td#sidebarCell {
-    font-size: inherit;
-   }
-    #sidebarDiv .sidebarModuleHeader h2{
-        font-size : 12px;
-    }
-    .content{
-        font-size : 12px;
-        
-    }
-    #tabBar{
-        font-size : 12px;
-    }
-     .multiselect-all{
-        display: none;
-      }
-    .multiselect-item multiselect-all{
-        display : none;
-    }
-     </style>
-    <body data-spy="scroll" data-target="#affix" class="bootstrap-styles">
-       
-    <apex:actionFunction name="myRegions" action="{!RelatedCountriesRegions}" reRender="regionId, CountryID,marketId" immediate="true">
-        <apex:param name="selectedCountries" assignTo="{!selectedCountries}" value=""></apex:param>
-    </apex:actionFunction>
-    
-               
-   
- <apex:pageMessages escape="false" />     
-  <apex:sectionHeader title="{!$Label.Oblix_lbl_UIUX_Sow_Campaign}"  subtitle="{!IF(project.Id<>null, project.Name, 'New Campaign')}" />
-        <apex:pageBlock title="{!$Label.Oblix_lbl_UIUX_Marketing_SOW_Campaign_Edit}">
-            <apex:pageBlockButtons >
-                <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"></apex:commandButton>
-                <apex:commandButton action="{!Cancel}" value="{!$Label.Oblix_lbl_UIUX_Cancel}"></apex:commandButton>
-            </apex:pageBlockButtons>
-            <apex:pageBlockSection title="{!$Label.Oblix_lbl_UIUX_Information}" id="pbs1">
-                <apex:inputField value="{!project.Name}"></apex:inputField>
-                <apex:inputField value="{!project.Description__c}"></apex:inputField>
-                <!-- Start Multi Select Countries -->
+<apex:page standardcontroller="Oblix_SOW_Projects__c" sidebar="false">
+<!-- 
             <apex:pageBlockSectionItem >
             <apex:outputLabel >Countries</apex:outputLabel>
             <apex:outputLabel >
@@ -178,7 +34,6 @@
             </apex:pageBlockSectionItem>    
             
             
-        <!-- End Multi Select Countries -->
                 <apex:inputField value="{!project.Jobs_to_be_Done__c}"></apex:inputField>
                  <apex:outputField value="{!project.Campaign_Countries__c}" id="CountryID"></apex:outputField>
                 <apex:outputField value="{!project.OblixRegion__c}" id="regionId"></apex:outputField>
@@ -212,5 +67,5 @@
             </apex:pageBlockSection>
         </apex:pageBlock>
     </body>
-</apex:form>
+</apex:form> -->
 </apex:page>

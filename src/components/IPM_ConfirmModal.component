@@ -8,7 +8,7 @@
 -->
 
 <apex:component id="ipmConfirmModalRevamp">
-  <div id="ipmDeleteModal" class="modal fade">
+  <div id="ipmDeleteModal" class="modal fade ipmDeleteModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

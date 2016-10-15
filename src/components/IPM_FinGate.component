@@ -22,7 +22,7 @@
     
     <!-- Financial Table -->
     <div class="table-responsive">
-    <table class="ipmFinancetable fintable table table-bordered" border="0" cellpadding="0" cellspacing="0">
+    <table class="ipmFinancetable fintable table table-bordered inEstmateTable" border="0" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th class="blueBorder" scope="col" colspan="3" width="38%">
@@ -83,22 +83,27 @@
             <tr>
                 <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
                 <td class="fintleblubg">
+                	<!-- Condition for checking consolidated financial or not -->
                     <apex:outputText rendered="{!NOT(isConsolidated)}">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputField value="{!currentFinancial.Volume_Unit_Global__c}"/>
                         </apex:outputPanel>
     
                         <!-- Regional Values -->
+                         <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputField value="{!currentFinancial.Volume_Unit_Regional__c}"/>
                         </apex:outputPanel>
     
                         <!-- Local Values -->
+                         <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputField value="{!currentFinancial.Volume_Unit_Local__c}"/>
                         </apex:outputPanel>
                     </apex:outputText>
+                    <!-- Condition for checking consolidated financial or not -->
                     <apex:outputText rendered="{!isConsolidated}">
                         {!$Label.IPM_TOTAL_UNITS}
                     </apex:outputText>
@@ -130,6 +135,7 @@
             </tr>
 
             <!-- Volume Tons -->
+            <!-- Condition for checking consolidated financial or not -->
             <apex:outputText rendered="{!isConsolidated}">
                 <tr>
                     <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
@@ -165,18 +171,18 @@
 
             <!-- Turnover -->
             <tr>
-                <td class="fintleblubg finproject">{!$Label.ipmFinTableTurnover}</td>
-                <td class="fintleblubg">&euro; &#39;000</td>
-                <td class="fintleblubg greenplus blueBorder">(+)</td>
+                <td width="15%" class="fintleblubg finproject">{!$Label.ipmFinTableTurnover}</td>
+                <td width="10%" class="fintleblubg">&euro; &#39;000</td>
+                <td width="2%" class="fintleblubg greenplus blueBorder">(+)</td>
                 <!-- Y0 -->
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                <td width="6.5%" class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
                     <apex:outputText value="{0, number, ###,###,###.##}">
                         <apex:param value="{!financialsInnovation.y0Turnover}" />
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!financialsInnovation.lstGrossPLTurnover}" var="valueWrapper">
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <td width="6.5%" class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
                         <apex:outputText value="{0, number, ###,###,###.##}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
@@ -184,7 +190,7 @@
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!financialsInnovation.lstIncrementalPLTurnover}" var="valueWrapper">
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <td width="6.5%" class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
                         <apex:outputText value="{0, number, ###,###,###.##}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
@@ -337,13 +343,21 @@
                     <td width="30%" class="fintleblubg">&euro; &#39;000</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.NPV_Global__c}" />
                             </apex:outputText>
                         </apex:outputPanel>
+                        <!-- Charter Gate Approved -->      
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">     
+                            <apex:outputText value="{0, number, ###,###,###.##}">       
+                                <apex:param value="{!currentFinancial.NPV_Charter__c}" />       
+                            </apex:outputText>      
+                        </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.NPV_Regional__c}" />
@@ -351,6 +365,7 @@
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.NPV_Local__c}" />
@@ -363,16 +378,23 @@
                     <td width="30%" class="fintleblubg">{!$Label.IPM_PERCENTAGE}</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{!currentFinancial.IRR_Global__c}"/>
                         </apex:outputPanel>
+                        <!-- Charter Gate Approved -->      
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">     
+                            <apex:outputText value="{!currentFinancial.IRR_Charter__c}"/>       
+                        </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{!currentFinancial.IRR_Regional__c}"/>
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{!currentFinancial.IRR_Local__c}"/>
                         </apex:outputPanel>
@@ -383,13 +405,19 @@
                     <td width="30%" class="fintleblubg">{!$Label.IPM_Fin_Years}</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.Payback_Global__c}" />
                             </apex:outputText>
                         </apex:outputPanel>
+                        <!-- Charter Gate Approved -->      
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">     
+                            <apex:outputText value="{!currentFinancial.Payback_Charter__c}"/>       
+                        </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.Payback_Regional__c}" />
@@ -397,6 +425,7 @@
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.Payback_Local__c}" />
@@ -414,13 +443,18 @@
                     <td width="30%" class="fintleblubg">&euro; &#39;000</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.CAPEX_Global__c}" />
                             </apex:outputText>
                         </apex:outputPanel>
-
+                        <!-- Charter Gate Approved -->      
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">     
+                            <apex:outputText value="{!currentFinancial.CAPEX_Charter__c}"/>     
+                        </apex:outputPanel>
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.CAPEX_Regional__c}" />
@@ -428,6 +462,7 @@
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.CAPEX_Local__c}" />
@@ -440,13 +475,20 @@
                     <td width="30%" class="fintleblubg">&euro; &#39;000</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.BIC_Global__c}" />
                             </apex:outputText>
                         </apex:outputPanel>
+                        
+                        <!-- Charter Gate Approved -->
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">
+                            <apex:outputText value="{!currentFinancial.BIC_Charter__c}"/>
+                        </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.BIC_Regional__c}" />
@@ -454,6 +496,7 @@
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.BIC_Local__c}" />
@@ -470,13 +513,20 @@
                     <td width="70%" class="finproject fintleblubg">{!$Label.ipmFinSummaryGMbps}</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Global__c}" />
                             </apex:outputText>
                         </apex:outputPanel>
+                        
+                        <!-- Charter Gate Approved -->      
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">     
+                            <apex:outputText value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Charter__c}"/>     
+                        </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Regional__c}" />
@@ -484,6 +534,7 @@
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Local__c}" />
@@ -495,13 +546,20 @@
                     <td width="50%" class="finproject fintleblubg">{!$Label.ipmFinSummaryPBObps}</td>
                     <td width="50%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Global__c}" />
                             </apex:outputText>
                         </apex:outputPanel>
+                        
+                        <!-- Charter Gate Approved -->      
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">     
+                            <apex:outputText value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Charter__c}"/>        
+                        </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Regional__c}" />
@@ -509,6 +567,7 @@
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Local__c}" />
@@ -525,13 +584,13 @@
 
     <!-- Financial Table -->
     <div class="table-responsive">
-    <table class="ipmFinancetable fintable table table-bordered" border="0" cellpadding="0" cellspacing="0">
+    <table class="ipmFinancetable fintable table table-bordered inEstmateTable" border="0" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th class="blueBorder" scope="col" colspan="3" width="35%">
                     <span class="finproject"> {!currentFinancial.Display_Name__c}</span>
                 </th>
-                <th class="" scope="col" colspan="{!colSpan}" width="65%">
+                <th class="" scope="col" colspan="{!totalCalendarFinYears}" width="65%">
                     <span class="finproject">{!$Label.IPM_Fin_Calendar}</span>
                     <span class="fintotal"> {!sustainabilityPeriod}</span>
                 </th>
@@ -544,8 +603,8 @@
             <tr class="fintleblubg">
                 <td colspan="3" rowspan="2" class="blueBorder btmBleBorder"></td>
                 <td class="y0BorderGay"></td>
-                <td class="finproject" colspan="{!sustainabilityPeriod}">{!$Label.IPM_GROSS_P_L}</td>
-                <td class="iPLBorderGay finproject" colspan="{!sustainabilityPeriod}">{!$Label.IPM_INCREMENTAL_P_L}</td>
+                <td class="finproject" colspan="{!colSpanCalendar}">{!$Label.IPM_GROSS_P_L}</td>
+                <td class="iPLBorderGay finproject" colspan="{!colSpanCalendar}">{!$Label.IPM_INCREMENTAL_P_L}</td>
             </tr>
             <tr class="fintleblubg btmBleBorder finproject">
                 <!--<td colspan="3"></td>-->
@@ -585,22 +644,27 @@
             <tr>
                 <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
                 <td class="fintleblubg">
+                <!-- Condition for checking consolidated financial or not -->
                     <apex:outputText rendered="{!NOT(isConsolidated)}">
+                    <!-- Condition for checking field suffix is global or not -->
                         <!-- Global Values -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputField value="{!currentFinancial.Volume_Unit_Global__c}"/>
                         </apex:outputPanel>
     
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputField value="{!currentFinancial.Volume_Unit_Regional__c}"/>
                         </apex:outputPanel>
     
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputField value="{!currentFinancial.Volume_Unit_Local__c}"/>
                         </apex:outputPanel>
                     </apex:outputText>
+                     <!-- Condition for checking consolidated financial or not -->
                     <apex:outputText rendered="{!isConsolidated}">
                         {!$Label.IPM_TOTAL_UNITS}
                     </apex:outputText>
@@ -629,6 +693,7 @@
             </tr>
 
             <!-- Volume Tons -->
+             <!-- Condition for checking consolidated financial or not -->
             <apex:outputText rendered="{!isConsolidated}">
                 <tr>
                     <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
@@ -661,15 +726,15 @@
 
             <!-- Turnover -->
             <tr>
-                <td class="fintleblubg finproject">{!$Label.ipmFinTableTurnover}</td>
-                <td class="fintleblubg">&euro; &#39;000</td>
-                <td class="fintleblubg greenplus blueBorder">(+)</td>
+                <td width="15%" class="fintleblubg finproject">{!$Label.ipmFinTableTurnover}</td>
+                <td width="10%" class="fintleblubg">&euro; &#39;000</td>
+                <td width="2%" class="fintleblubg greenplus blueBorder">(+)</td>
                 <!-- Y0 -->
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                <td width="2%" class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!financialsCalendar.lstGrossPLTurnover}" var="valueWrapper">
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <td width="6.5%" class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
                         <apex:outputText value="{0, number, ###,###,###.##}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
@@ -677,7 +742,7 @@
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!financialsCalendar.lstIncrementalPLTurnover}" var="valueWrapper">
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <td width="6.5%" class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
                         <apex:outputText value="{0, number, ###,###,###.##}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>

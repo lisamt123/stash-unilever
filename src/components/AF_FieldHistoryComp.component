@@ -1,34 +1,46 @@
+<!--  
+   *************************************************************************
+   *@Description:This components is used display field history
+   *@Author: Cognizant
+   *@Created Date: 30/07/2014 
+   *************************************************************************
+   -->
 <apex:component controller="AF_FieldHistoryCompController" allowDML="true" access="global">
-    <apex:attribute name="ParentRecordValue" type="String" AssignTo="{!ParentRecordId}" Description="The parent record that the component is to work with."  />
-    <apex:attribute name="ParentObjectName" type="String" AssignTo="{!ParentObjectType}" Description="The parent record object type which the component will query."  />
-    <apex:attribute name="IsViewAllValue" type="String" AssignTo="{!IsViewAll}" Description="The Is View All FLAG"  /> 
-    
-    
-<!-- Common_Style File Start -->
-<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
-<!-- Common_Style File End -->
-
- 
+   <apex:attribute name="ParentRecordValue" type="String" AssignTo="{!ParentRecordId}" Description="The parent record that the component is to work with."  />
+   <apex:attribute name="ParentObjectName" type="String" AssignTo="{!ParentObjectType}" Description="The parent record object type which the component will query."  />
+   <apex:attribute name="IsViewAllValue" type="String" AssignTo="{!IsViewAll}" Description="The Is View All FLAG"  />
+   <!-- Common_Style File Start -->
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
+   <!-- Common_Style File End -->
    <div class="AF_FieldHistoryComp">
-    <apex:pageBlock title="Field History">              
-            <apex:outputPanel rendered="{!IsViewAllLink}" styleClass="viewAllLink">
-            <!--<apex:outputLink rendered="{!!isAgencyFlag}" value="/apex/AF_ViewAll?CHParentId={!ParentRecordId}" id="theLink1">View All</apex:outputLink>-->
+      <apex:pageBlock title="Field History">
+         <apex:outputPanel rendered="{!IsViewAllLink}" styleClass="viewAllLink">
             <apex:outputLink styleClass="modalButton3" html-data-backdrop="static" html-data-keyboard="false"
-            html-data-src="/apex/AF_ViewAll?CHParentId={!ParentRecordId}" html-data-target="#myModal3" html-data-toggle="modal"
-             rendered="{!!isAgencyFlag}" id="theLink1">View All</apex:outputLink>
-            
-            <!--<apex:outputLink rendered="{!isAgencyFlag}" value="{!$Label.AF_AgencyUrlLink}/apex/AF_ViewAll?CHParentId={!ParentRecordId}" id="theLink2">View All</apex:outputLink>-->
+               html-data-src="/apex/AF_ViewAll?CHParentId={!ParentRecordId}" html-data-target="#myModal3" html-data-toggle="modal"
+               rendered="{!!isAgencyFlag}" id="theLink1">View All</apex:outputLink>
             <apex:outputLink styleClass="modalButton3" html-data-backdrop="static" html-data-keyboard="false"
-            html-data-src="{!$Label.AF_AgencyUrlLink}/apex/AF_ViewAll?CHParentId={!ParentRecordId}" html-data-target="#myModal3" html-data-toggle="modal"
-             rendered="{!isAgencyFlag}" id="theLink2">View All</apex:outputLink>
-            </apex:outputPanel>
-            <br />
-             <apex:pageBlockTable title="Change History" value="{!FieldHistoryList}" var="objH" rowClasses="even,odd" styleClass="fontSize16P">
-             <apex:column ><apex:facet name="header">Field</apex:facet>{!objH.FieldLabel}</apex:column>
-             <apex:column ><apex:facet name="header">Change Description</apex:facet>{!objH.Description}</apex:column>
-             <apex:column ><apex:facet name="header">Change By</apex:facet>{!objH.CreatedBy}</apex:column>
-            <apex:column ><apex:facet name="header">Change Date</apex:facet>{!objH.CreatedDate}</apex:column>
-        </apex:pageBlockTable>        
-    </apex:pageBlock>
-    </div>
+               html-data-src="{!$Label.AF_AgencyUrlLink}/apex/AF_ViewAll?CHParentId={!ParentRecordId}" html-data-target="#myModal3" html-data-toggle="modal"
+               rendered="{!isAgencyFlag}" id="theLink2">View All</apex:outputLink>
+         </apex:outputPanel>
+         <br />
+         <apex:pageBlockTable title="Change History" value="{!FieldHistoryList}" var="objH" rowClasses="even,odd" styleClass="fontSize16P">
+            <apex:column >
+               <apex:facet name="header">Field</apex:facet>
+               {!objH.FieldLabel}
+            </apex:column>
+            <apex:column >
+               <apex:facet name="header">Change Description</apex:facet>
+               {!objH.Description}
+            </apex:column>
+            <apex:column >
+               <apex:facet name="header">Change By</apex:facet>
+               {!objH.CreatedBy}
+            </apex:column>
+            <apex:column >
+               <apex:facet name="header">Change Date</apex:facet>
+               {!objH.CreatedDate}
+            </apex:column>
+         </apex:pageBlockTable>
+      </apex:pageBlock>
+   </div>
 </apex:component>

@@ -1,0 +1,98 @@
+<apex:component controller="isll_AdditionalContentController" extensions="isll_ReturnUrlExtention">
+<!--====================================================-->
+<!--Name:  isll_ArticleFooterListView                  -->
+<!--Copyright © 2013  Unilever                          -->
+<!--====================================================-->
+<!-- Purpose:                                           -->
+<!-- component to show list of Articles related to current Page -->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- VERSION        AUTHOR              DATE            DETAIL      RELEASE/CSR        -->
+<!-- 1.0            Liza Romanenko      31/07/2013      INITIAL DEVELOPMENT            -->
+<!--====================================================-->
+<style>
+	.articleFooterView{
+		
+		/* font-family: Arial, Verdana, Helvetica, sans-serif; */
+		color: #787878;
+		clear: both;
+		overflow: hidden;
+	}
+	.mediaArea{
+		width: 30%;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.mediaArea img {
+		width: 100%;
+	}
+	.textArea{
+		font-size: 12px;
+		width: 65%;
+		overflow: hidden;
+	    -ms-text-overflow: ellipsis;
+	    text-overflow: ellipsis;
+	    padding: 0;
+	    vertical-align: middle;
+	}
+	.textBody{
+		display: block;
+		overflow: hidden;
+	    -ms-text-overflow: ellipsis;
+	    text-overflow: ellipsis;
+	}
+	.textArea h1 {
+		font-size: 18px;
+		font-weight: normal;
+		margin-bottom:8px;
+	}
+	.linksArea{
+		width: 370px;
+		float:left;
+		height: 170px;
+	}
+	.linksArea a{
+		color: #787878;
+		font-size: 18px;
+		font-weight: normal;
+		text-decoration: none;
+	}
+</style>
+
+	<hr/>
+	<div class="articleFooterView">
+		<table cellpadding="0" cellspacing="0">
+			<apex:repeat value="{!articles}" var="a">
+				<tr>
+					<td class="mediaArea">
+						<apex:outputText rendered="{!len(a.article.Media_Content__r.ThumbnailLink__c) > 0}">
+							<a href="{!a.article.Media_Content__r.ThumbnailLink__c}" >
+								<apex:image id="theImage" value="{!a.article.Media_Content__r.Content__c}" />
+							</a>
+						</apex:outputText>
+						<apex:outputText rendered="{!len(a.article.Media_Content__r.ThumbnailLink__c) == 0}">
+							<apex:image id="theImage2" value="{!a.article.Media_Content__r.Content__c}" />
+						</apex:outputText>
+					</td>
+					<td class="textArea">
+						<apex:outputText rendered="{!a.article.Title__c != null}">
+							<h1>{!a.article.Title__c}</h1>
+						</apex:outputText>
+						<apex:outputText id="theText" value="{!a.article.Body__c}" escape="false" styleClass="textBody"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<hr />
+					</td>
+				</tr>
+			</apex:repeat>
+		</table>
+	</div>
+
+	<apex:outputLink value="isll_EditPageContent" rendered="{!showEditLink}">Edit
+	  	<apex:param name="page" value="{!$CurrentPage.Name}"/>
+	  	<apex:param name="returnPage" value="{!backUrl}" />
+	</apex:outputLink> 
+	
+</apex:component>

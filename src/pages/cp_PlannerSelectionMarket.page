@@ -9,7 +9,6 @@
 -->
 
 <apex:includeScript value="{!URLFOR($Resource.cp_JQueryVK10_1,'jquery-ui-1.10.0.custom/js/jquery-1.9.0.js')}"/>
-<apex:includeScript value="{!URLFOR($Resource.Comms_Planner_Java_Script, 'Comms_Planner_Java_Script/cp_PlannerSelectionMarket.js')}"/>
 
 <!-- Initialized JQuery Library End -->
 
@@ -18,6 +17,359 @@
 </apex:pageBlock>
 
 <apex:outputPanel id="mainPanel">
+<script>
+
+        var _spanItemPrefix = '<span class="cfont generic_country_item">';
+        var _spanItemSuffix = '</span>';
+        var _clusterSelectedHeader = '<span class="header selected_area">Selected Cluster level</span>';
+        var _mcoSelectedHeader = '<span class="header selected_area">Selected MCO level</span>';
+        var _countrySelectedHeader = '<span class="header selected_area">Selected Countries</span>';
+        
+        var _selectedCluster = [];
+        var _selectedMco = [];
+        var _selectedCntr = [];
+        
+        var selectedValuesArray = [];
+        var selectedMarketArray = [];
+        var categoryArray = {!JsonTypeCate};
+        var functionArray = {!JsonTypeFunc};
+        var expertiseArray = {!JsonTypeExp};
+        var clusterArray = {!JsonTypeClu};
+        var mcoArray = {!JsonTypeMco};
+        var countryArray = {!JsonTypeCoun};
+        var plnId = '{!plannerEvent.Id}';
+        $j = jQuery.noConflict();  
+   
+    // fix for IE8
+if (!Array.prototype.indexOf) {
+  Array.prototype.indexOf = function (searchElement , fromIndex) {
+    var i,
+        pivot = (fromIndex) ? fromIndex : 0,
+        length;
+
+    if (!this) {
+      throw new TypeError();
+    }
+
+    length = this.length;
+
+    if (length === 0 || pivot >= length) {
+      return -1;
+    }
+
+    if (pivot < 0) {
+      pivot = length - Math.abs(pivot);
+    }
+
+    for (i = pivot; i < length; i++) {
+      if (this[i] === searchElement) {
+        return i;
+      }
+    }
+    return -1;
+  };
+}
+    
+   $j(document).ready(function() {
+    	
+    	// Central section
+
+        for(var i=0;i<categoryArray.length;i++){
+            if(categoryArray[i].isSelected == true){                
+                takeTheCategoryValue(categoryArray[i].pvalue,categoryArray[i].recordId);
+            }
+        }
+
+        for(var i=0;i<functionArray.length;i++){
+            if(functionArray[i].isSelected == true){                
+                takeTheFunctionValue(functionArray[i].pvalue,functionArray[i].recordId);
+            }
+        }
+        
+        for(var i=0;i<expertiseArray.length;i++){
+            if(expertiseArray[i].isSelected == true){                
+                takeTheExpertiseValue(expertiseArray[i].pvalue,expertiseArray[i].recordId);
+            }
+        }   
+
+        // Market section
+
+        for(var i=0;i<clusterArray.length;i++){
+            if(clusterArray[i].isSelected == true){                
+                takeTheClusterValue(clusterArray[i].pvalue,clusterArray[i].recordId);
+            }
+        }
+
+        for(var i=0;i<mcoArray.length;i++){
+            if(mcoArray[i].isSelected == true){                
+                takeTheMcoValue(mcoArray[i].pvalue,mcoArray[i].recordId);
+            }
+        }
+
+        for(var i=0;i<countryArray.length;i++){
+            if(countryArray[i].isSelected == true){                
+                takeTheCountryValue(countryArray[i].pvalue,countryArray[i].recordId);
+            }
+        }
+    
+    // For Second Section 
+    
+                
+        //initInterface();
+        //bindInterface();
+        handlePlannerSelectionChange();
+        handleMarketSelectionChange();
+     // Second Section End             
+    });
+   
+    function handlePlannerSelectionChange(){
+        if(isPlannerAllChecked()) {
+            $j('#enable_everywhere_planner').hide();
+            $j('#disable_everywhere_planner').show();
+        }
+        else {
+            $j('#enable_everywhere_planner').show();
+            $j('#disable_everywhere_planner').hide();
+        }
+    }
+
+    function handleMarketSelectionChange(){
+
+        if(isMarketAllChecked()) {
+            $j('#enable_everywhere_market').hide();
+            $j('#disable_everywhere_market').show();
+        }
+        else {
+            $j('#enable_everywhere_market').show();
+            $j('#disable_everywhere_market').hide();
+        }
+        
+    }
+
+   function takeTheCategoryValue(result,rowId){
+    var tableRow =  $j("#selectCategories");
+
+    idx = selectedValuesArray.indexOf(result);
+       
+    if(idx == -1){
+        selectedValuesArray.push(result);
+        tableRow.append("<tr id='"+rowId+"'><td class='cfont generic_country_item'>"+result+"</td></td>");
+    }else if(idx != -1){
+        $j("#selectCategories").find("#"+rowId).remove();
+        selectedValuesArray.splice(idx, 1);
+    }
+    handlePlannerSelectionChange();
+ 
+   }
+   
+   function takeTheExpertiseValue(result,rowId){
+   
+    var tableRow =  $j("#selectedExpertise");
+    
+    idx = selectedValuesArray.indexOf(result);
+       
+    if(idx == -1){
+        selectedValuesArray.push(result);
+        tableRow.append("<tr id='"+rowId+"'><td class='cfont generic_country_item'>"+result+"</td></td>");
+    }else if(idx != -1){
+        $j("#selectedExpertise").find("#"+rowId).remove();
+        selectedValuesArray.splice(idx, 1);
+    }
+    handlePlannerSelectionChange();
+   }
+   
+   function takeTheFunctionValue(result,rowId){
+   
+    var tableRow =  $j("#selectedFunctions");
+    
+    idx = selectedValuesArray.indexOf(result);
+       
+    if(idx == -1){
+        selectedValuesArray.push(result);
+        tableRow.append("<tr id='"+rowId+"'><td class='cfont generic_country_item'>"+result+"</td></td>");
+    }else if(idx != -1){
+        $j("#selectedFunctions").find("#"+rowId).remove();
+        selectedValuesArray.splice(idx, 1);
+    }
+    handlePlannerSelectionChange();
+   }
+
+   function takeTheClusterValue(result,rowId){
+   
+    var tableRow =  $j("#selectedClusters");
+    
+    //idx = selectedValuesArray.indexOf(result);
+    idx = selectedMarketArray.indexOf(result);
+       
+    if(idx == -1){
+        //selectedValuesArray.push(result);
+        selectedMarketArray.push(result);
+        tableRow.append("<tr id='"+rowId+"'><td class='cfont generic_country_item'>"+result+"</td></td>");
+    }else if(idx != -1){
+        $j("#selectedClusters").find("#"+rowId).remove();
+        //selectedValuesArray.splice(idx, 1);
+        selectedMarketArray.splice(idx, 1);
+    }
+    //handlePlannerSelectionChange();
+    handleMarketSelectionChange();
+   }
+
+   function takeTheMcoValue(result,rowId){
+   
+    var tableRow =  $j("#selectedMcos");
+    
+    //idx = selectedValuesArray.indexOf(result);
+    idx = selectedMarketArray.indexOf(result);
+
+    if(idx == -1){
+        //selectedValuesArray.push(result);
+        selectedMarketArray.push(result);
+        tableRow.append("<tr id='"+rowId+"'><td class='cfont generic_country_item'>"+result+"</td></td>");
+    }else if(idx != -1){
+        $j("#selectedMcos").find("#"+rowId).remove();
+        //selectedValuesArray.splice(idx, 1);
+        selectedMarketArray.splice(idx, 1);
+    }
+    //handlePlannerSelectionChange();
+    handleMarketSelectionChange();
+   }
+
+   function takeTheCountryValue(result,rowId){
+   
+    var tableRow =  $j("#selectedCountries");
+    
+    //idx = selectedValuesArray.indexOf(result);
+    idx = selectedMarketArray.indexOf(result);
+       
+    if(idx == -1){
+        //selectedValuesArray.push(result);
+        selectedMarketArray.push(result);
+        tableRow.append("<tr id='"+rowId+"'><td class='cfont generic_country_item'>"+result+"</td></td>");
+    }else if(idx != -1){
+        $j("#selectedCountries").find("#"+rowId).remove();
+        //selectedValuesArray.splice(idx, 1);
+        selectedMarketArray.splice(idx, 1);
+    }
+    //handlePlannerSelectionChange();
+    handleMarketSelectionChange();
+   }
+   
+    function isPlannerAllChecked() {
+        if($j('input.fun_slc.item_to_check:not(:checked)').length>0) {
+            return false;
+        }
+        if($j('input.exp_slc.item_to_check:not(:checked)').length>0) {
+            return false;
+        }
+        if($j('input.cat_slc.item_to_check:not(:checked)').length>0) {
+            return false;
+        }
+        return true;
+    }
+
+    function isMarketAllChecked() {
+        if($j('input.cls_slc.item_to_check:not(:checked)').length>0) {
+            return false;
+        }
+        if($j('input.mco_slc.item_to_check:not(:checked)').length>0) {
+            return false;
+        }
+        if($j('input.cntr_slc.item_to_check:not(:checked)').length>0) {
+            return false;
+        }
+        return true;
+    }
+
+
+    function clearJavaScriptValuesCentral(){
+        selectedValuesArray.length = 0;
+        $j("#selectedFunctions").html("");
+        $j("#selectedExpertise").html("");
+        $j("#selectCategories").html("");
+
+    }
+
+    function clearJavaScriptValuesMarket(){
+        //selectedValuesArray.length = 0;
+        selectedMarketArray.length = 0;
+        $j("#selectedClusters").html("");
+        $j("#selectedMcos").html("");
+        $j("#selectedCountries").html(""); 
+    }
+   
+        function selectAllPlanners() {
+            $j('input.fun_slc.item_to_check:not(:checked)').attr('checked',false).click();
+            $j('input.exp_slc.item_to_check:not(:checked)').attr('checked',false).click();
+            $j('input.cat_slc.item_to_check:not(:checked)').attr('checked',false).click();
+            
+            $j('#enable_everywhere_planner').hide();
+            $j('#disable_everywhere_planner').show();
+
+            return false;
+        }
+
+        function clearAll() {
+            clearAllPlanners();
+            clearAllMarkets();
+        }
+        
+        function clearAllPlanners() {
+            clearJavaScriptValuesCentral();
+            
+            $j('input.fun_slc.item_to_check').attr('checked',false);
+            $j('input.exp_slc.item_to_check').attr('checked',false);
+            $j('input.cat_slc.item_to_check').attr('checked',false);
+
+            $j('#enable_everywhere_planner').show();
+            $j('#disable_everywhere_planner').hide();
+
+            return false;
+        }
+
+        function selectAllMarkets() {
+        	$j('input.cls_slc.item_to_check:not(:checked)').attr('checked',false).click();
+            $j('input.mco_slc.item_to_check:not(:checked)').attr('checked',false).click();
+            $j('input.cntr_slc.item_to_check:not(:checked)').attr('checked',false).click();
+            
+            $j('#enable_everywhere_market').hide();
+            $j('#disable_everywhere_market').show();
+
+            return false;
+
+        }
+        
+        function clearAllMarkets() { 
+        	clearJavaScriptValuesMarket();
+            
+            $j('input.cls_slc.item_to_check').attr('checked',false);
+            $j('input.mco_slc.item_to_check').attr('checked',false);
+            $j('input.cntr_slc.item_to_check').attr('checked',false);
+
+            $j('#enable_everywhere_market').show();
+            $j('#disable_everywhere_market').hide();
+
+            return false;
+
+        }
+        
+        // Proxy function for saveAll to send values via PageParam
+        function saveAllJS(){
+            $j('.confirmM3').hide();
+            $j('img.loading_img').show();
+            saveAllFunc();
+        }
+        
+        function saveAllCB() {
+                $j('img.loading_img').hide();
+
+                if ($j.browser == 'msie')
+                {
+                    console.log('reload');
+                }
+        }
+   
+</script>
+
 
 <!-- RESTYLE -->
 <style type="text/css">

@@ -1,0 +1,349 @@
+<apex:page standardStylesheets="false" sidebar="false" docType="html-5.0" tabStyle="Sustainable_Living_Lab__tab" controller="isll_NewsArchiveController">
+<!--====================================================-->
+<!--Name:  isll_NewsArchive                             -->
+<!--Copyright © 2014  Unilever                          -->
+<!--====================================================-->
+<!-- Purpose:                                           -->
+<!-- Archived News                                          -->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- VERSION        AUTHOR              DATE            DETAIL      RELEASE/CSR        -->
+<!-- 1.0            Liza Romanenko      27/02/2014      INITIAL DEVELOPMENT            -->
+<!--====================================================-->
+    <apex:stylesheet value="{!URLFOR($Resource.jquery_ui_1_10_4, 'css/smoothness/jquery-ui-1.10.4.custom.min.css')}" />
+    <style>
+        #firstColumn {
+            width: 900px !important;
+        }
+        
+        .thumbnail-img {
+            max-width: 105px;
+        }
+        
+        .thumbnail-container {
+            border: 1px #D8D8D8 solid;
+            padding: 5px;
+            width: 115px;
+            height: 75px;
+            text-align: center;
+            background-color: #fff;
+        }
+        
+        .accordTable td {
+            padding: 0 5px;
+            color: #333435;
+            font-size: 12px;
+            font-family: din;
+            letter-spacing: 1px;
+        }
+        
+        .accordTable td a{
+            text-decoration: none;
+        }
+        
+        .accordTable tr:nth-child(even) {background: #ccc;}
+        .accordTable tr:nth-child(odd) {background: #f8f8f8;}
+        
+        .ui-accordion .ui-accordion-content {
+            padding: 0 !important;
+        }
+        
+        
+        
+        .icon
+        {
+            height:25px;
+            width:25px;
+        }
+        
+        
+        
+        .linksOnTable
+        {
+            padding-right: 3px;
+            padding-bottom: 5px;
+        }
+        
+        .docTitleTable
+        {
+            padding-left: 7px;
+            padding-bottom: 5px; 
+        }
+        
+        .icon
+        {
+            height:25px;
+            width:25px;
+        }
+        
+        .newFile
+        {
+            color: #00B388;
+            font-weight: bold;
+            font-size:14px;
+        }
+        
+        a.contentLink
+        {
+            /*text-transform:uppercase;*/
+            text-decoration: none;
+        }
+        
+        .fileName
+        {
+            text-align: left;
+            /*text-transform: uppercase;*/
+            text-decoration: none;
+            font-size:10px;
+            width:100px;
+            overflow:hidden; 
+            height:20px;
+            line-height:10px;?
+            padding-left: 7px;
+        }
+        
+        .description
+        {
+            text-align: left;
+            /*text-transform: uppercase;*/
+            text-decoration: none; 
+            font-size:8px;
+            width:100px;
+            height:16px;
+            line-height:8px;?
+            padding-left: 7px;
+            padding-top: 5px;
+            overflow:hidden;
+        }
+        
+        .tableCol
+        {
+            padding-Right: 7px;
+            padding-Top: 7px;
+        }
+        
+        .linkButtons
+        {
+            padding-Top: 5px;
+        }
+
+        .disabledTextBox
+        {
+            background-color:#FFF;
+            border:1px solid;
+            color:#000;
+            cursor:default;
+            width:90px;
+            display:table;
+            text-align:right;
+            padding:2px 1px;
+        }
+
+        .closeButton
+        {
+            float:right;
+        }
+
+        #groupSelection,#chatterText
+        {
+            border:1px solid;
+            border-color:#E6E6E6;
+            padding:8px 6px 8px 12px;
+        }
+        
+        /**** ****/
+        
+        .entry
+        {
+            clear: both;
+            
+            /*background-color: #666;*/
+            
+            padding: 0;
+            margin: 0;
+            width: 100px;
+            
+            text-align: center;
+        }
+        
+        .entry > img
+        {
+            height: 89px;
+            width: 89px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .entryInfo
+        {
+            display: block;
+            
+            float:left;
+            margin-left: 10px;
+            
+            width: 100px;
+            height: 200px;
+            
+            text-align: center;
+            font-weight: bold;
+            /*text-transform: uppercase;*/
+            font-size: 11px;
+            color: #336699;
+            
+            word-wrap: break-word !important;
+        }
+        
+        .entryInfo:hover
+        {
+            background-color: #BBB;
+            cursor: pointer;
+        }
+        
+        .libraryTable
+        {
+            width: 99%;
+        }
+        
+        .libraryTable th
+        {
+            font-size: 14px;
+        }
+        
+        .libraryTable td,th
+        {
+            font-weight: bold;
+            padding: 6px;
+            vertical-align:middle;
+        }
+        
+        .even
+        {
+            background-color:#ccc;
+        }
+        
+        .pageBlock
+        {
+            width: 900px !important;
+        }
+    </style>
+    <script>
+        $(function() {
+          $( "#accordion" ).accordion({
+            heightStyle: "content",
+            collapsible: true
+          });
+        });
+        
+        var theID;
+        function setID(id){
+            theID = id;
+        }
+        
+        function initShareFile(){
+            shareFile(theID);
+            closeModal();
+        }
+    
+        function closeModal(){
+            $('#myModal').modal('hide')
+            $('.postComment').val('');    
+        }
+    </script>
+    
+  
+    <apex:form >
+    <apex:actionFunction name="shareFile" action="{!share}" rerender="theTable">
+        <apex:param name="firstParam" assignTo="{!newsId}" value=""/>
+    </apex:actionFunction>
+    <apex:composition template="isll_TemplateMain">
+        <apex:define name="firstColumn">
+                <div style="width: 5%; float: left; "/>
+                <div style="width: 95%; float: left ">
+                    <c:isll_CmsContentComponent cmsContentName="NewsArchiveTitle"/>
+                    
+                    <div class="pageBlock bPageBlock brandSecondaryBrd apexDefaultPageBlock secondaryPalette">
+
+<apex:includeScript value="{!URLFOR($Resource.bootstrap, 'bootstrap.min.js')}" />
+<apex:stylesheet value="{!URLFOR($Resource.bootstrap, 'modal.css')}"/>              
+<!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick = "closeModal();">&times;</button>
+          <h4 class="modal-title">Share a News</h4>
+        </div>
+        <div class="modal-body">
+                <br/>
+                <div>
+                    This news will be posted to the ISLL chatter group
+                     <apex:inputTextArea styleClass="postComment" value="{!chatterController.postText}" style="margin-top:3px; width:100%; height:78px; font-size:12px; resize:vertical;" />
+                </div>
+        </div>
+        <div class="modal-footer">
+       
+          <button type="button" class="btn btn-default" data-dismiss="modal" onclick = "closeModal();">Close</button>
+          <button type="button" class="btn btn-primary" onClick = "initShareFile();">Share</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+                    <apex:outputText rendered="{!months.size > 0}">
+                        <div id="accordion">
+                            <apex:repeat value="{!months}" var="month">
+                                <h3>{!month}</h3>
+                                <div>
+                                    <table width="100%" class="accordTable" cellpadding="0" cellspacing="0">
+                                        <apex:repeat value="{!newsByMonth[month]}" var="news">
+                                            <tr>
+                                                <td width="100px" align="right">
+                                                    <apex:outputText value="{0,date,dd/MM/yyyy}">
+                                                       <apex:param value="{!news.CreatedDate}" />
+                                                   </apex:outputText></td>
+                                                <td width="160px">
+                                                    <div class="thumbnail-container">
+                                                        <img src="{!news.ThumbnailLink__c}" class="thumbnail-img" data-url="{!news.Link__c}" height="70" />
+                                                    </div>
+                                                </td >
+                                                <td width="160px">
+                                                    <apex:outputpanel rendered="{!news.Link__c != NULL}">
+                                                        <a href="{!news.Link__c}">{!news.ThumbnailText__c}</a>
+                                                    </apex:outputpanel>
+                                                    <apex:outputpanel rendered="{!news.Link__c == NULL}">
+                                                        {!news.ThumbnailText__c}
+                                                    </apex:outputpanel>
+                                                </td>
+                                                <td width="350px">
+                                                    <apex:outputField value="{!news.MediaDescription__c}" />
+                                                </td>
+                                                <td>
+                                                    <a data-toggle="modal" href="#myModal" onClick = "setID('{!news.id}');">
+                                                       <apex:image id="shareLink" value="{!URLFOR($Resource.isll_images, 'shareButton.png')}" style="height:25px; width:25px;" />
+                                                       <apex:param name="contentDocID" value="{!news.id}" assignTo="{!newsId}"/> 
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </table>
+                                    
+                                </div>
+                            </apex:repeat>
+                        </div>
+                    </apex:outputText>
+                    <apex:outputText rendered="{!months.size == 0}">
+                        <div style="padding:10px;">
+                            No archived news to display.
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                        </div>
+                    </apex:outputText>
+                    </div>
+                </div>
+        </apex:define>
+    </apex:composition>
+    </apex:form>
+</apex:page>

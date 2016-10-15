@@ -80,7 +80,19 @@ public without sharing class IPM_BETHelper {
         }
 
     }
-
+	// Update the BET current status on Project Object When BET statuus changed
+	public static void updateCurrentBETStatusOnProject(BET_BETWrapper BET,list<IPM_Project__c> associatedProjectList)
+	{
+		for(IPM_Project__c project : associatedProjectList)
+		{
+			project.BETCurrentStatus__c = BET.status;
+		} 
+		 
+		IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+		update associatedProjectList;
+		IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
+	}
+	
     //Method to reset BET Milestone date missed alert 
     public static void resetMilestoneMissedFlag(Id BETId, BET_BETWrapper BET) {
         list < IPM_Project__c > lstPRoject = new list < IPM_Project__c > ();
@@ -168,7 +180,7 @@ public without sharing class IPM_BETHelper {
         
         set<id> setIds = new set<id>();
         //Get All users to be given access
-        for (IPM_Project__c proj: [select IPM_Project_Leader__c, Deputy_Project_Leader__c, (select IPM_User__c from IPM_Project_Resources__r where IPM_User__c != null and((IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_REGIONAL and IPM_Role_Type__c in : setRegionalRoles) OR(IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_LOCAL and IPM_Role_Type__c in : setLocalRoles))) from IPM_Project__c where (IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.BET__c = : betId) OR (IPM_Parent_Project__r.IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c = : betId) limit 10000]) {
+        for (IPM_Project__c proj: [select IPM_Project_Leader__c, Deputy_Project_Leader__c, (select IPM_User__c from IPM_Project_Resources__r where ((IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_REGIONAL and IPM_Role_Type__c in : setRegionalRoles) OR(IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_LOCAL and IPM_Role_Type__c in : setLocalRoles))) from IPM_Project__c where (IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.BET__c = : betId) OR (IPM_Parent_Project__r.IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c = : betId) limit 10000]) {
             if(setIds.isEmpty() || (!setIds.isEmpty() && !setIds.contains(proj.IPM_Project_Leader__c))){
                 lstMemberRequests.add(generateBETMember(proj.IPM_Project_Leader__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
                 setIds.add(proj.IPM_Project_Leader__c);
@@ -302,7 +314,8 @@ public without sharing class IPM_BETHelper {
         }
     }
     
-    public static void setArchiveBET_IPM(BET_BETWrapper BET) {
+    //Method to update Archived BET details on Project.
+	public static void setArchiveBET_IPM(BET_BETWrapper BET) {
         list < IPM_Project__c > lstIPM = new list < IPM_Project__c > ();
         for (IPM_Project__c ipm: [select id from IPM_Project__c where bet__c = : BET.betid limit 50000]) {
             ipm.BET_Archived_BET__c = BET.betid;
@@ -315,4 +328,19 @@ public without sharing class IPM_BETHelper {
             update lstIPM;
         }
     }
+	//Method to update BET details on IPM
+	@future
+	public static void updateBETlinktoProject(id betId, id projectId){
+		IPM_Project__c proj = new IPM_Project__c();
+		try{
+			proj = [select bet__c,id from IPM_Project__c where id = :projectId  LIMIT 1  FOR UPDATE];
+			if(betId!=null){
+				proj.BET__c = betId;
+				update proj;
+			}
+		}catch(exception ex){
+			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BETHelper.class.getName(),'updateBETlinktoProject',ex.getMessage(), Ex,IPM_ConstantUtils.ERROR, null, ex.getStackTraceString(), null, null) ;	
+		}
+	}
+	
 }

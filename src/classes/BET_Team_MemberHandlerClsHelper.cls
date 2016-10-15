@@ -30,17 +30,18 @@ public class BET_Team_MemberHandlerClsHelper {
     	for(uw_BET_Team_Member__c tmember : teamMembers) {
     		betsIds.add(tmember.BET__c);
     	}
-
+	List<uw_BET__share> updatesharelist=new List<uw_BET__share>();
         List<uw_BET__Share> betShareList = [SELECT Id,userOrGroupId,parentId FROM uw_BET__Share WHERE parentId in :betsIds and  AccessLevel in ('Edit','Read')];
         
         for(uw_BET__Share share : betShareList){
         	for(uw_BET_Team_Member__c tmember : teamMembers) {
 		        if(share.userOrGroupId == tmember.Team_Member__c && share.parentId == tmember.BET__c) {
 		           share.AccessLevel = tmember.Role__c.equalsIgnoreCase(managerRoleStr) ? BET_Team_MemberHandlerCls.EDIT : BET_Team_MemberHandlerCls.READ;
+		           updatesharelist.add(share);
 		        }
 	    	}
     	}
-    	update betShareList;
+    	update updatesharelist;
 	}
 
 	/************************************************************

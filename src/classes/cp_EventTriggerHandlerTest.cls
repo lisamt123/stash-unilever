@@ -12,11 +12,10 @@
 @isTest
 private class cp_EventTriggerHandlerTest
 {
-    Public static final String profileName ='System Administrator';
     static testMethod void testHostPlanner()
     {
         // User
-        User testUser = cp_TestData.getTestUser(profileName,'Host');
+        User testUser = cp_TestData.getTestUser('System Administrator','Host');
         insert testUser;
 
         // Planner
@@ -48,9 +47,9 @@ private class cp_EventTriggerHandlerTest
     static testMethod void testParticipant()
     {
         // User
-        User testUser = cp_TestData.getTestUser(profileName,'Part');
+        User testUser = cp_TestData.getTestUser('System Administrator','Part');
         insert testUser;
-        User testUser2 = cp_TestData.getTestUser(profileName,'Part2');
+        User testUser2 = cp_TestData.getTestUser('System Administrator','Part2');
         insert testUser2;
 
         // Planner
@@ -92,7 +91,7 @@ private class cp_EventTriggerHandlerTest
     static testMethod void testReapprovalProcess()
     {
         // User
-        User testUser = cp_TestData.getTestUser(profileName,'User');
+        User testUser = cp_TestData.getTestUser('System Administrator','User');
         insert testUser;
 
         // Planner
@@ -126,14 +125,13 @@ private class cp_EventTriggerHandlerTest
         update e;
 
         List<cp_Event__c> ev = [SELECT Id, Activity_Status__c FROM cp_Event__c WHERE Id =: e.Id];
-        //system.assertEquals(ev.get(0).Activity_Status__c,cp_EventTriggerHandler.EVENT_STATUS_DRAFT);
-        system.assertNotEquals(ev.get(0).Activity_Status__c,'CONFIRMED');
+        system.assertEquals(ev.get(0).Activity_Status__c,cp_EventTriggerHandler.EVENT_STATUS_DRAFT);
     }
 
     static testMethod void testNotifyOwnersAfterReapproval()
     {
         // User
-        User testUser = cp_TestData.getTestUser(profileName,'User');
+        User testUser = cp_TestData.getTestUser('System Administrator','User');
         insert testUser;
 
         // Planner

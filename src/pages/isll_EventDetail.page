@@ -1,0 +1,31 @@
+<apex:page sidebar="false" docType="html-5.0">
+	<style type="text/css">
+		html, body
+		{
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+	
+	<apex:composition template="isll_TemplateMain">
+		<apex:define name="firstColumn">
+			<div>
+				<p>{HeaderImage}</p>
+			</div>
+			
+			<div style="width: 400px; float: left;">
+				<span style="font-size:16px; font-weight:bold;">DISPLAY TITLE EVENT<br />TIME DETAILS</span>
+				<br />
+				<br />
+				{img} | Lorem Ipsum...
+			</div>
+			
+			<div style="width: 400px; float: left;">
+				{InternalMembers}<br />
+				<br />
+				<br />
+				{ExternalMembers}
+			</div>
+		</apex:define>
+	</apex:composition>
+</apex:page>
