@@ -6504,6 +6504,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     <listViews>
         <fullName>All_Distributor_Accounts</fullName>
         <columns>ACCOUNT.NAME</columns>
+        <columns>SAP_ID__c</columns>
         <columns>ACCOUNT.SITE</columns>
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
         <columns>ACCOUNT.PHONE1</columns>
@@ -6516,6 +6517,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <field>ACCOUNT.TYPE</field>
             <operation>equals</operation>
             <value>Distributor</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.ADDRESS2_COUNTRY</field>
+            <operation>contains</operation>
+            <value>US</value>
         </filters>
         <label>All Distributor Accounts</label>
         <language>en_US</language>
