@@ -1,0 +1,1 @@
+{"nodes":{"IPMUSERRegister":{"action":"register","parameters":{"label":"IPMUsers","name":"IPMUsers"},"sources":["IPMUSER"]},"IPMUSER":{"action":"sobjectDigest","parameters":{"fields":[{"name":"Function__c"},{"name":"Sub_Function__c"},{"name":"MCO__c"},{"name":"Id"},{"name":"Name"},{"name":"Email"}],"object":"User"}}}}
