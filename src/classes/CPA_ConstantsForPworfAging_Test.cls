@@ -17,7 +17,7 @@ public class CPA_ConstantsForPworfAging_Test {
 
  static testMethod void constantsforPworfagingTest() {
 
-        CPA_ConstantsForPworfAging con = new CPA_ConstantsForPworfAging();
+        //CPA_ConstantsForPworfAging con = new CPA_ConstantsForPworfAging();
         Test.startTest();
         System.assertEquals(CPA_ConstantsForPworfAging.RESUBMITTED,CPA_ConstantsForPworfAging.RESUBMITTED);
         System.assertEquals(CPA_ConstantsForPworfAging.SUBMITTED,CPA_ConstantsForPworfAging.SUBMITTED);

@@ -14,6 +14,8 @@ VERSION     AUTHOR           DATE            DETAIL Description
 ***********************************************************************/
 public class CPA_ConstantsForPworfAging{
 
+//public CPA_ConstantsForPworfAging(){}
+
     public static final String RESUBMITTED = 'Resubmitted';
     public static final String SUBMITTED = 'Submitted';
     public static final String CANCELLED = 'Cancelled';

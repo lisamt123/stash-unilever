@@ -14,7 +14,7 @@ VERSION     AUTHOR     DATE            DETAIL Description
 ***********************************************************************/
 @isTest
 public  class CPA_Commercials_Threshold_Test {
-
+Private static final string LP='Large Project (>2000 days)';
     /*******************************************************************
     Purpose: This method covers PWO  Commercials Threshold method
     Parameters: 
@@ -22,6 +22,7 @@ public  class CPA_Commercials_Threshold_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  PWOInformationController_Test() {
+    
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
         CPA_Status_Msg__c READYTOSUBMIT= CPA_testStatusMsgCustomSettingClass.createTest_READYTOSUBMIT();
@@ -34,7 +35,7 @@ public  class CPA_Commercials_Threshold_Test {
         
         CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
         
-        objPworf.pkl_Project_Scale__c = 'Large Project (>2000 days)';
+        objPworf.pkl_Project_Scale__c = LP;
         
         
         insert objPworf;
@@ -94,7 +95,7 @@ public  class CPA_Commercials_Threshold_Test {
         
         CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
         objPworf.mpkl_Project_Phases__c = 'Plan; Analyse; Design; Build; Test; Deploy; Other';
-        objPworf.pkl_Project_Scale__c = 'Large Project (>2000 days)';
+        objPworf.pkl_Project_Scale__c = LP;
         insert objPworf;       
         
         objPworf.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED ;
@@ -103,7 +104,7 @@ public  class CPA_Commercials_Threshold_Test {
         
         CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf);
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SAVED;
-        objPWO.pkl_PWORFDelta_Project_Scale__c = 'Large Project (>2000 days)';
+        objPWO.pkl_PWORFDelta_Project_Scale__c = LP;
         insert  objPWO;
        
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPWO.pkl_Status__c);
@@ -116,7 +117,7 @@ public  class CPA_Commercials_Threshold_Test {
         CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO);
         objCR1.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
         objCR1.eml_Unilever_Content_Approver_Email__c   = null;
-        objCR1.pkl_PWORFDelta_Project_Scale__c ='Large Project (>2000 days)';
+        objCR1.pkl_PWORFDelta_Project_Scale__c =LP;
         objCR1.pkl_Project_Phases__c = 'Plan; Analyse; Design; Build; Test; Deploy; Other';
         insert objCR1;
      
@@ -154,7 +155,7 @@ public  class CPA_Commercials_Threshold_Test {
         
         CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
         objPworf.mpkl_Project_Phases__c = 'Plan; Analyse';
-        objPworf.pkl_Project_Scale__c = 'Large Project (>2000 days)';
+        objPworf.pkl_Project_Scale__c = LP;
         insert objPworf;       
         
         objPworf.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED ;
@@ -163,7 +164,7 @@ public  class CPA_Commercials_Threshold_Test {
         
         CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf);
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SAVED;
-        objPWO.pkl_PWORFDelta_Project_Scale__c = 'Large Project (>2000 days)';
+        objPWO.pkl_PWORFDelta_Project_Scale__c = LP;
         insert  objPWO;
        
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPWO.pkl_Status__c);
@@ -176,7 +177,7 @@ public  class CPA_Commercials_Threshold_Test {
         CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO);
         objCR1.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
         objCR1.eml_Unilever_Content_Approver_Email__c   = null;
-        objCR1.pkl_PWORFDelta_Project_Scale__c ='Large Project (>2000 days)';
+        objCR1.pkl_PWORFDelta_Project_Scale__c =LP;
         objCR1.pkl_Project_Phases__c = 'Plan; Analyse; Design; Build; Test; Deploy';
         insert objCR1;
      
@@ -214,7 +215,7 @@ public  class CPA_Commercials_Threshold_Test {
         
         CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
         objPworf.mpkl_Project_Phases__c = 'Plan; Analyse';
-        objPworf.pkl_Project_Scale__c = 'Large Project (>2000 days)';
+        objPworf.pkl_Project_Scale__c = LP;
         insert objPworf;       
         
         objPworf.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED ;
@@ -223,7 +224,7 @@ public  class CPA_Commercials_Threshold_Test {
         
         CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf);
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SAVED;
-        objPWO.pkl_PWORFDelta_Project_Scale__c = 'Large Project (>2000 days)';
+        objPWO.pkl_PWORFDelta_Project_Scale__c = LP;
         insert  objPWO;
        
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPWO.pkl_Status__c);
@@ -236,7 +237,7 @@ public  class CPA_Commercials_Threshold_Test {
         CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO);
         objCR1.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
         objCR1.eml_Unilever_Content_Approver_Email__c   = null;
-        objCR1.pkl_PWORFDelta_Project_Scale__c ='Large Project (>2000 days)';
+        objCR1.pkl_PWORFDelta_Project_Scale__c =LP;
         objCR1.pkl_Project_Phases__c = 'Design; Build; Test; Deploy';
         insert objCR1;
      
@@ -274,7 +275,7 @@ public  class CPA_Commercials_Threshold_Test {
         
         CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
         objPworf.mpkl_Project_Phases__c = 'Plan; Analyse';
-        objPworf.pkl_Project_Scale__c = 'Large Project (>2000 days)';
+        objPworf.pkl_Project_Scale__c = LP;
         insert objPworf;       
         
         objPworf.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED ;
@@ -283,7 +284,7 @@ public  class CPA_Commercials_Threshold_Test {
         
         CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf);
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SAVED;
-        objPWO.pkl_PWORFDelta_Project_Scale__c = 'Large Project (>2000 days)';
+        objPWO.pkl_PWORFDelta_Project_Scale__c = LP;
         insert  objPWO;
        
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPWO.pkl_Status__c);
@@ -296,7 +297,7 @@ public  class CPA_Commercials_Threshold_Test {
         CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO);
         objCR1.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
         objCR1.eml_Unilever_Content_Approver_Email__c   = null;
-        objCR1.pkl_PWORFDelta_Project_Scale__c ='Large Project (>2000 days)';
+        objCR1.pkl_PWORFDelta_Project_Scale__c =LP;
         objCR1.pkl_Project_Phases__c = 'Other';
         insert objCR1;
      
