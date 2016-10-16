@@ -160,6 +160,11 @@
                             </li>
                             <li class="slds-dropdown__item">
                                 <a href="" role="menuitem">
+                                    <span style="width:100%;" class="slds-truncate" aura:id="contracts"><ui:button label="Show Contracts" buttonTitle="Show Only Contracts" press="{!c.doInit}"/></span>
+                                </a>
+                            </li>
+                            <li class="slds-dropdown__item">
+                                <a href="" role="menuitem">
                                     <span style="width:100%;" class="slds-truncate" aura:id="gtes"><ui:button label="{!$Label.c.CORE_LBL_SHOW_ONLY_EXPENSES}" buttonTitle="Show Only Expenses" press="{!c.doInit}"/></span>
                                 </a>
                             </li>

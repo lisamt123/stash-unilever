@@ -50,7 +50,7 @@
                         <div class="name">
                             {!v.ApprovalData.ExpenseID}<br/>
                             <div class="expenseName">{!v.ApprovalData.ExpenseName} </div>
-                            <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='Clarity' || v.ApprovalData.ExpenseType =='Invoice')}">
+                            <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='Clarity' || v.ApprovalData.ExpenseType =='Invoice' || v.ApprovalData.ExpenseType =='CLM')}">
                                 <div class="slds-text-body--small requestedBy">
                                     {!v.ApprovalData.Currencies}&nbsp;
                                     {!v.ApprovalData.ProjectBug} 
