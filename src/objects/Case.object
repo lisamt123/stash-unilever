@@ -7883,7 +7883,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>CEC Philippines Queue</label>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>,Email,Email Philippines,Web</value>
+        </filters>
+        <label>CEC Philippines Queue - E-MAIL, WEB</label>
         <language>en_US</language>
         <queue>CEC_Philippines_Queue</queue>
         <sharedTo>
@@ -8980,6 +8985,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Manager_UK</role>
             <role>CEC_User_UK</role>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Email_View1</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>Consumer_Email__c</columns>
+        <columns>Country__c</columns>
+        <filterScope>Queue</filterScope>
+        <label>Email View</label>
+        <language>en_US</language>
+        <queue>CEC_Bangladesh_Queue</queue>
     </listViews>
     <listViews>
         <fullName>Emails_Q_A</fullName>
