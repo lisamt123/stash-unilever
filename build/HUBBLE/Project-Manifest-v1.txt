@@ -49,6 +49,12 @@ src/classes/CPA_testGroupNameCustomSettingClass.cls
 src/classes/CPA_testGroupNameCustomSettingClass.cls-meta.xml
 src/classes/CPA_testPWORFClass_util.cls
 src/classes/CPA_testPWORFClass_util.cls-meta.xml
+src/classes/CPA_PWORF_PWO_UtilMethods_Test.cls
+src/classes/CPA_PWORF_PWO_UtilMethods_Test.cls-meta.xml
+src/classes/CPA_ConstantsForPworfAging_Test.cls
+src/classes/CPA_ConstantsForPworfAging_Test.cls-meta.xml
+src/classes/CPA_CRListController_Test.cls
+src/classes/CPA_CRListController_Test.cls-meta.xml
 src/objects
 src/objects/CPA_CR__c.object
 src/objects/CPA_HLE_Request__c.object

@@ -71,12 +71,10 @@ public with sharing class CPA_attachment_Trigger_Handler
         for(sobject objAtt : trigger.old){
             Attachment objAttachemt = (Attachment)objAtt;
             string srtTemp = objAttachemt.ParentId;
-            if(objAttachemt !=null && objAttachemt.Name.startswith('Commercial') 
-            &&(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
+            if(objAttachemt !=null && objAttachemt.Name.startswith('Commercial') &&(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
                     lstAttachmentRead.add(objAttachemt);
             }
-          if(objAttachemt !=null && objAttachemt.ContentType!=null && objAttachemt.ContentType.contains('pdf')  
-          &&(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
+          if(objAttachemt !=null && objAttachemt.ContentType!=null && objAttachemt.ContentType.contains('pdf')  &&(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
          
                  lstAttachmentRead1.add(objAttachemt);
              }
@@ -86,7 +84,7 @@ public with sharing class CPA_attachment_Trigger_Handler
              }
             
         }
-        if(lstAttachmentRead!= NULL && lstAttachmentRead.size()>0){
+        IF(lstAttachmentRead!= NULL && lstAttachmentRead.size()>0){
             CPA_AttachmentUtil.deleteCommericalData(lstAttachmentRead);
         }
         if(lstAttachmentRead1 != null && lstAttachmentRead1.size()>0){
