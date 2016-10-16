@@ -7883,7 +7883,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>CEC Philippines Queue</label>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>,Email,Email Philippines,Web</value>
+        </filters>
+        <label>CEC Philippines Queue - E-MAIL, WEB</label>
         <language>en_US</language>
         <queue>CEC_Philippines_Queue</queue>
         <sharedTo>
