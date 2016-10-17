@@ -3652,33 +3652,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>ANZ_CEC_Automated_User</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>OWNER_NAME</field>
-            <operation>contains</operation>
-            <value>automated</value>
-        </filters>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <label>ANZ CEC Automated User</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_ANZ</role>
-            <role>CEC_User_ANZ</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>ANZ_CEC_Spam</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -8985,6 +8958,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Manager_UK</role>
             <role>CEC_User_UK</role>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Email_View1</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>Consumer_Email__c</columns>
+        <columns>Country__c</columns>
+        <filterScope>Queue</filterScope>
+        <label>Email View</label>
+        <language>en_US</language>
+        <queue>CEC_Bangladesh_Queue</queue>
     </listViews>
     <listViews>
         <fullName>Emails_Q_A</fullName>

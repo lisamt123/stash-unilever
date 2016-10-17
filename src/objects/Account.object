@@ -3112,7 +3112,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <externalId>false</externalId>
         <label>Operator Outlet</label>
         <lookupFilter>
-            <active>false</active>
+            <active>true</active>
             <filterItems>
                 <field>$Source.FS_SubSegmentRussia__c</field>
                 <operation>equals</operation>
@@ -22654,7 +22654,7 @@ IF(ISCHANGED(OwnerId)=true &amp;&amp; (RecordType.DeveloperName = &quot;Distribu
     </validationRules>
     <validationRules>
         <fullName>FS_Billing_Street_Mandatory</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Billing Street Mandatory</description>
         <errorConditionFormula>AND($Profile.Name = &apos;Unilever Food Solution - Russia&apos;, BillingStreet = &apos;&apos;,  OR(RecordType.DeveloperName =&apos;Operators&apos;, RecordType.DeveloperName =&apos;FS_OperatorRussia&apos;))</errorConditionFormula>
         <errorDisplayField>CurrencyIsoCode</errorDisplayField>
@@ -22686,8 +22686,9 @@ IF(ISCHANGED(OwnerId)=true &amp;&amp; (RecordType.DeveloperName = &quot;Distribu
     </validationRules>
     <validationRules>
         <fullName>Shipping_Address_Validation_for_US</fullName>
-        <active>false</active>
+        <active>true</active>
         <errorConditionFormula>IF( AND(AND(RecordType.Name  = &quot;Operator&quot;  ,  $Profile.Name  = &quot;Unilever Food Solution - NA&quot; ) ,OR(  ISBLANK(  ShippingCity ),  ISBLANK(  ShippingCountry ), ISBLANK(  ShippingState ),  ISBLANK(  ShippingStreet ),  ISBLANK(  ShippingPostalCode ))) , true, false)</errorConditionFormula>
+        <errorDisplayField>CurrencyIsoCode</errorDisplayField>
         <errorMessage>Please Check whether the Following details are filled or not:
 Shipping Street,
 Shipping City,

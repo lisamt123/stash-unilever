@@ -823,17 +823,19 @@
     </fields>
     <validationRules>
         <fullName>FS_Inactive_Products</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Check if inactive product is selected</description>
         <errorConditionFormula>Product2.IsActive  = FALSE</errorConditionFormula>
+        <errorDisplayField>ApprovalGranted__c</errorDisplayField>
         <errorMessage>You can&apos;t select a product which is inactive.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FS_OpportunityProductsStageWon</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>An opportunity at stage Won can not be changed at the line item level.</description>
         <errorConditionFormula>OR (IF($Profile.Name=&quot;Unilever Food Solution - Russia&quot;,ISPICKVAL(Opportunity.StageName, &quot;3a-Won&quot;),false),IF($Profile.Name=&quot;Unilever Food Solution - NA&quot;,
 OR(ISPICKVAL(Opportunity.StageName, &quot;Closed Won&quot;),ISPICKVAL(Opportunity.StageName, &quot;05 – Won&quot;)),false))</errorConditionFormula>
+        <errorDisplayField>ApprovalGranted__c</errorDisplayField>
         <errorMessage>An opportunity at stage Won can not be changed at the line item level.</errorMessage>
     </validationRules>
     <validationRules>

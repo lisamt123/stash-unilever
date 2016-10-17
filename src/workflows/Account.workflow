@@ -501,7 +501,7 @@
             <name>NAFS_Account_status_Update_to_Temporary</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
             <field>Account.RecordTypeId</field>
@@ -558,7 +558,7 @@
             <name>FS_UpdateAccountNumber</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Account.Type</field>
             <operation>equals</operation>
