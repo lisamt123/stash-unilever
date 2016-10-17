@@ -803,10 +803,18 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
          globalCharter = false;
          topDown = false;
          Id defaultFinancialId = null; 
-         if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
+         
+         //for Non GKM3 project : Show Key Financial Flags till ideas phase only
+         if(project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3 && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
          {
              showKeyFinancial = true;
          }
+         
+         //for GKM3 project : Show Key Financial Flags till Capability phase only
+         else if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && (new Set<String>{IPM_ConstantUtils.PHASE_IDEAS,IPM_ConstantUtils.PHASE_FEASIBILITY,IPM_ConstantUtils.PHASE_CAPABILITY}.contains(project.IPM_Phase__c) )){
+         	showKeyFinancial = true;
+         }
+         
          lstRolloutWrappers = new List<RolloutWrapper>();
         if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
         {
@@ -820,9 +828,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     {
                         topDown = true;
                         getGlobalMyViewWrappers();
-                         showKeyFinancial = true; // This is set to true to show keyfinancial flag in phase from Feasibility to PLE
                     } 
                     else if(currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME){
+                        // This is so that the key Financial Flags are displayed for charter tab in GKM3 projects
+                        // This tab is visbile for Global projects only in GKM3 projects
+                        showKeyFinancial = true; 
                         getGlobalTopDownWrappers();
                     }
                     else if (currentTab == IPM_ConstantUtils.TAB_ROLLUP_NAME)
