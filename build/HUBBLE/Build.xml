@@ -55,19 +55,29 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-	    <runTest>CPA_AttchemntUtilController_Test</runTest>
-		<runTest>CPA_batchProrfAgeUpdate_test</runTest>
-		<runTest>CPA_CancelController_Test</runTest>
-		<runTest>CPA_Commercials_Threshold_Test</runTest>
-		<runTest>CPA_Contract_UtilMethods_Test</runTest>
-		<runTest>CPA_InformationController_Test</runTest>
-		<runTest>CPA_PWORF_Aging_Schedular_Test</runTest>
-		<runTest>CPA_PWORF_PWO_UtilMethods_Test</runTest>
-		<runTest>CPA_Req_Deli_and_Key_Contacts_util_Test</runTest>
-		<runTest>CPA_ReturnController_Test</runTest>
-		<runTest>CPA_SelectRecordType_Test</runTest>
-		<runTest>CPA_CRListController_Test</runTest>
-		<runTest>CPA_ConstantsForPworfAging_Test</runTest>
+	  <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLoginControllerTest</runTest>
+      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+      <runTest>CommunitiesSelfRegControllerTest</runTest>
+      <runTest>ExceptionLoggingHelper_Test</runTest>
+      <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
+      <runTest>TestDataFactory</runTest>
+      <runTest>UserTestUtil</runTest>
+      <runTest>UserTrigger_Test</runTest>
+	  <runTest>CPA_AttchemntUtilController_Test</runTest>
+	  <runTest>CPA_batchProrfAgeUpdate_test</runTest>
+	  <runTest>CPA_CancelController_Test</runTest>
+	  <runTest>CPA_Commercials_Threshold_Test</runTest>
+	  <runTest>CPA_Contract_UtilMethods_Test</runTest>
+	  <runTest>CPA_InformationController_Test</runTest>
+	  <runTest>CPA_PWORF_Aging_Schedular_Test</runTest>
+	  <runTest>CPA_PWORF_PWO_UtilMethods_Test</runTest>
+	  <runTest>CPA_Req_Deli_and_Key_Contacts_util_Test</runTest>
+	  <runTest>CPA_ReturnController_Test</runTest>
+	  <runTest>CPA_SelectRecordType_Test</runTest>
+	  <runTest>CPA_CRListController_Test</runTest>
+	  <runTest>CPA_ConstantsForPworfAging_Test</runTest>
 	  </sf:deploy>
   </target>  
 

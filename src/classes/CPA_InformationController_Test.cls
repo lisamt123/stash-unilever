@@ -61,6 +61,22 @@ public  class CPA_InformationController_Test {
         CPA_PWORFInformationController act = new CPA_PWORFInformationController();
         System.assert(act!=null);
         boolean flage = CPA_PWORFInformationController.checkIsValidated(objPworf2.Id );
+        //Codecoverage
+        CPA_PWORF__c objPworf3 = CPA_testPWORFClass_util.createTest_RA_PWORF();
+        objPworf3.name = 'Test--->'+system.now()+ ' 3';
+        objPworf3.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
+        objPworf3.Travel_Arrangements__c = null;
+        objPworf3.pkl_Large_Project_Discount__c=CPA_ConstantsForContractingAppClasses.YES;
+        objPworf3.txt_Large_Project_discount_details__c= null;
+        objPworf3.pkl_Request_Type__c =CPA_ConstantsForContractingAppClasses.OTHER;
+        objPworf3.txta_Other_Request_Type__c = null;
+        objPworf3.Interface_to_the_system__c =CPA_ConstantsForContractingAppClasses.YES;
+        objPworf3.Interface_to_the_system_Detail__c= null;
+        objPworf3.pkl_Process_Office_Area_E2E__c=CPA_ConstantsForContractingAppClasses.OTHER;
+        objPworf3.txt_otherProcessOfficeAreaE2E__c= null;
+        insert objPworf3;
+        boolean flage1 = CPA_PWORFInformationController.checkIsValidated(objPworf3.Id );
+        
         System.assert(flage!=null);
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPworf2.pkl_Status__c);    
         System.assert (controller2.objectMap.get(CPA_ConstantsForContractingAppClasses.RESOURCELOCATION ) == null);
