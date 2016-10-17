@@ -1193,6 +1193,26 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
                 <fullName>NON-FOCUS</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>All Other - Non Focus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thrust 4 - Top Dish</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thrust 3 - Tea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thrust 1 - Reach BOH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thrust 2 - FOH</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -6304,6 +6324,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_Focus__c</picklist>
             <values>
+                <fullName>All Other - Non Focus</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>BOH</fullName>
                 <default>false</default>
             </values>
@@ -6313,6 +6337,22 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>NON-FOCUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thrust 1 - Reach BOH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thrust 2 - FOH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thrust 3 - Tea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thrust 4 - Top Dish</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10090,6 +10130,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
     </recordTypes>
+
     <searchLayouts>
         <customTabListAdditionalFields>PRODUCT2.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>PRODUCT2.CUSTOMER_PRODUCT_ID</customTabListAdditionalFields>
