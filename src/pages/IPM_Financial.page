@@ -121,7 +121,7 @@
                                                                                     <!-- Rendered if bollean showKeyFinancial is true and custom field IPM_Key_Financial__c is true-->    
                                                                                     <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(showKeyFinancial,financial.IPM_Key_Financial__c)}" />
                                                                                 </span>
-                                                                            <apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                            <apex:commandLink value="{!financial.Display_Name__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                                 <apex:param name="currentFinancialId" value="{!financial.Id}" assignTo="{!currentFinancialId}"/>
                                                                             </apex:commandLink>
                                                                             </div>
