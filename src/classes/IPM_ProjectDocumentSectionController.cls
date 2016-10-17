@@ -1045,7 +1045,6 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 							(IPM_ConstantUtils.CONTRACT_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.MARKET_READY_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Result__c)) || 
 							(IPM_ConstantUtils.MARKET_READY_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.MARKET_READY_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Results_Acheived__c))){
 						showmsg=true;
-						status=false;
 					}    
 				}
 				for(IPM_Gate_CMI__c gate:gateCMIList)
