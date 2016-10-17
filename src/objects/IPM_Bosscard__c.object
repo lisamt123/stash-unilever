@@ -3431,6 +3431,15 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000Gw2L_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000Gw2L</label>
+        <queue>IPM_a7I0L000000Gw2L</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>

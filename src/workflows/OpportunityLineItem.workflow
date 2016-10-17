@@ -119,7 +119,7 @@
             <name>FS_Fixed_Price_review</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>OpportunityLineItem.FS_FixedPrice__c</field>
             <operation>equals</operation>
