@@ -1454,7 +1454,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             queryString+= field + ', ';
         }
         //IPM Financial Year
-        queryString+= 'Last_Saved_By_Global__r.Name,Last_Saved_By_Regional__r.Name,Last_Saved_By_Local__r.Name, Parent_Project__r.IPM_Project_Type__c, Regional_Project__r.IPM_Project_Type__c,Local_Project__r.IPM_Project_Type__c, (SELECT ';
+        queryString+= 'Last_Saved_By_Global__r.Name,Last_Saved_By_Regional__r.Name,Last_Saved_By_Local__r.Name, Parent_Project__r.IPM_Project_Type__c, Regional_Project__r.IPM_Project_Type__c,Local_Project__r.IPM_Project_Type__c,Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c,Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c, (SELECT ';
         For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
             if (!(field.equalsignoreCase('Id')) && field != IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) 
             {
