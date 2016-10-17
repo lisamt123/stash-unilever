@@ -64,17 +64,13 @@
       <runTest>TriggerFactoryTest</runTest>
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
-      <runTest>UserTrigger_Test</runTest>
-      <runTest>Amr_AdManagerController_Test</runTest>
-	  <runTest>Amr_CAPJobPortfolioController_Test</runTest>
-	  <runTest>Amr_EmailSendingClass_Test</runTest>
-	  <runTest>Amr_JobSheetController_Test</runTest>
-	  <runTest>Amr_NewSaving_Test</runTest>
-	  <runTest>Amr_RAPJobPortfolioController_Test</runTest>
-	  <runTest>Amr_ReportTrigger_Test</runTest>
-	  <runTest>Amr_SavingSummaryController_Test</runTest>
-	  <runTest>Amr_SubmittedSavingController_Test</runTest>
-	  <runTest>Amr_TriggerFactory_Test</runTest>
+      <runTest>UserTrigger_Test</runTest> 
+	  <runTest>WU_CreateCapacityDetails_Test</runTest>
+      <runTest>WU_MultiCreateMultiEdit3_Test</runTest>
+      <runTest>WU_WarehouseSearchController_test</runTest>
+      <runTest>WU_SetCurrentMonthBatch_Test</runTest>
+      <runTest>WU_SetCurrentMonthBatch_Scheduler_Test</runTest>
+      <runTest>WU_LeadershipPermission_test</runTest>  
     </sf:deploy>
   </target>  
 
