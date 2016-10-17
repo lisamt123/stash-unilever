@@ -76,7 +76,7 @@ public  class CPA_InformationController_Test {
         objPworf3.txt_otherProcessOfficeAreaE2E__c= null;
         insert objPworf3;
         boolean flage1 = CPA_PWORFInformationController.checkIsValidated(objPworf3.Id );
-        
+        System.assert(flage1!=null);
         System.assert(flage!=null);
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPworf2.pkl_Status__c);    
         System.assert (controller2.objectMap.get(CPA_ConstantsForContractingAppClasses.RESOURCELOCATION ) == null);

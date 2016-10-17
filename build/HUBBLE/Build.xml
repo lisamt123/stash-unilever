@@ -55,7 +55,7 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-	  <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLandingControllerTest</runTest>
       <runTest>CommunitiesLoginControllerTest</runTest>
       <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
       <runTest>CommunitiesSelfRegControllerTest</runTest>
@@ -78,7 +78,7 @@
 	  <runTest>CPA_SelectRecordType_Test</runTest>
 	  <runTest>CPA_CRListController_Test</runTest>
 	  <runTest>CPA_ConstantsForPworfAging_Test</runTest>
-	  </sf:deploy>
+    </sf:deploy>
   </target>  
 
 </project>
