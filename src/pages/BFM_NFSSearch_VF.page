@@ -1,0 +1,36 @@
+<apex:page controller="BFM_NFSSearch_CC" action="{!searchnfs}" tabStyle="BFM_NFS__c">
+	<apex:form >
+		<apex:pageBlock title="NFS Search">
+   			<apex:pageblockSection >
+    			<apex:inputText value="{!nfs.Name}"/>
+    			<apex:inputField value="{!nfs.NFS_Number__c}" />
+   			</apex:pageblockSection>
+   			<apex:pageblockButtons location="bottom">
+      			<apex:commandButton value="Search" action="{!searchnfs}" />
+     		</apex:pageblockButtons>  
+  		</apex:pageBlock>
+   		<apex:pageBlock title="NFS Details" id="noRec" rendered="{! IF( nfsList != null && nfsList.size ==0 , true, false)}" >
+            <apex:outputPanel >
+                <h1>No Records Found </h1>
+            </apex:outputPanel>
+  		</apex:pageBlock>
+ 
+  <apex:pageBlock title="NFS Details" id="details" rendered="{! IF( nfsList != null && nfsList.size >0, true, false)}" mode="edit">
+       <apex:pageBlockTable value="{!nfsList}" var="nf">
+       	<apex:column headerValue="NFS Name">
+        	<apex:outputLink target="_blank" value="/{!nf.id}">{!nf.Name}</apex:outputLink> 
+       	</apex:column>   
+    	<apex:column value="{!nf.NFS_Number__c}"/>  
+    	<apex:column value="{!nf.NFS_Status__c}"/>  
+    	<apex:column value="{!nf.Tax_Status__c}"/>        
+   		</apex:pageBlockTable>
+   
+    <apex:pageblockButtons >
+         <apex:commandButton value="First Page" rerender="details" action="{!FirstPage}" disabled="{!prev}"/>
+        <apex:commandButton value="Previous" rerender="details" action="{!previous}" disabled="{!prev}"/>
+        <apex:commandButton value="Next" rerender="details" action="{!next}" disabled="{!nxt}"/>
+        <apex:commandButton value="Last Page" rerender="details" action="{!LastPage}" disabled="{!nxt}"/>
+	</apex:pageblockButtons>   
+  </apex:pageBlock>
+ </apex:form>
+</apex:page>

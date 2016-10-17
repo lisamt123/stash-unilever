@@ -1,0 +1,101 @@
+<apex:page cache="true" sidebar="false" showHeader="True" docType="html-5.0" standardStylesheets="false" Controller="BFM_SESSummaryScreen_CC">
+    <apex:form >
+    <head>
+    <meta charset="utf-8" />        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.BFM_MAP, '/MapPage/bootstrap.min.css')}" />
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.BFM_MAP, '/MapPage/font-awesome.min.css')}" />
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.BFM_MAP, '/MapPage/animate.min.css')}" />
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.BFM_MAP, '/MapPage/bootstrap-switch.min.css')}" />
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.BFM_MAP, '/MapPage/select2.min.css')}" />
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.BFM_MAP, '/MapPage/style.css')}" />
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.BFM_MAP, '/MapPage/flat-blue.css')}" />
+        <link href="{!URLFOR($Resource.BFM_Datatabels, '/DataTables-1.10.10/media/css/jquery.dataTables.min.css')}" rel="stylesheet"/>
+        
+        <script type="text/javascript" src="{!URLFOR($Resource.BFM_jquery_1_11_2, '/jquery-1.11.2/dist/jquery.min.js')}"></script>
+        <script type="text/javascript" src="{!URLFOR($Resource.BFM_Bootstrap, '/bootstrap-3.3.5/dist/js/bootstrap.min.js')}"></script>
+        <script type="text/javascript" src="{!URLFOR($Resource.BFM_MAP, '/MapPage/bootstrap-switch.min.js')}"></script> 
+        <script type="text/javascript" src="{!URLFOR($Resource.BFM_MAP, '/MapPage/app.js')}"></script>
+        <script type="text/javascript" src="{!URLFOR($Resource.BFM_Datatabels, '/DataTables-1.10.10/media/js/jquery.dataTables.min.js')}"></script>
+             <style>
+              .hidden {
+                  display: none;
+              }
+              </style>        
+        </head>
+              
+      <style>
+         tr.dataRow {
+           background-color:white;
+         }
+         tr.dataRow:hover {
+           background-color: #e3f3ff;
+         };
+       
+      .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+     </style>
+     
+     <!--<apex:outputPanel style="float:left;display:inline; margin-right:0px;margin-left:1%;width:30%;">                
+        <apex:pageBlock title="CT-e" tabStyle="BFM_CT_e__c">             
+            <apex:pageBlockSection columns="1" >
+                <apex:include pageName="BFM_SummaryPage_VF" rendered="true"/>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>   
+      </apex:outputPanel><br/>-->
+     
+        <body class="flat-blue">               
+                <div class="panel-body">
+            <form class="form-wrapper">
+                <!--input type="submit" value="Search SES" id="submit"/--->
+                <!---input id="pac-input" class="controls" type="searchWord" placeholder="Search..."/--->
+                <apex:inputText value="{!searchWord}"/> 
+                <!--input id="pac-input" class="controls" type="searchWord" placeholder="Search..."/--->
+                <apex:commandButton action="{!searchSES}" value="Search SES"/>
+                <apex:commandButton action="{!redirectPage}" value="Clear"/>                     
+            </form>           
+           </div>
+              
+              <table id="myTable" class="table table-striped" border="1" cellpadding="1" cellspacing="1" >
+                <thead align="center">  
+                    <tr class="headerRow" > 
+                        <th class="headerRow" align="center">SES</th> 
+                        <th class="headerRow" align="center">Origin</th>
+                        <th class="headerRow" align="center">Destination</th>
+                        <th class="headerRow" align="center">Pricing Calculation Date</th>    
+                        <th class="headerRow" align="center">Gross value</th>  
+                        <!--<th class="headerRow" align="center">File Upload</th>-->  
+                        <th class="headerRow" align="center">Link</th>
+                        <th class="headerRow" align="center">Validation</th>
+                        <th class="headerRow" align="center">POD</th>
+                        <th class="headerRow" align="center">Payment</th>
+                    </tr>  
+                 </thead>
+                 <apex:repeat value="{!wrapper}" var="w"> 
+                    <tr class="dataRow">
+                     <td class="dataCell"><apex:outputlink target="_blank" value="/{!w.ses.id}">{!w.ses.Name}</apex:outputlink></td>                            
+                     <td class="dataCell">{!w.ses.stage__r.Origin_city__c}</td>
+                     <td class="dataCell">{!w.ses.stage__r.Destination_City__c}</td> 
+                     <td class="dataCell">{!w.ses.stage__r.Shipment__r.Pricing_Calculation_Date__c}</td> 
+                     <td class="dataCell">{!w.ses.Gross_Value_net_tax__c }</td>
+                     <!--<td align="center"><apex:commandButton style="width:25px;height:25px;" value="File Upload" image="{!$Resource.BFM_FileUpload}" onclick="window.open('/apex/BFM_Fileupload_VF');"/></td>-->
+                     <!--<td align="center"><apex:commandButton style="width:25px;height:25px;" value="File Upload" image="{!$Resource.BFM_FileUpload}" onclick="window.open('$Site.Prefix+/apex/BFM_Fileupload_VF')"/></td>-->
+                     <td align="center"><apex:image id="theImage1" value="{!If(w.linkStatus == 'OK', $Resource.BFM_Green, If(w.linkStatus =='NOTOK', $Resource.BFM_Red, $Resource.BFM_White))}"/></td>
+                     <td align="center"><apex:image id="theImage2" value="{!If(w.validationStatus== 'OK', $Resource.BFM_Green, If(w.validationStatus=='NOTOK', $Resource.BFM_Red, $Resource.BFM_White))}"/></td>
+                     <td align="center"><apex:image id="theImage3" value="{!If(w.PODStatus == 'OK', $Resource.BFM_Green, If(w.PODStatus =='NOTOK', $Resource.BFM_Red, $Resource.BFM_White))}"/></td>
+                     <td align="center"><apex:image id="theImag4" value="{!If(w.PaymentStatus == 'OK', $Resource.BFM_Green, If(w.PaymentStatus =='NOTOK', $Resource.BFM_Red, $Resource.BFM_White))}"/></td>
+                  </tr>
+                 </apex:repeat>
+             </table>             
+  </body>
+    </apex:form>
+</apex:page>

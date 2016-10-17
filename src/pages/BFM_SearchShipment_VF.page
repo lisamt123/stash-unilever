@@ -1,4 +1,4 @@
-<apex:page standardController="BFM_Shipment__c"  recordSetVar="BFM_Shipment" doctype="html-5.0" extensions="BFM_SearchShipmentController_CC"  sidebar="false" id="pge">
+<apex:page standardController="BFM_Shipment__c" showHeader="true" recordSetVar="BFM_Shipment" doctype="html-5.0" extensions="BFM_SearchShipmentController_CC"  sidebar="false" id="pge">
     <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" />
     <apex:form id="frm">     
         <apex:pageMessages />
@@ -70,7 +70,7 @@
             </apex:facet>
        </apex:actionstatus>
        
-        <apex:pageBlock id="pb1">
+        <apex:pageBlock title="Filtros de Busca de Documento de Transporte" id="pb1">
             <apex:pageBlockSection columns="2" id="pbs">
                 <apex:inputtext value="{!shipmentNumber}" id="shpn" label="{!$ObjectType.BFM_Shipment__c.fields.Shipment_Number__c.label}" />
                 <apex:input type="date" value="{!shipmentStart}" id="shpd" label="{!$ObjectType.BFM_Shipment__c.fields.Shipment_Start__c.label}"/>
@@ -108,8 +108,8 @@
                      <apex:column value="{!shp.Shipment_Number__c}"/>
                      <apex:column value="{!shp.Shipment_Start__c}"/>
                      <apex:column value="{!shp.Shipment_Type__c}"/>
-                     <apex:column >
-                        <apex:commandButton style="width:25px;height:25px;" value="File Upload" image="{!$Resource.BFM_FileUpload}" onclick="window.open('/apex/BFM_Fileupload_VF');"/>
+                     <apex:column headerValue="File Upload">
+                        <apex:commandButton style="width:25px;height:25px;" value="File Upload" image="{!$Resource.BFM_FileUpload}" onclick="window.open('$Site.Prefix+/apex/BFM_Fileupload_VF')"/>
                      </apex:column>
                      <apex:column breakBefore="true" rendered="{!NOT(shp.stages__r.empty)}" colspan="7">
                          <apex:pageBlockSection title="Stages" collapsible="true"  columns="1" id="pgStages">
@@ -122,7 +122,6 @@
                                  <apex:column value="{!stage.Origin_city__c}"/>
                                  <apex:column value="{!stage.Destination_city__c}"/>
                                  <apex:column value="{!stage.Gross_value_from_cost_preview__c}"/>
-                                 
                              </apex:pageBlockTable>
                          </apex:pageBlockSection>
                      </apex:column>

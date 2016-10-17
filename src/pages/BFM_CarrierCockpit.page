@@ -1,0 +1,26 @@
+<apex:page standardController="Account" extensions="BFM_CarrierCockpit_CC">
+    <apex:pageBlock >
+    
+        <apex:repeat value="{!stagesByVendor}" var="vendorAccount">
+            <apex:pageBlockTable value="{!stagesByVendor[vendorAccount]}" var="stage">
+                <apex:column headerValue="{!$ObjectType.BFM_Stage__c.Label}">
+                    <apex:outputLink value="/{!stage.Id}" target="_blank" > 
+                        {!stage.Name}
+                    </apex:outputLink>
+                    
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.BFM_Shipment__c.fields.Shipment_Number__c.Label}">
+                    <apex:outputLink value="/{!stage.Shipment__c}" target="_blank" > 
+                        {!stage.Shipment__r.Shipment_Number__c}
+                    </apex:outputLink>
+                </apex:column>
+                <apex:column value="{!stage.Shipment__r.Unilever_Company__r.Name}" />        
+                <apex:column value="{!stage.Origin_city__c}" />        
+                <apex:column value="{!stage.Destination_city__c}" />    
+                <apex:column value="{!stage.Shipment__r.Pricing_Calculation_Date__c}"/>
+                <apex:column value="{!stage.Shipment__r.Shipment_Start__c}"/>
+                <apex:column value="{!stage.Gross_value_from_cost_preview__c}" />
+            </apex:pageBlockTable>
+        </apex:repeat>
+    </apex:pageBlock>
+</apex:page>

@@ -1,0 +1,37 @@
+<apex:page controller="BFM_ErrorLogSearch_CC" action="{!searcherrorlog}" tabStyle="BFM_Error_Log__c">
+    <apex:form >
+        <apex:pageBlock id="thePb" title="ErrorLog Search">
+            <apex:pageblockSection >
+                <apex:inputText value="{!errlog.Name}" label="ErrorLog Name"/>
+            </apex:pageblockSection>
+            <apex:pageblockButtons location="bottom">
+                <apex:commandButton value="Search" action="{!searcherrorlog}" />
+            </apex:pageblockButtons>  
+        </apex:pageBlock>
+        <apex:pageBlock title="ErrorLog Details" id="noRec" rendered="{! IF( errlogList != null && errlogList.size ==0 , true, false)}" >
+            <apex:outputPanel >
+                <h1>No Records Found </h1>
+            </apex:outputPanel>
+        </apex:pageBlock>
+ 
+  <apex:pageBlock title="ErrorLog Details" id="details" rendered="{! IF( errlogList != null && errlogList.size >0, true, false)}" mode="edit">
+       <apex:pageBlockTable value="{!errlogList}" var="err">
+        <apex:column headerValue="ErrorLog Name">
+            <apex:outputLink target="_blank" value="/{!err.id}">{!err.Name}</apex:outputLink> 
+        </apex:column> 
+        <apex:column headerValue="MDF-eLog Name">
+            <apex:outputLink target="_blank" value="/{!err.id}">{!err.BFM_MDF_e__c}</apex:outputLink> 
+        </apex:column>  
+        <apex:column value="{!err.BFM_MDF_e__c}"/>  
+        <apex:column value="{!err.Reason__c}"/>         
+        </apex:pageBlockTable>
+   
+    <apex:pageblockButtons >
+         <apex:commandButton value="First Page" rerender="details" action="{!FirstPage}" disabled="{!prev}"/>
+        <apex:commandButton value="Previous" rerender="details" action="{!previous}" disabled="{!prev}"/>
+        <apex:commandButton value="Next" rerender="details" action="{!next}" disabled="{!nxt}"/>
+        <apex:commandButton value="Last Page" rerender="details" action="{!LastPage}" disabled="{!nxt}"/>
+    </apex:pageblockButtons>
+  </apex:pageBlock>
+ </apex:form>
+</apex:page>

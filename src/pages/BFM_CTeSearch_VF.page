@@ -1,0 +1,37 @@
+<apex:page controller="BFM_CTeSearch_CC" action="{!searchCTe}" tabStyle="BFM_CT_e__c">
+	<apex:form >
+		<apex:pageBlock id="thePb" title="CT-e Search">
+   			<apex:pageblockSection id="thepbs">
+    			<apex:inputText value="{!cte.Name}"/>
+    			<apex:inputField value="{!cte.CT_e_Number__c}" />
+   			</apex:pageblockSection>
+   			<apex:pageblockButtons location="bottom">
+      			<apex:commandButton value="Search" action="{!searchCTe}" />
+     		</apex:pageblockButtons>  
+  		</apex:pageBlock>
+   		<apex:pageBlock title="CT-e Details" id="noRec" rendered="{! IF( cteList != null && cteList.size ==0 , true, false)}" >
+            <apex:outputPanel >
+                <h1>No Records Found </h1>
+            </apex:outputPanel>
+  		</apex:pageBlock>
+ 
+  <apex:pageBlock title="CT-e Details" id="details" rendered="{! IF( cteList != null && cteList.size >0, true, false)}" mode="edit">
+       <apex:pageBlockTable value="{!cteList}" var="ct">
+       	<apex:column headerValue="CT-e Name">
+        	<apex:outputLink target="_blank" value="/{!ct.id}">{!ct.Name}</apex:outputLink> 
+       	</apex:column>   
+    	<apex:column value="{!ct.CT_e_Number__c}"/>  
+    	<apex:column value="{!ct.CT_e_key__c}"/>  
+    	<apex:column value="{!ct.CNPJ_issuer__c}"/>  
+		<apex:column value="{!ct.CNPJ_Service_Taker__c}"/>      
+   		</apex:pageBlockTable>
+   
+    <apex:pageblockButtons >
+         <apex:commandButton value="First Page" rerender="details" action="{!FirstPage}" disabled="{!prev}"/>
+        <apex:commandButton value="Previous" rerender="details" action="{!previous}" disabled="{!prev}"/>
+        <apex:commandButton value="Next" rerender="details" action="{!next}" disabled="{!nxt}"/>
+        <apex:commandButton value="Last Page" rerender="details" action="{!LastPage}" disabled="{!nxt}"/>
+	</apex:pageblockButtons>   
+  </apex:pageBlock>
+ </apex:form>
+</apex:page>

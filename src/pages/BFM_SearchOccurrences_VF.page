@@ -1,6 +1,6 @@
 <apex:page standardController="BFM_Occurrence__c"  recordSetVar="BFM_Occurrence" extensions="BFM_SearchOccurrenceController_CC"  sidebar="false" id="pge">  
-	<apex:form id="frm">        
-    	<style>
+    <apex:form id="frm">        
+        <style>
             th, td { white-space: nowrap; }
             div.dataTables_wrapper {
                 width: 1250px;
@@ -16,7 +16,7 @@
                     } );
                 } );
         </script>
-    	
+        
         <apex:actionstatus id="status">
             <apex:facet name="start">
                 <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
@@ -31,8 +31,8 @@
     
         <apex:pageBlock >
             <apex:pageBlockSection columns="2" id="ocrno">
-            <apex:inputField value="{!searchOccurrence.Occurrence_Number__c}" id="occnum"/>
-            <apex:inputField value="{!searchOccurrence.Range_of_Extent_of_Occurrence_From__c}"/>
+            <apex:inputText value="{!searchOccurrence.Occurrence_Number__c}" id="occnum"/>
+            <apex:inputText value="{!searchOccurrence.Range_of_Extent_of_Occurrence_From__c}"/>
             </apex:pageBlockSection>
              <div align="center">
                  <apex:commandButton value="Search Occurrence" action="{!mySearch}" status="status" rerender="frm" oncomplete="Checkfiled()"/>
@@ -49,7 +49,7 @@
         <apex:outputPanel id="occur">
         <apex:pageblockTable value="{!OccList}" var="Occ" id="occurnce">
          <apex:column headerValue="Name">  
-         <apex:outputlink target="_blank" value="https://unilever--capgbf.cs45.my.salesforce.com/{!Occ.id}">{!Occ.Name}</apex:outputlink>  
+         <apex:outputlink target="_blank" value="/{!Occ.id}">{!Occ.Name}</apex:outputlink>  
          </apex:column> 
          <apex:column value="{!Occ.Occurrence_Number__c}"/>
          <apex:column value="{!Occ.Status__c}"/>
@@ -58,9 +58,9 @@
          </apex:pageBlockTable>
          </apex:outputPanel>
          <apex:pageBlockButtons location="top">
-      	<div style="text-align:right"> 
-      	Total Records Found: {!Con.resultSize} 
-        	<apex:selectList value="{!recordscount}" multiselect="false" size="1">                
+        <div style="text-align:right"> 
+        Total Records Found: {!Con.resultSize} 
+            <apex:selectList value="{!recordscount}" multiselect="false" size="1">                
                 <apex:selectOptions value="{!recordsize}"/>
                 <apex:actionSupport event="onchange" action="{!getoccurences}" reRender="occur,occurnce"/>
            </apex:selectList>

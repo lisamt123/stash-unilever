@@ -1,0 +1,21 @@
+<apex:page controller="BFM_DebitNoteUpload_CC" tabStyle="BFM_CT_e__c">
+    <apex:sectionHeader title="Debit Note" subtitle="File upload"/>
+    <apex:form >
+    <apex:pageBlock >
+    <apex:pageMessages />
+    <apex:pageBlockButtons location="bottom">
+        <apex:commandButton value="Upload" action="{!upload}"/>
+        <apex:commandButton value="Cancel" action="{!cancel}"/>
+    </apex:pageBlockButtons>
+    <apex:pageBlockSection collapsible="false" title="Upload File"  columns="1">
+        <apex:pageBlockSectionItem >   
+                       
+            <apex:outputLabel value="File"/>                        
+            <apex:inputFile value="{!newAttachment.body}" filename="{!newAttachment.name}" size="{!newAttachment.bodylength}" contentType="{!newAttachment.contenttype}"/>                       
+            
+        </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+  
+</apex:page>

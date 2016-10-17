@@ -1,0 +1,184 @@
+<apex:page standardController="BFM_Shipment__c" showHeader="true" recordSetVar="BFM_Shipment" doctype="html-5.0" extensions="BFM_SearchShipmentCTeController_CC"  sidebar="false" id="pge">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" />
+    <apex:form id="frm">     
+        <apex:pageMessages />
+        <style>
+            th, td { white-space: nowrap; }
+            div.dataTables_wrapper {
+            width: 1250px;
+            margin: 0 auto;
+            }   
+            
+        </style>
+        
+        <script>
+        
+        $ = jQuery.noConflict();
+        
+        </script>
+        
+        
+        
+        <script>
+        $(document).ready(function()
+                          {
+                              /*
+                         When page get load then below script will run
+                         and collapse all the section which are under .firstSectionClass( Element Class).
+                         */
+                              var element= $('.styleships .hideListButton');
+                              for(var i = 0;i<element.length;i++)
+                                  twistSection(element[i]);
+                              
+                              /*
+                         Below script it bind with arrow icon (Icon which are being used for collapse) which are displaying on section.
+                         When Icon are clicked then below script will run.
+                         */
+                              $('.styleships .showListButton').bind('click',function(event){
+                                  event.preventDefault();
+                                  var el= $('.styleships .hideListButton');
+                                  for(var i = 0;i<el.length;i++)
+                                      twistSection(el[i]);
+                                  if(el.length!=0)
+                                      twistSection(this);
+                                  
+                                  //this --> represent currently pressed section img element. You can write any script for this element fi you want to do something on section.
+                              });
+                          });
+        </script>
+        
+        
+        <script>
+        /* $(document).ready(function() {
+                    $('#example').dataTable( {
+                        "scrollY": 200,
+                        "scrollX": true
+                    } );
+                } );
+             */
+        </script>
+        
+        <apex:actionstatus id="status">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                                                                     height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="top: 74.2px; width: 91px;">
+                        <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                        <span class="waitingDescription">Loading...</span>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+        
+        <apex:pageBlock title="Filtros de Busca de Documento de Transporte" id="pb1">
+            <apex:pageBlockSection columns="2" id="pbs">
+                <apex:inputtext value="{!shipmentNumber}" id="shpn" label="{!$ObjectType.BFM_Shipment__c.fields.Shipment_Number__c.label}" />
+                <apex:input type="date" value="{!shipmentStart}" id="shpd" label="{!$ObjectType.BFM_Shipment__c.fields.Shipment_Start__c.label}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="2" >
+                <apex:inputText value="{!unileverCompanyAccountName}" label="{!$Label.BFM_Unilever_Account_Name}" id="shpucn" required="false" />
+                <apex:inputText value="{!unileverCompanyAccountCNPJ}" label="{!$Label.BFM_Unilever_Account_CNPJ}" id="shpucc" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="2" >  
+                <apex:inputText value="{!carrierCompanyAccountName}" label="{!$Label.BFM_Vendor_Name}" id="shpvan" required="false" />
+                <apex:inputtext value="{!vendorAccountCNPJ}" label="{!$Label.BFM_Vendor_CNPJ}" id="shpvac" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="2" >  
+                <apex:inputText value="{!plantCode}" label="{!$ObjectType.BFM_Stage__c.fields.Origin_plant_code__c.label}" id="shppc" required="false" />
+            </apex:pageBlockSection>
+            <div align="center">
+                <apex:commandButton value="Search Shipment" id="searchButton" action="{!mySearch}" status="status" rerender="frm,pb1,pbs,shpd,shpn,ships,ships1"/>
+            </div>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="Search Result" id="noRec" rendered="{! IF(shipList!= null && shipList.size ==0,true,false)}" >
+            <apex:outputPanel >
+                <h1>No Records Found </h1>
+            </apex:outputPanel>
+        </apex:pageBlock>
+        <!-- going to iterate over Stage instead --> 
+        <apex:pageblock title="Search Result" rendered="{!IF(AND(NOT(ISBLANK(shipList)),shipList.size>0),true,false)}" id="pgShips">
+            <apex:outputPanel id="ships" >
+                <apex:pageBlockTable value="{!shipList}" var="shp" id="ships1" StyleClass="styleships" >
+                    <apex:column headerValue="Name">  
+                        <apex:outputlink target="_blank" value="/{!shp.id}">
+                            {!shp.Name}
+                        </apex:outputlink>  
+                    </apex:column> 
+                    <apex:column value="{!shp.Shipment_Number__c}"/>
+                    <apex:column value="{!shp.Shipment_Start__c}"/>
+                    <apex:column value="{!shp.Shipment_Type__c}"/>
+                    <apex:column >
+                        <apex:commandButton style="width:25px;height:25px;" value="File Upload" image="{!$Resource.BFM_FileUpload}" onclick="window.open('/apex/BFM_Fileupload_VF');"/>
+                    </apex:column>
+                    <apex:column breakBefore="true"  colspan="7">
+                        <apex:variable value="{!ctesByShipment[shp.Id]}" var="cteList"/>
+                        <apex:pageBlockTable rendered="{!NOT(cteList.empty)}" value="{!cteList}" var="cte">
+                            <apex:column style="width:20%"  value="{!cte.Name}"/>
+                            <apex:column style="width:20%" headerValue="POD OK">
+                                <apex:image id="theImage1" value="{!$Resource.BFM_Green}"/>
+                            </apex:column>
+                            <apex:column style="width:20%" headerValue="SES Link OK" >
+                                <apex:image id="theImage2" value="{!$Resource.BFM_Red}"/>
+                            </apex:column>
+                            <apex:column style="width:20%" headerValue="SEFAZ Check OK" >
+                                <apex:image id="theImage3" value="{!$Resource.BFM_White}"/>
+                            </apex:column>
+                            <apex:column style="width:20%" headerValue="Payment Done">
+                                <apex:image id="theImage4" value="{!$Resource.BFM_Red}"/>
+                            </apex:column>
+                            
+                        </apex:pageBlockTable>
+                    </apex:column>
+                    <!--             
+<apex:column breakBefore="true" rendered="{!NOT(CtesByShipment[shp.Id].empty)}" colspan="7">
+
+</apex:column>
+
+<apex:column breakBefore="true" rendered="{!NOT(shp.stages__r.empty)}" colspan="7">
+<apex:pageBlockSection title="Stages" collapsible="true"  columns="1" id="pgStages">
+<apex:pageBlockTable value="{!shp.stages__r}" var="stage">
+<apex:column headerValue="{!$ObjectType.BFM_Stage__c.fields.Name.Label}">
+<apex:outputLink target="_blank" value="/{!stage.Id}">
+{!stage.Name}
+</apex:outputLink>
+</apex:column>
+<apex:column value="{!stage.Origin_city__c}"/>
+<apex:column value="{!stage.Destination_city__c}"/>
+<apex:column value="{!stage.Gross_value_from_cost_preview__c}"/>
+</apex:pageBlockTable>
+</apex:pageBlockSection>
+</apex:column>
+-->
+                </apex:pageBlockTable>
+            </apex:outputPanel>
+            <apex:pageBlockButtons location="top">
+                <div style="text-align:right">
+                    Total Records Found: {!Con.resultSize}          
+                    <apex:selectList value="{!recordscount}" multiselect="false" size="1">                
+                        <apex:selectOptions value="{!recordsize}"/>
+                        <apex:actionSupport event="onchange" action="{!getshipments}" reRender="ships,ships1"/>
+                    </apex:selectList>         
+                    
+                    <apex:commandLink action="{!First}" title="First" value="First" rendered="{!Con.HasPrevious}"/>&nbsp;    
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">First</apex:outputPanel>&nbsp;
+                    
+                    <apex:image url="/img/search_prevarrow_disabled.gif" styleClass="prevArrow" rendered="{!NOT(Con.HasPrevious)}"/> 
+                    <apex:image url="/img/search_prevarrow.gif" title="Previous Page" styleClass="prevArrow" rendered="{!Con.HasPrevious}"/>&nbsp;  
+                    <apex:commandLink action="{!Previous}" title="Previous Page" value="Previous Page" rendered="{!Con.HasPrevious}"/>&nbsp;    
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasPrevious)}">Previous Page</apex:outputPanel>&nbsp;
+                    
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">Next Page</apex:outputPanel>          
+                    <apex:commandLink title="Next Page" value="Next Page" rendered="{!Con.HasNext}" action="{!Next}"/>&nbsp;  
+                    <apex:image url="/img/search_nextarrow.gif" title="Next Page" styleClass="nextArrow" rendered="{!Con.HasNext}"/>&nbsp; 
+                    <apex:image url="/img/search_nextarrow_disabled.gif" rendered="{!NOT(Con.HasNext)}"/> 
+                    
+                    <apex:outputPanel styleClass="pShowLess noLink" style="color:grey" rendered="{!NOT(Con.HasNext)}">Last</apex:outputPanel> 
+                    <apex:commandLink title="Last"  value="Last" rendered="{!Con.HasNext}" action="{!last}"/>
+                    
+                </div>
+            </apex:pageBlockButtons>    
+            
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

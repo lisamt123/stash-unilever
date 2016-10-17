@@ -1,4 +1,4 @@
-<apex:page id="communitiesSelfRegPage" showHeader="true" controller="BFM_CommunitiesSelfRegController_CC" title="{!$Label.site.user_registration}" doctype="HTML-5.0" language="en_US" cache="false">
+<apex:page id="communitiesSelfRegPage" showHeader="true" language="PT-BR" controller="BFM_CommunitiesSelfRegController_CC" title="{!$Label.site.user_registration}" doctype="HTML-5.0"  cache="false">
      <apex:define name="body">  
       
 <style>
@@ -84,6 +84,20 @@ width:200px;
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+<!-- Added by Abhinav -->
+    <apex:actionstatus id="status">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                       height: 100%;opacity:0.65;width:100%;"> 
+                    <div class="waitingHolder" style="centre: 74.2px; width: 91px;">
+                        <img class="waitingImage" src="http://upload.wikimedia.org/wikipedia/commons/e/ed/Cursor_Windows_Vista.gif" title="Please Wait..." />
+                        <span class="waitingDescription">Please Wait...</span>
+                    </div>
+                </div>
+            </apex:facet>
+       </apex:actionstatus>
+
+
 <script>
          $("#communitiesSelfRegPage:theForm:cpf").on("keypress keyup blur",function (event) {    
            $(this).val($(this).val().replace(/[^\d].+/, ""));
@@ -107,7 +121,7 @@ width:200px;
                             <label class="control-label" for="signupName">
                                 {!$ObjectType.BFM_UserCreationRequest__c.fields.FirstName__c.Label}
                             </label>
-                            <apex:inputText required="true" maxlength="80" disabled="{!readOnlyform}" id="firstName" value="{!firstName}" label="First Name" styleclass="form-control"/>
+                            <apex:inputText required="true" maxlength="80" disabled="{!readOnlyform}" id="firstName" value="{!firstName}" label="{!$ObjectType.BFM_UserCreationRequest__c.fields.FirstName__c.Label}" styleclass="form-control"/>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label class="control-label" for="signupEmail">
@@ -156,8 +170,8 @@ width:200px;
                         
                     
                     <div class="col-sm-6 form-group">
-                        Problems? Contact us at
-                        <apex:outputLink value="mailto:support@unileverproblems.com">
+                        Problemas? Contacte-nos em
+                        <apex:outputLink value="{!sendEmail}">
                                 support@unileverproblems.com
                         </apex:outputLink>
                         <br/>
@@ -168,7 +182,7 @@ width:200px;
                         <br/>
                     </div>
                         <div class="col-sm-12 form-group">
-                            <apex:commandButton action="{!fetchBranches}" value="{!$Label.BFM_Self_Service_Search_Carrier_Branches}" id="branch" rerender="theForm" styleClass="myClass" />
+                            <apex:commandButton action="{!fetchBranches}" value="{!$Label.BFM_Self_Service_Search_Carrier_Branches}" id="branch" status="status" rerender="theForm" styleClass="myClass" />
                          <br/>
                         </div>
                     <div class="{!IF(NOT(ISNULL(requestLines)), 'col-sm-12 form-group', 'hidden')}"  >

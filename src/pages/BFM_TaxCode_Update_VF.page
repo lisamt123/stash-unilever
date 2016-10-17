@@ -1,0 +1,24 @@
+<apex:page controller="BFM_TaxCode_Update_CC" docType="html-5.0" >
+    <apex:sectionHeader title="CTe" subtitle="Verify Tax Code"/>
+    <apex:form id="frm">
+        <apex:pageBlock rendered="{!if(listCTeW.size>0,true,false)}">
+            <apex:pageblockButtons >
+                <apex:commandButton value="Update" action="{!cteUpdate}" rerender="frm"/>
+            </apex:pageblockButtons>
+            <apex:pageBlockTable Value="{!listCTeW}" var="p" >
+            <apex:column headerValue="CT-e">
+                <a href="/{!p.cte.id}" target="_blank">{!p.cte.CT_e_key__c}</a>         
+          </apex:column>
+                <apex:column headerValue="CT-e Status" value="{!p.CteStatus}"/>                
+                <apex:column headerValue="Tax Code" value="{!p.taxCode}"/>              
+            </apex:pageBlockTable>       
+        </apex:pageBlock>
+        <apex:pageBlock rendered="{!if(listCTeW.size>0,false,true)}">
+             <b> No records meeting the criteria</b>
+             <apex:pageblockButtons location="bottom" >
+                <left><apex:commandButton value="Back" /></left>    
+             </apex:pageblockButtons>
+        </apex:pageBlock>
+        
+    </apex:form>   
+</apex:page>

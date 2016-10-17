@@ -1,0 +1,21 @@
+<apex:page standardController="BFM_CT_e__c" extensions="BFM_GNREupload_CC" sidebar="false" standardStylesheets="false" tabStyle="BFM_CT_e__c">
+    <apex:form >
+        
+        <apex:pageBlock title="GNRE Upload">
+        <apex:pageMessages id="errormsg"/>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Upload" action="{!savefile}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection collapsible="false" title="Upload File" columns="1">
+                
+                       <br/>         
+                    <apex:pageBlockSectionItem >                      
+                        <apex:outputLabel value="File"/>
+                        <apex:inputFile value="{!gnreAtt.body}" filename="{!gnreAtt.name}" size="{!gnreAtt.bodylength}" contentType="{!gnreAtt.contenttype}"/>
+                    </apex:pageBlockSectionItem>
+                    
+           </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

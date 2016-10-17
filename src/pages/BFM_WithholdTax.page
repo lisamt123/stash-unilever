@@ -1,0 +1,39 @@
+<apex:page StandardController="BFM_CT_e__c" extensions="BFM_WithholdTaxController">
+    <apex:outputField label="CT-e tax code" value="{!BFM_CT_e__c.Tax_Code_id__c}"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"/>
+
+    <script type="text/javascript">
+    	$( document ).ready(function() {
+        	$('[id$=taxTypeLine]').attr('disabled','disabled');
+        });
+    </script>
+    <apex:pageMessages />
+    
+    <apex:form >
+    <apex:pageBlock title="Tax Validation">
+        <apex:pageBlockButtons >
+        	<apex:commandButton value="Save" action="{!saveWithholdTaxes}"/>
+            <apex:commandButton value="Cancel" action="{!cancel}"/>
+            <apex:commandButton value="Reset" action="{!reset}"/>
+        </apex:pageBlockButtons>
+            
+           
+            <!--<apex:commandButton value="New Line" action="{!addNewLine}"/>-->
+            <apex:dataTable cellpadding="4px" border="1px" value="{!withholdTaxList}" var="currLine">
+                <apex:column headerValue="Tax Type">
+                    <apex:inputField id="taxTypeLine" styleClass="taxType"  value="{!currLine.Tax_Type1__c}"/>
+                </apex:column>
+                <apex:column headerValue="Tax Code">
+                    <apex:inputField value="{!currLine.Tax_Code1__c}"/>
+                </apex:column>
+                <apex:column headerValue="Withhold" >
+                    
+                    <apex:inputCheckbox value="{!currLine.Apply__c}"/>
+                </apex:column>
+                
+            </apex:dataTable>
+        
+    </apex:pageBlock>
+        </apex:form>
+    <apex:detail />
+</apex:page>
