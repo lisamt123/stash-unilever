@@ -12,7 +12,7 @@
 	2013-09-19 15:48 (CET)	| Marc Saelzler 	| Initial development.
 */
 
-@isTest(SeeAllData=true)
+@isTest(SeeAllData=false)
 public with sharing class AR_Test_SessionHandler
 {
 	static testMethod void AR_Test_SessionHandler()

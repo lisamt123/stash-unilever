@@ -12,7 +12,7 @@
 	2013-09-20 15:30 (CET)	| Marc Saelzler 	| Initial development.
 */
 
-@isTest(SeeAllData=true)
+@isTest(SeeAllData=false)
 private class AR_Test_ResumeApplication
 {
 	static testMethod void AR_Test_ResumeApplication()
