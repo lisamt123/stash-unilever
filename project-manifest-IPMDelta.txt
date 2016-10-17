@@ -1,5 +1,4 @@
 src
 src/classes
-
-src/classes/IPM_TaskHelper.cls
-src/classes/IPM_TaskHelper.cls-meta.xml
+src/classes/IPM_ProjectDocumentSectionController.cls
+src/classes/IPM_ProjectDocumentSectionController.cls-meta.xml
