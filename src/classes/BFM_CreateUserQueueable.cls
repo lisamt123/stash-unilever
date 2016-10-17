@@ -6,13 +6,15 @@
  * @date 2016/08/02
  * */
 
-public with sharing class BFM_CreateUserQueueable implements Queueable {
+public without sharing class BFM_CreateUserQueueable implements Queueable {
     Id userRequestId;
     public BFM_CreateUserQueueable(Id userRequestId){
         this.userRequestId = userRequestId;    
+        system.debug('sssssssssss');
     }
     public void execute(QueueableContext SC){
-        BFM_UserCreationRequest__c userRequest = [SELECT userName__c, email__c,firstName__c,cnpj__c,
+    system.debug('sssssssssss1111');
+        BFM_UserCreationRequest__c userRequest = [SELECT userName__c, email__c,firstName__c,cnpj__c,Operational_User__c,
                                                    lastName__c, communityNickname__c, (SELECT Account__c,Account__r.parentid FROM BFM_Access_Requests__r)
                                                    FROM BFM_UserCreationRequest__c WHERE Id = :userRequestId];
        
@@ -24,6 +26,24 @@ public with sharing class BFM_CreateUserQueueable implements Queueable {
             String errorMessage = '';
             try{
                 insert usr;
+                
+                if(usr.id!=null){
+                    BFM_LoginuserPermissions.assignPermissionset(usr.id, userRequestId);
+                }
+             /*   string psName ='';
+                if(userRequest.Operational_User__c == true){
+                    psName = 'BFM_Carrier_Operational_User';
+                }
+                 PermissionSet ps = new PermissionSet();
+                 if(psName!=''){
+                     ps = [select id from PermissionSet where name=: psName limit 1];
+                 }
+                 if(ps!=null && usr!=null){
+                     PermissionSetAssignment psa = new PermissionSetAssignment();
+                     psa.AssigneeId = usr.id;
+                     psa.PermissionSetId = ps.id;
+                     insert psa;
+                 }*/
             } 
             // using Database.Insert it should never throw an exception, right? if so, let's remove the try-catch block
             catch(DMLException e){
@@ -56,7 +76,7 @@ public with sharing class BFM_CreateUserQueueable implements Queueable {
      * Doesn't commit the user to the database yet
      * */
     private User createUser(BFM_UserCreationRequest__c userRequest){
-        //Leena code start
+        
         Profile carrierProfile = [SELECT Id FROM Profile WHERE Name ='BFM Partner Community User' LIMIT 1];
         Account acc = new Account();
         
@@ -81,7 +101,7 @@ public with sharing class BFM_CreateUserQueueable implements Queueable {
             }
             insert con;
         }
-        //Leena code end
+        
         
         User u = new User();
         u.Username = userRequest.userName__c;
@@ -98,6 +118,7 @@ public with sharing class BFM_CreateUserQueueable implements Queueable {
         if(con!=null){
             u.contactid = con.id;
         }
+        
         return u;
     }
 

@@ -20,7 +20,7 @@ public with sharing class BFM_SearchShipmentController_CC{
     public BFM_Shipment__c invoiceStatement {get;set;}
     
     public BFM_SearchShipmentController_CC(ApexPages.StandardSetController controller) {
-    	SearchShipment = New BFM_Shipment__c();
+        SearchShipment = New BFM_Shipment__c();
         unileverCompanyAccount = new Account();
         vendorAccount = new Account();
         recordsize = new List<SelectOption>(); 
@@ -35,7 +35,7 @@ public with sharing class BFM_SearchShipmentController_CC{
                                                                          '(SELECT Name,Origin_city__c, Destination_City__c, Gross_value_from_cost_preview__c FROM Stages__r) '+
                                                                            'FROM BFM_Shipment__c LIMIT 10000'));
         */
-        mySearch();
+        //mySearch();
         getshipments();
     }
     
@@ -59,7 +59,7 @@ public with sharing class BFM_SearchShipmentController_CC{
             shipmentString += ' WHERE Origin_plant_code__c = \''+ strPlantCode +'\'' ;
         }
         shipmentString += ') FROM BFM_Shipment__c ';
-		
+                
         String searchClauses = 'WHERE';
         
         System.debug('shipmentNumber ' + shipmentNumber);
@@ -99,14 +99,14 @@ public with sharing class BFM_SearchShipmentController_CC{
         
         system.debug('ShipmentString----->'+ShipmentString);
         try{
-        	con = new ApexPages.StandardSetController(Database.getQueryLocator(ShipmentString));
+                con = new ApexPages.StandardSetController(Database.getQueryLocator(ShipmentString));
         } catch(QueryException ex){
             String errorMessage = ex.getMessage() + ' ' + ex.getStackTraceString()+' /n \n'+shipmentString;
             ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, errorMessage));
             System.debug(errorMessage);
         }
         
-    	setPaginationSettings();
+        setPaginationSettings();
         //resetSearch();      
     }
     
@@ -124,23 +124,23 @@ public with sharing class BFM_SearchShipmentController_CC{
         Schema.DescribeFieldResult statusFieldDescription = BFM_Shipment__c.Display__c.getDescribe();
         for (Schema.Picklistentry picklistEntry:statusFieldDescription.getPicklistValues())
         {
-        	statusOptions.add(new SelectOption(pickListEntry.getValue(),pickListEntry.getLabel()));
-      		// obtain and assign default value
-       		if (picklistEntry.defaultValue){
-            	invoiceStatement.Display__c= pickListEntry.getValue();
+                statusOptions.add(new SelectOption(pickListEntry.getValue(),pickListEntry.getLabel()));
+                // obtain and assign default value
+                if (picklistEntry.defaultValue){
+                invoiceStatement.Display__c= pickListEntry.getValue();
             }  
         }    
         // sets the number of records in each page set
-		if(searchShipment.Display__c != null ){
-        	con.setPageSize(integer.ValueOf(searchShipment.Display__c));
+                if(searchShipment.Display__c != null ){
+                con.setPageSize(integer.ValueOf(searchShipment.Display__c));
         } else{
-        	con.setPageSize(10);
+                con.setPageSize(10);
         }
     }
     
     public PageReference redirectFileUpload(){
         PageReference pr = new PageReference('/apex/BFM_Fileupload_VF');
-		return pr;
+                return pr;
     }
     
     public void getshipments(){

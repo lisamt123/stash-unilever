@@ -2,11 +2,14 @@ public class BFM_PODUpload {
 	
     private Id podFileId;
     private List<String> errors;
-    private boolean isSuccess;
+    @testVisible private boolean isSuccess;
     private BFM_File__c podFile;
     private blob podFileBody;
     
-    
+    /**
+     * Constructor takes as parameter one BFM_File__c representing the PoD and a Blob with the binary representation of the file being uploaded.
+     * To actually run the upload, execute the uploadPOD method of this class.
+     * */
     public BFM_PODUpload(BFM_File__c podFile, blob podFileBody){
     	this.podFile = podFile;
         this.errors = new List<String>();
@@ -14,13 +17,27 @@ public class BFM_PODUpload {
         this.podFileBody = podFileBody;
     }
     
+    /**
+     * Runs the callout to send the data to Mulesoft.
+     * 
+     * @return boolean boolean saying whether the operation was successful or not
+     * */
     public boolean uploadPOD(){
         
         try{
         	
-            String response = BFM_GeneralServiceCalls.podUpload(podFile.File_Name__c, System.now(), 
+            HttpResponse response = BFM_GeneralServiceCalls.podUpload(podFile.File_Name__c, System.now(), 
                                                                 podFile.Content_Type__c, podFile.size__c, podFileBody);
-            isSuccess = true;
+            if(response.getStatusCode() == 200 || response.getStatusCode() == 201){
+                isSuccess = true;
+            } else{
+                isSuccess = false;
+                String errorMessage = String.format(Label.BFM_Integration_Failure, new List<String>{String.valueOf(response.getStatusCode()),  
+                    														response.getStatus(),
+                    														response.getBody()});
+                errors.add(errorMessage);
+            }
+            
         } catch(Exception ex){
             errors.add(ex.getMessage());
             System.debug(ex.getMessage() + ' ' + ex.getStackTraceString());
@@ -29,10 +46,16 @@ public class BFM_PODUpload {
         return isSuccess;
     }
     
+    /**
+     * Returns eventual errors generated on the upload process
+     * */
     public list<String> getErrors(){
         return this.errors;
     }
     
+    /**
+     * Returns whether the upload process was sucessful or not 
+     * */
     public boolean isSuccess(){
         return this.isSuccess;
     }

@@ -1,5 +1,5 @@
 public class BFM_DebitNote_CodeValidations{
-    public static void debitNoteCheck(List<BFM_Debit_Note__c> dnRecords){
+    public static void debitNoteCheck(List<BFM_Debit_Note__c> dnRecords,set<id> setdebitnote,boolean isinsert){
         List<BFM_Debit_Note__c> dnTRecords = new List<BFM_Debit_Note__c>();
         List<BFM_Occurrence__c> occTRecords = new List<BFM_Occurrence__c>();
        // dnTRecords = [select id,Occurrence__c from BFM_Debit_Note__c where id in : dnRecords];
@@ -15,6 +15,8 @@ public class BFM_DebitNote_CodeValidations{
             mapocc.put(occ.id,occ);
         }
         for(BFM_Debit_Note__c dn: dnRecords){
+            if(isinsert == true || !setdebitnote.contains(dn.id)){
+            if(dn.Request_For_Cancellation__c == false && dn.Debit_Note_Status__c!='Cancelled'){
             if(mapocc.containskey(dn.Occurrence__c) && !mapocc.get(dn.Occurrence__c).SESOccs__r.isEmpty()){
                 dn.DN_Link_Check_Status__c = 'Link Ok';
                 dn.Debit_Note_Status__c = 'Link Ok';
@@ -23,7 +25,8 @@ public class BFM_DebitNote_CodeValidations{
                 dn.DN_Link_Check_Status__c = 'Pending Link';
                 dn.Debit_Note_Status__c = 'Pending Link';
             }
-            if(dn.DN_Link_Check_Status__c == 'Link Ok'){
+            }
+            if(dn.DN_Link_Check_Status__c == 'Link Ok' && dn.Request_For_Cancellation__c == false && dn.Debit_Note_Status__c!='Cancelled'){
                 integer codecount=0,vendorcount=0,datecount=0;
                 if(!mapocc.get(dn.Occurrence__c).SESOccs__r.isEmpty()){
                     for(BFM_SES__c ses: mapocc.get(dn.Occurrence__c).SESOccs__r){
@@ -68,6 +71,7 @@ public class BFM_DebitNote_CodeValidations{
                 }
                 
                 }
+            }
             }
                 
             

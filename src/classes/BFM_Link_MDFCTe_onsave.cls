@@ -18,12 +18,15 @@ public without sharing class BFM_Link_MDFCTe_onsave{
                 }
             }
         }
+        system.debug(mapCTkey.keyset());
         if(!mapCTkey.isEmpty()){
-            listCTe = [select Id,CT_e_key__c,MDF_e__c from BFM_CT_e__c where CT_e_key__c in : mapCTkey.keyset() and MDF_e__c=null and Cte_Status__c='COM'];
+            listCTe = [select Id,CT_e_key__c,MDF_e__c from BFM_CT_e__c where CT_e_key__c in : mapCTkey.keyset() and CT_e_Duplicate_Record_Status__c=:Label.BFM_Validation_OK and CT_e_Valid_CNPJ_Status__c = 'Valid CNPJ'];
         }
         for(BFM_CT_e__c  cte: listCTe){
-            cte.MDF_e__c = mapCTkey.get(cte.CT_e_key__c).id;
-            listCTeupdate.add(cte);
+            if(cte.MDF_e__c==null){
+                cte.MDF_e__c = mapCTkey.get(cte.CT_e_key__c).id;
+                listCTeupdate.add(cte);
+            }
             
             List<BFM_CT_e__c> listct = new List<BFM_CT_e__c>();
              if(!map2cte.containskey(cte.MDF_e__c)){
@@ -42,22 +45,7 @@ public without sharing class BFM_Link_MDFCTe_onsave{
         
         List<id> listmdfids = new list<id>();
         map<id,integer> mapMcte = new map<id,integer>();
-        for(BFM_MDF_e__c mdf: listMdfe){
-            listmdfids.add(mdf.id); 
-            
-            integer updatedcte=0;
-            if(map2cte.get(mdf.id)==null){
-                updatedcte =0;
-            }
-            else{
-                updatedcte = map2cte.get(mdf.id).size();
-            }
-            mapMcte.put(mdf.id,updatedcte);       
-        }
-       /* if(!listMdfe.isEmpty()){
-            BFM_linkMDFefuture.mdfeupdate(listmdfids,mapMcte,mapncte);
-             
-        }*/
+        
         for(BFM_MDF_e__c mdf: listMdfe){
             if(mapncte.get(mdf.id)==null){
                 mapncte.put(mdf.id,0);
@@ -72,10 +60,12 @@ public without sharing class BFM_Link_MDFCTe_onsave{
             system.debug('mmmmmm'+mapncte.get(mdf.id)+'pppp'+map2cte.get(mdf.id));
             if(mdf.CT_e_Access_Key__c!=null && mapncte.get(mdf.id)>0 && mapncte.get(mdf.id)== updatedcte){
                 mdf.MDF_e_Status__c ='Link Ok'; 
+                mdf.MDF_e_Link_Check_Status__c = 'Link Ok';
                 listmdfupdate.add(mdf);   
             }
             else{
                 mdf.MDF_e_Status__c ='Pending Link'; 
+                mdf.MDF_e_Link_Check_Status__c = 'Pending Link';
                 listmdfupdate.add(mdf);
             }
         }

@@ -287,7 +287,7 @@ global class BFM_QueryFreights {
         newSes.PO_Umbrella_Number__c = ses.poUmbrellaNumber;
         newSes.PO_Type__c = ses.poType;
         //public String creationDate;
-        newSes.Modification_Date__c = ses.modificationDate;
+        newSes.Modification_Date__c = !String.isEmpty(ses.modificationDate) ? Date.valueOf(ses.modificationDate) : null;
         newSes.Gross_Value_net_tax__c = ses.grossValue;
         newSes.Tax_Code__c = ses.taxCode.left(2);
         newSes.ICMS_Presumed_Credit__c = ses.icmsPresumedCredit;

@@ -5,13 +5,13 @@ global class BFM_Batch_CTeStatus implements DataBase.Batchable<sobject>{
     }
     global void execute(DataBase.BatchableContext BC, List<BFM_CT_e__c> ctes){
         List<BFM_CT_e__c> ctelist = new List<BFM_CT_e__c>();
-    	//
+    	//Service call to sefaz 
  
-        for(BFM_CT_e__c objcte : ctes){
+        /*for(BFM_CT_e__c objcte : ctes){
         	objcte.Cte_Status__c = 'Cancelled';
             ctelist.add(objcte);
         }
-        update ctelist;
+        update ctelist;*/
     }
     global void finish(Database.BatchableContext BC){
             

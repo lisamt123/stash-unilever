@@ -28,11 +28,13 @@ global class BFM_batch_linkMDFCTe implements Database.Batchable<sObject>
             }   
         }   
         if(!mapCTkey.isEmpty()){
-            listCTe = [select Id,CT_e_key__c,MDF_e__c from BFM_CT_e__c where CT_e_key__c in : mapCTkey.keyset() and MDF_e__c=null ];
+            listCTe = [select Id,CT_e_key__c,MDF_e__c from BFM_CT_e__c where CT_e_key__c in : mapCTkey.keyset() and CT_e_Duplicate_Record_Status__c=:Label.BFM_Validation_OK and CT_e_Valid_CNPJ_Status__c = 'Valid CNPJ' ];
         }
         for(BFM_CT_e__c  cte: listCTe){
-            cte.MDF_e__c = mapCTkey.get(cte.CT_e_key__c).id;
-            listCTeupdate.add(cte);
+            if(cte.MDF_e__c == null){
+                cte.MDF_e__c = mapCTkey.get(cte.CT_e_key__c).id;
+                listCTeupdate.add(cte);
+            }
             List<BFM_CT_e__c> listct = new List<BFM_CT_e__c>();
             integer count=0;
             if(!map2cte.containskey(cte.MDF_e__c)){

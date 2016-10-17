@@ -1,12 +1,41 @@
-public class BFM_QueryOccurrence {
+global class BFM_QueryOccurrence {
 
     private List<String> occurrenceNumbers;
+
+	private List<String> errors;
+	private boolean isSuccess;
     
-    public BFM_QueryOccurrence(Set<String> occurrenceNumbers){
-    	this.occurrenceNumbers = new List<String>(occurrenceNumbers);
-        
+    private boolean isSuccess(){
+        return this.isSuccess;
     }
     
+    private List<String> getErrors(){
+        return this.errors;
+    }
+    public BFM_QueryOccurrence(Set<String> occurrenceNumbers){
+    	this.occurrenceNumbers = new List<String>(occurrenceNumbers);
+		errors = new List<String>();
+		isSuccess = true;        
+    }
+    webservice static string callQueryOccurrenceButton(Id occurrenceId){
+        BFM_Occurrence__c occ = [SELECT Occurrence_Number__c FROM BFM_Occurrence__c WHERE id=: occurrenceId LIMIT 1];
+        BFM_QueryOccurrence queryOcc = new BFM_QueryOccurrence(new Set<String> {occ.occurrence_Number__c});
+        String returnMessage = 'ok';
+        
+        try{
+        	queryOcc.callQueryOccurrencesCTeIssuing();
+            if(!queryOcc.isSuccess()){
+                
+                returnMessage = queryOcc.getErrors()[0];
+                system.debug(queryOcc.getErrors());
+            }
+        } catch(Exception ex){
+            
+            returnMessage =  ex.getMEssage() + ' '+ex.getStackTraceString();
+            System.debug(returnMessage);
+        }
+        return returnMessage;
+    }
     public boolean callQueryOccurrencesCTeIssuing(){
         BFM_QueryOccurrencesRequest request = new BFM_QueryOccurrencesRequest(occurrenceNumbers, 'CT-e');
         boolean querySuccessful = true;
@@ -17,10 +46,12 @@ public class BFM_QueryOccurrence {
             querySuccessful = true;
         } else{
             querySuccessful = false;
-            createErrorLogs(occurrenceNumbers, 'Falha na integração: ' + integrationResponse.getStatusCode() +
-                            					' \n Status Description: '+ integrationResponse.getStatus()+
-                            					' \n body of the response ' +integrationResponse.getBody(),
-                            	'Falha na Integração');
+            isSuccess = false;
+            String errorMessage = String.format(Label.BFM_Integration_Failure, new List<String>{String.valueOf(integrationResponse.getStatusCode()),  
+                    														integrationResponse.getStatus(),
+                    														integrationResponse.getBody()});
+            this.errors.add(errorMessage);
+            createErrorLogs(occurrenceNumbers, errorMessage, 'Integration Failure');
         }
         
         return querySuccessful;
@@ -43,14 +74,36 @@ public class BFM_QueryOccurrence {
     
     public List<BFM_Occurrence__c> parseResponse(BFM_QueryOccurrencesResponse queryResponse){
         List<BFM_Occurrence__c> upsertOccurrences = new List<BFM_Occurrence__c>();
+        List<BFM_Shipment__c> upsertShipments = new List<BFM_Shipment__c>();
+        List<BFM_Stage__c> upsertStages = new List<BFM_Stage__c>();
         List<BFM_SES__c> upsertSESs = new List<BFM_SES__c>();
         List<BFM_NF_e__c> upsertNFEs = new List<BFM_Nf_e__c>();
         Integer countOccurrence = 0;
+        
         for(BFM_QueryOccurrencesResponse.Occurrences currentOcc: queryResponse.QueryOccurrenceResponse.occurrences){
             BFM_Occurrence__c newOcc = processOccurrenceFields(currentOcc);
             upsertOccurrences.add(newOcc);
+            
+            for(BFM_QueryOccurrencesResponse.Shipment currentShipment : currentOcc.shipment){
+                BFM_Shipment__c newShp = new BFM_Shipment__c(Shipment_Number__c = currentOcc.shipmentDocumentNumber);
+                newShp.ANTT__c = currentShipment.antt;
+                newShp.Shipment_Start__c = String.isEmpty(currentShipment.shipmentStart) ? null : Date.valueOf(currentShipment.shipmentStart);
+                upsertShipments.add(newShp);
+                for(BFM_QueryOccurrencesResponse.Stage currentStage : currentShipment.stage){
+            		BFM_Stage__c newStage = new BFM_Stage__c();
+                    newStage.Shipment__r = newShp;
+                    newStage.Stage_Number__c = currentStage.stageNumber;
+                    newStage.Shipping_Type__c = currentStage.shippingType;
+                    newStage.Warehouse__c = currentStage.warehouse;
+                    newStage.OTM_Shipment__c = currentStage.otmShipment;
+                    newStage.Distance__c = currentStage.distance;
+                    upsertStages.add(newStage);
+                }
+            }
+            
             for(BFM_QueryOccurrencesResponse.Ses currentSes : currentOcc.ses){
                 BFM_SES__c newSes = processSESfields(currentSES);
+                newOcc.Occurrence_Number__c = newSes.Occurrence_Number__c;
 				upsertSESs.add(newSes);    				
                 for(BFM_QueryOccurrencesResponse.Nfe currentNfe : currentSES.nfe){
                     BFM_NF_e__c newNfe = processNFeFields(currentNfe);
@@ -66,7 +119,20 @@ public class BFM_QueryOccurrence {
                         									.fields
                         									.getMap()
                         									.get('Occurrence_Number__c'), true);
-        Database.upsert(upsertOccurrences, Schema.getGlobalDescribe().get('BFM_SES__c')
+        
+        Database.upsert(upsertShipments, Schema.getGlobalDescribe().get('BFM_Shipment__c')
+                        									.getDescribe()
+                        									.fields
+                        									.getMap()
+                        									.get('Shipment_Number__c'));
+        Database.upsert(upsertStages, Schema.getGlobalDescribe().get('BFM_Stage__c')
+                        									.getDescribe()
+                        									.fields
+                        									.getMap()
+                        									.get('Stage_Number__c'));
+        
+        
+        Database.upsert(upsertSESs, Schema.getGlobalDescribe().get('BFM_SES__c')
                         									.getDescribe()
                         									.fields
                         									.getMap()
@@ -83,46 +149,12 @@ public class BFM_QueryOccurrence {
         
     }
     
-    private BFM_NF_e__c processNFeFields(BFM_QueryOccurrencesResponse.NFe currentNFe){
-        BFM_NF_e__c newNfe = new BFM_NF_e__c(NF_e_access_key__c = currentNfe.nfeAccessKey);
-        newNfe.Delivery__r = new BFM_Delivery__c(Delivery_Number__c = currentNfe.deliveryNumber);
         
-        newNfe.Gross_weight__c = convertNumber(currentNfe.grossWeight);
-        newNfe.NF_e_Total_Value__c = convertNumber(currentNfe.nfeTotalValue);
-        newNfe.NF_e_number__c = currentNfe.nfeNumber;
-        newNfe.NF_e_serie__c = currentNfe.nfeSerie;
-        newNfe.Taker_CNPJ__c = currentNfe.cnpjTaker;
-        newNfe.CNPJ_destination__c = currentNfe.cnpjDestination;
-        newNfe.CPF_destination__c = currentNfe.cpfDestination;
-        newNfe.Stage_registration_destination__c = currentNfe.stageRegistrationDestination;
-        newNfe.Name_destination__c = currentNfe.nameDestination;
-        newNfe.Phone_destination__c = currentNfe.phoneDestination;
-        newNfe.SUFRAMA_registration__c = currentNfe.inscricaoSuframa;
-        newNfe.Address_destination__c = currentNfe.addressDestination;
-        newNfe.Number_destination__c = currentNfe.numberDestination;
-        newNfe.Complement_destination__c = currentNfe.complementDestination;
-        newNfe.District_destination__c = currentNfe.districtDestination;
-        newNfe.Municipal_code_destination__c = currentNfe.municipalCodeDestination;
-        newNfe.Municipal_Name_Destination__c = currentNfe.municipalNameDestination;
-        newNfe.Postal_code_destination__c = currentNfe.postalCodeDestination;
-        newNfe.State_destination__c = currentNfe.stateDestination;
-        newNfe.Country_code_destination__c = currentNfe.countryCodeDestination;
-        newNfe.Country_name_destination__c = currentNfe.countryNameDestination;
-//		public String nfeCreationDate;
-		newNfe.Incoterms__c = currentNfe.incoterms;
-        newNfe.Nf_e_total_quantity__c = convertNumber(currentNfe.nfeTotalQuantity);
-        newNfe.NF_e_item_specie__c = currentNfe.nfeItemSpecie;
-        newNfe.Predominant_product__c = currentNfe.predominantProduct;
-        newNfe.Complement_destination__c = currentNfe.complementaryInformation;
-        newNfe.Material_Usage__c = currentNfe.materialUsage;
-        newNfe.Billing_Document__c = currentNfe.billingDocument;
-        return newNfe;
-    }
-    
     private BFM_Occurrence__c processOccurrenceFields(BFM_QueryOccurrencesResponse.Occurrences currentOcc){
         BFM_Occurrence__c newOcc = new BFM_Occurrence__c();
         newOcc.Status__c = currentOcc.status;
         newOcc.Status_Description__c = currentOcc.statusDescription;
+        newOcc.Shipment__r = new BFM_Shipment__c(Shipment_Number__c = currentOcc.shipmentDocumentNumber);
         newOcc.Shipment_Document_Number__c = currentOcc.shipmentDocumentNumber;
         newOcc.Range_of_Extent_of_Occurrence_From__c = currentOcc.rangeExtentOccurrenceFrom != null ? Date.valueOf(currentOcc.rangeExtentOccurrenceFrom) : null;
         newOcc.Range_of_Extent_of_Occurrence_To__c = currentOcc.rangeExtentOccurrenceTo != null ?  Date.valueOf(currentOcc.rangeExtentOccurrenceTo) : null;
@@ -149,13 +181,13 @@ public class BFM_QueryOccurrence {
         
 			//public String deliverySystem;
 			//public String deliverySystemDescription;
-		newOcc.Approval_Date_1__c = (currentOcc.approvalDate1 != null) ? Date.valueOf(currentOcc.approvalDate1) : null;
-        newOcc.Approval_Date_2__c = (currentOcc.approvalDate2 != null) ? Date.valueOf(currentOcc.approvalDate2) : null;
-        newOcc.Approval_Date_3__c = (currentOcc.approvalDate3 != null) ? Date.valueOf(currentOcc.approvalDate3) : null;
-        newOcc.Approval_Date_4__c = (currentOcc.approvalDate4 != null) ? Date.valueOf(currentOcc.approvalDate4) : null;
-        newOcc.Approval_Date_5__c = (currentOcc.approvalDate5 != null) ? Date.valueOf(currentOcc.approvalDate5) : null;
-        newOcc.Approval_Date_6__c = (currentOcc.approvalDate6 != null) ? Date.valueOf(currentOcc.approvalDate6) : null;
-		newOcc.Fiscal_Documents__c = (currentOcc.fiscalDocuments != null) ? Date.valueOf(currentOcc.fiscalDocuments) : null;
+		newOcc.Approval_Date_1__c = (!String.isEmpty(currentOcc.approvalDate1)) ? Date.valueOf(currentOcc.approvalDate1) : null;
+        newOcc.Approval_Date_2__c = (!String.isEmpty(currentOcc.approvalDate2)) ? Date.valueOf(currentOcc.approvalDate2) : null;
+        newOcc.Approval_Date_3__c = (!String.isEmpty(currentOcc.approvalDate3)) ? Date.valueOf(currentOcc.approvalDate3) : null;
+        newOcc.Approval_Date_4__c = (!String.isEmpty(currentOcc.approvalDate4)) ? Date.valueOf(currentOcc.approvalDate4) : null;
+        newOcc.Approval_Date_5__c = (!String.isEmpty(currentOcc.approvalDate5)) ? Date.valueOf(currentOcc.approvalDate5) : null;
+        newOcc.Approval_Date_6__c = (!String.isEmpty(currentOcc.approvalDate6)) ? Date.valueOf(currentOcc.approvalDate6) : null;
+		newOcc.Fiscal_Documents__c = currentOcc.fiscalDocuments;
         return newOcc;
     }
     
@@ -166,7 +198,7 @@ public class BFM_QueryOccurrence {
         newSes.PO_Umbrella_Number__c = currentSes.poUmbrellaNumber;
         newSes.PO_Type__c = currentSes.poType;
         //public String creationDate;
-        newSes.Modification_Date__c = currentSes.modificationDate;
+        newSes.Modification_Date__c = !String.isEmpty(currentSes.modificationDate) ? Date.valueOf(currentSes.modificationDate) : null;
         newSes.Gross_Value_net_tax__c = convertNumber(currentSes.grossValue);
         newSes.Tax_Code__c = currentSes.taxCode;
         newSes.ICMS_Presumed_Credit__c = convertNumber(currentSes.icmsPresumedCredit);
@@ -195,6 +227,43 @@ public class BFM_QueryOccurrence {
     	newSes.Internal_Order__c = currentSes.internalOrder;
         return newSes;
     }
+    
+    private BFM_NF_e__c processNFeFields(BFM_QueryOccurrencesResponse.NFe currentNFe){
+        BFM_NF_e__c newNfe = new BFM_NF_e__c(NF_e_access_key__c = currentNfe.nfeAccessKey);
+        //newNfe.Delivery__r = new BFM_Delivery__c(Delivery_Number__c = currentNfe.deliveryNumber);
+        
+        newNfe.Gross_weight__c = convertNumber(currentNfe.grossWeight);
+        newNfe.NF_e_Total_Value__c = convertNumber(currentNfe.nfeTotalValue);
+        newNfe.NF_e_number__c = currentNfe.nfeNumber;
+        newNfe.NF_e_serie__c = currentNfe.nfeSerie;
+        newNfe.Taker_CNPJ__c = currentNfe.cnpjTaker;
+        newNfe.CNPJ_destination__c = currentNfe.cnpjDestination;
+        newNfe.CPF_destination__c = currentNfe.cpfDestination.left(11);
+        newNfe.Stage_registration_destination__c = currentNfe.stageRegistrationDestination;
+        newNfe.Name_destination__c = currentNfe.nameDestination;
+        newNfe.Phone_destination__c = currentNfe.phoneDestination;
+        newNfe.SUFRAMA_registration__c = currentNfe.inscricaoSuframa;
+        newNfe.Address_destination__c = currentNfe.addressDestination;
+        newNfe.Number_destination__c = currentNfe.numberDestination;
+        newNfe.Complement_destination__c = currentNfe.complementDestination;
+        newNfe.District_destination__c = currentNfe.districtDestination;
+        newNfe.Municipal_code_destination__c = currentNfe.municipalCodeDestination;
+        newNfe.Municipal_Name_Destination__c = currentNfe.municipalNameDestination;
+        newNfe.Postal_code_destination__c = currentNfe.postalCodeDestination;
+        newNfe.State_destination__c = currentNfe.stateDestination;
+        newNfe.Country_code_destination__c = currentNfe.countryCodeDestination;
+        newNfe.Country_name_destination__c = currentNfe.countryNameDestination;
+//		public String nfeCreationDate;
+		newNfe.Incoterms__c = currentNfe.incoterms;
+        newNfe.Nf_e_total_quantity__c = convertNumber(currentNfe.nfeTotalQuantity);
+        newNfe.NF_e_item_specie__c = currentNfe.nfeItemSpecie;
+        newNfe.Predominant_product__c = currentNfe.predominantProduct;
+        newNfe.Complement_destination__c = currentNfe.complementaryInformation;
+        newNfe.Material_Usage__c = currentNfe.materialUsage;
+        newNfe.Billing_Document__c = currentNfe.billingDocument;
+        return newNfe;
+    }
+
     
     private Decimal convertNumber(String textValue){
         try{

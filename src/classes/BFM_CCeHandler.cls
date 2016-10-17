@@ -26,7 +26,17 @@ public with sharing class BFM_CCeHandler
     
     public void bulkAfter()
     {
-      
+        if(trigger.isInsert){
+             set<id> setcceids = new set<id>();
+             for(BFM_CC_e__c cce: (List<BFM_CC_e__c> )trigger.new){             
+                 if(cce.CC_e_Link_Check_Status__c =='Link Ok' && cce.CC_e_Sefaz_Check_Status__c== null){
+                    setcceids.add(cce.id);
+                }
+             }
+              if(!setcceids.isEmpty()){
+                BFM_Sefazvalidation_CC.sendCCEtoSefaz(setcceids,'cce');
+            }
+         }  
     }
         
     public void beforeInsert(SObject so)
@@ -47,7 +57,6 @@ public with sharing class BFM_CCeHandler
     public void afterInsert(SObject so) 
     { 
         
-        BFM_SefazCheck_Utility_CC.sefazcheck(so.id,'ddsfas','CCE',userInfo.getSessionId());
     }
     
     public void afterUpdate(SObject oldSo, SObject so)

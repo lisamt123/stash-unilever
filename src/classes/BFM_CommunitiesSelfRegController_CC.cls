@@ -14,6 +14,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
     public boolean operationalUser{get;set;}
     public boolean taxUser{get;set;}
     public String supportEmail{get;set;}
+    public string sendEmail {get;set;}
     
     public boolean readOnlyForm{get;set;}
     public BFM_UserCreationRequest__c newCarrierUserRequest;
@@ -23,7 +24,8 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         firstName = '';
         lastName = '';
         readOnlyForm = false;
-        supportEmail = 'something@unileversupport.com';
+        supportEmail = system.label.BFM_supportEmail;
+        sendEmail = 'mailto:'+supportEmail ;
     }
    
     public class RequestLine{
@@ -51,7 +53,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
         newCarrierUserRequest.cpf__c = cpf;
         newCarrierUserRequest.Operational_User__c = operationalUser;
         newCarrierUserRequest.Tax_User__c = taxUser;
-        if(validateCarrierRequest(newCarrierUserRequest)){
+        if(validateCarrierRequest(newCarrierUserRequest) && newCarrierUserRequest.cnpj__c.length()==8){
             List<Account> branches = BFM_AccountDAO.getAccountsWithCNPJPrefix(cnpj);
             if(branches.isEmpty()){
                 ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.BFM_Self_Service_CNPJ_Not_Found);
@@ -66,8 +68,14 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
                     }
                 }
                 submitEnabled = true;
-                readOnlyForm = true;
+                //Changed value to readOnlyForm=false as it should allow the user to update the entry made by user.
+                readOnlyForm = false;
             }
+        }
+        else{
+            //Added by Abhinav: Capture the errror if CNPJ length is less than 8 digit.
+        ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.BFM_CNPJ_Length_Error_Message);
+        ApexPages.addMessage(msg);
         }
     }
     
@@ -85,7 +93,7 @@ public with sharing class BFM_CommunitiesSelfRegController_CC {
                     BFM_SendEmailToCarrierApprover emailSender = new BFM_SendEmailToCarrierApprover(newCarrierUserRequest,desiredCarriers);
                     String carrierEmail = emailSender.sendEmail();
                     if(!emailSender.isSuccess()){
-                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,emailSender.getError().replace('&email', supportEmail)));
+                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,emailSender.getError().replace('&email',supportEmail)));
                         allDone = true;
                         readOnlyForm = false;
                         resetVF();

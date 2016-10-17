@@ -20,23 +20,28 @@ public with sharing class BFM_NFSHandler
     public void bulkBefore()
     { 
         set<id> setlinknfs = new set<id>();
+        set<id> setcodevalnfs = new set<id>();
         for(BFM_NFS__C nfs: (List<BFM_NFS__C>) trigger.new){
-            if(nfs.NFS_Link_Check_Status__c!=null){
+            if(nfs.NFS_Link_Check_Status__c!=null || nfs.NFS_Status__c=='Invoice Posted' || nfs.NFS_Definitive__c == true || nfs.Request_Cancellation__c == true){
                 setlinknfs.add(nfs.id);    
             }
+            if(nfs.NFS_Vendor_Check_Status__c=='Vendor Ok' || nfs.NFS_Status__c=='Invoice Posted' || nfs.NFS_Definitive__c == true || nfs.Request_Cancellation__c == true){
+                setcodevalnfs.add(nfs.id);    
+            }
         }
-        if(setlinknfs.isEmpty()){
-            BFM_ValidationController.nfsDuplicateRecordCheck(Trigger.New);  
-        }
+        
+        BFM_ValidationController.nfsDuplicateRecordCheck(Trigger.New,setlinknfs,trigger.isInsert);  
+        
         if(trigger.isupdate){  
-            BFM_NFS_CodeValidations.nfsCheck(Trigger.New);  
+            BFM_NFS_CodeValidations.nfsCheck(Trigger.New,setcodevalnfs);  
         }
     }
     
     public void bulkAfter()
     {
       if(Trigger.isupdate){
-      BFM_LinkSES.NFSSESLink(Trigger.New);
+          //BFM_LinkSES.NFSSESLink(Trigger.New);
+          //BFM_NFSValueValidation.NFSTotalValueValidation(Trigger.New);
         }   
     }
         

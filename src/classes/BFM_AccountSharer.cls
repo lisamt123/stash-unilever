@@ -5,7 +5,7 @@
  * Author: Zanquini, Vinicius
  * 
  **/
-public with sharing class BFM_AccountSharer {
+public without sharing class BFM_AccountSharer {
     
     /*
      * Shares the Account records on the AccountsIds list with the user in the userId parameter for read-only acces.

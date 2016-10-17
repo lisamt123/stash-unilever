@@ -1,6 +1,7 @@
 public with sharing class BFM_CTeHandler implements ITrigger
 {   
     public BFM_CTeHandler() {    
+    
     }
 
 
@@ -11,20 +12,55 @@ public with sharing class BFM_CTeHandler implements ITrigger
      * any data required into maps prior execution of the trigger.
      */
     public void bulkBefore()
-    {   
-    BFM_ValidationController.cteDuplicateRecordCheck(Trigger.New);
-      if(trigger.isupdate){
-        BFM_companyvendorcheck.companycodeandvendorcheck(Trigger.New);
+    {  
+        if(trigger.isinsert){ 
+            BFM_ValidationController.cteDuplicateRecordCheck(Trigger.New);
+        }
+        if(trigger.isupdate){
+            BFM_companyvendorcheck.companycodeandvendorcheck(Trigger.New);
         }  
     }
     
     public void bulkAfter()
     {
-       if(Trigger.isupdate){
-      BFM_LinkSES.cteSESLink(Trigger.New);
-        } 
+     set<id> setcodevalnfs = new set<id>();
+        if(trigger.isInsert){
+             set<id> setcteids = new set<id>();
+              
+             for(BFM_CT_e__c cte: (List<BFM_CT_e__c> )trigger.new){             
+                 if(cte.CT_e_Valid_CNPJ_Status__c=='Valid CNPJ' && cte.CT_e_Sefaz_Check_Status__c== null){
+                    setcteids.add(cte.id);
+                }
+                if(cte.Cte_Status__c=='Pending Link' || cte.Link_Status__c=='Pending Link' && cte.CT_e_Request_for_Cancel__c==true){
+                    setcodevalnfs.add(cte.id);
+                }
+             }
+              if(!setcteids.isEmpty()){
+                BFM_Sefazvalidation_CC.sendCTEtoSefaz(setcteids,'mdfe');
+            }
+         }
+         
+        if(Trigger.isupdate){
+            BFM_LinkSES.cteSESLink(Trigger.New,setcodevalnfs);
+            BFM_TotalValueValidation.CteTotalValueValidation(Trigger.New);
+            
+            // Query tax
+            for(Id idCte : trigger.newMap.keySet()){
+                
+                BFM_CT_e__c oldCte = (BFM_CT_e__c) trigger.oldMap.get(idCte);
+                BFM_CT_e__c newCte = (BFM_CT_e__c) trigger.newMap.get(idCte);
+                System.debug('new cte tax code ' +newCte.Tax_Code__r.Name);
+                System.debug('old cte tax code '+oldCte.Tax_Code_id__c);
+                if(newCte.Tax_Code__c != null && 
+                   ((oldCte.Tax_Code__c == null) ||
+                    (oldCte.Tax_Code_id__c != newCte.Tax_Code_id__c))){
+                    System.debug('calling query tax future');
+                    BFM_Querytax.queryTaxFuture(idCte);
+                }
+            } 
+        }
     }
-        
+
     public void beforeInsert(SObject so)
     {
         
@@ -42,12 +78,15 @@ public with sharing class BFM_CTeHandler implements ITrigger
     
     public void afterInsert(SObject so) 
     {
-    BFM_SefazCheck_Utility_CC.sefazcheck(so.id,'ddsfas','CTE',userInfo.getSessionId());
+   /* BFM_CT_e__c cte = (BFM_CT_e__c) so;
+        if(cte.CT_e_Sefaz_Check_Status__c == null){
+            BFM_SefazCheck_Utility_CC.sefazcheck(so.id,'ddsfas','CTE',userInfo.getSessionId());
+        }*/
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-
+       
     }
     
     public void afterDelete(SObject so)

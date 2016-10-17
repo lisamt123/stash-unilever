@@ -5,7 +5,8 @@ public class BFM_ValidationController {
      List<BFM_CC_e__c> CCeRecordQ=New List<BFM_CC_e__c>();
      Map<string,id> OldKeyMap=New Map<string,id>();
      Map<string,id> NewRecordMap=New Map<string,id>(); 
-     set<string> CNPJId = new set<string>();   
+     set<string> CNPJId = new set<string>(); 
+     
         for (BFM_CC_e__c rec:CCeRecord){
              NewRecordMap.put(rec.CC_e_Key__c,rec.id);  
             if(rec.CNPJ_Issuer__c!=null){
@@ -14,8 +15,9 @@ public class BFM_ValidationController {
             if(rec.CNPJ_Service_Taker__c!=null){
             CNPJId.add(rec.CNPJ_Service_Taker__c);
             }
+            
         }
-        CCeRecordQ = [Select id,CC_e_Key__c,CC_e_Status__c from BFM_CC_e__c where CC_e_Key__c IN:NewRecordMap.keySet()];
+        CCeRecordQ = [Select id,CC_e_Key__c,CC_e_Status__c from BFM_CC_e__c where CC_e_Key__c IN:NewRecordMap.keySet() and id not in: trigger.new];
         for(BFM_CC_e__c cce:CCeRecordQ){
             OldKeyMap.put(cce.CC_e_Key__c,cce.id);    
         }
@@ -31,17 +33,34 @@ public class BFM_ValidationController {
      Map<string,id> OldKeyMap=New Map<string,id>();
      Map<string,id> NewRecordMap=New Map<string,id>(); 
      set<string> CNPJId = new set<string>();   
+     set<string> setcteoriginal = new set<string>();
         for (BFM_CT_e__c rec:CTeRecord){
-             NewRecordMap.put(rec.Ct_e_Key__c,rec.id);  
+            NewRecordMap.put(rec.Ct_e_Key__c,rec.id);  
             if(rec.CNPJ_Issuer__c!=null){
             CNPJId.add(rec.CNPJ_Issuer__c);
             }
             if(rec.CNPJ_Service_Taker__c!=null){
             CNPJId.add(rec.CNPJ_Service_Taker__c);
             }
+            if(rec.Cte_original_Access_Key__c!=null){
+                setcteoriginal.add(rec.Cte_original_Access_Key__c);
+            }
+        }
+        List<BFM_CT_e__c> cteOriginal = new List<BFM_CT_e__c>();
+        map<string,BFM_CT_e__c> mapcteoriginal = new map<string,BFM_CT_e__c>();
+        if(!setcteoriginal.isEmpty()){
+            cteOriginal = [select id,CT_e_key__c from BFM_CT_e__c where CT_e_key__c in: setcteoriginal and CT_e_Type__c='Normal'];
+        }
+        for(BFM_CT_e__c rec:CTeRecord){
+            if(rec.Cte_original_Access_Key__c!=null && mapcteoriginal.containsKey(rec.Cte_original_Access_Key__c)){
+                rec.CT_e__c = mapcteoriginal.get(rec.Cte_original_Access_Key__c).id;
+            }
+        }
+        for(BFM_CT_e__c ct: cteOriginal ){
+            mapcteoriginal.put(ct.CT_e_key__c, ct);
         }
         CTeRecordQ = [Select id,CT_e_Key__c,Cte_Status__c,CT_e_Duplicate_Record_Status__c from BFM_CT_e__c 
-                        where CT_e_Key__c IN:NewRecordMap.keySet() and CT_e_Duplicate_Record_Status__c=:Label.BFM_Validation_Ok];
+                        where CT_e_Key__c IN:NewRecordMap.keySet() and CT_e_Duplicate_Record_Status__c=:Label.BFM_Validation_Ok and ID NOT IN:Trigger.New];
         for(BFM_CT_e__c cte:CTeRecordQ){
             OldKeyMap.put(cte.CT_e_Key__c,cte.id);    
         }
@@ -58,6 +77,7 @@ public class BFM_ValidationController {
      Map<string,id> NewRecordMap=New Map<string,id>(); 
      set<string> CNPJId = new set<string>();   
         for (BFM_MDF_e__c rec: mdfeRecord){
+            
              NewRecordMap.put(rec.MDFE_Access_Key__c,rec.id);  
             if(rec.Issuer_CNPJ__c!=null){
             CNPJId.add(rec.Issuer_CNPJ__c);
@@ -65,8 +85,10 @@ public class BFM_ValidationController {
             if(rec.Taker_CNPJ__c!=null){
             CNPJId.add(rec.Taker_CNPJ__c);
             }
+            
         }
-        mdfeRecordQ = [Select id,MDFE_Access_Key__c,MDF_e_Status__c from BFM_MDF_e__c where MDFE_Access_Key__c IN:NewRecordMap.keySet()];
+        mdfeRecordQ = [Select id,MDFE_Access_Key__c,MDF_e_Status__c from BFM_MDF_e__c where MDFE_Access_Key__c IN:NewRecordMap.keySet() and
+                       MDF_e_Duplicate_Record_Status__c=:Label.BFM_Validation_Ok and ID NOT IN:Trigger.New];
         for(BFM_MDF_e__c mdfe: mdfeRecordQ){
             OldKeyMap.put(mdfe.MDFE_Access_Key__c,mdfe.id);    
         }
@@ -77,53 +99,61 @@ public class BFM_ValidationController {
     }
    
     //nfs duplicate recordcheck
-    public static void nfsDuplicateRecordCheck(List<BFM_NFS__c> nfsRecord){
+    public static void nfsDuplicateRecordCheck(List<BFM_NFS__c> nfsRecord,set<id> setlinknfs, boolean isInsert){
      List<BFM_NFS__c> nfsRecordQ=New List<BFM_NFS__c>();
      Map<string,id> OldKeyMap=New Map<string,id>();
      Map<string,id> NewRecordMap=New Map<string,id>(); 
      set<string> CNPJId = new set<string>();   
         for (BFM_NFS__c rec: nfsRecord){
-            if(rec.NFS_Emission_Date_Time__c!=null){
+            if(isInsert==true || !setlinknfs.contains(rec.id)){
+            if(rec.NFS_Emission_Date_Time__c!=null && rec.NFS_Series__c!=null && rec.NFS_Number__c!=null && rec.Vendor_s_CNPJ_or_CPF__c!=null ){
             NewRecordMap.put(rec.NFS_Number__c+rec.NFS_Series__c+rec.Vendor_s_CNPJ_or_CPF__c+rec.NFS_Emission_Date_Time__c.year(),rec.id);  
+            }
+            else{
+                rec.NFS_Mandatory_Field_Status__c = Label.BFM_Validation_Error;
+                rec.NFS_Status__c = Label.BFM_Validation_Error;
             }
             if(rec.Vendor_s_CNPJ_or_CPF__c!=null){
             CNPJId.add(rec.Vendor_s_CNPJ_or_CPF__c);
             }
             if(rec.Service_Taker_CNPJ__c!=null){
             CNPJId.add(rec.Service_Taker_CNPJ__c);
+            }
             }
         }
         nfsRecordQ = [Select id,NFS_Number__c,NFS_Key__c from BFM_NFS__c where NFS_Key__c IN:NewRecordMap.keySet() and id not in:nfsRecord];
         for(BFM_NFS__c nfs: nfsRecordQ){
             OldKeyMap.put(nfs.NFS_Key__c,nfs.id);    
         }
-        if(NewRecordMap!=null){
+        if(!NewRecordMap.isEmpty()){
        BFM_RecordutilityController utility=new BFM_RecordutilityController();
        utility.nfsCheck(OldKeyMap,NewRecordMap,'NFS',nfsRecord,CNPJId);
         }
     }
     //debitnote record check
-    public static void debitnoteDuplicateRecordCheck(List<BFM_Debit_Note__c> dnRecord){
+    public static void debitnoteDuplicateRecordCheck(List<BFM_Debit_Note__c> dnRecord,set<id> setdebitnote,boolean isinsert){
      List<BFM_Debit_Note__c> dnRecordQ=New List<BFM_Debit_Note__c>();
      Map<string,id> OldKeyMap=New Map<string,id>();
      Map<string,id> NewRecordMap=New Map<string,id>(); 
      set<string> CNPJId = new set<string>();   
         for (BFM_Debit_Note__c rec: dnRecord){
-            if(rec.DN_Number__c!=null){
-            NewRecordMap.put(rec.DN_Number__c,rec.id);  
-            }
-            if(rec.Vendor_s_CNPJ_or_CPF__c!=null){
-            CNPJId.add(rec.Vendor_s_CNPJ_or_CPF__c);
-            }
-            if(rec.Service_Taker_CNPJ__c!=null){
-            CNPJId.add(rec.Service_Taker_CNPJ__c);
+            if(isinsert == true || !setdebitnote.contains(rec.id)){
+                if(rec.DN_Number__c!=null){
+                NewRecordMap.put(rec.DN_Number__c,rec.id);  
+                }
+                if(rec.Vendor_s_CNPJ_or_CPF__c!=null){
+                CNPJId.add(rec.Vendor_s_CNPJ_or_CPF__c);
+                }
+                if(rec.Service_Taker_CNPJ__c!=null){
+                CNPJId.add(rec.Service_Taker_CNPJ__c);
+                }
             }
         }
         dnRecordQ = [Select id,DN_Number__c from BFM_Debit_Note__c where DN_Number__c IN:NewRecordMap.keySet() and Id not in: dnRecord];
         for(BFM_Debit_Note__c dn: dnRecordQ){
             OldKeyMap.put(dn.DN_Number__c,dn.id);    
         }
-        if(NewRecordMap!=null){
+        if(!NewRecordMap.isEmpty()){
        BFM_RecordutilityController utility=new BFM_RecordutilityController();
        utility.debitnoteCheck(OldKeyMap,NewRecordMap,'Debit Note',dnRecord,CNPJId);
         }

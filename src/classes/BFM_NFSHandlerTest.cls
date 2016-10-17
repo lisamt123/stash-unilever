@@ -5,15 +5,15 @@ private static testMethod void testNFSHandler(){
 list<BFM_NFS__c>nfslst=new list<BFM_NFS__c>();
 
 BFM_NFS__c nfs=new BFM_NFS__c();
-nfs.Name='test';
+//nfs.Name='test';
 nfs.NFS_Number__c='1234';
 nfs.NFS_Series__c='123';
 nfs.NFS_Emission_Date_Time__c=datetime.newInstance(2016, 9, 15, 12, 30, 0);
 nfs.Vendor_s_CNPJ_or_CPF__c='12345678900000';
-nfs.Service_Taker_Company_UF__c='12';
+//nfs.Service_Taker_Company_UF__c='12';
 nfs.Service_Taker_CNPJ__c='12345678900000';
 nfs.NFS_Link_Check_Status__c='Link Ok';
-nfs.Service_Taker_Company_UF__c='12';
+//nfs.Service_Taker_Company_UF__c='12';
 nfs.Vendor_s_CNPJ_or_CPF__c='11';
 //insert nfs;
 nfslst.add(nfs);
@@ -21,12 +21,12 @@ nfslst.add(nfs);
 
 list<BFM_NFS__c>nfslst1=new list<BFM_NFS__c>();
 BFM_NFS__c nfs1=new BFM_NFS__c();
-nfs1.Name='test';
+//nfs1.Name='test';
 nfs1.NFS_Number__c='1234';
 nfs1.NFS_Series__c='123';
 nfs1.NFS_Emission_Date_Time__c=datetime.newInstance(2016, 9, 15, 12, 30, 0);
 nfs1.Vendor_s_CNPJ_or_CPF__c='11';
-nfs1.Service_Taker_Company_UF__c='12';
+//nfs1.Service_Taker_Company_UF__c='12';
 nfs1.Service_Taker_CNPJ__c='12345678900000';
 //nfs1.NFS_Link_Check_Status__c='Link Ok';
 //insert nfs;
@@ -34,12 +34,12 @@ nfslst1.add(nfs1);
 
 
         insert nfslst; 
-        system.assertEquals('test',nfs.Name);
+        system.assertEquals('1234',nfs.NFS_Number__c);
          insert nfslst1; 
          system.debug('nfs1 id is'+nfs.id);
          
      update nfslst1;
-     system.assertEquals('test',nfs1.Name);
+     system.assertEquals('1234',nfs1.NFS_Number__c);
     // delete nfslst1;
     system.debug('nfs1 id is'+nfs1.id);
     
@@ -86,7 +86,7 @@ insert seslst1 ;
 update seslst1 ;
 system.assertEquals(nfs1.id,ses1.NFS__c);
 //delete seslst1 ;
-nfshandler.bulkAfter();
+//nfshandler.bulkAfter();
 nfshandler.beforeDelete(nfs1);
 nfshandler.afterInsert(nfs1) ;
 nfshandler.afterDelete(nfs1);
