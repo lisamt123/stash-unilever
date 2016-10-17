@@ -223,7 +223,13 @@ public with sharing class IPM_TaskHelper {
             }
         }
         
-        upsertNotNullTasks(upsertTaskList,deleteTaskMap);            
+        Map<String,IPM_Task__c> uniqueExtIdTaskMap = new Map<String,IPM_Task__c>();
+        
+        for(IPM_Task__c task : upsertTaskList)
+        {
+        	uniqueExtIdTaskMap.put(task.ExternalField__c,task);
+        } 
+        upsertNotNullTasks(uniqueExtIdTaskMap.values(),deleteTaskMap);            
         
         if(deleteTaskMap!=null && !deleteTaskMap.isEmpty())
         {
