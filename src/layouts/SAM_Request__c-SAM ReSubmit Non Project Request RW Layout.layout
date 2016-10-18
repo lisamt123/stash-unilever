@@ -289,14 +289,6 @@
                 <behavior>Readonly</behavior>
                 <field>rol_Total_DO_PO_Applicable__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>rol_Total_Run_Cost_Year_1__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>rol_Total_Run_Cost_Year_2__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
