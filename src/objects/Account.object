@@ -1913,7 +1913,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <controllingFieldValues>VOLOGDA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Belorussia</fullName>
+                <fullName>Belarus</fullName>
                 <default>false</default>
                 <controllingFieldValues>MINSK</controllingFieldValues>
             </picklistValues>
@@ -1921,10 +1921,23 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <fullName>Volga</fullName>
                 <default>false</default>
                 <controllingFieldValues>CHEBOKSARY</controllingFieldValues>
-                <controllingFieldValues>CHELYABINSK</controllingFieldValues>
-                <controllingFieldValues>EKATERINBURG</controllingFieldValues>
-                <controllingFieldValues>KURGAN</controllingFieldValues>
-                <controllingFieldValues>TYUMEN</controllingFieldValues>
+                <controllingFieldValues>IOSHKAR-OLA</controllingFieldValues>
+                <controllingFieldValues>IZHEVSK</controllingFieldValues>
+                <controllingFieldValues>KAZAN</controllingFieldValues>
+                <controllingFieldValues>KIROV</controllingFieldValues>
+                <controllingFieldValues>NABEREZHNIYE CHELNY</controllingFieldValues>
+                <controllingFieldValues>NIZHNIY NOVGOROD</controllingFieldValues>
+                <controllingFieldValues>ORENBURG</controllingFieldValues>
+                <controllingFieldValues>ORSK</controllingFieldValues>
+                <controllingFieldValues>PENZA</controllingFieldValues>
+                <controllingFieldValues>PERM</controllingFieldValues>
+                <controllingFieldValues>SAMARA</controllingFieldValues>
+                <controllingFieldValues>SARANSK</controllingFieldValues>
+                <controllingFieldValues>SARATOV</controllingFieldValues>
+                <controllingFieldValues>STERLITAMAK</controllingFieldValues>
+                <controllingFieldValues>TOLLIATTI</controllingFieldValues>
+                <controllingFieldValues>UFA</controllingFieldValues>
+                <controllingFieldValues>ULYANOVSK</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>South</fullName>
@@ -1940,7 +1953,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <controllingFieldValues>VOLGOGRAD</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Sibir</fullName>
+                <fullName>Sibir &amp; Far East</fullName>
                 <default>false</default>
                 <controllingFieldValues>ABAKAN</controllingFieldValues>
                 <controllingFieldValues>BARNAUL</controllingFieldValues>
@@ -1956,24 +1969,21 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <controllingFieldValues>ULAN-UDE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Far East</fullName>
+                <fullName>Ural</fullName>
                 <default>false</default>
-                <controllingFieldValues>BLAGOVESCHENSK</controllingFieldValues>
-                <controllingFieldValues>KHABAROVSK</controllingFieldValues>
-                <controllingFieldValues>MAGADAN</controllingFieldValues>
-                <controllingFieldValues>PETROPAVLOVSK-KAMCHATSKY</controllingFieldValues>
-                <controllingFieldValues>VLADIVOSTOK</controllingFieldValues>
-                <controllingFieldValues>YAKUTSK</controllingFieldValues>
-                <controllingFieldValues>YUZHNO-SAKHALINSK</controllingFieldValues>
+                <controllingFieldValues>CHELYABINSK</controllingFieldValues>
+                <controllingFieldValues>EKATERINBURG</controllingFieldValues>
+                <controllingFieldValues>KURGAN</controllingFieldValues>
+                <controllingFieldValues>MAGNITOGORSK</controllingFieldValues>
+                <controllingFieldValues>NIZHNEVARTOVSK</controllingFieldValues>
+                <controllingFieldValues>NIZHNIY TAGIL</controllingFieldValues>
+                <controllingFieldValues>SURGUT</controllingFieldValues>
+                <controllingFieldValues>TYUMEN</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Ukraine</fullName>
+                <fullName>Undefined</fullName>
                 <default>false</default>
-                <controllingFieldValues>CHERKASSY</controllingFieldValues>
-                <controllingFieldValues>CHERNIGOV</controllingFieldValues>
-                <controllingFieldValues>CHERNOVTSY</controllingFieldValues>
-                <controllingFieldValues>DNEPROPETROVSK</controllingFieldValues>
-                <controllingFieldValues>DONETSK</controllingFieldValues>
+                <controllingFieldValues>Undef</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -1993,167 +2003,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>BELGOROD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BRYANSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>IVANOVO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KALUGA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KOSTROMA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KURSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>LIPETSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>OREL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>RYAZAN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SMOLENSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TAMBOV</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TULA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TVER</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>VLADIMIR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>VORONEZH</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>YAROSLAVL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>SAINT-PETERSBURG</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ARKHANGELSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CHEREPOVETS</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PETROZAVODSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PSKOV</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SYKTYVKAR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>VOLOGDA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MURMANSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NOVGOROD VELIKIY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KALININGRAD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MINSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CHELYABINSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>EKATERINBURG</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KURGAN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TYUMEN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CHEBOKSARY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ASTRAKHAN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ELISTA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KRASNODAR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ROSTOV-ON-DON</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SEVASTOPOL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SIMFEROPOL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>VOLGOGRAD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ARMAVIR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>GROZNIY</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2161,39 +2011,23 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>ARKHANGELSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ARMAVIR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ASTRAKHAN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>BARNAUL</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>CHITA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>IRKUTSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KEMEROVO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KRASNOYARSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NOVOSIBIRSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>OMSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TOMSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ULAN-UDE</fullName>
+                <fullName>BELGOROD</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2201,35 +2035,27 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>BRATSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>BLAGOVESCHENSK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>KHABAROVSK</fullName>
+                <fullName>BRATSK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>MAGADAN</fullName>
+                <fullName>BRYANSK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>PETROPAVLOVSK-KAMCHATSKY</fullName>
+                <fullName>CHEBOKSARY</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>VLADIVOSTOK</fullName>
+                <fullName>CHELYABINSK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>YAKUTSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>YUZHNO-SAKHALINSK</fullName>
+                <fullName>CHEREPOVETS</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2245,11 +2071,327 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>CHITA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>DNEPROPETROVSK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>DONETSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EKATERINBURG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ELISTA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GROZNIY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IOSHKAR-OLA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IRKUTSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IVANOVO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IZHEVSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KALININGRAD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KALUGA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KAZAN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KEMEROVO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KHABAROVSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KIROV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KOMSOMOLSK-NA-AMURE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KOSTROMA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KRASNODAR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KRASNOYARSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KURGAN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KURSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LIPETSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MAGADAN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MAGNITOGORSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MAKHACHKALA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MINSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MURMANSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NABEREZHNIYE CHELNY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NALCHIK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NAZRAN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NIZHNEVARTOVSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NIZHNIY NOVGOROD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NIZHNIY TAGIL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NORILSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NOVGOROD VELIKIY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NOVOKUZNETSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NOVOROSSIYSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NOVOSIBIRSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OMSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OREL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ORENBURG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ORSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PENZA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PERM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PETROPAVLOVSK-KAMCHATSKY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PETROZAVODSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PSKOV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PYATIGORSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ROSTOV-ON-DON</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RYAZAN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SAMARA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SARANSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SARATOV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SEVASTOPOL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SIMFEROPOL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SMOLENSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SOCHI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>STAVROPOL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>STERLITAMAK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SURGUT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SYKTYVKAR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TAMBOV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TOLLIATTI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TOMSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TULA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TVER</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TYUMEN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UFA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ULAN-UDE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ULYANOVSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Undef</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VLADIKAVKAZ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VLADIMIR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VLADIVOSTOK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VOLGOGRAD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VOLOGDA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VORONEZH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YAKUTSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YAROSLAVL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YUZHNO-SAKHALINSK</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -2275,7 +2417,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
             <picklistValues>
                 <fullName>St.Pete &amp; NW &amp; Bel</fullName>
                 <default>false</default>
-                <controllingFieldValues>Belorussia</controllingFieldValues>
+                <controllingFieldValues>Belarus</controllingFieldValues>
                 <controllingFieldValues>NW</controllingFieldValues>
                 <controllingFieldValues>St.Pete</controllingFieldValues>
             </picklistValues>
@@ -2286,15 +2428,15 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <controllingFieldValues>Volga</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Sibir &amp; Far East</fullName>
+                <fullName>Sibir &amp; Far East &amp; Ural</fullName>
                 <default>false</default>
-                <controllingFieldValues>Far East</controllingFieldValues>
-                <controllingFieldValues>Sibir</controllingFieldValues>
+                <controllingFieldValues>Sibir &amp; Far East</controllingFieldValues>
+                <controllingFieldValues>Ural</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Ukraine</fullName>
+                <fullName>Undefined</fullName>
                 <default>false</default>
-                <controllingFieldValues>Ukraine</controllingFieldValues>
+                <controllingFieldValues>Undefined</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -9512,10 +9654,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ukraine</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Volga</fullName>
                 <default>false</default>
             </values>
@@ -9794,15 +9932,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sibir %26 Far East</fullName>
+                <fullName>Sibir %26 Far East %26 Ural</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>St%2EPete %26 NW %26 Bel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ukraine</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12080,15 +12214,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_RusianRegion__c</picklist>
             <values>
-                <fullName>Belorussia</fullName>
+                <fullName>Belarus</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>CFO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Far East</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12100,7 +12230,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sibir</fullName>
+                <fullName>Sibir %26 Far East</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12112,7 +12242,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ukraine</fullName>
+                <fullName>Undefined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ural</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12211,11 +12345,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>IOSHKAR-OLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>IRKUTSK</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>IVANOVO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IZHEVSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12227,11 +12369,23 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>KAZAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>KEMEROVO</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>KHABAROVSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KIROV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KOMSOMOLSK-NA-AMURE</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12263,6 +12417,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>MAGNITOGORSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MAKHACHKALA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MINSK</fullName>
                 <default>false</default>
             </values>
@@ -12275,7 +12437,43 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>NABEREZHNIYE CHELNY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NALCHIK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAZRAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIZHNEVARTOVSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIZHNIY NOVGOROD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIZHNIY TAGIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NORILSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>NOVGOROD VELIKIY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NOVOKUZNETSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NOVOROSSIYSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12291,6 +12489,22 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>ORENBURG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ORSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PENZA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PERM</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>PETROPAVLOVSK-KAMCHATSKY</fullName>
                 <default>false</default>
             </values>
@@ -12300,6 +12514,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>PSKOV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PYATIGORSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12315,6 +12533,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>SAMARA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SARANSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SARATOV</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>SEVASTOPOL</fullName>
                 <default>false</default>
             </values>
@@ -12327,11 +12557,31 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>SOCHI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>STAVROPOL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>STERLITAMAK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SURGUT</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>SYKTYVKAR</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>TAMBOV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOLLIATTI</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12351,7 +12601,23 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>UFA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>ULAN-UDE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ULYANOVSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Undef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VLADIKAVKAZ</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12394,7 +12660,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sibir %26 Far East</fullName>
+                <fullName>Sibir %26 Far East %26 Ural</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12402,7 +12668,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ukraine</fullName>
+                <fullName>Undefined</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14764,15 +15030,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_RusianRegion__c</picklist>
             <values>
-                <fullName>Belorussia</fullName>
+                <fullName>Belarus</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>CFO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Far East</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14784,7 +15046,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sibir</fullName>
+                <fullName>Sibir %26 Far East</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14796,7 +15058,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ukraine</fullName>
+                <fullName>Undefined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ural</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14895,11 +15161,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>IOSHKAR-OLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>IRKUTSK</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>IVANOVO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IZHEVSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14911,11 +15185,23 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>KAZAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>KEMEROVO</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>KHABAROVSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KIROV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KOMSOMOLSK-NA-AMURE</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14947,6 +15233,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>MAGNITOGORSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MAKHACHKALA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MINSK</fullName>
                 <default>false</default>
             </values>
@@ -14959,7 +15253,43 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>NABEREZHNIYE CHELNY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NALCHIK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAZRAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIZHNEVARTOVSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIZHNIY NOVGOROD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NIZHNIY TAGIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NORILSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>NOVGOROD VELIKIY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NOVOKUZNETSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NOVOROSSIYSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14975,6 +15305,22 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>ORENBURG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ORSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PENZA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PERM</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>PETROPAVLOVSK-KAMCHATSKY</fullName>
                 <default>false</default>
             </values>
@@ -14984,6 +15330,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>PSKOV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PYATIGORSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14999,6 +15349,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>SAMARA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SARANSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SARATOV</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>SEVASTOPOL</fullName>
                 <default>false</default>
             </values>
@@ -15011,11 +15373,31 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>SOCHI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>STAVROPOL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>STERLITAMAK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SURGUT</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>SYKTYVKAR</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>TAMBOV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOLLIATTI</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15035,7 +15417,23 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>UFA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>ULAN-UDE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ULYANOVSK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Undef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VLADIKAVKAZ</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15078,7 +15476,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sibir %26 Far East</fullName>
+                <fullName>Sibir %26 Far East %26 Ural</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15086,7 +15484,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ukraine</fullName>
+                <fullName>Undefined</fullName>
                 <default>false</default>
             </values>
             <values>
