@@ -605,13 +605,13 @@ public with sharing class IPM_MilestoneHelper
     
         //Populate Map for each project with miniim regional Milestone date for each Milestone type
         for (AggregateResult ar : groupedResults)  {
-            if(IPM_ConstantUtils.ROLLUP_MILESTONES.contains(string.valueOf(ar.get('IPM_Name__c'))) &&   mapProjMlDuedate.containsKey(string.valueOf(ar.get('IPM_Project__r.IPM_Parent_Project__c')))){
-                mapProjMlDuedate.get(string.valueOf(ar.get('IPM_Project__r.IPM_Parent_Project__c'))).put(string.valueOf(ar.get('IPM_Name__c')), date.valueOf(ar.get('expr0'))); 
+            if(IPM_ConstantUtils.ROLLUP_MILESTONES.contains(string.valueOf(ar.get('IPM_Name__c'))) &&   mapProjMlDuedate.containsKey(string.valueOf(ar.get('parent')))){
+                mapProjMlDuedate.get(string.valueOf(ar.get('parent'))).put(string.valueOf(ar.get('IPM_Name__c')), date.valueOf(ar.get('duedate'))); 
             }
             else if (IPM_ConstantUtils.ROLLUP_MILESTONES.contains(string.valueOf(ar.get('IPM_Name__c'))) ){
                 map<string, date> temp = new map<string, date>();
-                temp.put(string.valueOf(ar.get('IPM_Name__c')), date.valueOF(ar.get('expr0')));
-                mapProjMlDuedate.put(string.valueOf(ar.get('IPM_Project__r.IPM_Parent_Project__c')), temp);
+                temp.put(string.valueOf(ar.get('IPM_Name__c')), date.valueOF(ar.get('duedate')));
+                mapProjMlDuedate.put(string.valueOf(ar.get('parent')), temp);
             }
         }
         

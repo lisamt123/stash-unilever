@@ -543,7 +543,9 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
     SUBSTITUTE(Financial_External_ID__c, &apos;_CONSOLIDATED&apos;, &apos; (Consolidated)&apos;), 
     IF(CONTAINS(Financial_External_ID__c , &apos;NONKEY&apos;), 
         SUBSTITUTE(Financial_External_ID__c, &apos;_NONKEY&apos;, &apos; (Non Key)&apos;), 
-        Financial_External_ID__c
+		IF(CONTAINS(Gate_Keeping_Model__c, &apos;GKM3&apos;), 
+SUBSTITUTE(Financial_External_ID__c, Regional_External_Id__c, Global_External_Id__c), 
+        Financial_External_ID__c)
     )
 )</formula>
         <label>Display Name</label>
