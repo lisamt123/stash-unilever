@@ -59,7 +59,10 @@ public with sharing class CPA_testPWORFClass_util {
         
         pworfRec.Is_this_a_new_or_re_worked_Integration_R__c = CPA_ConstantsForContractingAppClasses.YES ;
          pworfRec.pkl_Is_this_Project_Invasive_in_nature__c =CPA_ConstantsForContractingAppClasses.YES ;
-        
+       //swathi added this
+         pworfRec.pkl_Linked_Project__c = CPA_ConstantsForContractingAppClasses.YES ;
+         pworfRec.pkl_Large_Project_Discount__c =CPA_ConstantsForContractingAppClasses.YES ;
+        //swathi added end point
         pworfRec.txt_Internal_PWO_ID__c = '111111';
         
         pworfRec.dt_Expected_go_live_date__c  =system.today()  ;
@@ -239,6 +242,10 @@ public with sharing class CPA_testPWORFClass_util {
         pworfRec.Has_W_R_been_discussed_with_Supplier_Per__c ='Has W@R been discussed with Supplier Per'  ;        
         pworfRec.Interface_to_the_system__c  ='Interface to the system'  ;
         pworfRec.Interface_to_the_system__c  =CPA_ConstantsForContractingAppClasses.YES ;
+         //swathi added this
+         pworfRec.pkl_Linked_Project__c = CPA_ConstantsForContractingAppClasses.YES ;
+         pworfRec.pkl_Large_Project_Discount__c =CPA_ConstantsForContractingAppClasses.YES ;
+        //swathi added end point
         pworfRec.Interface_to_the_system_Detail__c = 'Interface to the system Detail'  ;
         pworfRec.Is_Project__c  ='Is Project Require Data Specific Testing'  ;    
         pworfRec.Is_Project_Require__c   ='Is Project Require Performance Testing'  ;  
@@ -286,12 +293,12 @@ public with sharing class CPA_testPWORFClass_util {
     Throws [Exceptions]: 
     ********************************************************************/    
     public static CPA_Queries__c createTest_query(CPA_PWORF__c pworf){
-    	CPA_Queries__c queryRec = new CPA_Queries__c();
+        CPA_Queries__c queryRec = new CPA_Queries__c();
         queryRec.Name = CPA_ConstantsForContractingAppClasses.TEST;
         queryRec.RTXTQuery_Description__c = CPA_ConstantsForContractingAppClasses.TEST;
         queryRec.Type_Of_Query__c = 'Query';
         queryRec.LookupPWORF_Name__c =pworf.id ;
-    	return queryRec;
+        return queryRec;
     }
      /*******************************************************************
     Purpose: This method is used to create Query comment test data
@@ -300,8 +307,8 @@ public with sharing class CPA_testPWORFClass_util {
     Throws [Exceptions]: 
     ********************************************************************/    
     public static CPA_Query_comment__c createTest_queryComment(CPA_Queries__c query){
-    	CPA_Query_comment__c queryComentRec = new CPA_Query_comment__c();
+        CPA_Query_comment__c queryComentRec = new CPA_Query_comment__c();
         queryComentRec.LookupCPA_Queries__c =query.id ;
-    	return queryComentRec; 
+        return queryComentRec; 
     } 
 }
