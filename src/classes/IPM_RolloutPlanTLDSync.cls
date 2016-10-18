@@ -67,7 +67,7 @@ public with sharing class IPM_RolloutPlanTLDSync {
             for(Id projId : projDetails.keySet()){
                 IPM_EmailOut_Notification__c emailOutNotification = new IPM_EmailOut_Notification__c();    
                 emailOutNotification.To_Address__c = projDetails.get(projId).IPM_Project_Leader__r.Email;
-                emailOutNotification.Project_Name__c = projIdRollout.get(projId).Name;
+                emailOutNotification.Project_Name__c = projIdRollout.get(projId).IPM_Rollout_Project__c;
                 emailOutNotification.MCO_Country_Name__c =  projIdRollout.get(projId).MCO_Name__c;
                 emailOut.add(emailOutNotification);                     
             }

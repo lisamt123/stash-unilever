@@ -284,13 +284,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                         if((project.name+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)==currentFinancial.Financial_External_ID__c) {
                             tld = project.IPM_Target_Launch_Dates__c;
                         } else {
-                            IPM_Project__c proj = [Select (Select Name, Target_Launch_Date__c From IPM_Project_Rollout__r) From IPM_Project__c where id=:project.id];
+                            IPM_Project__c proj = [Select (Select Name, Target_Launch_Date__c,IPM_Rollout_Project__c From IPM_Project_Rollout__r) From IPM_Project__c where id=:project.id];
                             if(!proj.IPM_Project_Rollout__r.isEmpty()) {
                                 for(IPM_Project_Rollout__c rollout:proj.IPM_Project_Rollout__r) {
                                     if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && (rollout.name+IPM_ConstantUtils.FINANCIAL_NONKEY)==currentFinancial.Financial_External_ID__c){
                                         tld = currentFinancial.Target_Launch_Date__c;
+                                     
                                         break;
-                                    } else if(rollout.name==currentFinancial.Financial_External_ID__c) {
+                                    } else if(rollout.IPM_Rollout_Project__c==currentFinancial.Financial_External_ID__c) {
+                                      
                                         tld = rollout.Target_Launch_Date__c;
                                         break;
                                     }
@@ -3080,12 +3082,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             
             if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) {
             if(currentFinancial != null){
-                IPM_Project__c proj = [Select (Select Name, Target_Launch_Date__c,Previous_Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c,isActive__c,IPM_Rollout_Span__c From IPM_Project_Rollout__r) From IPM_Project__c where id=:project.id];                    
+                IPM_Project__c proj = [Select (Select Name, Target_Launch_Date__c,Previous_Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c,isActive__c,IPM_Rollout_Span__c,IPM_Rollout_Project__c From IPM_Project_Rollout__r) From IPM_Project__c where id=:project.id];                    
                 if(!proj.IPM_Project_Rollout__r.isEmpty()) 
                 {
                     Date earliestTLD = null; 
                     for(IPM_Project_Rollout__c rollout:proj.IPM_Project_Rollout__r) {
-                        String rolloutNonKeyName = rollout.Name.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
+                        String rolloutNonKeyName = rollout.IPM_Rollout_Project__c.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
+             
                         //Check if Financial external id ends with '_NONKEY' and Financial external id starts with rollout name and rollout is not key MCO and rollout is active and rollout span is local
                         if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && currentFinancial.Financial_External_ID__c.startsWith(rolloutNonKeyName) && !rollout.KeyMCO__c && rollout.isActive__c && rollout.IPM_Rollout_Span__c == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL) {
                                 //Assign the earliest TLD from non key MCOs
@@ -3096,7 +3099,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                 mcoCountryRolloutPlan = rollout;
                                 earliestTLD = rollout.Target_Launch_Date__c;
                             }
-                        } else if(rollout.name==currentFinancial.Financial_External_ID__c) {
+                        } else if(rollout.IPM_Rollout_Project__c==currentFinancial.Financial_External_ID__c) {
                             mcoCountryRolloutPlan = rollout;
                             break;
                         }

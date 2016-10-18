@@ -24,14 +24,14 @@ function checkDuplicateRow(){
     }
 }
 function displayCapabilitySection(param,eve){                
-    if(jq('select').val() === 'select')
+    if(jq('select').val() === 'Select Sourcing Unit')
     {
         jq('#iddivCapability').hide();
     }
     else{
         jq('#iddivCapability').show();
     }
-}
+} 
 function firstsrcplan(){
     jq('.numberBox').spinner();
     jq('.sizeNumberbox').spinner();
@@ -144,12 +144,13 @@ function scndsrcplan(){
                 }
                 if(srcedcntryvalue === ''){
                    jq(this).closest('.srcedcntrymainlist').prev().find('.srcedcntryValues').text('Select Countries');
+                   jq(this).closest('.srcedcntrylist').prev('.srcedhiddencntry').val(srcedcntryvalue);
                 }
                 else{
                    jq(this).closest('.srcedcntrymainlist').prev().find('.srcedcntryValues').text(srcedcntryvalue+';');
+                   jq(this).closest('.srcedcntrylist').prev('.srcedhiddencntry').val(srcedcntryvalue+';');
                 }
-                jq(".srcedcntrymainlist").hide();
-                jq(this).closest('.srcedcntrylist').prev('.srcedhiddencntry').val(srcedcntryvalue+';'); 
+                jq(".srcedcntrymainlist").hide();              
             }); 
             getNotAssignedC(srcedcntryvalue);
         });
@@ -205,12 +206,13 @@ function thirdsrcplan(){
                 }   
             }
         });
-        getsourceinto(procntryvalue+';');
-        jq('.hiddencntry').val(procntryvalue+';');
         if(procntryvalue === ''){
+            getsourceinto(procntryvalue);
             jq('.cntryValues').text(IPMAppPS.selectLabel);
         }
         else{
+            getsourceinto(procntryvalue+';');
+            jq('.hiddencntry').val(procntryvalue+';');
             jq('.cntryValues').text(procntryvalue+';');
         }
         jq(".cntrymainlist").hide(); 

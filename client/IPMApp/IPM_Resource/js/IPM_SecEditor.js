@@ -388,10 +388,10 @@ jq('#ipmModal').on('show.bs.modal', function (e) {
 function setFocusOnLoad() {}
   
 /* Below code is to global claim for addclaim section*/
-function deletionHandling(projectClaimId)
-{
-    jq('#removeClaim .deleteclaimbtn').on("click",function(){deleteClaim(projectClaimId);});
-    jq("#ipmDeleteModal").modal('hide');
+function deletionHandling(projectClaimId) 
+{ 
+     jq('#removeClaim .deleteclaimbtn').on("click",function(){deleteClaim(projectClaimId);}); 
+    jq("#removeClaim").modal('show'); 
 }
 
 jq(document).on('click', '.pdlCheckbox input[type="checkbox"]:not(:disabled)', function() {
