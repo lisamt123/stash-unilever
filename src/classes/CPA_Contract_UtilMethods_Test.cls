@@ -361,7 +361,8 @@ private class CPA_Contract_UtilMethods_Test {
                     objHLERequest.pkl_Approval_Comment_Check__c = CPA_ConstantsForContractingAppClasses.REQUIRED;
                     update objHLERequest;                 
                 }catch(Exception e){
-                        
+                   
+                System.assertNotEquals('false', 'Exception ' + e);      
                 }                
             }
             
