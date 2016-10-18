@@ -2,6 +2,46 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
 <description>Spark Project - Mobility to Mobile Channel - Permission Set for the Salesmen to access the solution using a common Terminal. The PCL suffix stands for Partner Community Login - to be assigned to users with the Partner Community Login license type.</description>
  <fieldPermissions>
+        <editable>true</editable>
+        <field>ICB_Inventory_Line_Item__c.ICB_Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ICB_Inventory_Line_Item__c.ICB_Product__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ICB_Inventory_Line_Item__c.ICB_Purchase_Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ICB_Inventory_Line_Item__c.ICB_Quantity_Boxes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ICB_Inventory_Line_Item__c.ICB_Quantity_ToBe_Updated__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ICB_Inventory_Line_Item__c.ICB_Quantity_Unit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ICB_Inventory_Line_Item__c.ICB_Sales_Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ICB_Inventory_Line_Item__c.ICB_Unit_Convertion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+ <fieldPermissions>
         <editable>false</editable>
         <field>Account.AccountNumber</field>
         <readable>true</readable>
@@ -213,6 +253,24 @@
     </fieldPermissions>
     <label>ICB Mobile Channel Console PCL</label>
     <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>ICB_Inventory__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>ICB_Inventory_Line_Item__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
@@ -266,6 +324,14 @@
         <object>Product2</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <recordTypeVisibilities>
+        <recordType>ICB_Inventory_Line_Item__c.ICB_Inventory_Line_Item</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+     <recordTypeVisibilities>
+        <recordType>ICB_Inventory__c.ICB_Inventory</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Account.Standard</recordType>
         <visible>true</visible>
