@@ -201,7 +201,8 @@
             </apex:outputPanel>
 	    </div>
 	    
-        <apex:outputPanel layout="{!panelLayout}" id="removeClaim" html-tabindex="-1" html-data-backdrop-limit="1" styleClass="modal fade">
+        <div id="removeClaim" html-tabindex="-1" html-data-backdrop-limit="1" class="modal fade removeClaim">
+        <apex:outputPanel layout="{!panelLayout}" >
 	        <div class="modal-dialog">
 	            <div class="modal-content">
 	                <div class="modal-header">
@@ -223,7 +224,7 @@
 	                </div>
 	            </div>
 	        </div>
-        </apex:outputPanel>
+        </apex:outputPanel></div>
     </apex:outputPanel>
     
     <!-- To show Non Key and Key Claims on Local Rollout Projects -->
