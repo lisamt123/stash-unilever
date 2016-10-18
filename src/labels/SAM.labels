@@ -66,7 +66,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>SAM_RW_Project_Request_Details_Pending</shortDescription>
-        <value>Your request needs additional information from you to process further. Please look into ‘Action Comments History’ section for complete details. Please provide ‘Build Details’ if applicable, download the template with file name ‘Build_Details’ from ‘Files’ tab by clicking ‘+’ (Plus) icon from menu bar and select ‘All Files’. Upload the template with details without changing the file name under ‘Notes & Attachments’ section of the request. 
+        <value>Your request needs additional information from you to process further. Please look into ‘Action Comments History’ section for complete details. Please provide ‘Build Details’ if applicable, download the template with file name ‘Build_Details’ from ‘Files’ tab by clicking ‘+’ (Plus) icon from menu bar and select ‘All Files’. Upload the template with details without changing the file name under ‘Notes and Attachments’ section of the request. 
 Please provide DO details for applicable line items under ‘DO Section’ by clicking on ‘Software Name’ link from ‘Quotation Details’ section of the request. Save your request by entering your comments in ‘Action Comments’ field under ‘Actions’ section by double clicking against the field and click on ‘Edit’ button on top of the page or double click on ‘Next Action (Requester)’ field under ‘Actions’ section of the request and select ‘Details Provided’ and click ‘OK’ and then click ‘Save’ button on top of the page to resubmit your request.
 </value>
     </labels>
@@ -82,7 +82,7 @@ Please provide DO details for applicable line items under ‘DO Section’ by cl
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>SAM_RW_Project_Request Draft_Quote_Provided</shortDescription>
-        <value>SAM Team has provided Draft Quote for you software request. Please review the same & input your comments for any modification/rejection/approval in the Action comments. For Quote Attachments please navigate to ‘Notes & Attachment’ section.</value>
+        <value>SAM Team has provided Draft Quote for you software request. Please review the same and input your comments for any modification/rejection/approval in the Action comments. For Quote Attachments please navigate to ‘Notes and Attachment’ section.</value>
     </labels>
 	<labels>
         <fullName>SAM_RW_Project_Request_Information_Provided</fullName>
@@ -196,5 +196,5 @@ If your query is Answered resubmit the request by entering your comments in ‘A
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>SAM_RW_Query_Request_Saved</shortDescription>
-        <value>Your Request is saved successfully. Once all the Mandatory fields are filled then, Submit button will be visible on top of page. Please click on ‘Submit’ button to submit request to SAM Team for further processing. Please click on ‘Edit’ button for any changes to request details before submission. Please upload any attachments under ‘Notes & Attachments’ section.</value>
+        <value>Your Request is saved successfully. Once all the Mandatory fields are filled then, Submit button will be visible on top of page. Please click on ‘Submit’ button to submit request to SAM Team for further processing. Please click on ‘Edit’ button for any changes to request details before submission. Please upload any attachments under ‘Notes and Attachments’ section.</value>
     </labels>

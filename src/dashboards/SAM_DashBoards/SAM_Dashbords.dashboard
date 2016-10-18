@@ -3,7 +3,7 @@
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
-    <dashboardType>MyTeamUser</dashboardType>
+    <dashboardType>SpecifiedUser</dashboardType>
     <isGridLayout>false</isGridLayout>
     <leftSection>
         <columnSize>Medium</columnSize>
@@ -162,6 +162,7 @@
             <useReportChart>true</useReportChart>
         </components>
     </rightSection>
+    <runningUser>monal.agey@unilever.com</runningUser>
     <textColor>#000000</textColor>
     <title>SAM Dashbords</title>
     <titleColor>#000000</titleColor>
