@@ -125,7 +125,7 @@ public abstract with sharing class AR_ApplicationBaseController {
 			        req1.setObjectId(application.getId());
 			        
 			        // Submit the approval request for the account
-			        Approval.ProcessResult result = Approval.process(req1);
+			        //Approval.ProcessResult result = Approval.process(req1);
 			        
 			        return Page.ar_applicationthanks; 
 				} catch(Exception e) {

@@ -8,7 +8,8 @@ public with sharing class AR_FixedDescriptionsHandler {
         //Map<String, AR_Fixed_Rate_Card_Questions__c> settings = AR_Fixed_Rate_Card_Questions__c.getAll();
         if(AR_FixedDescriptionsHandler.settings == null)
         {
-       		 AR_FixedDescriptionsHandler.settings = [Select Name,Definition__c,Discipline__c,Material_Costs_Included__c,Order__c,Per_Item__c,Subject_to_Annual_Rebate_Scheme__c,Task_Group_short__c,Task_Group__c from AR_Fixed_Rate_Card_Questions__c ORDER BY Order__c];
+       		              AR_FixedDescriptionsHandler.settings = [Select Name,Definition__c,Discipline__c,Material_Costs_Included__c,Order__c,Per_Item__c,Subject_to_Annual_Rebate_Scheme__c,Task_Group_short__c,Task_Group__c from AR_Fixed_Rate_Card_Questions__c ORDER BY Order__c limit 1000];
+
         }
         
         AR_SObjectHolder rcc = new AR_SObjectHolder();
