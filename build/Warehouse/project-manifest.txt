@@ -28,4 +28,5 @@ src/permissionsets/WU_Warehouse_Excellence_Operations.permissionset
 src/permissionsets/WU_Warehouse_Admin.permissionset
 src/labels
 src/labels/WU.labels
+src/customPermissions
 src/customPermissions/CEC_Disable_Case_Trigger.customPermission
