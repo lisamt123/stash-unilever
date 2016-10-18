@@ -193,7 +193,7 @@
         <field>SAM_Request__c.fml_SAM_demand_manager__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>SAM Request Details - SAM Demand Manager</name>
+    <name>SAM Demand: Request - Manager Details</name>
     <params>
         <name>co</name>
         <value>1</value>

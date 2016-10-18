@@ -3,7 +3,7 @@
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
-    <dashboardType>SpecifiedUser</dashboardType>
+    <dashboardType>MyTeamUser</dashboardType>
     <isGridLayout>false</isGridLayout>
     <leftSection>
         <columnSize>Medium</columnSize>
@@ -16,7 +16,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <header>Portfolio Wise Split</header>
+            <header>SAM Demand: Portfolio Wise Split</header>
             <legendPosition>Bottom</legendPosition>
             <report>SAM_Reports/SAM_Dash_ReqCount_By_Portfolio</report>
             <showPercentage>false</showPercentage>
@@ -33,12 +33,12 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <header>SAM Request Details by Numbers</header>
+            <header>SAM Demand: Charging Type</header>
             <legendPosition>Bottom</legendPosition>
-            <report>SAM_Reports/Request_Details_by_Numbers</report>
+            <report>SAM_Reports/SAM_Charging_Type</report>
             <showPercentage>false</showPercentage>
             <showPicturesOnCharts>false</showPicturesOnCharts>
-            <showValues>true</showValues>
+            <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
             <useReportChart>true</useReportChart>
         </components>
@@ -51,9 +51,9 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <header>SAM Request Details by Status</header>
+            <header>SAM Demand: Request Details by Numbers</header>
             <legendPosition>Bottom</legendPosition>
-            <report>SAM_Reports/SAM_Request_Details_by_Status</report>
+            <report>SAM_Reports/Request_Details_by_Numbers</report>
             <showPercentage>false</showPercentage>
             <showPicturesOnCharts>false</showPicturesOnCharts>
             <showValues>true</showValues>
@@ -72,50 +72,55 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <header>SAM Request Details by Request Type</header>
-            <legendPosition>Bottom</legendPosition>
-            <report>SAM_Reports/SAM_Request_Details_by_Request_Type</report>
-            <showPercentage>false</showPercentage>
-            <showPicturesOnCharts>false</showPicturesOnCharts>
-            <showValues>false</showValues>
-            <sortBy>RowLabelAscending</sortBy>
-            <useReportChart>true</useReportChart>
-        </components>
-        <components>
-            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
-            <chartAxisRange>Auto</chartAxisRange>
-            <componentType>Bar</componentType>
-            <displayUnits>Auto</displayUnits>
-            <drillEnabled>false</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
-            <enableHover>true</enableHover>
-            <expandOthers>false</expandOthers>
-            <header>SAM Charging Type</header>
-            <legendPosition>Bottom</legendPosition>
-            <report>SAM_Reports/SAM_Charging_Type</report>
-            <showPercentage>false</showPercentage>
-            <showPicturesOnCharts>false</showPicturesOnCharts>
-            <showValues>false</showValues>
-            <sortBy>RowLabelAscending</sortBy>
-            <useReportChart>true</useReportChart>
-        </components>
-        <components>
-            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
-            <chartAxisRange>Auto</chartAxisRange>
-            <componentType>Bar</componentType>
-            <displayUnits>Auto</displayUnits>
-            <drillEnabled>false</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
-            <enableHover>true</enableHover>
-            <expandOthers>false</expandOthers>
+            <header>SAM Demad: Publisher Wise Split</header>
             <legendPosition>Bottom</legendPosition>
             <report>SAM_Reports/SAM_Publisher_Wise_Split_Dashboard</report>
             <showPercentage>false</showPercentage>
             <showPicturesOnCharts>false</showPicturesOnCharts>
             <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
-            <title>SAM Publisher Wise Split</title>
             <useReportChart>true</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <componentType>Bar</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <header>SAM Demand: Request Details by Status</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>SAM_Reports/SAM_Request_Details_by_Status</report>
+            <showPercentage>false</showPercentage>
+            <showPicturesOnCharts>false</showPicturesOnCharts>
+            <showValues>true</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>true</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>RowCount</column>
+            </chartSummary>
+            <componentType>ColumnStacked</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>false</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>SAM_Request__c.fml_SAM_demand_manager__c</groupingColumn>
+            <groupingColumn>BucketField_95081983</groupingColumn>
+            <header>SAM Demand: Query Request</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>SAM_Reports/SAM_Query</report>
+            <showPercentage>false</showPercentage>
+            <showValues>false</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>false</useReportChart>
         </components>
     </middleSection>
     <rightSection>
@@ -129,7 +134,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <header>SAM Request Details - SAM Demand Manager</header>
+            <header>SAM Demand: Request - Manager Details</header>
             <legendPosition>Bottom</legendPosition>
             <report>SAM_Reports/SAM_Request_Details_SAM_Demand_Manager</report>
             <showPercentage>false</showPercentage>
@@ -138,8 +143,25 @@
             <sortBy>RowLabelAscending</sortBy>
             <useReportChart>true</useReportChart>
         </components>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <componentType>Bar</componentType>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <header>SAM Demand: Request Details by Request Type</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>SAM_Reports/SAM_Request_Details_by_Request_Type</report>
+            <showPercentage>false</showPercentage>
+            <showPicturesOnCharts>false</showPicturesOnCharts>
+            <showValues>false</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>true</useReportChart>
+        </components>
     </rightSection>
-    <runningUser>monal.agey@unilever.com</runningUser>
     <textColor>#000000</textColor>
     <title>SAM Dashbords</title>
     <titleColor>#000000</titleColor>

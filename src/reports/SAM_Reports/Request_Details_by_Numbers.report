@@ -120,7 +120,7 @@
         <field>BucketField_51012977</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>SAM Request Details by Numbers</name>
+    <name>SAM Demand: Request Details by Numbers</name>
     <params>
         <name>co</name>
         <value>1</value>
