@@ -80,10 +80,10 @@ src/email/CPA_Reminder_to_respond_to_PWORF.email-meta.xml
 src/email/CPA_Reminder_to_submit_PWO.email
 src/email/CPA_Reminder_to_submit_PWO.email-meta.xml
 src/workflows
-src/layouts/CPA_CR__c.workflow
-src/layouts/CPA_HLE_Request__c.workflow
-src/layouts/CPA_LOI__c.workflow
-src/layouts/CPA_project_work_order__c.workflow
-src/layouts/CPA_PWORF__c.workflow
-src/layouts/CPA_Queries__c.workflow
-src/layouts/CPA_Query_comment__c.workflow
+src/workflows/CPA_CR__c.workflow
+src/workflows/CPA_HLE_Request__c.workflow
+src/workflows/CPA_LOI__c.workflow
+src/workflows/CPA_project_work_order__c.workflow
+src/workflows/CPA_PWORF__c.workflow
+src/workflows/CPA_Queries__c.workflow
+src/workflows/CPA_Query_comment__c.workflow
