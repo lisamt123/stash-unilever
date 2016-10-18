@@ -8,11 +8,11 @@
     <approvalPageFields>
         <field>Name</field>
         <field>WU_SAPCode_s__c</field>
-		<field>WU_LocationName__c</field>				
+        <field>WU_LocationName__c</field>
         <field>WU_Prior_CommittedPalletStorage__c</field>
         <field>WU_Committed_Max_PalletStorage__c</field>
-	    <field>Submitted_by__c</field>
-		<field>Owner</field>
+        <field>Submitted_by__c</field>
+        <field>Owner</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>true</allowDelegate>
@@ -48,15 +48,19 @@
             <name>SetPriorValueForCommittedPallet</name>
             <type>FieldUpdate</type>
         </action>
+        <action>
+            <name>WU_RejectionNotification</name>
+            <type>Alert</type>
+        </action>
     </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
-            <name>Submitted</name>
+            <name>Field_Update_Submitted_By</name>
             <type>FieldUpdate</type>
         </action>
-		<action>
-            <name>Field_Update_Submitted_By</name>
+        <action>
+            <name>Submitted</name>
             <type>FieldUpdate</type>
         </action>
         <action>

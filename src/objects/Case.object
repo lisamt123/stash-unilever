@@ -111,6 +111,32 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
     <externalSharingModel>Private</externalSharingModel>
+	<fields>
+        <fullName>ACCC_Survey__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;http://survey.clicktools.com/go?iv=&quot; 
+		&amp; $Setup.cec_Org_Settings__c.ACCC_Survey_Id__c
+		&amp; &quot;&amp;q1=&quot; &amp; Id 
+		&amp; &quot;&amp;q2=&quot; &amp; CaseNumber 
+		&amp; &quot;&amp;q3=&quot; &amp; TEXT(CreatedDate) 
+		&amp; &quot;&amp;q4=&quot; &amp; Text(Country_Name__c) 
+		&amp; &quot;&amp;q7=&quot; &amp; L2_Product_Category__c 
+		&amp; &quot;&amp;q8=&quot; &amp; L7_Product_Category__c 
+		&amp; &quot;&amp;q9=&quot; &amp; Case_Brand__c 
+		&amp; &quot;&amp;q10=&quot; &amp; CEC_Product_Reporting_Name__c 
+		&amp; &quot;&amp;q11=&quot; &amp; Product_UPC__c 
+		&amp; &quot;&amp;q12=&quot; &amp; Production_Code__c 
+		&amp; &quot;&amp;q13=&quot; &amp; TEXT(Origin) 
+		&amp; &quot;&amp;q14=&quot; &amp; Global_Reason_L5_desc__c, 
+		&quot;ACCC Survey&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ACCC Survey</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>AccountId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
@@ -698,6 +724,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Latvia</fullName>
                 <default>false</default>
             </picklistValues>
@@ -799,6 +829,7 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1704,6 +1735,10 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Email Italy</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Email Japan</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Email Middle Americas</fullName>
                 <default>false</default>
@@ -1849,7 +1884,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <fields>
+   <fields>
         <fullName>Override_From_Address__c</fullName>
         <description>CEC Override From Address is a dependant picklist of email addresses based on the country name picklist</description>
         <externalId>false</externalId>
@@ -2031,6 +2066,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <controllingFieldValues>Vietnam</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>Unilever.CEC@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Japan</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>UnileverConsumercare.CA@unilever.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>Canada</controllingFieldValues>
@@ -2057,6 +2097,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -8852,72 +8893,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <businessProcess>Default</businessProcess>
         <label>None</label>
         <picklistValues>
-            <picklist>Claim_Status__c</picklist>
-            <values>
-                <fullName>Active</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Active Transferred</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Legal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Legal Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Legal Transferred</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Potential</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Store Active</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Store Closed</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-		<picklistValues>
-            <picklist>CV_Status__c</picklist>
-            <values>
-                <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Closed%28Customer Non-cooperative%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Closed%28Permanent Nature Symptoms%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Consumer Feedback%28Attempt1%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Consumer Feedback%28Attempt2%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending Consumer Feedback%28Attempt3%29</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Country_Name__c</picklist>
             <values>
                 <fullName>Argentina</fullName>
@@ -9025,6 +9000,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9253,6 +9232,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Ragu%2Eus%40mizkan%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever%2ECEC%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9664,7 +9647,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Austria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bangladesh</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9748,11 +9739,19 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Ireland</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9772,6 +9771,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Nicaragua</fullName>
                 <default>false</default>
             </values>
@@ -9784,6 +9787,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Panama</fullName>
                 <default>false</default>
             </values>
@@ -9793,6 +9800,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9820,6 +9831,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>United Kingdom</fullName>
                 <default>false</default>
             </values>
@@ -9833,6 +9848,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vietnam</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9957,6 +9976,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Ragu%2Eus%40mizkan%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever%2ECEC%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>

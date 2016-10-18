@@ -126,6 +126,12 @@
             "idAccount" : selectedStore.contactItem.AccountId,
             "inventoryList" : listJSON
         });
+        action.setCallback(this,function(response){
+            var state = response.getState();
+            if(component.isValid() && state === "SUCCESS"){
+                location.reload(true);
+            }
+        });
         $A.enqueueAction(action);
         console.log('Exit Helper <createOpportunity>');
     },
@@ -138,6 +144,12 @@
             "inventoryList" : listJSON,
             "operation" : "open",
             "idContact" : idContact
+        });
+        action.setCallback(this,function(response){
+            var state = response.getState();
+            if(component.isValid() && state === "SUCCESS"){
+                location.reload(true);
+            }
         });
         $A.enqueueAction(action);
         console.log('Exit Helper <oppItemUpdate>');

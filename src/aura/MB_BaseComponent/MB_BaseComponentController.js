@@ -81,7 +81,7 @@ getDetail:function(component, event, helper) {
        
     },
     handleFeedback : function(component, event, helper) {
-        //helper.scrollToLocation(component, "top");
+        helper.scrollToLocation(component, "top");
         console.log("in base"+event.getParam("Pagename"));
         component.set("v.showspinner",true);
         var destination ="markup://c:CORE_FB_Feedback";
@@ -144,7 +144,7 @@ getDetail:function(component, event, helper) {
          
 	},
     MB_gotoSummary_chart: function(component, event, helper) {
-        //helper.scrollToLocation(component, "top");
+        helper.scrollToLocation(component, "top");
 		var destination = "markup://c:MB_SpendSummary_Charts";
        //  alert(event.getParam("ServiceName"));
         $A.componentService.newComponentAsync(this, function(view) {
@@ -167,7 +167,7 @@ getDetail:function(component, event, helper) {
     
     //Method is used to change the month
     changeMonth :function(component, event, helper){
-        //helper.scrollToLocation(component, "top");
+        helper.scrollToLocation(component, "top");
         var month=event.getParam("month");
         console.log(month);
         if(month =='undefined' || month==undefined || month==' '){

@@ -1,0 +1,2 @@
+This Opportunity for  {!Opportunity.Account} is at Stage {!Opportunity.StageName} after 3 days on close date.
+{!Opportunity.Link}
