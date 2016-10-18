@@ -1,4 +1,4 @@
-@isTest (SeeAllData=true)
+@isTest (SeeAllData=false)
 public with sharing class AR_Test_AgencyMyProfile {
 	static testmethod void Test_AR_AgencyMyProfile()
 	{

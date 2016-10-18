@@ -61,10 +61,10 @@ public with sharing class AR_RegistrationController {
 		x_CookieId = this.CheckCookie();
 		
 		if(x_CookieId != null)
-		{
+		//{
 			//Redirect
-		}
-		else
+		//}
+		//else
 		{
 			CreateAgencyQuestionnaireData();
 		}

@@ -55,7 +55,7 @@ public with sharing class AR_SupplierInfoController extends AR_ApplicationBaseCo
 			{
 				tmp_objListDelete.add((ar_Supplier_Info__c) obj.obj);
 			}
-			else if(obj.getIsDeleted() != true)
+			else if(!obj.getIsDeleted())
 			{
 				tmp_objListUpsert.add((ar_Supplier_Info__c) obj.obj);
 				tmp_newCleanList.add(obj);
