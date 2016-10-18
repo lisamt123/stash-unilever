@@ -65,12 +65,12 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest> 
-	  <runTest>WU_CreateCapacityDetails_Test</runTest>
+      <runTest>WU_CreateCapacityDetails_Test</runTest>
       <runTest>WU_MultiCreateMultiEdit3_Test</runTest>
       <runTest>WU_WarehouseSearchController_test</runTest>
       <runTest>WU_SetCurrentMonthBatch_Test</runTest>
       <runTest>WU_SetCurrentMonthBatch_Scheduler_Test</runTest>
-	  
+      <runTest>WU_LeadershipPermission_test</runTest>
 	  
      
     </sf:deploy>
