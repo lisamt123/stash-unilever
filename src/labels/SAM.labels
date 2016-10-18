@@ -78,10 +78,10 @@ Please provide DO details for applicable line items under ‘DO Section’ by cl
         <value>You have successfully saved your request with additional information. SAM Team will notify in case of further additional information required from you to process the request and also when your request moves to next stage of processing.</value>
     </labels>
 	<labels>
-        <fullName>SAM_RW_Project_Request Draft_Quote_Provided</fullName>
+        <fullName>SAM_RW_Project_Request_Draft_Quote_Provided</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>SAM_RW_Project_Request Draft_Quote_Provided</shortDescription>
+        <shortDescription>SAM_RW_Project_Request_Draft_Quote_Provided</shortDescription>
         <value>SAM Team has provided Draft Quote for you software request. Please review the same and input your comments for any modification/rejection/approval in the Action comments. For Quote Attachments please navigate to ‘Notes and Attachment’ section.</value>
     </labels>
 	<labels>
