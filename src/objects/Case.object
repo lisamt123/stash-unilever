@@ -5350,38 +5350,38 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filterScope>Everything</filterScope>
         <filters>
             <field>Country__c</field>
-            <operation>equals</operation>
-            <value>United States - Spanish,United States - English</value>
+            <operation>contains</operation>
+            <value>United States</value>
         </filters>
         <filters>
             <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>Web,Email,Web North America</value>
+            <operation>notEqual</operation>
+            <value>Social,Social Media North America</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
-            <operation>notEqual</operation>
-            <value>,Bazaar Trigger,Bazaar Voice,Bluewater,IVR,Sunlight,Sun,Ragu,CEC Facebook</value>
+            <operation>notContain</operation>
+            <value>Bazaar,IVR,Sun,Ragu,Facebook</value>
         </filters>
         <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>notEqual</operation>
-            <value>Bertolli,Bertolli Oil,Snuggle,Gortons,Frequent Caller Queue</value>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>notContain</operation>
+            <value>order,mexico,brand,Frequent,JJoan,C-AA-ATH,tier,VC-CM,gfp,FS-PL,js-tr,SXS</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
-            <operation>notEqual</operation>
-            <value>Ben &amp; Jerry&apos;s,Ben &amp; Jerry&apos;s Donations,Ben &amp; Jerry&apos;s Scoop,benjerry,Gortons</value>
+            <operation>notContain</operation>
+            <value>Bertolli,Snuggle,Gortons,Frequent Caller Queue</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>notContain</operation>
+            <value>Ben</value>
         </filters>
         <label>CEC North America 24-7 In Touch USA</label>
         <language>en_US</language>
@@ -5392,7 +5392,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_24_7_In_Touch_Canada1</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
@@ -5406,33 +5406,28 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filterScope>Everything</filterScope>
         <filters>
             <field>Country__c</field>
-            <operation>equals</operation>
-            <value>Canada - English,Canada - French</value>
+            <operation>contains</operation>
+            <value>Canada</value>
         </filters>
         <filters>
             <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>Web,Email,Web North America</value>
+            <operation>notEqual</operation>
+            <value>Social,Social Media North America</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
-            <operation>notEqual</operation>
-            <value>,Bazaar Trigger,Bazaar Voice,Bluewater,IVR,Sunlight,Sun,Ragu,CEC Facebook</value>
+            <operation>notContain</operation>
+            <value>Bertoli,Bazaar,Bluewater,IVR,Sunlight,Sun,Ragu,Facebook,Ben,WalMart</value>
         </filters>
         <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>notEqual</operation>
-            <value>Bertolli,Bertolli Oil</value>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>notContain</operation>
+            <value>Frequent,DIN,JJoan,C-AA-ATH,C-LD-EgA,Brand,U-FS-PL</value>
         </filters>
         <label>CEC North America 24-7 In Touch Canada</label>
         <language>en_US</language>
@@ -5686,7 +5681,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_Canada</fullName>
-        <booleanFilter>(1 or 3 or 5) AND (2 AND 4)</booleanFilter>
+        <booleanFilter>1 and 2 and 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>Country__c</columns>
@@ -5694,12 +5689,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s</value>
+            <operation>contains</operation>
+            <value>Ben</value>
         </filters>
         <filters>
             <field>Country__c</field>
@@ -5707,19 +5703,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Canada</value>
         </filters>
         <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s</value>
-        </filters>
-        <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New,Escalated</value>
-        </filters>
-        <filters>
-            <field>CASES.SUBJECT</field>
-            <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s Canada Email</value>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <label>CEC North America Ben &amp; Jerrys Canada</label>
         <language>en_US</language>
@@ -5731,7 +5717,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_Donations</fullName>
-        <booleanFilter>(1 or 2 or 4) AND 3</booleanFilter>
+        <booleanFilter>(1 and 2) or 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -5739,6 +5725,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -5747,14 +5734,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Ben &amp; Jerry&apos;s Donations</value>
         </filters>
         <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s Donations</value>
-        </filters>
-        <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>,New,Escalated</value>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
             <field>CASES.SUBJECT</field>
@@ -5771,7 +5753,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_Scoop</fullName>
-        <booleanFilter>(1 or 2 or 3) AND 4</booleanFilter>
+        <booleanFilter>(1 or 2) AND 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -5779,6 +5761,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <filters>
@@ -5787,19 +5770,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Scoop</value>
         </filters>
         <filters>
-            <field>Brand__c</field>
-            <operation>contains</operation>
-            <value>Scoop</value>
-        </filters>
-        <filters>
             <field>CASES.SUBJECT</field>
             <operation>contains</operation>
-            <value>Scoop Shop</value>
+            <value>Scoop shop</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <label>CEC North America Ben &amp; Jerrys Scoop</label>
         <language>en_US</language>
@@ -5812,7 +5790,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_USA</fullName>
-        <booleanFilter>(1 or 4 or 5) AND 2 AND 3 and 6 and 7</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>ACCOUNT.NAME</columns>
@@ -5821,43 +5799,29 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s</value>
+            <operation>contains</operation>
+            <value>Ben</value>
         </filters>
         <filters>
             <field>Country__c</field>
-            <operation>equals</operation>
-            <value>United States - English</value>
+            <operation>contains</operation>
+            <value>United States</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New,Escalated</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s</value>
-        </filters>
-        <filters>
-            <field>CASES.SUBJECT</field>
-            <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s Email</value>
-        </filters>
-        <filters>
-            <field>CASES.SUBJECT</field>
             <operation>notEqual</operation>
-            <value>Ben &amp; Jerry&apos;s Donation Email,Scoop Shop Complaint Received</value>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
             <field>CASES.SUBJECT</field>
-            <operation>notEqual</operation>
-            <value>Ben &amp; Jerry&apos;s Donations Email</value>
+            <operation>notContain</operation>
+            <value>Donation,Scoop</value>
         </filters>
         <label>CEC North America Ben &amp; Jerrys USA</label>
         <language>en_US</language>
@@ -8760,7 +8724,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Country_Name__c</field>
             <operation>notEqual</operation>
-            <value>Brazil,Chile,Colombia,Bangladesh,Ecuador,Philippines,Finland</value>
+            <value>Brazil,Chile,Colombia,Bangladesh,Ecuador,Philippines,Finland,Mexico</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
@@ -8844,7 +8808,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>DACH_Vacation_Queue_3</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 4) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -8866,17 +8830,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Saskia</value>
+            <value>Ute</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>Anja</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>RaphaelK</value>
         </filters>
         <label>DACH Vacation Queue 3</label>
         <language>en_US</language>

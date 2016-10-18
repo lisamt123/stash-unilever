@@ -965,6 +965,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Unknown</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>ZE SAVOURY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6H DRESSINGS</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -2376,6 +2384,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Unknown</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>UR HLM-BF MAYONNAISE</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -3544,6 +3556,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <picklistValues>
                 <fullName>Unknown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19 DRY BASES-BOUILLIONS</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -5555,6 +5571,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>6H DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>95 BRANDED FROZEN SOUP</fullName>
                 <default>false</default>
             </values>
@@ -6224,6 +6244,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>YS OPERATOR PREMIUM DRY SOUP MIX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ZE SAVOURY</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6968,6 +6992,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>UR HLM-BF MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Unknown</fullName>
                 <default>false</default>
             </values>
@@ -7100,6 +7128,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>15 KNORR SIDE DISH%2FCOMPLETE MEAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19 DRY BASES-BOUILLIONS</fullName>
                 <default>false</default>
             </values>
             <values>

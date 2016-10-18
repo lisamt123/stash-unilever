@@ -501,7 +501,7 @@
             <name>NAFS_Account_status_Update_to_Temporary</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
             <field>Account.RecordTypeId</field>
@@ -530,7 +530,7 @@
             <name>Supply_Cost_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.ParentId</field>
             <operation>notEqual</operation>
@@ -547,7 +547,7 @@
             <name>FS_Update_On_Invoice</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>This is use to populate default value of On/Off Invoice from the custom settings</description>
         <formula>ISCHANGED(FS_Distributor_Type__c) &amp;&amp; ISBLANK(Parent.Name)</formula>
         <triggerType>onAllChanges</triggerType>
@@ -558,7 +558,7 @@
             <name>FS_UpdateAccountNumber</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Account.Type</field>
             <operation>equals</operation>
@@ -573,7 +573,7 @@
             <name>Record_Type_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Created to update the distributor type,on invoice,off invoice values from parent account.</description>
         <formula>AND(Owner.Profile.Name  = &apos;Unilever Food Solution - Russia&apos;, RecordType.Name = &apos;Operator&apos;)</formula>
         <triggerType>onCreateOnly</triggerType>

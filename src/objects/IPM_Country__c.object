@@ -3437,6 +3437,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000Gw2V_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ST LUKE EU_EU</label>
+        <queue>IPM_a7I0L000000Gw2V</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Country</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
