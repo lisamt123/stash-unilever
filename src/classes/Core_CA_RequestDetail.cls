@@ -15,10 +15,12 @@ global with sharing class Core_CA_RequestDetail{
     * @return Core_CA_WrapperUtility.RequestDetailResponseAribaGTES wrapper
     */  
     
-     public static String strInvoiceSystem=  'Invoice'; 
-     public static String strMessage=  'Exception occured: Core_CA_MyApprovalData : getPreTripDetails method ';
-      public static String strSystemClm=  'CLM'; 
-      
+     public static String strInvoiceSystem =  'Invoice'; 
+     public static String strMessage =  'Exception occured: Core_CA_MyApprovalData : getPreTripDetails method ';
+     public static String strSystemClm =  'CLM'; 
+     public static String strApproved = 'Approved';
+     public static String strRejected = 'Rejected';
+     
     global static Core_CA_WrapperUtility.RequestDetailResponseAribaGTES getRequestDetail(Core_CA_ApplicationWrapper appWrapperObj) {
        Core_CA_WrapperUtility.RequestDetailResponseAribaGTES objRequestDetailResponseAribaGTES = new Core_CA_WrapperUtility.RequestDetailResponseAribaGTES(); 
        try{
@@ -260,14 +262,6 @@ global with sharing class Core_CA_RequestDetail{
                     objlineItem.NetAmount = lineitem.Charge_To__c;     
                else if(lineitem.Source_System__c == 'GTES'){ 
                objlineItem.ItemName= lineitem.Name;} 
-               else if(lineitem.Source_System__c == strSystemClm){
-                objlineItem.ItemName= lineitem.Description__c;
-                objlineItem.city= lineitem.City__c;
-                objlineItem.expId= lineitem.Expense_Id__c;
-                objlineItem.LineItemNumber= lineitem.Parent_Id__c;
-                objlineItem.expCountry= lineitem.Expense_Country__c;
-                objlineItem.expCode= lineitem.Expense_Code__c;
-                }
                lstLineItems.add(objlineItem);
            }
         }  
@@ -282,6 +276,7 @@ global with sharing class Core_CA_RequestDetail{
     * @param Core_Approval_Header__c Id  
     * @return Core_CA_WrapperUtility.ApprovalHistory wrapper
     */
+    
     private static List<Core_CA_WrapperUtility.ApprovalHistory> processApprovalHistory(string HeaderId,string sourceSystem){
        List<Core_CA_WrapperUtility.ApprovalHistory> lstApprovalHistory = new List<Core_CA_WrapperUtility.ApprovalHistory>();
        try{
@@ -307,15 +302,15 @@ global with sharing class Core_CA_RequestDetail{
                if(Approver.Action_Date__c!= null)
                    objApprovalHistory.ApprovedDate = Approver.Action_Date__c.format('dd MMM yyyy, HH:mm:ss') ;
                    objApprovalHistory.Comment = Approver.Comments__c;    
-                   if((Approver.CA_Action__c == 'Approved' || Approver.Status__c =='Approved') && (Approver.Status__c !='Rejected'))
-                    objApprovalHistory.ApproverAction = 'Approved';
-               else if((Approver.CA_Action__c == 'Returned' || Approver.Status__c =='Rejected') && (Approver.Status__c !='Approved'))
-                    objApprovalHistory.ApproverAction = 'Rejected';
+                  /* if((Approver.CA_Action__c == strApproved || Approver.Status__c == strApproved) && (Approver.Status__c != strRejected))
+                    objApprovalHistory.ApproverAction = strApproved;
+               else if((Approver.CA_Action__c == 'Returned' || Approver.Status__c == strRejected) && (Approver.Status__c != strApproved))
+                    objApprovalHistory.ApproverAction =  strRejected; */
                } 
-               if(Approver.CA_Action__c == 'Approved')
+               if(Approver.CA_Action__c == strApproved)
                     objApprovalHistory.ApproverAction = Approver.CA_Action__c;
                else if(Approver.CA_Action__c == 'Returned') 
-                    objApprovalHistory.ApproverAction = 'Rejected';
+                    objApprovalHistory.ApproverAction = strRejected;
                else if(Approver.CA_Action__c == 'Rework')   
                     objApprovalHistory.ApproverAction = Approver.CA_Action__c; 
                   
