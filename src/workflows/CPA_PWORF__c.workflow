@@ -755,7 +755,7 @@
     <fieldUpdates>
         <fullName>CPA_PWORF_SMT_group_email</fullName>
         <field>eml_SMT_group_email__c</field>
-        <formula>&quot;Vivek.Kalidoss@unilever.com&quot;</formula>
+        <formula>&quot;ApplicationSupplier.PM@unilever.com&quot;</formula>
         <name>CPA PWORF SMT group email</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -879,7 +879,7 @@ null)),null)</formula>
     <fieldUpdates>
         <fullName>CPA_PWORF_VDM_group_mail</fullName>
         <field>eml_VDM_group_email__c</field>
-        <formula>&quot;Sameer.Vaidya@unilever.com&quot;</formula>
+        <formula>&quot;Demand.Unilever@accenture.com&quot;</formula>
         <name>CPA PWORF VDM group mail</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -1462,7 +1462,7 @@ null)),null)</formula>
     </rules>
     <rules>
         <fullName>CPA PWORF Status update to Auto Accepted updated</fullName>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>CPA_PWORF__c.dat_Expected_SLA1_Date__c</field>
             <operation>notEqual</operation>
@@ -1473,15 +1473,6 @@ null)),null)</formula>
             <value>Submitted,Resubmitted</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-        <workflowTimeTriggers>
-            <actions>
-                <name>CPA_PWORF_Reminder_to_respond_to_PWORF_SLA1</name>
-                <type>Alert</type>
-            </actions>
-            <offsetFromField>CPA_PWORF__c.dat_Expected_SLA1_Date__c</offsetFromField>
-            <timeLength>-2</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
                 <name>CPA_PWORF_Auto_Accepted_Email_Alert</name>
@@ -1506,6 +1497,15 @@ null)),null)</formula>
             <offsetFromField>CPA_PWORF__c.dat_Expected_SLA1_Date__c</offsetFromField>
             <timeLength>0</timeLength>
             <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>CPA_PWORF_Reminder_to_respond_to_PWORF_SLA1</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>CPA_PWORF__c.dat_Expected_SLA1_Date__c</offsetFromField>
+            <timeLength>-2</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
     </rules>
     <rules>
@@ -1624,7 +1624,7 @@ null)),null)</formula>
     </rules>
     <rules>
         <fullName>CPA SLA2 BreachCheck Updated</fullName>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>CPA_PWORF__c.dat_Expected_SLA2_Date__c</field>
             <operation>notEqual</operation>
