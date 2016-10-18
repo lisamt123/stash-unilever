@@ -13,7 +13,7 @@
 */
 
 
-@isTest(SeeAllData=true)
+@isTest(SeeAllData=false)
 public class AR_Test_AgencyPortfolioAndInformation
 {
 	static testMethod void AR_Test_GeneralInformationController()
@@ -22,7 +22,7 @@ public class AR_Test_AgencyPortfolioAndInformation
 		
 		AR_AgencyPortfolioAndInformation test_controller = new AR_AgencyPortfolioAndInformation();
 		
-		//Id tmp_recTypeId;
+	//	Id tmp_recTypeId;
 		
 		Account tmp_acc = TestDataFactory.getAccount('Agency');
 		
