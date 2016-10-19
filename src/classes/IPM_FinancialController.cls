@@ -813,7 +813,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
          }
          
          //for GKM3 project : Show Key Financial Flags till Capability phase only
-         else if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && (new Set<String>{IPM_ConstantUtils.PHASE_IDEAS,IPM_ConstantUtils.PHASE_FEASIBILITY,IPM_ConstantUtils.PHASE_CAPABILITY}.contains(project.IPM_Phase__c) )){
+         else if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 ){
          	showKeyFinancial = true;
          }
          

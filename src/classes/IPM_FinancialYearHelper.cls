@@ -1,3 +1,4 @@
+
 /**********************************************************************************************************************
 * @author       Cognizant 
 * @date         27/04/2015
@@ -421,7 +422,9 @@ public with sharing class IPM_FinancialYearHelper
             	
                 //Upsert Financial Validation flag
                 if(!lstInvalidFinance .isEmpty()){
+                    IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
                     upsert lstInvalidFinance Financial_External_ID__c;
+                    IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
                 }
             }
         }
