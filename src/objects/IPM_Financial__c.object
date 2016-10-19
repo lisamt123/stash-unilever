@@ -5870,6 +5870,15 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000Gw34_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000Gw34</label>
+        <queue>IPM_a7I0L000000Gw34</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Financial</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
@@ -9949,7 +9958,7 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
     <listViews>
         <fullName>IPM_a7IE0000000kCGV_IPM_Financial</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7IE0000000kCGV</label>
+        <label>IPM_PUPOW2 IRAN_N&amp;R</label>
         <queue>IPM_a7IE0000000kCGV</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

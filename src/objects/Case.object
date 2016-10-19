@@ -3954,7 +3954,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>CEC ANZ Queue</label>
+        <label>CEC ANZ Round Robin Queue</label>
         <language>en_US</language>
         <queue>CEC_ANZ_Queue</queue>
         <sharedTo>
@@ -5717,7 +5717,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_Donations</fullName>
-        <booleanFilter>(1 and 2) or 3</booleanFilter>
+        <booleanFilter>1 and 2 and 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -5734,14 +5734,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Ben &amp; Jerry&apos;s Donations</value>
         </filters>
         <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>contains</operation>
+            <value>Ben &amp; Jerry&apos;s Donations</value>
+        </filters>
+        <filters>
             <field>CASES.STATUS</field>
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>CASES.SUBJECT</field>
-            <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s Donations Email</value>
         </filters>
         <label>CEC North America Ben &amp; Jerrys Donations</label>
         <language>en_US</language>
@@ -8106,7 +8106,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>Country__c</field>
             <operation>equals</operation>
@@ -8124,7 +8124,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC Southern Cone Argentina Escalation</label>
         <language>es</language>
-        <queue>CEC_Southern_Cone_Escalation_Queue</queue>
         <sharedTo>
             <role>CEC_Manager_Southern_Cone</role>
             <role>CEC_User_Southern_Cone</role>
@@ -8139,7 +8138,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>Country__c</field>
             <operation>equals</operation>
@@ -8153,11 +8152,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>CEC Southern Cone Escalation</value>
+            <value>CEC Southern Cone Escalation Queue</value>
         </filters>
         <label>CEC Southern Cone Bolivia Escalation</label>
         <language>es</language>
-        <queue>CEC_Southern_Cone_Escalation_Queue</queue>
         <sharedTo>
             <role>CEC_Manager_Southern_Cone</role>
             <role>CEC_User_Southern_Cone</role>
@@ -8187,7 +8185,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>Country__c</field>
             <operation>equals</operation>
@@ -8205,7 +8203,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC Southern Cone Paraguay Escalation</label>
         <language>es</language>
-        <queue>CEC_Southern_Cone_Escalation_Queue</queue>
         <sharedTo>
             <role>CEC_Manager_Southern_Cone</role>
             <role>CEC_User_Southern_Cone</role>
@@ -8228,8 +8225,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Escalated</value>
+            <value>CEC Southern Cone Escalation Queue</value>
         </filters>
         <label>CEC Southern Cone Peru Escalation</label>
         <language>es</language>
@@ -8266,7 +8268,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>Country__c</field>
             <operation>equals</operation>
@@ -8284,7 +8286,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC Southern Cone Uruguay Escalation</label>
         <language>es</language>
-        <queue>CEC_Southern_Cone_Escalation_Queue</queue>
         <sharedTo>
             <role>CEC_Manager_Southern_Cone</role>
             <role>CEC_User_Southern_Cone</role>

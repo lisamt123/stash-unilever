@@ -377,10 +377,6 @@
         <picklistValues>
             <picklist>Subject</picklist>
             <values>
-                <fullName>Call</fullName>
-                <default>true</default>
-            </values>
-            <values>
                 <fullName>Compliance administration</fullName>
                 <default>false</default>
             </values>
@@ -406,14 +402,6 @@
             </values>
             <values>
                 <fullName>Prepare business review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Send Letter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Send Quote</fullName>
                 <default>false</default>
             </values>
             <values>

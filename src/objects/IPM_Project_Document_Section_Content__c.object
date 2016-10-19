@@ -5310,6 +5310,15 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000Gw34_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000Gw34</label>
+        <queue>IPM_a7I0L000000Gw34</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Project_Document_Section_Content</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
@@ -9389,7 +9398,7 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
     <listViews>
         <fullName>IPM_a7IE0000000kCGV_IPM_Project_Document_Section_Content</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7IE0000000kCGV</label>
+        <label>IPM_PUPOW2 IRAN_N&amp;R</label>
         <queue>IPM_a7IE0000000kCGV</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
