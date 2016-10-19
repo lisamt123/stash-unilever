@@ -1,3 +1,4 @@
+
 /***********************************************************************************************************************************************************
 * @author Cognizant
 * @date  15/12/2014
@@ -137,14 +138,12 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public boolean isRedStylingApplicable{get;set;} 
     public transient boolean isPDLDocument{get;set;}
     public List<IPM_Project_Claim__c> projectClaimList{get; set;}
-    public Boolean hideAppendix{get;set;} 
+    public Attachment savedAttachmentDoc{get;set;} // show PDL attachment
+    public String attachmentName{get;set;}
     public boolean isPDLApproved{get;set;}//check whether PDL document is approved or not
-    public Attachment pdlPDF{get;set;} // show PDL attachment
-    transient string httpsStr = 'https://';
-    transient string hostStr = 'Host';
-    transient string baseUrl;
-    Public string downloadPdfWithAppendixStr{get;set;}
-    Public string downloadPdfWithoutAppendixStr{get;set;}
+    public static final String DOCUMENT_TYPE ='DocumentType';
+    public static final String PDF ='PDF';
+    
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -168,7 +167,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         //for PDL pdf
         if(isPDLApproved!=null && isPDLApproved)
         {
-        	pdlPDF = [Select id,body from Attachment WHERE ParentId =:projectDoc.Id];
+        	savedAttachmentDoc = [Select id,body from Attachment WHERE ParentId =:projectDoc.Id];
+        	attachmentName = IPM_ConstantUtils.ATTACHMENT_FILE_NAME+project.IPM_Project_Name__c+'_'+PrintDoc+IPM_ConstantUtils.ATTACHMENT_FILE_TYPE;
         }
         if(ApexPages.currentPage().getParameters().get('setStatus') != null)
         {
@@ -305,24 +305,16 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
           //security for central team and BP users
           IPM_CustomPermission custPermission = new IPM_CustomPermission();
           reactivateProjectFlag = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
-       }
         
-        if(ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER) != null) {
-            if(ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER) == IPM_ConstantUtils.IPM_true) {isWithAppendix = true;}
-            else {isWithAppendix = false;}
         }
         
-        baseUrl = httpsStr + string.valueOf(ApexPages.currentPage().getHeaders().get(hostStr));
-        downloadPdfWithAppendixStr = baseUrl + exportToPdf(IPM_ConstantUtils.IPM_true);
-        downloadPdfWithoutAppendixStr = baseUrl + exportToPdf(IPM_ConstantUtils.IPM_false);
         
-        chkClaims(); 
         
     } 
     
 	public void initializeVariables() {
 		isPDLDocument = false;
-        hideAppendix = false;
+        isPDLapproved = false;
         showAttach=false;
         showSummaryAttach=false;
         isReadable=true;
@@ -365,10 +357,14 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         ProMOptional=0;
 	}
 	
-    public void chkClaims(){
+    public void chkClaims()
+    {
+    	if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK.Equals(printDoc))
+    	{
     	projectClaimList = [SELECT Id, IPM_Claim__c, IPM_Project__c FROM IPM_Project_Claim__c WHERE IPM_Project__c=:projectId];
 		if(projectClaimList.isEmpty()){
-			hideAppendix = true;
+	            isWithAppendix = false; 
+	        }
 		}
     }
     
@@ -849,18 +845,22 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     @Business Rule: This functions is used to Display the data in for the Gate Documetn PDF, i which data needs to be pulled from Various entities, hence it is complex.
     
     */  
-    public string exportToPdf(String bool){ 
+    public PageReference exportToPdf()
+    { 
         try
         {
-            PageReference url;
-            url = Page.IPM_GateDocumentPDFDownload;
-            url.setRedirect(false);
-            url.getParameters().put(IPM_ConstantUtils.ID_PARAMETER, ProjectId);
-            url.getParameters().put(IPM_ConstantUtils.PRINTDOC_PARAMETER, PrintDoc);
-            url.getParameters().put(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER, bool);
-            url.getParameters().put(IPM_ConstantUtils.PROJECTNAME_PARAMETER, project.IPM_Project_Name__c);
-            url.getParameters().put(IPM_ConstantUtils.PROJECTGATEDOCUMENT_PARAMETER, projectDoc.IPM_GateDocuments__c);
-            return url.getUrl();
+    	    PageReference gateDocPDFURL = null;
+            gateDocPDFURL = Page.IPM_GateDocumentPDF;
+            gateDocPDFURL.setRedirect(false);
+            gateDocumentData(project.Id); 
+            chkClaims();
+            Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.ATTACHMENT_CONTENT_DISPOSITION, IPM_ConstantUtils.ATTACHMENT_FILE_NAME+project.IPM_Project_Name__c+ '_'+projectDoc.IPM_GateDocuments__c+IPM_ConstantUtils.ATTACHMENT_DOCUMENT+system.today().format()+IPM_ConstantUtils.ATTACHMENT_FILE_TYPE);
+            gateDocPDFURL.getParameters().put(IPM_ConstantUtils.ID_PARAMETER, ProjectId);
+            gateDocPDFURL.getParameters().put(IPM_ConstantUtils.PROJECTNAME_PARAMETER, project.IPM_Project_Name__c);
+            gateDocPDFURL.getParameters().put(IPM_ConstantUtils.PRINTDOC_PARAMETER, PrintDoc);
+            gateDocPDFURL.getParameters().put(DOCUMENT_TYPE, PDF);
+            gateDocPDFURL.getParameters().put(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER,String.valueOf(isWithAppendix)); 
+            return gateDocPDFURL; 
         }
         catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
@@ -871,10 +871,6 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     }
     
     
-    public void prepareDataForReadOnlyView()
-    {
-        gateDocumentData(projectId);
-    }
     /****************************************************
     @description For Exporting Gate Document Data in PDF
     @param Project Id

@@ -2168,6 +2168,11 @@
         <field>IPM_Assessment__c.Project_Phase__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Bosscard__c.IPM_Category_Group__c</field>
+        <readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Bosscard__c.External_Id__c</field>

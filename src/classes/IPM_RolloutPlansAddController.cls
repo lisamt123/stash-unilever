@@ -2073,11 +2073,11 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         for(IPM_Project_Rollout__c ipmRollout : mapExistingRollouts.values())
         {
 
-            if(IPM_ConstantUtils.ROLLOUT_TYPE_MCO.equalsIgnoreCase(rolloutType) && !mcoRollNameToCountryCodeMap.isEmpty())
+            if(IPM_ConstantUtils.ROLLOUT_TYPE_MCO.equalsIgnoreCase(rolloutType))
             {
                 removeReferences(mcoRollNameToCountryCodeMap,ipmRollout);
             }
-            else if(IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY.equalsIgnoreCase(rolloutType) && !countryRollNameToCountryCodeMap.isEmpty())
+            else if(IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY.equalsIgnoreCase(rolloutType))
             {
                 removeReferences(countryRollNameToCountryCodeMap,ipmRollout);
             } 
