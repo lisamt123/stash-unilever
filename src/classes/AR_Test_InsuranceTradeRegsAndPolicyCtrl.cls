@@ -11,7 +11,7 @@
 	Date 					| Name 				| Description
 	2013-09-18 17:06 (CET)	| Marc Saelzler 	| Initial development.
 */
-@isTest(SeeAllData=true)
+@isTest(SeeAllData=false)
 private class AR_Test_InsuranceTradeRegsAndPolicyCtrl
 {
 	static testMethod void AR_Test_SupplierInfoController()
