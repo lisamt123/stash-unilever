@@ -1,8 +1,12 @@
 src
+src/workflows/Account.workflow
 src/permissionsets/FS_Admin.permissionset
 src/flows/FS_UpdateRegionandZonebasedoncityforRussia-4.flow
 src/objects/Account.object
 src/objects/Opportunity.object
+src/objects/Activity.object
+src/objects/Task.object
+src/objects/Event.object
 src/approvalProcesses/Opportunity.FS_MABE_Opportunity_1_Step_Process_CAN.approvalProcess
 src/approvalProcesses/Opportunity.FS_MABE_Opportunity_1_Step_Process_US.approvalProcess
 src/approvalProcesses/Opportunity.FS_MABE_Opportunity_2_Step_Process_CAN.approvalProcess
