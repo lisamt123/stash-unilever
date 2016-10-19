@@ -17,51 +17,9 @@
 	    <apex:includeScript value="{{!URLFOR($Resource.AR_InternalStaticResources, 'fancybox/helpers/jquery.fancybox-media.js?v=1.0.5')}" />
 	    <apex:includeScript value="{!URLFOR($Resource.AR_InternalStaticResources, 'js/plugins.js')}" />
 	    <apex:includeScript value="{!URLFOR($Resource.AR_InternalStaticResources, 'js/main.js')}" />
+	    <apex:includeScript value="{!URLFOR($Resource.AR_InternalStaticResources, 'js/AR_AgencyGridView.js')}" />
 	    
-	  /*  <script>
-			jQuery(document).ready(function($) {
-				$(".royalSlider").royalSlider({
-					// general options go here
-					controlNavigation: 'none',
-					arrowsNavAutoHide:  false,
-					arrowsNav: true,
-				});
-		             
-			    $('#expertiseFilter').keyup(function() { filterOptions('expertiseOptions', $(this).val()); });
-				$('#categoryFilter').keyup(function() { filterOptions('categoryOptions', $(this).val()); });
-				$('#brandFilter').keyup(function() { filterOptions('brandOptions', $(this).val()); });
-				$('#locationFilter').keyup(function() { filterOptions('locationOptions', $(this).val()); });
-	
-				var availableTags = [
-					<apex:repeat value="{!allAgencies}" var="agency">
-						"{!agency.Name}",
-					</apex:repeat>
-				];
-				
-				$( "input.search" ).autocomplete({
-			    	source: availableTags,
-			    	select: function( event, ui ) { 
-			    		$( "input.search" ).val(ui.item.value);
-			    		applyFilter(); 
-			    	}
-			  	});
-	
-			});
-	
-			function filterOptions(filterCategory, filterValue) {
-				$('input[id*=' + filterCategory + ']').each(function(index, element) {
-					if( $(this).val().toLowerCase().indexOf(filterValue.toLowerCase()) != -1)
-					{
-						$(this).parent().parent().show();
-					} else
-					{
-						$(this).parent().parent().hide();
-					}
-				});
-			}
-			function setFocusOnLoad() {}
-		</script> */
-	    
+	  	    
 	    <style>
 			ul li, ol li { margin-left: 0; }
 			h1, h2, h3, h4, h5, h6 { display: block; }

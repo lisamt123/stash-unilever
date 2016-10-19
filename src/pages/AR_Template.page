@@ -114,52 +114,11 @@
         <script src="{!URLFOR($Resource.AR_StaticResources, 'fancybox/helpers/jquery.fancybox-media.js?v=1.0.5')}"></script>
         <script src="{!URLFOR($Resource.AR_StaticResources, 'js/plugins.js')}"></script>
         <script src="{!URLFOR($Resource.AR_StaticResources, 'js/main.js')}"></script>
+        <script src="{!URLFOR($Resource.AR_StaticResources, 'js/AR_Template.js')}"></script>
         <script src="{!URLFOR($Resource.AR_StaticResources, 'js/vendor/jquery.validate.js')}"></script>
         <script src="{!URLFOR($Resource.AR_StaticResources, 'js/vendor/jquery.maskedinput.min.js')}"></script>
         
-       /* <script>
-        	var initMaskFunc = function()
-        	{
-        		try
-        		{
-        			$.mask.definitions['#']=/\d|\,|\./;
-        			
-        			$(".currency").mask('?###################', {placeholder:'', reverse:true});
-        			$(".double").mask('?###################', {placeholder:'', reverse:true});
-        			
-        			$(".percent").mask('9?99%');
-	    
-				    $(".percent").on("blur", function()
-				    {
-				        if(parseInt($(this).val()) > 100)
-				        {
-				        	$(this).val(100);
-				        }
-				    });
-				}
-				catch(e)
-				{
-					//alert('error: ' + e);
-				}
-        	}
-			
-			$(window).load(function()
-			{
-				try
-				{
-					initMaskFunc();
-					
-					$('select').addClass('select');
-					$('select').on('change', function(){$('select').addClass('select')});
-				}
-				catch(e)
-				{
-					//alert(e);
-				}
-        	});
-       	</script> */
-        
-        <c:AR_DatePicker />
+       <c:AR_DatePicker />
         
     </body>
 </html>
