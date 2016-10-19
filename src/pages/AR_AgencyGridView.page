@@ -18,7 +18,7 @@
 	    <apex:includeScript value="{!URLFOR($Resource.AR_InternalStaticResources, 'js/plugins.js')}" />
 	    <apex:includeScript value="{!URLFOR($Resource.AR_InternalStaticResources, 'js/main.js')}" />
 	    
-	    <script>
+	  /*  <script>
 			jQuery(document).ready(function($) {
 				$(".royalSlider").royalSlider({
 					// general options go here
@@ -60,7 +60,7 @@
 				});
 			}
 			function setFocusOnLoad() {}
-		</script>
+		</script> */
 	    
 	    <style>
 			ul li, ol li { margin-left: 0; }
