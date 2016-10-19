@@ -41,7 +41,8 @@ private class IPM_GlobalClaimPDLController_Test{
         List<String> emailList = new List<String>{GLOBAL_PL_EMAIL_ID,REGIONAL_PL_EMAIL_ID,LOCAL_PL_EMAIL_ID}; 
         User globalProjectLeader =null; User regionalProjectLeader =null;  User localProjectLeader =null;
         
-        for(User linkedUser : [Select Id,email from User where email in :emailList]){
+        List<User> lstUsers = [Select Id,email from User where email in :emailList];
+        for(User linkedUser : lstUsers){
             if(linkedUser.email == GLOBAL_PL_EMAIL_ID){
                 globalProjectLeader = linkedUser;
             }else if(linkedUser.email == REGIONAL_PL_EMAIL_ID){
@@ -114,6 +115,10 @@ private class IPM_GlobalClaimPDLController_Test{
             }
 
             // Create Country specific information.
+            insertCountry(localRolloutList, projectListGKM3);       
+        }        
+    }
+    private static void insertCountry(List<IPM_Project_Rollout__c>  localRolloutList, List<IPM_Project__c> projectListGKM3){
             List<IPM_Country__c> countryList= new List<IPM_Country__c>(); 
             
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
@@ -144,9 +149,9 @@ private class IPM_GlobalClaimPDLController_Test{
             insert lstProClaim;
             
             List<IPM_Country_Level_Claim__c> lstCounrtyLevel = New List<IPM_Country_Level_Claim__c>();
-            
+        IPM_Country_Level_Claim__c ctryLvl;
             for(IPM_Country__c cntry: countryList){
-                IPM_Country_Level_Claim__c ctryLvl;
+            
                 for(IPM_Project_Claim__c pClaim : lstProClaim){
                     ctryLvl = New IPM_Country_Level_Claim__c(IPM_Claim__c = 'test claim', IPM_Country__c = cntry.Id, IPM_Project_Claim__c = pClaim.Id);                    
                 }
@@ -162,7 +167,6 @@ private class IPM_GlobalClaimPDLController_Test{
             system.assert(countryList.size()>0, 'country records not created');
              
             
-        }        
      
     }
     
@@ -172,7 +176,8 @@ private class IPM_GlobalClaimPDLController_Test{
             
         User globalProjectLeader =null; User regionalProjectLeader =null;  User localProjectLeader =null;
         
-        for(User linkedUser : [Select Id,email from User where email in :emailList])
+        List<User> lstUsers = [Select Id,email from User where email in :emailList];
+        for(User linkedUser : lstUsers)
         {
             if(linkedUser.email == GLOBAL_PL_EMAIL_ID)
             {
@@ -227,5 +232,65 @@ private class IPM_GlobalClaimPDLController_Test{
             
             
         }        
+    }
+    public static testMethod void preparePDLClaim(){
+        List<String> emailList = new List<String>{GLOBAL_PL_EMAIL_ID,REGIONAL_PL_EMAIL_ID,LOCAL_PL_EMAIL_ID};
+        User globalProjectLeader =null; User regionalProjectLeader =null;  User localProjectLeader =null;
+        List<User> lstUsers = [Select Id,email from User where email in :emailList];
+        for(User linkedUser : lstUsers)
+        {        
+            if(linkedUser.email == GLOBAL_PL_EMAIL_ID)
+            {
+                globalProjectLeader = linkedUser;
+            }
+            else if(linkedUser.email == REGIONAL_PL_EMAIL_ID)
+            {
+                regionalProjectLeader = linkedUser;
+            }
+            else
+            {
+                localProjectLeader = linkedUser;
+            }
+        }          
+        IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader}); 
+        System.runAs(globalProjectLeader){       
+            Test.startTest();
+            Id locallRecordType = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).RecordTypeId;
+            IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, 
+                IPM_Target_Launch_Dates__c, IPM_Phase__c, IPM_ProjectGKM__c, IPM_GateKeeping_Model__c, IPM_CompanyCardText__c,
+                (Select Id,Name,recordTypeId, IPM_Regional_PL__c,IPM_Project_Job_Status__c, IPM_RolloutJobType__c from IPM_Project_Rollout__r where recordTypeId =:locallRecordType )  
+                FROM IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name='GKM3TestComments1' limit 1];
+            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChangeForGKM3(new List<Id>{globalOriginal.Id},globalProjectLeader); 
+            update projectListPhaseChange;
+            Test.stopTest(); 
+            List<IPM_Project__c> project = [Select Id, Name, IPM_Phase__c, IPM_Project_Job_Status__c, (Select Id, IPM_GateDocuments__c from Project_Documents__r),
+                                           (Select Id from IPM_Financials_Consolidated__r) from IPM_Project__c WHERE name in :projectNameSet Limit 1];
+            System.assertEquals(project[0].IPM_Phase__c, 'Feasibility','Phase not changed');
+            System.assertEquals(project[0].IPM_Project_Job_Status__c, 'Completed','Job not Completed');
+            System.assertEquals(project[0].Project_Documents__r.size(), 3,'Documents not created');
+            System.assertEquals(project[0].IPM_Financials_Consolidated__r.size(), 3,'Financial not created');            
+            Id pDocId ;
+            for(IPM_Project_Document__c pDoc: project[0].Project_Documents__r){
+            	if(pDoc.IPM_GateDocuments__c == 'Product Design Lock'){
+            		pDocId = pDoc.Id;
+            	}
+            }
+			List<IPM_Project_Document_Section__c> pDocSecList = [SELECT Id, IPM_Section_Sequence__c, IPM_Master_Section_External_Id__c, IPM_Gate_Document__c 
+            													FROM IPM_Project_Document_Section__c 
+            													WHERE IPM_Project_Document__c =: pDocId];
+            IPM_Section__c section =  IPM_TestFactory_Helper.createIPMSection(false);
+            section.IPM_Section_Sequence__c = '3.3.1';
+            insert section;
+            pDocSecList[0].IPM_Section__c = section.Id;
+			pDocSecList[0].IPM_Master_Section_External_Id__c = 'Product';
+			pDocSecList[0].IPM_Gate_Document__c=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;
+			IPM_ProjectSectionContentHelper.SKIP_TRIGGER_EXECUTION =true;
+			update pDocSecList;
+			IPM_ProjectSectionContentHelper.SKIP_TRIGGER_EXECUTION = false;
+            Apexpages.currentPage().getParameters().put(IPM_ConstantUtils.SF_ID,globalOriginal.Id);
+            Apexpages.currentPage().getParameters().put(IPM_ConstantUtils.SF_PROJ_DOC_SEC_ID,pDocSecList[0].Id);
+            IPM_PDLClaimController PDLC = New IPM_PDLClaimController();
+            System.assertNotEquals(PDLC.localCntrytoClaimMap.size(), 0);
+        }
     }
 }
