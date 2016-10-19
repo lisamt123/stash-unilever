@@ -12,7 +12,7 @@
 	2013-09-19 12:06 (CET)	| Marc Saelzler 	| Initial development.
 */
 
-@isTest(SeeAllData=true)
+@isTest(SeeAllData=false)
 private class AR_Test_RegistrationController
 {
 	static testMethod void AR_Test_RegistrationController()
