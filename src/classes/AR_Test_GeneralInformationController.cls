@@ -12,7 +12,7 @@
 	2013-09-18 12:38 (CET)	| Marc Saelzler 	| Initial development.
 */
 
-@isTest(SeeAllData=false)
+@isTest
 private class AR_Test_GeneralInformationController
 {
 	static ar_Application__c test_app;

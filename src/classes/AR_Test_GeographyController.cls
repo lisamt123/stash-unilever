@@ -12,7 +12,7 @@
 	2013-09-18 15:35 (CET)	| Marc Saelzler 	| Initial development.
 */
 
-@isTest(SeeAllData=false)
+@isTest
 public class AR_Test_GeographyController
 {
 	static ar_Application__c test_app;

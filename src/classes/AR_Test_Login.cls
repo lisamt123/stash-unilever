@@ -12,7 +12,7 @@
 	2013-09-20 16:25 (CET)	| Marc Saelzler 	| Initial development.
 */
 
-@isTest(SeeAllData=false)
+@isTest
 public class AR_Test_Login
 {
 	static testMethod void AR_Test_Login()
