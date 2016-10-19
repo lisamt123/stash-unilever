@@ -60,7 +60,7 @@ public with sharing class AR_AgencyProfileController extends AR_ApplicationBaseC
 	public void saveMyData() {
 		system.debug(logginglevel.info, '### Saving General Information...');
 		
-		System.SavePoint sp = Database.setSavepoint();
+		//System.SavePoint sp = Database.setSavepoint();
 		
 		//try {
 			// application
