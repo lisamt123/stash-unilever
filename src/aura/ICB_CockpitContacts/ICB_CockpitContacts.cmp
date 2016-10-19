@@ -7,6 +7,7 @@
     <aura:attribute name="mapInventory" type="Map" default="{0:0}" description="Attribute for save the index of list inventories" />
     <aura:attribute name="quantityUpdate" type="Integer" default="0" description="Amount of products" />
     <aura:attribute name="HeaderCockPit" type="Boolean" default="true"/>
+    <aura:attribute name="isDisabled" type="Boolean" default="false" />
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
@@ -85,11 +86,16 @@
                     <td >
                         <div class="slds-truncate slds-grid btnCollor">
                             <aura:if isTrue="{!and(wrapper.oppItem.StageName != 'Pending',wrapper.oppItem.StageName != 'Available')}">
-                                
-                                
-                                <div data-record="{!index}" onclick="{!c.solicitation}" >
-                                    <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_REQUEST}"  disabled="false"/>
-                                </div>
+                                <aura:if isTrue="{!!v.isDisabled}">
+                                    <div data-record="{!index}" onclick="{!c.solicitation}" >
+                                        <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_REQUEST}"  disabled="false"/>
+                                    </div>
+                                </aura:if>
+                                <aura:if isTrue="{!v.isDisabled}">
+                                    <div data-record="{!index}"  >
+                                        <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_REQUEST}"  disabled="false"/>
+                                    </div>
+                                </aura:if>
                                 <aura:set attribute="else">
                                     <aura:if isTrue="{!wrapper.oppItem.StageName == 'Available'}">
                                         <div data-record="{!index}" onclick="{!c.updatedItem}">
@@ -103,7 +109,7 @@
                                     </aura:if>
                                 </aura:set>
                             </aura:if>
-                         	<div data-record="{!index}" onclick="{!c.menuOpenClose}" class=" btnCollor slds-truncate slds-grid">
+                            <div data-record="{!index}" onclick="{!c.menuOpenClose}" class=" btnCollor slds-truncate slds-grid">
                                 <!--<aura:renderIf isTrue="{!wrapper.spinnerShow}">
                                     <ui:spinner/>-->
                                     <!--<aura:set attribute="else">-->
