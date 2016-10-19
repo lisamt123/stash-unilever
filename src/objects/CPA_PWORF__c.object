@@ -4426,13 +4426,13 @@ if( permissionSetName == &quot;CPA_SMT&quot; || permissionSetName == &quot;CPA_U
 			else{ 
 			p.pkl_Status__c = &quot;Submitted&quot;; 
 			result = sforce.connection.update([p]); 
-			//alert(result);
+			alert(result);
 			location.reload(true); 
 			} 
 
 		} 
 		else { 
-			alert(&quot; PWORF cannot be submitted since mandatory data is not present.&quot;); 
+			//alert(&quot; PWORF cannot be submitted since mandatory data is not present.&quot;); 
 		}
 	}
 }else{

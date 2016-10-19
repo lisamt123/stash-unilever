@@ -15567,11 +15567,10 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
     </labels>
     <labels>
         <fullName>WU_MCO</fullName>
-        <categories>Warehouse Utilization</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>WU MCO</shortDescription>
-        <value>MCO</value>
+        <value>Cluster</value>
     </labels>
     <labels>
         <fullName>WU_Region</fullName>

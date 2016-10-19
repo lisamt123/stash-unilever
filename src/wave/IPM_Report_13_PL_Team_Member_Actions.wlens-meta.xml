@@ -3,6 +3,6 @@
     <content xsi:nil="true"/>
     <application>UL_Reports</application>
     <datasets>IPM_Report_13_Team_Member_Allocation</datasets>
-    <masterLabel>IPM Report 13 - Team Member Actions</masterLabel>
+    <masterLabel>IPM Report 13 - Team Member Actions with Projects</masterLabel>
     <visualizationType>pivottable</visualizationType>
 </WaveLens>
