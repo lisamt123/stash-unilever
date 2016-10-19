@@ -9622,15 +9622,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_RusianRegion__c</picklist>
             <values>
-                <fullName>Belorussia</fullName>
+                <fullName>Belarus</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>CFO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Far East</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9642,7 +9638,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sibir</fullName>
+                <fullName>Sibir %26 Far East</fullName>
                 <default>false</default>
             </values>
             <values>
