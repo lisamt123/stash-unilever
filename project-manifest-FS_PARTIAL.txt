@@ -7,6 +7,7 @@ src/approvalProcesses/Opportunity.FS_MABE_Opportunity_2_Step_Process_CAN.approva
 src/approvalProcesses/Opportunity.FS_MABE_Opportunity_2_Step_Process_US.approvalProcess
 src/objects/Opportunity.object
 src/objects/Product2.object
+src/roles/ARCHIVE.role
 src/roles/FS_53_Strategic_Accounts_US_Zone_Leader.role
 src/roles/FS_54_Inactive_Obsolete_Zone.role
 src/roles/FS_55_West_Zone_Leader.role
