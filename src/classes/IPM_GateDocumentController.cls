@@ -20,11 +20,11 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public IPM_Country__c country {get; set;} //Contains country Record
     public IPM_Project_Document__c projectDoc {get; set;} //Contains Project Document Record
     public String projectId{get; set;} //Contains Project Id from Page URL Parameter
-    public List<IPM_Project_Document_Section__c> projSectionList {get; set;} //Contains All Header Project Document Sections 
-    public List<IPM_Project_Document_Section__c> projSubSectionList {get; set;} //Contains All Sub-Header Project Document Sections 
-    public List<IPM_Project_Document_Section__c> projSubLevelSectionList{get;set;}
-    public List<IPM_Project_Document_Section__c> projDocSectionList {get; set;} //Contains All Project Document Sections Used for Gate Document PDF
-    public List<IPM_Project_Document_Section__c> projDocAppdxSectionList {get; set;} //Contains All Project Document Sections Related to Appendix
+    public transient List<IPM_Project_Document_Section__c> projSectionList {get; set;} //Contains All Header Project Document Sections 
+    public transient List<IPM_Project_Document_Section__c> projSubSectionList {get; set;} //Contains All Sub-Header Project Document Sections 
+    public transient List<IPM_Project_Document_Section__c> projSubLevelSectionList{get;set;}
+    public transient List<IPM_Project_Document_Section__c> projDocSectionList {get; set;} //Contains All Project Document Sections Used for Gate Document PDF
+    public transient List<IPM_Project_Document_Section__c> projDocAppdxSectionList {get; set;} //Contains All Project Document Sections Related to Appendix
     public String dueDate{get;set;}
     public Boolean DueDateMsg{get;set;}
     //Type
@@ -97,7 +97,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public string globalbusinessImpactStr  {get; set;}//DEF2450
     public IPM_Financial__c finProjectPriority {get; set;} //Contains Financial Record
     public list<IPM_Project_Rollout__c> rollOut {get; set;} //Contains Rollout Records
-    public List<IPM_Project_Document_Section__c> filtersCountList{get;set;} //Contains Text Type Project Document Sections
+    public transient List<IPM_Project_Document_Section__c> filtersCountList{get;set;} //Contains Text Type Project Document Sections
     public decimal year3Ito {get;set;} //year3 ito in the PDF
     //For Filled-In Percentage
     public Integer NonNegotiable;
@@ -155,6 +155,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 		
         //To Retrieve Project, Project Document Record
         getProjectDocument();
+	
         if(projectDoc != null){
         // to calculate the count of various parameters
         filtersCountList=[SELECT IPM_Section__r.IPM_Section_Sequence__c, IPM_Section_Sequence__c, IPM_Section__r.IPM_Negotiable__c,IPM_Section_Status__c,IPM_FunctionalRole__c, IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c 
