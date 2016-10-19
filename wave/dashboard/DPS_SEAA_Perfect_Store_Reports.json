@@ -3294,7 +3294,7 @@
                     "isFacet": true,
                     "isGlobal": false,
                     "query": {
-                        "pigql": "a = load \"ENROLLED_STORES\"; a = filter a by {{ row(audit_Month.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Date_Year','Date_Month','Date_Day')\") }} && {{ column(Country_14.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(X4P_5P_6P_23.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Channel_21.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Sales_region_58.selection, [\"Sales_Region\"]).asEquality(\"Sales_Region\") }} && {{ column(Product_category_29.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }} && {{ column(Cluster_10.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(Region_100.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Region_11.selection, [\"Sales_Region\"]).asEquality(\"Sales_Region\") }} && {{ column(Channel_8.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Product_category_7.selection, [\"Product_Category\"]).asEquality(\"Product_Category\")}} && {{ column(X4P_5P_6P_6.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }}; c = group a by 'Country'; c = foreach c generate 'Country' as 'Country', sum(a.Enrollment_no) as 'Number of Enrolled PS', sum(a.Enrollment_Target) as 'Enrollment Target';",
+                        "pigql": "a = load \"ENROLLED_STORES\"; a = filter a by {{ row(audit_Month.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Date_Year','Date_Month','Date_Day')\") }} && {{ column(Country_14.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(X4P_5P_6P_23.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Channel_21.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Sales_region_58.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Product_category_29.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }} && {{ column(Cluster_10.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(Region_100.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Region_11.selection, [\"Sales_Region\"]).asEquality(\"Sales_Region\") }} && {{ column(Channel_8.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Product_category_7.selection, [\"Product_Category\"]).asEquality(\"Product_Category\")}} && {{ column(X4P_5P_6P_6.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }}; c = group a by 'Country'; c = foreach c generate 'Country' as 'Country', sum(a.Enrollment_no) as 'Number of Enrolled PS', sum(a.Enrollment_Target) as 'Enrollment Target';",
                         "measures": [
                             [
                                 "number",
@@ -4319,7 +4319,7 @@
                         ]
                     },
                     "selectMode": "single",
-                    "type": "aggregate",
+                    "type": "aggregateflex",
                     "useGlobal": true,
                     "visualizationParameters": {
                         "visualizationType": "hbar",
@@ -4589,7 +4589,7 @@
                         "measures": [
                             [
                                 "sum",
-                                "Enrollment_no",
+                                "Enrollment_No",
                                 "CountAll",
                                 {
                                     "display": "Enrollment"
@@ -4620,36 +4620,8 @@
                               "{{ column(Cluster_10.selection, [\"Country\"]).asObject() }}"
                           ],
                           [
-                              "Sales_Region",
-                              "{{ column(Region_100.selection, [\"Sales_region\"]).asObject() }}"
-                          ],
-                          [
-                              "Channel",
-                              "{{ column(Channel_8.selection, [\"Channel\"]).asObject() }}"
-                          ],
-                          [
-                              "Channel",
-                              "{{ column(Channel_21.selection, [\"Channel\"]).asObject() }}"
-                          ],
-                          [
-                              "PS_Standard",
-                              "{{ column(X4P_5P_6P_23.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                          ],
-                          [
-                              "PS_Standard",
-                              "{{ column(X4P_5P_6P_6.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                          ],
-                          [
-                              "Product_Category",
-                              "{{ column(Product_category_29.selection, [\"Product_Category\"]).asObject() }}"
-                          ],
-                          [
-                              "Product_Category",
-                              "{{ column(Product_category_7.selection, [\"Product_Category\"]).asObject() }}"
-                          ],
-                          [
-                              "Sales_Region",
-                              "{{ column(Sales_region_58.selection, [\"Sales_region\"]).asObject() }}"
+                              "Customer",
+                              "{{ column(Customer_62.selection, [\"Customer\"]).asObject()}}"
                           ]
                         ]
                     },
@@ -4742,7 +4714,7 @@
                         ]
                     },
                     "selectMode": "single",
-                    "type": "aggregate",
+                    "type": "aggregateflex",
                     "useGlobal": true,
                     "visualizationParameters": {
                         "visualizationType": "hbar",
@@ -4829,7 +4801,7 @@
                         ]
                     },
                     "selectMode": "single",
-                    "type": "aggregate",
+                    "type": "aggregateflex",
                     "useGlobal": true,
                     "visualizationParameters": {
                         "visualizationType": "hbar",
@@ -5060,7 +5032,7 @@
                         ]
                     },
                     "selectMode": "single",
-                    "type": "aggregate",
+                    "type": "aggregateflex",
                     "useGlobal": true,
                     "visualizationParameters": {
                         "visualizationType": "hbar",
@@ -5147,7 +5119,7 @@
                         ]
                     },
                     "selectMode": "single",
-                    "type": "aggregate",
+                    "type": "aggregateflex",
                     "useGlobal": true,
                     "visualizationParameters": {
                         "visualizationType": "hbar",
@@ -5191,7 +5163,7 @@
                         ]
                     },
                     "selectMode": "single",
-                    "type": "aggregate",
+                    "type": "aggregateflex",
                     "useGlobal": true,
                     "visualizationParameters": {
                         "visualizationType": "hbar",
@@ -5338,7 +5310,7 @@
                         ]
                     },
                     "selectMode": "single",
-                    "type": "aggregate",
+                    "type": "aggregateflex",
                     "useGlobal": true,
                     "visualizationParameters": {
                         "visualizationType": "hbar",
@@ -5544,7 +5516,7 @@
                         ]
                     },
                     "selectMode": "single",
-                    "type": "aggregate",
+                    "type": "aggregateflex",
                     "useGlobal": true,
                     "visualizationParameters": {
                         "visualizationType": "hbar",
@@ -5950,7 +5922,7 @@
                     "isFacet": true,
                     "isGlobal": false,
                     "query": {
-                        "pigql": "a = load \"PS_COMPLIANCE_AGGREGATED_WITH_IC1\";  b = load \"ENROLLED_STORES\"; a = filter a by {{ row(audit_Month.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Date_of_audit_Year','Date_of_audit_Month','Date_of_audit_Day')\") }} && {{ column(Country_14.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(City_17.selection, [\"City\"]).asEquality(\"City\") }} && {{ column(Commune_56.selection, [\"Commune\"]).asEquality(\"Commune\") }} && {{ column(Key_Customer_Type_1.selection, [\"Key_Customer_Type\"]).asEquality(\"Key_Customer_Type\") }} && {{column(Trade_Format_20.selection, [\"Trade_Format\"]).asEquality(\"Trade_Format\") }} && {{ column(X4P_5P_6P_23.selection, [\"X4P_5P_6P\"]).asEquality(\"X4P_5P_6P\") }} && {{ column(Top_Customer_68.selection, [\"Top_Customer\"]).asEquality(\"Top_Customer\") }} && {{ column(Customer_62.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(Local_Outlet_Name_63.selection, [\"Local_Outlet_Name\"]).asEquality(\"Local_Outlet_Name\") }} && {{ column(Channel_21.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Subchannel_22.selection, [\"Subchannel\"]).asEquality(\"Subchannel\") }} && {{ column(Store_type_60.selection, [\"Store_type\"]).asEquality(\"Store_type\") }} && {{ column(Sales_region_58.selection, [\"Sales_region\"]).asEquality(\"Sales_region\") }} && {{ column(Sales_area_18.selection, [\"Sales_area\"]).asEquality(\"Sales_area\") }} && {{ column(Sales_territory_19.selection, [\"Sales_territory\"]).asEquality(\"Sales_territory\") }} && {{ column(Field_Execution_Manager_69.selection, [\"Field_Execution_Manager\"]).asEquality(\"Field_Execution_Manager\") }} && {{ column(Store_Operations_Manager_71.selection, [\"Store_Operations_Manager\"]).asEquality(\"Store_Operations_Manager\") }} && {{ column(Field_Sales_Manager_70.selection, [\"Field_Sales_Manager\"]).asEquality(\"Field_Sales_Manager\") }} && {{ column(Product_division_28.selection, [\"Product_Division\"]).asEquality(\"Product_Division\") }} && {{ column(Country_11.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(Cluster_10.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(Region_11.selection, [\"Sales_Region\"]).asEquality(\"Sales_region\") }} && {{ column(Region_100.selection, [\"Sales_region\"]).asEquality(\"Sales_region\") }} && {{ column(Customer_9.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(X4P_5P_6P_6.selection, [\"X4P_5P_6P\"]).asEquality(\"X4P_5P_6P\")}} && {{ column(Channel_8.selection, [\"Channel\"]).asEquality(\"Channel\")}}; b = filter b by {{ row(audit_Month.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Date_Year','Date_Month','Date_Day')\") }} && {{ column(Country_14.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(X4P_5P_6P_23.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Channel_21.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Sales_region_58.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Country_11.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(Cluster_10.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(Region_11.selection, [\"Sales_Region\"]).asEquality(\"Sales_Region\") }} && {{ column(Region_100.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Channel_8.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(X4P_5P_6P_6.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }}; c = cogroup b by 'Product_Category', a by 'Product_Category'; c = foreach c generate a.'Product_Category' as 'Product_Category', avg(a.PS_Compliance) as 'PS Compliance', sum(b.Enrollment_no) as 'Number of Enrolled PS'; ",
+                        "pigql": "a = load \"PS_COMPLIANCE_AGGREGATED_WITH_IC1\";  b = load \"ENROLLED_STORES\"; a = filter a by {{ row(audit_Month.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Date_of_audit_Year','Date_of_audit_Month','Date_of_audit_Day')\") }} && {{ column(Country_14.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(City_17.selection, [\"City\"]).asEquality(\"City\") }} && {{ column(Commune_56.selection, [\"Commune\"]).asEquality(\"Commune\") }} && {{ column(Key_Customer_Type_1.selection, [\"Key_Customer_Type\"]).asEquality(\"Key_Customer_Type\") }} && {{column(Trade_Format_20.selection, [\"Trade_Format\"]).asEquality(\"Trade_Format\") }} && {{ column(X4P_5P_6P_23.selection, [\"X4P_5P_6P\"]).asEquality(\"X4P_5P_6P\") }} && {{ column(Top_Customer_68.selection, [\"Top_Customer\"]).asEquality(\"Top_Customer\") }} && {{ column(Customer_62.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(Local_Outlet_Name_63.selection, [\"Local_Outlet_Name\"]).asEquality(\"Local_Outlet_Name\") }} && {{ column(Channel_21.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Subchannel_22.selection, [\"Subchannel\"]).asEquality(\"Subchannel\") }} && {{ column(Store_type_60.selection, [\"Store_type\"]).asEquality(\"Store_type\") }} && {{ column(Sales_region_58.selection, [\"Sales_region\"]).asEquality(\"Sales_region\") }} && {{ column(Sales_area_18.selection, [\"Sales_area\"]).asEquality(\"Sales_area\") }} && {{ column(Sales_territory_19.selection, [\"Sales_territory\"]).asEquality(\"Sales_territory\") }} && {{ column(Field_Execution_Manager_69.selection, [\"Field_Execution_Manager\"]).asEquality(\"Field_Execution_Manager\") }} && {{ column(Store_Operations_Manager_71.selection, [\"Store_Operations_Manager\"]).asEquality(\"Store_Operations_Manager\") }} && {{ column(Field_Sales_Manager_70.selection, [\"Field_Sales_Manager\"]).asEquality(\"Field_Sales_Manager\") }} && {{ column(Product_division_28.selection, [\"Product_Division\"]).asEquality(\"Product_Division\") }} && {{ column(Country_11.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(Cluster_10.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(Region_11.selection, [\"Sales_Region\"]).asEquality(\"Sales_region\") }} && {{ column(Region_100.selection, [\"Sales_region\"]).asEquality(\"Sales_region\") }} && {{ column(Customer_9.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(X4P_5P_6P_6.selection, [\"X4P_5P_6P\"]).asEquality(\"X4P_5P_6P\")}} && {{ column(Channel_8.selection, [\"Channel\"]).asEquality(\"Channel\")}} && {{ column(Product_category_29.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }}; b = filter b by {{ row(audit_Month.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Date_Year','Date_Month','Date_Day')\") }} && {{ column(Country_14.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(X4P_5P_6P_23.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Channel_21.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Sales_region_58.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Country_11.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(Cluster_10.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(Region_11.selection, [\"Sales_Region\"]).asEquality(\"Sales_Region\") }} && {{ column(Region_100.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Channel_8.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(X4P_5P_6P_6.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Product_category_29.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }}; c = cogroup b by 'Product_Category', a by 'Product_Category'; c = foreach c generate a.'Product_Category' as 'Product_Category', avg(a.PS_Compliance) as 'PS Compliance', sum(b.Enrollment_no) as 'Number of Enrolled PS'; ",
                         "measures": [
                             [
                                 "nummber",
