@@ -149,7 +149,7 @@ private class IPM_GlobalClaimPDLController_Test{
             insert lstProClaim;
             
             List<IPM_Country_Level_Claim__c> lstCounrtyLevel = New List<IPM_Country_Level_Claim__c>();
-        IPM_Country_Level_Claim__c ctryLvl;
+        IPM_Country_Level_Claim__c ctryLvl = new IPM_Country_Level_Claim__c();
             for(IPM_Country__c cntry: countryList){
             
                 for(IPM_Project_Claim__c pClaim : lstProClaim){
@@ -269,7 +269,7 @@ private class IPM_GlobalClaimPDLController_Test{
             System.assertEquals(project[0].IPM_Project_Job_Status__c, 'Completed','Job not Completed');
             System.assertEquals(project[0].Project_Documents__r.size(), 3,'Documents not created');
             System.assertEquals(project[0].IPM_Financials_Consolidated__r.size(), 3,'Financial not created');            
-            Id pDocId ;
+            Id pDocId =null;
             for(IPM_Project_Document__c pDoc: project[0].Project_Documents__r){
             	if(pDoc.IPM_GateDocuments__c == 'Product Design Lock'){
             		pDocId = pDoc.Id;
