@@ -417,6 +417,9 @@ public with sharing class IPM_TaskHelper {
             }       
         }
     }
+    else if(newTask.IPM_Function__c.equalsIgnoreCase('TPL')&& newTask.IPM_Assignee__c == null){
+    	newTask.IPM_Assignee__c = projectRec.IPM_Technical_Project_Leader__c;
+    }
     // if no team member present for specific functional role assign task to PL
     else if(projectRec.IPM_Project_Leader__c != null && newTask.IPM_Assignee__c == null)
     {
