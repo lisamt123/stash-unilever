@@ -26,7 +26,7 @@ private class AR_Test_Application_Trigger_Handler {
         }
         catch(Exception e)
         {
-            
+           system.debug(logginglevel.error, 'ERROR updating childs: ' + e.getMessage()); 
         }
         
         system.assertNotEquals(null, att.Id, 'Attachment could not be saved.');
