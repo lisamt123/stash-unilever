@@ -36,6 +36,8 @@ src/layouts/CI_R2R_Milestones__c-CI_R2R Milestones Layout.layout
 src/layouts/CI_Accounting_Treatment__c-CI_Accounting Treatment Layout.layout
 src/layouts/CI_SMS_Weekly_Update__c-CI_SME without CI.layout
 src/layouts/CI_SMS_Weekly_Update__c-SME Weekly Update Layout.layout
+src/layouts/CI_SMS_Weekly_Update__c-CI_R2R SME Read only.layout
+src/layouts/CI_R2R_Innovation__c-CI_R2R_Innovation Layout Final.layout
 src/objects/CI_R2R_Budget__c.object
 src/objects/CI_R2R_Innovation__c.object
 src/objects/CI_R2R_Milestones__c.object
