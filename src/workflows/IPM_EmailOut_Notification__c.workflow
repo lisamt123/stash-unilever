@@ -67,6 +67,10 @@
             <field>IPM_EmailOut_Notification__c.Project_Name__c</field>
             <operation>notEqual</operation>
         </criteriaItems>
+        <criteriaItems>
+            <field>IPM_EmailOut_Notification__c.Confirmed_By__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>

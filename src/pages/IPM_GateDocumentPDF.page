@@ -94,6 +94,7 @@
                 .heading3 {color:#0f81bb!important; font-size:13pt; display:block; border-bottom:0.25pt solid #ccd9d8;}
                 .heading4 {color:#0f81bb!important; font-size:11pt; display:block; border-bottom:0.25pt solid #ccd9d8;} 
                 .waterMark {position: fixed; top:20%; left:50%; z-index:0; margin-left:-375px; margin-top:-172px; width:750px; height:auto;}  
+                
                 .gateKeeperlist{table-layout:fixed;}
                 .ipmTable.table.gateKeeperlist>thead>tr>th{padding:0px;}
                 .ipmTable.table.gateKeeperlist>thead>tr>th>div{border-right:0px;padding: 2px 10px 2px 0;}
@@ -107,6 +108,7 @@
                 .Partly{background:#f1993e;color:#fff;text-align:center;font-size:10px;}
                 .noPadleft{padding-left:0px !important;}
                 .noPadright{padding-right:0px !important;}  
+                
                 .firstCol{width:7%;}
                 .secondCol{width:35%;}
                 .thirdCol{width:20%;}
@@ -114,9 +116,11 @@
                 .uploadImage {width: 50px; height: 50px;}
                 img.ipmImage{width: 100%;height: 100%;}
                 .appBlock {color: #797979;display: block;background: #f7f7f7;border: 1px solid #dce3e2;margin-bottom: 2px;padding: 2px 10px 2px;margin-top:2px;}
+                
                 .ipmTable.table.otifTable>thead>tr>th{padding:0px;}
                 .ipmTable.table.otifTable>thead>tr>th>div{border-right:0px;padding: 2px 10px 2px 0;}
                 .ipmTable.table.otifTable>tbody>tr>td{padding:2px 5px;height:10px;}
+                
                 .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign>thead>tr>th{padding:0px 5px;height:10px;}
                 .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign>thead>tr>th>div{border-right:0px;padding: 2px 10px 2px 0;}
                 .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign>tbody>tr>td{padding:2px 5px;height:10px;}
@@ -124,6 +128,7 @@
                 .fintable.inverse.table.ipmFinancetable.textareabig.ipmFintableAlign{table-layout:inherit;}
                 .ipmFinancetable.inverse thead th{width:auto;}
                 .algnCenter{text-align:center;}
+                
                 .ipmTable.table{border-left:none; border-right:none;width:100%;}
                 .ipmTable.table>thead>tr>th{background:#f2f8fc;color:#3b516d; font-size:1em;font-weight:bold;}
                 .ipmTable>thead>tr>th, .ipmTable>tbody>tr>th, .ipmTable>tfoot>tr>th, .ipmTable>thead>tr>td, .ipmTable>tbody>tr>td, .ipmTable>tfoot>tr>td{border-left:none; border-right:none;border-top:0.5pt #9ab4b1 solid;border-bottom:none;}
@@ -131,7 +136,6 @@
                 .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding: 2px 5px;vertical-align: middle;word-wrap:break-word;word-break: break-word;color: rgb(102, 102, 102);}
                 .table>thead>tr>td>a, .table>tbody>tr>td a, .table>tfoot>tr>td>a{color:#428bca; text-decoration: none;word-break: break-word;}
                 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th{padding: 2px 5px;vertical-align: middle;}
-                .table>thead>tr>th:first-child{padding-left:0;}
                 .table>thead>tr>th>div{padding: 2px 10px 2px 0;}
                 .table>thead>tr>th:last-child>div{border-right:none;}
                 .table>tbody>tr:nth-child(even){background:#f8f8f8;}
@@ -142,6 +146,7 @@
                 .ipmFinancetable.table>tbody>tr>td.textleft{text-align:left; background-color: #f3ffe7;font-weight: bold;}
                 .ipmFinancetable.table{width:100%;table-layout:fixed;}
                 .ipmFinancetable.table.inEstmateTable,.ipmFinancetable.table.inEstmateCharter,.ipmFinancetable.table.nofixedlayout{table-layout:inherit;width:100%;}
+                
                 table.innertable td {border: 0.5pt solid #ddd;padding: 5px;table-layout: fixed;word-wrap: break-word;}
                 table.innertable {border-spacing: 15px; width:100%;table-layout: fixed;}
                 .gatedoctable tr td{table-layout:fixed;font-size:12px;word-wrap: break-word; word-break: break-word;}
@@ -150,6 +155,7 @@
                 .borleft{border-left:0.5pt solid #ddd;}
                 .gatedoctable thead th {background-color: #dceefa;color: #253b78;}
                 table.ipmTable>tbody>tr:nth-child(even) {background: #f8f8f8;}
+                
                 #upImg .modal-body{padding:0;}
                 .customerSelect{padding: 5px 5px;background:#fff;border: 0.5pt solid #dddddd;}
                 .selectBackground{padding:10px 15px;background:#f5f5f5;}
@@ -170,6 +176,7 @@
                 .infobox .SecButtonSet {display:block; text-align:center;}
                 .infobox .ipmCheckbox {left:38%;}
                 .infotext{margin-top:10px;margin-bottom:10px;text-align:left;}
+                
                 .channelContainer{border:0.2pt solid #636363; margin-bottom:15px; }
                 .channelType{padding-right:10px;color:#364354;font-size:1.2em;font-weight:bold;}
                 .priorityNumber{color:#555E6B;font-weight: normal;border-left:0.5pt solid #BDBDBD;padding-left: 10px;line-height: 15px;display:block;float:left;}
@@ -222,6 +229,7 @@
                 .mstonelgd{margin-top:15px;}
                 .mstone{top:5px;}
                 .commentBox{margin-left:20px;margin-right:20px;}
+                
                 .otifTable{width:100%;table-layout:fixed;border-top:0px;border-spacing:0;}
                 .otifTable.table>thead>tr{background:#f2f8fc;}
                 .otifTable.table>thead>tr>th{background:none;border-top:0px;}
@@ -229,6 +237,15 @@
                 .gateKeeperlist{border-spacing:0;}
                 .risktabhead {  float: left;width:90%;}
                 .gaterollouts{width:100%;table-layout:fixed;border-top:0px !important;border-spacing: 0;border-collapse: collapse;}
+                .risktabhead .noBold {display: block;float: none;}
+                .riskTablecolor .bggray {text-align: center;}
+                .riskMainHead.projectRiskLbl,td.riskCustBackground,td.bggray{padding-left:5px;}
+                .risktabhead{}
+                table.riskTablecolor.gateKeeperlist th.width30P .risktabhead{width:200px;}
+                table.riskTablecolor.gateKeeperlist th.width15P .risktabhead{width:100px;}
+                table.riskTablecolor.gateKeeperlist th.width55P .risktabhead{width:410px;}
+                                
+               
                 .table-responsive{margin-bottom:10px;}
                 .col-sm-4 .table {width: 100%;  max-width: 100%;  }
                 .col-sm-4 .table>tbody>tr:nth-child(even) {  background: #f8f8f8;}
@@ -260,6 +277,7 @@
                 .pl10{padding-left:0px !important;}
                 .fintable td div {font-size: 15px;color: #364354;font-weight:bold;}
                 .pl15{padding-left:15px !important;}
+                
                 .channelText{line-height:15px;}
                 .customerSelect:after{display: block;font-family: FontAwesome;content: "\f107";font-size:20px!important;;position: absolute;top:1px!important;right: 0px;margin-right: 25px; top: -1px\9; right: -1px\9;width: 20px;height: 20px;text-align: center;background: #fff;color: #000;}
                 .keep-open1{height: 18px;width: 25px;position: relative;left: 45px;cursor: pointer;}
@@ -302,6 +320,7 @@
                 .skuTbl label span, .skuTbl label {color:#666666!important;}
                 .bluetxt { color: #3b516d;}
                 .dblcolumn { border-bottom: 0.5pt solid #d1d1d1!important; text-align:center!important;}
+                
                 .ipmDropDown .dropdown-menu{border:0.5pt solid #252525;z-index:1000;min-width: 190px;border-radius:4px 0px 4px 4px;background:#f9f9f9;margin-top: 0px;margin-right: -3px;}  
                 .ipmDropDown .dropdown-menu>li{padding:10px 0px 36px 10px !important;border-bottom: 0.5pt solid #ddd;margin: 0px;}
                 .ipmDropDown .dropdown-menu>li:last-child{border-bottom:0px;padding-left:0px !important;padding-bottom:10px !important;}
@@ -322,18 +341,20 @@
                 .inputFieldOne {margin:10px;}
                 .inputFieldOne input[type=text] {width:41%!important;}
                 .threshold{display:block;}
-                .consumerContainer{clear:both;}
+                
+               
+                .consumerContainer{clear:both;display:table;width:100%;}
                 .ceContainer{border:1px solid #ddd;margin-bottom:5px;margin-top:5px;}
-                .cevidenceborder{border-bottom: 3px solid #E8E848;padding: 2px 15px;float:left;width:100%;clear: both;}
+                .cevidenceborder{border-bottom: 3px solid #E8E848;padding: 2px 15px;width:100%;float:left;}
                 .evidenceType{color: #344356;font-size: 1.2em;font-weight: bold;margin-left: 20px;}
                 .consumerImgContainer{margin-bottom: 5px;border-top: 0px !important;padding-top: 2px;clear: both;}
                 .evidenceHead{float:left;  margin-top: 3px;}
                 .evidenceHead > span.expico{display: inline-block;cursor: pointer;font-family: FontAwesome;width: 21px;height: 21px;text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;margin-right: 5px;font-size: 0.8em;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;color: #fff;}
                 .consumerContainer .uploadImage img {  max-width: 100%;height:100%;}
                 .consumerContainer .uploadImage {width: 60px;height: 50px;}
-                .ceImage{margin-right: 10px; margin-left: 20px;margin-bottom:5px;width:100%;}
+                .ceImage{margin-right: 10px; margin-left: 20px;margin-bottom:10px;float:left;}
                 .ceInfoContainer{margin-bottom: 3px;width:100%;clear:both;}
-                .ceCommentBox{width: 97%;clear:both;}
+                .ceCommentBox{clear:both;}
                 .ceCommentBox textarea{  width: 100%;  height: 90px;  border-radius: 2px;  border: 1px solid #A8A8A8;}
                 .conceptLink{font-weight: bold;cursor: pointer;color: #027DC1;  margin-right: 10px;  margin-top: 5px;}
                 .ceImgDel{position: absolute;  bottom: 96px;  left: 47px;}
@@ -353,9 +374,11 @@
                 .noOfCu{width:100%;}
                 .altBGcolor{width:100%;float:none !important;}
                 .cusText{display:block;}
+                
                 .viewassortpriority {display: block;font-weight: 700;}
                 .viewDistribType, .viewDataPeriod {margin-right: 10px;font-weight: 700;}
                 .cmiGateSectionTable{width:100%;}
+                
                 .cmiTabHeader{font-size:9px;color: #3b516d;font-weight: bold;padding: 5px;}
                 .cmiHeaderHolder{border-top: 1px solid #7fa19e;width:100%;background: #f2f8fc;min-height:50px;margin-top: 10px;border-bottom: 0.5pt #9ab4b1 solid;}
                 .cmiGateName{width:100%;background: #f3ffe7;padding:5px;display:table;border-bottom: 0.5pt solid #ddd;}
@@ -465,6 +488,7 @@
                 body .pbBody table.list.monitor tr.dataRow td {     
                 font-size:8.5px;        
                 }       
+                
                 .performanceContainer1{background-color:#dceefa;float: left;}       
                 .performanceHead{float: left;font-weight: bold;width:44px;padding:5px;font-size:10px;}      
                 .performanceContainer2,.performanceContainer3{width: 760px;}        
@@ -480,6 +504,7 @@
                 .panel .ipmButtonSet{margin-bottom:10px;}       
                 input.misalignedField{border:1px solid red;}        
                 .breakdown_Container{width: 762px;font-size:10px;clear:both;}
+                
                 .gatefinancialbg{background-color:#EBF8FC;padding: 10px;}
                 .glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 100%;}
                 .glbHeadLeft{min-width: 135px;float: left;height: 50px;border: 1px solid #ddd;border-bottom:0px;}
@@ -506,6 +531,7 @@
                 .glbValLeft{font-size: 0.800em;color:#222;font-weight: bold;}
                 .glbSeclist{width:50%;float:left;}
                 .glbfinvalContainer{float:left;display:table;width:100%;}
+                
                 .ipmFinancetable.inverse .finproject{font-size: 11px;color: #364354;font-weight: bold;display:block;}
                 .ipmFinancetable.inverse td div{font-size: 0.800em;color:#222;}
                 @media print
@@ -530,6 +556,7 @@
                 }
                 .dataTable table tr.lastchild td.tldfontchange span{font-size:12px !important;}
                 .dataTable table td.tldfontchange span{font-size:12px !important;}
+                
                 .bccMainblock{background: #f2f8fc;width:100%;display:table;}
                 .bccheadblocks{height:30px;padding:10px;display:table-cell;border-top: 1px solid #7fa19e;border-bottom: 1px solid #7fa19e;}
                 .bcclowerblock{background: #fff;height:40px;width:100%;display:table;}
@@ -537,6 +564,7 @@
                 .fourclmwidth{width:25%;}
                 .compltwidth{width:5%;}
                 .topwidth{width:20%;}
+                
                 .glbPLDtableHead{width:100%;margin-bottom:10px;margin-top:5px;}
                 .glbPLDtableHead thead th{background-color: #dceefa;}
                 .glbPLDtableHead thead th .finproject,.glbPLDtableHead thead th .claimHeader{margin-left:10px;}
@@ -558,6 +586,7 @@
                 .yellowAlertPdl .alertimgpdl{margin-top:-4px;margin-left:5px;height:20px;width:20px;}
                 .pdlalrtText{margin-left:20px;}
                 .teamHeading .pageTitlefont{font-size: 2em;color: #253A79;font-weight:bold;}
+                
                 .proName{padding-left:5px;}
                 .marketingHeader{width:100%;}
                 .chainHeader {width: 270px;}
@@ -966,7 +995,7 @@
                     <c:IPM_BCC_ConsolidateView gateType="{!projectDoc.IPM_GateDocuments__c}" projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" showBccTab="{!showBBCtable}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'}"></c:IPM_BCC_ConsolidateView>
                     <c:IPM_Assumptions projId="{!projectId}" gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!apxSec.Id}" rendered="{!if(apxSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}" isEditable="false"></c:IPM_Assumptions>
                     <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy>
-                    <c:IPM_MarketPerformance projId="{!projectId}" isEditable="false" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Regional' && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
+                    <c:IPM_MarketPerformance projId="{!projectId}" isEditable="false" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && apxSec.IPM_Section_Sequence__c =='6.5' && (project.IPMProject_Span__c='Regional' || project.IPM_ProjectGKM__c='GKM3') && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
                     <c:IPM_PerformanceBreakdown isAppendix="true" isEditable="false" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}"></c:IPM_PerformanceBreakdown>
                     <c:IPM_GlobalClaimPDL projId="{!projectId}" isAppendix="true" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Final_Global_Claims'}"></c:IPM_GlobalClaimPDL>
                     <c:IPM_SourcePlanInPDF projId="{!projectId}" rendered="{!AND(projectDoc.IPM_GateDocuments__c=='Product Design Lock')}"></c:IPM_SourcePlanInPDF> 

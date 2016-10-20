@@ -69,6 +69,7 @@ public with sharing class IPM_RolloutPlanTLDSync {
                 emailOutNotification.To_Address__c = projDetails.get(projId).IPM_Project_Leader__r.Email;
                 emailOutNotification.Project_Name__c = projIdRollout.get(projId).IPM_Rollout_Project__c;
                 emailOutNotification.MCO_Country_Name__c =  projIdRollout.get(projId).MCO_Name__c;
+                emailOutNotification.Confirmed_By__c = UserInfo.getName();
                 emailOut.add(emailOutNotification);                     
             }
             if(!emailOut.isEmpty()){
