@@ -6,8 +6,6 @@ src/classes/IPM_ChangProjectDocumentStatusController.cls
 src/classes/IPM_ChangProjectDocumentStatusController.cls-meta.xml
 src/classes/IPM_FinancialController.cls
 src/classes/IPM_FinancialController.cls-meta.xml
-src/classes/IPM_GlobalClaimPDLController_Test.cls
-src/classes/IPM_GlobalClaimPDLController_Test.cls-meta.xml
 src/classes/IPM_Report_Test.cls
 src/classes/IPM_Report_Test.cls-meta.xml
 src/classes/IPM_RolloutPlanTLDSync.cls
@@ -30,6 +28,7 @@ src/email
 src/email/IPM_Emails
 src/email/IPM_Emails/IPM_Notify_Project_Leader_about_FL_confirm_TLD_change_On_Email_Notification_Obj.email
 src/email/IPM_Emails/IPM_Notify_Project_Leader_about_FL_confirm_TLD_change_On_Email_Notification_Obj.email-meta.xml
+src/email/IPM_Emails/IPM_send_email_to_RPL_when_local_project_is_ready_for_archival_from_rollout_plan.email
 src/email/IPM_Emails/IPM_send_email_to_RPL_when_local_project_is_ready_for_archival_from_rollout_plan.email-meta.xml
 src/labels
 src/labels/CustomLabels.labels
