@@ -119,7 +119,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                if( loggedInUser != null && ( loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c ))                            
                 {
                     isMilestoneEditable=true;
-                    
+                    isupdateDates=true;
                 }
               
                if(loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c || loggedInUser == project.IPM_Technical_Project_Leader__c)
