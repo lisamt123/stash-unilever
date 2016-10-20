@@ -23,12 +23,12 @@ public class BFM_CPFValidator {
             return false;
         }
         
-        List<Contact> duplicateContacts = [SELECt CPF__c 
-                                  FROM Contact 
+        List<BFM_UserCreationRequest__c> duplicateContacts = [SELECt CPF__c 
+                                  FROM BFM_UserCreationRequest__c 
                                   WHERE CPF__c = :cpf
                                     AND
-                                  	Id IN (SELECT 
-                                     ContactId 
+                                    created_user__c IN (SELECT 
+                                     id 
                                      FROM User 
                                      WHERE isActive = true AND ContactId != null)];
         if(!duplicateContacts.isEmpty()){
@@ -36,13 +36,13 @@ public class BFM_CPFValidator {
             return false;
         }
         
-        Integer totalValue = 0;
+        //Integer totalValue = 0;
         Integer verifyingDigit1 = calculateVerifyingDigit1();
         Integer verifyingDigit2 = calculateVerifyingDigit2();
         
         if(Integer.valueOf(cpf.substring(9,10)) == verifyingDigit1 
            && Integer.valueOf(cpf.substring(10,11)) == verifyingDigit2){
-        	return true;
+            return true;
         } else{
             errorMessage = Label.BFM_Invalid_CPF_Format;
             return false;

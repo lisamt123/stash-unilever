@@ -13,7 +13,7 @@ Account acc = BFM_TestUtils.createCarrierAccount();
 
 
 
-list<BFM_CT_e__c>ctelst=new list<BFM_CT_e__c >();
+//list<BFM_CT_e__c>ctelst=new list<BFM_CT_e__c >();
 BFM_CT_e__c cte=new BFM_CT_e__c();
 cte.CT_e_key__c='123456';
 cte.Cte_original_Access_Key__c='123';

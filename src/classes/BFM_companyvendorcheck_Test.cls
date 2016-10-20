@@ -3,7 +3,8 @@ private class BFM_companyvendorcheck_Test{
     private static testMethod void testBFM_companyvendorcheck(){
     
     Test.startTest();
-    Account acc = BFM_TestUtils.createCarrierAccount();
+    Account acc = new Account();
+    acc.name='carrir';
         acc.cnpj__c = '03189042000100';
         acc.Vendor__c='11';
         acc.Company_Code__c='12';
@@ -41,6 +42,7 @@ private class BFM_companyvendorcheck_Test{
         
         insert ctelst ;
         
+          system.assertEquals('123456', cte1.CT_e_key__c);
         BFM_Shipment__c ship=new BFM_Shipment__c();
         ship.Carrier_Account__c=acc.id;
         ship.Unilever_Company__c=acc.id;

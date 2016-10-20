@@ -4,7 +4,8 @@ private static testMethod void testDebitNoteHandler(){
  Test.startTest();
  list<BFM_Debit_Note__c>DBlist=new list<BFM_Debit_Note__c>();
  
-  Account acc = BFM_TestUtils.createCarrierAccount();
+  Account acc = new Account();
+  acc.name='carrier';
         acc.cnpj__c = '03189042000100';
         acc.Vendor__c='11';
         acc.Company_Code__c='12';
@@ -47,7 +48,7 @@ private static testMethod void testDebitNoteHandler(){
  DBlist.add(db);
  insert DBlist;
  
- 
+   system.assertEquals('123355', db.DN_Number__c);
  list<BFM_Debit_Note__c>DBlist1=new list<BFM_Debit_Note__c>();
  
  BFM_Debit_Note__c db1=new BFM_Debit_Note__c();

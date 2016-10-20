@@ -21,6 +21,8 @@ private class BFM_CarrierCockpit_CC_Test{
     stglst.add(stg);
     insert stglst;
     
+      system.assertEquals('france', stg.Destination_city__c);
+    
     ApexPages.StandardController sc = new ApexPages.standardController(stg);
     BFM_CarrierCockpit_CC cock=new BFM_CarrierCockpit_CC(sc);     
     

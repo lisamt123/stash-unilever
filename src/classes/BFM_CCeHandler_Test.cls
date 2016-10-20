@@ -8,6 +8,7 @@ private class BFM_CCeHandler_Test{
     cce.CNPJ_Issuer__c='12345678900000';
     cce.CNPJ_Service_Taker__c='12345678900000';
     insert cce;
+      system.assertEquals('212312', cce.CC_e_Key__c);
     BFM_CCeHandler ccehandler=new BFM_CCeHandler();
     ccehandler.beforeUpdate(cce,cce);
     ccehandler.afterUpdate(cce,cce);

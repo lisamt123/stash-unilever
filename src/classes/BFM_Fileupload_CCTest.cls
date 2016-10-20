@@ -31,8 +31,7 @@ private static testMethod void testBFM_Fileupload_CC(){
         att11.Body=Blob.valueOf('Unit Test Attachment Body wewqeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
         
         insert att11;
-        //attlst.add(att);
-       // insert attlst;
+        
         file11.newAttachments.add(att11);
         file11.save();
  
@@ -41,7 +40,7 @@ BFM_MDF_e__c mdf=new BFM_MDF_e__c();
 mdf.MDFE_Access_Key__c='123245';
 mdf.Carrier_Account__c=acc.id;
 insert mdf;
- list<Attachment> attlst=new list<Attachment>(); 
+// list<Attachment> attlst=new list<Attachment>(); 
  BFM_Fileupload_CC file=new BFM_Fileupload_CC();
   file.filetype='MDFE';
   att.parentid=mdf.id;
@@ -60,7 +59,7 @@ insert mdf;
         
         list<Attachment> attlst1=new list<Attachment>();
         Attachment att1=new Attachment(); 
- BFM_Fileupload_CC file1=new BFM_Fileupload_CC();
+ //BFM_Fileupload_CC file1=new BFM_Fileupload_CC();
   
   att1.parentid=mdf.id;
  att1.Name='Unit Test Attachment';

@@ -36,7 +36,7 @@ public class BFM_DebitNoteUpload_CC{
                 issuccess =false;
             }
             newAttachment = new Attachment();
-            if(issuccess == true){
+            if(issuccess){
                 if(objR=='DebitNote'){
                 system.debug('uuuuuuuuuuu'+urlstring);
                     BFM_Debit_Note__c dn = new BFM_Debit_Note__c(id=recordId);

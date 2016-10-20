@@ -6,6 +6,7 @@ private class BFM_ErrorLogSearch_CC_Test{
     BFM_Error_Log__c err=new BFM_Error_Log__c();
     err.Reason__c='wqeqwe';
     insert err;
+     system.assertEquals('wqeqwe', err.Reason__c);
     
     BFM_ErrorLogSearch_CC error=new BFM_ErrorLogSearch_CC();
     error.errlog=err;

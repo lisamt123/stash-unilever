@@ -8,6 +8,7 @@ private class BFM_CTeSearch_CC_Test{
     cte.CT_e_Number__c='6456';
     
     insert cte;
+      system.assertEquals('123456', cte.CT_e_key__c);
    
     //cte.Name =CTE-0000390;
     search.cte=cte;

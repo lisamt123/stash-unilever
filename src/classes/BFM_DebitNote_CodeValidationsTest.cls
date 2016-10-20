@@ -4,11 +4,12 @@ private static testMethod void testBFM_DebitNote_CodeValidations(){
  Test.startTest();
  list<BFM_Debit_Note__c>DBlist=new list<BFM_Debit_Note__c>();
  BFM_Occurrence__c occ=new BFM_Occurrence__c();
- occ.Name='test';
+ //occ.Name='test';
  occ.Approval_Date_1__c=date.newInstance(2016, 9, 15);
  insert occ;
  
-  Account acc = BFM_TestUtils.createCarrierAccount();
+  Account acc = new Account();
+  acc.name='carrier';
         acc.cnpj__c = '03189042000100';
         acc.Vendor__c='11';
         acc.Company_Code__c='12';
@@ -42,7 +43,7 @@ private static testMethod void testBFM_DebitNote_CodeValidations(){
  db.Occurrence__c=occ.id;
  DBlist.add(db);
  insert DBlist;
- 
+  system.assertEquals('123355', db.DN_Number__c);
   list<BFM_Debit_Note__c>DBlist1=new list<BFM_Debit_Note__c>();
  
  BFM_Debit_Note__c db1=new BFM_Debit_Note__c();

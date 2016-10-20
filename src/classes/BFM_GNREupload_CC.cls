@@ -16,7 +16,7 @@ public Attachment gnreAtt{get; set;}
         string filename='';
          BFM_CT_e__c cterec = new BFM_CT_e__c();
          cterec = [select id,name,CNPJ_issuer__c,GNRE_file_url__c, GNR_e_Required__c,CT_e_key__c from BFM_CT_e__c where id=: cteId];
-         if(cterec!=null && cterec.GNR_e_Required__c == false){             
+         if(cterec!=null && cterec.GNR_e_Required__c){             
                  ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'GNRE is not required')); 
                 Errcount++;             
          }
@@ -45,7 +45,7 @@ public Attachment gnreAtt{get; set;}
                 }
                 
                 gnreAtt = new Attachment();
-                if(issuccess == true){
+                if(issuccess){
                     cterec.GNRE_file_url__c = urlstring;
                     update cterec;
                     pagereference pgr = new pagereference('/'+cteId);

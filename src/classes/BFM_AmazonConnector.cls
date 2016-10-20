@@ -2,8 +2,8 @@ public class BFM_AmazonConnector {
     
     public string sendFile(attachment attach,string cnpj,string filename,string objname){
                
-        String attachmentBody = EncodingUtil.base64Encode(attach.Body);
-        String formattedDateString = Datetime.now().formatGMT('EEE, dd MMM yyyy HH:mm:ss z');
+        //String attachmentBody = EncodingUtil.base64Encode(attach.Body);
+        //String formattedDateString = Datetime.now().formatGMT('EEE, dd MMM yyyy HH:mm:ss z');
         String key = 'AKIAIBQE7P7QBIFKGQMQ';
         String secret = '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';
         String bucketname = 'adefr-d-freightbrazil001-bucket';
@@ -63,14 +63,14 @@ public class BFM_AmazonConnector {
         String formattedDateString = Datetime.now().formatGMT('EEE, dd MMM yyyy HH:mm:ss z');
         String key = 'AKIAIBQE7P7QBIFKGQMQ';
         String secret = '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';
-        String bucketname = 'adefr-d-freightbrazil001-bucket';
-        String host = 's3.eu-central-1.amazonaws.com';
+       // String bucketname = 'adefr-d-freightbrazil001-bucket';
+       // String host = 's3.eu-central-1.amazonaws.com';
         String method = 'GET';          
         string endpoint1=amazonlink;
         Url endpoint = new Url(endpoint1);
         Blob b = blob.valueof('');
         Map<String,String> headers = new Map<String,String>();
-        boolean presign;
+        boolean presign=null;
         
         HttpRequest req = new HttpRequest();
         BFM_FileConnector c = new BFM_FileConnector(key,secret);        

@@ -9,6 +9,7 @@ public class BFM_CreateMIRO_Test{
         acc.Company_Code__c='12';
         insert acc;
         
+         
   BFM_Shipment__c ship=new BFM_Shipment__c();
         ship.Carrier_Account__c=acc.id;
         
@@ -20,7 +21,7 @@ public class BFM_CreateMIRO_Test{
  occ.Shipment__c=ship.id;
  insert occ;
  
-         
+          system.assertEquals('test', occ.Name);
         
         BFM_Stage__c stg=new BFM_Stage__c();
         stg.Shipment__c=ship.id;

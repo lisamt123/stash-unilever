@@ -38,8 +38,8 @@ public class BFM_FileConnector {
     public HttpRequest signedRequest(String method, Url endpoint, Map<String,String> headers, Blob payload, Boolean presign) {
 
         //defaults
-        if (headers == null) headers = new Map<String,String>();
-        if (payload == null) payload = Blob.valueOf('');
+     //   if (headers == null) headers = new Map<String,String>();
+     //   if (payload == null) payload = Blob.valueOf('');
         if (presign == null) presign = false;
 
         //assemble

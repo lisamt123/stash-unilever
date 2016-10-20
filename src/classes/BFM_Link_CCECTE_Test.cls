@@ -28,7 +28,9 @@ public class BFM_Link_CCECTE_Test{
         
         test.starttest();
         insert listCte;
+        system.assertEquals('634565265', cte.CT_e_key__c);
         insert listCce;
+        system.assertEquals('6464646', cce2.Related_CT_e_NF_e_DF_Key__c);
         BFM_Link_CCECTE.linkCCECTE(listCce);
         //ccecte.linkCCECTE(listCce);
         test.stoptest();

@@ -5,7 +5,8 @@ private static testMethod void testBFM_CTeHandler (){
  Test.startTest();
 if(Test.isRunningTest())
 {
-Account acc = BFM_TestUtils.createCarrierAccount();
+Account acc = new Account();
+    acc.name='carrier';
         acc.cnpj__c = '03189042000100';
         acc.Vendor__c='11';
         acc.Company_Code__c='12';
@@ -15,6 +16,9 @@ Account acc = BFM_TestUtils.createCarrierAccount();
 BFM_Occurrence__c occ=new BFM_Occurrence__c();
 occ.Approval_Date_1__c=date.newInstance(2016,10,30);
 insert occ;
+BFM_Tax_Code__c tax = new BFM_Tax_Code__c();
+tax.Name='adsd';
+insert tax;
 
 list<BFM_CT_e__c>ctelst=new list<BFM_CT_e__c >();
 BFM_CT_e__c cte=new BFM_CT_e__c();
@@ -28,6 +32,8 @@ cte.Carrier_Account__c=acc.id;
 //cte.Cte_Emission_date_time__c=datetime.newInstance(2016, 10, 6, 12, 30, 0);
 ctelst.add(cte);
 insert ctelst ;
+
+ system.assertEquals('123456', cte.CT_e_key__c);
 
 BFM_Shipment__c ship=new BFM_Shipment__c();
 ship.Carrier_Account__c=acc.id;
@@ -44,10 +50,10 @@ ses.Stage__c=stg.id;
 ses.Occurrence__c=occ.id;
 insert ses;
 
-BFM_Tax_Code__c tax = new BFM_Tax_Code__c();
+
 cte.Tax_Code__c=tax.id;
 cte.Tax_Code_id__c='uu';
-insert cte;
+//insert cte;
 
 cte.Link_Status__c='Link OK';
 cte.CT_e_Compatible__c='adas';

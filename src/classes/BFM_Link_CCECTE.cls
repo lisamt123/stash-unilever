@@ -10,7 +10,7 @@ public class BFM_Link_CCECTE{
         }
         List<BFM_CT_e__c> listCte = new List<BFM_CT_e__c>();
         List<BFM_NF_e_DF__c> listNFEDF = new List<BFM_NF_e_DF__c>();
-        List<BFM_CC_e__c> listQcce = new List<BFM_CC_e__c>();
+        //List<BFM_CC_e__c> listQcce = new List<BFM_CC_e__c>();
         List<BFM_CC_e__c> listupdatecce = new List<BFM_CC_e__c>();
         map<string,id> mapcte = new map<string,id>();
         for(BFM_CC_e__c cce: listcce){
@@ -40,6 +40,11 @@ public class BFM_Link_CCECTE{
             }
         }
      //  listQcce = [select id,Related_CT_e_NF_e_DF_Key__c,Reference_Object_Type__c  from BFM_CC_e__c where id in: setCCeids];
+         linkCCECTE_ext(listcce,mapcte);
+        
+        
+    }
+    public static void linkCCECTE_ext(List<BFM_CC_e__c> listcce, map<string,id> mapcte){
         for(BFM_CC_e__c cce: listcce){
             if(cce.CC_e_Valid_CNPJ_Status__c == 'Valid CNPJ'){
                 if(cce.Reference_Object_Type__c == 'CTE' && mapcte.containsKey(cce.Related_CT_e_NF_e_DF_Key__c) && mapcte.get(cce.Related_CT_e_NF_e_DF_Key__c)!=null){
@@ -60,10 +65,6 @@ public class BFM_Link_CCECTE{
             }
             
         }
-        if(!listupdatecce.isEmpty()){
-            //upsert listupdatecce;
-        }
     }
-    
     
 }

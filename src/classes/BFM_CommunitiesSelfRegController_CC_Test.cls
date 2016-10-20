@@ -15,7 +15,8 @@ private class BFM_CommunitiesSelfRegController_CC_Test {
     
   private static testMethod void testControllerWithMatchingAccount(){
         Test.startTest();
-        Account acc = BFM_TestUtils.createCarrierAccount();
+        Account acc = new Account();
+        acc.name='carrier';
         acc.cnpj__c = '03189042000100';
         insert acc;
        
@@ -42,9 +43,10 @@ private class BFM_CommunitiesSelfRegController_CC_Test {
         
         userlist.add(userreq1);
         insert userlist;
+         system.assertEquals('testname', userreq.FirstName__c );
         try{
         insert usr;
-        }catch(DmlException e){}
+        }catch(DmlException e){system.debug('test');}
         
         BFM_UserCreationRequest__c userreq2 = new BFM_UserCreationRequest__c();
         userreq2.FirstName__c ='testname';
@@ -91,7 +93,7 @@ private class BFM_CommunitiesSelfRegController_CC_Test {
         BFM_CPFValidator cpfvalidcon = new BFM_CPFValidator('cpf');
         cpfvalidcon.validateCPF();
       
-        BFM_AccountDAO accDAO=new BFM_AccountDAO();
+        
         
         BFM_AccountDAO.getAccountsWithCNPJPrefix('03189042');
         controller.fetchBranches();
