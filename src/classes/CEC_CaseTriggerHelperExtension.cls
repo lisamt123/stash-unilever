@@ -26,10 +26,10 @@ public with sharing class CEC_CaseTriggerHelperExtension {
     List<Account> accntList = new List<Account>();
     Map<String, Account> mobRexNumAccntMap = new Map<String, Account>();
     Set<String> dupMobRexNumSet = new Set<String>();
-    Set<String> smsAccntTransExtIdSet = new Set<String>();
-    Set<String> mobNumSet = new Set<String>();
-    Set<String> rexMobNumWithMarketSet = new Set<String>();
-    Set<String> rexMobNumWithoutMarketSet = new Set<String>();
+    //Set<String> smsAccntTransExtIdSet = new Set<String>();
+    //Set<String> mobNumSet = new Set<String>();
+    Set<String> rexMobNumWithMarketSet = new Set<String>(), rexMobNumWithoutMarketSet = new Set<String>(), mobNumSet = new Set<String>(), smsAccntTransExtIdSet = new Set<String>();
+    //Set<String> rexMobNumWithoutMarketSet = new Set<String>();
     Map<String, String> mobRexMobMap = new Map<String, String>();
 
     
