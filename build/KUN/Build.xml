@@ -42,7 +42,7 @@
 
 
   <target name="validate">
-    <echo level="info">KUN APP Deployment</echo>
+    <echo level="info">Agent App Lightning Deployment</echo>
     <sf:deploy username="${sf.username}"
       password="${sf.password}"
       serverurl="${sf.serverurl}"
@@ -55,9 +55,19 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
+      <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLoginControllerTest</runTest>
+      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+      <runTest>CommunitiesSelfRegControllerTest</runTest>
+      <runTest>ExceptionLoggingHelper_Test</runTest>
+      <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
+      <runTest>TestDataFactory</runTest>
+      <runTest>UserTestUtil</runTest>
+      <runTest>UserTrigger_Test</runTest>
       <runTest>Kun_Community_Test</runTest>
       <runTest>KUN_Profile_CC_Test</runTest>
-      <runTest>KUNDataFactory</runTest>
+      <runTest>KUNDataFactory</runTest>	  
       <-- Populate your Test Classes here in the above format and do not delete the aboce test clasess, these are mandotry test classes to be executed-->
     </sf:deploy>
   </target>  
