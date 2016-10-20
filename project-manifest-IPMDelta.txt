@@ -18,14 +18,14 @@ src/classes/IPM_MilestoneHelper.cls
 src/classes/IPM_MilestoneHelper.cls-meta.xml
 src/classes/IPM_OTIF_Report_Batch.cls
 src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
+src/classes/IPM_ProjectDocumentSectionController.cls
+src/classes/IPM_ProjectDocumentSectionController.cls-meta.xml
 src/classes/IPM_ProjectHelper.cls
 src/classes/IPM_ProjectHelper.cls-meta.xml
 src/classes/IPM_RolloutPlanTLDSync.cls
 src/classes/IPM_RolloutPlanTLDSync.cls-meta.xml
 src/classes/IPM_RolloutPlansAddController.cls
 src/classes/IPM_RolloutPlansAddController.cls-meta.xml
-src/classes/IPM_TaskHelper.cls
-src/classes/IPM_TaskHelper.cls-meta.xml
 src/components
 src/components/IPM_GlobalClaimPDL.component
 src/components/IPM_GlobalClaimPDL.component-meta.xml
@@ -37,12 +37,9 @@ src/email/IPM_Emails/IPM_Notify_Local_Leader_when_Non_key_local_project_created.
 src/email/IPM_Emails/IPM_Notify_Local_Leader_when_Non_key_local_project_created.email-meta.xml
 src/labels
 src/labels/CustomLabels.labels
-src/layouts
-src/layouts/IPM_SourcingUnit__c-IPM SourcingUnit Layout.layout
 src/objects
 src/objects/IPM_Bosscard__c.object
 src/objects/IPM_Financial__c.object
-src/objects/IPM_SourcingUnit__c.object
 src/pages
 src/pages/IPM_EditProject.page
 src/pages/IPM_EditProject.page-meta.xml
