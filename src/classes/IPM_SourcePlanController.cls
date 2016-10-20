@@ -342,11 +342,14 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         for(IPM_Project_Product__c product:projectProductList)
         {
             String country_STR = IPM_ConstantUtils.BLANK;
+            List<string> lstCountry = new list<string>();
             if(productNCountryMap.containsKey(product.id)){
                 for(string strCountry:productNCountryMap.get(product.id)){
-                    country_STR = country_STR + strCountry +IPM_ConstantUtils.Delimiter;
+                    lstCountry.add(strCountry);
                 }
             }
+            lstCountry.sort();
+            country_STR = string.join(lstCountry,IPM_ConstantUtils.Delimiter);
             list<string> sourceIntoList = new list<string>();
             if(productNCountryMap.containsKey(product.id)){
                 sourceIntoList.addAll(productNCountryMap.get(product.id));  
@@ -413,6 +416,9 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
                     IPM_SourcingPlan__c srcPlanNew = new IPM_SourcingPlan__c();
                     srcPlanNew = productSourceUnitPlanMap.get(projectProdId+srcUnit);
                     string sourceCountries = productSourceIntoMap.get(projectProdId+srcUnit);
+                    List<String> lstCountry = sourceCountries.split(IPM_ConstantUtils.Delimiter);
+                    lstCountry.sort();
+                    sourceCountries = String.join(lstCountry,IPM_ConstantUtils.Delimiter);
                     productWrapperMap.get(projectProdId).add(new sourceUnitWrapper(srcPlanNew,sourceCountries));
                 }
             }
