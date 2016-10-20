@@ -1,9 +1,10 @@
 src
-src/workflows/Account.workflow
-src/permissionsets/FS_Admin.permissionset
-src/flows/FS_UpdateRegionandZonebasedoncityforRussia-4.flow
 src/objects/Account.object
-src/objects/Opportunity.object
-src/objects/Activity.object
-src/objects/Task.object
-src/objects/Event.object
+src/layouts/Account-Operator Russia Read Only.layout
+src/layouts/Account-Operators Russia.layout
+src/layouts/Product2-Food Solutions Product Russia.layout
+src/layouts/Account-Feed Based Distributor Russia.layout
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
+src/permissionsets/FS_RussiaSalesRep.permissionset
+src/permissionsets/FS_Operator_Russia.permissionset
+src/profiles/Unilever Food Solution - Russia.profile

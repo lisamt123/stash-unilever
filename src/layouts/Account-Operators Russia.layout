@@ -46,10 +46,6 @@
                 <field>FS_Top_Client__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>CustomerLegalName__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_RTM__c</field>
             </layoutItems>
@@ -68,6 +64,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Global_Unique_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Requester_Comment__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
