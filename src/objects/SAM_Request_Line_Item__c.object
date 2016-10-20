@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -235,6 +231,7 @@
         <fullName>num_Number_of_VMS__c</fullName>
         <description>For Microsoft record type</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the number of Virtual Machines deployed or planned to be deployed</inlineHelpText>
         <label>Number of VMS</label>
         <precision>18</precision>
         <required>false</required>
@@ -287,6 +284,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -307,6 +305,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -328,6 +327,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -336,6 +336,7 @@
         <fullName>pkl_Instance_Type__c</fullName>
         <description>For IBM record type</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the type of instance you want to deploy/deployed</inlineHelpText>
         <label>Instance Type</label>
         <picklist>
             <picklistValues>
@@ -349,6 +350,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -370,6 +372,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -391,11 +394,11 @@
             <picklistValues>
                 <fullName>Not sure</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -420,6 +423,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -442,11 +446,11 @@
             <picklistValues>
                 <fullName>Not sure</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -554,6 +558,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -575,6 +580,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -582,6 +588,7 @@
     <fields>
         <fullName>pkl_SQL_Server_Farm__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Select (Yes/No) from the Drop Down, if the deployment is hosted on SQL farm</inlineHelpText>
         <label>SQL Server Farm</label>
         <picklist>
             <picklistValues>
@@ -595,6 +602,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -624,6 +632,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -652,6 +661,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -673,11 +683,11 @@
             <picklistValues>
                 <fullName>Not sure</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -700,11 +710,11 @@
             <picklistValues>
                 <fullName>Not sure</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -757,7 +767,7 @@
     <fields>
         <fullName>txt_Diagnostic_new__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Brief if Daignostic pack is required</inlineHelpText>
+        <inlineHelpText>Select (Yes/No) if Diagnostic is required/deployed</inlineHelpText>
         <label>Diagnostic</label>
         <picklist>
             <picklistValues>
@@ -770,6 +780,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -777,6 +788,7 @@
     <fields>
         <fullName>txt_Edition__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Mandatory Enter the Software Edition to be purchsed Eg: Standard, Professional, Enterprise, etc</inlineHelpText>
         <label>Edition</label>
         <length>255</length>
         <required>false</required>
@@ -934,8 +946,8 @@
     <fields>
         <fullName>txt_Partitioning_new__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Brief if partioned</inlineHelpText>
-        <label>Partitioning</label>
+        <inlineHelpText>Select (Yes/No) if Partioning is required/deployed</inlineHelpText>
+        <label>Partioning</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -947,6 +959,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -955,7 +968,7 @@
         <fullName>txt_Physical_Machine_Name__c</fullName>
         <description>IBM-If Instance Type is Virtual then &apos;Physical Server Name&apos; is Mandatory</description>
         <externalId>false</externalId>
-        <inlineHelpText>Enter the Physical server hostname which is deployed</inlineHelpText>
+        <inlineHelpText>Mandatory if &apos;Virtual&apos; is selected for Instance Type, enter the name of the base server hosting this instance.</inlineHelpText>
         <label>Physical Server Name</label>
         <length>255</length>
         <required>false</required>
@@ -1028,6 +1041,7 @@
         <fullName>txt_Publisher__c</fullName>
         <description>This is auto populated with Record Type Name for Non - Other Products. For Other Products it is editable for user</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the Publisher name Eg: Adobe, SalesForce, Autodesk, etc</inlineHelpText>
         <label>Publisher</label>
         <length>255</length>
         <required>false</required>
@@ -1119,7 +1133,7 @@
     <fields>
         <fullName>txt_Tuning_new__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Brief if Tuning pack is required</inlineHelpText>
+        <inlineHelpText>Select (Yes/No) if Tuning is required/deployed</inlineHelpText>
         <label>Tuning</label>
         <picklist>
             <picklistValues>
@@ -1132,6 +1146,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1139,6 +1154,7 @@
     <fields>
         <fullName>txt_Version__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Mandatory Enter the Software Version to be purchsed Eg: 2003, 2007, 2010, 2014, 9i, 10g, 11g, etc</inlineHelpText>
         <label>Version</label>
         <length>255</length>
         <required>false</required>
@@ -4694,11 +4710,25 @@ OR(ISBLANK(  num_Number_of_Virtual_Cores__c ),ISBLANK(  num_Number_of_Virtual_Pr
         <errorMessage>If Physical Server is selected as Yes, then Virtual Server should not be Yes and vice versa.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SID_detail_is_mandatory_SID_Detail_exis</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( ISPICKVAL(pkl_SID_Details_SAP__c, &apos;Existing&apos;) ,  ISBLANK( txt_New_System_Existing__c ) , RecordType.DeveloperName =&apos;SAM_SAP_RW&apos;)</errorConditionFormula>
+        <errorDisplayField>txt_New_System_Existing__c</errorDisplayField>
+        <errorMessage>SID name is mandatory when SID detail is &quot;Existing&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Software_Name_Alphanumeric_Data</fullName>
         <active>true</active>
         <description>This will accept only Alphanumeric data</description>
         <errorConditionFormula>AND(( NOT( ISBLANK( Name  ) ) ),(NOT( REGEX( Name , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>Name</errorDisplayField>
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>System_type_is_mandatory_SID_Detail_exis</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( ISPICKVAL(pkl_SID_Details_SAP__c, &apos;Existing&apos;) , ISPICKVAL(pkl_System_Type_Existing__c , &apos;&apos;), RecordType.DeveloperName =&apos;SAM_SAP_RW&apos;)</errorConditionFormula>
+        <errorDisplayField>pkl_System_Type_Existing__c</errorDisplayField>
+        <errorMessage>System Type is mandatory when SID detail is &quot;Existing&quot;.</errorMessage>
     </validationRules>
 </CustomObject>

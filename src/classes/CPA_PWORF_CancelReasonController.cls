@@ -44,7 +44,8 @@ public with sharing Class CPA_PWORF_CancelReasonController{
         pworfRec = [select id,ltxt_Reason_for_Cancellation__c,pkl_Status__c,isCancelled__c  from CPA_PWORF__c where id =:pworfId];
         pwoRec = [select id,txta_Reason_for_Cancellation__c,pkl_Status__c,PWORF_ID__c  from CPA_project_work_order__c  where PWORF_ID__c =:pworfId];      
         loiRec =[select id,txta_Reason_for_Cancellation__c,pkl_Status__c,lkp_PWORF__c  from CPA_LOI__c where lkp_PWORF__c =:pworfId];
-        Id profileId=userinfo.getProfileId();
+        //swathi commented for SonarQube warning
+        //Id profileId=userinfo.getProfileId();
       
         strReason = pworfRec.ltxt_Reason_for_Cancellation__c;
       }
