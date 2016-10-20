@@ -150,6 +150,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 
                 if(project.IPM_GateKeeping_Model__c == IPM_ConstantUtils.GATE_KEEPING_MODEL_3){
                 	hideGCLTRCLTQuestions = true;
+                	isGKM3Model = true;
                 }
                 // Show all Validations on selecting Propose
                 showValidationMethod();               
