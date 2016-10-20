@@ -60,10 +60,6 @@
                 <behavior>Edit</behavior>
                 <field>Last_Quote_Sent_On__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Record_Count_for_Report__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

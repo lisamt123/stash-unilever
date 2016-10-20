@@ -110,6 +110,15 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SAM_quotation_DOPO_applicable</fullName>
+        <field>pkl_DO_PO_Details_Applicable__c</field>
+        <literalValue>Yes</literalValue>
+        <name>SAM quotation DOPO applicable</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>SAM Assign Quotation Number</fullName>
         <actions>
@@ -450,6 +459,16 @@
         <active>true</active>
         <description>Update software name if run cost applicable is yes</description>
         <formula>AND(( ISPICKVAL( pkl_Run_Cost_Applicable__c , &apos;Yes&apos;) ), OR(ISCHANGED( Name ) ,ISCHANGED( pkl_Run_Cost_Applicable__c ), ISNEW(), ISBLANK( txt_Software_Name__c ) ))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>SAM quotation DOPO applicable</fullName>
+        <actions>
+            <name>SAM_quotation_DOPO_applicable</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>IF(AND(ISCHANGED(pkl_Charging_Type__c ),OR(ISPICKVAL(pkl_Charging_Type__c, &apos;DO/PO Applicable (O)&apos;),ISPICKVAL(pkl_Charging_Type__c, &apos;Innovation Purchased (I)&apos;),ISPICKVAL(pkl_Charging_Type__c, &apos;Engage with Procurement (P)&apos;)) ,md_Request__r.txt_Request_Type__c = &apos;SAM_RW_Project_Request&apos;), true,false)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

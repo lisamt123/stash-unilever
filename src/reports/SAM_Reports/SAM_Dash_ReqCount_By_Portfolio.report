@@ -43,7 +43,7 @@
         <field>SAM_Request__c.txt_Portfolio__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>SAM Portfolio Wise Split For dashboard</name>
+    <name>SAM Demand: Portfolio Wise Split</name>
     <params>
         <name>co</name>
         <value>1</value>
