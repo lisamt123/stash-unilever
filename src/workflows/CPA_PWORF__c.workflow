@@ -202,10 +202,6 @@
             <field>eml_VDM_group_email__c</field>
             <type>email</type>
         </recipients>
-        <recipients>
-            <field>lkp_Owner__c</field>
-            <type>userLookup</type>
-        </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Reminder_to_respond_to_PWORF</template>
     </alerts>
@@ -220,10 +216,6 @@
         <recipients>
             <field>eml_VDM_group_email__c</field>
             <type>email</type>
-        </recipients>
-        <recipients>
-            <field>lkp_Owner__c</field>
-            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Reminder_to_submit_PWO</template>
@@ -292,10 +284,6 @@
         <recipients>
             <field>eml_SMT_group_email__c</field>
             <type>email</type>
-        </recipients>
-        <recipients>
-            <field>lkp_Owner__c</field>
-            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Reminder_to_enter_a_Clarity_ID</template>
