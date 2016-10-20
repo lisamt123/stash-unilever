@@ -10,6 +10,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CI_R2R_Update_SME_Area_Read_Only</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>CI_R2R_Innovation_with_SME_Read_Only</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>CI_R2R Update SME Area Read Only</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_ProjectLead</fullName>
         <field>Project_Lead_del__c</field>
         <literalValue>Kamila Marzetz</literalValue>
@@ -376,6 +386,16 @@
             <value>Tools</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CI_R2R Update CI Page Layout</fullName>
+        <actions>
+            <name>CI_R2R_Update_SME_Area_Read_Only</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>NOT( $Permission.CI_R2R_Admin)</formula>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>CI_R2R Update Project%23 for CI Funnel</fullName>
