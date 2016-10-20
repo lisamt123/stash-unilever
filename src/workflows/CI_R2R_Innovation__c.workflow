@@ -3,8 +3,8 @@
     <fieldUpdates>
         <fullName>CI_R2R_Sheetal</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Sheetal Pinjarkar</literalValue>
-        <name>CI_R2R Sheetal</name>
+        <literalValue>Cristina Butu</literalValue>
+        <name>CI_R2R Cristina</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -103,7 +103,7 @@
     <fieldUpdates>
         <fullName>Update_ProjectLead_To_Sankarnarayanan_V</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Sankarnarayanan V</literalValue>
+        <literalValue>Sankaranarayanan V</literalValue>
         <name>Update ProjectLead To Sankarnarayanan V</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -139,7 +139,7 @@
     <fieldUpdates>
         <fullName>Update_ProjectLead_sheet</fullName>
         <field>Project_Lead_del__c</field>
-        <literalValue>Sheetal Pinjarkar</literalValue>
+        <literalValue>Cristina Butu</literalValue>
         <name>Update ProjectLead sheet</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
