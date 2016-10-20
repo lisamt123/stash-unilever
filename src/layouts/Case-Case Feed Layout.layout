@@ -278,6 +278,10 @@
                 <behavior>Readonly</behavior>
                 <field>Personal_Care__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ACCC_Survey__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

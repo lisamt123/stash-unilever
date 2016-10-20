@@ -68,7 +68,22 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>      
-      <runTest>FA_Test_Trigger_CouFacilitator</runTest>
+      <runtest>FAU_ChatterServiceImplTest</runtest>
+	  <runtest>FAU_CreateProgramControllerTest</runtest>
+	  <runtest>FAU_CreateTemplateControllerTest</runtest>
+	  <runtest>FAU_EmailTemplateSenderContllerTest</runtest>
+	  <runtest>FAU_GenrateAndAttachPDFControllerTest</runtest>
+	  <runtest>FAU_LandingPage_ControllerTest</runtest>
+	  <runtest>FAU_MilestoneTriggerTest</runtest>
+	  <runtest>FAU_ModuleTriggerTest</runtest>
+	  <runtest>FAU_Module_Part_ControllerExtTest</runtest>
+	  <runtest>FAU_ParticipantControllerExtensionTest</runtest>
+	  <runtest>FAU_Participant_BioControllerExtTest</runtest>
+	  <runtest>FAU_Participant_Biography_Doc_ConTest</runtest>
+	  <runtest>FAU_ProgramTest</runtest>
+	  <runtest>FAU_UpdateParticipantMilestoneContrTest</runtest>
+	  <runtest>FAU_UtilitiesTest</runtest>
+	  <runtest>FAU_WebinarTriggerTest</runtest>
   </sf:deploy>
   <!--<antcall target="generatePackage"/>-->
   </target>

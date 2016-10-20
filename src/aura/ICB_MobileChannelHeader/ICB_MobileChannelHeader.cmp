@@ -46,7 +46,6 @@
     </aura:if>
     
     <aura:if isTrue="{!v.HeaderCockPit}">
-        
         <div class="slds-page-header" role="banner">
             <div class="slds-grid " >
                 <div class="slds-col header-align">

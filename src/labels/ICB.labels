@@ -14,6 +14,14 @@
         <shortDescription>ICB Email Duplicated</shortDescription>
         <value>E-mail Duplicated</value>
     </labels>
+	<labels>
+        <fullName>ICB_Status_Inactive</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB Status Inactive</shortDescription>
+        <value>Inactive</value>
+    </labels>
      <labels>
         <fullName>ICB_PROD_SALESMAN_VALUE</fullName>
         <categories>List price screen</categories>
@@ -603,5 +611,5 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ICB PENDING</shortDescription>
-        <value>Pending</value>
+        <value>Pending</value> 
     </labels>

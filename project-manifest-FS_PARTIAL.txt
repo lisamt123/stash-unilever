@@ -1,3 +1,9 @@
 src
-src/permissionsets
+src/workflows/Account.workflow
 src/permissionsets/FS_Admin.permissionset
+src/flows/FS_UpdateRegionandZonebasedoncityforRussia-4.flow
+src/objects/Account.object
+src/objects/Opportunity.object
+src/objects/Activity.object
+src/objects/Task.object
+src/objects/Event.object

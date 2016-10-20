@@ -7,17 +7,16 @@
     <aura:attribute name="mapInventory" type="Map" default="{0:0}" description="Attribute for save the index of list inventories" />
     <aura:attribute name="quantityUpdate" type="Integer" default="0" description="Amount of products" />
     <aura:attribute name="HeaderCockPit" type="Boolean" default="true"/>
-   
-
+    <aura:attribute name="isDisabled" type="Boolean" default="false" />
+    
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
     <c:ICB_MobileChannelHeader HeaderCockPit="{!v.HeaderCockPit}"/>
-    
+   
     <table class="slds-table slds-table--bordered slds-max-medium-table--stacked">
         <tbody>
             <aura:iteration var="wrapper" items="{!v.listContacts}" indexVar="index">
                 <tr>
-                    
                     <td scope="row" class ="BorderBlue">
                         <img src="{!wrapper.urlImage}" class=" image--align ImagePhoto"/>
                         
@@ -87,17 +86,29 @@
                     <td >
                         <div class="slds-truncate slds-grid btnCollor">
                             <aura:if isTrue="{!and(wrapper.oppItem.StageName != 'Pending',wrapper.oppItem.StageName != 'Available')}">
-                                <div data-record="{!index}" onclick="{!c.solicitation}" >
-                                    <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_REQUEST}"  disabled="false"/>
-                                </div>
-                                
-                                <aura:set attribute="else">
-                                    <div data-record="{!index}" onclick="{!c.updatedItem}">
-                                        <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_UPDATE_INVENTORY}" disabled="false"  />
+                                <aura:if isTrue="{!!v.isDisabled}">
+                                    <div data-record="{!index}" onclick="{!c.solicitation}" >
+                                        <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_REQUEST}"  disabled="false"/>
                                     </div>
+                                </aura:if>
+                                <aura:if isTrue="{!v.isDisabled}">
+                                    <div data-record="{!index}"  >
+                                        <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_REQUEST}"  disabled="false"/>
+                                    </div>
+                                </aura:if>
+                                <aura:set attribute="else">
+                                    <aura:if isTrue="{!wrapper.oppItem.StageName == 'Available'}">
+                                        <div data-record="{!index}" onclick="{!c.updatedItem}">
+                                             <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_UPDATE_INVENTORY}" disabled="false" />
+                                        </div>
+                                    </aura:if>
+                                    <aura:if isTrue="{!wrapper.oppItem.StageName == 'Pending'}">
+                                        <div onclick="{!c.reload}">
+                                             <ui:button label="{!$Label.c.ICB_UPDATE_INVENTORY}" disabled="false" />
+                                        </div>
+                                    </aura:if>
                                 </aura:set>
                             </aura:if>
-                         
                             <div data-record="{!index}" onclick="{!c.menuOpenClose}" class=" btnCollor slds-truncate slds-grid">
                                 <!--<aura:renderIf isTrue="{!wrapper.spinnerShow}">
                                     <ui:spinner/>-->

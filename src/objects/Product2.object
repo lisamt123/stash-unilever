@@ -969,6 +969,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Unknown</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>ZE SAVOURY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6H DRESSINGS</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -1191,6 +1199,26 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </picklistValues>
             <picklistValues>
                 <fullName>NON-FOCUS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All Other - Non Focus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thrust 4 - Top Dish</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thrust 3 - Tea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thrust 1 - Reach BOH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thrust 2 - FOH</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -2389,6 +2417,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <picklistValues>
                 <fullName>Unknown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UR HLM-BF MAYONNAISE</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -5341,7 +5373,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <filters>
             <field>PRODUCT2.RECORD_TYPE</field>
             <operation>equals</operation>
-            <value>Product2.ICB_Mobile_Channel</value>
+            <value>Product2.ICB_MobileChannel</value>
         </filters>
         <label>All IceCream Products</label>
         <language>en_US</language>
@@ -5556,6 +5588,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>6A PROMISE PORTIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6H DRESSINGS</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6230,6 +6266,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>YS OPERATOR PREMIUM DRY SOUP MIX</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>ZE SAVOURY</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Division__c</picklist>
@@ -6304,6 +6344,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_Focus__c</picklist>
             <values>
+                <fullName>All Other - Non Focus</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>BOH</fullName>
                 <default>false</default>
             </values>
@@ -6313,6 +6357,22 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>NON-FOCUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thrust 1 - Reach BOH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thrust 2 - FOH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thrust 3 - Tea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thrust 4 - Top Dish</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6969,6 +7029,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>99 RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UR HLM-BF MAYONNAISE</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10090,6 +10154,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
     </recordTypes>
+
     <searchLayouts>
         <customTabListAdditionalFields>PRODUCT2.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>PRODUCT2.CUSTOMER_PRODUCT_ID</customTabListAdditionalFields>

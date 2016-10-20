@@ -1,6 +1,6 @@
 src
 src/classes
-src/classes/FA_Trigger_CourseFacilitator.cls
-src/classes/FA_Trigger_CourseFacilitator.cls-meta.xml
-src/classes/FA_Test_Trigger_CouFacilitator.cls
-src/classes/FA_Test_Trigger_CouFacilitator.cls-meta.xml
+src/classes/FAU_EmailSender.cls
+src/classes/FAU_EmailSender.cls-meta.xml
+src/classes/ExceptionsTest.cls
+src/classes/ExceptionsTest.cls-meta.xml

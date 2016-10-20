@@ -16,8 +16,7 @@ public class ICB_PriceBookCreation_Test {
         inventory2 = new ICB_Inventory__c();
         priceBook2 = new PriceBook2();
     }   
-    
-	/*******************************************************************
+   /*******************************************************************
     Purpose: Test the method ICB_changeProductStructure, with pricebbok
 	Parameters: [NONE]
 	Returns: [VOID]
@@ -66,8 +65,8 @@ public class ICB_PriceBookCreation_Test {
         acc = ICB_SobjectInstance_SP2_Test.insertAccount('Catanduva Distribuidora', ICB_RecordTypeMemory.getRecType('Account', 'Standard'));
         contact = ICB_SobjectInstance_SP2_Test.insertContact('Test Sales', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), String.valueOf(acc.Id), 'Ice Cream Salesman','emiluser@unilever.com');
         ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community',contact.Id, 'Test','acc','Testac', 'test@accenture.com', 'test@accenture.com.Unilever','testNick');
-        product = ICB_SobjectInstance_SP2_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png',ICB_RecordTypeMemory.getRecType('Product2', 'ICB_Mobile_Channel'));
-        products2 = ICB_SobjectInstance_SP2_Test.insertProduct2('Magnum', 'impulse', 'Magnum.png',ICB_RecordTypeMemory.getRecType('Product2', 'ICB_Mobile_Channel'));
+        product = ICB_SobjectInstance_SP2_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png',ICB_RecordTypeMemory.getRecType('Product2', 'ICB_MobileChannel'));
+        products2 = ICB_SobjectInstance_SP2_Test.insertProduct2('Magnum', 'impulse', 'Magnum.png',ICB_RecordTypeMemory.getRecType('Product2', 'ICB_MobileChannel'));
         inventory2 = ICB_SobjectInstance_SP2_Test.insertInventory('Catanduva Distribuidora');
         ICB_SobjectInstance_SP2_Test.insertInventoryLineItem(product.Id, inventory2.Id,50,10);
         priceBook2 = ICB_SobjectInstance_SP2_Test.insertPriceBook2(product.Name);

@@ -992,13 +992,26 @@
     <fields>
         <fullName>ICB_Status__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( ICB_Cause__c  &lt;&gt; &apos;&apos;, &apos;Fail&apos;, IF( ICB_Community_User__c = TRUE , &apos;Active&apos;, &apos;Inactive&apos;))</formula>
         <label>Status</label>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
+        <picklist>
+            <picklistValues>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
     </fields>
-    <fields>
+   <fields>
         <fullName>ICB_Type__c</fullName>
         <description>Spark Project - Mobility to Mobile Channel - Used to indicate if partner contact is an operator or a salesman.</description>
         <externalId>false</externalId>
@@ -1012,9 +1025,12 @@
                 <fullName>Ice Cream Salesman</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Console</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -1384,17 +1400,6 @@
             </values>
             <values>
                 <fullName>Yes%2C one or more regular devices</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ICB_Type__c</picklist>
-            <values>
-                <fullName>Ice Cream Salesman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operator</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2116,15 +2121,26 @@
             </values>
         </picklistValues>
     </recordTypes>    
-    
-    
-    
-    
-    <recordTypes>
+     <recordTypes>
         <fullName>ICB_Operator</fullName>
         <active>true</active>
         <description>Ice Cream Operator Record Type</description>
         <label>Ice Cream Operator</label>
+        <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Day_Rate__c</picklist>
             <values>
@@ -2778,6 +2794,10 @@
         <picklistValues>
             <picklist>ICB_Type__c</picklist>
             <values>
+                <fullName>Console</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Ice Cream Salesman</fullName>
                 <default>false</default>
             </values>
@@ -2893,6 +2913,17 @@
         <active>true</active>
         <description>Ice Cream Salesman Record Type</description>
         <label>Ice Cream Salesman</label>
+        <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Day_Rate__c</picklist>
             <values>
@@ -3510,6 +3541,10 @@
         </picklistValues>
         <picklistValues>
             <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Console</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Ice Cream Salesman</fullName>
                 <default>true</default>
@@ -4237,17 +4272,7 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>ICB_Type__c</picklist>
-            <values>
-                <fullName>Ice Cream Salesman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operator</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
+        
         <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
@@ -4969,17 +4994,7 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>ICB_Type__c</picklist>
-            <values>
-                <fullName>Ice Cream Salesman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operator</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
+        
         <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
@@ -5290,6 +5305,14 @@
         <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
+     <validationRules>
+        <fullName>ICB_No_Change_Status</fullName>
+        <active>true</active>
+        <description>Prevents change the field status</description>
+        <errorConditionFormula>AND(ISCHANGED(ICB_Status__c) ,  ICB_Cause__c = &apos;Inactive&apos;, ISPICKVAL(ICB_Status__c, &apos;Active&apos;)  )</errorConditionFormula>
+        <errorDisplayField>ICB_Status__c</errorDisplayField>
+        <errorMessage>You may not modify the status</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>CNPJ_Validation_Spark</fullName>
         <active>true</active>
