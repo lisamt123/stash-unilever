@@ -27,8 +27,9 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Capability Confirmed Help Text</shortDescription>
-        <value>Enter edit mode for any row and click the value to change between &apos;Not yet&apos; and &apos;Yes&apos;&apos;</value>
-    </labels>
+        <value>Enter edit mode for any row and click the value to change between &apos;Not yet&apos; and &apos;Yes&apos;</value>
+</labels>
+
 <labels>
         <fullName>IPM_Sourcing_Unit_Help_Text</fullName>
         <categories>EPIC284</categories>
@@ -10340,5 +10341,14 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>IPM Product Identical Message</shortDescription>
         <value>An identical sourcing plan for this product exists elsewhere in the table. Please make changes to this row to continue.</value>
     </labels>
+	<labels>
+        <fullName>IPM_Add_Sourcing_Unit_Help_Text</fullName>
+        <categories>EPIC284</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Add Sourcing Unit Help Text</shortDescription>
+        <value>Add another Sourcing Unit for this product</value>
+	</labels>
+
 </CustomLabels>
 
