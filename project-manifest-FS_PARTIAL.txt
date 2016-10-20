@@ -7,4 +7,7 @@ src/layouts/Account-Feed Based Distributor Russia.layout
 src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
 src/permissionsets/FS_RussiaSalesRep.permissionset
 src/permissionsets/FS_Operator_Russia.permissionset
+src/permissionsets/FS_Admin.permissionset
 src/profiles/Unilever Food Solution - Russia.profile
+src/email/FS_Email_Templates/NAFS_Operator_Account_approval_request_email_template.email
+src/email/FS_Email_Templates/NAFS_Operator_Account_approval_request_email_template.email-meta.xml

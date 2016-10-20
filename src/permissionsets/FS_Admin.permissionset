@@ -50677,4 +50677,8 @@
         <enabled>true</enabled>
         <name>CreateReportFolders</name>
     </userPermissions>
+	<userPermissions>
+        <enabled>false</enabled>
+        <name>ManagePublicListViews</name>
+    </userPermissions>
 </PermissionSet>

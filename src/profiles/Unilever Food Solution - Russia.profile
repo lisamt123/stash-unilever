@@ -32757,6 +32757,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Opportunity.Probability</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Opportunity.Rationale_for_funding_request__c</field>
         <readable>false</readable>
     </fieldPermissions>
