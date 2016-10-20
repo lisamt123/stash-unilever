@@ -3840,7 +3840,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>America,ANZ,Africa,Brazil</value>
+            <value>America,ANZ,Africa,Brazil,Philippines</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
@@ -3994,7 +3994,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Bangladesh_Escalation_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Bangladesh</role>
             <role>CEC_User_Bangladesh</role>
@@ -4012,7 +4011,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Bangladesh_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Bangladesh</role>
             <role>CEC_User_Bangladesh</role>
@@ -4044,60 +4042,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Manager_Benelux</role>
             <role>CEC_Manager_Europe</role>
             <role>CEC_Manager_HGS_Europe</role>
-            <role>CEC_User_Benelux</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Benelux_queue</fullName>
-        <columns>Language__c</columns>
-        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CASES.ORIGIN</columns>
-        <columns>Case_Brand__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New,Review Needed</value>
-        </filters>
-        <label>CEC Benelux WH Nieuw/Herzien</label>
-        <language>nl_NL</language>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Benelux_queue_In_afwachting</fullName>
-        <booleanFilter>1 OR 2</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CASES.LAST_UPDATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Pending with Courier,Awaiting Factory Response,Awaiting Knowledge Response</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>On Hold,Escalated,Awaiting Information from Consumer</value>
-        </filters>
-        <label>CEC Benelux queue In afwachting</label>
-        <language>nl_NL</language>
-        <sharedTo>
-            <role>CEC_Manager_Benelux</role>
             <role>CEC_User_Benelux</role>
         </sharedTo>
     </listViews>
@@ -4200,12 +4144,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>CEC_DACH_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.ORIGIN</columns>
         <columns>CASES.SUBJECT</columns>
+        <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
         <columns>ACCOUNT.NAME</columns>
-        <columns>CASES.ORIGIN</columns>
         <columns>Country_Name__c</columns>
         <columns>Brand__c</columns>
         <filterScope>Queue</filterScope>
