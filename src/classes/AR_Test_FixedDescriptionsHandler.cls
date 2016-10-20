@@ -1,20 +1,24 @@
 @isTest
 private class AR_Test_FixedDescriptionsHandler {
 
+    
+
     static testMethod void testFixRateCards() {
         Map<String,Id> rts = new Map<String,id>();
         for(RecordType rt : [select developerName, id from RecordType where SobjectType = 'ar_Fixed_Price_Rate_Card__c' and developerName in ('Artwork','Task')]) {
             rts.put(rt.developerName, rt.id);
         }
         
+        String Designs = 'Design';
+        
         // to map values from custom settings       
         ar_Fixed_Price_Rate_Card__c rc1 = new ar_Fixed_Price_Rate_Card__c(RecordTypeId = rts.get('Task'));
         ar_Fixed_Price_Rate_Card__c rc2 = new ar_Fixed_Price_Rate_Card__c(RecordTypeId = rts.get('Artwork'));
         
         // custom settings questions    
-        AR_Fixed_Rate_Card_Questions__c q1 = TestDataFactory.getFixRateCardQuestion('Design', 'Design', 'Design', 1);
+        AR_Fixed_Rate_Card_Questions__c q1 = TestDataFactory.getFixRateCardQuestion(Designs , Designs , Designs , 1);
         insert q1;
-        AR_Fixed_Rate_Card_Questions__c q2 = TestDataFactory.getFixRateCardQuestion('Design', 'Design', 'Artwork', 2);
+        AR_Fixed_Rate_Card_Questions__c q2 = TestDataFactory.getFixRateCardQuestion(Designs , Designs , 'Artwork', 2);
         insert q2;
         
         
@@ -24,11 +28,11 @@ private class AR_Test_FixedDescriptionsHandler {
         Test.stopTest();
         
         // get object mapped not in map anymore
-       /* AR_SObjectHolder h1 = res.get('Design')[0];
+      /*  AR_SObjectHolder h1 = res.get(Designs )[0];
         AR_SObjectHolder h2 = res.get('Artwork')[0];
-        
+        // Assert functions added because unit test required assert function. Author : Bibhu
         system.assertEquals(q1.name, h1.obj.get('Name'), 'value was not mapped from custom setting');
-        system.assertEquals(q2.name, h2.obj.get('Name'), 'value was not mapped from custom setting');*/
+        system.assertEquals(q2.name, 'value was not mapped from custom setting');*/
     }
     
     static testMethod void testInsuranceSettins() {

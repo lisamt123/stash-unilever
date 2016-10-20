@@ -55,18 +55,18 @@ public with sharing class AR_Application_Trigger_Handler {
                 // Assign new contacts on the accounts
                 for (Contact cont :applicationContacts.values())
                 {
-                	for (Account acc :applicationAccounts.values())
-	                {
-	                	if (acc.Id == cont.AccountId) 
-	                	{	
-	                		acc.Agency_Contact__c = cont.Id;
-	                	}
-	                }
+                    for (Account acc :applicationAccounts.values())
+                    {
+                        if (acc.Id == cont.AccountId) 
+                        {   
+                            acc.Agency_Contact__c = cont.Id;
+                        }
+                    }
                 }
                 try {
-                	update applicationAccounts.values();
+                    update applicationAccounts.values();
                 } catch (Exception e) {
-                	system.debug(logginglevel.error, 'ERROR updating Account: ' + e.getMessage());
+                    system.debug(logginglevel.error, 'ERROR updating Account: ' + e.getMessage());
                 }
                 
                 
@@ -93,36 +93,40 @@ public with sharing class AR_Application_Trigger_Handler {
             
             // LINK APPLICATION'S CHILD OBJECTS TO AGENCY
             Set<String> childsNames = new Set<String>{'ar_Fixed_Price_Rate_Card_Location__c','ar_Experience__c', 'ar_Insurance_and_Policy__c', 'ar_Revenue_Breakdown__c', 'ar_Competitor__c', 'ar_Financial__c',
-            	'ar_Fixed_Price_Rate_Card__c', 'ar_Geography__c', 'ar_Rate_Card__c', 'ar_Shareholder__c', 'ar_Supplier_Info__c'};
+                'ar_Fixed_Price_Rate_Card__c', 'ar_Geography__c', 'ar_Rate_Card__c', 'ar_Shareholder__c', 'ar_Supplier_Info__c'};
             String soql = 'SELECT Id, Agency__c FROM {0} WHERE Application__c = ';
             List<SObject> childs = new List<Sobject>();
             
             system.debug(logginglevel.info, '>>> Linking child objects to Agency...');
             for(ar_Application__c app : newList) {
-            	system.debug(logginglevel.info, '>>> Application ID: ' + app.id);
-            	integer objectCount = 1;
-	            for(String childObjName : childsNames) {
-	            	String finalSoql = String.format( soql, new List<String>{childObjName} );
-	            	finalSoql += '\''+app.id+'\'';
-	            	system.debug(logginglevel.info, '>>> SOQL: ' + finalSoql);
-	            	for(Sobject obj : Database.query(finalSoql)) {
-	            		obj.put('Agency__c', applicationAccounts.get(app.id).id);
-	            		// We need to split these object updates into different lists. 10 max per list
-	            		childs.add(obj);
-	            	}
-	            	if (objectCount == 10) // 10 object limit for a single sObject list, so do the object and create a new list if 10 is reached
-	            	{
-	            		try {
-			                update childs;
-			                childs = new List<Sobject>();
-			                objectCount = 0;
-			            } catch(Exception e) {
-			                system.debug(logginglevel.error, 'ERROR updating childs: ' + e.getMessage());
-			            }
-	            	}
-	            	objectCount++;
-	            }
-	            
+                system.debug(logginglevel.info, '>>> Application ID: ' + app.id);
+                integer objectCount = 1;
+                for(String childObjName : childsNames) {
+                    String finalSoql = String.format( soql, new List<String>{childObjName} );
+                    finalSoql += '\''+app.id+'\'';
+                    system.debug(logginglevel.info, '>>> SOQL: ' + finalSoql);
+                    
+                    List<Sobject> Ob = Database.query(finalSoql);
+                    
+                    for(Sobject obj : Ob ) {
+                    
+                        obj.put('Agency__c', applicationAccounts.get(app.id).id);
+                        // We need to split these object updates into different lists. 10 max per list
+                        childs.add(obj);
+                    }
+                    if (objectCount == 10) // 10 object limit for a single sObject list, so do the object and create a new list if 10 is reached
+                    {
+                        try {
+                            update childs;
+                            childs = new List<Sobject>();
+                            objectCount = 0;
+                        } catch(Exception e) {
+                            system.debug(logginglevel.error, 'ERROR updating childs: ' + e.getMessage());
+                        }
+                    }
+                    objectCount++;
+                }
+                
             }
             // update childs
             system.debug(logginglevel.info, '>>> Updating '+childs.size()+' child objects...');
