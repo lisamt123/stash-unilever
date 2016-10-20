@@ -68,7 +68,6 @@
       <runTest>Kun_Community_Test</runTest>
       <runTest>KUN_Profile_CC_Test</runTest>
       <runTest>KUNDataFactory</runTest>	  
-      <-- Populate your Test Classes here in the above format and do not delete the aboce test clasess, these are mandotry test classes to be executed-->
     </sf:deploy>
   </target>  
 
