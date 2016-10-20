@@ -43,8 +43,8 @@ public without sharing class BFM_Link_MDFCTe_onsave{
             update listCTeupdate;
         }
         
-        List<id> listmdfids = new list<id>();
-        map<id,integer> mapMcte = new map<id,integer>();
+        //List<id> listmdfids = new list<id>();
+        //map<id,integer> mapMcte = new map<id,integer>();
         
         for(BFM_MDF_e__c mdf: listMdfe){
             if(mapncte.get(mdf.id)==null){
@@ -69,9 +69,7 @@ public without sharing class BFM_Link_MDFCTe_onsave{
                 listmdfupdate.add(mdf);
             }
         }
-         if(!listmdfupdate.isEmpty()){
-          //  update listmdfupdate;
-        }
+         
         
     }
 }

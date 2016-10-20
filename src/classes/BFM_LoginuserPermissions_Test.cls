@@ -8,6 +8,7 @@ public class BFM_LoginuserPermissions_Test{
           localesidkey='en_US', profileid = p.Id, 
           timezonesidkey='America/Los_Angeles', username='standarduser06@test.com');
           insert objUser;
+          system.assertEquals('standarduser@test.com', objUser.email);
 
         BFM_UserCreationRequest__c userRequest = new BFM_UserCreationRequest__c();
         User userid = new User();

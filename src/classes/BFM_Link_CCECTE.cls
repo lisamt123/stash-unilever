@@ -11,7 +11,7 @@ public class BFM_Link_CCECTE{
         List<BFM_CT_e__c> listCte = new List<BFM_CT_e__c>();
         List<BFM_NF_e_DF__c> listNFEDF = new List<BFM_NF_e_DF__c>();
         //List<BFM_CC_e__c> listQcce = new List<BFM_CC_e__c>();
-        List<BFM_CC_e__c> listupdatecce = new List<BFM_CC_e__c>();
+        //List<BFM_CC_e__c> listupdatecce = new List<BFM_CC_e__c>();
         map<string,id> mapcte = new map<string,id>();
         for(BFM_CC_e__c cce: listcce){
             if(cce.Related_CT_e_NF_e_DF_Key__c!= null && cce.Reference_Object_Type__c!= null){

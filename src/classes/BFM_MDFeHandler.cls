@@ -55,31 +55,34 @@ public with sharing class BFM_MDFeHandler
     public void beforeInsert(SObject so)
     {
         
-        
+         //This method has been included as the class implements the ITrigger interface   
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        
+          //This method has been included as the class implements the ITrigger interface   
     }
      
 
     public void beforeDelete(SObject so)
-    {   
+    {
+         //This method has been included as the class implements the ITrigger interface   
     }
     
     public void afterInsert(SObject so) 
     {
-        
+         //This method has been included as the class implements the ITrigger interface
         //BFM_SefazCheck_Utility_CC.sefazcheck(mdfeRecord[0].id,'ddsfas','MDFE',userInfo.getSessionId());   
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
+         //This method has been included as the class implements the ITrigger interface
     }
     
     public void afterDelete(SObject so)
     {
+         //This method has been included as the class implements the ITrigger interface
     }
     
     /**
@@ -90,7 +93,7 @@ public with sharing class BFM_MDFeHandler
      */
     public void andFinally()
     {
-        
+          //This method has been included as the class implements the ITrigger interface   
     }
 
 }

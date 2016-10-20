@@ -22,10 +22,10 @@ public with sharing class BFM_NFSHandler
         set<id> setlinknfs = new set<id>();
         set<id> setcodevalnfs = new set<id>();
         for(BFM_NFS__C nfs: (List<BFM_NFS__C>) trigger.new){
-            if(nfs.NFS_Link_Check_Status__c!=null || nfs.NFS_Status__c=='Invoice Posted' || nfs.NFS_Definitive__c == true || nfs.Request_Cancellation__c == true){
+            if(nfs.NFS_Link_Check_Status__c!=null || nfs.NFS_Status__c=='Invoice Posted' || nfs.NFS_Definitive__c || nfs.Request_Cancellation__c){
                 setlinknfs.add(nfs.id);    
             }
-            if(nfs.NFS_Vendor_Check_Status__c=='Vendor Ok' || nfs.NFS_Status__c=='Invoice Posted' || nfs.NFS_Definitive__c == true || nfs.Request_Cancellation__c == true){
+            if(nfs.NFS_Vendor_Check_Status__c=='Vendor Ok' || nfs.NFS_Status__c=='Invoice Posted' || nfs.NFS_Definitive__c || nfs.Request_Cancellation__c){
                 setcodevalnfs.add(nfs.id);    
             }
         }
@@ -39,39 +39,40 @@ public with sharing class BFM_NFSHandler
     
     public void bulkAfter()
     {
-      if(Trigger.isupdate){
-          //BFM_LinkSES.NFSSESLink(Trigger.New);
-          //BFM_NFSValueValidation.NFSTotalValueValidation(Trigger.New);
-        }   
+         //This method has been included as the class implements the ITrigger interface
+       
     }
         
     public void beforeInsert(SObject so)
     {
-        
+         //This method has been included as the class implements the ITrigger interface    
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        
+         //This method has been included as the class implements the ITrigger interface    
     }
      
 
     public void beforeDelete(SObject so)
-    {   
+    { 
+         //This method has been included as the class implements the ITrigger interface  
     }
     
     public void afterInsert(SObject so) 
     { 
-        
+       //This method has been included as the class implements the ITrigger interface  
         //BFM_SefazCheck_Utility_CC.sefazcheck(so.id,'ddsfas','CCE',userInfo.getSessionId());
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
+         //This method has been included as the class implements the ITrigger interface
     }
     
     public void afterDelete(SObject so)
     {
+         //This method has been included as the class implements the ITrigger interface
     }
     
     /**
@@ -82,7 +83,7 @@ public with sharing class BFM_NFSHandler
      */
     public void andFinally()
     {
-        
+         //This method has been included as the class implements the ITrigger interface    
     }
 
 }

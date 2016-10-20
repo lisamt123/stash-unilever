@@ -1,7 +1,7 @@
 @isTest
 public class BFM_Link_MDFCTe_Onsave_Test{
     private static testMethod void testLinkMdfCte(){
-        BFM_Link_MDFCTe_onsave_Test onsave = new BFM_Link_MDFCTe_onsave_Test();
+        //BFM_Link_MDFCTe_onsave_Test onsave = new BFM_Link_MDFCTe_onsave_Test();
         List<BFM_MDF_e__c> linkList = new List<BFM_MDF_e__c>();
         List<BFM_CT_e__c> listCTe = new List<BFM_CT_e__c>();
         

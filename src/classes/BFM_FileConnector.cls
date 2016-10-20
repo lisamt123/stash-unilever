@@ -41,6 +41,8 @@ public class BFM_FileConnector {
      //   if (headers == null) headers = new Map<String,String>();
      //   if (payload == null) payload = Blob.valueOf('');
         if (presign == null) presign = false;
+        
+        String hmacsha256 = 'hmacsha256';
 
         //assemble
 
@@ -81,10 +83,10 @@ public class BFM_FileConnector {
         //Task 3: Calculate the AWS Signature Version 4
         //https://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html
         Blob keySecret = Blob.valueOf('AWS4' + this.secretKey);
-        Blob keyDate = Crypto.generateMac('hmacSHA256', Blob.valueOf(iso8601date), keySecret);
-        Blob keyRegion = Crypto.generateMac('hmacSHA256', Blob.valueOf(this.region), keyDate);
-        Blob keyService = Crypto.generateMac('hmacSHA256', Blob.valueOf(this.service), keyRegion);
-        Blob keySigning = Crypto.generateMac('hmacSHA256', Blob.valueOf('aws4_request'), keyService);
+        Blob keyDate = Crypto.generateMac(hmacSHA256, Blob.valueOf(iso8601date), keySecret);
+        Blob keyRegion = Crypto.generateMac(hmacSHA256, Blob.valueOf(this.region), keyDate);
+        Blob keyService = Crypto.generateMac(hmacSHA256, Blob.valueOf(this.service), keyRegion);
+        Blob keySigning = Crypto.generateMac(hmacSHA256, Blob.valueOf('aws4_request'), keyService);
         Blob blobToSign = Blob.valueOf(stringToSign);
         Blob hmac = Crypto.generateMac('hmacSHA256', blobToSign, keySigning);
 

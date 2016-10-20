@@ -21,7 +21,7 @@ public with sharing class BFM_DebitNoteHandler
     { 
         set<id> setdebitnote = new set<id>();
         for(BFM_Debit_Note__c dn:(List<BFM_Debit_Note__c>) trigger.new){
-            if( dn.DN_Date_check_status__c =='Date Ok' || dn.Request_For_Cancellation__c == true || dn.Debit_Note_Definitive__c==true || dn.Debit_Note_Status__c=='Invoice Posted'){
+            if( dn.DN_Date_check_status__c =='Date Ok' || dn.Request_For_Cancellation__c || dn.Debit_Note_Definitive__c || dn.Debit_Note_Status__c=='Invoice Posted'){
                 setdebitnote.add(dn.id);
             }
         }

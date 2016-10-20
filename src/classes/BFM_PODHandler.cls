@@ -22,7 +22,7 @@ public with sharing class BFM_PODHandler
         if(trigger.isUpdate){
             Id podRecordTypeId = Schema.SObjectType.BFM_POD__c.getRecordTypeInfosByName().get('POD').getRecordTypeId();
             BFM_POD__c pod = (BFM_POD__c)trigger.new[0];
-            if(pod.recordtypeid == podRecordTypeId || pod.POD_as_Receipt__c == false){        
+            if(pod.recordtypeid == podRecordTypeId || pod.POD_as_Receipt__c){        
                 BFM_ValidationController.podDuplicateRecordCheck(Trigger.New,trigger.isinsert, trigger.oldmap);  
             }  
         }      
@@ -30,36 +30,39 @@ public with sharing class BFM_PODHandler
     
     public void bulkAfter()
     {
-      
+         //This method has been included as the class implements the ITrigger interface 
     }
         
     public void beforeInsert(SObject so)
     {
-        
+        //This method has been included as the class implements the ITrigger interface    
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        
+        //This method has been included as the class implements the ITrigger interface    
     }
      
 
     public void beforeDelete(SObject so)
-    {   
+    {  
+        //This method has been included as the class implements the ITrigger interface 
     }
     
     public void afterInsert(SObject so) 
     { 
         
-        
+        //This method has been included as the class implements the ITrigger interface    
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
+        //This method has been included as the class implements the ITrigger interface
     }
     
     public void afterDelete(SObject so)
     {
+        //This method has been included as the class implements the ITrigger interface
     }
     
     /**
@@ -70,7 +73,7 @@ public with sharing class BFM_PODHandler
      */
     public void andFinally()
     {
-        
+         //This method has been included as the class implements the ITrigger interface   
     }
 
 }

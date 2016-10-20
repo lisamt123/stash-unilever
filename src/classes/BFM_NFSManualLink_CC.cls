@@ -79,7 +79,7 @@ public list <NFSwrapper> nfs_list {get; set;}
            for(NFSwrapper nw: nfs_list){
                if(!nw.ses_list.isEmpty()){
                    for(SESwrapper sw: nw.ses_list){
-                       if(sw.isselected == true){
+                       if(sw.isselected){
                            BFM_SES__c sesu = new BFM_SES__c(id = sw.ses.id);
                            sesu.NFS__c = nw.nfs.id;
                            listsesupfdate.add(sesu);
