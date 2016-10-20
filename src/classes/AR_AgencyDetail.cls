@@ -20,7 +20,11 @@ public with sharing class AR_AgencyDetail {
 										Limit	1
 										];
 				}
-				catch (Exception ex) {}
+				catch (Exception ex) {
+
+				                    system.debug(logginglevel.error, 'ERROR updating childs: ' + ex.getMessage());
+				
+				}
 			}
 			return yourRating;
 		}
