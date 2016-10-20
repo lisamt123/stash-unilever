@@ -32,12 +32,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public String validationErrorMessageforTLD {get; set;} //Validation error Message to be displayed on the page if TLD is misaligned
     public String validationErrorMessageCal {get; set;} //Validation error Message to be displayed on the page
     private String financialExternalIdString;
-    public String queryText {get;set;}
+    public transient String queryText {get;set;}
     public String currentFinancialId {get; set;} //Stores the id of the current financial being viewed. Changes dynamically and used with re-render
     private String previousFinancialId {get; set;} //Store the previously viwed financial Id. Used to maintain stae when switching tabs
     public String currentTab {get; set;} //Used to manage the current selected tab on the UI
     public IPM_Financial__c currentFinancial {get; set;} //Used to store the financial business case (IPM_Financial & associated IPM_Financial_Year__c records)
-    private List<IPM_Financial_Year__c> lstUpdateFinancials;
+    private transient List<IPM_Financial_Year__c> lstUpdateFinancials;
     
 
     public Boolean showcheckbox {get; set;}
@@ -129,7 +129,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 flag =(!isEditMode && !isRolloutError);
             }
             else{           
-                if( project.IPMProject_Span__c == IPM_ConstantUtils.SpanGlobal && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL&& (project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS) && Schema.sObjectType.IPM_Financial__c.isUpdateable()){
+                if( currentFinancial != null && project.IPMProject_Span__c == IPM_ConstantUtils.SpanGlobal && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL&& (project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS) && Schema.sObjectType.IPM_Financial__c.isUpdateable()){
                     flag = false;
                 }        
                 else{
@@ -148,30 +148,31 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public String getLabelValueGKM3() {
         
         String buttonLabel = IPM_ConstantUtils.BLANK;
+
         if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY){
             buttonLabel = Label.IPM_OVER_FIN_BC_F_OR_C_GKM3;
         }
-		else{
-			if(((currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_CAPABILITY ||
-		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_FEASIBILITY ||
-		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS ) &&
-		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c ) ||
-				(currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_MARKET_READY ||
-		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT ||
-		         currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.PHASE_PLE 
-		        ))
-				{
-					buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3;
-		        }
-		    else if((currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_CAPABILITY ||
-		             currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_FEASIBILITY ||
-		             currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS ) &&
-		             !currentFinancial.Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c)
-		        {
-					buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_NONKEY_GKM3;
-		        }
-		    }
-		return buttonLabel;       
+        else{
+            if(((currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_CAPABILITY ||
+                 currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_FEASIBILITY ||
+                 currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS ) &&
+                 currentFinancial.Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c ) ||
+                (currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_MARKET_READY ||
+                 currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT ||
+                 currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.PHASE_PLE 
+                ))
+                {
+                    buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3;
+                }
+            else if((currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_CAPABILITY ||
+                     currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c ==IPM_ConstantUtils.PHASE_FEASIBILITY ||
+                     currentFinancial.Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS ) &&
+                     !currentFinancial.Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c)
+                {
+                    buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_NONKEY_GKM3;
+                }
+            }
+        return buttonLabel;       
     }
     
     public boolean isProjectStop {
@@ -676,7 +677,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
                 if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT )
                 {
-                    showTopDownTab = showRollupTab = true;      
+                    showTopDownTab = showRollupTab = true;   
                 }
                 else if(project.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )
                 {
@@ -812,8 +813,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
              showKeyFinancial = true;
          }
          
-         //for GKM3 project : Show Key Financial Flags till Capability phase only
-         else if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && (new Set<String>{IPM_ConstantUtils.PHASE_IDEAS,IPM_ConstantUtils.PHASE_FEASIBILITY,IPM_ConstantUtils.PHASE_CAPABILITY}.contains(project.IPM_Phase__c) )){
+         //for GKM3 project : Show Key Financial Flags for all phases
+         else if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 ){
          	showKeyFinancial = true;
          }
          
@@ -1008,32 +1009,36 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 for(IPM_Project__c localProject: lstLocalProject){
                 
                     if(!localProject.IPM_Financials_local__r.isEmpty()){
-                    	if(localFinancialMap.containsKey(localProject.Market_Cluster_Name__c)){
-	                        localFinancialMap.get(localProject.Market_Cluster_Name__c).addAll(localProject.IPM_Financials_local__r);
-	                    }
-	                    else{
-	                        localFinancialMap.put(localProject.Market_Cluster_Name__c,localProject.IPM_Financials_local__r);
-	                    }
-				
-				}
-			 
-			}
-		}	
+                        if(localFinancialMap.containsKey(localProject.Market_Cluster_Name__c)){
+                            localFinancialMap.get(localProject.Market_Cluster_Name__c).addAll(localProject.IPM_Financials_local__r);
+                        }
+                        else{
+                            localFinancialMap.put(localProject.Market_Cluster_Name__c,localProject.IPM_Financials_local__r);
+                        }
+                    }
+                    
+                
+                }
+             
+            
+        }   
 		
-		if(!lstRegionalRollout.isEmpty() ){
-			Set<IPM_Financial__c> consolidatedFinancialSet = new Set<IPM_Financial__c>();
-			for(IPM_Project_Rollout__c regionalRollout :lstRegionalRollout){
-				consolidatedFinancialSet.clear();
-				if(!localFinancialMap.isEmpty() && localFinancialMap.containsKey(regionalRollout.Market_Cluster_Name__c)){
-					consolidatedFinancialSet.addAll(localFinancialMap.get(regionalRollout.Market_Cluster_Name__c));
-				}
+        
+        if(!lstRegionalRollout.isEmpty() ){
+            Set<IPM_Financial__c> consolidatedFinancialSet = new Set<IPM_Financial__c>();
+            for(IPM_Project_Rollout__c regionalRollout :lstRegionalRollout){
+                consolidatedFinancialSet.clear();
+                if(localFinancialMap != null && !localFinancialMap.isEmpty() && localFinancialMap.containsKey(regionalRollout.Market_Cluster_Name__c)){
+                    consolidatedFinancialSet.addAll(localFinancialMap.get(regionalRollout.Market_Cluster_Name__c));
+                }
+                
+                consolidatedFinancialSet.addAll(regionalRollout.IPM_Financials__r);
+                
 				
-				consolidatedFinancialSet.addAll(regionalRollout.IPM_Financials__r);
-				
-				
-				lstRolloutWrappers.add( new RolloutWrapper( regionalRollout.Market_Cluster_Name__c, new List<IPM_Financial__c>(consolidatedFinancialSet)) );
-			}
-		}
+                
+                lstRolloutWrappers.add( new RolloutWrapper( regionalRollout.Market_Cluster_Name__c, new List<IPM_Financial__c>(consolidatedFinancialSet)) );
+            }
+        }
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
       
@@ -1966,7 +1971,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               //DO NOT CHANGE the order - Calendar years need to be saved first before Innovation Years to ensure Volume Units get saved appropriately
               saveFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
               saveFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
-      
+              mapFinancialYears.clear();
+              
               //Update Financial Record
               currentFinancial.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
               currentFinancial.put(IPM_ConstantUtils.FIELD_LITERAL_STATUS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, IPM_ConstantUtils.STATUS_IN_PROGRESS);
@@ -2006,6 +2012,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               }
               
               financialsToUpdateSet.add(currentFinancial);
+              financialsToUpdateSet.clear();
               update new List<IPM_Financial__c>(financialsToUpdateSet);
               IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved(new List<IPM_Financial__c>{currentFinancial});      
                                             
@@ -2459,6 +2466,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             For(IPM_Financial_Year__c obj : mapFinancialYearRecords.values()) {
                 lstUpdateFinancials.add(obj);
             }
+            
+            mapFinancialYearRecords.clear();
         }
     }
 
@@ -3794,11 +3803,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                
                 //fetch the extenralId of the corresponding consolidated financials
                 String globalConsolidatedFinExtId = currentFin.Global_External_Id__c+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
-            	String regionalConsolidatedFinExtId = IPM_ConstantUtils.BLANK;
-            	if(currentFin.Regional_External_Id__c !=null){
-            		regionalConsolidatedFinExtId = currentFin.Regional_External_Id__c+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
-            	}
-            	
+                String regionalConsolidatedFinExtId = IPM_ConstantUtils.BLANK;
+                if(currentFin.Regional_External_Id__c !=null){
+                    regionalConsolidatedFinExtId = currentFin.Regional_External_Id__c+IPM_ConstantUtils.UNDERSCORE+IPM_ConstantUtils.CONSOLIDATED;
+                }
+                
                 
                 
                 //prepare financial external Ids for the red and yellow validations

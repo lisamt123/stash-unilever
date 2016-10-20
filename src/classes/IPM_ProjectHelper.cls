@@ -802,8 +802,15 @@ public with sharing class IPM_ProjectHelper
                     }
                     else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && sourceRollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
                     {
+                    	if(sourceRollout.Local_Project__c != project.Id)
+                        {
                         sourceRollout.Local_Project__c = project.Id;
+                        	rolloutUpdate = true;
+                    	}
+                    	if(rolloutUpdate)
+                    	{
                         updateRolloutMap.put(sourceRollout.Id,sourceRollout);
+                    	}
                         
                         // Update Country References.
                         if(sourceRollOutToCountryListMap.containsKey(sourceRollout.Id) && sourceRollOutToCountryListMap.get(sourceRollout.Id) !=null)
@@ -841,7 +848,9 @@ public with sharing class IPM_ProjectHelper
         
         if(!updateRolloutMap.isEmpty())
         {
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
             update updateRolloutMap.values();
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
         }
         
         if(!updateCountriesMap.isEmpty())

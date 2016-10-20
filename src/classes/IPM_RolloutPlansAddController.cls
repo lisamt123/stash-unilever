@@ -1054,15 +1054,15 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         string addCondition = IPM_ConstantUtils.BLANK;
         if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(span))
         {
-            addCondition = 'WHERE IPM_Project__c =: projectId LIMIT 10000';
+            addCondition = 'WHERE IPM_Project__c =: projectId AND isActive__c = true LIMIT 10000'; 
         }
         else if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(span))
         {
         	if(strObj == STR_ROLLOUT)
         	{
-        		addCondition = 'WHERE Regional_Project__c =: projectId LIMIT 10000';	
+            addCondition = 'WHERE Regional_Project__c =: projectId AND isActive__c = true LIMIT 10000';  
         	}else if(strObj == STR_COUNTRY){
-        		addCondition = 'WHERE IPM_Regional_Project__c =: projectId LIMIT 10000';
+            addCondition = 'WHERE IPM_Regional_Project__c =: projectId AND isActive__c = true LIMIT 10000';
         	}
                     
         }
@@ -2073,11 +2073,11 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         for(IPM_Project_Rollout__c ipmRollout : mapExistingRollouts.values())
         {
 
-            if(IPM_ConstantUtils.ROLLOUT_TYPE_MCO.equalsIgnoreCase(rolloutType) && !mcoRollNameToCountryCodeMap.isEmpty())
+            if(IPM_ConstantUtils.ROLLOUT_TYPE_MCO.equalsIgnoreCase(rolloutType))
             {
                 removeReferences(mcoRollNameToCountryCodeMap,ipmRollout);
             }
-            else if(IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY.equalsIgnoreCase(rolloutType) && !countryRollNameToCountryCodeMap.isEmpty())
+            else if(IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY.equalsIgnoreCase(rolloutType))
             {
                 removeReferences(countryRollNameToCountryCodeMap,ipmRollout);
             } 
