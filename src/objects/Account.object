@@ -3834,6 +3834,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>Requester_Comment__c</fullName>
+        <description>Explain a person is requesting the creation of this account.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Explain a person is requesting the creation of this account. This text is sent with the email notification to the manager and the administrator</inlineHelpText>
+        <label>Requester Comment</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Responsible_Unilever_Employee__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
