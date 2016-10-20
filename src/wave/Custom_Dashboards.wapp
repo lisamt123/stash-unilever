@@ -40,11 +40,6 @@
     </shares>
     <shares>
         <accessLevel>View</accessLevel>
-        <sharedTo>vipul_nautiyal@mindtree.com</sharedTo>
-        <sharedToType>User</sharedToType>
-    </shares>
-    <shares>
-        <accessLevel>View</accessLevel>
         <sharedTo>satish_osuri@guest.unilever.com</sharedTo>
         <sharedToType>User</sharedToType>
     </shares>
