@@ -49103,6 +49103,21 @@
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_without_CI</recordType>
     </layoutAssignments>
 	<layoutAssignments>
+        <layout>CI_SMS_Weekly_Update__c-CI_R2R SME Read only</layout>
+        <recordType>CI_SMS_Weekly_Update__c.CI_R2R_SME_Read_Only</recordType>
+    </layoutAssignments>
+	<layoutAssignments>
+        <layout>CI_R2R_Innovation__c-R2R Innovation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CI_R2R_Innovation__c-R2R Innovation Layout</layout>
+        <recordType>CI_R2R_Innovation__c.CI_R2R_Innovation_with_SME</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CI_R2R_Innovation__c-CI_R2R_Innovation Layout Final</layout>
+        <recordType>CI_R2R_Innovation__c.CI_R2R_Innovation_with_SME_Read_Only</recordType>
+    </layoutAssignments>
+	<layoutAssignments>
 	<layout>SAM_Request__c-SAM Cross Charge Request RW Layout</layout>
 	<recordType>SAM_Request__c.SAM_RW_CrossCharge_Request</recordType>
 	</layoutAssignments>
@@ -52555,6 +52570,21 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_without_CI</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CI_SMS_Weekly_Update__c.CI_R2R_SME_Read_Only</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CI_R2R_Innovation__c.CI_R2R_Innovation_with_SME</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CI_R2R_Innovation__c.CI_R2R_Innovation_with_SME_Read_Only</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
