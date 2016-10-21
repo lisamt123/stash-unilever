@@ -3207,7 +3207,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     </fields>
     <fields>
         <fullName>Mobile_Phone_No_Special_Char__c</fullName>
-        <externalId>false</externalId>
+        <externalId>true</externalId>
         <label>Mobile Phone No Special Char</label>
         <length>30</length>
         <required>false</required>

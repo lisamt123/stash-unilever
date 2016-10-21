@@ -2651,7 +2651,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>Skill_Match__c</fullName>
         <description>CEC - A formula field to check whether Language &amp; Product  skill of a case contains Language &amp; Product Category of a User. And also checks the Status , Market of a case &amp; whether the case is assigned to a Queue or not.</description>
         <externalId>false</externalId>
-        <formula>AND(Case_Brand_Mapping__r.Country__r.Enable_Skill_Routing__c ,Is_Language_Skill_Match__c,Is_Product_Skill_Match__c,(TEXT(Status)=&apos;New&apos;),IF(Owner:Queue.DeveloperName !=&apos;&apos;, TRUE, FALSE))</formula>
+        <formula>AND(Case_Brand_Mapping__r.Country__r.Enable_Skill_Routing__c ,Is_Language_Skill_Match__c,Is_Product_Skill_Match__c,OR(TEXT(Status)=&apos;New&apos;,TEXT(Status)=&apos;Reopened&apos;),IF(Owner:Queue.DeveloperName !=&apos;&apos;, TRUE, FALSE))</formula>
         <label>Skill Match</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
