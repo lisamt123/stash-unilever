@@ -15,9 +15,9 @@ public with sharing class IPM_FinancialYearHelper
     private static final String IPM_FINANCIAL_YEAR_STR = 'IPM_Financial_Year__c';
 	
     // used to find which financial has value invalid at which span and accordinglys set that invalid flag on financial as true
-    private static Map<String, Set<String>> spanTofinExtIdMap = new Map<String, Set<String> >{'Global' => new Set<String>{},
-    																   						  'Regional' => new Set<String>{},
-    																   						  'Local' => new Set<String>{}
+    private static Map<String, Set<String>> spanTofinExtIdMap = new Map<String, Set<String> >{IPM_ConstantUtils.PROJECT_SPAN_GLOBAL => new Set<String>{},
+    																   						  IPM_ConstantUtils.PROJECT_SPAN_REGIONAL => new Set<String>{},
+    																   						  IPM_ConstantUtils.PROJECT_SPAN_LOCAL => new Set<String>{}
     																   						}; 
     
     // Field set used for consolidation  
@@ -458,7 +458,7 @@ public with sharing class IPM_FinancialYearHelper
                 }
     		}
     		
-    		spanTofinExtIdMap.put('Global',globalInvalidFinSet);
+    		spanTofinExtIdMap.put(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,globalInvalidFinSet);
     }
     
     //For Regional Projects' Financials
@@ -488,7 +488,7 @@ public with sharing class IPM_FinancialYearHelper
                             }
                }
     		}
-    		spanTofinExtIdMap.put('Regional',regionalInvalidFinSet);
+    		spanTofinExtIdMap.put(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL,regionalInvalidFinSet);
     		
     }
     
@@ -503,40 +503,55 @@ public with sharing class IPM_FinancialYearHelper
                             localInvalidFinSet.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);
                }         
     		}
-    		spanTofinExtIdMap.put('Local',localInvalidFinSet);
+    		spanTofinExtIdMap.put(IPM_ConstantUtils.PROJECT_SPAN_LOCAL,localInvalidFinSet);
     }
     
     
    //Find the Map of the Financial and its invalid field to be set to true
     static list<IPM_Financial__c> getFinToUpdateWithInvalidFlags(set<string> setAllFinacials)
     {
+    		Boolean isChanged = false;
+    		
     		//Update Financials
             list<IPM_Financial__c> lstInvalidFinance = new list<IPM_Financial__c>();
             if(!setAllFinacials.isEmpty()){
                 for(string finExtId :setAllFinacials){
-                    if(!setInvalidFin.isEmpty() && setInvalidFin.contains(finExtId)){
-                       
-                        if(spanTofinExtIdMap.get('Global').contains(finExtId)){
-                        	lstInvalidFinance.add(new IPM_Financial__c( Financial_External_ID__c = finExtId, IsFinancialInvalidGlobal__c = true));
-                        }
-                        if(spanTofinExtIdMap.get('Regional').contains(finExtId)){
-                        	lstInvalidFinance.add(new IPM_Financial__c( Financial_External_ID__c = finExtId, IsFinancialInvalidRegional__c = true));
-                        }
-                        if(spanTofinExtIdMap.get('Local').contains(finExtId)){
-                        	lstInvalidFinance.add(new IPM_Financial__c( Financial_External_ID__c = finExtId, IsFinancialInvalidLocal__c = true));
-                        }
+                    
+                    isChanged = false; // flag to indicate if the new financial is to be added to the list of financials to be updated
+                    
+                    IPM_Financial__c newFin = new IPM_Financial__c( Financial_External_ID__c = finExtId);
+                    
+                    if(!setInvalidFin.isEmpty() && setInvalidFin.contains(finExtId) && spanTofinExtIdMap.get(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL).contains(finExtId)){
+                    	newFin.IsFinancialInvalidGlobal__c = true;
+                    	isChanged = true;
                     }
                     else{
-                        
-                        if(spanTofinExtIdMap.get('Global').contains(finExtId)){
-                        	lstInvalidFinance.add(new IPM_Financial__c( Financial_External_ID__c = finExtId, IsFinancialInvalidGlobal__c = false));
-                        }
-                        if(spanTofinExtIdMap.get('Regional').contains(finExtId)){
-                        	lstInvalidFinance.add(new IPM_Financial__c( Financial_External_ID__c = finExtId, IsFinancialInvalidRegional__c = false));
-                        }
-                        if(spanTofinExtIdMap.get('Local').contains(finExtId)){
-                        	lstInvalidFinance.add(new IPM_Financial__c( Financial_External_ID__c = finExtId, IsFinancialInvalidLocal__c = false));
-                        }   
+                    	newFin.IsFinancialInvalidGlobal__c = false;
+                    	isChanged = true;
+                    }
+                    
+                    if(!setInvalidFin.isEmpty() && setInvalidFin.contains(finExtId) && spanTofinExtIdMap.get(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL).contains(finExtId)){
+                    	newFin.IsFinancialInvalidRegional__c = true;
+                    	isChanged = true;
+                    }
+                    else{
+                    	newFin.IsFinancialInvalidRegional__c = false;
+                    	isChanged = true;
+                    }
+                    
+                    
+                    if(!setInvalidFin.isEmpty() && setInvalidFin.contains(finExtId) && spanTofinExtIdMap.get(IPM_ConstantUtils.PROJECT_SPAN_LOCAL).contains(finExtId)){
+                    	newFin.IsFinancialInvalidLocal__c = true;
+                    	isChanged = true;
+                    }
+                    else{
+                    	newFin.IsFinancialInvalidLocal__c = false;
+                    	isChanged = true;
+                    }
+                    
+                    
+                    if(isChanged){
+                    	lstInvalidFinance.add(newFin);
                     }
                 }   
             }
