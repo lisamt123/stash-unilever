@@ -1,6 +1,8 @@
 src
 src/applications
 src/applications/CI_R2R_Budget.app
+src/applications/CI_R2R_Innovation.app
+src/applications/CI_SME_Weekly_Update.app
 src/classes/CI_R2R_Budget_Trigger_Test.cls
 src/classes/CI_R2R_Budget_Trigger_Test.cls-meta.xml
 src/classes/CI_R2R_Budget_TriggerHandler.cls
