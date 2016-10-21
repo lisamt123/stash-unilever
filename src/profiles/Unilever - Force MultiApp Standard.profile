@@ -51770,10 +51770,6 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>FAU_Milestone__c</tab>
-    </tabVisibilities>
-        <visibility>
-    <tabVisibilities>
         <tab>File__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
