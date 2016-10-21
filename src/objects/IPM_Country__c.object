@@ -3482,6 +3482,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000Gw42_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PELE 17VICTORY</label>
+        <queue>IPM_a7I0L000000Gw42</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Country</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
