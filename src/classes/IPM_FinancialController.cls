@@ -2005,16 +2005,16 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               //method checkIsFinancialInvalid sets the flag appropriately
               checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
             
-              financialsToUpdateSet.clear();
               //logic to calculate the consolidated financials validation cells value
               if(!currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)  &&  (projectType!= null && !projectType.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) )){
                 financialsToUpdateSet = getConsolidatedValidationCells(currentFinancial);
               }
               
               financialsToUpdateSet.add(currentFinancial);
-              financialsToUpdateSet.clear();
+              
               update new List<IPM_Financial__c>(financialsToUpdateSet);
-              IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved(new List<IPM_Financial__c>{currentFinancial});      
+              IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved(new List<IPM_Financial__c>{currentFinancial});
+              financialsToUpdateSet.clear();      
                                             
                              
         } catch (Exception eX){
