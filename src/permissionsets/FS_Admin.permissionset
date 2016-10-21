@@ -50673,4 +50673,8 @@
         <enabled>true</enabled>
         <name>EditReadonlyFields</name>
     </userPermissions>
+	<userPermissions>
+        <enabled>false</enabled>
+        <name>CreateAppExchangePackages </name>
+    </userPermissions>
 </PermissionSet>
