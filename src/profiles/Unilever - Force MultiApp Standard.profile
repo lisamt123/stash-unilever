@@ -24063,111 +24063,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Context__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Course_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Course_Occ_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_External_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Important_Logistics__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Initiate_Feedback__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Mail_Content_1__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Mail_Content_2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_No_Of_Occurence_Members__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_No_of_Participants__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Outlook_Invite_URL__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Post_Prog_End_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Pre_Work_Start_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Programme_Overview__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Required_Action__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Send_Invite_Mail__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Signature__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Training_Room_Image__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Training_Room__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_Occurence__c.FA_Training_Venue_Image__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>FA_Course__c.FA_Course_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -24249,11 +24144,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FA_Member_ChatterGroup__c.FA_Chatter_Group_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Member_ChatterGroup__c.FA_Course_Occurence__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -47790,9 +47680,6 @@
         <layout>FA_Course_Facilitator__c-FA_Course Facilitator Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>FA_Course_Occurence__c-FA_Course Occurence Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>FA_Course__c-FA_Course Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -52848,10 +52735,6 @@
     <tabVisibilities>
         <tab>FAU_Webinar__c</tab>
         <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>FA_Course_Occurence__c</tab>
-        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>FA_Course__c</tab>
