@@ -28,11 +28,11 @@ private class AR_Test_FixedDescriptionsHandler {
         Test.stopTest();
         
         // get object mapped not in map anymore
-      /*  AR_SObjectHolder h1 = res.get(Designs )[0];
-        AR_SObjectHolder h2 = res.get('Artwork')[0];
+      /*  AR_SObjectHolder h1 = res.get(Designs )[0]; */
+      //  AR_SObjectHolder h2 = res.get('Artwork')[0];
         // Assert functions added because unit test required assert function. Author : Bibhu
-        system.assertEquals(q1.name, h1.obj.get('Name'), 'value was not mapped from custom setting');
-        system.assertEquals(q2.name, 'value was not mapped from custom setting');*/
+       // system.assertEquals(q1.name, h2.obj.get('Name'), 'value was not mapped from custom setting');
+        system.assertEquals(q1.name, 'value was not mapped from custom setting');
     }
     
     static testMethod void testInsuranceSettins() {
