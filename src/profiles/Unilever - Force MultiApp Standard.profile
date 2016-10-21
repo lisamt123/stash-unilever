@@ -50273,10 +50273,6 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>myLogOut</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>unilever_way_home</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
