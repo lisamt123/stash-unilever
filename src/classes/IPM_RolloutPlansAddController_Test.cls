@@ -620,18 +620,8 @@ private class IPM_RolloutPlansAddController_Test
 
 
 	/*************************************************************************************
-	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects
-	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
-	* @name :  testGlobalProjRolloutAdd
-	***************************************************************************************/
-	private static testmethod void testGlobalProjRolloutAdd()
-	{
 		
-		GlobalProjRolloutAdd(true,false,false,false);
-		System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
 		
-	} 
-	/*************************************************************************************
 	* @Description : Used for testing  regional and local rollouts creation for regional project
 	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
 	* Parameters are set to null
@@ -775,13 +765,23 @@ private class IPM_RolloutPlansAddController_Test
 	}
 	
 	/*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects
+	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
+	* @name :  testGlobalProjRolloutAdd
+	***************************************************************************************/
+ 	private static testmethod void testGlobalProjRolloutAdd()
+	{
+		GlobalProjRolloutAdd(true,false,false,false);
+		System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
+	} 
+	/*************************************************************************************
 	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects and removal of rollouts
 	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
 	* @name :  testGlobalProjRolloutAdd2
 	***************************************************************************************/
 	private static testmethod void testGlobalProjRolloutAdd2()
 	{
-		GlobalProjRolloutAdd(false,false,false,false);
+		GlobalProjRolloutAdd(true,false,true,true);
 		System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG); 
 	}
 	/*************************************************************************************

@@ -93,7 +93,6 @@ private class IPM_ProjectSetUpController_Test {
         List<IPM_Project__c> BDProjectList = [ SELECT Id,Name,IPM_Company_Card__c,IPM_CompanyCardText__c,IPM_Category_Text__c,IPM_ProjectSubType__c,IPM_ProjectGKM__c FROM IPM_Project__c WHERE Name=:ProjectWithOutBoss.Name LIMIT 1];
         system.assertEquals(BDProjectList[0].Name,ProjectWithOutBoss.Name,'Project name is :'+BDProjectList[0].Name);
         List<IPM_Project_Metadata__mdt> mdtList = IPM_TestFactory_Helper.createIPMProjectMetadata();
-        system.debug('mdList======>'+mdtList);
         
         ProjectWithOutBoss.IPM_ProjectGKM__c = mdtList[0].MasterLabel;
         update projectWithOutBoss; 
@@ -262,10 +261,8 @@ private class IPM_ProjectSetUpController_Test {
         sic.project.IPM_Category_Text__c = CATEGORY;
         sic.project.IPM_ProjectSubType__c = 'Operational';
         System.assertEquals(sic.project.IPM_Project_Logo_Id__c,IPM_ConstantUtils.BLANK,'Project logo id is Empty');
-        Test.stopTest();
+        
         sic.associateProjectMetadata();
-
-        System.debug(LoggingLevel.ERROR,'get the metadata before multibrandpos -->>'+sic.projectMetadata);
         
         sic.project.IPM_Brand_Positioning__c='val1,val2,val3,val4,val5,val6,val7,val8,val9,val10,val11,val12,val13,val14,val15,val16,val17,val18,val19,val20,val21,val22,val23,val24';
         sic.saveProceed();
@@ -275,6 +272,7 @@ private class IPM_ProjectSetUpController_Test {
         
         List<IPM_Project__c> projectList = [Select Id,Name,IPM_Project_Name__c from IPM_Project__c where IPM_Project_Name__c='TESTPROJECTNEW' LIMIT 1];
         System.assertEquals(projectList.size(),1,'project got saved with updated project name as:'+projectList[0].IPM_Project_Name__c);
+        Test.stopTest(); 
         system.runAs(userInitialize){
             sic.project.Name='Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name ';
             sic.processProjectSave();
@@ -287,7 +285,8 @@ private class IPM_ProjectSetUpController_Test {
             sic.processProjectSave();
             List<IPM_Project__c> updatedProjectList = [ SELECT Id,IPM_White_Space_Project__c FROM IPM_Project__c WHERE Id=:ProjectWithOutBoss.id LIMIT 1];
             system.assertEquals(updatedProjectList[0].IPM_White_Space_Project__c,false,'Project white space is :'+updatedProjectList[0].IPM_White_Space_Project__c);
-            
+            sic.regionShortName();
+	    sic.saveProject();
             
         }
         

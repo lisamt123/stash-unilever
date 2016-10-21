@@ -22,7 +22,7 @@ private class  IPM_BCCController_Test {
         IPM_Project_Rollout__c, IPM_Financial__c objects
 ***************************************************************************/
     static void initializeData(){
-        Test.startTest();
+        
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
             // user has to be created as system admin 
@@ -42,7 +42,7 @@ private class  IPM_BCCController_Test {
         
         List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
         System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card not created successfully');
-        
+        Test.startTest();
         IPM_TestFactory_Helper.getProjectMasterData();
         projectList = IPM_TestFactory_Helper.projectSetUp(1,testUser);
         System.runAs(testUser) {

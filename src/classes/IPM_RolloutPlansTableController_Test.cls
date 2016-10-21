@@ -64,8 +64,15 @@ private class IPM_RolloutPlansTableController_Test{
             List<IPM_Project__c> projectAssertList = [select Name from IPM_Project__c where id in : projId];
             system.assertEquals(1,projectAssertList.size(),'No project created');
             
+            createRolloutCountry(projectList, stdUserForRollout);
            
-            regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForRollout,stdUserForRollout});
+            IPM_RolloutTriggerHandler handler = new IPM_RolloutTriggerHandler();
+            handler.processInsert(localRolloutList);
+            handler.processDelete(localRolloutList);
+        }
+    } 
+	private static void createRolloutCountry(List<IPM_Project__c> projectListTmp, User stdUser){
+		regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectListTmp,new List<User>{stdUser,stdUser});
             insert regionalRolloutList; // this will give me all regional rollout
             
             
@@ -103,7 +110,7 @@ private class IPM_RolloutPlansTableController_Test{
                 }
                 
                 MDO_Geography__c mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId);
-                //insert mdo;
+                
                 
                 IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo.id,
                                                                  IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
@@ -113,15 +120,10 @@ private class IPM_RolloutPlansTableController_Test{
             
             insert countryList;
             
-            IPM_RolloutTriggerHandler handler = new IPM_RolloutTriggerHandler();
-            handler.processInsert(localRolloutList);
-            //handler.processUpdate(mapNewProjectRollouts,mapNewProjectRollouts);
-            handler.processDelete(localRolloutList);
             
         }
         
         
-    } 
 
     public static testmethod void testRolloutProject()
     {
@@ -270,14 +272,16 @@ private class IPM_RolloutPlansTableController_Test{
     
     static testMethod void RegionalOrignalTest()
     {    
-        User regionalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
+        User regionalUser = [Select Id, Name,LastName from User where LastName='PLATFORM_USER' limit 1];
         System.runAs(regionalUser)
         {
             Test.startTest();
             
             List<IPM_Project__c> regionalProjectList = IPM_TestFactory_Helper.projectSetUpRegional(1,regionalUser); //create a regional project
+            regionalProjectList[0].Is_Archieved__c = false;
             insert regionalProjectList;
             
+            createRolloutCountry(regionalProjectList, regionalUser);
             Test.setCurrentPage(pageRef);
             ApexPages.currentPage().getParameters().put(ID_PARAMETER,regionalProjectList[0].Id);
             
@@ -295,6 +299,41 @@ private class IPM_RolloutPlansTableController_Test{
             List<IPM_Project_Rollout__c>proRoll=[select Id,IPM_Project__c from IPM_Project_Rollout__c where Id=:irp.selectedMCORollout];
             System.assertEquals(proRoll.size(),0,'rollout not deleted');            
             
+            irp.holdLocalRolloutBrandVal();
+            Test.stopTest();
+        }
+    }
+    static testMethod void RegionalOrignalTest2()
+    {    
+        User regionalUser = [Select Id, Name, LastName from User where LastName='PLATFORM_USER' limit 1];
+        Set<String> projectNameSet = new Set<String>{TESTPROJECT};
+        System.runAs(regionalUser)
+        {
+            Test.startTest();
+            List<IPM_Project__c> projectListTemp = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c
+                                                    from IPM_Project__c where Name in:projectNameSet];
+            List<IPM_Project__c> regionalProjectList = IPM_TestFactory_Helper.projectSetUpRegional(1,regionalUser); //create a regional project
+            regionalProjectList[0].Is_Archieved__c = false;
+            regionalProjectList[0].IPM_Parent_Project__c = projectListTemp[0].Id;
+            insert regionalProjectList;
+            createRolloutCountry(regionalProjectList, regionalUser);
+            Test.setCurrentPage(pageRef);
+            ApexPages.currentPage().getParameters().put(ID_PARAMETER,projectListTemp[0].Id);
+            IPM_RolloutPlansTableController irp= new IPM_RolloutPlansTableController();
+            irp.isEditMode = true;
+            irp.isEditable = true;
+            irp.isStatusEditable = true;  
+            irp.editRollout();
+            irp.cancelRollout();
+            irp.checkRollouts();
+            irp.addRollout();
+            irp.saveRollout();
+            irp.projectType.IPM_CreateRegionalProjects__c = true;
+            irp.projectType.Adhoc_Local_Project_Creation_Filter__c ='KeyMCO__c=true';
+            irp.saveRollout();
+            irp.deleteMCORollout();
+            List<IPM_Project_Rollout__c>proRoll=[select Id,IPM_Project__c from IPM_Project_Rollout__c where Id=:irp.selectedMCORollout];
+            System.assertEquals(proRoll.size(),0,'rollout not deleted');            
             irp.holdLocalRolloutBrandVal();
             Test.stopTest();
         }

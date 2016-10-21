@@ -375,7 +375,7 @@ private class IPM_GateDocumentController_Test{
             
             // Retrieve the project type and chnage the phase
             IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(projectListObj[0]);
-			//IPM_Project_Type__c nextPhaseProjectType = IPM_Utils.getNextPhase(currentProjectType,false);
+	
             ipmGateDocContrl.moveToNextDocument();
             
             currentProjectType.IPM_CreateLocalProjectOnStatusChange__c = TRUE;
@@ -395,6 +395,7 @@ private class IPM_GateDocumentController_Test{
 			{
 				System.assert(projSubLevelSectionList[0].IPM_Default_Section__c,'Project document sections not updated properly');
 			}
+            ipmGateDocContrl.getDynamicSection();
             test.stopTest();
         }
     }
@@ -513,7 +514,7 @@ private class IPM_GateDocumentController_Test{
             test.startTest();
             ipmGateDocContrl=new IPM_GateDocumentController();
             List<IPM_Project_Document_Section__c> projectDocSecList = [Select Id,IPM_Section__c from IPM_Project_Document_Section__c where IPM_Project_Document__c=:document.Id];
-            
+            ipmGateDocContrl.isPDLApproved = TRUE;
             IPM_Section__c sec = [Select Id, IPM_Section_Sequence__c From IPM_Section__c WHERE Id =:projectDocSecList[0].IPM_Section__c];
             sec.IPM_Section_Sequence__c = '2.2';
             sec.IPM_Negotiable__c = true;
@@ -576,12 +577,7 @@ private class IPM_GateDocumentController_Test{
             projectDocSecList[0].IPM_FunctionalRole__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_BB;
             update projectDocSecList;
             
-            // checking the project reactivation code
-        /*    Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
-            Date dateToCompare = System.today().addMonths(-noOfMonths);
-            projectList[0].IPM_EligibleForReactivation__c = TRUE;
-            projectList[0].IPM_Stopped_Date_Time__c = 
-        */
+          
 			ipmGateDocContrl=new IPM_GateDocumentController();
          
             test.stopTest();
@@ -638,7 +634,7 @@ private class IPM_GateDocumentController_Test{
              update projectDocSecList;
              
 			 ipmGateDocContrl=new IPM_GateDocumentController();
-             
+             ipmGateDocContrl.isPDLApproved = TRUE;
              sec.IPM_Section_Sequence__c = '7.2';
              sec.IPM_Negotiable__c = true;
              update sec;
@@ -650,8 +646,6 @@ private class IPM_GateDocumentController_Test{
              System.assertEquals(projectDocSecList[0].IPM_FunctionalRole__c,IPM_ConstantUtils.FUNCTIONAL_ROLE_CD,'Function Role Not updated');
 
              ipmGateDocContrl=new IPM_GateDocumentController();
-             // test compareTo Function
-               
              test.stopTest();
          }
      }

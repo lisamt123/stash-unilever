@@ -704,9 +704,6 @@ public class IPM_TestFactory_Helper
             }
             
             update projectRolloutList;
-             
-            System.debug('projectRolloutList ==> '+projectRolloutList);
-            System.debug('projectListLocal ==> '+projectListLocal);
             
             return projectListLocal;
         }
@@ -2551,12 +2548,12 @@ public class IPM_TestFactory_Helper
             'IPM_No_Of_Days_for_Developing__c' => new List<String>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-180',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-180',EMPTY_STRING,EMPTY_STRING},
             'IPM_No_Of_Days__c' => new List<String>{BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,'0',BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE},
             'IPM_Active__c'=> new list<Boolean>{true,true,true,true,true,true,true,true,true,true,true},
-            IPM_PHASE=> new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_READY},
+            IPM_PHASE=> new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_READY,FEASIBILITY,FEASIBILITY},
             'IPM_Type_of_gate__c' => new List<String>{CHARTER,CONTRACT,MARKET_READY,MARKET_DEPLOYMENT,EMPTY_STRING,EMPTY_STRING,CHARTER,CONTRACT,MARKET_READY,EMPTY_STRING,EMPTY_STRING},
             'IPM_Type_of_Milestone__c' => new List<String>{STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD},
-            IPM_PROJECT_TYPE => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE},
-            IPM_PROJECT => new List<Id>{masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id},
-            RECORD_TYPE_ID => new List<Id>{SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE} 
+            IPM_PROJECT_TYPE => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,ORIGINAL_PROJECTYPE,OPERATIONAL_PROJECTYPE},
+            IPM_PROJECT => new List<Id>{masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id},
+            RECORD_TYPE_ID => new List<Id>{SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE} 
         };
         
         milestoneTemplateList = (List<IPM_Milestone__c>)IPM_TestFactory.createSObjectList('IPM_Milestone__c',milestoneTemplateMap,false);
@@ -2593,7 +2590,6 @@ public class IPM_TestFactory_Helper
         
         questionnaireTemplateList = (List<IPM_Questionnaire__c>)IPM_TestFactory.createSObjectList('IPM_Questionnaire__c',questionnaireMap,false);
         
-        System.debug('questionnaireTemplateList1::' + questionnaireTemplateList );
         for(IPM_Questionnaire__c questionnaire : questionnaireTemplateList)
         {
             if(questionnaire.RecordTypeId == recTypeGKC && questionnaire.IPM_Market_Ready_Score__c == 1){
@@ -2601,7 +2597,7 @@ public class IPM_TestFactory_Helper
             }
         }
          
-        System.debug('questionnaireTemplateList2::' + questionnaireTemplateList ); 
+        
         insert questionnaireTemplateList;
 	}
 	
