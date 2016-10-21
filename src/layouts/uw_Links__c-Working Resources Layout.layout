@@ -29,6 +29,10 @@
                 <behavior>Edit</behavior>
                 <field>Sub_Categorys__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

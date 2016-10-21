@@ -1,0 +1,1 @@
+{"query":{"query":"{&quot;measures&quot;:[[&quot;count&quot;,&quot;USER_ID&quot;]],&quot;groups&quot;:[&quot;PAGE_NAME&quot;],&quot;filters&quot;:[[&quot;PAGE_NAME&quot;,[&quot;ipm_&quot;],&quot;matches&quot;]]}","version":-1.0}}

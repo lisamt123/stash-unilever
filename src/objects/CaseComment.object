@@ -13,11 +13,23 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email ANZ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Baltics</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Bangladesh</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Benelux</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Brazil</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -49,7 +61,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Italy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Middle Americas</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -65,11 +89,27 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Philippines</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email Poland</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Email Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email South Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Southern Cone</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -81,11 +121,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Email Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Email TO France</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Email UK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email Vietnam</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -130,6 +178,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Web</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web North America</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

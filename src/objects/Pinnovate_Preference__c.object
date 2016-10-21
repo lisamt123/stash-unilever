@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -170,8 +166,17 @@
         <columns>Group_Name__c</columns>
         <columns>Open_Pinnovate_Preference__c</columns>
         <columns>Open_Pinnovate_Wall__c</columns>
+        <columns>Pinnovate_Wall__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Background_Color__c</columns>
+        <columns>Background_Image__c</columns>
+        <columns>Background_Preview__c</columns>
+        <columns>Header_Banner__c</columns>
+        <columns>Header_Preview__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Pinnovate ID</label>

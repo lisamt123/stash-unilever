@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>SAM Trigger Pattern</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>SAM Trigger Pattern</value>
+    </caseValues>
+    <fields>
+        <help><!-- Uncheck the check box to stop the Request trigger exection --></help>
+        <label><!-- Execute Trigger --></label>
+        <name>chk_Stop_Trigger_Execution__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>txt_Description__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

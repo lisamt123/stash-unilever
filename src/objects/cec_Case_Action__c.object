@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -166,7 +162,7 @@ IF(Q11__c == &quot;Verbatim&quot;, Case_Id__r.Subject, &quot;&quot;))))))))))))<
         <type>Text</type>
         <unique>false</unique>
     </fields>
-     <fields>
+    <fields>
         <fullName>Q12_Data__c</fullName>
         <description>CEC: To fetch the case data based on the Q12 value</description>
         <externalId>false</externalId>

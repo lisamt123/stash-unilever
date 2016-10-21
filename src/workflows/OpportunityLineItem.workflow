@@ -93,7 +93,7 @@
             <name>FS_UpdateuniqueProduct</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Created to restrict adding same products to opportunity.</description>
         <formula>AND($Profile.Name=&quot;Unilever Food Solution - Russia&quot;,  Opportunity.RecordType.Name =&quot;RUFS Opportunity TPR&quot;)</formula>
         <triggerType>onAllChanges</triggerType>
@@ -110,12 +110,7 @@
         </actions>
         <active>true</active>
         <description>Copy DIST TMI and Total COGS To Non Formula Field. Needed to roll-up DIST TMI formula field to the Opportunity</description>
-        <formula>OR(
-ISCHANGED(FS_DISTTMI__c),
-ISCHANGED(TotalCOGS__c),
-NOT(ISBLANK(FS_DISTTMI__c)),
-NOT(ISBLANK(TotalCOGS__c))
-)</formula>
+        <formula>OR( ISCHANGED(FS_DISTTMI__c), ISCHANGED(TotalCOGS__c), NOT(ISBLANK(FS_DISTTMI__c)), NOT(ISBLANK(TotalCOGS__c)) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

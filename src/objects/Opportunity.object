@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -127,7 +123,6 @@
             <default>false</default>
         </values>
     </businessProcesses>
-
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
@@ -384,10 +379,6 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>FOH ACCELERATION</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>FOH MAYO</fullName>
                 <default>false</default>
             </picklistValues>
@@ -429,10 +420,6 @@ Total_Opp_COGS__c) /(Amount -
             </picklistValues>
             <picklistValues>
                 <fullName>LCB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>N1 CRYSTAL</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2666,6 +2653,21 @@ Enter competitor pricing if available</inlineHelpText>
         </filters>
         <label>New This Week</label>
     </listViews>
+    <listViews>
+        <fullName>Won</fullName>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OPPORTUNITY.WON</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>OPPORTUNITY.CLOSED</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Won</label>
+    </listViews>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
@@ -2693,6 +2695,10 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>BOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>D1 SOUPS</fullName>
                 <default>false</default>
             </values>
@@ -2705,7 +2711,7 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>FOH ACCELERATION</fullName>
+                <fullName>FOH MAYO</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2717,11 +2723,23 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>HOT TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ICED TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>K1 MEALS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>N1 CRYSTAL</fullName>
+                <fullName>Knorr Ultimate Low%2FReduced Sodium*</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LCB</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2729,51 +2747,19 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X1 US LCB</fullName>
+                <fullName>SDJ</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X2 SPECIALTY TEA CANADA</fullName>
+                <fullName>SPECIALTY TEA</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X3 SPECIALTY TEA US</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>X4 US SDJ</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z1 BOH MAYO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z2 CAN LCB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z3 CAN SDJ</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z5 FOH MAYO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z6 HOT TEA CANADA</fullName>
+                <fullName>X4</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Z7 HOT TEA US</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z8 ICED TEA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z9 Knorr Ultimate Low%2FReduced Sodium*</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2909,6 +2895,13 @@ Enter competitor pricing if available</inlineHelpText>
             </values>
             <values>
                 <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Sales_Locale_List__c</picklist>
+            <values>
+                <fullName>Empty</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3189,7 +3182,7 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>FOH ACCELERATION</fullName>
+                <fullName>FOH MAYO</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3205,15 +3198,7 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>N1 CRYSTAL</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Q1 MISCELLANEOUS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>X1 US LCB</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3393,6 +3378,13 @@ Enter competitor pricing if available</inlineHelpText>
             </values>
             <values>
                 <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Sales_Locale_List__c</picklist>
+            <values>
+                <fullName>Empty</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3781,6 +3773,13 @@ Enter competitor pricing if available</inlineHelpText>
             </values>
             <values>
                 <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Sales_Locale_List__c</picklist>
+            <values>
+                <fullName>Empty</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

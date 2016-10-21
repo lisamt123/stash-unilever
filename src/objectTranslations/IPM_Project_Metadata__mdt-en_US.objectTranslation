@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Project Metadata</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Project Metadata</value>
+    </caseValues>
+    <fields>
+        <label><!-- BET --></label>
+        <name>BET__c</name>
+    </fields>
+    <fields>
+        <label><!-- ApplicableCategories --></label>
+        <name>IPM_ApplicableCategories__c</name>
+    </fields>
+    <fields>
+        <label><!-- ApplicableCompanyCard --></label>
+        <name>IPM_ApplicableCompanyCard__c</name>
+    </fields>
+    <fields>
+        <label><!-- ApplicableGates --></label>
+        <name>IPM_ApplicableGates__c</name>
+    </fields>
+    <fields>
+        <label><!-- ApplicablePhases --></label>
+        <name>IPM_ApplicablePhases__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cancel Stop Project Duration --></label>
+        <name>IPM_CancelStopProjectDuration__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sets the default Complexity when creating the project. --></help>
+        <label><!-- Default Complexity --></label>
+        <name>IPM_DefaultComplexity__c</name>
+        <picklistValues>
+            <masterLabel>Full</masterLabel>
+            <translation><!-- Full --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lite</masterLabel>
+            <translation><!-- Lite --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Default Phase --></label>
+        <name>IPM_DefaultPhase__c</name>
+        <picklistValues>
+            <masterLabel>Capability</masterLabel>
+            <translation><!-- Capability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feasibility</masterLabel>
+            <translation><!-- Feasibility --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ideas</masterLabel>
+            <translation><!-- Ideas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Deployment</masterLabel>
+            <translation><!-- Market Deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLE</masterLabel>
+            <translation><!-- PLE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Default Project Span --></label>
+        <name>IPM_DefaultProjectSpan__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional</masterLabel>
+            <translation><!-- Regional --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- FastTrackApplicable --></label>
+        <name>IPM_FastTrackApplicable__c</name>
+    </fields>
+    <fields>
+        <label><!-- GKM Questions Applicable --></label>
+        <name>IPM_GKMQuestionsApplicable__c</name>
+    </fields>
+    <fields>
+        <label><!-- GMK Question Detail --></label>
+        <name>IPM_GMKQuesiton__c</name>
+    </fields>
+    <fields>
+        <label><!-- GMK Question Answer --></label>
+        <name>IPM_GMKQuestionAns__c</name>
+        <picklistValues>
+            <masterLabel>GCLT</masterLabel>
+            <translation><!-- GCLT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GCLT &amp; RCLT</masterLabel>
+            <translation><!-- GCLT &amp; RCLT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RCLT</masterLabel>
+            <translation><!-- RCLT --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- For showing default Selected Value for GateKeeping Question --></help>
+        <label><!-- GMK Question Default Answer --></label>
+        <name>IPM_GMKQuestionDefaultAns__c</name>
+        <picklistValues>
+            <masterLabel>GCLT</masterLabel>
+            <translation><!-- GCLT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GCLT &amp; RCLT</masterLabel>
+            <translation><!-- GCLT &amp; RCLT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RCLT</masterLabel>
+            <translation><!-- RCLT --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- QuestionHelpText --></label>
+        <name>IPM_GMKQuestionHelpText__c</name>
+    </fields>
+    <fields>
+        <label><!-- GMK Question Label --></label>
+        <name>IPM_GMKQuestionLabel__c</name>
+    </fields>
+    <fields>
+        <label><!-- MandatoryFields --></label>
+        <name>IPM_MandatoryFields__c</name>
+    </fields>
+    <fields>
+        <label><!-- MultipleBrandPosApplicable --></label>
+        <name>IPM_MultiBrandPosApplicable__c</name>
+    </fields>
+    <fields>
+        <label><!-- ProjectSubType --></label>
+        <name>IPM_ProjectSubType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Type --></label>
+        <name>IPM_ProjectType__c</name>
+        <picklistValues>
+            <masterLabel>Operational</masterLabel>
+            <translation><!-- Operational --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Original</masterLabel>
+            <translation><!-- Original --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- SubProjectHelpText --></label>
+        <name>IPM_SubProjectHelpText__c</name>
+    </fields>
+    <fields>
+        <label><!-- TargetLaunchDateDuration --></label>
+        <name>IPM_TargetLaunchDateDuration__c</name>
+    </fields>
+    <fields>
+        <label><!-- WhiteSpaceApplicable --></label>
+        <name>IPM_WhiteSpaceApplicable__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

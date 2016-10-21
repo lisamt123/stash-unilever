@@ -42,10 +42,6 @@
     </entryCriteria>
     <finalApprovalActions>
         <action>
-            <name>CEC_Thunderhead_Approved_Template</name>
-            <type>Task</type>
-        </action>
-        <action>
             <name>CEC_Update_Status</name>
             <type>FieldUpdate</type>
         </action>

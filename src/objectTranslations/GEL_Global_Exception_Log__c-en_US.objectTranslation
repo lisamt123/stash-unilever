@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Exception</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>GEL Global Exception Logs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+        <picklistValues>
+            <masterLabel>CountryGroup_South Central Europe</masterLabel>
+            <translation><!-- CountryGroup_South Central Europe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Bangladesh</masterLabel>
+            <translation><!-- Country_Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Belgium</masterLabel>
+            <translation><!-- Country_Belgium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Brazil</masterLabel>
+            <translation><!-- Country_Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Bulgaria</masterLabel>
+            <translation><!-- Country_Bulgaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_China</masterLabel>
+            <translation><!-- Country_China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_China, Country_Japan</masterLabel>
+            <translation><!-- Country_China, Country_Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Colombia</masterLabel>
+            <translation><!-- Country_Colombia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Corporate Centre Netherlands</masterLabel>
+            <translation><!-- Country_Corporate Centre Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Czech Republic</masterLabel>
+            <translation><!-- Country_Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Côte D&apos;Ivoire</masterLabel>
+            <translation><!-- Country_Côte D&apos;Ivoire --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_France</masterLabel>
+            <translation><!-- Country_France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Germany</masterLabel>
+            <translation><!-- Country_Germany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Ghana</masterLabel>
+            <translation><!-- Country_Ghana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Hong Kong</masterLabel>
+            <translation><!-- Country_Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Hungary</masterLabel>
+            <translation><!-- Country_Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_India</masterLabel>
+            <translation><!-- Country_India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Indonesia</masterLabel>
+            <translation><!-- Country_Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Italy</masterLabel>
+            <translation><!-- Country_Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Kenya</masterLabel>
+            <translation><!-- Country_Kenya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Mexico</masterLabel>
+            <translation><!-- Country_Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Netherlands</masterLabel>
+            <translation><!-- Country_Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Nigeria</masterLabel>
+            <translation><!-- Country_Nigeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Pakistan</masterLabel>
+            <translation><!-- Country_Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Philippines</masterLabel>
+            <translation><!-- Country_Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Poland</masterLabel>
+            <translation><!-- Country_Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_R&amp;D Netherlands</masterLabel>
+            <translation><!-- Country_R&amp;D Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Romania</masterLabel>
+            <translation><!-- Country_Romania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Russian Federation</masterLabel>
+            <translation><!-- Country_Russian Federation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Saudi Arabia</masterLabel>
+            <translation><!-- Country_Saudi Arabia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Slovakia</masterLabel>
+            <translation><!-- Country_Slovakia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_South Africa</masterLabel>
+            <translation><!-- Country_South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Spain</masterLabel>
+            <translation><!-- Country_Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Sri Lanka</masterLabel>
+            <translation><!-- Country_Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Sweden, Country_Denmark</masterLabel>
+            <translation><!-- Country_Sweden, Country_Denmark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Switzerland</masterLabel>
+            <translation><!-- Country_Switzerland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Taiwan</masterLabel>
+            <translation><!-- Country_Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Thailand</masterLabel>
+            <translation><!-- Country_Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Thailand, Country_Vietnam</masterLabel>
+            <translation><!-- Country_Thailand, Country_Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Tunisia</masterLabel>
+            <translation><!-- Country_Tunisia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Turkey</masterLabel>
+            <translation><!-- Country_Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_UAPL ESA</masterLabel>
+            <translation><!-- Country_UAPL ESA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_UAPL Malaysia and Singapore</masterLabel>
+            <translation><!-- Country_UAPL Malaysia and Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_USCC CEE</masterLabel>
+            <translation><!-- Country_USCC CEE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_United Kingdom</masterLabel>
+            <translation><!-- Country_United Kingdom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Venezuela</masterLabel>
+            <translation><!-- Country_Venezuela --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country_Vietnam</masterLabel>
+            <translation><!-- Country_Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_ANZ</masterLabel>
+            <translation><!-- MCO_ANZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_Benelux</masterLabel>
+            <translation><!-- MCO_Benelux --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_CEE</masterLabel>
+            <translation><!-- MCO_CEE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_DACH</masterLabel>
+            <translation><!-- MCO_DACH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_Mexico and Greater Caribbean</masterLabel>
+            <translation><!-- MCO_Mexico and Greater Caribbean --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_Middle America</masterLabel>
+            <translation><!-- MCO_Middle America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_Nordics</masterLabel>
+            <translation><!-- MCO_Nordics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_North America MCO</masterLabel>
+            <translation><!-- MCO_North America MCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_Southern Cone MCO</masterLabel>
+            <translation><!-- MCO_Southern Cone MCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_UAPL</masterLabel>
+            <translation><!-- MCO_UAPL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_UASCC, MCO_USCC</masterLabel>
+            <translation><!-- MCO_UASCC, MCO_USCC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_UK/Ireland</masterLabel>
+            <translation><!-- MCO_UK/Ireland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_USCC</masterLabel>
+            <translation><!-- MCO_USCC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO_West Africa</masterLabel>
+            <translation><!-- MCO_West Africa --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- ETC BO Owner --></label>
+        <name>ETC_BO_Owner__c</name>
+        <relationshipLabel><!-- GEL Global Exception Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Exception Raiser_v --></label>
+        <name>Exception_Raiser__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expected Closure Date --></label>
+        <name>Expected_Closure_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Check --></label>
+        <name>Legacy_Check__c</name>
+    </fields>
+    <fields>
+        <label><!-- Created Date --></label>
+        <name>Legacy_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exception Raiser --></label>
+        <name>Legacy_Exception_Raiser__c</name>
+    </fields>
+    <fields>
+        <label><!-- Open Exceptions Categories --></label>
+        <name>Open_Exceptions_Categories__c</name>
+        <picklistValues>
+            <masterLabel>2 Tier Model Constraints</masterLabel>
+            <translation><!-- 2 Tier Model Constraints --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complex Solution</masterLabel>
+            <translation><!-- Complex Solution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GPM Updates required</masterLabel>
+            <translation><!-- GPM Updates required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal Requirment</masterLabel>
+            <translation><!-- Legal Requirment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phased Implementation</masterLabel>
+            <translation><!-- Phased Implementation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Complexity</masterLabel>
+            <translation><!-- Process Complexity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Solution Under Development</masterLabel>
+            <translation><!-- Solution Under Development --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under Evaluation</masterLabel>
+            <translation><!-- Under Evaluation --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- PPE Category --></label>
+        <name>PPE_Category__c</name>
+        <picklistValues>
+            <masterLabel>2 Tier Model Constraints</masterLabel>
+            <translation><!-- 2 Tier Model Constraints --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business Complexity</masterLabel>
+            <translation><!-- Business Complexity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal Requirement</masterLabel>
+            <translation><!-- Legal Requirement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Complexity</masterLabel>
+            <translation><!-- Process Complexity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System Complexity</masterLabel>
+            <translation><!-- System Complexity --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- PoC --></label>
+        <name>PoC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Potential Solution at --></label>
+        <name>Potential_Solution_at__c</name>
+        <picklistValues>
+            <masterLabel>BO</masterLabel>
+            <translation><!-- BO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CG</masterLabel>
+            <translation><!-- CG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IBM</masterLabel>
+            <translation><!-- IBM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MCO</masterLabel>
+            <translation><!-- MCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OC</masterLabel>
+            <translation><!-- OC --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Process --></label>
+        <name>Process__c</name>
+        <picklistValues>
+            <masterLabel>Accounts Reconciliation</masterLabel>
+            <translation><!-- Accounts Reconciliation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bank Statements</masterLabel>
+            <translation><!-- Bank Statements --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Tax</masterLabel>
+            <translation><!-- Direct Tax --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Financial &amp; Statutory Reporting</masterLabel>
+            <translation><!-- Financial &amp; Statutory Reporting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fixed Assets</masterLabel>
+            <translation><!-- Fixed Assets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Forex Revaluation</masterLabel>
+            <translation><!-- Forex Revaluation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GL MDM</masterLabel>
+            <translation><!-- GL MDM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indirect Tax</masterLabel>
+            <translation><!-- Indirect Tax --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inter Company</masterLabel>
+            <translation><!-- Inter Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Journal Entries</masterLabel>
+            <translation><!-- Journal Entries --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period End</masterLabel>
+            <translation><!-- Period End --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Policy &amp; Procedures</masterLabel>
+            <translation><!-- Policy &amp; Procedures --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sundry Invoicing</masterLabel>
+            <translation><!-- Sundry Invoicing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trintrech Tool</masterLabel>
+            <translation><!-- Trintrech Tool --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- REF Number --></label>
+        <name>REF_Number2__c</name>
+    </fields>
+    <fields>
+        <label><!-- REF Number --></label>
+        <name>REF_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- REF --></label>
+        <name>REF__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resolution Comments --></label>
+        <name>Resolution_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PendingClarification</masterLabel>
+            <translation><!-- PendingClarification --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Permanent</masterLabel>
+            <translation><!-- Permanent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proposed Permanent</masterLabel>
+            <translation><!-- Proposed Permanent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Test Owner First Name --></label>
+        <name>Test_Owner_First_Name__c</name>
+    </fields>
+    <layouts>
+        <layout>GEL Global Exception Log Final</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Review and Update --></label>
+            <section>Review and Update</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>GEL Global Exception Log Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Review and Update --></label>
+            <section>Review and Update</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- GEL Exception Raiser --></label>
+        <name>GEL_Exception_Raiser</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- GEL Final Layout --></label>
+        <name>GEL_Final_Layout</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

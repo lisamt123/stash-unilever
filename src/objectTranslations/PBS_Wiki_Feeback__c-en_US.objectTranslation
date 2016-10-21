@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PBS Wiki Feeback</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>PBS Wiki Feeback</value>
+    </caseValues>
+    <fields>
+        <label><!-- Wiki Feedback --></label>
+        <name>Wiki_Feedback__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wiki ID --></label>
+        <name>Wiki_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wiki Name --></label>
+        <name>Wiki_Name__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -5,6 +5,53 @@
         <name>AccountCurrency__c</name>
     </fields>
     <fields>
+        <name>AccountSource</name>
+        <picklistValues>
+            <masterLabel>Advertisement</masterLabel>
+            <translation><!-- Advertisement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee Referral</masterLabel>
+            <translation><!-- Employee Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>External Referral</masterLabel>
+            <translation><!-- External Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation><!-- Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Relations</masterLabel>
+            <translation><!-- Public Relations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seminar - Internal</masterLabel>
+            <translation><!-- Seminar - Internal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seminar - Partner</masterLabel>
+            <translation><!-- Seminar - Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trade Show</masterLabel>
+            <translation><!-- Trade Show --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Web</masterLabel>
+            <translation><!-- Web --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Word of mouth</masterLabel>
+            <translation><!-- Word of mouth --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Account Record Count --></label>
         <name>Account_Record_Count__c</name>
     </fields>
@@ -1210,7 +1257,7 @@
         <name>CustomerLegalCode__c</name>
     </fields>
     <fields>
-        <label>Название Организации ООО</label>
+        <label>Юридическое наименование клиента</label>
         <name>CustomerLegalName__c</name>
     </fields>
     <fields>
@@ -1605,7 +1652,7 @@ Customer Delivers Directly = 5 --></help>
         </picklistValues>
     </fields>
     <fields>
-        <label>Торговая точка</label>
+        <label>Operator Outlet</label>
         <name>FS_OperatorOutlet__c</name>
         <relationshipLabel>Клиенты</relationshipLabel>
     </fields>
@@ -2006,19 +2053,19 @@ Customer Delivers Directly = 5 --></help>
         <name>FS_SegmentRussia__c</name>
         <picklistValues>
             <masterLabel>Canteens</masterLabel>
-            <translation><!-- Canteens --></translation>
+            <translation>Столовые</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Hotels</masterLabel>
-            <translation><!-- Hotels --></translation>
+            <translation>Отели</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Offices</masterLabel>
-            <translation><!-- Offices --></translation>
+            <translation>Офисы</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Pubs/Bars/Entertaining center/Caffee</masterLabel>
-            <translation><!-- Pubs/Bars/Entertaining center/Caffee --></translation>
+            <translation>Пабы/Бары/Развлекателбный центр/Кафе</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>QSR</masterLabel>
@@ -2026,19 +2073,19 @@ Customer Delivers Directly = 5 --></help>
         </picklistValues>
         <picklistValues>
             <masterLabel>Restaurants</masterLabel>
-            <translation><!-- Restaurants --></translation>
+            <translation>Ресторан</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Take Away</masterLabel>
-            <translation><!-- Take Away --></translation>
+            <translation>С собой</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Travel</masterLabel>
-            <translation><!-- Travel --></translation>
+            <translation>Путешествия</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Wholesalers</masterLabel>
-            <translation><!-- Wholesalers --></translation>
+            <translation>Отптовики</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -2237,6 +2284,137 @@ At least 3 out of 4 = 5 --></help>
         <name>ICB_Mobile_Channel__c</name>
     </fields>
     <fields>
+        <name>Industry</name>
+        <picklistValues>
+            <masterLabel>Agriculture</masterLabel>
+            <translation><!-- Agriculture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Apparel</masterLabel>
+            <translation><!-- Apparel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Banking</masterLabel>
+            <translation><!-- Banking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Biotechnology</masterLabel>
+            <translation><!-- Biotechnology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chemicals</masterLabel>
+            <translation><!-- Chemicals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Communications</masterLabel>
+            <translation><!-- Communications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Construction</masterLabel>
+            <translation><!-- Construction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consulting</masterLabel>
+            <translation><!-- Consulting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Education</masterLabel>
+            <translation><!-- Education --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electronics</masterLabel>
+            <translation><!-- Electronics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Energy</masterLabel>
+            <translation><!-- Energy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Engineering</masterLabel>
+            <translation><!-- Engineering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Entertainment</masterLabel>
+            <translation><!-- Entertainment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environmental</masterLabel>
+            <translation><!-- Environmental --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finance</masterLabel>
+            <translation><!-- Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food &amp; Beverage</masterLabel>
+            <translation><!-- Food &amp; Beverage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Government</masterLabel>
+            <translation><!-- Government --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Healthcare</masterLabel>
+            <translation><!-- Healthcare --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hospitality</masterLabel>
+            <translation><!-- Hospitality --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Insurance</masterLabel>
+            <translation><!-- Insurance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Machinery</masterLabel>
+            <translation><!-- Machinery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufacturing</masterLabel>
+            <translation><!-- Manufacturing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media</masterLabel>
+            <translation><!-- Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not For Profit</masterLabel>
+            <translation><!-- Not For Profit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recreation</masterLabel>
+            <translation><!-- Recreation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retail</masterLabel>
+            <translation><!-- Retail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shipping</masterLabel>
+            <translation><!-- Shipping --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Technology</masterLabel>
+            <translation><!-- Technology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Telecommunications</masterLabel>
+            <translation><!-- Telecommunications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation</masterLabel>
+            <translation><!-- Transportation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Utilities</masterLabel>
+            <translation><!-- Utilities --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Banner --></label>
         <name>KeyCustomerLevel4Code__c</name>
     </fields>
@@ -2352,6 +2530,25 @@ At least 3 out of 4 = 5 --></help>
         <name>Overall_Rating__c</name>
     </fields>
     <fields>
+        <name>Ownership</name>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Private</masterLabel>
+            <translation><!-- Private --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public</masterLabel>
+            <translation><!-- Public --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Subsidiary</masterLabel>
+            <translation><!-- Subsidiary --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <help>Уточните статус владения компанией, выбрав сеть или холдинг, где требуется</help>
         <label><!-- Ownership Status --></label>
         <name>Ownership_Status__c</name>
@@ -2423,6 +2620,21 @@ At least 3 out of 4 = 5 --></help>
         <picklistValues>
             <masterLabel>Yes</masterLabel>
             <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Rating</name>
+        <picklistValues>
+            <masterLabel>Cold</masterLabel>
+            <translation><!-- Cold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hot</masterLabel>
+            <translation><!-- Hot --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Warm</masterLabel>
+            <translation><!-- Warm --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -2639,6 +2851,10 @@ At least 3 out of 4 = 5 --></help>
         <name>SAP_ID__c</name>
     </fields>
     <fields>
+        <label><!-- SMS Search Mobile Number --></label>
+        <name>SMS_Search_Mobile_Number__c</name>
+    </fields>
+    <fields>
         <label><!-- Sales_ORG --></label>
         <name>Sales_ORG__c</name>
     </fields>
@@ -2699,7 +2915,7 @@ At least 3 out of 4 = 5 --></help>
         </picklistValues>
         <picklistValues>
             <masterLabel>Hotels</masterLabel>
-            <translation>Гостиницы</translation>
+            <translation>Отели</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>I-Meal Replacement Solution</masterLabel>
@@ -3255,6 +3471,109 @@ At least 3 out of 4 = 5 --></help>
         <name>Total_Rating_Score__c</name>
     </fields>
     <fields>
+        <name>Type</name>
+        <picklistValues>
+            <masterLabel>Analyst</masterLabel>
+            <translation><!-- Analyst --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Association</masterLabel>
+            <translation><!-- Association --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buying Group</masterLabel>
+            <translation><!-- Buying Group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Competitor</masterLabel>
+            <translation><!-- Competitor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer</masterLabel>
+            <translation><!-- Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Operator</masterLabel>
+            <translation><!-- Direct Operator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Distributor</masterLabel>
+            <translation><!-- Distributor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Integrator</masterLabel>
+            <translation><!-- Integrator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Investor</masterLabel>
+            <translation><!-- Investor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal</masterLabel>
+            <translation><!-- Legal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Location (unit)</masterLabel>
+            <translation><!-- Location (unit) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Logistic</masterLabel>
+            <translation><!-- Logistic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufacturer</masterLabel>
+            <translation><!-- Manufacturer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operator</masterLabel>
+            <translation><!-- Operator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation><!-- Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Press</masterLabel>
+            <translation><!-- Press --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Prospect</masterLabel>
+            <translation><!-- Prospect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Redistributor</masterLabel>
+            <translation><!-- Redistributor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reseller</masterLabel>
+            <translation><!-- Reseller --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retailer</masterLabel>
+            <translation><!-- Retailer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RussiaAccount</masterLabel>
+            <translation><!-- RussiaAccount --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shop</masterLabel>
+            <translation><!-- Shop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shop In Shop</masterLabel>
+            <translation><!-- Shop In Shop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UL Careline</masterLabel>
+            <translation><!-- UL Careline --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Branch --></label>
         <name>UID_Branch__c</name>
     </fields>
@@ -3566,6 +3885,162 @@ At least 3 out of 4 = 5 --></help>
             <translation><!-- 88 Retail Foodservice --></translation>
         </picklistValues>
     </fields>
+    <layouts>
+        <layout>Feed Based Distributor</layout>
+        <sections>
+            <label><!-- Account Hierarchy --></label>
+            <section>Account Hierarchy</section>
+        </sections>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Distributor Type Information --></label>
+            <section>Distributor Type Information</section>
+        </sections>
+        <sections>
+            <label><!-- Hierarchy Information --></label>
+            <section>Hierarchy Information</section>
+        </sections>
+        <sections>
+            <label><!-- Segmentation --></label>
+            <section>Segmentation</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Feed Based Operator</layout>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- CHD --></label>
+            <section>CHD</section>
+        </sections>
+        <sections>
+            <label><!-- Hierarchy Display --></label>
+            <section>Hierarchy Display</section>
+        </sections>
+        <sections>
+            <label><!-- Hierarchy Information --></label>
+            <section>Hierarchy Information</section>
+        </sections>
+        <sections>
+            <label><!-- Segmentation --></label>
+            <section>Segmentation</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Operator Russia Read Only</layout>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Address Details --></label>
+            <section>Address Details</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Detail --></label>
+            <section>Contact Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Hierarchy Display --></label>
+            <section>Hierarchy Display</section>
+        </sections>
+        <sections>
+            <label><!-- Hierarchy Information --></label>
+            <section>Hierarchy Information</section>
+        </sections>
+        <sections>
+            <label><!-- Product Performance --></label>
+            <section>Product Performance</section>
+        </sections>
+        <sections>
+            <label><!-- Segmentation --></label>
+            <section>Segmentation</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Operators Russia</layout>
+        <sections>
+            <label><!-- Address Details --></label>
+            <section>Address Details</section>
+        </sections>
+        <sections>
+            <label><!-- Contacts --></label>
+            <section>Contacts</section>
+        </sections>
+        <sections>
+            <label><!-- Hierarchy Display --></label>
+            <section>Hierarchy Display</section>
+        </sections>
+        <sections>
+            <label><!-- Hierarchy Information --></label>
+            <section>Hierarchy Information</section>
+        </sections>
+        <sections>
+            <label><!-- Product Performance --></label>
+            <section>Product Performance</section>
+        </sections>
+        <sections>
+            <label><!-- Segmentation --></label>
+            <section>Segmentation</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Person Account Layout</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Additional Address Information --></label>
+            <section>Additional Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Debit Card --></label>
+            <section>Debit Card</section>
+        </sections>
+        <sections>
+            <label><!-- Identifier Information --></label>
+            <section>Identifier Information</section>
+        </sections>
+        <sections>
+            <label><!-- Preferences --></label>
+            <section>Preferences</section>
+        </sections>
+        <sections>
+            <label><!-- Social Information --></label>
+            <section>Social Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TO Person Account Layout</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Additional Address Information --></label>
+            <section>Additional Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Demandware Information --></label>
+            <section>Additional Demandware Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- New Visit --></label>
+        <name>ICB_NewVisit</name>
+    </quickActions>
+    <quickActions>
+        <label>Новый план по дистрибутору</label>
+        <name>New_Dist_Account_Plan</name>
+    </quickActions>
+    <quickActions>
+        <label>Новый план по оператору</label>
+        <name>New_Op_Account_Plan</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Add Expertise --></label>
+        <name>Pitch_Add_Expertise</name>
+    </quickActions>
     <recordTypes>
         <label><!-- Agency --></label>
         <name>Agency</name>

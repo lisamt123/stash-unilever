@@ -4,10 +4,6 @@
         <plural>false</plural>
         <value>IPM BET Search Fields</value>
     </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>IPM BET Search Fields</value>
-    </caseValues>
     <fields>
         <label><!-- Field Label --></label>
         <name>Field_Label__c</name>

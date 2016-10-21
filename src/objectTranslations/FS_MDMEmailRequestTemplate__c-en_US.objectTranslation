@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>FS MDM Email Request Template</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>FS MDM Email Request Template</value>
+    </caseValues>
+    <fields>
+        <label><!-- Amount --></label>
+        <name>FS_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Condition Type --></label>
+        <name>FS_ConditionType__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Code Description --></label>
+        <name>FS_CustomerCodeDescription__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Code --></label>
+        <name>FS_CustomerCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hierarchy Level --></label>
+        <name>FS_HierarchyLevel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal Order --></label>
+        <name>FS_InternalOrder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Code --></label>
+        <name>FS_MaterialCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Description --></label>
+        <name>FS_MaterialDescription__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Expiration Date --></label>
+        <name>FS_ProductExpirationDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Hierarchy --></label>
+        <name>FS_ProductHierarchy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Organisation --></label>
+        <name>FS_SalesOrganisation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Of Discount --></label>
+        <name>FS_TargetOfDiscount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit --></label>
+        <name>FS_Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Validity End --></label>
+        <name>FS_ValidityEnd__c</name>
+    </fields>
+    <fields>
+        <label><!-- Validity Start --></label>
+        <name>FS_ValidityStart__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

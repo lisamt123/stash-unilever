@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -133,6 +129,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -438,6 +435,22 @@
         <unique>false</unique>
     </fields>
     <label>Product Category</label>
+    <listViews>
+        <fullName>ANZ</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>L3_Product_Category__c</field>
+            <operation>equals</operation>
+            <value>AU</value>
+        </filters>
+        <label>ANZ</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>Product Category Name</label>
         <type>Text</type>

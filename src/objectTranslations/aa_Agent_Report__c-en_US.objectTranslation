@@ -44,6 +44,11 @@
     </fields>
     <fields>
         <label><!-- Cluster --></label>
+        <name>ClusterId__c</name>
+        <relationshipLabel><!-- Agent Reports --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cluster --></label>
         <name>Cluster_Name__c</name>
     </fields>
     <fields>
@@ -74,7 +79,15 @@
         <name>Is_Accepted_Code_of_Conduct__c</name>
     </fields>
     <fields>
-        <label><!-- RecordTypeName --></label>
+        <label><!-- Other Brand Name --></label>
+        <name>OtherBrandName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Company Name --></label>
+        <name>OtherCompanyName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Name --></label>
         <name>RecordTypeName__c</name>
     </fields>
     <fields>
@@ -109,8 +122,8 @@
             <translation><!-- Counterfeit --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Look-a-like</masterLabel>
-            <translation><!-- Look-a-like --></translation>
+            <masterLabel>Food Solutions</masterLabel>
+            <translation><!-- Food Solutions --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Market Development</masterLabel>
@@ -119,6 +132,10 @@
         <picklistValues>
             <masterLabel>Perfect In Store Execution</masterLabel>
             <translation><!-- Perfect In Store Execution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sustainability</masterLabel>
+            <translation><!-- Sustainability --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -214,6 +231,14 @@
         <help><!-- List Of sub topics inserted for Competitor Report --></help>
         <label><!-- Sub Topics --></label>
         <name>Sub_Topics__c</name>
+    </fields>
+    <fields>
+        <label><!-- TF Mention User --></label>
+        <name>TF_Mention_User__c</name>
+    </fields>
+    <fields>
+        <label><!-- TF Topic Name --></label>
+        <name>TF_Topic_Name__c</name>
     </fields>
     <fields>
         <label><!-- Topic --></label>

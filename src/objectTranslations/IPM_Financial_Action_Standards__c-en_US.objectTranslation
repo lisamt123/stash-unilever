@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Financial Action Standard</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Financial Action Standards</value>
+    </caseValues>
+    <fields>
+        <label><!-- IPM Financial Action Standard Name --></label>
+        <name>IPM_Financial_Action_Standard_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Financial Year Y1 Gross --></label>
+        <name>IPM_Financial_Year_Y1_Gross__c</name>
+        <relationshipLabel><!-- IPM Financial Action Standards --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Financial Year Y1 Incremental --></label>
+        <name>IPM_Financial_Year_Y1_Incremental__c</name>
+        <relationshipLabel><!-- IPM Financial Action Standards (IPM Financial Year Y1) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM GM % Action Standards Charter --></label>
+        <name>IPM_GM_Action_Standards_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM IRR Action Standard Charter --></label>
+        <name>IPM_IRR_Action_Standard_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Inc Value Share Action Charter --></label>
+        <name>IPM_Inc_Value_Share_Action_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Innov Value Share Action Charter --></label>
+        <name>IPM_Innov_Value_Share_Action_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM NPV Action Standard Charter --></label>
+        <name>IPM_NPV_Action_Standard_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Payback Action Standard Charter --></label>
+        <name>IPM_Payback_Action_Standard_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Document Section --></label>
+        <name>IPM_Project_Document_Section__c</name>
+        <relationshipLabel><!-- IPM Financial Action Standards --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Span --></label>
+        <name>IPM_Project_Span__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional</masterLabel>
+            <translation><!-- Regional --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Project --></label>
+        <name>IPM_Project__c</name>
+        <relationshipLabel><!-- IPM Financial Action Standards --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM gTO Action Standard Charter --></label>
+        <name>IPM_gTO_Action_Standard_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM iTo Action Standard Charter --></label>
+        <name>IPM_iTo_Action_Standard_Charter__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

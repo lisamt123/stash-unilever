@@ -41,10 +41,21 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>dhunia.clermont@unilever.com</name>
                 <type>user</type>
             </approver>
-
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <description>AFM approval</description>
@@ -62,10 +73,21 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>dhunia.clermont@unilever.com</name>
                 <type>user</type>
             </approver>
-
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <description>AFM approval</description>
@@ -83,7 +105,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>mads.houlberg@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -103,10 +125,21 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>dhunia.clermont@unilever.com</name>
                 <type>user</type>
             </approver>
-
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <description>AFM approval</description>
@@ -124,10 +157,21 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>dhunia.clermont@unilever.com</name>
                 <type>user</type>
             </approver>
-
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <description>AFM approval</description>
@@ -145,7 +189,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>mads.houlberg@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -165,10 +209,21 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>dhunia.clermont@unilever.com</name>
                 <type>user</type>
             </approver>
-
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <description>AFM approval</description>
@@ -186,10 +241,21 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>dhunia.clermont@unilever.com</name>
                 <type>user</type>
             </approver>
-
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <description>AFM approval</description>
@@ -207,7 +273,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>jose.espanol@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -227,7 +293,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>mads.houlberg@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -247,10 +313,21 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>dhunia.clermont@unilever.com</name>
                 <type>user</type>
             </approver>
-
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <description>AFM approval</description>
@@ -268,7 +345,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>jose.espanol@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -288,7 +365,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>mads.houlberg@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -308,7 +385,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>mete.gumus@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -328,7 +405,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>mads.houlberg@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

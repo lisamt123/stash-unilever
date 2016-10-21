@@ -66,7 +66,7 @@
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/Close_Case_Survey</template>
     </alerts>
-	<alerts>
+    <alerts>
         <fullName>CEC_Close_Case_Survey_Indonesia</fullName>
         <description>CEC: Close Case Survey Indonesia</description>
         <protected>false</protected>

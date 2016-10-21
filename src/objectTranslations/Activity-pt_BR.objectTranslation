@@ -65,6 +65,88 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Account --></label>
+        <name>FS_Account__c</name>
+        <relationshipLabel><!-- Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Distributor name --></label>
+        <name>FS_Distributorname__c</name>
+        <picklistValues>
+            <masterLabel>Alidi-Nord</masterLabel>
+            <translation><!-- Alidi-Nord --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>East West Moscow</masterLabel>
+            <translation><!-- East West Moscow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>East West SPb</masterLabel>
+            <translation><!-- East West SPb --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Globalfoods Moscow</masterLabel>
+            <translation><!-- Globalfoods Moscow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Integrita SPb</masterLabel>
+            <translation><!-- Integrita SPb --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lotos</masterLabel>
+            <translation><!-- Lotos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MARRusia Moscow</masterLabel>
+            <translation><!-- MARRusia Moscow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MARRusia S-Pete</masterLabel>
+            <translation><!-- MARRusia S-Pete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TD Global Market</masterLabel>
+            <translation><!-- TD Global Market --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uhrenholt Moscow</masterLabel>
+            <translation><!-- Uhrenholt Moscow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uhrenholt S-Pete</masterLabel>
+            <translation><!-- Uhrenholt S-Pete --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Survey Name --></label>
+        <name>FS_SurveyName__c</name>
+        <relationshipLabel><!-- Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Task Type --></label>
+        <name>FS_Task_Type__c</name>
+        <picklistValues>
+            <masterLabel>Centrally Led</masterLabel>
+            <translation><!-- Centrally Led --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Locally Led</masterLabel>
+            <translation><!-- Locally Led --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Visit with Chef --></label>
+        <name>FS_VisitwithChef__c</name>
+    </fields>
+    <fields>
+        <label><!-- Visit with DSR --></label>
+        <name>FS_VisitwithDSR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Website1 --></label>
+        <name>FS_Website__c</name>
+    </fields>
+    <fields>
         <label><!-- Account ID Reference --></label>
         <name>ICB_AccountIDReference__c</name>
     </fields>
@@ -145,11 +227,15 @@
         <name>ICB_Status__c</name>
         <picklistValues>
             <masterLabel>Concluded</masterLabel>
-            <translation><!-- Concluded --></translation>
+            <translation>Concluído</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Pending</masterLabel>
-            <translation><!-- Pending --></translation>
+            <translation>Pendente</translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Manager --></label>
+        <name>Manager__c</name>
     </fields>
 </CustomObjectTranslation>

@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -188,8 +184,10 @@ TEXT(FLOOR((Duration__c)/60))&amp;&quot; hr(s) &quot;&amp;TEXT(FLOOR(MOD((Durati
         <columns>Sync_progress__c</columns>
         <columns>Current_Published_Version_Formula__c</columns>
         <columns>CREATEDBY_USER</columns>
+        <columns>Current_Published_Version__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_GB</language>
     </listViews>
     <listViews>
         <fullName>Quizzes</fullName>
@@ -294,7 +292,7 @@ TEXT(FLOOR((Duration__c)/60))&amp;&quot; hr(s) &quot;&amp;TEXT(FLOOR(MOD((Durati
         <fullName>PBS_LMS_Sharing__c</fullName>
         <label>PBS_LMS Sharing</label>
     </sharingReasons>
-      <webLinks>
+    <webLinks>
         <fullName>Delete_Shared_Assignments</fullName>
         <availability>online</availability>
         <description>Button used for deleting unused sharind assignments for a Learning</description>

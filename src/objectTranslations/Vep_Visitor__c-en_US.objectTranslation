@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Vep Visitor</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Vep Visitors</value>
+    </caseValues>
+    <fields>
+        <label><!-- Admin Building --></label>
+        <name>Admin_Building__c</name>
+    </fields>
+    <fields>
+        <label><!-- Are you allergic to dust or smoke? --></label>
+        <name>Are_you_allergic_to_dust_or_smoke__c</name>
+    </fields>
+    <fields>
+        <label><!-- Are you suffering from Asthma? --></label>
+        <name>Are_you_suffering_from_Asthma__c</name>
+    </fields>
+    <fields>
+        <label><!-- BaseUrl --></label>
+        <name>BaseUrl__c</name>
+    </fields>
+    <fields>
+        <label><!-- Base Location --></label>
+        <name>Base_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Identity --></label>
+        <name>Company_Identity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cost Center Code --></label>
+        <name>Cost_Center_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date From --></label>
+        <name>Date_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date To --></label>
+        <name>Date_To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Department --></label>
+        <name>Department__c</name>
+    </fields>
+    <fields>
+        <label><!-- Do you have any chronicbreathing problem --></label>
+        <name>Do_you_have_any_chronicbreathing_problem__c</name>
+    </fields>
+    <fields>
+        <label><!-- Do you use any Inhaler? --></label>
+        <name>Do_you_use_any_Inhaler__c</name>
+    </fields>
+    <fields>
+        <label><!-- ETP Area --></label>
+        <name>ETP_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Factory to Visit --></label>
+        <name>Factory_to_Visit__c</name>
+        <picklistValues>
+            <masterLabel>Amli Factory Silvassa</masterLabel>
+            <translation><!-- Amli Factory Silvassa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Barotiwala Foods Factory</masterLabel>
+            <translation><!-- Barotiwala Foods Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Barotiwala HPC Factory</masterLabel>
+            <translation><!-- Barotiwala HPC Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chhindwara Detergents Factory</masterLabel>
+            <translation><!-- Chhindwara Detergents Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chiplun Detergents Factory</masterLabel>
+            <translation><!-- Chiplun Detergents Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cochin Detergents Factory</masterLabel>
+            <translation><!-- Cochin Detergents Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cochin Exports Factory Marine</masterLabel>
+            <translation><!-- Cochin Exports Factory Marine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Daman Detergents Factory</masterLabel>
+            <translation><!-- Daman Detergents Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Delhi Exports Factory</masterLabel>
+            <translation><!-- Delhi Exports Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diamond Harbour Factory</masterLabel>
+            <translation><!-- Diamond Harbour Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Etah Beverages Factory</masterLabel>
+            <translation><!-- Etah Beverages Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Etah Exports Factory</masterLabel>
+            <translation><!-- Etah Exports Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gandhidham LLPL Factory</masterLabel>
+            <translation><!-- Gandhidham LLPL Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Goa Personal Wash Factory</masterLabel>
+            <translation><!-- Goa Personal Wash Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Haldia Detergents Factory</masterLabel>
+            <translation><!-- Haldia Detergents Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Haridwar HPC Factory</masterLabel>
+            <translation><!-- Haridwar HPC Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hosur Beverages Factory</masterLabel>
+            <translation><!-- Hosur Beverages Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kalwa Foods Factory</masterLabel>
+            <translation><!-- Kalwa Foods Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kandla Exports Factory</masterLabel>
+            <translation><!-- Kandla Exports Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Khamgaon Detergents Factory</masterLabel>
+            <translation><!-- Khamgaon Detergents Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kolkata Beverages Factory</masterLabel>
+            <translation><!-- Kolkata Beverages Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kolkata Detergents Factory</masterLabel>
+            <translation><!-- Kolkata Detergents Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mangalore Detergents Factory</masterLabel>
+            <translation><!-- Mangalore Detergents Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mysore Beverages Factory</masterLabel>
+            <translation><!-- Mysore Beverages Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nalagarh Factory - Ice Creams</masterLabel>
+            <translation><!-- Nalagarh Factory - Ice Creams --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nasik Ice Cream Factory</masterLabel>
+            <translation><!-- Nasik Ice Cream Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Orai Detergents Factory</masterLabel>
+            <translation><!-- Orai Detergents Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pondicherry Beverages Factory</masterLabel>
+            <translation><!-- Pondicherry Beverages Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pondicherry Detergents Factory</masterLabel>
+            <translation><!-- Pondicherry Detergents Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pondicherry Exports Factory</masterLabel>
+            <translation><!-- Pondicherry Exports Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pondicherry PP Factory</masterLabel>
+            <translation><!-- Pondicherry PP Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pune Exports Factory</masterLabel>
+            <translation><!-- Pune Exports Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pune KCLL Factory</masterLabel>
+            <translation><!-- Pune KCLL Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rajpura Detergents Factory</masterLabel>
+            <translation><!-- Rajpura Detergents Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silvassa Detergents Factory</masterLabel>
+            <translation><!-- Silvassa Detergents Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silvassa PP Factory</masterLabel>
+            <translation><!-- Silvassa PP Factory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sumerpur Detergents Factory</masterLabel>
+            <translation><!-- Sumerpur Detergents Factory --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Have you been prescribed any medicines? --></label>
+        <name>Have_you_been_prescribed_any_medicines__c</name>
+    </fields>
+    <fields>
+        <label><!-- Have you felt any chest pain recently? --></label>
+        <name>Have_you_felt_any_chest_pain_recently__c</name>
+    </fields>
+    <fields>
+        <label><!-- Identity Proof --></label>
+        <name>Identity_Proof__c</name>
+        <picklistValues>
+            <masterLabel>Company Identity</masterLabel>
+            <translation><!-- Company Identity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pan/Voter Id</masterLabel>
+            <translation><!-- Pan/Voter Id --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Passport</masterLabel>
+            <translation><!-- Passport --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- In Visit --></label>
+        <name>In_Visit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Items Possessed --></label>
+        <name>Items_Possed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loading/ Unloading bay --></label>
+        <name>Loading_Unloading_bay__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lodging Approval Status --></label>
+        <name>Lodging_Approval_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Lodging Desk Email --></label>
+        <name>Lodging_Desk_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lodging --></label>
+        <name>Lodging__c</name>
+    </fields>
+    <fields>
+        <label><!-- Need help when heavybreathingencounterd? --></label>
+        <name>Need_help_when_heavybreathingencounterd__c</name>
+    </fields>
+    <fields>
+        <label><!-- PanCard/Voter Id --></label>
+        <name>PanCard_Voter_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Passport --></label>
+        <name>Passport__c</name>
+    </fields>
+    <fields>
+        <label><!-- Person to Meet --></label>
+        <name>Person_to_Meet__c</name>
+        <relationshipLabel><!-- Vep Visitors --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Pickup Desk Email --></label>
+        <name>Pickup_Desk_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pickup --></label>
+        <name>Pickup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progress Bar --></label>
+        <name>Progress_Bar__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prohibited Items --></label>
+        <name>Prohibited_Items__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason for Visit Other --></label>
+        <name>Reason_for_Visit_Other__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason for Visit --></label>
+        <name>Reason_for_Visit__c</name>
+        <picklistValues>
+            <masterLabel>Contracts-HR</masterLabel>
+            <translation><!-- Contracts-HR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OEM Service</masterLabel>
+            <translation><!-- OEM Service --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Official</masterLabel>
+            <translation><!-- Official --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Suppliers-Product Demo</masterLabel>
+            <translation><!-- Suppliers-Product Demo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Technical</masterLabel>
+            <translation><!-- Technical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trainee Visits</masterLabel>
+            <translation><!-- Trainee Visits --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Request on Behalf --></label>
+        <name>Request_on_Behalf__c</name>
+    </fields>
+    <fields>
+        <label><!-- Safety Quiz Url --></label>
+        <name>Safety_Quiz_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scrapyard --></label>
+        <name>Scrapyard__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shop Floor Area --></label>
+        <name>Shop_Floor_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Approval</masterLabel>
+            <translation><!-- Pending Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Visit</masterLabel>
+            <translation><!-- Pending Visit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Visit Complete</masterLabel>
+            <translation><!-- Visit Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Visit In Progress</masterLabel>
+            <translation><!-- Visit In Progress --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Storage Locations --></label>
+        <name>Storage_Locations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel Approval Status --></label>
+        <name>Travel_Approval_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Travel Desk Email --></label>
+        <name>Travel_Desk_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel --></label>
+        <name>Travel__c</name>
+    </fields>
+    <fields>
+        <label><!-- VEP Number --></label>
+        <name>VEP_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Visit Ended --></label>
+        <name>Visit_Ended__c</name>
+    </fields>
+    <fields>
+        <label><!-- want to avail doctor’s visit in plant? --></label>
+        <name>Visit_to_Doctor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Visitor Entry Date --></label>
+        <name>Visitor_Entry_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Visitor Exit Date --></label>
+        <name>Visitor_Exit_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- When was the last visit to doctor? --></label>
+        <name>When_was_the_last_visit_to_doctor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Which Inhaler do you use, if applicable? --></label>
+        <name>Which_Inhaler_do_you_use_if_applicable__c</name>
+    </fields>
+    <layouts>
+        <layout>ROB Visitor layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Declaration --></label>
+            <section>Declaration</section>
+        </sections>
+        <sections>
+            <label><!-- Factory Visit Scope --></label>
+            <section>Factory Visit Scope</section>
+        </sections>
+        <sections>
+            <label><!-- Health Status --></label>
+            <section>Health Status</section>
+        </sections>
+        <sections>
+            <label><!-- Information --></label>
+            <section>Information</section>
+        </sections>
+        <sections>
+            <label><!-- Required Essentials --></label>
+            <section>Required Essentials</section>
+        </sections>
+        <sections>
+            <label><!-- Stage --></label>
+            <section>Stage</section>
+        </sections>
+        <sections>
+            <label><!-- Visit Details --></label>
+            <section>Visit Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Visitor Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Declaration --></label>
+            <section>Declaration</section>
+        </sections>
+        <sections>
+            <label><!-- Factory Visit Scope --></label>
+            <section>Factory Visit Scope</section>
+        </sections>
+        <sections>
+            <label><!-- Health Status --></label>
+            <section>Health Status</section>
+        </sections>
+        <sections>
+            <label><!-- Information --></label>
+            <section>Information</section>
+        </sections>
+        <sections>
+            <label><!-- Required Essentials --></label>
+            <section>Required Essentials</section>
+        </sections>
+        <sections>
+            <label><!-- Stage --></label>
+            <section>Stage</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Visitor ReadOnly Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Declaration --></label>
+            <section>Declaration</section>
+        </sections>
+        <sections>
+            <label><!-- Factory Visit Scope --></label>
+            <section>Factory Visit Scope</section>
+        </sections>
+        <sections>
+            <label><!-- Health Status --></label>
+            <section>Health Status</section>
+        </sections>
+        <sections>
+            <label><!-- Information --></label>
+            <section>Information</section>
+        </sections>
+        <sections>
+            <label><!-- Required Essentials --></label>
+            <section>Required Essentials</section>
+        </sections>
+        <sections>
+            <label><!-- Stage --></label>
+            <section>Stage</section>
+        </sections>
+        <sections>
+            <label><!-- Visit Details --></label>
+            <section>Visit Details</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Request --></label>
+        <name>Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Request Readonly --></label>
+        <name>Request_Readonly</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Request on Behalf --></label>
+        <name>Request_on_Behalf</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please Enter a Valid Number --></errorMessage>
+        <name>VEP_Contact_should_be_number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Must be greater than or equal to From Date --></errorMessage>
+        <name>VEP_Date_To_is_grater_than_Date_From</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This area is restricted --></errorMessage>
+        <name>VEP_Greyout_ShopFloor_if_Asthma_Checked</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Name should not be changed --></errorMessage>
+        <name>VEP_Name_uneditable_on_Readonly_layout</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Field is required if Reason for Visit is &quot;Other&quot; --></errorMessage>
+        <name>VEP_Reason_For_Other_should_be_Filled</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Must be greater than or equal to Visit Entry Date --></errorMessage>
+        <name>VEP_Visit_Entry_date_less_than_Exit_date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Visit Must be a Future Date --></errorMessage>
+        <name>VEP_Visit_Must_be_a_Future_Date</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -49,10 +49,28 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Render_As_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Render As Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>SectionOtherPages__c</fullName>
         <description>Comma separated list of pages in the same section</description>
         <externalId>false</externalId>
         <inlineHelpText>Comma separated list of pages in the same section</inlineHelpText>
+        <label>Section Other Pages</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Section_Other_Pages__c</fullName>
+        <externalId>false</externalId>
         <label>Section Other Pages</label>
         <length>255</length>
         <required>false</required>

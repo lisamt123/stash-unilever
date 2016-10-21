@@ -41,7 +41,7 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>dmitriy.kalichkin@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -63,7 +63,7 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>anna.orekhova@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

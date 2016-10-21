@@ -135,12 +135,10 @@ public class AA_Follow_Unfollow_batch_Test {
         
          AA_Follow_Unfollow_class.ExecuteFollow(UserSet);
         system.assert(UserSet!=null);
-      //  AA_Follow_Unfollow_batch BC = new AA_Follow_Unfollow_batch();
-        //Database.BatchableContext BC ;// = new  Database.BatchableContext();
-	Database.executeBatch(obj);
-       // obj.start(BC);
-   // obj.execute(BC,objAgent);
-   // obj.finish(BC);
+  Database.BatchableContext BC; //= new  Database.BatchableContext();
+    obj.start(BC);
+    obj.execute(BC,objAgent);
+    obj.finish(BC);
     test.stoptest();
     
    }

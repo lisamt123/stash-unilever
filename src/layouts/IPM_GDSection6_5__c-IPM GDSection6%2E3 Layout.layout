@@ -66,6 +66,10 @@
                 <behavior>Edit</behavior>
                 <field>IPM_Market_Gate_LU_to_PDS__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

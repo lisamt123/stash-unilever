@@ -1,4 +1,4 @@
-global with sharing class WU_SetCurrentMonthBatch_Scheduler implements schedulable
+global class WU_SetCurrentMonthBatch_Scheduler implements schedulable
 {
     global void execute(SchedulableContext sc)
     {

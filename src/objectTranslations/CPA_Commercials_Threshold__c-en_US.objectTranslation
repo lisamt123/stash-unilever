@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CPA Commercials Threshold</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CPA Commercials Threshold</value>
+    </caseValues>
+    <fields>
+        <label><!-- DBTD Est Off --></label>
+        <name>DBTD_Est_Off__c</name>
+    </fields>
+    <fields>
+        <label><!-- DBTD Est On --></label>
+        <name>DBTD_Est_On__c</name>
+    </fields>
+    <fields>
+        <label><!-- DBTD Expense % --></label>
+        <name>DBTD_Expense_perc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Others Est Off --></label>
+        <name>Others_Est_Off__c</name>
+    </fields>
+    <fields>
+        <label><!-- Others Est On --></label>
+        <name>Others_Est_On__c</name>
+    </fields>
+    <fields>
+        <label><!-- Others Expense % --></label>
+        <name>Others_Expense_Perc__c</name>
+    </fields>
+    <fields>
+        <label><!-- PADBTD Est Off --></label>
+        <name>PADBTD_Est_Off__c</name>
+    </fields>
+    <fields>
+        <label><!-- PADBTD Est On --></label>
+        <name>PADBTD_Est_On__c</name>
+    </fields>
+    <fields>
+        <label><!-- PADBTD Expense % --></label>
+        <name>PADBTD_Expense_Perc__c</name>
+    </fields>
+    <fields>
+        <label><!-- PA Est Off --></label>
+        <name>PA_Est_Off__c</name>
+    </fields>
+    <fields>
+        <label><!-- PA Est On --></label>
+        <name>PA_Est_On__c</name>
+    </fields>
+    <fields>
+        <label><!-- PA Expense % --></label>
+        <name>PA_Expense_Perc__c</name>
+    </fields>
+    <fields>
+        <label><!-- RA Est Off --></label>
+        <name>RA_Est_Off__c</name>
+    </fields>
+    <fields>
+        <label><!-- RA Est On --></label>
+        <name>RA_Est_On__c</name>
+    </fields>
+    <fields>
+        <label><!-- RA Expense % --></label>
+        <name>RA_Expense_Perc__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

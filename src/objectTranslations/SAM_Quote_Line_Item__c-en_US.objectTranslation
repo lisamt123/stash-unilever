@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Quotation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Quotation Details</value>
+    </caseValues>
+    <fields>
+        <label><!-- Maintenance Applicable --></label>
+        <name>Maintainence_Applicable__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Run Cost (€) (year +1) --></label>
+        <name>Run_Cost_Year_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Run Cost (€) (year +2) --></label>
+        <name>Run_Cost_Year_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Run Cost for Year+1 --></label>
+        <name>Run_Cost_for_Year_1__c</name>
+        <picklistValues>
+            <masterLabel>2016</masterLabel>
+            <translation><!-- 2016 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2017</masterLabel>
+            <translation><!-- 2017 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2018</masterLabel>
+            <translation><!-- 2018 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2019</masterLabel>
+            <translation><!-- 2019 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2020</masterLabel>
+            <translation><!-- 2020 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2021</masterLabel>
+            <translation><!-- 2021 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2022</masterLabel>
+            <translation><!-- 2022 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2023</masterLabel>
+            <translation><!-- 2023 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2024</masterLabel>
+            <translation><!-- 2024 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2025</masterLabel>
+            <translation><!-- 2025 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2026</masterLabel>
+            <translation><!-- 2026 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2027</masterLabel>
+            <translation><!-- 2027 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2028</masterLabel>
+            <translation><!-- 2028 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2029</masterLabel>
+            <translation><!-- 2029 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2030</masterLabel>
+            <translation><!-- 2030 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Run Cost for Year+2 --></label>
+        <name>Run_Cost_for_Year_2__c</name>
+        <picklistValues>
+            <masterLabel>2016</masterLabel>
+            <translation><!-- 2016 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2017</masterLabel>
+            <translation><!-- 2017 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2018</masterLabel>
+            <translation><!-- 2018 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2019</masterLabel>
+            <translation><!-- 2019 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2020</masterLabel>
+            <translation><!-- 2020 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2021</masterLabel>
+            <translation><!-- 2021 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2022</masterLabel>
+            <translation><!-- 2022 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2023</masterLabel>
+            <translation><!-- 2023 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2024</masterLabel>
+            <translation><!-- 2024 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2025</masterLabel>
+            <translation><!-- 2025 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2026</masterLabel>
+            <translation><!-- 2026 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2027</masterLabel>
+            <translation><!-- 2027 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2028</masterLabel>
+            <translation><!-- 2028 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2029</masterLabel>
+            <translation><!-- 2029 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2030</masterLabel>
+            <translation><!-- 2030 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Spend In Euros --></label>
+        <name>Spend_In_Euros__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Annual Maint (€) --></label>
+        <name>Total_Annual_Maint__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the End Date of the Contract, if any --></help>
+        <label><!-- Contract End Date --></label>
+        <name>dt_Contract_End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the Start Date of the Contract, if any --></help>
+        <label><!-- Contract Start Date --></label>
+        <name>dt_Contract_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Applicable Cross Charge --></label>
+        <name>fml_Applicable_Cross_Charge__c</name>
+    </fields>
+    <fields>
+        <label><!-- DO detail validation --></label>
+        <name>fml_DO_detail_validation__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Cost (€) --></label>
+        <name>fml_License_Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- List Price (€) --></label>
+        <name>fml_List_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maintenance Cost (€) --></label>
+        <name>fml_Maintainence_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Run Cost Detail Validation --></label>
+        <name>fml_Run_Cost_Detail_Validation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Software Engagement Type --></label>
+        <name>fml_Software_Engagement_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total CAPEX (€) --></label>
+        <name>fml_Total_CAPEX__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request --></label>
+        <name>md_Request__c</name>
+        <relationshipLabel><!-- Quotation Details --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Discount (%) --></label>
+        <name>num_Discount_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- GBP - EUR --></label>
+        <name>num_GBP_EUR__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter List Price of the product, no discounts included --></help>
+        <label><!-- List Price --></label>
+        <name>num_List_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maintenance Cost / (%) --></label>
+        <name>num_Maintainence_Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Maintenance (%) --></label>
+        <name>num_Maintainence_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity --></label>
+        <name>num_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Serial Number --></label>
+        <name>num_Quotation_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- USD - EUR --></label>
+        <name>num_USD_EUR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Build Details Applicable --></label>
+        <name>pkl_Build_Details_Applicable__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Charging Type --></label>
+        <name>pkl_Charging_Type__c</name>
+        <picklistValues>
+            <masterLabel>Cross Charge Applicable (X)</masterLabel>
+            <translation><!-- Cross Charge Applicable (X) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DO/PO Applicable (O)</masterLabel>
+            <translation><!-- DO/PO Applicable (O) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Engage with Procurement (P)</masterLabel>
+            <translation><!-- Engage with Procurement (P) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Innovation Purchased (I)</masterLabel>
+            <translation><!-- Innovation Purchased (I) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select the type of currency for List Price --></help>
+        <label><!-- Currency Type --></label>
+        <name>pkl_Currency_Type__c</name>
+        <picklistValues>
+            <masterLabel>EUR</masterLabel>
+            <translation><!-- EUR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GBP</masterLabel>
+            <translation><!-- GBP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USD</masterLabel>
+            <translation><!-- USD --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- DO/PO Details Applicable --></label>
+        <name>pkl_DO_PO_Details_Applicable__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Discount Applicable --></label>
+        <name>pkl_Discount_Applicable__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Line Status --></label>
+        <name>pkl_Line_Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending with Procurement</masterLabel>
+            <translation><!-- Pending with Procurement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending with Project</masterLabel>
+            <translation><!-- Pending with Project --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending with SAM</masterLabel>
+            <translation><!-- Pending with SAM --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- if &quot;Maintenance Applicable&quot; is Yes. Select appropriate maintenance type --></help>
+        <label><!-- Maintenance Type --></label>
+        <name>pkl_Maintainence_Type__c</name>
+        <picklistValues>
+            <masterLabel>Amount</masterLabel>
+            <translation><!-- Amount --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Percentage</masterLabel>
+            <translation><!-- Percentage --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Publisher --></label>
+        <name>pkl_Publisher__c</name>
+        <picklistValues>
+            <masterLabel>IBM</masterLabel>
+            <translation><!-- IBM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Microsoft</masterLabel>
+            <translation><!-- Microsoft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oracle</masterLabel>
+            <translation><!-- Oracle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Product</masterLabel>
+            <translation><!-- Other Product --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAP</masterLabel>
+            <translation><!-- SAP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select &apos;Yes&apos; if quote for the product already exist --></help>
+        <label><!-- Quotation Available --></label>
+        <name>pkl_Quotation_Available__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Request status --></label>
+        <name>pkl_Request_status__c</name>
+        <picklistValues>
+            <masterLabel>Answer Accepted</masterLabel>
+            <translation><!-- Answer Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULEMP)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULEMP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULSMT)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULSMT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Charge</masterLabel>
+            <translation><!-- Awaiting Charge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Information</masterLabel>
+            <translation><!-- Awaiting Information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CC details provided (By ULEMP)</masterLabel>
+            <translation><!-- CC details provided (By ULEMP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Completed</masterLabel>
+            <translation><!-- Charging Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging In Progress</masterLabel>
+            <translation><!-- Charging In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Rejected</masterLabel>
+            <translation><!-- Charging Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Details Pending</masterLabel>
+            <translation><!-- Details Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Details Provided</masterLabel>
+            <translation><!-- Details Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft Quote Provided</masterLabel>
+            <translation><!-- Draft Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Information Provided</masterLabel>
+            <translation><!-- Information Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Need More Info</masterLabel>
+            <translation><!-- Need More Info --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Hold</masterLabel>
+            <translation><!-- On Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Query Answered</masterLabel>
+            <translation><!-- Query Answered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Approved</masterLabel>
+            <translation><!-- Quote Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Provided</masterLabel>
+            <translation><!-- Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Rejected</masterLabel>
+            <translation><!-- Quote Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resume</masterLabel>
+            <translation><!-- Resume --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saved</masterLabel>
+            <translation><!-- Saved --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Run Cost Applicable --></label>
+        <name>pkl_Run_Cost_Applicable__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Run Cost End Year --></label>
+        <name>pkl_Run_Cost_End_Year__c</name>
+        <picklistValues>
+            <masterLabel>2016</masterLabel>
+            <translation><!-- 2016 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2017</masterLabel>
+            <translation><!-- 2017 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2018</masterLabel>
+            <translation><!-- 2018 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2019</masterLabel>
+            <translation><!-- 2019 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2020</masterLabel>
+            <translation><!-- 2020 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2021</masterLabel>
+            <translation><!-- 2021 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2022</masterLabel>
+            <translation><!-- 2022 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2023</masterLabel>
+            <translation><!-- 2023 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2024</masterLabel>
+            <translation><!-- 2024 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2025</masterLabel>
+            <translation><!-- 2025 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2026</masterLabel>
+            <translation><!-- 2026 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2027</masterLabel>
+            <translation><!-- 2027 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2028</masterLabel>
+            <translation><!-- 2028 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2029</masterLabel>
+            <translation><!-- 2029 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2030</masterLabel>
+            <translation><!-- 2030 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Run Cost Start Year --></label>
+        <name>pkl_Run_Cost_Start_Year__c</name>
+        <picklistValues>
+            <masterLabel>2016</masterLabel>
+            <translation><!-- 2016 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2017</masterLabel>
+            <translation><!-- 2017 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2018</masterLabel>
+            <translation><!-- 2018 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2019</masterLabel>
+            <translation><!-- 2019 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2020</masterLabel>
+            <translation><!-- 2020 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2021</masterLabel>
+            <translation><!-- 2021 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2022</masterLabel>
+            <translation><!-- 2022 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2023</masterLabel>
+            <translation><!-- 2023 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2024</masterLabel>
+            <translation><!-- 2024 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2025</masterLabel>
+            <translation><!-- 2025 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2026</masterLabel>
+            <translation><!-- 2026 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2027</masterLabel>
+            <translation><!-- 2027 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2028</masterLabel>
+            <translation><!-- 2028 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2029</masterLabel>
+            <translation><!-- 2029 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2030</masterLabel>
+            <translation><!-- 2030 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Run cost picked up by --></label>
+        <name>pkl_Whether_SAM_will_pick_up_Run_Cost__c</name>
+        <picklistValues>
+            <masterLabel>Others</masterLabel>
+            <translation><!-- Others --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAM</masterLabel>
+            <translation><!-- SAM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under Discussion</masterLabel>
+            <translation><!-- Under Discussion --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter the Delivery Order (DO) number --></help>
+        <label><!-- DO Number --></label>
+        <name>txt_DO_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the name/ team which maintains the project post PGLS exit --></help>
+        <label><!-- Project Maintenance --></label>
+        <name>txt_Project_Maintained_by__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Publishers --></label>
+        <name>txt_Publishers_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- Publisher --></label>
+        <name>txt_Run_Cost_Publisher__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter Run Cost in Euros --></help>
+        <label><!-- Run Cost (€) --></label>
+        <name>txt_Run_Cost_in_Euros__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the name of Software product required --></help>
+        <label><!-- Software Name --></label>
+        <name>txt_Software_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- DO Notes --></label>
+        <name>txta_DO_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAM Comments --></label>
+        <name>txta_SAM_Comments__c</name>
+    </fields>
+    <layouts>
+        <layout>SAM Non Proj Quote RO Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Total Calculations --></label>
+            <section>Total Calculations</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Non Proj Quote RW Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Total Calculations --></label>
+            <section>Total Calculations</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Non Proj Quote RW/RO Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Total Calculations --></label>
+            <section>Total Calculations</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Quote RO Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- DO Details --></label>
+            <section>DO Details</section>
+        </sections>
+        <sections>
+            <label><!-- Run Cost Details --></label>
+            <section>Run Cost Details</section>
+        </sections>
+        <sections>
+            <label><!-- Total Calculations --></label>
+            <section>Total Calculations</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Quote RW Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- DO Details --></label>
+            <section>DO Details</section>
+        </sections>
+        <sections>
+            <label><!-- Run Cost Details --></label>
+            <section>Run Cost Details</section>
+        </sections>
+        <sections>
+            <label><!-- Total Calculations --></label>
+            <section>Total Calculations</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Quote RW/RO Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- DO Details --></label>
+            <section>DO Details</section>
+        </sections>
+        <sections>
+            <label><!-- Run Cost Details --></label>
+            <section>Run Cost Details</section>
+        </sections>
+        <sections>
+            <label><!-- Total Calculations --></label>
+            <section>Total Calculations</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- SAM Non Proj Quote RO --></label>
+        <name>SAM_Non_Proj_Quote_RO</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Non Proj Quote RW --></label>
+        <name>SAM_Non_Proj_Quote_RW</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Non Proj Quote RW/RO --></label>
+        <name>SAM_Non_Proj_Quote_RW_RO</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Quote RW --></label>
+        <name>SAM_Quote_RW</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Quote RW_RO --></label>
+        <name>SAM_Quote_RW_RO</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Quote Read Only --></label>
+        <name>SAM_Quote_Read_Only</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- This cannot be updated. --></errorMessage>
+        <name>Name_field</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mandatory when Publisher is Other Product --></errorMessage>
+        <name>Publishers_Details_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot set when Publisher is Not &apos;Other Product&apos; --></errorMessage>
+        <name>Publishers_Details_Reverse_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot mark Quotation as Completed without attaching Quotation file name &quot;Quotation&quot; --></errorMessage>
+        <name>Quotation_as_Completed_without_attaching</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cross Charge Applicable (X) charging type not applicable for Non-Project requests --></errorMessage>
+        <name>SAM_CC_Charging_Type_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- DO/PO details are Applicable on this charging type, Please select &quot;Yes&quot;. --></errorMessage>
+        <name>SAM_DOPO_applicable</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_DO_Number_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- DO detail fields are mandatory only if DO details Applicable is Yes. --></errorMessage>
+        <name>SAM_DO_Reverse_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_Dis_Percentage_shd_be_positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mandatory when discount percentage is applicable. --></errorMessage>
+        <name>SAM_Discount_Percentage</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Value require only when discount percentage is applicable. --></errorMessage>
+        <name>SAM_Discount_Percentage_reverse</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Contract Start Date should be less than Contract End Date OR Contract End Date should be greater than Contract Start Date --></errorMessage>
+        <name>SAM_End_date_greater_than_Start_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_List_Price_shd_be_positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mandatory when maintenance is applicable. --></errorMessage>
+        <name>SAM_Maintainence_Cost</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Value require only when maintenance is applicable. --></errorMessage>
+        <name>SAM_Maintainence_Cost_reverse</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mandatory when maintenance percentage is applicable. --></errorMessage>
+        <name>SAM_Maintainence_Percentage</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Value require only when maintenance percentage is applicable. --></errorMessage>
+        <name>SAM_Maintainence_Percentage_reverse</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mandatory if maintenance is applicable. --></errorMessage>
+        <name>SAM_Maintainence_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Value require only if maintenance is applicable. --></errorMessage>
+        <name>SAM_Maintainence_Type_reverse</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_Maintenance_Cost_shd_be_positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_Maintenance_Per_shd_be_positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Invalid Maintenance value. --></errorMessage>
+        <name>SAM_Maintenance_percentage</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Project_Maintenance_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Publisher_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_Quantity_Positive_check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_Run_Cost</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_Run_Cost_one_year</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_Run_Cost_two_year</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Run Cost fields are mandatory only if Run Cost Applicable is Yes. --></errorMessage>
+        <name>SAM_Run_cost_Reverse_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Software_Name_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Software_Name_Run_Cost_Alpha</name>
+    </validationRules>
+</CustomObjectTranslation>

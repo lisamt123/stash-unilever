@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Billing Entity</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Billing Entities</value>
+    </caseValues>
+    <fields>
+        <label><!-- Billing Currency --></label>
+        <name>Billing_Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Month --></label>
+        <name>Billing_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Call Minutes --></label>
+        <name>Call_Minutes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Charge Type --></label>
+        <name>Charge_Type__c</name>
+        <relationshipLabel><!-- Billing Entities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Data Consumed In MB --></label>
+        <name>Data_Consumed_In_MB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Device Details --></label>
+        <name>Device_Details__c</name>
+        <relationshipLabel><!-- Billing Entities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Item Count --></label>
+        <name>Item_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local Net Amount --></label>
+        <name>Local_Net_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Messages --></label>
+        <name>Messages__c</name>
+    </fields>
+    <fields>
+        <label><!-- Non Usage Consumed --></label>
+        <name>Non_Usage_Consumed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Service Name --></label>
+        <name>Service_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Usage Type --></label>
+        <name>Usage_Type__c</name>
+        <relationshipLabel><!-- Billing Entities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- User Country --></label>
+        <name>User_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Email --></label>
+        <name>User_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>User__c</name>
+        <relationshipLabel><!-- Billing Entities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- iPass Consumed In MB --></label>
+        <name>iPass_Consumed_In_MB__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

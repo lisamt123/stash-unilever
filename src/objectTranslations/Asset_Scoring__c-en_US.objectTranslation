@@ -25,8 +25,20 @@
         <name>Description__c</name>
     </fields>
     <fields>
+        <label><!-- Is Active --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Layout Order --></label>
+        <name>Layout_Order__c</name>
+    </fields>
+    <fields>
         <label><!-- Point Score --></label>
         <name>Point_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Category Description --></label>
+        <name>Sub_Category_Description__c</name>
     </fields>
     <fields>
         <label><!-- Sub Category --></label>
@@ -115,6 +127,10 @@
             <masterLabel>Stimulus Materials - Research Requirements</masterLabel>
             <translation><!-- Stimulus Materials - Research Requirements --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- MDM ID --></label>
+        <name>mdm_id__c</name>
     </fields>
     <layouts>
         <layout>Asset Scoring Layout</layout>

@@ -1764,10 +1764,6 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Unilever North America</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Other</fullName>
                 <default>false</default>
             </picklistValues>

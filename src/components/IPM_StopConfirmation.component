@@ -3,7 +3,7 @@
 *@Description:This page is used to provide the confirm dialogue box for the user to provide a confirmation input to proceed
 *@Author: Cognizant
 *@Created Date: 15/7/2016
-*@Copyright © 2015  Unilever  
+*@Copyright ï¿½ 2015  Unilever  
 *************************************************************************
 -->
 <apex:component id="ipmStopConfirmation">

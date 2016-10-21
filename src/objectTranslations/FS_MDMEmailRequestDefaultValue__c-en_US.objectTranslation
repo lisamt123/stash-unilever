@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>FS MDM Email Request Default Value</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>FS MDM Email Request Default Value</value>
+    </caseValues>
+    <fields>
+        <label><!-- Approved By Text --></label>
+        <name>FS_ApprovedByText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attachment File Name --></label>
+        <name>FS_AttachmentFileName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Caption Text --></label>
+        <name>FS_CaptionText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Address --></label>
+        <name>FS_CompanyAddress__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company City --></label>
+        <name>FS_CompanyCity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Fax Text --></label>
+        <name>FS_CompanyFaxText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Fax --></label>
+        <name>FS_CompanyFax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>FS_CompanyName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Note --></label>
+        <name>FS_CompanyNote__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Phone Text --></label>
+        <name>FS_CompanyPhoneText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Phone --></label>
+        <name>FS_CompanyPhone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Condition Type Value --></label>
+        <name>FS_ConditionTypeValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Body --></label>
+        <name>FS_EmailBody__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Subject --></label>
+        <name>FS_EmailSubject__c</name>
+    </fields>
+    <fields>
+        <label><!-- Excel Attachment File Name --></label>
+        <name>FS_ExcelAttachmentFileName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Finance Manager Name --></label>
+        <name>FS_FinanceManagerName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Finance Manager Position --></label>
+        <name>FS_FinanceManagerPosition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name Text --></label>
+        <name>FS_NameText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Position Text --></label>
+        <name>FS_PositionText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Manager Name --></label>
+        <name>FS_SalesManagerName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Manager Position --></label>
+        <name>FS_SalesManagerPosition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Organisation --></label>
+        <name>FS_SalesOrganisation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Signature Text --></label>
+        <name>FS_SignatureText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Of Discount Value --></label>
+        <name>FS_TargetOfDiscountValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>FS_Title__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

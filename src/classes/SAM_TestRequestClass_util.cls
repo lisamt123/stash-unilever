@@ -81,7 +81,6 @@ public with sharing class SAM_TestRequestClass_util {
         reqRec.eml_Invoice_Approver_Email__c= SAM_Constants.TEST_EMAIL ;
         reqRec.pkl_Software_Purchase_Req__c = SAM_Constants.YES ;
         reqRec.recordtypeid = rt.id;
-        reqRec.pkl_Status__c = 'Saved';
         return reqRec;
     }
 

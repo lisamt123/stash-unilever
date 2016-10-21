@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Project GKM To Phase Matrix</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Project GKM To Phase Matrix</value>
+    </caseValues>
+    <fields>
+        <label><!-- Financial Type To Validate --></label>
+        <name>Financial_Type_To_Validate__c</name>
+    </fields>
+    <fields>
+        <label><!-- GKM Model --></label>
+        <name>GKM_Model__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Phase --></label>
+        <name>Project_Phase__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

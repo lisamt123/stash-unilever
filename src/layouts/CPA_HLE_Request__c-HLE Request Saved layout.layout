@@ -52,6 +52,10 @@
                 <behavior>Edit</behavior>
                 <field>txt_Project_type__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

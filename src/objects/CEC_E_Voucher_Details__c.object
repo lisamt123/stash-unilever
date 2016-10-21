@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -53,6 +49,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -154,6 +151,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -174,8 +172,13 @@
     <label>E-Voucher Detail</label>
     <listViews>
         <fullName>CEC_Brazil_Queue_CEC_E_Voucher_Details</fullName>
+        <columns>NAME</columns>
+        <columns>Account_Id__c</columns>
+        <columns>Active__c</columns>
+        <columns>Status__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Brazil Queue</label>
+        <language>en_US</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

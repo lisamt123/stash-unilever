@@ -653,6 +653,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Cause --></label>
+        <name>ICB_Cause__c</name>
+    </fields>
+    <fields>
         <help><!-- Is a Ice Cream Community User? --></help>
         <label><!-- Ice Cream Community User --></label>
         <name>ICB_Community_User__c</name>
@@ -688,6 +692,10 @@
             <masterLabel>University (Incomplete)</masterLabel>
             <translation><!-- University (Incomplete) --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Fail --></label>
+        <name>ICB_Fail__c</name>
     </fields>
     <fields>
         <label><!-- Internet Access --></label>
@@ -747,8 +755,28 @@
         <relationshipLabel><!-- Contacts --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Status --></label>
+        <name>ICB_Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fail</masterLabel>
+            <translation><!-- Fail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Type --></label>
         <name>ICB_Type__c</name>
+        <picklistValues>
+            <masterLabel>Console</masterLabel>
+            <translation><!-- Console --></translation>
+        </picklistValues>
         <picklistValues>
             <masterLabel>Ice Cream Salesman</masterLabel>
             <translation><!-- Ice Cream Salesman --></translation>
@@ -756,6 +784,53 @@
         <picklistValues>
             <masterLabel>Operator</masterLabel>
             <translation><!-- Operator --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>LeadSource</name>
+        <picklistValues>
+            <masterLabel>Advertisement</masterLabel>
+            <translation><!-- Advertisement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee Referral</masterLabel>
+            <translation><!-- Employee Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>External Referral</masterLabel>
+            <translation><!-- External Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation><!-- Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Relations</masterLabel>
+            <translation><!-- Public Relations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seminar - Internal</masterLabel>
+            <translation><!-- Seminar - Internal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seminar - Partner</masterLabel>
+            <translation><!-- Seminar - Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trade Show</masterLabel>
+            <translation><!-- Trade Show --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Web</masterLabel>
+            <translation><!-- Web --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Word of mouth</masterLabel>
+            <translation><!-- Word of mouth --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -956,6 +1031,24 @@
         <label><!-- Followed --></label>
         <name>sf4twitter__followed__c</name>
     </fields>
+    <fields>
+        <label><!-- SMS Opt Out --></label>
+        <name>smagicinteract__SMSOptOut__c</name>
+    </fields>
+    <layouts>
+        <layout>FSUS Contact</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Pitch Contact Layout</layout>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label>Контакт агентства</label>
         <name>Agency_Contact</name>
@@ -991,6 +1084,14 @@
     <validationRules>
         <errorMessage><!-- Please verify if CPF is correct. --></errorMessage>
         <name>CPF_Validation_Spark</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The E-Mail must have at least 4 characters before the @ --></errorMessage>
+        <name>EMail_minimum_size</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You may not modify the status --></errorMessage>
+        <name>ICB_No_Change_Status</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Birthdate is mandatory. Please fill in an appropriate value. --></errorMessage>
@@ -1051,5 +1152,13 @@
     <webLinks>
         <label><!-- Search_Twitter_Username --></label>
         <name>sf4twitter__Search_Twitter_Username</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_Bulk_SMS --></label>
+        <name>smagicinteract__Send_Bulk_SMS</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_SMS --></label>
+        <name>smagicinteract__Send_SMS</name>
     </webLinks>
 </CustomObjectTranslation>

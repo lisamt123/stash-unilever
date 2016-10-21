@@ -146,15 +146,23 @@
         <name>IPM_Expected_Change_Water__c</name>
     </fields>
     <fields>
-        <label><!-- Global Category Average View GHG --></label>
+        <label><!-- Qualitative Metric for GHG --></label>
         <name>IPM_Global_Category_Average_View_GHG__c</name>
     </fields>
     <fields>
-        <label><!-- Global Category Average View Waste --></label>
+        <label><!-- Global Category Average View HealthHygne --></label>
+        <name>IPM_Global_Category_Average_View_HlthHyg__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global Category Average View Nutrition --></label>
+        <name>IPM_Global_Category_Average_View_Nutri__c</name>
+    </fields>
+    <fields>
+        <label><!-- Qualitative Metric for Waste --></label>
         <name>IPM_Global_Category_Average_View_Waste__c</name>
     </fields>
     <fields>
-        <label><!-- Global Category Average View Water --></label>
+        <label><!-- Qualitative Metric for Water --></label>
         <name>IPM_Global_Category_Average_View_Water__c</name>
     </fields>
     <fields>
@@ -229,6 +237,18 @@
     <fields>
         <label><!-- Project Phase --></label>
         <name>Project_Phase__c</name>
+    </fields>
+    <fields>
+        <label><!-- QM Global Category Average View GHG --></label>
+        <name>QM_Global_Category_Average_View_GHG__c</name>
+    </fields>
+    <fields>
+        <label><!-- QM Global Category Average View Waste --></label>
+        <name>QM_Global_Category_Average_View_Waste__c</name>
+    </fields>
+    <fields>
+        <label><!-- QM Global Category Average View Water --></label>
+        <name>QM_Global_Category_Average_View_Water__c</name>
     </fields>
     <layouts>
         <layout>Assessment Layout</layout>

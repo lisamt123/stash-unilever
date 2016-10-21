@@ -42,6 +42,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Master Unilever Warehouse capacity utilization data storage</description>
@@ -50,6 +51,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Read</externalSharingModel>
@@ -1889,6 +1891,11 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             <operation>equals</operation>
             <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
         </filters>
+        <filters>
+            <field>WU_SAPCode_s__c</field>
+            <operation>equals</operation>
+            <value>B103</value>
+        </filters>
         <label>All</label>
         <language>en_US</language>
     </listViews>
@@ -3674,8 +3681,8 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <customTabListAdditionalFields>WU_Logistics_ServiceProvider__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>WU_Building_ContractType__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>OWNER.FIRST_NAME</customTabListAdditionalFields>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <searchFilterFields>WU_SAPCode_s__c</searchFilterFields>
         <searchFilterFields>WU_Region__c</searchFilterFields>
         <searchFilterFields>WU_MCO__c</searchFilterFields>

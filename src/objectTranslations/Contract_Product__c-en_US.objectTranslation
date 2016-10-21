@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Contract Product</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Contract Products</value>
+    </caseValues>
+    <fields>
+        <label><!-- Actual Quantity --></label>
+        <name>Actual_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract --></label>
+        <name>Contract__c</name>
+        <relationshipLabel><!-- Contract Products --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Forecast Quantity from Claimed Cases actuals --></help>
+        <label><!-- Forecast Quantity --></label>
+        <name>Forecast_Quantity__c</name>
+    </fields>
+    <fields>
+        <help><!-- Planned Quantity (SSD) --></help>
+        <label><!-- Planned Quantity --></label>
+        <name>Planned_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Product__c</name>
+        <relationshipLabel><!-- Contract Products --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

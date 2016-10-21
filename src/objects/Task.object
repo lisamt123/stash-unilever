@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>NewTask</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -278,47 +274,15 @@
         <picklistValues>
             <picklist>FS_Distributorname__c</picklist>
             <values>
-                <fullName>3Cafe</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Akademiya Edy</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Alidi-Nord</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Alyans-M</fullName>
+                <fullName>East West Moscow</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Azbuka food trade</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bakaleya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Beloe More</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ecoland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Frostway</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Globalfoods Kazan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Globalfoods Krym</fullName>
+                <fullName>East West SPb</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -326,59 +290,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Globalfoods Rostov</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Globalfoods Samara</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Globalfoods Sochi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Globalfoods Yaroslavl</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Grand Marche</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GurmanM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Holod</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IP Bulatova N%2EN%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IP Sherbakova T%2EA%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Integrita Krasnodar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Integrita Rostov</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Integrita Sochi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Integrita St%2EPete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ladya</fullName>
+                <fullName>Integrita SPb</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -390,59 +302,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>MARRusia St%2EPete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mariya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mega Trade</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Produktovaya mozaika</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Produktovaya mozaika Tatarstan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pyataya Armiya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Restoratsiya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Samson-Opt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Snabzhenie i logistika</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SoyuzPischeProm</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Suomi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sweet Life</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sweet Life Tatarstan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TD Elite Trade</fullName>
+                <fullName>MARRusia S-Pete</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -450,51 +310,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>TD KTK</fullName>
+                <fullName>Uhrenholt Moscow</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Urenholt Moscow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Urenholt St%2EPete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vershina Vkusa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Virgo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vladelita</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vostok-Zapad Ekaterinburg</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vostok-Zapad Krasnodar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vostok-Zapad Moscow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vostok-Zapad Novosibirsk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vostok-Zapad St%2EPete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yurinat</fullName>
+                <fullName>Uhrenholt S-Pete</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -506,6 +326,17 @@
             </values>
             <values>
                 <fullName>Locally Led</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Status__c</picklist>
+            <values>
+                <fullName>Concluded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -546,10 +377,6 @@
         <picklistValues>
             <picklist>Subject</picklist>
             <values>
-                <fullName>Call</fullName>
-                <default>true</default>
-            </values>
-            <values>
                 <fullName>Compliance administration</fullName>
                 <default>false</default>
             </values>
@@ -575,14 +402,6 @@
             </values>
             <values>
                 <fullName>Prepare business review</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Send Letter</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Send Quote</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -615,4 +434,77 @@
         </picklistValues>
     </recordTypes>
     <sharingModel>Private</sharingModel>
+    <webLinks>
+        <fullName>sf4twitter__Send_Twitter_Message</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Reply</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>var id = null;
+var url = window.location.href;
+var status = &apos;{!sf4twitter__Twitter_Conversation__c.sf4twitter__Status__c}&apos;;
+
+if (status == &apos;Deleted&apos;) {
+	alert(&apos;{!$Label.sf4twitter__CONVERSATION_IS_DELETED_GENERIC}&apos;);
+}
+else {
+	// get the object id from the current url
+	var id_regex = /(\/|\?|&amp;)id=([^&amp;]*)/i;
+	var match_result = id_regex.exec(url);
+	if (match_result != null) {
+		id = match_result[2];
+	} else {
+		var std_url_regex = /salesforce\.com\/([^&amp;\/=?]*)/i;
+		var std_url_match_result = std_url_regex.exec(url);
+		if (std_url_match_result != null) {
+			id = std_url_match_result[1];
+		}
+	}
+        var launchedFromHover = false;
+        
+        if (id != null &amp;&amp; id.indexOf(&apos;emptyHtmlDoc.html&apos;) &gt;= 0) {
+
+              var recordIdContainer = document.getElementsByClassName(&apos;bRelatedList&apos;)[0];
+              id = recordIdContainer.id.split(&quot;_&quot;)[0];
+              launchedFromHover = true;
+        } 
+	// go to the message form with the obtained id
+	if (id != null) {
+		var popupHeight = 450;
+		var popupWidth = 500;
+	var popupLeft = ( screen.width - popupWidth  ) / 2;
+	var popupTop = ( screen.height - popupHeight ) / 2;
+
+		var popupSpecs =
+			&apos;width=&apos;+ popupWidth + &apos;,&apos; +
+			&apos;height=&apos; + popupHeight + &apos;,&apos; +
+			&apos;left=&apos; + popupLeft + &apos;,&apos; +
+			&apos;top=&apos; + popupTop+ &apos;,&apos; +
+			&apos;toolbar=no,&apos; +
+			&apos;titlebar=no,&apos; +
+			&apos;location=no,&apos; +
+			&apos;directories=no,&apos; +
+			&apos;status=no,&apos; +
+			&apos;menubar=no,&apos; +
+			&apos;scrollbars=yes,&apos; +
+			&apos;copyhistory=yes,&apos; +
+			&apos;resizable=yes&apos;;
+                        if (launchedFromHover) {
+		window.open(
+			&apos;/apex/sf4twitter__TwitterMessage?id=&apos; + id + &apos;&amp;retURL=&apos;+encodeURIComponent(top.location),
+			                &apos;_blank&apos;,
+		                  popupSpecs);
+                        } else {
+                                 window.open(
+			                &apos;/apex/sf4twitter__TwitterMessage?id=&apos; + id + &apos;&amp;retURL=&apos;+encodeURIComponent(window.location),
+			&apos;_blank&apos;,
+		   popupSpecs);
+	}
+		
+	}
+}</url>
+    </webLinks>
 </CustomObject>

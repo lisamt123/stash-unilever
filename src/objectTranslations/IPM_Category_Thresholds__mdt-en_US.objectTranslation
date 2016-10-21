@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Category Thresholds</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM_Category_Thresholds</value>
+    </caseValues>
+    <fields>
+        <label><!-- Category Group --></label>
+        <name>IPM_Category_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>IPM_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category threshhold --></label>
+        <name>IPM_Category_threshhold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Cluster --></label>
+        <name>IPM_Market_Cluster__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Span --></label>
+        <name>IPM_Project_Span__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -67,6 +67,10 @@
                 <behavior>Readonly</behavior>
                 <field>IPM_Master_Section_Sequence__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

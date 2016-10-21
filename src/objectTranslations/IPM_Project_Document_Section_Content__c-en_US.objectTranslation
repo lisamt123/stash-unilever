@@ -9,6 +9,14 @@
         <value>IPM Project Document Section Contents</value>
     </caseValues>
     <fields>
+        <label><!-- BET Current Status --></label>
+        <name>BETCurrentStatus__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dependent Field API Name --></label>
+        <name>DependentFieldAPIName__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM_Assort_Channel_Name --></label>
         <name>IPM_Assort_Channel_Name__c</name>
         <picklistValues>
@@ -101,6 +109,7 @@
         <name>IPM_AssortmentStrategy_From__c</name>
     </fields>
     <fields>
+        <help><!-- Used for specify assortment TO date --></help>
         <label><!-- AssortmentStrategy To --></label>
         <name>IPM_AssortmentStrategy_To__c</name>
     </fields>
@@ -199,6 +208,11 @@
     <fields>
         <label><!-- IPM CMI Country --></label>
         <name>IPM_CMI_Country__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field will advice if IPM_CMI_Country__c is null or not --></help>
+        <label><!-- IPM_CMI_Country_isNull --></label>
+        <name>IPM_CMI_Country_isNull__c</name>
     </fields>
     <fields>
         <label><!-- IPM CMI Free Text --></label>
@@ -984,8 +998,17 @@
         <name>IPM_OTIF_Measure__c</name>
     </fields>
     <fields>
+        <help><!-- This field will advice if  IPM OTIF Measure is null or not --></help>
+        <label><!-- IPM_OTIF_Measure_isNull --></label>
+        <name>IPM_OTIF_Measure_isNull__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM_OTIF_No of Status --></label>
         <name>IPM_OTIF_No_of_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM OTIF Question Help Text --></label>
+        <name>IPM_OTIF_Question_Help_Text__c</name>
     </fields>
     <fields>
         <label><!-- IPM OTIF Responsibility --></label>
@@ -1082,6 +1105,10 @@
     <fields>
         <label><!-- IPM Product --></label>
         <name>IPM_Product__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project BETStatus --></label>
+        <name>IPM_Project_BETStatus__c</name>
     </fields>
     <fields>
         <label><!-- IPM Project Document Section --></label>

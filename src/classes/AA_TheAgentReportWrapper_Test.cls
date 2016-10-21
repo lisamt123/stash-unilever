@@ -43,7 +43,7 @@ private class AA_TheAgentReportWrapper_Test {
         insert contentVersionObj;
       
         
-        /*  FeedItem fi2 = new FeedItem();
+          FeedItem fi2 = new FeedItem();
             fi2.body = 'New Agent File uploaded';
             fi2.RelatedRecordId =   contentVersionObj.id;
             fi2.Type = 'ContentPost' ;
@@ -54,7 +54,7 @@ private class AA_TheAgentReportWrapper_Test {
         
         unileverReport.Chatter_Post_ID__c=fi2.Id;
         update unileverReport;
-       */
+       
        
        AA_TheAgentReportWrapper obj = new AA_TheAgentReportWrapper();
        //AA_TheAgentReportWrapper obj1 = new AA_TheAgentReportWrapper(unileverReport);

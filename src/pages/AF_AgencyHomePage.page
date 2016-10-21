@@ -1,0 +1,502 @@
+<!--  
+   *************************************************************************
+   *@Description:This page is used display the Homepage 
+   *@Author: Cognizant
+   *@Created Date: 05/07/2014 
+   *************************************************************************
+   -->
+<apex:page controller="AF_AgencyHomePageController" showHeader="true" sidebar="false">
+   <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+   <!-- Bootstrap_css File Start -->
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.css')}" type="text/css"/>
+   <!-- Bootstrap_css File End -->
+   <!-- Common_Style File Start -->
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
+   <!-- Common_Style File End -->
+   <!-- jquery library Start-->
+   <apex:includeScript value="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"/>
+   <!-- jquery library End-->
+   <!-- Bootstrap_Js File start-->
+   <apex:includeScript value="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.js')}"/>
+   <!--Bootstrap Js File End -->
+   <!-- Bootstrap Tooltip methods Start -->
+   <script type="text/javascript">
+      $('document').ready(function(){
+         $('.custom-link').tooltip();
+      });
+   </script>
+   <!-- Bootstrap Tooltip methods End -->
+   <style>
+      #iframe_cont
+      {
+      width:100%;
+      }
+      .modal-body
+      {
+      height: 95%;
+      padding:2px 15px 14px 15px;
+      } 
+      .modal-body #iframe_cont
+      {
+      height:100%;
+      }
+      .modal-dialog
+      {
+      width:92% !important;
+      height:95% !important;
+      margin-top:8px;
+      }
+      .modal-content
+      {
+      height:102%;
+      }
+   </style>
+   <script>
+      $(document).ready(function(){
+        $(".outText1").hover(function(){
+            $('.outText1').prop('title', {!tradDecimalPerStr}+'%');
+        }
+        );
+        $(".outText2").hover(function(){
+            $('.outText2').prop('title', {!digitDecimalPerStr}+'%');
+        }
+        );
+        $(".outText3").hover(function(){
+            $('.outText3').prop('title', {!adaptDecimalPerStr}+'%');
+        }
+        );
+        });
+   </script>
+   <script>
+      var jsDeclareHmepage = {isAgencyFlag1: '{!isAgencyFlag}',agencyUrl:'{!$Label.AF_AgencyUrlLink}',internalURL:'{!$Label.AF_UrlLink}',chatterURL:'{!$Label.AF_AgencyChatter}',DocumentURL:'{!$Label.AF_DocumentId}'};
+      
+   </script>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'ChatterLink.js')}"></script>
+   <div class="container">
+   <apex:form >
+      <html>
+         <apex:outputPanel id="mainSecId">
+            <!-- Main Header Section -->
+            <div class="row">
+               <div class="col-lg-12 charttable1">
+                  <table class="wid96P">
+                     <tr>
+                        <td class="logoImg">
+                           <apex:image url="{!$Resource.logo_Unilever}"/>
+                        </td>
+                        <td class="Agency_fees">{!$Label.Agency_Fee_Title}</td>
+                        <td class="Profile_Name"> {!$User.AF_UserTypeText__c} </td>
+                        <td class="User_Name"> {!$User.FirstName} {!$User.LastName} </td>
+                        <td class="Emailto_Cat Adjust_Quarters">
+                           <apex:outputPanel rendered="{!isCMCOSuperFlag}">
+                              <input type="button" value="Email to Cat Finance" 
+                                 class="modalButton btn" 
+                                 data-toggle="modal" style="width:150px" data-target="#myModal" data-backdrop="static" data-src= "{!URLFOR($Page.AF_EmailToCatFinance,null,[Year=financialYear])}" data-keyboard="false" />
+                           </apex:outputPanel>
+                        </td>
+                        <td class="Batch_Copy Adjust_Quarters">
+                           <apex:outputPanel rendered="{!isbatchcopy}">
+                              <input type="button" value="Batch Job Copy" onclick="BatchJobCopy('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}');" 
+                                 data-src="/apex/AF_BatchProcess_Copy"
+                                 data-target="#myModal"
+                                 data-toggle="modal"
+                                 data-backdrop="static"
+                                 data-keyboard="false"
+                                 Class="modalButton btn"
+                                 />
+                           </apex:outputPanel>
+                        </td>
+                        <td class="Reports">
+                           <apex:commandButton value="Reports" action="{!redirectToReportPage}"/>
+                        </td>
+                        <td class="Help">
+                           <apex:image url="{!$Resource.Help}" onclick="Chatterlink();"/>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-12 charttable1 HeaderImg_Bar">
+                  <apex:image url="{!$Resource.header_new}"/>
+               </div>
+            </div>
+            <!-- End of Main Header Section -->
+            <!-- RollUp data section -->
+            <div class="row">
+               <div class="col-lg-12 charttable1">
+                  <div class="Chart_Container">
+                     <div class="firstdiv">
+                        <div class="Product_Name"><b>{!categoryNameStr}</b></div>
+                        <div class="Unilever_Fees">
+                           <div class="Unilever_Label">
+                              <apex:outputLabel rendered="{!!isAgencyFlag}"> {!$Label.AF_Unilever_Base_Fees} </apex:outputLabel>
+                           </div >
+                           <div class="Unilever_Amount">
+                              <apex:outputText value="{0,number,###,###,###}" rendered="{!!isAgencyFlag}" title="{!$Label.af_lp_UnileverBaseFee}">
+                                 €
+                                 <apex:param value="{!totalUnileverFee}"/>
+                              </apex:outputText>
+                           </div>
+                        </div>
+                        <div class="Agency_Fees">
+                           <div class="Agency_Label">{!$Label.AF_Agency_Base_Fees} </div>
+                           <div class="Agency_Amount">
+                              <apex:outputText value="{0,number,###,###,###}" title="{!$Label.af_lp_AgencyFeeTarget}">
+                                 €
+                                 <apex:param value="{!totalAgencyFee}"/>
+                              </apex:outputText>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- First Div closed -->
+                     <div class="seconddiv">
+                        <div>
+                           <div class="CrossBorder_PO"> {!$Label.AF_Cross_Border_Po} </div >
+                           <div class="Div_Space">&nbsp;&nbsp;&nbsp;&nbsp;</div >
+                           <div class="Traditional"> {!$Label.AF_Traditional} </div >
+                           <div class="Digital"> {!$Label.AF_Digital} </div >
+                           <div class="Adaptation"> {!$Label.AF_Adapation} </div >
+                        </div>
+                        <div>
+                           <div class="Chart_CrossBorder">
+                              <canvas id="mycrosscanvas" height="100" width="150"></canvas>
+                           </div>
+                           <div class="Char_divider">  <span class="circle_vertical"></span></div>
+                           <div class="Chart_Traditional">
+                              <canvas id="mytradcanvas" height="100" width="150"></canvas>
+                           </div>
+                           <div  class="Chart_Digital">
+                              <canvas id="mydigitcanvas" height="100" width="150"></canvas>
+                           </div>
+                           <div class="Chart_Adaptation">
+                              <canvas id="myadapcanvas" height="100" width="150"></canvas>
+                           </div>
+                        </div>
+                        <div class="Char_AmountDiv">
+                           <div class="Chart_CrossBorderAmount">
+                              <apex:outputText value="{0,number,###,###,###}">
+                                 €
+                                 <apex:param value="{!totalCroBordFee}"/>
+                              </apex:outputText>
+                           </div>
+                           <div class="Chart_Amountspace">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                           <div class="Chart_Traditional">
+                              <apex:outputText styleclass="outText1" value="{0,number,###,###,###}">
+                                 €
+                                 <apex:param value="{!totalTraditionalFee}"/>
+                              </apex:outputText>
+                           </div>
+                           <div class="Chart_Digital">
+                              <apex:outputText styleclass="outText2" value="{0,number,###,###,###}">
+                                 €
+                                 <apex:param value="{!totalDigitalFee}"/>
+                              </apex:outputText>
+                           </div>
+                           <div class="Chart_Adaptation">
+                              <apex:outputText styleclass="outText3" value="{0,number,###,###,###}">
+                                 €
+                                 <apex:param value="{!totalAdaptiveFee}"/>
+                              </apex:outputText>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Second Div closed -->
+                  </div>
+                  <!-- MainDiv closed -->
+               </div>
+            </div>
+            <!-- FY and Category div for Internal and Agency Users -->
+            <apex:outputpanel id="CMCOPanelId">
+               <div class="row">
+                  <div class="col-lg-12 charttable1">
+                     <table class="DropDown_Container">
+                        <tr>
+                           <td></td>
+                           <td class="Fiscal_Yearselect">
+                              <apex:selectList value="{!financialYear}" multiselect="false" size="1" id="fyId" onchange="refreshPage();">
+                                 <apex:selectOptions value="{!financialYearOption}"></apex:selectOptions>
+                              </apex:selectList>
+                           </td>
+                           <td class="Category_Select">
+                              <apex:selectList value="{!categoryStr}" multiselect="false" size="1" id="CatId" onchange="refreshPage();">
+                                 <apex:selectOptions value="{!categoryOption}"></apex:selectOptions>
+                              </apex:selectList>
+                           </td>
+                           <td Class="Brand_Select">
+                              <apex:selectList value="{!selectedBrandOption}" multiselect="false" size="1" id="BrandId" onchange="refreshBrandPage();">
+                                 <apex:selectOptions value="{!BrandsOption}"></apex:selectOptions>
+                              </apex:selectList>
+                           </td>
+                           <td class="Wid190PX"></td>
+                           <td class="Adjust_Quarters">
+                              <apex:outputpanel rendered="{!AND(Not(isAgencyFlag),Not(isNotCurrentFy),NOT(isNonCMCONFinFlag))}">
+                                 <input type="button" value="Adjust Quarters" class="modalButton btn custom-link label_tooltip" data-toggle="modal" data-backdrop="static" 
+                                    data-keyboard="false" data-src="{!URLFOR($Page.AF_AjustBaseQuater,null,[category=CategoryId,Year=financialYear])}"
+                                    data-target="#myModal"  title="{!$Label.AF_LP_Can_Rename}"/>
+                              </apex:outputpanel>
+                           </td>
+                           <td class="Raise_NewPO">
+                              <apex:outputpanel rendered="{!AND(Not(isAgencyFlag),Not(isNotCurrentFy),NOT(isNonCMCONFinFlag))}">
+                                 <input type="button" value="Raise New PO" class="modalButton btn custom-link label_tooltip" data-toggle="modal" data-backdrop="static" 
+                                 data-keyboard="false" data-src="{!URLFOR($Page.AF_RaisenewPO_Homepage_lightbox,null,[category=CategoryId,Year=financialYear])}"  data-target="#myModal"  title="{!$Label.AF_LP_New_PO_Hover}"/>
+                              </apex:outputpanel>
+                           </td >
+                           <td class="Create_BrandAgency">
+                              <apex:outputpanel rendered="{!AND(NOT(isAgencyFlag),isCMCOSuperFlag)}">
+                                 <input type="button" value="Create Brand/Agency" class="modalButton btn" data-toggle="modal" data-backdrop="static" 
+                                    data-keyboard="false" data-src="{!URLFOR($Page.AF_BrandAgencyCombination,null,[Year=financialyear])}"  data-target="#myModal"/>
+                              </apex:outputpanel>
+                           </td>
+                           <td>  </td>
+                           <td class="Print_img">
+                              <apex:image url="{!$Resource.print_icon}" title="Please click to Print " onclick="window.print();" />
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+               </div>
+            </apex:outputpanel>
+            <!-- This panel will be loaded in case of Internal Users -->
+            <apex:outputPanel >
+               <div class="row">
+                  <div class="col-lg-12 charttable1">
+                     <table class="Product_Tiles_Container">
+                        <tr>
+                           <td>
+                              <apex:repeat value="{!brandEstimateDetailList}" var="best" id="resultId">
+                                 <table class="tiles">
+                                    <tbody>
+                                       <tr>
+                                          <td class="tiles_container">
+                                             <div class="tileHead">
+                                                <table>
+                                                   <tr>
+                                                      <td class="labelHead">
+                                                         <b> {!best.Brand__r.Name} </b> 
+                                                         <h6> {!best.AF_Agency__r.Name}  </h6>
+                                                      </td>
+                                                      <td ROWSPAN="3" class="brandLogo">
+                                                         <div class="image-container">
+                                                            <apex:outputField value="{!best.Brand__r.AF_Brand_Logo__c}" styleClass="img_cont"/>
+                                                         </div>
+                                                      </td>
+                                                   </tr>
+                                                </table>
+                                             </div>
+                                             <apex:outputPanel rendered="{!!isAgencyFlag}">
+                                                <table>
+                                                   <tr>
+                                                      <td class="firstlabelName" style="width:209px">
+                                                         <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Annual_Base_Fee_Target}">{!$Label.AF_Unilever_Targets}</apex:outputLink>
+                                                      </td>
+                                                      <td>
+                                                         <apex:outputLink onclick="TargetBaseFees('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}','{!Best.Id}');return false;" html-data-toggle="modal" html-data-target="#myModal" html-data-backdrop="static" html-data-src="{!URLFOR($Page.AF_BrandEstimate,null,[Id=Best.Id])}" title="{!$Label.AF_LP_Base_Fee_Targets}" id="theLink" styleClass="custom-link modalButton firstlabelValue">
+                                                            <apex:outputText value="{0,number,###,###,###}">
+                                                               €&nbsp;
+                                                               <apex:param value="{!best.Base_Fee_Total__c}"/>
+                                                            </apex:outputText>
+                                                         </apex:outputLink>
+                                                      </td>
+                                                   </tr>
+                                                </table>
+                                             </apex:outputPanel>
+                                             <table class="secondValueCont">
+                                                <tr>
+                                                   <td class="wid132P">
+                                                      <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Running_Total}">{!$Label.AF_Agency_Base_Fee}</apex:outputLink>
+                                                   </td>
+                                                   <td class="secondValueAmount">
+                                                      <apex:outputText value="{0,number,###,###,###}" title="{!$Label.AF_LP_Running_Total}">
+                                                         <span>€</span>
+                                                         <apex:param value="{!best.Agency_Base_Fee__c}"/>
+                                                      </apex:outputText>
+                                                   </td>
+                                                </tr>
+                                             </table>
+                                             <table class="Tile_Grid">
+                                                <thead>
+                                                   <tr>
+                                                      <th width="17%">{!$Label.AF_Process}</th>
+                                                      <th width="16%">{!$Label.AF_Status}</th>
+                                                      <th width="14%">{!$label.AF_Cross_Border_Po}</th>
+                                                      <th width="7%">{!$label.AF_Action}</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr>
+                                                      <td >
+                                                         <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="{!URLFOR($Page.AF_UL_BrandEstimate_Matrices,null,[bId=Best.Brand__c,fy=financialYear,aId=Best.AF_Agency__c,brandvalue=selectedBrandOption,category=categoryNameStr+'::'+CategoryId,Year=financialYear])}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
+                                                            title="{!$Label.AF_LP_Enter_BF_estimates} {!$Label.AF_LP_Naming_Convention}">{!$Label.AF_Base_Fee_Matrix}</a>
+                                                      </td>
+                                                      <td >
+                                                         <apex:outputField value="{!best.AF_Status_Base_Fees__c}" rendered="{!IF(best.AF_Status_Base_Fees__c!='With Category Finance','true','false')}"></apex:outputField>
+                                                         <apex:outputLabel value="W/Cat Finance" rendered="{!IF(best.AF_Status_Base_Fees__c=='With Category Finance','true','false')}"></apex:outputLabel>
+                                                      </td>
+                                                      <td class="CrossBorderPOcell">
+                                                         <apex:outputField value="{!best.AF_No_CrossBorders__c}"></apex:outputField>
+                                                      </td>
+                                                      <td class="ActionCell">
+                                                         <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Action_Pending}">
+                                                            <apex:image url="{!$Resource.NoAction}" rendered="{!IF(OR(AND(IsFinance,best.AF_Status_Base_Fees__c!='With Category Finance'), AND(IsCMCOFinance,best.AF_Status_Base_Fees__c!='With CMCO') ) , 'true', 'false') }"/>
+                                                            <apex:image url="{!$Resource.Review}" rendered="{!IF(OR(AND(IsFinance,best.AF_Status_Base_Fees__c=='With Category Finance'), AND(IsCMCOFinance,best.AF_Status_Base_Fees__c=='With CMCO') ) , 'true', 'false') }" />
+                                                            <apex:image url="{!$Resource.NoAction}" rendered="{!IF(AND(isAgencyFlag,best.AF_Status_Base_Fees__c!='With Agency',best.AF_Status_Base_Fees__c!='With Agency (Draft)'),'true','false')}"/>
+                                                            <apex:image url="{!$Resource.Review}" rendered="{!IF(AND(isAgencyFlag,best.AF_Status_Base_Fees__c=='With Agency (Draft)'),'true','false')}" />
+                                                            <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isAgencyFlag,best.AF_Category_Finance_Flag__c==0,best.AF_Status_Base_Fees__c=='With Agency'),'true','false')}"/>
+                                                            <apex:image url="{!$Resource.Review}" rendered="{!IF(AND(isAgencyFlag,best.AF_Category_Finance_Flag__c>0,best.AF_Status_Base_Fees__c=='With Agency'),'true','false')}" />
+                                                            <apex:image url="{!$Resource.NoAction}" rendered="{!IF(AND(isController,best.AF_Status_Base_Fees__c!='With CMCO'),'true','false')}"/>
+                                                            <apex:image url="{!$Resource.Review}" rendered="{!IF(AND(isController,best.AF_Status_Base_Fees__c=='With CMCO'),'true','false')}" />
+                                                            <apex:image url="{!$Resource.NoAction}" rendered="{!isProcurement}"/>
+                                                            <apex:image url="{!$Resource.NoAction}" rendered="{!IsCatFinanceRegional}"/>
+                                                            <apex:image url="{!$Resource.NoAction}" rendered="{!IF(AND(isCMCOSuperFlag),'true','false')}"/>
+                                                         </apex:outputLink>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td >
+                                                         <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="apex/AF_UL_OOPS_SelectMatrices?bId={!Best.Brand__c}&fy={!financialYear}&aId={!Best.AF_Agency__c}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
+                                                            title="{!$Label.AF_LP_y81a}">{!$Label.AF_OOPS_Matrix}</a>
+                                                      </td>
+                                                      <td >
+                                                         <apex:outputField value="{!best.AF_Status_OOPs_Estimate__c}" rendered="{!IF(best.AF_Status_OOPs_Estimate__c!='with category finance','true','false')}"/>
+                                                         <apex:outputLabel value="W/Cat Finance" rendered="{!IF(best.AF_Status_OOPs_Estimate__c=='with category finance','true','false')}"></apex:outputLabel>
+                                                      </td>
+                                                      <td class="CrossBorderPOcell">
+                                                         <apex:outputField value="{!best.AF_No_of_OOPS_Crossborder__c}"/>
+                                                      </td>
+                                                      <td clas="ActionCell">
+                                                         <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Action_Pending}">
+                                                            <apex:image url="{!$Resource.NoAction}" rendered="{!IF(OR(AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='Ready for PO'), AND(isAgencyFlag,best.AF_Status_OOPs_Estimate__c=='Ready for PO'),AND(IsCMCO),AND(isAgencyFlag,best.AF_Status_OOPs_Estimate__c!='with agency'),AND(IsFinance,best.AF_Status_OOPs_Estimate__c!='with category finance')) , 'true', 'false') }" />
+                                                            <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isAgencyFlag,best.AF_Status_OOPs_Estimate__c=='with agency') , 'true', 'false') }" />
+                                                            <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='with category finance'),AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='with category finance')) , 'true', 'false') }" />
+                                                            <apex:image url="{!$Resource.Review}" rendered="{!IF(AND(AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='with category finance'), AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='Ready for PO') ) , 'true', 'false') }"/>
+                                                            <apex:image url="{!$Resource.NoAction}" rendered="{!isController}"/>
+                                                            <apex:image url="{!$Resource.NoAction}" rendered="{!isProcurement}"/>
+                                                            <apex:image url="{!$Resource.NoAction}" rendered="{!IsCatFinanceRegional}"/>
+                                                         </apex:outputLink>
+                                                      </td>
+                                                   </tr>
+                                                   <apex:outputPanel rendered="{!IF(AND(NOT(isAgencyFlag),NOT(Best.AF_No_Bonus__c)),'true', 'false')}">
+                                                      <tr>
+                                                         <td>
+                                                            <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="{!URLFOR($Page.AF_QuarterlyBonus,null,[Brandid=Best.Brand__c,Year=financialYear,Agencyid=Best.AF_Agency__c])}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
+                                                               title="{!$Label.AF_LP_2nyf}">{!$Label.AF_Bonus_Quarterly}</a>
+                                                         </td>
+                                                         <td>
+                                                            <apex:outputField value="{!best.AF_Bonus_Quaterly_Status__c}" rendered="{!!best.AF_Pilot_Model__c}" />
+                                                         </td>
+                                                         <td class="CrossBorderPOcell"></td>
+                                                         <td class="ActionCell">
+                                                            <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Action_Pending}">
+                                                               <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isFinance,best.AF_Bonus_Quaterly_Status__c=='W/Cat Finance',NOT(best.AF_Pilot_Model__c)),'true','false')}"/>
+                                                               <apex:image url="{!$Resource.NoAction}" rendered="{!IF(AND(IsCMCOFinance,best.AF_Bonus_Quaterly_Status__c=='with CMCO',NOT(best.AF_Pilot_Model__c)),'true','false')}"/>
+                                                               <apex:image url="{!$Resource.NoAction}" rendered="{!IF(OR(AND(NOT(IsFinance),best.AF_Bonus_Quaterly_Status__c=='W/Cat Finance'),best.AF_Pilot_Model__c,best.AF_Bonus_Quaterly_Status__c=='',IsCatFinanceRegional,AND(NOT(IsCMCOFinance),best.AF_Bonus_Quaterly_Status__c=='with CMCO')),'true', 'false')}"/>
+                                                            </apex:outputLink>
+                                                         </td>
+                                                      </tr>
+                                                   </apex:outputPanel>
+                                                   <apex:outputPanel rendered="{!!Best.AF_No_Bonus__c}">
+                                                      <tr>
+                                                         <td>
+                                                            <apex:outputpanel rendered="{!!Best.AF_No_Bonus__c}">
+                                                               <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="{!URLFOR($Page.AF_middlebonusmatrix,null,[Brandid=Best.Brand__c,Year=financialYear,Agencyid=Best.AF_Agency__c])}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
+                                                                  title="{!$Label.AF_LP_ey31}">{!$Label.AF_Bonus_Matrix}</a>
+                                                            </apex:outputpanel>
+                                                         </td>
+                                                         <td>
+                                                            <apex:outputField value="{!best.AF_Bonus_Yearly_Status__c}" />
+                                                         </td>
+                                                         <td class="CrossBorderPOcell">
+                                                            <apex:outputField value="{!best.AF_No_Of_Bonus_Matrix_Crossborders__c}" />
+                                                         </td>
+                                                         <td class="ActionCell">
+                                                            <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Action_Pending}">
+                                                               <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isFinance,best.AF_Bonus_Yearly_Status__c=='W/Cat Finance'),'true','false')}"/>
+                                                               <apex:image url="{!$Resource.NoAction}" rendered="{!IF (OR(best.AF_Bonus_Yearly_Status__c=='Ready For PO',best.AF_Bonus_Yearly_Status__c=='',isController,isProcurement,IsCatFinanceRegional,AND(NOT(isFinance),best.AF_Bonus_Yearly_Status__c=='W/Cat Finance')),'true','false')}"/>
+                                                            </apex:outputLink>
+                                                         </td>
+                                                      </tr>
+                                                   </apex:outputPanel>
+                                                </tbody>
+                                             </table>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </apex:repeat>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+               </div>
+            </apex:outputPanel>
+            <!-- End of code for Internal Users -->
+            <!-- End of code for Internal Users -->
+         </apex:outputPanel>
+         <!-- for footer image -->
+         <div class="row margin10">
+            <div class="col-lg-12 charttable1">
+               <apex:image url="{!$Resource.header_new}" styleClass="footerBackgroundImg"/>
+            </div>
+         </div>
+         <!-- Bootstrap bootstrap modal window Start -->
+         <div class="model_container">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                     </div>
+                     <div class="modal-body">
+                        <apex:image url="{!$Resource.Loading}" height="36" width="36" styleClass="loading_img"/>
+                        <div id="loader_cont">
+                        </div>
+                        <iframe frameborder="0" name="remotepage" id="iframe_cont"></iframe>
+                     </div>
+                  </div>
+                  <!-- /.modal-content -->
+               </div>
+               <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+         </div>
+         <!-- Bootstrap bootstrap modal window End--> 
+      </html>
+      <apex:actionFunction name="refreshPage" action="{!changeCatName}" status="statusSaveTrip"/>
+      <apex:actionFunction name="refreshBrandPage" action="{!changeBrand}" />
+      <apex:actionStatus id="statusSaveTrip" stopText="">
+         <apex:facet name="start">
+            <div>
+               <div class="popupBackground" />
+                  <div class="PopupPanel">
+                     <table border="0" width="100%" height="100%">
+                        <tr>
+                           <td align="center"><b>Please Wait</b></td>
+                        </tr>
+                        <tr>
+                           <td align="center"><img alt="Displays the processing image" src="{!$Resource.Processing}"/></td>
+                        </tr>
+                     </table>
+                  </div>
+               </div>
+         </apex:facet>
+      </apex:actionStatus>
+   </apex:form>
+   </div>
+  <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AgencyHomepage.js')}"></script>
+  <script>
+  var jsDeclareHomepage = {crosPerStr1:'{!crosPerStr}', tradPerStr1:'{!tradPerStr}', digitPerStr1:'{!digitPerStr}',adaptPerStr1:'{!adaptPerStr}'};
+  </script>
+  <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/CanvaschartHomepage.js')}"></script>
+   <!--Chart script -->
+   <script>
+      window.onload = function() {
+          var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
+          var mytradBar = new Chart(document.getElementById("mytradcanvas").getContext("2d")).Doughnut(DoughnutTradData,tradopts);
+          var mydigitBar = new Chart(document.getElementById("mydigitcanvas").getContext("2d")).Doughnut(DoughnutDigtData,digtopts);
+          var myadapBar = new Chart(document.getElementById("myadapcanvas").getContext("2d")).Doughnut(DoughnutAdapData,adapopts);
+      }
+     
+        
+   </script>
+</apex:page>

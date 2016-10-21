@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PBS Wiki</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>PBS Wiki</value>
+    </caseValues>
+    <fields>
+        <label><!-- Group Name --></label>
+        <name>Group_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Articles --></label>
+        <name>Related_Articles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Files2 --></label>
+        <name>Related_Files2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Files3 --></label>
+        <name>Related_Files3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Files4 --></label>
+        <name>Related_Files4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Files5 --></label>
+        <name>Related_Files5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Files --></label>
+        <name>Related_Files__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wiki Content --></label>
+        <name>Wiki_Content__c</name>
+    </fields>
+    <layouts>
+        <layout>PBS Wiki Layout</layout>
+        <sections>
+            <label><!-- Body --></label>
+            <section>Body</section>
+        </sections>
+        <sections>
+            <label><!-- Related Articles --></label>
+            <section>Related Articles</section>
+        </sections>
+        <sections>
+            <label><!-- Title --></label>
+            <section>Title</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

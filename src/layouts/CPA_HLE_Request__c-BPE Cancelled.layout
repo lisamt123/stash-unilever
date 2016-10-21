@@ -83,6 +83,10 @@
                 <behavior>Readonly</behavior>
                 <field>dat_Submitted_Date__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

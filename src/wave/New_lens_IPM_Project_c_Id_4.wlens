@@ -1,0 +1,1 @@
+{"query":{"query":"{&quot;measures&quot;:[[&quot;count&quot;,&quot;IPM_Project__c&quot;]],&quot;filters&quot;:[[&quot;IsSystemGenerated__c&quot;,[&quot;true&quot;],&quot;in&quot;],[&quot;IPM_Project__c.IPM_PM_Approach__c&quot;,[&quot;Internal&quot;],&quot;in&quot;]]}","version":-1.0}}

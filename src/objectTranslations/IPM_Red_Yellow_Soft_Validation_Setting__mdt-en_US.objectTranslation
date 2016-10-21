@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Red Yellow Soft Validation Setting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Red Yellow Soft Validation Settings</value>
+    </caseValues>
+    <fields>
+        <label><!-- IPM Market Place Activity --></label>
+        <name>IPM_Market_Place_Activity__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Phase --></label>
+        <name>IPM_Project_Phase__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Sub Type --></label>
+        <name>IPM_Project_Sub_Type__c</name>
+        <picklistValues>
+            <masterLabel>Brand Led Growth(BLG)</masterLabel>
+            <translation><!-- Brand Led Growth(BLG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Innovation/Renovation</masterLabel>
+            <translation><!-- Innovation/Renovation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operational</masterLabel>
+            <translation><!-- Operational --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Threshold Status --></label>
+        <name>IPM_Threshold_Status__c</name>
+        <picklistValues>
+            <masterLabel>Above Threshold</masterLabel>
+            <translation><!-- Above Threshold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Below Threshold</masterLabel>
+            <translation><!-- Below Threshold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exempt</masterLabel>
+            <translation><!-- Exempt --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- checkBMIYellow --></label>
+        <name>checkBMIYellow__c</name>
+    </fields>
+    <fields>
+        <label><!-- checkGrossProfitYellow --></label>
+        <name>checkGrossProfitYellow__c</name>
+    </fields>
+    <fields>
+        <label><!-- checkPBOYellow --></label>
+        <name>checkPBOYellow__c</name>
+    </fields>
+    <fields>
+        <label><!-- checkValidCAPEXYellow --></label>
+        <name>checkValidCAPEXYellow__c</name>
+    </fields>
+    <fields>
+        <label><!-- checkValidGTOAndITORed --></label>
+        <name>checkValidGTOAndITORed__c</name>
+    </fields>
+    <fields>
+        <label><!-- checkValidIRRYellow --></label>
+        <name>checkValidIRRYellow__c</name>
+    </fields>
+    <fields>
+        <label><!-- checkValidITOYellow --></label>
+        <name>checkValidITOYellow__c</name>
+    </fields>
+    <fields>
+        <label><!-- checkValidNPVYellow --></label>
+        <name>checkValidNPVYellow__c</name>
+    </fields>
+    <fields>
+        <label><!-- checkValidPaybackYellow --></label>
+        <name>checkValidPaybackYellow__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

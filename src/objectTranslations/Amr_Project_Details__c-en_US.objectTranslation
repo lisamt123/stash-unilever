@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Amr Project Details</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Amr Project Details</value>
+    </caseValues>
+    <fields>
+        <label><!-- Campaign Name --></label>
+        <name>Campaign_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Execution Name --></label>
+        <name>Execution_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Activity --></label>
+        <name>Project_Activity__c</name>
+        <picklistValues>
+            <masterLabel>PA1</masterLabel>
+            <translation><!-- PA1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA2</masterLabel>
+            <translation><!-- PA2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA3</masterLabel>
+            <translation><!-- PA3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project description --></label>
+        <name>Project_description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project location --></label>
+        <name>Project_location__c</name>
+        <picklistValues>
+            <masterLabel>PL1</masterLabel>
+            <translation><!-- PL1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PL2</masterLabel>
+            <translation><!-- PL2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PL3</masterLabel>
+            <translation><!-- PL3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project name --></label>
+        <name>Project_name__c</name>
+        <picklistValues>
+            <masterLabel>PN1</masterLabel>
+            <translation><!-- PN1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PN2</masterLabel>
+            <translation><!-- PN2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PN3</masterLabel>
+            <translation><!-- PN3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Target Air Date --></label>
+        <name>Target_Air_Date__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

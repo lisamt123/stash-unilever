@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -76,36 +72,37 @@
             <controllingField>Type__c</controllingField>
             <picklistValues>
                 <fullName>Cluster</fullName>
-                <controllingFieldValues>Market</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Market</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>MCO</fullName>
-                <controllingFieldValues>Market</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Market</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Country</fullName>
-                <controllingFieldValues>Market</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Market</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Category</fullName>
-                <controllingFieldValues>Central</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Central</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Function</fullName>
-                <controllingFieldValues>Central</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Central</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Expertise</fullName>
-                <controllingFieldValues>Central</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Central</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -125,6 +122,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

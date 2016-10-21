@@ -145,7 +145,6 @@
             <actionType>StandardButton</actionType>
             <sortOrder>4</sortOrder>
         </platformActionListItems>
-
         <platformActionListItems>
             <actionName>FS_Defined_Objective__c.Create_Risk</actionName>
             <actionType>QuickAction</actionType>
@@ -210,7 +209,6 @@
         <quickActionListItems>
             <quickActionName>FeedItem.ContentPost</quickActionName>
         </quickActionListItems>
-
         <quickActionListItems>
             <quickActionName>FeedItem.MobileSmartActions</quickActionName>
         </quickActionListItems>

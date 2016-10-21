@@ -26,8 +26,7 @@
         <description>WU ApprovalNotification</description>
         <protected>false</protected>
         <recipients>
-            <field>WU_WarehousePOC_Email__c</field>
-            <type>email</type>
+            <type>owner</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC</template>
@@ -54,17 +53,6 @@
         <template>Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC</template>
     </alerts>
     <alerts>
-        <fullName>WU_RejectionNotification</fullName>
-        <description>WU RejectionNotification</description>
-        <protected>false</protected>
-        <recipients>
-            <field>WU_WarehousePOC_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC_Rejection</template>
-    </alerts>
-    <alerts>
         <fullName>Warehouse_capacity_below_committed_capacity</fullName>
         <description>Warehouse capacity below committed capacity!</description>
         <protected>false</protected>
@@ -79,15 +67,6 @@
         <field>WU_Approval_Status__c</field>
         <formula>&apos;Approved&apos;</formula>
         <name>Approved</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Field_Update_Submitted_By</fullName>
-        <field>Submitted_by__c</field>
-        <formula>$User.FirstName + &quot; &quot; + $User.LastName</formula>
-        <name>Field Update Submitted By</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>

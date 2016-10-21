@@ -96,9 +96,6 @@
                 <field>num_License_Quantity__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>ltxt_Comments_if_any__c</field>
             </layoutItems>

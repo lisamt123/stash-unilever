@@ -1,0 +1,3559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Requests</value>
+    </caseValues>
+    <fields>
+        <label><!-- Finance Status --></label>
+        <name>Finance_Status__c</name>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULSMT)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULSMT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Charge</masterLabel>
+            <translation><!-- Awaiting Charge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Completed</masterLabel>
+            <translation><!-- Charging Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging In Progress</masterLabel>
+            <translation><!-- Charging In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Rejected</masterLabel>
+            <translation><!-- Charging Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Hold</masterLabel>
+            <translation><!-- On Hold --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- When was the last quote was sent --></help>
+        <label><!-- Last Quote Sent On --></label>
+        <name>Last_Quote_Sent_On__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quotation Record Count --></label>
+        <name>Quotation_Record_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quote(Final) Provided Date --></label>
+        <name>Quote_Final_Provided_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Count for Report --></label>
+        <name>Record_Count_for_Report__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Status Before On Hold --></label>
+        <name>Request_Status_Before_On_Hold__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAM Team Owner --></label>
+        <name>SAM_Team_Owner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ticket Age --></label>
+        <name>Ticket_Age__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Charging Submitted Once --></label>
+        <name>chk_Is_Charging_Submitted_Once__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Quote Submitted Once --></label>
+        <name>chk_Is_Quote_Submitted_Once__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Request Quote Approved --></label>
+        <name>chk_Is_Request_Quote_Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Request Sent for CC --></label>
+        <name>chk_Is_Request_Sent_for_CC__c</name>
+    </fields>
+    <fields>
+        <help><!-- Re-Open the Request --></help>
+        <label><!-- Re-Open --></label>
+        <name>chk_Re_Open__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the Cross Charge request submission date to Finance --></help>
+        <label><!-- Submission Date --></label>
+        <name>date_CrossCharge_Submission_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cross Charge Completion Date(by finance) --></label>
+        <name>date_Cross_Charge_Completion_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Finance Submission Date --></label>
+        <name>date_Finance_Submission_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the tentative Go-Live Date of the project, this should not be less then current date --></help>
+        <label><!-- Go Live Date --></label>
+        <name>date_Go_Live_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>date_Query_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>date_Query_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request End Date --></label>
+        <name>date_Request_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>date_Request_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Budget Owner Email Id --></label>
+        <name>eml_Budget_Owner_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financial Business Partner Email Id --></label>
+        <name>eml_Financial_Manager_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Infrastructure Manager Email Id --></label>
+        <name>eml_Infrastructure_Manager_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invoice Approver Email Id --></label>
+        <name>eml_Invoice_Approver_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Portfolio Manager Email Id --></label>
+        <name>eml_Portfolio_Manager_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Owner Email Id --></label>
+        <name>eml_Program_Owner_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Manager Email Id --></label>
+        <name>eml_Project_Manager_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Technical Architect Email Id --></label>
+        <name>eml_Project_Technical_Architect_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requester Email Id --></label>
+        <name>eml_Requester_Email_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Cross Charge Amount (€) --></label>
+        <name>fml_Cross_Charge_Amount_for_report__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAM Demand Manager --></label>
+        <name>fml_SAM_demand_manager__c</name>
+    </fields>
+    <fields>
+        <label><!-- Software Engagement Type --></label>
+        <name>fml_Software_Engagement_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Applicable Cross Charge (€) --></label>
+        <name>fml_Total_Applicable_Cross_Charge__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total € --></label>
+        <name>fml_Total__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assign To --></label>
+        <name>lkp_Assign_To__c</name>
+        <relationshipLabel><!-- Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Is there any application software involved? Please name the software, and number of licenses. --></help>
+        <label><!-- Application S/w Details --></label>
+        <name>ltxt_Application_S_w_Details__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is the software already purchased.  If so when? Please upload contract --></help>
+        <label><!-- Application S/w Purchase Details --></label>
+        <name>ltxt_Application_S_w_Purchase_Details__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the details of Backend Server if any --></help>
+        <label><!-- Backend server details --></label>
+        <name>ltxt_Backend_server_details__c</name>
+    </fields>
+    <fields>
+        <label><!-- Finance Comments --></label>
+        <name>ltxt_CC_Finance_Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- Provide comments where mandatory for certain actions --></help>
+        <label><!-- Action Comments --></label>
+        <name>ltxt_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>ltxt_CrossCharge_SAM_Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter any additional comments --></help>
+        <label><!-- Comments --></label>
+        <name>ltxt_Deployment_Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- For Requester: Write/View response for the query
+For SAM User: Write/View response for the query --></help>
+        <label><!-- Detailed Notes --></label>
+        <name>ltxt_Query_Detailed_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Query Discussion Log --></label>
+        <name>ltxt_Query_Discussion_Log__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAM Response --></label>
+        <name>ltxt_Query_SAM_Response__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is there any reporting/monitoring/archieving tool etc to be deployed on the server --></help>
+        <label><!-- Reporting Details --></label>
+        <name>ltxt_Reporting_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Comment History --></label>
+        <name>ltxt_Request_Comment_History__c</name>
+    </fields>
+    <fields>
+        <label><!-- SaaS Comments --></label>
+        <name>ltxt_SaaS_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Public Groups --></label>
+        <name>ltxt_User_Public_Groups__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cloud Platforms --></label>
+        <name>mpkl_Cloud_Platforms__c</name>
+        <picklistValues>
+            <masterLabel>Amazon</masterLabel>
+            <translation><!-- Amazon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Azure</masterLabel>
+            <translation><!-- Azure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Others</masterLabel>
+            <translation><!-- Others --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select Country/Countries where S/W will be installed --></help>
+        <label><!-- Country of Deployment --></label>
+        <name>mpkl_Country_of_Deployment__c</name>
+        <picklistValues>
+            <masterLabel>Afghanistan</masterLabel>
+            <translation><!-- Afghanistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Akrotiri</masterLabel>
+            <translation><!-- Akrotiri --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Albania</masterLabel>
+            <translation><!-- Albania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Algeria</masterLabel>
+            <translation><!-- Algeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Andorra</masterLabel>
+            <translation><!-- Andorra --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Angola</masterLabel>
+            <translation><!-- Angola --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Anguilla</masterLabel>
+            <translation><!-- Anguilla --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Antarctica</masterLabel>
+            <translation><!-- Antarctica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Antigua and Barbuda</masterLabel>
+            <translation><!-- Antigua and Barbuda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Argentina</masterLabel>
+            <translation><!-- Argentina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Armenia</masterLabel>
+            <translation><!-- Armenia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Aruba</masterLabel>
+            <translation><!-- Aruba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ashmore and Cartier Islands</masterLabel>
+            <translation><!-- Ashmore and Cartier Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Australia</masterLabel>
+            <translation><!-- Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Austria</masterLabel>
+            <translation><!-- Austria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Azerbaijan</masterLabel>
+            <translation><!-- Azerbaijan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bahamas, The</masterLabel>
+            <translation><!-- Bahamas, The --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bahrain</masterLabel>
+            <translation><!-- Bahrain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bangladesh</masterLabel>
+            <translation><!-- Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Barbados</masterLabel>
+            <translation><!-- Barbados --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bassas da India</masterLabel>
+            <translation><!-- Bassas da India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Belarus</masterLabel>
+            <translation><!-- Belarus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Belgium</masterLabel>
+            <translation><!-- Belgium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Belize</masterLabel>
+            <translation><!-- Belize --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Benin</masterLabel>
+            <translation><!-- Benin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bermuda</masterLabel>
+            <translation><!-- Bermuda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bhutan</masterLabel>
+            <translation><!-- Bhutan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bolivia</masterLabel>
+            <translation><!-- Bolivia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bosnia and Herzegovina</masterLabel>
+            <translation><!-- Bosnia and Herzegovina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Botswana</masterLabel>
+            <translation><!-- Botswana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bouvet Island</masterLabel>
+            <translation><!-- Bouvet Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>British Indian Ocean Territory</masterLabel>
+            <translation><!-- British Indian Ocean Territory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>British Virgin Islands</masterLabel>
+            <translation><!-- British Virgin Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brunei</masterLabel>
+            <translation><!-- Brunei --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bulgaria</masterLabel>
+            <translation><!-- Bulgaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Burkina Faso</masterLabel>
+            <translation><!-- Burkina Faso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Burma</masterLabel>
+            <translation><!-- Burma --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Burundi</masterLabel>
+            <translation><!-- Burundi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cambodia</masterLabel>
+            <translation><!-- Cambodia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cameroon</masterLabel>
+            <translation><!-- Cameroon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canada</masterLabel>
+            <translation><!-- Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cape Verde</masterLabel>
+            <translation><!-- Cape Verde --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cayman Islands</masterLabel>
+            <translation><!-- Cayman Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Central African Republic</masterLabel>
+            <translation><!-- Central African Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chad</masterLabel>
+            <translation><!-- Chad --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chile</masterLabel>
+            <translation><!-- Chile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>China</masterLabel>
+            <translation><!-- China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Christmas Island</masterLabel>
+            <translation><!-- Christmas Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clipperton Island</masterLabel>
+            <translation><!-- Clipperton Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cocos (Keeling) Islands</masterLabel>
+            <translation><!-- Cocos (Keeling) Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colombia</masterLabel>
+            <translation><!-- Colombia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Comoros</masterLabel>
+            <translation><!-- Comoros --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Congo, Democratic Republic of the</masterLabel>
+            <translation><!-- Congo, Democratic Republic of the --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Congo, Republic of the</masterLabel>
+            <translation><!-- Congo, Republic of the --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cook Islands</masterLabel>
+            <translation><!-- Cook Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coral Sea Islands</masterLabel>
+            <translation><!-- Coral Sea Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Costa Rica</masterLabel>
+            <translation><!-- Costa Rica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cote d&apos;Ivoire</masterLabel>
+            <translation><!-- Cote d&apos;Ivoire --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Croatia</masterLabel>
+            <translation><!-- Croatia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cuba</masterLabel>
+            <translation><!-- Cuba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cyprus</masterLabel>
+            <translation><!-- Cyprus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Czech Republic</masterLabel>
+            <translation><!-- Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denmark</masterLabel>
+            <translation><!-- Denmark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dhekelia</masterLabel>
+            <translation><!-- Dhekelia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Djibouti</masterLabel>
+            <translation><!-- Djibouti --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dominica</masterLabel>
+            <translation><!-- Dominica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dominican Republic</masterLabel>
+            <translation><!-- Dominican Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ecuador</masterLabel>
+            <translation><!-- Ecuador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Egypt</masterLabel>
+            <translation><!-- Egypt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>El Salvador</masterLabel>
+            <translation><!-- El Salvador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equatorial Guinea</masterLabel>
+            <translation><!-- Equatorial Guinea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eritrea</masterLabel>
+            <translation><!-- Eritrea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Estonia</masterLabel>
+            <translation><!-- Estonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ethiopia</masterLabel>
+            <translation><!-- Ethiopia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europa Island</masterLabel>
+            <translation><!-- Europa Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Falkland Islands (Islas Malvinas)</masterLabel>
+            <translation><!-- Falkland Islands (Islas Malvinas) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Faroe Islands</masterLabel>
+            <translation><!-- Faroe Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fiji</masterLabel>
+            <translation><!-- Fiji --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finland</masterLabel>
+            <translation><!-- Finland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>France</masterLabel>
+            <translation><!-- France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>French Guiana</masterLabel>
+            <translation><!-- French Guiana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>French Polynesia</masterLabel>
+            <translation><!-- French Polynesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>French Southern and Antarctic Lands</masterLabel>
+            <translation><!-- French Southern and Antarctic Lands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gabon</masterLabel>
+            <translation><!-- Gabon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gambia, The</masterLabel>
+            <translation><!-- Gambia, The --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gaza Strip</masterLabel>
+            <translation><!-- Gaza Strip --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Georgia</masterLabel>
+            <translation><!-- Georgia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Germany</masterLabel>
+            <translation><!-- Germany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ghana</masterLabel>
+            <translation><!-- Ghana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gibraltar</masterLabel>
+            <translation><!-- Gibraltar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Glorioso Islands</masterLabel>
+            <translation><!-- Glorioso Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greece</masterLabel>
+            <translation><!-- Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greenland</masterLabel>
+            <translation><!-- Greenland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grenada</masterLabel>
+            <translation><!-- Grenada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guadeloupe</masterLabel>
+            <translation><!-- Guadeloupe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guam</masterLabel>
+            <translation><!-- Guam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guatemala</masterLabel>
+            <translation><!-- Guatemala --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guernsey</masterLabel>
+            <translation><!-- Guernsey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guinea</masterLabel>
+            <translation><!-- Guinea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guinea-Bissau</masterLabel>
+            <translation><!-- Guinea-Bissau --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guyana</masterLabel>
+            <translation><!-- Guyana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Haiti</masterLabel>
+            <translation><!-- Haiti --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Heard Island and McDonald Islands</masterLabel>
+            <translation><!-- Heard Island and McDonald Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Holy See (Vatican City)</masterLabel>
+            <translation><!-- Holy See (Vatican City) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Honduras</masterLabel>
+            <translation><!-- Honduras --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hong Kong</masterLabel>
+            <translation><!-- Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hungary</masterLabel>
+            <translation><!-- Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Iceland</masterLabel>
+            <translation><!-- Iceland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Iran</masterLabel>
+            <translation><!-- Iran --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Iraq</masterLabel>
+            <translation><!-- Iraq --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ireland</masterLabel>
+            <translation><!-- Ireland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Isle of Man</masterLabel>
+            <translation><!-- Isle of Man --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Israel</masterLabel>
+            <translation><!-- Israel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italy</masterLabel>
+            <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jamaica</masterLabel>
+            <translation><!-- Jamaica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jan Mayen</masterLabel>
+            <translation><!-- Jan Mayen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japan</masterLabel>
+            <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jersey</masterLabel>
+            <translation><!-- Jersey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jordan</masterLabel>
+            <translation><!-- Jordan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Juan de Nova Island</masterLabel>
+            <translation><!-- Juan de Nova Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kazakhstan</masterLabel>
+            <translation><!-- Kazakhstan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kenya</masterLabel>
+            <translation><!-- Kenya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kiribati</masterLabel>
+            <translation><!-- Kiribati --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea, North</masterLabel>
+            <translation><!-- Korea, North --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea, South</masterLabel>
+            <translation><!-- Korea, South --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kuwait</masterLabel>
+            <translation><!-- Kuwait --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kyrgyzstan</masterLabel>
+            <translation><!-- Kyrgyzstan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laos</masterLabel>
+            <translation><!-- Laos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Latvia</masterLabel>
+            <translation><!-- Latvia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lebanon</masterLabel>
+            <translation><!-- Lebanon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lesotho</masterLabel>
+            <translation><!-- Lesotho --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Liberia</masterLabel>
+            <translation><!-- Liberia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Libya</masterLabel>
+            <translation><!-- Libya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Liechtenstein</masterLabel>
+            <translation><!-- Liechtenstein --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lithuania</masterLabel>
+            <translation><!-- Lithuania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Luxembourg</masterLabel>
+            <translation><!-- Luxembourg --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Macau</masterLabel>
+            <translation><!-- Macau --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Macedonia</masterLabel>
+            <translation><!-- Macedonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Madagascar</masterLabel>
+            <translation><!-- Madagascar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Malawi</masterLabel>
+            <translation><!-- Malawi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Malaysia</masterLabel>
+            <translation><!-- Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maldives</masterLabel>
+            <translation><!-- Maldives --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mali</masterLabel>
+            <translation><!-- Mali --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Malta</masterLabel>
+            <translation><!-- Malta --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marshall Islands</masterLabel>
+            <translation><!-- Marshall Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Martinique</masterLabel>
+            <translation><!-- Martinique --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mauritania</masterLabel>
+            <translation><!-- Mauritania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mauritius</masterLabel>
+            <translation><!-- Mauritius --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mayotte</masterLabel>
+            <translation><!-- Mayotte --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mexico</masterLabel>
+            <translation><!-- Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Micronesia, Federated States of</masterLabel>
+            <translation><!-- Micronesia, Federated States of --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Moldova</masterLabel>
+            <translation><!-- Moldova --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monaco</masterLabel>
+            <translation><!-- Monaco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mongolia</masterLabel>
+            <translation><!-- Mongolia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Montserrat</masterLabel>
+            <translation><!-- Montserrat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Morocco</masterLabel>
+            <translation><!-- Morocco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mozambique</masterLabel>
+            <translation><!-- Mozambique --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Namibia</masterLabel>
+            <translation><!-- Namibia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nauru</masterLabel>
+            <translation><!-- Nauru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Navassa Island</masterLabel>
+            <translation><!-- Navassa Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nepal</masterLabel>
+            <translation><!-- Nepal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Netherlands</masterLabel>
+            <translation><!-- Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Netherlands Antilles</masterLabel>
+            <translation><!-- Netherlands Antilles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Caledonia</masterLabel>
+            <translation><!-- New Caledonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Zealand</masterLabel>
+            <translation><!-- New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nicaragua</masterLabel>
+            <translation><!-- Nicaragua --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Niger</masterLabel>
+            <translation><!-- Niger --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nigeria</masterLabel>
+            <translation><!-- Nigeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Niue</masterLabel>
+            <translation><!-- Niue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Norfolk Island</masterLabel>
+            <translation><!-- Norfolk Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Northern Mariana Islands</masterLabel>
+            <translation><!-- Northern Mariana Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Norway</masterLabel>
+            <translation><!-- Norway --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oman</masterLabel>
+            <translation><!-- Oman --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pakistan</masterLabel>
+            <translation><!-- Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Palau</masterLabel>
+            <translation><!-- Palau --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Panama</masterLabel>
+            <translation><!-- Panama --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Papua New Guinea</masterLabel>
+            <translation><!-- Papua New Guinea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paracel Islands</masterLabel>
+            <translation><!-- Paracel Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paraguay</masterLabel>
+            <translation><!-- Paraguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Peru</masterLabel>
+            <translation><!-- Peru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pitcairn Islands</masterLabel>
+            <translation><!-- Pitcairn Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poland</masterLabel>
+            <translation><!-- Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Portugal</masterLabel>
+            <translation><!-- Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Puerto Rico</masterLabel>
+            <translation><!-- Puerto Rico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Qatar</masterLabel>
+            <translation><!-- Qatar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reunion</masterLabel>
+            <translation><!-- Reunion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Romania</masterLabel>
+            <translation><!-- Romania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Russia</masterLabel>
+            <translation><!-- Russia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rwanda</masterLabel>
+            <translation><!-- Rwanda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saint Helena</masterLabel>
+            <translation><!-- Saint Helena --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saint Kitts and Nevis</masterLabel>
+            <translation><!-- Saint Kitts and Nevis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saint Lucia</masterLabel>
+            <translation><!-- Saint Lucia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saint Pierre and Miquelon</masterLabel>
+            <translation><!-- Saint Pierre and Miquelon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saint Vincent and the Grenadines</masterLabel>
+            <translation><!-- Saint Vincent and the Grenadines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Samoa</masterLabel>
+            <translation><!-- Samoa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>San Marino</masterLabel>
+            <translation><!-- San Marino --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sao Tome and Principe</masterLabel>
+            <translation><!-- Sao Tome and Principe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saudi Arabia</masterLabel>
+            <translation><!-- Saudi Arabia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senegal</masterLabel>
+            <translation><!-- Senegal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Serbia and Montenegro</masterLabel>
+            <translation><!-- Serbia and Montenegro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seychelles</masterLabel>
+            <translation><!-- Seychelles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sierra Leone</masterLabel>
+            <translation><!-- Sierra Leone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Singapore</masterLabel>
+            <translation><!-- Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovakia</masterLabel>
+            <translation><!-- Slovakia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovenia</masterLabel>
+            <translation><!-- Slovenia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Solomon Islands</masterLabel>
+            <translation><!-- Solomon Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Somalia</masterLabel>
+            <translation><!-- Somalia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Africa</masterLabel>
+            <translation><!-- South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Georgia and the South Sandwich Islands</masterLabel>
+            <translation><!-- South Georgia and the South Sandwich Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spain</masterLabel>
+            <translation><!-- Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spratly Islands</masterLabel>
+            <translation><!-- Spratly Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sri Lanka</masterLabel>
+            <translation><!-- Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sudan</masterLabel>
+            <translation><!-- Sudan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Suriname</masterLabel>
+            <translation><!-- Suriname --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Svalbard</masterLabel>
+            <translation><!-- Svalbard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Swaziland</masterLabel>
+            <translation><!-- Swaziland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sweden</masterLabel>
+            <translation><!-- Sweden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Switzerland</masterLabel>
+            <translation><!-- Switzerland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Syria</masterLabel>
+            <translation><!-- Syria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Taiwan</masterLabel>
+            <translation><!-- Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tajikistan</masterLabel>
+            <translation><!-- Tajikistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tanzania</masterLabel>
+            <translation><!-- Tanzania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thailand</masterLabel>
+            <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Timor-Leste</masterLabel>
+            <translation><!-- Timor-Leste --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Togo</masterLabel>
+            <translation><!-- Togo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tokelau</masterLabel>
+            <translation><!-- Tokelau --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tonga</masterLabel>
+            <translation><!-- Tonga --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trinidad and Tobago</masterLabel>
+            <translation><!-- Trinidad and Tobago --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tromelin Island</masterLabel>
+            <translation><!-- Tromelin Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tunisia</masterLabel>
+            <translation><!-- Tunisia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkmenistan</masterLabel>
+            <translation><!-- Turkmenistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turks and Caicos Islands</masterLabel>
+            <translation><!-- Turks and Caicos Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tuvalu</masterLabel>
+            <translation><!-- Tuvalu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uganda</masterLabel>
+            <translation><!-- Uganda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ukraine</masterLabel>
+            <translation><!-- Ukraine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United Arab Emirates</masterLabel>
+            <translation><!-- United Arab Emirates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United Kingdom</masterLabel>
+            <translation><!-- United Kingdom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United States</masterLabel>
+            <translation><!-- United States --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uruguay</masterLabel>
+            <translation><!-- Uruguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uzbekistan</masterLabel>
+            <translation><!-- Uzbekistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vanuatu</masterLabel>
+            <translation><!-- Vanuatu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Venezuela</masterLabel>
+            <translation><!-- Venezuela --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vietnam</masterLabel>
+            <translation><!-- Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virgin Islands</masterLabel>
+            <translation><!-- Virgin Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wake Island</masterLabel>
+            <translation><!-- Wake Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wallis and Futuna</masterLabel>
+            <translation><!-- Wallis and Futuna --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>West Bank</masterLabel>
+            <translation><!-- West Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Western Sahara</masterLabel>
+            <translation><!-- Western Sahara --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yemen</masterLabel>
+            <translation><!-- Yemen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zambia</masterLabel>
+            <translation><!-- Zambia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zimbabwe</masterLabel>
+            <translation><!-- Zimbabwe --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select Landscape(s) where S/W will be accessed --></help>
+        <label><!-- Landscapes --></label>
+        <name>mpkl_Landscape_Details__c</name>
+        <picklistValues>
+            <masterLabel>Cordillera</masterLabel>
+            <translation><!-- Cordillera --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fusion</masterLabel>
+            <translation><!-- Fusion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legacy</masterLabel>
+            <translation><!-- Legacy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Others</masterLabel>
+            <translation><!-- Others --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sirius</masterLabel>
+            <translation><!-- Sirius --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U2K2</masterLabel>
+            <translation><!-- U2K2 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Calender Days To Complete --></label>
+        <name>num_Calender_Days_To_Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cross Charging Version --></label>
+        <name>num_Cross_Charging_Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- Draft Quotation Version --></label>
+        <name>num_Draft_Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Users --></label>
+        <name>num_No_of_Users__c</name>
+    </fields>
+    <fields>
+        <help><!-- Are there any infrastructural requirements? --></help>
+        <label><!-- Infrastructural Requirements --></label>
+        <name>pkl_Any_infrastructural_requirements__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Mandatory when Software Purchased Required is No --></help>
+        <label><!-- Build details applicable --></label>
+        <name>pkl_Build_details_applicable__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select the hosting platform of the software. If &apos;Cloud&apos;, please select appropriate cloud platforms --></help>
+        <label><!-- Host Platform --></label>
+        <name>pkl_Deployments__c</name>
+        <picklistValues>
+            <masterLabel>Cloud</masterLabel>
+            <translation><!-- Cloud --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On-premise</masterLabel>
+            <translation><!-- On-premise --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter the Mode of Cross Charging Ex: Invoice, JV, other --></help>
+        <label><!-- Mode of Charging --></label>
+        <name>pkl_Mode_of_Charging__c</name>
+        <picklistValues>
+            <masterLabel>Invoice</masterLabel>
+            <translation><!-- Invoice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JV</masterLabel>
+            <translation><!-- JV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Others</masterLabel>
+            <translation><!-- Others --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Request Status --></label>
+        <name>pkl_Ownership_Reporting__c</name>
+        <picklistValues>
+            <masterLabel>Charging-Completed</masterLabel>
+            <translation><!-- Charging-Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft-Save</masterLabel>
+            <translation><!-- Draft-Save --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending-Finance</masterLabel>
+            <translation><!-- Pending-Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending-Requester</masterLabel>
+            <translation><!-- Pending-Requester --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending-SAM</masterLabel>
+            <translation><!-- Pending-SAM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Query-Resolved</masterLabel>
+            <translation><!-- Query-Resolved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Query-Responded</masterLabel>
+            <translation><!-- Query-Responded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Provided</masterLabel>
+            <translation><!-- Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote-Approved</masterLabel>
+            <translation><!-- Quote-Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Request-Closed</masterLabel>
+            <translation><!-- Request-Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Request-Onhold</masterLabel>
+            <translation><!-- Request-Onhold --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Reason for closure --></label>
+        <name>pkl_Reason_for_closure__c</name>
+        <picklistValues>
+            <masterLabel>Any other</masterLabel>
+            <translation><!-- Any other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>As requested by user</masterLabel>
+            <translation><!-- As requested by user --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invalid Request</masterLabel>
+            <translation><!-- Invalid Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Software Spend</masterLabel>
+            <translation><!-- No Software Spend --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Request completed</masterLabel>
+            <translation><!-- Request completed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select &apos;Yes&apos;, if Product requested is &apos;Software as a Service&apos; (SaaS) solution --></help>
+        <label><!-- SaaS --></label>
+        <name>pkl_SAAS_Yes_No__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select next action item --></help>
+        <label><!-- Next Action (Finance Team) --></label>
+        <name>pkl_SAM_Finance_Status__c</name>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULEMP)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULEMP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULSMT)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULSMT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Charge</masterLabel>
+            <translation><!-- Awaiting Charge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Information</masterLabel>
+            <translation><!-- Awaiting Information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CC details provided (By ULEMP)</masterLabel>
+            <translation><!-- CC details provided (By ULEMP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Completed</masterLabel>
+            <translation><!-- Charging Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging In Progress</masterLabel>
+            <translation><!-- Charging In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Rejected</masterLabel>
+            <translation><!-- Charging Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Details Pending</masterLabel>
+            <translation><!-- Details Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Details Provided</masterLabel>
+            <translation><!-- Details Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft Quote Provided</masterLabel>
+            <translation><!-- Draft Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Information Provided</masterLabel>
+            <translation><!-- Information Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Hold</masterLabel>
+            <translation><!-- On Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Approved</masterLabel>
+            <translation><!-- Quote Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Provided</masterLabel>
+            <translation><!-- Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Rejected</masterLabel>
+            <translation><!-- Quote Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saved</masterLabel>
+            <translation><!-- Saved --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select next action item --></help>
+        <label><!-- Next Action (Requester) --></label>
+        <name>pkl_SAM_Requester_Status__c</name>
+        <picklistValues>
+            <masterLabel>Answer Accepted</masterLabel>
+            <translation><!-- Answer Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULEMP)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULEMP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULSMT)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULSMT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Charge</masterLabel>
+            <translation><!-- Awaiting Charge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Information</masterLabel>
+            <translation><!-- Awaiting Information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CC details provided (By ULEMP)</masterLabel>
+            <translation><!-- CC details provided (By ULEMP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Completed</masterLabel>
+            <translation><!-- Charging Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging In Progress</masterLabel>
+            <translation><!-- Charging In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Rejected</masterLabel>
+            <translation><!-- Charging Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Details Pending</masterLabel>
+            <translation><!-- Details Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Details Provided</masterLabel>
+            <translation><!-- Details Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft Quote Provided</masterLabel>
+            <translation><!-- Draft Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Information Provided</masterLabel>
+            <translation><!-- Information Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Need More Info</masterLabel>
+            <translation><!-- Need More Info --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Hold</masterLabel>
+            <translation><!-- On Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Approved</masterLabel>
+            <translation><!-- Quote Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Provided</masterLabel>
+            <translation><!-- Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Rejected</masterLabel>
+            <translation><!-- Quote Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saved</masterLabel>
+            <translation><!-- Saved --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select the next action item --></help>
+        <label><!-- Next Action (SAM Team) --></label>
+        <name>pkl_SAM_team_Status__c</name>
+        <picklistValues>
+            <masterLabel>Answer Accepted</masterLabel>
+            <translation><!-- Answer Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULEMP)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULEMP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULSMT)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULSMT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Charge</masterLabel>
+            <translation><!-- Awaiting Charge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Information</masterLabel>
+            <translation><!-- Awaiting Information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CC details provided (By ULEMP)</masterLabel>
+            <translation><!-- CC details provided (By ULEMP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Completed</masterLabel>
+            <translation><!-- Charging Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging In Progress</masterLabel>
+            <translation><!-- Charging In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Rejected</masterLabel>
+            <translation><!-- Charging Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Details Pending</masterLabel>
+            <translation><!-- Details Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Details Provided</masterLabel>
+            <translation><!-- Details Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft Quote Provided</masterLabel>
+            <translation><!-- Draft Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Information Provided</masterLabel>
+            <translation><!-- Information Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Need More Info</masterLabel>
+            <translation><!-- Need More Info --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Hold</masterLabel>
+            <translation><!-- On Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Query Answered</masterLabel>
+            <translation><!-- Query Answered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Approved</masterLabel>
+            <translation><!-- Quote Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Provided</masterLabel>
+            <translation><!-- Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Rejected</masterLabel>
+            <translation><!-- Quote Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resume</masterLabel>
+            <translation><!-- Resume --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saved</masterLabel>
+            <translation><!-- Saved --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This field wants information if the project will eventually need to buy a software. If software purchase is required, please select “YES” and you will need create a Quote. If “No” is selected, please do NOT create a new quote --></help>
+        <label><!-- Software Purchase Required --></label>
+        <name>pkl_Software_Purchase_Req__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>pkl_Status__c</name>
+        <picklistValues>
+            <masterLabel>Answer Accepted</masterLabel>
+            <translation><!-- Answer Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULEMP)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULEMP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULSMT)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULSMT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Charge</masterLabel>
+            <translation><!-- Awaiting Charge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Information</masterLabel>
+            <translation><!-- Awaiting Information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CC details provided (By ULEMP)</masterLabel>
+            <translation><!-- CC details provided (By ULEMP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Completed</masterLabel>
+            <translation><!-- Charging Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging In Progress</masterLabel>
+            <translation><!-- Charging In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Rejected</masterLabel>
+            <translation><!-- Charging Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Details Pending</masterLabel>
+            <translation><!-- Details Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Details Provided</masterLabel>
+            <translation><!-- Details Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft Quote Provided</masterLabel>
+            <translation><!-- Draft Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Information Provided</masterLabel>
+            <translation><!-- Information Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Need More Info</masterLabel>
+            <translation><!-- Need More Info --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Hold</masterLabel>
+            <translation><!-- On Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Query Answered</masterLabel>
+            <translation><!-- Query Answered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Approved</masterLabel>
+            <translation><!-- Quote Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Provided</masterLabel>
+            <translation><!-- Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Rejected</masterLabel>
+            <translation><!-- Quote Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saved</masterLabel>
+            <translation><!-- Saved --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Build detail applicable --></label>
+        <name>rol_Build_detail_applicable__c</name>
+    </fields>
+    <fields>
+        <label><!-- Charging type count of DOPO --></label>
+        <name>rol_Charging_type_count_of_DOPO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Charging type count of I --></label>
+        <name>rol_Charging_type_count_of_I__c</name>
+    </fields>
+    <fields>
+        <label><!-- Charging type count of P --></label>
+        <name>rol_Charging_type_count_of_P__c</name>
+    </fields>
+    <fields>
+        <label><!-- Charging type count of X --></label>
+        <name>rol_Charging_type_count_of_X__c</name>
+    </fields>
+    <fields>
+        <label><!-- DO detail validation count --></label>
+        <name>rol_DO_detail_validation_count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Details Count --></label>
+        <name>rol_Product_Details_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product detail count having cross charge --></label>
+        <name>rol_Product_detail_count_having_cross_ch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Run Cost Detail Validation count --></label>
+        <name>rol_Run_Cost_Detail_Validation_count__c</name>
+    </fields>
+    <fields>
+        <help><!-- Vertical summation of all the line items w.r.t Total Annual Maint (€) --></help>
+        <label><!-- Total (Total Annual Maint ) (€) --></label>
+        <name>rol_Total_Annual_Maint_in__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Annual Maint in € for X type --></label>
+        <name>rol_Total_Annual_Maint_in_for_X_type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Vertical summation of all the line items w.r.t Total CAPEX (€) --></help>
+        <label><!-- Total CAPEX in  € --></label>
+        <name>rol_Total_CAPEX_in__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sum of Total CAPEX (€) values of all line items in quote where Charging Type is Cross Charge Applicable (X) --></help>
+        <label><!-- Total CAPEX in € for X type --></label>
+        <name>rol_Total_CAPEX_in_for_X_type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sum of Total CAPEX (€) values of all line items in quote where Charging Type is DO/PO Applicable (O) --></help>
+        <label><!-- Total DO/PO Applicable (€) --></label>
+        <name>rol_Total_DO_PO_Applicable__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sum of all First years (Year+1) Run Cost (All Line items included, where ever there is Run Cost Applicable is YES) --></help>
+        <label><!-- Total Run Cost (Year+1) (€) --></label>
+        <name>rol_Total_Run_Cost_Year_1__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sum of all Second years (Year+2) Run Cost  (All Line items included, where ever there is Run Cost Applicable is YES) --></help>
+        <label><!-- Total Run Cost (Year+2) (€) --></label>
+        <name>rol_Total_Run_Cost_Year_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Completed Quotes --></label>
+        <name>rus_Completed_Quotes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pending with Procurement --></label>
+        <name>rus_Pending_with_Procurement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pending with Project --></label>
+        <name>rus_Pending_with_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pending with SAM records --></label>
+        <name>rus_Pending_with_SAM_records__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter phase wise Go-Live dates of the project, if any --></help>
+        <label><!-- Additional Go-Live Details --></label>
+        <name>txt_Additional_Go_Live_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- Budget Owner : Name --></label>
+        <name>txt_Budget_Owner_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAM Demand Manager --></label>
+        <name>txt_CC_SAM_Demand_Manager__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status (Updated by Finance) --></label>
+        <name>txt_CC_Status_Updated_by_Finance__c</name>
+    </fields>
+    <fields>
+        <label><!-- CR Remarks --></label>
+        <name>txt_CR_Remarks__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the Cost Center of the project --></help>
+        <label><!-- Cost Center (CC) --></label>
+        <name>txt_Cost_Center_CC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cost Code --></label>
+        <name>txt_CrossCharge_Cost_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Publisher --></label>
+        <name>txt_CrossCharge_Publisher__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cross Charge Amount (€) --></label>
+        <name>txt_Cross_Charge_Amount_in_euros__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter Cross Charge details in brief --></help>
+        <label><!-- Cross Charge Description --></label>
+        <name>txt_Cross_Charge_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Mandatory: If &apos;Others&apos; is selected, please enter the name of the Cloud platform --></help>
+        <label><!-- Other Cloud Details --></label>
+        <name>txt_Deployments_Any_other_please_specify__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the Entity Code of the project --></help>
+        <label><!-- Entity Code --></label>
+        <name>txt_Entity_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financial Business Partner --></label>
+        <name>txt_Financial_Manager_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the General ledger (GL) Account of the project --></help>
+        <label><!-- GL Account --></label>
+        <name>txt_GL_Account__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter International cost center (ICC) /Global local cost center (GLC) /Local cost center (LLC) of the project --></help>
+        <label><!-- ICC/GLC/LCC --></label>
+        <name>txt_ICC_GLC_LCC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Infrastructure Manager --></label>
+        <name>txt_Infrastructure_Manager_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invoice Approver : Name --></label>
+        <name>txt_Invoice_Approver_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invoice Number --></label>
+        <name>txt_Invoice_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Master Clarity Id --></label>
+        <name>txt_Master_Clarity_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Others --></label>
+        <name>txt_Mode_of_Charging_Others__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name of Project --></label>
+        <name>txt_Name_of_the_Project__c</name>
+    </fields>
+    <fields>
+        <help><!-- Mandatory: If &apos;Others&apos; is selected, please enter the name of the Landscape/Region/Country --></help>
+        <label><!-- Other Landscape Details --></label>
+        <name>txt_Other_Landscape_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- Portfolio Manager --></label>
+        <name>txt_Portfolio_Manager_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the Portfolio name for which Project belongs to --></help>
+        <label><!-- Portfolio --></label>
+        <name>txt_Portfolio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Owner --></label>
+        <name>txt_Program_Owner_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Manager --></label>
+        <name>txt_Project_Manager_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Technical Architect --></label>
+        <name>txt_Project_Technical_Architect_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter query requestor name --></help>
+        <label><!-- Requester --></label>
+        <name>txt_Query_Requestor__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter a name string for your query --></help>
+        <label><!-- Query Title --></label>
+        <name>txt_Query_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reference Request ID --></label>
+        <name>txt_Reference_Request_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Type developer name --></label>
+        <name>txt_Request_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Type --></label>
+        <name>txt_Request_Type_for_UI__c</name>
+    </fields>
+    <fields>
+        <label><!-- SA Clarity Id --></label>
+        <name>txt_SA_Clarity_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Describe the project scope in brief --></help>
+        <label><!-- Scope of Project --></label>
+        <name>txt_Scope_of_the_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Before On Hold --></label>
+        <name>txt_Status_Before_On_Hold__c</name>
+    </fields>
+    <layouts>
+        <layout>SAM Cross Charge Request Close</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Cost Code (CC) Details --></label>
+            <section>Cost Code (CC) Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Finance Details --></label>
+            <section>Finance Details</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Request Status --></label>
+            <section>Request Status</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Cross Charge Request Complete</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Cost Code (CC) Details --></label>
+            <section>Cost Code (CC) Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Finance Details --></label>
+            <section>Finance Details</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Request Status --></label>
+            <section>Request Status</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Cross Charge Request Finance</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Cost Code (CC) Details --></label>
+            <section>Cost Code (CC) Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Finance Details --></label>
+            <section>Finance Details</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Request Status --></label>
+            <section>Request Status</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Cross Charge Request Finance Awaiting Charge Queue</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Cost Code (CC) Details --></label>
+            <section>Cost Code (CC) Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Finance Details --></label>
+            <section>Finance Details</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Request Status --></label>
+            <section>Request Status</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Cross Charge Request RW Layout</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Cost Code (CC) Details --></label>
+            <section>Cost Code (CC) Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Request Status --></label>
+            <section>Request Status</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Non Project Close Layout</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Charging Section --></label>
+            <section>Charging Section</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Non Project Close1</layout>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Charging Details --></label>
+            <section>Charging Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Finance Details --></label>
+            <section>Finance Details</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Non_Project RW Req Quote Provided/Approve</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Charging Section --></label>
+            <section>Charging Section</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Non_Project RW SAM Team On hold</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Non_Project RW SAM Team/Quote Rejected</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Charging Section --></label>
+            <section>Charging Section</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Project Close1</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Charging Section --></label>
+            <section>Charging Section</section>
+        </sections>
+        <sections>
+            <label><!-- Cost Code (CC) Details --></label>
+            <section>Cost Code (CC) Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Finance Details --></label>
+            <section>Finance Details</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Project Finance On Awaiting Charge With Queue</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Charging Section --></label>
+            <section>Charging Section</section>
+        </sections>
+        <sections>
+            <label><!-- Cost Code (CC) Details --></label>
+            <section>Cost Code (CC) Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Finance Details --></label>
+            <section>Finance Details</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Project Finance On Awaiting Charge1</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Charging Section --></label>
+            <section>Charging Section</section>
+        </sections>
+        <sections>
+            <label><!-- Cost Code (CC) Details --></label>
+            <section>Cost Code (CC) Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Finance Details --></label>
+            <section>Finance Details</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Project RW Req Quote Provided1</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Charging Section --></label>
+            <section>Charging Section</section>
+        </sections>
+        <sections>
+            <label><!-- Cost Code (CC) Details --></label>
+            <section>Cost Code (CC) Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Project RW SAM Team On hold</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Project RW SAM Team1</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Charge section --></label>
+            <section>Charge section</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Project Request RW Layout</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Request ID --></label>
+            <section>Request ID</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Query Request Answered Layout</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Query Details --></label>
+            <section>Query Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Query Request Closed</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Query Details --></label>
+            <section>Query Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Query Request RW Layout</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Query Details --></label>
+            <section>Query Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Query Request SAM Team on Open</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Query Details --></label>
+            <section>Query Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Query Request SAM team</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Query Details --></label>
+            <section>Query Details</section>
+        </sections>
+        <sections>
+            <label><!-- new --></label>
+            <section>new</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM RW Non Project Request</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Request ID --></label>
+            <section>Request ID</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM ReSubmit Cross Charge Request RW Layout</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Cost Code (CC) Details --></label>
+            <section>Cost Code (CC) Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Request Status --></label>
+            <section>Request Status</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM ReSubmit Non Project Request RW Layout</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Charging Section --></label>
+            <section>Charging Section</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM ReSubmit Project Request RW Layout</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Charge section --></label>
+            <section>Charge section</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Messages --></label>
+            <section>Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Project Details --></label>
+            <section>Project Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requirement Details --></label>
+            <section>Requirement Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM ReSubmit Query Request RW Layout</layout>
+        <sections>
+            <label><!-- Action Comments History --></label>
+            <section>Action Comments History</section>
+        </sections>
+        <sections>
+            <label><!-- Actions --></label>
+            <section>Actions</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Query Details --></label>
+            <section>Query Details</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- ReSubmit Cross Charge --></label>
+        <name>ReSubmit_Cross_Charge</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- ReSubmit Non Project --></label>
+        <name>ReSubmit_Non_Project</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- ReSubmit Project --></label>
+        <name>ReSubmit_Project</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- ReSubmit Query --></label>
+        <name>ReSubmit_Query</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Cross Charge Request Closed --></label>
+        <name>SAM_Cross_Charge_Request_Closed</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Cross Charge Request Complete --></label>
+        <name>SAM_Cross_Charge_Request_Complete</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Cross Charge Request Finance --></label>
+        <name>SAM_Cross_Charge_Request_Finance</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Cross Charge Request Finance Awaiting Charge Queue --></label>
+        <name>SAM_Cross_Charge_Request_Finance_Awaiting_Charge_Queue</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Non Project Close --></label>
+        <name>SAM_Non_Project_Close</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Non Project RW Req Quote Provided --></label>
+        <name>SAM_Non_Project_RW_Req_Quote_Provided</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Non Project RW SAM Team --></label>
+        <name>SAM_Non_Project_RW_SAM_Team</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Non_Project RW SAM Team On hold --></label>
+        <name>SAM_Non_Project_RW_SAM_Team_On_hold</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Project Close --></label>
+        <name>SAM_Project_Close</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Project Finance On Awaiting Charge --></label>
+        <name>SAM_Project_Finance_On_Awaiting_Charge</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Project Finance On Awaiting Charge Queue --></label>
+        <name>SAM_Project_Finance_On_Awaiting_Charge_Queue</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Project RW Req Quote Provided --></label>
+        <name>SAM_Project_RW_Req_Quote_Provided</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Project RW SAM Team --></label>
+        <name>SAM_Project_RW_SAM_Team</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Project RW SAM Team On hold --></label>
+        <name>SAM_Project_RW_SAM_Team_On_hold</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Query Request Answered --></label>
+        <name>SAM_Query_Request_Answered</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Query Request Closed --></label>
+        <name>SAM_Query_Request_Closed</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Query Request SAM Team on Open --></label>
+        <name>SAM_Query_Request_SAM_Team_on_Open</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM Query Request SAM team --></label>
+        <name>SAM_Query_Request_SAM_team</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Cross Charge --></label>
+        <name>SAM_RW_CrossCharge_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Non Project --></label>
+        <name>SAM_RW_Non_Project_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Project --></label>
+        <name>SAM_RW_Project_Request</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Query --></label>
+        <name>SAM_RW_Query_Request</name>
+    </recordTypes>
+    <sharingReasons>
+        <label><!-- SAM_creator --></label>
+        <name>SAM_creator</name>
+    </sharingReasons>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please provide the DO details in the respective Quotation details --></errorMessage>
+        <name>DO_detail_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Numeric values only --></errorMessage>
+        <name>Master_Clarity_Alphanumeric_Data</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Action Comment Mandatory for selected action --></errorMessage>
+        <name>SAM_Action_Comments_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Any Infrastructural Requirement is mandatory. --></errorMessage>
+        <name>SAM_Any_Infrastructural_Req_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot select &quot;Awaiting CC details (Pending with ULEMP)&quot; if none of the quote Line Item is &quot;X&quot; --></errorMessage>
+        <name>SAM_AwaitingCCDetailsPendEmp_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not select &quot;Awaiting charge&quot;  if none of the quote Line Item is &quot;X&quot;. --></errorMessage>
+        <name>SAM_Awaiting_Charge_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <name>SAM_Budget_Owner_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Unilever email id --></errorMessage>
+        <name>SAM_Budget_Owner_Email_UL</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Budget Owner Email is mandatory. --></errorMessage>
+        <name>SAM_Budget_Owner_Email_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Budget Owner Name is mandatory. --></errorMessage>
+        <name>SAM_Budget_Owner_Name_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mandatory when Software Purchase Required is No --></errorMessage>
+        <name>SAM_Build_Details_Applicable_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot modify at this stage --></errorMessage>
+        <name>SAM_Build_details_Modify_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Submission Date should be greater than current date --></errorMessage>
+        <name>SAM_CCSubmissionDateComparisionValidatio</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Submission date cannot be future date --></errorMessage>
+        <name>SAM_CC_Submission_Date_Future</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mandatory --></errorMessage>
+        <name>SAM_CC_Submission_Date_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Accept from queue to edit --></errorMessage>
+        <name>SAM_Cannot_Edit_When_AssignedTo_Queue</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Accept from queue to edit --></errorMessage>
+        <name>SAM_Cannot_Edit_When_AssignedTo_Queue_1</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Select  No Software Spend if Software Purchase Required is No --></errorMessage>
+        <name>SAM_Closure_Reason_No_Soft_Spend_Reverse</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Invalid option as Software Purchase Request is Yes --></errorMessage>
+        <name>SAM_Closure_Reason_No_Software_Spend</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cloud Platform is Mandatory --></errorMessage>
+        <name>SAM_Cloud_Platforms_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Require only when Host Platform is &quot;Cloud&quot; --></errorMessage>
+        <name>SAM_Cloud_Platforms_Validation_reverse</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Cost_Center_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cost Center(CC)  is mandatory. --></errorMessage>
+        <name>SAM_Cost_Center_CC_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Cost_Code_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Not Require when Landscapes is Global --></errorMessage>
+        <name>SAM_Country_deployment_reverse</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Country of Deployment is mandatory, when Landscapes is other then &quot;Global&quot;. --></errorMessage>
+        <name>SAM_Country_of_Deployment_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_CrossChargeAmount_Negative_Validtion</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cross Charge Amount (in Euros) is mandatory. --></errorMessage>
+        <name>SAM_Cross_Charge_Amount_In_Euros</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cross Charge Description is mandatory. --></errorMessage>
+        <name>SAM_Cross_Charge_Description_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Publisher  is mandatory. --></errorMessage>
+        <name>SAM_Cross_Charge_Publisher_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Comments is Mandatory. --></errorMessage>
+        <name>SAM_Cross_Charge_SAM_Comments</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Submission Date is mandatory. --></errorMessage>
+        <name>SAM_Cross_Charge_Submission_Date_Val</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- SAM Demand Manager is mandatory. --></errorMessage>
+        <name>SAM_Demand_Manager_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Deployments is mandatory. --></errorMessage>
+        <name>SAM_Deployment_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mandatory --></errorMessage>
+        <name>SAM_Detailed_Notes_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mandatory --></errorMessage>
+        <name>SAM_Detailed_Notes_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot modify --></errorMessage>
+        <name>SAM_Detailed_Notes_Modify_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Build Details is not applicable on any Quotation line item --></errorMessage>
+        <name>SAM_DetailsPending_CCDone_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Build Details / DO / Run Cost is not applicable on any Quotation line item or Cross Charge is applicable on one or more quotation line item --></errorMessage>
+        <name>SAM_DetailsPending_QuoteAppro_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Build Details / DO / Run Cost is not applicable on any Quotation line item or Cross Charge is applicable on one or more quotation line item --></errorMessage>
+        <name>SAM_DetailsPending_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Build Details / DO is not applicable on any Quotation line item or Cross Charge is applicable on one or more quotation line item --></errorMessage>
+        <name>SAM_DetailsPending_Validation_ROExcluded</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot proceed for Details Pending if Build Details Applicable is Not Yes --></errorMessage>
+        <name>SAM_Details_Pending_InProg_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not select &quot;Draft quote provided&quot;  if line status of all the quote Line item is completed. --></errorMessage>
+        <name>SAM_Draft_Quote_On_Completed_Status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- One of the line item should be completed or pending with procurement. --></errorMessage>
+        <name>SAM_Draft_Quote_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Entity_Code_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Entity Code is mandatory. --></errorMessage>
+        <name>SAM_Entity_Code_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <name>SAM_Financial_Business_Partner_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Financial Business Partner Email is mandatory. --></errorMessage>
+        <name>SAM_Financial_Business_Partner_Email</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Unilever email id --></errorMessage>
+        <name>SAM_Financial_Business_Partner_Email_UL</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Financial Business Partner Name is mandatory. --></errorMessage>
+        <name>SAM_Financial_Business_Partner_Name</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_GL_Account_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- GL Account is mandatory. --></errorMessage>
+        <name>SAM_GL_Account_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Go Live Date is mandatory. --></errorMessage>
+        <name>SAM_Go_Live_Date_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Go Live Date should be greater than current date --></errorMessage>
+        <name>SAM_Go_Live_date_comparison_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_ICC_GLC_LCC_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- ICC/GLC/LCC is mandatory. --></errorMessage>
+        <name>SAM_ICC_GLC_LCC_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <name>SAM_Infrastructure_Manager_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Infrastructure Manager Email is mandatory. --></errorMessage>
+        <name>SAM_Infrastructure_Manager_Email</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Unilever email id --></errorMessage>
+        <name>SAM_Infrastructure_Manager_Email_UL</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Infrastructure Manager Name is mandatory. --></errorMessage>
+        <name>SAM_Infrastructure_Manager_Name</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <name>SAM_Invoice_Approver_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Invoice Approver Email is mandatory. --></errorMessage>
+        <name>SAM_Invoice_Approver_Email_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Invoice Approver Name is mandatory. --></errorMessage>
+        <name>SAM_Invoice_Approver_Name_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Unilever email id --></errorMessage>
+        <name>SAM_Invoice_Aprover_Email_UL</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Invoice Number not allowed  when Mode of charging is not Invoice. --></errorMessage>
+        <name>SAM_Invoice_Number_MOC_ReverseValidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Invoice Number is mandatory  when Mode of charging is Invoice. --></errorMessage>
+        <name>SAM_Invoice_Number_MOC_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Landscape details is Mandatory --></errorMessage>
+        <name>SAM_Landscape_Details_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Master clarity id is mandatory. --></errorMessage>
+        <name>SAM_Master_clarity_Id_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mode of Charging is mandatory. --></errorMessage>
+        <name>SAM_Mode_of_Charging_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot set Re-Open in this status --></errorMessage>
+        <name>SAM_Modify_Re_Open_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Name_of_the_Project_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Name of Project is mandatory. --></errorMessage>
+        <name>SAM_Name_of_the_project_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Can modify only at &quot;In Progress&quot; Status. --></errorMessage>
+        <name>SAM_No_Software_Spend_Modify_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_No_of_Users_Negative_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- No of Users is mandatory. --></errorMessage>
+        <name>SAM_No_of_Users_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot put On Hold as already sent for Cross Charging earlier --></errorMessage>
+        <name>SAM_On_Hold_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Require only when Cloud Platforms is &quot;Other&quot; --></errorMessage>
+        <name>SAM_OtherCloudDetails_Validation_reverse</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Require only when Landscape is &quot;Other&quot; --></errorMessage>
+        <name>SAM_OtherLandscapeDetails_Validation_rev</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Other Cloud Details Mandatory --></errorMessage>
+        <name>SAM_Other_Cloud_Details_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Other_Landscape_Details_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Other Landscape details mandatory --></errorMessage>
+        <name>SAM_Other_Landscape_Details_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Others is not allowed when Mode of charging is not others. --></errorMessage>
+        <name>SAM_Others_MOC_ReverseValidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Others is mandatory when Mode of charging is Others. --></errorMessage>
+        <name>SAM_Others_MOC_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <name>SAM_Portfolio_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <name>SAM_Portfolio_Manager_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Unilever email id --></errorMessage>
+        <name>SAM_Portfolio_Manager_Email_UL</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Portfolio Manager Email is mandatory. --></errorMessage>
+        <name>SAM_Portfolio_Manager_Email_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Portfolio Manager Name is mandatory. --></errorMessage>
+        <name>SAM_Portfolio_Manager_Name_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Portfolio is mandatory. --></errorMessage>
+        <name>SAM_Portfolio_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Minimum One Product Details is required to submit a Request --></errorMessage>
+        <name>SAM_Product_Details_Count_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <name>SAM_Program_Owner_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Unilever email id --></errorMessage>
+        <name>SAM_Program_Owner_Email_UL</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Program Owner Email is mandatory. --></errorMessage>
+        <name>SAM_Program_Owner_Email_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Program Owner Name is mandatory. --></errorMessage>
+        <name>SAM_Program_Owner_Name_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <name>SAM_Project_Manager_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Unilever email id --></errorMessage>
+        <name>SAM_Project_Manager_Email_UL</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Project Manager Email is mandatory. --></errorMessage>
+        <name>SAM_Project_Manager_Email_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Project Manager Name is mandatory. --></errorMessage>
+        <name>SAM_Project_Manager_Name_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <name>SAM_Project_Technical_Architect_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Project Technical Architect Email is mandatory. --></errorMessage>
+        <name>SAM_Project_Technical_Architect_Email</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Unilever email id --></errorMessage>
+        <name>SAM_Project_Technical_Architect_Email_UL</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Project Technical Architect Name is mandatory. --></errorMessage>
+        <name>SAM_Project_Technical_Architect_Name</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Publisher_CC_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Requester cannot select Query Answered option --></errorMessage>
+        <name>SAM_Query_Answered_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- End Date is mandatory --></errorMessage>
+        <name>SAM_Query_EndDate_mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- End Date cannot be a future date --></errorMessage>
+        <name>SAM_Query_End_Date_Future_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot modify --></errorMessage>
+        <name>SAM_Query_End_Date_Modify_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Requester Email Id is mandatory. --></errorMessage>
+        <name>SAM_Query_Requestor_EmailId_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Requestor is mandatory. --></errorMessage>
+        <name>SAM_Query_Requestor_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- SAM Response is mandatory. --></errorMessage>
+        <name>SAM_Query_SAM_Response_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Start Date is mandatory --></errorMessage>
+        <name>SAM_Query_StartDate_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Start Date cannot be greater than the End date. --></errorMessage>
+        <name>SAM_Query_StartDt_LTE_EndDt_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot modify --></errorMessage>
+        <name>SAM_Query_Start_Date_Modify_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Query_Title_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- No Quotation line item in this request --></errorMessage>
+        <name>SAM_Quotation_Count_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- No Quotation Line items can be created when Software Purchase Required is No or None --></errorMessage>
+        <name>SAM_Quotation_SW_Purchase_No_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- At least one quotation line item should be added when Software Purchase Required is Yes --></errorMessage>
+        <name>SAM_Quotation_SW_Purchase_Yes_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Status of all Quote line items should be complete. --></errorMessage>
+        <name>SAM_Quote_Provided_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Reason For Closure NOT applicable when Next Action is not Closed --></errorMessage>
+        <name>SAM_Reason_For_Close_Reverse_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Reason For Closure is mandatory --></errorMessage>
+        <name>SAM_Reason_For_Close_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot modify --></errorMessage>
+        <name>SAM_RequesterEmail_Modify_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <name>SAM_Requester_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Unilever email id --></errorMessage>
+        <name>SAM_Requester_Email_UL</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot modify --></errorMessage>
+        <name>SAM_Requester_Modify_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please provide the run cost details in the respective Quotation details. --></errorMessage>
+        <name>SAM_Run_cost_detail_validation_on_close</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- SAAS is mandatory. --></errorMessage>
+        <name>SAM_SAAS_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <name>SAM_SAM_Demand_Manager_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- SA Clarity Id is mandatory. --></errorMessage>
+        <name>SAM_SA_Clarity_Id_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Require only when SaaS is select Yes --></errorMessage>
+        <name>SAM_Saas_Comments_reverse</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- SaaS Comments is mandatory when SaaS is select Yes --></errorMessage>
+        <name>SAM_Saas_comments</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scope of Project  is mandatory. --></errorMessage>
+        <name>SAM_Scope_of_the_Project_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Software Purchase Field value is Mandatory --></errorMessage>
+        <name>SAM_SoftwarePurchas_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot proceed for Quotation if Software Purchase Required is No --></errorMessage>
+        <name>SAM_Software_Purchase_Req_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cost Code is mandatory. --></errorMessage>
+        <name>SAM_cost_code_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Numeric values only --></errorMessage>
+        <name>SA_Clarity_Alphanumeric_Data</name>
+    </validationRules>
+</CustomObjectTranslation>

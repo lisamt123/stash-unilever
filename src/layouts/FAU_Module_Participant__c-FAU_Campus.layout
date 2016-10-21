@@ -31,6 +31,10 @@
                 <behavior>Readonly</behavior>
                 <field>FAU_Module_Form__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

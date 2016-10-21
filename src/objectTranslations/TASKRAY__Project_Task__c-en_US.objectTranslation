@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Budget --></label>
+        <name>Budget__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dependency Offset --></label>
+        <name>Dependency_Offset__c</name>
+    </fields>
+    <fields>
+        <label><!-- Duration --></label>
+        <name>Duration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent --></label>
+        <name>Parent__c</name>
+        <picklistValues>
+            <masterLabel>1.1 Support Growth through optimized sourcing</masterLabel>
+            <translation><!-- 1.1 Support Growth through optimized sourcing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.2 Leadtime extreme compression Project Rapidoo</masterLabel>
+            <translation><!-- 1.2 Leadtime extreme compression Project Rapidoo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.3 Sync E2E Supply Chain</masterLabel>
+            <translation><!-- 1.3 Sync E2E Supply Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.4 Tailor made Venezuela Supply Model</masterLabel>
+            <translation><!-- 1.4 Tailor made Venezuela Supply Model --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.1 Support growth through local sourcing</masterLabel>
+            <translation><!-- 2.1 Support growth through local sourcing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.2 Lean E2E Network</masterLabel>
+            <translation><!-- 2.2 Lean E2E Network --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3.1 Support Growth through Local Sourcing</masterLabel>
+            <translation><!-- 3.1 Support Growth through Local Sourcing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3.2 Lean E2E Network</masterLabel>
+            <translation><!-- 3.2 Lean E2E Network --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3.3 Benchmarked Indirects levels</masterLabel>
+            <translation><!-- 3.3 Benchmarked Indirects levels --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4.1 Guaranteed Supply security Ecuador &amp; Venezuela</masterLabel>
+            <translation><!-- 4.1 Guaranteed Supply security Ecuador &amp; Venezuela --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4.2 Portfolio and Channel innovation</masterLabel>
+            <translation><!-- 4.2 Portfolio and Channel innovation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4.3 Route to market redesign for growth potential</masterLabel>
+            <translation><!-- 4.3 Route to market redesign for growth potential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.1 Service Operational Excellence</masterLabel>
+            <translation><!-- 5.1 Service Operational Excellence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.2 Customer Facing</masterLabel>
+            <translation><!-- 5.2 Customer Facing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.3 Customer Value Creation</masterLabel>
+            <translation><!-- 5.3 Customer Value Creation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.4 Boosting Business Growth</masterLabel>
+            <translation><!-- 5.4 Boosting Business Growth --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.1 Fix infra structure and product Foods&amp; IC</masterLabel>
+            <translation><!-- 6.1 Fix infra structure and product Foods&amp; IC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.2 Step change in quality culture</masterLabel>
+            <translation><!-- 6.2 Step change in quality culture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.3 QA as enabler for growth</masterLabel>
+            <translation><!-- 6.3 QA as enabler for growth --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.1 Talent</masterLabel>
+            <translation><!-- 7.1 Talent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.2 Organization</masterLabel>
+            <translation><!-- 7.2 Organization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.3 Skills</masterLabel>
+            <translation><!-- 7.3 Skills --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.4 Culture</masterLabel>
+            <translation><!-- 7.4 Culture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8.1 E2E Approach to SHE/Sustainability</masterLabel>
+            <translation><!-- 8.1 E2E Approach to SHE/Sustainability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8.2 Improve culture of Sustainability &amp; SHE</masterLabel>
+            <translation><!-- 8.2 Improve culture of Sustainability &amp; SHE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8.3 Excel in Superior Risk Assessment : Risk Management</masterLabel>
+            <translation><!-- 8.3 Excel in Superior Risk Assessment : Risk Management --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Pillar Program --></label>
+        <name>Pillar_Program__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pillar --></label>
+        <name>Pillar__c</name>
+        <picklistValues>
+            <masterLabel>1. Responsive Personal care Network</masterLabel>
+            <translation><!-- 1. Responsive Personal care Network --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2. Lean Home Care Network</masterLabel>
+            <translation><!-- 2. Lean Home Care Network --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3. Lean Foods Network</masterLabel>
+            <translation><!-- 3. Lean Foods Network --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4. Agile Ice Cream Network</masterLabel>
+            <translation><!-- 4. Agile Ice Cream Network --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5. Customer Service Driven Supply Chain</masterLabel>
+            <translation><!-- 5. Customer Service Driven Supply Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6. Superior Quality On Market</masterLabel>
+            <translation><!-- 6. Superior Quality On Market --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7. One Talented and Engaged SC Team</masterLabel>
+            <translation><!-- 7. One Talented and Engaged SC Team --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8. Sustainable Living Plan / SHE</masterLabel>
+            <translation><!-- 8. Sustainable Living Plan / SHE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project --></label>
+        <name>Project__c</name>
+        <picklistValues>
+            <masterLabel>1.1.1 New HPC Liquids Plant in Cali</masterLabel>
+            <translation><!-- 1.1.1 New HPC Liquids Plant in Cali --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Projects --></label>
+        <name>Projects__c</name>
+        <picklistValues>
+            <masterLabel>1.1.1 New HPC Liquids Plant in Cali</masterLabel>
+            <translation><!-- 1.1.1 New HPC Liquids Plant in Cali --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.1.2  Optimal Sourcing BOP Sachets MA</masterLabel>
+            <translation><!-- 1.1.2  Optimal Sourcing BOP Sachets MA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.1.3 Skin Cleansing optimal sourcing for MA (Internalization, Talisman)</masterLabel>
+            <translation><!-- 1.1.3 Skin Cleansing optimal sourcing for MA (Internalization, Talisman) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.1.4 Optimal Source for Mini Roll-on &amp; Clinical</masterLabel>
+            <translation><!-- 1.1.4 Optimal Source for Mini Roll-on &amp; Clinical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.2.1 Replenishment lead-time reduction (Core promotional &amp; Innovation)</masterLabel>
+            <translation><!-- 1.2.1 Replenishment lead-time reduction (Core promotional &amp; Innovation) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.2.2 Panama Hub (Hubble)</masterLabel>
+            <translation><!-- 1.2.2 Panama Hub (Hubble) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.3.1 Segmentation &amp; Excellence in Building blocks and Innovation</masterLabel>
+            <translation><!-- 1.3.1 Segmentation &amp; Excellence in Building blocks and Innovation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.3.2 S&amp;OP Maturity 3.0 (Alignment DPL &amp; S&amp;OP &amp; Discipline in Sales Execution)</masterLabel>
+            <translation><!-- 1.3.2 S&amp;OP Maturity 3.0 (Alignment DPL &amp; S&amp;OP &amp; Discipline in Sales Execution) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.4.1 Optimized Product Portfolio &amp; Distribution Network</masterLabel>
+            <translation><!-- 1.4.1 Optimized Product Portfolio &amp; Distribution Network --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.4.2 Extreme sourcing responsiveness for VEN</masterLabel>
+            <translation><!-- 1.4.2 Extreme sourcing responsiveness for VEN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.4.3 Local Manufacturing in PC</masterLabel>
+            <translation><!-- 1.4.3 Local Manufacturing in PC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.1.1 New HPC Liquids Plant in Cali + E2E Debottlenecking</masterLabel>
+            <translation><!-- 2.1.1 New HPC Liquids Plant in Cali + E2E Debottlenecking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.1.2 VEN local production – SW Liquids</masterLabel>
+            <translation><!-- 2.1.2 VEN local production – SW Liquids --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.1.3 White Spaces Coverage – Acquisitions</masterLabel>
+            <translation><!-- 2.1.3 White Spaces Coverage – Acquisitions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.2.1 (Serrucho) - Cost models &amp; Localization</masterLabel>
+            <translation><!-- 2.2.1 (Serrucho) - Cost models &amp; Localization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.2.2 Lean manufacturing through %CU maximize</masterLabel>
+            <translation><!-- 2.2.2 Lean manufacturing through %CU maximize --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.2.3 (Ultralogistics) - Direct dispatches &amp; Warehouse optimization</masterLabel>
+            <translation><!-- 2.2.3 (Ultralogistics) - Direct dispatches &amp; Warehouse optimization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.2.4 Non-value added complexity through SKU rationalization</masterLabel>
+            <translation><!-- 2.2.4 Non-value added complexity through SKU rationalization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.2.5 Competitor Benchmark-driven Product Optimization</masterLabel>
+            <translation><!-- 2.2.5 Competitor Benchmark-driven Product Optimization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3.2.1 (Serrucho) Cost model, localization, In Shoring, Integration, Optimize E2E</masterLabel>
+            <translation><!-- 3.2.1 (Serrucho) Cost model, localization, In Shoring, Integration, Optimize E2E --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3.2.2 Resilience – Supply Security, Risk Materials/Suppliers</masterLabel>
+            <translation><!-- 3.2.2 Resilience – Supply Security, Risk Materials/Suppliers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3.2.3 (Ultralogistics) - Inbound Optimization, Arrow, Merengue</masterLabel>
+            <translation><!-- 3.2.3 (Ultralogistics) - Inbound Optimization, Arrow, Merengue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3.2.4 Max. CU% and layout optimizations</masterLabel>
+            <translation><!-- 3.2.4 Max. CU% and layout optimizations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3.2.5 Competitor Benchmark driven product Optimization</masterLabel>
+            <translation><!-- 3.2.5 Competitor Benchmark driven product Optimization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3.2.6 Sourcing Network redesign (Foods CAM)</masterLabel>
+            <translation><!-- 3.2.6 Sourcing Network redesign (Foods CAM) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3.2.7 Cali Foods Power house (Master Plan)</masterLabel>
+            <translation><!-- 3.2.7 Cali Foods Power house (Master Plan) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3.3.1 Aggressive Business Waste reduction</masterLabel>
+            <translation><!-- 3.3.1 Aggressive Business Waste reduction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4.2.1  Get capability &amp; launch Mono-bites</masterLabel>
+            <translation><!-- 4.2.1  Get capability &amp; launch Mono-bites --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4.2.2 Home Sales Venezuela &amp; Ecuador</masterLabel>
+            <translation><!-- 4.2.2 Home Sales Venezuela &amp; Ecuador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4.3.1 Increase distributor&apos;s capacity EC &amp; VEN</masterLabel>
+            <translation><!-- 4.3.1 Increase distributor&apos;s capacity EC &amp; VEN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4.3.2 Reengineering Solutions for Mobile Channel, cabinets &amp; Cold Chain</masterLabel>
+            <translation><!-- 4.3.2 Reengineering Solutions for Mobile Channel, cabinets &amp; Cold Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4.3.3 Reengineered Logistics &amp; Distribution (Canaima)</masterLabel>
+            <translation><!-- 4.3.3 Reengineered Logistics &amp; Distribution (Canaima) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.1.1 Customer Data Synchronization</masterLabel>
+            <translation><!-- 5.1.1 Customer Data Synchronization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.1.2 CRM High visibility and full tracking (NGOTC)</masterLabel>
+            <translation><!-- 5.1.2 CRM High visibility and full tracking (NGOTC) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.1.3 Ultralogistik (Enabler for E2E Optimization &amp; Best Practice)</masterLabel>
+            <translation><!-- 5.1.3 Ultralogistik (Enabler for E2E Optimization &amp; Best Practice) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.2.1 Strong Collaborative Agenda with E2E Connectivity</masterLabel>
+            <translation><!-- 5.2.1 Strong Collaborative Agenda with E2E Connectivity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.2.2 Winning Structure &amp; Capabilities for Customer Facing (skills &amp; Talent)</masterLabel>
+            <translation><!-- 5.2.2 Winning Structure &amp; Capabilities for Customer Facing (skills &amp; Talent) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.3.1 Segmentation &amp; Service  Catalogue Differentiation</masterLabel>
+            <translation><!-- 5.3.1 Segmentation &amp; Service  Catalogue Differentiation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.3.2 Sell out (EPOS) info integration in to S&amp;OP process</masterLabel>
+            <translation><!-- 5.3.2 Sell out (EPOS) info integration in to S&amp;OP process --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.3.3 Make to Order Models with Key Categories channel customer (VMI/CPFR)</masterLabel>
+            <translation><!-- 5.3.3 Make to Order Models with Key Categories channel customer (VMI/CPFR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.4.1 Right Assortment  by channel by retail environment by POS</masterLabel>
+            <translation><!-- 5.4.1 Right Assortment  by channel by retail environment by POS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.4.2 Outstanding CCFOT/DR/ OSA as an USG Enabler</masterLabel>
+            <translation><!-- 5.4.2 Outstanding CCFOT/DR/ OSA as an USG Enabler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5.4.3 Setting  profitable service  (cost to serve)</masterLabel>
+            <translation><!-- 5.4.3 Setting  profitable service  (cost to serve) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.1.1 Top Five for Zero program</masterLabel>
+            <translation><!-- 6.1.1 Top Five for Zero program --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.1.2 Ice Cream  Packaging, Logistics &amp; distribution re-engineering</masterLabel>
+            <translation><!-- 6.1.2 Ice Cream  Packaging, Logistics &amp; distribution re-engineering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.1.3 Spreads Develop New  formula &amp; packaging  for heat resistance</masterLabel>
+            <translation><!-- 6.1.3 Spreads Develop New  formula &amp; packaging  for heat resistance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.2.1 CRQS on-shelf &amp; In-pack</masterLabel>
+            <translation><!-- 6.2.1 CRQS on-shelf &amp; In-pack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.2.2 Customer Quality In- store execution &amp; Early risk assessment</masterLabel>
+            <translation><!-- 6.2.2 Customer Quality In- store execution &amp; Early risk assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.2.3 IT  in Quality -WMS in VEN / Hon Power street traceability in TT custom</masterLabel>
+            <translation><!-- 6.2.3 IT  in Quality -WMS in VEN / Hon Power street traceability in TT custom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.3.1 Supply security for Magallanes ECU &amp; VEN,</masterLabel>
+            <translation><!-- 6.3.1 Supply security for Magallanes ECU &amp; VEN, --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.3.2 Benchmark quality superiority through consumer perception</masterLabel>
+            <translation><!-- 6.3.2 Benchmark quality superiority through consumer perception --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.3.3 Quality as enabler for new channel development</masterLabel>
+            <translation><!-- 6.3.3 Quality as enabler for new channel development --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.1.1 Strengthen our Talent Pipeline (includes UFLP)</masterLabel>
+            <translation><!-- 7.1.1 Strengthen our Talent Pipeline (includes UFLP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.1.2 World class Talent Development Process and 3+1</masterLabel>
+            <translation><!-- 7.1.2 World class Talent Development Process and 3+1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.1.3 Strong EB &amp; EVP process</masterLabel>
+            <translation><!-- 7.1.3 Strong EB &amp; EVP process --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.2.1 Capabilities Development Plan 2016-2018</masterLabel>
+            <translation><!-- 7.2.1 Capabilities Development Plan 2016-2018 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.3.1 SC Organization for the future (simplified &amp; Productivity)</masterLabel>
+            <translation><!-- 7.3.1 SC Organization for the future (simplified &amp; Productivity) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.3.2 Gender Balance as sucess factor E2E SC</masterLabel>
+            <translation><!-- 7.3.2 Gender Balance as sucess factor E2E SC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.4.1 Strong Career Path covering geographic SC E2E</masterLabel>
+            <translation><!-- 7.4.1 Strong Career Path covering geographic SC E2E --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.4.2 One SC Team-  TRUST as foundation for Teamwork</masterLabel>
+            <translation><!-- 7.4.2 One SC Team-  TRUST as foundation for Teamwork --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8.1.1 USLP Committee MA</masterLabel>
+            <translation><!-- 8.1.1 USLP Committee MA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8.2.2 Mobility and Be SafE implementation in non manufacturing</masterLabel>
+            <translation><!-- 8.2.2 Mobility and Be SafE implementation in non manufacturing --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- pillar programs --></label>
+        <name>pillar_programs__c</name>
+    </fields>
+    <fields>
+        <label><!-- task by Pillar Programs --></label>
+        <name>task_by_Pillar_Programs__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Strategy --></label>
+        <name>Strategy</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- VIP --></label>
+        <name>VIP</name>
+    </recordTypes>
+</CustomObjectTranslation>

@@ -89,7 +89,7 @@
         <name>FS_FoodTurnoverRUB__c</name>
     </fields>
     <fields>
-        <label><!-- Food Turnover (EUR) --></label>
+        <label>Оборот за питание</label>
         <name>FS_FoodTurnover__c</name>
     </fields>
     <fields>
@@ -109,5 +109,19 @@
         <name>FS_WeeksPerYear__c</name>
     </fields>
     <gender>Neuter</gender>
+    <layouts>
+        <layout>FS Segmentation Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Segmentation Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel>Сегментация</nameFieldLabel>
 </CustomObjectTranslation>

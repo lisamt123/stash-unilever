@@ -48,16 +48,32 @@ Is покупатель растет?</help>
         <label><!-- Margin Market Code --></label>
         <name>FSNA_Margin_Market_Code__c</name>
         <picklistValues>
+            <masterLabel>6I</masterLabel>
+            <translation><!-- 6I --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>6I DRESSINGS-CONDIMENTS-DIPS</masterLabel>
             <translation><!-- 6I DRESSINGS-CONDIMENTS-DIPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6K</masterLabel>
+            <translation><!-- 6K --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>6K SAUCES-GRAVIES</masterLabel>
             <translation><!-- 6K SAUCES-GRAVIES --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>8Z</masterLabel>
+            <translation><!-- 8Z --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>8Z RETAIL</masterLabel>
             <translation><!-- 8Z RETAIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>93</masterLabel>
+            <translation><!-- 93 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>93 MAYONNAISE</masterLabel>
@@ -68,12 +84,24 @@ Is покупатель растет?</help>
             <translation><!-- BOH MAYO --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>D1</masterLabel>
+            <translation><!-- D1 --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>D1 SOUPS</masterLabel>
             <translation><!-- D1 SOUPS --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>E1</masterLabel>
+            <translation><!-- E1 --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>E1 BASES-BOUILLIONS</masterLabel>
             <translation><!-- E1 BASES-BOUILLIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>F1</masterLabel>
+            <translation><!-- F1 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>F1 SPREADS AND TOPPING</masterLabel>
@@ -84,8 +112,16 @@ Is покупатель растет?</help>
             <translation><!-- FOH MAYO --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>G1</masterLabel>
+            <translation><!-- G1 --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>G1 TEA-BEVERAGES</masterLabel>
             <translation><!-- G1 TEA-BEVERAGES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>H1</masterLabel>
+            <translation><!-- H1 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>H1 FLAVOUR DELIVERY SYS-SEASONING</masterLabel>
@@ -100,6 +136,10 @@ Is покупатель растет?</help>
             <translation><!-- ICED TEA --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>K1</masterLabel>
+            <translation><!-- K1 --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>K1 MEALS</masterLabel>
             <translation><!-- K1 MEALS --></translation>
         </picklistValues>
@@ -110,6 +150,10 @@ Is покупатель растет?</help>
         <picklistValues>
             <masterLabel>LCB</masterLabel>
             <translation><!-- LCB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q1</masterLabel>
+            <translation><!-- Q1 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Q1 MISCELLANEOUS</masterLabel>
@@ -124,12 +168,100 @@ Is покупатель растет?</help>
             <translation><!-- SPECIALTY TEA --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>X1</masterLabel>
+            <translation><!-- X1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X1 US LCB</masterLabel>
+            <translation><!-- X1 US LCB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X2</masterLabel>
+            <translation><!-- X2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X2 SPECIALTY TEA CANADA</masterLabel>
+            <translation><!-- X2 SPECIALTY TEA CANADA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X3</masterLabel>
+            <translation><!-- X3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X3 SPECIALTY TEA US</masterLabel>
+            <translation><!-- X3 SPECIALTY TEA US --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>X4</masterLabel>
             <translation><!-- X4 --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>X4 US SDJ</masterLabel>
+            <translation><!-- X4 US SDJ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z1</masterLabel>
+            <translation><!-- Z1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z1 BOH MAYO</masterLabel>
+            <translation><!-- Z1 BOH MAYO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z2</masterLabel>
+            <translation><!-- Z2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z2 CAN LCB</masterLabel>
+            <translation><!-- Z2 CAN LCB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z3</masterLabel>
+            <translation><!-- Z3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z3 CAN SDJ</masterLabel>
+            <translation><!-- Z3 CAN SDJ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z5</masterLabel>
+            <translation><!-- Z5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z5 FOH MAYO</masterLabel>
+            <translation><!-- Z5 FOH MAYO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z6</masterLabel>
+            <translation><!-- Z6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z6 HOT TEA CANADA</masterLabel>
+            <translation><!-- Z6 HOT TEA CANADA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z7</masterLabel>
+            <translation><!-- Z7 --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Z7 HOT TEA US</masterLabel>
             <translation><!-- Z7 HOT TEA US --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z8</masterLabel>
+            <translation><!-- Z8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z8 ICED TEA</masterLabel>
+            <translation><!-- Z8 ICED TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z9</masterLabel>
+            <translation><!-- Z9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z9 Knorr Ultimate Low/Reduced Sodium*</masterLabel>
+            <translation><!-- Z9 Knorr Ultimate Low/Reduced Sodium* --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -505,6 +637,53 @@ Is the customer growing? --></help>
         <name>ICB_Total_Sold_Price__c</name>
     </fields>
     <fields>
+        <name>LeadSource</name>
+        <picklistValues>
+            <masterLabel>Advertisement</masterLabel>
+            <translation><!-- Advertisement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee Referral</masterLabel>
+            <translation><!-- Employee Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>External Referral</masterLabel>
+            <translation><!-- External Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation><!-- Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Relations</masterLabel>
+            <translation><!-- Public Relations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seminar - Internal</masterLabel>
+            <translation><!-- Seminar - Internal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seminar - Partner</masterLabel>
+            <translation><!-- Seminar - Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trade Show</masterLabel>
+            <translation><!-- Trade Show --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Web</masterLabel>
+            <translation><!-- Web --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Word of mouth</masterLabel>
+            <translation><!-- Word of mouth --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Margin Indicator --></label>
         <name>Margin_Indicator__c</name>
     </fields>
@@ -712,9 +891,184 @@ Enter competitor pricing if available --></help>
         <name>ShipmentVerified__c</name>
     </fields>
     <fields>
+        <name>StageName</name>
+        <picklistValues>
+            <masterLabel>01 - Prospecting</masterLabel>
+            <translation><!-- 01 - Prospecting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>02 - Qualification</masterLabel>
+            <translation><!-- 02 - Qualification --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>03 - Proposal</masterLabel>
+            <translation><!-- 03 - Proposal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>04 - Verbal Commitment</masterLabel>
+            <translation><!-- 04 - Verbal Commitment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>05 – Won</masterLabel>
+            <translation><!-- 05 – Won --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>06 - Lost</masterLabel>
+            <translation><!-- 06 - Lost --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>07 - Not Pursued</masterLabel>
+            <translation><!-- 07 - Not Pursued --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1-New</masterLabel>
+            <translation>1-Новая</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2-Negotiation</masterLabel>
+            <translation>2-Обсуждения</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3a-Won</masterLabel>
+            <translation>3а-Выигранная</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3b-Lost</masterLabel>
+            <translation>3б-Потерянная</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4-First Delivery</masterLabel>
+            <translation>4-Первая доставка</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5a-Done</masterLabel>
+            <translation>5а-Выполненная</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5b-Half-done</masterLabel>
+            <translation>5б-Выполняется</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5c-Lost</masterLabel>
+            <translation>5г-Потерянная</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Available</masterLabel>
+            <translation><!-- Available --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed Lost</masterLabel>
+            <translation><!-- Closed Lost --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed Won</masterLabel>
+            <translation><!-- Closed Won --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Id. Decision Makers</masterLabel>
+            <translation><!-- Id. Decision Makers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lost Existing Business</masterLabel>
+            <translation><!-- Lost Existing Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Needs Analysis</masterLabel>
+            <translation><!-- Needs Analysis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Negotiation/Review</masterLabel>
+            <translation><!-- Negotiation/Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Pursued</masterLabel>
+            <translation><!-- Not Pursued --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Perception Analysis</masterLabel>
+            <translation><!-- Perception Analysis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proposal/Price Quote</masterLabel>
+            <translation><!-- Proposal/Price Quote --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Prospecting</masterLabel>
+            <translation><!-- Prospecting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Qualification</masterLabel>
+            <translation><!-- Qualification --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Replace Existing Business</masterLabel>
+            <translation><!-- Replace Existing Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Value Proposition</masterLabel>
+            <translation><!-- Value Proposition --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Total Opportunity COGS --></label>
         <name>Total_Opp_COGS__c</name>
     </fields>
+    <fields>
+        <name>Type</name>
+        <picklistValues>
+            <masterLabel>Existing Business</masterLabel>
+            <translation><!-- Existing Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grow</masterLabel>
+            <translation><!-- Grow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Business</masterLabel>
+            <translation><!-- New Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Win</masterLabel>
+            <translation><!-- Win --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>FS Opportunity</layout>
+        <sections>
+            <label><!-- TPR --></label>
+            <section>TPR</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Opportunity with Pricing (MA-BE)</layout>
+        <sections>
+            <label><!-- Financial Summary --></label>
+            <section>Financial Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Funding rationale --></label>
+            <section>Funding rationale</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Opportunity with TPR Calculation Layout</layout>
+        <sections>
+            <label><!-- TPR --></label>
+            <section>TPR</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label>Существующий</label>
         <name>FS_ExistingBusiness</name>

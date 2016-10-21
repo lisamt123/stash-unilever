@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Oblix_Job_Orchestration</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Oblix_Job_Orchestration</value>
+    </caseValues>
+    <fields>
+        <label><!-- Count Failures --></label>
+        <name>Count_Failures__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Sender display Name --></label>
+        <name>Email_Sender_display_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Job Is Running --></label>
+        <name>Job_Is_Running__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notification Email --></label>
+        <name>Notification_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reply To Email --></label>
+        <name>Reply_To_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requires Manual Attention --></label>
+        <name>Requires_Manual_Attention__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sync Job Failure Email Subject --></label>
+        <name>Sync_Job_Failure_Email_Subject__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

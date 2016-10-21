@@ -48,6 +48,10 @@
                 <behavior>Readonly</behavior>
                 <field>lkp_Linked_PWO__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -1,0 +1,378 @@
+<apex:page controller="ChatterUIController" action="{!showCourseDetail}" docType="html-5.0" standardStylesheets="false" sidebar="false" showHeader="false" >
+   
+<style>
+<!--@font-face {
+    font-family: "DINProFont";
+    src: url('{!URLFOR($Resource.DINProFont)}');    
+}
+-->
+
+@font-face
+{
+font-family:"DINProFont";
+src: url('{!URLFOR($Resource.TestDINProFontEOT,'FF_DIN_Regular/FF_DIN_Regular.eot')}'); 
+src: local('☺'), url('{!URLFOR($Resource.TestDINProFontEOT,'FF_DIN_Regular/FF_DIN_Regular.woff')}') format('woff'), url('{!URLFOR($Resource.TestDINProFontEOT,'FF_DIN_Regular/FF_DIN_Regular.ttf')}') format('truetype');
+}
+
+h1
+{
+font-family:'DINProFont'; 
+
+}
+.ui-btn-text {
+ font-family:DINProFont;
+}
+span{
+display:block;
+font-family:DINProFont;
+font-size:16px;
+}
+
+</style> 
+ 
+    <apex:composition template="Template">
+        <apex:define name="pageTitle">Programme Detail</apex:define>
+
+        <apex:define name="headSection">
+                <link rel="stylesheet" type="text/css" href="{! URLFOR($Resource.css_app_chatterui)}"/>
+                <link rel="stylesheet" type="text/css" href="{! URLFOR($Resource.css_app_chatterui_profile)}"/>
+                <link rel="stylesheet" type="text/css" href="{! URLFOR($Resource.css_app_chatterui_people)}"/>
+                <link rel="stylesheet" type="text/css" href="{! URLFOR($Resource.css_app_chatterui_groups)}"/>
+                
+               
+
+                <script src="{! URLFOR($Resource.js_plugins_jqueryHashChange_min)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_templates)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_profile_templates)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_groups_templates)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_people_templates)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_chatterpage)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_filemanager)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_profilebuilder)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_feedbuilder)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_feeditembuilder)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_postbuilder)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_peoplelistbuilder)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_searchmanager)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_groupbuilder)}"></script>
+                <script src="{! URLFOR($Resource.js_app_chatterui_service)}"></script>
+                <script src="{! URLFOR($Resource.js_plugins_jqueryScrollTo_min)}"></script>
+             <!--Section add to include the JQuery Mobile Resources -->
+                   
+                 <meta name="apple-mobile-web-app-capable" content="yes"> </meta>
+                 <meta name="viewport" content="width=device-width, initial-scale=1"> </meta>
+                 
+                 <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.JQuery_Mobile,'jquery.mobile-1.3.0.min.css')}"/>
+                 <script src="{!URLFOR($Resource.JQuery_Mobile,'jquery.mobile-1.3.0.min.js')}" />
+                 
+                 <script type="text/javascript">  
+                  // to setup the theme for the select menu
+                      $(document).bind('mobileinit',function(){
+                      
+                           // Setting #container div as a jqm pageContainer
+                           $.mobile.pageContainer = $('#container');
+                           $.mobile.selectmenu.prototype.options.nativeMenu = false;
+                           
+                           // Setting default page transition to slide
+                           $.mobile.defaultPageTransition = 'slide';
+                        });
+                     $(document).ready(function() {                        
+                        $=$.noConflict(); 
+                      // $('div.sidebar').css("display","none");                
+                         }) ;
+                        
+                      
+
+                  </script>
+                        
+                 
+        </apex:define>     
+        <apex:define name="sidebar">
+            <c:Sidebar />
+        </apex:define>
+        
+        <apex:define name="panels">
+            <div class="panels" id="panels">     
+                  <div class="uiScroller forceScroller" id="panelScroller" data-scroller='{"enableRefresh":"true"}' data-scroll="y">
+                  
+                 <!--  <div id="pullDown">
+                        <span class="pullDownIcon"></span>
+                        <span class="pullDownLabel">{!$Label.pull_to_refresh_text}</span>
+                    </div> -->
+                    
+                 <!--Start of Custom Mobile content section-->             
+        <div data-role="page" id="ProgrammeDetailPage" style="background:#ffffff;background-image: url({!HostURL}{!URLFOR($Resource.FA_Images, 'FA_Background_Image_for_Four_Acres.jpg')});background-repeat:repeat-x;background-size:100%;" >
+         <apex:form >
+         
+           <div data-role="header">
+                 <a href="#" onclick="window.history.back();" target="_self" data-icon="back">Back</a>                     
+                 <h1 style="font-family:DINProFont;">Programme Detail</h1>
+           </div><!-- /header -->                                        
+                           
+         <div data-role="content" class="scrollable" style="padding: 40px;background-color: #ffffff;border-radius: 9px 9px 9px 9px;margin-top: 40px;margin-left: 30px;margin-right: 30px;margin-bottom: 40px;font-family:DINProFont;border-style:solid;border-width:2px;border-color: #006699;"> 
+                                          
+                        <ul id="main-chatter-feed" class="feed-list" data-feed-param="" style="display: block;font-family:DINProFont;background:#ffffff;">
+                          
+                                <li data-item-id="" class="feed-item clearfix" id="">
+                                    <div class="item-container clearfix">
+                                    <div class="item-photo">
+                                            <img src="{!objProDetail.CoOcc.FA_Course__r.FA_Course_Logo__c}" alt="" height="50px" width="50px"/>
+                                        </div>
+                                    
+                                        <div class="action-items">
+                                    
+                                        </div>
+                                        <div class="item-name" style="margin-left:7px">
+                                            <h2>{!objProDetail.CoOcc.FA_Course__r.Name}</h2>
+                                        </div>
+                                        <div class="item-body">
+                                        <apex:outputField value="{!objProDetail.CoOcc.FA_Course__r.FA_Course_Overview__c}" style="font-family:DINProFont;font-size:16px;"/>                                           
+                                                                              
+                                        </div>
+                                    </div>                                    
+                                    <ul class="comment-list"> 
+                                                                                        
+                                            <li data-item-id="" class="comment-item clearfix" id="">
+                                                <div class="item-container clearfix" style="padding:0.5em;">
+                                                       <div class="item-name" style="padding-top:9px">                                                    
+                                                        <h2 style="font-family:DINProFont;">Programme Schedule:</h2>
+                                                        <div class="item-date"><span class="meta-text">{!objProDetail.startDate} - {!objProDetail.endDate}</span></div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                    <div class="ui-grid-a"> 
+                                    <div class="ui-block-a" data-mini="true">
+                                     
+                                         <li data-item-id="" class="comment-item clearfix" id="">
+                                                    <div class="item-container clearfix" >
+                                                           <div class="item-name" style="padding-top:9px">                                                    
+                                                            <p style="font-family:DINProFont;font-size:13px;font-style:italic;color: rgb(143, 143, 143);"><b style="font-style:normal;color:#191919;font-size:14px;">Programme Venue:</b>{!objProDetail.CoOcc.FA_Training_Venue__r.Name}</p>                                                        
+                                                            <img class="hd-img" src=" {!objProDetail.CoOcc.FA_Training_Venue__r.FA_Image_URL__c} " style="width:65%; height:120px;margin-bottom:30px;"></img>
+                                                            </div>
+                                                             <div class="item-date">                                                        
+                                                                
+                                                             </div>                                                       
+                                                    </div>
+                                         </li> 
+                                         
+                                         <li data-item-id="" class="comment-item clearfix" id="">
+                                                <div class="item-container clearfix" style="padding:0.5em;">
+                                                       <div class="item-name" style="padding-top:9px">                                                    
+                                                        <h2 style="font-family:DINProFont;">Room Number:</h2>
+                                                        <div class="item-date"><span class="meta-text">{!objProDetail.CoOcc.FA_Training_Room__r.FA_Room_Number__c}</span></div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                          
+                                          <li data-item-id="" class="comment-item clearfix" id="">
+                                                <div class="item-container clearfix" style="padding:0.5em;">
+                                                       <div class="item-name" style="padding-top:9px">                                                    
+                                                        <h2 style="font-family:DINProFont;">Network Connectivity:</h2>
+                                                         <div class="item-date"><input type="checkbox" disabled="disabled" id="Network" name="Network" value="{!objProDetail.CoOcc.FA_Training_Room__r.FA_Network_Connectivity__c}" style="margin: -11px 0 0;position:static;"/></div>
+                                                       </div>
+                                                </div>
+                                            </li>
+                                   <!--         <li data-item-id="" class="comment-item clearfix" id="">
+                                                <div class="item-container clearfix" style="padding:0.5em;">
+                                                       <div class="item-name" style="padding-top:9px">                                                    
+                                                        <h2 style="font-family:DINProFont;">Pre-work Attachments and Notes:</h2>
+                                                        
+                                                          <ul class="comment-list" style="margin:0 1.55em 1em;font-family:DINProFont;font-size:18px;background:#ffffff;">
+                                                               
+                                                                <apex:repeat var="preAttach" value="{!objProDetail.CoPreAttachment}"> 
+                                                                   <li class="comment-item clearfix">
+                                                                       <div class="item-container clearfix" style="padding:0.5em;font-family:DINProFont;font-size:18px;">
+                                                                          <div class="item-name" style="padding-top:9px">
+                                                                               <h2 style="font-family:DINProFont;font-size:18px;">
+                                                                                                                                                              
+                                                                               <a href="" target="_blank" >{!preAttach.Name}</a></h2>                                                                              
+                                                                               
+                                                                               <div class="item-date" style="display:inline;font-family:DINProFont;font-size:18px;"><span class="meta-text">{!preAttach.BodyLength} bytes</span></div>
+                                                                           </div>                                                                           
+                                                                         <a href="/servlet/servlet.FileDownload?file={!preAttach.Id}" style="float:right;width:35%;" target="_blank" data-theme="b" data-mini="true" data-role="button" >Download</a> 
+                                                                         
+                                                                     
+                                                                          
+                                                                                                                                                      
+                                                                       </div>
+                                                                      
+                                                                   </li>
+                                                                </apex:repeat>                                                                                                                                                                                          
+                                                          </ul>                                                       
+                                                      </div>
+                                                </div>
+                                            </li>  -->       
+                                            
+                                           <li data-item-id="" class="comment-item clearfix" id="">
+                                                <div class="item-container clearfix" style="padding:0.5em;">
+                                                       <div class="item-name" style="padding-top:9px">                                                    
+                                                        <h2 style="font-family:DINProFont;">Course Material:</h2>
+                                                        
+                                                          <ul class="comment-list" style="margin:0 1.55em 1em;font-family:DINProFont;font-size:18px;background:#ffffff;">
+                                                                <apex:repeat var="coMatAttach" value="{!objProDetail.CoMaterialAttachment}"> 
+                                                                   <li class="comment-item clearfix">
+                                                                       <div class="item-container clearfix" style="padding:0.5em;font-family:DINProFont;font-size:18px;">
+                                                                                                                                                      
+                                                                           <div class="item-name" style="padding-top:9px">
+                                                                               <h2 style="font-family:DINProFont;font-size:18px;">
+                                                                                                                                                              
+                                                                               <a href="" target="_blank" >{!coMatAttach.Name}</a></h2>
+                                                                                                                                                             
+                                                                               <div class="item-date" style="display:inline;font-family:DINProFont;font-size:18px;"><span class="meta-text">{!coMatAttach.BodyLength} bytes</span></div>
+                                                                           </div>
+                                                                         <a href="/servlet/servlet.FileDownload?file={!coMatAttach.Id}" style="float:right;width:35%;" target="_blank" data-theme="b" data-mini="true" data-role="button" onclick="download" >Download</a> 
+                                                                         
+                                                                      <!--   <object data="/servlet/servlet.FileDownload?file={!coMatAttach.Id}" type="application/pdf" width="90%" height="100px">  </object> -->
+                                                                           
+                                                                       </div>
+                                                                      
+                                                                 </li>
+                                                                </apex:repeat>                                             
+                                                          </ul>
+                                                       </div>
+                                                 </div>
+                                            </li>                            
+                                           
+                                    </div>
+                                  
+                          <!--        <script type="text/javascript">  
+                                  
+                                    <a href="javascript:void(0);"
+                                        onclick="document.execCommand('SaveAs',true,'file.html');"
+                                               >Save this page</a> 
+                                               
+                                  </script> -->
+                                     
+                                    <div class="ui-block-b" data-mini="true"> 
+                                     
+                                           <li data-item-id="" class="comment-item clearfix" id="">
+                                                    <div class="item-container clearfix" >
+                                                       <div class="item-name" style="padding-top:9px">                                                    
+                                                            <p style="font-family:DINProFont;font-size:13px;font-style:italic;color: rgb(143, 143, 143);"><b style="font-style:normal;color:#191919;font-size:14px;">Training Room:</b>{!objProDetail.CoOcc.FA_Training_Room__r.Name}</p>                                                        
+                                                            <img class="hd-img" src=" {!objProDetail.CoOcc.FA_Training_Room__r.FA_Image_URL__c}" style="width:65%;height:120px;margin-bottom:30px;"></img>
+                                                       </div>
+                                                       <div class="item-date"></div>                                                  
+                                                    </div>
+                                            </li>                                    
+                                        
+                                            <li data-item-id="" class="comment-item clearfix" id="">
+                                                <div class="item-container clearfix" style="padding:0.5em;">
+                                                    <div class="item-name" style="padding-top:9px">                                                    
+                                                        <h2 style="font-family:DINProFont;">Capacity:</h2>
+                                                        <div class="item-date"><span class="meta-text">{!objProDetail.CoOcc.FA_Training_Room__r.FA_Capacity__c}</span></div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            
+                                            <li data-item-id="" class="comment-item clearfix" id="">
+                                                <div class="item-container clearfix" style="padding:0.5em;">
+                                                       <div class="item-name" style="padding-top:9px">                                                    
+                                                        <h2 style="font-family:DINProFont;">VC Facilities:</h2>
+                                                         <div class="item-date"><input type="checkbox" disabled="disabled" id="VC" name="VC" value="{!objProDetail.CoOcc.FA_Training_Room__r.FA_VC_Facilities__c}" style="margin: -11px 0 0;position:static;font-family:DINProFont;font-size:18px;"/></div>
+                                                       </div>
+                                                </div>
+                                            </li>
+                                           <li data-item-id="" class="comment-item clearfix" id="">
+                                                <div class="item-container clearfix" style="padding:0.5em;margin-bottom:40px;">
+                                                       <div class="item-name" style="padding-top:9px">                                                    
+                                                        <h2 style="font-family:DINProFont;">Post-work Attachments and Notes:</h2>
+                                                        
+                                                          <ul class="comment-list" style="margin:0 1.55em 1em;font-family:DINProFont;font-size:18px;background:#ffffff;">
+                                                               
+                                                                <apex:repeat var="postAttach" value="{!objProDetail.CoPostAttachment}">
+                                                                 
+                                                                   <li class="comment-item clearfix">
+                                                                       <div class="item-container clearfix" style="padding:0.5em;font-family:DINProFont;font-size:18px;">                                                                           
+                                                                           <div class="item-name" style="padding-top:9px">
+                                                                               <h2 style="font-family:DINProFont;font-size:18px;">                                                                           
+                                                                               <a href="" target="_blank" >{!postAttach.Name}</a></h2>                                                                              
+                                                                               <div class="item-date" style="display:inline;font-family:DINProFont;font-size:18px;"><span class="meta-text">{!postAttach.BodyLength} bytes</span></div>
+                                                                           </div>
+                                                                           <a href="/servlet/servlet.FileDownload?file={!postAttach.Id}" style="float:right;width:35%;" target="_blank" data-theme="b" data-mini="true" data-role="button">Download</a> 
+                                                                        </div>                                                                      
+                                                                   </li>
+                                                                </apex:repeat>                                              
+                                                       </ul>
+                                                      </div>
+                                                </div>
+                                            </li>     
+                                    </div> 
+                                </div>  
+                                            
+                            </ul>
+                                  
+                      </li>
+                            
+                 </ul> 
+                               
+        </div><!-- /content -->
+        <br/><br/><br/><br/><br/>
+        </apex:form>  
+        </div><!-- /page -->   
+                     <script> 
+                     function downloadme(x){ 
+                        myTempWindow = window.open(x,’’,’left=10000,screenX=10000’); 
+                        myTempWindow.document.execCommand(’SaveAs’,’null’,x); 
+                        myTempWindow.close(); 
+                    } 
+                    </script> 
+                    
+                    <script type="text/javascript">
+                        ChatterUI.UserContext = {
+                            userId: '{!$User.Id}',
+                            sessionId: '{!GETSESSIONID()}',
+                            usingMobile: {!usingMobile},
+                           
+                        }                      
+                    </script>
+                    
+                    <script>
+                            document.getElementById("VC").disabled=true;
+                            if('{!objProDetail.CoOcc.FA_Training_Room__r.FA_VC_Facilities__c}'=='true')
+                            document.getElementById("VC").checked=true;
+                            else
+                            document.getElementById("VC").checked=false;
+                    </script>
+                    
+                    <script>
+                             document.getElementById("Network").disabled=true;
+                             if('{!objProDetail.CoOcc.FA_Training_Room__r.FA_Network_Connectivity__c}'=='true')
+                             document.getElementById("Network").checked=true;
+                             else
+                             document.getElementById("Network").checked=false;
+                     </script>
+                     
+                     <script type="text/javascript">  
+                     
+                        function redirectBack()
+                                           { 
+                                             var retURL='';
+                                             var params = window.location.search.slice(1).split("&");
+                                                for (var i = 0; i < params.length; i++)
+                                                     {
+                                                        
+                                                         var tmp = params[i].split("=");
+                                                         if(tmp[0] =='retURL')
+                                                          retURL = unescape(tmp[1]);
+                                                          
+                                                         if(retURL.indexOf('@')!=-1) 
+                                                            retURL.replace('@','#');
+                                                     }                               
+                                              
+                                              if(retURL=='')
+                                                 retURL='/apex/Programme';                                                 
+                                              window.location.href=retURL;                                            
+                                           }
+                     </script>                     
+                   </div> <!-- end .uiScroller -->                              
+            </div>
+        </apex:define>
+
+  <apex:define name="overlayContent">
+  <div id="overlayContent"></div>
+  </apex:define>
+ </apex:composition>
+    
+  
+</apex:page>

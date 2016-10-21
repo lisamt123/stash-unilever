@@ -5,7 +5,7 @@
         <description>AMR_CAPNotificationAlert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>Aliya.Bukhari@unilever.com</recipient>
+            <recipient>aliya.bukhari@unilever.com</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
@@ -406,8 +406,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;)  &amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -417,8 +416,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) 
-&amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;)  &amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -428,8 +426,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;)  &amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -439,8 +436,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;)  &amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -450,8 +446,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) 
-&amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;)  &amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -461,8 +456,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;)  &amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -532,8 +526,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;)  &amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -543,8 +536,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;)
-&amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) &amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -554,8 +546,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;)  &amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -565,8 +556,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;)  &amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -576,8 +566,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) 
-&amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;)  &amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -587,8 +576,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;)  &amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>

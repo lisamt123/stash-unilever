@@ -38,6 +38,54 @@
         <name>AF_Send_Email_Notification__c</name>
     </fields>
     <fields>
+        <label><!-- CHD Contact ID --></label>
+        <name>CHD__CHD_Contact_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD ID --></label>
+        <name>CHD__CHD_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Cell Phone --></label>
+        <name>CHD__Cell_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Email --></label>
+        <name>CHD__Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD First Name --></label>
+        <name>CHD__First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Gender --></label>
+        <name>CHD__Gender__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Is Nominative --></label>
+        <name>CHD__Is_Nominative__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Last Name --></label>
+        <name>CHD__Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Phone --></label>
+        <name>CHD__Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Primary Contact --></label>
+        <name>CHD__Primary_Contact__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Suffix --></label>
+        <name>CHD__Suffix__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Title --></label>
+        <name>CHD__Title__c</name>
+    </fields>
+    <fields>
         <help><!-- Please type numbers only --></help>
         <label><!-- CNPJ --></label>
         <name>CNPJ__c</name>
@@ -492,6 +540,54 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Decision Maker --></label>
+        <name>FS_Decision_Maker__c</name>
+    </fields>
+    <fields>
+        <label><!-- FS_EncryptKey --></label>
+        <name>FS_PIEncryptKey__c</name>
+    </fields>
+    <fields>
+        <label><!-- Position --></label>
+        <name>FS_Position__c</name>
+        <picklistValues>
+            <masterLabel>Brand - chef</masterLabel>
+            <translation><!-- Brand - chef --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buyer</masterLabel>
+            <translation><!-- Buyer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chef</masterLabel>
+            <translation><!-- Chef --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director</masterLabel>
+            <translation><!-- Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manager</masterLabel>
+            <translation><!-- Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seller</masterLabel>
+            <translation><!-- Seller --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sous chef</masterLabel>
+            <translation><!-- Sous chef --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Technologist</masterLabel>
+            <translation><!-- Technologist --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- RefId --></label>
+        <name>FS_RefId__c</name>
+    </fields>
+    <fields>
         <label><!-- Gender --></label>
         <name>Gender__c</name>
         <picklistValues>
@@ -589,6 +685,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Cause --></label>
+        <name>ICB_Cause__c</name>
+    </fields>
+    <fields>
         <help><!-- Is a Ice Cream Community User? --></help>
         <label><!-- Ice Cream Community User --></label>
         <name>ICB_Community_User__c</name>
@@ -624,6 +724,10 @@
             <masterLabel>University (Incomplete)</masterLabel>
             <translation><!-- University (Incomplete) --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Fail --></label>
+        <name>ICB_Fail__c</name>
     </fields>
     <fields>
         <label><!-- Internet Access --></label>
@@ -683,8 +787,28 @@
         <relationshipLabel><!-- Contacts --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Status --></label>
+        <name>ICB_Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fail</masterLabel>
+            <translation><!-- Fail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Type --></label>
         <name>ICB_Type__c</name>
+        <picklistValues>
+            <masterLabel>Console</masterLabel>
+            <translation><!-- Console --></translation>
+        </picklistValues>
         <picklistValues>
             <masterLabel>Ice Cream Salesman</masterLabel>
             <translation><!-- Ice Cream Salesman --></translation>
@@ -789,9 +913,181 @@
         <label><!-- Twitter Username --></label>
         <name>hoot2sf_TwitterUsername__c</name>
     </fields>
+    <fields>
+        <label><!-- Contact Source --></label>
+        <name>sf4twitter__Contact_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Image Url --></label>
+        <name>sf4twitter__Fcbk_Image_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Picture --></label>
+        <name>sf4twitter__Fcbk_Picture__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Profile Url --></label>
+        <name>sf4twitter__Fcbk_Profile_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook User Id --></label>
+        <name>sf4twitter__Fcbk_User_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Username --></label>
+        <name>sf4twitter__Fcbk_Username__c</name>
+    </fields>
+    <fields>
+        <help><!-- Click on link to change following status --></help>
+        <label><!-- Following On Twitter --></label>
+        <name>sf4twitter__Follow_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Influencer Type --></label>
+        <name>sf4twitter__Influencer_Type__c</name>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reporter</masterLabel>
+            <translation><!-- Reporter --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Is this Contact an Influencer (ie Reporter?) --></help>
+        <label><!-- Influencer --></label>
+        <name>sf4twitter__Influencer__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Klout Number --></label>
+        <name>sf4twitter__Klout_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Klout Score --></label>
+        <name>sf4twitter__Klout_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Languages --></label>
+        <name>sf4twitter__Languages__c</name>
+    </fields>
+    <fields>
+        <label><!-- Level --></label>
+        <name>sf4twitter__Level__c</name>
+        <picklistValues>
+            <masterLabel>Primary</masterLabel>
+            <translation><!-- Primary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Secondary</masterLabel>
+            <translation><!-- Secondary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tertiary</masterLabel>
+            <translation><!-- Tertiary --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Origin --></label>
+        <name>sf4twitter__Origin__c</name>
+        <picklistValues>
+            <masterLabel>Facebook</masterLabel>
+            <translation><!-- Facebook --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Twitter</masterLabel>
+            <translation><!-- Twitter --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Research This Contact --></label>
+        <name>sf4twitter__Research_this_Contact__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Bio --></label>
+        <name>sf4twitter__Twitter_Bio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Creation Date --></label>
+        <name>sf4twitter__Twitter_Creation_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Follower Count --></label>
+        <name>sf4twitter__Twitter_Follower_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Following Count --></label>
+        <name>sf4twitter__Twitter_Following_count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Image Url --></label>
+        <name>sf4twitter__Twitter_Image_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Last Tweet --></label>
+        <name>sf4twitter__Twitter_Last_Tweet__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Location --></label>
+        <name>sf4twitter__Twitter_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Picture --></label>
+        <name>sf4twitter__Twitter_Picture__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Status Count --></label>
+        <name>sf4twitter__Twitter_Status_count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter User Id --></label>
+        <name>sf4twitter__Twitter_User_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Username --></label>
+        <name>sf4twitter__Twitter_Username__c</name>
+    </fields>
+    <fields>
+        <label><!-- Followed --></label>
+        <name>sf4twitter__followed__c</name>
+    </fields>
+    <fields>
+        <label><!-- SMS Opt Out --></label>
+        <name>smagicinteract__SMSOptOut__c</name>
+    </fields>
+    <layouts>
+        <layout>FSUS Contact</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Pitch Contact Layout</layout>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Agency Contact --></label>
         <name>Agency_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FS_Contact --></label>
+        <name>FS_Contact</name>
     </recordTypes>
     <recordTypes>
         <label><!-- Ice Cream Operator --></label>
@@ -824,6 +1120,10 @@
     <validationRules>
         <errorMessage><!-- The E-Mail must have at least 4 characters before the @ --></errorMessage>
         <name>EMail_minimum_size</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You may not modify the status --></errorMessage>
+        <name>ICB_No_Change_Status</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Birthdate is mandatory. Please fill in an appropriate value. --></errorMessage>
@@ -860,5 +1160,37 @@
     <webLinks>
         <label><!-- YahooWeather --></label>
         <name>YahooWeather</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Get_Author_Info --></label>
+        <name>sf4twitter__Get_Author_Info</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Get_Author_Info_Massive --></label>
+        <name>sf4twitter__Get_Author_Info_Massive</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Get_Klout_Score --></label>
+        <name>sf4twitter__Get_Klout_Score</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Get_Klout_Score_Massive --></label>
+        <name>sf4twitter__Get_Klout_Score_Massive</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Get_Twitter_Username --></label>
+        <name>sf4twitter__Get_Twitter_Username</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Search_Twitter_Username --></label>
+        <name>sf4twitter__Search_Twitter_Username</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_Bulk_SMS --></label>
+        <name>smagicinteract__Send_Bulk_SMS</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_SMS --></label>
+        <name>smagicinteract__Send_SMS</name>
     </webLinks>
 </CustomObjectTranslation>

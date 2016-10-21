@@ -9,6 +9,7 @@
         <value>IPM Countries</value>
     </caseValues>
     <fields>
+        <help><!-- country added at particular stage. --></help>
         <label><!-- AddedAtStage --></label>
         <name>AddedAtStage__c</name>
         <picklistValues>
@@ -37,6 +38,7 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- At which stage local rollout is added. --></help>
         <label><!-- Added At Stage --></label>
         <name>Added_At_Stage__c</name>
     </fields>
@@ -64,6 +66,19 @@
         <relationshipLabel><!-- IPM Countries --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Brand Null or Brand Not Matched --></label>
+        <name>IPM_Brand_Null_or_Brand_Not_Matched__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Position --></label>
+        <name>IPM_Brand_Position__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand and BrandPos Matched --></label>
+        <name>IPM_Brand_and_BrandPos_Matched__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to check charter is approved or not at country level. --></help>
         <label><!-- CharterApproved --></label>
         <name>IPM_CharterApproved__c</name>
     </fields>
@@ -142,8 +157,24 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Show At Global --></label>
+        <name>IPM_ShowAtGlobal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show At Local --></label>
+        <name>IPM_ShowAtLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show At Regional --></label>
+        <name>IPM_ShowAtRegional__c</name>
+    </fields>
+    <fields>
         <label><!-- Small C --></label>
         <name>IPM_Small_C_shr__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stopped By Project --></label>
+        <name>IPM_StoppedByProject__c</name>
     </fields>
     <fields>
         <label><!-- IS EI Country --></label>

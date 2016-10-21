@@ -88,5 +88,12 @@
         <name>Total__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Product at Risk Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel><!-- Product at Risk Name --></nameFieldLabel>
 </CustomObjectTranslation>

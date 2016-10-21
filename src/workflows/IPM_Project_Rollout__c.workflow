@@ -130,14 +130,7 @@ IF(ISPICKVAL(Regional_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp
         </actions>
         <active>true</active>
         <description>Notification to RFL for TLD change in MCO/Country Plan</description>
-        <formula>AND(ISPICKVAL(Regional_Project__r.IPM_Project_Type__c, &apos;Rollout&apos;),
-Regional_Project_Span__c = &apos;Regional&apos;,
-OR(ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Feasibility&apos;),
-ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Capability&apos;),
-ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Market Ready&apos;),
-ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Market Deployment&apos;),
-ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;PLE&apos;)),
- !ISBLANK(Finance_Member__c),  ISCHANGED(Previous_Target_Launch_Date__c) )</formula>
+        <formula>AND(ISPICKVAL(Regional_Project__r.IPM_Project_Type__c, &apos;Rollout&apos;), Regional_Project_Span__c = &apos;Regional&apos;, OR(ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Feasibility&apos;), ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Capability&apos;), ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Market Ready&apos;), ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Market Deployment&apos;), ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;PLE&apos;)),  !ISBLANK(Finance_Member__c),  ISCHANGED(Previous_Target_Launch_Date__c) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

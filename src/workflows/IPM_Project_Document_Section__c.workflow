@@ -57,7 +57,7 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
-	 <fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_IPM_Parent_Section_isNull_c</fullName>
         <description>Updates the said field</description>
         <field>IPM_Parent_Section_isNull__c</field>
@@ -116,20 +116,6 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>IPM_Notify_TO_PL</fullName>
-        <actions>
-            <name>IPM_Email_TO_PL</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>IPM_Notify_Update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <formula>IPM_Notify_Team__c=true</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-	 <rules>
         <fullName>IPM check if Parent Section is Null</fullName>
         <actions>
             <name>Update_IPM_Parent_Section_isNull_c</name>
@@ -141,6 +127,20 @@
             <operation>notEqual</operation>
         </criteriaItems>
         <description>Updates IPM_Parent_Section_isNull__c, will be true when IPM_Section__r.IPM_Parent_Section__c is Null and false when IPM_Section__r.IPM_Parent_Section__c is NOT Null</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>IPM_Notify_TO_PL</fullName>
+        <actions>
+            <name>IPM_Email_TO_PL</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>IPM_Notify_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>IPM_Notify_Team__c=true</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

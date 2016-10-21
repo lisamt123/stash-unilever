@@ -884,7 +884,7 @@
            <!---Components To BE Displayed within Sections END-->
            <apex:outputField value="{!pds.IPM_Gate_Document_Summary__c}" styleClass="bdText" />
            <apex:outputPanel layout="block" styleClass="appBlock" rendered="{!pds.IPM_Has_Appendix__c}"> 
-                 <apex:outputPanel>{!$Label.IPM_GD_APPENDIX_MSG}tion <span data-dir="{!pds.IPM_Master_Section_External_Id__c}" class="appText">{!pds.IPM_Section__r.IPM_Section_Name__c}</span></apex:outputPanel>
+                 <apex:outputPanel >{!$Label.IPM_GD_APPENDIX_MSG}tion <span data-dir="{!pds.IPM_Master_Section_External_Id__c}" class="appText">{!pds.IPM_Section__r.IPM_Section_Name__c}</span></apex:outputPanel>
                                                                                                   
              </apex:outputPanel>
             </apex:outputPanel>

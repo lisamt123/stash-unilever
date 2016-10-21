@@ -58,6 +58,14 @@
         <name>Global_Regional_Finance_Leader_Email__c</name>
     </fields>
     <fields>
+        <label><!-- Brand Position --></label>
+        <name>IPM_Brand_Position__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>IPM_Brand__c</name>
+    </fields>
+    <fields>
         <label><!-- CharterApproved --></label>
         <name>IPM_CharterApproved__c</name>
     </fields>
@@ -76,12 +84,20 @@
         <name>IPM_Finance_Member_Text__c</name>
     </fields>
     <fields>
+        <label><!-- Global OR Regional --></label>
+        <name>IPM_Global_OR_Regional__c</name>
+    </fields>
+    <fields>
         <label><!-- Local Rollout Status --></label>
         <name>IPM_Local_Rollout_Status__c</name>
         <picklistValues>
             <masterLabel>Not Created</masterLabel>
             <translation><!-- Not Created --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Parent Project Name --></label>
+        <name>IPM_Parent_Project_Name__c</name>
     </fields>
     <fields>
         <label><!-- Phase Change Queue Job Id --></label>
@@ -192,6 +208,18 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Show At Global --></label>
+        <name>IPM_ShowAtGlobal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show At Local --></label>
+        <name>IPM_ShowAtLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show At Regional --></label>
+        <name>IPM_ShowAtRegional__c</name>
+    </fields>
+    <fields>
         <label><!-- Small C --></label>
         <name>IPM_Small_C__c</name>
     </fields>
@@ -206,6 +234,10 @@
             <masterLabel>Leader</masterLabel>
             <translation><!-- Leader --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Stopped By Project --></label>
+        <name>IPM_StoppedByProject__c</name>
     </fields>
     <fields>
         <label><!-- Key MCO At Charter --></label>
@@ -231,6 +263,10 @@
         <label><!-- Local Project --></label>
         <name>Local_Project__c</name>
         <relationshipLabel><!-- IPM Project Rollout (Local Project) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Local Rollout Phase --></label>
+        <name>Local_Rollout_Phase__c</name>
     </fields>
     <fields>
         <label><!-- MCO Name --></label>
@@ -282,9 +318,21 @@
         <name>Regional_Rollout_External_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Regional Rollout Phase --></label>
+        <name>Regional_Rollout_Phase__c</name>
+    </fields>
+    <fields>
         <label><!-- Regional Rollout --></label>
         <name>Regional_Rollout__c</name>
         <relationshipLabel><!-- Local Rollouts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Month --></label>
+        <name>Target_LaunchMonth__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Year --></label>
+        <name>Target_LaunchYear__c</name>
     </fields>
     <fields>
         <label><!-- Target Launch Date --></label>

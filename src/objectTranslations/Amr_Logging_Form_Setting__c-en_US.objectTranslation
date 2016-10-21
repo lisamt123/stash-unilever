@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Amr Logging Form Setting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Amr Logging Form Settings</value>
+    </caseValues>
+    <fields>
+        <label><!-- Allocation --></label>
+        <name>Allocation__c</name>
+        <picklistValues>
+            <masterLabel>Automatic</masterLabel>
+            <translation><!-- Automatic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manual</masterLabel>
+            <translation><!-- Manual --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Automatic Allocation On --></label>
+        <name>Automatic_Allocation_On__c</name>
+        <picklistValues>
+            <masterLabel>Location</masterLabel>
+            <translation><!-- Location --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Brand</masterLabel>
+            <translation><!-- Product Brand --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Footer --></label>
+        <name>Footer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Header --></label>
+        <name>Header__c</name>
+    </fields>
+    <fields>
+        <label><!-- Introduction --></label>
+        <name>Introduction__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

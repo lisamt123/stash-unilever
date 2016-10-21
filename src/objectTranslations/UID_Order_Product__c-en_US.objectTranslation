@@ -29,6 +29,10 @@
         <name>UID_Distributor_Value__c</name>
     </fields>
     <fields>
+        <label><!-- ISO Currency --></label>
+        <name>UID_ISO_Currency__c</name>
+    </fields>
+    <fields>
         <label><!-- Invoice Number --></label>
         <name>UID_Invoice_Number__c</name>
     </fields>
@@ -82,5 +86,12 @@
         <label><!-- Source --></label>
         <name>UID_Source__c</name>
     </fields>
+    <layouts>
+        <layout>Order Product Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

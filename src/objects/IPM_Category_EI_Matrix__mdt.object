@@ -2,9 +2,20 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>This object will contain the meta data for Category Group/Category wise mapping of EI metrics like, Water, GHG, Waste etc.</description>
     <fields>
+        <fullName>Category_Group_Category_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Category Group Category Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Greenhouse_Gases_g__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Greenhouse Gases(g)</label>
         <type>Checkbox</type>
     </fields>
@@ -12,6 +23,7 @@
         <fullName>Health_Hygeine__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Health &amp; Hygeine</label>
         <type>Checkbox</type>
     </fields>
@@ -19,6 +31,7 @@
         <fullName>Nutrition__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Nutrition</label>
         <type>Checkbox</type>
     </fields>
@@ -26,6 +39,7 @@
         <fullName>Sustainable_Sourcing__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Sustainable Sourcing</label>
         <type>Checkbox</type>
     </fields>
@@ -33,6 +47,7 @@
         <fullName>Waste_g__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Waste(g)</label>
         <type>Checkbox</type>
     </fields>
@@ -40,17 +55,9 @@
         <fullName>Water_litres__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Water(litres)</label>
         <type>Checkbox</type>
-    </fields>
-	 <fields>
-        <fullName>Category_Group_Category_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Category Group Category Name</label>
-        <type>Text</type>
-		<length>255</length>
-        <required>false</required>
-        <unique>false</unique>	
     </fields>
     <label>IPM Category EI Matrix</label>
     <pluralLabel>IPM Category EI Matrix</pluralLabel>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>VEP_FactoryVisit</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>VEP_FactoryVisit</value>
+    </caseValues>
+    <fields>
+        <label><!-- Lodging Desk Email --></label>
+        <name>Lodging_Desk_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pickup Desk Email --></label>
+        <name>Pickup_Desk_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel Desk Email --></label>
+        <name>Travel_Desk_Email__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

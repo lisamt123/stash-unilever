@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
-    <active>true</active>
+    <active>false</active>
     <allowRecall>true</allowRecall>
     <allowedSubmitters>
         <type>owner</type>
@@ -54,7 +54,11 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>aleksandr.volkov@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>anastasia.zvereva@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -83,10 +87,13 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>bridget.taylor@unilever.com</name>
                 <type>user</type>
             </approver>
-
+            <approver>
+                <name>tom.jermyn@unilever.com</name>
+                <type>user</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <entryCriteria>

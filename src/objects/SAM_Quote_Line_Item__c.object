@@ -1033,10 +1033,12 @@ false )</formula>
             <picklistValues>
                 <fullName>No</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
             </picklistValues>
             <picklistValues>
                 <fullName>Yes</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
@@ -4517,7 +4519,7 @@ true,false )</errorConditionFormula>
         <fullName>SAM_Run_cost_Reverse_Validation</fullName>
         <active>true</active>
         <description>Don&apos;t allow run cost fields to enter if run cost is No.</description>
-        <errorConditionFormula>AND( md_Request__r.txt_Request_Type__c = &apos;SAM_RW_Project_Request&apos;, OR(ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;No&apos;),ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;&apos;)),OR(NOT(ISBLANK( text(pkl_Run_Cost_Start_Year__c) )),NOT(ISBLANK( text(pkl_Run_Cost_End_Year__c) )),NOT(ISBLANK( txt_Run_Cost_in_Euros__c )),NOT(ISBLANK( Run_Cost_Year_1__c )),NOT(ISBLANK( Run_Cost_Year_2__c )),NOT(ISBLANK(text( Run_Cost_for_Year_1__c ) )),NOT(ISBLANK( text( Run_Cost_for_Year_2__c) )),NOT(ISBLANK(text( pkl_Whether_SAM_will_pick_up_Run_Cost__c ) )),NOT(ISBLANK( txt_Project_Maintained_by__c )),NOT(ISBLANK( txta_SAM_Comments__c )) ) )</errorConditionFormula>
+        <errorConditionFormula>AND( md_Request__r.txt_Request_Type__c = &apos;SAM_RW_Project_Request&apos;, OR(ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;No&apos;),ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;&apos;)),OR( NOT(ISBLANK( dt_Contract_Start_Date__c )),NOT(ISBLANK( text(pkl_Run_Cost_Start_Year__c) )),NOT(ISBLANK( text(pkl_Run_Cost_End_Year__c) )),NOT(ISBLANK( txt_Run_Cost_in_Euros__c )),NOT(ISBLANK(  Run_Cost_Year_1__c  )),NOT(ISBLANK(  Run_Cost_Year_2__c  )),NOT(ISBLANK(text( Run_Cost_for_Year_1__c ) )),NOT(ISBLANK( text( Run_Cost_for_Year_2__c) )),NOT(ISBLANK(text(  pkl_Whether_SAM_will_pick_up_Run_Cost__c ) )),NOT(ISBLANK(  txt_Project_Maintained_by__c  )),NOT(ISBLANK( txta_SAM_Comments__c  )) )   )</errorConditionFormula>
         <errorMessage>Run Cost fields are mandatory only if Run Cost Applicable is Yes.</errorMessage>
     </validationRules>
     <validationRules>

@@ -39,6 +39,10 @@
                 <behavior>Edit</behavior>
                 <field>of_WL2_vs_Total_Pop_Support_Multiplie__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

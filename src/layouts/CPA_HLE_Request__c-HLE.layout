@@ -84,6 +84,10 @@
                 <behavior>Readonly</behavior>
                 <field>dat_Submitted_Date__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -257,11 +261,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>eml_HLE_PB_Email__c</field>
+                <field>ph_HLE_PB_Contact_No__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>num_HLE_Estimated_man_days__c</field>
+                <field>num_HLE_Estimated_Accenture_charge__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -269,7 +273,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>dt_HLE_Date_PWORF_required__c</field>
+                <field>txt_HLE_Scope__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -277,11 +281,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_HLE_Scope__c</field>
+                <field>txt_HLE_Assumptions_Risks_Qualifying__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_HLE_Assumptions_Risks_Qualifying__c</field>
+                <field>dt_HLE_Date_PWORF_required__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -291,30 +295,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>eml_HLE_PB_Email__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>txt_HLE_Accenture_Area__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ph_HLE_PB_Contact_No__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>num_HLE_Estimated_Accenture_charge__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_HLE_Next_steps__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_HLE_Commercial_caveats__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_HLE_Accenture_estimated_project_char__c</field>
+                <field>num_HLE_Estimated_man_days__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -323,6 +312,18 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>HLE_Proposed_high_level_plan_timelines__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_HLE_Accenture_estimated_project_char__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_HLE_Next_steps__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_HLE_Commercial_caveats__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -387,7 +388,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h18000000El7C</masterLabel>
+        <masterLabel>00h56000000Iz2K</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

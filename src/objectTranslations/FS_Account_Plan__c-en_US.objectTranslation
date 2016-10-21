@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Account Plan</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Account Plans</value>
+    </caseValues>
+    <fields>
+        <label><!-- Business Plan Name --></label>
+        <name>FS_Account_Business_Plan_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- approved --></label>
+        <name>FS_Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Completed % --></label>
+        <name>FS_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer --></label>
+        <name>FS_Customer__c</name>
+        <relationshipLabel><!-- Account Plans --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>FS_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- No of Completed Objectives --></label>
+        <name>FS_No_of_Completed_Objectives__c</name>
+    </fields>
+    <fields>
+        <label><!-- No of Objectives --></label>
+        <name>FS_No_of_Objectives__c</name>
+    </fields>
+    <fields>
+        <label><!-- No of Opportunities --></label>
+        <name>FS_No_of_Opportunities__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Potential --></label>
+        <name>FS_Opportunity_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Gain --></label>
+        <name>FS_Opportunity_Gain__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plan $ --></label>
+        <name>FS_PlanDollars__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plan % --></label>
+        <name>FS_PlanPercent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plan Statement --></label>
+        <name>FS_Plan_Statement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plan Type --></label>
+        <name>FS_Plan_Type__c</name>
+        <picklistValues>
+            <masterLabel>Grow</masterLabel>
+            <translation><!-- Grow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retain/Differentiate</masterLabel>
+            <translation><!-- Retain/Differentiate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Win</masterLabel>
+            <translation><!-- Win --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>FS_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>FS_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approval Requested</masterLabel>
+            <translation><!-- Approval Requested --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning</masterLabel>
+            <translation><!-- Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Planned Volume --></label>
+        <name>FS_of_Units__c</name>
+    </fields>
+    <fields>
+        <label><!-- Identified Risk --></label>
+        <name>Identified_Risk__c</name>
+    </fields>
+    <layouts>
+        <layout>Distributor Account Plan Feed Based</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Distributor Account Plan Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Operator Account Plan Feed Based</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Operator Account Plan Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- New Distributor Objective --></label>
+        <name>New_Distributor_Objective</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Operator Objective --></label>
+        <name>New_Operator_Objective</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- Distributor --></label>
+        <name>Distributor</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Operator --></label>
+        <name>Operator</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please create Defined Objectives prior to submission for approval --></errorMessage>
+        <name>CheckNoofDefineObjective</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- End date can not be before start date. --></errorMessage>
+        <name>FS_End_Date_Before_Start_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to make changes to account plan once it is approved --></errorMessage>
+        <name>Restrict_approved_Account_Plan_change</name>
+    </validationRules>
+</CustomObjectTranslation>

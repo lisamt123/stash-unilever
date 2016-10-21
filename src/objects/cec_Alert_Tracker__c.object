@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -80,6 +76,16 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Alert_Tracker_Item_count__c</fullName>
+        <description>CEC Alert Tracker Item count is used to count number of Alert Tracker Item.</description>
+        <externalId>false</externalId>
+        <label>Alert Tracker Item count</label>
+        <summaryForeignKey>cec_Alert_Tracker_Item__c.Alert_Tracker_Id__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Current_Threshold__c</fullName>
@@ -189,7 +195,7 @@
         <filters>
             <field>LAST_UPDATE</field>
             <operation>equals</operation>
-            <value>2/25/2016 12:00 AM</value>
+            <value>8/2/2016 12:00 AM</value>
         </filters>
         <label>PH - alert tracker detail</label>
         <language>en_US</language>

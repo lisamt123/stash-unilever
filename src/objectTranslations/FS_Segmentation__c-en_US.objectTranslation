@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Segmentation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Segmentation</value>
+    </caseValues>
+    <fields>
+        <label><!-- Average  Price Per Meal --></label>
+        <name>FS_AveragePricePerMeal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Convenience Factor --></label>
+        <name>FS_ConvenienceFactor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days Per Week --></label>
+        <name>FS_DaysPerWeek__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Potential --></label>
+        <name>FS_FinalPotential__c</name>
+    </fields>
+    <fields>
+        <label><!-- Food Cost % --></label>
+        <name>FS_FoodCost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Food Price Value --></label>
+        <name>FS_FoodPriceValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Food Turnover (RUB) --></label>
+        <name>FS_FoodTurnoverRUB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Food Turnover (EUR) --></label>
+        <name>FS_FoodTurnover__c</name>
+    </fields>
+    <fields>
+        <label><!-- Meals Per Day --></label>
+        <name>FS_MealsPerDay__c</name>
+    </fields>
+    <fields>
+        <label><!-- Potential UFS Share of Food Cost Euro --></label>
+        <name>FS_PotentialUFSShareOfFoodCostEuro__c</name>
+    </fields>
+    <fields>
+        <label><!-- Potential UFS Share of Food Cost % --></label>
+        <name>FS_PotentialUFSShareOfFoodCost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Weeks Per Year --></label>
+        <name>FS_WeeksPerYear__c</name>
+    </fields>
+    <layouts>
+        <layout>FS Segmentation Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Segmentation Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -40,11 +40,6 @@
                 <reverseRole>Vendor</reverseRole>
             </picklistValues>
             <picklistValues>
-                <fullName>FS Distributor</fullName>
-                <default>false</default>
-                <reverseRole>FS Operator</reverseRole>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Institution</fullName>
                 <default>false</default>
                 <reverseRole>Client</reverseRole>
@@ -65,29 +60,9 @@
                 <reverseRole>Vendor</reverseRole>
             </picklistValues>
             <picklistValues>
-                <fullName>Operator</fullName>
+                <fullName>Point of Sale Outlet</fullName>
                 <default>false</default>
-                <reverseRole>FS Distributor</reverseRole>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Payer</fullName>
-                <default>false</default>
-                <reverseRole>Account</reverseRole>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Master Controlling Account</fullName>
-                <default>false</default>
-                <reverseRole>Controlled Account</reverseRole>
-            </picklistValues>
-            <picklistValues>
-                <fullName>DSR</fullName>
-                <default>false</default>
-                <reverseRole>Account Representative</reverseRole>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ship To</fullName>
-                <default>false</default>
-                <reverseRole>Head Office</reverseRole>
+                <reverseRole>Distributor</reverseRole>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

@@ -38,6 +38,10 @@
                 <behavior>Edit</behavior>
                 <field>num_No_of_Processor__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ltxt_Comments_if_any__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -67,10 +71,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>num_No_of_Cores__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ltxt_Comments_if_any__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

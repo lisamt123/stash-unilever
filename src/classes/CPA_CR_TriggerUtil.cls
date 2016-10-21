@@ -39,9 +39,7 @@ public with sharing class CPA_CR_TriggerUtil{
                         req.setComments('Recalling and unlocking request.');
                         req.setAction('Removed');
                         req.setWorkitemId(piwi.Id);
-                        //Approval.ProcessResult result =  Approval.process(req);
-                        //27/09/2016 - chandru commented it as an Unused variable
-
+                        Approval.ProcessResult result =  Approval.process(req);
                         isSubmitted = true;
                     }
                 }
@@ -65,8 +63,7 @@ public with sharing class CPA_CR_TriggerUtil{
             req.setComments('Submitted for approval. Please approve.');
             req.setObjectId(newCRList[i].Id);
             // submit the approval request for processing
-            //Approval.ProcessResult result = Approval.process(req);
-            //27/09/2016 - chandru commented it as an Unused variable
+            Approval.ProcessResult result = Approval.process(req);
             // display if the reqeust was successful
 
             isSubmitted = true;
@@ -564,8 +561,7 @@ public static void changeRecordHistory(List<CPA_CR__c> newCRList, Set<ID> setPWO
             }
             for(ID objPWOID :setPWOID){
                 double dobCosttoadd = 0;
-                //27/09/2016 - chandru commented it as an Unused variable
-                //double dobCosttoSub = 0;
+                double dobCosttoSub = 0;
                 for(CPA_CR__c objCR : mapPWOtoListCR.get(objPWOID)){
                     if(objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.ACCEPTED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SIGNED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SentForClosure  || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.DELIVERED){
                      //Dinesh added this null check to avoid null pointer exception

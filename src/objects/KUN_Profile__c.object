@@ -903,8 +903,8 @@
         <customTabListAdditionalFields>E2E_Process__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>KUN_Role_Type__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Position__c</customTabListAdditionalFields>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <searchFilterFields>Cluster__c</searchFilterFields>
         <searchFilterFields>Site__c</searchFilterFields>
         <searchFilterFields>E2E_Process__c</searchFilterFields>

@@ -9,11 +9,11 @@
         <value>Sales Locales</value>
     </caseValues>
     <fields>
-        <label>Municipio</label>
+        <label><!-- County --></label>
         <name>ICB_County__c</name>
     </fields>
     <fields>
-        <label>CEP</label>
+        <label><!-- Zip Code --></label>
         <name>ICB_Zip_Code__c</name>
     </fields>
     <layouts>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>FS Opportunity Stages</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>FS Opportunity Stages</value>
+    </caseValues>
+    <fields>
+        <label><!-- FS_Stage_Closed --></label>
+        <name>FS_Stage_Closed__c</name>
+    </fields>
+    <fields>
+        <label><!-- FS_Stage_Commitment --></label>
+        <name>FS_Stage_Commitment__c</name>
+    </fields>
+    <fields>
+        <label><!-- FS_Stage_Proposal --></label>
+        <name>FS_Stage_Proposal__c</name>
+    </fields>
+    <fields>
+        <label><!-- FS_Stage_Prospecting --></label>
+        <name>FS_Stage_Prospecting__c</name>
+    </fields>
+    <fields>
+        <label><!-- FS_Stage_Won --></label>
+        <name>FS_Stage_Won__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

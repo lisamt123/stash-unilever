@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -411,8 +407,8 @@
             <controllingField>Type__c</controllingField>
             <picklistValues>
                 <fullName>0</fullName>
-                <controllingFieldValues>Safety</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Safety</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>1</fullName>
@@ -420,8 +416,8 @@
             </picklistValues>
             <picklistValues>
                 <fullName>2</fullName>
-                <controllingFieldValues>Quality</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Quality</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>3</fullName>
@@ -429,9 +425,9 @@
             </picklistValues>
             <picklistValues>
                 <fullName>4</fullName>
+                <default>false</default>
                 <controllingFieldValues>Quality</controllingFieldValues>
                 <controllingFieldValues>Safety</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>5</fullName>
@@ -443,6 +439,7 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -488,12 +485,13 @@
             </picklistValues>
             <picklistValues>
                 <fullName>5</fullName>
+                <default>false</default>
                 <controllingFieldValues>Quality</controllingFieldValues>
                 <controllingFieldValues>Safety</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -525,6 +523,7 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -538,6 +537,23 @@
         <type>Checkbox</type>
     </fields>
     <label>Alert Rule</label>
+    <listViews>
+        <fullName>Abhishek_Alerts</fullName>
+        <columns>NAME</columns>
+        <columns>L5_Reason_Code__c</columns>
+        <columns>Market__c</columns>
+        <columns>Active__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Alert_Type_Image__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>UPDATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>Abhishek Kumar Singh</value>
+        </filters>
+        <label>Abhishek Alerts</label>
+        <language>en_US</language>
+    </listViews>
     <listViews>
         <fullName>Alert_Ansicht_Test</fullName>
         <columns>NAME</columns>
@@ -583,10 +599,52 @@
         <language>en_US</language>
     </listViews>
     <listViews>
+        <fullName>All_Alert_Rules3</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>L5_Reason_Code__c</columns>
+        <columns>Market__c</columns>
+        <columns>L0_Product_Category__c</columns>
+        <columns>Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>United Kingdom</value>
+        </filters>
+        <label>All Alert Rules_2</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CEC_ANZ_Queue_cec_Alert_Rule</fullName>
+        <columns>NAME</columns>
+        <columns>L2_Product_Category__c</columns>
+        <columns>L5_Reason_Code__c</columns>
+        <filterScope>Queue</filterScope>
+        <label>CEC ANZ Queue</label>
+        <language>en_US</language>
+        <queue>CEC_ANZ_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Baltics_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Baltics Queue</label>
         <queue>CEC_Baltics_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Bangladesh_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Bangladesh Queue</label>
+        <queue>CEC_Bangladesh_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -682,10 +740,28 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Indonesia_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Indonesia Queue</label>
+        <queue>CEC_Indonesia_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Italy_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Italy Queue</label>
         <queue>CEC_Italy_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Japan_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Japan Queue</label>
+        <queue>CEC_Japan_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -720,6 +796,24 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Pakistan_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Pakistan Queue</label>
+        <queue>CEC_Pakistan_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Philippines_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Philippines Queue</label>
+        <queue>CEC_Philippines_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Poland_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Poland Queue</label>
@@ -744,6 +838,15 @@
         </filters>
         <label>CEC Portugal Queue</label>
         <language>pt_PT</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_South_Africa_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC South Africa Queue</label>
+        <queue>CEC_South_Africa_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -774,6 +877,45 @@
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Thailand_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Thailand Queue</label>
+        <queue>CEC_Thailand_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Vietnam_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Vietnam Queue</label>
+        <queue>CEC_Vietnam_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>GH_View</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Active__c</columns>
+        <columns>Alert_Type_Image__c</columns>
+        <columns>Case_Product__c</columns>
+        <columns>Group_By_Day_Code__c</columns>
+        <columns>L0_Product_Category__c</columns>
+        <columns>L2_Product_Category__c</columns>
+        <columns>L4_Product_Category__c</columns>
+        <columns>L7_Product_Category__c</columns>
+        <columns>Market__c</columns>
+        <columns>Threshold__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Type__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>GH View</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>India_Alerts</fullName>

@@ -4,6 +4,7 @@
     <fields>
         <fullName>Financial_Type_To_Validate__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Financial Type To Validate</label>
         <length>25</length>
         <required>false</required>
@@ -13,6 +14,7 @@
     <fields>
         <fullName>GKM_Model__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>GKM Model</label>
         <length>5</length>
         <required>true</required>
@@ -22,6 +24,7 @@
     <fields>
         <fullName>Project_Phase__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Project Phase</label>
         <length>25</length>
         <required>true</required>

@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -113,9 +109,11 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>PBS_Training Plan Sections</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Training_Plan__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
-        <webLinks>
+    <webLinks>
         <fullName>Delete_Assignments</fullName>
         <availability>online</availability>
         <description>VF page for deleting assignments related to the current section</description>

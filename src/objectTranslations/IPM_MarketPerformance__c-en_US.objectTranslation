@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Market Performance</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Market Performance</value>
+    </caseValues>
+    <fields>
+        <label><!-- Aggregate Average Retail Price --></label>
+        <name>AggregateAverageRetailPrice__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregate GM% --></label>
+        <name>AggregateGM__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregate Gross BMI --></label>
+        <name>AggregateGrossAP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregate Gross PBI --></label>
+        <name>AggregateGrossPBO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregate Gross Turnover --></label>
+        <name>AggregateGrossTurnover__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregate Innovation Value Share (%) --></label>
+        <name>AggregateInnovationValueShare__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregate Innovation Volume Share (%) --></label>
+        <name>AggregateInnovationVolumeShare__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregate Media Spend (dedicated) --></label>
+        <name>AggregateMediaSpend__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregate Penetration (cum) (%) --></label>
+        <name>AggregatePenetrationcum__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregate Relative Price to Market (API) --></label>
+        <name>AggregateRelativePricetoMarket__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregate Repeat Rate --></label>
+        <name>AggregateRepeatRate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Aggregate Weighted Distribution (%) --></label>
+        <name>AggregateWeightedDistribution__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Retail Price (€) --></label>
+        <name>AverageRetailPrice__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- GM% (%) --></label>
+        <name>GM__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross PBI (€) --></label>
+        <name>GrossPBO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Turnover (€) --></label>
+        <name>GrossTurnover__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross BMI (€) --></label>
+        <name>Gross_AP__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Financial Year --></label>
+        <name>IPMFinancialYear__c</name>
+        <relationshipLabel><!-- IPM Market Performance --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Gate Document Section --></label>
+        <name>IPMGateDocumentSection__c</name>
+        <relationshipLabel><!-- IPM Market Performance --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Rollout --></label>
+        <name>IPMProjectRollout__c</name>
+        <relationshipLabel><!-- IPM Market Performance --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- GM% (%) --></label>
+        <name>IPM_GM__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross BMI (€) --></label>
+        <name>IPM_Gross_BMI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross PBI (€) --></label>
+        <name>IPM_Gross_PBI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gross Turnover (€) --></label>
+        <name>IPM_Gross_Turnover__c</name>
+    </fields>
+    <fields>
+        <label><!-- Innovation Value Share (%) --></label>
+        <name>InnovationValueShare__c</name>
+    </fields>
+    <fields>
+        <label><!-- Innovation Volume Share (%) --></label>
+        <name>InnovationVolumeShare__c</name>
+    </fields>
+    <fields>
+        <label><!-- MCO Name --></label>
+        <name>MCO_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Media Spend (dedicated) (€) --></label>
+        <name>MediaSpend__c</name>
+    </fields>
+    <fields>
+        <label><!-- Penetration (cum) (%) --></label>
+        <name>Penetrationcum__c</name>
+    </fields>
+    <fields>
+        <label><!-- Relative Price to Market (API) (%) --></label>
+        <name>RelativePricetoMarket__c</name>
+    </fields>
+    <fields>
+        <label><!-- Repeat Rate (cum) (%) --></label>
+        <name>RepeatRate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollout Name with MCO Name --></label>
+        <name>RolloutNameWithMCOName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Date --></label>
+        <name>TargetLaunchDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Weighted Distribution (%) --></label>
+        <name>WeightedDistribution__c</name>
+    </fields>
+    <layouts>
+        <layout>IPM Market Performance Monitoring Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

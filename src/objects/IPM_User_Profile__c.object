@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -44,6 +40,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
@@ -51,6 +48,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -203,14 +201,12 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-	 <fields>
-        <fullName>IPM_Region_isNull__c</fullName>
-        <description>This field will advice if Region is null or not</description>
+    <fields>
+        <fullName>IPM_Region__c</fullName>
+        <description>To store user region&apos;s</description>
         <externalId>false</externalId>
-        <formula>IF( ISBLANK( IPM_Region__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>This field will advice if Region is null or not</inlineHelpText>
-        <label>IPM_Region_isNull</label>
+        <label>Region</label>
+        <length>80</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -218,11 +214,13 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>IPM_Region__c</fullName>
-        <description>To store user region&apos;s</description>
+        <fullName>IPM_Region_isNull__c</fullName>
+        <description>This field will advice if Region is null or not</description>
         <externalId>false</externalId>
-        <label>Region</label>
-        <length>80</length>
+        <formula>IF( ISBLANK( IPM_Region__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if Region is null or not</inlineHelpText>
+        <label>IPM_Region_isNull</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -294,6 +292,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -323,11 +322,12 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-	<fields>
+    <fields>
         <fullName>IPM_User_Role_Function_isNull__c</fullName>
         <description>This field is true when both User Role and User Function are Null</description>
         <externalId>false</externalId>
@@ -385,6 +385,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -417,6 +418,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -463,6 +465,7 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

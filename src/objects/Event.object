@@ -29,10 +29,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>NewEvent</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -68,7 +64,9 @@
     <fields>
         <fullName>ActivityDateTime</fullName>
     </fields>
-
+    <fields>
+        <fullName>ClientGuid</fullName>
+    </fields>
     <fields>
         <fullName>Description</fullName>
     </fields>
@@ -87,7 +85,9 @@
     <fields>
         <fullName>IsAllDayEvent</fullName>
     </fields>
-
+    <fields>
+        <fullName>IsException</fullName>
+    </fields>
     <fields>
         <fullName>IsPrivate</fullName>
     </fields>
@@ -97,7 +97,9 @@
     <fields>
         <fullName>Location</fullName>
     </fields>
-
+    <fields>
+        <fullName>OriginalInstanceDateTime</fullName>
+    </fields>
     <fields>
         <fullName>OwnerId</fullName>
         <type>Lookup</type>
@@ -280,47 +282,15 @@
         <picklistValues>
             <picklist>FS_Distributorname__c</picklist>
             <values>
-                <fullName>3Cafe</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Akademiya Edy</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Alidi-Nord</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Alyans-M</fullName>
+                <fullName>East West Moscow</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Azbuka food trade</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bakaleya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Beloe More</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ecoland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Frostway</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Globalfoods Kazan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Globalfoods Krym</fullName>
+                <fullName>East West SPb</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -328,59 +298,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Globalfoods Rostov</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Globalfoods Samara</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Globalfoods Sochi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Globalfoods Yaroslavl</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Grand Marche</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GurmanM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Holod</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IP Bulatova N%2EN%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IP Sherbakova T%2EA%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Integrita Krasnodar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Integrita Rostov</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Integrita Sochi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Integrita St%2EPete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ladya</fullName>
+                <fullName>Integrita SPb</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -392,59 +310,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>MARRusia St%2EPete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mariya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mega Trade</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Produktovaya mozaika</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Produktovaya mozaika Tatarstan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pyataya Armiya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Restoratsiya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Samson-Opt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Snabzhenie i logistika</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SoyuzPischeProm</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Suomi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sweet Life</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sweet Life Tatarstan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TD Elite Trade</fullName>
+                <fullName>MARRusia S-Pete</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -452,51 +318,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>TD KTK</fullName>
+                <fullName>Uhrenholt Moscow</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Urenholt Moscow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Urenholt St%2EPete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vershina Vkusa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Virgo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vladelita</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vostok-Zapad Ekaterinburg</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vostok-Zapad Krasnodar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vostok-Zapad Moscow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vostok-Zapad Novosibirsk</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vostok-Zapad St%2EPete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yurinat</fullName>
+                <fullName>Uhrenholt S-Pete</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

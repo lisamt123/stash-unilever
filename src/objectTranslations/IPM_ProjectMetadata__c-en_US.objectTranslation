@@ -21,6 +21,10 @@
         <name>IPM_ApplicableGateKeepingModels__c</name>
     </fields>
     <fields>
+        <label><!-- Applicable Gates --></label>
+        <name>IPM_Applicable_Gate__c</name>
+    </fields>
+    <fields>
         <label><!-- Applicable Phases --></label>
         <name>IPM_Applicable_Phases__c</name>
     </fields>
@@ -31,6 +35,10 @@
     <fields>
         <label><!-- Charter Question HelpText --></label>
         <name>IPM_Charter_Question_HelpText__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Charter Question Answer --></label>
+        <name>IPM_DefaultCharterQuestionAnswer__c</name>
     </fields>
     <fields>
         <label><!-- Default Complexity --></label>

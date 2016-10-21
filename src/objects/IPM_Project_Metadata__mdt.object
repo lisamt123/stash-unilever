@@ -4,12 +4,14 @@
         <fullName>BET__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>BET</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_ApplicableCategories__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>ApplicableCategories</label>
         <length>255</length>
         <required>false</required>
@@ -19,6 +21,7 @@
     <fields>
         <fullName>IPM_ApplicableCompanyCard__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>ApplicableCompanyCard</label>
         <length>255</length>
         <required>false</required>
@@ -28,6 +31,7 @@
     <fields>
         <fullName>IPM_ApplicableGates__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>ApplicableGates</label>
         <length>255</length>
         <required>false</required>
@@ -37,6 +41,7 @@
     <fields>
         <fullName>IPM_ApplicablePhases__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>ApplicablePhases</label>
         <length>255</length>
         <required>false</required>
@@ -46,6 +51,7 @@
     <fields>
         <fullName>IPM_CancelStopProjectDuration__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Cancel Stop Project Duration</label>
         <precision>5</precision>
         <required>false</required>
@@ -57,6 +63,7 @@
         <fullName>IPM_DefaultComplexity__c</fullName>
         <description>Sets the default Complexity when creating the project.</description>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <inlineHelpText>Sets the default Complexity when creating the project.</inlineHelpText>
         <label>Default Complexity</label>
         <picklist>
@@ -71,11 +78,13 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_DefaultPhase__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Default Phase</label>
         <picklist>
             <picklistValues>
@@ -105,11 +114,13 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_DefaultProjectSpan__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Default Project Span</label>
         <picklist>
             <picklistValues>
@@ -127,12 +138,14 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_FastTrackApplicable__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>FastTrackApplicable</label>
         <type>Checkbox</type>
     </fields>
@@ -140,12 +153,14 @@
         <fullName>IPM_GKMQuestionsApplicable__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>GKM Questions Applicable</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_GMKQuesiton__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>GMK Question Detail</label>
         <length>255</length>
         <required>false</required>
@@ -155,6 +170,7 @@
     <fields>
         <fullName>IPM_GMKQuestionAns__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>GMK Question Answer</label>
         <picklist>
             <picklistValues>
@@ -172,12 +188,14 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_GMKQuestionDefaultAns__c</fullName>
         <description>For showing default Selected Value for GateKeeping Question</description>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <inlineHelpText>For showing default Selected Value for GateKeeping Question</inlineHelpText>
         <label>GMK Question Default Answer</label>
         <picklist>
@@ -196,11 +214,13 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_GMKQuestionHelpText__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>QuestionHelpText</label>
         <length>255</length>
         <required>false</required>
@@ -210,6 +230,7 @@
     <fields>
         <fullName>IPM_GMKQuestionLabel__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>GMK Question Label</label>
         <length>100</length>
         <required>false</required>
@@ -219,6 +240,7 @@
     <fields>
         <fullName>IPM_MandatoryFields__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>MandatoryFields</label>
         <length>255</length>
         <required>false</required>
@@ -229,12 +251,14 @@
         <fullName>IPM_MultiBrandPosApplicable__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>MultipleBrandPosApplicable</label>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_ProjectSubType__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>ProjectSubType</label>
         <length>100</length>
         <required>false</required>
@@ -244,6 +268,7 @@
     <fields>
         <fullName>IPM_ProjectType__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Project Type</label>
         <picklist>
             <picklistValues>
@@ -257,11 +282,13 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_SubProjectHelpText__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>SubProjectHelpText</label>
         <length>255</length>
         <required>false</required>
@@ -271,6 +298,7 @@
     <fields>
         <fullName>IPM_TargetLaunchDateDuration__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>TargetLaunchDateDuration</label>
         <precision>6</precision>
         <required>false</required>
@@ -282,6 +310,7 @@
         <fullName>IPM_WhiteSpaceApplicable__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>WhiteSpaceApplicable</label>
         <type>Checkbox</type>
     </fields>

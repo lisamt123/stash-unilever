@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -146,17 +142,6 @@
         <unique>false</unique>
     </fields>
     <label>Plancraft Forum Group Admin</label>
-    <listViews>
-        <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>Title__c</columns>
-        <columns>Summary__c</columns>
-        <columns>Order__c</columns>
-        <columns>Published__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-        <language>en_US</language>
-    </listViews>
     <nameField>
         <label>PC Group Name</label>
         <type>Text</type>

@@ -24,17 +24,6 @@ trigger WU_SetWarehousePOC on WU_Master_Warehouse__c(After Insert,Before Insert,
             //if(!WU_UpdateMasterWarehouseHandler.isUpdateFromChild)
             //{
                 WU_SetWarehousePOCHandler.wareHouseShare(trigger.new);
-                System.debug('Again ************');
-                List<WU_Master_Warehouse__c> sendMail=new List<WU_Master_Warehouse__c>();
-                for(WU_Master_Warehouse__c wc: trigger.new){
-                    if(trigger.oldMap.get(wc.Id).WU_Committed_Max_PalletStorage__c!=trigger.newMap.get(wc.id).WU_Committed_Max_PalletStorage__c){
-                        sendMail.add(wc);
-                    }
-                }
-                if(!sendMail.isEmpty()){
-                    WU_SetWarehousePOCHandler.sendEmailSecPOC(trigger.new);
-                    WU_SetWarehousePOCHandler.sendRejectionEmailSecPOC(trigger.new);
-                }    
                 WU_CreateCapacityDetails duplicateCheck = new WU_CreateCapacityDetails();
                 duplicateCheck.checkInsertRecordOrDisplayError(trigger.new, trigger.newMap,trigger.oldMap); 
                 WU_warehousUtility.isTrggerExecuted = TRUE;

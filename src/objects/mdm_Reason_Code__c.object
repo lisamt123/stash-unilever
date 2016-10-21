@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -280,6 +276,41 @@
         <unique>true</unique>
     </fields>
     <label>Reason Code</label>
+    <listViews>
+        <fullName>LATAM_Reasons</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>Global_Listening_Tree__c</columns>
+        <columns>ISO_Country__c</columns>
+        <columns>L4_Desc__c</columns>
+        <columns>L5_Desc__c</columns>
+        <columns>L5_Short_Desc__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>FR</value>
+        </filters>
+        <label>LATAM Reasons</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>kody</fullName>
+        <columns>NAME</columns>
+        <columns>L1_Desc__c</columns>
+        <columns>L2_Desc__c</columns>
+        <columns>L3_Desc__c</columns>
+        <columns>L4_Desc__c</columns>
+        <columns>L5_Desc__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>kody</label>
+        <language>cs</language>
+        <sharedTo>
+            <roleAndSubordinates>CEC_Manager_Czech_Republic</roleAndSubordinates>
+            <roleAndSubordinates>CEC_User_Czech_Republic</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>Reason Code Name</label>
         <type>Text</type>

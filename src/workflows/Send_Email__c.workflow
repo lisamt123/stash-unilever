@@ -39,7 +39,7 @@
             <name>AF_SendEmailBonusQuartToCatFinance</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Send_Email__c.sendEmailBonusQuartToCatFinance__c</field>
             <operation>equals</operation>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CPA TAT</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CPA TATs</value>
+    </caseValues>
+    <fields>
+        <label><!-- TAT Days --></label>
+        <name>TAT_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latest Update Date --></label>
+        <name>dat_Latest_Update_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final TAT --></label>
+        <name>fml_Final_TAT__c</name>
+    </fields>
+    <fields>
+        <label><!-- PWO ID --></label>
+        <name>lkp_PWO_ID__c</name>
+        <relationshipLabel><!-- CPA TATs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>txt_Status__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Common Issue</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Common Issues</value>
+    </caseValues>
+    <fields>
+        <label><!-- Attached File 1 --></label>
+        <name>Attached_File_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attached File 2 --></label>
+        <name>Attached_File_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attached File 3 --></label>
+        <name>Attached_File_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attached File 4 --></label>
+        <name>Attached_File_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attached File 5 --></label>
+        <name>Attached_File_5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Information Source/Date --></label>
+        <name>Information_Source_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Information --></label>
+        <name>Information__c</name>
+    </fields>
+    <layouts>
+        <layout>Common Issue Layout</layout>
+        <sections>
+            <label><!-- Attached Files --></label>
+            <section>Attached Files</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

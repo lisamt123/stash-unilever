@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>james.shields@unilever.com</contactEmail>
+    <label>Elastic ELK</label>
+    <oauthConfig>
+        <callbackUrl>https://unilever.my.salesforce.com</callbackUrl>
+        <consumerKey>3MVG9y6x0357HledJQtixtLKsxga7QsZRv_1RjyOITH5lsR_51BgmlIRKIbaZe5iv_pG0wmz9_DfnTpMHohfH</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+    </oauthConfig>
+</ConnectedApp>

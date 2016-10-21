@@ -17,6 +17,10 @@
         <name>IPM_CompanyCard__c</name>
     </fields>
     <fields>
+        <label><!-- CopyLaunchDate2Parent --></label>
+        <name>IPM_CopyLaunchDate2Parent__c</name>
+    </fields>
+    <fields>
         <label><!-- Copy MSDetails To Global --></label>
         <name>IPM_CopyMilestoneToGlobal__c</name>
     </fields>
@@ -93,6 +97,10 @@
         <name>IPM_FinancialsUpdatePostfix__c</name>
     </fields>
     <fields>
+        <label><!-- Future Task Scope --></label>
+        <name>IPM_Future_Task_Scope__c</name>
+    </fields>
+    <fields>
         <label><!-- GateKeeping Model --></label>
         <name>IPM_GateKeeping_Model__c</name>
     </fields>
@@ -103,6 +111,10 @@
     <fields>
         <label><!-- Gate Sequence --></label>
         <name>IPM_Gate_Sequence__c</name>
+    </fields>
+    <fields>
+        <label><!-- Go To Change TLD Link --></label>
+        <name>IPM_Go_To_Change_TLD_Link__c</name>
     </fields>
     <fields>
         <label><!-- Insert Financials API Name --></label>
@@ -140,6 +152,10 @@
     <fields>
         <label><!-- Source Company Card --></label>
         <name>IPM_Source_Company_Card__c</name>
+    </fields>
+    <fields>
+        <label><!-- TLD Milestone Help Text --></label>
+        <name>IPM_TLD_Milestone_Help_Text__c</name>
     </fields>
     <fields>
         <label><!-- Update Financials API Name --></label>

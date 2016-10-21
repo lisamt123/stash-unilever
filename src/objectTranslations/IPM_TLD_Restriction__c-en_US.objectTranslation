@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM TLD Restriction</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM TLD Restriction</value>
+    </caseValues>
+    <fields>
+        <label><!-- IPM TLD Restriction In Effect --></label>
+        <name>IPM_TLD_Restriction_In_Effect__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -6,7 +6,7 @@
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>ICB_Type</value>
+        <value>ICB_ContactTypes</value>
     </caseValues>
     <fields>
         <label><!-- Value --></label>

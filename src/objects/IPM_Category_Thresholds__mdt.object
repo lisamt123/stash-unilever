@@ -5,6 +5,7 @@
         <fullName>IPM_Category_Group__c</fullName>
         <description>Project Category Group</description>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Category Group</label>
         <length>50</length>
         <required>false</required>
@@ -15,6 +16,7 @@
         <fullName>IPM_Category__c</fullName>
         <description>Project Category</description>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Category</label>
         <length>50</length>
         <required>false</required>
@@ -25,6 +27,7 @@
         <fullName>IPM_Category_threshhold__c</fullName>
         <description>Category threshhold  to be populated on the project record.</description>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Category threshhold</label>
         <precision>18</precision>
         <required>false</required>
@@ -36,6 +39,7 @@
         <fullName>IPM_Market_Cluster__c</fullName>
         <description>Project Market Cluster</description>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Market Cluster</label>
         <length>50</length>
         <required>false</required>
@@ -45,6 +49,7 @@
     <fields>
         <fullName>IPM_Project_Span__c</fullName>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>Project Span</label>
         <length>50</length>
         <required>false</required>

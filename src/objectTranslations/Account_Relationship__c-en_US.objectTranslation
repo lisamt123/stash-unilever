@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Account Relationship</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Account Relationship</value>
+    </caseValues>
+    <fields>
+        <help><!-- StStore the external for Ship To, PoP and Store Id. (Cross Dock) --></help>
+        <label><!-- External ID --></label>
+        <name>External_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Accounts under this Id. --></help>
+        <label><!-- Primary Account --></label>
+        <name>Primary_Account__c</name>
+        <relationshipLabel><!-- Account Relationship (Account) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Secondary Account --></label>
+        <name>Secondary_Account__c</name>
+        <relationshipLabel><!-- Account Relationship (Secondary Account) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Store the information about Cross Account Reference such as PoP, Ship To or Store Id. --></help>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>PoP Id.</masterLabel>
+            <translation><!-- PoP Id. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ship To Id.</masterLabel>
+            <translation><!-- Ship To Id. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Store Id. (Cross Dock)</masterLabel>
+            <translation><!-- Store Id. (Cross Dock) --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>External PoP ID Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

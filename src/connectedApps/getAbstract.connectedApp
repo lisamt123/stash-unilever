@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>vaibhav.vora@unilever.com</contactEmail>
+    <description>Share getAbstract mateirial on Chatter</description>
+    <iconUrl>https://www.getAbstract.com/www/images/gaLogo16x16.png</iconUrl>
+    <label>getAbstract</label>
+    <logoUrl>https://www.getAbstract.com/www/images/gaLogo200x125.png</logoUrl>
+    <oauthConfig>
+        <callbackUrl>https://www.getAbstract.com/social/chatter/redirect</callbackUrl>
+        <certificate>MIIEFzCCAv+gAwIBAgIJANp3+T4P/zAvMA0GCSqGSIb3DQEBBQUAMIGhMQswCQYDVQQGEwJDSDEPMA0GA1UECAwGTHV6ZXJuMQ8wDQYDVQQHDAZMdXplcm4xFDASBgNVBAoMC2dldGFic3RyYWN0MQswCQYDVQQLDAJJVDEjMCEGA1UEAwwac2FsZXNmb3JjZS5nZXRhYnN0cmFjdC5jb20xKDAmBgkqhkiG9w0BCQEWGWRldmVsb3BlckBnZXRhYnN0cmFjdC5jb20wHhcNMTQwNTA4MTMxNjQwWhcNMTkwNTA4MTMxNjQwWjCBoTELMAkGA1UEBhMCQ0gxDzANBgNVBAgMBkx1emVybjEPMA0GA1UEBwwGTHV6ZXJuMRQwEgYDVQQKDAtnZXRhYnN0cmFjdDELMAkGA1UECwwCSVQxIzAhBgNVBAMMGnNhbGVzZm9yY2UuZ2V0YWJzdHJhY3QuY29tMSgwJgYJKoZIhvcNAQkBFhlkZXZlbG9wZXJAZ2V0YWJzdHJhY3QuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvFSoW2LTFFSAC6LhPPDyzb7LTvgxmd7F0LF+a+v/U5FlrFNhDxX8/G7bUIOSROq15LwA/hDgd+w11DQBXqIBqm1jPgmCGJqa2HZ5ySIQ6iwCojx+2PQlMe+1PbawfNLoZejoo7Ldst3Pl0UA/6pEttR+geZ1LAF05JPduwKtubRXniq19Ypr774EQ6eLNoVJ5Llzz7+s3+ddZdjR4dNp58HnzM4JwB+FamORhO8NC9h/wYkJ+xZnKi+MLXXCG2wNJ4lHtJq8wG46084Mwm7IPLiPMZtNv/8/+GRYrbr6v86JnUblnB4ORMkcqDVghZDZ+v8pRZ+Z7wQvVgX+s6a3hQIDAQABo1AwTjAdBgNVHQ4EFgQUH+W1d3JABcs+6MkaLOH2vcj/DOIwHwYDVR0jBBgwFoAUH+W1d3JABcs+6MkaLOH2vcj/DOIwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOCAQEAtHYGFcfpE0NAYVctrsdBlmxrEhdIcoKvsuUdWcY+9wQrWnU7W+znNkaGDhIqB47lhQ/xKdMRzSS1cL8QJvRgkWsM4fZuN+XTEJ8OVHtFsKZpEDeIBTMs7Xk0z8QtbrKgHJjt7cbF/b9dDBxb5Yhmpd8O8pvVc2ffS70IkpiodFwymNmD0j+9FeVUbmQ2dg4V6bTnpeTgZwT+Its2SSnbaFNkHtDxdgvuRAp5QfqALZv1hsrdX/p0AUEkQwMSj/knsh4cNSLzindi+oCVpnvKpwxtiFaKyzHyCjAXGp0hQ8KVlwH0ngrry9ZNc6XgeYTlvmUA7TAjDbdvZxh+fS14IA==</certificate>
+        <consumerKey>3MVG9y6x0357HledJQtixtLKsxsmP_f111zNqsjBBwjPdmQH6qyuPclsPXIG37Fi0bxTGZit8esSkejzxWmHi</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

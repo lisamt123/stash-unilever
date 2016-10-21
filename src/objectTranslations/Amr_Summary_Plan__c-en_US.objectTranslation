@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Amr Summary Plan</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Amr Summary Plans</value>
+    </caseValues>
+    <fields>
+        <label><!-- Achievement BB --></label>
+        <name>Achievement_BB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Achievement BD --></label>
+        <name>Achievement_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual BB And BB --></label>
+        <name>Actual_BB_And_BB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual BB --></label>
+        <name>Actual_BB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual BD --></label>
+        <name>Actual_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual Total UL Job --></label>
+        <name>Actual_Total_UL_Job__c</name>
+    </fields>
+    <fields>
+        <label><!-- AfricaBB --></label>
+        <name>AfricaBB__c</name>
+    </fields>
+    <fields>
+        <label><!-- AfricaBD --></label>
+        <name>AfricaBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Big C --></label>
+        <name>Big_C__c</name>
+        <relationshipLabel><!-- Amr Summary Plans (Big C) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- EuropeBB --></label>
+        <name>EuropeBB__c</name>
+    </fields>
+    <fields>
+        <label><!-- EuropeBD --></label>
+        <name>EuropeBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- BB --></label>
+        <name>In_Good_Time_BB__c</name>
+    </fields>
+    <fields>
+        <label><!-- BD + BB --></label>
+        <name>In_Good_Time_BD_BB__c</name>
+    </fields>
+    <fields>
+        <label><!-- BD --></label>
+        <name>In_Good_Time_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latin AmericaBB --></label>
+        <name>Latin_AmericaBB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latin AmericaBD --></label>
+        <name>Latin_AmericaBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- NAMET RUB BB --></label>
+        <name>NAMET_RUB_BB__c</name>
+    </fields>
+    <fields>
+        <label><!-- NAMET RUB BD --></label>
+        <name>NAMET_RUB_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- North America BB --></label>
+        <name>North_America_BB__c</name>
+    </fields>
+    <fields>
+        <label><!-- North America BD --></label>
+        <name>North_America_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- North Asia BB --></label>
+        <name>North_Asia_BB__c</name>
+    </fields>
+    <fields>
+        <label><!-- North Asia BD --></label>
+        <name>North_Asia_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plan BB --></label>
+        <name>Plan_BB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plan BD --></label>
+        <name>Plan_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Small C --></label>
+        <name>ProductCategory__c</name>
+        <relationshipLabel><!-- Amr Summary Plans --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SEAA BB --></label>
+        <name>SEAA_BB__c</name>
+    </fields>
+    <fields>
+        <label><!-- SEAA BD --></label>
+        <name>SEAA_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- South Asia BB --></label>
+        <name>South_Asia_BB__c</name>
+    </fields>
+    <fields>
+        <label><!-- South Asia BD --></label>
+        <name>South_Asia_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Achievment --></label>
+        <name>Total_Achievment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total UL Plan --></label>
+        <name>Total_UL_Plan__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year --></label>
+        <name>Year__c</name>
+        <picklistValues>
+            <masterLabel>1990</masterLabel>
+            <translation><!-- 1990 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1991</masterLabel>
+            <translation><!-- 1991 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1992</masterLabel>
+            <translation><!-- 1992 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1993</masterLabel>
+            <translation><!-- 1993 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1994</masterLabel>
+            <translation><!-- 1994 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1995</masterLabel>
+            <translation><!-- 1995 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1996</masterLabel>
+            <translation><!-- 1996 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1997</masterLabel>
+            <translation><!-- 1997 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1998</masterLabel>
+            <translation><!-- 1998 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1999</masterLabel>
+            <translation><!-- 1999 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2000</masterLabel>
+            <translation><!-- 2000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2001</masterLabel>
+            <translation><!-- 2001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2002</masterLabel>
+            <translation><!-- 2002 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2003</masterLabel>
+            <translation><!-- 2003 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2004</masterLabel>
+            <translation><!-- 2004 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2005</masterLabel>
+            <translation><!-- 2005 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2006</masterLabel>
+            <translation><!-- 2006 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2007</masterLabel>
+            <translation><!-- 2007 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2008</masterLabel>
+            <translation><!-- 2008 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2009</masterLabel>
+            <translation><!-- 2009 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2010</masterLabel>
+            <translation><!-- 2010 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2011</masterLabel>
+            <translation><!-- 2011 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2012</masterLabel>
+            <translation><!-- 2012 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2013</masterLabel>
+            <translation><!-- 2013 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2014</masterLabel>
+            <translation><!-- 2014 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2015</masterLabel>
+            <translation><!-- 2015 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2016</masterLabel>
+            <translation><!-- 2016 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2017</masterLabel>
+            <translation><!-- 2017 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2018</masterLabel>
+            <translation><!-- 2018 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2019</masterLabel>
+            <translation><!-- 2019 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2020</masterLabel>
+            <translation><!-- 2020 --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Amr Summary Plan Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Actual --></label>
+        <name>Actual</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,4 +1,4 @@
-global with sharing class WU_SetCurrentMonthBatch implements Database.Batchable<sObject> {
+global class WU_SetCurrentMonthBatch implements Database.Batchable<sObject> {
     global Database.QueryLocator start(Database.BatchableContext BC) {
         String query = 'SELECT Id,Name,Is_In_Current_Month__c,WU_CurrentMonth__c FROM WU_Warehouse_Capacity_Detail__c';
         return Database.getQueryLocator(query);
@@ -21,6 +21,6 @@ global with sharing class WU_SetCurrentMonthBatch implements Database.Batchable<
     
     global void finish(Database.BatchableContext BC) 
     {
-        system.debug(':::::::::Execution finished');
+    	system.debug(':::::::::Execution finished');
     }
 }

@@ -64,24 +64,44 @@
         <label><!-- BSP --></label>
         <name>BSP__c</name>
         <picklistValues>
-            <masterLabel>BSP 1</masterLabel>
-            <translation><!-- BSP 1 --></translation>
+            <masterLabel>Establish Web Shops</masterLabel>
+            <translation><!-- Establish Web Shops --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BSP 2</masterLabel>
-            <translation><!-- BSP 2 --></translation>
+            <masterLabel>Execute Burger Route 3.0</masterLabel>
+            <translation><!-- Execute Burger Route 3.0 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BSP 3</masterLabel>
-            <translation><!-- BSP 3 --></translation>
+            <masterLabel>Execute Cat Man Initiatives</masterLabel>
+            <translation><!-- Execute Cat Man Initiatives --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BSP 4</masterLabel>
-            <translation><!-- BSP 4 --></translation>
+            <masterLabel>Front of House Promo</masterLabel>
+            <translation><!-- Front of House Promo --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>BSP 5</masterLabel>
-            <translation><!-- BSP 5 --></translation>
+            <masterLabel>Joint Business Plans</masterLabel>
+            <translation><!-- Joint Business Plans --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Launch New Lipton FBIT Flavors</masterLabel>
+            <translation><!-- Launch New Lipton FBIT Flavors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Launch Pure Leaf FBIT</masterLabel>
+            <translation><!-- Launch Pure Leaf FBIT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Launch Pure Leaf Hot</masterLabel>
+            <translation><!-- Launch Pure Leaf Hot --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sugar &amp; Tea Bundles</masterLabel>
+            <translation><!-- Sugar &amp; Tea Bundles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Top Dish Activations</masterLabel>
+            <translation><!-- Top Dish Activations --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -130,6 +150,10 @@
     <fields>
         <label>Описание цели</label>
         <name>FS_Objective_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Objective Name --></label>
+        <name>FS_Objective_Name__c</name>
     </fields>
     <fields>
         <label>Дата начала цели</label>
@@ -194,11 +218,11 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Approval Requested</masterLabel>
-            <translation><!-- Approval Requested --></translation>
+            <translation>Запрошено согласование</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Approved</masterLabel>
-            <translation><!-- Approved --></translation>
+            <translation>Согласовано</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Completed</masterLabel>
@@ -206,7 +230,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Planning</masterLabel>
-            <translation><!-- Planning --></translation>
+            <translation>Планируемый</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1374,7 +1398,93 @@
         </picklistValues>
     </fields>
     <gender>Neuter</gender>
+    <layouts>
+        <layout>Defined Objective Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Distributor Objective</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Distributor Objective Feed Based</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Operator Objective</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Operator Objective Feed Based</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Risk</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel>Выбранная цель</nameFieldLabel>
+    <quickActions>
+        <label>Создать риск</label>
+        <name>Create_Risk</name>
+    </quickActions>
+    <quickActions>
+        <label>Новая возможность</label>
+        <name>New_Opportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create New Opportunity --></label>
+        <name>New_Russia_Opportunity</name>
+    </quickActions>
     <recordTypes>
         <label>Цель дистрибутора</label>
         <name>Distributor_Objective</name>
@@ -1390,10 +1500,6 @@
     <validationRules>
         <errorMessage><!-- Completion date can not be before objective start date --></errorMessage>
         <name>FS_End_Date_Before_Start_Date</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- Please submit master account plan record to get this defined objective approved. --></errorMessage>
-        <name>FS_Objective_Approval_Check</name>
     </validationRules>
     <validationRules>
         <errorMessage>Если в Подтипе выбрано &quot;Другое&quot;, введите объяснение в поле &quot;Другая причина&quot;</errorMessage>

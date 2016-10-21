@@ -16,6 +16,10 @@
                 <behavior>Edit</behavior>
                 <field>Sub_Topic__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>CEC Retrieval Process is used to check whether the advisor has access to Retrieval Process</description>
+    <label>CEC Retrieval Process</label>
+</CustomPermission>

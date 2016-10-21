@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -44,6 +40,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
@@ -51,6 +48,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -180,7 +178,7 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-	<fields>
+    <fields>
         <fullName>IPM_Due_Date1_isNull__c</fullName>
         <description>This field will advice if the Due Date is null or not</description>
         <externalId>false</externalId>
@@ -248,6 +246,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -344,6 +343,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -370,23 +370,23 @@
             <controllingField>IPM_Type_of_Gate__c</controllingField>
             <picklistValues>
                 <fullName>Ideas</fullName>
-                <controllingFieldValues>Charter</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Charter</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Feasibility</fullName>
-                <controllingFieldValues>Contract</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Contract</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Capability</fullName>
-                <controllingFieldValues>Market Ready Gate</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Market Ready Gate</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Market Ready</fullName>
-                <controllingFieldValues>Market Deployment Gate</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Market Deployment Gate</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Market Deployment</fullName>
@@ -398,6 +398,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -513,6 +514,7 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -533,6 +535,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -599,6 +602,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -631,6 +635,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -659,6 +664,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -697,6 +703,11 @@
         <columns>IPM_Assignee__c</columns>
         <columns>RECORDTYPE</columns>
         <columns>IPM_Phase__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

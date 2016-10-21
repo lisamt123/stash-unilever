@@ -10,7 +10,7 @@ Purpose: This Class is used to perform various operations for HLE request
 History
 -------
 VERSION     AUTHOR     DATE            DETAIL Description
-1.0         Pooja K       12/01/2016     INITIAL DEVELOPMENT CSR:
+1.0         Name       12/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public with sharing class CPA_HLERequest_TriggerUtil{
 
@@ -32,8 +32,6 @@ public with sharing class CPA_HLERequest_TriggerUtil{
                 req.setObjectId(newHLEReqList[i].Id);
                 // submit the approval request for processing
                 Approval.ProcessResult result = Approval.process(req);
-                // Verify the result
-                System.assert(result.isSuccess());
                 // display if the reqeust was successful
                 isSubmitted = true;
             }
@@ -62,9 +60,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
                         req.setComments(System.Label.CPA_Recall_and_Unlock);
                         req.setAction(CPA_ConstantsForContractingAppClasses.REMOVED);
                         req.setWorkitemId(piwi.Id);
-                        Approval.ProcessResult result = Approval.process(req);
-                        // Verify the result
-                        System.assert(result.isSuccess());
+                        Approval.ProcessResult result =  Approval.process(req);
                         isSubmitted = true;
                     }
                 }

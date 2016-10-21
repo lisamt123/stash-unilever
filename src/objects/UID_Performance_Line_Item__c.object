@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -92,7 +88,6 @@
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
-
     <fields>
         <fullName>UID_IOP_Value__c</fullName>
         <externalId>false</externalId>
@@ -119,7 +114,7 @@
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
-	<fields>
+    <fields>
         <fullName>UID_ISO_Currency__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT( CurrencyIsoCode )</formula>

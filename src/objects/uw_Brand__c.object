@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -180,6 +176,7 @@ HYPERLINK(&quot;/apex/&quot; +   Brand_Centre_URL__c +  &quot;?id=&quot; +Id,  N
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -306,6 +303,7 @@ HYPERLINK(&quot;/apex/&quot; +   Brand_Centre_URL__c +  &quot;?id=&quot; +Id,  N
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -329,43 +327,43 @@ HYPERLINK(&quot;/apex/&quot; +   Brand_Centre_URL__c +  &quot;?id=&quot; +Id,  N
             <controllingField>Category__c</controllingField>
             <picklistValues>
                 <fullName>Beverages</fullName>
-                <controllingFieldValues>Refreshments</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Refreshments</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Deo</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dressings</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hair</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hair, Skin Cleansing, Deo, skin Care</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Household Care</fullName>
-                <controllingFieldValues>HomeCare</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>HomeCare</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ice Cream</fullName>
-                <controllingFieldValues>Refreshments</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Refreshments</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Laundry</fullName>
-                <controllingFieldValues>HomeCare</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>HomeCare</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Lipton</fullName>
@@ -373,26 +371,27 @@ HYPERLINK(&quot;/apex/&quot; +   Brand_Centre_URL__c +  &quot;?id=&quot; +Id,  N
             </picklistValues>
             <picklistValues>
                 <fullName>Oral Care</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Savoury</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Skin Care</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Skin Cleansing</fullName>
-                <controllingFieldValues>Personal Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

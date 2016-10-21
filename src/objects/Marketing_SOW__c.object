@@ -30,10 +30,6 @@
         <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
         <content>Oblix_SWOPredirectToMain_List</content>
@@ -570,6 +566,7 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -644,6 +641,28 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Cloning_failed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag used to indicate to user presence of any errors that occurred during asynchronous SOW clone.</description>
+        <externalId>false</externalId>
+        <label>Cloning failed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Cloning_in_Progress__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Hidden field that controls info message when SOW was approved and it&apos;s Open for Updates version is being created by shceduler</description>
+        <externalId>false</externalId>
+        <label>Cloning in Progress</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Currency__c</fullName>
         <externalId>false</externalId>
         <label>Currency</label>
@@ -654,6 +673,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -725,6 +745,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -736,6 +757,17 @@
         <description>Determines if the SOW has already been through the initial approval. This field is used in Apex logic to determine state between Initial Approval / EOY approval</description>
         <externalId>false</externalId>
         <label>Initial Approval Complete</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Marked_for_cloning__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Field to indicate that record needs to be processed by schedulable class. Work around for Community users not being able to see internal users.</description>
+        <externalId>false</externalId>
+        <label>Marked for cloning</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -784,6 +816,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1137,6 +1170,7 @@ ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1216,6 +1250,7 @@ ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1313,6 +1348,7 @@ OblixTotalOtherItemsFees__c)</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1789,8 +1825,8 @@ OblixTotalOtherItemsFees__c)</formula>
     </recordTypes>
     <searchLayouts>
         <excludedStandardButtons>New</excludedStandardButtons>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <sharingReasons>
@@ -1810,4 +1846,15 @@ $Profile.Name &lt;&gt; &apos;System Administrator&apos;
         <errorDisplayField>Sync_Status__c</errorDisplayField>
         <errorMessage>Sync in Progress. Record Locked. SOW Locked.</errorMessage>
     </validationRules>
+    <webLinks>
+        <fullName>SOW_Copy</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>SOW Copy</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/Oblix_VF01DeepCloneSOW?sowId={!Marketing_SOW__c.Id}&amp;fyear={!Marketing_SOW__c.Financial_Year__c}</url>
+    </webLinks>
 </CustomObject>

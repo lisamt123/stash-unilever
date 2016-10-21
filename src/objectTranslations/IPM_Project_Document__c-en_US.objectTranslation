@@ -21,6 +21,10 @@
         <name>IPM_Approved_Comments__c</name>
     </fields>
     <fields>
+        <label><!-- Category Status while Approved --></label>
+        <name>IPM_Category_Status_while_Approved__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Comments --></label>
         <name>IPM_Comments__c</name>
     </fields>

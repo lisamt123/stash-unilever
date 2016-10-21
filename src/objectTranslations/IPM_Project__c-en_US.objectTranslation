@@ -9,6 +9,10 @@
         <value>IPM Projects</value>
     </caseValues>
     <fields>
+        <label><!-- BET Current Status --></label>
+        <name>BETCurrentStatus__c</name>
+    </fields>
+    <fields>
         <label><!-- BET Archive Status --></label>
         <name>BET_Archive_Status__c</name>
     </fields>
@@ -66,6 +70,10 @@
         <name>BET_MS_First_Release_Date__c</name>
     </fields>
     <fields>
+        <label><!-- BET Status --></label>
+        <name>BET_Status__c</name>
+    </fields>
+    <fields>
         <label><!-- BET TLD Final Release Date --></label>
         <name>BET_TLD_Final_Release_Date__c</name>
     </fields>
@@ -83,12 +91,25 @@
         <relationshipLabel><!-- IPM Projects --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- This field will advice if BET is null or not --></help>
+        <label><!-- BET_isNull --></label>
+        <name>BET_isNull__c</name>
+    </fields>
+    <fields>
         <label><!-- BI --></label>
         <name>BI__c</name>
     </fields>
     <fields>
         <label><!-- Bulk BET Member Request --></label>
         <name>Bulk_BET_Member_Request__c</name>
+    </fields>
+    <fields>
+        <label><!-- CharterRiskIdentified --></label>
+        <name>CharterRiskIdentified__c</name>
+    </fields>
+    <fields>
+        <label><!-- ContractRiskIdentified --></label>
+        <name>ContractRiskIdentified__c</name>
     </fields>
     <fields>
         <label><!-- Created in error --></label>
@@ -98,6 +119,10 @@
         <label><!-- Deputy Project Leader --></label>
         <name>Deputy_Project_Leader__c</name>
         <relationshipLabel><!-- IPM Projects (Deputy Project Leader) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Duration @Idea --></label>
+        <name>Duration_Idea__c</name>
     </fields>
     <fields>
         <label><!-- EcoDesign Sync Error --></label>
@@ -139,8 +164,28 @@
         <label><!-- Company --></label>
         <name>IPMCompany__c</name>
         <picklistValues>
+            <masterLabel>GIC Deodorants &amp; Fragrances</masterLabel>
+            <translation><!-- GIC Deodorants &amp; Fragrances --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>GIC HHC</masterLabel>
             <translation><!-- GIC HHC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GIC Hair Care</masterLabel>
+            <translation><!-- GIC Hair Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GIC Oral Care</masterLabel>
+            <translation><!-- GIC Oral Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GIC Skin Care</masterLabel>
+            <translation><!-- GIC Skin Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GIC Skin Cleansing</masterLabel>
+            <translation><!-- GIC Skin Cleansing --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -277,6 +322,10 @@
         <name>IPM_Brand__c</name>
     </fields>
     <fields>
+        <label><!-- Business Partner User Full Name --></label>
+        <name>IPM_Business_Partner_User_Full_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Business Partner User Name --></label>
         <name>IPM_Business_Partner_User_Name__c</name>
     </fields>
@@ -301,11 +350,31 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Cancel Stopping Project Till --></label>
+        <name>IPM_CancelStoppingProjectTill__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Capability Approval Date --></label>
+        <name>IPM_Capability_Approval_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Category Group --></label>
         <name>IPM_Category_Group__c</name>
         <picklistValues>
+            <masterLabel>Food</masterLabel>
+            <translation><!-- Food --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Home Care</masterLabel>
             <translation><!-- Home Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal Care</masterLabel>
+            <translation><!-- Personal Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refreshment</masterLabel>
+            <translation><!-- Refreshment --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -313,8 +382,288 @@
         <name>IPM_Category_Icon__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Category Picklist --></label>
+        <name>IPM_Category_Picklist__c</name>
+        <picklistValues>
+            <masterLabel>Deodorants &amp; Fragrances</masterLabel>
+            <translation><!-- Deodorants &amp; Fragrances --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dressings</masterLabel>
+            <translation><!-- Dressings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hair Care</masterLabel>
+            <translation><!-- Hair Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Household Care</masterLabel>
+            <translation><!-- Household Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ice Cream</masterLabel>
+            <translation><!-- Ice Cream --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laundry</masterLabel>
+            <translation><!-- Laundry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oral Care</masterLabel>
+            <translation><!-- Oral Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Savoury</masterLabel>
+            <translation><!-- Savoury --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Care</masterLabel>
+            <translation><!-- Skin Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Cleansing</masterLabel>
+            <translation><!-- Skin Cleansing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spreads</masterLabel>
+            <translation><!-- Spreads --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tea and Soy &amp; Fruit Beverages</masterLabel>
+            <translation><!-- Tea and Soy &amp; Fruit Beverages --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Category Platform --></label>
+        <name>IPM_Category_Platform__c</name>
+        <picklistValues>
+            <masterLabel>Advanced Health</masterLabel>
+            <translation><!-- Advanced Health --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Anti-Cavity</masterLabel>
+            <translation><!-- Anti-Cavity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Barriers &amp; trust</masterLabel>
+            <translation><!-- Barriers &amp; trust --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ben &amp; Jerrys</masterLabel>
+            <translation><!-- Ben &amp; Jerrys --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Breyers</masterLabel>
+            <translation><!-- Breyers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Build Underdeveloped Markets</masterLabel>
+            <translation><!-- Build Underdeveloped Markets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Carte D&apos;Or</masterLabel>
+            <translation><!-- Carte D&apos;Or --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Central EU Platform</masterLabel>
+            <translation><!-- Central EU Platform --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complete Care</masterLabel>
+            <translation><!-- Complete Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cornetto</masterLabel>
+            <translation><!-- Cornetto --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Create relevance</masterLabel>
+            <translation><!-- Create relevance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cremissimo</masterLabel>
+            <translation><!-- Cremissimo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Delicious Treats</masterLabel>
+            <translation><!-- Delicious Treats --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Economy</masterLabel>
+            <translation><!-- Economy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Engaging Experiences</masterLabel>
+            <translation><!-- Engaging Experiences --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Establish Daily Habit</masterLabel>
+            <translation><!-- Establish Daily Habit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expand footprint</masterLabel>
+            <translation><!-- Expand footprint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expert Brand</masterLabel>
+            <translation><!-- Expert Brand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Extend Beyond</masterLabel>
+            <translation><!-- Extend Beyond --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Freshness</masterLabel>
+            <translation><!-- Freshness --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fruttare/Solero</masterLabel>
+            <translation><!-- Fruttare/Solero --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GROM</masterLabel>
+            <translation><!-- GROM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Goodness of Soy</masterLabel>
+            <translation><!-- Goodness of Soy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Healthy Hydration</masterLabel>
+            <translation><!-- Healthy Hydration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Heat to Eat</masterLabel>
+            <translation><!-- Heat to Eat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kids</masterLabel>
+            <translation><!-- Kids --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kids (Max/Paddlepop)</masterLabel>
+            <translation><!-- Kids (Max/Paddlepop) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low Tier</masterLabel>
+            <translation><!-- Low Tier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Magnum</masterLabel>
+            <translation><!-- Magnum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maille</masterLabel>
+            <translation><!-- Maille --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maille boutique</masterLabel>
+            <translation><!-- Maille boutique --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mid Tier</masterLabel>
+            <translation><!-- Mid Tier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Natural Authenticity</masterLabel>
+            <translation><!-- Natural Authenticity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>North American Platform</masterLabel>
+            <translation><!-- North American Platform --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Northern EU Platform</masterLabel>
+            <translation><!-- Northern EU Platform --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Applicable</masterLabel>
+            <translation><!-- Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pay More</masterLabel>
+            <translation><!-- Pay More --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Popsicle</masterLabel>
+            <translation><!-- Popsicle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Premium</masterLabel>
+            <translation><!-- Premium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ROW Platform</masterLabel>
+            <translation><!-- ROW Platform --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recruit next gen</masterLabel>
+            <translation><!-- Recruit next gen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Revitalisation</masterLabel>
+            <translation><!-- Revitalisation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scratch Cooking</masterLabel>
+            <translation><!-- Scratch Cooking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Selling Systems Innovation</masterLabel>
+            <translation><!-- Selling Systems Innovation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Smart Cooking</masterLabel>
+            <translation><!-- Smart Cooking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Southern EU Platform</masterLabel>
+            <translation><!-- Southern EU Platform --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sub-Premium Tier</masterLabel>
+            <translation><!-- Sub-Premium Tier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Super Premium</masterLabel>
+            <translation><!-- Super Premium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Talenti</masterLabel>
+            <translation><!-- Talenti --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Walls Desserts</masterLabel>
+            <translation><!-- Walls Desserts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Walls Impulse</masterLabel>
+            <translation><!-- Walls Impulse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Whitening</masterLabel>
+            <translation><!-- Whitening --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Win with strong brands</masterLabel>
+            <translation><!-- Win with strong brands --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- IPM Category --></label>
         <name>IPM_Category_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category Threshold --></label>
+        <name>IPM_Category_Thresh__c</name>
     </fields>
     <fields>
         <label><!-- IPM_Category --></label>
@@ -385,6 +734,10 @@
         <name>IPM_Core_Parameters__c</name>
     </fields>
     <fields>
+        <label><!-- CountDown Reference Time --></label>
+        <name>IPM_CountDown_Reference_Time__c</name>
+    </fields>
+    <fields>
         <label><!-- Current Document Status --></label>
         <name>IPM_Current_Document_Status__c</name>
         <picklistValues>
@@ -433,6 +786,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Define Category Group --></label>
+        <name>IPM_Define_Category_Group__c</name>
+    </fields>
+    <fields>
         <label><!-- Document Update Comments --></label>
         <name>IPM_Document_Update_Comments__c</name>
     </fields>
@@ -441,12 +798,48 @@
         <name>IPM_Document_Update_Date__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Duration @ Bosscard --></label>
+        <name>IPM_Duration_Bosscard__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Duration @ Capability --></label>
+        <name>IPM_Duration_Capability__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Duration @ Feasibility --></label>
+        <name>IPM_Duration_Feasibility__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Duration @ Idea --></label>
+        <name>IPM_Duration_Idea__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Duration @ Market Deployment --></label>
+        <name>IPM_Duration_Market_Deployment__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Duration @Market Ready --></label>
+        <name>IPM_Duration_Market_Ready__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Duration @ PLE --></label>
+        <name>IPM_Duration_PLE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Eligible For Reactivation --></label>
+        <name>IPM_EligibleForReactivation__c</name>
+    </fields>
+    <fields>
         <label><!-- Exists At Least One Assmnt Per EICountry --></label>
         <name>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</name>
     </fields>
     <fields>
         <label><!-- IPM Fast Track Project --></label>
         <name>IPM_Fast_Track_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Feasibility Approval Date --></label>
+        <name>IPM_Feasibility_Approval_Date__c</name>
     </fields>
     <fields>
         <label><!-- IPM FilledIn Percentage --></label>
@@ -499,6 +892,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Global OR Regional --></label>
+        <name>IPM_Global_OR_Regional__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Global ProjectId --></label>
         <name>IPM_Global_ProjectId__c</name>
     </fields>
@@ -509,6 +906,14 @@
     <fields>
         <label><!-- IPM Golbal Project OwnerId --></label>
         <name>IPM_Golbal_Project_OwnerId__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Idea Approval Date --></label>
+        <name>IPM_Idea_Approval_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Immediate Parent Project Name --></label>
+        <name>IPM_Immediate_Parent_Project_Name__c</name>
     </fields>
     <fields>
         <label><!-- IsCompleted --></label>
@@ -523,8 +928,24 @@
         <name>IPM_Is_Finance_Member_Null__c</name>
     </fields>
     <fields>
+        <label><!-- Is Invoked From Rollout --></label>
+        <name>IPM_Is_Invoked_From_Rollout__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Last Modified Date Time --></label>
         <name>IPM_Last_Modified_Date_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Modified Date --></label>
+        <name>IPM_Last_Modified_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Modified Time --></label>
+        <name>IPM_Last_Modified_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>IPM_LocalProject_Brand__c</name>
     </fields>
     <fields>
         <label><!-- Local Project Type --></label>
@@ -541,6 +962,14 @@
     <fields>
         <label><!-- IPM MCO Name --></label>
         <name>IPM_MCO_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Market Deployment Approval Date --></label>
+        <name>IPM_Market_Deployment_Approval_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Market Ready Approval Date --></label>
+        <name>IPM_Market_Ready_Approval_Date__c</name>
     </fields>
     <fields>
         <label><!-- Market Type --></label>
@@ -571,12 +1000,20 @@
         <name>IPM_Misalligned__c</name>
     </fields>
     <fields>
+        <label><!-- No Rollout/Delete Disabled --></label>
+        <name>IPM_No_Rollout_Disabled__c</name>
+    </fields>
+    <fields>
         <label><!-- No of Country Rollouts --></label>
         <name>IPM_No_of_Country_Rollouts__c</name>
     </fields>
     <fields>
         <label><!-- Org Base URL --></label>
         <name>IPM_Org_Base_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM PLE Approval Date --></label>
+        <name>IPM_PLE_Approval_Date__c</name>
     </fields>
     <fields>
         <label><!-- PM Approach --></label>
@@ -589,6 +1026,14 @@
             <masterLabel>Internal</masterLabel>
             <translation><!-- Internal --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Parent_BI --></label>
+        <name>IPM_Parent_BI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Project Name --></label>
+        <name>IPM_Parent_Project_Name__c</name>
     </fields>
     <fields>
         <label><!-- IPM Parent Project --></label>
@@ -628,6 +1073,91 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- IPM Platform Formula --></label>
+        <name>IPM_Platform_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Postponed Comments --></label>
+        <name>IPM_Postponed_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prepare For Archival --></label>
+        <name>IPM_PrepareForArchival__c</name>
+    </fields>
+    <fields>
+        <label><!-- Previous Document Status --></label>
+        <name>IPM_PreviousDocumentStatus__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved with Edits</masterLabel>
+            <translation><!-- Approved with Edits --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Close</masterLabel>
+            <translation><!-- Close --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation><!-- Not Started --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Postponed</masterLabel>
+            <translation><!-- Postponed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proposed</masterLabel>
+            <translation><!-- Proposed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stopped</masterLabel>
+            <translation><!-- Stopped --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Previously Stopped By --></label>
+        <name>IPM_PreviouslyStoppedBy__c</name>
+        <relationshipLabel><!-- IPM Projects (Previously Stopped By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM_ProjectGKM --></label>
+        <name>IPM_ProjectGKM__c</name>
+        <picklistValues>
+            <masterLabel>GKM1</masterLabel>
+            <translation><!-- GKM1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GKM2</masterLabel>
+            <translation><!-- GKM2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GKM3</masterLabel>
+            <translation><!-- GKM3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GKM4</masterLabel>
+            <translation><!-- GKM4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GKM5</masterLabel>
+            <translation><!-- GKM5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GKM6</masterLabel>
+            <translation><!-- GKM6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GKM7</masterLabel>
+            <translation><!-- GKM7 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Project Job Type --></label>
         <name>IPM_ProjectJobType__c</name>
         <picklistValues>
@@ -638,6 +1168,10 @@
             <masterLabel>Project Creation</masterLabel>
             <translation><!-- Project Creation --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project Stopped Datetime String --></label>
+        <name>IPM_ProjectStoppedDatetime__c</name>
     </fields>
     <fields>
         <label><!-- Project Sub Type --></label>
@@ -654,6 +1188,10 @@
             <masterLabel>Operational</masterLabel>
             <translation><!-- Operational --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Based Threshold Status --></label>
+        <name>IPM_Project_Based_Threshold_Status__c</name>
     </fields>
     <fields>
         <label><!-- Project Description --></label>
@@ -711,6 +1249,11 @@
         <name>IPM_Project_Name__c</name>
     </fields>
     <fields>
+        <help><!-- This field will advice is Project Name is null or not --></help>
+        <label><!-- IPM_Project_Name_isNull --></label>
+        <name>IPM_Project_Name_isNull__c</name>
+    </fields>
+    <fields>
         <label><!-- Project Navigate --></label>
         <name>IPM_Project_Navigate__c</name>
     </fields>
@@ -733,6 +1276,10 @@
         <relationshipLabel><!-- IPM Projects --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- IPM Project To Be Stopped Date --></label>
+        <name>IPM_Project_To_Be_Stopped_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Project Type --></label>
         <name>IPM_Project_Type__c</name>
         <picklistValues>
@@ -749,8 +1296,16 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Y3iTO --></label>
+        <name>IPM_Project_Y3iTO__c</name>
+    </fields>
+    <fields>
         <label><!-- Quit Project Tab --></label>
         <name>IPM_Quit_Project_Tab__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reactivation Date/Time --></label>
+        <name>IPM_ReactivationDateTime__c</name>
     </fields>
     <fields>
         <label><!-- Region --></label>
@@ -817,6 +1372,10 @@
         <name>IPM_Selected_Project_Type__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Show Stop Button --></label>
+        <name>IPM_ShowProjectStop__c</name>
+    </fields>
+    <fields>
         <label><!-- Source Project Type --></label>
         <name>IPM_SourceProjectType__c</name>
         <picklistValues>
@@ -826,6 +1385,39 @@
         <picklistValues>
             <masterLabel>Original</masterLabel>
             <translation><!-- Original --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Stop Child Project --></label>
+        <name>IPM_Stop_Child_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stopped By Project Phase --></label>
+        <name>IPM_StoppedByProjectPhase__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stopped By Project --></label>
+        <name>IPM_StoppedByProject__c</name>
+        <relationshipLabel><!-- IPM Projects (Stopped Project) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Stopped By User --></label>
+        <name>IPM_StoppedByUser__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Stopped At Span --></label>
+        <name>IPM_Stopped_At_Span__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional</masterLabel>
+            <translation><!-- Regional --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -915,6 +1507,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Threshold Status --></label>
+        <name>IPM_Threshold_Status__c</name>
+    </fields>
+    <fields>
         <label><!-- Threshold Value --></label>
         <name>IPM_Threshold_Value__c</name>
         <picklistValues>
@@ -945,6 +1541,10 @@
     <fields>
         <label><!-- Is Archived --></label>
         <name>Is_Archieved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Approval Date --></label>
+        <name>Last_Approval_Date__c</name>
     </fields>
     <fields>
         <label><!-- ManualCheck --></label>
@@ -985,6 +1585,22 @@
     <fields>
         <label><!-- Project Members --></label>
         <name>Project_Members__c</name>
+    </fields>
+    <fields>
+        <label><!-- RQS Charter Answered &gt; 3 --></label>
+        <name>RQS_Charter_Answered_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- RQS Charter Answered --></label>
+        <name>RQS_Charter_Answered__c</name>
+    </fields>
+    <fields>
+        <label><!-- RQS Contract Answered &gt; 3 --></label>
+        <name>RQS_Contract_Answered_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- RQS Contract Answered --></label>
+        <name>RQS_Contract_Answered__c</name>
     </fields>
     <fields>
         <label><!-- Regional Project Leader Name --></label>
@@ -1034,8 +1650,44 @@
     <layouts>
         <layout>IPM Project Layout</layout>
         <sections>
+            <label><!-- BET Sections --></label>
+            <section>BET Sections</section>
+        </sections>
+        <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Eco Design --></label>
+            <section>Eco Design</section>
+        </sections>
+        <sections>
+            <label><!-- Project Attributes --></label>
+            <section>Project Attributes</section>
+        </sections>
+        <sections>
+            <label><!-- Project Document Section --></label>
+            <section>Project Document Section</section>
+        </sections>
+        <sections>
+            <label><!-- Project Parameters --></label>
+            <section>Project Parameters</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- Stopping Project --></label>
+            <section>Stopping Project</section>
+        </sections>
+        <sections>
+            <label><!-- Team Members --></label>
+            <section>Team Members</section>
+        </sections>
+        <sections>
+            <label><!-- Technical Section --></label>
+            <section>Technical Section</section>
         </sections>
     </layouts>
     <recordTypes>
@@ -1054,6 +1706,10 @@
     <validationRules>
         <errorMessage><!-- Operational Projects cannot be added to IPM Project Clusters --></errorMessage>
         <name>IPM_Cluster_not_allowed_for_Operational</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The stopped projects  can not be included  in a cluster. --></errorMessage>
+        <name>IPM_exclude_stppd_prjcts_from_cluster</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Global Original Project must begin with Ideas Phase --></errorMessage>

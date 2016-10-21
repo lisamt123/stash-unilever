@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PBS_Training Plan Assignment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>PBS_Training Plan Assignments</value>
+    </caseValues>
+    <fields>
+        <label><!-- Community Id --></label>
+        <name>Community_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date this assignment was completed --></help>
+        <label><!-- Completed On --></label>
+        <name>Completed_On__c</name>
+    </fields>
+    <fields>
+        <label><!-- Duration --></label>
+        <name>Duration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expected Completion Date --></label>
+        <name>Expected_Completion_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Updated --></label>
+        <name>Last_Updated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation><!-- Not Started --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Thirty Days Completed --></label>
+        <name>Thirty_Days_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Training Plan --></label>
+        <name>Training_Plan__c</name>
+        <relationshipLabel><!-- PBS_Training Plan Assignments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>User__c</name>
+        <relationshipLabel><!-- PBS_Training Plan Assignments --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Training Plan Assignment Layout</layout>
+        <sections>
+            <label><!-- Admin Information --></label>
+            <section>Admin Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

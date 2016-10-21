@@ -10,6 +10,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Oblix_FUUniqueNameCampaign</fullName>
+        <field>Oblix_tec_Unique_Name_c__c</field>
+        <formula>Name</formula>
+        <name>Oblix_FUUniqueNameCampaign</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Set_Parent_SOW_to_Campaign_Sync_Required</fullName>
         <description>set the parent SOW sync_status to &quot;Campaign Sync Required&quot;</description>
         <field>Sync_Status__c</field>
@@ -42,13 +51,7 @@
         <active>true</active>
         <description>set the status on individual campaigns to &quot;Sync Required&quot;  - 
 Condition - parent SOW has sync status &quot;Sync Complete&quot;</description>
-        <formula>$Setup.Oblix_Job_Orchestration__c.Job_Is_Running__c == false 
-&amp;&amp; $Setup.Oblix_Check_For_Manual_Edit_Of_Campaign__c.Manual_Edit_Check__c = true &amp;&amp;
-(
-(TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Completed&apos; 
-|| TEXT(Financial_Year__r.Sync_Status__c)== &apos;Campaign Sync Required&apos;) 
-&amp;&amp; Financial_Year__r.Initial_Approval_Complete__c == true &amp;&amp; (TEXT(Sync_Status__c) == &apos;Sync Completed&apos; || ISBLANK(TEXT(Sync_Status__c)))
-&amp;&amp; PRIORVALUE(Sync_Status__c) &lt;&gt; &apos;Sync In Progress&apos; &amp;&amp; Name_Suffix__c &lt;&gt; &apos;Finalised&apos;)</formula>
+        <formula>$Setup.Oblix_Job_Orchestration__c.Job_Is_Running__c == false  &amp;&amp; $Setup.Oblix_Check_For_Manual_Edit_Of_Campaign__c.Manual_Edit_Check__c = true &amp;&amp; ( (TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Completed&apos;  || TEXT(Financial_Year__r.Sync_Status__c)== &apos;Campaign Sync Required&apos;)  &amp;&amp; Financial_Year__r.Initial_Approval_Complete__c == true &amp;&amp; (TEXT(Sync_Status__c) == &apos;Sync Completed&apos; || ISBLANK(TEXT(Sync_Status__c))) &amp;&amp; PRIORVALUE(Sync_Status__c) &lt;&gt; &apos;Sync In Progress&apos; &amp;&amp; Name_Suffix__c &lt;&gt; &apos;Finalised&apos;)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

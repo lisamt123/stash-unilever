@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -228,6 +224,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -263,6 +260,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -382,7 +380,7 @@
         <errorConditionFormula>(!ISBLANK(Start_Date__c) &amp;&amp; ISBLANK(End_Date__c)) || (ISBLANK(Start_Date__c) &amp;&amp; !ISBLANK(End_Date__c))</errorConditionFormula>
         <errorMessage>You must set a value for Start and End date or leave both empty</errorMessage>
     </validationRules>
-     <webLinks>
+    <webLinks>
         <fullName>Export_Training_Plan</fullName>
         <availability>online</availability>
         <description>Display VF page for exporting a training plan</description>

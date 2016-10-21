@@ -13,12 +13,52 @@
         <label><!-- Category --></label>
         <name>IPM_Category__c</name>
         <picklistValues>
+            <masterLabel>Deodorants &amp; Fragrances</masterLabel>
+            <translation><!-- Deodorants &amp; Fragrances --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dressings</masterLabel>
+            <translation><!-- Dressings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hair Care</masterLabel>
+            <translation><!-- Hair Care --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Household Care</masterLabel>
             <translation><!-- Household Care --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Ice Cream</masterLabel>
+            <translation><!-- Ice Cream --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Laundry</masterLabel>
             <translation><!-- Laundry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oral Care</masterLabel>
+            <translation><!-- Oral Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Savoury</masterLabel>
+            <translation><!-- Savoury --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Care</masterLabel>
+            <translation><!-- Skin Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Cleansing</masterLabel>
+            <translation><!-- Skin Cleansing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spreads</masterLabel>
+            <translation><!-- Spreads --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tea and Soy &amp; Fruit Beverages</masterLabel>
+            <translation><!-- Tea and Soy &amp; Fruit Beverages --></translation>
         </picklistValues>
     </fields>
     <fields>

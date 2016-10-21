@@ -13,10 +13,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -39,6 +35,8 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <description>External Object for SFDev Site Collection as part of Files Connect Integration</description>
     <enableFeeds>false</enableFeeds>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
     <externalDataSource>Unilever_SFDev</externalDataSource>
     <externalName>FilesConnect_SFDev</externalName>
     <label>FilesConnect-SFDev</label>

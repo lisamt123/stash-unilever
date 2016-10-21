@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Product</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Product Details</value>
+    </caseValues>
+    <fields>
+        <label><!-- Comments Box (New) --></label>
+        <name>ltxt_Comments_Box_New__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments if any --></label>
+        <name>ltxt_Comments_if_any__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request ID --></label>
+        <name>md_Request_ID__c</name>
+        <relationshipLabel><!-- Product Details --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- License Quantity --></label>
+        <name>num_License_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Cores --></label>
+        <name>num_No_of_Cores__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Direct Users --></label>
+        <name>num_No_of_Direct_Users__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Indirect Users --></label>
+        <name>num_No_of_Indirect_Users__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Physical Cores/Virtual Cores --></label>
+        <name>num_No_of_Physical_Cores_Virtual_Cores__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Physical/Virtual Processors --></label>
+        <name>num_No_of_Physical_Virtual_Processors__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Processor --></label>
+        <name>num_No_of_Processor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Users --></label>
+        <name>num_No_of_Users__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Physical Cores --></label>
+        <name>num_Number_of_Physical_Cores__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Physical Processors --></label>
+        <name>num_Number_of_Physical_Processors__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of VMS --></label>
+        <name>num_Number_of_VMS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Virtual Cores --></label>
+        <name>num_Number_of_Virtual_Cores__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Virtual Processors --></label>
+        <name>num_Number_of_Virtual_Processors__c</name>
+    </fields>
+    <fields>
+        <help><!-- If it is an existing system, what is the SID --></help>
+        <label><!-- Existing SID --></label>
+        <name>pkl_Existing_SID__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select (Yes/No) if there is Hardware partioning --></help>
+        <label><!-- Hard Partitioning --></label>
+        <name>pkl_Hard_Partitioning_new__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select (Yes/No) from the Drop Down, if the deployment is on Hyper-V Fram --></help>
+        <label><!-- Windows HyperV farm --></label>
+        <name>pkl_Hyper_V_Farm__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Instance Type --></label>
+        <name>pkl_Instance_Type__c</name>
+        <picklistValues>
+            <masterLabel>Physical</masterLabel>
+            <translation><!-- Physical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virtual</masterLabel>
+            <translation><!-- Virtual --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If new, please name the SID and state if it is ABAP/JAVA --></help>
+        <label><!-- New SID --></label>
+        <name>pkl_New_SID__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Physical Server --></label>
+        <name>pkl_Physical_Server__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Physical/Virtual Instance --></label>
+        <name>pkl_Physical_Virtual_Server__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not sure</masterLabel>
+            <translation><!-- Not sure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select (Yes/No) from the Drop Down, if the deployment is on Physical hardware --></help>
+        <label><!-- Physical instance --></label>
+        <name>pkl_Physical_instance__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Request Status --></label>
+        <name>pkl_Request_Status__c</name>
+        <picklistValues>
+            <masterLabel>Answer Accepted</masterLabel>
+            <translation><!-- Answer Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULEMP)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULEMP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting CC details (Pending with ULSMT)</masterLabel>
+            <translation><!-- Awaiting CC details (Pending with ULSMT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Charge</masterLabel>
+            <translation><!-- Awaiting Charge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Information</masterLabel>
+            <translation><!-- Awaiting Information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CC details provided (By ULEMP)</masterLabel>
+            <translation><!-- CC details provided (By ULEMP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Completed</masterLabel>
+            <translation><!-- Charging Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging In Progress</masterLabel>
+            <translation><!-- Charging In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charging Rejected</masterLabel>
+            <translation><!-- Charging Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Details Pending</masterLabel>
+            <translation><!-- Details Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Details Provided</masterLabel>
+            <translation><!-- Details Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft Quote Provided</masterLabel>
+            <translation><!-- Draft Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Information Provided</masterLabel>
+            <translation><!-- Information Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Need More Info</masterLabel>
+            <translation><!-- Need More Info --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Hold</masterLabel>
+            <translation><!-- On Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Query Answered</masterLabel>
+            <translation><!-- Query Answered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Approved</masterLabel>
+            <translation><!-- Quote Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Provided</masterLabel>
+            <translation><!-- Quote Provided --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quote Rejected</masterLabel>
+            <translation><!-- Quote Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resume</masterLabel>
+            <translation><!-- Resume --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saved</masterLabel>
+            <translation><!-- Saved --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- SID Details --></label>
+        <name>pkl_SID_Details_SAP__c</name>
+        <picklistValues>
+            <masterLabel>Existing</masterLabel>
+            <translation><!-- Existing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- SQL Server Farm --></label>
+        <name>pkl_SQL_Server_Farm__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- System Type --></label>
+        <name>pkl_System_Type_Existing__c</name>
+        <picklistValues>
+            <masterLabel>ABAP</masterLabel>
+            <translation><!-- ABAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HANA</masterLabel>
+            <translation><!-- HANA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JAVA</masterLabel>
+            <translation><!-- JAVA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- System Type (New) --></label>
+        <name>pkl_System_Type_New__c</name>
+        <picklistValues>
+            <masterLabel>ABAP</masterLabel>
+            <translation><!-- ABAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HANA</masterLabel>
+            <translation><!-- HANA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JAVA</masterLabel>
+            <translation><!-- JAVA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Virtual Server --></label>
+        <name>pkl_Virtual_Server__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select (Yes/No) from the Drop Down, if the deployment is on Virtual machine --></help>
+        <label><!-- Virtual instance --></label>
+        <name>pkl_Virtual_instance__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter the name of the Additional Feature which is required --></help>
+        <label><!-- Additional features --></label>
+        <name>txt_Additional_features__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the backend database --></help>
+        <label><!-- Backend Database --></label>
+        <name>txt_Backend_Database__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comment Box (existing) --></label>
+        <name>txt_Comment_Box_existing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Database Instance Name --></label>
+        <name>txt_Database_Instance_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Brief if Daignostic pack is required --></help>
+        <label><!-- Diagnostic --></label>
+        <name>txt_Diagnostic_new__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Edition --></label>
+        <name>txt_Edition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Publisher: IBM --></label>
+        <name>txt_IBM__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the hostname of the machine which is deployed --></help>
+        <label><!-- Installation Machine Name --></label>
+        <name>txt_Installation_Machine_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the interfacing application, and would the data passage increase post implementation of SAP application --></help>
+        <label><!-- Interfacing Application Details --></label>
+        <name>txt_Interfacing_Application_Details__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is it interfacing with any other system (SAP/Non SAP) --></help>
+        <label><!-- Interfacing Details --></label>
+        <name>txt_Interfacing_Details__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the details of the deployment --></help>
+        <label><!-- Location --></label>
+        <name>txt_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Publisher: Microsoft --></label>
+        <name>txt_Microsoft__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is a new system created or hosted on existing system --></help>
+        <label><!-- SID Name --></label>
+        <name>txt_New_System_Existing__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the number of users? (Disclaimer:  PM to attach names, roles and transactions these users would be doing) --></help>
+        <label><!-- Number of SAP Users --></label>
+        <name>txt_Number_of_SAP_Users__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the number of users? (Disclaimer:  PM to attach names, roles and transactions these users would be doing) --></help>
+        <label><!-- Number of Users --></label>
+        <name>txt_Number_of_Users__c</name>
+    </fields>
+    <fields>
+        <label><!-- Publisher: Oracle --></label>
+        <name>txt_Oracle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Publisher: Other Product --></label>
+        <name>txt_Other_Product__c</name>
+    </fields>
+    <fields>
+        <help><!-- Brief if partioned --></help>
+        <label><!-- Partitioning --></label>
+        <name>txt_Partitioning__c</name>
+    </fields>
+    <fields>
+        <help><!-- Brief if partioned --></help>
+        <label><!-- Partitioning --></label>
+        <name>txt_Partitioning_new__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter the Physical server hostname which is deployed --></help>
+        <label><!-- Physical Server Name --></label>
+        <name>txt_Physical_Machine_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Physical Server Name --></label>
+        <name>txt_Physical_Server_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the details in brief --></help>
+        <label><!-- Processor - Make and Model --></label>
+        <name>txt_Processor_Make_and_Model__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the License type requied --></help>
+        <label><!-- Processor based or Named User --></label>
+        <name>txt_Processor_based_or_Named_User__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the name of Software product required --></help>
+        <label><!-- Software Name --></label>
+        <name>txt_Product_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Type Name --></label>
+        <name>txt_Product_Type_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Publisher --></label>
+        <name>txt_Publisher__c</name>
+    </fields>
+    <fields>
+        <label><!-- Publisher: SAP --></label>
+        <name>txt_SAP__c</name>
+    </fields>
+    <fields>
+        <label><!-- SID Name (Existing) --></label>
+        <name>txt_SID_Name_Existing__c</name>
+    </fields>
+    <fields>
+        <label><!-- SID Name (New) --></label>
+        <name>txt_SID_Name_New__c</name>
+    </fields>
+    <fields>
+        <label><!-- Software Name --></label>
+        <name>txt_Software_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Software Product Details --></label>
+        <name>txt_Software_Product_Details__c</name>
+    </fields>
+    <fields>
+        <help><!-- Mandatory, if System Type is selected as Others. --></help>
+        <label><!-- System Type : Others --></label>
+        <name>txt_System_Type_Others_SAP__c</name>
+    </fields>
+    <fields>
+        <help><!-- Brief if Tuning pack is required --></help>
+        <label><!-- Tuning --></label>
+        <name>txt_Tuning__c</name>
+    </fields>
+    <fields>
+        <help><!-- Brief if Tuning pack is required --></help>
+        <label><!-- Tuning --></label>
+        <name>txt_Tuning_new__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Version --></label>
+        <name>txt_Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- Virtual Server Name --></label>
+        <name>txt_Virtual_Server_Name__c</name>
+    </fields>
+    <layouts>
+        <layout>SAM IBM RO Request Line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM IBM RW Request Line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Microsoft RO Request Line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Microsoft RW Request Line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Oracle RO Request Line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Oracle RW Request Line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Other Product RO Request Line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM Other Product RW Request Line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM SAP RO Request line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SAM SAP RW Request line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- SAM_IBM_RO --></label>
+        <name>SAM_IBM_RO</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- IBM --></label>
+        <name>SAM_IBM_RW</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM_Microsoft_RO --></label>
+        <name>SAM_Microsoft_RO</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Microsoft --></label>
+        <name>SAM_Microsoft_RW</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM_Oracle_RO --></label>
+        <name>SAM_Oracle_RO</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Oracle --></label>
+        <name>SAM_Oracle_RW</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM_Other_Product_RO --></label>
+        <name>SAM_Other_Product_RO</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAM_SAP_RO --></label>
+        <name>SAM_SAP_RO</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SAP --></label>
+        <name>SAM_SAP_RW</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Other Product --></label>
+        <name>SAM_XOther_Product_RW</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You cannot  updated this field. --></errorMessage>
+        <name>Name</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>Number_of_Physical_CoreVirtual_Cores</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>Number_of_Physical_Virtual_Processor</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>Number_of_SAP_user</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Additional_Features_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Backend_Database_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Database_Instance_Name_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Edition_Alphanumeric_Data</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Existing SID dependent fields are mandatory only when Existing SID value is Yes --></errorMessage>
+        <name>SAM_Existing_SID_Reverse_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Installation_Machine_Name_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If Instance Type is Virtual then Physical Server Name is mandatory. --></errorMessage>
+        <name>SAM_Instance_Type_PSN_IBM</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Physical Server Name is mandatory only if Instance Type is Virtual --></errorMessage>
+        <name>SAM_Instance_Type_PSN_IBM_REV</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Interfacing_Application_details_Alph</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Interfacing_Details_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_License_Qty_Shd_be_greater_than_zero</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Location_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not select New SID and Existing SID as Yes at the same time. --></errorMessage>
+        <name>SAM_New_Existing_SID_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- New SID dependent fields are mandatory only when New SID value is Yes --></errorMessage>
+        <name>SAM_New_SID_Reverse_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_New_System_Existing_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_No_of_Cores_shd_be_positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_No_of_Direct_Users_shd_be_positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_No_of_Indirect_Users_shd_be_positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_No_of_Phy_Cores_shd_be_positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_No_of_Phy_Processors_shd_be_positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_No_of_Processor_shd_be_positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_No_of_Users_Shd_not_be_negative</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_No_of_Virtual_Cores_shd_be_positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_No_of_Virtual_Processors_shd_be_posi</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Positive numbers only --></errorMessage>
+        <name>SAM_Number_of_VMS</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Physical Server Name is mandatory if physical instance is yes. --></errorMessage>
+        <name>SAM_Physical_Instance_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Physical_Machine_Name_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Physical_Server_Name_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Physical Server Name is mandatory if Instance Type is Virtual. --></errorMessage>
+        <name>SAM_Physical_Server_Name_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Physical Server related fields are mandatory only if physical server is YES. --></errorMessage>
+        <name>SAM_Physical_Server_Reverse_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If physical server is yes then number of physical processor and number of physical cores are mandatory. --></errorMessage>
+        <name>SAM_Physical_Server_Validation_Microsoft</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Processor_based_or_Named_User_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not enter comments if System Type is other than Others. --></errorMessage>
+        <name>SAM_SID_Existing_Comments_Box_Reverse</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Comment is mandatory if System Type is Others --></errorMessage>
+        <name>SAM_SID_Existing_Comments_Box_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- System Type is mandatory for Exisiting SID --></errorMessage>
+        <name>SAM_SID_Existing_System_Type_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Existing SID Name is mandatory --></errorMessage>
+        <name>SAM_SID_Name_Existing_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- New SID Name is mandatory --></errorMessage>
+        <name>SAM_SID_Name_New_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not enter comments if System Type is other than Others. --></errorMessage>
+        <name>SAM_SID_New_Comments_Box_Reverse</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Comment is mandatory if System Type is Others --></errorMessage>
+        <name>SAM_SID_New_Comments_Box_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- System Type is mandatory for New SID --></errorMessage>
+        <name>SAM_SID_New_System_Type_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This is mandatory if &apos;System Type&apos; is Other --></errorMessage>
+        <name>SAM_System_Type_Others</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not enter data here if System Type is not Other. --></errorMessage>
+        <name>SAM_System_Type_Others_Reverse</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Version_Alphanumeric_Data</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Virtual Server Name is mandatory if virtual instance is yes. --></errorMessage>
+        <name>SAM_Virtual_Instance_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>SAM_Virtual_Server_Name_Alpha</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Virtual Server Name is mandatory if virtual instance is Yes. --></errorMessage>
+        <name>SAM_Virtual_Server_Name_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Virtual Server related fields are mandatory only if virtual server is YES. --></errorMessage>
+        <name>SAM_Virtual_Server_Reverse_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If virtual server is yes then number of virtual processor and number of virtual cores are mandatory. --></errorMessage>
+        <name>SAM_Virtual_Server_Validation_Microsoft</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If Physical Instance is selected as Yes, then Virtual Instance should not be Yes and vice versa. --></errorMessage>
+        <name>SAM_reverse_validation_on_phy_ver_instan</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If Physical Server is selected as Yes, then Virtual Server should not be Yes and vice versa. --></errorMessage>
+        <name>SAM_reverse_validation_on_phy_ver_server</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
+        <name>Software_Name_Alphanumeric_Data</name>
+    </validationRules>
+</CustomObjectTranslation>

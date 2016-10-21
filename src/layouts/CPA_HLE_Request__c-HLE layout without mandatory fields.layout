@@ -96,6 +96,10 @@
                 <behavior>Edit</behavior>
                 <field>txt_SLA2__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -44,19 +44,27 @@
         </sections>
     </layouts>
     <recordTypes>
-        <label><!-- Boosting Wellbeing --></label>
+        <label><!-- My Wellbeing --></label>
         <name>Boosting_Wellbeing</name>
     </recordTypes>
     <recordTypes>
-        <label><!-- Building Inclusion --></label>
+        <label><!-- Bright Future --></label>
+        <name>Bright_Future</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Diversity &amp; Inclusion --></label>
         <name>Building_Inclusion</name>
     </recordTypes>
     <recordTypes>
-        <label><!-- People Champion --></label>
+        <label><!-- My Development --></label>
+        <name>My_Development</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Line Manager --></label>
         <name>People_Champion</name>
     </recordTypes>
     <recordTypes>
-        <label><!-- Working Effectively --></label>
+        <label><!-- Ways of Working --></label>
         <name>Working_Effectively</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>

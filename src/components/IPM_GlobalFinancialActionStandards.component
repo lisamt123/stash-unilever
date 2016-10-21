@@ -172,4 +172,3 @@ function updateFinAction(Id,Span,Field,Value){
 }
 </script>
 </apex:component>
-                                     

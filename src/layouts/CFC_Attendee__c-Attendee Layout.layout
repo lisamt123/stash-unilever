@@ -25,6 +25,10 @@
                 <behavior>Readonly</behavior>
                 <field>TF_SF_Base_Url__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>

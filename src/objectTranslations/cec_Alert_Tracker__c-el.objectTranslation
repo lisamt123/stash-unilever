@@ -50,6 +50,10 @@
         <name>Alert_Threshold__c</name>
     </fields>
     <fields>
+        <label><!-- Alert Tracker Item count --></label>
+        <name>Alert_Tracker_Item_count__c</name>
+    </fields>
+    <fields>
         <label>Κατώφλι ρεύματος</label>
         <name>Current_Threshold__c</name>
     </fields>

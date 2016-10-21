@@ -145,5 +145,16 @@
         </picklistValues>
     </fields>
     <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Risk Layout</layout>
+        <sections>
+            <label><!-- Choose product sector --></label>
+            <section>Choose product sector</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel><!-- Risk Name --></nameFieldLabel>
 </CustomObjectTranslation>

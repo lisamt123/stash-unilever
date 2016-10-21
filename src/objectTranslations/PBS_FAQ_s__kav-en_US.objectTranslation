@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PBS FAQ</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>PBS FAQ&apos;s</value>
+    </caseValues>
+    <fields>
+        <label><!-- Attachment 1 --></label>
+        <name>Attachment_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attachment 2 --></label>
+        <name>Attachment_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attachment 3 --></label>
+        <name>Attachment_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attachment 4 --></label>
+        <name>Attachment_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attachment 5 --></label>
+        <name>Attachment_5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Custom PBS Field 2 --></label>
+        <name>Custom_PBS_Field_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Custom PBS Field --></label>
+        <name>Custom_PBS_Field__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expectations --></label>
+        <name>Expectations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group Name --></label>
+        <name>Group_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Learning Activities --></label>
+        <name>Learning_Activities__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overview --></label>
+        <name>Overview__c</name>
+    </fields>
+    <fields>
+        <label><!-- PBS Training Course --></label>
+        <name>PBS_Training_Course__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

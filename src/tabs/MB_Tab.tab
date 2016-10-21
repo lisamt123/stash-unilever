@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <auraComponent>MB_BaseComponent</auraComponent>    
+    <auraComponent>MB_BaseComponent</auraComponent>
+    <description>Mobile Billing Application PNG</description>
+    <icon>MB_Folder/MB_Icon.jpg</icon>
     <label>Mobile Billing</label>
     <mobileReady>false</mobileReady>
     <motif>Custom191: TV Widescreen</motif>

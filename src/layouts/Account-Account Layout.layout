@@ -24,7 +24,7 @@
                 <behavior>Edit</behavior>
                 <field>Subcategories__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SAP_ID__c</field>
             </layoutItems>

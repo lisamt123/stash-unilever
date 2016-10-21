@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
-    <visibility>Public</visibility>
     <description>This custom setting is used to give access on gate document sections for project team members</description>
     <enableFeeds>false</enableFeeds>
     <fields>
@@ -23,4 +22,5 @@
         <type>TextArea</type>
     </fields>
     <label>IPM Gate Document Section Access</label>
+    <visibility>Public</visibility>
 </CustomObject>

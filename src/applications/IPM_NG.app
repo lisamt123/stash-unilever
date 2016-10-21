@@ -3,6 +3,7 @@
     <defaultLandingTab>IPM_Home</defaultLandingTab>
     <description>This App is built for Unilever Innovation and Process Management</description>
     <label>IPM Navigator</label>
+    <logo>IPMNG/IPMNG_Logo.png</logo>
     <tab>IPM_Home</tab>
     <tab>All_Projects</tab>
     <tab>IPM_My_To_Do_List</tab>

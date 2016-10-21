@@ -28,8 +28,7 @@ public without sharing class FAU_Webinar_ParticipantCls {
         System.Debug('#### FAU_Webinar_ParticipantBeforeInsertUpdate - Send Webinar Date/Time');
         FAU_Webinar_Participant__c[] lWebPart =new FAU_Webinar_Participant__c[]{};  
         for(Integer i = (lNewWebPart.size()-1); i >=0 ; i--) { 
-          // Removed Boolean expression. 
-           if (lNewWebPart[i].FAU_Has_Accepted__c) {
+           if (lNewWebPart[i].FAU_Has_Accepted__c == True) {
                 lWebPart.add(lNewWebPart[i]);   
             }
         }   
@@ -48,7 +47,8 @@ public without sharing class FAU_Webinar_ParticipantCls {
         System.Debug('#### FAU_Webinar_ParticipantBeforeInsertUpdate - Send Webinar Date/Time');
         FAU_Webinar_Participant__c[] lWebPart =new FAU_Webinar_Participant__c[]{};  
         for(Integer i = (lNewWebPart.size()-1); i >=0 ; i--) { 
-           if ((lNewWebPart[i].FAU_Has_Accepted__c)&&(!lOldWebPart[i].FAU_Has_Accepted__c)) {
+           if ((lNewWebPart[i].FAU_Has_Accepted__c == True)&&
+                (lOldWebPart[i].FAU_Has_Accepted__c == False)) {
                 lWebPart.add(lNewWebPart[i]);   
             }
         }   

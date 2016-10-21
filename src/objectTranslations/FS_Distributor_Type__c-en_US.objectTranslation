@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Distributor Type</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Distributor Type</value>
+    </caseValues>
+    <fields>
+        <label><!-- C&amp;C --></label>
+        <name>FS_C_C__c</name>
+    </fields>
+    <fields>
+        <label><!-- Direct --></label>
+        <name>FS_Direct__c</name>
+    </fields>
+    <fields>
+        <label><!-- Logist --></label>
+        <name>FS_Logist__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partner --></label>
+        <name>FS_Partner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Slabco --></label>
+        <name>FS_Slabco__c</name>
+    </fields>
+    <fields>
+        <label><!-- Strategic --></label>
+        <name>FS_Strategic__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

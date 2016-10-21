@@ -40,7 +40,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>true</allowInChatterGroups>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>HLE Request Object</description>
@@ -108,11 +108,12 @@
         <fullName>HLE_Proposed_high_level_plan_timelines__c</fullName>
         <externalId>false</externalId>
         <label>HLE Proposed high level plan&amp;timelines*</label>
-        <length>131072</length>
+        <length>255</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>HLE_Request_ID__c</fullName>
@@ -298,7 +299,7 @@ null)))</formula>
     <fields>
         <fullName>dt_HLE_Date_PWORF_required__c</fullName>
         <externalId>false</externalId>
-        <label>PWORF required date</label>
+        <label>HLE Date PWORF required</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -348,7 +349,7 @@ null)))</formula>
     <fields>
         <fullName>eml_HLE_PB_Email__c</fullName>
         <externalId>false</externalId>
-        <label>Vendor Project Manager Email*</label>
+        <label>HLE Email*</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -483,7 +484,7 @@ null)))</formula>
         <label>BPE Effort in man-days*</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -492,10 +493,10 @@ null)))</formula>
     <fields>
         <fullName>num_HLE_Estimated_Accenture_charge__c</fullName>
         <externalId>false</externalId>
-        <label>HLE Estimated Accenture charge*</label>
+        <label>HLE Estimated Accenture charge</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -507,7 +508,7 @@ null)))</formula>
         <label>HLE Estimated man-days*</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -551,7 +552,7 @@ null)))</formula>
     <fields>
         <fullName>ph_HLE_PB_Contact_No__c</fullName>
         <externalId>false</externalId>
-        <label>Vendor Project Manager Contact No*</label>
+        <label>HLE Contact No*</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -751,11 +752,12 @@ null)))</formula>
         <fullName>txt_Additional_information__c</fullName>
         <externalId>false</externalId>
         <label>Additional Information</label>
-        <length>131072</length>
+        <length>255</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>txt_Assumptions__c</fullName>
@@ -763,11 +765,12 @@ null)))</formula>
         <externalId>false</externalId>
         <inlineHelpText>Any known assumptions</inlineHelpText>
         <label>Assumptions*</label>
-        <length>131072</length>
+        <length>255</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>txt_BPE_Accenture_Demand_ID__c</fullName>
@@ -795,11 +798,10 @@ null)))</formula>
         <fullName>txt_BPE_Key_assumptions__c</fullName>
         <externalId>false</externalId>
         <label>BPE Key assumptions*</label>
-        <length>131072</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>txt_BPE_Title__c</fullName>
@@ -829,11 +831,12 @@ null)))</formula>
         <externalId>false</externalId>
         <inlineHelpText>Relevant background context information on the project, including purpose, objectives, business benefits.</inlineHelpText>
         <label>Background*</label>
-        <length>131072</length>
+        <length>255</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>txt_Dependencies__c</fullName>
@@ -841,11 +844,12 @@ null)))</formula>
         <externalId>false</externalId>
         <inlineHelpText>Any dependencies on other IT or non-IT projects or resources</inlineHelpText>
         <label>Dependencies*</label>
-        <length>131072</length>
+        <length>255</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>txt_HLE_Accenture_Area__c</fullName>
@@ -861,12 +865,13 @@ null)))</formula>
     <fields>
         <fullName>txt_HLE_Accenture_estimated_project_char__c</fullName>
         <externalId>false</externalId>
-        <label>Estimated project charges summary</label>
-        <length>65000</length>
+        <label>HLE Accenture estimated project charge*</label>
+        <length>255</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>txt_HLE_Accenture_reference__c</fullName>
@@ -883,11 +888,10 @@ null)))</formula>
         <fullName>txt_HLE_Assumptions_Risks_Qualifying__c</fullName>
         <externalId>false</externalId>
         <label>HLE Assumption/Risks/Qualifying Info*</label>
-        <length>131072</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>txt_HLE_Commercial_caveats__c</fullName>
@@ -935,11 +939,12 @@ null)))</formula>
         <fullName>txt_HLE_Scope__c</fullName>
         <externalId>false</externalId>
         <label>HLE Scope*</label>
-        <length>131072</length>
+        <length>255</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>txt_HLE_Skill_Resources_Blend_rate__c</fullName>
@@ -956,11 +961,10 @@ null)))</formula>
         <fullName>txt_HLE_Solution_overview_approach__c</fullName>
         <externalId>false</externalId>
         <label>HLE Solution overview/approach*</label>
-        <length>131072</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>txt_NA_Notes__c</fullName>
@@ -991,11 +995,12 @@ null)))</formula>
         <externalId>false</externalId>
         <inlineHelpText>Detail regarding scope and scale</inlineHelpText>
         <label>Project Description/Specification*</label>
-        <length>131072</length>
+        <length>255</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>txt_Project_type__c</fullName>
@@ -1040,11 +1045,12 @@ null)))</formula>
         <externalId>false</externalId>
         <inlineHelpText>Any known risks and issues</inlineHelpText>
         <label>Risks and Issues*</label>
-        <length>131072</length>
+        <length>255</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>txt_SLA1__c</fullName>
@@ -1072,11 +1078,12 @@ null)))</formula>
         <externalId>false</externalId>
         <inlineHelpText>Indicate whether this project may require the provision of additional software or licenses either by Unilever or by Accenture (or both)</inlineHelpText>
         <label>Software/Licensing Requirements*</label>
-        <length>131072</length>
+        <length>255</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>10</visibleLines>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>txt_Status__c</fullName>

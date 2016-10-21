@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Category EI Matrix</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Category EI Matrix</value>
+    </caseValues>
+    <fields>
+        <label><!-- Category Group Category Name --></label>
+        <name>Category_Group_Category_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Greenhouse Gases(g) --></label>
+        <name>Greenhouse_Gases_g__c</name>
+    </fields>
+    <fields>
+        <label><!-- Health &amp; Hygeine --></label>
+        <name>Health_Hygeine__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nutrition --></label>
+        <name>Nutrition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sustainable Sourcing --></label>
+        <name>Sustainable_Sourcing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Waste(g) --></label>
+        <name>Waste_g__c</name>
+    </fields>
+    <fields>
+        <label><!-- Water(litres) --></label>
+        <name>Water_litres__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

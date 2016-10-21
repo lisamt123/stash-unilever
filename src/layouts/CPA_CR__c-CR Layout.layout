@@ -90,6 +90,10 @@
                 <behavior>Edit</behavior>
                 <field>txt_Unilever_Content_Approver_Name__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

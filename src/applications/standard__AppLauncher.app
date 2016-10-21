@@ -2,4 +2,6 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <defaultLandingTab>standard-AppLauncher</defaultLandingTab>
     <tab>standard-AppLauncher</tab>
+    <tab>CFC_Events__c</tab>
+    <tab>CFC_Attendee__c</tab>
 </CustomApplication>

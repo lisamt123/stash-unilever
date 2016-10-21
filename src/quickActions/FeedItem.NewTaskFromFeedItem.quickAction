@@ -4,6 +4,7 @@
         <field>Description</field>
         <formula>FeedItem.Body</formula>
     </fieldOverrides>
+    <optionsCreateFeedItem>true</optionsCreateFeedItem>
     <quickActionLayout>
         <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
         <quickActionLayoutColumns>
@@ -38,5 +39,4 @@
     <standardLabel>CreateNew</standardLabel>
     <targetObject>Task</targetObject>
     <type>Create</type>
-     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

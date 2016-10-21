@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Activity Record Count --></label>
+        <name>Activity_Record_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Activity ID --></label>
+        <name>CHD__Activity_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Activity Internal ID --></label>
+        <name>CHD__Activity_Internal_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD ID --></label>
+        <name>CHD__CHD_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Content --></label>
+        <name>CHD__Content__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Creation Datetime --></label>
+        <name>CHD__Creation_Datetime__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD Note Type --></label>
+        <name>CHD__Note_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD User First Name --></label>
+        <name>CHD__User_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD User Last Name --></label>
+        <name>CHD__User_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CHD User Login --></label>
+        <name>CHD__User_Login__c</name>
+    </fields>
+    <fields>
+        <label><!-- Activity Type --></label>
+        <name>Call_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>FS_Account__c</name>
+        <relationshipLabel><!-- Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Distributor name --></label>
+        <name>FS_Distributorname__c</name>
+    </fields>
+    <fields>
+        <label><!-- Survey Name --></label>
+        <name>FS_SurveyName__c</name>
+        <relationshipLabel><!-- Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Task Type --></label>
+        <name>FS_Task_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Visit with Chef --></label>
+        <name>FS_VisitwithChef__c</name>
+    </fields>
+    <fields>
+        <label><!-- Visit with DSR --></label>
+        <name>FS_VisitwithDSR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Website1 --></label>
+        <name>FS_Website__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account ID Reference --></label>
+        <name>ICB_AccountIDReference__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Geolocation --></label>
+        <name>ICB_CustomerGeolocation__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Executed Visit --></label>
+        <name>ICB_End_Executed_Visit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Executed Distance --></label>
+        <name>ICB_ExecutedDistance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Executed Visit Duration Time --></label>
+        <name>ICB_ExecutedVisitDurationTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Executed Visit Duration --></label>
+        <name>ICB_ExecutedVisitDuration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Executed Visit --></label>
+        <name>ICB_ExecutedVisit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Geolocation Check-Out --></label>
+        <name>ICB_GeolocationCheckOut__c</name>
+    </fields>
+    <fields>
+        <label><!-- Geolocation Check-In --></label>
+        <name>ICB_GeolocationCheckin__c</name>
+    </fields>
+    <fields>
+        <label><!-- ICB Golden Minute Open --></label>
+        <name>ICB_GoldenMinuteOpen__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Icon --></label>
+        <name>ICB_Icon__c</name>
+    </fields>
+    <fields>
+        <label><!-- In-store Discipline Index --></label>
+        <name>ICB_InStoreDisciplineIndex__c</name>
+    </fields>
+    <fields>
+        <label><!-- Out-of-Route Visit --></label>
+        <name>ICB_OutOfRouteVisit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planned Distance --></label>
+        <name>ICB_PlannedDistance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planned Visit --></label>
+        <name>ICB_PlannedVisit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Route Effectiveness Index --></label>
+        <name>ICB_RouteEffectivenessIndex__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Area --></label>
+        <name>ICB_Sales_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sequence --></label>
+        <name>ICB_Sequence__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Executed Visit --></label>
+        <name>ICB_Start_Executed_Visit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>ICB_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manager --></label>
+        <name>Manager__c</name>
+    </fields>
+    <fields>
+        <name>Priority</name>
+        <picklistValues>
+            <masterLabel>High</masterLabel>
+            <translation>Alta</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low</masterLabel>
+            <translation>Bassa</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Normal</masterLabel>
+            <translation>Normale</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Status</name>
+        <picklistValues>
+            <masterLabel>Checked</masterLabel>
+            <translation><!-- Checked --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation>Completato</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deferred</masterLabel>
+            <translation>Rinviato</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation>Non Iniziato</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting on someone else</masterLabel>
+            <translation>In attesa di qualcun altro</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Type</name>
+        <picklistValues>
+            <masterLabel>Call</masterLabel>
+            <translation><!-- Call --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Meeting</masterLabel>
+            <translation><!-- Meeting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal Task</masterLabel>
+            <translation><!-- Personal Task --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Task Layout</layout>
+        <sections>
+            <label><!-- Centrally Led Activity --></label>
+            <section>Centrally Led Activity</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Defer --></label>
+        <name>Defer</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- EditDescription --></label>
+        <name>EditDescription</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- UpdatePriority --></label>
+        <name>UpdatePriority</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- UpdateStatus --></label>
+        <name>UpdateStatus</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- FS Task --></label>
+        <name>FS_Task</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Send_Twitter_Message --></label>
+        <name>sf4twitter__Send_Twitter_Message</name>
+    </webLinks>
+</CustomObjectTranslation>

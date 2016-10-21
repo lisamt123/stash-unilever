@@ -52,6 +52,10 @@
                 <behavior>Required</behavior>
                 <field>Are_Dates_Guarenteed__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

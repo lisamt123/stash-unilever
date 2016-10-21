@@ -14,6 +14,10 @@
         <relationshipLabel><!-- Agent App User Preferences (Unilever Brand Name) --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Auto_Follow --></label>
+        <name>Auto_Follow__c</name>
+    </fields>
+    <fields>
         <label><!-- Category --></label>
         <name>Category__c</name>
         <relationshipLabel><!-- Agent App User Preferences --></relationshipLabel>

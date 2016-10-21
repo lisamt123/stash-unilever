@@ -55,6 +55,10 @@ Competitor strategy; Price change trend; Other --></help>
             <translation><!-- Supply chain/Manufacturing --></translation>
         </picklistValues>
     </fields>
+    <fields>
+        <label><!-- Topic Order --></label>
+        <name>Topic_Order__c</name>
+    </fields>
     <layouts>
         <layout>Agent Topic Layout</layout>
         <sections>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>FS MDM Request Page Messages</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>FS MDM Request Page Messages</value>
+    </caseValues>
+    <fields>
+        <label><!-- Already Sent Message --></label>
+        <name>FS_AlreadySentMessage__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Access Message --></label>
+        <name>FS_NoAccessMessage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Not Approved Message --></label>
+        <name>FS_NotApprovedMessage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Successfully Sent Message --></label>
+        <name>FS_SuccessfullySentMessage__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

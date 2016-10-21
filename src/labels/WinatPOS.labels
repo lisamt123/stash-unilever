@@ -1,7 +1,0 @@
-    <labels>
-        <fullName>WINatPOS_Salesforce_Base_URL</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>WINatPOS_Salesforce_Base_URL</shortDescription>
-        <value>https://unilever.my.salesforce.com</value>
-    </labels>

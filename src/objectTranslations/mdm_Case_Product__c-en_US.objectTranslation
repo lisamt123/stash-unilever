@@ -86,6 +86,10 @@
         <name>Product_CU_MRDR_Code__c</name>
     </fields>
     <fields>
+        <label><!-- Product Name &amp; Other --></label>
+        <name>Product_Name_Other__c</name>
+    </fields>
+    <fields>
         <label><!-- Product Status --></label>
         <name>Product_Status__c</name>
     </fields>

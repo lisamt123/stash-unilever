@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
-   <alerts>
+    <alerts>
         <fullName>IPM_BET_EA_Archived</fullName>
         <description>IPM BET Linked BET Archived</description>
         <protected>false</protected>
@@ -119,6 +119,25 @@
         </recipients>
         <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_PL_DPL_and_FL_TLD_is_changed</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_Notify_leaders_the_TLD_changed_during_Charter_doc</fullName>
+        <description>IPM Notify leaders the TLD changed during Charter doc</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Deputy_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Finance_Member__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_Notify_Leads_TLD_is_changed</template>
     </alerts>
     <alerts>
         <fullName>IPM_Notify_the_Local_Project_leader_when_local_project_created</fullName>
@@ -422,7 +441,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
-	<reevaluateOnChange>true</reevaluateOnChange>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Update_Rollout_TLD_on_Project</fullName>
@@ -679,11 +698,7 @@
         </actions>
         <active>true</active>
         <description>Notification to Finance Leader for TLD change in Local Rollout Project</description>
-        <formula>AND( ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),  ISPICKVAL(IPM_Project_Type__c, &apos;Rollout&apos;),
-OR(ISPICKVAL(IPM_Phase__c, &apos;Feasibility&apos;),
-ISPICKVAL(IPM_Phase__c, &apos;Capability&apos;),
-ISPICKVAL(IPM_Phase__c, &apos;Market Ready&apos;),
-ISPICKVAL(IPM_Phase__c, &apos;Market Deployment&apos;)), ISCHANGED( IPM_Target_Launch_Dates__c ) )</formula>
+        <formula>AND( ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),  ISPICKVAL(IPM_Project_Type__c, &apos;Rollout&apos;), OR(ISPICKVAL(IPM_Phase__c, &apos;Feasibility&apos;), ISPICKVAL(IPM_Phase__c, &apos;Capability&apos;), ISPICKVAL(IPM_Phase__c, &apos;Market Ready&apos;), ISPICKVAL(IPM_Phase__c, &apos;Market Deployment&apos;)), ISCHANGED( IPM_Target_Launch_Dates__c ) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

@@ -115,7 +115,7 @@
     <fieldUpdates>
         <fullName>CPA_Query_response_SMT_group_email</fullName>
         <field>eml_SMT_group_email__c</field>
-        <formula>&quot;ApplicationSupplier.PM@unilever.com&quot;</formula>
+        <formula>&quot;Vivek.Kalidoss@unilever.com&quot;</formula>
         <name>CPA Query response SMT group email</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -124,7 +124,7 @@
     <fieldUpdates>
         <fullName>CPA_Query_response_VDM_group_email</fullName>
         <field>eml_VDM_group_email__c</field>
-        <formula>&quot;Demand.Unilever@accenture.com&quot;</formula>
+        <formula>&quot;Sameer.Vaidya@unilever.com&quot;</formula>
         <name>CPA Query response VDM group email</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

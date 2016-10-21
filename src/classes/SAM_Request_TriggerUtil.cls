@@ -105,34 +105,27 @@ public with sharing class SAM_Request_TriggerUtil{
                     }
                 }
             }
-            String errormsg = null;
-            if(((newlstRequest[i].txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST && newlstRequest[i].rol_Product_detail_count_having_cross_ch__c>0) || newlstRequest[i].txt_Request_Type__c == SAM_Constants.SAM_RW_CROSSCHARGE_REQUEST) && oldlstRequest[i].pkl_SAM_team_Status__c != SAM_Constants.AWAITINGCHARGE && newlstRequest[i].pkl_SAM_team_Status__c == SAM_Constants.AWAITINGCHARGE){                
-            if(Req_attch_Approval_EmailsMap.get(newlstRequest[i].Id).size()<1){
-                    errorMsg = ' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails';
+            if(((newlstRequest[i].txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST && newlstRequest[i].rol_Product_detail_count_having_cross_ch__c>0) || newlstRequest[i].txt_Request_Type__c == SAM_Constants.SAM_RW_CROSSCHARGE_REQUEST) && oldlstRequest[i].pkl_SAM_team_Status__c != SAM_Constants.AWAITINGCHARGE && newlstRequest[i].pkl_SAM_team_Status__c == SAM_Constants.AWAITINGCHARGE){                if(Req_attch_Approval_EmailsMap.get(newlstRequest[i].Id).size()<1){
+                    if(newlstRequest[i].num_Cross_Charging_Version__c != null && newlstRequest[i].num_Cross_Charging_Version__c>0){
+                        newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_'+ newlstRequest[i].num_Cross_Charging_Version__c+'".');  
+                    }else
+                        newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_0"');
                 }
                 else{ 
                     boolean approval_Emails_Flag = false;
                     for(Attachment objAttachment:Req_attch_Approval_EmailsMap.get(newlstRequest[i].Id)){
-                        if((newlstRequest[i].num_Cross_Charging_Version__c == null || newlstRequest[i].num_Cross_Charging_Version__c == 0) && objAttachment.Name.containsIgnoreCase('Approval_Emails')){
+                        if(objAttachment.Name.containsIgnoreCase(String.valueOf(newlstRequest[i].num_Cross_Charging_Version__c))){
                             approval_Emails_Flag = true;
-                            break;
-                        }
-                        else  if(newlstRequest[i].num_Cross_Charging_Version__c != null && newlstRequest[i].num_Cross_Charging_Version__c>0 && objAttachment.Name.containsIgnoreCase(String.valueOf(newlstRequest[i].num_Cross_Charging_Version__c))){
-                            approval_Emails_Flag = true;
-                            break;
                         }
                     }
                     if(!approval_Emails_Flag){
-                       errorMsg = ' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails';
+                        if(newlstRequest[i].num_Cross_Charging_Version__c != null && newlstRequest[i].num_Cross_Charging_Version__c>0){
+                            newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_'+ newlstRequest[i].num_Cross_Charging_Version__c+'".');  
+                    }else
+                            newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_0"');
                     }                            
-                }               
-            }
-            if(errorMsg != null){
-                if(newlstRequest[i].num_Cross_Charging_Version__c != null && newlstRequest[i].num_Cross_Charging_Version__c>0){
-                    newlstRequest[i].addError(errormsg+'_Version_'+ newlstRequest[i].num_Cross_Charging_Version__c+'".');
-                }else {
-                    newlstRequest[i].addError(errormsg+'"');
                 }
+                
             } 
         }
      }

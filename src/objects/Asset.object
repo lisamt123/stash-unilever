@@ -17,10 +17,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>New</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -45,6 +41,10 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>CurrencyIsoCode</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
         <fullName>Description</fullName>
         <trackHistory>false</trackHistory>
     </fields>
@@ -58,7 +58,7 @@
                 <fullName>Cart P</fullName>
                 <default>false</default>
             </picklistValues>
-              <picklistValues>
+            <picklistValues>
                 <fullName>Cart M</fullName>
                 <default>false</default>
             </picklistValues>
@@ -66,7 +66,7 @@
                 <fullName>Cart G</fullName>
                 <default>false</default>
             </picklistValues>
-             <picklistValues>
+            <picklistValues>
                 <fullName>Field Box</fullName>
                 <default>false</default>
             </picklistValues>
@@ -74,10 +74,10 @@
                 <fullName>Tricycle</fullName>
                 <default>false</default>
             </picklistValues>
-         
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
@@ -92,6 +92,11 @@
     <fields>
         <fullName>Name</fullName>
         <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>OwnerId</fullName>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ParentId</fullName>
@@ -118,6 +123,14 @@
         <picklist>
             <picklistValues>
                 <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing Funds</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food Services</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

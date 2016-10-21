@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Иерархия клиентов</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Иерархия клиентов</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Иерархия клиентов</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Иерархия клиентов</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Иерархия клиентов</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Иерархия клиентов</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Иерархия клиентов</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Иерархия клиентов</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>false</plural>
+        <value>Иерархия клиентов</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>true</plural>
+        <value>Иерархия клиентов</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>false</plural>
+        <value>Иерархия клиентов</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>true</plural>
+        <value>Иерархия клиентов</value>
+    </caseValues>
+    <fields>
+        <help><!-- StStore the external for Ship To, PoP and Store Id. (Cross Dock) --></help>
+        <label>Внешний ID</label>
+        <name>External_ID__c</name>
+    </fields>
+    <fields>
+        <help>Клиенты под этим ID</help>
+        <label>Первичный клиент</label>
+        <name>Primary_Account__c</name>
+        <relationshipLabel>Иерархия клиентов</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Вторичный клиент</label>
+        <name>Secondary_Account__c</name>
+        <relationshipLabel>Иерархия клиентов (Вторичный клиент)</relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Store the information about Cross Account Reference such as PoP, Ship To or Store Id. --></help>
+        <label>Тип</label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>PoP Id.</masterLabel>
+            <translation><!-- PoP Id. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ship To Id.</masterLabel>
+            <translation><!-- Ship To Id. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Store Id. (Cross Dock)</masterLabel>
+            <translation><!-- Store Id. (Cross Dock) --></translation>
+        </picklistValues>
+    </fields>
+    <gender>Neuter</gender>
+    <layouts>
+        <layout>External PoP ID Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Иерархия клиентов</nameFieldLabel>
+</CustomObjectTranslation>

@@ -108,10 +108,10 @@
                 <behavior>Readonly</behavior>
                 <field>Threshold__c</field>
             </layoutItems>
-            <layoutItems>		
-                <behavior>Edit</behavior>		
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>isActive__c</field>
-            </layoutItems>                
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>

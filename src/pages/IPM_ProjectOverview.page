@@ -15,7 +15,7 @@
 </style>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ProjectOverview.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_CreateBet.css')}" />
-	<apex:form>
+	<apex:form >
 		<apex:actionStatus startText="" id="Loading" startStyleClass="proInit" />
 		<apex:composition template="IPM_TemplateRevamp">
 			<apex:define name="body">
@@ -286,8 +286,7 @@
 									<div class="col-sm-5">
 										<div class="percentage">
 											<a
-												href="{!$Page.IPM_GateDocument}?id={!project.Id}&printDoc={!currGate}"><apex:outputText
-													Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText>%</a>
+												href="{!$Page.IPM_GateDocument}?id={!project.Id}&printDoc={!currGate}"><apex:outputText Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText>%</a>
 										</div>
 									</div>
 								</div>
@@ -395,8 +394,7 @@
 							<apex:outputPanel layout="block" styleClass="charterApprover"
 								rendered="{! rolloutProjectRecentMilestone != NULL && rolloutProjectRecentMilestone.size > 0 && !rolloutProjectRecentMilestone[0].IPM_Project__r.Is_Archieved__c}">
 								<a
-									href="{!$Page.IPM_ProjectOverview}?id={!rolloutProjectRecentMilestone[0].IPM_Project__c}">{!rolloutProjectRecentMilestone[0].IPM_Project__r.Name}</a> {!gateDueDateMessage} &nbsp;<apex:outputField
-									value="{!rolloutProjectRecentMilestone[0].IPM_Due_Date__c}" />
+									href="{!$Page.IPM_ProjectOverview}?id={!rolloutProjectRecentMilestone[0].IPM_Project__c}">{!rolloutProjectRecentMilestone[0].IPM_Project__r.Name}</a> {!gateDueDateMessage} &nbsp;<apex:outputField value="{!rolloutProjectRecentMilestone[0].IPM_Due_Date__c}" />
 
 							</apex:outputPanel>
 							<div class="row">
@@ -842,7 +840,7 @@
 						</apex:outputPanel>
 
 						<!-- BET component Section Begins -->
-						<apex:outputPanel>
+						<apex:outputPanel >
 							<div class="col-sm-3">
 
 								<!-- To place the help symbol in the top right hand corner of page -->

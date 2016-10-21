@@ -4,10 +4,6 @@
         <plural>false</plural>
         <value>IPM CMI Overall Color Mapping</value>
     </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>IPM CMI Overall Color Mapping</value>
-    </caseValues>
     <fields>
         <label><!-- IPM CMI Gate --></label>
         <name>IPM_CMI_Gate__c</name>

@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Loss Tree</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Loss Tree</value>
+    </caseValues>
+    <fields>
+        <label><!-- Actual Dispatch --></label>
+        <name>Actual_Dispatch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual Production --></label>
+        <name>Actual_Production__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual Receipt --></label>
+        <name>Actual_Receipt__c</name>
+    </fields>
+    <fields>
+        <label><!-- DC Loss Value --></label>
+        <name>DC_Loss_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loss Description --></label>
+        <name>Loss_Description__c</name>
+        <picklistValues>
+            <masterLabel>Alterations to planned sequence - Loss due to change of production sequence compared to plan.</masterLabel>
+            <translation><!-- Alterations to planned sequence - Loss due to change of production sequence compared to plan. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHILD PACK (COMPONENT) NOT AVAILABLE</masterLabel>
+            <translation><!-- CHILD PACK (COMPONENT) NOT AVAILABLE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commissioning - Loss due to commissioning of new production line / process plant</masterLabel>
+            <translation><!-- Commissioning - Loss due to commissioning of new production line / process plant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deliberate Over Production - Loss due to over production resulting from a decision to consume materials or product</masterLabel>
+            <translation><!-- Deliberate Over Production - Loss due to over production resulting from a decision to consume materials or product --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deliberate Under Production -  Loss due to under production resulting from a decision not to consume materials or product</masterLabel>
+            <translation><!-- Deliberate Under Production -  Loss due to under production resulting from a decision not to consume materials or product --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FACTORY OR WAREHOUSE IT ISSUE</masterLabel>
+            <translation><!-- FACTORY OR WAREHOUSE IT ISSUE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FACTORY RELIABILITY LOSS</masterLabel>
+            <translation><!-- FACTORY RELIABILITY LOSS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FACTORY RELIABILITY LOSS DUE TO MATERIAL AVAILABILITY</masterLabel>
+            <translation><!-- FACTORY RELIABILITY LOSS DUE TO MATERIAL AVAILABILITY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FG Ordering error - Loss due to a material not being ordered or the wrong material being ordered</masterLabel>
+            <translation><!-- FG Ordering error - Loss due to a material not being ordered or the wrong material being ordered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FG Stock receipt - Loss due to stock on site but unable to use / receipt</masterLabel>
+            <translation><!-- FG Stock receipt - Loss due to stock on site but unable to use / receipt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FG Transport  failure - Loss due to failure fo suppliers to deliver materials on time; Manufacturing Site to CDC</masterLabel>
+            <translation><!-- FG Transport  failure - Loss due to failure fo suppliers to deliver materials on time; Manufacturing Site to CDC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FORCE MAJEURE/STRIKES</masterLabel>
+            <translation><!-- FORCE MAJEURE/STRIKES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finished product quantity -  Loss due to an individual packing too much / little</masterLabel>
+            <translation><!-- Finished product quantity -  Loss due to an individual packing too much / little --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GOVT AND EXPORT PROCESSES</masterLabel>
+            <translation><!-- GOVT AND EXPORT PROCESSES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INCORRECT MASTER DATA</masterLabel>
+            <translation><!-- INCORRECT MASTER DATA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INTRANSIT DELAY</masterLabel>
+            <translation><!-- INTRANSIT DELAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IT system failure</masterLabel>
+            <translation><!-- IT system failure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incorrect Data - Loss/Gain due to incorrect data</masterLabel>
+            <translation><!-- Incorrect Data - Loss/Gain due to incorrect data --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal Demand Pull Forward / Pushback</masterLabel>
+            <translation><!-- Internal Demand Pull Forward / Pushback --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal Production Demand Increase / Decrease</masterLabel>
+            <translation><!-- Internal Production Demand Increase / Decrease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LOADING CONSOLIDATION FROM OTHER PLANT</masterLabel>
+            <translation><!-- LOADING CONSOLIDATION FROM OTHER PLANT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Labour Loss - Loss due to non-availability of previously agreed labour in the planning process</masterLabel>
+            <translation><!-- Labour Loss - Loss due to non-availability of previously agreed labour in the planning process --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MANUAL ERROR</masterLabel>
+            <translation><!-- MANUAL ERROR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufacturing Line Adjustment</masterLabel>
+            <translation><!-- Manufacturing Line Adjustment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Request Decrease - Loss due to a market requesting volume reduction, or another sku</masterLabel>
+            <translation><!-- Market Request Decrease - Loss due to a market requesting volume reduction, or another sku --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Request Increase - Loss due to a market requesting additional volume, or another sku</masterLabel>
+            <translation><!-- Market Request Increase - Loss due to a market requesting additional volume, or another sku --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Missing Data - Loss/Gain due to missing data or late encoding</masterLabel>
+            <translation><!-- Missing Data - Loss/Gain due to missing data or late encoding --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Missing/incorrect  data</masterLabel>
+            <translation><!-- Missing/incorrect  data --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multidelivery PO</masterLabel>
+            <translation><!-- Multidelivery PO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multiline PO</masterLabel>
+            <translation><!-- Multiline PO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NO SPACE IN DOWNSTREAM CDC OR HUB</masterLabel>
+            <translation><!-- NO SPACE IN DOWNSTREAM CDC OR HUB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NO SPACE IN DOWNSTREAM DC</masterLabel>
+            <translation><!-- NO SPACE IN DOWNSTREAM DC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NO SPACE IN TRUCK</masterLabel>
+            <translation><!-- NO SPACE IN TRUCK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OEE - Loss due to production line failure</masterLabel>
+            <translation><!-- OEE - Loss due to production line failure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ON TIME ISSUES</masterLabel>
+            <translation><!-- ON TIME ISSUES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Supplier Related Issue</masterLabel>
+            <translation><!-- Other Supplier Related Issue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other master data issues</masterLabel>
+            <translation><!-- Other master data issues --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PHYSICAL TRUCK DOESN’T MEET UNILEVER QUALITY GUIDELINES</masterLabel>
+            <translation><!-- PHYSICAL TRUCK DOESN’T MEET UNILEVER QUALITY GUIDELINES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLANNER REQUEST TO PRIORITIZE STOCK ALLOCATION DIFFERENTLY</masterLabel>
+            <translation><!-- PLANNER REQUEST TO PRIORITIZE STOCK ALLOCATION DIFFERENTLY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLANNING SYSTEM(SAP/OTM) ISSUES </masterLabel>
+            <translation><!-- PLANNING SYSTEM(SAP/OTM) ISSUES  --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging - Loss due to non-conformance of packaging materials</masterLabel>
+            <translation><!-- Packaging - Loss due to non-conformance of packaging materials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plan communication - Loss due to the fact the factory were not aware of the item being on the plan</masterLabel>
+            <translation><!-- Plan communication - Loss due to the fact the factory were not aware of the item being on the plan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plan recording - Loss due to an inaccuracy in plan recording</masterLabel>
+            <translation><!-- Plan recording - Loss due to an inaccuracy in plan recording --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plan unachievable -  Loss due to the fact that the plan was not achievable within available capacity</masterLabel>
+            <translation><!-- Plan unachievable -  Loss due to the fact that the plan was not achievable within available capacity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production carry over - Loss due to production carried forward from previous week</masterLabel>
+            <translation><!-- Production carry over - Loss due to production carried forward from previous week --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production recording -  Loss due to an inaccuracy in production recording</masterLabel>
+            <translation><!-- Production recording -  Loss due to an inaccuracy in production recording --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RESOURCE UNAVAILABILITY</masterLabel>
+            <translation><!-- RESOURCE UNAVAILABILITY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RM/PM Ordering error - Loss due to a material not being ordered or the wrong material being ordered</masterLabel>
+            <translation><!-- RM/PM Ordering error - Loss due to a material not being ordered or the wrong material being ordered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RM/PM Stock receipt - Loss due to stock on site but unable to use / receipt</masterLabel>
+            <translation><!-- RM/PM Stock receipt - Loss due to stock on site but unable to use / receipt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RM/PM Supplier failure - Loss due to failure fo suppliers to deliver materials on time</masterLabel>
+            <translation><!-- RM/PM Supplier failure - Loss due to failure fo suppliers to deliver materials on time --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ROUTE DOES NOT MEET LOADABILITY REQUIREMENTS</masterLabel>
+            <translation><!-- ROUTE DOES NOT MEET LOADABILITY REQUIREMENTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Raw products - Loss due to non-conformance of raw materials</masterLabel>
+            <translation><!-- Raw products - Loss due to non-conformance of raw materials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rounding Code Adjustments</masterLabel>
+            <translation><!-- Rounding Code Adjustments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SECURITY AND VEHICLE CHECK</masterLabel>
+            <translation><!-- SECURITY AND VEHICLE CHECK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STOCK MISMATCH : SYSTEM VS WAREHOUSE</masterLabel>
+            <translation><!-- STOCK MISMATCH : SYSTEM VS WAREHOUSE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STOCK UNDER QC HOLD</masterLabel>
+            <translation><!-- STOCK UNDER QC HOLD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Semi products - Loss due to non-conformance of semi products</masterLabel>
+            <translation><!-- Semi products - Loss due to non-conformance of semi products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Semi-finished product quantity - Loss due to an individual making too much / little</masterLabel>
+            <translation><!-- Semi-finished product quantity - Loss due to an individual making too much / little --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supplier Confirmation Missing</masterLabel>
+            <translation><!-- Supplier Confirmation Missing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supplier shipped above tolerance (+/-)</masterLabel>
+            <translation><!-- Supplier shipped above tolerance (+/-) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Switching production to another line - Loss due to change of production line compared to plan.</masterLabel>
+            <translation><!-- Switching production to another line - Loss due to change of production line compared to plan. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TRANSPORT DOCUMENT GENERATION</masterLabel>
+            <translation><!-- TRANSPORT DOCUMENT GENERATION --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TRANSPORT DOCUMENT VERIFICATION</masterLabel>
+            <translation><!-- TRANSPORT DOCUMENT VERIFICATION --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TRUCK NOT PLACED IN TIME</masterLabel>
+            <translation><!-- TRUCK NOT PLACED IN TIME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VEHICLE BREAKDOWN</masterLabel>
+            <translation><!-- VEHICLE BREAKDOWN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WAITING FOR FTL</masterLabel>
+            <translation><!-- WAITING FOR FTL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wrong Lead Time</masterLabel>
+            <translation><!-- Wrong Lead Time --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Loss Name --></label>
+        <name>Loss_Name__c</name>
+        <picklistValues>
+            <masterLabel>ACT OF NATURE</masterLabel>
+            <translation><!-- ACT OF NATURE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IT &amp; MASTER DATA</masterLabel>
+            <translation><!-- IT &amp; MASTER DATA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LOGISTICS</masterLabel>
+            <translation><!-- LOGISTICS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Line Scheduling Losses</masterLabel>
+            <translation><!-- Line Scheduling Losses --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Logistics Loss</masterLabel>
+            <translation><!-- Logistics Loss --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MANUAL ERROR</masterLabel>
+            <translation><!-- MANUAL ERROR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Request</masterLabel>
+            <translation><!-- Market Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Master Data Related</masterLabel>
+            <translation><!-- Master Data Related --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OTHER</masterLabel>
+            <translation><!-- OTHER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Order Generation</masterLabel>
+            <translation><!-- Order Generation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Over/Under Production</masterLabel>
+            <translation><!-- Over/Under Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Procurement Related</masterLabel>
+            <translation><!-- Procurement Related --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production Loss</masterLabel>
+            <translation><!-- Production Loss --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production Related</masterLabel>
+            <translation><!-- Production Related --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SUPPLY RELATED</masterLabel>
+            <translation><!-- SUPPLY RELATED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supplier Related</masterLabel>
+            <translation><!-- Supplier Related --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Systems</masterLabel>
+            <translation><!-- Systems --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WAREHOUSING</masterLabel>
+            <translation><!-- WAREHOUSING --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Loss Recorded Date --></label>
+        <name>Loss_Recorded_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loss Sub-Family --></label>
+        <name>Loss_Sub_Family__c</name>
+        <picklistValues>
+            <masterLabel>ACT OF NATURE</masterLabel>
+            <translation><!-- ACT OF NATURE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAPACITY ISSUE</masterLabel>
+            <translation><!-- CAPACITY ISSUE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data Capture</masterLabel>
+            <translation><!-- Data Capture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deliberate over or under production</masterLabel>
+            <translation><!-- Deliberate over or under production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Human Error</masterLabel>
+            <translation><!-- Human Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IT RELATED</masterLabel>
+            <translation><!-- IT RELATED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inbound Material Availability (RM/PM Availability)</masterLabel>
+            <translation><!-- Inbound Material Availability (RM/PM Availability) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inbound Quality</masterLabel>
+            <translation><!-- Inbound Quality --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal Demand Pull Forward / Pushback</masterLabel>
+            <translation><!-- Internal Demand Pull Forward / Pushback --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal Production Demand Increase / Decrease</masterLabel>
+            <translation><!-- Internal Production Demand Increase / Decrease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KPI Calculation</masterLabel>
+            <translation><!-- KPI Calculation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MANUAL ERROR</masterLabel>
+            <translation><!-- MANUAL ERROR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MASTER DATA</masterLabel>
+            <translation><!-- MASTER DATA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufacturing Line Adjustment</masterLabel>
+            <translation><!-- Manufacturing Line Adjustment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufacturing Loss</masterLabel>
+            <translation><!-- Manufacturing Loss --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Request</masterLabel>
+            <translation><!-- Market Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multidelivery PO</masterLabel>
+            <translation><!-- Multidelivery PO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multiline PO</masterLabel>
+            <translation><!-- Multiline PO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ONTIME ISSUE</masterLabel>
+            <translation><!-- ONTIME ISSUE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OTHER</masterLabel>
+            <translation><!-- OTHER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Supplier Related Issue</masterLabel>
+            <translation><!-- Other Supplier Related Issue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other master data issues</masterLabel>
+            <translation><!-- Other master data issues --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outbound Material Availability (FG Availability)</masterLabel>
+            <translation><!-- Outbound Material Availability (FG Availability) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PRODUCT QUALITY</masterLabel>
+            <translation><!-- PRODUCT QUALITY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning Loss</masterLabel>
+            <translation><!-- Planning Loss --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rounding Code Adjustments</masterLabel>
+            <translation><!-- Rounding Code Adjustments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STOCK ALLOCATION</masterLabel>
+            <translation><!-- STOCK ALLOCATION --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STOCK AVAILABILITY</masterLabel>
+            <translation><!-- STOCK AVAILABILITY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supplier Confirmation Missing</masterLabel>
+            <translation><!-- Supplier Confirmation Missing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supplier shipped above tolerance (+/-)</masterLabel>
+            <translation><!-- Supplier shipped above tolerance (+/-) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TRUCK PLACEMENT</masterLabel>
+            <translation><!-- TRUCK PLACEMENT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TRUCK QUALITY</masterLabel>
+            <translation><!-- TRUCK QUALITY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wrong Lead Time</masterLabel>
+            <translation><!-- Wrong Lead Time --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Loss Type --></label>
+        <name>Loss_Type__c</name>
+        <picklistValues>
+            <masterLabel>Dispatch Compliance</masterLabel>
+            <translation><!-- Dispatch Compliance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MRP Compliance</masterLabel>
+            <translation><!-- MRP Compliance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Output Reliability</masterLabel>
+            <translation><!-- Output Reliability --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Loss Updated in SCDG --></label>
+        <name>Loss_Updated_in_SCDG__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loss Updated in Salesforce --></label>
+        <name>Loss_Updated_in_Salesforce__c</name>
+    </fields>
+    <fields>
+        <label><!-- MRP Loss Value --></label>
+        <name>MRP_Loss_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- OR Loss Value --></label>
+        <name>OR_Loss_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO --></label>
+        <name>PO__c</name>
+    </fields>
+    <fields>
+        <label><!-- PR --></label>
+        <name>PR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planned Dispatch --></label>
+        <name>Planned_Dispatch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planned Production --></label>
+        <name>Planned_Production__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planned Receipt --></label>
+        <name>Planned_Receipt__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plant Code --></label>
+        <name>Plant_Code__c</name>
+        <picklistValues>
+            <masterLabel>C106</masterLabel>
+            <translation><!-- C106 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C107</masterLabel>
+            <translation><!-- C107 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- RegionId --></label>
+        <name>RegionId__c</name>
+    </fields>
+    <fields>
+        <label><!-- SKU Description --></label>
+        <name>SKU_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- SKU --></label>
+        <name>SKU__c</name>
+    </fields>
+    <fields>
+        <label><!-- STO/SO --></label>
+        <name>STO_SO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week --></label>
+        <name>Week__c</name>
+    </fields>
+    <layouts>
+        <layout>Loss Tree Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -5,6 +5,7 @@
         <fullName>IPM_Market_Place_Activity__c</fullName>
         <description>List of allowed MPA values</description>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>IPM Market Place Activity</label>
         <length>255</length>
         <required>false</required>
@@ -15,6 +16,7 @@
         <fullName>IPM_Project_Phase__c</fullName>
         <description>List of project phases</description>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>IPM Project Phase</label>
         <length>100</length>
         <required>false</required>
@@ -25,6 +27,7 @@
         <fullName>IPM_Project_Sub_Type__c</fullName>
         <description>Stores the subType of the project</description>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>IPM Project Sub Type</label>
         <picklist>
             <picklistValues>
@@ -42,12 +45,14 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_Threshold_Status__c</fullName>
         <description>Stores the threshold status of the project</description>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>IPM Threshold Status</label>
         <picklist>
             <picklistValues>
@@ -65,12 +70,14 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>checkBMIYellow__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>checkBMIYellow</label>
         <type>Checkbox</type>
     </fields>
@@ -78,6 +85,7 @@
         <fullName>checkGrossProfitYellow__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>checkGrossProfitYellow</label>
         <type>Checkbox</type>
     </fields>
@@ -85,6 +93,7 @@
         <fullName>checkPBOYellow__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>checkPBOYellow</label>
         <type>Checkbox</type>
     </fields>
@@ -92,6 +101,7 @@
         <fullName>checkValidCAPEXYellow__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>checkValidCAPEXYellow</label>
         <type>Checkbox</type>
     </fields>
@@ -100,6 +110,7 @@
         <defaultValue>false</defaultValue>
         <description>flag to indicate that red validation (red and yellow ) are to be done</description>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>checkValidGTOAndITORed</label>
         <type>Checkbox</type>
     </fields>
@@ -107,6 +118,7 @@
         <fullName>checkValidIRRYellow__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>checkValidIRRYellow</label>
         <type>Checkbox</type>
     </fields>
@@ -114,6 +126,7 @@
         <fullName>checkValidITOYellow__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>checkValidITOYellow</label>
         <type>Checkbox</type>
     </fields>
@@ -121,6 +134,7 @@
         <fullName>checkValidNPVYellow__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>checkValidNPVYellow</label>
         <type>Checkbox</type>
     </fields>
@@ -128,6 +142,7 @@
         <fullName>checkValidPaybackYellow__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
         <label>checkValidPaybackYellow</label>
         <type>Checkbox</type>
     </fields>

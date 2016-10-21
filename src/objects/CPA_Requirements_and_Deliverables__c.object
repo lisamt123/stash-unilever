@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -44,6 +40,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>It describes Unilever’s requirements in respect of this Project . Identify the main deliverable expected and the specific milestone goals that Supplier is required to meet. These requirements should be already approved by the Unilever business</description>
@@ -52,6 +49,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -93,6 +91,7 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services</inli
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -130,6 +129,15 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services</inli
         <label>All</label>
     </listViews>
     <listViews>
+        <fullName>CAP_ULPM_CPA_Requirements_and_Deliverables</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CAP_ULPM_Requirements_and_Deliverables</fullName>
         <filterScope>Queue</filterScope>
         <label>ULPM</label>
@@ -139,10 +147,28 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services</inli
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CAP_VDM_Queue_CPA_Requirements_and_Deliverables</fullName>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CAP_VDM_Queue_Requirements_and_Deliverables</fullName>
         <filterScope>Queue</filterScope>
         <label>VDM</label>
         <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_Requirements_and_Deliverables</fullName>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <queue>CPA_SMT</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

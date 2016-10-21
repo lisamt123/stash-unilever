@@ -9,7 +9,6 @@
         //component.set("v.spinnerShow", true);
         helper.changeButton(component,event,"button"); 
         console.log('Exit <menuOpenClose>');
-        
     },
     changeCheckBox : function(component, event, helper) {
         console.log('Entering <changeCheckBox>');
@@ -21,9 +20,9 @@
         console.log('Entering <solicitation>');
         //var indexContact = component.get("v.indexContact");
         //var listContact = component.get("v.listContacts");
-       //if(!listContact[indexContact].isDisabled){
-        component.set("v.isDisabled",true);
-        helper.createOpportunity(component, event);
+       
+        //if(!listContact[indexContact].isDisabled){
+            helper.createOpportunity(component, event);
         //}
         console.log('Exit <solicitation>');
     },

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Oblix FX Change</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Oblix FX Change</value>
+    </caseValues>
+    <fields>
+        <label><!-- Acknowledged --></label>
+        <name>Acknowledged__c</name>
+    </fields>
+    <fields>
+        <label><!-- FX Date --></label>
+        <name>FX_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financial Year --></label>
+        <name>Financial_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Org FX Date --></label>
+        <name>Org_FX_Date__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

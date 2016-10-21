@@ -238,6 +238,10 @@
                 <behavior>Readonly</behavior>
                 <field>AF_Threshold_Key__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

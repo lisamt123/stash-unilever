@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -126,7 +122,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Asia / Africa (U2K2)</fullName>
+                <fullName>Asia / Africa / NAMET (U2K2)</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -143,6 +139,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -198,6 +195,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -237,6 +235,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -271,7 +270,7 @@
         <errorDisplayField>Work_Level__c</errorDisplayField>
         <errorMessage>Value is required</errorMessage>
     </validationRules>
-       <webLinks>
+    <webLinks>
         <fullName>Export_Training_Track</fullName>
         <availability>online</availability>
         <description>Display VF page for exporting a training track</description>

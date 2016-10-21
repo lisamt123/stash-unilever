@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>WWP_LossTree</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>WWP_LossTree</value>
+    </caseValues>
+    <fields>
+        <label><!-- Loss Description --></label>
+        <name>Loss_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loss Name --></label>
+        <name>Loss_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loss Sub-Family --></label>
+        <name>Loss_Sub_Family__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loss Type --></label>
+        <name>Loss_Type__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

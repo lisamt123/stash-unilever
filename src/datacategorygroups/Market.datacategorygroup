@@ -13,16 +13,16 @@
         <dataCategory>
             <dataCategory>
                 <dataCategory>
-                    <label>Estonia</label>
-                    <name>Estonia</name>
+                    <label>Lithuania</label>
+                    <name>Lithuania</name>
                 </dataCategory>
                 <dataCategory>
                     <label>Latvia</label>
                     <name>Latvia</name>
                 </dataCategory>
                 <dataCategory>
-                    <label>Lithuania</label>
-                    <name>Lithuania</name>
+                    <label>Estonia</label>
+                    <name>Estonia</name>
                 </dataCategory>
                 <label>Baltics</label>
                 <name>Baltics</name>
@@ -136,6 +136,14 @@
         </dataCategory>
         <dataCategory>
             <dataCategory>
+                <label>Japan</label>
+                <name>Japan</name>
+            </dataCategory>
+            <label>North Asia</label>
+            <name>North_Asia</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
                 <dataCategory>
                     <label>Australia</label>
                     <name>Australia</name>
@@ -154,6 +162,14 @@
             <dataCategory>
                 <label>Philippines</label>
                 <name>Philippines</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Thailand</label>
+                <name>Thailand</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Vietnam</label>
+                <name>Vietnam</name>
             </dataCategory>
             <label>SEAA</label>
             <name>SEAA</name>
@@ -236,12 +252,20 @@
         </dataCategory>
         <dataCategory>
             <dataCategory>
-                <label>Sri Lanka</label>
-                <name>Sri_Lanka</name>
+                <label>Bangladesh</label>
+                <name>Bangladesh</name>
             </dataCategory>
             <dataCategory>
                 <label>India</label>
                 <name>India</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Pakistan</label>
+                <name>Pakistan</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Sri Lanka</label>
+                <name>Sri_Lanka</name>
             </dataCategory>
             <label>South Asia</label>
             <name>South_Asia</name>

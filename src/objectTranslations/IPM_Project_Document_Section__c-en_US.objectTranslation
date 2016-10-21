@@ -13,6 +13,10 @@
         <name>Comments__c</name>
     </fields>
     <fields>
+        <label><!-- Gate With Sequence --></label>
+        <name>Gate_With_Sequence__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Assortment CU --></label>
         <name>IPM_Assortment_CU__c</name>
     </fields>
@@ -328,6 +332,15 @@
     <fields>
         <label><!-- PDP Document Summary --></label>
         <name>IPM_PDP_Document_Summary__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field informs if IPM_Section__r.IPM_Parent_Section__c is null or not --></help>
+        <label><!-- IPM_Parent_Section_isNull --></label>
+        <name>IPM_Parent_Section_isNull__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM ProjectTemplate --></label>
+        <name>IPM_ProjectTemplate__c</name>
     </fields>
     <fields>
         <label><!-- IPM Project Document --></label>

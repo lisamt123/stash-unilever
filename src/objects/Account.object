@@ -25,10 +25,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -456,6 +452,1401 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Address2__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Address2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Address3__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Address3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Address__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Address</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Alcohol__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Alcohol</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Annual_Sales__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Annual Sales</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Attire__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Attire</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Average_Check__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Average Check</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Average_Daily_Census__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Average Daily Census</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Banquet_Facility__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Banquet Facility</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Bar__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Bar</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Buffet__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Buffet</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Business_Change__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Business Change</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Business_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Business Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__CHD_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>CHD ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__CHD_PID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD PID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__CHD_Previous_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Previous ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Chain_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Chain ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Chain_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Chain Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__City__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD City</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Coast__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Coast</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Comments__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Comments</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Complimentary_Breakfast__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Complimentary Breakfast</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Confidence_Level__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Confidence Level</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Country__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Country</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__County_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD County Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Creation_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Creation Date</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__CreditSafe_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD CreditSafe ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__CreditSafe_Score__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD CreditSafe Score</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Credit_Rating__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Credit Rating</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Customer_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Customer Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Dayparts__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Dayparts</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Delivery_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Delivery Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Employees__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Employees</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Enrollment__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Enrollment (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Fax__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Fax</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Free_Reduced_Meals__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Free Reduced Meals (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__GPO_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD GPO ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__GPO__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD GPO (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Gas_Station__c</fullName>
+        <deprecated>false</deprecated>
+        <description>a gas station is present</description>
+        <externalId>false</externalId>
+        <label>CHD Gas Station</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__HC_System__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD HC System</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Insee__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Insee</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Last_Update__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Last Update</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Latitude__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Latitude</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Legal_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Legal Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Location_PID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Location PID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Longitude__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Longitude</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__MSA__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD MSA</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Market_Segment__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Market Segment</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Menu_Items__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Menu Options</label>
+        <picklist>
+            <picklistValues>
+                <fullName>gluten_free_options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>healthy_options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>kids_menu</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>lowfat_options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>organic_options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>vegan_options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>vegetarian_options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CHD__Menu__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Menu</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Misc_Services__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Additional Fields</label>
+        <picklist>
+            <picklistValues>
+                <fullName>free_parking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>garage_parking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>good_for_groups</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>good_for_kids</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>has_tv</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>open_24_hours</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>parking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>parking_lot</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>private_room</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>valet_parking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>validated_parking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>wheelchair_accessible</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CHD__NPAI__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD NPAI</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__National_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD National Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Normalization_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Normalization Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Number_of_Beds__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Number of Beds (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Number_of_Meals_Day__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Number of Meals Day (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Number_of_Meals__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Number of Meals</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Number_of_Rooms__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Number of Rooms</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Number_of_Schools__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Number of Schools (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Number_of_Seats__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Number of Seats</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Open_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Open Date</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Operation_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Operation Type (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Outdoor_Seating__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Outdoor Seating</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Owner_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Owner ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Owner_PID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Owner PID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Ownership_Change_Flag__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Ownership Change Flag</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Ownership__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Ownership (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Phone_Area_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Phone Area Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Phone__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Phone</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Plus4__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Plus4</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Pool__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Pool</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Postal_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Postal Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Postal_Normalized__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Postal Normalized</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Primary_GPO__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Primary GPO</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Rating__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Rating</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Region1__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD State/Province</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Region__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Region</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Sector__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Sector</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Services_Offered__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Services Required</label>
+        <picklist>
+            <picklistValues>
+                <fullName>accepts_credit_cards</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>catering</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>delivery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>outdoor_seating</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>take_out</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>takes_reservations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>wifi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CHD__Simplified_Menu__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Simplified Menu</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Ski_Station__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Ski Station</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Booking__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Booking</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Delivery__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Delivery</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Facebook__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Facebook</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Food_Inspection__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Food Inspection</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Foursquare__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Foursquare</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Google_Places__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Google Places</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Hotels__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Hotels</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Instagram__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Instagram</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Lafourchette__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Lafourchette</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Local_Directory__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Local Directory</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Menu__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Menu</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Michelin__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Michelin</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Opentable__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Opentable</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Reservation__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Reservation</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Tripadvisor__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Tripadvisor</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Twitter__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Twitter</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Yellowpages__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Yellowpages</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Yelp__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Yelp</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Zomato__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Zomato</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Source__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Source</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Square_Footage__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Square Footage</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Tennis__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Tennis</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Total_Patient_Days__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Total Patient Days</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Units__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Units</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Urban_Area_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Urban Area Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Urban_Area_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Urban Area Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__VAT_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD VAT Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Website__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Website</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Years_In_Business__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Years In Business</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Channel__c</fullName>
@@ -1913,7 +3304,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <controllingFieldValues>VOLOGDA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Belarus</fullName>
+                <fullName>Belorussia</fullName>
                 <default>false</default>
                 <controllingFieldValues>MINSK</controllingFieldValues>
             </picklistValues>
@@ -1921,23 +3312,10 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <fullName>Volga</fullName>
                 <default>false</default>
                 <controllingFieldValues>CHEBOKSARY</controllingFieldValues>
-                <controllingFieldValues>IOSHKAR-OLA</controllingFieldValues>
-                <controllingFieldValues>IZHEVSK</controllingFieldValues>
-                <controllingFieldValues>KAZAN</controllingFieldValues>
-                <controllingFieldValues>KIROV</controllingFieldValues>
-                <controllingFieldValues>NABEREZHNIYE CHELNY</controllingFieldValues>
-                <controllingFieldValues>NIZHNIY NOVGOROD</controllingFieldValues>
-                <controllingFieldValues>ORENBURG</controllingFieldValues>
-                <controllingFieldValues>ORSK</controllingFieldValues>
-                <controllingFieldValues>PENZA</controllingFieldValues>
-                <controllingFieldValues>PERM</controllingFieldValues>
-                <controllingFieldValues>SAMARA</controllingFieldValues>
-                <controllingFieldValues>SARANSK</controllingFieldValues>
-                <controllingFieldValues>SARATOV</controllingFieldValues>
-                <controllingFieldValues>STERLITAMAK</controllingFieldValues>
-                <controllingFieldValues>TOLLIATTI</controllingFieldValues>
-                <controllingFieldValues>UFA</controllingFieldValues>
-                <controllingFieldValues>ULYANOVSK</controllingFieldValues>
+                <controllingFieldValues>CHELYABINSK</controllingFieldValues>
+                <controllingFieldValues>EKATERINBURG</controllingFieldValues>
+                <controllingFieldValues>KURGAN</controllingFieldValues>
+                <controllingFieldValues>TYUMEN</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>South</fullName>
@@ -1953,7 +3331,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <controllingFieldValues>VOLGOGRAD</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Sibir &amp; Far East</fullName>
+                <fullName>Sibir</fullName>
                 <default>false</default>
                 <controllingFieldValues>ABAKAN</controllingFieldValues>
                 <controllingFieldValues>BARNAUL</controllingFieldValues>
@@ -1969,21 +3347,24 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <controllingFieldValues>ULAN-UDE</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Ural</fullName>
+                <fullName>Far East</fullName>
                 <default>false</default>
-                <controllingFieldValues>CHELYABINSK</controllingFieldValues>
-                <controllingFieldValues>EKATERINBURG</controllingFieldValues>
-                <controllingFieldValues>KURGAN</controllingFieldValues>
-                <controllingFieldValues>MAGNITOGORSK</controllingFieldValues>
-                <controllingFieldValues>NIZHNEVARTOVSK</controllingFieldValues>
-                <controllingFieldValues>NIZHNIY TAGIL</controllingFieldValues>
-                <controllingFieldValues>SURGUT</controllingFieldValues>
-                <controllingFieldValues>TYUMEN</controllingFieldValues>
+                <controllingFieldValues>BLAGOVESCHENSK</controllingFieldValues>
+                <controllingFieldValues>KHABAROVSK</controllingFieldValues>
+                <controllingFieldValues>MAGADAN</controllingFieldValues>
+                <controllingFieldValues>PETROPAVLOVSK-KAMCHATSKY</controllingFieldValues>
+                <controllingFieldValues>VLADIVOSTOK</controllingFieldValues>
+                <controllingFieldValues>YAKUTSK</controllingFieldValues>
+                <controllingFieldValues>YUZHNO-SAKHALINSK</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Undefined</fullName>
+                <fullName>Ukraine</fullName>
                 <default>false</default>
-                <controllingFieldValues>Undef</controllingFieldValues>
+                <controllingFieldValues>CHERKASSY</controllingFieldValues>
+                <controllingFieldValues>CHERNIGOV</controllingFieldValues>
+                <controllingFieldValues>CHERNOVTSY</controllingFieldValues>
+                <controllingFieldValues>DNEPROPETROVSK</controllingFieldValues>
+                <controllingFieldValues>DONETSK</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -2003,43 +3384,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SAINT-PETERSBURG</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ABAKAN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ARKHANGELSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ARMAVIR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ASTRAKHAN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BARNAUL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>BELGOROD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BIYSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BLAGOVESCHENSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BRATSK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2047,7 +3392,103 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>CHEBOKSARY</fullName>
+                <fullName>IVANOVO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KALUGA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KOSTROMA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KURSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LIPETSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OREL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RYAZAN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SMOLENSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TAMBOV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TULA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TVER</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VLADIMIR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VORONEZH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YAROSLAVL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SAINT-PETERSBURG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ARKHANGELSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CHEREPOVETS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PETROZAVODSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PSKOV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SYKTYVKAR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VOLOGDA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MURMANSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NOVGOROD VELIKIY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KALININGRAD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MINSK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2055,7 +3496,131 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>CHEREPOVETS</fullName>
+                <fullName>EKATERINBURG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KURGAN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TYUMEN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CHEBOKSARY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ASTRAKHAN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ELISTA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KRASNODAR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ROSTOV-ON-DON</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SEVASTOPOL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SIMFEROPOL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VOLGOGRAD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ARMAVIR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GROZNIY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ABAKAN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BARNAUL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CHITA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IRKUTSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KEMEROVO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KRASNOYARSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NOVOSIBIRSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OMSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TOMSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ULAN-UDE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BIYSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BRATSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BLAGOVESCHENSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KHABAROVSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MAGADAN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PETROPAVLOVSK-KAMCHATSKY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VLADIVOSTOK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YAKUTSK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YUZHNO-SAKHALINSK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2071,327 +3636,11 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>CHITA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>DNEPROPETROVSK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>DONETSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>EKATERINBURG</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ELISTA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>GROZNIY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>IOSHKAR-OLA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>IRKUTSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>IVANOVO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>IZHEVSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KALININGRAD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KALUGA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KAZAN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KEMEROVO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KHABAROVSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KIROV</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KOMSOMOLSK-NA-AMURE</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KOSTROMA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KRASNODAR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KRASNOYARSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KURGAN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>KURSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>LIPETSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MAGADAN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MAGNITOGORSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MAKHACHKALA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MINSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MURMANSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NABEREZHNIYE CHELNY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NALCHIK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NAZRAN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NIZHNEVARTOVSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NIZHNIY NOVGOROD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NIZHNIY TAGIL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NORILSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NOVGOROD VELIKIY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NOVOKUZNETSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NOVOROSSIYSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NOVOSIBIRSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>OMSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>OREL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ORENBURG</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ORSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PENZA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PERM</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PETROPAVLOVSK-KAMCHATSKY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PETROZAVODSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PSKOV</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PYATIGORSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ROSTOV-ON-DON</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>RYAZAN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SAMARA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SARANSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SARATOV</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SEVASTOPOL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SIMFEROPOL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SMOLENSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SOCHI</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>STAVROPOL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>STERLITAMAK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SURGUT</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SYKTYVKAR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TAMBOV</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TOLLIATTI</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TOMSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TULA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TVER</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TYUMEN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>UFA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ULAN-UDE</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ULYANOVSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Undef</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>VLADIKAVKAZ</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>VLADIMIR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>VLADIVOSTOK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>VOLGOGRAD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>VOLOGDA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>VORONEZH</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>YAKUTSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>YAROSLAVL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>YUZHNO-SAKHALINSK</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -2417,7 +3666,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
             <picklistValues>
                 <fullName>St.Pete &amp; NW &amp; Bel</fullName>
                 <default>false</default>
-                <controllingFieldValues>Belarus</controllingFieldValues>
+                <controllingFieldValues>Belorussia</controllingFieldValues>
                 <controllingFieldValues>NW</controllingFieldValues>
                 <controllingFieldValues>St.Pete</controllingFieldValues>
             </picklistValues>
@@ -2428,15 +3677,15 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <controllingFieldValues>Volga</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Sibir &amp; Far East &amp; Ural</fullName>
+                <fullName>Sibir &amp; Far East</fullName>
                 <default>false</default>
-                <controllingFieldValues>Sibir &amp; Far East</controllingFieldValues>
-                <controllingFieldValues>Ural</controllingFieldValues>
+                <controllingFieldValues>Far East</controllingFieldValues>
+                <controllingFieldValues>Sibir</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Undefined</fullName>
+                <fullName>Ukraine</fullName>
                 <default>false</default>
-                <controllingFieldValues>Undefined</controllingFieldValues>
+                <controllingFieldValues>Ukraine</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -3834,19 +5083,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>DateTime</type>
     </fields>
     <fields>
-        <fullName>Requester_Comment__c</fullName>
-        <description>Explain a person is requesting the creation of this account.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Explain a person is requesting the creation of this account. This text is sent with the email notification to the manager and the administrator</inlineHelpText>
-        <label>Requester Comment</label>
-        <length>250</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Responsible_Unilever_Employee__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -3928,6 +5164,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>SMS_Search_Mobile_Number__c</fullName>
+        <description>CEC: Formula field is used to identify market specific accounts</description>
+        <externalId>false</externalId>
+        <formula>Mobile_Phone_No_Special_Char__c +  TEXT(Owner.Market__c)</formula>
+        <label>SMS Search Mobile Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Sales_ORG__c</fullName>
@@ -4094,17 +5341,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
-    <fields>
-        <fullName>SMS_Search_Mobile_Number__c</fullName>
-        <description>CEC: Formula field is used to identify market specific accounts</description>
-        <externalId>false</externalId>
-        <formula>Mobile_Phone_No_Special_Char__c +  TEXT(Owner.Market__c)</formula>
-        <label>SMS Search Mobile Number</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>   
     <fields>
         <fullName>Status__c</fullName>
         <description>Purpose : Status
@@ -5268,6 +6504,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     <listViews>
         <fullName>All_Distributor_Accounts</fullName>
         <columns>ACCOUNT.NAME</columns>
+        <columns>SAP_ID__c</columns>
         <columns>ACCOUNT.SITE</columns>
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
         <columns>ACCOUNT.PHONE1</columns>
@@ -5280,6 +6517,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <field>ACCOUNT.TYPE</field>
             <operation>equals</operation>
             <value>Distributor</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.ADDRESS2_COUNTRY</field>
+            <operation>contains</operation>
+            <value>US</value>
         </filters>
         <label>All Distributor Accounts</label>
         <language>en_US</language>
@@ -5389,6 +6631,26 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>Nouvelles cette semaine</label>
         <language>fr</language>
+    </listViews>
+    <listViews>
+        <fullName>New_and_Temporary_accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New,Temporary</value>
+        </filters>
+        <label>New and Temporary accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>UFS_Russia</roleAndSubordinatesInternal>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>PM_My_view</fullName>
@@ -9635,11 +10897,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_RusianRegion__c</picklist>
             <values>
-                <fullName>Belarus</fullName>
+                <fullName>Belorussia</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>CFO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Far East</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9651,7 +10917,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sibir %26 Far East</fullName>
+                <fullName>Sibir</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9660,6 +10926,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>St%2EPete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9941,11 +11211,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sibir %26 Far East %26 Ural</fullName>
+                <fullName>Sibir %26 Far East</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>St%2EPete %26 NW %26 Bel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12223,11 +13497,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_RusianRegion__c</picklist>
             <values>
-                <fullName>Belarus</fullName>
+                <fullName>Belorussia</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>CFO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Far East</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12239,7 +13517,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sibir %26 Far East</fullName>
+                <fullName>Sibir</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12251,11 +13529,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Undefined</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ural</fullName>
+                <fullName>Ukraine</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12354,19 +13628,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>IOSHKAR-OLA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>IRKUTSK</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>IVANOVO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IZHEVSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12378,23 +13644,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>KAZAN</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>KEMEROVO</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>KHABAROVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KIROV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KOMSOMOLSK-NA-AMURE</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12426,14 +13680,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>MAGNITOGORSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MAKHACHKALA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>MINSK</fullName>
                 <default>false</default>
             </values>
@@ -12446,43 +13692,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>NABEREZHNIYE CHELNY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NALCHIK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NAZRAN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NIZHNEVARTOVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NIZHNIY NOVGOROD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NIZHNIY TAGIL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NORILSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>NOVGOROD VELIKIY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NOVOKUZNETSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NOVOROSSIYSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12498,22 +13708,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>ORENBURG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ORSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PENZA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PERM</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>PETROPAVLOVSK-KAMCHATSKY</fullName>
                 <default>false</default>
             </values>
@@ -12523,10 +13717,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>PSKOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PYATIGORSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12542,18 +13732,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>SAMARA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SARANSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SARATOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SEVASTOPOL</fullName>
                 <default>false</default>
             </values>
@@ -12566,31 +13744,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>SOCHI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>STAVROPOL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>STERLITAMAK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SURGUT</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SYKTYVKAR</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>TAMBOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TOLLIATTI</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12610,23 +13768,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>UFA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>ULAN-UDE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ULYANOVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Undef</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>VLADIKAVKAZ</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12669,7 +13811,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sibir %26 Far East %26 Ural</fullName>
+                <fullName>Sibir %26 Far East</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12677,7 +13819,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Undefined</fullName>
+                <fullName>Ukraine</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15039,11 +16181,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>FS_RusianRegion__c</picklist>
             <values>
-                <fullName>Belarus</fullName>
+                <fullName>Belorussia</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>CFO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Far East</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15055,7 +16201,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sibir %26 Far East</fullName>
+                <fullName>Sibir</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15067,11 +16213,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Undefined</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ural</fullName>
+                <fullName>Ukraine</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15170,19 +16312,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>IOSHKAR-OLA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>IRKUTSK</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>IVANOVO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IZHEVSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15194,23 +16328,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>KAZAN</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>KEMEROVO</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>KHABAROVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KIROV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KOMSOMOLSK-NA-AMURE</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15242,14 +16364,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>MAGNITOGORSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MAKHACHKALA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>MINSK</fullName>
                 <default>false</default>
             </values>
@@ -15262,43 +16376,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>NABEREZHNIYE CHELNY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NALCHIK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NAZRAN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NIZHNEVARTOVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NIZHNIY NOVGOROD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NIZHNIY TAGIL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NORILSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>NOVGOROD VELIKIY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NOVOKUZNETSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NOVOROSSIYSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15314,22 +16392,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>ORENBURG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ORSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PENZA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PERM</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>PETROPAVLOVSK-KAMCHATSKY</fullName>
                 <default>false</default>
             </values>
@@ -15339,10 +16401,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>PSKOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PYATIGORSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15358,18 +16416,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>SAMARA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SARANSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SARATOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SEVASTOPOL</fullName>
                 <default>false</default>
             </values>
@@ -15382,31 +16428,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>SOCHI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>STAVROPOL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>STERLITAMAK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SURGUT</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SYKTYVKAR</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>TAMBOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TOLLIATTI</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15426,23 +16452,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>UFA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>ULAN-UDE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ULYANOVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Undef</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>VLADIKAVKAZ</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15485,7 +16495,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sibir %26 Far East %26 Ural</fullName>
+                <fullName>Sibir %26 Far East</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15493,7 +16503,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Undefined</fullName>
+                <fullName>Ukraine</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -18043,7 +19053,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Yes</fullName>
                 <default>false</default>
             </values>
-
         </picklistValues>
         <picklistValues>
             <picklist>Agree_to_comply_Unilever_Supplier_Code__c</picklist>
@@ -21616,7 +22625,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <lookupFilterFields>ACCOUNT.PHONE1</lookupFilterFields>
         <lookupFilterFields>PC_EMAIL</lookupFilterFields>
         <lookupFilterFields>ACCOUNT.SITE</lookupFilterFields>
-
         <lookupFilterFields>PC_ADDRESS2_ZIP</lookupFilterFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.SITE</lookupPhoneDialogsAdditionalFields>
@@ -21640,42 +22648,47 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     <sharingModel>Private</sharingModel>
     <validationRules>
         <fullName>FS_AccountNameChangeLock</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>To restrict the changes on account name for Russia sales rep users.</description>
         <errorConditionFormula>AND( 
 NOT(ISNEW()),OR(RecordType.Name=&apos;Operator Russia&apos;, RecordType.Name=&apos;Operator&apos;),
 OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilever Food Solution - Russia&apos; 
 )</errorConditionFormula>
+        <errorDisplayField>CurrencyIsoCode</errorDisplayField>
         <errorMessage>Don&apos;t Update the Account Name / Account Currency .</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FS_Account_Lock</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Prevents users from editing Account records unless they are System Admin or integration.</description>
         <errorConditionFormula>IF( ISNEW() || CreatedDate = LastModifiedDate || $Profile.Name=&quot;Generic API Only&quot; || $Profile.Name=&quot;System Administrator&quot; || $Permission.FS_Admin ||$Profile.Name=&quot;Unilever Food Solution - Russia&quot;, false , IF( (RecordType.DeveloperName  = &quot;Operators&quot; || RecordType.DeveloperName = &quot;Distributor&quot;) &amp;&amp; (ISPICKVAL(Status__c , &quot;Temporary&quot;) || ISPICKVAL(Status__c,&quot;Active&quot;)), true, false ) )</errorConditionFormula>
+        <errorDisplayField>CurrencyIsoCode</errorDisplayField>
         <errorMessage>You do not have access to edit this record. Please contact your system administrator.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FS_Account_Owner_Change_Lock</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Created for account owner change lock for other than administrators</description>
         <errorConditionFormula>IF($Profile.Name=&quot;Generic API Only&quot; || $Permission.FS_Admin || $Profile.Name=&quot;System Administrator&quot;, false,
  
 IF(ISCHANGED(OwnerId)=true &amp;&amp; (RecordType.DeveloperName = &quot;Distributor&quot;|| RecordType.DeveloperName = &quot;Operators&quot; || RecordType.DeveloperName = &quot;FS_OperatorRussia&quot;), true, false))</errorConditionFormula>
+        <errorDisplayField>CurrencyIsoCode</errorDisplayField>
         <errorMessage>You do not have access to change the account owner.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FS_Billing_Street_Mandatory</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Billing Street Mandatory</description>
         <errorConditionFormula>AND($Profile.Name = &apos;Unilever Food Solution - Russia&apos;, BillingStreet = &apos;&apos;,  OR(RecordType.DeveloperName =&apos;Operators&apos;, RecordType.DeveloperName =&apos;FS_OperatorRussia&apos;))</errorConditionFormula>
+        <errorDisplayField>CurrencyIsoCode</errorDisplayField>
         <errorMessage>Вам необходимо заполнить адрес для создания новой учетной записи оператора.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FS_UserNotabletochangetheCity</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>To validate the city when user trying to change the city value after creation</description>
         <errorConditionFormula>AND($Profile.Name =&apos;Unilever Food Solution - Russia&apos;, RecordType.Name =&apos;Operator&apos;, ISPICKVAL(Status__c, &apos;Active&apos;)  , ISCHANGED( FS_RussianCity__c ))</errorConditionFormula>
+        <errorDisplayField>CurrencyIsoCode</errorDisplayField>
         <errorMessage>You have no access to change the city.</errorMessage>
     </validationRules>
     <validationRules>
@@ -21697,8 +22710,9 @@ IF(ISCHANGED(OwnerId)=true &amp;&amp; (RecordType.DeveloperName = &quot;Distribu
     </validationRules>
     <validationRules>
         <fullName>Shipping_Address_Validation_for_US</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>IF( AND(AND(RecordType.Name  = &quot;Operator&quot;  ,  $Profile.Name  = &quot;Unilever Food Solution - NA&quot; ) ,OR(  ISBLANK(  ShippingCity ),  ISBLANK(  ShippingCountry ), ISBLANK(  ShippingState ),  ISBLANK(  ShippingStreet ),  ISBLANK(  ShippingPostalCode ))) , true, false)</errorConditionFormula>
+        <errorDisplayField>CurrencyIsoCode</errorDisplayField>
         <errorMessage>Please Check whether the Following details are filled or not:
 Shipping Street,
 Shipping City,
@@ -21724,6 +22738,37 @@ Shipping Country</errorMessage>
         <showsLocation>true</showsLocation>
         <showsStatus>true</showsStatus>
         <url>http://news.altavista.com/search?nc=0&amp;q={!Account_Name}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>CHD__Billing</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>true</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>true</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Billing</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>true</showsLocation>
+        <showsStatus>true</showsStatus>
+        <url>http://www.genwatt.com/genwatt/billing.htm?actname={!Account.Name}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>E2F__Search_on_FindAPI</fullName>
+        <availability>online</availability>
+        <description>Search for matching operators on FindAPI</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Search on FindAPI</masterLabel>
+        <openType>sidebar</openType>
+        <page>E2F__FindApi_Search</page>
+        <protected>false</protected>
     </webLinks>
     <webLinks>
         <fullName>GoogleMaps</fullName>
@@ -21831,5 +22876,115 @@ Shipping Country</errorMessage>
         <showsLocation>true</showsLocation>
         <showsStatus>true</showsStatus>
         <url>http://maps.yahoo.com/py/maps.py?cn={!Account_BillingCountry}&amp;csz={!Account_BillingCity}+{!Account_BillingState}+{!Account_BillingPostalCode}+&amp;addr={!Account_BillingAddress}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>sf4twitter__Get_Author_Info</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Get Author Info</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.location = &apos;/apex/sf4twitter__TwitterUpdateTwitterInfo?records={!Account.Id}&amp;retURL=&apos; + encodeURIComponent(window.location);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>sf4twitter__Get_Author_Info_Massive</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Get Author Info</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>var records = {!GETRECORDIDS( $ObjectType.Account)}; 
+if (records.length == 0) { 
+  alert(&quot;{!$Label.sf4twitter__TWITTER_SELECT_A_RECORD}&quot;) ; 
+} 
+else if(records.length &gt; 100){ 
+  alert(&quot;{!SUBSTITUTE($Label.sf4twitter__TWITTER_SELECT_LESS_RECORD, &apos;{0}&apos;, &apos;100&apos;)}&quot;); 
+} 
+else {
+	if(document.getElementsByName(&apos;fcf&apos;)[0] == null){ 
+	elementName = &apos;is:islv:inlineSchedulerListView:enhancedList:fcf&apos;; 
+	}else{ 
+		elementName =&apos;fcf&apos;; 
+	} 
+	var listViewFilters = document.getElementsByName(elementName)[0];
+
+	var filterId = listViewFilters.options[listViewFilters.selectedIndex].value;
+	var url = new String(window.location);
+	if (url.search(/fcf=[^&amp;]+/) &gt;= 0) {
+		url = url.replace(/fcf=[^&amp;]+/, &apos;fcf=&apos; + filterId);
+	} else {
+		if (url.indexOf(&apos;?&apos;) == -1) {
+			url += &apos;?&apos;
+		}
+		url += &apos;&amp;fcf=&apos; + filterId;
+	}
+        window.location = &apos;/apex/sf4twitter__TwitterUpdateTwitterInfo?records=&apos; + records + &apos;&amp;retURL=&apos; + encodeURIComponent(url);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>sf4twitter__Get_Klout_Score</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Get Klout Score</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>if ({!IF(ISPICKVAL(sf4twitter__Twitter_Conversation__c.sf4twitter__Origin__c,&apos;Facebook&apos;),&apos;true&apos;,&apos;false&apos;)}) {
+alert(&apos;{!$Label.sf4twitter__FUNCTION_ONLY_FOR_TWITTER_CONVERSATION}&apos;);
+} else{
+window.location = &apos;/apex/sf4twitter__SocialKlout?cList={!Account.Id}&amp;retURL=&apos; + encodeURIComponent(window.location);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>sf4twitter__Get_Klout_Score_Massive</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Get Klout Score</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>var records = {!GETRECORDIDS( $ObjectType.Account)}; 
+if (records.length == 0) {
+alert(&quot;{!$Label.sf4twitter__TWITTER_SELECT_A_RECORD}&quot;) ;
+}
+else if(records.length &gt; 5){
+alert(&quot;{!SUBSTITUTE($Label.sf4twitter__TWITTER_SELECT_LESS_RECORD, &apos;{0}&apos;, &apos;5&apos;)}&quot;);
+}
+else {
+	if(document.getElementsByName(&apos;fcf&apos;)[0] == null){ 
+	elementName = &apos;is:islv:inlineSchedulerListView:enhancedList:fcf&apos;; 
+	}else{ 
+		elementName =&apos;fcf&apos;; 
+	} 
+	var listViewFilters = document.getElementsByName(elementName)[0];
+
+var filterId = listViewFilters.options[listViewFilters.selectedIndex].value;
+var url = new String(window.location);
+if (url.search(/fcf=[^&amp;]+/) &gt;= 0) {
+url = url.replace(/fcf=[^&amp;]+/, &apos;fcf=&apos; + filterId);
+} else {
+if (url.indexOf(&apos;?&apos;) == -1) {
+url += &apos;?&apos;
+}
+url += &apos;&amp;fcf=&apos; + filterId;
+}
+window.location = &apos;/apex/sf4twitter__SocialKlout?cList=&apos; + records + &apos;&amp;retURL=&apos; + encodeURIComponent(url);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>sf4twitter__Get_Twitter_Username</fullName>
+        <availability>online</availability>
+        <description>Allow a CRM users to search twitter to find the Contact&apos;s
+twitter user name.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Get Twitter Username</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.location = &apos;/apex/sf4twitter__TwitterGetUsername?paid={!Account.Id}&amp;retURL=&apos; + encodeURIComponent(window.location);</url>
     </webLinks>
 </CustomObject>

@@ -75,6 +75,10 @@
                 <behavior>Edit</behavior>
                 <field>Corp_Prod_Grouping_Level_Code__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

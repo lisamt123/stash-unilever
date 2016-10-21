@@ -41,15 +41,23 @@
         <name>IPM_Bosscord_Approval_Date__c</name>
     </fields>
     <fields>
-        <label><!-- Category --></label>
+        <label><!-- Category Group --></label>
         <name>IPM_Category__c</name>
+        <picklistValues>
+            <masterLabel>Food</masterLabel>
+            <translation><!-- Food --></translation>
+        </picklistValues>
         <picklistValues>
             <masterLabel>Home Care</masterLabel>
             <translation><!-- Home Care --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>PC</masterLabel>
-            <translation><!-- PC --></translation>
+            <masterLabel>Personal Care</masterLabel>
+            <translation><!-- Personal Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refreshments</masterLabel>
+            <translation><!-- Refreshments --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -81,6 +89,7 @@
         <name>IPM_Deputy_Project_Leader_Name__c</name>
     </fields>
     <fields>
+        <help><!-- Snapshot of Capability Due Date --></help>
         <label><!-- Due Date@Capability --></label>
         <name>IPM_Due_Date_Capability__c</name>
     </fields>
@@ -112,6 +121,11 @@
     <fields>
         <label><!-- Due Date --></label>
         <name>IPM_Due_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field will advice if Due Date is null or not --></help>
+        <label><!-- IPM_Due_Date_isNull --></label>
+        <name>IPM_Due_Date_isNull__c</name>
     </fields>
     <fields>
         <label><!-- IPM Gatekeeper Email --></label>
@@ -227,6 +241,11 @@
         <name>IPM_Planned_Date__c</name>
     </fields>
     <fields>
+        <help><!-- This field will advice if Suggested Planned date is null or not --></help>
+        <label><!-- IPM_Planned_Date_isNull --></label>
+        <name>IPM_Planned_Date_isNull__c</name>
+    </fields>
+    <fields>
         <label><!-- Project Launch Date --></label>
         <name>IPM_Project_Launch_Date__c</name>
     </fields>
@@ -333,6 +352,10 @@
         <picklistValues>
             <masterLabel>Market Ready</masterLabel>
             <translation><!-- Market Ready --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLE</masterLabel>
+            <translation><!-- PLE --></translation>
         </picklistValues>
     </fields>
     <fields>

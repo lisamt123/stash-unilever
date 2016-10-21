@@ -9,6 +9,34 @@
         <value>IPM Questionnaires</value>
     </caseValues>
     <fields>
+        <label><!-- BET Current Status --></label>
+        <name>BETCurrentStatus__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dependent Field API Name --></label>
+        <name>DependentFieldAPIName__c</name>
+        <picklistValues>
+            <masterLabel>BETCurrentStatus__c</masterLabel>
+            <translation><!-- BETCurrentStatus__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RQS_Charter_Answered_3__c</masterLabel>
+            <translation><!-- RQS_Charter_Answered_3__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RQS_Charter_Answered__c</masterLabel>
+            <translation><!-- RQS_Charter_Answered__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RQS_Contract_Answered_3__c</masterLabel>
+            <translation><!-- RQS_Contract_Answered_3__c --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RQS_Contract_Answered__c</masterLabel>
+            <translation><!-- RQS_Contract_Answered__c --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- External Id --></label>
         <name>External_Id__c</name>
     </fields>
@@ -35,6 +63,26 @@
     <fields>
         <label><!-- IPM Contract Score --></label>
         <name>IPM_Contract_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM_GK_Answers_Multiselect --></label>
+        <name>IPM_GK_Answers_Multiselect__c</name>
+        <picklistValues>
+            <masterLabel>N/A~Not Applicable</masterLabel>
+            <translation><!-- N/A~Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No~No</masterLabel>
+            <translation><!-- No~No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partly~Partly</masterLabel>
+            <translation><!-- Partly~Partly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes~Yes</masterLabel>
+            <translation><!-- Yes~Yes --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- IPM GK Answers --></label>
@@ -67,6 +115,10 @@
     <fields>
         <label><!-- IPM HelpText Partly --></label>
         <name>IPM_HelpText_Partly__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM HelpText ReadOnly --></label>
+        <name>IPM_HelpText_ReadOnly__c</name>
     </fields>
     <fields>
         <label><!-- IPM HelpText Yes --></label>
@@ -233,6 +285,22 @@
     <fields>
         <label><!-- Is Master --></label>
         <name>Is_Master__c</name>
+    </fields>
+    <fields>
+        <label><!-- RQS Charter Answered &gt; 3 --></label>
+        <name>RQS_Charter_Answered_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- RQS Charter Answered --></label>
+        <name>RQS_Charter_Answered__c</name>
+    </fields>
+    <fields>
+        <label><!-- RQS Contract Answered &gt; 3 --></label>
+        <name>RQS_Contract_Answered_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- RQS Contract Answered --></label>
+        <name>RQS_Contract_Answered__c</name>
     </fields>
     <layouts>
         <layout>IPM Gate Keeping Layout</layout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>PBS_Training Plan Category</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>PBS_Training Plan Categories</value>
+    </caseValues>
+    <fields>
+        <label><!-- Geography --></label>
+        <name>Geography__c</name>
+        <picklistValues>
+            <masterLabel>Americas</masterLabel>
+            <translation><!-- Americas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia (Fusion)</masterLabel>
+            <translation><!-- Asia (Fusion) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia / Africa / NAMET (U2K2)</masterLabel>
+            <translation><!-- Asia / Africa / NAMET (U2K2) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe</masterLabel>
+            <translation><!-- Europe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Journey Type --></label>
+        <name>Journey_Type__c</name>
+        <picklistValues>
+            <masterLabel>30 Days Onboarding</masterLabel>
+            <translation><!-- 30 Days Onboarding --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Learning Category --></label>
+        <name>Learning_Category__c</name>
+        <relationshipLabel><!-- PBS_Training Plan Categories --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planner Type --></label>
+        <name>PlannerType__c</name>
+        <picklistValues>
+            <masterLabel>Demand &amp; Supply Planner</masterLabel>
+            <translation><!-- Demand &amp; Supply Planner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Demand Planner</masterLabel>
+            <translation><!-- Demand Planner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Distribution Planner</masterLabel>
+            <translation><!-- Distribution Planner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Innovation Planner</masterLabel>
+            <translation><!-- Innovation Planner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Materials Planner</masterLabel>
+            <translation><!-- Materials Planner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Repack Planner/Officer</masterLabel>
+            <translation><!-- Repack Planner/Officer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supply / Requirements Planner</masterLabel>
+            <translation><!-- Supply / Requirements Planner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supply Planner</masterLabel>
+            <translation><!-- Supply Planner --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Training Plan --></label>
+        <name>Training_Plan__c</name>
+        <relationshipLabel><!-- PBS_Training Plan Categories --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Work Level --></label>
+        <name>Work_Level__c</name>
+        <picklistValues>
+            <masterLabel>Level 1</masterLabel>
+            <translation><!-- Level 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 2</masterLabel>
+            <translation><!-- Level 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 3</masterLabel>
+            <translation><!-- Level 3 --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Training Plan Category Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

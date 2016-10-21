@@ -1,1 +1,0 @@
-BET {!uw_BET__c.Name} has been archived. As a result, the associated Chatter Group will be deactivated and no further changes can be made to this BET. To unarchive the BET and reactivate the group please open the BET and click on Settings <a href="{!uw_BET__c.Link__c}">{!uw_BET__c.Name} </a>

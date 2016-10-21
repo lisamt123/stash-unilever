@@ -9,6 +9,10 @@
         <value>IPM OTIF Status</value>
     </caseValues>
     <fields>
+        <label><!-- Dependent Field --></label>
+        <name>Dependent_Field__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM_Carry GK Section Answer --></label>
         <name>IPM_Carry_GK_Section_Answer__c</name>
     </fields>
@@ -47,6 +51,10 @@
     <fields>
         <label><!-- OTIF No of Status --></label>
         <name>OTIF_No_of_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- OTIF Question Readonly Help Text --></label>
+        <name>OTIF_Question_Readonly_Help_Text__c</name>
     </fields>
     <fields>
         <label><!-- OTIF Responsibility --></label>

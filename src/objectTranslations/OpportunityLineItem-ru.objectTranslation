@@ -350,6 +350,32 @@
         <label><!-- Turnover --></label>
         <name>Turnover__c</name>
     </fields>
+    <layouts>
+        <layout>Food Solutions - Opportunity Product with TPR Calculation</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- TPR Calculation --></label>
+            <section>TPR Calculation</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Opportunity Product Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- MABE Calculation / SKU --></label>
+            <section>MABE Calculation / SKU</section>
+        </sections>
+        <sections>
+            <label><!-- TPR Calculation --></label>
+            <section>TPR Calculation</section>
+        </sections>
+    </layouts>
     <validationRules>
         <errorMessage>Вы не можете выбрать неактивный продукт</errorMessage>
         <name>FS_Inactive_Products</name>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Amr CurrencyConversionRate</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Amr CurrencyConversionRate</value>
+    </caseValues>
+    <fields>
+        <label><!-- Currency Unit To Euro --></label>
+        <name>Currency_Unit_To_Euro__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency Unit --></label>
+        <name>Currency_Unit__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

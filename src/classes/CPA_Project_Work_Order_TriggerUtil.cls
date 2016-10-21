@@ -39,9 +39,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                         req.setComments('Recalling and unlocking request.');
                         req.setAction(CPA_ConstantsForContractingAppClasses.REMOVED);
                         req.setWorkitemId(piwi.Id);
-                        //swathi commented for this sonarQube warning
-                        //Approval.ProcessResult result =  Approval.process(req);
-                        Approval.process(req);
+                        Approval.ProcessResult result =  Approval.process(req);
                         isSubmitted = true;
                     }
                 }
@@ -68,9 +66,8 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                 req.setComments('Submitted for approval. Please approve.');
                 req.setObjectId(newPWOList[i].Id);
                 // submit the approval request for processing
-                //swathi commented this for sonarQube warning
-                //Approval.ProcessResult result = Approval.process(req);
-                Approval.process(req);
+                
+                Approval.ProcessResult result = Approval.process(req);
                 // display if the reqeust was successful
                 setID.add(newPWOList[i].PWORF_ID__c);
                 isSubmitted = true;
@@ -81,9 +78,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
             List<CPA_PWORF__c> lstPWORF  = [Select Id,pkl_Status__c,dat_PWORF_Answered_Date__c from CPA_PWORF__c where Id IN:setID ];
          
              for(CPA_PWORF__c obj : lstPWORF){
-                 // swathi commented this for sonarQube warning
-                 // Approval.unLockResult lrList = Approval.unlock(obj, false);
-                  Approval.unlock(obj, false);
+                  Approval.unLockResult lrList = Approval.unlock(obj, false);
                  if(obj.pkl_Status__c != 'Answered'){
                      obj.pkl_Status__c = 'Answered';
                      obj.dat_PWORF_Answered_Date__c = System.today();
@@ -117,8 +112,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     map<Id,CPA_CR__c>mapPWOIDCR = new map<ID,CPA_CR__c>();
    // Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll(); 
     Id AllrecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_ALL_RECORDTYPE).getRecordTypeId();
-    // swathi commented this for sonarQube warning
-    //Id RArecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getRecordTypeId();      
+    Id RArecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getRecordTypeId();      
     ID PWORecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWO_RecordTypeId ).getRecordTypeId();
     ID CNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_CNF_RecordTypeId ).getRecordTypeId(); ID TNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_TNF_RecordTypeId  ).getRecordTypeId();
     

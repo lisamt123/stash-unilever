@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -53,6 +49,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -126,6 +123,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Product_EAN__c</fullName>
+        <description>CEC EAN field is used to capture GTIN(EAN/upc) code of the product</description>
+        <externalId>false</externalId>
+        <formula>Product__r.GTIN_EAN_UPC_Code__c</formula>
+        <label>Product EAN</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Product_Quantity__c</fullName>
         <description>CEC Product Quantity is used to capture the quantitiy of the product.</description>
         <externalId>false</externalId>
@@ -150,16 +158,18 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-	<fields>
-        <fullName>Product_EAN__c</fullName>
-        <description>CEC EAN field is used to capture GTIN(EAN/upc) code of the product</description>
+    <fields>
+        <fullName>Retrieval_Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>CEC Retrieval Id  will hold Retrieval Id  information if user have access for Retrieval request</description>
         <externalId>false</externalId>
-        <formula>Product__r.GTIN_EAN_UPC_Code__c</formula>
-        <label>Product EAN</label>
+        <label>Retrieval Id</label>
+        <referenceTo>CEC_Retrieval_Request__c</referenceTo>
+        <relationshipLabel>Fulfilment Products</relationshipLabel>
+        <relationshipName>Fulfilment_Products</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Lookup</type>
     </fields>
     <label>Fulfilment Product</label>
     <nameField>

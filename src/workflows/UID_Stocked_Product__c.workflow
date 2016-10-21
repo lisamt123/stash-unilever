@@ -55,21 +55,19 @@
     </rules>
     <rules>
         <fullName>UID_UpdateStockedProductFlag</fullName>
-        <active>false</active>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
             <field>UID_Stocked_Product__c.UID_Stock_Cover_Calculation_Flag__c</field>
             <operation>equals</operation>
             <value>False</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>UID_Stocked_Product__c.UID_Summarized_Invoice_Ranking_Flag__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-        <workflowTimeTriggers>
-            <actions>
-                <name>UID_UpdateStockedProductFlagField</name>
-                <type>FieldUpdate</type>
-            </actions>
-            <timeLength>12</timeLength>
-            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
                 <name>UID_UpdateSummarizedInvoiceRankingFlag</name>
@@ -77,6 +75,14 @@
             </actions>
             <timeLength>1</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>UID_UpdateStockedProductFlagField</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <timeLength>12</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
     </rules>
     <rules>
