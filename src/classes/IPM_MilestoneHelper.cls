@@ -601,7 +601,7 @@ public with sharing class IPM_MilestoneHelper
             setParentProjIds.add(proj.IPM_Parent_Project__c);
         }
         //Get Minimum Milestone date for Parent project for each Regional Milestone type
-        AggregateResult[] groupedResults = [select min(IPM_Due_Date__c) duedate, IPM_Project__r.IPM_Parent_Project__c parent, IPM_Name__c from IPM_Milestone__c where IPM_Project__c in :setProjIds and IPM_project__r.IPM_ProjectGKM__c = : IPM_ConstantUtils.GKM_2 and IPM_Project__r.IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT and IPM_Project__r.is_archieved__c = false group by IPM_Project__r.IPM_Parent_Project__c, IPM_Name__c LIMIT 50000]; 
+        AggregateResult[] groupedResults = [select min(IPM_Due_Date__c) duedate, IPM_Project__r.IPM_Parent_Project__c parent, IPM_Name__c from IPM_Milestone__c where IPM_Project__r.IPM_Parent_Project__c in :setParentProjIds and IPM_project__r.IPM_ProjectGKM__c = : IPM_ConstantUtils.GKM_2 and IPM_Project__r.IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT and IPM_Project__r.is_archieved__c = false group by IPM_Project__r.IPM_Parent_Project__c, IPM_Name__c LIMIT 50000]; 
     
         //Populate Map for each project with miniim regional Milestone date for each Milestone type
         for (AggregateResult ar : groupedResults)  {
