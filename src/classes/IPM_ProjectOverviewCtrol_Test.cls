@@ -246,8 +246,9 @@ private class IPM_ProjectOverviewCtrol_Test {
         	Test.setCurrentPage(pRef1);
             IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
             IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
-            
-            
+			overCtrl1.earliestTLD = string.valueof(system.now());
+            string eTLD =overCtrl1.getEarlTLD();
+            system.assertEquals(eTLD,overCtrl1.earliestTLD,'earliest TLD is not matched');            
        }
     }
 
@@ -393,6 +394,9 @@ private class IPM_ProjectOverviewCtrol_Test {
             //initialise standard and custom controller
             IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
             IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl); 
+            overCtrl1.earliestTLD = string.valueof(system.now());
+            string eTLD =overCtrl1.getEarlTLD();
+            system.assertEquals(eTLD,overCtrl1.earliestTLD,'earliest TLD is not matched');
             Test.stopTest();
         }
     }
