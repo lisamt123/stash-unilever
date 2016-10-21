@@ -49073,10 +49073,6 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>FooterScripts</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>ForgotPassword</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -49103,10 +49099,6 @@
     <pageAccesses>
         <apexPage>HRO_TaskLinkForwarder</apexPage>
         <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Header</apexPage>
-        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>ICB_CheckInCheckOut</apexPage>
@@ -49826,10 +49818,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>TacClose</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Template</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
