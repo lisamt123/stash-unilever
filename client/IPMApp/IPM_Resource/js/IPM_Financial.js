@@ -27,13 +27,13 @@ function finScriptCallBack() {
     }
     
 /* Below script works on click event. When clicked on confirm button it hides the opened modal and calls a function 'refreshFromLocal' */
-    jq(document).on('click', '#ipmDeleteModal .confirmAction.refreshFromLocal', function() {
+    jq(document).off('click', '#ipmDeleteModal .confirmAction.refreshFromLocal').on('click', '#ipmDeleteModal .confirmAction.refreshFromLocal', function() {
         jq('#ipmDeleteModal').modal('hide');
         refreshFromLocal();
     });
     
 /* Below script works on click event. When clicked on confirm button it hides the opened modal and calls a function 'refreshFromRegional' */
-    jq(document).on('click', '#ipmDeleteModal .confirmAction.refreshFromRegional', function() {
+     jq(document).off('click', '#ipmDeleteModal .confirmAction.refreshFromRegional').on('click', '#ipmDeleteModal .confirmAction.refreshFromRegional', function() {
         jq('#ipmDeleteModal').modal('hide');
         refreshFromRegional();
     });

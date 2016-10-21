@@ -899,47 +899,23 @@ public with sharing class IPM_FinancialHelper
             
     }
     
-    
-   public static List<IPM_Financial__c> updateManualMisalignment(List<IPM_Financial__c> newFinancials)
+    public static List<IPM_Financial__c> updateManualMisalignment(List<IPM_Financial__c> newFinancials)
     {
         List<IPM_Financial__c> listFinancial = new List<IPM_Financial__c>();
         List<Schema.FieldSetMember> finYearFSM = new List<Schema.FieldSetMember>();
-        if(!newFinancials.isEmpty()){
-        
-        finYearFSM = SObjectType.IPM_Financial_Year__c.FieldSets.Misalignment_Financial_Fields.getFields();
+        if(!newFinancials.isEmpty())
+        {
+        	String finQuery = 'SELECT Id, Volume_Unit_Difference__c, NPV_Difference__c, IRR_Difference__c, Payback_Difference__c, CAPEX_Difference__c, BIC_Difference__c,  Total_FY_Difference__c, MisalignmentManual__c FROM IPM_Financial__c WHERE ID IN :newFinancials LIMIT 1000';
         	
-        String finYearSubQuery = '('+IPM_Utils.getSOQLQueryFromFieldSet('Misalignment_Financial_Fields','IPM_Financial_Year__c',false);
-        
-        finYearSubQuery = finYearSubQuery.replace('IPM_Financial_Year__c', 'IPM_Financial_Years__r ) ');
-        
-        String finQuery = 'SELECT Id, Volume_Unit_Difference__c, NPV_Difference__c, IRR_Difference__c, Payback_Difference__c, CAPEX_Difference__c, BIC_Difference__c,  Total_FY_Difference__c, MisalignmentManual__c, '+finYearSubQuery+' FROM IPM_Financial__c WHERE ID IN :newFinancials LIMIT 1000';
-        
-        listFinancial = Database.Query(finQuery);
-        	
-
+        	listFinancial = Database.Query(finQuery);	
         }
+        
         List<IPM_Financial__c> updatedFinancials = new List<IPM_Financial__c>(); 
         
         for(IPM_Financial__c financial : listFinancial)
         {
             
             Decimal TotalDiffrence = financial.Volume_Unit_Difference__c + financial.NPV_Difference__c + financial.IRR_Difference__c + financial.Payback_Difference__c + financial.CAPEX_Difference__c + financial.BIC_Difference__c + financial.Total_FY_Difference__c;
-            
-            for(IPM_Financial_Year__c finYear : financial.IPM_Financial_Years__r ){
-            	
-            	for(Schema.FieldSetMember fsm : finYearFSM){
-            		
-            		TotalDiffrence = TotalDiffrence + (Decimal)finYear.get(fsm.getFieldPath());
-            		if((Decimal)finYear.get(fsm.getFieldPath()) > 0){
-            			break;
-            		}
-            	}
-            	
-            	if(TotalDiffrence > 0){
-            	 	break;
-            	}
-            	
-            }
             
             Boolean tempMisalignment   = TotalDiffrence > 0 ? true : false;
             if(financial.MisalignmentManual__c != tempMisalignment) 
