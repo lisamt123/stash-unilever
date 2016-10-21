@@ -3170,10 +3170,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>BOH MAYO</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>D1 SOUPS</fullName>
                 <default>false</default>
             </values>
@@ -3198,23 +3194,7 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>HOT TEA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ICED TEA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>K1 MEALS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Knorr Ultimate Low%2FReduced Sodium*</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LCB</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3222,15 +3202,47 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SDJ</fullName>
+                <fullName>X2 SPECIALTY TEA CANADA</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SPECIALTY TEA</fullName>
+                <fullName>X3 SPECIALTY TEA US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X4 US SDJ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z1 BOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z2 CAN LCB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z3 CAN SDJ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z5 FOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z6 HOT TEA CANADA</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Z7 HOT TEA US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z8 ICED TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z9 Knorr Ultimate Low%2FReduced Sodium*</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

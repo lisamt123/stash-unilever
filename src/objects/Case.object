@@ -4605,16 +4605,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.TYPE</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
             <value>New</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>France</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
@@ -4623,6 +4618,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC France all new cases</label>
         <language>en_US</language>
+        <queue>CEC_France_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Europe</role>
@@ -4806,6 +4802,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Indonesia_Queue_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -4852,24 +4856,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC Japan Escalation Queue</label>
         <language>en_US</language>
         <queue>CEC_Japan_Escalation_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Japan</role>
-            <role>CEC_Manager_North_Asia</role>
-            <role>CEC_User_Japan</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Japan_Queue_Case</fullName>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <label>CEC Japan Queue</label>
-        <language>en_US</language>
-        <queue>CEC_Japan_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Japan</role>
@@ -4965,66 +4951,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC NA Reason Code List</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_NORTH_AMERICA_24_7_QUEUE_HPC</fullName>
-        <booleanFilter>(1 OR 2 OR 3 OR 6 OR 7 OR 8) AND 4 AND 5</booleanFilter>
-        <columns>Country__c</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Alberto Culver European,Axe,Clear,Degree,Dove,Lever 2000,lever2000,Nexxus</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Noxzema,Ponds,QTips,Simple,Simple Skin Care,St Ives,Stives,Suave,Toni &amp; Guy</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>TRESemme,Vaseline,Vim,Unilever Corporate,Privacy Policy</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Canada Replies,ToninGuy,Unilever Canada,Unilever Comments,Rexona,Pending Request</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Operation In Touch,Making Life Better,Recontact,Unilever Canada</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Q-tips,Caress,Anti Perspirant Info,Dove Men+Care</value>
-        </filters>
-        <label>CEC North America 24-7 Queue HPC</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
@@ -5381,249 +5307,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_North_America_24_7_Queue</fullName>
-        <booleanFilter>(1 OR 2 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10) AND 3 AND 4</booleanFilter>
-        <columns>Country__c</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Becel,BestFoods,Breyers,Breyers_CA-EN,Brummel &amp; Brown,BrummelBrown,Country Crock</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>CountryCrock,Fruttare,Good Humor,GoodHumor,Hellmanns,Hellmann&apos;s,Hellmanns_CA-EN</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>I Cant Believe Its Not Butter,Klondike,Knorr,Lipton</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Lipton Kitchens,Lipton Soup Secrets,Lipton_CA-EN,Lipton Cup a Soup</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>LiptonRecipeSecrets,Magnum,Magnum Ice Cream,MakingLifeBetter,PGTips,Popsicle</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Popsicle_CA-EN,Promise,Red Rose Tea,RedRoseTea,Salada,Talenti</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Bertolli Sauce,Bertolli Oil,Carapelli,Carbonell,Ragu,Best Foods,ICBIN,Imperial</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Lipton C-a-S,Lipton Recipe Secrets,Ragu,PG Tips</value>
-        </filters>
-        <label>CEC North America 24-7 Queue Foods</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Axe</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>OWNER_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Suave</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Suave</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <label>CEC North America Suave</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Axe1</fullName>
-        <booleanFilter>1 AND 4 AND (2 OR 3 OR 5 OR 6)</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>OWNER_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Becel,Brummel &amp; Brown,BrummelBrown</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Becel,Brummel &amp; Brown,BrummelBrown</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>CountryCrock,I Can&apos;t Believe It&apos;s Not Butter!,Flora,ICantBelieveItsNotButter</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>CountryCrock,I Can&apos;t Believe It&apos;s Not Butter!,Flora,ICantBelieveItsNotButter</value>
-        </filters>
-        <label>CEC North America Baking Cooking &amp; Sprea</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Axe2</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>OWNER_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Dove</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Dove</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <label>CEC North America Dove</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Baking_Cooking_Sprea</fullName>
-        <booleanFilter>1 and 4 and ((2 or 6) or (3 or 5))</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>OWNER_NAME</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Breyers,Breyers_CA-EN,Fruttare,Good Humor,Klondike,Magnum,Popsicle,GoodHumor</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Breyers,Breyers_CA-EN,Fruttare,Good Humor,Klondike,Magnum,Popsicle,GoodHumor</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Popsicle_CA-EN,Magnum Ice Cream</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Popsicle_CA-EN,Magnum Ice Cream</value>
-        </filters>
-        <label>CEC North America Ice Cream</label>
-        <language>en_US</language>
-        <queue>CEC_North_America_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_Canada</fullName>
         <booleanFilter>1 and 2 and 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
@@ -5776,46 +5459,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_North_America_Best_Meals_at_Home</fullName>
-        <booleanFilter>(1 or 2) AND 3 AND 4</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Country__c</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Best Meals at Home</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Best Meals at Home</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <label>CEC North America Best Meals at Home</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_North_America_Brand_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -5828,43 +5471,16 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CEC_Product_Hierarchy__c</columns>
         <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
         <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
         <label>CEC North America Brand Queue</label>
         <language>en_US</language>
         <queue>CEC_North_America_Brand_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Brand_Sun_Queue</fullName>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CEC_Product_Hierarchy__c</columns>
-        <columns>CEC_Reason_Code__c</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>SUN</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Escalated</value>
-        </filters>
-        <label>CEC North America Brand Sun Queue</label>
-        <language>en_US</language>
-        <queue>CEC_North_America_Brand_Queue</queue>
-        <sharedTo>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
         </sharedTo>
@@ -5918,50 +5534,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Escalated</value>
+            <operation>notContain</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <label>CEC North America Claims Queue</label>
         <language>en_US</language>
         <queue>CEC_North_America_Claims_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Coffee_Snacks</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>OWNER_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Bru</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Bru</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <label>CEC North America Coffee &amp; Snacks</label>
-        <language>en_US</language>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
@@ -5977,128 +5555,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Creative Solutions</label>
         <language>en_US</language>
         <queue>CEC_North_America_Creative_Solutions</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Deodorants_Fragrance</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>OWNER_NAME</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Degree,Rexona</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Degree,Rexona</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <label>CEC North America Deodorants &amp; Fragrance</label>
-        <language>en_US</language>
-        <queue>CEC_North_America_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Deoleo</fullName>
-        <booleanFilter>(1 or 2) AND 3 AND 4</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Bertolli,Bertolli Oil,Carapelli,Carbonell</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Bertolli,Bertolli Oil,Carapelli,Carbonell</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <label>CEC North America Deoleo</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Dressings</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>OWNER_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>BestFoods,Hellmanns_CA-EN,Hellmann&apos;s,Hellmanns</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>BestFoods,Hellmanns_CA-EN,Hellmann&apos;s,Hellmanns</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <label>CEC North America Dressings</label>
-        <language>en_US</language>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
@@ -6145,6 +5608,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Frequent_Caller_Queue_Case</fullName>
+        <booleanFilter>1 AND (2 or 3)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>Country__c</columns>
@@ -6158,52 +5622,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>notEqual</operation>
-            <value>New</value>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
+            <field>Case_Brand__c</field>
+            <operation>contains</operation>
+            <value>freq</value>
+        </filters>
+        <filters>
+            <field>OWNER_NAME</field>
+            <operation>contains</operation>
+            <value>frequent</value>
         </filters>
         <label>CEC North America  Frequent Caller Queue</label>
         <language>en_US</language>
         <queue>CEC_North_America_Frequent_Caller_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Gortons_BlueWater</fullName>
-        <booleanFilter>(1 or 2) AND 3</booleanFilter>
-        <columns>Country__c</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>BlueWater,Gorton&apos;s,GORTONS</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>BlueWater,Gorton&apos;s,GORTONS</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New,Escalated</value>
-        </filters>
-        <label>CEC North America Gortons-BlueWater</label>
-        <language>en_US</language>
-        <sharedTo>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
         </sharedTo>
@@ -6267,51 +5702,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Helpdesk Queue</label>
         <language>en_US</language>
         <queue>CEC_North_America_Helpdesk_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Household_Care</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>OWNER_NAME</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Vim</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Vim</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <label>CEC North America Household Care</label>
-        <language>en_US</language>
-        <queue>CEC_North_America_Queue</queue>
-        <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
@@ -6350,54 +5747,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>transcription</value>
         </filters>
         <label>CEC North America IVR</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Ice_Cream</fullName>
-        <booleanFilter>1 AND 4 AND (2 OR 3 or 5 or 6)</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>OWNER_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Bovril,Knorr,Lipton Cup-A-Soup,Lipton Savoury,Maizena,Oxo,Panni,LiptonKitchens,L</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>LiptonRecipeSecrets,Lipton Recipe Secrets,LiptonKitchens,Lipton Kitchens</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Lipton Kitchens (soups &amp; mixes)</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Lipton Kitchens (soups &amp; mixes)</value>
-        </filters>
-        <label>CEC North America Savoury</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Global_Head</role>
@@ -6530,6 +5879,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Open_Cases</fullName>
+        <booleanFilter>1 AND (2 or 3)</booleanFilter>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.ORIGIN</columns>
@@ -6540,16 +5890,25 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
         <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
+        <columns>OWNER_NAME</columns>
+        <filterScope>Everything</filterScope>
         <filters>
-            <field>CASES.STATUS</field>
+            <field>OWNER_NAME</field>
+            <operation>notContain</operation>
+            <value>cec</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.FIRST_NAME</field>
             <operation>notEqual</operation>
-            <value>New,Closed,Closed as Duplicate</value>
+            <value>rivera,rogers,lane,Allison,joan,papale,thompson</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>notEqual</operation>
+            <value>steager,sweeney,uribe</value>
         </filters>
         <label>CEC North America Open Cases</label>
         <language>en_US</language>
-        <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
@@ -6568,44 +5927,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_North_America_Other_Foods</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>OWNER_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
-        <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Other Brands Foods</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Other Brands Foods</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <label>CEC North America Other Foods</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_North_America_Queue_Case</fullName>
         <booleanFilter>1 AND 2 AND 3 AND (4 OR 5)</booleanFilter>
         <columns>Country__c</columns>
@@ -6613,14 +5934,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>Case_Brand__c</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <filters>
-            <field>CASES.CLOSED</field>
+            <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>0</value>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
@@ -6658,6 +5980,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
@@ -6682,7 +6005,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_R_B_Foods</fullName>
-        <booleanFilter>(1 or 2 or 5) AND 3 AND 4</booleanFilter>
+        <booleanFilter>(1 or 2 or 5 or 6 or 7 or 8) AND 3 AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -6694,18 +6017,18 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Bertolli Sauce,Ragu</value>
+            <operation>contains</operation>
+            <value>Bertolli</value>
         </filters>
         <filters>
-            <field>Brand__c</field>
+            <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Bertolli Sauce,Ragu</value>
+            <value>Ragu,All Laundry,Gorton&amp;apos;s,Snuggle,Sun,Sunlight,Wisk</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
@@ -6717,7 +6040,22 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Ragu Email</value>
         </filters>
-        <label>CEC North America R &amp; B Foods</label>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>contains</operation>
+            <value>carapelli</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>contains</operation>
+            <value>carbon</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>contains</operation>
+            <value>gorton</value>
+        </filters>
+        <label>CEC North America 3rd Party</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_North_America</role>
@@ -6726,7 +6064,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ratings_and_Reviews</fullName>
-        <booleanFilter>3 AND (1 OR 2)</booleanFilter>
+        <booleanFilter>1 and 2</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>Case_Brand__c</columns>
@@ -6734,26 +6072,21 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Bazaar Voice</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Bazaar Trigger</value>
+            <operation>contains</operation>
+            <value>Bazaar</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
+            <operation>notContain</operation>
+            <value>closed</value>
         </filters>
         <label>CEC North America Ratings and Reviews</label>
         <language>en_US</language>
-        <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
@@ -8753,7 +8086,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>DACH_Vacation_Queue_3</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 4) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -8781,6 +8114,16 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>Anja</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>cbruh</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Charlyn</value>
         </filters>
         <label>DACH Vacation Queue 3</label>
         <language>en_US</language>
