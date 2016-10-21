@@ -1971,7 +1971,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               //DO NOT CHANGE the order - Calendar years need to be saved first before Innovation Years to ensure Volume Units get saved appropriately
               saveFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
               saveFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
-
+              mapFinancialYears.clear();
               
               //Update Financial Record
               currentFinancial.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
@@ -2005,16 +2005,16 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               //method checkIsFinancialInvalid sets the flag appropriately
               checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
             
+              financialsToUpdateSet.clear();
               //logic to calculate the consolidated financials validation cells value
               if(!currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)  &&  (projectType!= null && !projectType.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) )){
                 financialsToUpdateSet = getConsolidatedValidationCells(currentFinancial);
               }
               
               financialsToUpdateSet.add(currentFinancial);
-              
+              financialsToUpdateSet.clear();
               update new List<IPM_Financial__c>(financialsToUpdateSet);
-              IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved(new List<IPM_Financial__c>{currentFinancial});
-              financialsToUpdateSet.clear();      
+              IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved(new List<IPM_Financial__c>{currentFinancial});      
                                             
                              
         } catch (Exception eX){
@@ -3023,7 +3023,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 {
                     financialExternalIdString = currentFinancial.Financial_External_ID__c;
                 }
-                queryText = 'Select id,Target_Launch_Date__c, Local_Project__c, Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,Previous_Target_Launch_Date__c, MisAligned_Confirmed_By_Finance_Leader__c from IPM_Project_Rollout__c where name like \'' +financialExternalIdString+'\' and IPM_Rollout_Span__c like \'Local\'';
+                queryText = 'Select id,Target_Launch_Date__c, Local_Project__c, Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,Previous_Target_Launch_Date__c, MisAligned_Confirmed_By_Finance_Leader__c from IPM_Project_Rollout__c where IPM_Rollout_Project__c like \'' +financialExternalIdString+'\' and IPM_Rollout_Span__c like \'Local\'';
                 List<IPM_Project_Rollout__c> rolloutList = Database.query(queryText);
                 if(!rolloutList.isEmpty() && rolloutList[0].Local_Project__r.IPM_Target_Launch_Dates__c!=null)
                 {
