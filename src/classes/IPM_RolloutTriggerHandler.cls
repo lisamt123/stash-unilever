@@ -436,13 +436,21 @@ public with sharing class IPM_RolloutTriggerHandler
             }
         }
         
+        setOwnerAndCategoryType(projectidset,NewProjectRollouts);        
+    }
+    /**********************************************************************************************************************************
+    * @description                      Used for Setting Owner and small C Category. 
+    * @param projectidset               Set of associated Project Ids.
+    * @param NewProjectRollouts         List of incoming Projects.
+    */
+    private static void setOwnerAndCategoryType(set<id> projectidset,List<IPM_Project_Rollout__c>  NewProjectRollouts)
+    {
         if(projectidset != null && !projectidset.isEmpty())
         {
             for(IPM_Project__c proj: [select id, ownerid, IPM_Category_Text__c from IPM_Project__c where id IN:projectidset])
             {
                 for(IPM_Project_Rollout__c projectRollout : NewProjectRollouts)
                 {
-                    
                     if((projectRollout.IPM_Project__c!=null && projectRollout.IPM_Project__c == proj.id) ||
                         (projectRollout.Regional_Project__c!=null && projectRollout.Regional_Project__c== proj.id) ||
                         (projectRollout.Local_Project__c!=null && projectRollout.Local_Project__c== proj.id)
@@ -451,13 +459,9 @@ public with sharing class IPM_RolloutTriggerHandler
                         projectRollout.ownerid=proj.ownerid;
                         projectRollout.IPM_Small_C__c = proj.IPM_Category_Text__c;
                     }
-                    
                 }
-                
             }
-            
         }
-        
     }
     
     
