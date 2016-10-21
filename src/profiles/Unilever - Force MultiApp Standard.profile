@@ -51771,7 +51771,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>FAU_Milestone__c</tab>
-        <visibility>Hid
+        <visibility>
     <tabVisibilities>
         <tab>File__c</tab>
         <visibility>Hidden</visibility>
