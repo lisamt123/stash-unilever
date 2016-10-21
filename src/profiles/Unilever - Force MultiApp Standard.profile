@@ -24043,21 +24043,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FA_Course_ChatterGroup__c.FA_Course_Occurence__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_ChatterGroup__c.FA_Course__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FA_Course_ChatterGroup__c.FA_Group_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>FA_Course_Facilitator__c.FA_External_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -47802,9 +47787,6 @@
         <recordType>FAU_Webinar__c.FAU_Registration</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>FA_Course_ChatterGroup__c-FA_Chattergroup_Course Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>FA_Course_Facilitator__c-FA_Course Facilitator Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -52866,10 +52848,6 @@
     <tabVisibilities>
         <tab>FAU_Webinar__c</tab>
         <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>FA_Course_ChatterGroup__c</tab>
-        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>FA_Course_Occurence__c</tab>
