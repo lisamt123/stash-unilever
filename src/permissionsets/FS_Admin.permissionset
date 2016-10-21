@@ -46100,7 +46100,7 @@
         <deleteSetup>false</deleteSetup>
         <modifyAllRecords>false</modifyAllRecords>
         <object>FilesConnect_One_Drive__x</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
         <viewSetup>false</viewSetup>
     </objectPermissions>
     <objectPermissions>
@@ -46112,7 +46112,7 @@
         <deleteSetup>false</deleteSetup>
         <modifyAllRecords>false</modifyAllRecords>
         <object>FilesConnect_SFDev__x</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
         <viewSetup>false</viewSetup>
     </objectPermissions>
     <objectPermissions>
