@@ -1,4 +1,4 @@
 src
-src/staticresources
-src/staticresources/IPM_LoadTaskData.resource
-src/staticresources/IPM_LoadTaskData.resource-meta.xml
+src/classes
+src/classes/IPM_RolloutPlansAddController.cls
+src/classes/IPM_RolloutPlansAddController.cls-meta.xml
