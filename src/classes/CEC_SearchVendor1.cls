@@ -6,7 +6,7 @@
     Description  : This controller is mainly used for search vendor page.
     MetaData     : Properties, Wrapper Calss, Methods
   ********************************************************************/
-global class VPM_SearchVendor1{
+global class CEC_SearchVendor1{
     // Properties used in VF page to bind UI with Data Model
     public static boolean CheckFlag=false;
     public boolean isU2k2{get;set;}
