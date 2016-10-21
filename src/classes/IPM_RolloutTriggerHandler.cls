@@ -429,17 +429,28 @@ public with sharing class IPM_RolloutTriggerHandler
             }
 			//Update Rollout Name for GKM3 Local Rollouts
             if(projectRollout.IPM_Project_GKM__c == IPM_ConstantUtils.GATE_KEEPING_MODEL_3 && projectRollout.IPM_Rollout_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && projectRollout.Regional_Rollout_External_Id__c!=null && projectRollout.Name.indexOf(projectRollout.Regional_Rollout_External_Id__c)!=-1){
+                if(projectRollout.Name == projectRollout.IPM_Rollout_Project__c)
+                {
                 projectRollout.Name = projectRollout.Name.replace(projectRollout.Regional_Rollout_External_Id__c, projectRollout.Regional_Rollout_External_Id__c.substringBeforeLast('_'));
+                }
             }
         }
         
+        setOwnerAndCategoryType(projectidset,NewProjectRollouts);        
+    }
+    /**********************************************************************************************************************************
+    * @description                      Used for Setting Owner and small C Category. 
+    * @param projectidset               Set of associated Project Ids.
+    * @param NewProjectRollouts         List of incoming Projects.
+    */
+    private static void setOwnerAndCategoryType(set<id> projectidset,List<IPM_Project_Rollout__c>  NewProjectRollouts)
+    {
         if(projectidset != null && !projectidset.isEmpty())
         {
             for(IPM_Project__c proj: [select id, ownerid, IPM_Category_Text__c from IPM_Project__c where id IN:projectidset])
             {
                 for(IPM_Project_Rollout__c projectRollout : NewProjectRollouts)
                 {
-                    
                     if((projectRollout.IPM_Project__c!=null && projectRollout.IPM_Project__c == proj.id) ||
                         (projectRollout.Regional_Project__c!=null && projectRollout.Regional_Project__c== proj.id) ||
                         (projectRollout.Local_Project__c!=null && projectRollout.Local_Project__c== proj.id)
@@ -448,13 +459,9 @@ public with sharing class IPM_RolloutTriggerHandler
                         projectRollout.ownerid=proj.ownerid;
                         projectRollout.IPM_Small_C__c = proj.IPM_Category_Text__c;
                     }
-                    
                 }
-                
             }
-            
         }
-        
     }
     
     

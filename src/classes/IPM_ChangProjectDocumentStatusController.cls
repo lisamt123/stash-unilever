@@ -952,7 +952,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 		    			pdfGateDocRef.getParameters().put('StatusDate',projectDoc.IPM_Approval_Date__c.format());
 		    			pdfGateDocRef.getParameters().put('OperatedBy',tempProjectDoc.IPM_Updated_User_By__r.Name);
 		    			
-		    			Attachment gateDocPDFAttachment = new Attachment(Name=project.IPM_Project_Name__c+'_PDL',ParentId=projectDoc.id,ContentType='pdf',Body=pdfGateDocRef.getContentAsPDF());
+		    			Attachment gateDocPDFAttachment = new Attachment(Name=project.IPM_Project_Name__c+'_PDL.pdf',ParentId=projectDoc.id,ContentType='pdf',Body=pdfGateDocRef.getContentAsPDF());
 		    			insert gateDocPDFAttachment;
 		    		}
 		    	}
