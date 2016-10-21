@@ -1,3 +1,4 @@
+src
 src/applications/CI_R2R_Budget.app
 src/applications/CI_R2R_Innovation.app
 src/applications/CI_SME_Weekly_Update.app
@@ -28,13 +29,16 @@ src/documents/CI_R2R_Documents/CI_R2R_Color_Green.png
 src/documents/CI_R2R_Documents/CI_R2R_Color_Green.png-meta.xml
 src/documents/CI_R2R_Documents/CI_R2R_Color_Red.png
 src/documents/CI_R2R_Documents/CI_R2R_Color_Red.png-meta.xml
-src/flows/CI_R2R_Update_Scope_of_SME_Weekly_Update-15.flow
+src/flows/CI_R2R_Update_Scope_of_SME_Weekly_Update-19.flow
+src/flows/CI_R2R_Update_RAG_and_Closure_Date_to_Master_Object-1.flow
 src/layouts/CI_R2R_Budget__c-R2R Budget Layout.layout 
 src/layouts/CI_R2R_Innovation__c-R2R Innovation Layout.layout
 src/layouts/CI_R2R_Milestones__c-CI_R2R Milestones Layout.layout
 src/layouts/CI_Accounting_Treatment__c-CI_Accounting Treatment Layout.layout
 src/layouts/CI_SMS_Weekly_Update__c-CI_SME without CI.layout
 src/layouts/CI_SMS_Weekly_Update__c-SME Weekly Update Layout.layout
+src/layouts/CI_SMS_Weekly_Update__c-CI_R2R SME Read only.layout
+src/layouts/CI_R2R_Innovation__c-CI_R2R_Innovation Layout Final.layout
 src/objects/CI_R2R_Budget__c.object
 src/objects/CI_R2R_Innovation__c.object
 src/objects/CI_R2R_Milestones__c.object
@@ -116,17 +120,5 @@ src/workflows/CI_Accounting_Treatment__c.workflow
 src/workflows/CI_R2R_Budget__c.workflow
 src/workflows/CI_R2R_Innovation__c.workflow
 src/workflows/CI_SMS_Weekly_Update__c.workflow
-src/sites/Global_Finance.site
-src/networks/Global Finance.network
 src/profiles/Unilever - Force MultiApp Standard.profile
-src
-src/permissionsets
-src/flows
-src/layouts
-src/objects
-src/permissionsets/CEC_Enable_Audit_Fields.permissionset
-src/flows/CEC_Close_Case_Survey-17.flow
-src/flows/CEC_Update_CV_Questionare_on_Case-4.flow
-src/layouts/Case-Case Feed Layout.layout
-src/objects/Case.object
-src/objects/cec_Additional_Case_Information__c.object
+src/customPermissions/CI_R2R_Admin.customPermission
