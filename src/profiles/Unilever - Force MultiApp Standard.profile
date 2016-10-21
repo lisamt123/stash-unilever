@@ -4325,10 +4325,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>NavigationManager</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>NewsArticleFeedController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
