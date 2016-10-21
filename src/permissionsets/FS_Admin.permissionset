@@ -45816,7 +45816,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Common_Issue__kav</object>
         <viewAllRecords>false</viewAllRecords>
@@ -45951,7 +45951,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>FAQ_Enhanced__kav</object>
         <viewAllRecords>false</viewAllRecords>
@@ -47158,8 +47158,7 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>Oblix_User_Permission__c</object>
         <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>    
-    
+    </objectPermissions>   
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -47167,7 +47166,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Opportunity</object>
-        <viewAllRecords>false</viewAllRecords>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -47176,7 +47175,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Order</object>
-        <viewAllRecords>false</viewAllRecords>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -47236,7 +47235,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+		<allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>PBS_Course__kav</object>
         <viewAllRecords>false</viewAllRecords>
@@ -47245,7 +47244,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>PBS_FAQ_s__kav</object>
         <viewAllRecords>false</viewAllRecords>
@@ -47551,7 +47550,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>PBS_Wiki__kav</object>
         <viewAllRecords>false</viewAllRecords>
@@ -47641,7 +47640,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Product_Information_Enhanced__kav</object>
         <viewAllRecords>false</viewAllRecords>
@@ -47785,7 +47784,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>TO_FAQ__kav</object>
         <viewAllRecords>false</viewAllRecords>
@@ -47794,7 +47793,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>TO_Product_Information__kav</object>
         <viewAllRecords>false</viewAllRecords>
@@ -48280,7 +48279,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>cec_FAQ__kav</object>
         <viewAllRecords>false</viewAllRecords>
@@ -48307,7 +48306,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>cec_Product_Information__kav</object>
         <viewAllRecords>false</viewAllRecords>
@@ -48316,7 +48315,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>cec_Reason_Information__kav</object>
         <viewAllRecords>false</viewAllRecords>
@@ -50672,9 +50671,5 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>EditReadonlyFields</name>
-    </userPermissions>
-	<userPermissions>
-        <enabled>false</enabled>
-        <name>CreateAppExchangePackages </name>
     </userPermissions>
 </PermissionSet>
