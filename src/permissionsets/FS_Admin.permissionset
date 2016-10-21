@@ -46095,7 +46095,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <customizeSetup>false</customizeSetup>
         <deleteSetup>false</deleteSetup>
         <modifyAllRecords>false</modifyAllRecords>
@@ -46107,7 +46107,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <customizeSetup>false</customizeSetup>
         <deleteSetup>false</deleteSetup>
         <modifyAllRecords>false</modifyAllRecords>
