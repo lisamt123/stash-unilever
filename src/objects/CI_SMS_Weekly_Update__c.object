@@ -87,7 +87,7 @@
         <fullName>Funnel_Ref__c</fullName>
         <externalId>false</externalId>
         <formula>HYPERLINK(&quot;/&quot;&amp;Id ,
-IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
+IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project2__c,
 (&quot;Manual-&quot;  + Name) )
 ,&apos;_self&apos; )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

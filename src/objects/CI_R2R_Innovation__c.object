@@ -851,10 +851,10 @@ Green- On track</inlineHelpText>
     <fields>
         <fullName>Total_Cost__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( ISPICKVAL(Currency__c , &apos;EUR&apos;) , &apos;€&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c),
-IF(ISPICKVAL(Currency__c , &apos;USD&apos;) , &apos;$&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c),
-IF(ISPICKVAL(Currency__c , &apos;GBP&apos;) , &apos;£&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c),
-&apos;र&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c) )) )</formula>
+        <formula>IF( ISPICKVAL(Currency__c , &apos;EUR&apos;) , &apos;EUR&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c),
+IF(ISPICKVAL(Currency__c , &apos;USD&apos;) , &apos;USD&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c),
+IF(ISPICKVAL(Currency__c , &apos;GBP&apos;) , &apos;GBP&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c),
+&apos;INR&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c) )) )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Cost</label>
         <required>false</required>
@@ -1909,7 +1909,7 @@ IF(ISPICKVAL(Currency__c , &apos;GBP&apos;) , &apos;£&apos; &amp; &apos; &apos;
         <customTabListAdditionalFields>Funnel_Status__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>RAG_Color__c</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>Project_Name__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Project__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Project2__c</lookupDialogsAdditionalFields>
         <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>Project_Name__c</searchFilterFields>
         <searchFilterFields>Project__c</searchFilterFields>
