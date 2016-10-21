@@ -2645,10 +2645,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ControllerUtil</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CoreNTConstants</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -3086,14 +3082,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FAU_CreateProgramControllerTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FAU_CreateTemplateController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FAU_CreateTemplateControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -4338,10 +4326,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>NavigationManager</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>NavigationManager_TEST</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -5830,10 +5814,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>SiteRegisterController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>StringUtil</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -49058,19 +49038,11 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Course_Detail</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>Edit_Link</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Exception</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>FAQs</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -49122,10 +49094,6 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Footer</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>FooterScripts</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -49159,10 +49127,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Header</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Help</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -49834,10 +49798,6 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Programme</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>Reassign_Approval</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -50095,10 +50055,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>WinatPOSUpload</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Wrapper</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
