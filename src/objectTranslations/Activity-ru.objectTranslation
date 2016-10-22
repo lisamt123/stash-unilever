@@ -73,24 +73,108 @@
         <label><!-- Distributor name --></label>
         <name>FS_Distributorname__c</name>
         <picklistValues>
+            <masterLabel>3Cafe</masterLabel>
+            <translation><!-- 3Cafe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Akademiya Edy</masterLabel>
+            <translation><!-- Akademiya Edy --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Alidi-Nord</masterLabel>
             <translation><!-- Alidi-Nord --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>East West Moscow</masterLabel>
-            <translation><!-- East West Moscow --></translation>
+            <masterLabel>Alyans-M</masterLabel>
+            <translation><!-- Alyans-M --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>East West SPb</masterLabel>
-            <translation><!-- East West SPb --></translation>
+            <masterLabel>Azbuka food trade</masterLabel>
+            <translation><!-- Azbuka food trade --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bakaleya</masterLabel>
+            <translation><!-- Bakaleya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Beloe More</masterLabel>
+            <translation><!-- Beloe More --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ecoland</masterLabel>
+            <translation><!-- Ecoland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Frostway</masterLabel>
+            <translation><!-- Frostway --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Globalfoods Kazan</masterLabel>
+            <translation><!-- Globalfoods Kazan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Globalfoods Krym</masterLabel>
+            <translation><!-- Globalfoods Krym --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Globalfoods Moscow</masterLabel>
             <translation><!-- Globalfoods Moscow --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Integrita SPb</masterLabel>
-            <translation><!-- Integrita SPb --></translation>
+            <masterLabel>Globalfoods Rostov</masterLabel>
+            <translation><!-- Globalfoods Rostov --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Globalfoods Samara</masterLabel>
+            <translation><!-- Globalfoods Samara --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Globalfoods Sochi</masterLabel>
+            <translation><!-- Globalfoods Sochi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Globalfoods Yaroslavl</masterLabel>
+            <translation><!-- Globalfoods Yaroslavl --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grand Marche</masterLabel>
+            <translation><!-- Grand Marche --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GurmanM</masterLabel>
+            <translation><!-- GurmanM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Holod</masterLabel>
+            <translation><!-- Holod --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IP Bulatova N.N.</masterLabel>
+            <translation><!-- IP Bulatova N.N. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IP Sherbakova T.A.</masterLabel>
+            <translation><!-- IP Sherbakova T.A. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Integrita Krasnodar</masterLabel>
+            <translation><!-- Integrita Krasnodar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Integrita Rostov</masterLabel>
+            <translation><!-- Integrita Rostov --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Integrita Sochi</masterLabel>
+            <translation><!-- Integrita Sochi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Integrita St.Pete</masterLabel>
+            <translation><!-- Integrita St.Pete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ladya</masterLabel>
+            <translation><!-- Ladya --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Lotos</masterLabel>
@@ -101,20 +185,112 @@
             <translation><!-- MARRusia Moscow --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>MARRusia S-Pete</masterLabel>
-            <translation><!-- MARRusia S-Pete --></translation>
+            <masterLabel>MARRusia St.Pete</masterLabel>
+            <translation><!-- MARRusia St.Pete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mariya</masterLabel>
+            <translation><!-- Mariya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mega Trade</masterLabel>
+            <translation><!-- Mega Trade --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Produktovaya mozaika</masterLabel>
+            <translation><!-- Produktovaya mozaika --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Produktovaya mozaika Tatarstan</masterLabel>
+            <translation><!-- Produktovaya mozaika Tatarstan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pyataya Armiya</masterLabel>
+            <translation><!-- Pyataya Armiya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restoratsiya</masterLabel>
+            <translation><!-- Restoratsiya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Samson-Opt</masterLabel>
+            <translation><!-- Samson-Opt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Snabzhenie i logistika</masterLabel>
+            <translation><!-- Snabzhenie i logistika --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SoyuzPischeProm</masterLabel>
+            <translation><!-- SoyuzPischeProm --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Suomi</masterLabel>
+            <translation><!-- Suomi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sweet Life</masterLabel>
+            <translation><!-- Sweet Life --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sweet Life Tatarstan</masterLabel>
+            <translation><!-- Sweet Life Tatarstan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TD Elite Trade</masterLabel>
+            <translation><!-- TD Elite Trade --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>TD Global Market</masterLabel>
             <translation><!-- TD Global Market --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Uhrenholt Moscow</masterLabel>
-            <translation><!-- Uhrenholt Moscow --></translation>
+            <masterLabel>TD KTK</masterLabel>
+            <translation><!-- TD KTK --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Uhrenholt S-Pete</masterLabel>
-            <translation><!-- Uhrenholt S-Pete --></translation>
+            <masterLabel>Urenholt Moscow</masterLabel>
+            <translation><!-- Urenholt Moscow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Urenholt St.Pete</masterLabel>
+            <translation><!-- Urenholt St.Pete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vershina Vkusa</masterLabel>
+            <translation><!-- Vershina Vkusa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virgo</masterLabel>
+            <translation><!-- Virgo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vladelita</masterLabel>
+            <translation><!-- Vladelita --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vostok-Zapad Ekaterinburg</masterLabel>
+            <translation><!-- Vostok-Zapad Ekaterinburg --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vostok-Zapad Krasnodar</masterLabel>
+            <translation><!-- Vostok-Zapad Krasnodar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vostok-Zapad Moscow</masterLabel>
+            <translation><!-- Vostok-Zapad Moscow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vostok-Zapad Novosibirsk</masterLabel>
+            <translation><!-- Vostok-Zapad Novosibirsk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vostok-Zapad St.Pete</masterLabel>
+            <translation><!-- Vostok-Zapad St.Pete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yurinat</masterLabel>
+            <translation><!-- Yurinat --></translation>
         </picklistValues>
     </fields>
     <fields>

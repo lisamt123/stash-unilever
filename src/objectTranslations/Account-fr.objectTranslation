@@ -1716,16 +1716,12 @@ Customer Delivers Directly = 5 --></help>
         <label><!-- RFS Region --></label>
         <name>FS_RusianRegion__c</name>
         <picklistValues>
-            <masterLabel>Belorussia</masterLabel>
-            <translation><!-- Belorussia --></translation>
+            <masterLabel>Belarus</masterLabel>
+            <translation><!-- Belarus --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>CFO</masterLabel>
             <translation><!-- CFO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Far East</masterLabel>
-            <translation><!-- Far East --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Moscow</masterLabel>
@@ -1736,8 +1732,8 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- NW --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Sibir</masterLabel>
-            <translation><!-- Sibir --></translation>
+            <masterLabel>Sibir &amp; Far East</masterLabel>
+            <translation><!-- Sibir &amp; Far East --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>South</masterLabel>
@@ -1748,8 +1744,12 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- St.Pete --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Ukraine</masterLabel>
-            <translation><!-- Ukraine --></translation>
+            <masterLabel>Undefined</masterLabel>
+            <translation><!-- Undefined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ural</masterLabel>
+            <translation><!-- Ural --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Volga</masterLabel>
@@ -1848,12 +1848,20 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- GROZNIY --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>IOSHKAR-OLA</masterLabel>
+            <translation><!-- IOSHKAR-OLA --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>IRKUTSK</masterLabel>
             <translation><!-- IRKUTSK --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>IVANOVO</masterLabel>
             <translation><!-- IVANOVO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IZHEVSK</masterLabel>
+            <translation><!-- IZHEVSK --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>KALININGRAD</masterLabel>
@@ -1864,12 +1872,24 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- KALUGA --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>KAZAN</masterLabel>
+            <translation><!-- KAZAN --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>KEMEROVO</masterLabel>
             <translation><!-- KEMEROVO --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>KHABAROVSK</masterLabel>
             <translation><!-- KHABAROVSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KIROV</masterLabel>
+            <translation><!-- KIROV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KOMSOMOLSK-NA-AMURE</masterLabel>
+            <translation><!-- KOMSOMOLSK-NA-AMURE --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>KOSTROMA</masterLabel>
@@ -1900,6 +1920,14 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- MAGADAN --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>MAGNITOGORSK</masterLabel>
+            <translation><!-- MAGNITOGORSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MAKHACHKALA</masterLabel>
+            <translation><!-- MAKHACHKALA --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>MINSK</masterLabel>
             <translation><!-- MINSK --></translation>
         </picklistValues>
@@ -1912,8 +1940,44 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- MURMANSK --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>NABEREZHNIYE CHELNY</masterLabel>
+            <translation><!-- NABEREZHNIYE CHELNY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NALCHIK</masterLabel>
+            <translation><!-- NALCHIK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NAZRAN</masterLabel>
+            <translation><!-- NAZRAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NIZHNEVARTOVSK</masterLabel>
+            <translation><!-- NIZHNEVARTOVSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NIZHNIY NOVGOROD</masterLabel>
+            <translation><!-- NIZHNIY NOVGOROD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NIZHNIY TAGIL</masterLabel>
+            <translation><!-- NIZHNIY TAGIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NORILSK</masterLabel>
+            <translation><!-- NORILSK --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>NOVGOROD VELIKIY</masterLabel>
             <translation><!-- NOVGOROD VELIKIY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NOVOKUZNETSK</masterLabel>
+            <translation><!-- NOVOKUZNETSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NOVOROSSIYSK</masterLabel>
+            <translation><!-- NOVOROSSIYSK --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>NOVOSIBIRSK</masterLabel>
@@ -1928,6 +1992,22 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- OREL --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>ORENBURG</masterLabel>
+            <translation><!-- ORENBURG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ORSK</masterLabel>
+            <translation><!-- ORSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PENZA</masterLabel>
+            <translation><!-- PENZA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PERM</masterLabel>
+            <translation><!-- PERM --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>PETROPAVLOVSK-KAMCHATSKY</masterLabel>
             <translation><!-- PETROPAVLOVSK-KAMCHATSKY --></translation>
         </picklistValues>
@@ -1938,6 +2018,10 @@ Customer Delivers Directly = 5 --></help>
         <picklistValues>
             <masterLabel>PSKOV</masterLabel>
             <translation><!-- PSKOV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PYATIGORSK</masterLabel>
+            <translation><!-- PYATIGORSK --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>ROSTOV-ON-DON</masterLabel>
@@ -1952,6 +2036,18 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- SAINT-PETERSBURG --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>SAMARA</masterLabel>
+            <translation><!-- SAMARA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SARANSK</masterLabel>
+            <translation><!-- SARANSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SARATOV</masterLabel>
+            <translation><!-- SARATOV --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>SEVASTOPOL</masterLabel>
             <translation><!-- SEVASTOPOL --></translation>
         </picklistValues>
@@ -1964,12 +2060,32 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- SMOLENSK --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>SOCHI</masterLabel>
+            <translation><!-- SOCHI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STAVROPOL</masterLabel>
+            <translation><!-- STAVROPOL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STERLITAMAK</masterLabel>
+            <translation><!-- STERLITAMAK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SURGUT</masterLabel>
+            <translation><!-- SURGUT --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>SYKTYVKAR</masterLabel>
             <translation><!-- SYKTYVKAR --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>TAMBOV</masterLabel>
             <translation><!-- TAMBOV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TOLLIATTI</masterLabel>
+            <translation><!-- TOLLIATTI --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>TOMSK</masterLabel>
@@ -1988,8 +2104,24 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- TYUMEN --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>UFA</masterLabel>
+            <translation><!-- UFA --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>ULAN-UDE</masterLabel>
             <translation><!-- ULAN-UDE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ULYANOVSK</masterLabel>
+            <translation><!-- ULYANOVSK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Undef</masterLabel>
+            <translation><!-- Undef --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VLADIKAVKAZ</masterLabel>
+            <translation><!-- VLADIKAVKAZ --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>VLADIMIR</masterLabel>
@@ -2032,16 +2164,16 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- Moscow &amp; CFO --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Sibir &amp; Far East</masterLabel>
-            <translation><!-- Sibir &amp; Far East --></translation>
+            <masterLabel>Sibir &amp; Far East &amp; Ural</masterLabel>
+            <translation><!-- Sibir &amp; Far East &amp; Ural --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>St.Pete &amp; NW &amp; Bel</masterLabel>
             <translation><!-- St.Pete &amp; NW &amp; Bel --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Ukraine</masterLabel>
-            <translation><!-- Ukraine --></translation>
+            <masterLabel>Undefined</masterLabel>
+            <translation><!-- Undefined --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Volga &amp; South</masterLabel>
@@ -2812,6 +2944,11 @@ At least 3 out of 4 = 5 --></help>
     <fields>
         <label>Date d&apos;inscription</label>
         <name>Registration_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Explain a person is requesting the creation of this account. This text is sent with the email notification to the manager and the administrator --></help>
+        <label><!-- Requester Comment --></label>
+        <name>Requester_Comment__c</name>
     </fields>
     <fields>
         <label><!-- Responsible Unilever Employee --></label>
@@ -3887,6 +4024,29 @@ At least 3 out of 4 = 5 --></help>
     </fields>
     <layouts>
         <layout>Feed Based Distributor</layout>
+        <sections>
+            <label><!-- Account Hierarchy --></label>
+            <section>Account Hierarchy</section>
+        </sections>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Distributor Type Information --></label>
+            <section>Distributor Type Information</section>
+        </sections>
+        <sections>
+            <label><!-- Hierarchy Information --></label>
+            <section>Hierarchy Information</section>
+        </sections>
+        <sections>
+            <label><!-- Segmentation --></label>
+            <section>Segmentation</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Feed Based Distributor Russia</layout>
         <sections>
             <label><!-- Account Hierarchy --></label>
             <section>Account Hierarchy</section>

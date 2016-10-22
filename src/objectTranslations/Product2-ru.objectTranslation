@@ -4458,6 +4458,29 @@
         </sections>
     </layouts>
     <layouts>
+        <layout>Food Solutions Product Russia</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Information --></label>
+            <section>Financial Information</section>
+        </sections>
+        <sections>
+            <label><!-- Logistic Information --></label>
+            <section>Logistic Information</section>
+        </sections>
+        <sections>
+            <label><!-- Product Hierarchy --></label>
+            <section>Product Hierarchy</section>
+        </sections>
+        <sections>
+            <label><!-- Product Visual --></label>
+            <section>Product Visual</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>Product Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>

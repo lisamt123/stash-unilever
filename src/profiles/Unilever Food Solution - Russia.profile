@@ -12645,6 +12645,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Requester_Comment__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Responsible_Unilever_Employee__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -54637,7 +54642,7 @@
         <recordType>Account.Standard</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Feed Based Distributor</layout>
+        <layout>Account-Feed Based Distributor Russia</layout>
         <recordType>Account.Distributor</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -56388,7 +56393,7 @@
         <layout>PricebookEntry-Price Book Entry Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Product2-Food Solutions Product</layout>
+        <layout>Product2-Food Solutions Product Russia</layout>
         <recordType>Product2.FS_Product</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -59537,7 +59542,7 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.FS_OperatorRussia</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>

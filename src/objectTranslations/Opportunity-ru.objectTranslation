@@ -108,6 +108,10 @@ Is покупатель растет?</help>
             <translation><!-- F1 SPREADS AND TOPPING --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>FOH ACCELERATION</masterLabel>
+            <translation><!-- FOH ACCELERATION --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>FOH MAYO</masterLabel>
             <translation><!-- FOH MAYO --></translation>
         </picklistValues>
@@ -150,6 +154,10 @@ Is покупатель растет?</help>
         <picklistValues>
             <masterLabel>LCB</masterLabel>
             <translation><!-- LCB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N1 CRYSTAL</masterLabel>
+            <translation><!-- N1 CRYSTAL --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Q1</masterLabel>
@@ -1065,8 +1073,12 @@ Enter competitor pricing if available --></help>
     <layouts>
         <layout>Opportunity with TPR Calculation Layout</layout>
         <sections>
-            <label><!-- TPR --></label>
-            <section>TPR</section>
+            <label><!-- Calculation TPR --></label>
+            <section>Calculation TPR</section>
+        </sections>
+        <sections>
+            <label><!-- Totals TPR --></label>
+            <section>Totals TPR</section>
         </sections>
     </layouts>
     <recordTypes>

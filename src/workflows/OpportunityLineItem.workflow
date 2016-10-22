@@ -108,7 +108,7 @@
             <name>FS_Total_COGS_To_Copy_of_Total_COGS</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Copy DIST TMI and Total COGS To Non Formula Field. Needed to roll-up DIST TMI formula field to the Opportunity</description>
         <formula>OR( ISCHANGED(FS_DISTTMI__c), ISCHANGED(TotalCOGS__c), NOT(ISBLANK(FS_DISTTMI__c)), NOT(ISBLANK(TotalCOGS__c)) )</formula>
         <triggerType>onAllChanges</triggerType>
@@ -119,7 +119,7 @@
             <name>FS_Fixed_Price_review</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>OpportunityLineItem.FS_FixedPrice__c</field>
             <operation>equals</operation>
@@ -164,7 +164,7 @@
             <name>FS_Update_Line_manager</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Update Line manager field value from record owner</description>
         <formula>true</formula>
         <triggerType>onAllChanges</triggerType>
