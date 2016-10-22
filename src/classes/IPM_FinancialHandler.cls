@@ -72,19 +72,13 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         Map<String,IPM_Financial_Year__c> upsertFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
         Map<String,IPM_Financial__c> upsertConsolidatedFinancialMap = new Map<String,IPM_Financial__c>(); 
         List<IPM_Financial__c> consolidationChangedFinancialList = new List<IPM_Financial__c>();
+        List<IPM_Financial__c> misalignedFinancials = new List<IPM_Financial__c>();
         
         if(Trigger.isInsert || Trigger.isUpdate)
         {  
             List<IPM_Financial__c> newFinancialList = (List<IPM_Financial__c>) Trigger.new;
             
             
-            // Manual Misalignment - Set the manualMisalignment field to true if there is any misalignment between the financials at Global/Regional and Local level
-            List<IPM_Financial__c> newFinancialLst = IPM_FinancialHelper.updateManualMisalignment((List<IPM_Financial__c>) Trigger.new);
-            if(!newFinancialLst.isEmpty()){
-                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
-                update newFinancialLst;
-                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
-            }
             
             
             
@@ -93,15 +87,16 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 IPM_FinancialHelper.insertFinancialYears(newFinancialList,upsertFinancialYearMap);    
                 
                 finIdsforProjY3iToSync.addAll(Trigger.newMap.keySet());    
+                misAlignedFinancials.addAll(IPM_FinancialHelper.updateManualMisalignment(newFinancialList));  
             }   
                 
             if(Trigger.isUpdate) 
             {   
-                 if(repeatCount < 4)
-                {
+               	List<IPM_Financial__c> eligibleForMisalignment = new List<IPM_Financial__c>();
+               	
                   processFinancials(newFinancialList,upsertFinancialYearMap,upsertConsolidatedFinancialMap,consolidationChangedFinancialList);
                   repeatCount++;
-                } 
+
                 
                 for(IPM_Financial__c financial : (List<IPM_Financial__c>)Trigger.new)
                 {
@@ -110,9 +105,21 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                     {
                         finIdsforProjY3iToSync.add(financial.Id); 
                     }
+                 	if(checkIfMisAligned(financial,oldFinancial))
+                    {
+                    	eligibleForMisalignment.add(financial);
+                    }
                 }
+                misAlignedFinancials.addAll(IPM_FinancialHelper.updateManualMisalignment(eligibleForMisalignment));
             }
 
+	    // Manual Misalignment - Set the manualMisalignment field to true if there is any misalignment between the financials at Global/Regional and Local level
+            if(!misAlignedFinancials.isEmpty())
+            {
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
+                update misAlignedFinancials;
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
+            }
                 //Insert new Financial Years to Consolidated Financials.
                 upsert upsertFinancialYearMap.values() External_ID__c;
         }
@@ -143,11 +150,18 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     }
     
     /**
-    * This method is to by passing trigger call for copy over snapshot details 
+    * This method is to check if manual misalignment has happened.
     */
-    private boolean checkToByPassCopyOver(IPM_Financial__c oOld, IPM_Financial__c oNew){
-    	if(oOld.Charter_Approved__c == oNew.Charter_Approved__c || oOld.Contract_Approved__c == oNew.Contract_Approved__c || 
-	        oOld.MR_Approved__c == oNew.MR_Approved__c || oOld.MD_Approved__c == oNew.MD_Approved__c) {
+ 	private boolean checkIfMisAligned(IPM_Financial__c financial,IPM_Financial__c oldFinancial)
+    {
+    	 if(financial.Volume_Unit_Difference__c != oldFinancial.Volume_Unit_Difference__c ||  
+    	 	financial.NPV_Difference__c!= oldFinancial.NPV_Difference__c ||  
+    	 	financial.IRR_Difference__c != oldFinancial.IRR_Difference__c || 
+    	 	financial.Payback_Difference__c != oldFinancial.Payback_Difference__c || 
+    	 	financial.CAPEX_Difference__c != oldFinancial.CAPEX_Difference__c || 
+    	 	financial.BIC_Difference__c != oldFinancial.BIC_Difference__c ||
+    	 	financial.Total_FY_Difference__c != oldFinancial.Total_FY_Difference__c)
+    	 	{
         	return true;
 		}
         return false;
@@ -397,9 +411,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     */
     private void processFinancials(List<IPM_Financial__c> newFinancialList, Map<String,IPM_Financial_Year__c> upsertFinancialYearMap,Map<String,IPM_Financial__c> upsertConsolidatedFinancialMap,List<IPM_Financial__c> consolidationChangedFinancialList)
 	{
-		//By passing trigger call for copy over snapshot details  
-		if(checkToByPassCopyOver((IPM_Financial__c)Trigger.Old[0], (IPM_Financial__c)Trigger.New[0]))
-		{
+		
 			Map<Id,IPM_Financial__c> targetLaunchChangedDateMap = new Map<Id,IPM_Financial__c>();
 			Map<Id,IPM_Financial__c> oldFinancialMap = (Map<Id,IPM_Financial__c>)Trigger.OldMap;
 			Set<Id> changedFinancialSet = new Set<Id>();
@@ -479,7 +491,6 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 					// Update Copy Over values to Financial Years
 					IPM_FinancialHelper.copyOverFinancialFields(copyOverChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialTocopyOverChangedFieldMap);
 					IPM_FinancialHelper.initializeConsolidation(consolidationChangedFinancialList,oldFinancialMap,financialDetailMap,upsertConsolidatedFinancialMap,changedFinancialFieldSet);
-				}
 			}
 		}
 }
