@@ -735,8 +735,21 @@
     </listViews>
     <listViews>
         <fullName>CEC_Japan_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>Enclosure_Code__c</columns>
+        <columns>Enclosure_Quantity__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>Total_Inventory_Quantity__c</columns>
+        <columns>Total_Used_Quantity__c</columns>
+        <columns>Type__c</columns>
+        <columns>OWNER.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Japan Queue</label>
+        <language>en_US</language>
         <queue>CEC_Japan_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
