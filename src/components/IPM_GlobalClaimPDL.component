@@ -119,7 +119,7 @@
 	                        </td>
 	                        
 	                        <td class="fintlewhitebg" width="10px">
-                                <div class="SecButtonSet deleteClaim pull-left" data-target="#removeClaim" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+                                <div class="SecButtonSet deleteClaim pull-left" data-target="#removeClaim" data-keyboard="false" data-backdrop="static">
                                     <a class="icoButton delete02" onclick="deletionHandling('{!projectClaim.id}');"></a>    
                                 </div>
 	                        </td>  

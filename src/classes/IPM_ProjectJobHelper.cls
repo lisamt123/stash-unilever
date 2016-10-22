@@ -326,7 +326,9 @@ public without sharing class IPM_ProjectJobHelper
         
         if(!processingRolloutMap.isEmpty())
         {
+        	IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
             update processingRolloutMap.values();
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
         }
         
         if(!rolloutProjectsMap.isEmpty())
@@ -394,13 +396,17 @@ public without sharing class IPM_ProjectJobHelper
         // Udpate Rollout Values with Status as completed.
         if(!successRolloutMap.isEmpty())
         {
+        	IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
             update successRolloutMap.values();
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
         }
         
         // Udpate Project Values with Status as completed.
         if(!successProjectMap.isEmpty())
         {
+        	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             update successProjectMap.values();
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         } 
     }
      
@@ -439,13 +445,17 @@ public without sharing class IPM_ProjectJobHelper
             if(!failedProjectMap.isEmpty())
             {    
                 // Udpate Project Values with Status as failed.
+                IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
                 update failedProjectMap.values();
+                IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
             }
                 
             // Udpate Rollout Values with Status as failed.
             if(failedRolloutMap!=null && !failedRolloutMap.isEmpty())
             {
+                IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
                 update failedRolloutMap.values();
+                IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
             } 
         }
         catch(Exception ex)
