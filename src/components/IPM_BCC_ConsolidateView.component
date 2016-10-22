@@ -41,7 +41,7 @@
     </div>
     <apex:repeat value="{!localFinancialList}" var="finance">
         <apex:variable var="contractApproved" value="{!if(AND(finance.Contract_Approved__c,gateDocType=='Contract'),true,false)}"   />
-        <apex:variable var="MRApproved" value="{!if(AND(finance.Contract_Approved__c,gateDocType=='Contract'),true,false)}"   />
+        <apex:variable var="MRApproved" value="{!if(AND(finance.MR_Approved__c,gateDocType=='Market Ready'),true,false)}"   />
         <apex:variable var="contractOrMRRegional" value="{!if(OR(AND(NOT(finance.Contract_Approved__c),gateDocType=='Contract', projSpan=='Regional'),AND(NOT(finance.MR_Approved__c),gateDocType=='Market Ready',projSpan=='Regional' )),true,false)}"/>
         <apex:variable var="contractOrMRGlobal" value="{!if(OR(AND(NOT(finance.Contract_Approved__c),gateDocType=='Contract', projSpan=='Global'),AND(NOT(finance.MR_Approved__c),gateDocType=='Market Ready', projSpan=='Global' )),true,false)}"/>
         <div class="bcclowerblock">
