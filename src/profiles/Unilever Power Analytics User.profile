@@ -10018,6 +10018,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Requester_Comment__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Responsible_Unilever_Employee__c</field>
         <readable>false</readable>
     </fieldPermissions>
