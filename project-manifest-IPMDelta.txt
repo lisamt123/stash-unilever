@@ -1,13 +1,4 @@
 src
 src/classes
-src/classes/IPM_FinancialHandler.cls
-src/classes/IPM_FinancialHandler.cls-meta.xml
-src/classes/IPM_ProjectDocumentHandler.cls
-src/classes/IPM_ProjectDocumentHandler.cls-meta.xml
-src/classes/IPM_ProjectJobHelper.cls
-src/classes/IPM_ProjectJobHelper.cls-meta.xml
-src/classes/IPM_RolloutPlansAddController.cls
-src/classes/IPM_RolloutPlansAddController.cls-meta.xml
-src/components
-src/components/IPM_GlobalClaimPDL.component
-src/components/IPM_GlobalClaimPDL.component-meta.xml
+src/classes/IPM_FinancialController.cls
+src/classes/IPM_FinancialController.cls-meta.xml
