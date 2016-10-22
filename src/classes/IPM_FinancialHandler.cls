@@ -77,12 +77,16 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         {  
             List<IPM_Financial__c> newFinancialList = (List<IPM_Financial__c>) Trigger.new;
             
-            // Manual Misalignment
-            List<IPM_Financial__c> newFinancial = IPM_FinancialHelper.updateManualMisalignment(newFinancialList);
-           
-            if(!newFinancial.isEmpty()){
-                update newFinancial;
-            } 
+            
+            // Manual Misalignment - Set the manualMisalignment field to true if there is any misalignment between the financials at Global/Regional and Local level
+            List<IPM_Financial__c> newFinancialLst = IPM_FinancialHelper.updateManualMisalignment((List<IPM_Financial__c>) Trigger.new);
+            if(!newFinancialLst.isEmpty()){
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
+                update newFinancialLst;
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
+            }
+            
+            
             
             if(Trigger.isInsert)
             {

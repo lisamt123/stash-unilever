@@ -61,13 +61,6 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
             IPM_FinancialYearHelper.updateGlobalFinancialActionStandards((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
             IPM_FinancialYearHelper.initialiseFYConsolidation((List<IPM_Financial_Year__c>)Trigger.new,oldFinancialMap,null,upsertconsolidatedFinancialYearMap);
             
-            // Manual Misalignment - Set the manualMisalignment field to true if there is any misalignment between the financials at Global/Regional and Local level
-            List<IPM_Financial__c> newFinancialLst = IPM_FinancialYearHelper.updateManualMisalignment((List<IPM_Financial_Year__c>) Trigger.new);
-            if(!newFinancialLst.isEmpty()){
-                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
-                update newFinancialLst;
-                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
-            }
         }
         else if(Trigger.isDelete && !deleteFinancialYearMap.isEmpty()) 
         { 			   			IPM_FinancialYearHelper.initialiseFYConsolidation(deleteFinancialYearMap.values(),null,deleteFinancialYearMap,upsertconsolidatedFinancialYearMap);
@@ -160,8 +153,25 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     * @para:new sobject record
     */
     public void afterUpdate(SObject oldSo, SObject so)
-    { 
+    {
+      
         //This method has been included as the class implements the ITrigger interface
+        IPM_Financial_Year__c newFinancialYear = (IPM_Financial_Year__c)so;
+        
+        String prefix = 'Regional';
+        IF(newFinancialYear.Gate_Keeping_Model__c=='GKM3')
+        {
+        	prefix = 'Global';
+        }
+        	
+    	if(newFinancialYear.get('Volume_'+prefix+'__c') != 0) 
+    	{
+    		newFinancialYear.Volume_Difference_Value__c = 0;
+    		if( ((Decimal)newFinancialYear.get('Volume_'+prefix+'__c') - (Decimal)newFinancialYear.get('Volume_Local__c') / (Decimal)newFinancialYear.get('Volume_'+prefix+'__c') ).abs() > 0.1)
+    		{
+    			newFinancialYear.Volume_Difference_Value__c = ((Decimal)newFinancialYear.get('Volume_'+prefix+'__c') - (Decimal)newFinancialYear.get('Volume_Local__c')).abs();
+    		}
+    	}
     }
     
     /** 

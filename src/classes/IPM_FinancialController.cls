@@ -2512,7 +2512,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                    
                    currentFinancial.Copy_Local_to_Regional__c = false;
                    
+                   IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
                    update currentFinancial;
+                   IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
                 }
                 
                 currentFinancial.Copy_Local_to_Regional__c = true;
@@ -2523,12 +2525,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             else{
                  
                  if(currentFinancial.Copy_Local_to_Global__c)
-                {
-                   
-                   currentFinancial.Copy_Local_to_Global__c = false;
-                   
-                   update currentFinancial;
-                }
+	            {
+	               
+	               currentFinancial.Copy_Local_to_Global__c = false;
+	               
+	               IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
+	               update currentFinancial;
+	               IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
+	            }
                 
                 currentFinancial.Copy_Local_to_Global__c = true;
                 
@@ -2578,7 +2582,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if(currentFinancial.Copy_Regional_to_Local__c)
             {
                 currentFinancial.Copy_Regional_to_Local__c = false;
-                update currentFinancial;  
+                
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
+                update currentFinancial;
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
             }
             
             currentFinancial.Copy_Regional_to_Local__c = true;
@@ -2627,7 +2634,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if(currentFinancial.Copy_Global_to_Local__c)
             {
                 currentFinancial.Copy_Global_to_Local__c = false;
-                update currentFinancial;  
+                
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
+                update currentFinancial;
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;  
             }
             
             currentFinancial.Copy_Global_to_Local__c = true;
