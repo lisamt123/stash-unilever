@@ -1889,7 +1889,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                { 
                     ipmCountry = new IPM_Country__c
                     (
-                        Project_Country__c = countryRolloutName,
+                        Project_Country__c = countryExternalId,
                         AddedAtStage__c = project.IPM_Phase__c
                     );
                }
