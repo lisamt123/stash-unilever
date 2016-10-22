@@ -1134,7 +1134,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                         FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS AND Charter_Approved__c = true  
                                                         ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                                     FROM IPM_Project_Rollout__c
-                                                    WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )  
+                                                    WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true
                                                     AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
                                                     
         
@@ -4118,11 +4118,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Boolean checkIsFinancialInvalid(Boolean isFinancialInvalid, Boolean isFinancialInvalidInnovation, IPM_Financial__c finToEvaluate){
           Boolean isChanged = false;
           
-          if((isFinancialInvalid || isFinancialInvalidInnovation) && !(Boolean)finToEvaluate.get(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)){
+          if((isFinancialInvalid || isFinancialInvalidInnovation) && finToEvaluate != null && !(Boolean)finToEvaluate.get(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)){
             finToEvaluate.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, true);
             isChanged = true;
           }
-          else if((!isFinancialInvalid && !isFinancialInvalidInnovation) && (Boolean)finToEvaluate.get(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)){
+          else if((finToEvaluate != null && !isFinancialInvalid && !isFinancialInvalidInnovation) && (Boolean)finToEvaluate.get(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)){
             finToEvaluate.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, false);
             isChanged = true;
           }
