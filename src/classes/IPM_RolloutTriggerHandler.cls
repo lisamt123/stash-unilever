@@ -541,7 +541,7 @@ public with sharing class IPM_RolloutTriggerHandler
         for(IPM_Project_Rollout__c localRollout : associatedlocalRollouts)
         {
             String financialExternalId = IPM_Utils.getFinancialExternalId(localRollout);  
-            IPM_Project_Rollout__c oldProjectRollout;
+            IPM_Project_Rollout__c oldProjectRollout = null;
             if(oldRolloutsMap.containsKey(localRollout.Id))
             {           
             	oldProjectRollout = oldRolloutsMap.get(localRollout.Id);
