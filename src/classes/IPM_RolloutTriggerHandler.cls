@@ -169,7 +169,9 @@ public with sharing class IPM_RolloutTriggerHandler
         
         if(!rolloutUpdateMap.isEmpty())
         {
+            SKIP_TRIGGER_EXECUTION = true;
             update rolloutUpdateMap.values();
+            SKIP_TRIGGER_EXECUTION = false;
         }    
         
         if(!deleteRolloutMap.isEmpty() && !IPM_RolloutTriggerHandler.RECURSIVE_CONTEXT)
@@ -539,7 +541,7 @@ public with sharing class IPM_RolloutTriggerHandler
         for(IPM_Project_Rollout__c localRollout : associatedlocalRollouts)
         {
             String financialExternalId = IPM_Utils.getFinancialExternalId(localRollout);  
-            IPM_Project_Rollout__c oldProjectRollout = new IPM_Project_Rollout__c();
+            IPM_Project_Rollout__c oldProjectRollout;
             if(oldRolloutsMap.containsKey(localRollout.Id))
             {           
             	oldProjectRollout = oldRolloutsMap.get(localRollout.Id);

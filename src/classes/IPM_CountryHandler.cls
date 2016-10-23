@@ -312,7 +312,7 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             Map<Id,IPM_Project_Rollout__c> finalDeleteRollout = new Map<Id,IPM_Project_Rollout__c>();
             Map<Id,IPM_Project_Rollout__c> finalUpdateRollout = new Map<Id,IPM_Project_Rollout__c>();
              
-            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id from IPM_Project_Rollout__c where Id in :deleteRolloutMap.keySet() AND isActive__c = true];
+            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id,IPM_CharterApproved__c from IPM_Project_Rollout__c where Id in :deleteRolloutMap.keySet() AND isActive__c = true];
             for(IPM_Project_Rollout__c deleteRollout : deleteRolloutList)
             {
                 if(deleteRollout.IPM_CharterApproved__c)

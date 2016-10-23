@@ -561,12 +561,14 @@ public with sharing class IPM_MilestoneHelper
                                             if(targetMilestone.IPM_Planned_Date__c > eligiblemilestone.IPM_Planned_Date__c)
                                             {
                                                 targetMilestone.IPM_Planned_Date__c =  eligiblemilestone.IPM_Planned_Date__c;
+                                                targetMilestone.IPM_Due_Date__c = targetMilestone.IPM_Planned_Date__c; 
                                                 finalMilestoneMap.put(targetMilestone.Id,targetMilestone);
                                             }
                                         }
                                         else
                                         {
                                             targetMilestone.IPM_Planned_Date__c = eligiblemilestone.IPM_Planned_Date__c;
+                                            targetMilestone.IPM_Due_Date__c = targetMilestone.IPM_Planned_Date__c;
                                             finalMilestoneMap.put(targetMilestone.Id,targetMilestone);  
                                         }
                                         break;
@@ -582,7 +584,9 @@ public with sharing class IPM_MilestoneHelper
             //update the finalMilestoneMap if it is not empty
             if(!finalMilestoneMap.isEmpty())
             {
+            	 IPM_MilestoneHelper.SKIP_TRIGGER_EXECUTION = true;
                  update finalMilestoneMap.values();
+                 IPM_MilestoneHelper.SKIP_TRIGGER_EXECUTION = false;
             }    
         }
     }
@@ -625,8 +629,11 @@ public with sharing class IPM_MilestoneHelper
                 }
             }
         }
-        if(!lstUpdateMiles.isEmpty()){
+        if(!lstUpdateMiles.isEmpty())
+        {
+            IPM_MilestoneHelper.SKIP_TRIGGER_EXECUTION = true;
             update lstUpdateMiles;
+            IPM_MilestoneHelper.SKIP_TRIGGER_EXECUTION = false;
         }
     }
 }
