@@ -2545,12 +2545,9 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         <fullName>IPM_Project_Based_Threshold_Status__c</fullName>
         <description>Check independently of the cluster whether the Project is below or above threshold.</description>
         <externalId>false</externalId>
-        <formula>IF(NOT(ISPICKVAL(IPM_Project_Type__c,&apos;Rollout&apos;)),
-  IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Project_Y3iTO__c &lt; IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
-    IF(ISPICKVAL(IPMProject_Span__c,&apos;Regional&apos;),
-       IF(IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
-       IF(IPM_Parent_Project__r.IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;))
-       )
+        <formula>IF((ISNULL(IPM_Parent_Project__c)),
+  IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Category_Thresh__c &lt; IPM_Project_Y3iTO__c , &apos;Above Threshold&apos;,&apos;Below Threshold&apos;)),
+    IF(IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Category_Thresh__c &lt; IPM_Parent_Project__r.IPM_Project_Y3iTO__c , &apos;Above Threshold&apos;,&apos;Below Threshold&apos;))
   )</formula>
         <label>IPM Project Based Threshold Status</label>
         <required>false</required>

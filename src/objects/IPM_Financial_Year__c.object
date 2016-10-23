@@ -1377,11 +1377,12 @@ IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
         <description>Shows total of Value Market Share Difference, Volume Difference, Turnover Difference, Gross Profit Difference, Advertising Promotions Difference, Profit Before Overheads Difference</description>
         <externalId>false</externalId>
         <formula>Value_Market_Share_Difference__c +
- Volume_Difference__c +
+ Volume_Tons_Difference__c+
  Turnover_Difference__c +
  Gross_Profit_Difference__c +
  Advertising_Promotions_Difference__c +
- Profit_Before_Overheads_Difference__c</formula>
+ Profit_Before_Overheads_Difference__c+
+ Volume_Difference_Value__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Difference</label>
         <precision>18</precision>
