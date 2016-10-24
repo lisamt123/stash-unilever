@@ -8,7 +8,6 @@ private class IPM_FinancialMisalignment_Test{
     private static final string GLOBAL_PL_EMAIL_ID = 'globalProjectLeader@unilever.com.test';
     private static final string REGIONAL_PL_EMAIL_ID = 'regionalProjectLeader@unilever.com.test';
     private static final string LOCAL_PL_EMAIL_ID = 'localProjectLeader@unilever.com.test';
-    private static Set<String> projectNameSet = new Set<String>{'GKM3TestComments1'};
     
     /*******************************************************************************************************
     * @description  Test Method to initialize data for test methods

@@ -292,7 +292,7 @@ private class IPM_GlobalClaimPDLController_Test{
             localRollout.Local_Project__c = localPro.Id;
             update localRollout;
             
-            IPM_Financial__c localFin; 
+            IPM_Financial__c localFin = New IPM_Financial__c(); 
             for(IPM_Financial__c fin : project[0].IPM_Financials_Consolidated__r){
             	if(fin.Display_Name__c.contains('GKM3TestComments1_LA')){
             		localFin = fin;

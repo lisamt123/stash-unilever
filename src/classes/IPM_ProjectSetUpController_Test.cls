@@ -140,6 +140,7 @@ private class IPM_ProjectSetUpController_Test {
         prDoc.IPM_Project__c = ProjectWithOutBoss.id;
         insert prDoc;
         projectTypeList = Test.loadData(IPM_Project_Type__c.sObjectType, 'IPM_ProjectType');
+        System.assertNotEquals(projectTypeList.size(),0,'Test data not loaded');
     }
     /**********************************************************************
     *@Description : get all initialised values from @testSetup method
