@@ -990,8 +990,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                     FROM IPM_Project_Document_Section__c 
                                     WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Default_Section__c=true 
                                     order by IPM_Section__r.IPM_Section_Sequence__c asc];
-		for(IPM_Project_Document_Section__c pd : projDocSectionList)
-		{     	
+		for(IPM_Project_Document_Section__c pd : projDocSectionList){
+		            	if (pd.IPM_Master_Section_External_Id__c=='OTIF_Status')
 	     		projDocSecId = pd.Id;
 		}
            
