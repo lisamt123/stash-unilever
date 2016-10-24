@@ -28,7 +28,7 @@
             var postpdate = '{!JSENCODE(TEXT(projectDoc.IPM_Postponement_Date__c))}';
             var postpComment = '{!JSENCODE(projectDoc.IPM_Postponed_Comments__c)}';
             var updateStatus = '{!JSENCODE(projectDoc.IPM_Document_Status__c)}';
-                var isPDL = '{!isPDL}';
+                var isPDL = {!isPDL};
             </script>
         </apex:outputPanel>
         <apex:outputPanel id="goto"></apex:outputPanel> 
