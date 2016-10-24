@@ -143,6 +143,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public boolean isPDLApproved{get;set;}//check whether PDL document is approved or not
     public static final String DOCUMENT_TYPE ='DocumentType';
     public static final String PDF ='PDF';
+    public static String projDocSecId = 'projDocSecId';
     
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
@@ -856,6 +857,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             chkClaims();
             Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.ATTACHMENT_CONTENT_DISPOSITION, IPM_ConstantUtils.ATTACHMENT_FILE_NAME+project.IPM_Project_Name__c+ '_'+projectDoc.IPM_GateDocuments__c+IPM_ConstantUtils.ATTACHMENT_DOCUMENT+system.today().format()+IPM_ConstantUtils.ATTACHMENT_FILE_TYPE);
             gateDocPDFURL.getParameters().put(IPM_ConstantUtils.ID_PARAMETER, ProjectId);
+	    gateDocPDFURL.getParameters().put('projDocSecId', projDocSecId);
             gateDocPDFURL.getParameters().put(IPM_ConstantUtils.PROJECTNAME_PARAMETER, project.IPM_Project_Name__c);
             gateDocPDFURL.getParameters().put(IPM_ConstantUtils.PRINTDOC_PARAMETER, PrintDoc);
             gateDocPDFURL.getParameters().put(DOCUMENT_TYPE, PDF);
@@ -988,6 +990,10 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                     FROM IPM_Project_Document_Section__c 
                                     WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Default_Section__c=true 
                                     order by IPM_Section__r.IPM_Section_Sequence__c asc];
+		for(IPM_Project_Document_Section__c pd : projDocSectionList)
+		{     	
+	     		projDocSecId = pd.Id;
+		}
            
             if(isWithAppendix){
                 getAppendixSections();
