@@ -17,7 +17,7 @@ src/classes/CEC_CaseTriggerHelperExtTest.cls-meta.xml
 src/flows/CEC_SMS_Case_Creation_Process-20.flow
 src/objects/Account.object
 src/objects/Case.object
-src/objects/CEC_Case_Market_Mapping__c
+src/objects/CEC_Case_Market_Mapping__c.object
 src/objects/cec_Org_Settings__c.object
 src/objects/mdm_Case_Product__c.object
 src/queues/CEC_Japan_TH_Quality_Check.queue
