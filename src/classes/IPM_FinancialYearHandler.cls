@@ -122,6 +122,23 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     { 
         //This method has been included as the class implements the ITrigger interface
         
+        IPM_Financial_Year__c newFinancialYear = (IPM_Financial_Year__c)so;
+        
+        String prefix = 'Regional';
+        IF(newFinancialYear.Gate_Keeping_Model__c=='GKM3')
+        {
+        	prefix = 'Global';
+        }
+        	
+    	if(newFinancialYear.get('Volume_'+prefix+'__c') != 0) 
+    	{
+    		newFinancialYear.Volume_Difference_Value__c = 0;
+    		if( ((Decimal)newFinancialYear.get('Volume_'+prefix+'__c') - (Decimal)newFinancialYear.get('Volume_Local__c') / (Decimal)newFinancialYear.get('Volume_'+prefix+'__c') ).abs() > 0.1)
+    		{
+    			newFinancialYear.Volume_Difference_Value__c = ((Decimal)newFinancialYear.get('Volume_'+prefix+'__c') - (Decimal)newFinancialYear.get('Volume_Local__c')).abs();
+    		}
+    	}
+        
     }
     
     /**
@@ -156,22 +173,6 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     {
       
         //This method has been included as the class implements the ITrigger interface
-        IPM_Financial_Year__c newFinancialYear = (IPM_Financial_Year__c)so;
-        
-        String prefix = 'Regional';
-        IF(newFinancialYear.Gate_Keeping_Model__c=='GKM3')
-        {
-        	prefix = 'Global';
-        }
-        	
-    	if(newFinancialYear.get('Volume_'+prefix+'__c') != 0) 
-    	{
-    		newFinancialYear.Volume_Difference_Value__c = 0;
-    		if( ((Decimal)newFinancialYear.get('Volume_'+prefix+'__c') - (Decimal)newFinancialYear.get('Volume_Local__c') / (Decimal)newFinancialYear.get('Volume_'+prefix+'__c') ).abs() > 0.1)
-    		{
-    			newFinancialYear.Volume_Difference_Value__c = ((Decimal)newFinancialYear.get('Volume_'+prefix+'__c') - (Decimal)newFinancialYear.get('Volume_Local__c')).abs();
-    		}
-    	}
     }
     
     /** 

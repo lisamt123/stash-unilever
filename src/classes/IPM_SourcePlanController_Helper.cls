@@ -1,10 +1,11 @@
+
 /***********************************************************************************************
 @Author-Cognizant
 @Description:GPL/BD/SC/TL user can create source plan for global GKM3 project after Ideas phase 
 ************************************************************************************************/
 public with sharing class IPM_SourcePlanController_Helper {
  
-   
+   public static Boolean SKIP_TRIGGER_EXECUTION = false;  
 	/*****************************************************************************************************************************
     @Description-check logged in user type to gice edit or read access on page
     ******************************************************************************************************************************/

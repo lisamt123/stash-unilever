@@ -866,18 +866,19 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                         businessCasePending=true;
                         showValidation=false;
                         localBCProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
-  			localProjectBC = + fin.Local_Project__r.IPM_Project_Name__c + ',';
+  			localProjectBC = localProjectBC + fin.Local_Project__r.IPM_Project_Name__c + ',';
                     }else if(IPM_ConstantUtils.PHASE_CAPABILITY.equals(fin.Local_Project__r.IPM_Phase__c) && !fin.Is_BC_Confirmed_Capability__c && !fin.Local_Project__r.Is_Archieved__c ){
                         totalLocalProjects=totalLocalProjects+1;
                         businessCasePending=true;
                         showValidation=false;
                         localBCProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+			 localProjectBC = localProjectBC + fin.Local_Project__r.IPM_Project_Name__c + ',';
                     } 
 						//Financial alignment
 						//bypassed the check for GKM3 - Interim
 						if(fin.Misaligned__c){
 							localFinProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
-  							localProjects = + fin.Local_Project__r.IPM_Project_Name__c + ',';
+  							localProjects = localProjects + fin.Local_Project__r.IPM_Project_Name__c + ',';
 							showValidation=false;  
 							financialAlignment=true;
 							totalFinProject=totalFinProject+1;
@@ -885,7 +886,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 						//Target launch date alignment
 						if(fin.Local_Project__r.Rollout_Plan_Target_Launch_Date__c!=fin.Local_Project__r.IPM_Target_Launch_Dates__c && fin.Local_Project__r.IPM_Target_Launch_Dates__c!=fin.Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c){
 							localTLDProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
-  							localProjectsTLD = + fin.Local_Project__r.IPM_Project_Name__c + ',';
+  							localProjectsTLD = localProjectsTLD + fin.Local_Project__r.IPM_Project_Name__c + ',';
 							showValidation=false;  
 							tldAlignment=true;  
 							totalTLDProject=totalTLDProject+1;

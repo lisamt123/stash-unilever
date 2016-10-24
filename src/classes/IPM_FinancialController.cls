@@ -999,21 +999,21 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         Map<String,List<IPM_Financial__c>> localFinancialMap = new Map<String,List<IPM_Financial__c>>();
         if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_PLE)){
-        	
-        	List<IPM_Project__c> lstLocalProject = new List<IPM_Project__c>();
-			
-			lstLocalProject = [SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,display_Name__c, Financial_External_Id__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c from IPM_Financials_local__r Where IPM_Project_Rollout__c = null) FROM IPM_Project__c WHERE IPM_Parent_Project__c =: project.id Limit: IPM_ConstantUtils.MaxLimit];
-			
-			
-			
+          
+          List<IPM_Project__c> lstLocalProject = new List<IPM_Project__c>();
+      
+      lstLocalProject = [SELECT Id, Market_Cluster_Name__c,IPM_Project_Rollout__r.Market_Cluster_Name__c,(SELECT Id,recordTypeID,display_Name__c, Financial_External_Id__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c from IPM_Financials_local__r Where IPM_Project_Rollout__c = null) FROM IPM_Project__c WHERE IPM_Parent_Project__c =: project.id Limit: IPM_ConstantUtils.MaxLimit];
+      
+      
+      
                 for(IPM_Project__c localProject: lstLocalProject){
                 
                     if(!localProject.IPM_Financials_local__r.isEmpty()){
-                        if(localFinancialMap.containsKey(localProject.Market_Cluster_Name__c)){
-                            localFinancialMap.get(localProject.Market_Cluster_Name__c).addAll(localProject.IPM_Financials_local__r);
+                        if(localFinancialMap.containsKey(localProject.IPM_Project_Rollout__r.Market_Cluster_Name__c)){
+                            localFinancialMap.get(localProject.IPM_Project_Rollout__r.Market_Cluster_Name__c).addAll(localProject.IPM_Financials_local__r);
                         }
                         else{
-                            localFinancialMap.put(localProject.Market_Cluster_Name__c,localProject.IPM_Financials_local__r);
+                            localFinancialMap.put(localProject.IPM_Project_Rollout__r.Market_Cluster_Name__c,localProject.IPM_Financials_local__r);
                         }
                     }
                     

@@ -14,7 +14,7 @@ private class IPM_ProjectSetUpController_Test {
     private static IPM_ProjectSetUpController  sic;  
     private static final string GOT_ERROR_STRING='got error while saving a project';
     private static final string CATEGORY='Household Care';
-    
+    private static List<IPM_Project_Type__c> projectTypeList;
     /**************************************************
     * @description : Master data 
     ***************************************************/ 
@@ -136,6 +136,11 @@ private class IPM_ProjectSetUpController_Test {
         
         List<IPM_User_Profile__c> usrProfileList=[SELECT IPM_User__c FROM IPM_User_Profile__c WHERE IPM_User__c=:loggedInUser LIMIT 1];
         system.assertEquals(usrProfileList[0].IPM_User__c,loggedInUser,'user profile user id is:'+usrProfileList[0].IPM_User__c);
+    	IPM_Project_Document__c prDoc =  IPM_TestFactory_Helper.createIPMProjectDocument(false);
+        prDoc.IPM_Project__c = ProjectWithOutBoss.id;
+        insert prDoc;
+        projectTypeList = Test.loadData(IPM_Project_Type__c.sObjectType, 'IPM_ProjectType');
+        System.assertNotEquals(projectTypeList.size(),0,'Test data not loaded');
     }
     /**********************************************************************
     *@Description : get all initialised values from @testSetup method
@@ -195,7 +200,13 @@ private class IPM_ProjectSetUpController_Test {
             sic.project.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_GLOBAL;
             sic.project.IPM_Brand_Positioning__c='Lux';
             sic.getBrandPos();
-                
+            
+            projectList[0].IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+            projectList[0].IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+            projectList[0].IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
+            update projectList[0];
+            getPagerefences();
+
             
         }
         Test.stopTest(); 
@@ -272,21 +283,72 @@ private class IPM_ProjectSetUpController_Test {
         
         List<IPM_Project__c> projectList = [Select Id,Name,IPM_Project_Name__c from IPM_Project__c where IPM_Project_Name__c='TESTPROJECTNEW' LIMIT 1];
         System.assertEquals(projectList.size(),1,'project got saved with updated project name as:'+projectList[0].IPM_Project_Name__c);
-        Test.stopTest(); 
+         
         system.runAs(userInitialize){
             sic.project.Name='Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name Invalid project name ';
             sic.processProjectSave();
             sic.project.IPM_Project_Job_Status__c= IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+            sic.saveProject();
+            Test.stopTest();
             sic.initialise();
             sic.removeProjectLogo();
             System.assertEquals(sic.project.IPM_White_Space_Project__c,false,'User marked project as without white space');    
             System.assertEquals(sic.project.IPM_Fast_Track_Project__c,false,'User marked project as without fast track');   
-             
+           
+            
+        }
+        
+    }
+    private static testmethod void processMultipleCompanyCards2()
+    {
+        getPagerefences();
+        
+        List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>();
+        IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+        companyCardList.add(regionalCompanyCard);
+        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+        companyCardList.add(localCompanyCard);  
+        insert companyCardList;     
+        for(IPM_Company_Card__c companyCard : companyCardList )
+        {
+            companyCardMap.put(companyCard.Id,companyCard);
+        }       
+        Id loggedInUser = userinfo.getuserid();
+        List<IPM_User_Profile__c> tempUserProfileList = IPM_TestFactory_Helper.createUserProfileList(new List<Id>{loggedInUser},companyCardList,false);     
+         for(Integer counter=0;counter < tempUserProfileList.size();counter++)
+        {
+            tempUserProfileList[counter].IPM_User_Category__c = companyCardList[0].IPM_Managed_category__c;
+        }
+        insert tempUserProfileList;
+        userProfileList.addAll(tempUserProfileList);    
+        
+        Test.startTest();
+        initiateProjectCreation();
+        
+        // Set the same project Name
+        sic.project.IPM_Project_Name__c ='TESTPROJECTNEW';
+        sic.saveProceed();
+        sic.saveIPMApproach();
+        system.assertEquals(sic.project.IPM_PM_Approach__c,IPM_ConstantUtils.IPM_APPROACH_EXTERNAL,'IPM approach is not external');
+        IPM_ProjectSetupController.savetabname('testtab',string.valueOf(sic.project.id));
+        
+        List<IPM_Project__c> projectList = [Select Id,Name,IPMProject_Span__c,IPM_Project_Type__c,IPM_Project_Name__c from IPM_Project__c where IPM_Project_Name__c='TESTPROJECTNEW' LIMIT 1];
+        System.assertEquals(projectList.size(),1,'project got saved with updated project name as:'+projectList[0].IPM_Project_Name__c);
+        //system.assert(FALSE, projectList[0].IPMProject_Span__c+','+projectList[0].IPM_Project_Type__c);
+        system.runAs(userInitialize){
+            sic.project.IPM_Project_Job_Status__c= IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+            sic.initialise();
+            
+            sic.removeProjectLogo();
+            System.assertEquals(sic.project.IPM_White_Space_Project__c,false,'User marked project as without white space');    
+            System.assertEquals(sic.project.IPM_Fast_Track_Project__c,false,'User marked project as without fast track');   
+            
             sic.processProjectSave();
-            List<IPM_Project__c> updatedProjectList = [ SELECT Id,IPM_White_Space_Project__c FROM IPM_Project__c WHERE Id=:ProjectWithOutBoss.id LIMIT 1];
+			List<IPM_Project__c> updatedProjectList = [ SELECT Id,IPM_CompanyCardText__c,IPM_ProjectGKM__c,IPM_Phase__c,IPMProject_Span__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPM_White_Space_Project__c FROM IPM_Project__c WHERE Id=:ProjectWithOutBoss.id LIMIT 1];
             system.assertEquals(updatedProjectList[0].IPM_White_Space_Project__c,false,'Project white space is :'+updatedProjectList[0].IPM_White_Space_Project__c);
-            sic.regionShortName();
-	    sic.saveProject();
+            Test.stopTest();
+			sic.regionShortName();
+			sic.saveProject();
             
         }
         

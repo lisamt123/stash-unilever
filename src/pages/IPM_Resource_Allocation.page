@@ -190,7 +190,7 @@
                     <apex:commandLink styleClass="btnNomargin convertLowercase ipmButton primary" status="Loading" action="{!updateCoreMember}" value="{!$Label.IPM_Update} {!ButtonLabel}" html-data-dismiss="modal" rerender="none" onComplete="closepopup()"/>
                 </div>
             </apex:outputPanel>
-            <apex:outputText value="{!$Label.IPM_Select_This_MCO_Members}" rendered="{!AND(!isMyORAllCatSelectAva,rolloutSpan!='Regional')}" styleclass=" categoryTitle col-sm-12 pull-left"/> 
+            <apex:outputText value="{!$Label.IPM_Select_This_MCO_Members}" rendered="{!AND(!isMyORAllCatSelectAva,rolloutSpan!='Regional',rolloutSpan!=null,!ISBLANK(rolloutSpan))}" styleclass=" categoryTitle col-sm-12 pull-left"/> 
                
                 <!-- Rollouts Leader selection --->
             <apex:outputPanel rendered="{!isMyORAllCatSelectAva}"> 

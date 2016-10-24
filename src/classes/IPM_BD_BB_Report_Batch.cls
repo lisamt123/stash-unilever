@@ -427,7 +427,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         analyticObj.IPM_Project_Type__c = IPM_Utils.Rollout;
         analyticObj.IPM_Category_Group__c = parent.IPM_Category_Group__c;
         analyticObj.IPM_Category__c = parent.IPM_Category__c;
-        analyticObj.IPM_Exempt_from_Threshold__c = parent.IPM_Exempt_from_Threshold__c;
         analyticObj.IPM_Market_Place_Activity__c = parent.IPM_Market_Place_Activity__c;
         analyticObj.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
         analyticObj.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
@@ -657,10 +656,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	nonKeyAnalytic.IPM_Project_Phantom_Non_Key__c = IPM_ConstantUtils.Nonkey;
     	nonKeyAnalytic.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
     	nonKeyAnalytic.IPM_Project_Name__c = nonKeyFinancial.Display_Name__c;
-    	//nonKeyAnalytic.IPM_Parent_Project_Name__c = (parent.IPM_Gate_Keeping_Model__c==IPM_Utils.GATE_KEEPING_MODEL_3)?nonKeyFinancial.Global_External_Id__c:parent.IPM_Project_Name__c;   	
     	nonKeyAnalytic.IPM_Project_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
     	nonKeyAnalytic.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-    	//nonKeyAnalytic.IPM_Company__c = parent.IPM_Company__c;
     	nonKeyAnalytic.IPM_Category_Group__c = parent.IPM_Category_Group__c;
         nonKeyAnalytic.IPM_Category__c = parent.IPM_Category__c;
     	nonKeyAnalytic.IPM_Key_NonKey__c = IPM_ConstantUtils.OTIF_NO;
@@ -669,14 +666,12 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		nonKeyAnalytic.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;//need to set the global project value
 		nonKeyAnalytic.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;//need to set the global project value
     	
-    	if(parent.IPM_Gate_Keeping_Model__c==IPM_Utils.GATE_KEEPING_MODEL_3){
-			nonKeyAnalytic.IPM_Parent_Project_Name__c = nonKeyFinancial.Global_External_Id__c;//need to set the global project value
+    	if(nonKeyFinancial.Gate_Keeping_Model__c==IPM_Utils.GATE_KEEPING_MODEL_3){
+    		nonKeyAnalytic.IPM_Parent_Project_Name__c = nonKeyFinancial.Global_External_Id__c;//need to set the global project name
 			nonKeyAnalytic.IPM_Company__c = nonKeyFinancial.IPM_Parent_Company_Card__c;//need to set the global project value
 			
 			nonKeyAnalytic.IPM_Phase__c = projectRollout.IPM_Project__r.IPM_Phase__c;//need to set the global project value
-			}
-		else
-			{
+		}else{
 			nonKeyAnalytic.IPM_Parent_Project_Name__c = parent.IPM_Project_Name__c;
 			nonKeyAnalytic.IPM_Company__c = parent.IPM_Company__c;
 			nonKeyAnalytic.IPM_Phase__c = parent.IPM_Phase__c;
@@ -744,7 +739,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		                                                                                  IPM_CPP_Regional__c,
 		                                                                                  IPM_CPP_Local__c,
 		                                                                                  Global_External_Id__c,
-		                                                                                  IPM_Parent_Company_Card__c 
+		                                                                                  IPM_Parent_Company_Card__c,
+		                                                                                  Gate_Keeping_Model__c 
 		                                                                          FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
         
             for(IPM_Financial__c fi:projectFinancialList){
@@ -906,7 +902,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             list<IPM_Project_Rollout__c> projRolloutList = new list<IPM_Project_Rollout__c>([SELECT id,name,IPM_Project__r.id,Market_Cluster_Name__c,RecordTypeId,MCO_Name__c,Regional_Project__c,Regional_Rollout__c,IPM_Status__c,KeyMCO__c,IPM_Company_Card__r.Name,IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,Target_Launch_Year__c,Regional_Rollout_Phase__c,
                                                                                                     Local_Rollout_Phase__c,IPM_Project_Job_Status__c,Target_LaunchMonth__c,Target_LaunchYear__c,Regional_Rollout__r.id,Regional_Rollout__r.Name,IPM_Global_OR_Regional__c,
                                                                                                     IPM_Brand__c,IPM_Parent_Project_Name__c,IPM_Regional_PL__c,IPM_Regional_PL__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_Phase__c,
-                                                                                                    Regional_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_SourceProjectType__c,Regional_Project__r.Id,Target_Launch_Date__c,IPM_Project_GKM__c,IPM_Project__r.IPM_Project_name__c,IPM_project__r.IPM_Brand_Positioning__c,IPM_Rollout_Project__c                                                                       
+                                                                                                    Regional_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_SourceProjectType__c,Regional_Project__r.Id,Target_Launch_Date__c,
+                                                                                                    IPM_Project_GKM__c,IPM_Project__r.IPM_Project_name__c,IPM_project__r.IPM_Brand_Positioning__c,IPM_Rollout_Project__c                                                                     
                                                                                                     FROM IPM_Project_Rollout__c 
                                                                                                     WHERE (IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset()) and IPM_Project_Rollout__c.isActive__c = true  Limit 50000]);
             for(IPM_Project_Rollout__c pr:projRolloutList){
@@ -990,7 +987,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                             IPM_Project_Rollout__c,IPM_Project_Rollout__r.Id,
                                                                                             IPM_Project_Rollout__r.Name,Regional_Project__c,
                                                                                             Regional_Project__r.id,IPM_CPP_Regional__c,
-                                                                                            IPM_CPP_Local__c,Year_1_iTO_Global__c,Year_1_iTO_Regional__c,Global_External_Id__c,IPM_Parent_Company_Card__c  
+                                                                                            IPM_CPP_Local__c,Year_1_iTO_Global__c,Year_1_iTO_Regional__c,Global_External_Id__c,IPM_Parent_Company_Card__c,Gate_Keeping_Model__c  
                                                                                             FROM IPM_Financial__c 
                                                                                             WHERE IPM_Project_Rollout__c IN: regionalRolloutset OR Regional_Project__c IN: regionalRolloutset  Limit 50000]);
                                                 
@@ -1371,7 +1368,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 	{
 	  if(pr.IPM_Project_GKM__c != IPM_Utils.GATE_KEEPING_MODEL_3)
 		{    
-			 
+			 analyticObj.IPM_Exempt_from_Threshold__c = parent.IPM_Exempt_from_Threshold__c;
 			 analyticObj.IPM_Gate_Keeping_Model__c = parent.IPM_Gate_Keeping_Model__c;
 			 analyticObj.IPM_Brand_Positioning__c = parent.IPM_Brand_Positioning__c;
 			 analyticObj.IPM_Company__c = pr.IPM_Company_Card__r.Name;
@@ -1393,10 +1390,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         	
         }
 		if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE && pr.IPM_Project_GKM__c == IPM_Utils.GATE_KEEPING_MODEL_3){
-		
+		analyticObj.IPM_Project_Description__c  = '';
 		analyticObj.IPM_Company__c = parent.IPM_Company__c;
 		analyticObj.IPM_Parent_Project_Name__c = pr.IPM_Project__r.IPM_Project_name__c;
-		analyticObj.IPM_Brand_Positioning__c = pr.IPM_project__r.IPM_Brand_Positioning__c;
+		
 		}
 		if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE && pr.IPM_Project_GKM__c == IPM_Utils.GATE_KEEPING_MODEL_3){
 		

@@ -380,8 +380,17 @@
         <fullName>IPM_Exemptfrom_Threshold__c</fullName>
         <description>Exempt From Threshold - Formula field (Yes/ NO)</description>
         <externalId>false</externalId>
-        <formula>IF(IPM_Exempt_from_Threshold__c, &apos;Yes&apos;,  IF( CONTAINS(IPM_Project_Name__c, &apos;(Non Key)&apos;) , &apos;&apos;, &apos;No&apos;) )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>IF(IPM_Exempt_from_Threshold__c, &apos;Yes&apos;,  
+
+		IF( CONTAINS(IPM_Project_Name__c, &apos;(Non Key)&apos;) , &apos;&apos;,  
+
+		IF(CONTAINS(IPM_Project_Span__c,&apos;Local&apos;) , &apos;&apos; ,  
+		IF(
+		AND
+		(IPM_Category_Group__c=&apos;Personal Care&apos;, IPM_Project_Type__c=&apos;Rollout&apos;),&apos;&apos;,&apos;NO&apos;) 
+		 )
+		)
+		)</formula>
         <label>IPM Exempt from Threshold</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
