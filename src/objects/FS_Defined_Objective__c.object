@@ -2446,6 +2446,13 @@ ISPICKVAL(FS_Status__c, &apos;Completed&apos;) ,ISPICKVAL(FS_Status__c, &apos;Ap
         <errorMessage>Completion date can not be before objective start date</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>FS_Objective_Approval_Check</fullName>
+        <active>true</active>
+        <description>It is used to restrict user to submit the defined objective record for approval when the master account plan is not yet approved.</description>
+        <errorConditionFormula>And(FS_Account_Plan__r.FS_Approved__c =false, ISPICKVAL(FS_Status__c ,&apos;Approval Requested&apos;))</errorConditionFormula>
+        <errorMessage>Please submit master account plan record to get this defined objective approved.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>If_Sub_Type_is_Other_Need_Reason</fullName>
         <active>true</active>
         <description>If Sub Type = Other, need Other Reason</description>
