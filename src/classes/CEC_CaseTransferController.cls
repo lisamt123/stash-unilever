@@ -7,12 +7,9 @@ Once user selects any of the case market mapping perform the following action:
 - Update the following case fields:
 a. Case market mapping
 b. Default the case owner with the case market mapping: default case owner field value
-c. If Reason code exists then check if there is any reason code exists based on the L5 Code (not desc) and 2 - char country code.
-If reason code exists then replace the existing reason code, otherwise blank it off
-d. Remove the case product information
-e. Remove the customer information
-f. Remove any store information if present
-g. Any deleted information should be populated in the case comment field
+c. Remove the case product information
+d. Remove any store information if present
+f. Any deleted information should be populated in the case comment field
 
 <!-- History-->
 <!-- ---------------------------------------------------------->
@@ -68,7 +65,7 @@ Purpose: To transfer case to the advisor selected market.
 ********************************************************************/
     
     public void transferCase() {
-         Account acct;
+         Account acct = new Account();
         isTransferSuccess = false;
         if (String.isBlank(caseMktMapIdStr)) {                        
             ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.Info, Label.CEC_SelectMktMappingMsg);
@@ -99,7 +96,7 @@ Purpose: To transfer case to the advisor selected market.
             
             try {
                 
-                if(acct != null)
+                if(acct.Id != null)
                 	update acct;
                 
                 update transCase;

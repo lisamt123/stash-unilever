@@ -16,7 +16,11 @@ public class CEC_CaseTriggerHelperExtTest {
 
     Private static final string brand = 'Knorr';
     Private static final string country = 'United Kingdom';
-    
+    Private static final string skills = 'Coffee & Snacks';
+    Private static final string inboundPhoneMrkt = '3456464748@unilever.com';
+    Private static final string inboundEmailMrkt = 'unitedkingdom.knorr@unilever.com';
+    Private static final string inboundNumber = '3456464748';
+        
     @testSetup static void setUpTestData() {
         
         User u = CEC_TestDataFactory.createStandardCECTestUser();
@@ -43,8 +47,6 @@ public class CEC_CaseTriggerHelperExtTest {
             
             insert accounts;
             
-            List<Contact> conts = [SELECT Id FROM Contact limit 1];
-            
             List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping(); 
             
             update cmmList;
@@ -63,7 +65,7 @@ public class CEC_CaseTriggerHelperExtTest {
             
                 CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
                                                     WHERE Market__c = :country LIMIT 1];
-                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand ,Inbound_Email__c='unitedkingdom.knorr@unilever.com',Skill__c='Coffee & Snacks');
+                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand ,Inbound_Email__c=inboundEmailMrkt,Skill__c=skills);
                 insert cbm;
                 
                 
@@ -80,7 +82,7 @@ public class CEC_CaseTriggerHelperExtTest {
                     
                     insert newcase;
              
-                    System.assertEquals('unitedkingdom.knorr@unilever.com', [SELECT Transient_External_Id__c FROM Case WHERE Id =:newcase.Id].Transient_External_Id__c);
+                    System.assertEquals(inboundEmailMrkt, [SELECT Transient_External_Id__c FROM Case WHERE Id =:newcase.Id].Transient_External_Id__c);
                     System.assertEquals(cbm.Id, [SELECT Case_Brand_Mapping__c FROM Case WHERE Id =:newcase.Id].Case_Brand_Mapping__c);  
              Test.stopTest();
              
@@ -95,7 +97,7 @@ public class CEC_CaseTriggerHelperExtTest {
             
                 CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
                                                     WHERE Market__c = :country  LIMIT 1];
-                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand,Inbound_Email__c='unitedkingdom.knorr@unilever.com',Skill__c='Coffee & Snacks');
+                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand,Inbound_Email__c=inboundEmailMrkt,Skill__c=skills);
                 insert cbm;
                 
                 
@@ -113,7 +115,7 @@ public class CEC_CaseTriggerHelperExtTest {
                     newcase.Social_Media_External_Id__c= 'unitedkingdom.knorr';
                     update newcase;
              
-                    System.assertEquals('unitedkingdom.knorr@unilever.com', [SELECT Transient_External_Id__c FROM Case WHERE Id =:newcase.Id].Transient_External_Id__c);
+                    System.assertEquals(inboundEmailMrkt, [SELECT Transient_External_Id__c FROM Case WHERE Id =:newcase.Id].Transient_External_Id__c);
                     System.assertEquals(cbm.Id, [SELECT Case_Brand_Mapping__c FROM Case WHERE Id =:newcase.Id].Case_Brand_Mapping__c);  
              Test.stopTest();
              
@@ -132,10 +134,9 @@ public class CEC_CaseTriggerHelperExtTest {
                 cmmUK.Consumer_Phone_Search_Digits__c = 6;
                 update cmmUK;
                 
-                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand,Inbound_Email__c='3456464748@unilever.com',Skill__c='Coffee & Snacks');
+                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand,Inbound_Email__c=inboundPhoneMrkt,Skill__c=skills);
                 insert cbm;
                 
-             	List<Contact> conts = [SELECT Id FROM Contact limit 1];
                 List<Account> accts = [SELECT Id,PersonContactId,Owner.Market__c,Mobile_Phone_No_Special_Char__c,SMS_Search_Mobile_Number__c  FROM Account Limit 1];
                
                 System.debug('@@@Accounts@@@'+ accts [0]);
@@ -151,7 +152,7 @@ public class CEC_CaseTriggerHelperExtTest {
                     newcase.Origin='SMS / text Messages';  
                     newcase.Brand__c = brand;
                     newcase.Country__c = cmmUK.id;
-                    newcase.SMS_Inbound_Number__c = '3456464748';
+                    newcase.SMS_Inbound_Number__c =inboundNumber ;
                     
                     cases.add(newcase);
                 }
@@ -176,10 +177,9 @@ public class CEC_CaseTriggerHelperExtTest {
             
                 CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
                                                     WHERE Market__c = :country LIMIT 1];
-                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand ,Inbound_Email__c='3456464748@unilever.com',Skill__c='Coffee & Snacks');
+                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand ,Inbound_Email__c=inboundPhoneMrkt,Skill__c=skills);
                 insert cbm;
              
-                List<Contact> conts = [SELECT Id FROM Contact ];
                 List<Account> accts = [SELECT Id,PersonContactId,Owner.Market__c,Mobile_Phone_No_Special_Char__c,SMS_Search_Mobile_Number__c  FROM Account limit 1];
                 
              
@@ -205,12 +205,12 @@ public class CEC_CaseTriggerHelperExtTest {
                 
                 Test.startTest();
                     for(Case cse : cases){
-                        cse.SMS_Inbound_Number__c = '3456464748';
+                        cse.SMS_Inbound_Number__c = inboundNumber;
                     }
                     
                     update cases;
              
-                    System.assertEquals('3456464748@unilever.com', [SELECT Transient_External_Id__c FROM Case WHERE Id =:cases[0].Id].Transient_External_Id__c);
+                    System.assertEquals(inboundPhoneMrkt, [SELECT Transient_External_Id__c FROM Case WHERE Id =:cases[0].Id].Transient_External_Id__c);
                     System.assertEquals(cbm.Id, [SELECT Case_Brand_Mapping__c FROM Case WHERE Id =:cases[0].Id].Case_Brand_Mapping__c);  
              Test.stopTest();
              
@@ -226,7 +226,7 @@ public class CEC_CaseTriggerHelperExtTest {
              	cec_Org_Settings__c.getOrgDefaults();
                 CEC_Case_Market_Mapping__c cmmUK = [SELECT Id,Market__c FROM CEC_Case_Market_Mapping__c 
                                                     WHERE Market__c = :country LIMIT 1];
-                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand ,Inbound_Email__c='3456464748@unilever.com',Skill__c='Coffee & Snacks');
+                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand ,Inbound_Email__c=inboundPhoneMrkt,Skill__c=skills);
                 insert cbm;
              
                Id recTypeId =[Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
@@ -241,16 +241,7 @@ public class CEC_CaseTriggerHelperExtTest {
             	insert accounts;
              
                 List<Account> accts = [SELECT Id,PersonContactId,Owner.Market__c,Mobile_Phone_No_Special_Char__c,SMS_Search_Mobile_Number__c  FROM Account];
-                List<Contact> conts = [SELECT Id FROM Contact WHERE Id =: accts[0].PersonContactId];
              
-                System.debug('@@@Accounts@@@'+ accts [0]);
-                System.debug('@@@Owner.Market__c@@@'+ accts [0].Owner.Market__c);
-             	System.debug('@@@PersonContactId@@@'+ accts [0].PersonContactId);
-             
-             	System.debug('@@@Accounts@@@'+ accts [1]);
-                System.debug('@@@Owner.Market__c@@@'+ accts [1].Owner.Market__c);
-             	System.debug('@@@PersonContactId@@@'+ accts [1].PersonContactId);
-                
                 List<Case> cases = new List<Case>();
                 
                 for(Integer i=0; i < 2; i++){
@@ -262,7 +253,7 @@ public class CEC_CaseTriggerHelperExtTest {
                     newcase.Origin='SMS / text Messages';  
                     newcase.Brand__c = brand;
                     newcase.Country__c = cmmUK.id;
-                    newcase.SMS_Inbound_Number__c = '3456464748';
+                    newcase.SMS_Inbound_Number__c = inboundNumber;
                     cases.add(newcase);
                 }
                 
@@ -272,7 +263,7 @@ public class CEC_CaseTriggerHelperExtTest {
                                         
                     insert cases;
              
-                    System.assertEquals('3456464748@unilever.com', [SELECT Transient_External_Id__c FROM Case WHERE Id =:cases[0].Id].Transient_External_Id__c);
+                    System.assertEquals(inboundPhoneMrkt, [SELECT Transient_External_Id__c FROM Case WHERE Id =:cases[0].Id].Transient_External_Id__c);
                     System.assertEquals(cbm.Id, [SELECT Case_Brand_Mapping__c FROM Case WHERE Id =:cases[0].Id].Case_Brand_Mapping__c);  
              Test.stopTest();
              

@@ -1,10 +1,12 @@
 src
+src/approvalProcesses
 src/classes
 src/flows
 src/objects
 src/package.xml
 src/ProjectManifest.txt
 src/workflows
+src/approvalProcesses/TH1__Draft__c.CEC_Japan_TH_Quality_Check.approvalProcess
 src/classes/CEC_CaseTransferController.cls
 src/classes/CEC_CaseTransferController.cls-meta.xml
 src/classes/CEC_CaseTransferControllerTest.cls
@@ -16,6 +18,7 @@ src/classes/CEC_CaseTriggerHelperExtTest.cls-meta.xml
 src/flows/CEC_SMS_Case_Creation_Process-20.flow
 src/objects/Account.object
 src/objects/Case.object
+src/objects/CEC_Case_Market_Mapping__c
 src/objects/cec_Org_Settings__c.object
 src/objects/mdm_Case_Product__c.object
 src/workflows/CEC_Retrieval_Request__c.workflow

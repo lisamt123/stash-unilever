@@ -13,6 +13,7 @@ VERSION    AUTHOR            DATE            DETAIL
 ***********************************************************************/
 @isTest
 public class CEC_CaseTransferControllerTest {
+    static list<String> countries = new list<String>{'India','United Kingdom'};
     @testSetup static void setUpTestData() {
         
         User usr = CEC_TestDataFactory.createStandardCECTestUser();
@@ -33,18 +34,18 @@ public class CEC_CaseTransferControllerTest {
             List<mdm_Reason_Code__c> reasonCodeList = CEC_TestDataFactory.createReasonCode(1, globalListeningTreeList.get(0).Id);
             insert reasonCodeList;
             
-            List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createCaseMarketMapping('United Kingdom',1); 
-            cmmList.addAll(CEC_TestDataFactory.createCaseMarketMapping('India',1)); 
+            List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createCaseMarketMapping(countries[1],1); 
+            cmmList.addAll(CEC_TestDataFactory.createCaseMarketMapping(countries[0],1)); 
             cmmList.addAll(CEC_TestDataFactory.createCaseMarketMapping('United States',200)); 
               
-            CEC_Case_Market_Mapping__c cmmUk,cmmInd;
+            CEC_Case_Market_Mapping__c cmmUk,cmmInd = new CEC_Case_Market_Mapping__c();
             list<CEC_Case_Market_Mapping__c> updCaseMrktMapOwner = new list<CEC_Case_Market_Mapping__c>();
             for(CEC_Case_Market_Mapping__c cmm : [SELECT Id,Market__c,Country__r.ISO_Country_Dependency_Medium_Name__c FROM CEC_Case_Market_Mapping__c
-                                                 WHERE Market__c = 'United Kingdom' OR Market__c = 'India']) {
-                if (cmm.Market__c == 'United Kingdom') {
+                                                 WHERE Market__c = :countries[1] OR Market__c = :countries[0]]) {
+                if (cmm.Market__c == countries[1]) {
                      cmmUk = cmm;
 
-                }else if (cmm.Market__c == 'India') {
+                }else if (cmm.Market__c == countries[0]) {
                      cmmInd = cmm;
                     
                 }
@@ -68,7 +69,7 @@ public class CEC_CaseTransferControllerTest {
             cases[0].store__c = stores[0].Id;
             insert cases; 
             cases = [SELECT Case_Market_Mapping_Country__c,Country_Name__c,Case_Market__c, Country__c, Country__r.name, owner.Name, Store__c, Store__r.name, 
-                                    CEC_Product__r.Name, Account.Name, Reason_Code__c, Reason_Code__r.Name FROM case];
+                                    CEC_Product__r.Name, Account.Name, Reason_Code__c, Reason_Code__r.Name FROM case limit 1];
             System.debug('******cases*********'+ cases);
             
             
@@ -104,7 +105,7 @@ public class CEC_CaseTransferControllerTest {
               case cse = [SELECT Id,Case_Market__c FROM case limit 1];
               ApexPages.StandardController controller = new ApexPages.StandardController(cse);
               CEC_CaseTransferController caseTransferCtrl = new CEC_CaseTransferController(controller);
-              caseTransferCtrl.marketMapping = 'United Kingdom';
+              caseTransferCtrl.marketMapping = countries[1];
               caseTransferCtrl.searchMarketMap();
               ApexPages.Message[] pageMessages = ApexPages.getMessages();
               System.assertNotEquals(0, pageMessages.size());
@@ -123,7 +124,7 @@ public class CEC_CaseTransferControllerTest {
           
           System.runas(usr){
               case cse = [SELECT Id,Case_Market__c FROM case limit 1];
-              List<CEC_Case_Market_Mapping__c> caseMktMappings = [SELECT Id, Name, Market__c, Language__c, Country__r.ISO_3166_1_Code__c, DefaultCaseOwnerId__c, Country__r.Name FROM CEC_Case_Market_Mapping__c];
+              List<CEC_Case_Market_Mapping__c> caseMktMappings = [SELECT Id, Name, Market__c, Language__c, Country__r.ISO_3166_1_Code__c, DefaultCaseOwnerId__c, Country__r.Name FROM CEC_Case_Market_Mapping__c limit 250];
               system.debug('******caseMktMappings******'+ caseMktMappings.size());
               ApexPages.StandardController controller = new ApexPages.StandardController(cse);
               CEC_CaseTransferController caseTransferCtrl = new CEC_CaseTransferController(controller);
@@ -149,7 +150,7 @@ public class CEC_CaseTransferControllerTest {
           System.runas(usr){
               case cse = [SELECT Id,Case_Market__c FROM case limit 1];
               List<CEC_Case_Market_Mapping__c> caseMktMappings = [SELECT Id, Name, Market__c, Language__c, Country__r.ISO_3166_1_Code__c, DefaultCaseOwnerId__c, Country__r.Name FROM CEC_Case_Market_Mapping__c
-                                                                  WHERE Name ='India' Limit 100];
+                                                                  WHERE Name ='India'];
               system.debug('******caseMktMappings******'+ caseMktMappings.size());
               ApexPages.StandardController controller = new ApexPages.StandardController(cse);
               CEC_CaseTransferController caseTransferCtrl = new CEC_CaseTransferController(controller);
@@ -174,7 +175,7 @@ public class CEC_CaseTransferControllerTest {
           
           System.runas(usr){
               List<CEC_Case_Market_Mapping__c> caseMktMappings = [SELECT Id, Account_Owner_Active_Flag__c,Name, Market__c, Language__c, Country__r.ISO_3166_1_Code__c, DefaultCaseOwnerId__c,DefaultAccountOwnerId__c, Country__r.Name FROM CEC_Case_Market_Mapping__c
-                                                                  WHERE Name ='India'];
+                                                                  WHERE Name ='India' ];
               
               case cse = [SELECT Id,Case_Market__c, Country__c, Country__r.name,CMM_Account_Owner_Active_Flag__c,DefaultCMMAccountOwner_Id__c,
                           owner.Name, Store__c, Store__r.name, 
@@ -183,7 +184,7 @@ public class CEC_CaseTransferControllerTest {
               system.debug('******caseMktMappings******'+ caseMktMappings.size());
               ApexPages.StandardController controller = new ApexPages.StandardController(cse);
               CEC_CaseTransferController caseTransferCtrl = new CEC_CaseTransferController(controller);
-              caseTransferCtrl.marketMapping = 'India';
+              caseTransferCtrl.marketMapping = countries[0];
               caseTransferCtrl.searchMarketMap();
               system.debug('******controller caseMarketMappings******'+ caseTransferCtrl.caseMarketMappings.size());
               caseTransferCtrl.caseMktMapIdStr = caseMktMappings[0].id;
