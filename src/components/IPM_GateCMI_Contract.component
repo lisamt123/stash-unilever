@@ -186,7 +186,7 @@
                                                                                     </div>
                                                                                 </apex:outputPanel>
                                                                                  <!-- Condition for checking editable and not charter gate -->
-                                                                                <apex:outputPanel layout="block" rendered="{!OR(!isEditable,!OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}}" styleClass="col-xs-5 noPadleft">
+                                                                                <apex:outputPanel layout="block" rendered="{!OR(!isEditable,!OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}" styleClass="col-xs-5 noPadleft">
                                                                                     <apex:outputField value="{!res.IPM_CMI_Result_Timing__c}" styleClass="dateInputBox calendar" />
                                                                                 </apex:outputPanel>
                                                                             </apex:outputPanel> 
