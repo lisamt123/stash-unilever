@@ -138,8 +138,7 @@ public class CEC_CaseTriggerHelperExtTest {
                 insert cbm;
                 
                 List<Account> accts = [SELECT Id,PersonContactId,Owner.Market__c,Mobile_Phone_No_Special_Char__c,SMS_Search_Mobile_Number__c  FROM Account Limit 1];
-               
-                System.debug('@@@Accounts@@@'+ accts [0]);
+            
                  
                 List<Case> cases = new List<Case>();
                 
@@ -163,7 +162,7 @@ public class CEC_CaseTriggerHelperExtTest {
              
                     System.assertEquals('3456464748@unilever.com', [SELECT Transient_External_Id__c FROM Case WHERE Id =:cases[0].Id].Transient_External_Id__c);
                     System.assertEquals(cbm.Id, [SELECT Case_Brand_Mapping__c FROM Case WHERE Id =:cases[0].Id].Case_Brand_Mapping__c);
-                      
+                    System.assertNotEquals(cases[0].AccountId, accts[0].Id);   
              Test.stopTest();
              
          }
@@ -212,6 +211,8 @@ public class CEC_CaseTriggerHelperExtTest {
              
                     System.assertEquals(inboundPhoneMrkt, [SELECT Transient_External_Id__c FROM Case WHERE Id =:cases[0].Id].Transient_External_Id__c);
                     System.assertEquals(cbm.Id, [SELECT Case_Brand_Mapping__c FROM Case WHERE Id =:cases[0].Id].Case_Brand_Mapping__c);  
+             		System.assertEquals([SELECT AccountId FROM Case WHERE Id=:cases[0].Id].AccountId, accts[0].Id);  
+             
              Test.stopTest();
              
          }
@@ -240,7 +241,7 @@ public class CEC_CaseTriggerHelperExtTest {
             
             	insert accounts;
              
-                List<Account> accts = [SELECT Id,PersonContactId,Owner.Market__c,Mobile_Phone_No_Special_Char__c,SMS_Search_Mobile_Number__c  FROM Account];
+                List<Account> accts = [SELECT Id,PersonContactId,Owner.Market__c,Mobile_Phone_No_Special_Char__c,SMS_Search_Mobile_Number__c  FROM Account limit 10];
              
                 List<Case> cases = new List<Case>();
                 
@@ -265,6 +266,7 @@ public class CEC_CaseTriggerHelperExtTest {
              
                     System.assertEquals(inboundPhoneMrkt, [SELECT Transient_External_Id__c FROM Case WHERE Id =:cases[0].Id].Transient_External_Id__c);
                     System.assertEquals(cbm.Id, [SELECT Case_Brand_Mapping__c FROM Case WHERE Id =:cases[0].Id].Case_Brand_Mapping__c);  
+             		System.assertNotEquals(cases[0].AccountId, accts[0].Id);           
              Test.stopTest();
              
          }
