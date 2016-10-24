@@ -1,10 +1,10 @@
 /******************************************** 
 *@Author:Cognizant
-*@Date:14/10/2016
+*@Date:24/10/2016
 *@Description : Test class to test of IPM_GlobalClaimPDLController
 **/
 @isTest
-private class IPM_GlobalClaimPDLController_Test{
+private class IPM_FinancialMisalignment_Test{
     private static final string GLOBAL_PL_EMAIL_ID = 'globalProjectLeader@unilever.com.test';
     private static final string REGIONAL_PL_EMAIL_ID = 'regionalProjectLeader@unilever.com.test';
     private static final string LOCAL_PL_EMAIL_ID = 'localProjectLeader@unilever.com.test';
@@ -40,7 +40,6 @@ private class IPM_GlobalClaimPDLController_Test{
         
         List<String> emailList = new List<String>{GLOBAL_PL_EMAIL_ID,REGIONAL_PL_EMAIL_ID,LOCAL_PL_EMAIL_ID}; 
         User globalProjectLeader =null; User regionalProjectLeader =null;  User localProjectLeader =null;
-        
         List<User> lstUsers = [Select Id,email from User where email in :emailList];
         for(User linkedUser : lstUsers){
             if(linkedUser.email == GLOBAL_PL_EMAIL_ID){
@@ -113,128 +112,12 @@ private class IPM_GlobalClaimPDLController_Test{
                 system.assertEquals(localRollout.IPM_Project_Job_Status__c, IPM_ConstantUtils.JOB_STATUS_ELIGIBLE, 'Job Status not eligible found');
                 system.assertEquals(localRollout.Previous_Target_Launch_Date__c, System.today(), 'target lanuch date is not today'); //To cover 2523 line
             }
-
-            // Create Country specific information.
-            insertCountry(localRolloutList, projectListGKM3);       
+            
         }        
-    }
-    private static void insertCountry(List<IPM_Project_Rollout__c>  localRolloutList, List<IPM_Project__c> projectListGKM3){
-            List<IPM_Country__c> countryList= new List<IPM_Country__c>(); 
-            
-            for(IPM_Project_Rollout__c localRollout : localRolloutList)
-            {
-                String geoExternalId = IPM_ConstantUtils.BLANK; 
-                if(localRollout.IPM_Rollout_Project__c.contains('AFR'))
-                {
-                    geoExternalId = 'AGO';
-                }
-                else if(localRollout.IPM_Rollout_Project__c.contains('LA'))
-                {
-                    geoExternalId = 'BRA';
-                }
-                
-                IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new mdm_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
-                
-                countryList.add(tempCountry);
-            }
-            
-            insert countryList;
-            
-            List<IPM_Project_Claim__c> lstProClaim = New List<IPM_Project_Claim__c>();
-            for(IPM_Project__c pro : projectListGKM3 ){
-                IPM_Project_Claim__c proClaim = New IPM_Project_Claim__c(IPM_Claim__c = 'test claim', IPM_Project__c = pro.Id);
-                lstProClaim.add(proClaim );                
-            }
-            insert lstProClaim;
-            
-            List<IPM_Country_Level_Claim__c> lstCounrtyLevel = New List<IPM_Country_Level_Claim__c>();
-        IPM_Country_Level_Claim__c ctryLvl = new IPM_Country_Level_Claim__c();
-            for(IPM_Country__c cntry: countryList){
-            
-                for(IPM_Project_Claim__c pClaim : lstProClaim){
-                    ctryLvl = New IPM_Country_Level_Claim__c(IPM_Claim__c = 'test claim', IPM_Country__c = cntry.Id, IPM_Project_Claim__c = pClaim.Id);                    
-                }
-                lstCounrtyLevel.add(ctryLvl );
-            }
-            
-            insert lstCounrtyLevel;
-            IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new mdm_Geography__c(ISO_3166_1_Code__c = 'BRA').Id,
-                							IPM_Project__c = localRolloutList[0].IPM_Project__c,local_Rollout__c = localRolloutList[0].Id,IPM_Rollout_Status__c = 'With MCO');
-            
-            insert tempCountry;
-            //assert on counti is sufficient, additional soql can be a risk for SOQL gov limit as this method has loads of queries.
-            system.assert(countryList.size()>0, 'country records not created');
-             
-            
      
-    }
+    }   
     
-    public static testMethod void prepareCountryClaimDetails(){
-        
-        List<String> emailList = new List<String>{GLOBAL_PL_EMAIL_ID,REGIONAL_PL_EMAIL_ID,LOCAL_PL_EMAIL_ID};
-            
-        User globalProjectLeader =null; User regionalProjectLeader =null;  User localProjectLeader =null;
-        
-        List<User> lstUsers = [Select Id,email from User where email in :emailList];
-        for(User linkedUser : lstUsers)
-        {
-            if(linkedUser.email == GLOBAL_PL_EMAIL_ID)
-            {
-                globalProjectLeader = linkedUser;
-            }
-            else if(linkedUser.email == REGIONAL_PL_EMAIL_ID)
-            {
-                regionalProjectLeader = linkedUser;
-            }
-            else
-            {
-                localProjectLeader = linkedUser;
-            }
-        }          
-        
-        IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader}); 
-         
-        System.runAs(globalProjectLeader){       
-            Test.startTest();
-            
-            Id locallRecordType = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).RecordTypeId;
-            IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, 
-                IPM_Target_Launch_Dates__c, IPM_Phase__c, IPM_ProjectGKM__c, IPM_GateKeeping_Model__c, IPM_CompanyCardText__c,
-                (Select Id,Name,recordTypeId, IPM_Regional_PL__c,IPM_Project_Job_Status__c, IPM_RolloutJobType__c from IPM_Project_Rollout__r where recordTypeId =:locallRecordType )  
-                FROM IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name='GKM3TestComments1' limit 1];
-
-            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChangeForGKM3(new List<Id>{globalOriginal.Id},globalProjectLeader); 
-              
-            update projectListPhaseChange;
-            Test.stopTest(); 
-            List<IPM_Project__c> project = [Select Id, Name, IPM_Phase__c, IPM_Project_Job_Status__c, (Select Id from Project_Documents__r),
-                                           (Select Id from IPM_Financials_Consolidated__r) from IPM_Project__c WHERE name in :projectNameSet Limit 1];
-            
-            
-            System.assertEquals(project[0].IPM_Phase__c, 'Feasibility','Phase not changed');
-            System.assertEquals(project[0].IPM_Project_Job_Status__c, 'Completed','Job not Completed');
-            System.assertEquals(project[0].Project_Documents__r.size(), 3,'Documents not created');
-            System.assertEquals(project[0].IPM_Financials_Consolidated__r.size(), 3,'Financial not created');            
-            
-            Apexpages.currentPage().getParameters().put('id',globalOriginal.Id);
-            IPM_GlobalClaimPDLController GCPDLC = New IPM_GlobalClaimPDLController();
-            GCPDLC.addProjectClaimsToAllCountries();
-            GCPDLC.addProjectClaims();
-            GCPDLC.doneEventHandling();
-            GCPDLC.resetEventHandling();
-            GCPDLC.autoSave();
-            
-            List<IPM_Project_Claim__c> lstProClaim = [SELECT Id FROM IPM_Project_Claim__c WHERE IPM_Project__c =: globalOriginal.Id];
-            System.AssertNotEquals(lstProClaim.size(),0); 
-            GCPDLC.projClaimId = lstProClaim[0].Id;
-            GCPDLC.deleteClaim();
-            
-            
-        }        
-    }
-    
-    public static testMethod void prepareCountryClaimDetailsLocalProject(){
+    public static testMethod void FinancialMisalignmentForGKM3(){
         
         List<String> emailList = new List<String>{GLOBAL_PL_EMAIL_ID,REGIONAL_PL_EMAIL_ID,LOCAL_PL_EMAIL_ID};
             
@@ -262,27 +145,14 @@ private class IPM_GlobalClaimPDLController_Test{
             Test.startTest();
             
             Id locallRecordType = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).RecordTypeId;
-            IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, 
-                IPM_Target_Launch_Dates__c, IPM_Phase__c, IPM_ProjectGKM__c, IPM_GateKeeping_Model__c, IPM_CompanyCardText__c,
-                (Select Id,Name, IPM_Regional_PL__c,Regional_Rollout__c,IPM_Project_Job_Status__c, IPM_RolloutJobType__c from IPM_Project_Rollout__r where recordTypeId =:locallRecordType )  
-                FROM IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name='GKM3TestComments1' limit 1];
+            IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_Project_Type__c, IPM_Phase__c, IPM_ProjectGKM__c, IPM_GateKeeping_Model__c,
+							                (Select Id,Name, Regional_Rollout__c from IPM_Project_Rollout__r where recordTypeId =:locallRecordType )  
+							                FROM IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name='GKM3TestComments1' limit 1];
+			System.assertNotEquals(globalOriginal, Null, 'Project not created.');
 
-            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChangeForGKM3(new List<Id>{globalOriginal.Id},globalProjectLeader); 
-              
-            update projectListPhaseChange;
-            Test.stopTest(); 
-            List<IPM_Project__c> project = [Select Id, Name, IPM_Phase__c, IPM_Project_Job_Status__c, (Select Id from Project_Documents__r),
-                                           (Select Id, Display_Name__c from IPM_Financials_Consolidated__r) from IPM_Project__c WHERE name in :projectNameSet Limit 1];
-            
-            
-            System.assertEquals(project[0].IPM_Phase__c, 'Feasibility','Phase not changed');
-            System.assertEquals(project[0].IPM_Project_Job_Status__c, 'Completed','Job not Completed');
-            System.assertEquals(project[0].Project_Documents__r.size(), 3,'Documents not created');
-            System.assertEquals(project[0].IPM_Financials_Consolidated__r.size(), 3,'Financial not created');   
-            
             IPM_Project__c localPro = New IPM_Project__c ( Name = 'GKM3TestComments1_LA', IPM_Project_Name__c = 'GKM3TestComments1_LA',
-            	IPM_Target_Launch_Dates__c = System.today().addMonths(6), IPMProject_Span__c ='Local' , IPM_Project_Leader__c =UserInfo.getUserId(),
-            	IPM_Phase__c ='Feasibility',  IPM_Gatekeeping_model__c='GKM3',IPM_Category_Group__c = 'Personal Care',IPM_Project_Gatekeeper__c = UserInfo.getUserId()
+                IPM_Target_Launch_Dates__c = System.today().addMonths(6), IPMProject_Span__c ='Local' , IPM_Project_Leader__c =UserInfo.getUserId(),
+                IPM_Phase__c ='Feasibility',  IPM_Gatekeeping_model__c='GKM3',IPM_Category_Group__c = 'Personal Care',IPM_Project_Gatekeeper__c = UserInfo.getUserId()
             
             );
             
@@ -291,22 +161,90 @@ private class IPM_GlobalClaimPDLController_Test{
             IPM_Project_Rollout__c localRollout = globalOriginal.IPM_Project_Rollout__r[0];
             localRollout.Local_Project__c = localPro.Id;
             update localRollout;
+            System.assertEquals(localRollout.Local_Project__c, localPro.Id, 'Rollout is not updated.');
             
-            IPM_Financial__c localFin; 
-            for(IPM_Financial__c fin : project[0].IPM_Financials_Consolidated__r){
-            	if(fin.Display_Name__c.contains('GKM3TestComments1_LA')){
-            		localFin = fin;
-            		break;
-            	}
-            }
-            if(localFin != NULL){
-            	localFin.Local_Project__c= localPro.Id;
-            	update localFin;
-            }
+            Id defaultFinlRecordType = Schema.SObjectType.IPM_Financial__c.RecordTypeInfosByName.get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).RecordTypeId;
             
-            Apexpages.currentPage().getParameters().put('id',localPro.Id);
-            IPM_GlobalClaimPDLController GCPDLC = New IPM_GlobalClaimPDLController();
-            GCPDLC.addProjectClaims();
+            IPM_Financial__c defaultFin= IPM_TestFactory_Helper.createIPMFinancial(false);
+            defaultFin.Local_Project__c= localPro.Id;
+            defaultFin.recordTypeId = defaultFinlRecordType;
+            defaultFin.Gate_Keeping_Model__c = IPM_ConstantUtils.GATE_KEEPING_MODEL_3;
+            defaultFin.MisalignmentManual__c = true;
+            defaultFin.IPM_Project_Rollout__c = localRollout.Regional_Rollout__c;
+            
+            IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION= true;
+            insert defaultFin; 
+            IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION =false; 
+            
+            IPM_FinancialMisalignment.postChatterIfLocalRegionalMisaligned(new List<Id> {localPro.Id});
+            
+        }        
+    }
+    
+    public static testMethod void FinancialMisalignmentForNONGKM3(){
+        
+        List<String> emailList = new List<String>{GLOBAL_PL_EMAIL_ID,REGIONAL_PL_EMAIL_ID,LOCAL_PL_EMAIL_ID};
+            
+        User globalProjectLeader =null; User regionalProjectLeader =null;  User localProjectLeader =null;
+        List<User> lstUsers = [Select Id,email from User where email in :emailList];
+        for(User linkedUser : lstUsers)
+        {        
+            if(linkedUser.email == GLOBAL_PL_EMAIL_ID)
+            {
+                globalProjectLeader = linkedUser;
+            }
+            else if(linkedUser.email == REGIONAL_PL_EMAIL_ID)
+            {
+                regionalProjectLeader = linkedUser;
+            }
+            else
+            {
+                localProjectLeader = linkedUser;
+            }
+        }          
+        
+        IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader}); 
+         
+        System.runAs(globalProjectLeader){       
+            Test.startTest();
+            
+            Id locallRecordType = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).RecordTypeId;
+            IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_Project_Type__c, IPM_Phase__c, IPM_ProjectGKM__c, IPM_GateKeeping_Model__c,
+							                (Select Id,Name, Regional_Rollout__c from IPM_Project_Rollout__r where recordTypeId =:locallRecordType )  
+							                FROM IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name='GKM3TestComments1' limit 1];
+			System.assertNotEquals(globalOriginal, Null, 'Project not created.');
+			
+            IPM_Project__c localPro = New IPM_Project__c ( Name = 'GKM3TestComments1_LA', IPM_Project_Name__c = 'GKM3TestComments1_LA',
+                IPM_Target_Launch_Dates__c = System.today().addMonths(6), IPMProject_Span__c ='Local' , IPM_Project_Leader__c =UserInfo.getUserId(),
+                IPM_Phase__c ='Feasibility',  IPM_Gatekeeping_model__c='GKM3',IPM_Category_Group__c = 'Personal Care',IPM_Project_Gatekeeper__c = UserInfo.getUserId()
+            
+            );            
+            insert localPro;
+            
+            
+            IPM_Project_Rollout__c localRollout = globalOriginal.IPM_Project_Rollout__r[0];
+            localRollout.Local_Project__c = localPro.Id;
+            update localRollout;
+            System.assertEquals(localRollout.Local_Project__c, localPro.Id, 'Rollout is not updated.');
+            
+            Id defaultFinlRecordType = Schema.SObjectType.IPM_Financial__c.RecordTypeInfosByName.get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).RecordTypeId;
+            
+            IPM_Financial__c defaultFin= IPM_TestFactory_Helper.createIPMFinancial(false);
+            defaultFin.Local_Project__c= localPro.Id;
+            defaultFin.Regional_Project__c= localPro.Id;
+            defaultFin.recordTypeId = defaultFinlRecordType;
+            defaultFin.Gate_Keeping_Model__c = 'GKM1';
+            defaultFin.MisalignmentManual__c = true;
+            defaultFin.IPM_Project_Rollout__c = localRollout.Regional_Rollout__c;
+            
+            IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION= true;
+            insert defaultFin; 
+            IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION =false; 
+            
+            
+            
+            IPM_FinancialMisalignment.postChatterIfLocalRegionalMisaligned(new List<Id> {localPro.Id});
+            
         }        
     }
     

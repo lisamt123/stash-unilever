@@ -218,7 +218,10 @@ private class IPM_HomePageController_Test{
         testFinancialYear.Gross_Profit_Regional__c = 0;
         insert testFinancialYear;
         System.assertEquals(1, [Select count() from IPM_Financial_Year__c where id =: testFinancialYear.id],'Financial Year is not created');
-        
+        IPM_User_Profile__c userPLProfile = IPM_TestFactory_Helper.createUserProfile(false);
+            userPLProfile.IPM_User__c = userinfo.getuserid();
+            userPLProfile.IPM_User_Function__c= IPM_ConstantUtils.TEAM_PROJECT_LEADER;
+            insert userPLProfile;        
         IPM_HomePageController iHp = new IPM_HomePageController();
         
         for(String values:iHp.LstFinTLDMisalignedMessageMap.values())
