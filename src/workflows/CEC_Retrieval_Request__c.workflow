@@ -5,8 +5,7 @@
         <ccEmails>masood.ansari@capgemini.com</ccEmails>
         <description>CEC Send SA Courier Email</description>
         <protected>false</protected>
-        <senderAddress>maansari@capgemini.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>CEC_Emails_South_Africa/CEC_SA_Courier_Email</template>
     </alerts>
     <fieldUpdates>
