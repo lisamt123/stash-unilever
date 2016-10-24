@@ -75,6 +75,14 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SAP_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>External_Id__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
@@ -196,10 +204,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>FS_ABCSegmentation__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_PotentialValueSize__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
