@@ -40,6 +40,7 @@ src/classes/IPM_SourcingUnitTrigger.trigger
 src/classes/IPM_SourcingUnitTrigger.trigger-meta.xml
 src/classes/TriggerFactory.cls
 src/classes/TriggerFactory.cls-meta.xml
+
 src/components
 src/components/IPM_BCC_ConsolidateView.component
 src/components/IPM_BCC_ConsolidateView.component-meta.xml
