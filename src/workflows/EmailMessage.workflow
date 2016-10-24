@@ -14,7 +14,7 @@
         <fullName>CEC_Set_Case_Status_New</fullName>
         <description>CEC Set the Case Status to New in order for case to be highlighted to an advisor</description>
         <field>Status</field>
-        <literalValue>New</literalValue>
+        <literalValue>Reopened</literalValue>
         <name>CEC Set Case Status New</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -32,6 +32,11 @@
             <field>EmailMessage.Incoming</field>
             <operation>equals</operation>
             <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>notEqual</operation>
+            <value>New</value>
         </criteriaItems>
         <description>CEC : Capture email responses so Case can be highlighted to an advisor</description>
         <triggerType>onCreateOnly</triggerType>
