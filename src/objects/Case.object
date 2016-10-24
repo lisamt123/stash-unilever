@@ -6810,9 +6810,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>,Email,Email Philippines</value>
+            <value>,Email,Email Philippines,Web</value>
         </filters>
-        <label>CEC Philippines Queue - E-MAIL</label>
+        <label>CEC Philippines Queue - E-MAIL WEB</label>
         <language>en_US</language>
         <queue>CEC_Philippines_Queue</queue>
         <sharedTo>
@@ -8335,7 +8335,110 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>My Open Cases</label>
+        <label>My Open Cases - DO NOT EDIT</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Open_Cases_DO_NOT_EDIT13</fullName>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>Default_From_Address__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>,Email,Email Philippines,Web</value>
+        </filters>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+        </filters>
+        <label>My Open Cases - E-MAIL WEB - DO NOT EDIT</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Open_Cases_E_MAIL_WEB_DO_NOT_EDIT</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Phone</value>
+        </filters>
+        <label>My Open Cases - PHONE - DO NOT EDIT</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Open_Cases_SMS_DO_NOT_EDIT2</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>SMS / Text Messages</value>
+        </filters>
+        <label>My Open Cases - SMS - DO NOT EDIT</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Open_Cases_SMS_DO_NOT_EDIT3</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Social</value>
+        </filters>
+        <label>My Open Cases - SOCIAL - DO NOT EDIT</label>
         <language>en_US</language>
     </listViews>
     <listViews>
