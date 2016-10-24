@@ -213,7 +213,7 @@
                                                      </apex:outputPanel>
                                                 <apex:variable value="{!totalLocalProjects}" var="rowNum"/>
                                                 <div class="errList">
-                                                    <apex:repeat value="{!localBCProjectName}" var="localProject">
+                                                      <apex:repeat value="{!localBCProjectName}" var="localProject" rendered="{!NOT(isGKM3Model)}" >
                                                       <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span>
                                                         <apex:variable var="rowNum" value="{!rowNum - 1}"/>
                                                     </apex:repeat>
@@ -227,7 +227,7 @@
                                                      </apex:outputPanel>
                                                 <apex:variable value="{!totalFinProject}" var="rowNum"/>
                                                 <div class="errList">
-                                                    <apex:repeat value="{!localFinProjectName}" var="localProject">
+                                                    <apex:repeat value="{!localFinProjectName}" var="localProject" rendered="{!NOT(isGKM3Model)}" >
                                                         <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span>
                                                         <apex:variable var="rowNum" value="{!rowNum - 1}"/>
                                                     </apex:repeat>
@@ -240,7 +240,7 @@
                                                      </apex:outputPanel>
                                                 <apex:variable value="{!totalTLDProject}" var="rowNum"/>
                                                 <div class="errList">
-                                                    <apex:repeat value="{!localTLDProjectName}" var="localProject">
+                                                    <apex:repeat value="{!localTLDProjectName}" var="localProject" rendered="{!NOT(isGKM3Model)}">
                                                         <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span> 
                                                         <apex:variable var="rowNum" value="{!rowNum - 1}"/>
                                                     </apex:repeat>
