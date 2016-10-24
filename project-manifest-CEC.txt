@@ -3,8 +3,6 @@ src/approvalProcesses
 src/classes
 src/flows
 src/objects
-src/package.xml
-src/ProjectManifest.txt
 src/queues
 src/workflows
 src/approvalProcesses/TH1__Draft__c.CEC_Japan_TH_Quality_Check.approvalProcess
