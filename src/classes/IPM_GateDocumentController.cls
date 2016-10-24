@@ -872,6 +872,71 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         }
     }
     
+    void gateDocumentDataForOriginalProject(String projectName){
+    	
+                if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+                {
+                    fin=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,Business_Impact_Global__c,
+                                Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c,
+                                IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c 
+                         FROM IPM_Financial__c 
+                         WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:projectName+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+                        globalbusinessImpactStr = gateDocument==IPM_ConstantUtils.CHARTER_GATE? fin.Business_Impact_Global__c:fin.Business_Impact_Regional__c;
+                }
+                else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+                {       
+                    fin=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,
+                                Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
+                                Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
+                         FROM IPM_Financial__c 
+                         WHERE Regional_Project__c=:project.Id AND Financial_External_ID__c=:projectName+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+                         globalbusinessImpactStr = fin.Business_Impact_Regional__c;                     
+                    
+                    if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
+                    {                       
+                        finRegional=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,
+                                Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
+                                Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
+                         FROM IPM_Financial__c 
+                         WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+                         globalbusinessImpactStr = finRegional.Business_Impact_Regional__c;
+                    }
+                }
+                else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+                {
+                    
+                    fin = [SELECT ipm_cpp_local__c,ipm_cpp_regional__c, Year_3_iTO_Local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,
+                                   Year_3_iTO_MD__c,Business_Impact_Local__c 
+                            FROM IPM_Financial__c 
+                            WHERE Financial_External_ID__c =: projectName limit 1];
+                    localCPP = fin.ipm_cpp_local__c;
+                    regionalCPP = fin.ipm_cpp_regional__c;
+                            
+                    string parentProjectType=project.IPM_Parent_Project__r.IPM_Project_Type__c;                 
+                    if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+                    {
+              List<IPM_Financial__c> financialList = [SELECT Business_Impact_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
+                                  WHERE Regional_Project__c=:project.IPM_Parent_Project__c 
+                                  AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+                         if(!financialList.isEmpty()){
+                            finLocal = financialList[0];
+                            globalbusinessImpactStr = finLocal.Business_Impact_Regional__c;
+                         }         
+                                              
+                    }
+                    else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
+                    {
+                        IPM_Project__c globalParentId= [Select IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c FROM IPM_Project__c where ID=:project.Id];
+                        finLocal=[SELECT Business_Impact_Global__c,Business_Impact_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
+                                 WHERE Parent_Project__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__c
+                                 AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+                         
+                         globalbusinessImpactStr = finLocal.Business_Impact_Regional__c;
+                    }
+                }
+            
+    }
+    
     
     /****************************************************
     @description For Exporting Gate Document Data in PDF
@@ -897,68 +962,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             // For BI and Year3Ito where Source is ORIGINAL project. Will work got GKM1,GKM2,GKM4, ORIGINALS AND ROLLOUT
             if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
             {
-                if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
-                {
-                    fin=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,Business_Impact_Global__c,
-                                Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c,
-                                IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c 
-                         FROM IPM_Financial__c 
-                         WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-                        globalbusinessImpactStr = gateDocument==IPM_ConstantUtils.CHARTER_GATE? fin.Business_Impact_Global__c:fin.Business_Impact_Regional__c;
-                }
-                else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
-                {       
-                    fin=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,
-                                Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
-                                Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
-                         FROM IPM_Financial__c 
-                         WHERE Regional_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-                         globalbusinessImpactStr = fin.Business_Impact_Regional__c;                     
-                    
-                    if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
-                    {                       
-                        finRegional=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,
-                                Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
-                                Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
-                         FROM IPM_Financial__c 
-                         WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-                         globalbusinessImpactStr = finRegional.Business_Impact_Regional__c;
-                    }
-                }
-                else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-                {
-                    
-                    fin = [SELECT ipm_cpp_local__c,ipm_cpp_regional__c, Year_3_iTO_Local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,
-                                   Year_3_iTO_MD__c,Business_Impact_Local__c 
-                            FROM IPM_Financial__c 
-                            WHERE Financial_External_ID__c =: nam limit 1];
-                    localCPP = fin.ipm_cpp_local__c;
-                    regionalCPP = fin.ipm_cpp_regional__c;
-                            
-                    string parentProjectType=project.IPM_Parent_Project__r.IPM_Project_Type__c;                 
-                    if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
-                    {
-                         List<IPM_Financial__c> financialList = [SELECT Business_Impact_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
-                                  WHERE Regional_Project__c=:project.IPM_Parent_Project__c 
-                                  AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-                         if(!financialList.isEmpty()){
-                            finLocal = financialList[0];
-                            globalbusinessImpactStr = finLocal.Business_Impact_Regional__c;
-                         }        
-                    }
-                    else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
-                    {
-                        IPM_Project__c globalParentId= [Select IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c FROM IPM_Project__c where ID=:project.Id];
-                        finLocal=[SELECT Business_Impact_Global__c,Business_Impact_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
-                                 WHERE Parent_Project__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__c
-                                 AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-                         
-                         
-                         globalbusinessImpactStr = finLocal.Business_Impact_Regional__c;
-                    }
-                    
-                }
-            }
+             	gateDocumentDataForOriginalProject(nam);
+	     }
             // For BI and Year3Ito where Source is ORIGINAL project. Will work got GKM5,GKM6,GKM7 OPERATIONAL
             else if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
             {
