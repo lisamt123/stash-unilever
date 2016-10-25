@@ -29,7 +29,7 @@
                                 }
                             },
                             {
-                                "colspan": 3,
+                                "colspan": 4,
                                 "column": 6,
                                 "name": "header_scoreChannel",
                                 "row": 57,
@@ -65,7 +65,7 @@
                                 }
                             },
                             {
-                                "colspan": 3,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "header_scoreRegion",
                                 "row": 47,
@@ -453,7 +453,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "header_scoreCust",
                                 "row": 90,
@@ -609,7 +609,7 @@
                                 }
                             },
                             {
-                                "colspan": 3,
+                                "colspan": 4,
                                 "column": 6,
                                 "name": "header_scoreCat",
                                 "row": 75,
@@ -1576,28 +1576,34 @@
                                 }
                             },
                             {
-                                "row": 108,
-                                "column": 1,
-                                "rowspan": 5,
                                 "colspan": 10,
+                                "column": 1,
                                 "name": "table_1",
-                                "widgetStyle": {}
-                            },
-                            {
-                                "row": 101,
-                                "column": 1,
+                                "row": 108,
                                 "rowspan": 5,
-                                "colspan": 10,
-                                "name": "table_2",
-                                "widgetStyle": {}
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
                             },
                             {
-                                "row": 107,
-                                "column": 1,
-                                "rowspan": 7,
                                 "colspan": 10,
+                                "column": 1,
+                                "name": "table_2",
+                                "row": 101,
+                                "rowspan": 5,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 10,
+                                "column": 1,
                                 "name": "container_20",
-                                "widgetStyle": {}
+                                "row": 107,
+                                "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
                             }
                         ]
                     }
@@ -3161,798 +3167,6 @@
         ],
         "layouts": [],
         "steps": {
-            "Product_Category_Que_2": {
-                "type": "aggregateflex",
-                "visualizationParameters": {
-                    "visualizationType": "comparisontable",
-                    "options": {}
-                },
-                "query": {
-                    "columns": [
-                        {
-                            "query": {
-                                "measures": [
-                                    [
-                                        "avg",
-                                        "Answer"
-                                    ]
-                                ],
-                                "groups": [
-                                    "Product_Category",
-                                    "Questions"
-                                ],
-                                "filters": [
-                                    [
-                                        "Date_of_audit",
-                                        [
-                                            [
-                                                [
-                                                    "month",
-                                                    0
-                                                ],
-                                                [
-                                                    "month",
-                                                    0
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
-                                    ],
-                                    [
-                                      "Country",
-                                      "{{ column(Country_10.selection, [\"Country\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "City",
-                                      "{{ column(City_13.selection, [\"City\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Commune",
-                                      "{{ column(Commune_50.selection, [\"Commune\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Customer_type",
-                                      "{{ column(Customer_type_20.selection, [\"Customer_type\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Trade_Format",
-                                      "{{ column(Trade_Format_16.selection, [\"Trade_Format\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "X4P_5P_6P",
-                                      "{{ column(X4P_5P_6P_19.selection, [\"Trade_Format\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Top_Customer",
-                                      "{{ column(Top_Customer_60.selection, [\"Top_Customer\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Customer",
-                                      "{{ column(Customer_56.selection, [\"Customer\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Local_Outlet_Name",
-                                      "{{ column(Local_Outlet_Name_57.selection, [\"Local_Outlet_Name\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Channel",
-                                      "{{ column(Channel_17.selection, [\"Channel\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Subchannel",
-                                      "{{ column(Subchannel_18.selection, [\"Subchannel\"]).asObject()}}"
-                                    ],
-                                    [
-                                      "Store_type",
-                                      "{{ column(Store_type_54.selection, [\"Store_type\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_region",
-                                      "{{ column(Sales_region_52.selection, [\"Sales_region\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_area",
-                                      "{{ column(Sales_area_14.selection, [\"Sales_area\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_territory",
-                                      "{{ column(Sales_territory_15.selection, [\"Sales_territory\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Field_Execution_Manager",
-                                      "{{ column(Field_Execution_Manager_61.selection, [\"Field_Execution_Manager\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Store_Operations_Manager",
-                                      "{{ column(Store_Operations_Manager_62.selection, [\"Store_Operations_Manager\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Field_Sales_Manager",
-                                      "{{ column(Field_Sales_Manager_63.selection, [\"Field_Sales_Manager\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Division",
-                                      "{{ column(Product_division_24.selection, [\"Product_Division\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Category",
-                                      "{{ column(Product_category_25.selection, [\"Product_Category\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Country",
-                                      "{{ column(Country_28.selection, [\"Country\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "X4P_5P_6P",
-                                      "{{ column(X4P_5P_6P_29.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_region",
-                                      "{{ column(Region_30.selection, [\"Sales_region\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Channel",
-                                      "{{ column(Channel_31.selection, [\"Channel\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Category",
-                                      "{{ column(Product_category_32.selection, [\"Product_Category\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Customer",
-                                      "{{ column(Customer_33.selection, [\"Customer\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Country",
-                                      "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "X4P_5P_6P",
-                                      "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_region",
-                                      "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Channel",
-                                      "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Category",
-                                      "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
-                                    ],
-                                    [
-                                      "Customer_6",
-                                      "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
-                                    ]
-                                ]
-                            },
-                            "format": null,
-                            "header": "Current Month"
-                        },
-                        {
-                            "query": {
-                                "measures": [
-                                    [
-                                        "avg",
-                                        "Answer"
-                                    ]
-                                ],
-                                "groups": [
-                                    "Product_Category",
-                                    "Questions"
-                                ],
-                                "filters": [
-                                    [
-                                        "Date_of_audit",
-                                        [
-                                            [
-                                                [
-                                                    "month",
-                                                    -1
-                                                ],
-                                                [
-                                                    "month",
-                                                    -1
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
-                                    ],
-                                    [
-                                      "Country",
-                                      "{{ column(Country_10.selection, [\"Country\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "City",
-                                      "{{ column(City_13.selection, [\"City\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Commune",
-                                      "{{ column(Commune_50.selection, [\"Commune\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Customer_type",
-                                      "{{ column(Customer_type_20.selection, [\"Customer_type\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Trade_Format",
-                                      "{{ column(Trade_Format_16.selection, [\"Trade_Format\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "X4P_5P_6P",
-                                      "{{ column(X4P_5P_6P_19.selection, [\"Trade_Format\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Top_Customer",
-                                      "{{ column(Top_Customer_60.selection, [\"Top_Customer\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Customer",
-                                      "{{ column(Customer_56.selection, [\"Customer\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Local_Outlet_Name",
-                                      "{{ column(Local_Outlet_Name_57.selection, [\"Local_Outlet_Name\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Channel",
-                                      "{{ column(Channel_17.selection, [\"Channel\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Subchannel",
-                                      "{{ column(Subchannel_18.selection, [\"Subchannel\"]).asObject()}}"
-                                    ],
-                                    [
-                                      "Store_type",
-                                      "{{ column(Store_type_54.selection, [\"Store_type\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_region",
-                                      "{{ column(Sales_region_52.selection, [\"Sales_region\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_area",
-                                      "{{ column(Sales_area_14.selection, [\"Sales_area\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_territory",
-                                      "{{ column(Sales_territory_15.selection, [\"Sales_territory\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Field_Execution_Manager",
-                                      "{{ column(Field_Execution_Manager_61.selection, [\"Field_Execution_Manager\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Store_Operations_Manager",
-                                      "{{ column(Store_Operations_Manager_62.selection, [\"Store_Operations_Manager\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Field_Sales_Manager",
-                                      "{{ column(Field_Sales_Manager_63.selection, [\"Field_Sales_Manager\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Division",
-                                      "{{ column(Product_division_24.selection, [\"Product_Division\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Category",
-                                      "{{ column(Product_category_25.selection, [\"Product_Category\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Country",
-                                      "{{ column(Country_28.selection, [\"Country\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "X4P_5P_6P",
-                                      "{{ column(X4P_5P_6P_29.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_region",
-                                      "{{ column(Region_30.selection, [\"Sales_region\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Channel",
-                                      "{{ column(Channel_31.selection, [\"Channel\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Category",
-                                      "{{ column(Product_category_32.selection, [\"Product_Category\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Customer",
-                                      "{{ column(Customer_33.selection, [\"Customer\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Country",
-                                      "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "X4P_5P_6P",
-                                      "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_region",
-                                      "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Channel",
-                                      "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Category",
-                                      "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
-                                    ],
-                                    [
-                                      "Customer_6",
-                                      "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
-                                    ]
-                                ]
-                            },
-                            "format": null,
-                            "header": "Last Month"
-                        },
-                        {
-                            "query": {
-                                "measures": [
-                                    [
-                                        "avg",
-                                        "Answer"
-                                    ]
-                                ],
-                                "groups": [
-                                    "Product_Category",
-                                    "Questions"
-                                ],
-                                "formula": "round(A-B,3)"
-                            },
-                            "format": "percentage",
-                            "header": "%Δ"
-                        },
-                        {
-                            "query": {
-                                "measures": [
-                                    [
-                                        "avg",
-                                        "Answer"
-                                    ]
-                                ],
-                                "groups": [
-                                    "Product_Category",
-                                    "Questions"
-                                ],
-                                "formula": "round(A-B,3)"
-                            },
-                            "format": "percentage",
-                            "showBars": true,
-                            "header": "%Δ"
-                        }
-                    ],
-                    "measures": [
-                        [
-                            "avg",
-                            "Answer",
-                            "A",
-                            {
-                                "display": "Current Month"
-                            }
-                        ],
-                        [
-                            "avg",
-                            "Answer",
-                            "B",
-                            {
-                                "display": "Last Month"
-                            }
-                        ],
-                        [
-                            "avg",
-                            "Answer",
-                            "C",
-                            {
-                                "display": "%Δ",
-                                "format": "percentage"
-                            }
-                        ],
-                        [
-                            "avg",
-                            "Answer",
-                            "D",
-                            {
-                                "display": "%Δ",
-                                "format": "percentage"
-                            }
-                        ]
-                    ],
-                    "groups": [
-                        "Product_Category",
-                        "Questions"
-                    ]
-                },
-                "isFacet": true,
-                "useGlobal": true,
-                "isGlobal": false,
-                "datasets": [
-                    {
-                        "name": "PSP_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PdSAI",
-                        "id": "0Fb2C00000011PdSAI"
-                    }
-                ]
-            },
-            "Product_Category_Que_1": {
-                "type": "aggregateflex",
-                "visualizationParameters": {
-                    "visualizationType": "comparisontable",
-                    "options": {}
-                },
-                "query": {
-                    "columns": [
-                        {
-                            "query": {
-                                "measures": [
-                                    [
-                                        "avg",
-                                        "Answer"
-                                    ]
-                                ],
-                                "groups": [
-                                    "Product_Category",
-                                    "Questions"
-                                ],
-                                "filters": [
-                                    [
-                                        "Date_of_audit",
-                                        [
-                                            [
-                                                [
-                                                    "month",
-                                                    0
-                                                ],
-                                                [
-                                                    "month",
-                                                    0
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
-                                    ],
-                                    [
-                                      "Country",
-                                      "{{ column(Country_10.selection, [\"Country\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "City",
-                                      "{{ column(City_13.selection, [\"City\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Commune",
-                                      "{{ column(Commune_50.selection, [\"Commune\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Customer_type",
-                                      "{{ column(Customer_type_20.selection, [\"Customer_type\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Trade_Format",
-                                      "{{ column(Trade_Format_16.selection, [\"Trade_Format\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "X4P_5P_6P",
-                                      "{{ column(X4P_5P_6P_19.selection, [\"Trade_Format\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Top_Customer",
-                                      "{{ column(Top_Customer_60.selection, [\"Top_Customer\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Customer",
-                                      "{{ column(Customer_56.selection, [\"Customer\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Local_Outlet_Name",
-                                      "{{ column(Local_Outlet_Name_57.selection, [\"Local_Outlet_Name\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Channel",
-                                      "{{ column(Channel_17.selection, [\"Channel\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Subchannel",
-                                      "{{ column(Subchannel_18.selection, [\"Subchannel\"]).asObject()}}"
-                                    ],
-                                    [
-                                      "Store_type",
-                                      "{{ column(Store_type_54.selection, [\"Store_type\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_region",
-                                      "{{ column(Sales_region_52.selection, [\"Sales_region\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_area",
-                                      "{{ column(Sales_area_14.selection, [\"Sales_area\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_territory",
-                                      "{{ column(Sales_territory_15.selection, [\"Sales_territory\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Field_Execution_Manager",
-                                      "{{ column(Field_Execution_Manager_61.selection, [\"Field_Execution_Manager\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Store_Operations_Manager",
-                                      "{{ column(Store_Operations_Manager_62.selection, [\"Store_Operations_Manager\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Field_Sales_Manager",
-                                      "{{ column(Field_Sales_Manager_63.selection, [\"Field_Sales_Manager\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Division",
-                                      "{{ column(Product_division_24.selection, [\"Product_Division\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Category",
-                                      "{{ column(Product_category_25.selection, [\"Product_Category\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Country",
-                                      "{{ column(Country_28.selection, [\"Country\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "X4P_5P_6P",
-                                      "{{ column(X4P_5P_6P_29.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_region",
-                                      "{{ column(Region_30.selection, [\"Sales_region\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Channel",
-                                      "{{ column(Channel_31.selection, [\"Channel\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Category",
-                                      "{{ column(Product_category_32.selection, [\"Product_Category\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Customer",
-                                      "{{ column(Customer_33.selection, [\"Customer\"]).asObject() }}"
-                                    ]
-                                ]
-                            },
-                            "format": null,
-                            "header": "Current Month"
-                        },
-                        {
-                            "query": {
-                                "measures": [
-                                    [
-                                        "avg",
-                                        "Answer"
-                                    ]
-                                ],
-                                "groups": [
-                                    "Product_Category",
-                                    "Questions"
-                                ],
-                                "filters": [
-                                    [
-                                        "Date_of_audit",
-                                        [
-                                            [
-                                                [
-                                                    "month",
-                                                    -1
-                                                ],
-                                                [
-                                                    "month",
-                                                    -1
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
-                                    ],
-                                    [
-                                      "Country",
-                                      "{{ column(Country_10.selection, [\"Country\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "City",
-                                      "{{ column(City_13.selection, [\"City\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Commune",
-                                      "{{ column(Commune_50.selection, [\"Commune\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Customer_type",
-                                      "{{ column(Customer_type_20.selection, [\"Customer_type\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Trade_Format",
-                                      "{{ column(Trade_Format_16.selection, [\"Trade_Format\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "X4P_5P_6P",
-                                      "{{ column(X4P_5P_6P_19.selection, [\"Trade_Format\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Top_Customer",
-                                      "{{ column(Top_Customer_60.selection, [\"Top_Customer\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Customer",
-                                      "{{ column(Customer_56.selection, [\"Customer\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Local_Outlet_Name",
-                                      "{{ column(Local_Outlet_Name_57.selection, [\"Local_Outlet_Name\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Channel",
-                                      "{{ column(Channel_17.selection, [\"Channel\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Subchannel",
-                                      "{{ column(Subchannel_18.selection, [\"Subchannel\"]).asObject()}}"
-                                    ],
-                                    [
-                                      "Store_type",
-                                      "{{ column(Store_type_54.selection, [\"Store_type\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_region",
-                                      "{{ column(Sales_region_52.selection, [\"Sales_region\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_area",
-                                      "{{ column(Sales_area_14.selection, [\"Sales_area\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_territory",
-                                      "{{ column(Sales_territory_15.selection, [\"Sales_territory\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Field_Execution_Manager",
-                                      "{{ column(Field_Execution_Manager_61.selection, [\"Field_Execution_Manager\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Store_Operations_Manager",
-                                      "{{ column(Store_Operations_Manager_62.selection, [\"Store_Operations_Manager\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Field_Sales_Manager",
-                                      "{{ column(Field_Sales_Manager_63.selection, [\"Field_Sales_Manager\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Division",
-                                      "{{ column(Product_division_24.selection, [\"Product_Division\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Category",
-                                      "{{ column(Product_category_25.selection, [\"Product_Category\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Country",
-                                      "{{ column(Country_28.selection, [\"Country\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "X4P_5P_6P",
-                                      "{{ column(X4P_5P_6P_29.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Sales_region",
-                                      "{{ column(Region_30.selection, [\"Sales_region\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Channel",
-                                      "{{ column(Channel_31.selection, [\"Channel\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Product_Category",
-                                      "{{ column(Product_category_32.selection, [\"Product_Category\"]).asObject() }}"
-                                    ],
-                                    [
-                                      "Customer",
-                                      "{{ column(Customer_33.selection, [\"Customer\"]).asObject() }}"
-                                    ]
-                                ]
-                            },
-                            "format": null,
-                            "header": "Last Month"
-                        },
-                        {
-                            "query": {
-                                "measures": [
-                                    [
-                                        "avg",
-                                        "Answer"
-                                    ]
-                                ],
-                                "groups": [
-                                    "Product_Category",
-                                    "Questions"
-                                ],
-                                "formula": "round(A-B,3)"
-                            },
-                            "format": "percentage",
-                            "header": "%Δ"
-                        },
-                        {
-                            "query": {
-                                "measures": [
-                                    [
-                                        "avg",
-                                        "Answer"
-                                    ]
-                                ],
-                                "groups": [
-                                    "Product_Category",
-                                    "Questions"
-                                ],
-                                "formula": "round(A-B,3)"
-                            },
-                            "format": "percentage",
-                            "showBars": true,
-                            "header": "%Δ"
-                        }
-                    ],
-                    "measures": [
-                        [
-                            "avg",
-                            "Answer",
-                            "A",
-                            {
-                                "display": "Current Month"
-                            }
-                        ],
-                        [
-                            "avg",
-                            "Answer",
-                            "B",
-                            {
-                                "display": "Last Month"
-                            }
-                        ],
-                        [
-                            "avg",
-                            "Answer",
-                            "C",
-                            {
-                                "display": "%Δ",
-                                "format": "percentage"
-                            }
-                        ],
-                        [
-                            "avg",
-                            "Answer",
-                            "D",
-                            {
-                                "display": "%Δ",
-                                "format": "percentage"
-                            }
-                        ]
-                    ],
-                    "groups": [
-                        "Product_Category",
-                        "Questions"
-                    ]
-                },
-                "isFacet": true,
-                "useGlobal": true,
-                "isGlobal": false,
-                "datasets": [
-                    {
-                        "name": "SSP_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011OuSAI",
-                        "id": "0Fb2C00000011OuSAI"
-                    }
-                ]
-            },
             "Country_28": {
                 "datasets": [
                     {
@@ -3982,7 +3196,7 @@
                         [
                             "Date_of_audit",
                             [
-                              "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                                "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
                             ],
                             ">=<="
                         ],
@@ -4077,37 +3291,37 @@
                         "Channel"
                     ],
                     "filters": [
-                      [
-                          "Date_of_audit",
-                          [
-                            "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
-                          ],
-                          ">=<="
-                      ],
-                      [
-                          "Country",
-                          "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
-                      ],
-                      [
-                          "X4P_5P_6P",
-                          "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                      ],
-                      [
-                          "Sales_region",
-                          "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
-                      ],
-                      [
-                          "Channel",
-                          "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
-                      ],
-                      [
-                          "Product_Category",
-                          "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
-                      ],
-                      [
-                          "Customer",
-                          "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
-                      ]
+                        [
+                            "Date_of_audit",
+                            [
+                                "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                            ],
+                            ">=<="
+                        ],
+                        [
+                            "Country",
+                            "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
+                        ]
                     ]
                 },
                 "selectMode": "single",
@@ -4421,37 +3635,37 @@
                         "Product_Category"
                     ],
                     "filters": [
-                      [
-                          "Date_of_audit",
-                          [
-                            "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
-                          ],
-                          ">=<="
-                      ],
-                      [
-                          "Country",
-                          "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
-                      ],
-                      [
-                          "X4P_5P_6P",
-                          "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                      ],
-                      [
-                          "Sales_region",
-                          "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
-                      ],
-                      [
-                          "Channel",
-                          "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
-                      ],
-                      [
-                          "Product_Category",
-                          "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
-                      ],
-                      [
-                          "Customer",
-                          "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
-                      ]
+                        [
+                            "Date_of_audit",
+                            [
+                                "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                            ],
+                            ">=<="
+                        ],
+                        [
+                            "Country",
+                            "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
+                        ]
                     ]
                 },
                 "selectMode": "single",
@@ -4488,37 +3702,37 @@
                         "Sales_region"
                     ],
                     "filters": [
-                      [
-                          "Date_of_audit",
-                          [
-                            "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
-                          ],
-                          ">=<="
-                      ],
-                      [
-                          "Country",
-                          "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
-                      ],
-                      [
-                          "X4P_5P_6P",
-                          "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                      ],
-                      [
-                          "Sales_region",
-                          "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
-                      ],
-                      [
-                          "Channel",
-                          "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
-                      ],
-                      [
-                          "Product_Category",
-                          "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
-                      ],
-                      [
-                          "Customer",
-                          "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
-                      ]
+                        [
+                            "Date_of_audit",
+                            [
+                                "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                            ],
+                            ">=<="
+                        ],
+                        [
+                            "Country",
+                            "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
+                        ]
                     ]
                 },
                 "selectMode": "single",
@@ -4599,7 +3813,7 @@
                         [
                             "Date_of_audit",
                             [
-                              "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                                "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
                             ],
                             ">=<="
                         ],
@@ -4936,37 +4150,37 @@
                         "X4P_5P_6P"
                     ],
                     "filters": [
-                      [
-                          "Date_of_audit",
-                          [
-                            "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
-                          ],
-                          ">=<="
-                      ],
-                      [
-                          "Country",
-                          "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
-                      ],
-                      [
-                          "X4P_5P_6P",
-                          "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                      ],
-                      [
-                          "Sales_region",
-                          "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
-                      ],
-                      [
-                          "Channel",
-                          "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
-                      ],
-                      [
-                          "Product_Category",
-                          "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
-                      ],
-                      [
-                          "Customer",
-                          "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
-                      ]
+                        [
+                            "Date_of_audit",
+                            [
+                                "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                            ],
+                            ">=<="
+                        ],
+                        [
+                            "Country",
+                            "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
+                        ]
                     ]
                 },
                 "selectMode": "single",
@@ -5202,6 +4416,427 @@
                     "options": {}
                 }
             },
+            "Product_Category_Que_2": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C00000011PdSAI",
+                        "label": "PSP_SCORE",
+                        "name": "PSP_SCORE",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PdSAI"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Answer",
+                            "A",
+                            {
+                                "display": "Current Month"
+                            }
+                        ],
+                        [
+                            "avg",
+                            "Answer",
+                            "B",
+                            {
+                                "display": "Last Month"
+                            }
+                        ],
+                        [
+                            "avg",
+                            "Answer",
+                            "C",
+                            {
+                                "display": "%Δ",
+                                "format": "percentage"
+                            }
+                        ],
+                        [
+                            "avg",
+                            "Answer",
+                            "D",
+                            {
+                                "display": "%Δ",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "Answer"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Product_Category",
+                                    "Questions"
+                                ],
+                                "filters": [
+                                    [
+                                        "Date_of_audit",
+                                        [
+                                            [
+                                                [
+                                                    "month",
+                                                    0
+                                                ],
+                                                [
+                                                    "month",
+                                                    0
+                                                ]
+                                            ]
+                                        ],
+                                        ">=<="
+                                    ],
+                                    [
+                                        "Country",
+                                        "{{ column(Country_10.selection, [\"Country\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "City",
+                                        "{{ column(City_13.selection, [\"City\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Commune",
+                                        "{{ column(Commune_50.selection, [\"Commune\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Customer_type",
+                                        "{{ column(Customer_type_20.selection, [\"Customer_type\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Trade_Format",
+                                        "{{ column(Trade_Format_16.selection, [\"Trade_Format\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "X4P_5P_6P",
+                                        "{{ column(X4P_5P_6P_19.selection, [\"Trade_Format\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Top_Customer",
+                                        "{{ column(Top_Customer_60.selection, [\"Top_Customer\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Customer",
+                                        "{{ column(Customer_56.selection, [\"Customer\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Local_Outlet_Name",
+                                        "{{ column(Local_Outlet_Name_57.selection, [\"Local_Outlet_Name\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Channel",
+                                        "{{ column(Channel_17.selection, [\"Channel\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Subchannel",
+                                        "{{ column(Subchannel_18.selection, [\"Subchannel\"]).asObject()}}"
+                                    ],
+                                    [
+                                        "Store_type",
+                                        "{{ column(Store_type_54.selection, [\"Store_type\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_region",
+                                        "{{ column(Sales_region_52.selection, [\"Sales_region\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_area",
+                                        "{{ column(Sales_area_14.selection, [\"Sales_area\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_territory",
+                                        "{{ column(Sales_territory_15.selection, [\"Sales_territory\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Field_Execution_Manager",
+                                        "{{ column(Field_Execution_Manager_61.selection, [\"Field_Execution_Manager\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Store_Operations_Manager",
+                                        "{{ column(Store_Operations_Manager_62.selection, [\"Store_Operations_Manager\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Field_Sales_Manager",
+                                        "{{ column(Field_Sales_Manager_63.selection, [\"Field_Sales_Manager\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Division",
+                                        "{{ column(Product_division_24.selection, [\"Product_Division\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Category",
+                                        "{{ column(Product_category_25.selection, [\"Product_Category\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Country",
+                                        "{{ column(Country_28.selection, [\"Country\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "X4P_5P_6P",
+                                        "{{ column(X4P_5P_6P_29.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_region",
+                                        "{{ column(Region_30.selection, [\"Sales_region\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Channel",
+                                        "{{ column(Channel_31.selection, [\"Channel\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Category",
+                                        "{{ column(Product_category_32.selection, [\"Product_Category\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Customer",
+                                        "{{ column(Customer_33.selection, [\"Customer\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Country",
+                                        "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "X4P_5P_6P",
+                                        "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_region",
+                                        "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Channel",
+                                        "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Category",
+                                        "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
+                                    ],
+                                    [
+                                        "Customer_6",
+                                        "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
+                                    ]
+                                ]
+                            },
+                            "format": null,
+                            "header": "Current Month"
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "Answer"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Product_Category",
+                                    "Questions"
+                                ],
+                                "filters": [
+                                    [
+                                        "Date_of_audit",
+                                        [
+                                            [
+                                                [
+                                                    "month",
+                                                    -1
+                                                ],
+                                                [
+                                                    "month",
+                                                    -1
+                                                ]
+                                            ]
+                                        ],
+                                        ">=<="
+                                    ],
+                                    [
+                                        "Country",
+                                        "{{ column(Country_10.selection, [\"Country\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "City",
+                                        "{{ column(City_13.selection, [\"City\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Commune",
+                                        "{{ column(Commune_50.selection, [\"Commune\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Customer_type",
+                                        "{{ column(Customer_type_20.selection, [\"Customer_type\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Trade_Format",
+                                        "{{ column(Trade_Format_16.selection, [\"Trade_Format\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "X4P_5P_6P",
+                                        "{{ column(X4P_5P_6P_19.selection, [\"Trade_Format\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Top_Customer",
+                                        "{{ column(Top_Customer_60.selection, [\"Top_Customer\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Customer",
+                                        "{{ column(Customer_56.selection, [\"Customer\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Local_Outlet_Name",
+                                        "{{ column(Local_Outlet_Name_57.selection, [\"Local_Outlet_Name\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Channel",
+                                        "{{ column(Channel_17.selection, [\"Channel\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Subchannel",
+                                        "{{ column(Subchannel_18.selection, [\"Subchannel\"]).asObject()}}"
+                                    ],
+                                    [
+                                        "Store_type",
+                                        "{{ column(Store_type_54.selection, [\"Store_type\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_region",
+                                        "{{ column(Sales_region_52.selection, [\"Sales_region\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_area",
+                                        "{{ column(Sales_area_14.selection, [\"Sales_area\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_territory",
+                                        "{{ column(Sales_territory_15.selection, [\"Sales_territory\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Field_Execution_Manager",
+                                        "{{ column(Field_Execution_Manager_61.selection, [\"Field_Execution_Manager\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Store_Operations_Manager",
+                                        "{{ column(Store_Operations_Manager_62.selection, [\"Store_Operations_Manager\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Field_Sales_Manager",
+                                        "{{ column(Field_Sales_Manager_63.selection, [\"Field_Sales_Manager\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Division",
+                                        "{{ column(Product_division_24.selection, [\"Product_Division\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Category",
+                                        "{{ column(Product_category_25.selection, [\"Product_Category\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Country",
+                                        "{{ column(Country_28.selection, [\"Country\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "X4P_5P_6P",
+                                        "{{ column(X4P_5P_6P_29.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_region",
+                                        "{{ column(Region_30.selection, [\"Sales_region\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Channel",
+                                        "{{ column(Channel_31.selection, [\"Channel\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Category",
+                                        "{{ column(Product_category_32.selection, [\"Product_Category\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Customer",
+                                        "{{ column(Customer_33.selection, [\"Customer\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Country",
+                                        "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "X4P_5P_6P",
+                                        "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_region",
+                                        "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Channel",
+                                        "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Category",
+                                        "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
+                                    ],
+                                    [
+                                        "Customer_6",
+                                        "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
+                                    ]
+                                ]
+                            },
+                            "format": null,
+                            "header": "Last Month"
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "Answer"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Product_Category",
+                                    "Questions"
+                                ],
+                                "formula": "round(A-B,3)"
+                            },
+                            "format": "percentage",
+                            "header": "%Δ"
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "Answer"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Product_Category",
+                                    "Questions"
+                                ],
+                                "formula": "round(A-B,3)"
+                            },
+                            "format": "percentage",
+                            "showBars": true,
+                            "header": "%Δ"
+                        }
+                    ],
+                    "groups": [
+                        "Product_Category",
+                        "Questions"
+                    ]
+                },
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
+                    "options": {}
+                }
+            },
             "Country_10": {
                 "datasets": [
                     {
@@ -5230,6 +4865,379 @@
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Product_Category_Que_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C00000011OuSAI",
+                        "label": "SSP_SCORE",
+                        "name": "SSP_SCORE",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011OuSAI"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Answer",
+                            "A",
+                            {
+                                "display": "Current Month"
+                            }
+                        ],
+                        [
+                            "avg",
+                            "Answer",
+                            "B",
+                            {
+                                "display": "Last Month"
+                            }
+                        ],
+                        [
+                            "avg",
+                            "Answer",
+                            "C",
+                            {
+                                "display": "%Δ",
+                                "format": "percentage"
+                            }
+                        ],
+                        [
+                            "avg",
+                            "Answer",
+                            "D",
+                            {
+                                "display": "%Δ",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "columns": [
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "Answer"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Product_Category",
+                                    "Questions"
+                                ],
+                                "filters": [
+                                    [
+                                        "Date_of_audit",
+                                        [
+                                            [
+                                                [
+                                                    "month",
+                                                    0
+                                                ],
+                                                [
+                                                    "month",
+                                                    0
+                                                ]
+                                            ]
+                                        ],
+                                        ">=<="
+                                    ],
+                                    [
+                                        "Country",
+                                        "{{ column(Country_10.selection, [\"Country\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "City",
+                                        "{{ column(City_13.selection, [\"City\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Commune",
+                                        "{{ column(Commune_50.selection, [\"Commune\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Customer_type",
+                                        "{{ column(Customer_type_20.selection, [\"Customer_type\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Trade_Format",
+                                        "{{ column(Trade_Format_16.selection, [\"Trade_Format\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "X4P_5P_6P",
+                                        "{{ column(X4P_5P_6P_19.selection, [\"Trade_Format\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Top_Customer",
+                                        "{{ column(Top_Customer_60.selection, [\"Top_Customer\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Customer",
+                                        "{{ column(Customer_56.selection, [\"Customer\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Local_Outlet_Name",
+                                        "{{ column(Local_Outlet_Name_57.selection, [\"Local_Outlet_Name\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Channel",
+                                        "{{ column(Channel_17.selection, [\"Channel\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Subchannel",
+                                        "{{ column(Subchannel_18.selection, [\"Subchannel\"]).asObject()}}"
+                                    ],
+                                    [
+                                        "Store_type",
+                                        "{{ column(Store_type_54.selection, [\"Store_type\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_region",
+                                        "{{ column(Sales_region_52.selection, [\"Sales_region\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_area",
+                                        "{{ column(Sales_area_14.selection, [\"Sales_area\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_territory",
+                                        "{{ column(Sales_territory_15.selection, [\"Sales_territory\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Field_Execution_Manager",
+                                        "{{ column(Field_Execution_Manager_61.selection, [\"Field_Execution_Manager\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Store_Operations_Manager",
+                                        "{{ column(Store_Operations_Manager_62.selection, [\"Store_Operations_Manager\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Field_Sales_Manager",
+                                        "{{ column(Field_Sales_Manager_63.selection, [\"Field_Sales_Manager\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Division",
+                                        "{{ column(Product_division_24.selection, [\"Product_Division\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Category",
+                                        "{{ column(Product_category_25.selection, [\"Product_Category\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Country",
+                                        "{{ column(Country_28.selection, [\"Country\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "X4P_5P_6P",
+                                        "{{ column(X4P_5P_6P_29.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_region",
+                                        "{{ column(Region_30.selection, [\"Sales_region\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Channel",
+                                        "{{ column(Channel_31.selection, [\"Channel\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Category",
+                                        "{{ column(Product_category_32.selection, [\"Product_Category\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Customer",
+                                        "{{ column(Customer_33.selection, [\"Customer\"]).asObject() }}"
+                                    ]
+                                ]
+                            },
+                            "format": null,
+                            "header": "Current Month"
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "Answer"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Product_Category",
+                                    "Questions"
+                                ],
+                                "filters": [
+                                    [
+                                        "Date_of_audit",
+                                        [
+                                            [
+                                                [
+                                                    "month",
+                                                    -1
+                                                ],
+                                                [
+                                                    "month",
+                                                    -1
+                                                ]
+                                            ]
+                                        ],
+                                        ">=<="
+                                    ],
+                                    [
+                                        "Country",
+                                        "{{ column(Country_10.selection, [\"Country\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "City",
+                                        "{{ column(City_13.selection, [\"City\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Commune",
+                                        "{{ column(Commune_50.selection, [\"Commune\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Customer_type",
+                                        "{{ column(Customer_type_20.selection, [\"Customer_type\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Trade_Format",
+                                        "{{ column(Trade_Format_16.selection, [\"Trade_Format\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "X4P_5P_6P",
+                                        "{{ column(X4P_5P_6P_19.selection, [\"Trade_Format\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Top_Customer",
+                                        "{{ column(Top_Customer_60.selection, [\"Top_Customer\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Customer",
+                                        "{{ column(Customer_56.selection, [\"Customer\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Local_Outlet_Name",
+                                        "{{ column(Local_Outlet_Name_57.selection, [\"Local_Outlet_Name\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Channel",
+                                        "{{ column(Channel_17.selection, [\"Channel\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Subchannel",
+                                        "{{ column(Subchannel_18.selection, [\"Subchannel\"]).asObject()}}"
+                                    ],
+                                    [
+                                        "Store_type",
+                                        "{{ column(Store_type_54.selection, [\"Store_type\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_region",
+                                        "{{ column(Sales_region_52.selection, [\"Sales_region\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_area",
+                                        "{{ column(Sales_area_14.selection, [\"Sales_area\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_territory",
+                                        "{{ column(Sales_territory_15.selection, [\"Sales_territory\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Field_Execution_Manager",
+                                        "{{ column(Field_Execution_Manager_61.selection, [\"Field_Execution_Manager\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Store_Operations_Manager",
+                                        "{{ column(Store_Operations_Manager_62.selection, [\"Store_Operations_Manager\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Field_Sales_Manager",
+                                        "{{ column(Field_Sales_Manager_63.selection, [\"Field_Sales_Manager\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Division",
+                                        "{{ column(Product_division_24.selection, [\"Product_Division\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Category",
+                                        "{{ column(Product_category_25.selection, [\"Product_Category\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Country",
+                                        "{{ column(Country_28.selection, [\"Country\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "X4P_5P_6P",
+                                        "{{ column(X4P_5P_6P_29.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Sales_region",
+                                        "{{ column(Region_30.selection, [\"Sales_region\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Channel",
+                                        "{{ column(Channel_31.selection, [\"Channel\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Product_Category",
+                                        "{{ column(Product_category_32.selection, [\"Product_Category\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Customer",
+                                        "{{ column(Customer_33.selection, [\"Customer\"]).asObject() }}"
+                                    ]
+                                ]
+                            },
+                            "format": null,
+                            "header": "Last Month"
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "Answer"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Product_Category",
+                                    "Questions"
+                                ],
+                                "formula": "round(A-B,3)"
+                            },
+                            "format": "percentage",
+                            "header": "%Δ"
+                        },
+                        {
+                            "query": {
+                                "measures": [
+                                    [
+                                        "avg",
+                                        "Answer"
+                                    ]
+                                ],
+                                "groups": [
+                                    "Product_Category",
+                                    "Questions"
+                                ],
+                                "formula": "round(A-B,3)"
+                            },
+                            "format": "percentage",
+                            "showBars": true,
+                            "header": "%Δ"
+                        }
+                    ],
+                    "groups": [
+                        "Product_Category",
+                        "Questions"
+                    ]
+                },
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable",
                     "options": {}
                 }
             },
@@ -6783,37 +6791,37 @@
                         ]
                     ],
                     "filters": [
-                      [
-                          "Date_of_audit",
-                          [
-                            "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
-                          ],
-                          ">=<="
-                      ],
-                      [
-                          "Country",
-                          "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
-                      ],
-                      [
-                          "X4P_5P_6P",
-                          "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
-                      ],
-                      [
-                          "Sales_region",
-                          "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
-                      ],
-                      [
-                          "Channel",
-                          "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
-                      ],
-                      [
-                          "Product_Category",
-                          "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
-                      ],
-                      [
-                          "Customer",
-                          "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
-                      ]
+                        [
+                            "Date_of_audit",
+                            [
+                                "{{ row(Date_Year_Date_Month_1.selection, [0], [\"min\",\"max\"]).asObject() }}"
+                            ],
+                            ">=<="
+                        ],
+                        [
+                            "Country",
+                            "{{ column(Country_1.selection, [\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ column(X4P_5P_6P_2.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ column(Region_3.selection, [\"Sales_region\"]).asObject() }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ column(Channel_4.selection, [\"Channel\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ column(Product_category_5.selection, [\"Product_Category\"]).asObject()}}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ column(Customer_6.selection, [\"Customer\"]).asObject() }}"
+                        ]
                     ]
                 },
                 "selectMode": "single",
@@ -8924,7 +8932,7 @@
             },
             "link_pack": {
                 "parameters": {
-                    "destination": "0FK2C0000000048WAA",
+                    "destination": "0FK2C000000004SWAQ",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": true,
@@ -9426,8 +9434,8 @@
             },
             "header_com4p5p6p": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY PERFECT STORE STANDARD",
+                    "fontSize": 16,
+                    "text": "Compliance by Perfect Store Standard",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9536,14 +9544,12 @@
                     "measureAxis2": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "",
-                        "referenceLine": null
+                        "title": ""
                     },
                     "measureAxis1": {
                         "showTitle": true,
                         "showAxis": true,
-                        "title": "Place Compliance (%)",
-                        "referenceLine": null
+                        "title": "Place Compliance (%)"
                     },
                     "step": "Customer_33",
                     "theme": "wave",
@@ -9815,8 +9821,8 @@
             },
             "header_comCountry": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY COUNTRY",
+                    "fontSize": 16,
+                    "text": "Compliance by Country",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9922,8 +9928,8 @@
             },
             "header_comRegion": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY SALES REGION",
+                    "fontSize": 16,
+                    "text": "Compliance by Sales Region",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9951,7 +9957,7 @@
             },
             "link_product": {
                 "parameters": {
-                    "destination": "0FK2C000000004SWAQ",
+                    "destination": "0FK2C0000000048WAA",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -10038,8 +10044,8 @@
             },
             "header_score4p5p6p": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY PERFECT STORE STANDARD",
+                    "fontSize": 16,
+                    "text": "Score by Perfect Store Standard",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10047,8 +10053,8 @@
             },
             "header_scoreCust": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY TOP 20 CUSTOMERS",
+                    "fontSize": 16,
+                    "text": "Score by Top 20 Customers",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10238,8 +10244,8 @@
             },
             "header_scoreRegion": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY SALES REGION",
+                    "fontSize": 16,
+                    "text": "Score by Sales Region",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10385,8 +10391,8 @@
             },
             "header_comChannel": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY CHANNEL",
+                    "fontSize": 16,
+                    "text": "Compliance by Channel",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10632,14 +10638,23 @@
             },
             "header_comCat": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY CATEGORY",
+                    "fontSize": 16,
+                    "text": "Compliance by Category",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
                 "type": "text"
             },
             "container_21": {
+                "parameters": {
+                    "alignmentX": "left",
+                    "alignmentY": "top",
+                    "documentId": "",
+                    "fit": "original"
+                },
+                "type": "container"
+            },
+            "container_20": {
                 "parameters": {
                     "alignmentX": "left",
                     "alignmentY": "top",
@@ -10792,8 +10807,8 @@
             },
             "header_scoreChannel": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY CHANNEL",
+                    "fontSize": 16,
+                    "text": "Score by Channel",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -10801,8 +10816,8 @@
             },
             "header_scoreCat": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY CATEGORY",
+                    "fontSize": 16,
+                    "text": "Score by Category",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -11011,6 +11026,20 @@
                 },
                 "type": "link"
             },
+            "table_1": {
+                "parameters": {
+                    "exploreLink": true,
+                    "step": "Product_Category_Que_1"
+                },
+                "type": "table"
+            },
+            "table_2": {
+                "parameters": {
+                    "exploreLink": true,
+                    "step": "Product_Category_Que_2"
+                },
+                "type": "table"
+            },
             "link_9": {
                 "parameters": {
                     "destination": "SSP_Channel",
@@ -11147,7 +11176,7 @@
             },
             "chart_comCat": {
                 "parameters": {
-                    "autoFitMode": "fit",
+                    "autoFitMode": "keepLabels",
                     "showValues": true,
                     "legend": {
                         "showHeader": true,
@@ -11779,8 +11808,8 @@
             },
             "header_comCust": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY TOP 20 CUSTOMERS",
+                    "fontSize": 16,
+                    "text": "Compliance by Top 20 Customers",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -11929,8 +11958,8 @@
             },
             "header_scoreCountry": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY COUNTRY",
+                    "fontSize": 16,
+                    "text": "Score by Country",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -12157,29 +12186,6 @@
                     "textColor": "#091A3E"
                 },
                 "type": "text"
-            },
-            "table_1": {
-                "type": "table",
-                "parameters": {
-                    "exploreLink": true,
-                    "step": "Product_Category_Que_1"
-                }
-            },
-            "table_2": {
-                "type": "table",
-                "parameters": {
-                    "exploreLink": true,
-                    "step": "Product_Category_Que_2"
-                }
-            },
-            "container_20": {
-                "type": "container",
-                "parameters": {
-                    "documentId": "",
-                    "fit": "original",
-                    "alignmentX": "left",
-                    "alignmentY": "top"
-                }
             }
         }
     },

@@ -189,7 +189,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 1,
                                 "name": "header_comRegion",
                                 "row": 40,
@@ -2474,20 +2474,24 @@
                                 }
                             },
                             {
-                                "row": 189,
-                                "column": 0,
-                                "rowspan": 6,
                                 "colspan": 3,
+                                "column": 0,
                                 "name": "table_2",
-                                "widgetStyle": {}
+                                "row": 189,
+                                "rowspan": 6,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
                             },
                             {
-                                "row": 0,
-                                "column": 0,
-                                "rowspan": 6,
                                 "colspan": 3,
+                                "column": 0,
                                 "name": "image_1",
-                                "widgetStyle": {}
+                                "row": 0,
+                                "rowspan": 6,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
                             }
                         ]
                     }
@@ -6135,8 +6139,8 @@
             },
             "header_comChannel": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY CHANNEL",
+                    "fontSize": 16,
+                    "text": "Compliance by Channel",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -6335,8 +6339,8 @@
             },
             "header_comCat": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY CATEGORY",
+                    "fontSize": 16,
+                    "text": "Compliance by Category",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -6411,8 +6415,8 @@
             },
             "header_com4p5p6p": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY PERFECT STORE STANDARD",
+                    "fontSize": 16,
+                    "text": "Compliance by Perfect Store Standard",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -6490,8 +6494,8 @@
             },
             "header_scoreChannel": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY CHANNEL",
+                    "fontSize": 16,
+                    "text": "Score by Channel",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -6562,8 +6566,8 @@
             },
             "header_scoreCat": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY CATEGORY",
+                    "fontSize": 16,
+                    "text": "Score by Category",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -6796,6 +6800,13 @@
                 },
                 "type": "text"
             },
+            "table_2": {
+                "parameters": {
+                    "exploreLink": true,
+                    "step": "Product_category_SKU_1"
+                },
+                "type": "table"
+            },
             "header_customer": {
                 "parameters": {
                     "fontSize": 20,
@@ -6857,8 +6868,8 @@
             },
             "header_comCountry": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY COUNTRY",
+                    "fontSize": 16,
+                    "text": "Compliance by Country",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -7144,8 +7155,8 @@
             },
             "header_comRegion": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY SALES REGION",
+                    "fontSize": 16,
+                    "text": "Compliance by Sales Region",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -7162,7 +7173,7 @@
             },
             "link_product": {
                 "parameters": {
-                    "destination": "0FK2C000000004SWAQ",
+                    "destination": "0FK2C0000000048WAA",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -7173,7 +7184,7 @@
             },
             "header_comTrend": {
                 "parameters": {
-                    "fontSize": 20,
+                    "fontSize": 16,
                     "text": "Pack Compliance Trend",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -7188,6 +7199,15 @@
                     "textColor": "#091A3E"
                 },
                 "type": "text"
+            },
+            "image_1": {
+                "parameters": {
+                    "alignmentX": "center",
+                    "alignmentY": "top",
+                    "documentId": "0152C0000008wzM",
+                    "fit": "fitheight"
+                },
+                "type": "image"
             },
             "dimfilter_city": {
                 "parameters": {
@@ -7269,8 +7289,8 @@
             },
             "header_score4p5p6p": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY PERFECT STORE STANDARD",
+                    "fontSize": 16,
+                    "text": "Score by Perfect Store Standard",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -7278,8 +7298,8 @@
             },
             "header_scoreCust": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY TOP 20 CUSTOMERS",
+                    "fontSize": 16,
+                    "text": "Score by Top 20 Customers",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -7287,8 +7307,8 @@
             },
             "header_comCust": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY TOP 20 CUSTOMERS",
+                    "fontSize": 16,
+                    "text": "Compliance by Top 20 Customers",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -7467,7 +7487,7 @@
             },
             "header_scoreTrend": {
                 "parameters": {
-                    "fontSize": 20,
+                    "fontSize": 16,
                     "text": "Pack Score Trend",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -7489,8 +7509,8 @@
             },
             "header_scoreRegion": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY SALES REGION",
+                    "fontSize": 16,
+                    "text": "Score by Sales Region",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -7498,8 +7518,8 @@
             },
             "header_scoreCountry": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY COUNTRY",
+                    "fontSize": 16,
+                    "text": "Score by Country",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -7736,22 +7756,6 @@
                     "textColor": "#091A3E"
                 },
                 "type": "text"
-            },
-            "table_2": {
-                "type": "table",
-                "parameters": {
-                    "exploreLink": true,
-                    "step": "Product_category_SKU_1"
-                }
-            },
-            "image_1": {
-                "type": "image",
-                "parameters": {
-                    "fit": "fitheight",
-                    "alignmentX": "center",
-                    "alignmentY": "top",
-                    "documentId": "0152C0000008wzM"
-                }
             }
         }
     },
