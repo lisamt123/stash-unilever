@@ -7,9 +7,12 @@ Once user selects any of the case market mapping perform the following action:
 - Update the following case fields:
 a. Case market mapping
 b. Default the case owner with the case market mapping: default case owner field value
-c. Remove the case product information
-d. Remove any store information if present
-f. Any deleted information should be populated in the case comment field
+c. If Reason code exists then check if there is any reason code exists based on the L5 Code (not desc) and 2 - char country code.
+If reason code exists then replace the existing reason code, otherwise blank it off
+d. Remove the case product information
+e. Remove the customer information
+f. Remove any store information if present
+g. Any deleted information should be populated in the case comment field
 
 <!-- History-->
 <!-- ---------------------------------------------------------->
@@ -45,7 +48,8 @@ Purpose: To display case market mapping on the basis of user input.
         } else {
             String searchparam = '%' + marketMapping.removeEnd('*') + '%';
             System.debug('*******searchparam**********' + searchparam );
-            caseMarketMappings  = [SELECT Id, Name, Market__c, Language__c, Country__r.ISO_3166_1_Code__c, Country__r.Name,DefaultCaseOwnerId__c FROM CEC_Case_Market_Mapping__c
+            caseMarketMappings  = [SELECT Id, Account_Owner_Active_Flag__c,Name, Market__c, Language__c, Country__r.ISO_3166_1_Code__c, Country__r.Name,DefaultCaseOwnerId__c,DefaultAccountOwnerId__c 
+                                   FROM CEC_Case_Market_Mapping__c
                                    WHERE Market__c != :transCase.Case_Market__c AND (Name Like :searchparam OR Market__c Like :searchparam)    limit 10000];
             System.debug('*******caseMarketMappings **********' + caseMarketMappings  );
             if (caseMarketMappings.isEmpty()) {
@@ -73,8 +77,8 @@ Purpose: To transfer case to the advisor selected market.
         } else {
             Id caseMktMapId = (Id)caseMktMapIdStr;
             case oldCase = [SELECT  Id, AccountId,Country__c, Country__r.name, owner.Name, Store__c, Store__r.name, 
-                                    CEC_Product__r.Name,DefaultCMMAccountOwner_Id__c,CMM_Account_Owner_Active_Flag__c,
-                            	    Reason_Code__c, Reason_Code__r.Name
+                                    CEC_Product__r.Name,
+                                    Reason_Code__c, Reason_Code__r.Name
                                     FROM Case 
                                     WHERE Id = : transCase.Id];
             
@@ -91,13 +95,13 @@ Purpose: To transfer case to the advisor selected market.
             //transCase.ContactId = null;
             transCase.Reason_Code__c = null;
             
-            if(oldCase.AccountId != null && oldCase.CMM_Account_Owner_Active_Flag__c)
-            	acct = new Account(Id=oldCase.AccountId, ownerId =oldCase.DefaultCMMAccountOwner_Id__c );
+            if(oldCase.AccountId != null && mktMapSelected.Account_Owner_Active_Flag__c)
+                acct = new Account(Id=oldCase.AccountId, ownerId =mktMapSelected.DefaultAccountOwnerId__c);
             
             try {
                 
                 if(acct.Id != null)
-                	update acct;
+                    update acct;
                 
                 update transCase;
                 currentCaseOwner = [SELECT Id, Name FROM Group WHERE Id = : mktMapSelected.DefaultCaseOwnerId__c];
