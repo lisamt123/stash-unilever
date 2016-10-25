@@ -21,6 +21,10 @@
  */
 @isTest
 private class CoreNTLandingPageControllerTest{
+	public static final string Homecare ='Homecare';
+	public static final string Glorix='Glorix';
+	public static final string Global='Global';
+	public static final string All='All';
 
     static testMethod void unitTestMethodForLandingPage() {
         CORE_NT_Project__C ntpObject=new CORE_NT_Project__C();
@@ -43,12 +47,12 @@ private class CoreNTLandingPageControllerTest{
         
         CORE_NT_Project__C newProjectForTest1=new CORE_NT_Project__C();
         newProjectForTest1.Name='Project Test1';
-        newProjectForTest1.CategoryName__c='Homecare';
+        newProjectForTest1.CategoryName__c=Homecare;
         newProjectForTest1.SubcategoryName__c='Household Care';
-        newProjectForTest1.Brand__c='Glorix';
+        newProjectForTest1.Brand__c=Glorix;
         newProjectForTest1.Deadline__c=date.parse('6/6/2014');
         newProjectForTest1.PercentComplete__c=100;
-        newProjectForTest1.Project_Scope__c='Global';
+        newProjectForTest1.Project_Scope__c=Global;
         upsert newProjectForTest1;
         
         CORE_NT_Project__C newProjectForTest2=new CORE_NT_Project__C();
@@ -58,14 +62,14 @@ private class CoreNTLandingPageControllerTest{
         newProjectForTest2.Brand__c='AXE';
         newProjectForTest2.Deadline__c=date.parse('7/7/2014');
         newProjectForTest2.PercentComplete__c=66;
-        newProjectForTest2.Project_Scope__c='Global';
+        newProjectForTest2.Project_Scope__c=Global;
         upsert newProjectForTest2;
         
         CORE_NT_Project__C newProjectForTest3=new CORE_NT_Project__C();
         newProjectForTest3.Name='Project Test3';
-        newProjectForTest3.CategoryName__c='Homecare';
+        newProjectForTest3.CategoryName__c=Homecare;
         newProjectForTest3.SubcategoryName__c='Household Care';
-        newProjectForTest3.Brand__c='Glorix';
+        newProjectForTest3.Brand__c=Glorix;
         newProjectForTest3.Deadline__c=date.parse('6/6/2014');
         newProjectForTest3.PercentComplete__c=90;
         newProjectForTest3.Project_Scope__c='Regional';
@@ -73,19 +77,19 @@ private class CoreNTLandingPageControllerTest{
         
         CORE_NT_Project__C newProjectForTest4=new CORE_NT_Project__C();
         newProjectForTest4.Name='Project Test4';
-        newProjectForTest4.CategoryName__c='Homecare';
+        newProjectForTest4.CategoryName__c=Homecare;
         newProjectForTest4.SubcategoryName__c='Household Care';
-        newProjectForTest4.Brand__c='Glorix';
+        newProjectForTest4.Brand__c=Glorix;
         newProjectForTest4.Deadline__c=date.parse('8/8/2014');
         newProjectForTest4.PercentComplete__c=60;
-        newProjectForTest4.Project_Scope__c='Global';
+        newProjectForTest4.Project_Scope__c=Global;
         upsert newProjectForTest4;
         
         CORE_NT_Project__C newProjectForTest5=new CORE_NT_Project__C();
         newProjectForTest5.Name='Project Test5';
-        newProjectForTest5.CategoryName__c='Homecare';
+        newProjectForTest5.CategoryName__c=Homecare;
         newProjectForTest5.SubcategoryName__c='Household Care';
-        newProjectForTest5.Brand__c='Glorix';
+        newProjectForTest5.Brand__c=Glorix;
         newProjectForTest5.Deadline__c=date.parse('6/6/2014');
         //newProjectForTest5.PercentComplete__c=100;
         newProjectForTest5.Project_Scope__c='Regional';
@@ -182,7 +186,7 @@ private class CoreNTLandingPageControllerTest{
         coreNTObject.getProjectLaunchYearItems();
         
         //Testing displayProjects()
-        coreNTObject.selectedProjectsCriteria='All';
+        coreNTObject.selectedProjectsCriteria=All;
         coreNTObject.displayProjects();
         System.assertEquals(5,coreNTObject.lstLoggedInUserProjectDetails.size());
         
@@ -207,7 +211,7 @@ private class CoreNTLandingPageControllerTest{
         //Testing selectedProjectTaskDetailBasedOnTasksCriteria() if the logged in user is a Project Manager
         coreNTObject.logedInUserRoleKey=2;
         coreNTObject.selectedTasksCriteria='Open Tasks';
-        coreNTObject.selectedResourecsCriteria='All';
+        coreNTObject.selectedResourecsCriteria=All;
         coreNTObject.selectedProjectID=newProjectForTest1.Id;
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
@@ -217,7 +221,7 @@ private class CoreNTLandingPageControllerTest{
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
         coreNTObject.selectedTasksCriteria='Critical Open Tasks';
-        coreNTObject.selectedResourecsCriteria='All';
+        coreNTObject.selectedResourecsCriteria=All;
         coreNTObject.selectedProjectID=newProjectForTest1.Id;
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
@@ -227,7 +231,7 @@ private class CoreNTLandingPageControllerTest{
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
         coreNTObject.selectedTasksCriteria='Non-Critical Open Tasks';
-        coreNTObject.selectedResourecsCriteria='All';
+        coreNTObject.selectedResourecsCriteria=All;
         coreNTObject.selectedProjectID=newProjectForTest1.Id;
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
@@ -237,7 +241,7 @@ private class CoreNTLandingPageControllerTest{
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
         coreNTObject.selectedTasksCriteria='Critical Delayed Tasks';
-        coreNTObject.selectedResourecsCriteria='All';
+        coreNTObject.selectedResourecsCriteria=All;
         coreNTObject.selectedProjectID=newProjectForTest1.Id;
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
@@ -247,7 +251,7 @@ private class CoreNTLandingPageControllerTest{
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
         coreNTObject.selectedTasksCriteria='Non-Critical Delayed Tasks';
-        coreNTObject.selectedResourecsCriteria='All';
+        coreNTObject.selectedResourecsCriteria=All;
         coreNTObject.selectedProjectID=newProjectForTest1.Id;
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
@@ -257,7 +261,7 @@ private class CoreNTLandingPageControllerTest{
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
         coreNTObject.selectedTasksCriteria='Milestones';
-        coreNTObject.selectedResourecsCriteria='All';
+        coreNTObject.selectedResourecsCriteria=All;
         coreNTObject.selectedProjectID=newProjectForTest1.Id;
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
@@ -266,7 +270,7 @@ private class CoreNTLandingPageControllerTest{
         coreNTObject.selectedProjectID=newProjectForTest1.Id;
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
-        coreNTObject.selectedTasksCriteria='All';
+        coreNTObject.selectedTasksCriteria=All;
         coreNTObject.selectedResourecsCriteria=newTeamMemberForTest1.TeamMemberName__c;
         coreNTObject.selectedProjectID=newProjectForTest1.Id;
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
@@ -300,7 +304,7 @@ private class CoreNTLandingPageControllerTest{
         coreNTObject.selectedProjectID=newProjectForTest1.Id;
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
-        coreNTObject.selectedTasksCriteria='All';
+        coreNTObject.selectedTasksCriteria=All;
         coreNTObject.selectedProjectID=newProjectForTest1.Id;
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
@@ -308,19 +312,19 @@ private class CoreNTLandingPageControllerTest{
         coreNTObject.selectedProjectTaskDetailBasedOnTasksCriteria();
         
         //Testing displayLoggedInUserProjectsBasedOnCategory()
-        coreNTObject.selectedCategory='Homecare';
-        coreNTObject.selectedSubcategory='All';
-        coreNTObject.selectedBrand='All';
+        coreNTObject.selectedCategory=Homecare;
+        coreNTObject.selectedSubcategory=All;
+        coreNTObject.selectedBrand=All;
         coreNTObject.displayLoggedInUserProjectsBasedOnCategory();
         
-        coreNTObject.selectedCategory='Homecare';
+        coreNTObject.selectedCategory=Homecare;
         coreNTObject.selectedSubcategory='Household Care';
-        coreNTObject.selectedBrand='All';
+        coreNTObject.selectedBrand=All;
         coreNTObject.displayLoggedInUserProjectsBasedOnCategory();
         
-        coreNTObject.selectedCategory='Homecare';
+        coreNTObject.selectedCategory=Homecare;
         coreNTObject.selectedSubcategory='Household Care';
-        coreNTObject.selectedBrand='Glorix';
+        coreNTObject.selectedBrand=Glorix;
         coreNTObject.displayLoggedInUserProjectsBasedOnCategory();
         
         System.assertEquals(4,coreNTObject.lstLoggedInUserProjectsBasedOnCategoryDetails.size());
@@ -333,36 +337,36 @@ private class CoreNTLandingPageControllerTest{
         //System.assertEquals(4,coreNTObject.getLogedInUserCategoryBasedDetailChartData().size());
         
         //Testing updateProjectdataBasedOnSelectedCategory()
-        coreNTObject.selectedCategory='All';
+        coreNTObject.selectedCategory=All;
         coreNTObject.selectedSubcategory='Household Care';
-        coreNTObject.selectedBrand='Glorix';
+        coreNTObject.selectedBrand=Glorix;
         coreNTObject.updateProjectdataBasedOnSelectedCategory();
         System.assertEquals(5,coreNTObject.lstLoggedInUserProjectDetails.size());
         
-        coreNTObject.selectedCategory='Homecare';
-        coreNTObject.selectedSubcategory='All';
-        coreNTObject.selectedBrand='All';
+        coreNTObject.selectedCategory=Homecare;
+        coreNTObject.selectedSubcategory=All;
+        coreNTObject.selectedBrand=All;
         coreNTObject.updateProjectdataBasedOnSelectedCategory();
         System.assertEquals(4,coreNTObject.lstLoggedInUserProjectDetails.size());
         
-        coreNTObject.selectedCategory='Homecare';
+        coreNTObject.selectedCategory=Homecare;
         coreNTObject.selectedSubcategory='Household Care';
-        coreNTObject.selectedBrand='All';
+        coreNTObject.selectedBrand=All;
         coreNTObject.updateProjectdataBasedOnSelectedCategory();
         System.assertEquals(4,coreNTObject.lstLoggedInUserProjectDetails.size());
         
-        coreNTObject.selectedCategory='Homecare';
+        coreNTObject.selectedCategory=Homecare;
         coreNTObject.selectedSubcategory='Household Care';
-        coreNTObject.selectedBrand='Glorix';
+        coreNTObject.selectedBrand=Glorix;
         coreNTObject.updateProjectdataBasedOnSelectedCategory();
         System.assertEquals(4,coreNTObject.lstLoggedInUserProjectDetails.size());
         
-        coreNTObject.selectedScopeCriteria='Global';
+        coreNTObject.selectedScopeCriteria=Global;
         coreNTObject.updateProjectdataBasedOnSelectedCategory();
         System.assertEquals(2,coreNTObject.lstLoggedInUserProjectDetails.size());
         
         coreNTObject.selectedScopeCriteria='Regional';
-        coreNTObject.selectedClusterCriteria='All';
+        coreNTObject.selectedClusterCriteria=All;
         coreNTObject.updateProjectdataBasedOnSelectedCategory();
         System.assertEquals(2,coreNTObject.lstLoggedInUserProjectDetails.size());
         
@@ -376,13 +380,13 @@ private class CoreNTLandingPageControllerTest{
         
         //Testing getCategortBasedProjectData()
       /*  System.assertEquals(3,coreNTObject.getCategortBasedProjectDataChart().size());
-        System.assertEquals(3,coreNTObject.getCategortBasedProjectData('All','Homecare','All').size());
+        System.assertEquals(3,coreNTObject.getCategortBasedProjectData(All,Homecare,All).size());
         System.assertEquals(3,coreNTObject.lstCategortBasedProjectData.size());
-        System.assertEquals(3,coreNTObject.getCategortBasedProjectData('All','Homecare','Household Care').size());
+        System.assertEquals(3,coreNTObject.getCategortBasedProjectData(All,Homecare,'Household Care').size());
         System.assertEquals(3,coreNTObject.lstCategortBasedProjectData.size());
-        System.assertEquals(3,coreNTObject.getCategortBasedProjectData('AXE','Homecare','Household Care').size());
+        System.assertEquals(3,coreNTObject.getCategortBasedProjectData('AXE',Homecare,'Household Care').size());
         System.assertEquals(3,coreNTObject.lstCategortBasedProjectData.size());
-        System.assertEquals(3,coreNTObject.getCategortBasedProjectData('All','All','All').size());
+        System.assertEquals(3,coreNTObject.getCategortBasedProjectData(All,All,All).size());
         System.assertEquals(3,coreNTObject.lstCategortBasedProjectData.size());
         */
         //Testing getProjectScopeBasedDetailChartData()
@@ -395,7 +399,7 @@ private class CoreNTLandingPageControllerTest{
         //CoreNTObject.getProjectLaunchYearBasedDetailChartData();
         
         //Testing addProjectScopeBasedDetailChartData()
-        coreNTObject.addProjectScopeBasedDetailChartData('global');
+        coreNTObject.addProjectScopeBasedDetailChartData(Global);
         
         //ProjectLaunchYearData projLaunchObj=new ProjectLaunchYearData();
         
