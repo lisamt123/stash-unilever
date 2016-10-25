@@ -159,6 +159,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         if(!SourcePlansList.isEmpty()){
         	update SourcePlansList;
         }       
+        capabilityFlag=false;       
     }
     /***************************************************************************************************************************
     @Description:create new project product when user click on Add Row
@@ -354,7 +355,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
             if(productNCountryMap.containsKey(product.id)){
                 sourceIntoList.addAll(productNCountryMap.get(product.id));  
             }
-            
+            sourceIntoList.sort();
             if(!productWrapperMap.containsKey(product.id)){
                 string countryStr = IPM_ConstantUtils.BLANK;
                 IPM_SourcingPlan__c sourcePlan = new IPM_SourcingPlan__c();
