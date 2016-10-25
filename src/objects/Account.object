@@ -1325,6 +1325,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>FS_AmountOfVisitors__c</fullName>
         <description>For amount of visitors</description>
         <externalId>false</externalId>
+        <inlineHelpText>В день?</inlineHelpText>
         <label>Amount Of Visitors</label>
         <precision>18</precision>
         <required>false</required>
