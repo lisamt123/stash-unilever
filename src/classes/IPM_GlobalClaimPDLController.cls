@@ -2,7 +2,6 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 
 	public Id projectId{get; set;}
 	public List<IPM_Project_Rollout__c> localRolloutList{get; set;}
-	public Id projDocSectionId{get;set;}
 	public IPM_Country_Level_Claim__c countryLevelClaims;
 	public List<RolloutLevelWrapper> rolloutLvlWrapper{get;set;}
 	public List<IPM_Project_Claim__c> projectClaimList{get; set;}
@@ -32,7 +31,6 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
         if(paramMap != null && paramMap.containsKey(IPM_ConstantUtils.SF_ID)) 
         {
             projectId = paramMap.get(IPM_ConstantUtils.SF_ID);
-            projDocSectionId = paramMap.get(IPM_ConstantUtils.SF_PROJ_DOC_SEC_ID);
         }
         
         localRolloutList = [Select id, 	IPM_Rollout_Project__c, MCO_Name__c, KeyMCO__c, (Select id,Country_Name__c From IPM_Countries_Local__r Order by Local_Rollout__r.MCO__c) From IPM_Project_Rollout__c Where (IPM_Project__c =: projectId OR Local_Project__c =: projectId) and RecordType.Name =: IPM_ConstantUtils.LOCAL_ROLLOUT_RT];
