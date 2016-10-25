@@ -431,10 +431,7 @@ public with sharing class IPM_RolloutTriggerHandler
             }
 			//Update Rollout Name for GKM3 Local Rollouts
             if(projectRollout.IPM_Project_GKM__c == IPM_ConstantUtils.GATE_KEEPING_MODEL_3 && projectRollout.IPM_Rollout_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && projectRollout.Regional_Rollout_External_Id__c!=null && projectRollout.Name.indexOf(projectRollout.Regional_Rollout_External_Id__c)!=-1){
-                if(projectRollout.Name == projectRollout.IPM_Rollout_Project__c)
-                {
                 projectRollout.Name = projectRollout.Name.replace(projectRollout.Regional_Rollout_External_Id__c, projectRollout.Regional_Rollout_External_Id__c.substringBeforeLast('_'));
-                }
             }
         }
         

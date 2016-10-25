@@ -217,7 +217,6 @@
                         <script>
                         var IPMmessageArr = {removeCountryFeasCap:'{!removeCountryFeasiCap}',removeCountryOtherFeasCap:'{!removeCountryOtherFeasiCap}', singleCountryAsscoaitedProj:'{!countryRelatedProj}',allRolloutFromSameMCO : '{!allRolloutFromSameMCO}'};
                         </script>
-                        Local Project Count : {!localProjCnt}
                         <apex:inputHidden value="{!localProjCnt}" id="counterLocalVar" />
 
                         <apex:outputPanel rendered="{!invokedFromRollouts}" >
