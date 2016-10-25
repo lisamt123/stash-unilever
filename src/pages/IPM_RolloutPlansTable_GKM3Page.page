@@ -368,7 +368,7 @@
                                 </div>
                                 <div class="buttonMarginRight noPadright pull-left" >
                                     <!-- <span class="ipmButton primary" data-dismiss="modal" >Agree and Proceed</span> -->
-                                    <apex:commandLink value="{!$Label.Agree_and_Proceed}" oncomplete="saveRolloutFuncJs();hideTldWarningDialog();" reRender="validationErrorPanel,saveRolloutUrlStrPanel" styleClass="ipmButton primary" action="{!saveRollout}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" status="loadingStatus" onclick="skipValidation();" >
+                                    <apex:commandLink value="{!$Label.Agree_and_Proceed}" oncomplete="saveRolloutFuncJs();" reRender="validationErrorPanel,saveRolloutUrlStrPanel" styleClass="ipmButton primary" action="{!saveRollout}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" status="loadingStatus" onclick="hideTldWarningDialog();skipValidation();" >
                                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                                     </apex:commandLink>
                                     
