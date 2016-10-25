@@ -1,0 +1,9 @@
+src
+src/objects/FS_Defined_Objective__c.object
+src/objects/Account.object
+src/objects/Opportunity.object
+src/permissionsets/FS_Sales_Rep.permissionset
+src/layouts/Account-Feed Based Operator.layout
+src/layouts/Account-Operator Russia Read Only.layout
+src/layouts/Account-Operators Russia.layout
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout

@@ -1,64 +1,9 @@
-src
-src/applications
-src/applications/CI_R2R_Budget.app
-src/applications/CI_R2R_Innovation.app
-src/applications/CI_SME_Weekly_Update.app
-src/classes/CI_R2R_Budget_Trigger_Test.cls
-src/classes/CI_R2R_Budget_Trigger_Test.cls-meta.xml
-src/classes/CI_R2R_Budget_TriggerHandler.cls
-src/classes/CI_R2R_Budget_TriggerHandler.cls-meta.xml
-src/classes/CI_R2R_GetHistory_Test.cls
-src/classes/CI_R2R_GetHistory_Test.cls-meta.xml
-src/classes/CI_R2R_GetHistory.cls
-src/classes/CI_R2R_GetHistory.cls-meta.xml
-src/classes/CI_R2R_Innovation_Trigger_Test.cls
-src/classes/CI_R2R_Innovation_Trigger_Test.cls-meta.xml
-src/classes/CI_R2R_Innovation_TriggerFactory.cls
-src/classes/CI_R2R_Innovation_TriggerFactory.cls-meta.xml
-src/classes/CI_R2R_Innovation_TriggerHandler.cls
-src/classes/CI_R2R_Innovation_TriggerHandler.cls-meta.xml
-src/classes/CI_R2R_SME_GetHistory_Test.cls
-src/classes/CI_R2R_SME_GetHistory_Test.cls-meta.xml
-src/classes/CI_R2R_SME_GetHistory.cls
-src/classes/CI_R2R_SME_GetHistory.cls-meta.xml
-src/layouts/CI_R2R_Budget__c-R2R Budget Layout.layout 
-src/layouts/CI_R2R_Innovation__c-R2R Innovation Layout.layout
-src/layouts/CI_R2R_Milestones__c-CI_R2R Milestones Layout.layout
-src/layouts/CI_Accounting_Treatment__c-CI_Accounting Treatment Layout.layout
-src/layouts/CI_SMS_Weekly_Update__c-CI_SME without CI.layout
-src/layouts/CI_SMS_Weekly_Update__c-SME Weekly Update Layout.layout
-src/layouts/CI_SMS_Weekly_Update__c-CI_R2R SME Read only.layout
-src/layouts/CI_R2R_Innovation__c-CI_R2R_Innovation Layout Final.layout
-src/objects/CI_R2R_Budget__c.object
-src/objects/CI_R2R_Innovation__c.object
-src/objects/CI_R2R_Milestones__c.object
-src/objects/CI_Accounting_Treatment__c.object
-src/objects/CI_SMS_Weekly_Update__c.object
-src/objects/CI_R2R_Budget_Mapping__c.object
-src/pages/CI_R2R_Comments_Section_for_SME.page
-src/pages/CI_R2R_Comments_Section_for_SME.page-meta.xml
-src/pages/CI_R2R_Comments_Section.page
-src/pages/CI_R2R_Comments_Section.page-meta.xml
-src/pages/CI_R2R_Innovations_Help_Page.page
-src/pages/CI_R2R_Innovations_Help_Page.page-meta.xml
-src/pages/CI_R2R_SME_Weekly_Update_Help_Page.page
-src/pages/CI_R2R_SME_Weekly_Update_Help_Page.page-meta.xml
-src/permissionsets/CI_R2R_Admin.permissionset
-src/permissionsets/CI_R2R_KUN_user.permissionset
-src/permissionsets/CI_R2R_SME_End_User.permissionset
-src/staticresources/CI_R2R_Innovations_Image.resource
-src/staticresources/CI_R2R_Innovations_Image.resource-meta.xml
-src/tabs/CI_R2R_Budget__c.tab
-src/tabs/CI_R2R_Innovation__c.tab
-src/tabs/CI_R2R_Milestones__c.tab
-src/tabs/CI_Accounting_Treatment__c.tab
-src/tabs/CI_SMS_Weekly_Update__c.tab
-src/triggers/CI_R2R_Innovation_Trigger.trigger
-src/triggers/CI_R2R_Innovation_Trigger.trigger-meta.xml
-src/triggers/CI_R2R_Update_Cost_Centre.trigger
-src/triggers/CI_R2R_Update_Cost_Centre.trigger-meta.xml
-src/workflows/CI_Accounting_Treatment__c.workflow
-src/workflows/CI_R2R_Budget__c.workflow
-src/workflows/CI_R2R_Innovation__c.workflow
-src/workflows/CI_SMS_Weekly_Update__c.workflow
-src/customPermissions/CI_R2R_Admin.customPermission
+src/reports/CI_R2R_Innovation_Reports-meta.xml
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_R2R_SME_Area_wise_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_RAG_Status_Wise_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports-meta.xml
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_RAG_Status_Wise_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_Status_Wise_Summary.report
+src/dashboards/CI_R2R_Dashboard-meta.xml
+src/dashboards/CI_R2R_Dashboard/CI_R2R_Dashboard.dashboard
+src/dashboards/CI_R2R_Dashboard/CI_R2R_SME_Dashboard.dashboard

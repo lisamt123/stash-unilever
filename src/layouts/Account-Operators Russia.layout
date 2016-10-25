@@ -204,10 +204,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_PotentialValueSize__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>FS_NumberofCategories__c</field>
             </layoutItems>
             <layoutItems>
