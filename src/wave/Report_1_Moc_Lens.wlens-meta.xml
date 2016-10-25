@@ -3,6 +3,6 @@
     <content xsi:nil="true"/>
     <application>UL_Reports</application>
     <datasets>VisualforceRequestWithUsers</datasets>
-    <masterLabel>Report 1 - Moc Lens</masterLabel>
+    <masterLabel>Report 1a - Unique Users using IPM</masterLabel>
     <visualizationType>hbar</visualizationType>
 </WaveLens>

@@ -4163,7 +4163,7 @@ Enter competitor pricing if available</inlineHelpText>
     <sharingModel>Private</sharingModel>
     <validationRules>
         <fullName>FS_AgreementdateIsRequired</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Agreement Date Is Required Before Moving To Stage=&apos;05 – Won&apos;.</description>
         <errorConditionFormula>AND( ISCHANGED(StageName),ISPICKVAL(StageName,&apos;05 – Won&apos;),  ISBLANK(AgreementDate__c))</errorConditionFormula>
         <errorMessage>Enter Agreement Date Before Moving To Stage=&apos;05 – Won&apos;.</errorMessage>
@@ -4180,7 +4180,7 @@ Enter competitor pricing if available</inlineHelpText>
     </validationRules>
     <validationRules>
         <fullName>FS_OpportunityColsedDateInFutureDate</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Record should throw error and close date will be in future date</description>
         <errorConditionFormula>AND(OR ( ISNEW(),ISCHANGED( CloseDate )),CloseDate &lt; TODAY())</errorConditionFormula>
         <errorMessage>Close Date cannot be past date.</errorMessage>
@@ -4197,7 +4197,7 @@ Enter competitor pricing if available</inlineHelpText>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_For_Reason_Description</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>when select the Stage = Closed Lost, Closed Won, Not Pursued, Lost Existing Business, Replace Existing Business, It should be required to populate a text box called Reason Description. Populate Reason Description means NOT NULL.</description>
         <errorConditionFormula>IF(
 AND( OR(ISPICKVAL(StageName, &quot;Closed Lost&quot;), ISPICKVAL(StageName, &quot;Closed Won&quot;), ISPICKVAL(StageName, &quot;Not Pursued&quot;), ISPICKVAL(StageName, &quot;Lost Existing Business&quot;), ISPICKVAL(StageName, &quot;Replace Existing Business&quot;)),
@@ -4213,41 +4213,41 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_Notchange_at_Stage5</fullName>
-        <active>false</active>
+        <active>true</active>
         <errorConditionFormula>AND(OR(ISPICKVAL(PRIORVALUE(StageName), &quot;Closed Won&quot;), ISPICKVAL(PRIORVALUE(StageName), &quot;05 – Won&quot;)))</errorConditionFormula>
         <errorMessage>An opportunity at stage 05 - Won/Closed Won  can not be changed at the opportunity level.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_Stage_Based_on_Prior_Value</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>To Validate Opportunity Stage Value</description>
         <errorConditionFormula>AND(  ISCHANGED(StageName),ISPICKVAL(StageName,&apos;05 – Won&apos;), NOT(ISPICKVAL(PRIORVALUE(StageName),&quot;04 - Verbal Commitment&quot;)))</errorConditionFormula>
         <errorMessage>You must save the opportunity in Stage 04 - Verbal Commitment before advancing to Stage 05 - Won</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_Validation_for_Stage_4</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Opportunities must be approved in order to advance it to 04 - Verbal Commitment</description>
         <errorConditionFormula>IF( ISPICKVAL(StageName,&apos;04 - Verbal Commitment&apos;),  NOT( DealApproved__c =true) , false)</errorConditionFormula>
         <errorMessage>Opportunities must be approved in order to advance it to 04 - Verbal Commitment</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_for_Stage_3</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>It is used to prevent Opportunity from being updated with &apos;03-Proposal&apos; Stage without any Product selected.</description>
         <errorConditionFormula>IF( ISPICKVAL( StageName , &apos;03 - Proposal&apos;) ,  HasOpportunityLineItem=false,false)</errorConditionFormula>
         <errorMessage>An opportunity at stage 03 must have at least one line item. Please add a line item to your opportunity in stage 03, then submit for approval.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_for_Stage_5</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Opportunities must be approved in order to advance it to 05 - Won</description>
         <errorConditionFormula>IF(ISPICKVAL(StageName,&apos;05 – Won&apos;),  NOT( DealApproved__c =true) , false)</errorConditionFormula>
         <errorMessage>Opportunities must be approved in order to advance it to 05 - Won</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Required_Cases_Pieces_field</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Use for validating required fields in TPR section.</description>
         <errorConditionFormula>RecordType.DeveloperName = &apos;FS_OpportunityTPR&apos;  
 &amp;&amp; ISBLANK( TEXT( FS_casesPiece__c ) ) 
@@ -4260,7 +4260,7 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Required_Comment_field</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Use for validating required fields in TPR section.</description>
         <errorConditionFormula>RecordType.DeveloperName = &apos;FS_OpportunityTPR&apos; 
 &amp;&amp; ISBLANK( FS_Comment__c )  

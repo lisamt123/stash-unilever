@@ -226,7 +226,7 @@ FS_Push_Counter__c + 1
     </fieldUpdates>
     <rules>
         <fullName>FS Email to opportunity owner when Deal approval exactly 60 days</fullName>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Opportunity.DealApproved__c</field>
             <operation>equals</operation>
@@ -254,7 +254,7 @@ FS_Push_Counter__c + 1
     </rules>
     <rules>
         <fullName>FS Funnel Stage Notification</fullName>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Opportunity.StageName</field>
             <operation>equals</operation>
@@ -303,7 +303,7 @@ FS_Push_Counter__c + 1
             <name>FS_Update_Owner_Manager</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <description>Updated opportunity manager in the owner manager field</description>
         <formula>OR ( ISNEW(), ISCHANGED(OwnerId))</formula>
         <triggerType>onAllChanges</triggerType>
@@ -314,7 +314,7 @@ FS_Push_Counter__c + 1
             <name>FS_Notification_of_New_Business_Opportunity_set_to_Won</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <booleanFilter>1 and 2</booleanFilter>
         <criteriaItems>
             <field>Opportunity.StageName</field>
