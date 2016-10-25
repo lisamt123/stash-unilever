@@ -253,7 +253,7 @@ private class  IPM_Resource_Allocation_Test {
             system.assertEquals(userProfList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,'user profile updation fail');
             pageMessages = ApexPages.getMessages();  
         }
-        Test.stopTest(); 
+        
     }
     
     /*
