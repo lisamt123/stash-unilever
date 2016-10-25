@@ -1,4 +1,3 @@
-src
 src/reports/CI_R2R_Innovation_Reports-meta.xml
 src/reports/CI_R2R_Innovation_Reports/CI_R2R_R2R_SME_Area_wise_Summary.report
 src/reports/CI_R2R_Innovation_Reports/CI_R2R_RAG_Status_Wise_Summary.report

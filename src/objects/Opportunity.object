@@ -3645,7 +3645,7 @@ Enter competitor pricing if available</inlineHelpText>
         <picklistValues>
             <picklist>FSNA_Margin_Market_Code__c</picklist>
             <values>
-                <fullName>X4</fullName>
+                <fullName>X4 US SDJ</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4216,15 +4216,16 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Required_Cases_Pieces_field</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Use for validating required fields in TPR section.</description>
         <errorConditionFormula>RecordType.DeveloperName = &apos;FS_OpportunityTPR&apos;  
-&amp;&amp; ISBLANK( TEXT( FS_casesPiece__c ) ) 
+&amp;&amp; ISBLANK( TEXT( FS_casesPiece__c ) )
 &amp;&amp; ( NOT( ISBLANK( ShipToCode__c ) )
      || NOT( ISBLANK( TEXT( FS_internalOrder__c )) )
      || NOT( ISBLANK( FS_startDateTPR__c ) )
      || NOT( ISBLANK( FS_endDateTPR__c ) )
-     || NOT( ISBLANK( FS_Comment__c ) ) )</errorConditionFormula>
+     || NOT( ISBLANK( FS_Comment__c ) ) 
+)</errorConditionFormula>
         <errorMessage>Cases / Pieces is a required field.</errorMessage>
     </validationRules>
     <validationRules>
@@ -4237,7 +4238,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
      || NOT( ISBLANK( TEXT( FS_internalOrder__c ) ) )
      || NOT( ISBLANK( FS_startDateTPR__c ) )
      || NOT( ISBLANK( FS_endDateTPR__c ) )
-     || NOT( ISBLANK( TEXT( FS_casesPiece__c ) ) ) 
     )</errorConditionFormula>
         <errorMessage>Comment is a required field.</errorMessage>
     </validationRules>
@@ -4251,7 +4251,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
      || NOT( ISBLANK( TEXT( FS_internalOrder__c )) )
      || NOT( ISBLANK( FS_startDateTPR__c ) )
      || NOT( ISBLANK( FS_endDateTPR__c ) )
-     || NOT( ISBLANK( TEXT( FS_casesPiece__c ) ) )
      || NOT( ISBLANK( FS_Comment__c ) ) 
     )</errorConditionFormula>
         <errorMessage>Distributor is a required field.</errorMessage>
@@ -4265,7 +4264,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
 &amp;&amp; ( NOT( ISBLANK( ShipToCode__c ) )
      || NOT( ISBLANK( TEXT( FS_internalOrder__c )) )
      || NOT( ISBLANK( FS_startDateTPR__c ) )
-     || NOT( ISBLANK( TEXT( FS_casesPiece__c ) ) )
      || NOT( ISBLANK( FS_Comment__c ) ) 
     )</errorConditionFormula>
         <errorMessage>End Date TPR is a required field.</errorMessage>
@@ -4279,7 +4277,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
 &amp;&amp; ( NOT( ISBLANK( ShipToCode__c ) )
     || NOT( ISBLANK( FS_startDateTPR__c ) )
     || NOT( ISBLANK( FS_endDateTPR__c ) )
-    || NOT( ISBLANK( TEXT( FS_casesPiece__c ) ) )
     || NOT( ISBLANK( FS_Comment__c ) ) 
     )</errorConditionFormula>
         <errorMessage>Internal Order is a required field.</errorMessage>
@@ -4293,7 +4290,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
 &amp;&amp; ( NOT( ISBLANK( TEXT( FS_internalOrder__c )) )
      || NOT( ISBLANK( FS_startDateTPR__c ) )
      || NOT( ISBLANK( FS_endDateTPR__c ) )
-     || NOT( ISBLANK( TEXT( FS_casesPiece__c ) ) )
      || NOT( ISBLANK( FS_Comment__c ) ) 
    )</errorConditionFormula>
         <errorMessage>Ship to Code value is a required field.</errorMessage>
@@ -4307,7 +4303,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
 &amp;&amp; ( NOT( ISBLANK( ShipToCode__c ) )
     || NOT( ISBLANK( TEXT( FS_internalOrder__c )) )
     || NOT( ISBLANK( FS_endDateTPR__c ) )
-    || NOT( ISBLANK( TEXT( FS_casesPiece__c ) ) )
     || NOT( ISBLANK( FS_Comment__c ) ) 
    )</errorConditionFormula>
         <errorMessage>Start Date TPR is a required field.</errorMessage>

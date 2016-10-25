@@ -43,6 +43,10 @@
                 <behavior>Required</behavior>
                 <field>CurrencyIsoCode</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_casesPiece__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -109,10 +113,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_endDateTPR__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_casesPiece__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
