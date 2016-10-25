@@ -74,7 +74,7 @@
                                 "colspan": 3,
                                 "column": 9,
                                 "name": "dimfilter_prodCategory",
-                                "row": 6,
+                                "row": 7,
                                 "rowspan": 1,
                                 "widgetStyle": {
                                     "backgroundColor": "#FFFFFF",
@@ -90,7 +90,7 @@
                                 "colspan": 3,
                                 "column": 9,
                                 "name": "dimfilter_prodDivision",
-                                "row": 7,
+                                "row": 6,
                                 "rowspan": 1,
                                 "widgetStyle": {
                                     "backgroundColor": "#FFFFFF",
@@ -361,7 +361,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 1,
                                 "name": "header_comRegion",
                                 "row": 41,
@@ -407,7 +407,7 @@
                                 }
                             },
                             {
-                                "colspan": 4,
+                                "colspan": 5,
                                 "column": 6,
                                 "name": "header_scoreRegion",
                                 "row": 41,
@@ -8251,7 +8251,7 @@
             "header_COTC": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "COTC Availability",
+                    "text": "COC Availability",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -8277,8 +8277,8 @@
             },
             "header_com4p5p6p": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY PERFECT STORE STANDARD",
+                    "fontSize": 16,
+                    "text": "Compliance by Perfect Store Standard",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -8690,8 +8690,8 @@
             },
             "header_comCountry": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY COUNTRY",
+                    "fontSize": 16,
+                    "text": "Compliance by Country",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -8748,8 +8748,8 @@
             },
             "header_comRegion": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY SALES REGION",
+                    "fontSize": 16,
+                    "text": "Compliance by Sales Region",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -8953,8 +8953,8 @@
             },
             "header_score4p5p6p": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY PERFECT STORE STANDARD",
+                    "fontSize": 16,
+                    "text": "Score by Perfect Store Standard",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -8962,8 +8962,8 @@
             },
             "header_scoreCust": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY TOP 20 CUSTOMERS",
+                    "fontSize": 16,
+                    "text": "Score by Top 20 Customers",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9090,7 +9090,7 @@
             },
             "header_scoreTrend": {
                 "parameters": {
-                    "fontSize": 20,
+                    "fontSize": 16,
                     "text": "Product Score Trend",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -9099,8 +9099,8 @@
             },
             "header_scoreRegion": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY SALES REGION",
+                    "fontSize": 16,
+                    "text": "Score by Sales Region",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9252,8 +9252,8 @@
             },
             "header_comChannel": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY CHANNEL",
+                    "fontSize": 16,
+                    "text": "Compliance by Channel",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9437,7 +9437,7 @@
             "header_comCat": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "BY CATEGORY",
+                    "text": "Compliance by Category",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9609,8 +9609,8 @@
             },
             "header_scoreChannel": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY CHANNEL",
+                    "fontSize": 16,
+                    "text": "Score by Channel",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9662,7 +9662,7 @@
             "header_scoreCat": {
                 "parameters": {
                     "fontSize": 20,
-                    "text": "BY CATEGORY",
+                    "text": "Score by Category",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9735,7 +9735,7 @@
             },
             "header_productKPI": {
                 "parameters": {
-                    "fontSize": 20,
+                    "fontSize": 16,
                     "text": "Product KPI (LeverEdge)",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -10368,7 +10368,7 @@
             },
             "header_comTrend": {
                 "parameters": {
-                    "fontSize": 20,
+                    "fontSize": 16,
                     "text": "Product Compliance Trend",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
@@ -10809,8 +10809,8 @@
             },
             "header_comCust": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY TOP 20 CUSTOMERS",
+                    "fontSize": 16,
+                    "text": "Compliance by Top 20 Customers",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -11079,8 +11079,8 @@
             },
             "header_scoreCountry": {
                 "parameters": {
-                    "fontSize": 20,
-                    "text": "BY COUNTRY",
+                    "fontSize": 16,
+                    "text": "Score by Country",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
