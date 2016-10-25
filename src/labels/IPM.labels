@@ -6263,7 +6263,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Not Performing Same role</shortDescription>
-        <value>is no longing performing the same role, according to the Unilever Active Directory. You may need to find another person to fill this role on your project.</value>
+        <value>is no longer performing the same role, according to the Unilever Active Directory. You may need to find another person to fill this role on your project.</value>
     </labels>
     <labels>
         <fullName>IPM_Not_ProjectMember</fullName>
