@@ -130,6 +130,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                             IPM_BETHelper.sendBETAccessRequestonFirstRelease(project.BET__c);   
                         }
                     }
+					
+					//Reinstate GKM Model in case it's getting overridden with null value
+                    if(project.IPM_ProjectGKM__c == null && ((IPM_Project__c) trigger.oldmap.get(project.id)).IPM_ProjectGKM__c!=null){
+                        project.IPM_ProjectGKM__c = ((IPM_Project__c) trigger.oldmap.get(project.id)).IPM_ProjectGKM__c;
+                    }
                 }
             }
         } 
