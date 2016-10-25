@@ -763,7 +763,7 @@ SUBSTITUTE(Financial_External_ID__c, Regional_External_Id__c, Global_External_Id
         <fullName>Global_Project_Id__c</fullName>
         <description>Associated Global Project Id.</description>
         <externalId>false</externalId>
-        <formula>IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.Id, IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.Id,IF(NOT(ISBLANK(Local_Project__c)),Local_Project__r.Id,IPM_Project_Rollout__r.IPM_Project__c)))</formula>
+        <formula>IF(NOT(ISBLANK(IPM_Project_Rollout__c)), IPM_Project_Rollout__r.IPM_Project__c,IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.Id, IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.Id,IF(NOT(ISBLANK(Local_Project__c)),Local_Project__r.Id,IPM_Project_Rollout__r.IPM_Project__c))))</formula>
         <label>Global Project Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>

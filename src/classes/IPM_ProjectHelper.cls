@@ -875,10 +875,26 @@ public with sharing class IPM_ProjectHelper
    
     public static void manageProjectFinancials(Map<Id,IPM_Project__c> incomingProjectMap,Map<Id,IPM_Project__c> oldProjectMap)
     {
+        
         if(incomingProjectMap == null || incomingProjectMap.isEmpty())
         {
-        	return;
+            return;
         }
+        Set<Id> sourceRolloutIdSet =  new Set<Id>();
+        Map<Id,IPM_Project_Rollout__c> sourceToRegionalRolloutMap;
+        for(IPM_Project__c newProj : incomingProjectMap.values()){
+        	
+        	if( newProj.IPMProject_Span__c == 'Local' && newProj.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && newProj.IPM_Project_Rollout__c != null){
+        		sourceRolloutIdSet.add(newProj.IPM_Project_Rollout__c); 
+        	}
+        }
+        
+        
+        if(!sourceRolloutIdSet.isEmpty()){
+           sourceToRegionalRolloutMap = new Map<Id,IPM_Project_Rollout__c>([Select id,Regional_Rollout__c from IPM_Project_Rollout__c Where Id IN : sourceRolloutIdSet  Limit 10000]);
+           
+        }
+
         
         Map<String,IPM_Financial__c> finUniqueKeyToFinancialMap = new Map<String,IPM_Financial__c>();
         Map<String,IPM_Financial__c> financialsToUpsert = new Map<String,IPM_Financial__c>();
@@ -1059,8 +1075,7 @@ public with sharing class IPM_ProjectHelper
                                     for(String apiName : updateFieldAPIs){
                                         updateFieldAPIsLowerCase.add(apiName.toLowerCase());
                                     }
-                                    System.debug('updateFieldAPIsLowerCase'+updateFieldAPIsLowerCase);
-                                    
+
                                     if(updateFieldAPIs!=null && !updateFieldAPIs.isEmpty())
                                     {
                                         Id localProject = null;
@@ -1260,8 +1275,17 @@ public with sharing class IPM_ProjectHelper
                                                 if(childToParentProject.containsKey(project.IPM_Parent_Project__c))
                                                 {
                                                     globalProject = childToParentProject.get(project.IPM_Parent_Project__c);
-                                                }  
+                                                } 
                                                 
+
+                                                if(project.IPM_ProjectGKM__c ==IPM_ConstantUtils.GKM_3 &&
+                                                   sourceToRegionalRolloutMap != null &&
+                                                   sourceToRegionalRolloutMap.containsKey(project.IPM_Project_Rollout__c) )
+                                                {
+                                                    regionalRollout = sourceToRegionalRolloutMap.get(project.IPM_Project_Rollout__c).Regional_Rollout__c;
+                                                }
+                                                
+
                                                     
                                             } 
                                             else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
