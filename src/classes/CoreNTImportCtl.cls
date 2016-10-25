@@ -268,7 +268,7 @@ public with sharing class CoreNTImportCtl {
     public List < SelectOption > getCategoryItems() {
             System.debug(' Class : ImportProjectController || Method : getCategoryItems || Started ');
             categoryOptions = new List < SelectOption > ();
-            List < AggregateResult > lstCategoryNames = [SELECT Category__c FROM Brand_Centre_New__c GROUP BY Category__c];
+            List < AggregateResult > lstCategoryNames = [SELECT Category__c FROM Brand_Centre_New__c GROUP BY Category__c Limit 10000];
             categoryOptions.add(new SelectOption(None, None));
             for (AggregateResult categoryName: lstCategoryNames) {
                 if((String) categoryName.get('Category__c')!= null)
