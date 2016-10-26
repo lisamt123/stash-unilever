@@ -881,7 +881,7 @@ public with sharing class IPM_ProjectHelper
             return;
         }
         
-        Map<Id,IPM_Project_Rollout__c> sourceToRegionalRolloutMap = getSourceToRegionalRolloutMap(incomingProjectMap);
+        
         
                 
         Map<String,IPM_Financial__c> finUniqueKeyToFinancialMap = new Map<String,IPM_Financial__c>();
@@ -1266,13 +1266,6 @@ public with sharing class IPM_ProjectHelper
                                                 } 
                                                 
 
-                                                if(project.IPM_ProjectGKM__c ==IPM_ConstantUtils.GKM_3 &&
-                                                   sourceToRegionalRolloutMap != null &&
-                                                   sourceToRegionalRolloutMap.containsKey(project.IPM_Project_Rollout__c) )
-                                                {
-                                                    regionalRollout = sourceToRegionalRolloutMap.get(project.IPM_Project_Rollout__c).Regional_Rollout__c;
-                                                }
-                                                
 
                                                     
                                             } 
