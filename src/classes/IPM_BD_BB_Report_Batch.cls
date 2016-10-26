@@ -314,7 +314,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 	           
            if(projFinmap.containskey(p.Id)){ 
              	analyticObj.IPM_Target_Launch_Date_Aligned__c = (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?(projFinMap.get(p.id).Misaligned__c? NO:((p.IPM_Misalligned__c== YES) ? YES : NO)):null; // Auto_Aligned will only be checked for local projects
-                analyticObj.IPM_Financials_Aligned__c = (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?(projFinMap.get(p.id).Misaligned__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO):null;
+                analyticObj.IPM_Financials_Aligned__c = (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?(projFinMap.get(p.id).Misaligned__c?NO:YES):null;
                 // CPP BD
                 analyticObj.IPM_Company_Project_Priority_BD__c = (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?projFinMap.get(p.id).IPM_CPP_Regional__c:null;
                 //CPP BB
