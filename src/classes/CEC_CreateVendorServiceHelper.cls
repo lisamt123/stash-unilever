@@ -1,277 +1,206 @@
-public class VPM_HttpUtil {
-    
-    class CreateVendorResponse {
-        public String Status {get; set;}
-        public String RequestID {get; set;}
-        public CreateVendorResponse() {
-        }
+/********************************************************************
+    Created By   : Ajay Rawat
+    Created Date : 20th July 2016
+    Modified By  : 
+    Last Modify  : 06th June 2016
+    Description  : This class is used as a wrapper class for maintain result
+    MetaData     : Properties, Wrapper Calss, Methods
+  ********************************************************************/
+public class VPM_MaintainVendorServiceHelper {
+    public String ECC;  
+    public String VendorCode;   
+    public String TrainStation; 
+    public String IntLocationNumber1;   
+    public String IntLocationNumber2;   
+    public String Authorization;    
+    public String Industry; 
+    public String CheckDigit;  
+     public String RegionStreetGroup; 
+    //public AddressObj Address;
+    //public VATObj VAT = new VATObj();
+    public BankDetailsObj BankDetails ;
+    //public String VendorSubRange;   
+    public String DMEIndicator; 
+    public String InstructionKeyDataExchange;   
+    public String ISRNumber;    
+    public String AccountGroup;
+    public String Customer; 
+    public String AlternativePayeeAccountNumber;    
+    public String TaxNumber1;   
+    public String TaxNumber2;   
+    public boolean EqualisationTax;  
+    public boolean SalesPurchTax;    
+    public String FiscalAddress;    
+    public String VATRegistrationNumber;    
+    public String PlaceOfBirth; 
+    public String DateOfBirth;  
+    public String Sex;  
+    public String LastExtReview;    
+    public String ActualQMSystem;   
+    public String Plant;    
+    public boolean IndicatorVendorSubRange;  
+    public boolean IndicatorPlantLevel;  
+    public String SCAC; 
+    public String CarFreightGroup;  
+    public String ServiceAgent; 
+    public String TaxNumber3;   
+    public String TaxNumber4;   
+    public boolean TaxSplit; 
+    public String TaxBase;  
+    public String Profession_c; 
+    public boolean NODEL;    
+    public String QMSystemTo;   
+    public String PODRelevant;  
+    public String TaxNumber5;   
+    public String CorporateGroup;   
+    //public boolean AltPayeeAllowedFlag;  
+    public String ExternalManufacturer; 
+    public CompanyDataObj CompanyData ;
+    public PurchasingDataObj PurchasingData;
+    public class AddressObj {
+        public String ZIPPostcode;  //
+        public String CompanyPostCode;  //
+        public String POBox;    //
+        public String POBoxCity;    //
+        public String TransportZone;    //
+        public String HouseNumber;  //
+        public String Street1;  //
+        public String Street2;  //
+        public String Street3;  //
+        public String Street4;  //
+        public String Country;  //
+        public String Language; //
+        public String Region;   //
+        public String SearchTerm1;  //
+        public String SearchTerm2;  //
+        public String TaxJurisdictionCode;  //
+        public String AddressTimeZone;  //
+        public String StandardCommunicationMethod;  //
+        public String Telephone;    //118 247
+        public String ExtensionPhone;   //411
+        public String Fax;  //
+        public String FaxExtension; //
+        public String Email;    //
     }
-    class CreateVendorFailureResponse {
-        public String statusCode {get; set;}
-        public String message {get; set;}
-        public String details {get; set;}
-        public CreateVendorFailureResponse() {
-        }
+    public class VATObj {
+        public String VATCountry;   //
+        public String VATRegistrationNumber;    //
     }
-    
-    public static final String successStatus = 'BPM Record Submitted'; // VPM_Status__c
-    public static final String failStatus = 'MDM Ops Review - SAP BPM submit Failed';// VPM_Status__c
-    public static final String successStatusMDM = 'Submitted to BPM';// MDM status
-    public static final String failStatusMDM = 'Failed to Submit to BPM';// MDM status
-    private static final String certName = System.Label.VPM_CertificateName;
-    public static final string successStatusECC = 'ECC Insert / Update Succeeded';
-    public static final string failStatusECC = 'Failed to Submit to ECC';
-    public static final String ECCfailStatus = 'MDM Ops Review - SAP ECC submit Failed';// VPM_Status__c
-    
-    public VPM_HttpUtil() {
+    public class BankDetailsObj {
+        public String BankCountryKey;   //
+        public String BankKey;  //
+        public String BankAccountNumber;    //
+        public String BankControlKey;   //
+        public String PartnerBankType;  //
+        public String CollectionAuthorisation;  //
+        public String RefSpecBankDetails;   //
+        public String AccountHolderName;    //
+        public String IBAN; //
     }
-    
-    public static String createEndPoint(String service) {
-        String endpoint,resource,clientId,clientSecret,finalUrl;
-        List<VPM_ExternalService__mdt> serviceDetails = [SELECT DeveloperName, MasterLabel, VPM_ServiceEndpoint__c, VPM_ServiceResource__c FROM VPM_ExternalService__mdt WHERE DeveloperName = :service];
-        if(serviceDetails != null && serviceDetails.size() >0) {
-            endpoint = serviceDetails.get(0).VPM_ServiceEndpoint__c;
-            resource = serviceDetails.get(0).VPM_ServiceResource__c;
-        }
-        clientId = System.Label.VPM_ClientId;
-        clientSecret = System.Label.VPM_ClientSecret;
-        finalUrl = endpoint + resource + '?client_id=' + clientId + '&client_secret=' + clientSecret;
-        System.debug('---HttpUtil-createEndPoint--final endpoint url-------'+ finalUrl);
-        return finalUrl;
+    public class CompanyDataObj {
+        public String CompanyCode;  //5487
+        public String SortKey;  //012
+        public String ReconciliationAccount;    //0014201009
+        public String AuthorizationCC;  //ASM
+        public String InterestCalculationIndicator; //01
+        public String PaymentMethod;    //A
+        public boolean IndicatorClearingBetwCustomerNVendor; //X
+        public String PaymentBlock; //C
+        public String PaymentTerm;  //P060
+        public String AccntWithVendor;  //Account
+        public String ClerkAtVendor;    //Clerk
+        public String AccountMemo;  //Account Memo
+        public String AccountingClerk;  //A8
+        public String CashManagementGroup;  //V1020
+        public String AlternativePayee; //0050000004
+        public String LastKeyDate;  //2017-06-06
+        public String InterestFrequency;    //01
+        public String LastInterestRun;  //2017-06-06
+        public Integer BExchangeLimit;   //0.00
+        public String ChkCashing;   //0
+        public boolean CheckDoubleInvoices;  //X
+        public String ToleranceGroup;   //
+        public String HouseBank;    //CHASE
+        public boolean IndicatorPayItemsSeparately;  //X
+        public String ExemptionNumber;  //EXNumber
+        public String ValidUntil;   //2017-06-06
+        public String PreviousAccountNumber;    //123456789
+        public String GroupingKey;  //01
+        public String PaymentMethodSupplement;  //B2
+        public String WithholdingTaxCountryKey; //
+        public String PmtAdviceByEDI;   //
+        public String ClerksFax;    //01942 999999
+        public String ClerksInternet;   //Clerks@clerk.com
+        public String AccountStatement; //5
+        public boolean NODELCC;  //X
+        public String AccountClerkTelephoneNumber;  //01942 999999
+        public boolean AdoptScanDate;    //X
+        public boolean MinorityIndicator;    //
+        public String HeadOfficeAccNo;  //
+        public String MGroupingKey; //
+        public String PaymentTermsCreditMemoKey;    //
+        public String CertificationDate;    //2016-06-01
+        //public DunningObj Dunning;
+        public WtaxTypeObj WtaxType;
     }
-    public static HttpResponse sendRequest(String requestType, String requestBodyJson, String serviceName) {
-        HttpResponse res;
-        try {
-            String url;
-            if(requestType != null && !requestType.equalsIgnoreCase('GET')) {
-                url = VPM_HttpUtil.createEndPoint(serviceName);
-            }
-            Http h = new Http();
-            HttpRequest req = new HttpRequest();        
-            req.setEndpoint(url);
-            req.setMethod(requestType);
-            if(requestType != null && !requestType.equalsIgnoreCase('GET') && String.isNotBlank(requestBodyJson)) {
-                req.setHeader('Content-Type', 'application/json');
-                req.setBody(requestBodyJson);
-            }
-            req.setTimeout(120000);
-            req.setClientCertificateName(certName);
-            //req.setCompressed(true);
-            res = h.send(req);
-        } catch (Exception ex) {
-            res = new HttpResponse();
-        }
-        return res;
-    }
-    public HttpResponse sendGetRequest(String requestType, String serviceName, Map<String,String> queryParams) {
-        String url = createEndPoint(serviceName);
-        url = url + convertRequestParams(queryParams);
-        Http h = new Http();
-        HttpRequest req = new HttpRequest();
-        HttpResponse res;        
-        req.setEndpoint(url);
-        req.setMethod(requestType);
-        req.setTimeout(120000);
-        req.setClientCertificateName(certName);
-        //req.setCompressed(true);
-        res = h.send(req);
-        return res;
-    }
-    public String convertRequestParams(Map<String,String> queryParameters) {
-        String stringParams='';
-        if(queryParameters != null && queryParameters.size() >0) {
-            for(String mapEntry : queryParameters.keySet()) {
-                stringParams = stringParams + '&' + EncodingUtil.urlEncode(mapEntry, 'UTF-8') + '=' + 
-                    EncodingUtil.urlEncode(queryParameters.get(mapEntry), 'UTF-8');
-            }
-        }
-        return stringParams;
-    }
-  /*  public static void updateVendorStatus(String venReqId, String reqStatus, String message, String messageMDM) {
-        // Update vendor request record status after send to SAP.
-        // Update MDM Ops user fields on vendor request record.
-        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c, CreatedBy.Email,VPM_MDMBPMRequestorName__c, VPM_MDMBPMRequestorPhone__c, VPM_MDMBPMRequestorEmail__c, VPM_MDMBPMRequestorDepartment__c, VPM_MDMBPMOriginatoEmail__c,VPM_MDMInsertUpdateStatus__c,VPM_MDMInsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
-        List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
-        if(vendorList != null && vendorList.size() >0) {
-            VPM_PurchasingRequests__c vendor = vendorList.get(0);
-            vendor.VPM_Status__c = reqStatus;
-            vendor.VPM_MDMInsertUpdateStatusMessage__c = message;
-            vendor.VPM_MDMInsertUpdateStatus__c = messageMDM;
-            vendor.VPM_MDMBPMOriginatoEmail__c = vendorList.get(0).CreatedBy.Email;
-            if(userList != null && userList.size() > 0) {
-                vendor.VPM_MDMBPMRequestorName__c = userList.get(0).Name;
-                vendor.VPM_MDMBPMRequestorPhone__c = userList.get(0).Phone;
-                vendor.VPM_MDMBPMRequestorEmail__c = userList.get(0).Email;
-                vendor.VPM_MDMBPMRequestorDepartment__c = userList.get(0).Department;
-            }
-            update vendor;
-        }
+    /*public class DunningObj {
+        public String DunnProcedure;    //0001
+        public String DunningBlock; //D
+        public String LastDunned;   //2016-06-01
+        public String DunningLevel; //0
+        public String DunRecipient; //0050019408
+        public String LegalDunnProc;    //2016-06-06
+        public String DunningClerk; //A8
     }*/
-     public static void updateVendorMDMStatus(String venReqId, String reqStatus, String message, String messageMDM) {
-        // Update vendor request record status after send to SAP.
-        // Update MDM Ops user fields on vendor request record.
-        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_MDMInsertUpdateStatus__c,VPM_MDMInsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
-        List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
-        if(vendorList != null && vendorList.size() >0) {
-            VPM_PurchasingRequests__c vendor = vendorList.get(0);
-            vendor.VPM_Status__c = reqStatus;
-            vendor.VPM_MDMInsertUpdateStatusMessage__c = message;
-            vendor.VPM_MDMInsertUpdateStatus__c = messageMDM;
-            update vendor;
-            }
-        }
-     public static void updateVendorECCStatus(String venReqId, String reqStatus, String message, String messageECC) {
-        // Update vendor request record status after send to SAP.
-        // Update MDM Ops user fields on vendor request record.
-        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_ECC_InsertUpdateStatus__c,VPM_ECC_InsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
-        List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
-        if(vendorList != null && vendorList.size() >0) {
-            VPM_PurchasingRequests__c vendor = vendorList.get(0);
-           // if(string.isNotBlank(reqStatus))
-            vendor.VPM_Status__c = reqStatus;
-            vendor.VPM_ECC_InsertUpdateStatusMessage__c = message;
-            vendor.VPM_ECC_InsertUpdateStatus__c = messageECC;
-            system.debug('inside fail');
-            update vendor;
-            }
-         }   
-    public static Integer generateRandomNumber() {
-        Integer len = 9;
-        String str = string.valueof(Math.abs(Crypto.getRandomLong()));
-        String randomNumber = str.substring(0, len);
-        Integer reqNum = Integer.valueOf(randomNumber);
-        system.debug('-------Random Number------' + reqNum);
-        return reqNum;
+    public class WtaxTypeObj {
+        public String IndicatorForWithholdingTaxType;   //MC
+        public String Liable;   //
+        public String WithholdingTaxCode;   //C1
+        public String ExemptionRate;    //
+        public String ExemptionFrom;    //
+        public String ExemptionTo;  //
+        public String ExemptionCertNumber;  //
+        public String IdentificationNumber;  //
+        public String ExemptionReason;  //
+        public String TypeOfRecipient;  //
     }
-    public static String valueBeforeUnderscore(String inputString) {
-        List<String> inputArray = inputString.split('_');
-        if(inputArray != null && inputArray.size() >0) {
-            return inputArray.get(0);
-        } else {
-            return '';
-        }
+    public class PurchasingDataObj {
+        public String PurchasingOrganisation;   //AM01
+        public boolean ABCIndicator; //X
+        public String OrderCurrency;    //GBP
+        public String SalesPerson;  //Mike Conray
+        public String Telephone;    //01924 999999
+        public integer MinimumOrderValue;    //0
+        public String PaymentTerms; //P060
+        public String Incoterms1;   //FCA
+        public String Incoterms2;   //NAMED PLACE
+        public boolean GRbasedIV;    //X
+        public boolean OrderAcknowledgmentRequirement;   //X
+        public String SchemaGroupVendor;    //01
+        public boolean AutoGenerationPOAllowed;  //X
+        public String ModeTransportForeignTrade;    //4
+        public String OfficeOfEntry;    //CGB
+        public String PricingDateControl;   //4
+        public String PurchasingGroup;  //ALC
+        public boolean AutoEvalGRSetmtDel;   //X
+        public integer PlannedDeliveryTime;  //1
+        public boolean RackJobbingServiceAgreed; //X
+        public boolean RelevantForPriceDet;  //X
+        public boolean GrantDiscInKind;  //X
+        public boolean DocIndexActive;   //X
+        public String SortCriterion;    //A
+        public String ConfirmationControl;  //0002
+        public String OrderOptimRest;   //0001
+        public boolean AutoEvalGRSetmtRet;   //X
+        public String AccntWithVendorPO;    //Si
+        public String PROATControlProof;    //SAPD
+        public boolean SRVBasedVendorID; //X
+        public FunctionObj Function ;
     }
-    public static Map<String,String> fetchUserDetails() {
-        Map<String, String> userDetails = new Map<String, String>();
-        List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
-        if(userList != null && userList.size() > 0) {
-            userDetails.put('userName',userList.get(0).Name);
-            if(String.isNotBlank(userList.get(0).Phone)) {
-                if(userList.get(0).Phone.length() > 20){
-                    userDetails.put('userPhone',userList.get(0).Phone.Substring(0,19));
-                } else {
-                    userDetails.put('userPhone',userList.get(0).Phone);
-                }
-            } else {
-                userDetails.put('userPhone','');
-            }
-            userDetails.put('name',userList.get(0).Name);
-            userDetails.put('userEmail',userList.get(0).Email);
-            userDetails.put('userDepartment',userList.get(0).Department);
-        }
-        return userDetails;
+    public class FunctionObj {
+        public String PartnerFunction;  //BA
+        public boolean DefaultPartner;   //X
+        public String PurchasingOrgFunctionPartner; //0050000129
     }
-    public static void updateFieldOnRecord(String idOfRecord, String fieldName, String fieldValue) {
-        Id recordId = idOfRecord;
-        System.debug('-------'+recordId.getSObjectType());
-        SObject o1 = recordId.getSObjectType().newSObject(recordId);
-        o1.put(fieldName,fieldValue);
-        System.debug('------' + o1.get(fieldName));
-        update o1;
-    }
-     public static void updateRecordType(String venReqId) {
-            
-        VPM_PurchasingRequests__c vendorList = [SELECT Id, RecordTypeId,VPM_FieldType__c  FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
-        recordType rec = [select Name, id from recordType where Name like '%Maintain%' AND sobjectType='VPM_PurchasingRequests__c' limit 1];
-       vendorList.RecordTypeId = rec.id;
-       vendorList.VPM_FieldType__c = 'Regional';
-        update vendorList;
-        }
-    public static boolean convertYesNoToBoolean(String inputString) {
-        boolean booleanValue = false;
-        if(String.isNotBlank(inputString) && 'Yes'.equalsIgnoreCase(inputString)) {
-            booleanValue = true;
-        } else {
-            booleanValue = false;
-        }
-        return booleanValue;
-    }
-    public static String retryCreateVendorGlobal(String inputRetry, String vendorId) {
-        System.debug('-----input json request body for create vendor is-----' + inputRetry);
-        String msg = '', responseString;
-        CreateVendorResponse createVenResp;
-        CreateVendorFailureResponse createVenFailResp;
-        HttpResponse res = sendRequest('POST',inputRetry,'VPM_CreateVendorBPM');
-        System.debug('------whole response string----'+ res.toString());
-        System.debug('------HTTP response status and status code and response body are ------'+res.getStatus() + '  ' + res.getStatusCode() + '  '+res.getBody());
-        String statusCodeStr = String.valueOf(res.getStatusCode());
-        if(String.isNotBlank(res.getBody())) {
-            if(res.getStatusCode() == 200) {
-                createVenResp = (CreateVendorResponse) System.JSON.deserialize(res.getBody(), CreateVendorResponse.class);
-                System.debug('---RequestID --and response status----' + createVenResp.RequestID + '  ' + createVenResp.status);
-                if(createVenResp != null && String.isNotBlank(createVenResp.status)) {
-                    msg = createVenResp.status + '  ' + statusCodeStr;
-                }
-            } else {
-                createVenFailResp = (CreateVendorFailureResponse) System.JSON.deserialize(res.getBody(), CreateVendorFailureResponse.class);
-                System.debug('---statusCode --and message are ----' + createVenFailResp.statusCode + '  ' + createVenFailResp.message);
-                if(createVenFailResp != null && String.isNotBlank(createVenFailResp.message)) {
-                    msg = createVenFailResp.message + '  ' + statusCodeStr;
-                }
-            }
-        }
-        if(res.getStatusCode() == 200) {
-            updateVendorMDMStatus(vendorId,VPM_HttpUtil.successStatus,msg,VPM_HttpUtil.successStatusMDM);
-            //responseString = 'Vendor Request submitted to SAP.'+msg ;
-            responseString = msg;
-        } else if(res.getStatusCode() == 500) {
-           updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            //responseString = 'Server Error. Please try after some time.';
-            responseString = msg;
-        } else if(res.getStatusCode() == 504) {
-            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            //responseString = 'Timeout Error. Please try after some time.';
-            responseString = msg;
-        } else if(res.getStatusCode() == 400) {
-            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            //responseString = 'Please check request data and try again. '+msg;
-            responseString = msg;
-        } else if(res.getStatusCode() == 503) {
-           updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            //responseString = 'SAP API not implemented.';
-            responseString = msg;
-        } else if(String.isNotBlank(msg)) {
-            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            //responseString = 'Some error occured while submitting request to SAP. Please try after some time.'+msg ;
-            responseString = msg;
-        } else {
-            responseString = 'Some error occured while submitting request to SAP. Please try after some time.' + '  ' + statusCodeStr;
-            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            return responseString;
-        }
-        return responseString;
-    }
-    public static void updateFieldType(String vendorId)
-    {
-        VPM_PurchasingRequests__c vendor = [Select Id , VPM_FieldType__c from VPM_PurchasingRequests__c where id=: vendorId limit 1];
-        vendor.VPM_FieldType__c = 'Regional';
-        update vendor;
-    }
-    public static void sendEmail(String toEmail, String subjectEmail, String bodyEmail) {
-        List<String> toAddressList = new List<String>();
-        toAddressList.add(toEmail);
-        Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
-        message.toAddresses = toAddressList;
-        message.subject = subjectEmail;
-        message.plainTextBody = bodyEmail;
-        
-        Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};
-            Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
-        
-        if (results[0].success) {
-            System.debug('The email was sent successfully.');
-        } else {
-            System.debug('The email failed to send: ' + results[0].errors[0].message);
-        }
-    }
+    
 }
