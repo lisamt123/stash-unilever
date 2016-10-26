@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplicationComponent xmlns="http://soap.sforce.com/2006/04/metadata">
-    <buttonText>ONE Correspond</buttonText>
+    <buttonText>Smart Correspond</buttonText>
     <buttonWidth>200</buttonWidth>
     <height>200</height>
     <isHeightFixed>true</isHeightFixed>

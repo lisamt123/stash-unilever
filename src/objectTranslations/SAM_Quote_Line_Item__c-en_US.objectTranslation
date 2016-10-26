@@ -631,6 +631,10 @@
         <label><!-- Run cost picked up by --></label>
         <name>pkl_Whether_SAM_will_pick_up_Run_Cost__c</name>
         <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Others</masterLabel>
             <translation><!-- Others --></translation>
         </picklistValues>
@@ -641,6 +645,10 @@
         <picklistValues>
             <masterLabel>Under Discussion</masterLabel>
             <translation><!-- Under Discussion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
         </picklistValues>
     </fields>
     <fields>

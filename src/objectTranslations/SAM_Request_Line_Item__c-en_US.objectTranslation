@@ -62,6 +62,7 @@
         <name>num_Number_of_Physical_Processors__c</name>
     </fields>
     <fields>
+        <help><!-- Enter the number of Virtual Machines deployed or planned to be deployed --></help>
         <label><!-- Number of VMS --></label>
         <name>num_Number_of_VMS__c</name>
     </fields>
@@ -113,6 +114,7 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Enter the type of instance you want to deploy/deployed --></help>
         <label><!-- Instance Type --></label>
         <name>pkl_Instance_Type__c</name>
         <picklistValues>
@@ -145,6 +147,10 @@
             <translation><!-- No --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Not sure</masterLabel>
+            <translation><!-- Not sure --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Yes</masterLabel>
             <translation><!-- Yes --></translation>
         </picklistValues>
@@ -172,6 +178,10 @@
         <picklistValues>
             <masterLabel>No</masterLabel>
             <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not sure</masterLabel>
+            <translation><!-- Not sure --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Yes</masterLabel>
@@ -291,6 +301,7 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Select (Yes/No) from the Drop Down, if the deployment is hosted on SQL farm --></help>
         <label><!-- SQL Server Farm --></label>
         <name>pkl_SQL_Server_Farm__c</name>
         <picklistValues>
@@ -350,6 +361,10 @@
             <translation><!-- No --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Not sure</masterLabel>
+            <translation><!-- Not sure --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Yes</masterLabel>
             <translation><!-- Yes --></translation>
         </picklistValues>
@@ -361,6 +376,10 @@
         <picklistValues>
             <masterLabel>No</masterLabel>
             <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not sure</masterLabel>
+            <translation><!-- Not sure --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Yes</masterLabel>
@@ -386,7 +405,7 @@
         <name>txt_Database_Instance_Name__c</name>
     </fields>
     <fields>
-        <help><!-- Brief if Daignostic pack is required --></help>
+        <help><!-- Select (Yes/No) if Diagnostic is required/deployed --></help>
         <label><!-- Diagnostic --></label>
         <name>txt_Diagnostic_new__c</name>
         <picklistValues>
@@ -399,6 +418,7 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Mandatory Enter the Software Edition to be purchsed Eg: Standard, Professional, Enterprise, etc --></help>
         <label><!-- Edition --></label>
         <name>txt_Edition__c</name>
     </fields>
@@ -459,8 +479,8 @@
         <name>txt_Partitioning__c</name>
     </fields>
     <fields>
-        <help><!-- Brief if partioned --></help>
-        <label><!-- Partitioning --></label>
+        <help><!-- Select (Yes/No) if Partioning is required/deployed --></help>
+        <label><!-- Partioning --></label>
         <name>txt_Partitioning_new__c</name>
         <picklistValues>
             <masterLabel>No</masterLabel>
@@ -472,7 +492,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- Enter the Physical server hostname which is deployed --></help>
+        <help><!-- Mandatory if &apos;Virtual&apos; is selected for Instance Type, enter the name of the base server hosting this instance. --></help>
         <label><!-- Physical Server Name --></label>
         <name>txt_Physical_Machine_Name__c</name>
     </fields>
@@ -500,6 +520,7 @@
         <name>txt_Product_Type_Name__c</name>
     </fields>
     <fields>
+        <help><!-- Enter the Publisher name Eg: Adobe, SalesForce, Autodesk, etc --></help>
         <label><!-- Publisher --></label>
         <name>txt_Publisher__c</name>
     </fields>
@@ -534,7 +555,7 @@
         <name>txt_Tuning__c</name>
     </fields>
     <fields>
-        <help><!-- Brief if Tuning pack is required --></help>
+        <help><!-- Select (Yes/No) if Tuning is required/deployed --></help>
         <label><!-- Tuning --></label>
         <name>txt_Tuning_new__c</name>
         <picklistValues>
@@ -547,6 +568,7 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Mandatory Enter the Software Version to be purchsed Eg: 2003, 2007, 2010, 2014, 9i, 10g, 11g, etc --></help>
         <label><!-- Version --></label>
         <name>txt_Version__c</name>
     </fields>
@@ -882,7 +904,15 @@
         <name>SAM_reverse_validation_on_phy_ver_server</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- SID name is mandatory when SID detail is &quot;Existing&quot;. --></errorMessage>
+        <name>SID_detail_is_mandatory_SID_Detail_exis</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only --></errorMessage>
         <name>Software_Name_Alphanumeric_Data</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- System Type is mandatory when SID detail is &quot;Existing&quot;. --></errorMessage>
+        <name>System_type_is_mandatory_SID_Detail_exis</name>
     </validationRules>
 </CustomObjectTranslation>

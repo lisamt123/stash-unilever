@@ -173,7 +173,7 @@
         <name>fml_Total_Applicable_Cross_Charge__c</name>
     </fields>
     <fields>
-        <label><!-- Total € --></label>
+        <label><!-- Total (€) --></label>
         <name>fml_Total__c</name>
     </fields>
     <fields>
@@ -183,12 +183,12 @@
     </fields>
     <fields>
         <help><!-- Is there any application software involved? Please name the software, and number of licenses. --></help>
-        <label><!-- Application S/w Details --></label>
+        <label><!-- Application S/W Details --></label>
         <name>ltxt_Application_S_w_Details__c</name>
     </fields>
     <fields>
         <help><!-- Is the software already purchased.  If so when? Please upload contract --></help>
-        <label><!-- Application S/w Purchase Details --></label>
+        <label><!-- Application S/W Purchase Details --></label>
         <name>ltxt_Application_S_w_Purchase_Details__c</name>
     </fields>
     <fields>
@@ -238,6 +238,7 @@ For SAM User: Write/View response for the query --></help>
         <name>ltxt_Request_Comment_History__c</name>
     </fields>
     <fields>
+        <help><!-- If SaaS is selected as Yes, then this is mandatory. --></help>
         <label><!-- SaaS Comments --></label>
         <name>ltxt_SaaS_Comments__c</name>
     </fields>
@@ -1915,7 +1916,7 @@ For SAM User: Write/View response for the query --></help>
     </fields>
     <fields>
         <help><!-- Vertical summation of all the line items w.r.t Total CAPEX (€) --></help>
-        <label><!-- Total CAPEX in  € --></label>
+        <label><!-- Total CAPEX in  (€) --></label>
         <name>rol_Total_CAPEX_in__c</name>
     </fields>
     <fields>
@@ -3041,7 +3042,7 @@ For SAM User: Write/View response for the query --></help>
         <name>SAM_Awaiting_Charge_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets only --></errorMessage>
         <name>SAM_Budget_Owner_Alpha</name>
     </validationRules>
     <validationRules>
@@ -3201,7 +3202,7 @@ For SAM User: Write/View response for the query --></help>
         <name>SAM_Entity_Code_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets only --></errorMessage>
         <name>SAM_Financial_Business_Partner_Alpha</name>
     </validationRules>
     <validationRules>
@@ -3241,7 +3242,7 @@ For SAM User: Write/View response for the query --></help>
         <name>SAM_ICC_GLC_LCC_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets only --></errorMessage>
         <name>SAM_Infrastructure_Manager_Alpha</name>
     </validationRules>
     <validationRules>
@@ -3257,7 +3258,7 @@ For SAM User: Write/View response for the query --></help>
         <name>SAM_Infrastructure_Manager_Name</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets only --></errorMessage>
         <name>SAM_Invoice_Approver_Alpha</name>
     </validationRules>
     <validationRules>
@@ -3349,11 +3350,11 @@ For SAM User: Write/View response for the query --></help>
         <name>SAM_Others_MOC_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets only --></errorMessage>
         <name>SAM_Portfolio_Alpha</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets only --></errorMessage>
         <name>SAM_Portfolio_Manager_Alpha</name>
     </validationRules>
     <validationRules>
@@ -3377,7 +3378,7 @@ For SAM User: Write/View response for the query --></help>
         <name>SAM_Product_Details_Count_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets only --></errorMessage>
         <name>SAM_Program_Owner_Alpha</name>
     </validationRules>
     <validationRules>
@@ -3393,7 +3394,7 @@ For SAM User: Write/View response for the query --></help>
         <name>SAM_Program_Owner_Name_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets only --></errorMessage>
         <name>SAM_Project_Manager_Alpha</name>
     </validationRules>
     <validationRules>
@@ -3409,7 +3410,7 @@ For SAM User: Write/View response for the query --></help>
         <name>SAM_Project_Manager_Name_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets only --></errorMessage>
         <name>SAM_Project_Technical_Architect_Alpha</name>
     </validationRules>
     <validationRules>
@@ -3501,7 +3502,7 @@ For SAM User: Write/View response for the query --></help>
         <name>SAM_RequesterEmail_Modify_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets only --></errorMessage>
         <name>SAM_Requester_Alpha</name>
     </validationRules>
     <validationRules>
@@ -3521,7 +3522,7 @@ For SAM User: Write/View response for the query --></help>
         <name>SAM_SAAS_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Aphalbets only --></errorMessage>
+        <errorMessage><!-- &quot;Invalid Data&quot;, Please Enter Alphabets only --></errorMessage>
         <name>SAM_SAM_Demand_Manager_Alpha</name>
     </validationRules>
     <validationRules>

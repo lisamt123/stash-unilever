@@ -1,0 +1,1 @@
+{"query":{"query":"{&quot;groups&quot;:[[&quot;CreatedDate_Year&quot;,&quot;CreatedDate_Month&quot;],&quot;Unilever_Cluster__c&quot;],&quot;filters&quot;:[[&quot;Unilever_Cluster__c&quot;,[&quot;N&#x2F;A&quot;],&quot;not in&quot;]],&quot;measures&quot;:[[&quot;count&quot;,&quot;*&quot;]]}","version":-1.0}}

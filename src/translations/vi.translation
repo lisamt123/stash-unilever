@@ -14649,6 +14649,118 @@
         <name>SAM_RLI_NewBtn_URL</name>
     </customLabels>
     <customLabels>
+        <label><!-- SAM_RW_Project_Request_Awaiting_CC_details_Pending_with_ULEMP --></label>
+        <name>SAM_RW_Project_Request_Awaiting_CC_details_Pending_with_ULEMP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Awaiting_CC_details_Pending_with_ULSMT --></label>
+        <name>SAM_RW_Project_Request_Awaiting_CC_details_Pending_with_ULSMT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Awaiting_Charge --></label>
+        <name>SAM_RW_Project_Request_Awaiting_Charge</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Awaiting_Information --></label>
+        <name>SAM_RW_Project_Request_Awaiting_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_CC_details_provided_By_ULEMP --></label>
+        <name>SAM_RW_Project_Request_CC_details_provided_By_ULEMP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Charging_Completed --></label>
+        <name>SAM_RW_Project_Request_Charging_Completed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Charging_In_Progress --></label>
+        <name>SAM_RW_Project_Request_Charging_In_Progress</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Charging_Rejected --></label>
+        <name>SAM_RW_Project_Request_Charging_Rejected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Closed --></label>
+        <name>SAM_RW_Project_Request_Closed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Details_Pending --></label>
+        <name>SAM_RW_Project_Request_Details_Pending</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Details_Provided --></label>
+        <name>SAM_RW_Project_Request_Details_Provided</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Draft_Quote_Provided --></label>
+        <name>SAM_RW_Project_Request_Draft_Quote_Provided</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_In_Progress --></label>
+        <name>SAM_RW_Project_Request_In_Progress</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Information_Provided --></label>
+        <name>SAM_RW_Project_Request_Information_Provided</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_On_Hold --></label>
+        <name>SAM_RW_Project_Request_On_Hold</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Open --></label>
+        <name>SAM_RW_Project_Request_Open</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Quote_Approved --></label>
+        <name>SAM_RW_Project_Request_Quote_Approved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Quote_Provided --></label>
+        <name>SAM_RW_Project_Request_Quote_Provided</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Quote_Rejected --></label>
+        <name>SAM_RW_Project_Request_Quote_Rejected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Project_Request_Saved --></label>
+        <name>SAM_RW_Project_Request_Saved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Query_Request_Answer_Accepted --></label>
+        <name>SAM_RW_Query_Request_Answer_Accepted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Query_Request_Answer_Rejected --></label>
+        <name>SAM_RW_Query_Request_Answer_Rejected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Query_Request_Closed --></label>
+        <name>SAM_RW_Query_Request_Closed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Query_Request_In_Progress --></label>
+        <name>SAM_RW_Query_Request_In_Progress</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Query_Request_Need_More_Info --></label>
+        <name>SAM_RW_Query_Request_Need_More_Info</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Query_Request_Open --></label>
+        <name>SAM_RW_Query_Request_Open</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Query_Request_Query_Answered --></label>
+        <name>SAM_RW_Query_Request_Query_Answered</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SAM_RW_Query_Request_Saved --></label>
+        <name>SAM_RW_Query_Request_Saved</name>
+    </customLabels>
+    <customLabels>
         <label><!-- SAM Request Object name --></label>
         <name>SAM_Request_Object_name</name>
     </customLabels>
