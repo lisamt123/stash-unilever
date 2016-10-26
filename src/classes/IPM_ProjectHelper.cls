@@ -881,6 +881,7 @@ public with sharing class IPM_ProjectHelper
             return;
         }
         
+        Map<Id,IPM_Project_Rollout__c> sourceToRegionalRolloutMap = getSourceToRegionalRolloutMap(incomingProjectMap);
         
         
                 
@@ -1267,6 +1268,7 @@ public with sharing class IPM_ProjectHelper
                                                 
 
 
+                                                regionalRollout = getRegionRolloutId(project, sourceToRegionalRolloutMap);
                                                     
                                             } 
                                             else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
@@ -1360,7 +1362,7 @@ public with sharing class IPM_ProjectHelper
     private static Map<Id,IPM_Project_Rollout__c> getSourceToRegionalRolloutMap(Map<Id,IPM_Project__c> incomingProjectMap){
     	
     	Set<Id> sourceRolloutIdSet =  new Set<Id>();
-        Map<Id,IPM_Project_Rollout__c> mapSourceToRegionalRollout;
+        Map<Id,IPM_Project_Rollout__c> mapSourceToRegionalRollout = null;
         for(IPM_Project__c newProj : incomingProjectMap.values()){
         	if( newProj.IPMProject_Span__c == 'Local' && newProj.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && newProj.IPM_Project_Rollout__c != null){
         		sourceRolloutIdSet.add(newProj.IPM_Project_Rollout__c); 
@@ -1370,6 +1372,19 @@ public with sharing class IPM_ProjectHelper
            mapSourceToRegionalRollout = new Map<Id,IPM_Project_Rollout__c>([Select id,Regional_Rollout__c from IPM_Project_Rollout__c Where Id IN : sourceRolloutIdSet  Limit 10000]);
         }
         return mapSourceToRegionalRollout;
+    }
+    
+    /*
+    	Get regional rollout id from local project financial
+    */
+    private static Id getRegionRolloutId(IPM_Project__c project, Map<Id,IPM_Project_Rollout__c> mapSourceToRegionalRollout){
+    	if(project.IPM_ProjectGKM__c ==IPM_ConstantUtils.GKM_3 &&
+              mapSourceToRegionalRollout != null &&
+              mapSourceToRegionalRollout.containsKey(project.IPM_Project_Rollout__c) )
+        {
+            return mapSourceToRegionalRollout.get(project.IPM_Project_Rollout__c).Regional_Rollout__c;
+        }
+        return null;
     }
     
     
