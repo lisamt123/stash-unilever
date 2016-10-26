@@ -265,9 +265,8 @@ public class IPM_FinancialController_Test {
              // Test the fuctionality confirm button on financial page by TLD Change 
              List<IPM_Project_Rollout__c> regionalRolloutList = [SELECT Id, Target_Launch_Date__c FROM IPM_Project_Rollout__c WHERE IPM_Project__c =: globalOriginal.id ]; 
              regionalRolloutList[0].Target_Launch_Date__c = System.today().addMonths(1);
-             update regionalRolloutList;
+             update regionalRolloutList; 
              
-             IPM_Project_Type__c projectType = IPM_Utils.retrieveProjectType(globalOriginal);
        }
 
         
