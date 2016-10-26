@@ -893,100 +893,7 @@ public with sharing class IPM_ProjectHelper
         
         if(!incomingProjectMap.isEmpty())
         {
-            for(IPM_Project__c project : incomingProjectMap.values())
-            {
-                Map<String,Set<String>> postFixToUniqueFinancialKeySet = new Map<String,Set<String>>();
-                
-                Set<String> resultantPostFixSet = new Set<String>();
-                // Get associated Project Type
-                IPM_Project_Type__c associatedProjectType =IPM_Utils.retrieveProjectType(project);
-                
-                
-                // Check if financials can be updated for this Project Type.
-                if(associatedProjectType!=null)
-                {
-                    if(associatedProjectType.IPM_UpdateFinancialsReferences__c && !String.isBlank(associatedProjectType.IPM_FinancialsUpdatePostfix__c) ) 
-                    {
-                        String[] financialUpdateformats = associatedProjectType.IPM_FinancialsUpdatePostfix__c.split(IPM_ConstantUtils.COMMA);
-                        resultantPostFixSet.addAll(financialUpdateformats);
-                    }
-                    
-                    if(associatedProjectType.IPM_CreateFinancials__c && !String.isBlank(associatedProjectType.IPM_FinancialsInsertPostfix__c))
-                    {
-                        String[] financialsInsertFormats = associatedProjectType.IPM_FinancialsInsertPostfix__c.split(IPM_ConstantUtils.COMMA);
-                        resultantPostFixSet.addAll(financialsInsertFormats);
-                    }
-                        
-                    for(String KEY_POSTFIX  : resultantPostFixSet )
-                    {
-                        Set<String> uniqueFinancialKeySet = new Set<String>();
-                        
-                        if(postFixToUniqueFinancialKeySet.containsKey(KEY_POSTFIX))
-                        {
-                            uniqueFinancialKeySet = postFixToUniqueFinancialKeySet.get(KEY_POSTFIX);  
-                        }
-                            
-                        // If PostFix is default, in that case use ProjectName
-                        if(KEY_POSTFIX == 'DEFAULT')
-                        {
-                            uniqueFinancialKeySet.add(project.IPM_Project_Name__c);           
-                        }
-                        else if(KEY_POSTFIX == 'KEY')
-                        {
-                            if(projectToRolloutMap.containsKey(project.Id))
-                            {
-                                for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
-                                {
-                                    if(associatedRollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
-                                    {
-                                        uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c);
-                                    }
-                                }
-                            }   
-                        }
-                        else
-                        {
-                            uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
-                            if(KEY_POSTFIX=='NONKEY' && projectToRolloutMap.containsKey(project.Id))
-                            {
-                                for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
-                                {
-                                    if(associatedRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
-                                    {
-                                        uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c+IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
-                                    }
-                                    
-                                }
-                            }
-                            else{
-                            	
-                            	if(project != null && projectToRolloutMap != null && projectToRolloutMap.get(project.Id) != null){
-                            		for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
-	                                {
-	                                    if(associatedRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
-	                                    {
-	                                        uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c+IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
-	                                    }
-	                                }
-	                            }
-                            	uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
-                            }  
-                        }
-                        
-                        // Add to the comprehensive list of unique Financial Keys.
-                        completeFinancialUniqueKeySet.addAll(uniqueFinancialKeySet);
-                        
-                        // Add the Unique Keys based on Postfix for future use.
-                        postFixToUniqueFinancialKeySet.put(KEY_POSTFIX,uniqueFinancialKeySet);
-                    }
-                    
-                    // Store the list of Unique Keys against projects.
-                    if(!postFixToUniqueFinancialKeySet.isEmpty())
-                    {
-                        projectToPostFixToUniqueFinancialKeySet.put(project.Id,postFixToUniqueFinancialKeySet);
-                    }
-                }
-            }   
+        	 getprojectToPostFixToUniqueFinancialKeySet(incomingProjectMap, projectToPostFixToUniqueFinancialKeySet, completeFinancialUniqueKeySet);
         }
         
         
@@ -1354,6 +1261,119 @@ public with sharing class IPM_ProjectHelper
         {
             upsert financialsToUpsert.values() Financial_External_Id__c; 
         }       
+    }
+    
+    /*
+    	Get project to post fix to unique financial key set
+    */
+    private static void getprojectToPostFixToUniqueFinancialKeySet(Map<Id,IPM_Project__c> incomingProjectMap, Map<Id,Map<String,Set<String>>> projectToPostFixToUniqueFinancialKeySet
+    																, Set<String> completeFinancialUniqueKeySet){
+		
+		system.debug('----incomingProjectMap.isEmpty is NOT EMPTY-----'+incomingProjectMap);	
+        for(IPM_Project__c project : incomingProjectMap.values())
+        {
+            Map<String,Set<String>> postFixToUniqueFinancialKeySet = new Map<String,Set<String>>();
+            
+            Set<String> resultantPostFixSet = new Set<String>();
+            // Get associated Project Type
+            IPM_Project_Type__c associatedProjectType =IPM_Utils.retrieveProjectType(project);
+            system.debug('###associatedProjectType###'+associatedProjectType);
+            
+            // Check if financials can be updated for this Project Type.
+            if(associatedProjectType!=null)
+            {
+                if(associatedProjectType.IPM_UpdateFinancialsReferences__c && !String.isBlank(associatedProjectType.IPM_FinancialsUpdatePostfix__c) ) 
+                {
+                    String[] financialUpdateformats = associatedProjectType.IPM_FinancialsUpdatePostfix__c.split(IPM_ConstantUtils.COMMA);
+                    resultantPostFixSet.addAll(financialUpdateformats);
+                }
+                
+                if(associatedProjectType.IPM_CreateFinancials__c && !String.isBlank(associatedProjectType.IPM_FinancialsInsertPostfix__c))
+                {
+                    String[] financialsInsertFormats = associatedProjectType.IPM_FinancialsInsertPostfix__c.split(IPM_ConstantUtils.COMMA);
+                    resultantPostFixSet.addAll(financialsInsertFormats);
+                }
+                
+                System.debug('resultantPostFixSet ==>'+resultantPostFixSet);
+                 System.debug('projectToRolloutMap ==>'+projectToRolloutMap);
+                
+                for(String KEY_POSTFIX  : resultantPostFixSet )
+                {
+                    Set<String> uniqueFinancialKeySet = new Set<String>();
+                    
+                    if(postFixToUniqueFinancialKeySet.containsKey(KEY_POSTFIX))
+                    {
+                        uniqueFinancialKeySet = postFixToUniqueFinancialKeySet.get(KEY_POSTFIX);  
+                    }
+                    
+                    // If PostFix is default, in that case use ProjectName
+                    if(KEY_POSTFIX == 'DEFAULT')
+                    {
+                        uniqueFinancialKeySet.add(project.IPM_Project_Name__c);
+                    }
+                    else if(KEY_POSTFIX == 'KEY')
+                    {
+                        if(projectToRolloutMap.containsKey(project.Id))
+                        {
+                            for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
+                            {
+                                if(associatedRollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+                                {
+                                    uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c);
+                                }
+                            }
+                        }  
+                    }
+                    else
+                    {
+                        
+                        System.debug('project.IPM_ProjectGKM__c==>'+project.IPM_ProjectGKM__c);
+                        uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                        
+                        if(KEY_POSTFIX=='NONKEY' && projectToRolloutMap.containsKey(project.Id))
+                        {
+                            System.debug('projectToRolloutMap ==>'+projectToRolloutMap);
+                            System.debug('project.Id ==>'+project.Id);
+                            System.debug('projectToRolloutMap.get(project.Id).values() ==>'+projectToRolloutMap.get(project.Id).values());
+                            
+                            for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
+                            {
+                                if(associatedRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
+                                {
+                                    uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c+IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                                }
+                            }
+                        }
+                        else{
+                        	
+                        	if(project != null && projectToRolloutMap != null && projectToRolloutMap.get(project.Id) != null){
+                        		for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
+                                {
+                                    if(associatedRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
+                                    {
+                                        uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c+IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                                    }
+                                }
+                            }
+                        	uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                        }  
+                         //uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                    }
+                    
+                    // Add to the comprehensive list of unique Financial Keys.
+                    completeFinancialUniqueKeySet.addAll(uniqueFinancialKeySet);
+                    
+                    // Add the Unique Keys based on Postfix for future use.
+                    postFixToUniqueFinancialKeySet.put(KEY_POSTFIX,uniqueFinancialKeySet);
+                }
+                
+                // Store the list of Unique Keys against projects.
+                if(!postFixToUniqueFinancialKeySet.isEmpty())
+                {
+                    projectToPostFixToUniqueFinancialKeySet.put(project.Id,postFixToUniqueFinancialKeySet);
+                }
+            }
+        }  
     }
     
     /*
