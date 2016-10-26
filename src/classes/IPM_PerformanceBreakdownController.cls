@@ -1,372 +1,347 @@
 /*************************************************************************************************
 *@Author:Cognizant
 *@Created Date:15/03/2016
-*@Description:this test class is used to take input's from Finance/CMI/PD/DPL/Cental Team/Business Partner user
+*@Description:this class is used to take input's from Finance/CMI/PD/DPL/Cental Team/Business Partner user
 *for market performance break down.this is editable on Market Ready phase.Market performance data is coming
 *from capability phase of regional rollout project.
 **************************************************************************************************/
 
-
-@isTest
-private with sharing class IPM_PerformanceBreakdownController_Test {
-    static List<IPM_Project__c> regionalProjectList;
-    static List<IPM_Project__c> projectList;
-    static List<IPM_Project_Rollout__c> localRolloutList; 
-    static List<User> userList;
-    static final String TEST_USER_EMAIL = 'globalUser@unilever.test.com';
-    static final string LOCALPROJECTNAME='TestRegionalComments1_UMCA';
-    
-//This method creates required global, regional and local projects and rollouts, also related financials. These records are then accessed across the testmethods.
-    @testSetup static void financialSetUp() 
-     {
-     	 test.startTest();
-     	 
-         userList = IPM_TestFactory_Helper.createUserList();
-         system.assertNotEquals(userList[0],null,'User not created');
-         //asserts based on Hard coded names from helper can be a risk, if helper changes then assert will fail.
-          
-         IPM_TestFactory_Helper.getProjectMasterData();
-         
-         List<IPM_Project__c> globalProjectList = IPM_TestFactory_Helper.projectSetUp(1,userList[0]);
-         system.assertNotEquals(globalProjectList,null, 'Global projects not created');
-         //User at index 0 is Global Project Leader and hence assert is not done based on hard coded names
-         
-         System.runAs(userList[0])
-         {
-            insert globalProjectList;
-         }
-         
-         IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
-       	 IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
-         createRegionalAndLocalRollouts(globalProjectList);
-         IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
-         IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
-         test.stopTest();
-         
-     }
-     
-     static void createRegionalAndLocalRollouts(List<IPM_Project__c>globalProjectList)  
-     {
-         	
-            System.runAs(userList[0])
-            {
-                // Create Regional Rollouts for Created Global project.
-                List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,globalProjectList,new List<User>{userList[1],userList[1],userList[1]});
-                insert regionalRolloutList;
-                system.assert(!regionalRolloutList.isEmpty(), 'project rollout cannot be created'); //names cannot be asserted as project name set in helper class
-                
-                Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
-                for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
-                {
-                    List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
-                    if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
-                    {
-                        projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
-                    }
-                    projectRolloutList.add(projectRollout);
-                    projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
-                }
-                
-                // Create local Rollouts for Created regional Rollouts.
-                localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{userList[2]});  
-                insert localRolloutList; 
-                system.assert(!localRolloutList.isEmpty(), 'project rollout map cannot be created'); //names cannot be asserted as project and rollout map set in helper class
-                
-                // Create Country specific information.
-                List<IPM_Country__c> countryList= new List<IPM_Country__c>();
-                
-                for(IPM_Project_Rollout__c localRollout : localRolloutList)
-                {
-                    String geoExternalId = '';
-                    if(localRollout.IPM_Rollout_Project__c.contains('AFR'))
-                    {
-                        geoExternalId = 'AGO';
-                    }
-                    else if(localRollout.IPM_Rollout_Project__c.contains('LA'))
-                    {
-                        geoExternalId = 'BRA';
-                    }
-                    
-                    IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new mdm_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                    IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
-                    
-                    countryList.add(tempCountry);
-                }
-                
-                insert countryList;
-                //assert on counti is sufficient, additional soql can be a risk for SOQL gov limit as this method has loads of queries.
-                system.assert(!countryList.isEmpty(), 'country records not created');
-               
+public with sharing class IPM_PerformanceBreakdownController {
+    public IPM_MarketPerformance__c marketperformance{get;set;}//get info of market performance record
+    public String projectId {get;set;}//hold project id from page url
+    public IPM_Project__c project;//hold project info
+    public List<IPM_MarketPerformanceBreakdown__c> marketPerformanceBreakdownList{get;set;}//hold list of market performance breakdown records
+    public String marketPerString;//hold market performance id
+    public decimal decMultFactor = 1.00;//decimal place value
+    public decimal exRate{get;set;}//hold exchange rate value
+    public map<string,decimal> mapCurrency;//map of country code and exchange rate     
+    public boolean appliedRate = false;//check if other currency is selected
+    public static set<string>avoidConversionSet=new set<String>{'WeightedDistribution__c','RelativePricetoMarket__c'};//set of fields name where no need to apply currency conversion
+    public set<string>scaleSet=new set<string>{'MediaSpend__c'};//set of fields to set default decimal place
+    public Set<string>greaterThanSet{get;set;}//set of fields name where user has entered more than 100 %
+    public String sMisalignmentMsg{get;set;} //hold misaligned message
+    public string period_STR{get;set;} //hold period api name
+    private List<String> mktPerFldList = new List<String>();//list of fields api name
+    public List<String>misAlignedList{get;set;}//hold misaligned fields name
+    public Map<string,string> mapWithRecordNCell{get;set;}// map with record and field
+    public boolean isgreaterThan{get;set;}//check if values are greater than 100
+    private final string CLASS_NAME=IPM_PerformanceBreakdownController.class.getName();//get class name
+    public boolean isMisaligned{get;set;}//check for misaligned value
+    public decimal grossTurnover{get;set;}//store gross turn over
+    public decimal totalGrossTurnover{get;set;}//store total gross turnover
+    public decimal grossBMI{get;set;}//store gross BMI
+    public decimal totalGrossBMI{get;set;}//store total gross BMI
+    public decimal grossPBI{get;set;}//store gross PBI
+    public decimal totalGrossPBI{get;set;}//store Total gross PBI
+    public decimal averageRetailPrice{get;set;}//store Average Retail Price
+    public decimal mediaSpend {get;set;}//store Media Spend 
+    public decimal totalMediaSpend {get;set;}//store total Media Spend 
+    /**************************************************************************************
+    *@Description :Constructor to read the information from the page paramaters , 
+    *get project details based on page url parameter.
+    *display market performance data and market performance break down data.
+    ***************************************************************************************/
+    public IPM_PerformanceBreakdownController() {   
+        Map<String,String> paramMap = Apexpages.currentpage().getparameters();
+        period_STR=IPM_ConstantUtils.PERFORMANCE_PERIOD;
+        greaterThanSet=new Set<string>();
+        isgreaterThan=false;
+        marketPerformanceBreakdownList=new List<IPM_MarketPerformanceBreakdown__c>();
+        mapWithRecordNCell=new Map<string,string>();
+        grossTurnover=0.00;
+        totalGrossTurnover=0.00;
+        grossBMI=0.00;
+        totalGrossBMI=0.00;
+        grossPBI=0.00;
+        totalGrossPBI=0.00;
+        averageRetailPrice=0.00;
+        mediaSpend =0.0;
+        totalMediaSpend =0.0;
+        decMultFactor=1;
+        if(paramMap != null && paramMap.containsKey(IPM_ConstantUtils.SF_ID)) {
+            projectId =  paramMap.get(IPM_ConstantUtils.SF_ID);
+            list<IPM_Project__c>projectDetails=new list<IPM_Project__c>();
+            projectDetails=[Select id, Name,IPM_Project_Name__c From IPM_Project__c Where id =:projectId Limit 1];
+            if(!projectDetails.isEmpty()){
+                project =projectDetails[0]; 
+                loadMarketPerformanceBreakDown();
             }
             
-            Set<Id> setIds = new set<Id>();
-            System.runAs(userList[1])
-            {
-                for(IPM_Project_Rollout__c localRollout : localRolloutList)
-                {
-                    localRollout.KeyMCO__c = true;
-                    localRollout.IPM_Regional_PL__c = userList[2].Id;
-                    localRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-                    localRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE; 
-                    localRollout.Target_Launch_Date__c = System.today().addMonths(10); //To cover 2523 line
-                    localRollout.Previous_Target_Launch_Date__c = System.today().addMonths(9); //To cover 2523 line
-                    setIds.add(localRollout.id);
-                }
-                update localRolloutList;
-                
-            }
-            
-        
-          //Create id set from projectlist
-        list<id> liGlobIds = new list<id>();
-        
-        for(IPM_project__c g: globalProjectList){
-            liGlobIds.add(g.id);
         }
-        
-        IPM_TestFactory_Helper.initiateProjectPhaseChange(liGlobIds,userList[0]);
-        
-        //assert preparation
-        list<IPM_Project_Rollout__c> selRolloutList = [select KeyMCO__c, IPM_Regional_PL__c, IPM_Project_Job_Status__c, IPM_RolloutJobType__c, Target_Launch_Date__c, Previous_Target_Launch_Date__c from IPM_Project_Rollout__c where id in :setIds];
-        for(IPM_Project_Rollout__c localRollout : selRolloutList)
-        {
-            system.assertEquals(localRollout.KeyMCO__c, true,'MCO not updated');
-            system.assertEquals(localRollout.IPM_Regional_PL__c, userList[2].Id, 'regional PL not updated');
-        }
-        
-     }
-
-
-    static void createRegionalOriginalProjects(){
-        userList=[Select Id from User where email =: TEST_USER_EMAIL ];
-        regionalProjectList = IPM_TestFactory_Helper.projectSetUpRegional(5,UserList[0]);
-        System.runAs(userList[0])
-        {
-            insert regionalProjectList;
-            System.Debug('@@@@@regionalProjectList==>   ' + regionalProjectList);
-            /******************************** Create Local Rollouts for Created Regional Original project ****************************************/
-            
-            projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c from IPM_Project__c where IPMProject_Span__c =: IPM_ConstantUtils.PROJECT_SPAN_REGIONAL];
-            
-            // Create local Rollouts for Created regional Rollouts.
-            localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsOriginalList(false,projectList,new List<User>{userList[0]});  
-            for(IPM_Project_Rollout__c localRollout : localRolloutList)
-            {
-                localRollout.KeyMCO__c = true;
-                localRollout.Regional_Project__c = projectList[0].Id;            }
-             
-            insert localRolloutList; 
-            //assert is done on size. Avoding SOQLs here as this method has lots of queries and can hit gov limit.
-            system.assert(!localRolloutList.isEmpty(), 'local rollouts not created');
-           
-            // Create Country specific information.
-            List<IPM_Country__c> countryList= new List<IPM_Country__c>();
-            
-            for(IPM_Project_Rollout__c localRollout : localRolloutList)
-            {
-                IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = 'AG').Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);                    
-                countryList.add(tempCountry);
-            }
-            insert countryList;  
-            system.assert(!countryList.isEmpty(),'countries record not created');//Avoiding SOQL for further asserts
-            
-            
-            projectList[0].IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
-            update projectList[0];
-            
-            
-            ipm_project__c selP = [select IPM_Phase__c from ipm_project__c where id=:projectList[0].id];
-            system.assert(selP!=null,'project did not update properly');
-            IPM_Project__c newProject=New IPM_Project__c();
-            newProject.IPM_Project_Rollout__c=localRolloutList[0].id;
-            newProject.IPM_Parent_Project__c=projectList[0].id;
-            newProject.IPMProject_Span__c='Local';
-            newProject.IPM_Project_Type__c='Rollout';
-            newProject.IPM_Project_Leader__c=userList[0].id;
-            newProject.IPM_Phase__c='Feasibility';
-            newProject.IPM_CompanyCardText__c='Global Company Card';
-            newProject.IPM_ProjectSubType__c='Innovation/Renovation';
-            newProject.Name=LOCALPROJECTNAME;
-            newProject.IPM_Project_Name__c=LOCALPROJECTNAME;
-            newProject.IPM_ProjectGKM__c = 'GKM2';
-            insert newProject;
-            List<IPM_Project__c>checkProjectList=[select IPM_Project_Name__c FROM IPM_Project__c WHERE ID=:newProject.ID LIMIT 1];   
-            system.assertEquals(checkProjectList[0].IPM_Project_Name__c,LOCALPROJECTNAME,'project name not matched');     
-            IPM_TestFactory_Helper.createIPMCountryList(true,1);
-            
-            //Finance record for global project which is NON consolidate             
-             IPM_Financial__c localRolloutFin = [SELECT id, Local_Project__c,Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, 
-                                                 Regional_External_Id__c, Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c 
-                                                 from IPM_Financial__c where Financial_External_ID__c='TestRegionalComments1_UMCA'];
-             
-             system.assert(localRolloutFin!=null, 'Finance record for Local rollout project is not created.');
-             localRolloutFin.Local_Project__c=newProject.id;
-             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
-             update localRolloutFin;
-             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
-             IPM_Financial__c localRolloutFins = [SELECT id, Local_Project__c FROM IPM_Financial__c WHERE id=:localRolloutFin.id];
-             system.assertEquals(localRolloutFins.Local_Project__c,newProject.id, 'Finance record for Local rollout project is not UPDATED.');
-            
-            list<IPM_Exchange_Rate__c> liEX = new list<IPM_Exchange_Rate__c>();
-            liEX.add(new IPM_Exchange_Rate__c(Name='EUR', Currency_Code__c='EUR',Exchange_Rate__c=1));
-            liEX.add(new IPM_Exchange_Rate__c(Name='GBP', Currency_Code__c='GBP',Exchange_Rate__c=0.8)); 
-            liEX.add(new IPM_Exchange_Rate__c(Name='USD', Currency_Code__c='USD',Exchange_Rate__c=1.3));         
-            insert liEX;   
-            system.assertEquals(3, [Select count() from IPM_Exchange_Rate__c limit 100] , 'Exchange rates are not added.');
-            
-        }
-    }
-     //Use case: Local Rollout project in market ready phase 
-     static testMethod void testMarketPerformanceBreakDown(){
-        createRegionalOriginalProjects();
-        System.runAs([Select Id from User where email =: TEST_USER_EMAIL limit 1][0])
-        {
-             Test.startTest();
-             //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-             IPM_Project__c localRollout = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Local' and IPM_Project_Type__c='Rollout' and Name='TestRegionalComments1_UMCA' limit 1];
-             system.assert(localRollout!=null,'Local rollout type project not created.');
-             localRollout.IPM_Phase__c = IPM_ConstantUtils.PHASE_CAPABILITY;
-             update localRollout;
-            
-            PageReference pageRef = Page.ipm_projectdocumentsectioneditor;
-            Test.setCurrentPageReference(pageRef);  
-            ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, localRollout.id);
-            IPM_PerformanceBreakdownController sic = new IPM_PerformanceBreakdownController (); 
-            sic.selectedCurrency=null;
-            List<SelectOption>lstOptions=sic.getItems();
-            system.assertEquals(lstOptions.isEmpty(),false,'selelct option list is not empty');
-            sic.applyRate();
-            system.assertEquals(sic.appliedRate,true,'exchange rate is not applied to EUR');
-            sic.selectedCurrency='BOB';
-            sic.applyRate();
-            system.assertEquals(sic.appliedRate,true,'exchange rate is not applied to BOB');
-            sic.marketPerformanceBreakdownList[0].GrossTurnover__c=2;
-            sic.marketPerformanceBreakdownList[0].Gross_AP__c=2;
-            sic.marketPerformanceBreakdownList[0].GrossPBO__c=2;
-            sic.marketPerformanceBreakdownList[0].AverageRetailPrice__c=101;
-            sic.marketPerformanceBreakdownList[0].MediaSpend__c=101;
-            sic.saveRecords();
-            List<IPM_MarketPerformanceBreakdown__c> marketPerformanceBreakdownList=[SELECT GrossTurnover__c,Gross_AP__c FROM IPM_MarketPerformanceBreakdown__c WHERE ID=:sic.marketPerformanceBreakdownList[0].ID LIMIT 1];
-            system.assertEquals(marketPerformanceBreakdownList[0].GrossTurnover__c,2,'gross turnover is not saved');//Negative test
-            system.assertEquals(marketPerformanceBreakdownList[0].Gross_AP__c,2,'gross AP is not saved');//positive test
-            
-            sic.marketPerformanceBreakdownList[0].Name='invalid charinvalid charinvalid charinvalid charinvalid charinvalid charinvalid charinvalid charinvalid charinvalid charinvalid charinvalid charinvalid charinvalid char';
-            sic.saveRecords();
-            List<IPM_MarketPerformanceBreakdown__c> marketPerforBreakdownList=[SELECT Name FROM IPM_MarketPerformanceBreakdown__c WHERE ID=:sic.marketPerformanceBreakdownList[0].ID LIMIT 1];
-            system.assertNotEquals(marketPerforBreakdownList[0].Name,sic.marketPerformanceBreakdownList[0].Name,'Name is saved');//negative test
-            Test.stopTest();
-            sic.marketPerformanceBreakdownList[0].Name=sic.marketPerformanceBreakdownList[0].id;
-            sic.marketPerformanceBreakdownList[0].InnovationValueShare__c=101;
-            sic.marketPerformanceBreakdownList[0].InnovationVolumeShare__c=101;
-            sic.marketPerformanceBreakdownList[0].Penetrationcum__c=101;
-            sic.marketPerformanceBreakdownList[0].RepeatRate__c=101;
-            sic.marketPerformanceBreakdownList[0].WeightedDistribution__c=101;
-            sic.saveRecords();
-            List<IPM_MarketPerformanceBreakdown__c> marketPerformanceBkList=[SELECT InnovationValueShare__c,InnovationVolumeShare__c FROM IPM_MarketPerformanceBreakdown__c WHERE ID=:sic.marketPerformanceBreakdownList[0].ID LIMIT 1];
-            system.assertNotEquals(marketPerformanceBkList[0].InnovationValueShare__c,101,'innovation value share is saved');//positive test
-            system.assertNotEquals(marketPerformanceBkList[0].InnovationVolumeShare__c,101,'innovation volume share is saved');//positive test
-            
-               
-        }
-        
     } 
-    
-    //This testmethod is used to test 6.5 market performance data created in system, when local rollouts are created in testsetup method.
-    static testMethod void testMarketPerformaceDataCreated()
-    {
-        createRegionalOriginalProjects();
-        System.runAs([Select Id from User where email =: TEST_USER_EMAIL limit 1][0])
-        {
-            Test.startTest();
-            Test.setCurrentPageReference(Page.IPM_ProjectDocumentSectionEditor);
-            projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c from IPM_Project__c where IPMProject_Span__c =: IPM_ConstantUtils.PROJECT_SPAN_REGIONAL limit 1];
-            Apexpages.currentpage().getparameters().put(IPM_ConstantUtils.SF_ID,projectList[0].Id);
-            IPM_MarketPerformaceController marketPerformanceController = new IPM_MarketPerformaceController();
-            List<IPM_MarketPerformance__c> lstMarketPerformance = [Select Id, IPMProjectRollout__r.Regional_Project__c from IPM_MarketPerformance__c where IPMProjectRollout__r.Regional_Project__c =:projectList[0].Id limit 1000];
-            System.assertEquals(marketPerformanceController.lstMarketPerformaceData.size() , lstMarketPerformance.size() , 'Market performance data created do not match.');
-            Test.stopTest();
+    /**************************************************************************************
+    *@Description :getting call from constructor.
+    *display market performance data and market performance break down data.
+    ***************************************************************************************/
+    public void loadMarketPerformanceBreakDown() { 
+        Set<String> financialYearExternalIdSet = new Set<String>();
+        Map<String,IPM_Financial_Year__c> financialYearMap = IPM_Utils.getRelatedY1InnovationYear(new Set<String>{project.Name});
+        for(IPM_Financial_Year__c financialYear : financialYearMap.values()) {
+            financialYearExternalIdSet.add(financialYear.Id);
         }
-    }
-    
-    //This testmethod is used to test validations set on 6.5 data, that they can not be greater than 100%
-    static testMethod void testMarketPerformaceDataUpdatedNegativeTest()
-    {
-        createRegionalOriginalProjects();
-        System.runAs([Select Id from User where email =: TEST_USER_EMAIL limit 1][0])
-        {
-            Test.startTest();
-            Test.setCurrentPageReference(Page.IPM_ProjectDocumentSectionEditor);
-            projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c from IPM_Project__c where IPMProject_Span__c =: IPM_ConstantUtils.PROJECT_SPAN_REGIONAL limit 1];
-            Apexpages.currentpage().getparameters().put(IPM_ConstantUtils.SF_ID,projectList[0].Id);
-            IPM_MarketPerformaceController marketPerformanceController = new IPM_MarketPerformaceController();
-            for(IPM_MarketPerformance__c marketPerformance : marketPerformanceController.lstMarketPerformaceData)
-            {
-                marketPerformance.InnovationVolumeShare__c = 200;
-                marketPerformance.Penetrationcum__c = 200;
-                marketPerformance.RepeatRate__c = 200;
-                marketPerformance.WeightedDistribution__c = 200;
+        if(!financialYearExternalIdSet.isEmpty()) {
+            String marketPerformantceQueryStr =  IPM_Utils.getSOQLQueryFromFieldSet('UML_Breakdown','IPM_MarketPerformance__c',false);
+            marketPerformantceQueryStr += ' WHERE IPMFinancialYear__c IN: financialYearExternalIdSet LIMIT 1';
+            List<IPM_MarketPerformance__c> marketperformanceList = Database.query(marketPerformantceQueryStr);
+            if(!marketperformanceList.isEmpty()) {
+                // Get the Market Performance Record for the local project
+                marketperformance = marketperformanceList[0];
+                marketPerString = marketperformance.Id;
+                // Get existing associated Market Performance Breakdown records for the  marketperformance record.
+                String marketPerformantceBrkQueryStr =  IPM_Utils.getSOQLQueryFromFieldSet('UML_KeyMetrics','IPM_MarketPerformanceBreakdown__c',false);
+                marketPerformantceBrkQueryStr += ' WHERE MarketPerformance__c =: marketPerString';
+                //Apending Order By clause
+                marketPerformantceBrkQueryStr += ' order by Sequence__c';        
+                // Again fetch the final Breakdown list.
+                 
+                marketPerformanceBreakdownList = database.query(marketPerformantceBrkQueryStr);
+                getMarketPerformanceValues(marketPerformanceBreakdownList);
+                checkMisalignments();
             }
-            marketPerformanceController.save();
+        }
+        if(marketPerformanceBreakdownList!=null && !marketPerformanceBreakdownList.isEmpty()){
+            fieldMoreThanValue();
+        }
+        
+    }
+    /**************************************************************************************
+    *@Description :Map of record id's and field name with css class,this is used to show table
+    *cell as red color.
+    *Return:Null
+    ***************************************************************************************/
+    public void fieldMoreThanValue(){
+        for(IPM_MarketPerformanceBreakdown__c mktPer : marketPerformanceBreakdownList)
+            {
+                for(Schema.FieldSetMember fieldSetMember : SObjectType.IPM_MarketPerformanceBreakdown__c.FieldSets.UML_KeyMetrics.getFields())
+                {
+                    mapWithRecordNCell.put(mktPer.Id+fieldSetMember.getFieldPath() , '');
+                }
+            }
+    }
+    /**************************************************************************************
+    *@Description :get all currency code list along with exchange rate.
+    *Return:List of SelectOption
+    ***************************************************************************************/
+    public List<SelectOption> getItems() {
+        list<IPM_Exchange_Rate__c> lstCurrency = [SELECT Currency_Code__c,Exchange_Rate__c FROM IPM_Exchange_Rate__c order by Currency_Code__c limit 10000];
+        List<SelectOption> options = new List<SelectOption>();
+        mapCurrency = new map<string,decimal>();
+        //populate picklist with currency codes
+        for(IPM_Exchange_Rate__c curr: lstCurrency){
+            options.add(new SelectOption(curr.Currency_Code__c,curr.Currency_Code__c));
+            mapCurrency.put(curr.Currency_Code__c, curr.Exchange_Rate__c);
+        }
+        return options;
+    }
+    /**************************************************************************************
+    *@Description :set firt selected currency code as EURO on page load
+    *Return:null
+    ***************************************************************************************/ 
+    public String selectedCurrency {
+        get {
+           if(selectedCurrency==null){
+            selectedCurrency=IPM_ConstantUtils.EURO;
+           }
+           return selectedCurrency;
+        }
+    set; 
+    }
+    /**************************************************************************************
+    *@Description :save 13 periods break dowm data from UI. validation is checked while saving
+    *the records.misAligned is checked while saving the records.before saving the records again
+    *system is converting user input values as EURO.
+    ***************************************************************************************/
+    public PageReference saveRecords() {
+        greaterThanSet.clear();
+        isgreaterThan=false;
+        //get market performance breakdown data
+        for(IPM_MarketPerformanceBreakdown__c mktPer:marketPerformanceBreakdownList){
+            for(Schema.FieldSetMember fieldSetMember : SObjectType.IPM_MarketPerformanceBreakdown__c.FieldSets.Performance_Fields_To_Validate.getFields())
+                {
+                      if((Double)mktPer.get(fieldSetMember.getFieldPath()) > 100 )
+                      {
+                          mapWithRecordNCell.put(mktPer.id+fieldSetMember.getFieldPath(),IPM_ConstantUtils.MISALIGNED_CSS);
+                          greaterThanSet.add(fieldSetMember.getLabel()+IPM_ConstantUtils.Colon+System.label.IPM_Can_not_be_greater );
+                          isgreaterThan=true; 
+                      }
+                }   
             
-            System.assert(marketPerformanceController.sErrorMessage.contains(Label.IPM_6_5_Performance_Table_Fields_Can_not_be_greater_than_100), 'Market performance data is not updated successfully.');
-            Test.stopTest();
+            
+         }
+        if(!isgreaterThan){
+            //if user has selected currency change then below code will execute
+            fieldMoreThanValue();
+            if(appliedRate) {
+                List<IPM_MarketPerformanceBreakdown__c> mktPerBrkdownTempList = new List<IPM_MarketPerformanceBreakdown__c>(marketPerformanceBreakdownList);
+                marketPerformanceBreakdownList.clear();     
+                for(IPM_MarketPerformanceBreakdown__c mktPer : mktPerBrkdownTempList) {
+                    IPM_MarketPerformanceBreakdown__c mktPerTemp = new IPM_MarketPerformanceBreakdown__c();
+                    mktPerTemp = mktPer;
+                    for(String mktFld : mktPerFldList) {
+                        integer scale=2;
+                        if(scaleSet.contains(mktFld)){
+                            scale=1;
+                        }
+                        if(mktPer.get(mktFld)!=null){
+                            decimal fieldvalue=(Double)mktPer.get(mktFld) / decMultFactor;
+                            mktPerTemp.put(mktFld,fieldvalue.setScale(scale));  
+                        }
+                    }  
+                    marketPerformanceBreakdownList.add(mktPerTemp);     
+                }
+            
+            }
+            try{
+                update marketPerformanceBreakdownList;//if validation successful then save the records
+                applyRate();
+                checkMisalignments();
+            }catch(Exception ex){
+                isgreaterThan=true; 
+                greaterThanSet.add(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR);
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'saveRecords',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
+            } 
         }
+        return null;
     }
     
-    //This testmethod is used to test save functionality of 6.5 records when valid data is entered.
-    static testMethod void testMarketPerformaceDataUpdatedPositiveTest()
-    {
-        createRegionalOriginalProjects();
-        Set<Id> setMarketPerformanceId = new Set<Id>();
-        System.runAs([Select Id from User where email =: TEST_USER_EMAIL limit 1][0])
-        {
-            Test.startTest();
-            Test.setCurrentPageReference(Page.IPM_ProjectDocumentSectionEditor);
-            projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c from IPM_Project__c where IPMProject_Span__c =: IPM_ConstantUtils.PROJECT_SPAN_REGIONAL];
-            Apexpages.currentpage().getparameters().put(IPM_ConstantUtils.SF_ID,projectList[0].Id);
-            IPM_MarketPerformaceController marketPerformanceController = new IPM_MarketPerformaceController();
-            for(IPM_MarketPerformance__c marketPerformance : marketPerformanceController.lstMarketPerformaceData)
-            {
-              marketPerformance.InnovationVolumeShare__c = 80.63;
-              marketPerformance.Penetrationcum__c = 84.25;
-              marketPerformance.RepeatRate__c = 70.26;
-              marketPerformance.WeightedDistribution__c = 10.26;
-              setMarketPerformanceId.add(marketPerformance.Id);
-            }
-            marketPerformanceController.save();
-            for(IPM_MarketPerformance__c marketPerformance : [Select Id, InnovationVolumeShare__c, Penetrationcum__c, RepeatRate__c, WeightedDistribution__c, IPMProjectRollout__r.Regional_Project__c from IPM_MarketPerformance__c where Id IN :setMarketPerformanceId limit 1000])
-            {
-                System.assertEquals(80.63 , marketPerformance.InnovationVolumeShare__c, 'Innovation volume share is not updated successfully.');
-                System.assertEquals(84.25 , marketPerformance.Penetrationcum__c, 'Penetration Cum is not updated successfully.');
-                System.assertEquals(70.26 , marketPerformance.RepeatRate__c, 'Repeat rate is not updated successfully.');
-                System.assertEquals(10.26 , marketPerformance.WeightedDistribution__c, 'Weighted distribution is not updated successfully.');
+    /**************************************************************************************
+    *@Description :system is converting user input values from EURO to any other currency.
+    ***************************************************************************************/
+    public pageReference applyRate(){
+        if (selectedCurrency!=null){
+            if (mapCurrency.containsKey(selectedCurrency)){
+                exrate = mapCurrency.get(selectedCurrency);
+                decMultFactor = exrate; 
+            }else{
+                decMultFactor = 1; 
+                exrate = 1;
             }
             
-            Test.stopTest();
-        }
-    }
-    
-    //This testmethod is used to fire the exception in order to cover the catch block.
-    static testMethod void testMarketPerformaceDataUpdatedCatchBlock()
-    {
-        createRegionalOriginalProjects();
-        System.runAs([Select Id from User where email =: TEST_USER_EMAIL limit 1][0])
-        {
-            Test.startTest();
-            Test.setCurrentPageReference(Page.IPM_ProjectDocumentSectionEditor);
-            projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c from IPM_Project__c where IPMProject_Span__c =: IPM_ConstantUtils.PROJECT_SPAN_REGIONAL];
-            Apexpages.currentpage().getparameters().put(IPM_ConstantUtils.SF_ID,projectList[0].Id);
-            IPM_MarketPerformaceController marketPerformanceController = new IPM_MarketPerformaceController();
-            for(IPM_MarketPerformance__c marketPerformance : marketPerformanceController.lstMarketPerformaceData)
-            {
-                marketPerformance.External_Id__c = 'Test External Id';
+            //Again query database so that conversion should not be applicable to the updated values
+            String marketPerformantceBrkQueryStr =  IPM_Utils.getSOQLQueryFromFieldSet('UML_KeyMetrics','IPM_MarketPerformanceBreakdown__c',false);
+            marketPerformantceBrkQueryStr += ' WHERE MarketPerformance__c =: marketPerString  order by Sequence__c';
+            
+            marketPerformanceBreakdownList = database.query(marketPerformantceBrkQueryStr);
+            mktPerFldList = getSOQLQueryFromFieldSetList('UML_KeyMetrics','IPM_MarketPerformanceBreakdown__c',false);
+            List<IPM_MarketPerformanceBreakdown__c> mktPerBrkdownTempList = new List<IPM_MarketPerformanceBreakdown__c>(marketPerformanceBreakdownList);
+            marketPerformanceBreakdownList.clear();
+            for(IPM_MarketPerformanceBreakdown__c mktPer : mktPerBrkdownTempList) {
+                IPM_MarketPerformanceBreakdown__c mktPerTemp = new IPM_MarketPerformanceBreakdown__c();
+                mktPerTemp = mktPer;
+                for(String mktFld : mktPerFldList){
+                    integer scale=2;
+                    if(scaleSet.contains(mktFld)){
+                        scale=1;
+                    } 
+                    if(mktPer.get(mktFld)!=null){
+                        decimal fieldvalue=(Double)mktPer.get(mktFld) * decMultFactor;
+                        mktPerTemp.put(mktFld,fieldvalue.setScale(scale));   
+                    }
+                    
+                }   
+                
+                marketPerformanceBreakdownList.add(mktPerTemp);     
             }
-            marketPerformanceController.save();
-            System.assertEquals('' , marketPerformanceController.sErrorMessage , 'Market performance data is not updated successfully.');
-            Test.stopTest();
+            getMarketPerformanceValues(marketPerformanceBreakdownList);
+            
         }
+        appliedRate = true;
+        checkMisalignments();
+        return null;
+    }
+    /****************************************************************************************
+    *@Description :get market performance field values and get total field values
+    ****************************************************************************************/
+    public void getMarketPerformanceValues(List<IPM_MarketPerformanceBreakdown__c>markertPerformanceList){
+        totalGrossTurnover=0.00;
+        totalGrossBMI=0.00;
+        totalGrossPBI=0.00;
+        totalMediaSpend =0.0;
+        
+        integer newScale=2;
+        grossTurnover=marketperformance.IPM_Gross_Turnover__c* decMultFactor;
+        grossTurnover=grossTurnover.setScale(newScale);
+        grossBMI=marketperformance.IPM_Gross_BMI__c * decMultFactor;
+        grossBMI=grossBMI.setScale(newScale);
+        grossPBI=marketperformance.IPM_Gross_PBI__c * decMultFactor;
+        grossPBI=grossPBI.setScale(newScale);
+        averageRetailPrice=marketperformance.AverageRetailPrice__c* decMultFactor;
+        averageRetailPrice=averageRetailPrice.setScale(newScale);
+        newScale=1;
+        mediaSpend=marketperformance.MediaSpend__c * decMultFactor;
+        mediaSpend=mediaSpend.setScale(newScale);
+        for(IPM_MarketPerformanceBreakdown__c mktPer : markertPerformanceList) {
+            totalGrossTurnover=totalGrossTurnover+mktPer.GrossTurnover__c;
+            totalGrossBMI=totalGrossBMI+mktPer.Gross_AP__c;
+            totalGrossPBI=totalGrossPBI+mktPer.GrossPBO__c;
+            totalMediaSpend =totalMediaSpend+mktPer.MediaSpend__c;
+        }
+        
     }
     
+   /**************************************************************************************
+    *@Description :get all fields name from IPM_MarketPerformanceBreakdown__c object
+    ***************************************************************************************/
+    public static List<String> getSOQLQueryFromFieldSetList(String fieldSetName,String fieldSetSobjectName,boolean excludePercentageFlds) {
+       
+        List<String> fieldNamesList = new List<String>();
+        Map<String,Schema.SobjectType> globalDescribeMap = Schema.getGlobalDescribe();
+        Schema.FieldSet targetFieldSetObject = null;
+        if(globalDescribeMap.containsKey(fieldSetSobjectName)) {
+            Schema.DescribeSObjectResult sobjectDescResult = globalDescribeMap.get(fieldSetSobjectName).getDescribe(); 
+            Map<String, Schema.FieldSet> associatedFieldSetMap = sobjectDescResult.fieldSets.getMap();
+            if(associatedFieldSetMap.containsKey(fieldSetName)) {
+                targetFieldSetObject = associatedFieldSetMap.get(fieldSetName); 
+                
+            }
+        }
+        if(targetFieldSetObject != null) {
+            for(Schema.FieldSetMember targetField : targetFieldSetObject.getFields()) {
+                if(targetField.getFieldPath() != IPM_ConstantUtils.SF_ID && ((targetField.getType() == Schema.DisplayType.Percent && excludePercentageFlds)|| targetField.getType() == Schema.DisplayType.Double) && !avoidConversionSet.contains(targetField.getFieldPath())) {
+                    fieldNamesList.add(targetField.getFieldPath());
+                }
+            }
+        }   
+        return fieldNamesList;
+    }
+    /**************************************************************************************
+    *@Description :misAligned is checked while saving the records
+    ***************************************************************************************/
+    public void checkMisalignments(){
+        String sOriginalMsg = system.label.IPM_Total_add_up_periods + IPM_ConstantUtils.IPM_SPACE;
+        sMisalignmentMsg = IPM_ConstantUtils.BLANK;
+        isMisaligned=false;
+        misAlignedList=new List<String>();
+        
+        //check if sum of gross turnover value is greater than aggregate gross turnover 
+        if(grossTurnover<> totalGrossTurnover){
+            sMisalignmentMsg +=  sOriginalMsg +  Schema.sObjectType.IPM_MarketPerformance__c.fields.IPM_Gross_Turnover__c.getLabel()  + IPM_ConstantUtils.Colon+ totalGrossTurnover + IPM_ConstantUtils.BREAKELINE;
+            misAlignedList.add(sOriginalMsg +  Schema.sObjectType.IPM_MarketPerformanceBreakdown__c.fields.GrossTurnover__c.getLabel()  + IPM_ConstantUtils.Colon+ totalGrossTurnover);
+            
+        } 
+        //check if sum of gross BMI value is greater than aggregate gross BMI   
+        if(grossBMI <> totalGrossBMI){
+            sMisalignmentMsg += sOriginalMsg +Schema.sObjectType.IPM_MarketPerformance__c.fields.IPM_Gross_BMI__c.getLabel() + IPM_ConstantUtils.Colon + totalGrossBMI + IPM_ConstantUtils.BREAKELINE;
+            misAlignedList.add(sOriginalMsg +Schema.sObjectType.IPM_MarketPerformanceBreakdown__c.fields.Gross_AP__c.getLabel() + IPM_ConstantUtils.Colon + totalGrossBMI);
+            
+        } 
+        //check if sum of gross PBI value is greater than aggregate gross PBI    
+        if(grossPBI <> totalGrossPBI){
+            sMisalignmentMsg += sOriginalMsg + Schema.sObjectType.IPM_MarketPerformance__c.fields.IPM_Gross_PBI__c.getLabel() + IPM_ConstantUtils.Colon + totalGrossPBI + IPM_ConstantUtils.BREAKELINE;
+            misAlignedList.add(sOriginalMsg + Schema.sObjectType.IPM_MarketPerformanceBreakdown__c.fields.GrossPBO__c.getLabel() + IPM_ConstantUtils.Colon + totalGrossPBI);
+            
+        }
+        //check if sum of media spend value is greater than aggregate media spend 
+        if(mediaSpend<> totalMediaSpend){
+            sMisalignmentMsg += sOriginalMsg + Schema.sObjectType.IPM_MarketPerformance__c.fields.MediaSpend__c.getLabel() + IPM_ConstantUtils.Colon + totalMediaSpend + IPM_ConstantUtils.BREAKELINE;
+            misAlignedList.add(sOriginalMsg + Schema.sObjectType.IPM_MarketPerformanceBreakdown__c.fields.MediaSpend__c.getLabel() + IPM_ConstantUtils.Colon + totalMediaSpend);
+            
+        } 
+         
+        if(!misAlignedList.isEmpty()){
+            isMisaligned=true;
+        }    
 
+        
+    }
 }
