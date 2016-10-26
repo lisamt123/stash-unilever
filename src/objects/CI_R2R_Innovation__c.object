@@ -69,7 +69,7 @@
     <fields>
         <fullName>Benifit_Amount__c</fullName>
         <externalId>false</externalId>
-        <label>Benifit Amount</label>
+        <label>Benefit Amount</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -80,7 +80,7 @@
     <fields>
         <fullName>Benifit_Type__c</fullName>
         <externalId>false</externalId>
-        <label>Benifit Type</label>
+        <label>Benefit Type</label>
         <picklist>
             <picklistValues>
                 <fullName>3PSP FTE Savings</fullName>
@@ -138,7 +138,7 @@
                 <fullName>TBC</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <required>false</required>
         <trackHistory>false</trackHistory>
