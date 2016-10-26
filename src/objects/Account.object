@@ -1239,6 +1239,22 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Distributor Program</label>
         <picklist>
             <picklistValues>
+                <fullName>LMA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LMP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed End Distributor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No Program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>TBD</fullName>
                 <default>false</default>
             </picklistValues>
@@ -9500,8 +9516,20 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>DistributorProgram__c</picklist>
             <values>
-                <fullName>TBD</fullName>
+                <fullName>Closed End Distributor</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>LMA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Program</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
