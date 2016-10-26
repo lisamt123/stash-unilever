@@ -2,12 +2,9 @@
 private class IPM_FinancialControllerRegional_Test {
 
     private static final string LIT_OPERATIONAL = 'Operational';
-    private static final string PROJECT_BI_LARGE = 'Large';
-    private static final integer EXEC_PART_2 = 2;
     private static final integer EXEC_PART_3 = 3;
     private static final integer EXEC_PART_4 = 4;
     private static final integer EXEC_PART_6 = 6;
-    private static final string INVALID_ROLLOUT_NAME = 'Invalid rollout name';
     private static final string INVALID_INDEX = 'Invalid index found';
     private static final string INVALID_PROJECT_NAME = 'Invalid project name';
     private static final string INVALID_SPAN_NAME = 'Invalid span name';
@@ -18,7 +15,6 @@ private class IPM_FinancialControllerRegional_Test {
     private static final string ERROR_MSG_NOT_CAPTURED = 'error message not captured';
     private static final string BLANK_STRING = IPM_ConstantUtils.IPM_SPACE;
     private static Set<String> regionalProjectNameSet = new Set<String>{'TestRegionalComments1','TestOperationalCommentsglobal1','TestOperationalCommentslocal1','TestOperationalCommentsregional1'};
-    private static final string eitherConsolidatedNonKeyMsg = 'Financial is either consolidated or key';
     private static final string TLDNullMsg = 'TLD not set properly';
     private static final string showNextMsg = 'Financial year is to be navigated to left(Next)';
     private static final string showPreviousMsg = 'Financial year is to be navigated to right(Previous)'; 
@@ -285,7 +281,6 @@ private class IPM_FinancialControllerRegional_Test {
              //Load Tab Rollup
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
              
-             //system.assertEquals(true, ipmFinCon.isConsolidatedOrNonkey, eitherConsolidatedNonKeyMsg);
              system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , TLDNullMsg);
              system.assertEquals(false,ipmFinCon.showNext , showNextMsg);
              system.assertEquals(false,ipmFinCon.showPrevious, showPreviousMsg);
@@ -294,76 +289,6 @@ private class IPM_FinancialControllerRegional_Test {
              
          }  
      }
-
-
-     //Use case: Local Rollout Feasibility phase 
-    /* static testMethod void testLocalRollout()
-     {
-        List<User> regionalProjectLeaderList = [Select Id,Name,email from User where email = 'regionalUser@unilever.test.com']; 
-        IPM_Project__c regionalProject = [Select Id,Name,IPM_ProjectGKM__c,IPM_Phase__c from IPM_ProjecT__c where Name = 'TestRegionalComments1'];
-		System.runAs(regionalProjectLeaderList[0])
-        {
-             //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-             List<IPM_Project__c> localRolloutProjectList  = [select id, name,IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c,IPM_Target_Launch_Dates__c,IPM_ProjectGKM__c,IPM_Phase__c  from IPM_Project__c where IPMProject_Span__c='Local' and IPM_Project_Type__c='Rollout' and Name='TestRegionalComments1_UMCA' limit 1];
-             if(localRolloutProjectList.isEmpty())
-             {
-             	List<IPM_Project_Rollout__c> newRolloutProjectList = new List<IPM_Project_Rollout__c>();
-                for(IPM_Project_Rollout__c projectRoll : [select id,Name,IPM_Regional_PL__c from IPM_Project_Rollout__c where Regional_Project__c =:regionalProject.ID] )
-                {
-					projectRoll.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-                    projectRoll.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC; 
-                    newRolloutProjectList.add(projectRoll); 
-                }   
-                
-                update newRolloutProjectList;
-             }
-			
-             
-             Test.startTest();
-             localRolloutProjectList  = [select id, name,IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c,IPM_Target_Launch_Dates__c,IPM_ProjectGKM__c,IPM_Phase__c  from IPM_Project__c where IPMProject_Span__c='Local' and IPM_Project_Type__c='Rollout' and Name='TestRegionalComments1_UMCA' ];
-
-             IPM_Project__c localRolloutProject = localRolloutProjectList[0];
-             system.assert(localRolloutProject!=null,'Local rollout type project not created.');
-             system.assertEquals(localRolloutProject.name, 'TestRegionalComments1_UMCA', INVALID_ROLLOUT_NAME);
-             
-             localRolloutProject.BI__c = PROJECT_BI_LARGE;
-             update localRolloutProject;
-             IPM_Project__c selP = [select Id,BI__c,IPM_Phase__c,IPM_ProjectGKM__c from IPM_Project__c where id=:localRolloutProject.id];
-             system.assertEquals(selP.BI__c, PROJECT_BI_LARGE,'BI did not update');
-             
-             //Finance record for global project which is NON consolidate             
-             IPM_Financial__c localRolloutFin = [select id, Financial_External_ID__c, Parent_Project__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
-             Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='TestRegionalComments1_UMCA'];
-             localRolloutFin.Parent_Project__c = localRolloutProject.id;
-             
-             update localRolloutFin;
-             
-             system.assert(localRolloutFin!=null, 'Finance record for Local rollout project is not created.');
-             system.assertEquals(localRolloutFin.Financial_External_ID__c, 'TestRegionalComments1_UMCA', INVALID_FINACIAL_EXT_ID);
-             
-             setPage(localRolloutProject.id);
-             IPM_FinancialController ipmFinCon = new IPM_FinancialController();
-             ipmFinCon.project = localRolloutProject;
-             ipmFinCon.currentfinancial = localRolloutFin;
-             ipmFinCon.currentfinancialid = localRolloutFin.id;
-			 
-             //asserts are in source method for callCtrlAction calls    
-             //callCtrlAction(ipmFinCon, EXEC_PART_2);
-             //callCtrlAction(ipmFinCon, EXEC_PART_3);
-             Test.stopTest();
-             
-             ipmFinCon.updateMisalignmentByFinanceLeader();
-             ipm_project__c sel = [select IPM_Project_Type__c, IPMProject_Span__c, MisAligned_Confirmed_By_Finance_Leader__c,IPM_Phase__c,IPM_ProjectGKM__c from ipm_project__c where id = :localRolloutProject.id];
-             system.assertEquals(sel.IPMProject_Span__c, 'Local', INVALID_SPAN_NAME);
-             //system.assertEquals(sel.MisAligned_Confirmed_By_Finance_Leader__c, false, MISALINGNED_NOT_CONFIRMED);
-             
-             //asserts are in source method to check tab load
-             //Load Tab MyView
-             //loadTab(localRolloutProject.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
-             //Load Tab TopDown
-             //loadTab(localRolloutProject.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
-         }
-     }*/
 
 
 
@@ -395,13 +320,13 @@ private class IPM_FinancialControllerRegional_Test {
             ipm_project__c globalOperationalProject = [select Id,name,IPM_Phase__c,IPM_ProjectGKM__c from ipm_project__c where id=: projectRecord.id];
             system.assertEquals(globalOperationalProject.name,'TestOperationalCommentsglobal1', 'Project not created.');
             
-            Test.stopTest(); 
-
+            
+             
             setPage(projectRecord.Id);
 			Test.startTest();
              IPM_FinancialController ipmFinCon = new IPM_FinancialController();
              ipmFinCon.project = globalOperationalProject;
-             //callCtrlAction(ipmFinCon, EXEC_PART_2);
+             
              //callCtrlAction(ipmFinCon, EXEC_PART_3);
              Test.stopTest();
              //asserts are in source method to check tab load
@@ -414,6 +339,7 @@ private class IPM_FinancialControllerRegional_Test {
              //system.assertEquals(globalOperationalProject.MisAligned_Confirmed_By_Finance_Leader__c, true, MISALINGNED_NOT_CONFIRMED); 
          }
      }
+     
      
      static testMethod void financialLocalOperationalTest() 
      {
@@ -452,7 +378,7 @@ private class IPM_FinancialControllerRegional_Test {
             
             ipmFinCon.isConsolidatedOrNonkey=false;
              //asserts are in source method for callCtrlAction calls    
-            //callCtrlAction(ipmFinCon, EXEC_PART_2);
+            
             //callCtrlAction(ipmFinCon, EXEC_PART_3);
             Test.stopTest();
              
@@ -519,7 +445,7 @@ private class IPM_FinancialControllerRegional_Test {
             }
 
             //asserts are in source method for callCtrlAction calls    
-            //callCtrlAction(ipmFinCon, EXEC_PART_2);
+            
             Test.stopTest();
             callCtrlAction(ipmFinCon, EXEC_PART_3);
             

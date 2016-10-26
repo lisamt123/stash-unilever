@@ -268,13 +268,7 @@ public class IPM_FinancialController_Test {
              update regionalRolloutList;
              
              IPM_Project_Type__c projectType = IPM_Utils.retrieveProjectType(globalOriginal);
-             // Test assert to show confirm button to on financial page 
-            // system.assert(projectType.IPM_Financial_Confirm_button__c);
-            //system.debug('PS::projectType.IPM_Financial_Confirm_button__c='+projectType.IPM_Financial_Confirm_button__c);
-            //system.debug('PS::ipmFinCon.showMisalignedConfirmbtn='+ipmFinCon.showMisalignedConfirmbtn);
-//            system.assertEquals(projectType.IPM_Financial_Confirm_button__c, ipmFinCon.showMisalignedConfirmbtn, ''+globalOriginal);
-             
-        }
+       }
 
         
      }
@@ -290,9 +284,7 @@ public class IPM_FinancialController_Test {
         {
             //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
              IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name='TestComments1' limit 1];
-			 IPM_Project__c localOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPM_Parent_Project__c =: globalOriginal.id and IPMProject_Span__c =: IPM_ConstantUtils.PROJECT_SPAN_LOCAL limit 1];
-			 //system.assert(false, localOriginal);
-             system.assert(globalOriginal!=null, 'Global project not created');
+			 system.assert(globalOriginal!=null, 'Global project not created');
              system.assertEquals(globalOriginal.name, 'TestComments1', INVALID_PROJECT_NAME);
              
              //Finance record for global project which is NON consolidate             
