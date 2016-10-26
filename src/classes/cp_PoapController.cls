@@ -9,7 +9,7 @@ public with sharing class cp_PoapController {
     private static final String AS_TENTATIVE        = 'Tentative';
     private static final String AS_CONFIRMED        = 'Confirmed';
     private static final String AS_DRAFT            = 'Draft';
-    //private static final String AS_OFFLINE          = 'Offline';
+    private static final String AS_OFFLINE          = 'Offline';
     private static final String EVT_NOT_IN_POAP     = 'I do not want this event on my Plan on a Page';
 
     /* Colour constants */
@@ -35,7 +35,7 @@ public with sharing class cp_PoapController {
     private final String C_OPERATIONAL_COMMS = 'Enabler - Operational Activity';
     private final String C_FUNCTION_CATEGORY = 'Enabler - Capability Building';
     
-    //private final String F_EXPERTISE = 'Expertise__c';
+    private final String F_EXPERTISE = 'Expertise__c';
 
     private final Map<String, Schema.SobjectField> EventMap = Schema.getGlobalDescribe().get('cp_Event__c').getDescribe().fields.getMap(); 
 
@@ -281,7 +281,7 @@ public with sharing class cp_PoapController {
         HTMLReturn += '</td>';
         Date startDate = date.newinstance(Integer.valueOf(FirstYear), Integer.valueOf(FirstMonth), 1);
         Date lastDate = date.newinstance(Integer.valueOf(LastYear), Integer.valueOf(LastMonth), 1);
-        public String colour;
+        String colour;
         Integer NumberOfMonths = startDate.monthsBetween(lastDate) + 1;
         Date EventEndDate;
 
@@ -398,14 +398,14 @@ public with sharing class cp_PoapController {
 
         HTMLTable.value += '</tr>';
 
-        //Date LastDateQuery = LastDate.addMonths(1);
+        Date LastDateQuery = LastDate.addMonths(1);
 
         String advancedFilter = '';
 
         if (FieldName1 != null && FieldName1 != '')
         {
             AdvFiltersRendering = String.escapeSingleQuotes(FieldLabel1) + ' ' + String.escapeSingleQuotes(Operator1) + ' ' + String.escapeSingleQuotes(FieldValue1) + String.escapeSingleQuotes(FieldValueDate1);
-            //advancedFilter = addAdvancedFilter(FieldName1, Operator1, FieldValue1, FieldValueDate1);
+            advancedFilter = addAdvancedFilter(FieldName1, Operator1, FieldValue1, FieldValueDate1);
         }
         else
         {
@@ -429,8 +429,18 @@ public with sharing class cp_PoapController {
                 Boolean isOptOut            = false;
                 Boolean plannerInvited      = false;
                 Boolean globalEvent         = oEvent.Local_or_Global__c == 'Global';
-                Boolean hostIsDefault       = oEvent.HostPlanner__c == defaultPreference.Planner__c;
-
+                
+                /* Author : Sowmya Y J
+                   Date : 25/10/2016
+                   Comments: considering the plannerfilter for hostIsdefault flag when the user selects the planner other than the default
+                 */
+                 Boolean hostIsDefault = false;
+                 if(plannerFilter != '')
+                     hostIsDefault       = oEvent.HostPlanner__c == plannerFilter;
+                 else
+                     hostIsDefault       = oEvent.HostPlanner__c == defaultPreference.Planner__c;
+                 
+                 /*End of the changes */
                 // If the event is Do Not Display or a Non Unilever Event
                 if (oEvent.Activity_Type__c == EVT_NOT_IN_POAP)
                 {
@@ -462,7 +472,7 @@ public with sharing class cp_PoapController {
                             for (cp_PlannerLocation__c plannerLoc :eventsMap.get(childEvent.Id).Planner_Locations__r)
                             {
                                 // If the filters include an activated planner
-                                if (plannerFilter == plannerLoc.Planner__c && plannerLoc.Activate__c)
+                                if (plannerFilter != '' && plannerFilter == plannerLoc.Planner__c && plannerLoc.Activate__c)
                                 {
                                     eventActivated = true;
                                 }
@@ -480,7 +490,7 @@ public with sharing class cp_PoapController {
                     // Also, build string of planners that have activated the event
                     for (cp_PlannerLocation__c plannerLoc :oEvent.Planner_Locations__r)
                     {
-                        if (plannerFilter == plannerLoc.Planner__c)
+                        if (plannerFilter !='' && plannerFilter == plannerLoc.Planner__c)
                         {
                             plannerInvited = true;
                             if (plannerLoc.OptOut__c)
@@ -774,7 +784,7 @@ public with sharing class cp_PoapController {
                     ', Key_Audience__c ' +
                     ', Key_Audience_Other__c ' +
                     ', OwnerId  ' +
-                    ', HostPlanner__c ' + 
+                    ', HostPlanner__c'+
                     ', Local_or_Global__c ' +
                     ', (Select Id, Planner__c, Planner__r.Name, OptOut__c, Activate__c From Planner_Locations__r) ' +
                     ', (Select Id From Related_Events__r) ' +
