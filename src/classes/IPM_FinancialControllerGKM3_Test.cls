@@ -36,11 +36,13 @@ public class IPM_FinancialControllerGKM3_Test {
     private static final string TLDNullMsg = 'TLD not set properly';
     private static final string showNextMsg = 'Financial year is to be navigated to left(Next)';
     private static final string showPreviousMsg = 'Financial year is to be navigated to right(Previous)';
+    private static final string Volume_Unit = 'Total000Units';
+    private static final string PHASE_LOCAL = 'Local'; 
 
     //This method creates required global, regional and local projects and rollouts, also related financials. These records are then accessed across the testmethods.
     @testSetup static void financialSetUp() 
      {
-		Test.startTest();  
+        Test.startTest();  
         User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
         // Create an instances of standard Users for Allocation to Project Leaders.
         List<IPM_Project__c> globalProjectList = new List<IPM_Project__c>();
@@ -83,6 +85,10 @@ public class IPM_FinancialControllerGKM3_Test {
             system.assertNotEquals(globalProjectList,null, 'Global projects not created');
             for(IPM_Project__c p:globalProjectList){
                 p.IPM_Answer_of_Q1__c='test question';
+                p.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+                p.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
+                p.IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
+                p.Success_Timestamp_EcoDesign__c = System.now().addHours(2);
             }
            
             insert globalProjectList;
@@ -160,8 +166,16 @@ public class IPM_FinancialControllerGKM3_Test {
 
             //assert on counti is sufficient, additional soql can be a risk for SOQL gov limit as this method has loads of queries.
             system.assert(countryList.size()>0, 'country records not created');
-
-            
+    
+            IPM_Project__c localproject = new IPM_Project__c(
+                
+                IPM_Parent_Project__c = globalProjectList[0].id,
+                IPM_Project_Rollout__c = localRolloutList[0].id,
+                IPMProject_Span__c = 'Local',
+                IPM_SourceProjectType__c = IPM_TestFactory_Helper.ORIGINAL_PROJECTYPE,
+                IPM_Target_Launch_Dates__c= System.today().addMonths(12));
+             insert localproject;
+          
         }
         Test.stopTest();
      } 
@@ -202,9 +216,10 @@ public class IPM_FinancialControllerGKM3_Test {
         system.assertEquals(pf, null, 'Page reference is null');
         
         ipmFincon.currentFinancial=null;
-        ipmFincon.refreshFromLocal();
-        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),ERROR_MSG_NOT_CAPTURED);
+        
         ipmFincon.refreshFromRegional();
+        system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),ERROR_MSG_NOT_CAPTURED);
+        ipmFinCon.refreshFromGlobal();
         system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),ERROR_MSG_NOT_CAPTURED);
      }
      
@@ -318,7 +333,6 @@ public class IPM_FinancialControllerGKM3_Test {
     
      static void testCurrency()
      {
-        Test.startTest();
             
             list<IPM_Exchange_Rate__c> liEX = new list<IPM_Exchange_Rate__c>();
             liEX.add(new IPM_Exchange_Rate__c(Name='EUR', Currency_Code__c='EUR',Exchange_Rate__c=1));
@@ -353,7 +367,6 @@ public class IPM_FinancialControllerGKM3_Test {
             ipmCurr.applyRate();
             //verify if exchange rate is applied when go back to default currency
             system.assertEquals(ipmCurr.exRate,1,'Exchange rate could not be APPLIED.');
-        Test.stopTest();
         
     }
      
@@ -453,8 +466,103 @@ public class IPM_FinancialControllerGKM3_Test {
          pageRef.getParameters().put('id', projectId);
          Test.setCurrentPageReference(pageRef);
          ipmFinCon.currentTab = tab;
-         system.assertEquals(ipmFinCon.currentTab,tab,'Current tab could not be set as -' + tab );
          ipmFinCon.changeTabs();
-         system.assertEquals(ipmFinCon.isEditMode, false, 'Financial is editable');
+         system.assertEquals(ipmFinCon.currentTab,tab,'Current tab could not be set as -' + tab );  
+     }
+     
+     static testMethod void testGateKeepingModel3()
+     {
+       
+        User globalProjectLeader = [Select Id,email from User where email =:GLOBAL_PL_EMAIL_ID]; 
+        User LocalProjectLeader = [Select Id,email from User where email =:LOCAL_PL_EMAIL_ID];   
+        
+        System.runAs(globalProjectLeader)
+        {
+             //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
+             IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c,IPM_Project_Based_Threshold_Status__c,IPM_PrepareForArchival__c,IPM_ProjectSubType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c,IPM_GateKeeping_Model__c,IPM_Phase__c, IPM_ProjectGKM__c, IPM_CompanyCardText__c from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original'  and Name='GKM3TestComments1' limit 1];
+             system.assert(globalOriginal!=null, 'Global original project not created');
+             system.assertEquals(globalOriginal.name, 'GKM3TestComments1', INVALID_PROJECT_NAME);
+                     
+             //Finance record for global project which is NON consolidate             
+             IPM_Financial__c globFin = [select id,Is_Nonkey_Business_Case_Changed__c, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c,Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c,Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c,Gate_Keeping_Model__c,
+             Volume_Unit_Global__c,Volume_Unit_Local__c,Volume_Unit_Regional__c,Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='GKM3TestComments1_LA_BR'];
+             system.assert(globFin!=null,'Finance record for global project not created.');
+             system.assertEquals(globFin.Financial_External_ID__c, 'GKM3TestComments1_LA_BR');
+
+            
+                
+                 setPage(globalOriginal.id);
+                 IPM_FinancialController ipmFinCon = new IPM_FinancialController();
+                 ipmFinCon.project = globalOriginal;
+                 ipmFinCon.currentfinancial = globFin;
+                 ipmFinCon.currentfinancialid = globFin.id;
+                 ipmFinCon.isConsolidatedOrNonkey = false;
+                 ipmFinCon.isFinancialInvalid = true;
+                 
+                 
+                 ipmFinCon.getLabelValueGKM3();
+                 
+                 system.assertEquals(ipmFinCon.getLabelValueGKM3(),IPM_ConstantUtils.BLANK);
+                 
+                 ipmFinCon.getLocalCurrencyViewButtonVisibility();
+                 system.assertEquals(ipmFinCon.getLocalCurrencyViewButtonVisibility(), true);
+                 
+                 ipmFinCon.updateVolumeType();
+                 
+                 globFin.Volume_Unit_Global__c = Volume_Unit;
+                 update globFin;
+                 system.assertEquals(globFin.Volume_Unit_Global__c == Volume_Unit,true);
+    
+                 ipmFinCon.UpdateVolumeType();
+                 
+                 
+                 Test.startTest();
+                 
+                 globFin.Copy_Local_to_Global__c = true;
+                 update globFin;
+                 ipmFinCon.refreshFromLocal();
+                 system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),ERROR_MSG_NOT_CAPTURED);
+               
+                 
+                 testCurrency();    
+                
+                 ipmFinCon.resetNonKeyBusinessCaseChangedFlag(); 
+                 system.assertEquals(globFin.Is_Nonkey_Business_Case_Changed__c == false, true);        
+                 
+                 String LocalValue= ipmFinCon.tldAcceptFromValue;
+                 system.assertEquals(LocalValue == Label.Accept_from_Local, true);
+                 
+                 globalOriginal.IPMProject_Span__c = PHASE_LOCAL;
+                 update globalOriginal;
+                 
+                 system.assertEquals(globalOriginal.IPMProject_Span__c == PHASE_LOCAL ,true);
+                 
+                 ApexPages.currentPage().getParameters().put('Id', globalOriginal.Id);
+                 
+                 IPM_FinancialController ipmFinCon1 = new IPM_FinancialController();
+                 ipmFinCon1.isEditMode = true;
+                 
+                 loadTab(globalOriginal.id, ipmFinCon1, IPM_ConstantUtils.TAB_MYVIEW_NAME);
+                 //Load Tab TopDown
+                 loadTab(globalOriginal.id, ipmFinCon1, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
+                 
+                 System.assertEquals(ipmFinCon1.isEditMode, true);             
+                  
+                 String GlobalValue =  ipmFinCon.tldAcceptFromValue;
+                 system.assertEquals( GlobalValue == Label.Accept_from_Global,true);
+                 
+                 Boolean KeyNonKey = ipmFinCon.KeyNonKeyGKM;
+                 
+                 system.assertEquals(KeyNonKey,false);
+                 
+                 ipmFinCon.getRenderMapGlobal();
+                 
+                 System.assertEquals(ipmFinCon.getRenderMapGlobal(),true);
+              
+              Test.stopTest();
+                
+            
+        }
+
      }
 }

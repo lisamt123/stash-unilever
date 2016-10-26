@@ -4,7 +4,8 @@
 */  
 @isTest
 private class  IPM_FinancialActionStandards_Test {
-    
+    private static final string RESULT_STR='result';
+    private static final String FINANCIAL_ACTION_STANDARDS = 'Financial Action Standards';  
     @testSetup static void financialSetUp() {
          List<User> userList = IPM_TestFactory_Helper.createUserList();
          
@@ -18,6 +19,7 @@ private class  IPM_FinancialActionStandards_Test {
          
         System.runAs(userList[0])
         {
+        	Test.startTest();
             // Create Regional Rollouts for Created Global project.
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,globalProjectList,new List<User>{userList[1],userList[1],userList[1]});
             insert regionalRolloutList;
@@ -70,7 +72,7 @@ private class  IPM_FinancialActionStandards_Test {
         {
             insert regionalProjectList;
         }
-         
+         Test.stopTest();
      }
     
      static testMethod void financialGlobalOrignalTest()
