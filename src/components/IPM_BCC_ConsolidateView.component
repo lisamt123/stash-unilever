@@ -14,7 +14,7 @@
 <apex:attribute name="showBccTab"  type="Boolean" assignTo="{!showBccTable}" description="get the visibility of BBC table"/>
 <apex:pageBlock >
     <div class="bccMainblock">
-        <div class="bccheadblocks {!if(!showBccTable,'fourclmwidth','topwidth')}">
+        <div class="bccheadblocks rollwidthcust {!if(!showBccTable,'fourclmwidth','topwidth')}">
             {!$Label.IPM_ROLLOUTS}
         </div>
          <div class="bccheadblocks {!if(!showBccTable,'fourclmwidth','topwidth')}">
@@ -46,7 +46,7 @@
         <apex:variable var="contractOrMRGlobal" value="{!if(OR(AND(NOT(finance.Contract_Approved__c),gateDocType=='Contract', projSpan=='Global'),AND(NOT(finance.MR_Approved__c),gateDocType=='Market Ready', projSpan=='Global' )),true,false)}"/>
         <div class="bcclowerblock">
             <!-- This Will displays the name Of MCO -->
-            <div class="bccvalueblocks {!if(!showBccTable,'fourclmwidth','topwidth')}">
+            <div class="bccvalueblocks rollwidthcust {!if(!showBccTable,'fourclmwidth','topwidth')}">
                 <apex:outputText value="{!finance.Local_Project__r.name}"/>
             </div>
             <!-- Populates the alignment of business case for that rollout that it is confirmed  or Unconfirmed  -->

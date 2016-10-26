@@ -561,9 +561,10 @@
                 .bccheadblocks{height:30px;padding:10px;display:table-cell;border-top: 1px solid #7fa19e;border-bottom: 1px solid #7fa19e;}
                 .bcclowerblock{background: #fff;height:40px;width:100%;display:table;}
                 .bccvalueblocks{height:30px;padding:10px;display:table-cell;border-bottom: 1px solid #7fa19e;}
-                .fourclmwidth{width:25%;}
-                .compltwidth{width:5%;}
-                .topwidth{width:20%;}
+                .fourclmwidth{width:100px;}
+                .compltwidth{width:50px; text-align:left; padding-left:5px;}
+                .topwidth{width:100px;text-align:left;padding-left:5px;}
+                .rollwidthcust.topwidth{width:140px;}
                 
                 .glbPLDtableHead{width:100%;margin-bottom:10px;margin-top:5px;}
                 .glbPLDtableHead thead th{background-color: #dceefa;}
