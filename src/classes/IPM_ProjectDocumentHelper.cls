@@ -580,6 +580,7 @@ public with sharing class IPM_ProjectDocumentHelper
 	            projDocSect.IPM_Has_Appendix__c=section.IPM_Has_Appendix__c;
 	            projDocSect.Is_IPM_Global_Consolidated__c=section.Is_IPM_Global_Consolidated__c;
 	            projDocSect.IPM_Summary_Character_Remaining__c = section.IPM_Character_Limit__c;
+	            projDocSect.IPM_Gate_Document__c=IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT;
 	            pdlDocumentSectionList.add(projDocSect);
 	            
 	        }
