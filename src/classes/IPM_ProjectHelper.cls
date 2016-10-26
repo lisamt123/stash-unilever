@@ -1367,16 +1367,16 @@ public with sharing class IPM_ProjectHelper
     private static Map<Id,IPM_Project_Rollout__c> getSourceToRegionalRolloutMap(Map<Id,IPM_Project__c> incomingProjectMap){
     	
     	Set<Id> sourceRolloutIdSet =  new Set<Id>();
-        Map<Id,IPM_Project_Rollout__c> sourceToRegionalRolloutMap;
+        Map<Id,IPM_Project_Rollout__c> mapSourceToRegionalRollout;
         for(IPM_Project__c newProj : incomingProjectMap.values()){
         	if( newProj.IPMProject_Span__c == 'Local' && newProj.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && newProj.IPM_Project_Rollout__c != null){
         		sourceRolloutIdSet.add(newProj.IPM_Project_Rollout__c); 
         	}
         }
         if(!sourceRolloutIdSet.isEmpty()){
-           sourceToRegionalRolloutMap = new Map<Id,IPM_Project_Rollout__c>([Select id,Regional_Rollout__c from IPM_Project_Rollout__c Where Id IN : sourceRolloutIdSet  Limit 10000]);
+           mapSourceToRegionalRollout = new Map<Id,IPM_Project_Rollout__c>([Select id,Regional_Rollout__c from IPM_Project_Rollout__c Where Id IN : sourceRolloutIdSet  Limit 10000]);
         }
-        return sourceToRegionalRolloutMap;
+        return mapSourceToRegionalRollout;
     }
     
     
