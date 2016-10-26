@@ -5,7 +5,7 @@
         <customApplicationComponent>Console.BuiltInComponent.mostRecentlyUsed</customApplicationComponent>
         <customApplicationComponent>Console.BuiltInComponent.knowledgeOne</customApplicationComponent>
         <customApplicationComponent>WorkIt_Console_App_Hidden</customApplicationComponent>
-        <customApplicationComponent>ONE_Correspond</customApplicationComponent>
+        <customApplicationComponent>Smart_Correspond</customApplicationComponent>
     </customApplicationComponents>
     <defaultLandingTab>standard-home</defaultLandingTab>
     <detailPageRefreshMethod>autoRefresh</detailPageRefreshMethod>

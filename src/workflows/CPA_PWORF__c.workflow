@@ -202,10 +202,6 @@
             <field>eml_VDM_group_email__c</field>
             <type>email</type>
         </recipients>
-        <recipients>
-            <field>lkp_Owner__c</field>
-            <type>userLookup</type>
-        </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Reminder_to_respond_to_PWORF</template>
     </alerts>
@@ -220,10 +216,6 @@
         <recipients>
             <field>eml_VDM_group_email__c</field>
             <type>email</type>
-        </recipients>
-        <recipients>
-            <field>lkp_Owner__c</field>
-            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Reminder_to_submit_PWO</template>
@@ -292,10 +284,6 @@
         <recipients>
             <field>eml_SMT_group_email__c</field>
             <type>email</type>
-        </recipients>
-        <recipients>
-            <field>lkp_Owner__c</field>
-            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_Reminder_to_enter_a_Clarity_ID</template>
@@ -755,7 +743,7 @@
     <fieldUpdates>
         <fullName>CPA_PWORF_SMT_group_email</fullName>
         <field>eml_SMT_group_email__c</field>
-        <formula>&quot;Vivek.Kalidoss@unilever.com&quot;</formula>
+        <formula>&quot;ApplicationSupplier.PM@unilever.com&quot;</formula>
         <name>CPA PWORF SMT group email</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -879,7 +867,7 @@ null)),null)</formula>
     <fieldUpdates>
         <fullName>CPA_PWORF_VDM_group_mail</fullName>
         <field>eml_VDM_group_email__c</field>
-        <formula>&quot;Sameer.Vaidya@unilever.com&quot;</formula>
+        <formula>&quot;Demand.Unilever@accenture.com&quot;</formula>
         <name>CPA PWORF VDM group mail</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
