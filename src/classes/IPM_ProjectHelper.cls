@@ -1086,36 +1086,7 @@ public with sharing class IPM_ProjectHelper
     
                         if( !String.isBlank(associatedProjectType.IPM_FinancialsInsertPostfix__c) &&  !String.isBlank(associatedProjectType.IPM_InsertFinancialsAPIName__c)  )
                         {
-                            String[] financialPostFixArray = associatedProjectType.IPM_FinancialsInsertPostfix__c.split(IPM_ConstantUtils.COMMA);
-                            
-                            for(String KEY_POSTFIX : financialPostFixArray)
-                            {
-                               String[] financialInsertformats = associatedProjectType.IPM_InsertFinancialsAPIName__c.split(IPM_ConstantUtils.TILDA_DELIMITER);
-                               for(String postFixToAPINameString : financialInsertformats)
-                               {
-                                   String[] postFixToAPINameArray = postFixToAPINameString.split(IPM_ConstantUtils.EQUALS_DELIMITER); 
-                                   if(postFixToAPINameArray!=null && !postFixToAPINameArray.isEmpty() && postFixToAPINameArray[0] == KEY_POSTFIX)
-                                   {
-                                       String finAPINameString = postFixToAPINameArray[1];
-                                       if(!String.isBlank(finAPINameString))
-                                       {
-                                           Set<String> finAPINameSet = new Set<String>(finAPINameString.split(IPM_ConstantUtils.COMMA));
-                                           financeUniquePostFixToAPIMap.put(KEY_POSTFIX,finAPINameSet);
-                                       }
-                                   }
-                               }
-    
-                               String[] financialInsertRecordTypes = associatedProjectType.IPM_FinancialsInsertRecordType__c.split(IPM_ConstantUtils.COMMA);
-                               for(String postFixToRecordTypeName : financialInsertRecordTypes)
-                               {
-                                   String[] postFixToRecordTypeArray = postFixToRecordTypeName.split(IPM_ConstantUtils.EQUALS_DELIMITER);
-                                   if(postFixToRecordTypeArray!=null && !postFixToRecordTypeArray.isEmpty() && postFixToRecordTypeArray[0] == KEY_POSTFIX )
-                                   {
-                                        financeUniquePostFixToRecordMap.put(KEY_POSTFIX,postFixToRecordTypeArray[1]);
-                                   }    
-                               }
-                              
-                            }
+                        	getfinanceUniquePostFixMap(associatedProjectType, financeUniquePostFixToRecordMap, financeUniquePostFixToAPIMap);
                         }
                         
                         
@@ -1264,6 +1235,43 @@ public with sharing class IPM_ProjectHelper
     }
     
     /*
+    	Get project to post fix maps
+    */
+    private static void getfinanceUniquePostFixMap(IPM_Project_Type__c associatedProjectType, Map<String,String> financeUniquePostFixToRecordMap, Map<String,Set<String>> financeUniquePostFixToAPIMap){
+    	
+      String[] financialPostFixArray = associatedProjectType.IPM_FinancialsInsertPostfix__c.split(IPM_ConstantUtils.COMMA);
+       for(String KEY_POSTFIX : financialPostFixArray)
+        {
+          String[] financialInsertformats = associatedProjectType.IPM_InsertFinancialsAPIName__c.split(IPM_ConstantUtils.TILDA_DELIMITER);
+            for(String postFixToAPINameString : financialInsertformats)
+            {
+                String[] postFixToAPINameArray = postFixToAPINameString.split(IPM_ConstantUtils.EQUALS_DELIMITER); 
+                if(postFixToAPINameArray!=null && !postFixToAPINameArray.isEmpty() && postFixToAPINameArray[0] == KEY_POSTFIX)
+                {
+                    String finAPINameString = postFixToAPINameArray[1];
+                    if(!String.isBlank(finAPINameString))
+                    {
+                        Set<String> finAPINameSet = new Set<String>(finAPINameString.split(IPM_ConstantUtils.COMMA));
+                        financeUniquePostFixToAPIMap.put(KEY_POSTFIX,finAPINameSet);
+       	 	  		    
+                    }
+                }
+            }
+            
+            String[] financialInsertRecordTypes = associatedProjectType.IPM_FinancialsInsertRecordType__c.split(IPM_ConstantUtils.COMMA);
+            for(String postFixToRecordTypeName : financialInsertRecordTypes)
+            {
+                String[] postFixToRecordTypeArray = postFixToRecordTypeName.split(IPM_ConstantUtils.EQUALS_DELIMITER);
+                if(postFixToRecordTypeArray!=null && !postFixToRecordTypeArray.isEmpty() && postFixToRecordTypeArray[0] == KEY_POSTFIX )
+                {
+                    financeUniquePostFixToRecordMap.put(KEY_POSTFIX,postFixToRecordTypeArray[1]);
+                    
+                }    
+            }
+        }       
+    }
+    
+    /*
     	Get project to post fix to unique financial key set
     */
     private static void getprojectToPostFixToUniqueFinancialKeySet(Map<Id,IPM_Project__c> incomingProjectMap, Map<Id,Map<String,Set<String>>> projectToPostFixToUniqueFinancialKeySet
@@ -1277,7 +1285,7 @@ public with sharing class IPM_ProjectHelper
             Set<String> resultantPostFixSet = new Set<String>();
             // Get associated Project Type
             IPM_Project_Type__c associatedProjectType =IPM_Utils.retrieveProjectType(project);
-            system.debug('###associatedProjectType###'+associatedProjectType);
+            
             
             // Check if financials can be updated for this Project Type.
             if(associatedProjectType!=null)
@@ -1294,8 +1302,6 @@ public with sharing class IPM_ProjectHelper
                     resultantPostFixSet.addAll(financialsInsertFormats);
                 }
                 
-                System.debug('resultantPostFixSet ==>'+resultantPostFixSet);
-                 System.debug('projectToRolloutMap ==>'+projectToRolloutMap);
                 
                 for(String KEY_POSTFIX  : resultantPostFixSet )
                 {
@@ -1327,37 +1333,10 @@ public with sharing class IPM_ProjectHelper
                     else
                     {
                         
-                        System.debug('project.IPM_ProjectGKM__c==>'+project.IPM_ProjectGKM__c);
+                        
                         uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
                         
-                        if(KEY_POSTFIX=='NONKEY' && projectToRolloutMap.containsKey(project.Id))
-                        {
-                            System.debug('projectToRolloutMap ==>'+projectToRolloutMap);
-                            System.debug('project.Id ==>'+project.Id);
-                            System.debug('projectToRolloutMap.get(project.Id).values() ==>'+projectToRolloutMap.get(project.Id).values());
-                            
-                            for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
-                            {
-                                if(associatedRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
-                                {
-                                    uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c+IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
-                                }
-                            }
-                        }
-                        else{
-                        	
-                        	if(project != null && projectToRolloutMap != null && projectToRolloutMap.get(project.Id) != null){
-                        		for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
-                                {
-                                    if(associatedRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
-                                    {
-                                        uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c+IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
-                                    }
-                                }
-                            }
-                        	uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
-                        }  
-                         //uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                        getUniqueFinancialKeySet(KEY_POSTFIX, uniqueFinancialKeySet, project);
                     }
                     
                     // Add to the comprehensive list of unique Financial Keys.
@@ -1375,6 +1354,37 @@ public with sharing class IPM_ProjectHelper
             }
         }  
     }
+    
+    /*
+    	Get Source to Regional Rollout map
+    */
+    private static void getUniqueFinancialKeySet(String KEY_POSTFIX, Set<String> uniqueFinancialKeySet, IPM_Project__c project){
+    	if(KEY_POSTFIX=='NONKEY' && projectToRolloutMap.containsKey(project.Id))
+        {
+            
+            for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
+            {
+                if(associatedRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
+                {
+                    uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c+IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                }
+            }
+        }
+        else{
+        	
+        	if(project != null && projectToRolloutMap != null && projectToRolloutMap.get(project.Id) != null){
+        		for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
+                {
+                    if(associatedRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
+                    {
+                        uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c+IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                    }
+                }
+            }
+        	uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+        }
+    }
+    
     
     /*
     	Get Source to Regional Rollout map
