@@ -40,7 +40,7 @@ public with sharing class IPM_CreateRolloutProjects
                     	rollout.IPM_Rollout_Gatekeeper__c=rollout.IPM_Regional_PL__c;
                     }
                     IPM_Project__c newIpmProject = new IPM_Project__c(
-                        IPM_Project_Name__c = rollout.IPM_Rollout_Project__c,
+                        IPM_Project_Name__c = rollout.Name,
                         Market_Cluster__c = rollout.Market_Cluster__c,
                         IPM_Target_Launch_Dates__c = rollout.Target_Launch_Date__c,
                         IPM_Parent_Project__c = ipmProject.Id,

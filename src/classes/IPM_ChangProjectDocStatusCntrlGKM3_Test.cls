@@ -195,6 +195,18 @@ public class IPM_ChangProjectDocStatusCntrlGKM3_Test {
             chngPro.Status = IPM_ConstantUtils.STATUS_APPROVED;
             chngPro.checkPDLIsApproved();
        		chngPro.approvePDLDocument();
+       		
+       		
+       	    pRef = Page.IPM_GateDocument;
+            pRef.getParameters().put(IPM_ConstantUtils.SF_ID, project[0].Id);
+            pRef.getParameters().put('printDoc', IPM_ConstantUtils.PRODUCT_DESIGN_LOCK);
+            Test.setCurrentPage(pRef);
+            
+            IPM_GateDocumentController ipmGateDocCtrl=new IPM_GateDocumentController();
+            ipmGateDocCtrl.isPDLApproved = true; 
+            ipmGateDocCtrl.projectDoc.IPM_Document_Status__c = IPM_ConstantUtils.STATUS_APPROVED;
+            
+            ipmGateDocCtrl.exportToPdf();
         } 
        
     }
