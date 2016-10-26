@@ -4,8 +4,8 @@
 */  
 @isTest
 private class  IPM_FinancialActionStandards_Test {
-    private static final string RESULT_STR='result';
-    private static final String FINANCIAL_ACTION_STANDARDS = 'Financial Action Standards';  
+    
+     private static final string TESTCOMMENT5 = 'Test Comments5';
     @testSetup static void financialSetUp() {
          List<User> userList = IPM_TestFactory_Helper.createUserList();
          
@@ -218,12 +218,12 @@ private class  IPM_FinancialActionStandards_Test {
             // When comment value is NPV
             ipmFinController.commentField = IPM_FinancialActionStandards.COMMENT_NPV;
             ipmFinController.isComment = true;
-            ipmFinController.comments = 'Test Comments5';
+            ipmFinController.comments = TESTCOMMENT5;
             ipmFinController.updateActionStandards();        
             proDocSectionContent = [ Select IPM_NPV_Action_Standard_Charter_Cmts__c,IPM_NPV_Action_Standard_Charter__c 
                                      from IPM_Project_Document_Section_Content__c 
                                      where id=:proDocSectionContentId ];
-            System.assertEquals('Test Comments5',proDocSectionContent.IPM_NPV_Action_Standard_Charter_Cmts__c,'IPM_NPV_Action_Standard_Charter_Cmts__c value  set properly');
+            System.assertEquals(TESTCOMMENT5,proDocSectionContent.IPM_NPV_Action_Standard_Charter_Cmts__c,'IPM_NPV_Action_Standard_Charter_Cmts__c value  set properly');
             
             ipmFinController.commentField = IPM_FinancialActionStandards.COMMENT_NPV;
             ipmFinController.numvalue = 5;
@@ -237,12 +237,12 @@ private class  IPM_FinancialActionStandards_Test {
             // When comment value is IRR
             ipmFinController.commentField = IPM_FinancialActionStandards.COMMENT_IRR;
             ipmFinController.isComment = true;
-            ipmFinController.comments = 'Test Comments5';
+            ipmFinController.comments = TESTCOMMENT5;
             ipmFinController.updateActionStandards();
             proDocSectionContent = [ Select IPM_IRR_Action_Standard_Charter_Cmts__c,IPM_IRR_Action_Standard_Charter__c 
                                      from IPM_Project_Document_Section_Content__c 
                                      where id=:proDocSectionContentId ];
-            System.assertEquals('Test Comments5',proDocSectionContent.IPM_IRR_Action_Standard_Charter_Cmts__c,'IPM_IRR_Action_Standard_Charter_Cmts__c value  set');
+            System.assertEquals(TESTCOMMENT5,proDocSectionContent.IPM_IRR_Action_Standard_Charter_Cmts__c,'IPM_IRR_Action_Standard_Charter_Cmts__c value  set');
             
             
             ipmFinController.commentField = IPM_FinancialActionStandards.COMMENT_IRR;

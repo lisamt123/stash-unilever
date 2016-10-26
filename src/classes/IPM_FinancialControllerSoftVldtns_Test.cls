@@ -20,6 +20,8 @@ private class IPM_FinancialControllerSoftVldtns_Test
   private static final String GLOBAL_COMPANY_CARD = 'Global Company Card';
   private static final String PROJECTS_NOT_CREATED = 'Projects not created';
   private static final string FIELDSUFFIX = 'Global';
+  private static final string PRO_ID = 'Id';
+  private static final string GKM1 = 'GKM1';
   
   /***********************************
   Description of the purpose of the method. 
@@ -141,9 +143,9 @@ private class IPM_FinancialControllerSoftVldtns_Test
       List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id,recordTypeid,isActive__c,Target_Launch_Date__c,Financial_external_Id__c,Global_External_Id__c,Regional_External_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c,Red_Validation_Cells_Regional__c,Yellow_Validation_Cells_Regional__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Local__c,Red_Validation_Cells_Global__c,Yellow_Validation_Cells_Global__c from IPM_Financial__c limit 10]);
       List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id,isActive__c,recordTypeid,Target_Launch_Date__c, Yellow_Validation_Cells_Global__c,Red_Validation_Cells_Regional__c,Yellow_Validation_Cells_Regional__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Local__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 10]);
       List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where name NOT IN ('IPM_MasterProject')];
-      
-      lstProjects[0].IPM_SourceProjectType__c = 'Original';
-      lstProjects[0].IPM_ProjectGKM__c = 'GKM1';
+     
+      lstProjects[0].IPM_SourceProjectType__c = ORIGINAL;
+      lstProjects[0].IPM_ProjectGKM__c = GKM1;
       Update lstProjects[0];
       
       lstFin[0].Parent_Project__c = lstProjects[0].id;
@@ -155,7 +157,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
           Test.setCurrentPage(pageRef);
               
             
-          ApexPages.currentPage().getParameters().put('Id', lstProjects[0].Id);
+          ApexPages.currentPage().getParameters().put(PRO_ID, lstProjects[0].Id);
           
           Test.startTest();
           IPM_FinancialController finController =  new IPM_FinancialController();
@@ -191,15 +193,15 @@ private class IPM_FinancialControllerSoftVldtns_Test
 
       
       
-      lstProjects[1].IPM_SourceProjectType__c = 'Original';
-      lstProjects[1].IPM_ProjectGKM__c = 'GKM1';
+      lstProjects[1].IPM_SourceProjectType__c = ORIGINAL;
+      lstProjects[1].IPM_ProjectGKM__c = GKM1;
       lstProjects[1].IPM_Project_Y3iTO__c  = 3000.00;
       Update lstProjects[1];
       
       Test.startTest();
       
       System.runAs(globalProjectLeader){
-        ApexPages.currentPage().getParameters().put('Id', lstProjects[1].Id);
+        ApexPages.currentPage().getParameters().put(PRO_ID, lstProjects[1].Id);
       
         IPM_FinancialController finController2 =  new IPM_FinancialController();
         finController2.currentFinancialId = lstFin[1].Id;
@@ -226,7 +228,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
       
       String queryString='Select ';
       For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
-          if (!field.equalsignoreCase('Id') ){
+          if (!field.equalsignoreCase(PRO_ID) ){
               queryString+= field + ', ';
           }
       }
@@ -237,15 +239,15 @@ private class IPM_FinancialControllerSoftVldtns_Test
 
       
       
-      lstProjects[1].IPM_SourceProjectType__c = 'Original';
-      lstProjects[1].IPM_ProjectGKM__c = 'GKM1';
+      lstProjects[1].IPM_SourceProjectType__c = ORIGINAL;
+      lstProjects[1].IPM_ProjectGKM__c = GKM1;
       lstProjects[1].IPM_Project_Y3iTO__c  = 3000.00;
       Update lstProjects[1];
       
       Test.startTest();
       
       System.runAs(globalProjectLeader){
-        ApexPages.currentPage().getParameters().put('Id', lstProjects[1].Id);
+        ApexPages.currentPage().getParameters().put(PRO_ID, lstProjects[1].Id);
         IPM_Financial__c currentFinancial = null;        
         for(IPM_Financial__c fin: lstFin){
             if(!fin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
@@ -301,11 +303,10 @@ private class IPM_FinancialControllerSoftVldtns_Test
   	  User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
       
       List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id,recordTypeid,isActive__c,Target_Launch_Date__c,Financial_external_Id__c,Global_External_Id__c,Regional_External_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c,Red_Validation_Cells_Regional__c,Yellow_Validation_Cells_Regional__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Local__c,Red_Validation_Cells_Global__c,Yellow_Validation_Cells_Global__c from IPM_Financial__c limit 10]);
-      List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id,isActive__c,recordTypeid,Target_Launch_Date__c, Yellow_Validation_Cells_Global__c,Red_Validation_Cells_Regional__c,Yellow_Validation_Cells_Regional__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Local__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 10]);
       List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where name NOT IN ('IPM_MasterProject')];
      
-      lstProjects[0].IPM_SourceProjectType__c = 'Original';
-      lstProjects[0].IPM_ProjectGKM__c = 'GKM1';
+      lstProjects[0].IPM_SourceProjectType__c = ORIGINAL;
+      lstProjects[0].IPM_ProjectGKM__c = GKM1;
       Update lstProjects[0];
       
       lstFin[0].Parent_Project__c = lstProjects[0].id;
@@ -320,7 +321,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
           Test.setCurrentPage(pageRef);
               
             
-          ApexPages.currentPage().getParameters().put('Id', lstProjects[0].Id);
+          ApexPages.currentPage().getParameters().put(PRO_ID, lstProjects[0].Id);
           
           Test.startTest();
           	

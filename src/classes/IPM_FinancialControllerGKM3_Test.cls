@@ -17,7 +17,7 @@ public class IPM_FinancialControllerGKM3_Test {
     private static final integer EXEC_PART_3 = 3;
     private static final integer EXEC_PART_4 = 4;
     private static final integer EXEC_PART_5 = 5;
-	
+    
     private static final string INVALID_PROJECT_NAME = 'Invalid project name';
     private static final string INVALID_SPAN_NAME = 'Invalid span name';
     private static final string INVALID_PROJECT_TYPE = 'Invalid project type';
@@ -71,8 +71,8 @@ public class IPM_FinancialControllerGKM3_Test {
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCardGKM3,localCompanyCardGKM3};
         insert companyCardList;
         
-		IPM_TestFactory_Helper.getProjectMasterDataForGKM3();
-		
+        IPM_TestFactory_Helper.getProjectMasterDataForGKM3();
+        
         IPM_TestFactory_Helper.shareMasterProject(userList); 
          
          //User at index 0 is Global Project Leader and hence assert is not done based on hard coded names
@@ -126,8 +126,8 @@ public class IPM_FinancialControllerGKM3_Test {
                 setIds.add(localRollout.id);
             } 
 
-            insert localRolloutList; 
-
+            insert localRolloutList;               
+            
             System.debug('getQueries3>>'+Limits.getQueries());
             system.assert(localRolloutList.size()>0, 'project rollout map cannot be created'); //names cannot be asserted as project and rollout map set in helper class
             
@@ -181,7 +181,7 @@ public class IPM_FinancialControllerGKM3_Test {
      } 
      
 
-     private static void testCatch(IPM_project__c project, IPM_FinancialController ipmFinCon){
+     private static void testCatch( IPM_FinancialController ipmFinCon){
          ipmFinCon.project = null;
          ipmFinCon.currentfinancial = null;
          ipmFinCon.currentfinancialid = null;
@@ -235,9 +235,9 @@ public class IPM_FinancialControllerGKM3_Test {
         {
 
              //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-             IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c,IPM_GateKeeping_Model__c,IPM_Phase__c, IPM_ProjectGKM__c, IPM_CompanyCardText__c from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original'  and Name='GKM3TestComments1' limit 1];
+             IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c,IPM_GateKeeping_Model__c,IPM_Phase__c, IPM_ProjectGKM__c, IPM_CompanyCardText__c from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original'  and Name=:TEST_COMMENTS limit 1];
              system.assert(globalOriginal!=null, 'Global original project not created');
-             system.assertEquals(globalOriginal.name, 'GKM3TestComments1', INVALID_PROJECT_NAME);
+             system.assertEquals(globalOriginal.name, TEST_COMMENTS, INVALID_PROJECT_NAME);
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c globFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
@@ -265,10 +265,8 @@ public class IPM_FinancialControllerGKM3_Test {
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
              
              //private method testCatch has ASSERTS statements so no duplicates here
-             testCatch(globalOriginal, ipmFinCon);
-            
-             
-             
+             testCatch(ipmFinCon);
+ 
         }
 
         Test.stopTest();    
@@ -284,10 +282,10 @@ public class IPM_FinancialControllerGKM3_Test {
         System.runAs(globalProjectLeader)
         {
             //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-             IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name='GKM3TestComments1' limit 1];
+             IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original' and Name=: TEST_COMMENTS limit 1];
 
              system.assert(globalOriginal!=null, 'Global project not created');
-             system.assertEquals(globalOriginal.name, 'GKM3TestComments1', INVALID_PROJECT_NAME);
+             system.assertEquals(globalOriginal.name, TEST_COMMENTS, INVALID_PROJECT_NAME);
              
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c globFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
@@ -474,14 +472,13 @@ public class IPM_FinancialControllerGKM3_Test {
      {
        
         User globalProjectLeader = [Select Id,email from User where email =:GLOBAL_PL_EMAIL_ID]; 
-        User LocalProjectLeader = [Select Id,email from User where email =:LOCAL_PL_EMAIL_ID];   
         
         System.runAs(globalProjectLeader)
         {
              //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-             IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c,IPM_Project_Based_Threshold_Status__c,IPM_PrepareForArchival__c,IPM_ProjectSubType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c,IPM_GateKeeping_Model__c,IPM_Phase__c, IPM_ProjectGKM__c, IPM_CompanyCardText__c from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original'  and Name='GKM3TestComments1' limit 1];
+             IPM_Project__c globalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c,IPM_Project_Based_Threshold_Status__c,IPM_PrepareForArchival__c,IPM_ProjectSubType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c,IPM_GateKeeping_Model__c,IPM_Phase__c, IPM_ProjectGKM__c, IPM_CompanyCardText__c from IPM_Project__c where IPMProject_Span__c='Global' and IPM_Project_Type__c='Original'  and Name=: TEST_COMMENTS limit 1];
              system.assert(globalOriginal!=null, 'Global original project not created');
-             system.assertEquals(globalOriginal.name, 'GKM3TestComments1', INVALID_PROJECT_NAME);
+             system.assertEquals(globalOriginal.name, TEST_COMMENTS, INVALID_PROJECT_NAME);
                      
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c globFin = [select id,Is_Nonkey_Business_Case_Changed__c, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c,Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c,Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c,Gate_Keeping_Model__c,
@@ -530,7 +527,7 @@ public class IPM_FinancialControllerGKM3_Test {
                  system.assertEquals(globFin.Is_Nonkey_Business_Case_Changed__c == false, true);        
                  
                  String LocalValue= ipmFinCon.tldAcceptFromValue;
-                 system.assertEquals(LocalValue == Label.Accept_from_Local, true);
+                 system.assertEquals(LocalValue, Label.Accept_from_Local);
                  
                  globalOriginal.IPMProject_Span__c = PHASE_LOCAL;
                  update globalOriginal;
