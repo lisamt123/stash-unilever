@@ -5,6 +5,6 @@
     <encodingKey>UTF-8</encodingKey>
     <name>FS Email to opportunity owner when Deal approval exactly 60 days</name>
     <style>none</style>
-    <subject>Discount Approval Expired</subject>
+    <subject>{!Opportunity.Name} Discount Approval Expired</subject>
     <type>text</type>
 </EmailTemplate>
