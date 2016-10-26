@@ -508,7 +508,7 @@ public class IPM_FinancialControllerGKM3_Test {
                  
                  globFin.Volume_Unit_Global__c = Volume_Unit;
                  update globFin;
-                 system.assertEquals(globFin.Volume_Unit_Global__c == Volume_Unit,true);
+                 system.assertEquals(globFin.Volume_Unit_Global__c,Volume_Unit);
     
                  ipmFinCon.UpdateVolumeType();
                  
@@ -524,7 +524,7 @@ public class IPM_FinancialControllerGKM3_Test {
                  testCurrency();    
                 
                  ipmFinCon.resetNonKeyBusinessCaseChangedFlag(); 
-                 system.assertEquals(globFin.Is_Nonkey_Business_Case_Changed__c == false, true);        
+                 system.assertEquals(globFin.Is_Nonkey_Business_Case_Changed__c ,false);        
                  
                  String LocalValue= ipmFinCon.tldAcceptFromValue;
                  system.assertEquals(LocalValue, Label.Accept_from_Local);
@@ -532,7 +532,7 @@ public class IPM_FinancialControllerGKM3_Test {
                  globalOriginal.IPMProject_Span__c = PHASE_LOCAL;
                  update globalOriginal;
                  
-                 system.assertEquals(globalOriginal.IPMProject_Span__c == PHASE_LOCAL ,true);
+                 system.assertEquals(globalOriginal.IPMProject_Span__c,PHASE_LOCAL);
                  
                  ApexPages.currentPage().getParameters().put('Id', globalOriginal.Id);
                  
@@ -546,7 +546,7 @@ public class IPM_FinancialControllerGKM3_Test {
                  System.assertEquals(ipmFinCon1.isEditMode, true);             
                   
                  String GlobalValue =  ipmFinCon.tldAcceptFromValue;
-                 system.assertEquals( GlobalValue == Label.Accept_from_Global,true);
+                 system.assertEquals( GlobalValue,Label.Accept_from_Global);
                  
                  Boolean KeyNonKey = ipmFinCon.KeyNonKeyGKM;
                  
