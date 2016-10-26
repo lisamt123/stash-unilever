@@ -1379,7 +1379,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         	 analyticObj.IPM_Expected_Contract_Approval_Date__c = parent.IPM_Expected_Contract_Approval_Date__c;
         	 analyticObj.IPM_Expected_Market_Ready_Approval_Date__c = parent.IPM_Expected_Market_Ready_Approval_Date__c;
              analyticObj.IPM_Expected_Market_Deployment_App_Date__c = parent.IPM_Expected_Market_Deployment_App_Date__c;
-             analyticObj.IPM_Company__c = pr.IPM_Company_Card__r.Name;              
+                  
              analyticObj.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
         	 if(pr.Target_LaunchYear__c != null){
              analyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;

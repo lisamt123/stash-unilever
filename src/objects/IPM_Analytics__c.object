@@ -767,7 +767,7 @@
         <description>To Copy market name of project</description>
         <externalId>false</externalId>
         <label>Market Name</label>
-        <length>50</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -962,7 +962,7 @@
         <description>To copy the sector of project</description>
         <externalId>false</externalId>
         <label>Sector</label>
-        <length>50</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -996,7 +996,7 @@
         <description>To copy the sub sector of project</description>
         <externalId>false</externalId>
         <label>Sub Sector</label>
-        <length>50</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
