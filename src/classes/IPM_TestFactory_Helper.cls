@@ -1071,7 +1071,7 @@ public class IPM_TestFactory_Helper
     {
         Map<String,List<Object>> regionalRolloutMap = new Map<String,List<Object>>
         {
-            IPM_ROLLOUT_PROJECT => new List<String>(),RECORD_TYPE_ID => new List<object>(),MARKET_CLUSTER => new List<String>(),
+            NAME => new List<String>(),IPM_ROLLOUT_PROJECT => new List<String>(),RECORD_TYPE_ID => new List<object>(),MARKET_CLUSTER => new List<String>(),
             MARKET_CLUSTER_NAME => new List<String>(),TARGET_LAUNCH_DATE => new List<object>(),IPM_ROLLOUT_PLAN => new List<object>(),
             IPM_ROLLOUT_TYPE => new List<object>(),IPM_REGIONAL_PL_TEXT => new List<object>(),IPM_REGIONAL_PL => new List<Id>(),
             IPM_PROJECT => new List<Id>(),IS_ACTIVE => new List<object>()
@@ -1081,8 +1081,11 @@ public class IPM_TestFactory_Helper
         
         Id regionalRecordType = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).RecordTypeId;
         
-        for(Integer counter=0;counter<pProjectList.size();counter++)
+        for(Integer counter=0;counter<pProjectList.size();counter++) 
         {
+            regionalRolloutMap.get(NAME).add(pProjectList[counter].IPM_Project_Name__c+'_AFR');
+            regionalRolloutMap.get(NAME).add(pProjectList[counter].IPM_Project_Name__c+'_LA');
+            
             regionalRolloutMap.get(IPM_ROLLOUT_PROJECT).add(pProjectList[counter].IPM_Project_Name__c+'_AFR');
             regionalRolloutMap.get(IPM_ROLLOUT_PROJECT).add(pProjectList[counter].IPM_Project_Name__c+'_LA');
             
