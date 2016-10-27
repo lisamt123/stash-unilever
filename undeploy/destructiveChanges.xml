@@ -8,12 +8,12 @@
 	
 	<members>CMS_ContentToCarousel__c</members>
 	<members>CMS_Page_Article__c</members>
-	<members>Carousel__c</members>
+	
 	<members>Chatter_History__c</members>
 	
 	<members>Event_Member__c</members>
 	<members>My_Library__c</members>
-	<members>isll_Event_Visit__c</members>
+	
      <members>ISLL_Custom_Settings__c</members>
 	<members>isllBrainResultsSettings__c</members>
 	
