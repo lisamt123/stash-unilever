@@ -1,2 +1,0 @@
-src
-src/objects/Product2.object
