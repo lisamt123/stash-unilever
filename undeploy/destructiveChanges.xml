@@ -1,136 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
-
-<types>
-	<members>Content_Uploader</members>
-	<members>Delete_Chatter_History</members>
-	<members>SME_Selection</members>
+    <types>
 	<members>Sustainable_Living_Lab</members>
-	<name>CustomTab</name>
+	<name>CustomApplication</name>
+</types>
+<types>
+	<members>ISLL_Read_Only</members>
+	<members>ISLL_Brand_Marketing_User</members>
+	<members>ISLL_Moderator</members>
+	<members>isll_CMS_Admin</members>
+	<name>PermissionSet</name>
 </types>
 
 <types>
-	<members>isll_AdditionalContentController</members>
-	<members>isll_AdditionalContentController</members>
-	<members>isll_AdditionalContentControllerTest</members>
-	<members>isll_ArticleComponentController</members>
-	<members>isll_ArticleComponentControllerTest</members>
-	<members>isll_ArticleEditController</members>
-	<members>isll_ArticleEditControllerTest</members>
-	<members>isll_BrainResultsController</members>
-	<members>isll_BrainResultsControllerTest</members>
-	<members>isll_CarouselController</members>
-	<members>isll_CarouselControllerTest</members>
-	<members>isll_ChatterComponentController</members>
-	<members>isll_ChatterComponentControllerTest</members>
-	<members>isll_ChatterGroupSearchController</members>
-	<members>isll_ChatterGroupSearchControllerTest</members>
-	<members>isll_CmsContentComponentController</members>
-	<members>isll_CmsContentComponentControllerTest</members>
-	<members>isll_ContentUploaderController</members>
-	<members>isll_ContentUploaderControllerTest</members>
-	<members>isll_DeleteChatterHistoryController</members>
-	<members>isll_DeleteChatterHistoryControllerTest</members>
-	<members>isll_EditPageContentController</members>
-	<members>isll_EditPageContentControllerTest</members>
-	<members>isll_EventController</members>
-	<members>isll_EventControllerTest</members>
-	<members>isll_EventDetailExtention</members>
-	<members>isll_EventDetailExtentionTest</members>
-	<members>isll_EventHandler</members>
-	<members>isll_EventHandlerTest</members>
-	<members>isll_FeedItemTriggerHandler</members>
-	<members>isll_FeedItemTriggerHandlerTest</members>
-	<members>isll_LibraryController</members>
-	<members>isll_LibraryControllerTest</members>
-	<members>isll_ModeratorComponentController</members>
-	<members>isll_ModeratorComponentControllerTest</members>
-	<members>isll_MultiselectController</members>
-	<members>isll_MultiselectControllerTest</members>
-	<members>isll_NewsArchiveController</members>
-	<members>isll_NewsArchiveControllerTest</members>
-	<members>isll_ReturnUrlExtention</members>
-	<members>isll_ReturnUrlExtentionTest</members>
-	<members>isll_SustainableLivingExpertsCntrTest</members>
-	<members>isll_SustainableLivingExpertsController</members>
-	<members>isll_SustainExpComponentController</members>
-	<members>isll_SustainExpComponentControllerTest</members>
-	<members>isll_TestData</members>
-	<members>isll_TopInfluencersCloudController</members>
-	<members>isll_TopInfluencersCloudControllerTest</members>
-	<members>isll_UserpicWithFlagController</members>
-	<members>isll_UserpicWithFlagControllerTest</members>
-	<members>isll_USLPBrandTableCompControllerTest</members>
-	<members>isll_USLPBrandTableComponentController</members>
-	<members>isll_Utility</members>
-	<members>isll_UtilityTest</members>
-	<members>isll_WordCloudController</members>
-	<members>isll_WordCloudControllerTest</members>
-	<name>ApexClass</name>
+	<members>ISLL External Event Member</members>
+	<name>Profile</name>
 </types>
 
 <types>
-	<members>isll_CarouselComponent</members>
-	<members>isll_SearchBarComponent</members>
-	<members>isll_AdditionalContentSmall</members>
-	<members>isll_AllContentInLabComponent</members>
-	<members>isll_ArticleFooterListView</members>
-	<members>isll_ArticleFullView</members>
-	<members>isll_Chatter</members>
-	<members>isll_ChatterComponent</members>
-	<members>isll_CmsContentComponent</members>
-	<members>isll_LibraryKey</members>
-	<members>isll_ModeratorComponent</members>
-	<members>isll_MultiselectPicklist</members>
-	<members>isll_SustainabilityExpertsComponent</members>
-	<members>isll_TopInfluencersCloud</members>
-	<members>isll_UserpicWithFlag</members>
-	<members>isll_UserpicWithFlagV2</members>
-	<members>isll_USLPBrandTableComponent</members>
-	<members>isll_WordCloudComponent</members>
-	<name>ApexComponent</name>
+	<members>ISLL_Lab_Authors</members>
+	<members>ISLL_Lab_Viewers</members>
+	<name>Group</name>
 </types>
-
-<types>
-	<members>isll_Partnerships</members>
-	<members>isll_BrainResults</members>
-	<members>isll_BusinessFundamentals</members>
-	<members>isll_CarouselEditPage</members>
-	<members>isll_CommuniBrain</members>
-	<members>isll_ContentEdit</members>
-	<members>isll_ContentUploader</members>
-	<members>isll_NewsArchive</members>
-	<members>isll_SustainableLivingExperts</members>
-	<members>isll_DeliverSLBrandExp</members>
-	<members>isll_ChatterGroupSearch</members>
-	<members>isll_DeleteChatterHistory</members>
-	<members>isll_EditPageContent</members>
-	<members>isll_EmbedSustainableLIMP</members>
-	<members>isll_Home</members>
-	<members>isll_ModeratorEdit</members>
-	<members>isll_MyLibrary</members>
-	<members>isll_SMEEdit</members>
-	<members>isll_SustainExpertEdit</members>
-	<members>isll_TemplateMain</members>
-	<members>isll_USLPBrandTablbEdit</members>
-	<members>isll_UslpAmbition</members>
-	<members>isll_EventDetail</members>
-	<members>isll_EventMembers</members>
-	<members>isll_Events</members>
-	<members>isll_EventsDetail</members>
-	<members>isll_Events_Edit</members>
-	<members>isll_PastEvents</members>
-	<members>isll_AllContentInIsll</members>
-	<members>isll_ArticleEdit</members>
-	<name>ApexPage</name>
-</types>
-
-<types>
-	<members>isll_EventTrigger</members>
-	<members>isll_FeedItemTrigger</members>
-	<name>ApexTrigger</name>
-</types>
-
-<version>37.0</version>
-
+	    <version>37.0</version>
 </Package>
