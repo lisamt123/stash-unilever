@@ -169,7 +169,7 @@ public with sharing class IPM_AssesmentHandler_Helper {
                         if(assmnt.IPM_Project__c == projectId && projectIdCountryListMap.get(projectId) != null && !projectIdCountryListMap.get(projectId).isEmpty()){
                             //loops over the list of countries
                             for(IPM_Country__c country:projectIdCountryListMap.get(projectId) ){
-                                if(String.isNotBlank(String.valueOf(assmnt.IPM_Country_Name__c))&& String.isNotBlank(String.valueOf(country.Country_Name__c)) && assmnt.IPM_Country_Name__c == country.Country_Name__c){
+                                if(String.isNotBlank(String.valueOf(assmnt.IPM_Country_Code__c))&& String.isNotBlank(String.valueOf(country.Country_Code__c)) && assmnt.IPM_Country_Code__c == country.Country_Code__c){
                                     assmnt.IPM_Country__c = country.Id;
                                 }
                             }
