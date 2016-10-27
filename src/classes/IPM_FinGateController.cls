@@ -51,7 +51,7 @@ public with sharing class IPM_FinGateController {
         
         if (projectId != NULL){
             project = [SELECT Id, IPM_Project_Name__c, Sustainability_Period__c, IPMProject_Span__c, Market_Cluster__c, Market_Cluster_Name__c, IPM_Parent_Project__c, 
-                              IPM_Project_Type__c, IPM_Phase__c 
+                              IPM_Project_Type__c, IPM_Phase__c, Source_Rollout_External_Id__c
                         FROM IPM_Project__C 
                         WHERE Id=:projectId];
             
@@ -137,10 +137,10 @@ public with sharing class IPM_FinGateController {
         totalCalendarFinYears = 0;
         
         if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) {
-            ExternalId = project.IPM_Project_Name__c;
+            ExternalId = project.Source_Rollout_External_Id__c;
         } 
         else {
-            ExternalId = project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+            ExternalId = project.Source_Rollout_External_Id__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
         }
         String queryString = 'SELECT ';
         //IPM Financial

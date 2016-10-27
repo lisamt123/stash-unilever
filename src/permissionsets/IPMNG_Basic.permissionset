@@ -8908,6 +8908,11 @@
         <field>IPM_SourcingUnit__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.Source_Rollout_External_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	<label>IPMNG Basic</label>
 	<objectPermissions>
         <allowCreate>true</allowCreate>

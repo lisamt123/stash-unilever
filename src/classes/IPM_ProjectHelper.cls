@@ -950,7 +950,7 @@ public with sharing class IPM_ProjectHelper
                         {
                             
                             
-                            uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                            uniqueFinancialKeySet.add(project.Source_Rollout_External_Id__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
                             
                             if(KEY_POSTFIX=='NONKEY' && projectToRolloutMap.containsKey(project.Id))
                             {
@@ -974,7 +974,8 @@ public with sharing class IPM_ProjectHelper
 	                                    }
 	                                }
 	                            }
-                            	uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                            	
+                            	uniqueFinancialKeySet.add(project.Source_Rollout_External_Id__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
                             }  
                              //uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
                         }

@@ -8077,6 +8077,11 @@
         <field>IPM_Project_Resource__c.IPM_Is_Lead__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.Source_Rollout_External_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     
     <label>IPM ProjectLeader</label>
     

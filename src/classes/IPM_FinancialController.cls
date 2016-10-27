@@ -471,7 +471,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
      private void setBusinessImpact(Final Id pId){
         //For Generating PDF Retrieving Project Rollouts,Finance and Project Document Sections
         try{
-            String nam=project.IPM_Project_Name__c; 
+            String nam=project.Source_Rollout_External_Id__c; 
             globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
             // For BI and Year3Ito where Source is ORIGINAL project. Will work got GKM1,GKM2,GKM4, ORIGINALS AND ROLLOUT
             if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
@@ -1688,7 +1688,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                       
                 if(financialExternalId !=null) 
                 {
-                   lstLocalProjects = [Select Id from IPM_Project__c WHERE IPM_Parent_Project__c = :project.Id AND IPM_Project_Name__c =:financialExternalId AND IPMProject_Span__c = :IPM_ConstantUtils.PROJECT_SPAN_LOCAL];
+                   lstLocalProjects = [Select Id,Source_Rollout_External_Id__c  from IPM_Project__c WHERE IPM_Parent_Project__c = :project.Id AND Source_Rollout_External_Id__c =:financialExternalId AND IPMProject_Span__c = :IPM_ConstantUtils.PROJECT_SPAN_LOCAL];
                 }
                 else
                 {
@@ -3625,7 +3625,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
         
             queryString+= ' Id FROM IPM_Financial_Years__r ORDER BY Name)';
-            queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.IPM_Project_Name__c+'%\' Limit 1000 FOR UPDATE'; //Added For Update to obtain exclusive access to the record
+            queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.Source_Rollout_External_Id__c+'%\' Limit 1000'; //Added For Update to obtain exclusive access to the record
         
             Map<String,String> finExtIdRedCellsMap= new Map<String,String>();
             Map<String,String> finExtIdYellowCellsMap= new Map<String,String>();

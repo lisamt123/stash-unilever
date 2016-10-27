@@ -65,7 +65,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
         Map<ID, IPM_Project__c> operationalProjects = new Map<ID,IPM_Project__c>();
     	Map<ID, IPM_Project__c> localProjects = new Map<ID,IPM_Project__c>();
     	Map<ID, IPM_Project__c> projects = new Map<ID, IPM_Project__c>(	
-                                                                        [ Select ID, Name, IPM_Project_Type__c, IPMProject_Span__c, IPM_Target_Launch_Dates__c, IPM_Parent_Project__c,IPM_Project_Rollout__c,IPM_Project_Rollout__r.Target_Launch_Date__c,
+                                                                        [ Select ID, Name, Source_Rollout_External_Id__c, IPM_Project_Type__c, IPMProject_Span__c, IPM_Target_Launch_Dates__c, IPM_Parent_Project__c,IPM_Project_Rollout__c,IPM_Project_Rollout__r.Target_Launch_Date__c,
     																		 ( Select Name, Financial_External_ID__c 
     																		   From IPM_Financials_Consolidated__r where isActive__c=true ),
     																		 ( Select Name, Financial_External_ID__c 
@@ -129,7 +129,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	    			IPM_Project__c project = localProjects.get(projId);
 	    			// Update Local projects's financials with projects' TLD
          			for(IPM_Financial__c ipmFinancial:project.IPM_Financials_Local__r) {
-	    				if(ipmFinancial.Financial_External_ID__c==project.name) {
+	    				if(ipmFinancial.Financial_External_ID__c==project.Source_Rollout_External_Id__c) {
                             ipmFinancial.Target_Launch_Date__c = project.IPM_Project_Rollout__r.Target_Launch_Date__c;
 					        financialsMap.put(ipmFinancial.id, ipmFinancial);
 	    				}
@@ -140,7 +140,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	    		
 	        // filter local projects 
 	    		Map<ID, IPM_Project__c> parentProjects = new Map<ID, IPM_Project__c>(	
-			    																	[ Select ID, Name,
+			    																	[ Select ID, Name,Source_Rollout_External_Id__c,
 			    																		( Select Name, IPM_Target_Launch_Dates__c 
 			    																		  From IPM_Projects__r ),
 			    																		( Select Name, Financial_External_ID__c 
@@ -150,7 +150,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	    		
 	    		for(IPM_Project__c parentProj: parentProjects.values()){
 	    			for(IPM_Financial__c ipmFinancial:parentProj.IPM_Financials_Regional__r) {
-	    				if( ipmFinancial.Financial_External_ID__c==(parentProj.name+'_NONKEY') ) {
+	    				if( ipmFinancial.Financial_External_ID__c==(parentProj.Source_Rollout_External_Id__c+'_NONKEY') ) {
 	    					// Update Local projects's NONKEY financials with projects' TLD
 	    					for(IPM_Project__c proj:parentProj.IPM_Projects__r) {
 	    						if(projectIdsNotContainsFinancials.contains(proj.id)) {
