@@ -97,7 +97,7 @@ public with sharing class IPM_HomePageController
                                             (SELECT IPM_Project_Name__c,IPM_Target_Launch_Dates__c,Rollout_Plan_Target_Launch_Date__c from IPM_Projects__r),
                                            (Select id,name,IPM_Project__c,Geography__r.Market_Type__c from IPM_Countries__r),IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,
                                            IPM_GateKeeping_Model__c ,IPM_CompanyCardText__c,IPM_FilledIn_Percentage__c,IPM_Phase__c,IPM_Project_Name__c FROM IPM_Project__c 
-                                           WHERE  IPM_Project_Leader__c = : UserInfo.getUserId() and Is_Archieved__c = false Order By IPM_Project_Name__c LIMIT 50000];
+                                           WHERE  IPM_Project_Leader__c = : UserInfo.getUserId() and Is_Archieved__c = false Order By IPM_Project_Name__c LIMIT 1000];
         Map<id,String> projCountry = new Map<id,String>();
         Map<Id,date> ProjDueDateMap = new Map<Id,date>();
         for(IPM_Project__c proj : lstProjects){
