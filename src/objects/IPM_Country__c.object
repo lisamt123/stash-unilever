@@ -8767,7 +8767,7 @@
     <listViews>
         <fullName>IPM_a7I0L000000GxbR_IPM_Country</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000GxbR</label>
+        <label>IPM_RIO 2 EU_EU</label>
         <queue>IPM_a7I0L000000GxbR</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -8877,6 +8877,105 @@
         <filterScope>Queue</filterScope>
         <label>IPM_BUZIOS LA_LA</label>
         <queue>IPM_a7I0L000000Gxco</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gxcy_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000Gxcy</label>
+        <queue>IPM_a7I0L000000Gxcy</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gxd3_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ZAP INDIA SAS</label>
+        <queue>IPM_a7I0L000000Gxd3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gxd8_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_GANADORES_SAS</label>
+        <queue>IPM_a7I0L000000Gxd8</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GxdD_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GxdD</label>
+        <queue>IPM_a7I0L000000GxdD</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GxdI_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SENORITACEE_EU</label>
+        <queue>IPM_a7I0L000000GxdI</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GxdN_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TEXAS W3_SAS</label>
+        <queue>IPM_a7I0L000000GxdN</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GxdS_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GxdS</label>
+        <queue>IPM_a7I0L000000GxdS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GxdX_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_INFUSION TONIC_EU</label>
+        <queue>IPM_a7I0L000000GxdX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gxdc_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000Gxdc</label>
+        <queue>IPM_a7I0L000000Gxdc</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gxdh_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_JAZZW2TK_N&amp;R</label>
+        <queue>IPM_a7I0L000000Gxdh</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gxdm_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000Gxdm</label>
+        <queue>IPM_a7I0L000000Gxdm</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
