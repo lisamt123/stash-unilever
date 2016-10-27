@@ -2716,6 +2716,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>FS_AmountOfVisitors__c</fullName>
         <description>For amount of visitors</description>
         <externalId>false</externalId>
+        <inlineHelpText>В день?</inlineHelpText>
         <label>Amount Of Visitors</label>
         <precision>18</precision>
         <required>false</required>
@@ -3901,6 +3902,16 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <controllingFieldValues>Стрит-фуд</controllingFieldValues>
                 <controllingFieldValues>Фаст-фуд</controllingFieldValues>
             </picklistValues>
+            <picklistValues>
+                <fullName>Others</fullName>
+                <default>false</default>
+                <controllingFieldValues>Другое</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Metro</fullName>
+                <default>false</default>
+                <controllingFieldValues>Метро</controllingFieldValues>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -4045,6 +4056,14 @@ At least 3 out of 4 = 5</inlineHelpText>
             </picklistValues>
             <picklistValues>
                 <fullName>Фри-фло, рестораны самообслуживания</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Другое</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Метро</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -4598,7 +4617,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     </fields>
     <fields>
         <fullName>Mobile_Phone_No_Special_Char__c</fullName>
-        <externalId>false</externalId>
+        <externalId>true</externalId>
         <label>Mobile Phone No Special Char</label>
         <length>30</length>
         <required>false</required>
@@ -11375,7 +11394,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Metro</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11453,6 +11480,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Другое</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Кейтеринг</fullName>
                 <default>false</default>
             </values>
@@ -11466,6 +11497,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Метро</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14107,7 +14142,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Metro</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14185,6 +14228,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Другое</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Кейтеринг</fullName>
                 <default>false</default>
             </values>
@@ -14198,6 +14245,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Метро</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -16923,7 +16974,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Metro</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -17001,6 +17060,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Другое</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Кейтеринг</fullName>
                 <default>false</default>
             </values>
@@ -17014,6 +17077,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Метро</fullName>
                 <default>false</default>
             </values>
             <values>

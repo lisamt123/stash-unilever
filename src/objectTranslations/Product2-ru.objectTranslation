@@ -1325,7 +1325,7 @@
         <name>FS_VATUA__c</name>
     </fields>
     <fields>
-        <label><!-- Unit conversion factor from Sales Unit --></label>
+        <label>кол-во в коробе</label>
         <name>FS_ZSU__c</name>
     </fields>
     <fields>

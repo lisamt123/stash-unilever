@@ -12,6 +12,26 @@
         <label><!-- BSP --></label>
         <name>BSP__c</name>
         <picklistValues>
+            <masterLabel>BSP 1</masterLabel>
+            <translation><!-- BSP 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BSP 2</masterLabel>
+            <translation><!-- BSP 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BSP 3</masterLabel>
+            <translation><!-- BSP 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BSP 4</masterLabel>
+            <translation><!-- BSP 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BSP 5</masterLabel>
+            <translation><!-- BSP 5 --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Establish Web Shops</masterLabel>
             <translation><!-- Establish Web Shops --></translation>
         </picklistValues>
@@ -1447,6 +1467,10 @@
     <validationRules>
         <errorMessage><!-- Completion date can not be before objective start date --></errorMessage>
         <name>FS_End_Date_Before_Start_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please submit master account plan record to get this defined objective approved. --></errorMessage>
+        <name>FS_Objective_Approval_Check</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- If Sub Type = Other, please provide an explanation in Other Reason --></errorMessage>

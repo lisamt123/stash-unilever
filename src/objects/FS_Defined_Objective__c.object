@@ -98,6 +98,26 @@
                 <fullName>Sugar &amp; Tea Bundles</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>BSP 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BSP 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BSP 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BSP 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BSP 5</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -2420,6 +2440,13 @@ ISPICKVAL(FS_Status__c, &apos;Completed&apos;) ,ISPICKVAL(FS_Status__c, &apos;Ap
         <description>It is used to restrict user end date before start date.</description>
         <errorConditionFormula>FS_Completion_Date__c &lt;  FS_Objective_Start_Date__c</errorConditionFormula>
         <errorMessage>Completion date can not be before objective start date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FS_Objective_Approval_Check</fullName>
+        <active>true</active>
+        <description>It is used to restrict user to submit the defined objective record for approval when the master account plan is not yet approved.</description>
+        <errorConditionFormula>And(FS_Account_Plan__r.FS_Approved__c =false, ISPICKVAL(FS_Status__c ,&apos;Approval Requested&apos;))</errorConditionFormula>
+        <errorMessage>Please submit master account plan record to get this defined objective approved.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>If_Sub_Type_is_Other_Need_Reason</fullName>

@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>会話内容</value>
+        </caseValues>
+        <name>description_case</name>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>サマリ</value>
+        </caseValues>
+        <name>subject_case</name>
+    </fields>
+    <fields>
         <label><!-- ACCC Survey --></label>
         <name>ACCC_Survey__c</name>
     </fields>
@@ -42,7 +56,7 @@
         <relationshipLabel><!-- Cases --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Reason Code --></label>
+        <label>ロスツリー Level 5</label>
         <name>CEC_Reason_Code__c</name>
     </fields>
     <fields>
@@ -468,7 +482,7 @@
         <name>ExecuteCaseSurveyWorkflow__c</name>
     </fields>
     <fields>
-        <label><!-- Expiry Date --></label>
+        <label>期限</label>
         <name>Expiry_Date__c</name>
     </fields>
     <fields>
@@ -613,23 +627,23 @@
         <name>Machine_ID__c</name>
     </fields>
     <fields>
-        <label><!-- Manual Override Reason --></label>
+        <label>Manual Override Reason</label>
         <name>Manual_Override_Reason__c</name>
         <picklistValues>
             <masterLabel>1-Legal</masterLabel>
-            <translation><!-- 1-Legal --></translation>
+            <translation>1-法的事由</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>2-Customer Request</masterLabel>
-            <translation><!-- 2-Customer Request --></translation>
+            <translation>2-Customer Request</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>3-Default</masterLabel>
-            <translation><!-- 3-Default --></translation>
+            <translation>3-Default</translation>
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Manual Retention Override --></label>
+        <label>Manual Retention Override</label>
         <name>Manual_Retention_Override__c</name>
     </fields>
     <fields>
@@ -672,11 +686,11 @@
         <name>Origin</name>
         <picklistValues>
             <masterLabel>Chat</masterLabel>
-            <translation><!-- Chat --></translation>
+            <translation>チャット</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email</masterLabel>
-            <translation><!-- Email --></translation>
+            <translation>Email</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email ANZ</masterLabel>
@@ -1040,15 +1054,15 @@
         <name>Priority</name>
         <picklistValues>
             <masterLabel>1 - High</masterLabel>
-            <translation><!-- 1 - High --></translation>
+            <translation>1 - Red</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>2 - Medium</masterLabel>
-            <translation><!-- 2 - Medium --></translation>
+            <translation>2 - Yellow</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>3 - Low</masterLabel>
-            <translation><!-- 3 - Low --></translation>
+            <translation>3 - Green</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1212,7 +1226,7 @@
         <name>Product_UPC__c</name>
     </fields>
     <fields>
-        <label><!-- Production Code --></label>
+        <label>ロット</label>
         <name>Production_Code__c</name>
     </fields>
     <fields>
@@ -1247,13 +1261,13 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Reason Code Retention Days --></label>
+        <label>ロスツリー保持日</label>
         <name>Reason_Code_Retention_Days__c</name>
     </fields>
     <fields>
-        <label><!-- Reason Code --></label>
+        <label>ロスツリー Level 5</label>
         <name>Reason_Code__c</name>
-        <relationshipLabel><!-- Cases --></relationshipLabel>
+        <relationshipLabel>ケース番号</relationshipLabel>
     </fields>
     <fields>
         <label><!-- Reason L0 desc --></label>
@@ -1387,47 +1401,47 @@
         <name>Status</name>
         <picklistValues>
             <masterLabel>Awaiting Factory Response</masterLabel>
-            <translation><!-- Awaiting Factory Response --></translation>
+            <translation>調査中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Awaiting Information from Consumer</masterLabel>
-            <translation><!-- Awaiting Information from Consumer --></translation>
+            <translation>消費者連絡待ち</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Awaiting Knowledge Response</masterLabel>
-            <translation><!-- Awaiting Knowledge Response --></translation>
+            <translation>Awaiting Knowledge Response</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Closed</masterLabel>
-            <translation><!-- Closed --></translation>
+            <translation>完了</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Closed as Duplicate</masterLabel>
-            <translation><!-- Closed as Duplicate --></translation>
+            <translation>完了 – 重複</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Escalated</masterLabel>
-            <translation><!-- Escalated --></translation>
+            <translation>エスカレーション中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>In Progress</masterLabel>
-            <translation><!-- In Progress --></translation>
+            <translation>進行中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>New</masterLabel>
-            <translation><!-- New --></translation>
+            <translation>受付中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>On Hold</masterLabel>
-            <translation><!-- On Hold --></translation>
+            <translation>保留中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Pending with Courier</masterLabel>
-            <translation><!-- Pending with Courier --></translation>
+            <translation>回収中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Review Needed</masterLabel>
-            <translation><!-- Review Needed --></translation>
+            <translation>承認待ち</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1650,7 +1664,7 @@
     <layouts>
         <layout>Case Feed Layout</layout>
         <sections>
-            <label><!-- Additional Issue Information --></label>
+            <label>追加情報（ケース）</label>
             <section>Additional Issue Information</section>
         </sections>
         <sections>
@@ -1662,11 +1676,11 @@
             <section>CosmetoVigilance links</section>
         </sections>
         <sections>
-            <label><!-- Issue Information --></label>
+            <label>基礎情報</label>
             <section>Issue Information</section>
         </sections>
         <sections>
-            <label><!-- Related Cases --></label>
+            <label>関連ケース</label>
             <section>Related Cases</section>
         </sections>
         <sections>
@@ -1685,14 +1699,14 @@
     <layouts>
         <layout>Case Layout</layout>
         <sections>
-            <label><!-- Issue Information --></label>
+            <label>基礎情報</label>
             <section>Issue Information</section>
         </sections>
     </layouts>
     <layouts>
         <layout>Case QC Spam Layout</layout>
         <sections>
-            <label><!-- Issue Information --></label>
+            <label>基礎情報</label>
             <section>Issue Information</section>
         </sections>
     </layouts>
@@ -1740,7 +1754,7 @@
         <name>CEC_Check_CV_Status</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Country and Verbatim is mandatory for this case. --></errorMessage>
+        <errorMessage>国とサマリは必須です。</errorMessage>
         <name>CEC_Country_and_Verbatim_fields</name>
     </validationRules>
     <validationRules>
@@ -1752,11 +1766,11 @@
         <name>CEC_UsedProductPreviouslyCheck</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- You Must Select a Product Code &amp; Reason code --></errorMessage>
+        <errorMessage>製品コードとロスツリーを選択してください。</errorMessage>
         <name>Product_and_Reason_Code_Required</name>
     </validationRules>
     <webLinks>
-        <label><!-- Add_Issue --></label>
+        <label>継続作成</label>
         <name>Add_Issue</name>
     </webLinks>
     <webLinks>
@@ -1772,11 +1786,11 @@
         <name>Ingestion_Cosmetovigilence</name>
     </webLinks>
     <webLinks>
-        <label><!-- New_Case --></label>
+        <label>新規ケース</label>
         <name>New_Case</name>
     </webLinks>
     <webLinks>
-        <label><!-- Next_Case --></label>
+        <label>次のケース</label>
         <name>Next_Case</name>
     </webLinks>
     <webLinks>
