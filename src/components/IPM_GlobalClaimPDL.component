@@ -20,8 +20,7 @@
         <div class="col-xs-12 yellowAlertPdl">
             <div class="col-sm-1 pull-left noPadright"><img alt="Alert" class="alertimgpdl" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
             <apex:outputPanel layout="{!panelLayout}" >                        
-                <div class="col-sm-6 noPadleft pageTitlefont"> 
-           			<apex:outputLabel value="{!$Label.IPM_Global_Claims_Table}"/> 
+                <div class="col-sm-6 noPadleft pageTitlefont">
            			<apex:outputLabel styleClass="pdlalrtText" value="{!$Label.IPM_No_Claims_Added}"/>
            		</div>
                 
