@@ -1400,6 +1400,7 @@
         <name>FS_ABCSegmentation__c</name>
     </fields>
     <fields>
+        <help><!-- В день? --></help>
         <label><!-- Amount Of Visitors --></label>
         <name>FS_AmountOfVisitors__c</name>
     </fields>
@@ -2145,8 +2146,16 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- Hotels --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Metro</masterLabel>
+            <translation><!-- Metro --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Offices</masterLabel>
             <translation><!-- Offices --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Others</masterLabel>
+            <translation><!-- Others --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Pubs/Bars/Entertaining center/Caffee</masterLabel>
@@ -2232,6 +2241,10 @@ At least 3 out of 4 = 5 --></help>
             <translation><!-- Доставка еды на дом/офис --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Другое</masterLabel>
+            <translation><!-- Другое --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Кейтеринг</masterLabel>
             <translation><!-- Кейтеринг --></translation>
         </picklistValues>
@@ -2246,6 +2259,10 @@ At least 3 out of 4 = 5 --></help>
         <picklistValues>
             <masterLabel>Кулинария на точке продаж</masterLabel>
             <translation><!-- Кулинария на точке продаж --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Метро</masterLabel>
+            <translation><!-- Метро --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Оптовик</masterLabel>
