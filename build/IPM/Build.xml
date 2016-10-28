@@ -65,7 +65,7 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-	  <runTest>IPM_Resource_Allocation_Test</runTest>
+	  <runTest>IPM_AssesmentHandler_Helper_Test</runTest>
 	</sf:deploy>
   </target>  
 
