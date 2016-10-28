@@ -2425,6 +2425,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CPA_CRListController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CPA_CRTrigger_Handler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2459,6 +2463,10 @@
     <classAccesses>
         <apexClass>CPA_ConstantsForPworfAging</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_ConstantsForPworfAging_Test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_ContractInformationController</apexClass>
@@ -20569,6 +20577,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF__c.pkl_Access_to_Unilever_personal_data__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CPA_PWORF__c.pkl_Approval_Comment_Check__c</field>
         <readable>true</readable>
@@ -20597,6 +20610,16 @@
         <editable>true</editable>
         <field>CPA_PWORF__c.pkl_Landscape__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF__c.pkl_Large_Project_Discount__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF__c.pkl_Linked_Project__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -20667,6 +20690,16 @@
         <editable>true</editable>
         <field>CPA_PWORF__c.txt_Internal_PWO_ID__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF__c.txt_Large_Project_discount_details__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF__c.txt_Linked_PWOs__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

@@ -1257,7 +1257,7 @@
         <name>CustomerLegalCode__c</name>
     </fields>
     <fields>
-        <label>Юридическое наименование клиента</label>
+        <label>Юридическое наименование</label>
         <name>CustomerLegalName__c</name>
     </fields>
     <fields>

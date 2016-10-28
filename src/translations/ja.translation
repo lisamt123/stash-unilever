@@ -4245,7 +4245,7 @@
         <name>CEC_ApprovedFulfilmentError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Brand --></label>
+        <label>Brand</label>
         <name>CEC_Brand</name>
     </customLabels>
     <customLabels>
@@ -4261,7 +4261,7 @@
         <name>CEC_CBM_NotificationSubject</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseAccountMissing --></label>
+        <label>取引先責任者（お客様）をケースに紐づけてください。</label>
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
     <customLabels>
@@ -4281,11 +4281,11 @@
         <name>CEC_CaseAccountPersonPhoneMissing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseCountryVerbitimMessage --></label>
+        <label>国とサマリは必須です。</label>
         <name>CEC_CaseCountryVerbitimMessage</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseNumber --></label>
+        <label>ケース番号</label>
         <name>CEC_CaseNumber</name>
     </customLabels>
     <customLabels>
@@ -4381,11 +4381,11 @@
         <name>CEC_Consumer_Message1</name>
     </customLabels>
     <customLabels>
-        <label><!-- Update action cannot be performed. --></label>
+        <label>取引先責任者（お客様）がケースに紐づけられているためアクションを完了できません。</label>
         <name>CEC_Consumer_Record_Update</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ContactEmail --></label>
+        <label>Email</label>
         <name>CEC_ContactEmail</name>
     </customLabels>
     <customLabels>
@@ -4433,7 +4433,7 @@
         <name>CEC_Delisted_Product</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Detail_Request_Info --></label>
+        <label>製品詳細確認</label>
         <name>CEC_Detail_Request_Info</name>
     </customLabels>
     <customLabels>
@@ -4465,7 +4465,7 @@
         <name>CEC_Email</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Email_Label --></label>
+        <label>Email</label>
         <name>CEC_Email_Label</name>
     </customLabels>
     <customLabels>
@@ -4481,7 +4481,7 @@
         <name>CEC_EvoucherDetails_No_Active_EVoucher_For_Country</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_FirstName --></label>
+        <label>氏名（カナ）</label>
         <name>CEC_FirstName</name>
     </customLabels>
     <customLabels>
@@ -4493,7 +4493,7 @@
         <name>CEC_Fulfilment_PostOption_otherwise</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Home Phone --></label>
+        <label>自宅電話</label>
         <name>CEC_Home_Phone</name>
     </customLabels>
     <customLabels>
@@ -4509,7 +4509,7 @@
         <name>CEC_Label_Action</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Knowledge Articles --></label>
+        <label>ナレッジ</label>
         <name>CEC_Label_Knowledge_Articles</name>
     </customLabels>
     <customLabels>
@@ -4521,11 +4521,11 @@
         <name>CEC_Label_Type</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Last_Name --></label>
+        <label>氏名（漢字）</label>
         <name>CEC_Last_Name</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Last Name required message --></label>
+        <label>氏名（漢字）を入力してください。</label>
         <name>CEC_Lastname</name>
     </customLabels>
     <customLabels>
@@ -4533,7 +4533,7 @@
         <name>CEC_Latitude</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Local Indentifier --></label>
+        <label>年代</label>
         <name>CEC_Local_Indentifier</name>
     </customLabels>
     <customLabels>
@@ -4569,7 +4569,7 @@
         <name>CEC_Missing_Information</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Mobile Phone --></label>
+        <label>携帯電話</label>
         <name>CEC_Mobile_Phone</name>
     </customLabels>
     <customLabels>
@@ -4581,7 +4581,7 @@
         <name>CEC_Name</name>
     </customLabels>
     <customLabels>
-        <label><!-- Case Error Message --></label>
+        <label>新規ケースを作成できません。</label>
         <name>CEC_NewCaseError</name>
     </customLabels>
     <customLabels>
@@ -4609,7 +4609,7 @@
         <name>CEC_NoResultFoundMsg</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC No Cases are available based on the skill --></label>
+        <label>スキルに合致するケースがありません。</label>
         <name>CEC_No_Cases_are_available_based_on_the_skill</name>
     </customLabels>
     <customLabels>
@@ -4621,11 +4621,11 @@
         <name>CEC_Origin</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_OtherDetailsSection --></label>
+        <label>その他詳細</label>
         <name>CEC_OtherDetailsSection</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Other Phone --></label>
+        <label>その他電話</label>
         <name>CEC_Other_Phone</name>
     </customLabels>
     <customLabels>
@@ -4633,7 +4633,7 @@
         <name>CEC_PageSize</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ParentCaseNumber --></label>
+        <label>親ケース番号</label>
         <name>CEC_ParentCaseNumber</name>
     </customLabels>
     <customLabels>
@@ -4649,7 +4649,7 @@
         <name>CEC_PostCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Product --></label>
+        <label>製品選択欄</label>
         <name>CEC_Product</name>
     </customLabels>
     <customLabels>
@@ -4661,7 +4661,7 @@
         <name>CEC_ProductCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ProductLocator --></label>
+        <label>Product Locator</label>
         <name>CEC_ProductLocator</name>
     </customLabels>
     <customLabels>
@@ -4689,11 +4689,11 @@
         <name>CEC_Reason</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ReasonCode --></label>
+        <label>ロスツリー Level 5</label>
         <name>CEC_ReasonCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Reason_Hierarchy --></label>
+        <label>ロスツリー Level 1 &amp; 2</label>
         <name>CEC_Reason_Hierarchy</name>
     </customLabels>
     <customLabels>
@@ -4701,7 +4701,7 @@
         <name>CEC_RecommendedProducts</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_RelatedCases --></label>
+        <label>関連ケース</label>
         <name>CEC_RelatedCases</name>
     </customLabels>
     <customLabels>
@@ -4737,7 +4737,7 @@
         <name>CEC_SearchMarketButtonName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SearchValidationError --></label>
+        <label>検索条件（メールアドレスか電話番号）を入力してください。</label>
         <name>CEC_SearchValidationError</name>
     </customLabels>
     <customLabels>
@@ -4753,7 +4753,7 @@
         <name>CEC_SelectMktMappingMsg</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Specify Details in Missing Info --></label>
+        <label>製品詳細確認</label>
         <name>CEC_Specify_Details_in_Missing_Info</name>
     </customLabels>
     <customLabels>
@@ -4765,7 +4765,7 @@
         <name>CEC_Status</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Street --></label>
+        <label>住所</label>
         <name>CEC_Street</name>
     </customLabels>
     <customLabels>
@@ -4789,7 +4789,7 @@
         <name>CEC_Task_Subject</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Title --></label>
+        <label>対話相手</label>
         <name>CEC_Title</name>
     </customLabels>
     <customLabels>
@@ -4809,15 +4809,15 @@
         <name>CEC_ZipCode</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isFormKnown --></label>
+        <label>剤型情報あり</label>
         <name>CEC_isFormKnown</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isPacksizeKnown --></label>
+        <label>サイズ情報あり</label>
         <name>CEC_isPacksizeKnown</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isVariantKnown --></label>
+        <label>バリアント情報あり</label>
         <name>CEC_isVariantKnown</name>
     </customLabels>
     <customLabels>

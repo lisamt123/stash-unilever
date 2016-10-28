@@ -47,7 +47,7 @@
     <fields>
         <label>Brand Logo</label>
         <name>Brand_Logo__c</name>
-        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+        <relationshipLabel>代替品返金</relationshipLabel>
     </fields>
     <fields>
         <label><!-- Case Brand --></label>
@@ -64,12 +64,12 @@
     <fields>
         <label><!-- Case --></label>
         <name>Case__c</name>
-        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+        <relationshipLabel>代替品返金</relationshipLabel>
     </fields>
     <fields>
         <label><!-- ChequeBook --></label>
         <name>ChequeBook__c</name>
-        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+        <relationshipLabel>代替品返金</relationshipLabel>
     </fields>
     <fields>
         <label><!-- Cheque Decimals --></label>
@@ -423,7 +423,7 @@
     <fields>
         <label><!-- E-Voucher Number --></label>
         <name>E_Voucher_Number__c</name>
-        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+        <relationshipLabel>代替品返金</relationshipLabel>
     </fields>
     <fields>
         <label><!-- E-Voucher Value --></label>
@@ -464,7 +464,7 @@
     <fields>
         <label>費目1</label>
         <name>Enclosure1__c</name>
-        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+        <relationshipLabel>代替品返金</relationshipLabel>
     </fields>
     <fields>
         <label>金額2</label>
@@ -717,7 +717,7 @@
     <fields>
         <label><!-- Retrieval Id --></label>
         <name>Retrieval_Id__c</name>
-        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+        <relationshipLabel>代替品返金</relationshipLabel>
     </fields>
     <fields>
         <label><!-- Retrieval Status --></label>

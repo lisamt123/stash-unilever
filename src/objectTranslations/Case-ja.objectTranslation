@@ -818,35 +818,35 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Face to face</masterLabel>
-            <translation><!-- Face to face --></translation>
+            <translation>対面</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Fax</masterLabel>
-            <translation><!-- Fax --></translation>
+            <translation>Fax</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Interactive Voice Response</masterLabel>
-            <translation><!-- Interactive Voice Response --></translation>
+            <translation>IVR</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Letter</masterLabel>
-            <translation><!-- Letter --></translation>
+            <translation>手紙</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
+            <translation>その他</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Phone</masterLabel>
-            <translation><!-- Phone --></translation>
+            <translation>FD</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>SMS / Text Messages</masterLabel>
-            <translation><!-- SMS / Text Messages --></translation>
+            <translation>SMS</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Social</masterLabel>
-            <translation><!-- Social --></translation>
+            <translation>Social</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Social Media North America</masterLabel>
@@ -854,11 +854,11 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Store</masterLabel>
-            <translation><!-- Store --></translation>
+            <translation>エリアコンプレーン</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Web</masterLabel>
-            <translation><!-- Web --></translation>
+            <translation>Webフォーム</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Web North America</masterLabel>
