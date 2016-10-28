@@ -251,7 +251,7 @@ private class IPM_FinancialControllerRegional_Test {
              update regionalOrigFin;
              //asserts starts below 
 
-             Test.startTest();
+             
             
              setPage(regionalOriginal.id);
              IPM_FinancialController ipmFinCon = new IPM_FinancialController();
@@ -267,12 +267,12 @@ private class IPM_FinancialControllerRegional_Test {
              system.assertEquals(sel.IPM_Project_Type__c, 'Original', INVALID_PROJECT_TYPE);
              system.assertEquals(sel.IPMProject_Span__c, 'Regional', INVALID_SPAN_NAME);
              system.assertEquals(ipmFinCon.showMisalignedConfirmbtn, true, MISALINGNED_NOT_CONFIRMED);
-             
+             Test.startTest();
              //asserts are in source method for callCtrlAction calls    
              callCtrlAction(ipmFinCon, EXEC_PART_3);
              callCtrlAction(ipmFinCon, EXEC_PART_4);
              callCtrlAction(ipmFinCon, EXEC_PART_6); 
-             Test.stopTest();  
+              
              //asserts are in source method to check tab load
              //Load Tab MyView
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
@@ -280,7 +280,7 @@ private class IPM_FinancialControllerRegional_Test {
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);//
              //Load Tab Rollup
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
-             
+             Test.stopTest(); 
              system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , TLDNullMsg);
              system.assertEquals(false,ipmFinCon.showNext , showNextMsg);
              system.assertEquals(false,ipmFinCon.showPrevious, showPreviousMsg);

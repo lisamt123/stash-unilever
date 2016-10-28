@@ -227,8 +227,7 @@ private class IPM_GlobalClaimPDLController_Test{
             
             List<IPM_Project_Claim__c> lstProClaim = [SELECT Id FROM IPM_Project_Claim__c WHERE IPM_Project__c =: globalOriginal.Id];
             System.AssertNotEquals(lstProClaim.size(),0); 
-            GCPDLC.projClaimId = lstProClaim[0].Id;
-            GCPDLC.deleteClaim();
+
             
             
         }        
@@ -307,6 +306,9 @@ private class IPM_GlobalClaimPDLController_Test{
             Apexpages.currentPage().getParameters().put('id',localPro.Id);
             IPM_GlobalClaimPDLController GCPDLC = New IPM_GlobalClaimPDLController();
             GCPDLC.addProjectClaims();
+            List<IPM_Project_Claim__c> lstProClaim = [SELECT Id FROM IPM_Project_Claim__c WHERE IPM_Project__c =: globalOriginal.Id];
+			GCPDLC.projClaimId = lstProClaim[0].Id;
+            GCPDLC.deleteClaim();
         }        
     }
     
