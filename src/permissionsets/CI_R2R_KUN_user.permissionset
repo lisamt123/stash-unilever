@@ -414,4 +414,16 @@
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_without_CI</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+	<tabSettings>
+        <tab>CI_R2R_Budget__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>CI_R2R_Innovation__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>CI_SMS_Weekly_Update__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
 </PermissionSet>

@@ -32,10 +32,6 @@
                 <field>FS_ExistingBusinessType__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_distributor__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>FS_Distributor_Type__c</field>
             </layoutItems>
@@ -44,7 +40,7 @@
                 <field>CurrencyIsoCode</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>FS_casesPiece__c</field>
             </layoutItems>
         </layoutColumns>
@@ -98,6 +94,10 @@
         <editHeading>true</editHeading>
         <label>Calculation TPR</label>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_distributor__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ShipToCode__c</field>
@@ -291,7 +291,6 @@
         <fields>FS_gmWhenTPREqualsZero__c</fields>
         <fields>ProdDistributor__c</fields>
         <fields>FS_Sample__c</fields>
-        <fields>Discount</fields>
         <relatedList>RelatedLineItemList</relatedList>
     </relatedLists>
     <relatedLists>
