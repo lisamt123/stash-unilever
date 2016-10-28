@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -4243,7 +4247,7 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>Required_Cases_Pieces_field</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>Use for validating required fields in TPR section.</description>
         <errorConditionFormula>RecordType.DeveloperName = &apos;FS_OpportunityTPR&apos;  
 &amp;&amp; ISBLANK( TEXT( FS_casesPiece__c ) )
