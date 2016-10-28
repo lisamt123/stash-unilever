@@ -45001,6 +45001,7 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>Account_Relationship__c</object>
         <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
