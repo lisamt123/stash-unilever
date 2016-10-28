@@ -874,16 +874,27 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             
             
             //PROCESS GLOBAL - ADD the values to the existing list
-            if(globalCountries!=null && globalCountries!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
-            {
-                List<String> lstTemp = globalCountries.split(IPM_ConstantUtils.COMMA); 
-                setCountryCodesGlobal.addAll(lstTemp);
-            }
-            
             if(globalUnselectedCountries!=null && globalUnselectedCountries!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
             {
                 List<String> lstTemp = globalUnselectedCountries.split(IPM_ConstantUtils.COMMA); 
                 setCountryCodesGlobalUnselected.addAll(lstTemp);
+            }
+            if(globalCountries!=null && globalCountries!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
+            {
+                List<String> lstTemp = globalCountries.split(IPM_ConstantUtils.COMMA); 
+                setCountryCodesGlobal.addAll(lstTemp);
+                
+                if(!lstTemp.isEmpty())
+                {
+                	setCountryCodesGlobal.addAll(lstTemp);
+                	for(String countryCode : lstTemp)
+                	{                	
+                		if(setCountryCodesGlobalUnselected.contains(countryCode))
+                		{
+                			setCountryCodesGlobalUnselected.remove(countryCode);	
+                		}	
+                	}
+                }
             }
             
             setCountryCodesGlobal.removeAll(setCountryCodesGlobalUnselected);
