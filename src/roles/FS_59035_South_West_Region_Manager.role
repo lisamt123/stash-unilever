@@ -5,5 +5,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>FS 59035 South West Region Manager</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>FS_55_West_Zone_Leader</parentRole>
+    <parentRole>FS_HYBRID_South_West_Rocky_Mountain_Region</parentRole>
 </Role>
