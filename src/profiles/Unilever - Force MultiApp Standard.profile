@@ -51,11 +51,6 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
-        <application>Four_Acres_Collaboration</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
         <application>Global_Exception_Logs</application>
         <default>false</default>
         <visible>false</visible>
