@@ -931,7 +931,9 @@ public with sharing class IPM_ProjectHelper
                         // If PostFix is default, in that case use ProjectName
                         if(KEY_POSTFIX == 'DEFAULT')
                         {
-                            uniqueFinancialKeySet.add(project.IPM_Project_Name__c);
+                            
+                            uniqueFinancialKeySet.add(project.Source_Rollout_External_Id__c);
+                            
                         }
                         else if(KEY_POSTFIX == 'KEY')
                         {
