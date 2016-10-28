@@ -99,7 +99,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-				<field>FS_SoldToCode__c</field>
+                <field>FS_SoldToCode__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
