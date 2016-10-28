@@ -56,7 +56,7 @@ public with sharing class IPM_SourcePlanController_Helper {
     {
     	IPM_CustomPermission cpr = new IPM_CustomPermission();
     	boolean isCentralTeam=false;
-        isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
+        isCentralTeam = cpr.isPermissionSetAssinged(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
         return isCentralTeam;
     }
     /*****************************************************************************************************************************

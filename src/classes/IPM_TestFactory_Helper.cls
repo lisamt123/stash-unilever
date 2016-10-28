@@ -1071,7 +1071,7 @@ public class IPM_TestFactory_Helper
     {
         Map<String,List<Object>> regionalRolloutMap = new Map<String,List<Object>>
         {
-            IPM_ROLLOUT_PROJECT => new List<String>(),RECORD_TYPE_ID => new List<object>(),MARKET_CLUSTER => new List<String>(),
+            NAME => new List<String>(),IPM_ROLLOUT_PROJECT => new List<String>(),RECORD_TYPE_ID => new List<object>(),MARKET_CLUSTER => new List<String>(),
             MARKET_CLUSTER_NAME => new List<String>(),TARGET_LAUNCH_DATE => new List<object>(),IPM_ROLLOUT_PLAN => new List<object>(),
             IPM_ROLLOUT_TYPE => new List<object>(),IPM_REGIONAL_PL_TEXT => new List<object>(),IPM_REGIONAL_PL => new List<Id>(),
             IPM_PROJECT => new List<Id>(),IS_ACTIVE => new List<object>()
@@ -1081,8 +1081,11 @@ public class IPM_TestFactory_Helper
         
         Id regionalRecordType = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).RecordTypeId;
         
-        for(Integer counter=0;counter<pProjectList.size();counter++)
+        for(Integer counter=0;counter<pProjectList.size();counter++) 
         {
+            regionalRolloutMap.get(NAME).add(pProjectList[counter].IPM_Project_Name__c+'_AFR');
+            regionalRolloutMap.get(NAME).add(pProjectList[counter].IPM_Project_Name__c+'_LA');
+            
             regionalRolloutMap.get(IPM_ROLLOUT_PROJECT).add(pProjectList[counter].IPM_Project_Name__c+'_AFR');
             regionalRolloutMap.get(IPM_ROLLOUT_PROJECT).add(pProjectList[counter].IPM_Project_Name__c+'_LA');
             
@@ -2542,15 +2545,15 @@ public class IPM_TestFactory_Helper
         
         Map<String,List<Object>> milestoneTemplateMap = new Map<String,List<Object>>
         {
-            'IPM_Category__c' => new List<String>{PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE},
-            'IPM_Name__c' => new List<String>{'Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval','Market Deployment Gate Approval','Post Launch Evaluation','Target Launch Date(Ship to Trade)','Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval','Post Launch Evaluation','Ship To Trade (Target Launch Date)'},
-            'IPM_No_Of_Days_for_Developing_Emerging__c' => new List<String>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-120',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-120',EMPTY_STRING,EMPTY_STRING},
-            'IPM_No_Of_Days_for_Developing__c' => new List<String>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-180',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-180',EMPTY_STRING,EMPTY_STRING},
-            'IPM_No_Of_Days__c' => new List<String>{BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,'0',BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE},
-            'IPM_Active__c'=> new list<Boolean>{true,true,true,true,true,true,true,true,true,true,true},
+            'IPM_Category__c' => new List<String>{PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE,PERSONALCARE},
+            'IPM_Name__c' => new List<String>{'Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval','Market Deployment Gate Approval','Post Launch Evaluation','Target Launch Date(Ship to Trade)','Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval','Post Launch Evaluation','Ship To Trade (Target Launch Date)','Product Design Lock','Product Design Lock'},
+            'IPM_No_Of_Days_for_Developing_Emerging__c' => new List<String>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-120',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-120',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,EMPTY_STRING},
+            'IPM_No_Of_Days_for_Developing__c' => new List<String>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-180',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-180',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,EMPTY_STRING},
+            'IPM_No_Of_Days__c' => new List<String>{BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,'0',BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE,BLANK_SPACE},
+            'IPM_Active__c'=> new list<Boolean>{true,true,true,true,true,true,true,true,true,true,true,true,true},
             IPM_PHASE=> new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_READY,FEASIBILITY,FEASIBILITY},
-            'IPM_Type_of_gate__c' => new List<String>{CHARTER,CONTRACT,MARKET_READY,MARKET_DEPLOYMENT,EMPTY_STRING,EMPTY_STRING,CHARTER,CONTRACT,MARKET_READY,EMPTY_STRING,EMPTY_STRING},
-            'IPM_Type_of_Milestone__c' => new List<String>{STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD},
+            'IPM_Type_of_gate__c' => new List<String>{CHARTER,CONTRACT,MARKET_READY,MARKET_DEPLOYMENT,EMPTY_STRING,EMPTY_STRING,CHARTER,CONTRACT,MARKET_READY,EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,EMPTY_STRING},
+            'IPM_Type_of_Milestone__c' => new List<String>{STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,CONTRACT,CONTRACT},
             IPM_PROJECT_TYPE => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,ORIGINAL_PROJECTYPE,OPERATIONAL_PROJECTYPE},
             IPM_PROJECT => new List<Id>{masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id,masterPro.Id},
             RECORD_TYPE_ID => new List<Id>{SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE} 

@@ -471,7 +471,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
      private void setBusinessImpact(Final Id pId){
         //For Generating PDF Retrieving Project Rollouts,Finance and Project Document Sections
         try{
-            String nam=project.IPM_Project_Name__c; 
+            String nam=project.Source_Rollout_External_Id__c; 
             globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
             // For BI and Year3Ito where Source is ORIGINAL project. Will work got GKM1,GKM2,GKM4, ORIGINALS AND ROLLOUT
             if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
@@ -997,46 +997,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                             ORDER BY Market_Cluster_Name__c Limit: IPM_ConstantUtils.MaxLimit];
         
         
-        Map<String,List<IPM_Financial__c>> localFinancialMap = new Map<String,List<IPM_Financial__c>>();
-        if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_PLE)){
-          
-          List<IPM_Project__c> lstLocalProject = new List<IPM_Project__c>();
-      
-      lstLocalProject = [SELECT Id, Market_Cluster_Name__c,IPM_Project_Rollout__r.Market_Cluster_Name__c,(SELECT Id,recordTypeID,display_Name__c, Financial_External_Id__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c from IPM_Financials_local__r Where IPM_Project_Rollout__c = null) FROM IPM_Project__c WHERE IPM_Parent_Project__c =: project.id Limit: IPM_ConstantUtils.MaxLimit];
-      
-      
-      
-                for(IPM_Project__c localProject: lstLocalProject){
-                
-                    if(!localProject.IPM_Financials_local__r.isEmpty()){
-                        if(localFinancialMap.containsKey(localProject.IPM_Project_Rollout__r.Market_Cluster_Name__c)){
-                            localFinancialMap.get(localProject.IPM_Project_Rollout__r.Market_Cluster_Name__c).addAll(localProject.IPM_Financials_local__r);
-                        }
-                        else{
-                            localFinancialMap.put(localProject.IPM_Project_Rollout__r.Market_Cluster_Name__c,localProject.IPM_Financials_local__r);
-                        }
-                    }
-                    
-                
-                }
-             
-            
-        }   
-		
+	
         
         if(!lstRegionalRollout.isEmpty() ){
-            Set<IPM_Financial__c> consolidatedFinancialSet = new Set<IPM_Financial__c>();
             for(IPM_Project_Rollout__c regionalRollout :lstRegionalRollout){
-                consolidatedFinancialSet.clear();
-                if(localFinancialMap != null && !localFinancialMap.isEmpty() && localFinancialMap.containsKey(regionalRollout.Market_Cluster_Name__c)){
-                    consolidatedFinancialSet.addAll(localFinancialMap.get(regionalRollout.Market_Cluster_Name__c));
-                }
-                
-                consolidatedFinancialSet.addAll(regionalRollout.IPM_Financials__r);
-                
-				
-                
-                lstRolloutWrappers.add( new RolloutWrapper( regionalRollout.Market_Cluster_Name__c, new List<IPM_Financial__c>(consolidatedFinancialSet)) );
+                 lstRolloutWrappers.add( new RolloutWrapper( regionalRollout.Market_Cluster_Name__c, regionalRollout.IPM_Financials__r) );
             }
         }
         
@@ -1184,7 +1149,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
         String financialType = '';
         if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3){
-            if(project.IPM_Phase__c == 'Capability'||project.IPM_Phase__c == 'Feasibility'){
             lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
                                          (SELECT Id,Name,recordTypeID,display_Name__c, Financial_External_ID__c,Status__c,IPM_Key_Financial__c, 
                                           Status_Global__c,Local_Project__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
@@ -1193,18 +1157,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                           ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                   FROM IPM_Project_Rollout__c
                                   WHERE IPM_Project__c =: project.id AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true ) AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
-            }
-            else{
-            lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
-                                         (SELECT Id,Name,recordTypeID,display_Name__c, Financial_External_ID__c,Status__c,IPM_Key_Financial__c, 
-                                          Status_Global__c,Local_Project__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
-                                          FROM IPM_Financials__r 
-                                          WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE  AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )
-                                          ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
-                                  FROM IPM_Project_Rollout__c
-                                  WHERE IPM_Project__c =: project.id AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true )AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
-            
-            }  
+
+           
              if(!lstRegionalRollout.isEmpty()){
                  for(IPM_Project_Rollout__c regionalRollout :lstRegionalRollout){
                     if(regionalRollout.IPM_Financials__r.size()>0){
@@ -1734,7 +1688,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                       
                 if(financialExternalId !=null) 
                 {
-                   lstLocalProjects = [Select Id from IPM_Project__c WHERE IPM_Parent_Project__c = :project.Id AND IPM_Project_Name__c =:financialExternalId AND IPMProject_Span__c = :IPM_ConstantUtils.PROJECT_SPAN_LOCAL];
+                   lstLocalProjects = [Select Id,Source_Rollout_External_Id__c  from IPM_Project__c WHERE IPM_Parent_Project__c = :project.Id AND Source_Rollout_External_Id__c =:financialExternalId AND IPMProject_Span__c = :IPM_ConstantUtils.PROJECT_SPAN_LOCAL];
                 }
                 else
                 {
@@ -2012,10 +1966,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               }
               
               financialsToUpdateSet.add(currentFinancial);
-              financialsToUpdateSet.clear();
+              
               update new List<IPM_Financial__c>(financialsToUpdateSet);
               IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved(new List<IPM_Financial__c>{currentFinancial});      
-                                            
+              financialsToUpdateSet.clear();                             
                              
         } catch (Exception eX){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
@@ -3671,7 +3625,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
         
             queryString+= ' Id FROM IPM_Financial_Years__r ORDER BY Name)';
-            queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.IPM_Project_Name__c+'%\' Limit 1000 FOR UPDATE'; //Added For Update to obtain exclusive access to the record
+            queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.Source_Rollout_External_Id__c+'%\' Limit 1000'; //Added For Update to obtain exclusive access to the record
         
             Map<String,String> finExtIdRedCellsMap= new Map<String,String>();
             Map<String,String> finExtIdYellowCellsMap= new Map<String,String>();

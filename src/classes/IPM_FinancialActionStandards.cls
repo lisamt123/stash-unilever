@@ -130,7 +130,7 @@ public with sharing class IPM_FinancialActionStandards {
             financialExternalId = project.IPM_Project_Name__c;
         }        
         else{
-            financialExternalId = project.IPM_Project_Name__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+             financialExternalId = project.Source_Rollout_External_Id__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
         }
         financial = [SELECT Id, NPV_Global__c, NPV_Regional__c, NPV_Local__c, NPV_Charter__c, NPV_Contract__c, NPV_MR__c, NPV_MD__c, 
                             IRR_Global__c, IRR_Regional__c, IRR_Local__c, IRR_Charter__c, IRR_Contract__c, IRR_MR__c, IRR_MD__c, 

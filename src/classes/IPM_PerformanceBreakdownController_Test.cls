@@ -19,6 +19,8 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
 //This method creates required global, regional and local projects and rollouts, also related financials. These records are then accessed across the testmethods.
     @testSetup static void financialSetUp() 
      {
+     	 test.startTest();
+     	 
          userList = IPM_TestFactory_Helper.createUserList();
          system.assertNotEquals(userList[0],null,'User not created');
          //asserts based on Hard coded names from helper can be a risk, if helper changes then assert will fail.
@@ -34,14 +36,18 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             insert globalProjectList;
          }
          
+         IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
+       	 IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
          createRegionalAndLocalRollouts(globalProjectList);
-         
+         IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+         IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
+         test.stopTest();
          
      }
      
      static void createRegionalAndLocalRollouts(List<IPM_Project__c>globalProjectList)  
      {
-         	Test.startTest();
+         	
             System.runAs(userList[0])
             {
                 // Create Regional Rollouts for Created Global project.
@@ -127,7 +133,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             system.assertEquals(localRollout.KeyMCO__c, true,'MCO not updated');
             system.assertEquals(localRollout.IPM_Regional_PL__c, userList[2].Id, 'regional PL not updated');
         }
-        Test.stopTest(); 
+        
      }
 
 
@@ -249,7 +255,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             sic.saveRecords();
             List<IPM_MarketPerformanceBreakdown__c> marketPerforBreakdownList=[SELECT Name FROM IPM_MarketPerformanceBreakdown__c WHERE ID=:sic.marketPerformanceBreakdownList[0].ID LIMIT 1];
             system.assertNotEquals(marketPerforBreakdownList[0].Name,sic.marketPerformanceBreakdownList[0].Name,'Name is saved');//negative test
-            
+            Test.stopTest();
             sic.marketPerformanceBreakdownList[0].Name=sic.marketPerformanceBreakdownList[0].id;
             sic.marketPerformanceBreakdownList[0].InnovationValueShare__c=101;
             sic.marketPerformanceBreakdownList[0].InnovationVolumeShare__c=101;
@@ -260,7 +266,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             List<IPM_MarketPerformanceBreakdown__c> marketPerformanceBkList=[SELECT InnovationValueShare__c,InnovationVolumeShare__c FROM IPM_MarketPerformanceBreakdown__c WHERE ID=:sic.marketPerformanceBreakdownList[0].ID LIMIT 1];
             system.assertNotEquals(marketPerformanceBkList[0].InnovationValueShare__c,101,'innovation value share is saved');//positive test
             system.assertNotEquals(marketPerformanceBkList[0].InnovationVolumeShare__c,101,'innovation volume share is saved');//positive test
-            Test.stopTest();
+            
                
         }
         

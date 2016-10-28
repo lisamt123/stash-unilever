@@ -3758,6 +3758,18 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Source_Rollout_External_Id__c</fullName>
+        <description>External Id of Source rollout</description>
+        <externalId>false</externalId>
+        <formula>IF( AND( NOT( ISBLANK(IPM_Project_Rollout__c) ), NOT(ISNULL(IPM_Project_Rollout__c)) ) , IPM_Project_Rollout__r.IPM_Rollout_Project__c, IPM_Project_Name__c )</formula>
+        <label>IPM Source Rollout External Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>IPM Project</label>
     <listViews>
         <fullName>All</fullName>
