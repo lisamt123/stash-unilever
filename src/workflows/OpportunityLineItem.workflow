@@ -93,7 +93,7 @@
             <name>FS_UpdateuniqueProduct</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Created to restrict adding same products to opportunity.</description>
         <formula>AND($Profile.Name=&quot;Unilever Food Solution - Russia&quot;,  Opportunity.RecordType.Name =&quot;RUFS Opportunity TPR&quot;)</formula>
         <triggerType>onAllChanges</triggerType>

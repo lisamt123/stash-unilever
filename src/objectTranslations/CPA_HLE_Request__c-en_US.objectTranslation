@@ -103,7 +103,7 @@
         <name>dt_Date_raised__c</name>
     </fields>
     <fields>
-        <label><!-- HLE Date PWORF required --></label>
+        <label><!-- PWORF required date --></label>
         <name>dt_HLE_Date_PWORF_required__c</name>
     </fields>
     <fields>
@@ -125,7 +125,7 @@
         <name>eml_AAL_Email__c</name>
     </fields>
     <fields>
-        <label><!-- HLE Email* --></label>
+        <label><!-- Vendor Project Manager Email* --></label>
         <name>eml_HLE_PB_Email__c</name>
     </fields>
     <fields>
@@ -187,7 +187,7 @@
         <name>num_BPE_Effort_in_man_days__c</name>
     </fields>
     <fields>
-        <label><!-- HLE Estimated Accenture charge --></label>
+        <label><!-- HLE Estimated Accenture charge* --></label>
         <name>num_HLE_Estimated_Accenture_charge__c</name>
     </fields>
     <fields>
@@ -207,7 +207,7 @@
         <name>ph_AAL_Contact_No__c</name>
     </fields>
     <fields>
-        <label><!-- HLE Contact No* --></label>
+        <label><!-- Vendor Project Manager Contact No* --></label>
         <name>ph_HLE_PB_Contact_No__c</name>
     </fields>
     <fields>
@@ -377,7 +377,7 @@
         <name>txt_HLE_Accenture_Area__c</name>
     </fields>
     <fields>
-        <label><!-- HLE Accenture estimated project charge* --></label>
+        <label><!-- Estimated project charges summary --></label>
         <name>txt_HLE_Accenture_estimated_project_char__c</name>
     </fields>
     <fields>

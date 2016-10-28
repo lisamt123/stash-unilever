@@ -650,6 +650,19 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <name>ph_Telephone__c</name>
     </fields>
     <fields>
+        <help><!-- Supplier resources require access to Unilever personal data? --></help>
+        <label><!-- Access to Unilever personal data* --></label>
+        <name>pkl_Access_to_Unilever_personal_data__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Approval Comment Check --></label>
         <name>pkl_Approval_Comment_Check__c</name>
         <picklistValues>
@@ -756,6 +769,32 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <picklistValues>
             <masterLabel>U2K2</masterLabel>
             <translation><!-- U2K2 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Is this project linked for the purposes of Large Project Discount? --></help>
+        <label><!-- Large Project Discount --></label>
+        <name>pkl_Large_Project_Discount__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Please provide details of Projects that are linked to this Project Request --></help>
+        <label><!-- Linked Project --></label>
+        <name>pkl_Linked_Project__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1014,6 +1053,16 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <name>txt_Internal_PWO_ID__c</name>
     </fields>
     <fields>
+        <help><!-- Please enter Project name, Clarity Programme ID numbers, PWO numbers etc. --></help>
+        <label><!-- Large Project discount details --></label>
+        <name>txt_Large_Project_discount_details__c</name>
+    </fields>
+    <fields>
+        <help><!-- Provide details of all linked projects --></help>
+        <label><!-- Linked PWOs --></label>
+        <name>txt_Linked_PWOs__c</name>
+    </fields>
+    <fields>
         <label><!-- Name --></label>
         <name>txt_Name__c</name>
     </fields>
@@ -1128,7 +1177,6 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <name>txta_Probability__c</name>
     </fields>
     <fields>
-        <help><!-- Please Write a Para (Maximum 255 Words)…. --></help>
         <label><!-- Project Description* --></label>
         <name>txta_Project_Description__c</name>
     </fields>

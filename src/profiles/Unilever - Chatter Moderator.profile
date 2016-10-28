@@ -14233,6 +14233,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CPA_PWORF__c.pkl_Access_to_Unilever_personal_data__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CPA_PWORF__c.pkl_Approval_Comment_Check__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -14259,6 +14264,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_PWORF__c.pkl_Landscape__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF__c.pkl_Large_Project_Discount__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF__c.pkl_Linked_Project__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -14329,6 +14344,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_PWORF__c.txt_Internal_PWO_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF__c.txt_Large_Project_discount_details__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF__c.txt_Linked_PWOs__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -292,7 +292,7 @@ FS_Push_Counter__c + 1
             <name>Increment_Push_Counter_Field</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <description>Increment the Push Counter field by 1</description>
         <formula>IF(  CloseDate &gt; PRIORVALUE( CloseDate ),  IF (MONTH(CloseDate) &lt;&gt; MONTH(PRIORVALUE( CloseDate )) ,  TRUE,  FALSE),  FALSE)</formula>
         <triggerType>onAllChanges</triggerType>
