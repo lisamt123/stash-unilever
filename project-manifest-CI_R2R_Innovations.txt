@@ -23,9 +23,7 @@ src/classes/CI_R2R_SME_GetHistory.cls-meta.xml
 src/dashboards/CI_R2R_Dashboard-meta.xml
 src/dashboards/CI_R2R_Dashboard/CI_R2R_Dashboard.dashboard
 src/dashboards/CI_R2R_Dashboard/CI_R2R_SME_Dashboard.dashboard
-src/flows/CI_R2R_Update_Scope_of_SME_Weekly_Update-19.flow
-src/flows/CI_R2R_Update_RAG_and_Closure_Date_to_Master_Object-1.flow
-src/layouts/CI_R2R_Budget__c-R2R Budget Layout.layout 
+src/layouts/CI_R2R_Budget__c-R2R Budget Layout.layout
 src/layouts/CI_R2R_Innovation__c-R2R Innovation Layout.layout
 src/layouts/CI_R2R_Milestones__c-CI_R2R Milestones Layout.layout
 src/layouts/CI_Accounting_Treatment__c-CI_Accounting Treatment Layout.layout
