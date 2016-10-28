@@ -1,3 +1,4 @@
+
 /**
 @Author Cognizant 
 @Name IPM_RolloutPlansAddController
@@ -359,6 +360,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             
             Set<String> setDisabledClusterCodes = new Set<String>();
             Set<String> setDisabledMCOCodes = new Set<String>();
+            Set<String> underProcessingMCOCodes = new Set<String>();
             Map<String,String> mapClusterToMCOCode = new map<String,String>();
             
             setCountryCodesGlobal = new Set<String>();
@@ -426,7 +428,11 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         {
                         	setDisabledClusterCodes.add(MDOClusterCode);
                         }
-                        else if(countryObj.IPM_Local_Project__c!=null && project.IPM_ProjectGKM__c=='GKM3')
+                        else if(countryObj.Local_Rollout__c !=null && (countryObj.Local_Rollout__r.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE || countryObj.Local_Rollout__r.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_PROCESSING) )
+                        {
+                        	underProcessingMCOCodes.add(countryObj.MCO_Code__c);
+                        }
+                        if(countryObj.IPM_Local_Project__c!=null && project.IPM_ProjectGKM__c=='GKM3' )
                         {
                         	mapClusterToMCOCode.put(countryObj.MCO_Code__c,countryObj.Market_Cluster_Name__c);
                         }
@@ -468,11 +474,15 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     mapMCOWrappers.put(mcoWrapper.code, mcoWrapper);
                     setDisabledMCOCodes.add(mcoWrapper.code);
                 }
-                else if(!mapClusterToMCOCode.isEmpty() && mapClusterToMCOCode.containskey(mcoWrapper.code))
+                if(!mapClusterToMCOCode.isEmpty() && mapClusterToMCOCode.containskey(mcoWrapper.code))
                 {
                 	mcoWrapper.mcoDisabled = true;
                 	mapMCOWrappers.put(mcoWrapper.code, mcoWrapper);
                 	setDisabledMCOCodes.addAll(mapClusterToMCOCode.values());
+                }
+                if(underProcessingMCOCodes.contains(mcoWrapper.code))
+                {
+                	mcoWrapper.mcoDisabled = true;
                 }
             }
             For (GeographyWrapper countryWrapper : mapCountryWrappers.values())
