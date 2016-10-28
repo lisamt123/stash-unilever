@@ -23,7 +23,7 @@ global class CTT_PostRefreshUserSetup implements SandboxPostCopy {
           alias = detail.First_Name__c.substring(0,1) + alias;
           
           //Populate user record                              
-          usersToCreate.add(new user(ProfileId         = admin.Id,
+          User newUser = new user(ProfileId         = admin.Id,
                                      FirstName         = detail.First_Name__c,
                                      LastName          = detail.Last_Name__c,
                                      Email             = detail.Email__c,
@@ -34,7 +34,11 @@ global class CTT_PostRefreshUserSetup implements SandboxPostCopy {
                                      localesidkey      ='en_GB',
                                      emailencodingkey  ='UTF-8'
                                      
-                                    ));                                   
+                                    );                                   
+          Database.DMLOptions dlo = new Database.DMLOptions();
+          dlo.EmailHeader.triggerUserEmail = true;
+          newUser.setOptions(dlo);
+          usersToCreate.add(newUser);                                 
       }                                   
       
       //Create Users
