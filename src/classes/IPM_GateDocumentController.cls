@@ -1026,7 +1026,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             return finvalue;
         }
         else if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK==document && IPM_constantUtils.DOCUMENT_STATUS_APPROVED==projectDoc.IPM_Document_Status__c){
-            finValue=fin.Year_3_iTO_Contract__c/1000;
+            finValue=fin.Year_3_iTO_Global__c/1000;
             return finvalue;
         }
         else if(IPM_ConstantUtils.CONTRACT_GATE==document && IPM_constantUtils.DOCUMENT_STATUS_APPROVED==projectDoc.IPM_Document_Status__c){
