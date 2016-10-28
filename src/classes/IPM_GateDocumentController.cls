@@ -881,7 +881,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                         IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c 
                  FROM IPM_Financial__c 
                  WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:projectName+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-                globalbusinessImpactStr = gateDocument==IPM_ConstantUtils.CHARTER_GATE? fin.Business_Impact_Global__c:fin.Business_Impact_Regional__c;
+                globalbusinessImpactStr = gateDocument==IPM_ConstantUtils.CHARTER_GATE || project.IPM_ProjectGKM__c.equals(IPM_ConstantUtils.GATE_KEEPING_MODEL_3) ? fin.Business_Impact_Global__c:fin.Business_Impact_Regional__c;
         }
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
         {       
