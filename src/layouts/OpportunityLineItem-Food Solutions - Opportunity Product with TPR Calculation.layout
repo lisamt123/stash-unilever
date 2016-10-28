@@ -216,6 +216,7 @@
     <multilineLayoutFields>Product2Id</multilineLayoutFields>
     <multilineLayoutFields>Quantity</multilineLayoutFields>
     <multilineLayoutFields>UnitPrice</multilineLayoutFields>
+	<multilineLayoutFields>FS_Sample__c</multilineLayoutFields>
     <multilineLayoutFields>OpportunityId</multilineLayoutFields>
     <relatedLists>
         <relatedList>RelatedScheduleList</relatedList>

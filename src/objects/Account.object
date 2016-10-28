@@ -1239,6 +1239,22 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Distributor Program</label>
         <picklist>
             <picklistValues>
+                <fullName>LMA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LMP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed End Distributor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No Program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>TBD</fullName>
                 <default>false</default>
             </picklistValues>
@@ -3647,7 +3663,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <externalId>false</externalId>
         <label>NFS Region</label>
         <picklist>
-            <controllingField>Zone__c</controllingField>
             <picklistValues>
                 <fullName>10007 Custom</fullName>
                 <default>false</default>
@@ -3707,117 +3722,94 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <picklistValues>
                 <fullName>55000 West Zone Leader</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55005 Non-Comm Region 3</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55015 Midwest</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55020 North central</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55030 South Central</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55035 Mountain</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55040 West</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55045 West Client delivery</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>56005 Non-Comm Region 1</fullName>
                 <default>false</default>
-                <controllingFieldValues>56 OCS</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>56010 Military</fullName>
                 <default>false</default>
-                <controllingFieldValues>56 OCS</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>56015 Buying Groups</fullName>
                 <default>false</default>
-                <controllingFieldValues>56 OCS</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>56020 Corporate Accounts</fullName>
                 <default>false</default>
-                <controllingFieldValues>56 OCS</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>56025 OCS</fullName>
                 <default>false</default>
-                <controllingFieldValues>56 OCS</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59000 South CDM</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59005 East CDM</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59010 Redistribution - CA</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59015 Southeast</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59020 Canada CDM</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59025 Club Stores - CA</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59040 South</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59045 Canada Zone Leader</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>82100 Disposal</fullName>
                 <default>false</default>
-                <controllingFieldValues>82 Disposal/Exited</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>82200 Exited</fullName>
                 <default>false</default>
-                <controllingFieldValues>82 Disposal/Exited</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>89010 Canada West</fullName>
@@ -9500,8 +9492,20 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>DistributorProgram__c</picklist>
             <values>
-                <fullName>TBD</fullName>
+                <fullName>Closed End Distributor</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>LMA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Program</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
