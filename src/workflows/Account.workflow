@@ -360,6 +360,16 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Account_Number</fullName>
+        <description>Update the account Number from the External Id.</description>
+        <field>AccountNumber</field>
+        <formula>External_Id__c</formula>
+        <name>Update Account Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>CEC Account Email Notification</fullName>
         <actions>
@@ -494,6 +504,17 @@
         </criteriaItems>
         <description>Concatenate Shipping Street and CHD Address 2</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>FS Account Number Distributor</fullName>
+        <actions>
+            <name>Update_Account_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update the account number field from the External Id for Distributor accounts created in Salesforce.com</description>
+        <formula>AND( RecordType.DeveloperName =&quot;Distributor&quot;, $Profile.Name =&quot;Unilever Food Solution - Russia&quot;,  ISPICKVAL(CurrencyIsoCode, &apos;RUB&apos;)  )</formula>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>FS Account Status to Temporary</fullName>
