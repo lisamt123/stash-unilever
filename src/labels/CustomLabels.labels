@@ -170,7 +170,7 @@ If you make no selection now the Sustainability Period will default to 3 years o
 	<language>en_US</language>
 	<protected>false</protected>
 	<shortDescription>IPM Product %of GTo</shortDescription>
-	<value>%of gTO</value>
+	<value>% of gTO</value>
 </labels>
 <labels>
 	<fullName>IPM_Product_Golden_Prototype</fullName>
