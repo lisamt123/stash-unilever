@@ -593,7 +593,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
 				// if local is Child to Regional Local Project
 				else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
 				{
-					IPM_Project__c globalParentId= [Select IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c FROM IPM_Project__c where ID=:project.Id];
+					IPM_Project__c globalParentId= [Select IPM_Parent_Project__r.IPM_Parent_Project__r.Source_Rollout_External_Id__c, IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c FROM IPM_Project__c where ID=:project.Id];
 					fin=[SELECT Business_Impact_Global__c,Business_Impact_Regional__c FROM IPM_Financial__c 
 							 WHERE Parent_Project__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__c
                              				 AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.Source_Rollout_External_Id__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
