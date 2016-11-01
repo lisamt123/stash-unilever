@@ -938,11 +938,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 	    		projectDoc.IPM_Approval_Date__c = dt;
 	    		projectDoc.IPM_Updated_User_By__c = UserInfo.getUserId();
 		    	update projectDoc;
-		    	Integer PDFCounter = [SELECT COUNT() FROM Attachment where Name = :project.IPM_Project_Name__c+'_PDL'];
 		    	
-		    	if(PDFCounter == 0){
 		    		List<IPM_Project_Document__c> projectDocList = [SELECT ID,IPM_Document_Status__c,IPM_Approved_Comments__c,IPM_Updated_User_By__r.Name FROM IPM_Project_Document__c where ID = :projectDoc.ID ];
-		    		if(!projectDocList.isEmpty()){
+	    		if(!projectDocList.isEmpty())
+	    		{
 		    			IPM_project_Document__c tempProjectDoc = projectDocList[0];
 		    			PageReference pdfGateDocRef = Page.ipm_gatedocumentpdf;
 		    			pdfGateDocRef.getParameters().put('Id',projectId);
@@ -954,6 +953,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 		    			pdfGateDocRef.getParameters().put('OperatedBy',tempProjectDoc.IPM_Updated_User_By__r.Name);
 		    			
 		    			Attachment gateDocPDFAttachment = new Attachment(Name=project.IPM_Project_Name__c+'_PDL.pdf',ParentId=projectDoc.id,ContentType='pdf',Body=pdfGateDocRef.getContentAsPDF());
+	    			Integer PDFCounter = [SELECT COUNT() FROM Attachment where Name = :project.IPM_Project_Name__c+'_PDL'];
+	    			if(PDFCounter == 0){
 		    			insert gateDocPDFAttachment;
 		    		}
 		    	}

@@ -168,8 +168,12 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         //for PDL pdf
         if(isPDLApproved!=null && isPDLApproved)
         {
-        	savedAttachmentDoc = [Select id,body from Attachment WHERE ParentId =:projectDoc.Id];
+        	List<Attachment> savedAttachmentDocList = [Select id,body from Attachment WHERE ParentId =:projectDoc.Id];
+        	if(!savedAttachmentDocList.isEmpty())
+        	{
+        		savedAttachmentDoc = savedAttachmentDocList[0];
         	attachmentName = IPM_ConstantUtils.ATTACHMENT_FILE_NAME+project.IPM_Project_Name__c+'_'+PrintDoc+IPM_ConstantUtils.ATTACHMENT_FILE_TYPE;
+        	}
         }
         if(ApexPages.currentPage().getParameters().get('setStatus') != null)
         {
@@ -1026,7 +1030,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             return finvalue;
         }
         else if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK==document && IPM_constantUtils.DOCUMENT_STATUS_APPROVED==projectDoc.IPM_Document_Status__c){
-            finValue=fin.Year_3_iTO_Contract__c/1000;
+            finValue=fin.Year_3_iTO_Global__c/1000;
             return finvalue;
         }
         else if(IPM_ConstantUtils.CONTRACT_GATE==document && IPM_constantUtils.DOCUMENT_STATUS_APPROVED==projectDoc.IPM_Document_Status__c){
