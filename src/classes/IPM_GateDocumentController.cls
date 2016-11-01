@@ -908,11 +908,11 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         }
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
         {
-            
+            string sExternalID=project.Source_Rollout_External_Id__c;
             fin = [SELECT ipm_cpp_local__c,ipm_cpp_regional__c, Year_3_iTO_Local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,
                            Year_3_iTO_MD__c,Business_Impact_Local__c 
                     FROM IPM_Financial__c 
-                    WHERE Financial_External_ID__c =: projectName limit 1];
+                    WHERE Financial_External_ID__c =: sExternalID limit 1];
             localCPP = fin.ipm_cpp_local__c;
             regionalCPP = fin.ipm_cpp_regional__c;
                     
