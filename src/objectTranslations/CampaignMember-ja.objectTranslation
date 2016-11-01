@@ -55,7 +55,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Miss</masterLabel>
-            <translation><!-- Miss --></translation>
+            <translation>メディア</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Mr.</masterLabel>
@@ -63,7 +63,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Mr./Ms.</masterLabel>
-            <translation><!-- Mr./Ms. --></translation>
+            <translation>カスタマー</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Mrs.</masterLabel>

@@ -291,7 +291,6 @@
         <fields>FS_gmWhenTPREqualsZero__c</fields>
         <fields>ProdDistributor__c</fields>
         <fields>FS_Sample__c</fields>
-        <fields>Discount</fields>
         <relatedList>RelatedLineItemList</relatedList>
     </relatedLists>
     <relatedLists>
