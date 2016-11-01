@@ -168,8 +168,12 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         //for PDL pdf
         if(isPDLApproved!=null && isPDLApproved)
         {
-        	savedAttachmentDoc = [Select id,body from Attachment WHERE ParentId =:projectDoc.Id];
+        	List<Attachment> savedAttachmentDocList = [Select id,body from Attachment WHERE ParentId =:projectDoc.Id];
+        	if(!savedAttachmentDocList.isEmpty())
+        	{
+        		savedAttachmentDoc = savedAttachmentDocList[0];
         	attachmentName = IPM_ConstantUtils.ATTACHMENT_FILE_NAME+project.IPM_Project_Name__c+'_'+PrintDoc+IPM_ConstantUtils.ATTACHMENT_FILE_TYPE;
+        	}
         }
         if(ApexPages.currentPage().getParameters().get('setStatus') != null)
         {
