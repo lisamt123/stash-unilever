@@ -65,13 +65,6 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-	  <runTest>Core_CA_Approve_Reject_Test</runTest>
-          <runTest>Core_CA_BaseApplicationServicesTest</runTest>
-          <runTest>Core_CA_BaseServiceException_Test</runTest>
-          <runTest>CORE_CA_ReminderAlert_Batch_Test</runTest>
-          <runTest>Core_CA_RemoteServiceCallControllerTest</runTest>
-          <runTest>Core_CA_Test</runTest>
-          <runTest>Core_CA_Test_MobileAPP</runTest>
       <runTest>Amr_AdManagerController_Test</runTest>
 	  <runTest>Amr_CAPJobPortfolioController_Test</runTest>
 	  <runTest>Amr_EmailSendingClass_Test</runTest>
