@@ -19,8 +19,6 @@ private class IPM_GlobalClaimPDLController_Test{
     @testSetup public static void initializeData()
     {   
         User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        Test.startTest();
-        
         List<User> userList = new List<User>();
         System.runAs(adminUser)
         {   
@@ -37,7 +35,7 @@ private class IPM_GlobalClaimPDLController_Test{
 
             update userList;
         } 
-        
+        Test.startTest();
         List<String> emailList = new List<String>{GLOBAL_PL_EMAIL_ID,REGIONAL_PL_EMAIL_ID,LOCAL_PL_EMAIL_ID}; 
         User globalProjectLeader =null; User regionalProjectLeader =null;  User localProjectLeader =null;
         
@@ -67,7 +65,7 @@ private class IPM_GlobalClaimPDLController_Test{
             List<IPM_Project__c> projectListGKM3 = IPM_TestFactory_Helper.projectSetUpGKM3(1,globalProjectLeader);
             insert projectListGKM3;
             
-            test.stopTest();
+            
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectListGKM3,new List<User>{userList[1],userList[1],userList[1]});
             
             insert regionalRolloutList;
@@ -103,7 +101,7 @@ private class IPM_GlobalClaimPDLController_Test{
             insert localRolloutList; 
 
             system.assertEquals(localRolloutList.size(), 2,'project rollout map cannot be created'); //names cannot be asserted as project and rollout map set in helper class
-            
+            test.stopTest();
             //assert preparation
             list<IPM_Project_Rollout__c> selRolloutList = [select KeyMCO__c, IPM_Regional_PL__c, IPM_Project_Job_Status__c, IPM_RolloutJobType__c, Target_Launch_Date__c, Previous_Target_Launch_Date__c from IPM_Project_Rollout__c where id in :setIds];
             for(IPM_Project_Rollout__c localRollout : selRolloutList)

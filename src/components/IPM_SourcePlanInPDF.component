@@ -29,7 +29,7 @@
                         <table width="100%" class="innerTable">
                             <thead>
                                 <tr>
-                                    <th scope="col" width="90px"><span>{!$Label.IPM_Sourcing_Units} test</span></th>                    
+                                    <th scope="col" width="90px"><span>{!$Label.IPM_Sourcing_Units}</span></th>                    
                                     <th scope="col" width="75px"><div class="capcon">{!$Label.IPM_Capability_Confirmed}</div></th>
                                     <th scope="col" width="70px"><span>{!$Label.IPM_Sourced_Into}</span></th>
                                 </tr>
