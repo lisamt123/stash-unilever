@@ -10,7 +10,7 @@ global class VPM_ExtendVendorGlobalHelper {
         Map<String, String> reqURLParams;
         String requestStatus;
         VPM_ExtendVendorFetchFieldDetails clas = new VPM_ExtendVendorFetchFieldDetails();
-        reqURLParams = clas.VPM_ConvertExtendVendorFieldDetailsToMap(vendorId);
+       // reqURLParams = clas.VPM_ConvertExtendVendorFieldDetailsToMap(vendorId);
         System.debug('------map of request URL params is-----'+reqURLParams);
         
         ExtendVendorResponse extendVenResp;

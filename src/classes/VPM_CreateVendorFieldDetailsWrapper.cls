@@ -1,3 +1,18 @@
+/**********************************************************************
+Name:  VPM_CreateVendorFieldDetailsWrapper()
+Copyright ? 2016  Unilever
+======================================================================
+======================================================================
+Purpose:  Used to trigger the Approval process 
+1. Base on the Values trigger the appropriate approval process from process builder 
+======================================================================
+======================================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR       DATE             DETAIL                  Description
+1.0 -    Girish       11/05/2016       INITIAL DEVELOPMENT     Invocable method which is call in PB to trigger the approval process 
+****************************************************************************/
+
 public class VPM_CreateVendorFieldDetailsWrapper {
     public string RequestorName {get; set;}
     public Integer RequestID {get; set;}
@@ -79,6 +94,8 @@ public class VPM_CreateVendorFieldDetailsWrapper {
     public string TaxNumber2 {get; set;}
     public string TaxNumber4 {get; set;}
     public string TaxNumberType {get; set;}
+    //public string taxtType{get; set;}
+    public string TaxType{get; set;}
     //public string VendorName3 {get; set;}
     //public string VendorName4 {get; set;}
 

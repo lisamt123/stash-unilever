@@ -18,7 +18,7 @@ TEXT( VPM_Country__c)</formula>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <description>Updates the unique text field with concatenation of Commodity Class and Country to ensure only one approver record per class per country is created</description>
+        <description>VPM - Updates the unique text field with concatenation of Commodity Class and Country to ensure only one approver record per class per country is created</description>
         <formula>TRUE</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

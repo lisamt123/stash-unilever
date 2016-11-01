@@ -19,6 +19,7 @@ global class VPM_MaintainGlobalVendorServiceHelper {
     }
     global static String maintainGlobalVendor(String vendorId) {
         try{
+        list<errorMsgWrapper> errorList;
         System.debug('----------input parameters passed are----------' + vendorId);
         String reqBodyJson, requestStatus,responseString ;
         MaintainGlobalVendorResponse maintainVenResp;
@@ -33,7 +34,78 @@ global class VPM_MaintainGlobalVendorServiceHelper {
 
        VPM_PurchasingRequests__c VendorReq = [SELECT VPM_Fieldtype__c  FROM VPM_PurchasingRequests__c WHERE id =: vendorId];
        maintainVenResp = (MaintainGlobalVendorResponse) System.JSON.deserialize(res.getBody(), MaintainGlobalVendorResponse.class);
-       // }
+       // 
+       
+        //System.debug('---bpm id -- and response status---' + maintainVenResp.bpmID + '  ' + maintainVenResp.status);
+        string msg='';
+        if(maintainVenResp.status != null) {
+            msg = maintainVenResp.status;
+        }
+        system.debug('%%%% '+maintainVenResp);
+         responseString = maintainVenResp.status;
+        if(res.getStatusCode() == 200) {
+        
+
+            
+                
+
+            if(VendorReq.VPM_Fieldtype__c != 'Both')
+            {
+            VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.successStatusReqCompleted ,msg,VPM_HttpUtil.successStatusMDM);
+           }
+            else
+            {
+           
+            
+           responseString =responseString + VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorId);
+            VPM_HttpUtil.updateFieldType(vendorId);
+           VPM_HttpUtil.updateVendorMDMStatus(vendorId,null,msg,VPM_HttpUtil.successStatusMDM);
+           }
+           
+        } else if(res.getStatusCode() == 500) {
+             if(VendorReq.VPM_Fieldtype__c != 'Both')
+            VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            responseString = 'Server Error. Please try after some time.';
+        } else if(res.getStatusCode() == 504) {
+             if(VendorReq.VPM_Fieldtype__c != 'Both')
+            VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            responseString = 'Timeout Error. Please try after some time.';
+        } else if(res.getStatusCode() == 400) {
+             if(VendorReq.VPM_Fieldtype__c != 'Both')
+            VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            //responseString = 'Please check request data and try again.';
+        } else if(res.getStatusCode() == 503) {
+             if(VendorReq.VPM_Fieldtype__c != 'Both')
+            VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            responseString = 'SAP API not implemented.';
+        } else {
+             if(VendorReq.VPM_Fieldtype__c != 'Both')
+            VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            responseString = 'Some error occured while submitting request to SAP. Please try after some time.';
+        }
+        return responseString;
+    }
+        catch(exception ex){
+            return '';
+        }
+    }
+    
+    //Deepak : for global extend
+  /*  global static String extendGlobalVendor(String vendorId) {
+        try{
+          String reqBodyJson, requestStatus,responseString ;
+          MaintainGlobalVendorResponse maintainVenResp;
+          VPM_ExtendVendorFetchFieldDetails clas = new VPM_ExtendVendorFetchFieldDetails();
+          reqBodyJson = clas.VPM_ConvertExtendVendorFieldDetailsToMap(vendorId);
+          
+          HttpResponse res = VPM_HttpUtil.sendRequest('PUT',reqBodyJson,'VPM_MaintainExtendGlobalVendorBPM');
+        System.debug('-----whloe response string-----'+ res.toString());
+        System.debug('------HTTP response status and status code are ------'+res.getStatus() + '  ' + res.getStatusCode());
+       
+
+       VPM_PurchasingRequests__c VendorReq = [SELECT VPM_Fieldtype__c  FROM VPM_PurchasingRequests__c WHERE id =: vendorId];
+       maintainVenResp = (MaintainGlobalVendorResponse) System.JSON.deserialize(res.getBody(), MaintainGlobalVendorResponse.class);
+       // 
        
         //System.debug('---bpm id -- and response status---' + maintainVenResp.bpmID + '  ' + maintainVenResp.status);
         string msg='';
@@ -70,13 +142,13 @@ global class VPM_MaintainGlobalVendorServiceHelper {
             responseString = 'Some error occured while submitting request to SAP. Please try after some time.';
         }
         return responseString;
-    }
+          
+        }
         catch(exception ex){
             return '';
         }
-    }
-    
-    
+        
+    }*/
     
     // Ajay : For Regional maintain
     global static String maintainECCVendor(String vendorId) 
@@ -86,8 +158,10 @@ global class VPM_MaintainGlobalVendorServiceHelper {
         list<errorMsgWrapper> errorList;
         //VPM_MaintainVendorFetchFieldDetails clas = new VPM_MaintainVendorFetchFieldDetails();
         //reqBodyJson = clas.VPM_ConvertMaintainVendorFieldDetailsToJSON(vendorId);
-        VPM_MaintainVendorFetchFieldMap maintainService = new VPM_MaintainVendorFetchFieldMap();
-        reqBodyJson = maintainService.VPM_ConvertMaintainVendorFieldDetailsToJSON(vendorId);
+        //VPM_MaintainVendorFetchFieldMap maintainService = new VPM_MaintainVendorFetchFieldMap();
+        VPM_ECCMaintainExtendHelper ECCManintainService =new VPM_ECCMaintainExtendHelper();
+        //reqBodyJson = maintainService.VPM_ConvertMaintainVendorFieldDetailsToJSON(vendorId);
+        reqBodyJson  = ECCManintainService.VPM_ConvertMaintainVendorFieldDetailsToJSON(vendorId);
         system.debug('reqBodyJson '+reqBodyJson );
          
         //VPM_HttpUtil utilClass = new VPM_HttpUtil();
@@ -107,10 +181,14 @@ global class VPM_MaintainGlobalVendorServiceHelper {
         try
         {
         if(res.getStatusCode() == 200) {
-            VPM_HttpUtil.updateVendorStatus(vendorId,VPM_HttpUtil.successStatus,msg,VPM_HttpUtil.successStatusMDM);
+         
+            
             /*responseString = 'Vendor Request submitted successfully to SAP.';*/
             //errorList= (List<errorMsgWrapper>) System.JSON.deserialize(res.getBody(), List<errorMsgWrapper>.class);
+             system.debug('JSON List '+res.getBody());
             string JSON =res.getBody().right( res.getBody().length()-20).left(res.getBody().right( res.getBody().length()-20).length()-1);
+            system.debug('JSON List '+JSON);
+           
             errorList= (List<errorMsgWrapper>) System.JSON.deserialize(JSON , List<errorMsgWrapper>.class);
             
            
@@ -118,33 +196,31 @@ global class VPM_MaintainGlobalVendorServiceHelper {
             {
                 responseString = responseString+error.Message+';';
                 }
-            VendorReq.VPM_ECC_InsertUpdateStatus__c = 'ECC Insert / Update Succeeded';
+            VPM_HttpUtil.updateVendorECCStatus(vendorId,VPM_HttpUtil.successStatus,responseString,VPM_HttpUtil.successStatusECC);    
+            /*VendorReq.VPM_ECC_InsertUpdateStatus__c = 'ECC Insert / Update Succeeded';
             VendorReq.VPM_ECC_InsertUpdateStatusMessage__c = responseString;
             VendorReq.VPM_fieldUpdated__c =',';
-            update VendorReq;
-            system.debug('Error List '+errorList);
+            update VendorReq;*/
+                system.debug('Error List '+errorList);
             //responseString = 'Vendor Request submitted successfully to SAP.';
             
-        } 
-        //else if(res.getStatusCode() == 500) 
+        }  
         else
         {
-            VPM_HttpUtil.updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+           
             //responseString = 'Server Error. Please try after some time.';
             //responseString = maintainVenResp.message;
             string JSON =res.getBody().right( res.getBody().length()-20).left(res.getBody().right( res.getBody().length()-20).length()-1);
-            errorList= (List<errorMsgWrapper>) System.JSON.deserialize(JSON , List<errorMsgWrapper>.class);
             
            
+            errorList= (List<errorMsgWrapper>) System.JSON.deserialize(JSON , List<errorMsgWrapper>.class);
+            system.debug('Error List '+errorList);
+            system.debug('errorList List '+errorList);
             for(errorMsgWrapper error : errorList)
             {
                 responseString = responseString+error.Message+';';
                 }
-                VendorReq.VPM_ECC_InsertUpdateStatus__c = 'Failed to Submit to ECC';
-            VendorReq.VPM_ECC_InsertUpdateStatusMessage__c = responseString;
-             VendorReq.VPM_Status__c= 'MDM Ops Review - SAP ECC submit Failed';
-            //VendorReq.VPM_fieldUpdated__c ='';
-            update VendorReq;
+            VPM_HttpUtil.updateVendorECCStatus(vendorId,VPM_HttpUtil.ECCfailStatus,responseString,VPM_HttpUtil.failStatusECC);
         } 
 
         /*else if(res.getStatusCode() == 504) 

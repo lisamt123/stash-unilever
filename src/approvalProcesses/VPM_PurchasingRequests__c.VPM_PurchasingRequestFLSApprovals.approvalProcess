@@ -38,11 +38,15 @@
     </entryCriteria>
     <finalApprovalActions>
         <action>
-            <name>ChangeReworkStatustoNo</name>
+            <name>VPM_ApprovalStatusAproval</name>
             <type>FieldUpdate</type>
         </action>
         <action>
             <name>VPM_ChangelastGroupwithFLS</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeReworkStatusNo</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -57,11 +61,19 @@
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
+            <name>VPM_ApprovalStatusRejection</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeReworkStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_ChangesIslockStatusNo</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_NotifiedBusinessRequesterRequestFLSTeam</name>
+            <name>VPM_RequestRejectNotification</name>
             <type>Alert</type>
         </action>
         <action>
@@ -72,20 +84,36 @@
     <finalRejectionRecordLock>true</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
-            <name>Change_Business_Requestor_Flag_to_Null</name>
+            <name>VPM_ApprovalStatusPending</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>Change_Status_to_FLS_review</name>
+            <name>VPM_ChangeBusinessRequestorFlagtoNull</name>
             <type>FieldUpdate</type>
-        </action>
-        <action>
-            <name>Notification_for_Logged</name>
-            <type>Alert</type>
         </action>
         <action>
             <name>VPM_ChangeOwnerToFLSQueue</name>
             <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeReworkStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeStatustoFLSreview</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_IsLockTrue</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_NextApproverNameFLS</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_NotificationForLogged</name>
+            <type>Alert</type>
         </action>
     </initialSubmissionActions>
     <label>FLS Approval</label>
@@ -95,11 +123,11 @@
     </nextAutomatedApprover>
     <recallActions>
         <action>
-            <name>ChangeReworkStatustoNo</name>
+            <name>VPM_ChangeAdvanceFormSubmittedtonull</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangeAdvanceFormSubmittedtonull</name>
+            <name>VPM_ChangeReworkStatusNo</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -108,6 +136,10 @@
         </action>
         <action>
             <name>VPM_IsInApprovalProcessBlank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_StatusDraftRequest</name>
             <type>FieldUpdate</type>
         </action>
     </recallActions>

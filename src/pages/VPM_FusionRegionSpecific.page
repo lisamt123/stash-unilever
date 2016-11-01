@@ -1,9 +1,10 @@
-<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true"
+<apex:page ></apex:page>
+<!--apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true"
            sidebar="false" extensions="VPM_SubController" language="{!userlang}">  
     <!--<script>
     debugger;
     localStorage.removeItem("cancelClicked");
-    </script>-->
+    </script>>
     <apex:form >
        <apex:pageBlock title="{!$Label.VPM_Fusion_Region_Specific}" id="thePageBlock">
            <apex:pagemessages id="pageMessages"/>
@@ -39,7 +40,7 @@
     <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PermittedPayee__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PermittedPayee__c}"/>
     <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SortKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SortKey__c}" required="true" />
     
-<!---    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CashManagementGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CashManagementGroup__c}" required="true"/>-->
+<    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CashManagementGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CashManagementGroup__c}" required="true"/>>
     <apex:pageBlockSectionItem labelStyle="width: 300px" dataStyle="width: 200px" >
  <apex:outputLabel value="{!$Label.VPM_CashManagementGroup}" />
         <apex:outputPanel layout="block" styleClass="requiredInput">
@@ -66,7 +67,6 @@
 
    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PmtAdviceByEDI__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PmtAdviceByEDI__c}"/>
    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryName__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryName__c}"/>
-   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress1__c}"/>
    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress2__c}"/>
    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress3__c}"/>
    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryCountry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryCountry__c}"/>
@@ -252,7 +252,6 @@
               <apex:inputField label="{!$Label.VPM_Indicator_Alternative_payee_using_account_number}" value="{!VPM_PurchasingRequests__c.VPM_AlternativePayeeAccountNumber__c}"/>
               
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BankNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BankNumber__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress1__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress2__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress3__c}"/> 
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BlockFunction__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BlockFunction__c}" />

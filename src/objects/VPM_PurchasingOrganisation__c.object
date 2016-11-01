@@ -61,7 +61,7 @@
     <fields>
         <fullName>VPM_CompanyCodeException1__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Used to store values of a company code excluded from the normal filtered lookup rules on Purchasing Organisations &gt; Company Codes</description>
+        <description>VPM - Used to store values of a company code excluded from the normal filtered lookup rules on Purchasing Organisations &gt; Company Codes</description>
         <externalId>false</externalId>
         <label>Company Code Exception 1</label>
         <referenceTo>VPM_CompanyCode__c</referenceTo>
@@ -74,7 +74,7 @@
     <fields>
         <fullName>VPM_CompanyCodeException2__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Used to store Company Codes that are exceptions to the Filtered Lookup rules on Purchasing Organisation lookup on Vendor Request</description>
+        <description>VPM - Used to store Company Codes that are exceptions to the Filtered Lookup rules on Purchasing Organisation lookup on Vendor Request</description>
         <externalId>false</externalId>
         <label>Company Code Exception 2</label>
         <referenceTo>VPM_CompanyCode__c</referenceTo>
@@ -87,7 +87,7 @@
     <fields>
         <fullName>VPM_CompanyCodeException3__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Used to store Company Codes that are exceptions to the Filtered Lookup rules on Purchasing Organisation lookup on Vendor Request</description>
+        <description>VPM - Used to store Company Codes that are exceptions to the Filtered Lookup rules on Purchasing Organisation lookup on Vendor Request</description>
         <externalId>false</externalId>
         <label>Company Code Exception 3</label>
         <referenceTo>VPM_CompanyCode__c</referenceTo>
@@ -99,7 +99,7 @@
     </fields>
     <fields>
         <fullName>VPM_CompanyCodeText__c</fullName>
-        <description>Text field populated via a workflow to update the value taken from the Company Code lookup so it is searchable on lookup dialogues</description>
+        <description>VPM - Text field populated via a workflow to update the value taken from the Company Code lookup so it is searchable on lookup dialogues</description>
         <externalId>false</externalId>
         <label>Company Code (Text)</label>
         <length>255</length>
@@ -123,7 +123,7 @@
     </fields>
     <fields>
         <fullName>VPM_CountryText__c</fullName>
-        <description>System field populated via a workflow to populate a text value taken from the Country picklist so this is searchable in lookup dialogues</description>
+        <description>VPM - System field populated via a workflow to populate a text value taken from the Country picklist so this is searchable in lookup dialogues</description>
         <externalId>true</externalId>
         <label>Country (Text)</label>
         <length>255</length>
@@ -929,12 +929,13 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_POSystemText__c</fullName>
-        <description>Text field populated via a workflow to update the value taken from the PO System picklist so it is searchable on lookup dialogues</description>
+        <description>VPM - Text field populated via a workflow to update the value taken from the PO System picklist so it is searchable on lookup dialogues</description>
         <externalId>true</externalId>
         <label>PO System (Text)</label>
         <length>255</length>
@@ -964,6 +965,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>

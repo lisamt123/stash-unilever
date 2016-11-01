@@ -14,17 +14,18 @@ public class VPM_HttpUtil {
         }
     }
     
-    public static final String successStatus = 'BPM Record Submitted';
-    public static final String failStatus = 'MDM Ops Review - SAP BPM submit Failed';
-    public static final String successStatusMDM = 'Submitted to BPM';
-    public static final String failStatusMDM = 'Failed to Submit to BPM';
+    public static final String successStatus = 'BPM Record Submitted'; // VPM_Status__c
+    public static final String failStatus = 'MDM Ops Review - SAP BPM submit Failed';// VPM_Status__c
+     public static final String successStatusReqCompleted = 'Request Completed'; // VPM_Status__c
+    public static final String successStatusMDM = 'Submitted to BPM';// MDM status
+    public static final String failStatusMDM = 'Failed to Submit to BPM';// MDM status
     private static final String certName = System.Label.VPM_CertificateName;
-    
-    public VPM_HttpUtil() {
-    }
-    
+    public static final string successStatusECC = 'ECC Insert / Update Succeeded';
+    public static final string failStatusECC = 'Failed to Submit to ECC';
+    public static final String ECCfailStatus = 'MDM Ops Review - SAP ECC submit Failed';// VPM_Status__c
+  
     public static String createEndPoint(String service) {
-        String endpoint,resource,clientId,clientSecret,finalUrl;
+        String endpoint='',resource ='',clientId ='',clientSecret ='',finalUrl ='';
         List<VPM_ExternalService__mdt> serviceDetails = [SELECT DeveloperName, MasterLabel, VPM_ServiceEndpoint__c, VPM_ServiceResource__c FROM VPM_ExternalService__mdt WHERE DeveloperName = :service];
         if(serviceDetails != null && serviceDetails.size() >0) {
             endpoint = serviceDetails.get(0).VPM_ServiceEndpoint__c;
@@ -37,7 +38,7 @@ public class VPM_HttpUtil {
         return finalUrl;
     }
     public static HttpResponse sendRequest(String requestType, String requestBodyJson, String serviceName) {
-        HttpResponse res;
+        HttpResponse res = null;
         try {
             String url;
             if(requestType != null && !requestType.equalsIgnoreCase('GET')) {
@@ -84,7 +85,7 @@ public class VPM_HttpUtil {
         }
         return stringParams;
     }
-    public static void updateVendorStatus(String venReqId, String reqStatus, String message, String messageMDM) {
+  /*  public static void updateVendorStatus(String venReqId, String reqStatus, String message, String messageMDM) {
         // Update vendor request record status after send to SAP.
         // Update MDM Ops user fields on vendor request record.
         List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c, CreatedBy.Email,VPM_MDMBPMRequestorName__c, VPM_MDMBPMRequestorPhone__c, VPM_MDMBPMRequestorEmail__c, VPM_MDMBPMRequestorDepartment__c, VPM_MDMBPMOriginatoEmail__c,VPM_MDMInsertUpdateStatus__c,VPM_MDMInsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
@@ -103,15 +104,44 @@ public class VPM_HttpUtil {
             }
             update vendor;
         }
-    }
-    public static Integer generateRandomNumber() {
+    }*/
+     public static void updateVendorMDMStatus(String venReqId, String reqStatus, String message, String messageMDM) {
+        // Update vendor request record status after send to SAP.
+        // Update MDM Ops user fields on vendor request record.
+        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_MDMInsertUpdateStatus__c,VPM_MDMInsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
+       // List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
+        if(vendorList != null && vendorList.size() >0) {
+            VPM_PurchasingRequests__c vendor = vendorList.get(0);
+            if(reqStatus != null)
+            vendor.VPM_Status__c = reqStatus;
+            vendor.VPM_MDMInsertUpdateStatusMessage__c = message;
+            vendor.VPM_MDMInsertUpdateStatus__c = messageMDM;
+            update vendor;
+            }
+        }
+     public static void updateVendorECCStatus(String venReqId, String reqStatus, String message, String messageECC) {
+        // Update vendor request record status after send to SAP.
+        // Update MDM Ops user fields on vendor request record.
+        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_ECC_InsertUpdateStatus__c,VPM_ECC_InsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
+        //List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
+        if(vendorList != null && vendorList.size() >0) {
+            VPM_PurchasingRequests__c vendor = vendorList.get(0);
+            if(string.isNotBlank(reqStatus))
+            vendor.VPM_Status__c = reqStatus;
+            vendor.VPM_ECC_InsertUpdateStatusMessage__c = message;
+            vendor.VPM_ECC_InsertUpdateStatus__c = messageECC;
+            system.debug('inside fail');
+            update vendor;
+            }
+         }   
+    /*public static Integer generateRandomNumber() {
         Integer len = 9;
         String str = string.valueof(Math.abs(Crypto.getRandomLong()));
         String randomNumber = str.substring(0, len);
         Integer reqNum = Integer.valueOf(randomNumber);
         system.debug('-------Random Number------' + reqNum);
         return reqNum;
-    }
+    }*/
     public static String valueBeforeUnderscore(String inputString) {
         List<String> inputArray = inputString.split('_');
         if(inputArray != null && inputArray.size() >0) {
@@ -134,6 +164,7 @@ public class VPM_HttpUtil {
             } else {
                 userDetails.put('userPhone','');
             }
+            userDetails.put('name',userList.get(0).Name);
             userDetails.put('userEmail',userList.get(0).Email);
             userDetails.put('userDepartment',userList.get(0).Department);
         }
@@ -147,6 +178,14 @@ public class VPM_HttpUtil {
         System.debug('------' + o1.get(fieldName));
         update o1;
     }
+     public static void updateRecordType(String venReqId) {
+            
+        VPM_PurchasingRequests__c vendorList = [SELECT Id, RecordTypeId,VPM_FieldType__c  FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
+        recordType rec = [select Name, id from recordType where Name like '%Maintain%' limit 1];
+       vendorList.RecordTypeId = rec.id;
+       vendorList.VPM_FieldType__c = 'Regional';
+        update vendorList;
+        }
     public static boolean convertYesNoToBoolean(String inputString) {
         boolean booleanValue = false;
         if(String.isNotBlank(inputString) && 'Yes'.equalsIgnoreCase(inputString)) {
@@ -181,35 +220,41 @@ public class VPM_HttpUtil {
             }
         }
         if(res.getStatusCode() == 200) {
-            updateVendorStatus(vendorId,VPM_HttpUtil.successStatus,msg,VPM_HttpUtil.successStatusMDM);
+            updateVendorMDMStatus(vendorId,VPM_HttpUtil.successStatus,msg,VPM_HttpUtil.successStatusMDM);
             //responseString = 'Vendor Request submitted to SAP.'+msg ;
             responseString = msg;
         } else if(res.getStatusCode() == 500) {
-            updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+           updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             //responseString = 'Server Error. Please try after some time.';
             responseString = msg;
         } else if(res.getStatusCode() == 504) {
-            updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             //responseString = 'Timeout Error. Please try after some time.';
             responseString = msg;
         } else if(res.getStatusCode() == 400) {
-            updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             //responseString = 'Please check request data and try again. '+msg;
             responseString = msg;
         } else if(res.getStatusCode() == 503) {
-            updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+           updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             //responseString = 'SAP API not implemented.';
             responseString = msg;
         } else if(String.isNotBlank(msg)) {
-            updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             //responseString = 'Some error occured while submitting request to SAP. Please try after some time.'+msg ;
             responseString = msg;
         } else {
             responseString = 'Some error occured while submitting request to SAP. Please try after some time.' + '  ' + statusCodeStr;
-            updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             return responseString;
         }
         return responseString;
+    }
+    public static void updateFieldType(String vendorId)
+    {
+        VPM_PurchasingRequests__c vendor = [Select Id , VPM_FieldType__c from VPM_PurchasingRequests__c where id=: vendorId limit 1];
+        vendor.VPM_FieldType__c = 'Regional';
+        update vendor;
     }
     public static void sendEmail(String toEmail, String subjectEmail, String bodyEmail) {
         List<String> toAddressList = new List<String>();

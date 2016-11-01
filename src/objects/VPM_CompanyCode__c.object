@@ -47,7 +47,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Object that holds company codes.</description>
+    <description>VPM. Object that holds company codes.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableEnhancedLookup>true</enableEnhancedLookup>
@@ -60,7 +60,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Company_Name__c</fullName>
-        <description>Company Name</description>
+        <description>VPM.  This field stores the Company Name value.</description>
         <externalId>false</externalId>
         <label>Company Name</label>
         <length>75</length>
@@ -71,7 +71,7 @@
     </fields>
     <fields>
         <fullName>ECC__c</fullName>
-        <description>ECC Values</description>
+        <description>VPM.  This field stores the ECC Values.</description>
         <externalId>false</externalId>
         <label>ECC</label>
         <picklist>
@@ -93,12 +93,13 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_CompanyCode__c</fullName>
-        <description>Company Code</description>
+        <description>VPM.  This field stores the Company Code value.</description>
         <externalId>false</externalId>
         <label>Company Code</label>
         <length>16</length>
@@ -109,7 +110,7 @@
     </fields>
     <fields>
         <fullName>VPM_CountryCode__c</fullName>
-        <description>Country Code</description>
+        <description>VPM.  This field stores the Country Code value.</description>
         <externalId>false</externalId>
         <label>Country Code</label>
         <length>15</length>
@@ -120,7 +121,7 @@
     </fields>
     <fields>
         <fullName>VPM_Country__c</fullName>
-        <description>Country</description>
+        <description>VPM.  This field stores the country value.</description>
         <externalId>false</externalId>
         <label>Country</label>
         <length>40</length>

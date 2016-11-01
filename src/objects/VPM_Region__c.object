@@ -47,6 +47,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>VPM. This object stores a list of Region for each combination of Code and country.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -58,6 +59,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>VPM_Code__c</fullName>
+        <description>VPM. This field stores the region code for the country.</description>
         <externalId>false</externalId>
         <label>Code</label>
         <length>3</length>
@@ -68,9 +70,10 @@
     </fields>
     <fields>
         <fullName>VPM_Country__c</fullName>
+        <description>VPM.  This field stores the value for country.</description>
         <externalId>false</externalId>
         <label>Country</label>
-        <length>32</length>
+        <length>40</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

@@ -17,6 +17,10 @@
                 <behavior>Edit</behavior>
                 <field>VPM_CommodityFamily__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_Region__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -26,6 +30,10 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>VPM_CommodityClass__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>VPM_CSBVendor__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -70,8 +78,8 @@
                 <field>LastModifiedById</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>VPM_CSBVendor__c</field>
+                <behavior>Edit</behavior>
+                <field>VPM_CommodityRegionUnique__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

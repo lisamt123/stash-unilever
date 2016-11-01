@@ -10,7 +10,7 @@ global class VPM_FetchVendorsDetails {
         public string message;
     }
     global static List<VPM_ECCVendorSearchServiceOutput> getVendorDetails(List<InputVariables> inputCriteria) {
-        String compnayCode, vendorCode, eccInput, purchasingOrg;
+        String compnayCode='', vendorCode='', eccInput='', purchasingOrg='';
         List<VPM_ECCVendorSearchServiceOutput> vendorDetailsOutput = new List<VPM_ECCVendorSearchServiceOutput>();
         VPM_ECCVendorSearchServiceOutput vendorDetail;
         HttpResponse resp;
@@ -53,7 +53,7 @@ global class VPM_FetchVendorsDetails {
             vendorDetail = new VPM_ECCVendorSearchServiceOutput();
             if(serviceResponse != null) {
                 vendorDetail.message = serviceResponse.message;
-            	vendorDetail.statusCode = serviceResponse.statusCode;
+                vendorDetail.statusCode = serviceResponse.statusCode;
             }
             vendorDetail.Blocked=false;
             vendorDetail.Deleted=false;
@@ -76,7 +76,7 @@ global class VPM_FetchVendorsDetails {
             } else {*/
                 //vendorDetailsInput.companyCodeMatching = true;
                 vendorDetailsInput.vendorFoundResult=true;
-            	vendorDetailsInput.companyCodeMatching = Boolean.valueOf(vendorDetailsInput.companyCodeMatch);
+                vendorDetailsInput.companyCodeMatching = Boolean.valueOf(vendorDetailsInput.companyCodeMatch);
             //}
         }
         return vendorDetailsInput;

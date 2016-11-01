@@ -1,5 +1,11 @@
-<apex:page standardController="VPM_PurchasingRequests__c" recordSetVar="PurchasingRequests" tabStyle="VPM_PurchasingRequests__c" standardStylesheets="true" sidebar="true" showHeader="true" >
+<apex:page standardController="VPM_PurchasingRequests__c" recordSetVar="PurchasingRequests"  extensions="VPM_PurchaseRequestsControllerExtension" tabStyle="VPM_PurchasingRequests__c" standardStylesheets="true" sidebar="true" showHeader="true" >
 
+<style>
+// .btn.refreshListButton
+    input[name="vpm_newvendorrequest"],{
+        zoom:1.5;
+    }
+</style>
  <table border="" cellPadding="10" width= "100%">       
           <TR> <TH> <apex:sectionHeader title="{!$Label.VPM_VendorRequestsHomePage}" subtitle="{!$Label.VPM_VendorRequestsHome}"/></TH> 
           <TH align="right"> <apex:image id="IAndALogo" value="{!$Resource.VPM_IandALogo}" width="251" height="30" style="float:right;"/>
@@ -25,18 +31,25 @@
                </apex:pageblockSectionItem>
          </apex:pageBlockSection>
      </apex:pageBlock>
+      <apex:pageBlock title="Procurement Links" rendered="{!isProcure}">
+          <apex:pageBlockSection >
+               <apex:pageblockSectionItem > 
+                    <apex:outputText value="{!$Label.VPM_HomePageLink1}" /> <apex:outputText value="{!$User.FirstName}" />
+               </apex:pageblockSectionItem> 
+               <apex:pageblockSectionItem > 
+                   <apex:outputText value="{!$Label.VPM_HomePageLink2}" /> <apex:outputLink value="http://google.com/">Google</apex:outputLink>
+               </apex:pageblockSectionItem>
+               <apex:pageblockSectionItem >
+<!--                   <apex:outputText value="Link to Reports" /><apex:outputLink value="https://unilever--capgvenman.cs24.my.salesforce.com/00O19000000GqP1?pv0={!isApprover1}&pv1={!isApprover2}&pv3={!isApprover3}&pv4={!isApprover4}&pv5={!isApprover5}&pv6={!isApprover6}&pv7={!isApprover7}&pv8={!isApprover8}&pv9={!isApprover9}&pv10={!isApprover10}">Commodity Approver Records Assigned to me </apex:outputLink>-->
+    				   <apex:outputText value="Link to Reports" /><apex:outputLink value="https://unilever--capgvenman.cs24.my.salesforce.com/00O19000000GqR7">Commodity Approver Records Assigned to me </apex:outputLink>
+               </apex:pageblockSectionItem>
+          </apex:pageBlockSection>
+      </apex:pageBlock>
   </apex:form>
           
- <apex:enhancedList type="VPM_PurchasingRequests__c"  height="400" rowsPerPage="25" id="MyRequests" customizable="True" />
+ <apex:enhancedList type="VPM_PurchasingRequests__c"  height="600" rowsPerPage="25" id="MyRequests" customizable="True" />
  
  <br>
  </br>
- <br>
- </br>
- 
-  <apex:panelGrid columns="2" id="ReportGrid" width="100%">
- <analytics:reportChart developerName="VPM_MyVendorRequestsThisYear" cacheAge="43200000" cacheResults="true" showRefreshButton="true"> </analytics:reportChart> 
- <analytics:reportChart developerName="VPM_AvgDaysOpen" cacheAge="43200000" cacheResults="true" showRefreshButton="true"> </analytics:reportChart> 
- </apex:panelGrid>
- 
+
 </apex:page>

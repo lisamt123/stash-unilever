@@ -10,13 +10,14 @@ extensions="VPM_GoldenDataController2" language="{!userlang}" action="{!Approval
              <apex:pagemessages id="pageMessages"/>
             <apex:pageBlockButtons >
                  <apex:commandButton action="{!backToGoldenData1}" value="{!$Label.VPM_GoldenDataBackButton}" reRender="hiddenBlock"  status="actStatusId" immediate="true"/>    
-                 <apex:commandButton action="{!saveRecord}" value="{!$Label.VPM_SaveExitButton}" reRender="hiddenBlock,pageMessages" status="actStatusId" />
+                 <apex:commandButton action="{!saveRecord}" value="{!$Label.VPM_SaveSubmitLabel}" reRender="hiddenBlock,pageMessages" status="actStatusId" />
             </apex:pageBlockButtons>
               <apex:pageBlock id="hiddenBlock" rendered="false"></apex:pageBlock> 
             <apex:pageBlockSection columns="1">
              
                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorType__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_VendorType__c}" required="true"/ >
-                <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_GlobalAuthorisationGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_GlobalAuthorisationGroup__c}" required="true"/>
+                 <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_GlobalAuthorisationGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_GlobalAuthorisationGroup__c}" required="true" /-->
+                 <apex:outputText value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_GlobalAuthorisationGroup__c.Label}" />
                 <apex:outputPanel style="display:none;visibility:hidden">
                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ECC__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_ECC__c}"/></apex:outputpanel>
                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TradePartnerType__c.Label}" value="{!purchReqVar.VPM_TradePartnerType__c}" required="true" />

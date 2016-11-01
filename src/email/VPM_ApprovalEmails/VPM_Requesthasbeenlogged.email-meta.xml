@@ -6,6 +6,6 @@
     <letterhead>VPM_BlankLetter</letterhead>
     <name>VPM_Request has been logged</name>
     <style>freeForm</style>
-    <subject>Your Vendor request {!VPM_PurchasingRequests__c.Name} has been logged</subject>
+    <subject>Your Vendor request {!VPM_PurchasingRequests__c.Name} has been sent to {!ApprovalRequest.Process_Name} for approval</subject>
     <type>html</type>
 </EmailTemplate>

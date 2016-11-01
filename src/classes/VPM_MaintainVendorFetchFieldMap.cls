@@ -13,7 +13,7 @@ public  class VPM_MaintainVendorFetchFieldMap {
     public string VPM_ConvertMaintainVendorFieldDetailsToJSON(string VendorRequestId) 
     {
        String maintainVendorObjectJSON, PurchasingDataJSON, JSONPurchasingData ,JSONBankDetails,JSONCIN,JSONAddress, JSONWtaxType, JSONCompanyData, JSONVAT; // Final JSON string
-         Integer reqNum = VPM_HttpUtil.generateRandomNumber();
+         //Integer reqNum = VPM_HttpUtil.generateRandomNumber();
          JSONGenerator rootMaintainVendor = JSON.createGenerator(true);
          JSONGenerator PurchasingData = JSON.createGenerator(true);
          JSONGenerator BankDetails = JSON.createGenerator(true);
@@ -30,22 +30,25 @@ public  class VPM_MaintainVendorFetchFieldMap {
          VAT.writeStartObject();
          CIN.writeStartObject();
          Address.writeStartObject();
-         VPM_PurchasingRequests__c vendorReuest =[SELECT VPM_ECC__c, VPM_VendorCode__c, VPM_TrainStation__c, VPM_IntLocationNumber1__c, VPM_IntLocationNumber2__c, VPM_Authorization__c, VPM_Industry__c, VPM_CheckDigit__c, VPM_DMEIndicator__c, VPM_IndicatorAlternativePayeeAllowed__c, VPM_InstructionKeyDataExchange__c, VPM_ISRNumber__c, VPM_AccountGroup__c, VPM_IsNaturalPerson__c, VPM_Customer__c,VPM_AccNumOfAlternativePayee__c, VPM_TaxNumber1__c, VPM_TaxNumber2__c, VPM_EqualisationTax__c,
+         VPM_PurchasingRequests__c vendorReuest =[SELECT VPM_ECC__c, VPM_VendorCode__c, VPM_TrainStation__c, VPM_IntLocationNumber1__c, VPM_IntLocationNumber2__c, VPM_Authorization__c, VPM_Industry__c, VPM_CheckDigit__c, VPM_DMEIndicator__c
+         , VPM_InstructionKeyDataExchange__c, VPM_ISRNumber__c, VPM_AccountGroup__c, VPM_IsNaturalPerson__c, VPM_Customer__c,VPM_AccNumOfAlternativePayee__c, VPM_TaxNumber1__c, VPM_TaxNumber2__c, VPM_EqualisationTax__c,
            VPM_SalesPurchTax__c, VPM_FiscalAddress__c, VPM_VATRegistrationNumber__c, VPM_PlaceOfBirth__c, VPM_DateOfBirth__c, VPM_Sex__c, VPM_LastExtReview__c, VPM_ActualQMSystem__c, VPM_Plant__c, VPM_IndicatorPlantLevelRelevant__c, VPM_SCAC__c, VPM_CarFreightGroup__c, VPM_ServiceAgent__c, VPM_TaxNumber3__c, VPM_TaxNumber4__c, VPM_TaxSplit__c, VPM_TaxBase__c, VPM_Profession_c__c,
            VPM_NODEL__c,  VPM_QMSystemTo__c, VPM_PODRelevant__c, VPM_TaxNumber5__c,VPM_fieldUpdated__c,VPM_ExternalMFG__c,
            VPM_PurchasingOrg__r.Name, VPM_ABCIndicator__c, VPM_OrderCurrency__c, VPM_SalesPerson__c, VPM_Telephone__c,  VPM_MinimumOrderValue__c,   VPM_Incoterms1__c,  VPM_Incoterms2__c, VPM_GRbasedIV__c,  VPM_OrderAcknowledgmentRequirement__c, VPM_SchemaGroupVendor__c, VPM_AutomaticPurchaseOrderGeneration__c, VPM_ModeTransportForeignTrade__c, VPM_OfficeOfEntry__c, VPM_PricingDateControl__c, VPM_PurchasingGroup__c,  VPM_AutoEvalGRSetmtDel__c,  VPM_PlannedDeliveryTime__c,  VPM_RackJobbingServiceAgreed__c,
-           VPM_RelevantForPriceDet__c,  VPM_GrantDiscInKind__c, VPM_DocIndexActive__c,  VPM_SortCriterion__c, VPM_ConfirmationControl__c,  VPM_OrderOptimRest__c,   VPM_PROATControlProof__c, VPM_SRVBasedVendorID__c,
+           VPM_RelevantForPriceDet__c,  VPM_GrantDiscInKind__c,RecordTypeId, VPM_DocIndexActive__c,  VPM_SortCriterion__c, VPM_ConfirmationControl__c,  VPM_OrderOptimRest__c,   VPM_PROATControlProof__c, VPM_SRVBasedVendorID__c,
            VPM_BankCountryKey__c, VPM_BankKey__c, VPM_BankAccountNumber__c, VPM_BankControlKey__c, VPM_PartnerBankType__c, VPM_CollectionAuthorization__c, VPM_ReferenceSpecificationsBankDetail__c, VPM_AccountHolderName__c, VPM_IBAN__c,
-           VPM_IndicatorForWithholdingTaxType__c, VPM_Liable__c, VPM_CertificateWithholdingTaxExemption__c, VPM_ExemptionRate__c, VPM_ExemptionFrom__c, VPM_ExemptionTo__c, VPM_ExemptionNumber__c, VPM_RecipientType__c,VPM_ReasonForExemption__c,
-           VPM_CompanyCode__r.VPM_CompanyCode__c, VPM_SortKey__c, VPM_ReconciliationAccount__c,  VPM_Interestcalculationindicator__c, VPM_PaymentMethod__c, VPM_IndicatorClearingBetwCustomerNVendor__c, VPM_PaymentBlock__c, VPM_PaymentTerms__c, VPM_AccntWithVendor__c, VPM_ClerkAtVendor__c, VPM_AccountMemo__c, VPM_AccountingClerk__c, VPM_CashManagementGroup__c, VPM_AlternativePayee__c, VPM_LastKeyDate__c, VPM_InterestFrequency__c, VPM_LastInterestRun__c, VPM_BExchangeLimit__c, VPM_ChkCashing__c,
-          VPM_VATCountry__c,VPM_VATRegistrationNumber2__c
-         ,VPM_PANNumber__c,VPM_CSTno__c,VPM_LSTno__c,VPM_SerRegNo__c,VPM_ExcIndVendor__c,VPM_ECCNo__c,VPM_ExciseRegNo__c,VPM_ExciseRange__c,VPM_ExciseDivision__c,VPM_Commissionerate__c,VPM_SSIStatus__c,VPM_CENVAT__c,VPM_Changedon__c,VPM_ChangedBy__c,VPM_PANreference__c,VPM_ZIPPostCode__c,VPM_CompanyPostCode__c,VPM_POBox__c,VPM_POBoxCity__c,VPM_TransportZone__c,VPM_HouseNumber__c,VPM_Street1__c,VPM_Street2__c,VPM_Street3__c,VPM_Street4__c,VPM_Street5__c,VPM_District__c,VPM_Country__c,VPM_Language__c,VPM_Region__c,VPM_RegStGrp__c,VPM_SearchTerm_1__c ,VPM_SearchTerm2__c,VPM_AddressTimeZone__c,VPM_TaxJurisdictionCode__c,VPM_StandardCommMethod__c,VPM_ExtensionPhone__c,VPM_Fax__c,VPM_FaxExtension__c
-          ,VPM_SubsequentSettlementIndex__c,VPM_SubsequentSettlement__c,VPM_ShippingConditions__c,VPM_UnitOfMeasureGrp__c,VPM_RoundingProfile__c,VPM_BeneficiaryName__c,VPM_BeneficiaryAddress1__c,VPM_BeneficiaryAddress2__c,VPM_BeneficiaryAddress3__c,VPM_BeneficiaryCountry__c,VPM_ThirdPartyName__c,VPM_ThirdPartyAddress1__c,VPM_ThirdPartyAddress2__c,VPM_ThirdPartyAddress3__c,VPM_ThirdPartyAddress4__c,VPM_FreeText1__c,VPM_FreeText2__c,VPM_PayableLocation__c,VPM_IndividualPayment__c
+           VPM_IndicatorForWithholdingTaxType__c, VPM_Liable__c, VPM_CertificateWithholdingTaxExemption__c, VPM_ExemptionRate__c, VPM_ExemptionFrom__c, VPM_ExemptionTo__c, VPM_ExemptionNumber__c,VPM_ReasonForExemption__c,
+           VPM_CompanyCode__r.VPM_CompanyCode__c, VPM_SortKey__c, VPM_ReconciliationAccount__c,  VPM_Interestcalculationindicator__c, VPM_PaymentMethod__c, VPM_IndicatorClearingBetwCustomerNVendor__c, VPM_PaymentBlock__c, VPM_PaymentTerms__c, VPM_AccntWithVendor__c, VPM_ClerkAtVendor__c, VPM_AccountMemo__c,  VPM_CashManagementGroup__c, VPM_AlternativePayee__c, VPM_LastKeyDate__c, VPM_InterestFrequency__c, VPM_LastInterestRun__c, VPM_BExchangeLimit__c, VPM_ChkCashing__c,
+          VPM_VATCountry__c,VPM_VATRegistrationNumber2__c,VPM_ShippingConditions__c, VPM_AccountingClerk__c
+         ,VPM_PANNumber__c,VPM_CSTno__c,VPM_LSTno__c,VPM_SerRegNo__c,VPM_ExcIndVendor__c,VPM_ECCNo__c,VPM_ExciseRegNo__c,VPM_ExciseRange__c,VPM_ExciseDivision__c,VPM_Commissionerate__c,VPM_SSIStatus__c,VPM_CENVAT__c,VPM_Changedon__c,VPM_ChangedBy__c,VPM_PANreference__c,VPM_ZIPPostCode__c,VPM_CompanyPostCode__c,VPM_POBox__c,VPM_POBoxCity__c,VPM_TransportZone__c,VPM_HouseNumber__c,VPM_Street1__c,VPM_Street2__c,VPM_Street3__c,VPM_Street4__c,VPM_Street5__c,VPM_District__c,VPM_Country__c,VPM_Language__c,VPM_Region__c,VPM_RegStGrp__c,VPM_SearchTerm_1__c ,VPM_SearchTerm2__c,VPM_AddressTimeZone__c,VPM_StandardCommMethod__c,VPM_ExtensionPhone__c,VPM_Fax__c,VPM_FaxExtension__c
+          ,VPM_SubsequentSettlementIndex__c,VPM_SubsequentSettlement__c,VPM_UnitOfMeasureGrp__c,VPM_RoundingProfile__c,VPM_BeneficiaryName__c,VPM_BeneficiaryAddress1__c,VPM_BeneficiaryAddress2__c,VPM_BeneficiaryAddress3__c,VPM_BeneficiaryCountry__c,VPM_ThirdPartyName__c,VPM_ThirdPartyAddress1__c,VPM_ThirdPartyAddress2__c,VPM_ThirdPartyAddress3__c,VPM_ThirdPartyAddress4__c,VPM_FreeText1__c,VPM_FreeText2__c,VPM_PayableLocation__c,VPM_IndividualPayment__c
           ,VPM_CheckDoubleInvoices__c, VPM_AutoEvalGRSetmtRet__c,VPM_BlockFunction__c,VPM_CreditInfoNumber__c,VPM_IndicatorVendorSubRangeRelevant__c,VPM_TaxNumberType__c,VPM_TaxType__c,VPM_TaxNumAtResponsibleTaxAuthority__c,VPM_TaxOfficeIdentification__c,VPM_AlternativePayeeAccountNumber__c,VPM_SocialInsuranceCodeSoc__c,VPM_TradingPartner__c,VPM_VendorSubRange__c,VPM_CorrespondentBank__c,VPM_LLDCode__c
-           from VPM_PurchasingRequests__c where id =: VendorRequestId LIMIT 1];
+           from VPM_PurchasingRequests__c where id =: VendorRequestId LIMIT 1]; 
+
+          recordType rec = [select Name, id from recordType where id=: vendorReuest.RecordTypeId limit 1]; 
           if(vendorReuest != null) 
           {
-           // if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_ECC__c')) 
+           // if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_ECC__c'))  
             rootMaintainVendor.writeStringField('ECC',vendorReuest.VPM_ECC__c);
            // if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_VendorCode__c')) 
             rootMaintainVendor.writeStringField('VendorCode',vendorReuest.VPM_VendorCode__c);
@@ -57,15 +60,24 @@ public  class VPM_MaintainVendorFetchFieldMap {
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_CheckDigit__c')) rootMaintainVendor.writeStringField('CheckDigit',vendorReuest.VPM_CheckDigit__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_DMEIndicator__c')) rootMaintainVendor.writeStringField('DMEIndicator',VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_DMEIndicator__c));
             //if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_CentralDeletionFlag__c')) rootMaintainVendor.writeStringField('//CentralDeletionFlag',vendorReuest.VPM_CentralDeletionFlag__c);
-            if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_IndicatorAlternativePayeeAllowed__c ')) rootMaintainVendor.writeBooleanField('AltPayeeAllowedFlag',vendorReuest.VPM_IndicatorAlternativePayeeAllowed__c );
+            //if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_IndicatorAlternativePayeeAllowed__c ')) rootMaintainVendor.writeBooleanField('AltPayeeAllowedFlag',vendorReuest.VPM_IndicatorAlternativePayeeAllowed__c );
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_InstructionKeyDataExchange__c')) rootMaintainVendor.writeStringField('InstructionKeyDataExchange',vendorReuest.VPM_InstructionKeyDataExchange__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_ISRNumber__c')) rootMaintainVendor.writeStringField('ISRNumber',vendorReuest.VPM_ISRNumber__c);
-            if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_AccountGroup__c')) rootMaintainVendor.writeStringField('AccountGroup',vendorReuest.VPM_AccountGroup__c);
+              // commented below since it's manadatory for fusion : Deepak date: 19-09-2016
+           // if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_AccountGroup__c')) rootMaintainVendor.writeStringField('AccountGroup',vendorReuest.VPM_AccountGroup__c);
+              if(vendorReuest.VPM_ECC__c =='Fusion')
+              {
+                rootMaintainVendor.writeStringField('AccountGroup',vendorReuest.VPM_AccountGroup__c);
+              }
+              else
+              {
+                  if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_AccountGroup__c')) rootMaintainVendor.writeStringField('AccountGroup',vendorReuest.VPM_AccountGroup__c);
+              }
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_IsNaturalPerson__c')) rootMaintainVendor.writeBooleanField('isNaturalPerson',vendorReuest.VPM_IsNaturalPerson__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_Customer__c')) rootMaintainVendor.writeStringField('Customer',vendorReuest.VPM_Customer__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_AccNumOfAlternativePayee__c')) rootMaintainVendor.writeStringField('AlternativePayeeAccountNumber',vendorReuest.VPM_AccNumOfAlternativePayee__c);
-            if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber1__c')) rootMaintainVendor.writeStringField('TaxNumber1',vendorReuest.VPM_TaxNumber1__c);
-            if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber2__c')) rootMaintainVendor.writeStringField('TaxNumber2',vendorReuest.VPM_TaxNumber2__c);
+            //if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber1__c')) rootMaintainVendor.writeStringField('TaxNumber1',vendorReuest.VPM_TaxNumber1__c);
+            //if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxNumber2__c')) rootMaintainVendor.writeStringField('TaxNumber2',vendorReuest.VPM_TaxNumber2__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_EqualisationTax__c')) rootMaintainVendor.writeBooleanField('EqualisationTax',vendorReuest.VPM_EqualisationTax__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_SalesPurchTax__c')) rootMaintainVendor.writeBooleanField('SalesPurchTax',vendorReuest.VPM_SalesPurchTax__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_FiscalAddress__c')) rootMaintainVendor.writeStringField('FiscalAddress',vendorReuest.VPM_FiscalAddress__c);
@@ -158,11 +170,12 @@ public  class VPM_MaintainVendorFetchFieldMap {
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_ExemptionTo__c')) WtaxType.writeStringField('ExemptionTo',formatDate(vendorReuest.VPM_ExemptionTo__c));
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_ExemptionNumber__c')) WtaxType.writeStringField('ExemptionCertNumber',vendorReuest.VPM_ExemptionNumber__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_ReasonForExemption__c')) WtaxType.writeStringField('ExemptionReason',vendorReuest.VPM_ReasonForExemption__c);
-            if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_RecipientType__c')) WtaxType.writeStringField('TypeOfRecipient',vendorReuest.VPM_RecipientType__c);
+           // if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_RecipientType__c')) WtaxType.writeStringField('TypeOfRecipient',vendorReuest.VPM_RecipientType__c);
            
            // For Fusion
-              if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_SubsequentSettlement__c')) PurchasingData.writeStringField('SubsequentSettlement',vendorReuest.VPM_SubsequentSettlement__c);
-            if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_SubsequentSettlementIndex__c')) PurchasingData.writeStringField('SubsequentSettlementIndex',vendorReuest.VPM_SubsequentSettlementIndex__c);
+         //Commented by Epsita- Changed field datatypes of SubsequentSettlement fields
+         //     if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_SubsequentSettlement__c')) PurchasingData.writeStringField('SubsequentSettlement',vendorReuest.VPM_SubsequentSettlement__c);
+          //  if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_SubsequentSettlementIndex__c')) PurchasingData.writeStringField('SubsequentSettlementIndex',vendorReuest.VPM_SubsequentSettlementIndex__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_ShippingConditions__c')) PurchasingData.writeStringField('ShippingConditions',vendorReuest.VPM_ShippingConditions__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_UnitOfMeasureGrp__c')) PurchasingData.writeStringField('UnitOfMeasureGroup',vendorReuest.VPM_UnitOfMeasureGrp__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_RoundingProfile__c')) PurchasingData.writeStringField('RoundingProfile',vendorReuest.VPM_RoundingProfile__c);
@@ -183,16 +196,16 @@ public  class VPM_MaintainVendorFetchFieldMap {
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_NODEL__c')) PurchasingData.writeStringField('Nodel',vendorReuest.VPM_NODEL__c);
            */ 
           }
-          if(vendorReuest.VPM_ECC__c == 'Sirius' || vendorReuest.VPM_ECC__c =='Fusion')
+          //if(vendorReuest.VPM_ECC__c == 'Sirius' || vendorReuest.VPM_ECC__c =='Fusion')
           {
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_CorporateGrp__c')) rootMaintainVendor.writeStringField('CorporateGroup',vendorReuest.VPM_CorporateGrp__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_ExternalMFG__c')) rootMaintainVendor.writeStringField('ExternalManufacturer',vendorReuest.VPM_ExternalMFG__c);
 
-            if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_SortKey__c')) CompanyData.writeStringField('SortKey',vendorReuest.VPM_SortKey__c);
+            if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_SortKey__c')) CompanyData.writeStringField('SortKey',VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_SortKey__c));
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_ReconciliationAccount__c')) CompanyData.writeStringField('ReconciliationAccount',vendorReuest.VPM_ReconciliationAccount__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_Authorization__c')) CompanyData.writeStringField('AuthorizationCC',vendorReuest.VPM_Authorization__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_Interestcalculationindicator__c')) CompanyData.writeStringField('InterestCalculationIndicator',vendorReuest.VPM_Interestcalculationindicator__c);
-            if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_PaymentMethod__c')) CompanyData.writeStringField('PaymentMethod',vendorReuest.VPM_PaymentMethod__c);
+            if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_PaymentMethod__c')) CompanyData.writeStringField('PaymentMethod',VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_PaymentMethod__c));
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_IndicatorClearingBetwCustomerNVendor__c')) CompanyData.writeBooleanField('IndicatorClearingBetwCustomerNVendor',vendorReuest.VPM_IndicatorClearingBetwCustomerNVendor__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_PaymentBlock__c')) CompanyData.writeStringField('PaymentBlock',vendorReuest.VPM_PaymentBlock__c);
             if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase('VPM_PaymentTerms__c')) CompanyData.writeStringField('PaymentTerm',VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_PaymentTerms__c));
@@ -287,12 +300,27 @@ public  class VPM_MaintainVendorFetchFieldMap {
             rootMaintainVendor.writeFieldName('PurchasingData');
            rootMaintainVendor.writeObject(JSONPurchasingData);
           }
+          else if(rec.Name.contains('Extend'))
+          {
+           //JSONPurchasingData = JSONPurchasingData.removeEnd('}');
+           JSONPurchasingData = '{"PurchasingOrganisation":"'+VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_PurchasingOrg__r.Name)+'"}';  
+            rootMaintainVendor.writeFieldName('PurchasingData');
+           rootMaintainVendor.writeObject(JSONPurchasingData);
+          }
+
           JSONCompanyData = CompanyData.getAsString();
           if(JSONCompanyData != '{ }')
           {
            //PurchasingData.writeStringField('PurchasingOrganisation',VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_PurchasingOrg__r.Name));
            JSONCompanyData = JSONCompanyData.removeEnd('}');
            JSONCompanyData = JSONCompanyData+',"PurchasingOrganisation":"'+VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_PurchasingOrg__r.Name)+'"}';  
+           rootMaintainVendor.writeFieldName('CompanyData');
+           rootMaintainVendor.writeObject(JSONCompanyData);
+          }
+             else if(rec.Name.contains('Extend'))
+          {
+           //JSONCompanyData = JSONCompanyData.removeEnd('}');
+           JSONCompanyData = '{"PurchasingOrganisation":"'+VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_PurchasingOrg__r.Name)+'"}';  
            rootMaintainVendor.writeFieldName('CompanyData');
            rootMaintainVendor.writeObject(JSONCompanyData);
           }

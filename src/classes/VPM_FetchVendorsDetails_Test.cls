@@ -12,6 +12,20 @@ public class VPM_FetchVendorsDetails_Test {
         VPM_FetchVendorsDetails.getVendorDetails(inputCriteria);
       Test.stopTest();
   }
+    
+    @isTest static void getVendorDetailsTestVendorFound() {
+      List<VPM_FetchVendorsDetails.InputVariables> inputCriteria = new List<VPM_FetchVendorsDetails.InputVariables>();
+        VPM_FetchVendorsDetails.InputVariables crit = new VPM_FetchVendorsDetails.InputVariables();
+        crit.vendorCodeInput='343';
+        crit.ecc = 'Cordillera';
+        crit.compnayCode = '5495';
+        inputCriteria.add(crit);
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(404));
+        VPM_FetchVendorsDetails.getVendorDetails(inputCriteria);
+      Test.stopTest();
+  } 
+
     static testMethod void getVendorDetailsTestNull() {
         list<VPM_FetchVendorsDetails.InputVariables> InputVariablesListObj = new list<VPM_FetchVendorsDetails.InputVariables>();
         VPM_FetchVendorsDetails.InputVariables InputVariablesObj =new VPM_FetchVendorsDetails.InputVariables();

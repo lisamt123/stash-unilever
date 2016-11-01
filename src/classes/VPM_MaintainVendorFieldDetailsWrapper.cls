@@ -1,63 +1,70 @@
 public class VPM_MaintainVendorFieldDetailsWrapper {
     
-    public Integer RequestNumber {get; set;}
+    public Integer RequestID {get; set;}
     public string RequestorName {get; set;}
     public string RequestorPhone {get; set;}
     public string RequestorEmail {get; set;}
-    public string requestorCountry {get; set;}
-    public string mdmBPMRequestorDepartment {get; set;}
-    public string originatorEmail {get; set;}
+    public string RequestorCountry {get; set;}
+    public string RequestorDepartment {get; set;}
+    public string OriginatorEmail {get; set;}
     public string RequestDate {get; set;}
     public string VendorNumber {get; set;}
     
     //vendor code
-    public string vendorCode {get; set;}
-    public string vendorName1c {get; set;}
-    public string mdmBpmComments {get; set;}
+    public integer VendorCode {get; set;}
+    public string VendorName {get; set;}
+    public string BpmComments {get; set;}
     //VPM_ECCSystem
     public string extendRegion {get; set;}
-    public string vendorName1 {get; set;}
-    public string vendorName12 {get; set;}
-    public string vendorName3 {get; set;}
-    public string vendorName4 {get; set;}
-    public string searchTerm1 {get; set;}
-    public string searchTerm2 {get; set;}
+    public string Name1 {get; set;}
+    public string Name2 {get; set;}
+    public string Name3 {get; set;}
+    public string Name4 {get; set;}
+    public string SearchTerm1 {get; set;}
+    public string SearchTerm2 {get; set;}
     
-    public string Street1 {get; set;}
+    public string Street {get; set;}
     public string Street2 {get; set;}
     public string Street3 {get; set;}
     public string Street4 {get; set;}
-    public string houseNumber {get; set;}
-    public string houseNumberSupplement {get; set;}
+    public string HouseNumber {get; set;}
+    public string HouseNumberSupplement {get; set;}
     
-    public string zipPostCode {get; set;}
-    public string region {get; set;}
-    public string country {get; set;}
-    public string city {get; set;}
-    public string district {get; set;}
+    public string CityPostalCode {get; set;}  // is it same 'PoPostalCode' ?
+    public string Region {get; set;}
+    public string Country {get; set;}
+    public string City {get; set;}
+    public string District {get; set;}
     
-    public string isVendorSME {get; set;}
-    public string isVendorException {get; set;}
-    public string exceptionType {get; set;}
+    public boolean SmeIndicator {get; set;}
+    public boolean ExceptionIndicator {get; set;}
+   // public string ExceptionType {get; set;}
     
-    public string poBox {get; set;}
-    public string poBoxPostCode {get; set;}
+    public string AttachmentLink;
     
-    public string taxNumber1 {get; set;}
-    public string taxNumber2 {get; set;}
-    public string taxNumber3 {get; set;}
-    public string taxNumber4 {get; set;}
-    public string vatRegistrationNumber {get; set;}
-    public string isNaturalPerson {get; set;}
-    public string taxNumberType {get; set;}
-    public string taxJurisdictionCode {get; set;}
+    public string PoBox {get; set;}
+    public string PoPostalCode {get; set;}
+    
+    public string TaxNumber1 {get; set;}
+    public string TaxNumber2 {get; set;}
+    public string TaxNumber3 {get; set;}
+    public string TaxNumber4 {get; set;}
+    public string VatRegistrationNumber {get; set;}
+    public Boolean IsNaturalPerson {get; set;}
+    public string TaxNumberType {get; set;}
+    public string TaxJurisdictionCode {get; set;}
     public string taxNumAtResponsibleTaxAuthority {get; set;}
+    public string ExternalManufacturer {get;set;}
     
-    public string creditInfoNumber {get; set;}
+    public string CreditInformationNumber {get; set;}
     public string corporateGrp {get; set;}
-    public string intLocationNumber1 {get; set;}
-    public string intLocationNumber2 {get; set;}
-    public string extManufacturer {get; set;}
-    public string checkDigit {get; set;}
+    public string InternationalLocationNumber1 {get; set;}
+    public string InternationalLocationNumber2 {get; set;}
+    public string TaxType {get; set;}
+    public string CheckDigit {get; set;}
+    public Boolean Cordillera;
+    public Boolean U2K2;
+    public Boolean Sirius;
+    public Boolean Fusion;
     
 }

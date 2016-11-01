@@ -21,7 +21,7 @@ global class  VPM_ApprovalProcessCall {
     {
         
        string ReturnResult;
-        String isPaymentTermsDetailsChanged;
+        /* String isPaymentTermsDetailsChanged;
         String isFinancialSensitiveDetailsChanged;
        
         //Payment Terms 
@@ -44,19 +44,19 @@ global class  VPM_ApprovalProcessCall {
         // Call to Web service Data 
          op = FetchVendorDeatilSAPService(vendorCode,purchReqVar.VPM_CompanyCode__r.ecc__c,purchReqVar.VPM_Company_Code_Value__c);
    
-        if(purchReqVar.VPM_PaymentTerms__c !=null  ||(purchReqVar.VPM_PaymentTerms__c == op.CompanyCodeFields[0].PaymentTerms))
+       /* if(purchReqVar.VPM_PaymentTerms__c !=null  ||(purchReqVar.VPM_PaymentTerms__c == op.CompanyCodeFields[0].PaymentTerms))
           isPaymentTermsDetailsChanged='Yes';
         else
-            isPaymentTermsDetailsChanged='No';
+            isPaymentTermsDetailsChanged='No'; */
         
         //isFinancialSensitiveDetailsChanged
         
-        if((purchReqVar.VPM_ReconciliationAccount__c!= null &&
+      /*  if((purchReqVar.VPM_ReconciliationAccount__c!= null &&
             (purchReqVar.VPM_ReconciliationAccount__c == op.CompanyCodeFields[0].ReconciliationAccount))
            ||
            (purchReqVar.VPM_PaymentMethod__c !=null && (purchReqVar.VPM_PaymentMethod__c == op.CompanyCodeFields[0].PaymentMethod))
            ||
-           (purchReqVar.VPM_CashManagementGroup__c!= null && (purchReqVar.VPM_CashManagementGroup__c == op.CompanyCodeFields[0].CashManagementGroup))
+           (purchReqVar.VPM_CashManagementGroup__c!= null && (purchReqVar.VPM_CashManagementGroup__c == op.CompanyCodeFields[0].CashMgmtGroup))
            ||
            (purchReqVar.VPM_SortKey__c!=null && (purchReqVar.VPM_SortKey__c == op.CompanyCodeFields[0].SortKey))
            ||
@@ -71,8 +71,8 @@ global class  VPM_ApprovalProcessCall {
         {
             isFinancialSensitiveDetailsChanged='No';
         }
-		ReturnResult =isPaymentTermsDetailsChanged +'^'+isFinancialSensitiveDetailsChanged;
+        ReturnResult =isPaymentTermsDetailsChanged +'^'+isFinancialSensitiveDetailsChanged; */ 
         
-        Return ReturnResult;
+        Return ReturnResult; 
     }
 }

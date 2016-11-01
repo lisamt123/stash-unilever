@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Custom Metadata Type which holds endpoints and resource names for different services</description>
+    <description>VPM- Custom Metadata Type which holds endpoints and resource names for different services</description>
     <fields>
         <fullName>VPM_ServiceEndpoint__c</fullName>
-        <description>Field that stores the endpoint of the service.</description>
+        <description>VPM- Field that stores the endpoint of the service.</description>
         <externalId>false</externalId>
         <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Service Endpoint</label>
@@ -14,7 +14,7 @@
     </fields>
     <fields>
         <fullName>VPM_ServiceResource__c</fullName>
-        <description>Resource exposed by the service.</description>
+        <description>VPM- Resource exposed by the service.</description>
         <externalId>false</externalId>
         <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Service Resource</label>

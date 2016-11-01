@@ -59,7 +59,7 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>VPM_Category__c</fullName>
-        <description>The category of the exception to allow for grouped reporting on exception trends</description>
+        <description>VPM - The category of the exception to allow for grouped reporting on exception trends.</description>
         <externalId>false</externalId>
         <label>Category</label>
         <picklist>
@@ -81,12 +81,13 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_Description__c</fullName>
-        <description>Allows the user to enter a written description of the exception</description>
+        <description>VPM - Allows the user to enter a written description of the exception</description>
         <externalId>false</externalId>
         <label>Description</label>
         <length>10000</length>
@@ -122,7 +123,7 @@
     </fields>
     <fields>
         <fullName>VPM_Status__c</fullName>
-        <description>The status of the MDM Ops review of the item</description>
+        <description>VPM - The status of the MDM Ops review of the item</description>
         <externalId>false</externalId>
         <label>Status</label>
         <picklist>
@@ -145,6 +146,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>

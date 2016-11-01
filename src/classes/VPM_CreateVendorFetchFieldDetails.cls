@@ -1,9 +1,10 @@
 public class VPM_CreateVendorFetchFieldDetails {
     public string VPM_ConvertVendorFieldDetailsToJSON(string VendorRequestId) {
-        String VPM_InterfaceFieldDetailsJSON, requestorPhoneNum, eccVal;
-        Integer reqNum = VPM_HttpUtil.generateRandomNumber();
+        String VPM_InterfaceFieldDetailsJSON ='';
+        string eccVal ='';
+       // Integer reqNum = VPM_HttpUtil.generateRandomNumber();
         Map<String,String> mapUserDetails = VPM_HttpUtil.fetchUserDetails();
-        List<VPM_PurchasingRequests__c> vendorList =[SELECT VPM_VendorType__c, VPM_CountryRequestingVendor__c, VPM_GlobalAuthorisationGroup__c, VPM_ECC__c, VPM_TradePartnerType__c, VPM_AccountGroup__c, VPM_VendorName1__c, VPM_SearchTerm_1__c, VPM_Street1__c, VPM_ZIPPostCode__c, VPM_City__c,
+        List<VPM_PurchasingRequests__c> vendorList =[SELECT id,VPM_VendorType__c,VPM_SAPBPMRequestID__c,VPM_TaxType__c, VPM_CountryRequestingVendor__c, VPM_GlobalAuthorisationGroup__c, VPM_ECC__c, VPM_TradePartnerType__c, VPM_AccountGroup__c, VPM_VendorName1__c, VPM_SearchTerm_1__c, VPM_Street1__c, VPM_ZIPPostCode__c, VPM_City__c,
                                                      VPM_Country__c, VPM_HouseNumber__c, VPM_Regions__r.VPM_Code__c, VPM_IsVendorSME__C, VPM_IsVendorException__c, VPM_ExceptionType__c, VPM_TaxNumber1__c, VPM_TaxNumber3__c, VPM_TaxJurisdictionCode__c, VPM_SupplierFinancialStabilityCheck__c, VPM_ReasonNoFinancialCheck__C, VPM_SupplierAchillesRegistration__c, VPM_AchillesExceptionDetails__C, 
                                                      VPM_SupplierPositiveAssuranceQuality__c, VPM_SupPosAssExcepDetailsQual__c, VPM_SupplierAssessmentQuestionnaireQual__c, VPM_DetailsofPlannedActivitiesQual__c, VPM_SupAudDetailsOfPlannedActivities__c, VPM_SupplierPositiveAssuranceSourcing__C, VPM_SupPosAssExcepDetailsSour__C, VPM_SupplierAssessmentQuestionnaireSour__C, 
                                                      VPM_DetailsofPlannedActivitiesSour__c, VPM_SupplierAuditSourcing__c, VPM_DetailsOfPlannedActivitiesSour2__c, VPM_MDMBPMRequestorName__c, VPM_MDMBPMRequestorPhone__c, VPM_MDMBPMRequestorEmail__c, VPM_MDMBPMRequestorDepartment__c, VPM_MDMBPMOriginatoEmail__c, VPM_MDMBPMRequestDate__c , 
@@ -12,7 +13,7 @@ public class VPM_CreateVendorFetchFieldDetails {
         if(vendorList != null && vendorList.size() > 0) {
             VPM_CreateVendorFieldDetailsWrapper VPM_InterfaceFieldDetails= new VPM_CreateVendorFieldDetailsWrapper();
             VPM_InterfaceFieldDetails.RequestorName = vendorList.get(0).VPM_MDMBPMRequestorName__c==null?'':vendorList.get(0).VPM_MDMBPMRequestorName__c;
-            VPM_InterfaceFieldDetails.RequestID = reqNum;
+            VPM_InterfaceFieldDetails.RequestID =  integer.ValueOf(vendorList.get(0).VPM_SAPBPMRequestID__c);
             //VPM_InterfaceFieldDetails.requestorPhone = vendorList.get(0).VPM_MDMBPMRequestorPhone__c==null?'':vendorList.get(0).VPM_MDMBPMRequestorPhone__c;
             if(mapUserDetails != null && mapUserDetails.containsKey('userPhone')) {
                 if(String.isNotBlank(mapUserDetails.get('userPhone'))) {
@@ -23,7 +24,16 @@ public class VPM_CreateVendorFetchFieldDetails {
             } else {
                 VPM_InterfaceFieldDetails.requestorPhone = vendorList.get(0).VPM_MDMBPMRequestorPhone__c==null?'':vendorList.get(0).VPM_MDMBPMRequestorPhone__c;
             }
-            VPM_InterfaceFieldDetails.requestorCountry = vendorList.get(0).VPM_Country__c==null ? '' : VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_Country__c);
+             if (vendorList.get(0).VPM_CountryRequestingVendor__c!=null )
+             {
+               Map<String, VPM_MDMCountry__c> VPM_MapCountryMap = VPM_MDMCountry__c.getAll();
+      for(VPM_MDMCountry__c region : VPM_MapCountryMap.values()) {
+                if(region.Country_Name__c == vendorList.get(0).VPM_CountryRequestingVendor__c){                   
+       VPM_InterfaceFieldDetails.requestorCountry=region.Country_Code__c;
+                }
+             }
+             }
+            //VPM_InterfaceFieldDetails.requestorCountry = vendorList.get(0).VPM_Country__c==null ? '' : VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_Country__c);
             if(mapUserDetails != null && mapUserDetails.containsKey('userDepartment')) {
                 if(String.isNotBlank(mapUserDetails.get('userDepartment'))) {
                 VPM_InterfaceFieldDetails.requestorDepartment = mapUserDetails.get('userDepartment');
@@ -63,7 +73,7 @@ public class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetails.achillesRegistrationCode = vendorList.get(0).VPM_AchillesRegistrationCode__c==null?'':vendorList.get(0).VPM_AchillesRegistrationCode__c;
             VPM_InterfaceFieldDetails.detailsTypeCheck = vendorList.get(0).VPM_DetailsTypeCheck__c==null?'':vendorList.get(0).VPM_DetailsTypeCheck__c;
             VPM_InterfaceFieldDetails.DunsHierarchyRequired = vendorList.get(0).VPM_DUNSHierarchyInvestigationReq__c==null ? false : vendorList.get(0).VPM_DUNSHierarchyInvestigationReq__c;
-            VPM_InterfaceFieldDetails.groupKey = vendorList.get(0).VPM_GroupingKey__c==null?'':vendorList.get(0).VPM_GroupingKey__c;
+            VPM_InterfaceFieldDetails.groupKey = vendorList.get(0).VPM_GroupingKey__c==null?'': VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_GroupingKey__c);
             VPM_InterfaceFieldDetails.smeComment = vendorList.get(0).VPM_SMEComment__c==null?'':vendorList.get(0).VPM_SMEComment__c;
             VPM_InterfaceFieldDetails.vatRegistrationNumber = vendorList.get(0).VPM_VATRegistrationNumber__c==null?'':vendorList.get(0).VPM_VATRegistrationNumber__c;
             VPM_InterfaceFieldDetails.houseNumber = vendorList.get(0).VPM_HouseNumber__c==null?'':vendorList.get(0).VPM_HouseNumber__c;
@@ -73,7 +83,7 @@ public class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetails.exceptionType = vendorList.get(0).VPM_ExceptionType__c==null?'':vendorList.get(0).VPM_ExceptionType__c;
             VPM_InterfaceFieldDetails.taxNumber1 = vendorList.get(0).VPM_TaxNumber1__c==null?'':vendorList.get(0).VPM_TaxNumber1__c;
             VPM_InterfaceFieldDetails.taxNumber3 = vendorList.get(0).VPM_TaxNumber3__c==null?'':vendorList.get(0).VPM_TaxNumber3__c;
-            VPM_InterfaceFieldDetails.taxJurisdictionCode = vendorList.get(0).VPM_TaxJurisdictionCode__c==null?'':vendorList.get(0).VPM_TaxJurisdictionCode__c;
+            VPM_InterfaceFieldDetails.taxJurisdictionCode = vendorList.get(0).VPM_TaxJurisdictionCode__c==null?'':VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_TaxJurisdictionCode__c);
             VPM_InterfaceFieldDetails.IsSupplierFinanciallyStabilityCheck = vendorList.get(0).VPM_SupplierFinancialStabilityCheck__c==null ? false : VPM_HttpUtil.convertYesNoToBoolean(vendorList.get(0).VPM_SupplierFinancialStabilityCheck__c);
             VPM_InterfaceFieldDetails.reasonNoFinancialCheck = vendorList.get(0).VPM_ReasonNoFinancialCheck__C==null?'':vendorList.get(0).VPM_ReasonNoFinancialCheck__C;
             VPM_InterfaceFieldDetails.DetailsOfPlannedActivitiesQual1= vendorList.get(0).VPM_DetailsOfPlannedActivitiesQual__c==null?'':vendorList.get(0).VPM_DetailsOfPlannedActivitiesQual__c;
@@ -133,7 +143,8 @@ public class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetails.street4 = vendorList.get(0).VPM_Street4__c == null ? '' : vendorList.get(0).VPM_Street4__c;
             VPM_InterfaceFieldDetails.taxNumber2 = vendorList.get(0).VPM_TaxNumber2__c == null ? '' : vendorList.get(0).VPM_TaxNumber2__c;
             VPM_InterfaceFieldDetails.taxNumber4 = vendorList.get(0).VPM_TaxNumber4__c == null ? '' : vendorList.get(0).VPM_TaxNumber4__c;
-            VPM_InterfaceFieldDetails.taxNumberType = vendorList.get(0).VPM_TaxNumberType__c == null ? '' : vendorList.get(0).VPM_TaxNumberType__c;
+            VPM_InterfaceFieldDetails.taxNumberType = vendorList.get(0).VPM_TaxNumberType__c == null ? '' : VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_TaxNumberType__c);
+            VPM_InterfaceFieldDetails.TaxType = vendorList.get(0).VPM_TaxType__c== null ? '' : VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_TaxType__c);
             VPM_InterfaceFieldDetails.Name3 = vendorList.get(0).VPM_Name3__c == null ? '' : vendorList.get(0).VPM_Name3__c;
             VPM_InterfaceFieldDetails.Name4 = vendorList.get(0).VPM_Name4__c == null ? '' : vendorList.get(0).VPM_Name4__c;
             
@@ -144,7 +155,7 @@ public class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetails.ExternalManufacturer = vendorList.get(0).VPM_ExtManufacturer__c == null ? '' : vendorList.get(0).VPM_ExtManufacturer__c;
             
             // need to map to vendor request object
-            VPM_InterfaceFieldDetails.AttachmentLink = vendorList.get(0).VPM_ExtManufacturer__c == null ? '' : vendorList.get(0).VPM_ExtManufacturer__c;
+            VPM_InterfaceFieldDetails.AttachmentLink = URL.getSalesforceBaseUrl().toExternalForm()+'/'+ vendorList.get(0).id;
             
             //eccSystem needs to be replaced with four boolean variables for each ecc
             //VPM_InterfaceFieldDetails.eccSystem = vendorList.get(0).VPM_ECC__c==null?'':vendorList.get(0).VPM_ECC__c;

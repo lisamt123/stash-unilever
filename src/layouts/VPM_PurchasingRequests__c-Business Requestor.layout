@@ -16,16 +16,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
+                <field>VPM_CompanyCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
                 <field>VPM_PurchasingOrg__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>VPM_CompanyCode__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
+        <layoutColumns/>
+        <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -38,18 +37,18 @@
                 <field>VPM_WhatAreYouBuying__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_Commodity__c</field>
+                <behavior>Required</behavior>
+                <field>VPM_IsInvoiceReceived__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_Spend__c</field>
+                <field>VPM_Commodity__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>VPM_IsInvoiceReceived__c</field>
+                <behavior>Edit</behavior>
+                <field>VPM_Spend__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -65,8 +64,8 @@
                 <field>VPM_VendorName1__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_Street1__c</field>
+                <behavior>Required</behavior>
+                <field>VPM_Country__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -79,8 +78,8 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>VPM_Country__c</field>
+                <behavior>Edit</behavior>
+                <field>VPM_Street1__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -179,6 +178,9 @@
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.QuestionPost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>VPM_PurchasingRequests__c.VPM_AbortRequest</quickActionName>
         </quickActionListItems>
     </quickActionList>
     <relatedLists>

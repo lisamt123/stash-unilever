@@ -43,34 +43,38 @@
     </entryCriteria>
     <finalApprovalActions>
         <action>
-            <name>ChangeReworkStatustoNo</name>
+            <name>VPM_ApprovalStatusAproval</name>
             <type>FieldUpdate</type>
-        </action>
-        <action>
-            <name>Freight_Notification_For_Logged</name>
-            <type>Alert</type>
         </action>
         <action>
             <name>VPM_ChangeIsInApprovalProcess</name>
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>VPM_ChangeReworkStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_ChangesIslockStatusNo</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangesIslockStatusTrue</name>
+            <name>VPM_ChangesStatusRussianApprove</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_RussiaApprovedtoyes</name>
+            <name>VPM_RequestLastwithGroupRussianCustom</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_RussiaApprovedSubmittedtoYes</name>
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
-            <name>Request_Last_with_Group_Russian_Custom_T</name>
+            <name>VPM_ApprovalStatusRejection</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -78,27 +82,47 @@
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>VPM_RequestLastwithGroupRussianCustom</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_RequestRejectNotification</name>
             <type>Alert</type>
+        </action>
+        <action>
+            <name>VPM_StatusRussianCustomTaxRejected</name>
+            <type>FieldUpdate</type>
         </action>
     </finalRejectionActions>
     <finalRejectionRecordLock>true</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
-            <name>Assign_to_Freight</name>
+            <name>VPM_ApprovalStatusPending</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>ChangeReworkStatustoNo</name>
+            <name>VPM_AssigntoRussian</name>
             <type>FieldUpdate</type>
-        </action>
-        <action>
-            <name>Russian_Notification_For_Logged</name>
-            <type>Alert</type>
         </action>
         <action>
             <name>VPM_ChangeIsinApprovalStatus</name>
             <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeReworkStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_IsLockTrue</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_NextApproveNameRussian</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_NotificationForLogged</name>
+            <type>Alert</type>
         </action>
         <action>
             <name>VPM_StatustoApprovalPending</name>
@@ -108,11 +132,11 @@
     <label>Russian Custom Tax Approval</label>
     <recallActions>
         <action>
-            <name>ChangeReworkStatustoNo</name>
+            <name>VPM_ChangeAdvanceFormSubmittedtonull</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangeAdvanceFormSubmittedtonull</name>
+            <name>VPM_ChangeReworkStatusNo</name>
             <type>FieldUpdate</type>
         </action>
         <action>

@@ -69,7 +69,7 @@
     </entryCriteria>
     <finalApprovalActions>
         <action>
-            <name>Request_Last_with_Group_Freight</name>
+            <name>VPM_ApprovalStatusAproval</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -81,18 +81,30 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangesIslockStatusFalse</name>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesStatusFreightApproved</name>
             <type>FieldUpdate</type>
         </action>
         <action>
             <name>VPM_FreightApprovedYes</name>
             <type>FieldUpdate</type>
         </action>
+        <action>
+            <name>VPM_RequestLastwithGroupFreight</name>
+            <type>FieldUpdate</type>
+        </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
-            <name>VPM_ChangeIslockStatusto_False</name>
+            <name>VPM_ApprovalStatusRejection</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -100,12 +112,20 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_NotifiedBusinessRequesterRequestFreightTeam</name>
+            <name>VPM_RequestLastwithGroupFreight</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_RequestRejectNotification</name>
             <type>Alert</type>
         </action>
     </finalRejectionActions>
     <finalRejectionRecordLock>true</finalRejectionRecordLock>
     <initialSubmissionActions>
+        <action>
+            <name>VPM_ApprovalStatusPending</name>
+            <type>FieldUpdate</type>
+        </action>
         <action>
             <name>VPM_ChangeIsinApprovalStatus</name>
             <type>FieldUpdate</type>
@@ -115,8 +135,20 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangeReworkStatus_No</name>
+            <name>VPM_ChangeReworkStatusNo</name>
             <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_IsLockTrue</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_NextApproverNameFreight</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_NotificationForLogged</name>
+            <type>Alert</type>
         </action>
         <action>
             <name>VPM_StatustoApprovalPending</name>
@@ -130,7 +162,11 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangeReworkStatus_No</name>
+            <name>VPM_ChangeReworkStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
             <type>FieldUpdate</type>
         </action>
         <action>

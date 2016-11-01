@@ -1104,6 +1104,7 @@ IF(CONTAINS(mdm_ecc__c,&quot;U2K2&quot;), mdm_vCodeU2K2__c,
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>

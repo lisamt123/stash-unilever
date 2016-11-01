@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>RO_1455</label>
+    <protected>false</protected>
+    <values>
+        <field>VPM_CountryISO2__c</field>
+        <value xsi:type="xsd:string">RO</value>
+    </values>
+    <values>
+        <field>VPM_Country__c</field>
+        <value xsi:type="xsd:string">Romania</value>
+    </values>
+    <values>
+        <field>VPM_PaymentMethod__c</field>
+        <value xsi:type="xsd:string">R_SEPA Bank transfer</value>
+    </values>
+</CustomMetadata>

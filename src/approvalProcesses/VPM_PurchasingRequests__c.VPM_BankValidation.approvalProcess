@@ -117,7 +117,7 @@
     </entryCriteria>
     <finalApprovalActions>
         <action>
-            <name>ChangeReworkStatustoNo</name>
+            <name>VPM_ApprovalStatusAproval</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -125,7 +125,15 @@
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>VPM_ChangeReworkStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeStatusBankApproved</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -136,11 +144,19 @@
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
+            <name>VPM_ApprovalStatusRejection</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeReworkStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_ChangesIslockStatusNo</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_NotifiedBusinessRequesterRequestFinanceTeam</name>
+            <name>VPM_RequestRejectNotification</name>
             <type>Alert</type>
         </action>
         <action>
@@ -151,6 +167,10 @@
     <finalRejectionRecordLock>true</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
+            <name>VPM_ApprovalStatusPending</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_ChangeIsinApprovalStatus</name>
             <type>FieldUpdate</type>
         </action>
@@ -159,8 +179,20 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangeReworkStatus_No</name>
+            <name>VPM_ChangeReworkStatusNo</name>
             <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_IsLockTrue</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_NextApproverNameBank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_NotificationForLogged</name>
+            <type>Alert</type>
         </action>
         <action>
             <name>VPM_StatustoApprovalPending</name>
@@ -170,11 +202,11 @@
     <label>Bank Validation</label>
     <recallActions>
         <action>
-            <name>ChangeReworkStatustoNo</name>
+            <name>VPM_ChangeAdvanceFormSubmittedtonull</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangeAdvanceFormSubmittedtonull</name>
+            <name>VPM_ChangeReworkStatusNo</name>
             <type>FieldUpdate</type>
         </action>
         <action>
