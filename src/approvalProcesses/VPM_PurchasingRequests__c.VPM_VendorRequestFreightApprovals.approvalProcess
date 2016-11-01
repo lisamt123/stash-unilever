@@ -155,7 +155,7 @@
             <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>
-    <label>Freight Approval</label>
+    <label>Freight</label>
     <recallActions>
         <action>
             <name>VPM_ChangeAdvanceFormSubmittedtonull</name>

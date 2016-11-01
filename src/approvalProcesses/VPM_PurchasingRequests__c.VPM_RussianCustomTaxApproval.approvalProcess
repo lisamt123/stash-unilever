@@ -129,7 +129,7 @@
             <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>
-    <label>Russian Custom Tax Approval</label>
+    <label>Russian Custom Tax</label>
     <recallActions>
         <action>
             <name>VPM_ChangeAdvanceFormSubmittedtonull</name>

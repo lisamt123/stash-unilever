@@ -116,7 +116,7 @@
             <type>Alert</type>
         </action>
     </initialSubmissionActions>
-    <label>FLS Approval</label>
+    <label>FLS</label>
     <nextAutomatedApprover>
         <useApproverFieldOfRecordOwner>true</useApproverFieldOfRecordOwner>
         <userHierarchyField>Manager</userHierarchyField>

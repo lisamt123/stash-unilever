@@ -179,7 +179,7 @@ RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; || AND(RecordType.
             <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>
-    <label>Finance Approval</label>
+    <label>Finance</label>
     <recallActions>
         <action>
             <name>VPM_ChangeAdvanceFormSubmittedtonull</name>

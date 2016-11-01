@@ -259,7 +259,7 @@ VPM_Company_Code_Value__c = &apos;5487&apos;
             <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>
-    <label>Procurement Approval</label>
+    <label>Procurement</label>
     <recallActions>
         <action>
             <name>VPM_ChangeAdvanceFormSubmittedtonull</name>
