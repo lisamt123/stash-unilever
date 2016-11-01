@@ -9,3 +9,4 @@ src/permissionsets/FS_RU_Finance.permissionset
 src/permissionsets/FS_RU_SCP.permissionset
 src/permissionsets/FS_RussiaSalesRep.permissionset
 src/permissionsets/FS_Integration_User.permissionset
+src/layouts/Account-Feed Based Distributor Russia.layout
