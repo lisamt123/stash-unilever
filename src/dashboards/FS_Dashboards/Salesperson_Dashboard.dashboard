@@ -82,7 +82,7 @@
             <expandOthers>false</expandOthers>
             <header>Activities</header>
             <legendPosition>Bottom</legendPosition>
-            <report>FS_SHARED_FOLDER/FS_Sales_All_Open_Activites</report>
+            <report>FS_SHARED_FOLDER/FS_Sales_All_Open_Activities</report>
             <showPercentage>false</showPercentage>
             <showValues>false</showValues>
             <sortBy>RowValueDescending</sortBy>
