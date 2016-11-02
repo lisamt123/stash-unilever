@@ -1,11 +1,4 @@
 src
 src/classes
-src/classes/IPM_FinancialActionStandards.cls
-src/classes/IPM_FinancialActionStandards.cls-meta.xml
-src/classes/IPM_FinancialController.cls
-src/classes/IPM_FinancialController.cls-meta.xml
-src/classes/IPM_GlobalClaimPDLController.cls
-src/classes/IPM_GlobalClaimPDLController.cls-meta.xml
-src/pages
-src/pages/IPM_Product_and_Sourcing_Plan.page
-src/pages/IPM_Product_and_Sourcing_Plan.page-meta.xml
+src/classes/IPM_BD_BB_Report_Batch.cls
+src/classes/IPM_BD_BB_Report_Batch.cls-meta.xml
