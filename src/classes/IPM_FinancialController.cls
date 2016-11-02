@@ -538,7 +538,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
         }
         catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            //Business Impact dont have any impact for validations, so bypassing the addmessage for BI calculation exceptions
+            errorMessage = Label.IPM_PLEASE_CONTACT_ADMINISTRATOR;
+            //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
     } 
      //upto here 
@@ -3607,7 +3609,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public void setConsolidatedFinancialValidationCells(){
         try{
             String queryString = 'SELECT ';
-            List<IPM_Financial__c> lstFinancial = new List<IPM_Financial__c>();
+
             
             //fetch all the financials from the current project
             
@@ -3631,21 +3633,22 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             Map<String,String> finExtIdYellowCellsMap= new Map<String,String>();
         
         
-            lstFinancial = Database.query(queryString);
+
             
             //if there are are more than one fiancials only then proceed
             //this is because if there is only fianncial , then it means that no rollouts have been created for the project.
             //so only the Global consolidated financial is existing for the project
-            if(lstFinancial!= null && lstFinancial.size()>1){
+
                 //the map conatining the erroneous cells financial external Ids for red and soft validation
                 //this map is then used to populate these external ids in the redValidationCells and YellowValidation cells field on the consolidated financials for the project
-                getRedYellowCellsMap(lstFinancial,finExtIdRedCellsMap,finExtIdYellowCellsMap);
+
+                getRedYellowCellsMap(queryString,finExtIdRedCellsMap,finExtIdYellowCellsMap);
                 
                 //Work with the string containing list of erroneous cells to populate the cells on consolidated financials
                 //used map to avoid the duplicate Id error (becuase of child financial years fetch) while the update operation 
                 Map<Id,IPM_Financial__c> toUpdateFinancialsMap = new Map<Id,IPM_Financial__c>();
                     
-                for(IPM_Financial__c currentFin: lstFinancial){
+                for(IPM_Financial__c currentFin: Database.query(queryString)){
                     
                     if(currentFin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) 
                         && !toUpdateFinancialsMap.containsKey(currentFin.Id)){
@@ -3686,7 +3689,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
                 
                 initializeFinancials();
-            }
+
         }
         
         
@@ -3709,12 +3712,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * Parameter : LstCurrentFinancial : the list of the financials
     *             finExtIdRedCellsMap & finExtIdYellowCellsMap : the Maps containing the string conatining the red and yellow erroneous cells respectively(semi colon seperated)    
     **************************************************************************************************************/
-    public void getRedYellowCellsMap(List<IPM_Financial__c> lstFinancial,Map<String,String> finExtIdRedCellsMap,Map<String,String> finExtIdYellowCellsMap){
+
+    public void getRedYellowCellsMap(string sQuery,Map<String,String> finExtIdRedCellsMap,Map<String,String> finExtIdYellowCellsMap){
         
         //get the financial external Id present for the current tab view and  calculate the soft validation based on those financials only
         Set<String> financialExtIdsForCurrentTab = getFinExtIdsForCurrentTab();
         
-        for(IPM_Financial__c currentFin: lstFinancial){
+        for(IPM_Financial__c currentFin: Database.Query(sQuery)){
             redValidationCellsString = IPM_ConstantUtils.BLANK;
             yellowValidationCellsString = IPM_ConstantUtils.BLANK ;
             

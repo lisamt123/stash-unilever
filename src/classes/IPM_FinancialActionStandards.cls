@@ -75,7 +75,7 @@ public with sharing class IPM_FinancialActionStandards {
     */
     public void showFinancialActionStandards(){
         try{
-            project = [SELECT IPM_Project_Name__c,IPM_Project_Type__c,IPMProject_Span__c, IPM_Phase__c
+            project = [SELECT IPM_Project_Name__c,IPM_Project_Type__c,IPMProject_Span__c, IPM_Phase__c,Source_Rollout_External_Id__c
                        FROM IPM_Project__c 
                        WHERE ID =: projectId];
             
