@@ -33,7 +33,7 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
             projectId = paramMap.get(IPM_ConstantUtils.SF_ID);
         }
         
-        localRolloutList = [Select id, 	IPM_Rollout_Project__c, MCO_Name__c, KeyMCO__c, (Select id,Country_Name__c From IPM_Countries_Local__r Order by Local_Rollout__r.MCO__c) From IPM_Project_Rollout__c Where (IPM_Project__c =: projectId OR Local_Project__c =: projectId) and RecordType.Name =: IPM_ConstantUtils.LOCAL_ROLLOUT_RT];
+        localRolloutList = [Select id, 	IPM_Rollout_Project__c, MCO_Name__c, KeyMCO__c, (Select id,Country_Name__c From IPM_Countries_Local__r Order by Local_Rollout__r.MCO__c) From IPM_Project_Rollout__c Where (IPM_Project__c =: projectId OR Local_Project__c =: projectId) and isActive__c=true and RecordType.Name =: IPM_ConstantUtils.LOCAL_ROLLOUT_RT];
         if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
 		{
 			readOnlyLocalView = true; 

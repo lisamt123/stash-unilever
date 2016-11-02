@@ -57,7 +57,7 @@
             <apex:outputpanel id="sourceProductTable" layout="block">
             <script type="text/javscript">
             	jq(document).ready(function() {
-    				jq('select').val('Select Sourcing Unit');
+    				jq('[id*="sourcingUnitList"]').val('Select Sourcing Unit');
 				});
             </script>
                 <apex:outputpanel layout="block" id="CAssociations" styleClass="col-sm-12 countryassociation noPadleft">
@@ -101,7 +101,7 @@
                             <apex:outputpanel id="confirmSUnit">
                                 <div class="drpDownContainer">
                                    
-                                    <apex:selectList styleClass="srcingSlectlist" value="{!sSourcingUnit}" size="1" multiselect="false" onchange="displayCapabilitySection(this,event);">
+                                    <apex:selectList id="sourcingUnitList" styleClass="srcingSlectlist" value="{!sSourcingUnit}" size="1" multiselect="false" onchange="displayCapabilitySection(this,event);">
                                         <apex:selectOptions value="{!SourcingUnits}"></apex:selectOptions>
                                     </apex:selectList>
                                 </div>
