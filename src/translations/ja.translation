@@ -1101,7 +1101,7 @@
         <name>CEC_Fulfilment_PostOption_Complaints</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Fulfilment_PostOption_otherwise --></label>
+        <label>Otherwise</label>
         <name>CEC_Fulfilment_PostOption_otherwise</name>
     </customLabels>
     <customLabels>
@@ -1201,7 +1201,7 @@
         <name>CEC_Quick_Code_Change_Error</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Reason --></label>
+        <label>ロスツリー Level 1</label>
         <name>CEC_Reason</name>
     </customLabels>
     <customLabels>

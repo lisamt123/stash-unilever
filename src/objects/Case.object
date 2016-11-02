@@ -7826,7 +7826,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>notEqual</operation>
-            <value>CEC Southern Cone Queue,CEC Southern Cone Escalation Queue,acous,mlore</value>
+            <value>CEC Southern Cone Queue,CEC Southern Cone Escalation Queue,acous,mlore,aport</value>
         </filters>
         <label>Casos Nuevo En Progreso 1</label>
         <language>es_MX</language>
@@ -7909,7 +7909,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>DACH_Vacation_Queue_3</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -7962,11 +7962,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>Ute</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>fmott</value>
         </filters>
         <label>DACH Vacation Queue 3</label>
         <language>en_US</language>
@@ -8490,8 +8485,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>My_Open_Cases_4_Oct</fullName>
+        <fullName>My_Open_Cases_DO_NOT_EDIT13</fullName>
         <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>Default_From_Address__c</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
@@ -8509,8 +8506,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>My_Open_Cases_DO_NOT_EDIT13</fullName>
-        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <fullName>My_Open_Cases_DO_NOT_EDIT14</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>Default_From_Address__c</columns>
@@ -8532,11 +8528,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>,Email,Email Philippines,Web</value>
         </filters>
-        <filters>
-            <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-        </filters>
-        <label>My Open Cases - E-MAIL WEB - DO NOT EDIT</label>
+        <label>My Open Cases - EMAIL, WEB - DO NOT EDIT</label>
         <language>en_US</language>
     </listViews>
     <listViews>
