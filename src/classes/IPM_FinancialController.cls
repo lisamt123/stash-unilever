@@ -538,7 +538,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
         }
         catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            //Business Impact dont have any impact for validations, so bypassing the addmessage for BI calculation exceptions
+            errorMessage = Label.IPM_PLEASE_CONTACT_ADMINISTRATOR;
+            //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
     } 
      //upto here 
