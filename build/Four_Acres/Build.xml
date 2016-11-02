@@ -87,11 +87,11 @@
   </sf:deploy>
   <!--<antcall target="generatePackage"/>-->
   </target>
-</project>
+
 <!-- *************************************************************************************** -->
   <!-- Performing validate undeploy Salesforce components from Salesforce Org- DESTRUCTIVE CHANGE       -->
   <!-- *************************************************************************************** -->  
-    <target name="validate-undeploy">
+   <target name="validate-undeploy">
       <echo level="info">Performing validate undeploy - DESTRUCTIVE CHANGE</echo>  
       <sf:deploy username="${sf.username}" 
         password="${sf.password}" 
@@ -260,3 +260,4 @@
       <runtest>FAU_WebinarTriggerTest</runtest>    
       </sf:deploy>      
     </target>
+    </project>
