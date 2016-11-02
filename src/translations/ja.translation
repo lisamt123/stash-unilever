@@ -1029,7 +1029,7 @@
         <name>Business_Case_Update_Needed_Value</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Account_Site --></label>
+        <label>Account Site</label>
         <name>CEC_Account_Site</name>
     </customLabels>
     <customLabels>
@@ -1105,7 +1105,7 @@
         <name>CEC_ChequeBook_input_fields_missing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_City --></label>
+        <label>City</label>
         <name>CEC_City</name>
     </customLabels>
     <customLabels>
@@ -1165,11 +1165,11 @@
         <name>CEC_Consumer_Record_Update</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Country --></label>
+        <label>Country</label>
         <name>CEC_Country</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Country_region --></label>
+        <label>Country/Region</label>
         <name>CEC_Country_region</name>
     </customLabels>
     <customLabels>
@@ -1225,7 +1225,7 @@
         <name>CEC_Fulfilment_PostOption_Complaints</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Fulfilment_PostOption_otherwise --></label>
+        <label>Otherwise</label>
         <name>CEC_Fulfilment_PostOption_otherwise</name>
     </customLabels>
     <customLabels>
@@ -1365,7 +1365,7 @@
         <name>CEC_Quick_Code_Change_Error</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Reason --></label>
+        <label>ロスツリー Level 1</label>
         <name>CEC_Reason</name>
     </customLabels>
     <customLabels>
