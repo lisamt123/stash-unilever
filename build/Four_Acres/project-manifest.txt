@@ -4,8 +4,6 @@ src/classes/FAUMilestoneCls.cls
 src/classes/FAUMilestoneCls.cls-meta.xml
 src/classes/FAUModuleCls.cls
 src/classes/FAUModuleCls.cls-meta.xml
-src/classes/FAUWebinarCls.cls
-src/classes/FAUWebinarCls.cls-meta.xml
 src/classes/FAU_ChatterServiceImplTest.cls
 src/classes/FAU_ChatterServiceImplTest.cls-meta.xml
 src/classes/FAU_CreateProgramController.cls
@@ -28,8 +26,6 @@ src/classes/FAU_MilestoneTriggerTest.cls
 src/classes/FAU_MilestoneTriggerTest.cls-meta.xml
 src/classes/FAU_ModuleTriggerTest.cls
 src/classes/FAU_ModuleTriggerTest.cls-meta.xml
-src/classes/FAU_Module_Part_ControllerExt.cls
-src/classes/FAU_Module_Part_ControllerExt.cls-meta.xml
 src/classes/FAU_ParticipantClsSC.cls
 src/classes/FAU_ParticipantClsSC.cls-meta.xml
 src/classes/FAU_ParticipantControllerExtension.cls
@@ -66,8 +62,6 @@ src/classes/FAU_PermissionSetsCls.cls
 src/classes/FAU_PermissionSetsCls.cls-meta.xml
 src/classes/FAU_TestUtil.cls
 src/classes/FAU_TestUtil.cls-meta.xml
-src/classes/FAU_WebinarHandler.cls
-src/classes/FAU_WebinarHandler.cls-meta.xml
 src/classes/FAU_Webinar_ParticipantHandler.cls
 src/classes/FAU_Webinar_ParticipantHandler.cls-meta.xml
 src/pages
