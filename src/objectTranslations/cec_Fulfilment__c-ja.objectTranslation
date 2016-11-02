@@ -434,7 +434,7 @@
         <name>Enclosure1_Notes__c</name>
     </fields>
     <fields>
-        <label><!-- Enclosure1 Quantity --></label>
+        <label>Enclosure1 Quantity</label>
         <name>Enclosure1_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -471,7 +471,7 @@
         <name>Enclosure2_Notes__c</name>
     </fields>
     <fields>
-        <label><!-- Enclosure2 Quantity --></label>
+        <label>Enclosure2 Quantity</label>
         <name>Enclosure2_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -508,7 +508,7 @@
         <name>Enclosure3_Notes__c</name>
     </fields>
     <fields>
-        <label><!-- Enclosure3 Quantity --></label>
+        <label>Enclosure3 Quantity</label>
         <name>Enclosure3_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -545,7 +545,7 @@
         <name>Enclosure4_Notes__c</name>
     </fields>
     <fields>
-        <label><!-- Enclosure4 Quantity --></label>
+        <label>Enclosure4 Quantity</label>
         <name>Enclosure4_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -582,7 +582,7 @@
         <name>Enclosure5_Notes__c</name>
     </fields>
     <fields>
-        <label><!-- Enclosure5 Quantity --></label>
+        <label>Enclosure5 Quantity</label>
         <name>Enclosure5_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>

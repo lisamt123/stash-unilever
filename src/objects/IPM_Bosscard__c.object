@@ -9087,6 +9087,69 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000Gy6B_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MTX CHEERS</label>
+        <queue>IPM_a7I0L000000Gy6B</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gy6G_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ALMATI CANCUN</label>
+        <queue>IPM_a7I0L000000Gy6G</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gy6f_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_RED ROVER_NA</label>
+        <queue>IPM_a7I0L000000Gy6f</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gy6k_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000Gy6k</label>
+        <queue>IPM_a7I0L000000Gy6k</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gy7d_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000Gy7d</label>
+        <queue>IPM_a7I0L000000Gy7d</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gy87_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000Gy87</label>
+        <queue>IPM_a7I0L000000Gy87</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gy8v_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000Gy8v</label>
+        <queue>IPM_a7I0L000000Gy8v</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
