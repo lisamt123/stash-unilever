@@ -18,6 +18,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
     Map<Id,IPM_Project__c> ipmProjects = new Map<Id,IPM_Project__c>();//Map of IPM Project Id and IPM Project
     Map<id,IPM_Project__c> eligibleProjectMapForCopyOver = new Map<id,IPM_Project__c>();//Map of IPM Project Id and IPM Project
     Map<Id,IPM_Milestone__c> eligibleMilestoneMapForCopyOver = new Map<Id,IPM_Milestone__c>();//Map of IPM Milestone Id and IPM Milestone
+    set<id> setProjIds = new set<id>();//set project Ids
     
     /**
     * @description:bulkBefore
@@ -154,6 +155,13 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
                             eligibleMilestoneMapForCopyOver.put(incomingMilestone.Id,incomingMilestone); 
                         }
                    }
+                   //Evaluate for Due Date Rollup
+                   if(Trigger.isInsert || (incomingMilestone.IPM_Due_Date__c !=oldMilestone.IPM_Due_Date__c)){
+                       setProjIds.add(incomingMilestone.IPM_Project__c);
+                   }
+				}
+                if(!setProjIds.isEmpty()){
+                    IPM_MilestoneHelper.rollupMilestoneDuedate(setProjIds);
                 }
             }
             /* Map with all the projects related to updated milestones */           

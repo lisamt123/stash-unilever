@@ -89,11 +89,15 @@ private class IPM_RolloutPlansAddController_Test
     * Constructor logic for the controller is tested for  projects (Searching rollouts, Adding rollouts, Processing rollouts). 
     * Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects                            
     ********************************************************************************************************************************************/
-	private static  void GlobalProjRolloutAdd(Boolean isActive ,Boolean isRegionalProj ,Boolean isFeasibilityProject, Boolean isArchProcess) 
-	{
-		IPM_RolloutPlansAddController irp = new IPM_RolloutPlansAddController();
-		IPM_RolloutPlansAddController irp2 ;
-
+        private static  void GlobalProjRolloutAdd(Boolean isActive ,Boolean isRegionalProj ,Boolean isFeasibilityProject, Boolean isArchProcess) 
+        {             
+                List<IPM_Project__c> projectAssertList = [Select Id,Name,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_ProjectGKM__c,IPM_CompanyCardText__c from IPM_Project__c LIMIT 3];
+                // Setting up the page Reference to the current page
+                Test.setCurrentPage(pageRef);
+                ApexPages.currentPage().getParameters().put('Id',projectAssertList[0].id);
+                IPM_RolloutPlansAddController irp = new IPM_RolloutPlansAddController();
+                IPM_RolloutPlansAddController irp2 ;
+ 
 		
 		if(isRegionalProj)  
 		{ 
@@ -204,6 +208,7 @@ private class IPM_RolloutPlansAddController_Test
             for(IPM_Project__c project : projectList)
             {
                 project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+                project.IPM_ProjectGKM__c = 'GKM2';
                 project.Market_Cluster__c = GEO0060; 
                 project.IPM_Target_Launch_Dates__c = system.today();
             }  
@@ -615,18 +620,8 @@ private class IPM_RolloutPlansAddController_Test
 
 
 	/*************************************************************************************
-	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects
-	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
-	* @name :  testGlobalProjRolloutAdd
-	***************************************************************************************/
-	private static testmethod void testGlobalProjRolloutAdd()
-	{
 		
-		GlobalProjRolloutAdd(true,false,false,false);
-		System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
 		
-	} 
-	/*************************************************************************************
 	* @Description : Used for testing  regional and local rollouts creation for regional project
 	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
 	* Parameters are set to null
@@ -634,6 +629,10 @@ private class IPM_RolloutPlansAddController_Test
 	***************************************************************************************/
 	private static testmethod void testRegionalProjRolloutAddNullValues()
 	{  
+               List<IPM_Project__c> projectAssertList = [Select Id,Name,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_ProjectGKM__c,IPM_CompanyCardText__c from IPM_Project__c LIMIT 3];
+               // Setting up the page Reference to the current page
+               Test.setCurrentPage(pageRef);
+               ApexPages.currentPage().getParameters().put('Id',projectAssertList[0].id);
 		IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
 		IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
 		
@@ -766,13 +765,23 @@ private class IPM_RolloutPlansAddController_Test
 	}
 	
 	/*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects
+	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
+	* @name :  testGlobalProjRolloutAdd
+	***************************************************************************************/
+ 	private static testmethod void testGlobalProjRolloutAdd()
+	{
+		GlobalProjRolloutAdd(true,false,false,false);
+		System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
+	} 
+	/*************************************************************************************
 	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects and removal of rollouts
 	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
 	* @name :  testGlobalProjRolloutAdd2
 	***************************************************************************************/
 	private static testmethod void testGlobalProjRolloutAdd2()
 	{
-		GlobalProjRolloutAdd(false,false,false,false);
+		GlobalProjRolloutAdd(true,false,true,true);
 		System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG); 
 	}
 	/*************************************************************************************

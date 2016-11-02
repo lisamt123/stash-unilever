@@ -131,6 +131,17 @@
         <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_Local_Leader_when_local_project_created</template>
     </alerts>
+	 <alerts>
+        <fullName>IPM_Notify_the_Local_Project_leader_when_Non_Key_local_project_created</fullName>
+        <description>IPM Notify the Local Project leader when Non Key local project created</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_Notify_Local_Leader_when_Non_key_local_project_created</template>
+    </alerts>
     <alerts>
         <fullName>IPM_Project_Archival_Email_Alert</fullName>
         <description>IPM Project Archival Email Alert</description>

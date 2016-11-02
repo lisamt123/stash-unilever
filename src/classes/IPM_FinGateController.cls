@@ -51,7 +51,7 @@ public with sharing class IPM_FinGateController {
         
         if (projectId != NULL){
             project = [SELECT Id, IPM_Project_Name__c, Sustainability_Period__c, IPMProject_Span__c, Market_Cluster__c, Market_Cluster_Name__c, IPM_Parent_Project__c, 
-                              IPM_Project_Type__c, IPM_Phase__c 
+                              IPM_Project_Type__c, IPM_Phase__c, Source_Rollout_External_Id__c
                         FROM IPM_Project__C 
                         WHERE Id=:projectId];
             
@@ -137,10 +137,10 @@ public with sharing class IPM_FinGateController {
         totalCalendarFinYears = 0;
         
         if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) {
-            ExternalId = project.IPM_Project_Name__c;
+            ExternalId = project.Source_Rollout_External_Id__c;
         } 
         else {
-            ExternalId = project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+            ExternalId = project.Source_Rollout_External_Id__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
         }
         String queryString = 'SELECT ';
         //IPM Financial
@@ -217,29 +217,33 @@ public with sharing class IPM_FinGateController {
             if (finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_GROSS){
                 finWrapper.lstYearNames.add(finYear.Name);
                 
-                finWrapper.lstGrossPLValueMarketShare.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Value_Market_Share_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstGrossPLVolume.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VOLUME.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstGrossPLVolumeTons.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Tons_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstGrossPLTurnover.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Turnover_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_TURNOVER.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstGrossPLGrossProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Gross_Profit_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstGrossPLAdvertising.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Advertising_Promotions_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstGrossPLProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Profit_Before_Overheads_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstGrossPLGM.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.GM_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstGrossPLAP.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.AP_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstGrossPLPBO.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.PBO_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO.removeEnd('_'),currentFinancial,null));
+                //Gross PL Values to show when misaligned with Regional and Local
+                finWrapper.lstGrossPLValueMarketShare.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE ,1,null, null));                
+                finWrapper.lstGrossPLVolume.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_VOLUME ,2,null, null));
+                finWrapper.lstGrossPLVolumeTons.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS ,2,null, null));
+                finWrapper.lstGrossPLTurnover.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_TURNOVER ,2,null, null));
+                finWrapper.lstGrossPLGrossProfit.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT ,2,null, null));
+                finWrapper.lstGrossPLAdvertising.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS ,2,null, null));
+                finWrapper.lstGrossPLProfit.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS ,2,null, null));
+                finWrapper.lstGrossPLGM.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO ,1,null, null));
+                finWrapper.lstGrossPLAP.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO,1,null, null));
+                finWrapper.lstGrossPLPBO.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO,1,null, null));
+             
             }
-            //Incremental P&L Values
+            //Incremental PL Values to show when misaligned with Regional and Local
             else if (finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_INCREMENTAL) {
-                finWrapper.lstIncrementalPLValueMarketShare.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Value_Market_Share_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstIncrementalPLVolume.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VOLUME.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstIncrementalPLVolumeTons.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Tons_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstIncrementalPLTurnover.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Turnover_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_TURNOVER.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstIncrementalPLGrossProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Gross_Profit_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstIncrementalPLAdvertising.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Advertising_Promotions_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstIncrementalPLProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Profit_Before_Overheads_Difference__c,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstIncrementalPLGM.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.GM_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstIncrementalPLAP.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.AP_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO.removeEnd('_'),currentFinancial,null));
-                finWrapper.lstIncrementalPLPBO.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.PBO_of_TO_Difference__c, 1,finYear.External_Id__c+IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO.removeEnd('_'),currentFinancial,null));
+                finWrapper.lstIncrementalPLValueMarketShare.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_VOLUME ,1,null, null));
+                finWrapper.lstIncrementalPLVolume.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_VOLUME ,2,null, null));
+                finWrapper.lstIncrementalPLVolumeTons.add(new IPM_FinancialValueWrapper(finYear, null,fieldSuffix, IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS ,2,null, null));
+                finWrapper.lstIncrementalPLTurnover.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_TURNOVER ,2,null, null));
+                finWrapper.lstIncrementalPLGrossProfit.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT ,2,null, null));
+                finWrapper.lstIncrementalPLAdvertising.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS ,2,null, null));
+                finWrapper.lstIncrementalPLProfit.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS ,2,null, null));
+                finWrapper.lstIncrementalPLGM.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_GM_OF_TO ,1,null, null));
+                finWrapper.lstIncrementalPLAP.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_AP_OF_TO ,1,null, null));
+                finWrapper.lstIncrementalPLPBO.add(new IPM_FinancialValueWrapper(finYear, null, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_PBO_OF_TO ,1,null, null));
+                
+                
             }
         }
     }

@@ -24,9 +24,10 @@ private with sharing class IPM_MilestoneHandler_Test
          // Create an instances of standard Users for Allocation to Project Leaders.
          System.runAs(adminUser)
          {   
-            globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
-            User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
-            User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+
+            globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
+            User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
+            User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
             
             // Update LastNames to match functionalRoles
             globalProjectLeader.lastname = 'GLOBAL_PL';
@@ -95,6 +96,7 @@ private with sharing class IPM_MilestoneHandler_Test
         
         System.RunAs(globalProjectLeader)
         {
+            Test.startTest();
             
             List<IPM_Project__c> projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
                                                     (Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Name in:projectNameSet];
@@ -148,7 +150,7 @@ private with sharing class IPM_MilestoneHandler_Test
             
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
             {
-                String geoExternalId = '';
+                String geoExternalId = IPM_ConstantUtils.BLANK;
                 if(localRollout.IPM_Rollout_Project__c.contains('AFR'))
                 {
                     geoExternalId = 'AGO';
@@ -167,12 +169,13 @@ private with sharing class IPM_MilestoneHandler_Test
             insert countryList;
             
             /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
-            Test.startTest();
+            
             
              // Set GateKeeping Model as RCLT and start with Regional Project Creation.
             for(IPM_Project__c project : projectList)
             {
                 project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+                project.IPM_ProjectGKM__c='GKM2';
             }  
             
             update projectList;

@@ -1,3 +1,4 @@
+
 /**********************************************************************************************************************
 * @author       Cognizant 
 * @date         27/04/2015
@@ -11,6 +12,14 @@ public with sharing class IPM_FinancialYearHelper
     private static final String UPDATE_FINANCIAL_ACTION_STANDARD_STR = 'updateFinancialActionStandard';
     private static final String CLASS_NAME = IPM_FinancialYearHelper.Class.getName(); //Class Name for Exception Logging
     private static Boolean IS_RECURSSIVE = false;
+    private static final String IPM_FINANCIAL_YEAR_STR = 'IPM_Financial_Year__c';
+	
+    // used to find which financial has value invalid at which span and accordinglys set that invalid flag on financial as true
+    private static Map<String, Set<String>> spanTofinExtIdMap = new Map<String, Set<String> >{IPM_ConstantUtils.PROJECT_SPAN_GLOBAL => new Set<String>{},
+    																   						  IPM_ConstantUtils.PROJECT_SPAN_REGIONAL => new Set<String>{},
+    																   						  IPM_ConstantUtils.PROJECT_SPAN_LOCAL => new Set<String>{}
+    																   						}; 
+    
     // Field set used for consolidation  
     private static final Set<String> FIELDS_TO_CONSOLIDATE = new Set<String>{
             'Advertising_Promotions_Global__c','Advertising_Promotions_Local__c','Advertising_Promotions_Regional__c',
@@ -90,10 +99,10 @@ public with sharing class IPM_FinancialYearHelper
             
             for(IPM_Financial_Year__c financialYear : completeFinancialYearList) 
             {                                                      
-                IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials('IPM_Financial_Year__c','External_Id__c',financialYear,consolidatedFinancialYearMap,consolidatedToRelatedFinancialYearMap,'Global_External_Id__c',financialYear.IPM_Financial__r.RecordTypeId);
-                IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials('IPM_Financial_Year__c','External_Id__c',financialYear,consolidatedFinancialYearMap,consolidatedToRelatedFinancialYearMap,'Regional_External_Id__c',financialYear.IPM_Financial__r.RecordTypeId);
+                IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials(IPM_FINANCIAL_YEAR_STR,'External_Id__c',financialYear,consolidatedFinancialYearMap,consolidatedToRelatedFinancialYearMap,'Global_External_Id__c',financialYear.IPM_Financial__r.RecordTypeId);
+                IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials(IPM_FINANCIAL_YEAR_STR,'External_Id__c',financialYear,consolidatedFinancialYearMap,consolidatedToRelatedFinancialYearMap,'Regional_External_Id__c',financialYear.IPM_Financial__r.RecordTypeId);
             }
-                        
+               
             for(String consolidatedFinancialYearKey : consolidatedFinancialYearMap.KeySet())
             {
                 sObject consolidatedFinancialYear = consolidatedFinancialYearMap.get(consolidatedFinancialYearKey);
@@ -103,7 +112,7 @@ public with sharing class IPM_FinancialYearHelper
                         
                     if(!relatedDefaultFinancialsYear.isEmpty())
                     {
-                        IPM_FinancialUtils.processConsolidation('IPM_Financial_Year__c','External_Id__c',consolidatedFinancialYearKey,consolidatedFinancialYear,relatedDefaultFinancialsYear,upsertconsolidatedFinancialYearMap,changedFinancialFieldSet);    
+                        IPM_FinancialUtils.processConsolidation(IPM_FINANCIAL_YEAR_STR,'External_Id__c',consolidatedFinancialYearKey,consolidatedFinancialYear,relatedDefaultFinancialsYear,upsertconsolidatedFinancialYearMap,changedFinancialFieldSet);    
                     }
                     else
                     {
@@ -383,7 +392,7 @@ public with sharing class IPM_FinancialYearHelper
             //Get all Financial Year records for the related Financial records
             for(IPM_Financial_Year__c finYr :[select id, Name,Turnover_Global__c, Turnover_Regional__c, Turnover_Local__c, Financial_External_ID__c, External_Id__c, IPM_Financial__r.Global_External_Id__c, IPM_Financial__r.Regional_Project__c, IPM_Financial__r.Local_Project__c, IPM_Financial__r.Financial_External_ID__c from IPM_Financial_Year__c where Financial_External_ID__c in : setFinExtId AND IPM_Financial__r.RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE and Name_isY0__c = :IPM_ConstantUtils.IPM_false and isActive__c = TRUE and IPM_Financial__r.isActive__c = TRUE  LIMIT 50000]){
                 mapExtIdFinYear.put(finYr.External_Id__c, finYr);
-		setAllFinacials.add(finYr.IPM_Financial__r.Financial_External_ID__c);
+				setAllFinacials.add(finYr.IPM_Financial__r.Financial_External_ID__c);
 				
                 //Global Original Project's financial
                 if(finYr.IPM_Financial__r.Global_External_Id__c!=null){
@@ -408,22 +417,14 @@ public with sharing class IPM_FinancialYearHelper
                 getInvalidParentFinancialsGlobal(mapExtIdFinYear, mapProj);
             	getInvalidParentFinancialsRegional(mapExtIdFinYear, mapProj);
             	getInvalidParentFinancialsLocal(mapExtIdFinYear, mapProj);
-            
-                //Update Financials
-                list<IPM_Financial__c> lstInvalidFinance = new list<IPM_Financial__c>();
-                if(!setAllFinacials.isEmpty()){
-                    for(string finExtId :setAllFinacials){
-                        if(!setInvalidFin.isEmpty() && setInvalidFin.contains(finExtId)){
-                            lstInvalidFinance.add(new IPM_Financial__c( Financial_External_ID__c = finExtId, IsFinancialInvalid__c = true));
-                        }
-                        else{
-                            lstInvalidFinance.add(new IPM_Financial__c( Financial_External_ID__c = finExtId, IsFinancialInvalid__c = false));   
-                        }
-                    }   
-                }
+            	
+            	list<IPM_Financial__c> lstInvalidFinance = getFinToUpdateWithInvalidFlags(setAllFinacials);
+            	
                 //Upsert Financial Validation flag
                 if(!lstInvalidFinance .isEmpty()){
+                    IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
                     upsert lstInvalidFinance Financial_External_ID__c;
+                    IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
                 }
             }
         }
@@ -436,6 +437,7 @@ public with sharing class IPM_FinancialYearHelper
     //For Global Projects' Financials
     static void getInvalidParentFinancialsGlobal(map<string, IPM_Financial_Year__c> mapExtIdFinYear, map<string, IPM_Project__c> mapProj)
     {
+    		set<string> globalInvalidFinSet = new set<string>();
     		for(string finExtId: mapExtIdFinYear.keySet())
     		{
                         
@@ -444,20 +446,25 @@ public with sharing class IPM_FinancialYearHelper
                     //For Operational Projects
                     if(mapProj.containsKey(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Global_External_Id__c) && mapProj.get(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Global_External_Id__c).IPM_Project_Type__c.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
                         if(mapExtIdFinYear.get(finExtId).Turnover_Global__c <= IPM_ConstantUtils.INVALID_VALUE || ( mapExtIdFinYear.get(finExtId).Turnover_Global__c < mapExtIdFinYear.get(finExtId.replace( IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.PL_TYPE_INCREMENTAL )).Turnover_Global__c)){
-                            setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);  
+                            setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);
+                            globalInvalidFinSet.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);
                         }
                     }
                     // For Renovation/Innovation Projects: Check if Project phase is Ideas
                     else if(mapProj.containsKey(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Global_External_Id__c) && mapProj.get(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Global_External_Id__c)!=null && mapProj.get(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Global_External_Id__c).IPM_Phase__c.equalsIgnoreCase(IPM_ConstantUtils.PHASE_IDEAS) && (mapExtIdFinYear.get(finExtId).Turnover_Global__c <= IPM_ConstantUtils.INVALID_VALUE || ( mapExtIdFinYear.get(finExtId).Turnover_Global__c < mapExtIdFinYear.get(finExtId.replace( IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.PL_TYPE_INCREMENTAL )).Turnover_Global__c))){
-                        setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);      
+                        setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);
+                        globalInvalidFinSet.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);     
                     }
                 }
     		}
+    		
+    		spanTofinExtIdMap.put(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,globalInvalidFinSet);
     }
     
     //For Regional Projects' Financials
     static void getInvalidParentFinancialsRegional(map<string, IPM_Financial_Year__c> mapExtIdFinYear, map<string, IPM_Project__c> mapProj)
     {
+    		set<string> regionalInvalidFinSet = new set<string>();
     		for(string finExtId: mapExtIdFinYear.keySet())
     		{
                         
@@ -465,30 +472,91 @@ public with sharing class IPM_FinancialYearHelper
                             //For Operational Projects
                             if(mapProj.containsKey(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Regional_Project__c) && mapProj.get(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Regional_Project__c).IPM_Project_Type__c.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
                                 if(mapExtIdFinYear.get(finExtId).Turnover_Regional__c <= IPM_ConstantUtils.INVALID_VALUE || ( mapExtIdFinYear.get(finExtId).Turnover_Regional__c < mapExtIdFinYear.get(finExtId.replace( IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.PL_TYPE_INCREMENTAL )).Turnover_Regional__c)){
-                                    setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);  
+                                    setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);
+                                    regionalInvalidFinSet.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);  
                                 }
                             }
                             //For Regional Original/Rollouts : Non-Key Financial year records
                             else if(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c.endsWithIgnoreCase(IPM_ConstantUtils.FINANCIAL_NONKEY ) && mapProj.containsKey(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Regional_Project__c) && mapProj.get(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Regional_Project__c)!=null && mapProj.get(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Regional_Project__c).IPM_Phase__c.equalsIgnoreCase(IPM_ConstantUtils.PHASE_IDEAS) && (mapExtIdFinYear.get(finExtId).Turnover_Regional__c <= IPM_ConstantUtils.INVALID_VALUE || ( mapExtIdFinYear.get(finExtId).Turnover_Regional__c < mapExtIdFinYear.get(finExtId.replace( IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.PL_TYPE_INCREMENTAL )).Turnover_Regional__c))){
-                                setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);  
+                                setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);
+                                regionalInvalidFinSet.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);  
                             }
                             //For Regional Original/Rollouts : Key Financial year records
                             else if(!mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c.endsWithIgnoreCase(IPM_ConstantUtils.FINANCIAL_NONKEY ) && (mapExtIdFinYear.get(finExtId).Turnover_Regional__c <= IPM_ConstantUtils.INVALID_VALUE || ( mapExtIdFinYear.get(finExtId).Turnover_Regional__c < mapExtIdFinYear.get(finExtId.replace( IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.PL_TYPE_INCREMENTAL )).Turnover_Regional__c))){
                                 setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);
+                                regionalInvalidFinSet.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);
                             }
                }
     		}
+    		spanTofinExtIdMap.put(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL,regionalInvalidFinSet);
+    		
     }
     
     //For Local Projects' Financials
     static void getInvalidParentFinancialsLocal(map<string, IPM_Financial_Year__c> mapExtIdFinYear, map<string, IPM_Project__c> mapProj)
     {
+    		set<string> localInvalidFinSet = new set<string>();
     		for(string finExtId: mapExtIdFinYear.keySet())
     		{
                if(finExtId.endsWithIgnoreCase(IPM_ConstantUtils.PL_TYPE_GROSS) && mapExtIdFinYear.get(finExtId).IPM_Financial__r.Local_Project__c!= null && (mapExtIdFinYear.get(finExtId).Turnover_Local__c <= IPM_ConstantUtils.INVALID_VALUE || ( mapExtIdFinYear.get(finExtId).Turnover_Local__c < mapExtIdFinYear.get(finExtId.replace( IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.PL_TYPE_INCREMENTAL )).Turnover_Local__c))){
                             setInvalidFin.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);
+                            localInvalidFinSet.add(mapExtIdFinYear.get(finExtId).IPM_Financial__r.Financial_External_ID__c);
                }         
     		}
+    		spanTofinExtIdMap.put(IPM_ConstantUtils.PROJECT_SPAN_LOCAL,localInvalidFinSet);
+    }
+    
+    
+   //Find the Map of the Financial and its invalid field to be set to true
+    static list<IPM_Financial__c> getFinToUpdateWithInvalidFlags(set<string> setAllFinacials)
+    {
+    		Boolean isChanged = false;
+    		
+    		//Update Financials
+            list<IPM_Financial__c> lstInvalidFinance = new list<IPM_Financial__c>();
+            if(!setAllFinacials.isEmpty()){
+                for(string finExtId :setAllFinacials){
+                    
+                    isChanged = false; // flag to indicate if the new financial is to be added to the list of financials to be updated
+                    
+                    IPM_Financial__c newFin = new IPM_Financial__c( Financial_External_ID__c = finExtId);
+                    
+                    if(!setInvalidFin.isEmpty() && setInvalidFin.contains(finExtId) && spanTofinExtIdMap.get(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL).contains(finExtId)){
+                    	newFin.IsFinancialInvalidGlobal__c = true;
+                    	isChanged = true;
+                    }
+                    else{
+                    	newFin.IsFinancialInvalidGlobal__c = false;
+                    	isChanged = true;
+                    }
+                    
+                    if(!setInvalidFin.isEmpty() && setInvalidFin.contains(finExtId) && spanTofinExtIdMap.get(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL).contains(finExtId)){
+                    	newFin.IsFinancialInvalidRegional__c = true;
+                    	isChanged = true;
+                    }
+                    else{
+                    	newFin.IsFinancialInvalidRegional__c = false;
+                    	isChanged = true;
+                    }
+                    
+                    
+                    if(!setInvalidFin.isEmpty() && setInvalidFin.contains(finExtId) && spanTofinExtIdMap.get(IPM_ConstantUtils.PROJECT_SPAN_LOCAL).contains(finExtId)){
+                    	newFin.IsFinancialInvalidLocal__c = true;
+                    	isChanged = true;
+                    }
+                    else{
+                    	newFin.IsFinancialInvalidLocal__c = false;
+                    	isChanged = true;
+                    }
+                    
+                    
+                    if(isChanged){
+                    	lstInvalidFinance.add(newFin);
+                    }
+                }   
+            }
+            
+            return lstInvalidFinance;
     }
     
     
