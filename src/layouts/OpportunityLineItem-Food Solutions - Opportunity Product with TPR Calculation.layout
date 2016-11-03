@@ -35,10 +35,6 @@
                 <field>FS_BR3__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ApprovalRequired__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ApprovalGranted__c</field>
             </layoutItems>

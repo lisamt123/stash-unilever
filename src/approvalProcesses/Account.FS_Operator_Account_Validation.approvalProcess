@@ -91,7 +91,11 @@
                 <type>user</type>
             </approver>
             <approver>
-                <name>tom.jermyn@unilever.com</name>
+                <name>christiana.gilbert@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>joseph.kang@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

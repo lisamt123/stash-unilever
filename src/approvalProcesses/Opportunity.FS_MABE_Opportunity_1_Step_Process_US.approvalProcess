@@ -81,7 +81,31 @@
                 <type>user</type>
             </approver>
             <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
                 <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
                 <type>user</type>
             </approver>
             <approver>
@@ -133,7 +157,31 @@
                 <type>user</type>
             </approver>
             <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
                 <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
                 <type>user</type>
             </approver>
             <approver>
@@ -165,7 +213,31 @@
                 <type>user</type>
             </approver>
             <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
                 <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
                 <type>user</type>
             </approver>
             <approver>
@@ -217,7 +289,31 @@
                 <type>user</type>
             </approver>
             <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
                 <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
                 <type>user</type>
             </approver>
             <approver>
@@ -249,7 +345,31 @@
                 <type>user</type>
             </approver>
             <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
                 <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
                 <type>user</type>
             </approver>
             <approver>
@@ -300,7 +420,7 @@
         </assignedApprover>
         <description>SD Approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt;= 500000, Amount &lt; 1000000, (FSNA_Margin_Market_Target__c - FSNA_Gross_Margin__c) &gt;= 0.1)</formula>
+            <formula>AND( Amount &gt;=500000, Amount &lt;1000000)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step11</label>
@@ -321,7 +441,31 @@
                 <type>user</type>
             </approver>
             <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
                 <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
                 <type>user</type>
             </approver>
             <approver>

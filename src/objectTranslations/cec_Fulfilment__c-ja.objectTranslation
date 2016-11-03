@@ -643,7 +643,7 @@
         <name>ID__c</name>
     </fields>
     <fields>
-        <label><!-- Include Gift --></label>
+        <label>Include Gift</label>
         <name>Include_Gift__c</name>
     </fields>
     <fields>

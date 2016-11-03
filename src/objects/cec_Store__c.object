@@ -261,11 +261,16 @@
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Queue_cec_Store</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>

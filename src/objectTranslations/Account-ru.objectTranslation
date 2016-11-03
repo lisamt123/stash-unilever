@@ -1463,7 +1463,7 @@
         <name>FS_ABCSegmentation__c</name>
     </fields>
     <fields>
-        <help><!-- В день? --></help>
+        <help><!-- Количество чеков в день --></help>
         <label>Количество посетителей</label>
         <name>FS_AmountOfVisitors__c</name>
     </fields>
@@ -2246,7 +2246,7 @@ Customer Delivers Directly = 5 --></help>
         </picklistValues>
     </fields>
     <fields>
-        <label>Код продажи</label>
+        <label><!-- Sold-to code --></label>
         <name>FS_SoldToCode__c</name>
     </fields>
     <fields>
@@ -4126,10 +4126,6 @@ At least 3 out of 4 = 5 --></help>
     </layouts>
     <layouts>
         <layout>Operator Russia Read Only</layout>
-        <sections>
-            <label><!-- Address --></label>
-            <section>Address</section>
-        </sections>
         <sections>
             <label><!-- Address Details --></label>
             <section>Address Details</section>
