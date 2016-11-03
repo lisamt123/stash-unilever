@@ -5,14 +5,6 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>GoldenDataController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_ApprovalProcessCall</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>VPM_ApprovalSubmit</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -45,22 +37,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>VPM_ExtendGlobalFieldDetailsWrapper</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_ExtendVendorFetchFieldDetails</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_ExtendVendorGlobalHelper</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_ExtensionController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>VPM_FetchVendorDetailsHttpMock</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -75,10 +51,6 @@
     <classAccesses>
         <apexClass>VPM_FetchVendorsDetails_Test</apexClass>
         <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_GoldenDataController</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_GoldenDataController2</apexClass>
@@ -101,18 +73,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>VPM_MaintainVendorFetchFieldMap</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_MaintainVendorFieldDetailsWrapper</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_MaintainVendorServiceHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>VPM_PicklistHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -133,28 +93,12 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>VPM_SearchVendor</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>VPM_SearchVendor1</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>VPM_VendorDetailsServicesHelper</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_WSOutputVariableClass</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>VPM_regionalMaintainVendor</apexClass>
         <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>flowController</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <description>Vendor Process Management: standard user (No License Type)</description>
     <fieldPermissions>
@@ -2921,10 +2865,6 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
-        <apexPage>VPM_AdvancedForm</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>VPM_AdvancedForm_V1</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -2937,31 +2877,11 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>VPM_BankDetailsScreen</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>VPM_BlockDeleteUnBlockUnDelet</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>VPM_FinanciallySensitive</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>VPM_FusionGoldenData</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>VPM_FusionRegionSpecific</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>VPM_GoldenData1</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>VPM_GoldenData2</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>

@@ -18,11 +18,11 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 2.0 -    Samrin      29 June 2016      VPM - Used to set the flag based on the fields  which will help to triggr the approval process.
 3.0 -    Epsita                        IAPR- 638 - Spend should not be mandatory for Non-Ariba Commodities
 4.0-     Vaishali    5 Oct 2016        IAPR-1475 - Logic for Global and Regional golden data Page
-5.0      Samrin      2 Nov 2016	       IAVMD-1857 - Changes on maintain scenario are not visible to approver
+5.0      Samrin      2 Nov 2016        IAVMD-1857 - Changes on maintain scenario are not visible to approver
 ****************************************************************************/
 
 
-public class VPM_GoldenDataController2 {
+with Sharing public class VPM_GoldenDataController2 {
     
     /* Constant Values */ 
     public static final string  STR_CONST_MBS='MBS';
@@ -114,7 +114,8 @@ public class VPM_GoldenDataController2 {
     public string GlobalAuthorisationGroup {get;set;}
     public boolean Errormsgblock {get;set;}
     Public boolean GoldenDatablock{get;set;}
-    string RecordTypeApprovalChanges{get;set;} 	
+    string RecordTypeApprovalChanges{get;set;} 
+    public PageReference pg {get;set;}
     
     public  list<VPM_CommodityApprover__c> lstCommodityApprover {get;set;}
     public VPM_ECCVendorSearchServiceOutput op;
@@ -212,7 +213,9 @@ public class VPM_GoldenDataController2 {
         
         //Added by Epsita 
           if(purchReqVar.VPM_WebformSentToVendor__c  && (!purchReqVar.VPM_VendorWebformSubmitted__c))
+          {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.WARNING,System.label.VPM_Record_Submit_Warning));
+          }
            
         
          if(purchReqVar.VPM_CashManagementGroup__c<>null)
@@ -231,9 +234,10 @@ public class VPM_GoldenDataController2 {
         //Changed by Epsita - IAPR- 638 || Spend should not be mandatory for Non-Ariba Commodities
         isRequiredSpend = false;
         if(string.isNotBlank(purchReqVar.VPM_Commodity__r.VPM_CommodityCode__c) && purchReqVar.VPM_Commodity__r.VPM_CommodityCode__c.startsWith('0'))                  
-            isRequiredSpend = false;
+        {
+            isRequiredSpend = false;}
         else                
-            isRequiredSpend =true;            
+        {isRequiredSpend =true; }           
         
         //changes for IAVMD-1271
         
@@ -252,47 +256,47 @@ public class VPM_GoldenDataController2 {
         } 
         
          if(recordTypeId ==STR_CONST_MAINTAIN || recordTypeId ==STR_CONST_MAINTAIN2)
-             isMaintainRecord = true;
+         { isMaintainRecord = true;}
              
         // added by Piyush 10/20/2016
         if(purchReqVar.VPM_CompanyCode__r.ECC__c == STR_CONST_FUSION) 
-            isFusion=true;
+        {  isFusion=true; }
        else
-            isFusion=false;
+       { isFusion=false; }
         
         if(purchReqVar.VPM_CompanyCode__r.ECC__c == STR_CONST_U2K2) 
-            isU2k2 = true;
+        {isU2k2 = true;}
        else
-            isU2k2 = false;
+       {  isU2k2 = false;}
         
        //make spend visible for create and global extend
             
         if(recordTypeId==STR_CONST_CREATE || (recordTypeId==STR_CONST_EXTEND && purchReqVar.VPM_ExtensionType__c==STR_CONST_GLOBAL))
-           isReqSpend=true;
+        {isReqSpend=true;}
         else
-            isReqSpend=false;
+        {isReqSpend=false;}
         
             
         if(purchReqVar.VPM_CompanyCode__r.ecc__c <> '' && purchReqVar.VPM_CompanyCode__r.ecc__c <> null)
-            entity.VPM_ECC__c = purchReqVar.VPM_CompanyCode__r.ecc__c;
+        { entity.VPM_ECC__c = purchReqVar.VPM_CompanyCode__r.ecc__c; }
         
         system.debug('@@ ECC' + entity.VPM_ECC__c);
         
         
         if(string.isNotBlank(purchReqVar.VPM_VendorContactDetail__c)){        
             if(string.isBlank(purchReqVar.VPM_OrderingEmailAddress__c))
-                entity.VPM_OrderingEmailAddress__c = purchReqVar.VPM_VendorContactDetail__c;
+            {  entity.VPM_OrderingEmailAddress__c = purchReqVar.VPM_VendorContactDetail__c; }
             
             if(string.isBlank(purchReqVar.VPM_ClerksInternet__c))
-                entity.VPM_ClerksInternet__c = purchReqVar.VPM_VendorContactDetail__c;
+            { entity.VPM_ClerksInternet__c = purchReqVar.VPM_VendorContactDetail__c; }
         }
         
         system.debug('recordTypeId '+recordTypeId );
          system.debug('isCreate '+isCreate );
          if(recordTypeId ==STR_CONST_CREATE)
-           isCreate = true;
+         { isCreate = true; }
          else
-           isCreate = false;
+         { isCreate = false; }
         
         purid = entity.id;
         
@@ -324,7 +328,7 @@ public class VPM_GoldenDataController2 {
         system.debug('@@ vendorCode'+vendorCode);
         
         if(purchReqVar.VPM_Incoterms1__c <> '' && purchReqVar.VPM_Incoterms1__c <> null)
-            entity.VPM_Incoterms1__c =purchReqVar.VPM_Incoterms1__c;
+        {  entity.VPM_Incoterms1__c =purchReqVar.VPM_Incoterms1__c; }
         
         system.debug('@@ entity.VPM_Incoterms1__c' + entity.VPM_Incoterms1__c);
         
@@ -334,12 +338,12 @@ public class VPM_GoldenDataController2 {
         
         
         IF(accountGroup.containsIgnoreCase(STR_CONST_ZGS1))
-            isRequired=true;
+        { isRequired=true; }
         else
-            isRequired=false;
+        {  isRequired=false; }
         
         if(entity.VPM_Incoterms1__c!='' && entity.VPM_Incoterms1__c!=null){
-            isRequiredIncoterms2=true;
+            {  isRequiredIncoterms2=true; }
         }else{
             isRequiredIncoterms2 = false;
         }
@@ -350,22 +354,22 @@ public class VPM_GoldenDataController2 {
         
         system.debug('@@ LATAm Countries:' + latam);
         IF(purchReqVar.VPM_Country__c == VENDOR_COUNTRY)
-            isRequiredFieldCountry = true;
+        {   isRequiredFieldCountry = true; }
         else 
-            isRequiredFieldCountry = false;  
+        { isRequiredFieldCountry = false;  }
                    
         if(purchReqVar.VPM_Country__c == VENDOR_COUNTRY || latam.contains(purchReqVar.VPM_Country__c))      
-                isRequiredtax1 = true;
+        { isRequiredtax1 = true; }
         else
-                isRequiredtax1 = false;
+        { isRequiredtax1 = false; }
 
        
         //modified for IAPR-605
         
         if(purchReqVar.VPM_CompanyCode__r.ECC__c ==STR_CONST_CORDILLERA && purchReqVar.VPM_Country__c == VENDOR_COUNTRY)
-               isrequiredtaxJurCode = true;
+        { isrequiredtaxJurCode = true; }
         else
-              isrequiredtaxJurCode = false;
+        { isrequiredtaxJurCode = false; }
         
         vendorCashManagementGrp = purchReqVar.VPM_CashManagementGroup__c;
         vendorPurchasingOrg = purchReqVar.VPM_PurchasingOrganisation__c;
@@ -410,7 +414,8 @@ public class VPM_GoldenDataController2 {
             settingList.addAll(settingMap.keySet());
             settingList.sort();
             system.debug('@@ settingList' + settingList);
-            if(settingList <> null && settingList.size() > 0) {         
+           // if(settingList <> null && settingList.size() > 0) {  
+           if(!settingList.isEmpty()) {        
                 for (String stateName : settingList) {
                     VPM_RegionSpecificFields__c state = settingMap.get(stateName);
                     system.debug('@@ state' + state.Picklist_Values__c);
@@ -503,7 +508,8 @@ public class VPM_GoldenDataController2 {
                     isRequiredtax1 = true;
                 } 
                 else
-                    isRequiredtax1=false;
+                {
+                    isRequiredtax1=false; }
                     system.debug('@@ latam' + latam);
                     system.debug('@@ purchReqVar.VPM_Country__c' + purchReqVar.VPM_Country__c);
                     system.debug('@@ tax number 1' + purchReqVar.VPM_TaxNumber1__c);
@@ -512,7 +518,7 @@ public class VPM_GoldenDataController2 {
                     isrequiredtaxJurCode = true;
             
                 }else
-                    isrequiredtaxJurCode = false;
+                { isrequiredtaxJurCode = false; }
                     
             }
         return null;    
@@ -572,12 +578,10 @@ public class VPM_GoldenDataController2 {
         recordTypeId = VPM_RecordTypeHelper.getLaunchScreenVariable('',purchReqVar.RecordTypeId);
         system.debug('@@ recordTypeId ' + recordTypeId);
         ApexPages.Message myMsg = null;
-        PageReference pg= ApexPages.currentPage();
-        
-      
-        
+         pg= ApexPages.currentPage();
+
               if(recordTypeId==STR_CONST_MAINTAIN ) 
-                  isMaintainRecord=true;    
+              { isMaintainRecord=true;  }  
               
             if(s.contains(STR_CONST_GOLDENDATA1)){
                    if(string.isBlank(vendorName)){                
@@ -601,7 +605,7 @@ public class VPM_GoldenDataController2 {
                 vendorPaymentMethod = vendorPaymentMethod.removeEnd(']');
                 List<string> vendorPaymentMethodList  = vendorPaymentMethod.split(',');
                 if(vendorPaymentMethodList <> null && vendorPaymentMethodList.size() > 0 && vendorPaymentMethodList.size() > 5)
-                    myMsg=new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_PaymentmethodErrorMesg);                
+                {   myMsg=new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_PaymentmethodErrorMesg);  }              
             }
             
             if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_FUSION || purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2){            
@@ -631,34 +635,34 @@ public class VPM_GoldenDataController2 {
             } 
            }
            
-           if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA || purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2){
+           if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA || purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2) && (string.isBlank(entity.VPM_OrderCurrency__c)) ){
            
-               if(string.isBlank(entity.VPM_OrderCurrency__c)){
+               //if(string.isBlank(entity.VPM_OrderCurrency__c)){
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPMOrderCurrencyPageMessage);
-                }           
+              //  }           
            }         
          /*  if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA){
                if(string.isBlank(entity.VPM_TaxJurisdictionCode__c)){
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_TaxJurisdictionCodePageMessage);
                 }
            }     */      
-           if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_FUSION){           
-               if(string.isBlank(entity.VPM_GlobalAuthorisationGroup__c)){
+           if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_FUSION) && (string.isBlank(entity.VPM_GlobalAuthorisationGroup__c)) ){           
+             //  if(string.isBlank(entity.VPM_GlobalAuthorisationGroup__c)){
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_GlobalAuthorisationGrpPageMessage);
-                }           
+               // }           
            }
             // Check for Block & delete 
              if(purchReqVar.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN) 
              {                
                 string VendorBlockUnblockDelete= purchReqVar.VPM_VendorBlockUnblockDelete__c== null?'': pr.VPM_VendorBlockUnblockDelete__c;
-                if((VendorBlockUnblockDelete.contains(STR_CONST_BLOCK)) || (VendorBlockUnblockDelete.contains(STR_CONST_DELETE)))
+                if(((VendorBlockUnblockDelete.contains(STR_CONST_BLOCK)) || (VendorBlockUnblockDelete.contains(STR_CONST_DELETE))) && (purchReqVar.VPM_VendorBlockUnblockDelete__c !=null) && (string.isBlank(purchReqVar.VPM_DeletionBlockFlag__c) ))
                 {
-                    if(purchReqVar.VPM_VendorBlockUnblockDelete__c !=null)
-                    {
-                        if(string.isBlank(purchReqVar.VPM_DeletionBlockFlag__c)){          
+                   // if(purchReqVar.VPM_VendorBlockUnblockDelete__c !=null)
+                   // {
+                       // if(string.isBlank(purchReqVar.VPM_DeletionBlockFlag__c)){          
                             myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_BlockDeleteVendorErrorMeesage);
-                        }
-                    }
+                        //}
+                    //}
                  }
              }
              }
@@ -680,7 +684,7 @@ public class VPM_GoldenDataController2 {
         purchReqVar.VPM_PurchasingOrganisation__c = vendorPurchasingOrg;
         purchReqVar.VPM_CashManagementGroup__c = vendorCashManagementGrp;
         if(string.isNotBlank(vendorPaymentMethod) && vendorPaymentMethod <> '[]') 
-            purchReqVar.VPM_PaymentMethod__c = vendorPaymentMethod;
+        { purchReqVar.VPM_PaymentMethod__c = vendorPaymentMethod; }
       
         purchReqVar.VPM_VendorName1__c = VendorName;
         purchReqVar.VPM_SearchTerm_1__c = searchTerm1; 
@@ -707,12 +711,13 @@ public class VPM_GoldenDataController2 {
     {     
         try 
         {
-            Pagereference pg= null;
+           // Pagereference pg= null;
             ApexPages.Message msg;
           
             msg = checkValidations();
             if(msg <> null)
-                ApexPages.addMessage(msg);
+            {
+                ApexPages.addMessage(msg);}
             else{
                 commonSaveMethod();
                /*purchReqVar.VPM_PurchasingOrganisation__c = vendorPurchasingOrg;
@@ -746,16 +751,17 @@ public class VPM_GoldenDataController2 {
                     {
                        
                         if(purchReqVar.VPM_CompanyCode__r.ecc__c==STR_CONST_CORDILLERA)
-                            pg =  new Pagereference('/apex/VPM_CordilleraGoldenData?id=' + entity.id);
+                        {
+                            pg =  new Pagereference('/apex/VPM_CordilleraGoldenData?id=' + entity.id);}
 
                         if(purchReqVar.VPM_CompanyCode__r.ecc__c==STR_CONST_SIRIUS)
-                            pg =  new Pagereference('/apex/VPM_SiriusGoldenData?id=' + entity.id);
+                        { pg =  new Pagereference('/apex/VPM_SiriusGoldenData?id=' + entity.id);}
 
                         if(purchReqVar.VPM_CompanyCode__r.ecc__c==STR_CONST_FUSION)
-                            pg =  new Pagereference('/apex/VPM_FusionGoldenData?id=' + entity.id);
+                        { pg =  new Pagereference('/apex/VPM_FusionGoldenData?id=' + entity.id); }
  
                         if(purchReqVar.VPM_CompanyCode__r.ecc__c==STR_CONST_U2K2)
-                             pg =  new Pagereference('/apex/VPM_U2K2GoldenData?id=' + entity.id);
+                        { pg =  new Pagereference('/apex/VPM_U2K2GoldenData?id=' + entity.id); }
                         //pg =  new Pagereference('/'+entity.id);
                    
                      
@@ -782,10 +788,10 @@ public class VPM_GoldenDataController2 {
                        
                         }else{
                                 if(purchReqVar.VPM_CompanyCode__r.ecc__c==STR_CONST_CORDILLERA)
-                                    pg =  new Pagereference('/apex/VPM_CordilleraGoldenData?id=' + entity.id);
+                                { pg =  new Pagereference('/apex/VPM_CordilleraGoldenData?id=' + entity.id); }
 
                                 if(purchReqVar.VPM_CompanyCode__r.ecc__c==STR_CONST_SIRIUS)
-                                     pg =  new Pagereference('/apex/VPM_SiriusGoldenData?id=' + entity.id);
+                                { pg =  new Pagereference('/apex/VPM_SiriusGoldenData?id=' + entity.id); }
                    
                                 if(purchReqVar.VPM_CompanyCode__r.ecc__c==STR_CONST_FUSION){
                                     pg =  new Pagereference('/apex/VPM_FusionGoldenData?id=' + entity.id);
@@ -793,7 +799,7 @@ public class VPM_GoldenDataController2 {
                                     //pg =  new Pagereference('/'+entity.id);
                                  }
                                 if(purchReqVar.VPM_CompanyCode__r.ecc__c==STR_CONST_U2K2)
-                                    pg =  new Pagereference('/apex/VPM_U2K2GoldenData?id=' + entity.id);
+                                { pg =  new Pagereference('/apex/VPM_U2K2GoldenData?id=' + entity.id); }
                      
                                 }
                         }
@@ -824,14 +830,14 @@ public class VPM_GoldenDataController2 {
         try 
         {
             
-            Pagereference pg= null;
+            //Pagereference pg= null;
             ApexPages.Message msg;
            
             system.debug('@@ msg' + msg);
             /* Added by Epsita */
             if(purchReqVar.VPM_WebformSentToVendor__c  && (!purchReqVar.VPM_VendorWebformSubmitted__c) && (!purchReqVar.VPM_ShowWarning__c)){
                 msg = new ApexPages.Message(ApexPages.Severity.WARNING,System.label.VPM_Record_Submit_Warning);   
-                ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.WARNING,System.label.VPM_Record_Submit_Warning);   
+              //  ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.WARNING,System.label.VPM_Record_Submit_Warning);   
                 purchReqVar.VPM_ShowWarning__c= true;
                update purchReqVar;
            }
@@ -863,7 +869,7 @@ public class VPM_GoldenDataController2 {
                 System.debug('@@@@@@@  purchReqVar ------' +purchReqVar); */
                approvalCallMethod();   
                pr.VPM_AdvancedFormSubmitter__c = GetAdvancedFormSubmitter();
-                msg=ProcurementApproval();
+               msg=ProcurementApproval();
                 if(msg <> null)
                 {
                     ApexPages.addMessage(msg); 
@@ -948,9 +954,9 @@ public void approvalCallMethod()
         pr.VPM_AdvancedFormSubmitted__c='YES'; 
         // Added by Ajay
         if(pr.VPM_Status__c.containsIgnoreCase(STR_CONST_DRAFT))
-            pr.VPM_RequestLastWithGroup__c ='Business Requestor';
+        { pr.VPM_RequestLastWithGroup__c ='Business Requestor'; }
         else
-            pr.VPM_RequestLastWithGroup__c ='FLS';
+        {  pr.VPM_RequestLastWithGroup__c ='FLS'; }
             //End here
         if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
         {
@@ -963,12 +969,14 @@ public void approvalCallMethod()
 
                  // Start : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
                 string oldstring =op.CompanyData[0].PaymentMethod == null?'': op.CompanyData[0].PaymentMethod;
-                if(finalStringValue.contains('[')) {
+                if(oldstring.contains('[')) {
                     List<string> finalOldStringValueList = oldstring.split('-');
                     finalOldStringValueList.sort();
                     string OldpaymentMeth=''; 
                     for(String str:finalOldStringValueList) 
-                    OldpaymentMeth += str; 
+                    {
+                   		 OldpaymentMeth += str; 
+                    }
                     OldPaymentMethod = OldpaymentMeth.remove(' '); 
                 }else {
                     OldPaymentMethod = oldstring;
@@ -976,16 +984,16 @@ public void approvalCallMethod()
                 system.debug('@@OldPaymentMethod');              
                 // End Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016        
                     if(!(NewPaymentTerms.contains(OldPaymentTerms)))
-                         pr.VPM_ProvidedPaymentTerms__c= true;
-					else 
-						pr.VPM_ProvidedPaymentTerms__c= False;
-                	
+                    { pr.VPM_ProvidedPaymentTerms__c= true; }
+                    else 
+                    { pr.VPM_ProvidedPaymentTerms__c= False; }
+                    
             
                 // VAT Related Change 
                     if((String.isBlank(pr.VPM_VATRegistrationNumber__c) != String.isBlank(op.VATRegistrationNumber)))
-                         pr.VPM_IsChangedVAT__c= true;
-					else 
-					     pr.VPM_IsChangedVAT__c= false;
+                    {  pr.VPM_IsChangedVAT__c= true; }
+                    else 
+                    { pr.VPM_IsChangedVAT__c= false; }
                 
                 // FinanciallySensitive Flag Set
                      
@@ -1011,17 +1019,17 @@ public void approvalCallMethod()
                                 ||
                             ((pr.VPM_CheckDoubleInvoices__c !=null && (pr.VPM_CheckDoubleInvoices__c!=op.CompanyData[0].CheckDoubleInvoices)))     
                         )
-                             pr.VPM_ProvidedFinancialSensitive__c=true;
-					 else 
-							 pr.VPM_ProvidedFinancialSensitive__c=false;
+                     {  pr.VPM_ProvidedFinancialSensitive__c=true; }
+                     else 
+                     {     pr.VPM_ProvidedFinancialSensitive__c=false; }
                     }
                 }
             else{
                  //Payment terms Flag  set
                     IF(pr.VPM_PaymentTerms__c !=null)
-                        pr.VPM_ProvidedPaymentTerms__c= true;
-					else 
-						pr.VPM_ProvidedPaymentTerms__c= false;
+                    {  pr.VPM_ProvidedPaymentTerms__c= true; }
+                    else 
+                    { pr.VPM_ProvidedPaymentTerms__c= false; }
         
                 // FinanciallySensitive Flag Set
          
@@ -1029,16 +1037,16 @@ public void approvalCallMethod()
                   //  (pr.VPM_PaymentBlock__c !=null)||
                   //  Above line Commneted : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016
                         (NewPaymentMethod !=null)||(pr.VPM_CashManagementGroup__c!= null)||(pr.VPM_SortKey__c !=null)||(pr.VPM_CheckDoubleInvoices__c))
-                              pr.VPM_ProvidedFinancialSensitive__c= true;   
+                    {  pr.VPM_ProvidedFinancialSensitive__c= true;   } 
                     else 
-							  pr.VPM_ProvidedFinancialSensitive__c= false; 
+                    { pr.VPM_ProvidedFinancialSensitive__c= false; }
                 }
                     
                 // Bank Details Flag Set 
-                    if((pr.VPM_BankCountryKey__c!=null)|| (pr.VPM_BankKey__c !=null)||(pr.VPM_BankAccountNumber__c !=null)||(pr.VPM_AccountHolderName__c !=null)||(pr.VPM_ReferenceSpecificationsBankDetail__c !=null)||(pr.VPM_BankControlKey__c!=null)||(pr.VPM_IBAN__c!=null)||(pr.VPM_PartnerBankType__c!=null)||(pr.VPM_BankName__c !=null)||(pr.VPM_SwiftKey__c!=null)||(pr.VPM_CollectionAuthorization__c == true)) 
-                        pr.VPM_ProvidedBankDetails__c= true;
-					else 
-						pr.VPM_ProvidedBankDetails__c= false;
+                    if((pr.VPM_BankCountryKey__c!=null)|| (pr.VPM_BankKey__c !=null)||(pr.VPM_BankAccountNumber__c !=null)||(pr.VPM_AccountHolderName__c !=null)||(pr.VPM_ReferenceSpecificationsBankDetail__c !=null)||(pr.VPM_BankControlKey__c!=null)||(pr.VPM_IBAN__c!=null)||(pr.VPM_PartnerBankType__c!=null)||(pr.VPM_BankName__c !=null)||(pr.VPM_SwiftKey__c!=null)||(pr.VPM_CollectionAuthorization__c )) 
+                    {   pr.VPM_ProvidedBankDetails__c= true; }
+                    else 
+                    {   pr.VPM_ProvidedBankDetails__c= false; }
      
                 // Unblock/UnDelete Flag set 
                     if((pr.VPM_DeletionBlockFlag__c!=null))
@@ -1076,7 +1084,7 @@ public void approvalCallMethod()
                 if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
                 {
                      if ((!pr.VPM_ProvidedBlockDelete__c) && (!pr.VPM_ProvidedUnblockUndelete__c)  && (!pr.VPM_ProvidedPaymentTerms__c))
-                         pr.VPM_FreightApprovalRequired__c  =false;
+                     { pr.VPM_FreightApprovalRequired__c  =false; }
                 }
                 //End  Changes for Bug 346
             }
@@ -1103,47 +1111,47 @@ public void approvalCallMethod()
         if((pr.VPM_FinanceApprovalRequired__c)|| (pr.VPM_ProcurementApprovalRequired__c)|| (pr.VPM_FreightApprovalRequired__c)|| (pr.VPM_RussianTaxApprovalRequired__c))
         {
             if ((pr.VPM_FinanceApprovalRequired__c ) && (pr.VPM_FreightApprovalRequired__c)) 
-                 pr.VPM_NumberofApprovalsRequired__c=2;
+            { pr.VPM_NumberofApprovalsRequired__c=2; }
 
             else if((pr.VPM_FinanceApprovalRequired__c ) && (pr.VPM_ProcurementApprovalRequired__c))
-                 pr.VPM_NumberofApprovalsRequired__c=2;
+            {  pr.VPM_NumberofApprovalsRequired__c=2; }
 
             else if((pr.VPM_FreightApprovalRequired__c ) && (pr.VPM_ProcurementApprovalRequired__c))
-                 pr.VPM_NumberofApprovalsRequired__c=2;               
+            { pr.VPM_NumberofApprovalsRequired__c=2; }              
             else
-                 pr.VPM_NumberofApprovalsRequired__c=1;
+            { pr.VPM_NumberofApprovalsRequired__c=1;}
         } 
         else
-            pr.VPM_NumberofApprovalsRequired__c=0;
+        { pr.VPM_NumberofApprovalsRequired__c=0; }
         
         // Call to the function setLevelApproval : which decide 3 Level  of approval for Maintain  & L2  need  Excluded/included for Creaate/Extend 
         setLevelApproval();
-		/* Start Changes By Samrin : on 2 Nov 2016 : IAVMD-1857 - Changes on maintain scenario are not visible to approver */
-		if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN) 
+        /* Start Changes By Samrin : on 2 Nov 2016 : IAVMD-1857 - Changes on maintain scenario are not visible to approver */
+        if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN) 
         {
-			RecordTypeApprovalChanges='';
-			if(pr.VPM_ProvidedPaymentTerms__c)
-				RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangePaymentTermsDetails + ' ,' ;
-			
-			if(pr.VPM_ProvidedBankDetails__c)
-				RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeBankDetails + ' ,' ;
-			
-			if(pr.VPM_ProvidedFinancialSensitive__c)
-				RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeFinancialSensitive + ' ,';
-			
-			if (pr.VPM_ProvidedBlockDelete__c)
-				RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeBlockDelete+ ' ,';
-			
-			if(pr.VPM_ProvidedUnblockUndelete__c)
-				RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeUnBlockUnDelete + ' ,';
-				
-			if(pr.VPM_IsChangedVAT__c)
-				RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeGeneralVendorDetails + ' ,';
-			
-			RecordTypeApprovalChanges = RecordTypeApprovalChanges.removeEnd(',');
-			pr.VPM_RequestType__c=RecordTypeApprovalChanges;
+            RecordTypeApprovalChanges='';
+            if(pr.VPM_ProvidedPaymentTerms__c)
+            {  RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangePaymentTermsDetails + ' ,' ; }
+            
+            if(pr.VPM_ProvidedBankDetails__c)
+            { RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeBankDetails + ' ,' ; }
+            
+            if(pr.VPM_ProvidedFinancialSensitive__c)
+            {  RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeFinancialSensitive + ' ,'; }
+            
+            if (pr.VPM_ProvidedBlockDelete__c)
+            {  RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeBlockDelete+ ' ,'; }
+            
+            if(pr.VPM_ProvidedUnblockUndelete__c)
+            { RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeUnBlockUnDelete + ' ,'; }
+                
+            if(pr.VPM_IsChangedVAT__c)
+            {  RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeGeneralVendorDetails + ' ,'; }
+            
+            RecordTypeApprovalChanges = RecordTypeApprovalChanges.removeEnd(',');
+            pr.VPM_RequestType__c=RecordTypeApprovalChanges;
         }
-		/* End Changes By Samrin   : on 2 Nov 2016 : IAVMD-1857 - Changes on maintain scenario are not visible to approver */
+        /* End Changes By Samrin   : on 2 Nov 2016 : IAVMD-1857 - Changes on maintain scenario are not visible to approver */
 
     }  
     /*  End of Function approvalCallMethod  : VPM - Used to set the flag based on the fields  which will help to triggr the approval process */
@@ -1349,7 +1357,7 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
                 }
                   //  Samrin Shaikh : Change for Bug No : 1388  : on 29 sept 2016 
                  else if((!pr.VPM_ProvidedPaymentTerms__c) && (!pr.VPM_ProvidedBankDetails__c) &&  (!pr.VPM_ProvidedFinancialSensitive__c) &&  (!pr.VPM_ProvidedBlockDelete__c) &&  (!pr.VPM_ProvidedUnblockUndelete__c))
-                     pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
+                 { pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1;  }
                  //  Samrin Shaikh :  End Change for Bug No : 1388  : on 29 sept 2016
             
              }
@@ -1357,7 +1365,7 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
              else if(pr.VPM_FreightApprovalRequired__c)
              {
                 if((!pr.VPM_ProvidedPaymentTerms__c) && (!pr.VPM_ProvidedBankDetails__c) && (!pr.VPM_ProvidedFinancialSensitive__c) &&  (!pr.VPM_ProvidedBlockDelete__c) &&(!pr.VPM_ProvidedUnblockUndelete__c))
-                     pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
+                {  pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1;  }
              } //  Samrin Shaikh :  End Change for Bug No : 1389  : on 29 sept 2016
             
              //  Samrin Shaikh : End of  Change for Bug No : 1409 : on 29 sept 2016 
@@ -1366,13 +1374,13 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
         else  if (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN)
         {
             VPM_L2InculdeApproval__c  approvalRequired = VPM_L2InculdeApproval__c.getInstance(pr.VPM_CountryRequestingVendor__c);
-            if(approvalRequired != null )
+            if((approvalRequired != null) && (approvalRequired.VPM_L2CreateExtendApproval__c && pr.VPM_NumberofApprovalsRequired__c == 2  && pr.VPM_FinanceApprovalRequired__c )  )
             {
-                if(approvalRequired.VPM_L2CreateExtendApproval__c && pr.VPM_NumberofApprovalsRequired__c == 2  && pr.VPM_FinanceApprovalRequired__c ) // True mean Excluded
-                {
+               // if(approvalRequired.VPM_L2CreateExtendApproval__c && pr.VPM_NumberofApprovalsRequired__c == 2  && pr.VPM_FinanceApprovalRequired__c ) // True mean Excluded
+               // {
                     pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
                     pr.VPM_FinanceApprovalRequired__c= false;
-                }   
+                //}   
             }
         }
 }
@@ -1476,6 +1484,7 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
                         Errormsgblock= True ;
                         GoldenDatablock=false;
                         ApexPages.addMessage(msg);
+                        System.debug('@@@@@ My alsana------'+msg);
                         GoToErrorMessagePage();
                         return  null;
                     }
@@ -1493,16 +1502,16 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
                     string VendorBlockUnblockDelete= purchReqVar.VPM_VendorBlockUnblockDelete__c== null?'': purchReqVar.VPM_VendorBlockUnblockDelete__c;
                     System.debug('@@@@@ purchReqVar.VPM_VendorBlockUnblockDelete__c -----' + purchReqVar.VPM_VendorBlockUnblockDelete__c);
                     System.debug('@@@@@ purchReqVar.VPM_DeletionBlockFlag__c -----' + purchReqVar.VPM_DeletionBlockFlag__c);
-                    if((VendorBlockUnblockDelete.contains(STR_CONST_BLOCK)) || (VendorBlockUnblockDelete.contains(STR_CONST_DELETE)))
+                    if(((VendorBlockUnblockDelete.contains(STR_CONST_BLOCK)) || (VendorBlockUnblockDelete.contains(STR_CONST_DELETE))) &&  (string.isBlank(purchReqVar.VPM_DeletionBlockFlag__c)) )
                     {
-                        if(string.isBlank(purchReqVar.VPM_DeletionBlockFlag__c)){
+                       // if(string.isBlank(purchReqVar.VPM_DeletionBlockFlag__c)){
                             msg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_BlockDeleteVendorErrorMeesage);
                             Errormsgblock= True ;
                             GoldenDatablock=false;
                             ApexPages.addMessage(msg); 
                             GoToErrorMessagePage();
                             return  null;    
-                        }
+                       // }
                     }
                 }
             }
@@ -1623,14 +1632,14 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
         }else if(recordTypeId==STR_CONST_MAINTAIN){
         
             if(purchReqVar.VPM_FieldType__c ==STR_CONST_REGIONAL || purchReqVar.VPM_FieldType__c ==null)
-                 pg =  new Pagereference('/apex/VPM_AdvancedForm_v1?id=' + purid + queryString);
+            { pg =  new Pagereference('/apex/VPM_AdvancedForm_v1?id=' + purid + queryString); }
             else
-                pg =  new Pagereference('/apex/VPM_GoldenData1?id=' + entity.id + queryString);
+            {  pg =  new Pagereference('/apex/VPM_GoldenData1?id=' + entity.id + queryString); }
         }else if(recordTypeId=='Extend'){
             if(purchReqVar.VPM_ExtensionType__c==STR_CONST_REGIONAL && (purchReqVar.VPM_FieldType__c==null || purchReqVar.VPM_FieldType__c ==STR_CONST_REGIONAL))
-                pg =  new Pagereference('/apex/VPM_AdvancedForm_v1?id=' + purid + queryString);
+            { pg =  new Pagereference('/apex/VPM_AdvancedForm_v1?id=' + purid + queryString); }
            else 
-                pg =  new Pagereference('/apex/VPM_GoldenData1?id=' + purid + queryString);
+           {  pg =  new Pagereference('/apex/VPM_GoldenData1?id=' + purid + queryString); }
         }
         
         pg.setRedirect(true);

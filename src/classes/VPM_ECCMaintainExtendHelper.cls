@@ -1,22 +1,22 @@
-public class VPM_ECCMaintainExtendHelper {
+public with sharing class VPM_ECCMaintainExtendHelper {
 
     // List of all constant values
-    final string STR_CONST_Address = 'Address';
-    final string STR_CONST_BankDetails = 'BankDetails';
-    final string STR_CONST_boolean = 'Boolean';
-    final string STR_CONST_CIN = 'CIN';
-    final string STR_CONST_CompanyData = 'CompanyData';
-    final string STR_CONST_DateTime = 'DateTime';
-    final string STR_CONST_Dunning = 'Dunning';
-    final string STR_CONST_InternationalVersions = 'InternationalVersions';
-    final string STR_CONST_MainObject = 'MainObject';
-    final string STR_CONST_PurchasingData = 'PurchasingData';
-    final string STR_CONST_freeText = 'Text';
-    final string STR_CONST_valueWithUnderScore = 'valueWithUnderScore';
-    final string STR_CONST_VAT = 'VAT';
-    final string STR_CONST_WtaxType = 'WtaxType';
-    final string STR_CONST_MultiPicklistValueWithUnderScore = 'MultiPicklistValueWithUnderScore';
-    final string STR_CONST_COLON = '" : "';
+    final static string STR_CONST_Address = 'Address';
+    final static string STR_CONST_BankDetails = 'BankDetails';
+    final static string STR_CONST_boolean = 'Boolean';
+    final static string STR_CONST_CIN = 'CIN';
+    final static string STR_CONST_CompanyData = 'CompanyData';
+    final static string STR_CONST_DateTime = 'DateTime';
+    final static string STR_CONST_Dunning = 'Dunning';
+    final static string STR_CONST_InternationalVersions = 'InternationalVersions';
+    final static string STR_CONST_MainObject = 'MainObject';
+    final static string STR_CONST_PurchasingData = 'PurchasingData';
+    final static string STR_CONST_freeText = 'Text';
+    final static string STR_CONST_valueWithUnderScore = 'valueWithUnderScore';
+    final static string STR_CONST_VAT = 'VAT';
+    final static string STR_CONST_WtaxType = 'WtaxType';
+    final static string STR_CONST_MultiPicklistValueWithUnderScore = 'MultiPicklistValueWithUnderScore';
+    final static string STR_CONST_COLON = '" : "';
 
     // All below string Represent JSON string
     Map<string,string> objectInJSON = new Map<string,string>{STR_CONST_Dunning =>'',STR_CONST_InternationalVersions =>'',STR_CONST_WtaxType =>'','Address'=>'', 'BankDetails' => '', 'CIN' =>'', 'CompanyData' => '', 'PurchasingData' =>'','MainObject'=>'','VAT'=>''};
@@ -49,18 +49,20 @@ public class VPM_ECCMaintainExtendHelper {
                 {
                     valueForQuery = valueForQuery +', '+RegionalandGlobalField.VPM_ApiName__c;
                 }
-                if(RegionalandGlobalField.VPM_parentElement__c == 'CompanyData' || RegionalandGlobalField.VPM_parentElement__c == 'WtaxType')
+                if(RegionalandGlobalField.VPM_parentElement__c == 'CompanyData' || RegionalandGlobalField.VPM_parentElement__c == 'WtaxType'){
                     apiForCompantData=apiForCompantData+RegionalandGlobalField.VPM_ApiName__c+',';
-                if(RegionalandGlobalField.VPM_parentElement__c == 'PurchasingData')
+                }if(RegionalandGlobalField.VPM_parentElement__c == 'PurchasingData'){
                     apiForPurchasingData=apiForPurchasingData+RegionalandGlobalField.VPM_ApiName__c+',';
-                if(RegionalandGlobalField.VPM_parentElement__c == STR_CONST_Dunning)
+                }if(RegionalandGlobalField.VPM_parentElement__c == STR_CONST_Dunning){
                     Dunning =Dunning +RegionalandGlobalField.VPM_ApiName__c+',';
+                }
         }
 
      List<VPM_PurchasingRequests__c> vendorReuestList = Database.query('SELECT '+valueForQuery+' FROM VPM_PurchasingRequests__c  WHERE id = :VendorRequestId');
     vendorReuest = vendorReuestList[0];
-    if(ECC == 'U2K2')
+    if(ECC == 'U2K2'){
     vendorReuest.VPM_fieldUpdated__c =  vendorReuest.VPM_fieldUpdated__c+'VPM_ReconciliationAccount__c,VPM_CashManagementGroup__c,';
+    }
     recordType rec = [select Name, id from recordType where id=: vendorReuest.RecordTypeId limit 1];
     
     
@@ -68,10 +70,11 @@ public class VPM_ECCMaintainExtendHelper {
     //system.debug(vendorReuest);
     if(rec.Name.containsIgnoreCase('Extend'))
     {
-         if(!vendorReuest.VPM_companyCodeMatch__c)
+         if(!vendorReuest.VPM_companyCodeMatch__c){
             vendorReuest.VPM_fieldUpdated__c = vendorReuest.VPM_fieldUpdated__c +apiForCompantData;
-         if(!vendorReuest.VPM_purchasingOrgMatch__c)
+         }if(!vendorReuest.VPM_purchasingOrgMatch__c){
             vendorReuest.VPM_fieldUpdated__c = vendorReuest.VPM_fieldUpdated__c +apiForPurchasingData;
+         }
     }
     system.debug('vendorReuest.VPM_fieldUpdated__c '+vendorReuest.VPM_fieldUpdated__c);
     createJSONObject(fieldList);
@@ -132,36 +135,37 @@ public class VPM_ECCMaintainExtendHelper {
         if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase(field.VPM_ApiName__c))
         {
         system.debug('field.VPM_parentElement__c '+vendorReuest.VPM_fieldUpdated__c);
-           if(field.VPM_parentElement__c == STR_CONST_MainObject)
+           if(field.VPM_parentElement__c == STR_CONST_MainObject){
             objectInJSON.put('MainObject',objectInJSON.get('MainObject')+formatFieldToJSONProperty(field));
                // rootMaintainVendor = rootMaintainVendor+ formatFieldToJSONProperty(field);
-            else if(field.VPM_parentElement__c == STR_CONST_Address)
+            }else if(field.VPM_parentElement__c == STR_CONST_Address){
                     objectInJSON.put('Address',objectInJSON.get('Address')+formatFieldToJSONProperty(field));
             
                // Address = Address + formatFieldToJSONProperty(field);
-            else if(field.VPM_parentElement__c == STR_CONST_VAT)
+            }else if(field.VPM_parentElement__c == STR_CONST_VAT){
                 objectInJSON.put('VAT',objectInJSON.get('VAT')+formatFieldToJSONProperty(field));
               //  VAT = VAT + formatFieldToJSONProperty(field);
-            else if(field.VPM_parentElement__c == STR_CONST_BankDetails)
+            }else if(field.VPM_parentElement__c == STR_CONST_BankDetails){
                 objectInJSON.put('BankDetails',objectInJSON.get('BankDetails')+formatFieldToJSONProperty(field));
                 //BankDetails = BankDetails + formatFieldToJSONProperty(field);
-            else if(field.VPM_parentElement__c == STR_CONST_CompanyData)
+            }else if(field.VPM_parentElement__c == STR_CONST_CompanyData)
                  {
                  if(!field.VPM_ApiName__c.equalsignorecase('VPM_CheckDoubleInvoices__c'))
                 objectInJSON.put('CompanyData',objectInJSON.get('CompanyData')+formatFieldToJSONProperty(field));
                  }
                 //CompanyData = CompanyData + formatFieldToJSONProperty(field);
-            else if(field.VPM_parentElement__c == STR_CONST_PurchasingData)
+            else if(field.VPM_parentElement__c == STR_CONST_PurchasingData){
                 objectInJSON.put('PurchasingData',objectInJSON.get('PurchasingData')+formatFieldToJSONProperty(field));
                 //PurchasingData = PurchasingData + formatFieldToJSONProperty(field);
-            else if(field.VPM_parentElement__c == STR_CONST_CIN)
+            }else if(field.VPM_parentElement__c == STR_CONST_CIN){
                 objectInJSON.put('CIN',objectInJSON.get('CIN')+formatFieldToJSONProperty(field));
             
-            else if(field.VPM_parentElement__c == STR_CONST_WtaxType)
+            }else if(field.VPM_parentElement__c == STR_CONST_WtaxType){
                 objectInJSON.put('WtaxType',objectInJSON.get('WtaxType')+formatFieldToJSONProperty(field));
 
-            else if(field.VPM_parentElement__c == STR_CONST_InternationalVersions)
+            }else if(field.VPM_parentElement__c == STR_CONST_InternationalVersions){
                 objectInJSON.put(STR_CONST_InternationalVersions,objectInJSON.get(STR_CONST_InternationalVersions)+formatFieldToJSONProperty(field));
+            }
         }
     }
    }

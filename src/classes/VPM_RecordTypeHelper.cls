@@ -66,13 +66,23 @@ public class VPM_RecordTypeHelper {
     public static final string NOT_LISTED = 'notlisted'; 
     public static final string SEARCH_VENDOR = 'searchVendor'; 
     public static final string VENDOR_LIST = 'vendorList'; 
+    public static final string RE_WORK = 'Re-Work';
+    public static final string CONST_LITERAL1 = '\\#';
+    public static final string CONST_LITERAL2 = '\'%';
+    
+    public class OptionWrapper{
+        public String DetailOption{get;set;}
+        public String UniqueId{get;set;}
+        public boolean showLabel{get;set;}
+        public String labelText{get;set;}        
+    }
     
     public static string getRecordTypes(string obj, id vendorReqRecordTypeID) {
         string recordtypeName;
-        obj = 'VPM_PurchasingRequests__c';  
+        string objValue = 'VPM_PurchasingRequests__c';  
         Map<Id, string> recTypeNameWithIdMap = new Map<Id, string>();
-        if(obj!= null) {
-            for(Schema.RecordTypeInfo recInfo : Schema.getGlobalDescribe().get(obj).getDescribe().getRecordTypeInfosByName().values()){
+        if(objValue!= null) {
+            for(Schema.RecordTypeInfo recInfo : Schema.getGlobalDescribe().get(objValue).getDescribe().getRecordTypeInfosByName().values()){
                 system.debug('@@Map -' + recInfo);
                 recTypeNameWithIdMap.put(recInfo.getRecordTypeId(),recInfo.getName());
             }
@@ -101,9 +111,8 @@ public class VPM_RecordTypeHelper {
         return launchScreenVariable;
     }
     public static id getRecordTypeNameById(string recortTypeValue) {
-        Id vendorRecordtypeId;
-        string recordtypeName;
-        string  VendorReqRecordType;
+        Id vendorRecordtypeId;        
+        string VendorReqRecordType;
         if(recortTypeValue.contains(GENERIC)) {
             VendorReqRecordType = GenricRecordType;
         }else if(recortTypeValue.contains(MAINTAIN)) {
@@ -131,6 +140,110 @@ public class VPM_RecordTypeHelper {
             system.debug('@@Map -' + vendorRecordtypeId);            
         
         return vendorRecordtypeId;
+    }
+    
+    /********************************************************************  
+    Created By   : Ajay Rawat
+    Created Date : 05th June 2016
+    Last Modify  : 06th June 2016
+    Description  : This method assing value to wrapper class for displaying purpose.
+    Return Type  : List of Wrapper Class
+    ********************************************************************/
+    public static list<OptionWrapper> setmdmDetailOption(list<mdm_Vendors__c> mdmDeatilList) 
+    {
+      List<OptionWrapper> options = new List<OptionWrapper>(); 
+      list<mdm_Vendors__c> mdmDeatilListNew = mdmDeatilList;  
+      //string mdmDisplayName;
+      system.debug('@@mdmDeatilList size' + mdmDeatilListNew.size());
+      system.debug('@@Heap size Limit' + Limits.getHeapSize());  
+        if(mdmDeatilListNew.size() > 1000  || Limits.getHeapSize() > 275000) {
+            //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.error, 'Please filter the search creteria Too many Vendors retrieved'));
+            //system.debug('@@ Please filter the search creteria');
+            options = null;
+            mdmDeatilListNew = null;  
+        }else { 
+            for(mdm_Vendors__c MDMDetail : mdmDeatilListNew)
+            {
+                OptionWrapper option = new OptionWrapper();
+                option.DetailOption =MDMDetail.VPM_FullDetails__c;
+                option.UniqueId = MDMDetail.id+ CONST_LITERAL1 + VPM_RecordTypeHelper.vendorCodeAssignmentSearchVen(MDMDetail.mdm_vCodeSirius__c,MDMDetail.mdm_vCodeCordillera__c,MDMDetail.mdm_vCodeU2K2__c,MDMDetail.mdm_vCodeFusion__c) 
+                                    +CONST_LITERAL1 +MDMDetail.mdm_ecc__c;
+                
+                options.add(option); 
+            }
+            OptionWrapper option = new OptionWrapper();
+            option.DetailOption =System.label.VPM_MyVendorisnotlisted;
+            option.UniqueId = VPM_RecordTypeHelper.NOT_LISTED;
+            options.add(option);                      
+        }
+      return options;
+
+    }  
+    
+    /******************************************************************** 
+    Created By   : Piyush Mathur
+    Created Date : 5th June 2016
+    Last Modify  : 5th Oct 2016
+    Description  : This method assign the vendor code selected on search vendor screen
+    Return Type  : boolean
+    ********************************************************************/
+    public static string vendorCodeAssignmentSearchVen(string mdm_vCodeSirius, string mdm_vCodeCordillera ,string mdm_vCodeU2K2,string mdm_vCodeFusion) {
+        string vendorCodeInput = '';
+        If(string.isNotBlank(mdm_vCodeSirius)) {
+            vendorCodeInput = mdm_vCodeSirius;
+        }else If(string.isNotBlank(mdm_vCodeCordillera)) {
+            vendorCodeInput = mdm_vCodeCordillera;
+        } else If(string.isNotBlank(mdm_vCodeU2K2)) {
+            vendorCodeInput = mdm_vCodeU2K2;
+        }else If(string.isNotBlank(mdm_vCodeFusion)) {
+            vendorCodeInput = mdm_vCodeFusion;
+        }
+        vendorCodeInput = (string.isNotBlank(vendorCodeInput) ? vendorCodeInput : '');
+        return vendorCodeInput;
+    }
+    
+    /******************************************************************** 
+    Created By   : Piyush Mathur
+    Created Date : 28th Sept 2016
+    Last Modify  : 5th Oct 2016
+    Description  : This method convert the boolean to string
+    Return Type  : string
+    ********************************************************************/   
+     public static string booleanToStringMethod(boolean blockedWeb, boolean deletedWeb) {       
+         boolean blockedAdv = blockedWeb;    
+         boolean deletedAdv = deletedWeb;
+         System.debug('@@@@@@@ inside booleanToStringMethod ');
+         string vendorBlockUnblockDelete = '';
+         if(blockedAdv && deletedAdv) {
+             vendorBlockUnblockDelete = VPM_RecordTypeHelper.BLOCKED + VPM_RecordTypeHelper.DELETED;
+         }else if(!blockedAdv && deletedAdv) {
+             vendorBlockUnblockDelete = VPM_RecordTypeHelper.DELETED;
+         }else if(blockedAdv && !deletedAdv) {
+             vendorBlockUnblockDelete = VPM_RecordTypeHelper.BLOCKED;
+         }
+         return vendorBlockUnblockDelete;         
+     }
+    
+    /******************************************************************** 
+    Created By   : Piyush Mathur
+    Created Date : 05th June 2016
+    Last Modify  : 06th June 2016
+    Description  : This method pulls country picklist values from Schema
+    Return Type  : List<Selectoption>
+    ********************************************************************/
+     public static List<SelectOption> getCountries()
+    {
+      List<SelectOption> options = new List<SelectOption>();
+            
+       Schema.DescribeFieldResult fieldResult =
+       VPM_PurchasingRequests__c.VPM_Country__c.getDescribe();
+       List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
+            
+       for( Schema.PicklistEntry f : ple)
+       {
+          options.add(new SelectOption(f.getLabel(), f.getValue()));
+       }       
+       return options;
     }
     
 }

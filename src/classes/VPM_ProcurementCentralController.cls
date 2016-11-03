@@ -14,17 +14,17 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 2.0 -    Samrin      04 Oct 2016      Temp Remove permission from oldUser and add permission to newUser.
 3.0 -    Vaishali    09 Oct 2016      Remove permission from oldUser and add permission to newUser.
 ****************************************************************************/
-public class VPM_ProcurementCentralController{
-    final string  STR_CONST_PROCENTRALADMIN = 'VPM_Procurement';
-    final Integer STR_CONST_TOTALNOSOFAPPROVALPOSSILBE = 10;
-    final string  STR_CONST_FIELDNAME ='VPM_Approver';
-    final string  STR_CONST_REMOVE='Remove';
-    final string  STR_CONST_REPLACE='Replace';
-    final String  STR_CONST_TEMPORARY='Temporary';
-    final string  STR_CONST_ASSIGN='Assign';
-    final string  STR_CONST_TEMPAPPROVER='VPM_TempApprover';
-    final string STR_CONST_TEMPAPPDATE='VPM_TempApproverDate';
-    final string STR_CONST_C='__c';
+with sharing public class VPM_ProcurementCentralController{
+    final static string  STR_CONST_PROCENTRALADMIN = 'VPM_Procurement';
+    final static Integer STR_CONST_TOTALNOSOFAPPROVALPOSSILBE = 10;
+    final static string  STR_CONST_FIELDNAME ='VPM_Approver';
+    final static string  STR_CONST_REMOVE='Remove';
+    final static string  STR_CONST_REPLACE='Replace';
+    final static String  STR_CONST_TEMPORARY='Temporary';
+    final static string  STR_CONST_ASSIGN='Assign';
+    final static string  STR_CONST_TEMPAPPROVER='VPM_TempApprover';
+    final static string STR_CONST_TEMPAPPDATE='VPM_TempApproverDate';
+    final static string STR_CONST_C='__c';
     public boolean buttonDisp {get;set;}
     public boolean ClickGo {get;set;}
     public boolean ClickGoAssign {get;set;}
@@ -91,13 +91,13 @@ public class VPM_ProcurementCentralController{
                     {
             // Steps for replace approval
                 //throw error message if oldUser and newUser is null
-                if((oldUser==null && newuser==null)|| (oldUser==null && newuser!=null) || (oldUser!=null && newuser==null))
+                if((oldUser==null && newuser==null)|| (oldUser==null && newuser!=null) || (oldUser!=null && newuser==null)){
                     Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_ApproverNotSelected));
-               else if(TillDate==null)
+               }else if(TillDate==null){
                     Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_TempDateNotSelected));
-               else if(TillDate < System.Today())
+                }else if(TillDate < System.Today()){
                    Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_TempDateIsPassDate));
-               else{
+               }else{
                     // Step no 1) Replace old user with new user in commodity approval.
                     replaceApproverInCommodity(oldUser, newUser, null);
                     // Step no 2) Add new permission to newUser if doesnt have.
@@ -207,8 +207,9 @@ public class VPM_ProcurementCentralController{
            }catch(Exception ex){
               
                   system.debug('Error' +ex.getMessage());
-                  if(ex.getMessage().contains('Multiple items found'))
+                  if(ex.getMessage().contains('Multiple items found')){
                      Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_MultipleRecordFound)); 
+                  }
            }
            
             
@@ -228,23 +229,19 @@ public class VPM_ProcurementCentralController{
           MainScreen = false;
           ClickGo = false;      
           ClickGoAssign = false;
-          if( MDMVendor == STR_CONST_REPLACE)      
+          if( MDMVendor == STR_CONST_REPLACE){      
             ClickGo = true;
-          else if(MDMVendor == STR_CONST_ASSIGN)
-          {
+          }else if(MDMVendor == STR_CONST_ASSIGN){
             ClickGoAssign = true;
             showTable = false;
             buttonDisp =false;
-          }
-          else if(MDMVendor == STR_CONST_REMOVE)
-          {
+          }else if(MDMVendor == STR_CONST_REMOVE){
             ClickGoRemove = true;
             showTable = false;
             buttonDisp =false;
-          }
-            else if (MDMVendor == STR_CONST_TEMPORARY )
+          }else if (MDMVendor == STR_CONST_TEMPORARY){
                 ClickGoTemp=true;
-            
+          }  
           return null;
         }
 
@@ -258,7 +255,8 @@ public class VPM_ProcurementCentralController{
         if(newUser != null)
         {
              list<PermissionSetAssignment> checkProcPermission = [SELECT Assignee.Name, PermissionSet.Id FROM PermissionSetAssignment where Assignee.id=:newUser and PermissionSetId=:pr.id limit 1];      
-             if(checkProcPermission.size() == 0)
+             //if(checkProcPermission.size() == 0)
+             if(checkProcPermission.isEmpty())
              {    
                  // Add permission set
                 PermissionSetAssignment newProcPermission = new PermissionSetAssignment(AssigneeId=newUser,PermissionSetId=pr.id);
@@ -284,7 +282,8 @@ public class VPM_ProcurementCentralController{
         if(newUser != null)
         {
             list<PermissionSetAssignment> checkProcPermission = [SELECT Assignee.Name, PermissionSet.Id FROM PermissionSetAssignment WHERE  Assignee.id=:newUser AND PermissionSetId=:pr.id limit 1];      
-           if(checkProcPermission.size() == 0)
+           //if(checkProcPermission.size() == 0)
+           if(checkProcPermission.isEmpty())
             {    
               // Add permission set
                 PermissionSetAssignment newProcPermission = new PermissionSetAssignment(AssigneeId=newUser,PermissionSetId=pr.id);
@@ -301,7 +300,7 @@ public class VPM_ProcurementCentralController{
     public void replaceApproverInCommodity(String oldUser, String newUser, String country)
     {
         List<VPM_CommodityApprover__c> commAppList = new List<VPM_CommodityApprover__c>();
-        if(oldUser != null)
+        if(oldUser != null){
             commAppList = [SELECT id, VPM_Approver1__c , VPM_Approver2__c,VPM_Approver3__c,VPM_Approver4__c,VPM_Approver5__c,
                                    VPM_Approver6__c,VPM_Approver7__c,VPM_ConfiguredApprovers__c,VPM_Approver8__c,VPM_Approver9__c,
                                    VPM_Approver10__c,VPM_CommodityClass__c 
@@ -310,9 +309,10 @@ public class VPM_ProcurementCentralController{
                                  OR VPM_Approver5__c =: oldUser OR VPM_Approver6__c =: oldUser OR VPM_Approver7__c =: oldUser OR VPM_Approver8__c =: oldUser
                                  OR VPM_Approver9__c =: oldUser OR VPM_Approver10__c =: oldUser LIMIT 50000];
          
-         
-         if(commAppList.isEmpty() && oldUser != null)
+         }
+         if(commAppList.isEmpty() && oldUser != null){
                 Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_OlderApprovalNoLongerExist));
+          }
             else
             {
                             List<String> commodities = new List<String>();
@@ -329,8 +329,9 @@ public class VPM_ProcurementCentralController{
                                         integer nextApprovor = approversCount+1; 
                                          commAPP.put(STR_CONST_FIELDNAME+approversCount+STR_CONST_C, commAPP.get(STR_CONST_FIELDNAME+nextApprovor+STR_CONST_C)) ;
                                            userToReplace =  string.valueOf(commAPP.get(STR_CONST_FIELDNAME+nextApprovor+STR_CONST_C));
-                                           if(nextApprovor == 10)
+                                           if(nextApprovor == 10){
                                              commAPP.put(STR_CONST_FIELDNAME+approversCount+STR_CONST_C, null) ;
+                                           }
                                         }
                                         Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,System.label.VPM_ApproverRemoveSuccess));
                                     }
@@ -347,10 +348,10 @@ public class VPM_ProcurementCentralController{
                                                         commAPP.put('VPM_TempApprover'+approversCount+STR_CONST_C, oldUser) ;
                                                         commAPP.put('VPM_TempApproverDate'+approversCount+STR_CONST_C, TillDate) ;
                                                         repCommodities.add(commAPP.VPM_CommodityClass__c);
-                                                }else
+                                                }else{
                                                            commodities.add(commAPP.VPM_CommodityClass__c);
                                                            //Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,''+'Approver cannot be replaced since it is already present for commodity' +commAPP.VPM_CommodityClass__c));
-                                                
+                                                }
                                             }
                                                  
                                            /* if(commAPP.get(STR_CONST_FIELDNAME+approversCount+STR_CONST_C) == oldUser)
@@ -381,12 +382,12 @@ public class VPM_ProcurementCentralController{
                             }
                              updateCommApprover(json.serialize(commAppList));
                             system.debug('@@ repCommodities' + repCommodities);
-                            if(!commodities.isEmpty())
+                            if(!commodities.isEmpty()){
                                 Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,''+'Approver cannot be replaced for commodity: ' + commodities + ' since the selected approver is already present for these commodities.'));
-                               
-                             if(!repCommodities.isEmpty())  
+                             }  
+                             if(!repCommodities.isEmpty())  {
                                 Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,''+'Approver successfully replaced for commodity: ' + repCommodities));
-                     
+                              }
                      //Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,System.label.VPM_ApproverReplaceSuccess));        
             }
         }
@@ -430,11 +431,11 @@ public class VPM_ProcurementCentralController{
          
         if(commAppList.isEmpty())
         {
-             if(oldUser==null)
+             if(oldUser==null){
                     Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_NoCommodityfound));
-             else
+             }else{
                    Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_NoCommodityfoundApprover));
-                   
+             }      
             showTable = false;
             buttonDisp =false;
             com.VPM_Approver1__c =null;
@@ -476,8 +477,6 @@ public class VPM_ProcurementCentralController{
     public pagereference assignRemoveCommodity(string oldUser,string newUser,string Country){
    
                            List<VPM_CommodityApprover__c> commodity = new List<VPM_CommodityApprover__c>();
-                            
-                                CommApproverList com= new CommApproverList();                             
 
                                     boolean isSelected = false;
                                    for(CommApproverList comp : commApprover){
@@ -537,11 +536,11 @@ public class VPM_ProcurementCentralController{
                                     
                                      if(!isSelected ){
                                                 
-                                                if(oldUser==null)
+                                                if(oldUser==null){
                                                     Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_NoRecordSelectApproverCountry));
-                                                else
+                                                }else{
                                                     Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,''+System.label.VPM_NoRecordSelectApprover));
-                                                
+                                                }
                                                 commApprover.clear();
                                                 showTable=false;
                                                 buttonDisp=false;
@@ -555,10 +554,11 @@ public class VPM_ProcurementCentralController{
                                          system.debug('@@ commmApprover' + commApprover);
                                          showTable=false;
                                          buttonDisp=false;
-                                        if(oldUser==null)
+                                        if(oldUser==null){
                                             Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,System.Label.VPM_AddedCommodityApprover));
-                                        else
+                                        }else{
                                             Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,+System.Label.VPM_RemoveCommodityApprover));
+                                        }
                             return null;
     }
     

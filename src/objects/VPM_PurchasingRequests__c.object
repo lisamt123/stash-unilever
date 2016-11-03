@@ -99245,7 +99245,7 @@ var res = sforce.connection.describeSObjects([&apos;VPM_PurchasingRequests__c&ap
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>window.open(&apos;/apex/VPM_AttachmentSectionPopUp&apos;, &apos;Help for uploading documents&apos;, 
-&apos;height=500,width=1230, top=70, left=70, scrollbars=no, toolbar=no, menubar=no&apos;);</url>
+&apos;height=500,width=1230, top=70, left=70, scrollbars=yes, toolbar=no, menubar=no&apos;);</url>
     </webLinks>
     <webLinks>
         <fullName>VPM_ManuallyMarkComplete</fullName>

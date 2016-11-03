@@ -35,7 +35,7 @@ public class VPM_PicklistHelper {
     public static final string CONF_CONTROL = 'Confirmation Control';
     
 		
-    public static list<SelectOption> getPicklistValues(SObject obj, String fld){
+    /*public static list<SelectOption> getPicklistValues(SObject obj, String fld){
         
         Map<string,list<SelectOption>> defaultValueAndOptionMap = new Map<string,list<SelectOption>>();
         list<SelectOption> options = new list<SelectOption>();
@@ -98,7 +98,7 @@ public class VPM_PicklistHelper {
                 }
             }
             return options;
-        } 
+        } */
     
     public static List<SelectOption> getRegionSpecificCustomSettingvalues(string ecc, string pickListName, string defaultValue){
             Map<String, VPM_RegionSpecificFields__c> settingMap = new Map<String, VPM_RegionSpecificFields__c>();

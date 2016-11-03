@@ -1,6 +1,6 @@
 <apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true"
-           sidebar="false" extensions="VPM_SearchVendor,VPM_SubController" language="{!userlang}">
-   <script>
+           sidebar="false" >
+   <!--script>
     debugger;
      localStorage.removeItem("cancelClicked");
     </script>
@@ -23,5 +23,5 @@
           </apex:pageBlockSection>        
        </apex:pageBlock>          
    </apex:form> 
-   <c:VPM_LoadingComponent />  
+   <c:VPM_LoadingComponent /-->  
 </apex:page>

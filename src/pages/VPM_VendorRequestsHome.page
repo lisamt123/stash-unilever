@@ -4,8 +4,6 @@
 <!-- <![endif]-->
     <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
     <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.4.js')}"/>
-
-
 <style>
 
     [name="vpm_newvendorrequest"],.refreshListButton{
