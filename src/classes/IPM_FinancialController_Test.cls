@@ -24,7 +24,6 @@ public class IPM_FinancialController_Test {
     private static final string INVALID_PROJECT_TYPE = 'Invalid project type';
     private static final string INVALID_FINACIAL_EXT_ID = 'Invalid Financial external id';
     private static final string MISALINGNED_NOT_CONFIRMED = 'Misaligned confirmation not found';
-    private static final string INVALID_INDEX = 'Invalid index found';
     private static final string INCORRECT_NAVIGATION_RESULT = 'Incorrect Navigation found';
     private static final string ERROR_MSG_NOT_CAPTURED = 'error message not captured';
     
