@@ -595,11 +595,11 @@
     <listViews>
         <fullName>CEC_DACH_Queue_cec_Enclosure</fullName>
         <columns>NAME</columns>
+        <columns>Active__c</columns>
         <columns>Country__c</columns>
         <columns>FileName__c</columns>
         <columns>MailItemName__c</columns>
         <columns>UPDATEDBY_USER</columns>
-        <columns>Active__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC DACH Queue</label>
         <language>en_US</language>

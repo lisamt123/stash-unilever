@@ -1416,7 +1416,7 @@
         <name>FS_ABCSegmentation__c</name>
     </fields>
     <fields>
-        <help><!-- В день? --></help>
+        <help><!-- Количество чеков в день --></help>
         <label><!-- Amount Of Visitors --></label>
         <name>FS_AmountOfVisitors__c</name>
     </fields>

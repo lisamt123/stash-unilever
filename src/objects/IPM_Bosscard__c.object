@@ -3095,7 +3095,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <listViews>
         <fullName>IPM_a7I0L000000GtyO_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000GtyO</label>
+        <label>IPM_TET2017_SEAA</label>
         <queue>IPM_a7I0L000000GtyO</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
