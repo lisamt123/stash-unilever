@@ -207,6 +207,8 @@ private class IPM_RolloutPlansAddController_Test
             		else
             		{
             			regionalRollout = projectRollout;
+                        regionalRollout.recordTypeId = REGIONAL_ROLLOUT_RECTYPE;
+                        
             		}
             	} 
             	
