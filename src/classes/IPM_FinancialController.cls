@@ -4021,6 +4021,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public void softValidate(IPM_Financial__c finToEvaluate){
         isFinancialInvalid = false;
         isValidationError = false;
+        isValidationErrorCal = false;
+        
         validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,finToEvaluate);
         validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,finToEvaluate);
         validateFinancialSummaryTable(finToEvaluate);
@@ -4076,7 +4078,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Boolean checkIsFinancialInvalid(Boolean isFinancialInvalid, Boolean isFinancialInvalidInnovation, IPM_Financial__c finToEvaluate){
           Boolean isChanged = false;
           
-          if((isFinancialInvalid || isFinancialInvalidInnovation) && finToEvaluate != null && !(Boolean)finToEvaluate.get(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)){
+          if((isFinancialInvalid || isFinancialInvalidInnovation) || (finToEvaluate != null && !(Boolean)finToEvaluate.get(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX))){
             finToEvaluate.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, true);
             isChanged = true;
           }
