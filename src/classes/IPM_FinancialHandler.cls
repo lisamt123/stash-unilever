@@ -413,7 +413,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 			Map<Id,IPM_Financial__c> targetLaunchChangedDateMap = new Map<Id,IPM_Financial__c>();
 			Map<Id,IPM_Financial__c> oldFinancialMap = (Map<Id,IPM_Financial__c>)Trigger.OldMap;
 			Set<Id> changedFinancialSet = new Set<Id>();
-			IPM_FinancialHelper.deleteFinancialYears(newFinancialList);
+        IPM_FinancialHelper.deleteFinancialYears(newFinancialList,oldFinancialMap);
 			for(IPM_Financial__c financial : newFinancialList)
 			{
 				IPM_Financial__c oldFinancial = oldFinancialMap.get(financial.Id); 
