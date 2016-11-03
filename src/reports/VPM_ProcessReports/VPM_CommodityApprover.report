@@ -3,6 +3,42 @@
     <columns>
         <field>CUST_NAME</field>
     </columns>
+    <columns>
+        <field>VPM_CommodityApprover__c.VPM_CommodityClass__c</field>
+    </columns>
+    <columns>
+        <field>VPM_CommodityApprover__c.VPM_CommodityCountryUnique__c</field>
+    </columns>
+    <columns>
+        <field>VPM_CommodityApprover__c.VPM_Approver1__c</field>
+    </columns>
+    <columns>
+        <field>VPM_CommodityApprover__c.VPM_Approver2__c</field>
+    </columns>
+    <columns>
+        <field>VPM_CommodityApprover__c.VPM_Approver3__c</field>
+    </columns>
+    <columns>
+        <field>VPM_CommodityApprover__c.VPM_Approver4__c</field>
+    </columns>
+    <columns>
+        <field>VPM_CommodityApprover__c.VPM_Approver5__c</field>
+    </columns>
+    <columns>
+        <field>VPM_CommodityApprover__c.VPM_Approver6__c</field>
+    </columns>
+    <columns>
+        <field>VPM_CommodityApprover__c.VPM_Approver7__c</field>
+    </columns>
+    <columns>
+        <field>VPM_CommodityApprover__c.VPM_Approver8__c</field>
+    </columns>
+    <columns>
+        <field>VPM_CommodityApprover__c.VPM_Approver9__c</field>
+    </columns>
+    <columns>
+        <field>VPM_CommodityApprover__c.VPM_Approver10__c</field>
+    </columns>
     <description>VBPM Report showing commodity approver records assiigned to the current user</description>
     <filter>
         <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10</booleanFilter>

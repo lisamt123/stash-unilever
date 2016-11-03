@@ -12,6 +12,6 @@
     </values>
     <values>
         <field>VPM_PaymentMethod__c</field>
-        <value xsi:type="xsd:string">D_#### #### #### #######</value>
+        <value xsi:type="xsd:string">D_שקים בגין החזר הלוואות</value>
     </values>
 </CustomMetadata>

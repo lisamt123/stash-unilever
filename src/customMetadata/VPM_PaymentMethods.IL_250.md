@@ -12,6 +12,6 @@
     </values>
     <values>
         <field>VPM_PaymentMethod__c</field>
-        <value xsi:type="xsd:string">E_#### #### #######</value>
+        <value xsi:type="xsd:string">E_שקים בגין ערבויות</value>
     </values>
 </CustomMetadata>

@@ -12,6 +12,6 @@
     </values>
     <values>
         <field>VPM_PaymentMethod__c</field>
-        <value xsi:type="xsd:string">7_##### ###### #####</value>
+        <value xsi:type="xsd:string">7_העברה בנקאית ייצוא</value>
     </values>
 </CustomMetadata>

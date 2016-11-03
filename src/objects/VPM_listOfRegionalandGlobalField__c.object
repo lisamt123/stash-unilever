@@ -69,6 +69,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>VPM_listOfRegionalandGlobalField</label>
+    <label>VPM_ListOfRegionalandGlobalField</label>
     <visibility>Public</visibility>
 </CustomObject>

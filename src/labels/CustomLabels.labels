@@ -43,6 +43,13 @@
         <value>Added as commodity approver</value>
     </labels>
     <labels>
+        <fullName>VPM_AddressLine1ReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_AddressLine1ReqHelpText</shortDescription>
+        <value>Provide the first line of the street address</value>
+    </labels>
+    <labels>
         <fullName>VPM_AlreadyCommodityapprover</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -62,6 +69,13 @@
         <protected>false</protected>
         <shortDescription>VPM_Alternative payee in document</shortDescription>
         <value>Indicator: Alternative Payee in Document Allowed?</value>
+    </labels>
+    <labels>
+        <fullName>VPM_AnnualestimatedReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_AnnualestimatedReqHelpText</shortDescription>
+        <value>Provide the estimated annual spend</value>
     </labels>
     <labels>
         <fullName>VPM_ApprovReject</fullName>
@@ -148,6 +162,13 @@
         <value>Back</value>
     </labels>
     <labels>
+        <fullName>VPM_BankAccountNoReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BankAccountNoReqHelpText</shortDescription>
+        <value>the Vendor Bank Account Number</value>
+    </labels>
+    <labels>
         <fullName>VPM_BankAccountNumber</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -162,11 +183,18 @@
         <value>Bank Country Key: Please select the value</value>
     </labels>
     <labels>
+        <fullName>VPM_BankCountryKeyReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BankCountryKeyReqHelpText</shortDescription>
+        <value>Provide the Bank Country Key</value>
+    </labels>
+    <labels>
         <fullName>VPM_BankDetailsHelpText</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM_BankDetailsHelpText</shortDescription>
-        <value>Bank Details Help Text</value>
+        <value>Includes Vendor Banking details</value>
     </labels>
     <labels>
         <fullName>VPM_BankDetailsTitle</fullName>
@@ -176,11 +204,25 @@
         <value>Bank Details</value>
     </labels>
     <labels>
+        <fullName>VPM_BankKeyReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BankKeyReqHelpText</shortDescription>
+        <value>Provide the Bank Key (Sort Code/ Routing Number / ABA Number)</value>
+    </labels>
+    <labels>
         <fullName>VPM_BlockDeleteFlag</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BlockDeleteFlag</shortDescription>
         <value>Maintain</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BlockDeleteHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BlockDeleteHelpText</shortDescription>
+        <value>Indicate if you want to Block/Delete Vendor?</value>
     </labels>
     <labels>
         <fullName>VPM_BlockDeleteTitle</fullName>
@@ -260,11 +302,39 @@
         <value>Vendor Request (Maintain) - Change of Bank Details</value>
     </labels>
     <labels>
+        <fullName>VPM_ChangeBlockDelete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Msg When Approval process is trigger due to Block Delete</shortDescription>
+        <value>Vendor Request (Maintain) - Change of Block Delete</value>
+    </labels>
+    <labels>
         <fullName>VPM_ChangeFinancialSensitive</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM - Make aware whether the Approval process is  trigger due to changes in Fina</shortDescription>
-        <value>Vendor Request (Maintain) - Change of Financial Sensitive Details</value>
+        <value>Vendor Request (Maintain) - Change of Financial Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ChangeGeneralVendorDetails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Msg When Approval process is trigger due to General Vendor Details</shortDescription>
+        <value>Vendor Request (Maintain) - Change of General Vendor Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ChangePaymentTermsDetails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Msg When Approval process is trigger due to Payment Terms Details</shortDescription>
+        <value>Vendor Request (Maintain) - Change of Payment Terms Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ChangeUnBlockUnDelete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Msg When Approval process is trigger due to UnBlock/UnDelete</shortDescription>
+        <value>Vendor Request (Maintain) - Change of Unblock /Undelete</value>
     </labels>
     <labels>
         <fullName>VPM_CheckDoubleInvoicesPageMessage</fullName>
@@ -272,6 +342,13 @@
         <protected>false</protected>
         <shortDescription>VPM_CheckDoubleInvoicesPageMessage</shortDescription>
         <value>Check Double Invoices : Please tick the checkbox</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CityReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CityReqHelpText</shortDescription>
+        <value>Provide the city in which the Vendor is located</value>
     </labels>
     <labels>
         <fullName>VPM_Click_Here</fullName>
@@ -554,6 +631,13 @@
         <value>Financial Details help text</value>
     </labels>
     <labels>
+        <fullName>VPM_FinancialHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_FinancialHelpText</shortDescription>
+        <value>Includes key Financial information related to the request</value>
+    </labels>
+    <labels>
         <fullName>VPM_FinanciallySensitiveTitle</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -582,6 +666,13 @@
         <value>Fusion Region Specific Page</value>
     </labels>
     <labels>
+        <fullName>VPM_GeneralDetailsHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_GeneralDetailsHelpText</shortDescription>
+        <value>Includes Vendor Name/ Address/ Tax details</value>
+    </labels>
+    <labels>
         <fullName>VPM_General_Vendor_Details</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -594,6 +685,13 @@
         <protected>false</protected>
         <shortDescription>VPM_GlobalAuthorisationGrpPageMessage</shortDescription>
         <value>Global Authorisation Group: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GlobalGoldenDataHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_GlobalGoldenDataHelpText</shortDescription>
+        <value>Minimum global mandatory details required to create / maintain a Vendor</value>
     </labels>
     <labels>
         <fullName>VPM_Go</fullName>
@@ -622,6 +720,13 @@
         <protected>false</protected>
         <shortDescription>VPM Golden Data Next Button</shortDescription>
         <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GoldenDataRegionalHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_GoldenDataRegionalHelpText</shortDescription>
+        <value>Minimum regional specific mandatory details required to create / maintain a Vendor</value>
     </labels>
     <labels>
         <fullName>VPM_GoldenDataScreen2</fullName>
@@ -769,6 +874,13 @@
         <protected>false</protected>
         <shortDescription>VPM_Language</shortDescription>
         <value>Language</value>
+    </labels>
+    <labels>
+        <fullName>VPM_LaunchScreenHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_LaunchScreenHelpText</shortDescription>
+        <value>Search for your Vendor from the global database</value>
     </labels>
     <labels>
         <fullName>VPM_MDMBPMErrorMessage</fullName>
@@ -932,6 +1044,20 @@
         <value>Payment Method: Please select the value</value>
     </labels>
     <labels>
+        <fullName>VPM_PaymentMethodReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PaymentMethodReqHelpText</shortDescription>
+        <value>Payment Methods to be used in relation to the Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentTermsHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PaymentTermsHelpText</shortDescription>
+        <value>Includes Payments Terms and key Purchasing Org details</value>
+    </labels>
+    <labels>
         <fullName>VPM_PaymentTermsIfNoneSelected</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -944,6 +1070,13 @@
         <protected>false</protected>
         <shortDescription>VPM_PaymentTermsPageMessage</shortDescription>
         <value>Payment Terms: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentTermsReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PaymentTermsReqHelpText</shortDescription>
+        <value>Payment Terms to be used in relation to the Vendor</value>
     </labels>
     <labels>
         <fullName>VPM_Payment_Terms</fullName>
@@ -1023,6 +1156,13 @@
         <value>Quick Submit</value>
     </labels>
     <labels>
+        <fullName>VPM_ReconciliationAccReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_ReconciliationAccReqHelpText</shortDescription>
+        <value>Reconciliation Account to be used in relation to the Vendor</value>
+    </labels>
+    <labels>
         <fullName>VPM_RecordID</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1049,6 +1189,13 @@
         <protected>false</protected>
         <shortDescription>VPM Record Submit Warning</shortDescription>
         <value>The Vendor has been sent a request to complete their details via a Webform and they have not yet responded. If you proceed to the approval stage, any submission the Vendor makes in the future will not be appended to this request. The person who sent the Vendor the request will be notified if a submission happens.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RegionalSpecificHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_RegionalSpecificHelpText</shortDescription>
+        <value>Includes Regional specific data fields</value>
     </labels>
     <labels>
         <fullName>VPM_Remove</fullName>
@@ -1119,6 +1266,13 @@
         <protected>false</protected>
         <shortDescription>Replace_Approver</shortDescription>
         <value>Replace Approver</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestAbortedAlert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_RequestAbortedAlert</shortDescription>
+        <value>You cannot see/edit the Advanced form because this request has been Aborted.</value>
     </labels>
     <labels>
         <fullName>VPM_RequestRejectedAlert</fullName>
@@ -1548,6 +1702,13 @@
         <value>Temporary Replace Approver</value>
     </labels>
     <labels>
+        <fullName>VPM_TermsOfPaymentReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TermsOfPaymentReqHelpText</shortDescription>
+        <value>Terms of Payment to be used in relation to the Vendor</value>
+    </labels>
+    <labels>
         <fullName>VPM_TersmOfPaymentErrorMessage</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1639,6 +1800,13 @@
         <value>UnBlock and UnDelete Page</value>
     </labels>
     <labels>
+        <fullName>VPM_UnblockDeleteHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_UnblockDeleteHelpText</shortDescription>
+        <value>Indicate if you want to Unblock/Undelete Vendor?</value>
+    </labels>
+    <labels>
         <fullName>VPM_VATCountryPageMessage</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1665,6 +1833,13 @@
         <protected>false</protected>
         <shortDescription>VPM_VendorCode</shortDescription>
         <value>Vendor Code</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorCountryReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorCountryReqHelpText</shortDescription>
+        <value>Provide the country in which the Vendor is located</value>
     </labels>
     <labels>
         <fullName>VPM_VendorMatch</fullName>
@@ -1695,6 +1870,13 @@
         <value>Vendor Name: You must Enter a value</value>
     </labels>
     <labels>
+        <fullName>VPM_VendorNameReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorNameReqHelpText</shortDescription>
+        <value>Provide legal name of Vendor</value>
+    </labels>
+    <labels>
         <fullName>VPM_VendorName_Address</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1723,11 +1905,25 @@
         <value>4. Vendor Resposnible Sourcing</value>
     </labels>
     <labels>
+        <fullName>VPM_VendorSelectionHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorSelectionHelpText</shortDescription>
+        <value>Select Vendor from list below, or create from new</value>
+    </labels>
+    <labels>
         <fullName>VPM_VendorTypeMessage</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM_VendorTypeMessage</shortDescription>
         <value>Vendor Type : Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorTypeTPTHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorTypeTPTHelpText</shortDescription>
+        <value>Select Vendor Type, Global Authorisation Group and Trade Partner</value>
     </labels>
     <labels>
         <fullName>VPM_Vendor_Contact_Details</fullName>
@@ -1777,6 +1973,20 @@
         <protected>false</protected>
         <shortDescription>VPM View All Fields</shortDescription>
         <value>View All Fields</value>
+    </labels>
+    <labels>
+        <fullName>VPM_WebformHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_WebformHelpText</shortDescription>
+        <value>Send request for Vendor provision of information and supporting documents</value>
+    </labels>
+    <labels>
+        <fullName>VPM_WhyExistingSupplierReqHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_WhyExistingSupplierReqHelpText</shortDescription>
+        <value>Indicate why an existing Vendor cannot be used</value>
     </labels>
     <labels>
         <fullName>VPM_Withholding_Tax</fullName>

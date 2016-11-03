@@ -378,6 +378,12 @@
     </actionCalls>
     <actionCalls>
         <processMetadataValues>
+            <name>ActionCallType</name>
+            <value>
+                <stringValue>flow</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
             <name>flowSelection</name>
             <value>
                 <stringValue>VPM Assign Commodity Approver</stringValue>
@@ -492,7 +498,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>VPM_CommodityClass</stringValue>
+                    <stringValue>VPM_CommodityCode</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -513,9 +519,9 @@
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <name>VPM_CommodityClass</name>
+            <name>VPM_CommodityCode</name>
             <value>
-                <elementReference>myVariable_current.VPM_Commodity__r.VPM_CommodityClass__c</elementReference>
+                <elementReference>myVariable_current.VPM_Commodity__c</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -1688,7 +1694,7 @@
             <label>Procurement Approved</label>
         </rules>
     </decisions>
-    <description>Changing variable to Commodity Class for the Commodity Approvers flow</description>
+    <description>As new logic. Adding lastGroup</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>

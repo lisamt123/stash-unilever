@@ -785,11 +785,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_BankDetailsProvided__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_BankDetailsScreen__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1365,11 +1360,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FinanciallySensitiveFieldsProvided__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_FiscalAddress__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1580,6 +1570,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_IsChangedVAT__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_IsInApprovalProcess__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1611,11 +1606,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_IsVendorSME__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Is_changed_VAT__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2117,6 +2107,11 @@
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_RequestType__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

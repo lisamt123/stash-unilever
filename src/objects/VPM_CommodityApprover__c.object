@@ -1418,6 +1418,9 @@ IF(NOT(ISBLANK( VPM_Approver1__c )),1,
         <customTabListAdditionalFields>VPM_Approver1__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>VPM_Approver2__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>VPM_ConfiguredApprovers__c</customTabListAdditionalFields>
+        <searchFilterFields>VPM_CommodityClass__c</searchFilterFields>
+        <searchFilterFields>VPM_Country__c</searchFilterFields>
+        <searchFilterFields>VPM_ConfiguredApprovers__c</searchFilterFields>
         <searchResultsAdditionalFields>VPM_CommodityClass__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>VPM_Approver1__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>VPM_Approver2__c</searchResultsAdditionalFields>

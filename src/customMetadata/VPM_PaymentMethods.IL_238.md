@@ -12,6 +12,6 @@
     </values>
     <values>
         <field>VPM_PaymentMethod__c</field>
-        <value xsi:type="xsd:string">&quot;2_##&quot;#&quot;</value>
+        <value xsi:type="xsd:string">2_מס&quot;ב</value>
     </values>
 </CustomMetadata>

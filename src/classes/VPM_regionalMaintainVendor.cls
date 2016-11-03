@@ -147,7 +147,8 @@ public static void callRegionalService(string vendorId)
 
              String responseString= vendorId;
             
-             responseString = VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorId);
+             responseString =responseString + VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorId);
+             VPM_HttpUtil.updateRecordType(vendorId); 
              VPM_HttpUtil.sendEmail('ajay.rawat@capgemini.com','Global Create Response from service trigger',responseString); 
              VPM_HttpUtil.sendEmail('deepak.moudekar@capgemini.com','Global Create Response from service trigger',responseString);
              

@@ -1,15 +1,14 @@
 global class VPM_ECCVendorSearchServiceOutput {
-    public List<CompanyCodeFields> CompanyData;
+    public List<CompanyCodeFields> CompanyData{get; set;}
     public List<PurchasingOrgFields> PurchasingData;
-    public CINFields CIN;
-    public String AccountNumberAlternativePayee;
-    public String message;
-    public string statusCode;
-    public boolean companyCodeMatch;
-    public boolean purchasingOrgMatch;
-    public boolean companyCodeMatching;
-    public boolean vendorFoundResult;
-    public String ABCIndicator;
+    public CINFields CIN {get; set;}
+    public String AccountNumberAlternativePayee{get; set;}
+    public String message{get; set;}
+    public string statusCode{get; set;}
+    public boolean companyCodeMatch{get; set;}
+    public boolean purchasingOrgMatch{get; set;}
+    public boolean companyCodeMatching{get; set;}
+    
     public String AccountWithVendor;
     public String AccountClerkTelephoneNumber;
     public String AccountGroup;
@@ -17,6 +16,8 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String AccountingNote;
     public String AccountingText;
     public String AccountMemo;
+    public boolean vendorFoundResult;
+    public String ABCIndicator;
     public String AccountStatement;
     public String ActualQMSystem;
     public String AddressForm;
@@ -357,64 +358,64 @@ global class VPM_ECCVendorSearchServiceOutput {
         public String DunningClerk;
     }
     public class CompanyCodeFields {
-        public string Authorization;
-        public boolean IndicatorAltPayeeAccountNumber;
-        public string RemittanceEmail;
-        public string PaymentTermsCreditMemoKey;
-        public String ReconciliationAccount;
-        public String PaymentTerms;
-        public String SortKey;
+        public string Authorization{get; set;}
+        public boolean IndicatorAltPayeeAccountNumber{get; set;}
+        public string RemittanceEmail{get; set;}
+        public string PaymentTermsCreditMemoKey{get; set;}
+        public String ReconciliationAccount{get; set;}
+        public String PaymentTerms{get; set;}
+        public String SortKey{get; set;}
         //public String CashManagementGroup; // old changes 
-        public string CashMgmtGroup;
-        public String PaymentMethod;
-        public String InterestCalculationIndicator;
-        public boolean IndicatorClearingBetweenCustomerAndVendor;
-        public String AccountWithVendor;
-        public String ClerkAtVendor;
-        public String AccountMemo;
-        public String AccountingClerk;
-        public String AlternativePayee;
-        public String InterestFrequency;
-        public String LastInterestRun;
-        public String BExchangeLimit;
-        public String CheckCashing;
-        public boolean CheckDoubleInvoices;
-        public String ToleranceGroup;
-        public String HouseBank;
-        public boolean IndividualPayment;
-        public String ExemptionNumber;
-        public String ValidUntil;
-        public String PreviousAccountNumber;
-        public String GroupingKey;
-        public String PaymentMethodSupplement;
-        public String WithholdingTaxCountryKey;
-        public boolean PmtAdviceByEDI;
-        public String ClerksFax;
-        public String ClerksInternet;
-        public String AccountStatement;
-        public List<Dunning> Dunning;
-        public List<WtaxType> WtaxType;
-        public String AccountClerkTelephoneNumber;
-        public boolean AdoptScanDate;
-        public Boolean Blocked;
-        public Boolean Deleted;
-        public String CompanyCode;
-        public String ThirdPartyAddress1;
-        public String ThirdPartyAddress2;
-        public String ThirdPartyAddress3;
-        public String ThirdPartyAddress4;
-        public String ThirdPartyName;
-        public String ThirdPartyCountry;
-        public String BeneficiaryAddress1; 
-        public String BeneficiaryAddress2;
-        public String BeneficiaryAddress3;
-        public String BeneficiaryCountry;
-        public String BeneficiaryName;
-        public String FreeText1;
-        public String FreeText2;
-        public String PayableLocation;
-        public String PaymentBlock;
-        public string HeadOfficeAccountNumber;
+        public string CashMgmtGroup{get; set;}
+        public String PaymentMethod{get; set;}
+        public String InterestCalculationIndicator{get; set;}
+        public boolean IndicatorClearingBetweenCustomerAndVendor{get; set;}
+        public String AccountWithVendor{get; set;}
+        public String ClerkAtVendor{get; set;}
+        public String AccountMemo{get; set;}
+        public String AccountingClerk{get; set;}
+        public String AlternativePayee{get; set;}
+        public String InterestFrequency{get; set;}
+        public String LastInterestRun{get; set;}
+        public String BExchangeLimit{get; set;}
+        public String CheckCashing{get; set;}
+        public boolean CheckDoubleInvoices{get; set;}
+        public String ToleranceGroup{get; set;}
+        public String HouseBank{get; set;}
+        public boolean IndividualPayment{get; set;}
+        public String ExemptionNumber{get; set;}
+        public String ValidUntil{get; set;}
+        public String PreviousAccountNumber{get; set;}
+        public String GroupingKey{get; set;}
+        public String PaymentMethodSupplement{get; set;}
+        public String WithholdingTaxCountryKey{get; set;}
+        public boolean PmtAdviceByEDI{get; set;}
+        public String ClerksFax{get; set;}
+        public String ClerksInternet{get; set;}
+        public String AccountStatement{get; set;}
+        public List<Dunning> Dunning{get; set;}
+        public List<WtaxType> WtaxType{get; set;}
+        public String AccountClerkTelephoneNumber{get; set;}
+        public boolean AdoptScanDate{get; set;}
+        public Boolean Blocked{get; set;}
+        public Boolean Deleted{get; set;}
+        public String CompanyCode{get; set;}
+        public String ThirdPartyAddress1{get; set;}
+        public String ThirdPartyAddress2{get; set;}
+        public String ThirdPartyAddress3{get; set;}
+        public String ThirdPartyAddress4{get; set;}
+        public String ThirdPartyName{get; set;}
+        public String ThirdPartyCountry{get; set;}
+        public String BeneficiaryAddress1{get; set;}
+        public String BeneficiaryAddress2{get; set;}
+        public String BeneficiaryAddress3{get; set;}
+        public String BeneficiaryCountry{get; set;}
+        public String BeneficiaryName{get; set;}
+        public String FreeText1{get; set;}
+        public String FreeText2{get; set;}
+        public String PayableLocation{get; set;}
+        public String PaymentBlock{get; set;}
+        public string HeadOfficeAccountNumber{get; set;}
     }
     public class Functions { 
         public String PartnerFunction;

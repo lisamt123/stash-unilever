@@ -2311,22 +2311,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>VPM_BankDetailsProvided__c</fullName>
-        <description>VPM - Make aware whether the Approval process is  trigger due to changes in Bank details</description>
-        <externalId>false</externalId>
-        <formula>IF(
-    VPM_ProvidedBankDetails__c = TRUE,
-    $Label.VPM_ChangeBankDetails,
-    NULL
-)</formula>
-        <label>Bank Details Provided</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_BankDetailsScreen__c</fullName>
         <description>VPM - This field is used to display the title at the top left hand corner of the section.</description>
         <externalId>false</externalId>
@@ -7962,22 +7946,6 @@ FALSE))))))</formula>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_FinanciallySensitiveFieldsProvided__c</fullName>
-        <description>VPM - Make aware whether the Approval process is trigger due to changes in Financially Sensitive   details</description>
-        <externalId>false</externalId>
-        <formula>IF( 
-VPM_ProvidedFinancialSensitive__c = TRUE, 
-$Label.VPM_ChangeFinancialSensitive, 
-NULL 
-)</formula>
-        <label>Financially Sensitive Fields Provided</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_FiscalAddress__c</fullName>
         <description>VPM - This field is used to store the value of Vendor Fiscal Address.</description>
         <externalId>false</externalId>
@@ -9920,6 +9888,17 @@ NULL
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_IsChangedVAT__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - This field is used to store the value of Is changed VAT.</description>
+        <externalId>false</externalId>
+        <label>Is changed VAT</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_IsInApprovalProcess__c</fullName>
         <description>VPM - This field is used to store the value of Is In Approval Process.</description>
         <externalId>false</externalId>
@@ -10041,17 +10020,6 @@ NULL
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>VPM_Is_changed_VAT__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>VPM - This field is used to store the value of Is changed VAT.</description>
-        <externalId>false</externalId>
-        <label>Is changed VAT</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>VPM_IsraelOldNumber__c</fullName>
@@ -16307,6 +16275,19 @@ VPM_Approver10__c = $User.Id))
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_RequestType__c</fullName>
+        <description>VPM - Used to make aware user the Maintain request is trigger in Approval process due to the mention  changes</description>
+        <externalId>false</externalId>
+        <label>Request Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_ReturnsVendor__c</fullName>
         <defaultValue>false</defaultValue>
         <description>VPM - This field is used to store the value of Returns Vendor.</description>
@@ -17257,59 +17238,59 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>E-Mail</fullName>
+                <fullName>FAX_Fax</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Post (letter)</fullName>
+                <fullName>INT_E-Mail</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Pager/SMS</fullName>
+                <fullName>LET_Post (letter)</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Printer</fullName>
+                <fullName>PAG_Pager/SMS</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Remote Function Call</fullName>
+                <fullName>PRT_Printer</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Remote Mail</fullName>
+                <fullName>RFC_Remote Function Call</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Secure Store &amp; Forw.</fullName>
+                <fullName>RML_Remote Mail</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Telephone</fullName>
+                <fullName>SSF_Secure Store &amp; Forw.</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Telex</fullName>
+                <fullName>TEL_Telephone</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Teletex</fullName>
+                <fullName>TLX_Telex</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>URL (Homepage)</fullName>
+                <fullName>TTX_Teletex</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Sales call</fullName>
+                <fullName>URI_URL (Homepage)</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>X.400</fullName>
+                <fullName>VIS_Sales call</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>EDI</fullName>
+                <fullName>X40_X.400</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -42501,11 +42482,7 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_StandardCommMethod__c</picklist>
             <values>
-                <fullName>E-Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>EDI</fullName>
+                <fullName>FAX_Fax</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -42513,51 +42490,55 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pager%2FSMS</fullName>
+                <fullName>INT_E-Mail</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Post %28letter%29</fullName>
+                <fullName>LET_Post %28letter%29</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Printer</fullName>
+                <fullName>PAG_Pager%2FSMS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Remote Function Call</fullName>
+                <fullName>PRT_Printer</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Remote Mail</fullName>
+                <fullName>RFC_Remote Function Call</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sales call</fullName>
+                <fullName>RML_Remote Mail</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Secure Store %26 Forw%2E</fullName>
+                <fullName>SSF_Secure Store %26 Forw%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Telephone</fullName>
+                <fullName>TEL_Telephone</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Teletex</fullName>
+                <fullName>TLX_Telex</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Telex</fullName>
+                <fullName>TTX_Teletex</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>URL %28Homepage%29</fullName>
+                <fullName>URI_URL %28Homepage%29</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X%2E400</fullName>
+                <fullName>VIS_Sales call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X40_X%2E400</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -59633,11 +59614,7 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_StandardCommMethod__c</picklist>
             <values>
-                <fullName>E-Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>EDI</fullName>
+                <fullName>FAX_Fax</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -59645,51 +59622,55 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pager%2FSMS</fullName>
+                <fullName>INT_E-Mail</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Post %28letter%29</fullName>
+                <fullName>LET_Post %28letter%29</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Printer</fullName>
+                <fullName>PAG_Pager%2FSMS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Remote Function Call</fullName>
+                <fullName>PRT_Printer</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Remote Mail</fullName>
+                <fullName>RFC_Remote Function Call</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sales call</fullName>
+                <fullName>RML_Remote Mail</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Secure Store %26 Forw%2E</fullName>
+                <fullName>SSF_Secure Store %26 Forw%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Telephone</fullName>
+                <fullName>TEL_Telephone</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Teletex</fullName>
+                <fullName>TLX_Telex</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Telex</fullName>
+                <fullName>TTX_Teletex</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>URL %28Homepage%29</fullName>
+                <fullName>URI_URL %28Homepage%29</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X%2E400</fullName>
+                <fullName>VIS_Sales call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X40_X%2E400</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -76765,11 +76746,7 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_StandardCommMethod__c</picklist>
             <values>
-                <fullName>E-Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>EDI</fullName>
+                <fullName>FAX_Fax</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -76777,51 +76754,55 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pager%2FSMS</fullName>
+                <fullName>INT_E-Mail</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Post %28letter%29</fullName>
+                <fullName>LET_Post %28letter%29</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Printer</fullName>
+                <fullName>PAG_Pager%2FSMS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Remote Function Call</fullName>
+                <fullName>PRT_Printer</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Remote Mail</fullName>
+                <fullName>RFC_Remote Function Call</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sales call</fullName>
+                <fullName>RML_Remote Mail</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Secure Store %26 Forw%2E</fullName>
+                <fullName>SSF_Secure Store %26 Forw%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Telephone</fullName>
+                <fullName>TEL_Telephone</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Teletex</fullName>
+                <fullName>TLX_Telex</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Telex</fullName>
+                <fullName>TTX_Teletex</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>URL %28Homepage%29</fullName>
+                <fullName>URI_URL %28Homepage%29</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X%2E400</fullName>
+                <fullName>VIS_Sales call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X40_X%2E400</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -93897,11 +93878,7 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_StandardCommMethod__c</picklist>
             <values>
-                <fullName>E-Mail</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>EDI</fullName>
+                <fullName>FAX_Fax</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -93909,51 +93886,55 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pager%2FSMS</fullName>
+                <fullName>INT_E-Mail</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Post %28letter%29</fullName>
+                <fullName>LET_Post %28letter%29</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Printer</fullName>
+                <fullName>PAG_Pager%2FSMS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Remote Function Call</fullName>
+                <fullName>PRT_Printer</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Remote Mail</fullName>
+                <fullName>RFC_Remote Function Call</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sales call</fullName>
+                <fullName>RML_Remote Mail</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Secure Store %26 Forw%2E</fullName>
+                <fullName>SSF_Secure Store %26 Forw%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Telephone</fullName>
+                <fullName>TEL_Telephone</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Teletex</fullName>
+                <fullName>TLX_Telex</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Telex</fullName>
+                <fullName>TTX_Teletex</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>URL %28Homepage%29</fullName>
+                <fullName>URI_URL %28Homepage%29</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X%2E400</fullName>
+                <fullName>VIS_Sales call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X40_X%2E400</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -99075,6 +99056,7 @@ IF(LEN(VPM_VendorPhone__c)==11 ,  NOT(REGEX(VPM_VendorPhone__c, &quot;0[1-9]{1}[
 	var VPMAlertinApproval =&quot;{!JSENCODE($Label.VPM_AlreadySendApprovalMessage)}&quot;;
         var VPMRequestRejectedMessage =&quot;{!JSENCODE($Label.VPM_RequestRejectedAlert)}&quot;;
         var VPMRecordSentToSAPMessage =&quot;{!JSENCODE($Label.VPM_RecordSentToSAPAlert)}&quot;;
+var VPMRequestAbortedMessage =&quot;{!JSENCODE($Label.VPM_RequestAbortedAlert)}&quot;;
 	
 	if ((currentstatus.indexOf(&apos;Rejected&apos;) &gt;= 0 )) 
 	{ 
@@ -99090,6 +99072,10 @@ IF(LEN(VPM_VendorPhone__c)==11 ,  NOT(REGEX(VPM_VendorPhone__c, &quot;0[1-9]{1}[
 	{
 		alert(VPMFLSReview);
 	}	
+else if ((currentstatus.indexOf(&apos;Aborted&apos;) &gt;= 0 )) 
+	{ 
+		alert(VPMRequestAbortedMessage ); 
+	}
 	
 	else if((currentstatus.indexOf(&apos;Pending&apos;) != -1)&amp;&amp; (VPMIsLock == true || VPMIsLock == &quot;1&quot;))
 	{

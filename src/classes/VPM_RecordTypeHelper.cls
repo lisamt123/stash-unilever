@@ -58,6 +58,15 @@ public class VPM_RecordTypeHelper {
     public static final string STATUS_MDM_REV_UNBLOCK_UNDEL  = 'MDM Ops Review - Unblock - Undelete';
     public static final string STATUS_MDM_REV_BLOCK_DEL  = 'MDM Ops Review - Block - Delete';
     
+    public static final string DETAIL_OPTION = 'DetailOption';
+    public static final string UNIUQUEID = 'UniqueId'; 
+    public static final string SHOW_LABEL = 'showLabel';
+    public static final string LABEL_TEXT = 'labelText';
+	public static final string REQUEST_TYPE = 'requestType';  
+    public static final string NOT_LISTED = 'notlisted'; 
+    public static final string SEARCH_VENDOR = 'searchVendor'; 
+    public static final string VENDOR_LIST = 'vendorList'; 
+    
     public static string getRecordTypes(string obj, id vendorReqRecordTypeID) {
         string recordtypeName;
         obj = 'VPM_PurchasingRequests__c';  

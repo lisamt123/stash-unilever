@@ -116,18 +116,20 @@
 
         <apex:pageBlockSection columns="1" rendered="{!showSearchVendor}">
             <apex:outputLabel value="{!$Label.VPM_Vendor_Match_Desc}" style=" font-weight: bolder;font-size: 12px;font-style:italic"></apex:outputLabel>
-        <apex:pageBlockSectionItem helpText="Help text">
+        <apex:pageBlockSectionItem helpText="{!$Label.VPM_VendorNameReqHelpText}">
               
               <apex:outputLabel value="{!$Label.VPM_VendorName}" style="width:10%"/>
               <apex:outputPanel layout="block" styleClass="requiredInput"><apex:outputpanel layout="block" styleClass="requiredBlock"/>
               <apex:inputText value="{!vendorName}" label="{!$Label.VPM_VendorName}"/>
             </apex:outputPanel>  
           </apex:pageBlockSectionItem> 
-
-          <apex:inputText value="{!street1}" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Street1__c.Label}" />
+        <apex:pageBlockSectionItem helpText="{!$Label.VPM_AddressLine1ReqHelpText}">
+            <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Street1__c.Label}"/>
+                <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Street1__c.Label}" value="{!street1}"/>
+            </apex:pageBlockSectionItem>
           <apex:inputText value="{!zipPostcode}" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ZIPPostcode__c.Label}" />
           <apex:inputText value="{!taxCode}" label="{!$Label.VPM_TaxCode}" />
-          <apex:pageBlockSectionItem helpText="Help text">
+          <apex:pageBlockSectionItem helpText="{!$Label.VPM_VendorCountryReqHelpText}">
             <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Country__c.Label}"  /><apex:outputPanel layout="block" styleClass="requiredInput"><apex:outputpanel layout="block" styleClass="requiredBlock"/>
             <apex:selectList value="{!CountryName}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Country__c.Label}" size="1">
             <apex:selectOptions value="{!CountryNameList}"/>
@@ -174,7 +176,7 @@
 
         <apex:pageBlockSection columns="1" id="thePageBlock" rendered="{!sendWebFormScreen}">                
           <apex:outputText Value="{!$Label.VPM_SendWebformRequestInfo}" ></apex:outputText>  
-            <apex:pageBlockSectionItem helpText="Help text">  
+            <apex:pageBlockSectionItem >  
               <apex:outputLabel value="{!$Label.VPM_SendWebformRequestToVendor}" for="options"/>
               <apex:outputPanel styleClass="requiredInput" layout="block">
               <apex:outputPanel styleClass="requiredBlock" layout="block"/> 
@@ -187,7 +189,7 @@
                 </apex:actionRegion>
               </apex:outputPanel>
             </apex:pageBlockSectionItem> 
-            <apex:pageBlockSectionItem helpText="Help Text" rendered="{!isRequiredField}"> 
+            <apex:pageBlockSectionItem rendered="{!isRequiredField}"> 
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_VendorContactDetail__c.Label}" />
                  <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_VendorContactDetail__c}" required="true" rendered="{!isRequiredField}" />  
              </apex:pageBlockSectionItem>
@@ -196,19 +198,19 @@
         
         <apex:pageBlockSection columns="1" rendered="{!bankDetailsScreen}">
            
-                 <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" helpText="Help text">
+                 <apex:pageBlockSectionItem helpText="{!$Label.VPM_BankCountryKeyReqHelpText}">
                      <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankCountryKey__c.Label}"/>
                      <apex:outputPanel layout="block" styleClass="requiredInput">
                      <apex:outputpanel layout="block" styleClass="requiredBlock"/>
                      <apex:inputField value="{!vendorQuery1.VPM_BankCountryKey__c}"/>
                      </apex:outputPanel>
                  </apex:pageBlockSectionItem>    
-              <apex:pageBlockSectionItem helpText="Help Text">
+              <apex:pageBlockSectionItem helpText="{!$Label.VPM_BankKeyReqHelpText}">
                <!--{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BankKey__c.InlineHelpText}-->
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankKey__c.Label}" />
                  <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_BankKey__c}" required="true"/>  
              </apex:pageBlockSectionItem>
-             <apex:pageBlockSectionItem helpText="Help Text"> 
+             <apex:pageBlockSectionItem helpText="{!$Label.VPM_BankAccountNoReqHelpText}"> 
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankAccountNumber__c.Label}" />
                  <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_BankAccountNumber__c}" required="true"/>  
              </apex:pageBlockSectionItem>
@@ -231,14 +233,14 @@
               <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PurchasingOrg__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_PurchasingOrg__c}"/>
               
              
-              <apex:inputcheckbox label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_GRbasedIV__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_GRbasedIV__c}" selected="true"/>   
+              <apex:inputcheckbox label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_GRbasedIV__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_GRbasedIV__c}" />   
               <apex:inputcheckbox label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AutomaticPurchaseOrderGeneration__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AutomaticPurchaseOrderGeneration__c }" /> 
               
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PricingDateControl__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PricingDateControl__c}" />  
               
               
                  <apex:inputField value="{!vendorQuery1.VPM_SRVBasedVendorID__c}"  label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SRVBasedVendorID__c.Label}"/>
-                 <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
+                 <apex:pageBlockSectionItem >
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_OrderCurrency__c.Label}"/>
                  <apex:inputField value="{!VendorQuery1.VPM_OrderCurrency__c}"/>
                  </apex:pageBlockSectionItem>
@@ -260,7 +262,7 @@
           </apex:pageBlockSection> 
        <!--for IAPR-460 -->
        <apex:pageBlockSection title="{!$Label.VPM_Payment_Terms}" rendered="{!paymentTermScreen}">
-                 <apex:pageBlockSectionItem helpText="Help text">             
+                 <apex:pageBlockSectionItem helpText="{!$Label.VPM_PaymentTermsReqHelpText}">             
                     <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}" />    
                          <apex:outputPanel layout="block" styleClass="requiredInput">
                              <apex:outputpanel layout="block" styleClass="requiredBlock"/>                  
@@ -275,11 +277,11 @@
        </apex:pageBlockSection> 
           
           <apex:pageBlockSection columns="1" rendered="{!financialScreen}">
-            <apex:pageBlockSectionItem helpText="Help Text">
+            <apex:pageBlockSectionItem helpText="{!$Label.VPM_ReconciliationAccReqHelpText}">
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ReconciliationAccount__c.Label}" />
                  <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_ReconciliationAccount__c}" required="true"/>  
              </apex:pageBlockSectionItem>
-            <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" rendered="{!if((paymentMethodWebserviceValues <> '' && paymentMethodWebserviceValues <> null),true,false)}">
+            <apex:pageBlockSectionItem rendered="{!if((paymentMethodWebserviceValues <> '' && paymentMethodWebserviceValues <> null),true,false)}">
                 <apex:outputLabel value="{!$Label.VPM_SAPPaymentMethod}"/>
                 <apex:outputText value="{!paymentMethodWebserviceValues}"/> 
                 </apex:pageBlockSectionItem> 
@@ -298,7 +300,7 @@
                  </apex:outputPanel>
               <!--/apex:pageBlockSectionItem-->  
               
-              <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" helpText="Help text" >
+              <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" helpText="{!$Label.VPM_PaymentMethodReqHelpText}" >
                  <apex:outputLabel value="{!$Label.VPM_PaymentMethodChanged}"/>
               <apex:selectList value="{!vendorPaymentMethod}" multiselect="true" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentMethod__c.Label}" size="5">
                   <apex:selectOptions value="{!paymentMethod}"/> 
@@ -314,7 +316,7 @@
               
                  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_CheckDoubleInvoices__c.Label}" value="{!vendorQuery1.VPM_CheckDoubleInvoices__c}"  />
                  
-              <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" rendered="{!isSortKeyRequired}" helpText="Help text">
+              <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" rendered="{!isSortKeyRequired}">
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SortKey__c.Label}"/>
                  <apex:outputPanel layout="block" styleClass="requiredInput">
                  <apex:outputpanel layout="block" styleClass="requiredBlock"/>
@@ -327,7 +329,7 @@
                  <apex:inputField value="{!vendorQuery1.VPM_SortKey__c}" />
                  </apex:pageBlockSectionItem>
               
-              <apex:pageBlockSectionItem labelStyle="width: 300px" dataStyle="width: 200px" rendered="{!isCahsMGtRequired}" helpText="Help text">
+              <apex:pageBlockSectionItem labelStyle="width: 300px" dataStyle="width: 200px" rendered="{!isCahsMGtRequired}">
                  <apex:outputLabel value="{!$Label.VPM_CashManagementGroup}" />
                 <apex:outputPanel layout="block" styleClass="requiredInput">
                     <apex:outputpanel layout="block" styleClass="requiredBlock"/>
@@ -347,7 +349,7 @@
        <!--- Block - Del/ Unblock - Undel  Start ----->   
       <apex:pageBlockSection columns="1" rendered="{!unblockUnDelScreen}">
         <apex:outputText Value="{!$Label.VPM_BlockDeleteUnblockUnDleteInfo}" ></apex:outputText>  
-        <apex:pageBlockSectionItem helpText="Help text">  
+        <apex:pageBlockSectionItem helpText="{!$Label.VPM_UnblockDeleteHelpText}">  
             <apex:outputLabel value="{!$Label.VPM_SelectAction}" for="options"/>
             <apex:outputPanel styleClass="requiredInput" layout="block">
             <apex:outputPanel styleClass="requiredBlock" layout="block"/> 
@@ -362,7 +364,7 @@
           
           <apex:pageBlockSection columns="1" rendered="{!blockDelScreen}">
           <apex:outputText Value="{!$Label.VPM_BlockDeleteUnblockUnDleteInfo}" ></apex:outputText>  
-          <apex:pageBlockSectionItem helpText="Help text">  
+          <apex:pageBlockSectionItem helpText="{!$Label.VPM_BlockDeleteHelpText}">  
               <apex:outputLabel value="{!$Label.VPM_SelectAction}" for="options"/>
               <apex:outputPanel styleClass="requiredInput" layout="block">
                   <apex:outputPanel styleClass="requiredBlock" layout="block"/> 
@@ -377,7 +379,7 @@
                  
           <!--- Vendor Details Start ----->
           <apex:pageBlocksection title="{!$Label.VPM_VendorName_Address}"  rendered="{!generalVendorDetails}">
-           <apex:pageBlockSectionItem labelStyle="width: 300px" dataStyle="width: 200px" helpText="Help text">
+           <apex:pageBlockSectionItem labelStyle="width: 300px" dataStyle="width: 200px" helpText="{!$Label.VPM_VendorNameReqHelpText}">
                   
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorName1__c.Label}"/>
                  <apex:outputPanel layout="block" styleClass="requiredInput">
@@ -396,7 +398,7 @@
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Name4__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Name4__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_HouseNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_HouseNumber__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_HouseNumSupplement__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_HouseNumSupplement__c}"/>
-            <apex:pageBlockSectionItem helpText="Help text">
+            <apex:pageBlockSectionItem helpText="{!$Label.VPM_AddressLine1ReqHelpText}">
             <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Street1__c.Label}"/>
                  <apex:outputPanel layout="block" styleClass="requiredInput">
                  <apex:outputpanel layout="block" styleClass="requiredBlock"/>
@@ -410,13 +412,13 @@
             
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_District__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_District__c}"/>
             <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ZIPPostcode__c.Label}" value="{!zipPostcode}"/>
-            <apex:pageBlockSectionItem helpText="Help Text">
+            <apex:pageBlockSectionItem helpText="{!$Label.VPM_CityReqHelpText}">
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_City__c.Label}" />
-                 <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_City__c}" required="true"/>  
+                 <apex:inputText value="{!VPM_PurchasingRequests__c.VPM_City__c}" required="true"/>  
              </apex:pageBlockSectionItem>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Regions__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Regions__c}" />
             
-           <apex:pageBlockSectionItem helpText="Help Text">
+           <apex:pageBlockSectionItem helpText="{!$Label.VPM_VendorCountryReqHelpText}">
             <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Country__c.Label}"  />
             <apex:outputPanel layout="block" styleClass="requiredInput">
                 <apex:outputpanel layout="block" styleClass="requiredBlock"/>
@@ -460,18 +462,22 @@
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExtensionPhone__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExtensionPhone__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Fax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Fax__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_FaxExtension__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_FaxExtension__c}"/>
-            <apex:selectList value="{!standardCommDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_StandardCommMethod__c.Label}" size="1">
-                  <apex:selectOptions value="{!standardCommOptions}"/>
-              </apex:selectList>
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_StandardCommMethod__c.Label}" value="{!vendorQuery1.VPM_StandardCommMethod__c}"/>
+              
           </apex:pageBlocksection>
           <apex:pageBlocksection title="{!$Label.VPM_Creation_Details}"  rendered="{!generalVendorDetails}"> 
             <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CountryRequestingVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CountryRequestingVendor__c}"/>
             <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorType__c.Label}"  value="{!vendorQuery1.VPM_VendorType__c}"/>  
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Vendor_SubType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Vendor_SubType__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WhatAreYouBuying__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WhatAreYouBuying__c}"/>
-            
-            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AlreadyAvailableSupplierUse__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AlreadyAvailableSupplierUse__c}" rendered="{!NOT(isMaintainRecord)}"/>
-            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Spend__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Spend__c}" required="{!isRequiredSpend}" rendered="{!NOT(isMaintainRecord)}"/>
+            <apex:pageBlockSectionItem rendered="{!NOT(isMaintainRecord)}" helpText="{!$Label.VPM_WhyExistingSupplierReqHelpText}">
+                <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AlreadyAvailableSupplierUse__c.Label}"/>
+                <apex:inputText value="{!VPM_PurchasingRequests__c.VPM_AlreadyAvailableSupplierUse__c}" rendered="{!NOT(isMaintainRecord)}"/>
+            </apex:pageBlockSectionItem> 
+             <apex:pageBlockSectionItem rendered="{!NOT(isMaintainRecord)}" helpText="{!$Label.VPM_AnnualestimatedReqHelpText}">
+                <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Spend__c.Label}"/>
+                <apex:inputText required="{!isRequiredSpend}" rendered="{!NOT(isMaintainRecord)}"/>
+            </apex:pageBlockSectionItem>
             <apex:inputField label="{!$Label.VPM_IsThereInvoiceAlreadyReceivedLabel}" value="{!VPM_PurchasingRequests__c.VPM_IsInvoiceReceived__c}"/>
             <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_GlobalAuthorisationGroup__c.Label}"  value="{!vendorQuery1.VPM_GlobalAuthorisationGroup__c}"/>
             <apex:inputField label="{!$Label.VPM_AccountGroup}" value="{!VPM_PurchasingRequests__c.VPM_AccountGroup__c}"/>
@@ -484,7 +490,6 @@
 
       <apex:pageBlocksection title="{!$Label.VPM_Vendor_Details}" rendered="{!generalVendorDetails}" id="section2">
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OrderingEmailAddress__c.Label}"   value="{!vendorQuery1.VPM_OrderingEmailAddress__c}" required="{!isReqOrderingEmail}"/>            
-            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Authorization__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Authorization__c}" />
             <apex:outputPanel style="display:none;visibility:false;"> 
                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ECC__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_ECC__c}"/></apex:outputpanel>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Title__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Title__c}"  />
@@ -513,7 +518,7 @@
       <apex:outputText value="{!callCollapsefunc}" escape="false"></apex:outputText>
       <apex:pageBlocksection id="section1Int" collapsible="true" title="{!$Label.VPM_International_Version}"  rendered="{!AND(generalVendorDetails,isInternationalVersionRendered)}">
 
-      <apex:pageBlockSectionItem helpText="Help text">             
+      <apex:pageBlockSectionItem >             
           <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_InternationalVersion__c.Label}" />    
           <apex:selectList value="{!vendorIntVersion}"  multiselect="false" size="1">
                 <apex:selectOptions value="{!internationalVersion}"/>                            
@@ -637,7 +642,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionTo__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionRate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionRate__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorSubjectToWithholdingTax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorSubjectToWithholdingTax__c}"/> 
+              
           </apex:pageBlockSection> 
           
           <apex:pageBlockSection columns="2" title="{!$Label.VPM_Other}" rendered="{!regionalSpecificScreenSirius}">
@@ -650,7 +655,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AddressForm__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AddressForm__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DepartmentNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DepartmentNumber__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PartnerNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PartnerNumber__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PurchaseOrderText__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PurchaseOrderText__c}"/>
+              
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DataLine__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DataLine__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TeleBox__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TeleBox__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SalesPurchTax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SalesPurchTax__c}"/>
@@ -673,8 +678,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExternalMFG__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExternalMFG__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxNumAtResponsibleTaxAuthority__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TaxNumAtResponsibleTaxAuthority__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_EqualisationTax__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_EqualisationTax__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OtherCommunication__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OtherCommunication__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Description__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Description__c}"/>
+              
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CheckDigit__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CheckDigit__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IntLocationNumber1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IntLocationNumber1__c}"/>            
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IntLocationNumber2__c.Label}"   value="{!VPM_PurchasingRequests__c.VPM_IntLocationNumber2__c}"/>    
@@ -688,7 +692,7 @@
           <!-- U2K2 RegionSpecific ---->    
           
           <apex:pageBlockSection title="{!$Label.VPM_Company_Code_Details}" rendered="{!regionalSpecificScreenU2K2}">
-              <apex:pageBlockSectionItem helpText="Help text">             
+              <apex:pageBlockSectionItem helpText="{!$Label.VPM_TermsOfPaymentReqHelpText}">             
                     <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TermsOfPayment__c.Label}" />    
                          <apex:outputPanel layout="block" styleClass="requiredInput">
                              <apex:outputpanel layout="block" styleClass="requiredBlock"/>                  
@@ -720,16 +724,16 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ClerksFax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ClerksFax__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ClerkAtVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ClerkAtVendor__c}" />
               
-              <apex:pageBlockSectionItem helpText="Help Text">
+              <apex:pageBlockSectionItem >
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ToleranceGroup__c.Label}" />
                  <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_ToleranceGroup__c}" required="true"/>  
              </apex:pageBlockSectionItem>
               
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_HouseBank__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_HouseBank__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountClerkTelephoneNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountClerkTelephoneNumber__c}" />
-              <apex:selectList value="{!standardCommDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_StandardCommMethod__c.Label}" size="1">
+              <!--apex:selectList value="{!standardCommDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_StandardCommMethod__c.Label}" size="1">
                   <apex:selectOptions value="{!standardCommOptions}"/>
-              </apex:selectList>
+              </apex:selectList-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingClerk__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountingClerk__c}" />
               <apex:selectList value="{!vendorAccountStatement}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountStatement__c.Label}" size="1">
                   <apex:selectOptions value="{!accountStatement}"/>
@@ -737,7 +741,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionNumber__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndividualPayment__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndividualPayment__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountMemo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountMemo__c}" />
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_LanguageKeyCOCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_LanguageKeyCOCode__c}" />
+              
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PreviousAccountNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PreviousAccountNumber__c}" />
               
           </apex:pageBlockSection>
@@ -765,7 +769,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionTo__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionRate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionRate__c}" />
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorSubjectToWithholdingTax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorSubjectToWithholdingTax__c}" />
+              
           </apex:pageBlockSection>
           
           <apex:pageBlockSection title="{!$Label.VPM_Other}" rendered="{!regionalSpecificScreenU2K2}">
@@ -787,17 +791,17 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndonesiaOldVendorNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndonesiaOldVendorNumber__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_NPIVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_NPIVendor__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThaiOldVendorNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThaiOldVendorNumber__c}" />
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingNote__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountingNote__c}" />
               
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PurchaseOrderText__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PurchaseOrderText__c}" />
+              
+            
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TextToInput__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TextToInput__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PartnerName__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PartnerName__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CorporateGrp__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CorporateGrp__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CreditInfoNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CreditInfoNumber__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExternalMFG__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExternalMFG__c}" />
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OtherCommunication__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OtherCommunication__c}" />
+             
               
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Description__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Description__c}" />
+              
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CheckDigit__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CheckDigit__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IntLocationNumber1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IntLocationNumber1__c}"/>            
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IntLocationNumber2__c.Label}"   value="{!VPM_PurchasingRequests__c.VPM_IntLocationNumber2__c}"/>    
@@ -814,15 +818,16 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AdoptScanDate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AdoptScanDate__c}"  />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DunnProcedure__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DunnProcedure__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PermittedPayee__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PermittedPayee__c}"/>                 
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Authorization__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Authorization__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ClerksInternet__c.Label}" value="{!vendorQuery1.VPM_ClerksInternet__c}"  />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ClerksFax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ClerksFax__c}"  />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ClerkAtVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ClerkAtVendor__c}"  />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ToleranceGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ToleranceGroup__c}"  />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_HouseBank__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_HouseBank__c}"  />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountClerkTelephoneNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountClerkTelephoneNumber__c}"  />
-              <apex:selectList value="{!standardCommDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_StandardCommMethod__c.Label}" size="1">
+              <!--apex:selectList value="{!standardCommDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_StandardCommMethod__c.Label}" size="1">
                   <apex:selectOptions value="{!standardCommOptions}"/>
-              </apex:selectList>
+              </apex:selectList-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingClerk__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountingClerk__c}"/>
               <apex:selectList value="{!vendorAccountStatement}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountStatement__c.Label}" size="1">
                   <apex:selectOptions value="{!accountStatement}"/>
@@ -852,9 +857,7 @@
               <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReturnsVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReturnsVendor__c}"/-->
                <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SalesPerson__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SalesPerson__c}"/>
           </apex:pageBlocksection>
-          <apex:pageBlocksection title="{!$Label.VPM_Withholding_Tax}" rendered="{!regionalSpecificScreenCordillera}"> 
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorSubjectToWithholdingTax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorSubjectToWithholdingTax__c}"/>
-          </apex:pageBlocksection>
+
           <apex:pageBlocksection title="{!$Label.VPM_Other}" rendered="{!regionalSpecificScreenCordillera}">
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ActualQMSystem__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ActualQMSystem__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_QMSystemTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_QMSystemTo__c}"/>
@@ -871,7 +874,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CreditInfoNumber__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_CreditInfoNumber__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExternalMFG__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_ExternalMFG__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxNumAtResponsibleTaxAuthority__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_TaxNumAtResponsibleTaxAuthority__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OtherCommunication__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_OtherCommunication__c}"/>
+             
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CheckDigit__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_CheckDigit__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IntLocationNumber1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IntLocationNumber1__c}"/>            
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IntLocationNumber2__c.Label}"   value="{!VPM_PurchasingRequests__c.VPM_IntLocationNumber2__c}"/>                  
@@ -914,9 +917,9 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ToleranceGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ToleranceGroup__c}"  />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_HouseBank__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_HouseBank__c}"  />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountClerkTelephoneNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountClerkTelephoneNumber__c}"  />
-              <apex:selectList value="{!standardCommDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_StandardCommMethod__c.Label}" size="1">
+              <!--apex:selectList value="{!standardCommDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_StandardCommMethod__c.Label}" size="1">
                       <apex:selectOptions value="{!standardCommOptions}"/>
-                  </apex:selectList>
+                  </apex:selectList-->
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingClerk__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountingClerk__c}"  />
               <apex:selectList value="{!shippingConditionsDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ShippingConditions__c.Label}" size="1">
                 <apex:selectOptions value="{!shippingConditionsOptions}"/>
@@ -954,7 +957,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionTo__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionRate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionRate__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorSubjectToWithholdingTax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorSubjectToWithholdingTax__c}"/>
+              
           </apex:pageBlocksection>
           <apex:pageBlocksection title="{!$Label.VPM_Other}" rendered="{!regionalSpecificScreenFusion}">
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_NODEL__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_NODEL__c}"/>
@@ -1022,7 +1025,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CreditInfoNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CreditInfoNumber__c}" /> 
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExternalMFG__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExternalMFG__c}" /> 
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxNumAtResponsibleTaxAuthority__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TaxNumAtResponsibleTaxAuthority__c}" /> 
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OtherCommunication__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OtherCommunication__c}" /> 
+              
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CheckDigit__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CheckDigit__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IntLocationNumber1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IntLocationNumber1__c}"/>            
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IntLocationNumber2__c.Label}"   value="{!VPM_PurchasingRequests__c.VPM_IntLocationNumber2__c}"/>                   
@@ -1034,7 +1037,7 @@
           
           <!----  Golden data 2 Screen -Start ---->
             <apex:pageBlockSection columns="1" rendered="{!goldendata2Screen}">
-                <apex:pageBlockSectionItem helpText="Help Text">
+                <apex:pageBlockSectionItem >
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_Commodity__c.Label}" />
                  <apex:inputField value="{!vendorQuery1.VPM_Commodity__c}" required="true"/>  
              </apex:pageBlockSectionItem>          

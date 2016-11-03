@@ -9,14 +9,9 @@
     <script>
 
       $(document).ready(function() {
-      debugger;
-         
          $('[id*="saveButton"],[id*="cancelButton"]').hide();
-        // $('.bPageBlock').css({'border-top':'1px solid white','background-color':'#fff','border-left-color':'#fff','border-right-color':'#fff'});
-       //  localStorage.getItem("msg") ? $("#resultMsg").text(localStorage.getItem("msg")) : '';
-         //localStorage.removeItem("msg");
          
-          $('[id*="saveButton"],[id*="cancelButton"],[id*="btnIamWorking"]').on('click',function() {
+         $('[id*="saveButton"],[id*="cancelButton"],[id*="btnIamWorking"]').on('click',function() {
             $('input[type="text"],textarea').blur();
             $('[id*="saveButton"],[id*="cancelButton"]').hide();         
          });
@@ -31,43 +26,33 @@
           });
      });
 
-        function func()
-{
-  alert('Only relevant for Manual Blocks/Unblocks/Deletes/Undeletes'); 
-  }
-        function func1()
-  {
-       
- 
-  }
-  function openAdvanceform()
-  {
-  debugger;
-  window.location = 'apex/VPM_AdvancedForm?id={!VPM_PurchasingRequests__c.Id}'; 
-  var localhost = document.domain;
-  window.top.location='https://'+localhost+'/apex/VPM_AdvancedForm_V1?id={!VPM_PurchasingRequests__c.Id}';
-  }
-   function PageReload()
-  {
-  debugger;
-  var localhost = document.domain;
-  window.top.location='https://'+localhost+'/{!VPM_PurchasingRequests__c.id}';
-  return false;
-  }
+      function func()
+      {
+          alert('Only relevant for Manual Blocks/Unblocks/Deletes/Undeletes'); 
+      }
+
+      function openAdvanceform()
+      {
+          window.location = 'apex/VPM_AdvancedForm?id={!VPM_PurchasingRequests__c.Id}'; 
+          var localhost = document.domain;
+          window.top.location='https://'+localhost+'/apex/VPM_AdvancedForm_V1?id={!VPM_PurchasingRequests__c.Id}';
+      }
+      function PageReload()
+      {
+          var localhost = document.domain;
+          window.top.location='https://'+localhost+'/{!VPM_PurchasingRequests__c.id}';
+          return false;
+      }
   
-  function redirectToListView()
-  {
-  debugger;
-  var localhost = document.domain;
-  var id='{!VPM_PurchasingRequests__c.id}';
-  window.top.location='https://'+localhost+'/apex/VPM_VendorRequestsHome';
-  return false;
-  }
-  
-  
+      function redirectToListView()
+      {
+          var localhost = document.domain;
+          var id='{!VPM_PurchasingRequests__c.id}';
+          window.top.location='https://'+localhost+'/apex/VPM_VendorRequestsHome';
+          return false;
+      }
   
     function reworkBtnClick(){
-        debugger;
         var purId="{!VPM_PurchasingRequests__c.Id}";
         var currentstatus="{!VPM_PurchasingRequests__c.VPM_Status__c}"; 
         var LastGroup = "{!VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c}"; 
@@ -75,7 +60,6 @@
         var ProcurementApproveRequired = "{!VPM_PurchasingRequests__c.VPM_ProcurementApprovalRequired__c}"; 
         var CreatedBy="{!VPM_PurchasingRequests__c.CreatedById}"; 
         var rework ="{!VPM_PurchasingRequests__c.VPM_Rework__c}";
-        debugger;
             if ((currentstatus.indexOf('Draft') >= 0 )||(rework=='Yes') || (currentstatus.indexOf('MDM Ops') >= 0 ))    
             { 
                 if(rework=='Yes') 
@@ -107,16 +91,7 @@
             callSendToSAPAPI();
             return false;
         }
-               function Alert()
-        {
-            alert('Hi');
-            //var purCountry="{!VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitted__c}";
-            //if(purCountry=="UK")
-            //  {
-            // }
-            //callSendToSAPAPI();
-            //return false;
-        }
+        
         function openProcureAtAGlance(){
             var localhost = document.domain; 
             window.top.location='https://'+localhost+'/apex/VPM_ProcurementAtAGlance?id={!VPM_PurchasingRequests__c.Id}';
@@ -128,11 +103,10 @@
       <div align="center">
             
             <apex:commandButton action="{!saveFromUser}" value="Save" id="saveButton"/>
-           
             <apex:commandButton action="{!cancelFromUser}" value="Cancel" id="cancelButton"/>
             <apex:commandButton value="{!$Label.VPM_ViewAllFields}" rendered="{!isProcure}" onclick="openProcureAtAGlance()"/>
-             <script>
-            $('[id*="saveButton"],[id*="cancelButton"]').hide();
+            <script>
+                $('[id*="saveButton"],[id*="cancelButton"]').hide();
             </script>
             <apex:outputText value="{!callJavaScriptAlert}" escape="false"></apex:outputText>
           
@@ -141,13 +115,10 @@
             </apex:actionRegion>
            
             <apex:commandButton value="{!$Label.VPM_Send_to_SAP}" rendered="{!RenderSAPBtn}" disabled="{!NOT(enableSendToSAPBtn)}" action="{!callSendToSAPAPI}"/>
-            <apex:commandButton value="{!$Label.VPM_Manually_Mark_as_complete}" rendered="{!showManuallyMarkAsComplete}" disabled="{!ManuallyMarkasCompletebtn}" action="{!ManuallyMarkAsCompleteAction}" />
-          
+            <apex:commandButton value="{!$Label.VPM_Manually_Mark_as_complete}" rendered="{!showManuallyMarkAsComplete}" disabled="{!ManuallyMarkasCompletebtn}" action="{!ManuallyMarkAsCompleteAction}" />          
             <apex:commandButton value="{!$Label.VPM_Rework}"  disabled="{!NOT(ReworkBtn)}" onclick="reworkBtnClick();return false;"/>
-          
-          <apex:commandButton value="{!$Label.VPM_Submit_Request}"  onclick="return confirm('{!AlertMsg}');"   action="{!SubmitRequestAction}" rendered="{!(isDisplay)}"  disabled="{!NOT(SubmitRequestBtn)}"/>   
-               <apex:commandButton value="{!$Label.VPM_Submit_Request}"  action="{!SubmitRequestAction}" rendered="{!NOT(isDisplay)}" disabled="{!NOT(SubmitRequestBtn)}"/>               
-               
+            <apex:commandButton value="{!$Label.VPM_Submit_Request}"  onclick="return confirm('{!AlertMsg}');"   action="{!SubmitRequestAction}" rendered="{!(isDisplay)}"  disabled="{!NOT(SubmitRequestBtn)}"/>   
+            <apex:commandButton value="{!$Label.VPM_Submit_Request}"  action="{!SubmitRequestAction}" rendered="{!NOT(isDisplay)}" disabled="{!NOT(SubmitRequestBtn)}"/>                              
       </div>
       <apex:pagemessages id="pageMessages1"/><br/> 
       <div id='resultMsg'></div>
@@ -201,7 +172,6 @@
                <apex:outputField label="Vendor Code" value="{!VPM_PurchasingRequests__c.VPM_VendorCodeLookup__r.mdm_Code__c}"/>
            </apex:pageBlockSection>
            <apex:pageBlockSection rendered="{!isRussian}" title="Russian at a Glance">
-                <!--strong>No additional fields for Russian Tax</strong--><!---->
                 <apex:outputField label="Vendor Code" value="{!VPM_PurchasingRequests__c.VPM_VendorCodeLookup__r.mdm_Code__c}"/>
                  <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_TaxNumber1__c}">
                      <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
@@ -222,9 +192,6 @@
                     <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton"/>
                 </apex:outputField> 
                  <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" id="RussianPT">
-                      <!--apex:outputPanel layout="block" styleClass="requiredInput">
-                             <apex:outputpanel layout="block" styleClass="requiredBlock"/> 
-                      <!--/apex:outputPanel-->   
                      <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
                 </apex:outputField>
                 <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_ReconciliationAccount__c}">
@@ -241,13 +208,8 @@
               </apex:outputField>
            </apex:pageBlockSection>          
             <apex:actionFunction name="ReworkAction" action="{!ReworkAction}" reRender="out" oncomplete="redirectToListView()"/>
-             <!--apex:actionFunction name="callSendToSAPAPI" action="{!callSendToSAPAPI}" reRender="out" oncomplete="PageReload()"/-->
             
         <apex:pageBlockSection rendered="{!isBR}" id="BR" title="{!$Label.VPM_BusinessRequestorAtAGlance}">
-            
-            <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_AnnualEstimatedSpend__c}">
-                <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
-            <!--/apex:outputField-->           
             
             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_OrderingEmailAddress__c}">
                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
@@ -259,22 +221,11 @@
         </apex:pageBlockSection>
          <apex:pageBlockSection rendered="{!isFLS}" id="FLS" title="FLS at a Glance">
             <apex:outputField label="Vendor Code" value="{!VPM_PurchasingRequests__c.VPM_VendorCodeLookup__r.mdm_Code__c}">
-                 <!--apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" /-->
               </apex:outputField>            
          </apex:pageBlockSection>
           <apex:pageBlockSection rendered="{!isFinance}" id="Finance" title="{!$Label.VPM_FinanceAtAGlance}">
              <apex:outputField label="Vendor Code" value="{!VPM_PurchasingRequests__c.VPM_VendorCodeLookup__r.mdm_Code__c}">
-                 <!--apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" /-->
               </apex:outputField>
-               <!--apex:pageBlockSectionItem >             
-                <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}" id="paymentTermsField"/>                     
-                     <apex:outputPanel layout="block" styleClass="requiredInput">
-                         <apex:outputpanel layout="block" styleClass="requiredBlock"/>          
-                        <apex:selectList value="{!vendorDefaultPaymentTerm}"  multiselect="false" size="1">
-                            <apex:selectOptions value="{!paymentTerms}"/>                            
-                        </apex:selectList>  
-                      </apex:outputPanel>
-              <!--/apex:pageBlockSectionItem-->
               <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_ECC__c}" id="financeECC">             
                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton"/>
               </apex:outputField> 
@@ -351,22 +302,13 @@
               <apex:outputField id="exceptionType" value="{!VPM_PurchasingRequests__c.VPM_ExceptionType__c}" rendered="{!!isGBCountry}"/>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_VendorClassification__c}"/>
             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_ECC__c}" id="procureECC"/>
-              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" id="ProcurePT"/>
-              
-              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTermsIfNoneSelected__c}"/>
-              
-              <!--apex:outputText value="{!VPM_PurchasingRequests__c.VPM_ECC__c}"  />
-              <apex:outputField id="tohideECCField" value="{!VPM_PurchasingRequests__c.VPM_ECC__c}" style="display:none">
-                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
-                 <apex:inlineEditSupport disabled="false"/>
-              <!--/apex:outputField-->  
-               
+             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" id="ProcurePT"/>
+             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTermsIfNoneSelected__c}"/>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_Minority_Diversity_vendor__c}" rendered="{!isCordillera}"/>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_E_Invoicing_Agreed__c}"/>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_Bypass__c}"/>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_AdoptScanDate__c}"/>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_MinorityIndicators__c}"/>
-              
          </apex:pageBlockSection>
            <apex:pageBlockSection rendered="{!isMDM}" id="MDM" title="{!$Label.VPM_MDMOpsAtAGlance}">
              <apex:outputField label="Vendor Code" value="{!VPM_PurchasingRequests__c.VPM_VendorCodeLookup__r.mdm_Code__c}"/>
@@ -376,9 +318,6 @@
               <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_ECC__c}" id="MDMECC">             
                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton"/>
             </apex:outputField> 
-             <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}">
-                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
-              <!--/apex:outputField-->
                <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" id="MDMPT">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
             </apex:outputField>
@@ -447,11 +386,9 @@
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_Regions__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
-              <!--apex:actionRegion -->
                  <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_IsVendorSME__c}" rendered="{!isGBCountry}">
                      <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
                   </apex:outputField>
-              <!--/apex:actionRegion-->
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_IsVendorException__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
@@ -474,15 +411,11 @@
          <br/>
          <div align="center">
              <apex:commandButton value="{!$Label.VPM_Send_to_SAP}" rendered="{!RenderSAPBtn}" disabled="{!NOT(enableSendToSAPBtn)}" action="{!callSendToSAPAPI}"/>
-            <apex:commandButton value="{!$Label.VPM_Manually_Mark_as_complete}" rendered="{!showManuallyMarkAsComplete}" disabled="{!ManuallyMarkasCompletebtn}" action="{!ManuallyMarkAsCompleteAction}" />
-            
+            <apex:commandButton value="{!$Label.VPM_Manually_Mark_as_complete}" rendered="{!showManuallyMarkAsComplete}" disabled="{!ManuallyMarkasCompletebtn}" action="{!ManuallyMarkAsCompleteAction}" />            
             <apex:commandButton value="{!$Label.VPM_Rework}"  disabled="{!NOT(ReworkBtn)}" onclick="reworkBtnClick();return false;"/> 
             <apex:commandButton value="{!$Label.VPM_Submit_Request}"  onclick="return confirm('{!AlertMsg}');"   action="{!SubmitRequestAction}" rendered="{!(isDisplay)}"  disabled="{!NOT(SubmitRequestBtn)}"/>   
             <apex:commandButton value="{!$Label.VPM_Submit_Request}"  action="{!SubmitRequestAction}" rendered="{!NOT(isDisplay)}" disabled="{!NOT(SubmitRequestBtn)}"/>               
-          </div>
-            <!--apex:actionFunction name="ReworkAction" action="{!ReworkAction}" reRender="out" /-->
-         
-                
-            </apex:form>
+          </div>    
+      </apex:form>
     </apex:pageBlock> 
  </apex:page>

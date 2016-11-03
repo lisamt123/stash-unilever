@@ -10,6 +10,20 @@ global class VPM_MaintainGlobalVendorServiceHelper {
         public String ID {get;set;}
         
     }
+   /* global class SAP_Messages
+    {
+        public String Message;
+        public String MessageV1;
+        public String MessageNo ;
+        public String Field;
+        public String Type;
+        public String ID ;
+        
+    }*/
+    global class errorMsg
+    {
+      List<errorMsgWrapper> SAP_Messages;
+    }
     global class MaintainGlobalVendorResponse { 
         public String status {get; set;}
         public String bpmID {get; set;}
@@ -156,9 +170,10 @@ global class VPM_MaintainGlobalVendorServiceHelper {
         String reqBodyJson, requestStatus,responseString ='' ;
         MaintainGlobalVendorResponse maintainVenResp;
         list<errorMsgWrapper> errorList;
+        errorMsg errorList111 ;
         //VPM_MaintainVendorFetchFieldDetails clas = new VPM_MaintainVendorFetchFieldDetails();
         //reqBodyJson = clas.VPM_ConvertMaintainVendorFieldDetailsToJSON(vendorId);
-        //VPM_MaintainVendorFetchFieldMap maintainService = new VPM_MaintainVendorFetchFieldMap();
+        VPM_MaintainVendorFetchFieldMap maintainService = new VPM_MaintainVendorFetchFieldMap();
         VPM_ECCMaintainExtendHelper ECCManintainService =new VPM_ECCMaintainExtendHelper();
         //reqBodyJson = maintainService.VPM_ConvertMaintainVendorFieldDetailsToJSON(vendorId);
         reqBodyJson  = ECCManintainService.VPM_ConvertMaintainVendorFieldDetailsToJSON(vendorId);
@@ -191,12 +206,12 @@ global class VPM_MaintainGlobalVendorServiceHelper {
            
             errorList= (List<errorMsgWrapper>) System.JSON.deserialize(JSON , List<errorMsgWrapper>.class);
             
-           
-            for(errorMsgWrapper error : errorList)
+            errorList111 = (errorMsg) System.JSON.deserialize(res.getBody(), errorMsg.class);
+            for(errorMsgWrapper error : errorList111.SAP_Messages)
             {
                 responseString = responseString+error.Message+';';
                 }
-            VPM_HttpUtil.updateVendorECCStatus(vendorId,VPM_HttpUtil.successStatus,responseString,VPM_HttpUtil.successStatusECC);    
+            VPM_HttpUtil.updateVendorECCStatus(vendorId,VPM_HttpUtil.successStatusReqCompleted ,responseString,VPM_HttpUtil.successStatusECC);    
             /*VendorReq.VPM_ECC_InsertUpdateStatus__c = 'ECC Insert / Update Succeeded';
             VendorReq.VPM_ECC_InsertUpdateStatusMessage__c = responseString;
             VendorReq.VPM_fieldUpdated__c =',';
@@ -210,13 +225,19 @@ global class VPM_MaintainGlobalVendorServiceHelper {
            
             //responseString = 'Server Error. Please try after some time.';
             //responseString = maintainVenResp.message;
-            string JSON =res.getBody().right( res.getBody().length()-20).left(res.getBody().right( res.getBody().length()-20).length()-1);
+            //String JsonAgain = string.escapeSingleQuotes(res.getBody());
+            //system.debug('deep='+JsonAgain.substringBetween('{'));
+            errorList111 = (errorMsg) System.JSON.deserialize(res.getBody(), errorMsg.class);
+            system.debug('Error List 11= '+errorList111.SAP_Messages);
+            string JSON =string.escapeSingleQuotes(res.getBody().right( res.getBody().length()-20).left(res.getBody().right( res.getBody().length()-20).length()-1));
             
-           
-            errorList= (List<errorMsgWrapper>) System.JSON.deserialize(JSON , List<errorMsgWrapper>.class);
-            system.debug('Error List '+errorList);
-            system.debug('errorList List '+errorList);
-            for(errorMsgWrapper error : errorList)
+           system.debug('Error List '+JSON);
+           // VPM_HttpUtil.updateVendorECCStatus(vendorId,VPM_HttpUtil.ECCfailStatus,'Test Mesa',VPM_HttpUtil.failStatusECC);
+          //JSON ='[{"'+JSON;
+           // errorList= (List<errorMsgWrapper>) System.JSON.deserialize(JSON , List<errorMsgWrapper>.class);
+            //system.debug('Error List '+errorList);
+          //  system.debug('errorList List '+errorList);
+            for(errorMsgWrapper error : errorList111.SAP_Messages)
             {
                 responseString = responseString+error.Message+';';
                 }

@@ -18,6 +18,7 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 2.0 -    Samrin      29 June 2016      VPM - Used to set the flag based on the fields  which will help to triggr the approval process.
 3.0 -    Epsita                        IAPR- 638 - Spend should not be mandatory for Non-Ariba Commodities
 4.0-     Vaishali    5 Oct 2016        IAPR-1475 - Logic for Global and Regional golden data Page
+5.0      Samrin      2 Nov 2016	       IAVMD-1857 - Changes on maintain scenario are not visible to approver
 ****************************************************************************/
 
 
@@ -113,6 +114,7 @@ public class VPM_GoldenDataController2 {
     public string GlobalAuthorisationGroup {get;set;}
     public boolean Errormsgblock {get;set;}
     Public boolean GoldenDatablock{get;set;}
+    string RecordTypeApprovalChanges{get;set;} 	
     
     public  list<VPM_CommodityApprover__c> lstCommodityApprover {get;set;}
     public VPM_ECCVendorSearchServiceOutput op;
@@ -171,13 +173,13 @@ public class VPM_GoldenDataController2 {
                        VPM_BankKey__c,VPM_BankAccountNumber__c,VPM_AccountHolderName__c,VPM_PurchasingOrg__c,VPM_PurchasingOrg__r.Name,
                        VPM_Commodity__r.VPM_VendorType__c,VPM_Commodity__r.VPM_AuthorisationGroup__c, VPM_CompanyCode__r.VPM_CountryCode__c, VPM_CompanyCode__r.VPM_Country__c,
                        VPM_ReferenceSpecificationsBankDetail__c,VPM_WebformSentToVendor__c,VPM_ShowWarning__c,VPM_VendorWebformSubmitted__c,VPM_BankControlKey__c,
-                       VPM_IBAN__c,VPM_CollectionAuthorization__c,VPM_Commodity__r.VPM_CommodityCode__c,
+                       VPM_IBAN__c,VPM_CollectionAuthorization__c,VPM_Commodity__r.VPM_CommodityCode__c,VPM_VendorCode__c,
                        VPM_PartnerBankType__c,VPM_BankName__c,VPM_SwiftKey__c,VPM_Commodity__r.Name,VPM_AccountStatement__c,
                        VPM_ReconciliationAccount__c,VPM_PaymentMethod__c,VPM_VendorName1__c,VPM_SearchTerm_1__c,
                        VPM_GRbasedIV__c,VPM_AutomaticPurchaseOrderGeneration__c,VPM_AlreadyAvailableSupplierUse__c,
                        VPM_PaymentBlock__c,VPM_DeletionBlockFlag__c,VPM_AccountGroup__c,// 20 Oct VPM_TaxJurisdictionCode__c,
                        VPM_GlobalAuthorisationGroup__c,RecordType.DeveloperName,VPM_CountryRequestingVendor__c,
-                       VPM_Commodity__r.VPM_CommodityFamily__c,VPM_Is_changed_VAT__c,VPM_Company_Code_Value__c,
+                       VPM_Commodity__r.VPM_CommodityFamily__c,VPM_IsChangedVAT__c,VPM_Company_Code_Value__c,
                        VPM_CashManagementGroup__c, VPM_PurchasingOrganisation__c,VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,
                        VPM_VendorCodeLookup__r.mdm_vCodeFusion__c,VPM_VendorCodeLookup__r.mdm_vCodeSirius__c,VPM_PaymentMethodWeb__c,
                        VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c,VPM_Spend__c,VPM_Commodity__r.VPM_CommodityClass__c,
@@ -303,7 +305,7 @@ public class VPM_GoldenDataController2 {
         AccountStatement = getRegionSpecificCustomSettingvalues(entity.VPM_ECC__c, ACCOUNT_STAT, vendorAccountStatement);
         industryOptions = getRegionSpecificCustomSettingvalues(entity.VPM_ECC__c,INDUSTRY,industryOptionsDefValue);
         
-        if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA){        
+        /*if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA){        
             vendorCode =purchReqVar.VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c;
         }else if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_FUSION){
             
@@ -317,7 +319,8 @@ public class VPM_GoldenDataController2 {
             
             vendorCode =purchReqVar.VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c;
             
-        }
+        }*/
+        vendorCode = purchReqVar.VPM_VendorCode__c;
         system.debug('@@ vendorCode'+vendorCode);
         
         if(purchReqVar.VPM_Incoterms1__c <> '' && purchReqVar.VPM_Incoterms1__c <> null)
@@ -593,7 +596,7 @@ public class VPM_GoldenDataController2 {
                  system.debug('@@purchReqVar.VPM_PaymentMethod__c' + purchReqVar.VPM_PaymentMethod__c);
                  myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_PaymentMethodPageMessage);            
             }
-           	if(string.isNotBlank(vendorPaymentMethod) && vendorPaymentMethod <> '[]') {
+             if(string.isNotBlank(vendorPaymentMethod) && vendorPaymentMethod <> '[]') {
                 vendorPaymentMethod = vendorPaymentMethod.removeStart('['); 
                 vendorPaymentMethod = vendorPaymentMethod.removeEnd(']');
                 List<string> vendorPaymentMethodList  = vendorPaymentMethod.split(',');
@@ -914,28 +917,32 @@ public void approvalCallMethod()
                                 VPM_BankKey__c,VPM_BankAccountNumber__c,VPM_AccountHolderName__c,
                                 VPM_ReferenceSpecificationsBankDetail__c,VPM_BankControlKey__c,
                                 VPM_IBAN__c,VPM_CollectionAuthorization__c,VPM_Commodity__r.VPM_CommodityCode__c,
-                                VPM_BankName__c,VPM_SwiftKey__c,VPM_PartnerBankType__c,
+                                VPM_BankName__c,VPM_SwiftKey__c,VPM_PartnerBankType__c,VPM_RequestType__c,
                                 RecordType.DeveloperName,VPM_CountryRequestingVendor__c,
                                 VPM_Company_Code_Value__c,VPM_VendorBlockUnblockDelete__c,VPM_BankDataValidationRequired__c,
-                                VPM_Commodity__r.VPM_CommodityClass__c,VPM_VATRegistrationNumber__c ,VPM_Is_changed_VAT__c
+                                VPM_Commodity__r.VPM_CommodityClass__c,VPM_VATRegistrationNumber__c ,VPM_IsChangedVAT__c
                                 FROM VPM_PurchasingRequests__c WHERE Id =: entity.id];                       
         System.debug('@@pr ' + pr ); 
         System.debug('@@op ' + op ); 
         // Start : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
-        string finalStringValue =pr.VPM_PaymentMethod__c== null?'': pr.VPM_PaymentMethod__c;
-        string sText= finalStringValue.replaceAll( '\\s+', '');
-                
-        string payMeth = sText.remove('['); 
-        string payMeth1 = payMeth.remove(']'); 
-              
-        List<string> finalStringValueList = payMeth1.split(',');
-        finalStringValueList.sort(); 
-             
-        string paymentMeth=''; 
-        for(String str:finalStringValueList) 
-             paymentMeth += VPM_HttpUtil.valueBeforeUnderscore(str);
-
-        NewPaymentMethod = paymentMeth.remove(' '); 
+        
+        string finalStringValue = pr.VPM_PaymentMethod__c== null?'': pr.VPM_PaymentMethod__c;
+        if(finalStringValue.contains('[')) {
+            string sText = finalStringValue.replaceAll( '\\s+', '');                
+            string payMeth = sText.remove('['); 
+            string payMeth1 = payMeth.remove(']');
+            List<string> finalStringValueList = payMeth1.split(',');
+            finalStringValueList.sort();              
+            string paymentMeth=''; 
+            for(String str:finalStringValueList) {
+                 paymentMeth += VPM_HttpUtil.valueBeforeUnderscore(str);
+            }
+            NewPaymentMethod = paymentMeth.remove(' '); 
+        }else {
+            NewPaymentMethod = finalStringValue;
+        }
+        system.debug('@@NewPaymentMethod' + NewPaymentMethod);
+        
         // End : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
 
         pr.VPM_AdvancedFormSubmitted__c='YES'; 
@@ -955,22 +962,30 @@ public void approvalCallMethod()
                  OldPaymentTerms = op.CompanyData[0].PaymentTerms == null?'': op.CompanyData[0].PaymentTerms;
 
                  // Start : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
-                string oldstring=op.CompanyData[0].PaymentMethod == null?'': op.CompanyData[0].PaymentMethod;
-                
-                List<string> finalOldStringValueList = oldstring.split('-');
-                finalOldStringValueList.sort();
-                string OldpaymentMeth=''; 
-                for(String str:finalOldStringValueList) 
-                OldpaymentMeth += str; 
-                OldPaymentMethod = OldpaymentMeth.remove(' '); 
-                              
+                string oldstring =op.CompanyData[0].PaymentMethod == null?'': op.CompanyData[0].PaymentMethod;
+                if(finalStringValue.contains('[')) {
+                    List<string> finalOldStringValueList = oldstring.split('-');
+                    finalOldStringValueList.sort();
+                    string OldpaymentMeth=''; 
+                    for(String str:finalOldStringValueList) 
+                    OldpaymentMeth += str; 
+                    OldPaymentMethod = OldpaymentMeth.remove(' '); 
+                }else {
+                    OldPaymentMethod = oldstring;
+                }
+                system.debug('@@OldPaymentMethod');              
                 // End Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016        
                     if(!(NewPaymentTerms.contains(OldPaymentTerms)))
                          pr.VPM_ProvidedPaymentTerms__c= true;
+					else 
+						pr.VPM_ProvidedPaymentTerms__c= False;
+                	
             
                 // VAT Related Change 
                     if((String.isBlank(pr.VPM_VATRegistrationNumber__c) != String.isBlank(op.VATRegistrationNumber)))
-                         pr.VPM_Is_changed_VAT__c= true;
+                         pr.VPM_IsChangedVAT__c= true;
+					else 
+					     pr.VPM_IsChangedVAT__c= false;
                 
                 // FinanciallySensitive Flag Set
                      
@@ -997,12 +1012,16 @@ public void approvalCallMethod()
                             ((pr.VPM_CheckDoubleInvoices__c !=null && (pr.VPM_CheckDoubleInvoices__c!=op.CompanyData[0].CheckDoubleInvoices)))     
                         )
                              pr.VPM_ProvidedFinancialSensitive__c=true;
+					 else 
+							 pr.VPM_ProvidedFinancialSensitive__c=false;
                     }
                 }
             else{
                  //Payment terms Flag  set
                     IF(pr.VPM_PaymentTerms__c !=null)
                         pr.VPM_ProvidedPaymentTerms__c= true;
+					else 
+						pr.VPM_ProvidedPaymentTerms__c= false;
         
                 // FinanciallySensitive Flag Set
          
@@ -1010,12 +1029,16 @@ public void approvalCallMethod()
                   //  (pr.VPM_PaymentBlock__c !=null)||
                   //  Above line Commneted : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016
                         (NewPaymentMethod !=null)||(pr.VPM_CashManagementGroup__c!= null)||(pr.VPM_SortKey__c !=null)||(pr.VPM_CheckDoubleInvoices__c))
-                              pr.VPM_ProvidedFinancialSensitive__c= true;    
+                              pr.VPM_ProvidedFinancialSensitive__c= true;   
+                    else 
+							  pr.VPM_ProvidedFinancialSensitive__c= false; 
                 }
                     
                 // Bank Details Flag Set 
                     if((pr.VPM_BankCountryKey__c!=null)|| (pr.VPM_BankKey__c !=null)||(pr.VPM_BankAccountNumber__c !=null)||(pr.VPM_AccountHolderName__c !=null)||(pr.VPM_ReferenceSpecificationsBankDetail__c !=null)||(pr.VPM_BankControlKey__c!=null)||(pr.VPM_IBAN__c!=null)||(pr.VPM_PartnerBankType__c!=null)||(pr.VPM_BankName__c !=null)||(pr.VPM_SwiftKey__c!=null)||(pr.VPM_CollectionAuthorization__c == true)) 
                         pr.VPM_ProvidedBankDetails__c= true;
+					else 
+						pr.VPM_ProvidedBankDetails__c= false;
      
                 // Unblock/UnDelete Flag set 
                     if((pr.VPM_DeletionBlockFlag__c!=null))
@@ -1095,10 +1118,35 @@ public void approvalCallMethod()
         
         // Call to the function setLevelApproval : which decide 3 Level  of approval for Maintain  & L2  need  Excluded/included for Creaate/Extend 
         setLevelApproval();
+		/* Start Changes By Samrin : on 2 Nov 2016 : IAVMD-1857 - Changes on maintain scenario are not visible to approver */
+		if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN) 
+        {
+			RecordTypeApprovalChanges='';
+			if(pr.VPM_ProvidedPaymentTerms__c)
+				RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangePaymentTermsDetails + ' ,' ;
+			
+			if(pr.VPM_ProvidedBankDetails__c)
+				RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeBankDetails + ' ,' ;
+			
+			if(pr.VPM_ProvidedFinancialSensitive__c)
+				RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeFinancialSensitive + ' ,';
+			
+			if (pr.VPM_ProvidedBlockDelete__c)
+				RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeBlockDelete+ ' ,';
+			
+			if(pr.VPM_ProvidedUnblockUndelete__c)
+				RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeUnBlockUnDelete + ' ,';
+				
+			if(pr.VPM_IsChangedVAT__c)
+				RecordTypeApprovalChanges=RecordTypeApprovalChanges+System.Label.VPM_ChangeGeneralVendorDetails + ' ,';
+			
+			RecordTypeApprovalChanges = RecordTypeApprovalChanges.removeEnd(',');
+			pr.VPM_RequestType__c=RecordTypeApprovalChanges;
+        }
+		/* End Changes By Samrin   : on 2 Nov 2016 : IAVMD-1857 - Changes on maintain scenario are not visible to approver */
 
     }  
     /*  End of Function approvalCallMethod  : VPM - Used to set the flag based on the fields  which will help to triggr the approval process */
-
      /******************************************************************** 
     FunctionName : setProcurementApprovalRequired  
     Created By   : Samrin Shaikh
@@ -1202,7 +1250,7 @@ public void setFinanceApprovalRequired()
                     )  &&
                     ( pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN  ||
                         ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN &&
-                            ( pr.VPM_ProvidedUnblockUndelete__c  || pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c  ||  pr.VPM_ProvidedBankDetails__c ||  pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_Is_changed_VAT__c 
+                            ( pr.VPM_ProvidedUnblockUndelete__c  || pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c  ||  pr.VPM_ProvidedBankDetails__c ||  pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_IsChangedVAT__c 
                             )
                         )
                     )
@@ -1217,10 +1265,10 @@ public void setFinanceApprovalRequired()
                   /*  pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN
                  &&
                     (   
-                                pr.VPM_ProvidedBankDetails__c  || pr.VPM_Is_changed_VAT__c  || pr.VPM_ProvidedFinancialSensitive__c 
+                                pr.VPM_ProvidedBankDetails__c  || pr.VPM_IsChangedVAT__c  || pr.VPM_ProvidedFinancialSensitive__c 
                     ) */ 
                     ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPECREATE || pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND
-                    || ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN && (  pr.VPM_ProvidedBankDetails__c  ||   pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_Is_changed_VAT__c ) )
+                    || ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN && (  pr.VPM_ProvidedBankDetails__c  ||   pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_IsChangedVAT__c ) )
                     )
                 )
                 ||
@@ -1234,7 +1282,7 @@ public void setFinanceApprovalRequired()
                     ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPECREATE || pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND
                     ||
                         ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN &&
-                            ( pr.VPM_ProvidedUnblockUndelete__c  || pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c  ||  pr.VPM_ProvidedBankDetails__c  ||   pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_Is_changed_VAT__c  )
+                            ( pr.VPM_ProvidedUnblockUndelete__c  || pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c  ||  pr.VPM_ProvidedBankDetails__c  ||   pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_IsChangedVAT__c  )
                         )
                     )
                 )
@@ -1427,7 +1475,8 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
                     {
                         Errormsgblock= True ;
                         GoldenDatablock=false;
-                        ApexPages.addMessage(msg);                   
+                        ApexPages.addMessage(msg);
+                        GoToErrorMessagePage();
                         return  null;
                     }
                     else
@@ -1450,7 +1499,8 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
                             msg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_BlockDeleteVendorErrorMeesage);
                             Errormsgblock= True ;
                             GoldenDatablock=false;
-                            ApexPages.addMessage(msg);                   
+                            ApexPages.addMessage(msg); 
+                            GoToErrorMessagePage();
                             return  null;    
                         }
                     }
@@ -1494,13 +1544,13 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
         return opList[0];
     }
     
-   /* public PageReference GoToErrorMessagePage()
+    public PageReference GoToErrorMessagePage()
     {
         ApexPages.PageReference pr = new ApexPages.PageReference('/apex/VPM_ErrorMessage?id=' +purid);
         pr.SetRedirect(true);
-        pr.GetParameters().Put('message', Errormsg);
+        pr.GetParameters().Put('message', '');
         return pr;
-    } */
+    } 
       /******************************************************************** 
     
     Created By   : Vaishali

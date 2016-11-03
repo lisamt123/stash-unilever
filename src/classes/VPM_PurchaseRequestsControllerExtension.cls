@@ -17,6 +17,8 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 1.0 -    Girish      --              INITIAL DEVELOPMENT       N/A
 2.0 -    Epsita      29 June 2016    Check business user role,accordingly show/hide fields,default field values,update object & save in "At a Glance" sections
 3.0 -    Ajay
+4.0 -    Samrin      27 Oct 2016     IAVMD-2243                Warning Message on 'Submit' button 
+5.0 -    Samrin      3 Nov 2016      IAVWD-2283                Rework Button Visibility - Bank Data User
 ****************************************************************************/
 
 global class  VPM_PurchaseRequestsControllerExtension {
@@ -187,7 +189,7 @@ global class  VPM_PurchaseRequestsControllerExtension {
        System.debug('@@@@@@@@#######-'+ paymentTerms);                                         
        System.debug('@@@@@@@@#######vendorDetailList[0].VPM_PaymentTerms__c-'+ vendorDetailList[0].VPM_PaymentTerms__c);
        //System.debug('@@@@@@@@#######vendorDefaultPaymentTerm-'+vendorDefaultPaymentTerm);
-    
+    /* Start Samrin Shaikh : Changes : 27 -Oct : IAVMD-2243 :  Warning Message on 'Submit' button */
        if(VendorDetailList[0].VPM_FLSInCountryReqVendor__c && VendorDetailList[0].VPM_Status__c.contains(STR_CONST_DRAFT) )
        {
          if(VendorDetailList[0].VPM_CountryRequestingVendor__c.contains(STR_CONST_UK))
@@ -208,7 +210,7 @@ global class  VPM_PurchaseRequestsControllerExtension {
         {
             isDisplay=False;
         } 
-
+ /*End  Samrin Shaikh : Changes : 27 -Oct : IAVMD-2243 : Warning Message on 'Submit' button */
     //Added by Epsita - IAVMD-1169
         if(vendorDetailList[0].VPM_Country__c.contains('United Kingdom') || vendorDetailList[0].VPM_Country__c.contains('Ireland')){
             isIsVendorSMEVisible = true;
@@ -246,22 +248,22 @@ global class  VPM_PurchaseRequestsControllerExtension {
               manuallyMarkAsCompleteBtn= true;
               //SubmitRequestBtn = false;
           }
-          else if(usrRole ==  'FRE' && QueueSobjectList[0].Queue.Name.contains(STR_CONST_FREIGHT)) {
+          else if(usrRole ==  'FRE' && QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_FREIGHT)) {
               reworkBtn=true;
                 renderSAPBtn = true;
               //  SubmitRequestBtn = true;
           }
-          else if(usrRole ==  'FIN' && QueueSobjectList[0].Queue.Name.contains(STR_CONST_FINANCE)) {
+          else if(usrRole ==  'FIN' && QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_FINANCE)) {
               reworkBtn=true;
                 renderSAPBtn = true;
                //SubmitRequestBtn = true;
           }
-          else if(usrRole ==  'PRO' && QueueSobjectList[0].Queue.Name.contains(STR_CONST_PROCUREMENT)) {
+          else if(usrRole ==  'PRO' && QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_PROCUREMENT)) {
               reworkBtn=true;
                 renderSAPBtn = true;
                 submitRequestBtn = true;
           }
-           else if(usrRole ==  STR_CONST_FLS && QueueSobjectList[0].Queue.Name.contains(STR_CONST_FLS)) {
+           else if(usrRole ==  STR_CONST_FLS && QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_FLS)) {
                
               reworkBtn=true;
               renderSAPBtn = true;
@@ -288,7 +290,7 @@ global class  VPM_PurchaseRequestsControllerExtension {
                // SubmitRequestBtn = true;
           }
           /* Start of Chanegs 490 : Bank data Validation */
-          else if(usrRole ==  STR_CONST_BANK && QueueSobjectList[0].Queue.Name.contains('ECC')) {
+          else if(usrRole ==  STR_CONST_BANK && QueueSobjectList[0].Queue.Name.containsIgnoreCase('ECC')) {
               reworkBtn=true;
               renderSAPBtn = true;
               
@@ -459,23 +461,23 @@ global class  VPM_PurchaseRequestsControllerExtension {
           
           // for (PermissionSetAssignment psa: lstcurrentUserPerSet) {
           // system.debug('---------psa.PermissionSet.Label---------' + psa.PermissionSet.Label);
-          if(lstcurrentUserPerSet[0].PermissionSet.Label.contains(STR_CONST_FLS)) {
+          if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_FLS)) {
               brUser = false;
               userRole = 'FLS';
               //return brUser;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains(STR_CONST_MDM)) {
+          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_MDM)) {
               brUser = false;
               userRole = 'MDM';
               // return brUser;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains(STR_CONST_FINANCE)) {
+          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_FINANCE)) {
               brUser = false;
               userRole = 'FIN';
               // return brUser;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains(STR_CONST_PROCUREMENT)) {
+          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_PROCUREMENT)) {
               brUser = false;
               userRole = 'PRO';
               //return brUser;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains(STR_CONST_BUSREQ)) {
+          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_BUSREQ)) {
               brUser = true;
               userRole = 'BUR';
               // System.debug('----is user brUser----'+brUser);
@@ -492,19 +494,19 @@ global class  VPM_PurchaseRequestsControllerExtension {
                                                                 FROM PermissionSetAssignment
                                                                 WHERE AssigneeId = :Userinfo.getUserId() order by PermissionSet.Label DESC];
           system.debug('---------------Permission--------------'+lstcurrentUserPerSet[0].PermissionSet.Label);
-          if(lstcurrentUserPerSet[0].PermissionSet.Label.contains(STR_CONST_FLS)) {
+          if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_FLS)) {
               isFLS = true;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains(STR_CONST_MDM)) {
+          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_MDM)) {
               isMDM = true;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains(STR_CONST_FINANCE)) {
+          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_FINANCE)) {
               isFinance = true;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains(STR_CONST_PROCUREMENT)) {
+          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_PROCUREMENT)) {
               isProcure = true;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains(STR_CONST_BUSREQ)) {
+          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_BUSREQ)) {
               isBR = true;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('Russian')) {
+          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase('Russian')) {
               isRussian = true;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains(STR_CONST_FREIGHT)) {
+          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_FREIGHT)) {
               isFreight = true;
           }
       }
@@ -520,29 +522,29 @@ global class  VPM_PurchaseRequestsControllerExtension {
 
           for (PermissionSetAssignment psa: lstcurrentUserPerSet) {
               system.debug('---------psa.PermissionSet.Label---------' + psa.PermissionSet.Label);
-              if(psa.PermissionSet.Label.contains(STR_CONST_FLS)) {
+              if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_FLS)) {
                   userRole = 'FLS';
                   return userRole;
-              } else if(psa.PermissionSet.Label.contains(STR_CONST_MDM)) {
+              } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_MDM)) {
                   userRole = 'MDM';
                   return userRole;
-              } else if(psa.PermissionSet.Label.contains(STR_CONST_FINANCE)) {
+              } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_FINANCE)) {
                   userRole = 'FIN';
                   return userRole;
-              } else if(psa.PermissionSet.Label.contains(STR_CONST_PROCUREMENT)) {
+              } else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_PROCUREMENT)) {
                   userRole = 'PRO';
                   return userRole;
               } 
-                else if(psa.PermissionSet.Label.contains(STR_CONST_FREIGHT)) {
+                else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_FREIGHT)) {
                   userRole = 'FRE';
                   return userRole;
               }
-              else if(psa.PermissionSet.Label.contains('Russian Tax')) {
+              else if(psa.PermissionSet.Label.containsIgnoreCase('Russian Tax')) {
                   userRole = 'RUS';
                   return userRole;
               }
               /*  Start : Changes for 490 Bank Data Validation Approver  */
-              else if(psa.PermissionSet.Label.contains(STR_CONST_BANK)) {
+              else if(psa.PermissionSet.Label.containsIgnoreCase(STR_CONST_BANK)) {
                   userRole = 'BANK';
                   return userRole;
               }
