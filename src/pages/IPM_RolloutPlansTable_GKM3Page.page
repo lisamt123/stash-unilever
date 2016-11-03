@@ -247,8 +247,8 @@
                                             </td>
                                             <td scope="col" class="" colspan="3">
                                             <strong>{!$Label.IPM_Rollout_Brand}: </strong>
-                                                <apex:outputText styleClass="lclNoselect" value="{!localRolloutBrandMap[localRolloutId].IPM_Brand__c}" rendered="{!!AND(isEditMode,isEditable)}"/>
-                                                <apex:outputPanel styleClass="localSelectList" rendered="{!AND(isEditMode,isEditable)}">
+                                                <apex:outputText styleClass="lclNoselect" value="{!localRolloutBrandMap[localRolloutId].IPM_Brand__c}" rendered="{!OR(!AND(isEditMode,isEditable),AND(isEditMode,isEditable,lstcompleteRollout[localRolloutId].Local_Project__c != null,OR(project.IPM_Phase__c = 'Market Ready',project.IPM_Phase__c = 'Market Deployment',project.IPM_Phase__c = 'PLE')))}"/>
+                                                <apex:outputPanel styleClass="localSelectList" rendered="{!OR(AND(isEditMode,isEditable,lstcompleteRollout[localRolloutId].Local_Project__c = null),AND(isEditMode,isEditable,lstcompleteRollout[localRolloutId].Local_Project__c != null,OR(project.IPM_Phase__c = 'Ideas',project.IPM_Phase__c = 'Feasibility',project.IPM_Phase__c = 'Capability')))}">
                                                     <span class="hideDupfield" data-holder="{!localRolloutId}" value="{!localRolloutBrandMap[localRolloutId].IPM_Brand__c}"></span>
                                                     <select class="rollSelectList" id="">  
                                                         <apex:repeat value="{!holdRolloutidBrandMap[localRolloutId]}" var="brandVal">

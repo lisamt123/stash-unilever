@@ -191,6 +191,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
           if(newMilestone.IPM_Planned_Date__c !=null)
           {
               newMilestone.IPM_Due_Date__c = newMilestone.IPM_Planned_Date__c;
+              newMilestone.IPM_Due_Date_For_Sorting__c = newMilestone.IPM_Due_Date__c;
           }
         } 
     }
