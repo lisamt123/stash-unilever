@@ -4050,17 +4050,46 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Benelux_No_country</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Country__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notContain</operation>
+            <value>hoax</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed as Duplicate</value>
+        </filters>
+        <label>CEC Benelux No country</label>
+        <language>nl_NL</language>
+        <sharedTo>
+            <role>CEC_Manager_Benelux</role>
+            <role>CEC_User_Benelux</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Benelux_queue</fullName>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
-        <columns>Language__c</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>First_Response_Date__c</columns>
-        <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
+        <columns>CASES.SUBJECT</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -4078,19 +4107,21 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC Benelux WH Uitgedeeld</label>
         <language>nl_NL</language>
+        <sharedTo>
+            <role>CEC_Manager_Benelux</role>
+            <role>CEC_User_Benelux</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_queue_In_afwachting1</fullName>
+        <booleanFilter>1 AND (2 OR  3)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
+        <columns>OWNER_NAME</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <columns>Country_Name__c</columns>
-        <columns>Language__c</columns>
-        <columns>Brand__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -4107,13 +4138,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Awaiting Knowledge Response,Awaiting Information from Consumer</value>
         </filters>
-        <label>CEC Benelux queue In afwachting</label>
+        <label>CEC Benelux In afwachting</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_Benelux</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_Manager_HGS_Europe</role>
             <role>CEC_User_Benelux</role>
         </sharedTo>
     </listViews>
@@ -7909,7 +7937,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>DACH_Vacation_Queue_3</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -7962,6 +7990,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>Ute</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Charlyn</value>
         </filters>
         <label>DACH Vacation Queue 3</label>
         <language>en_US</language>
@@ -8151,6 +8184,28 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Herziening_noodzakelijk</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Review Needed</value>
+        </filters>
+        <label>CEC Benelux Herzieningen</label>
+        <language>nl_NL</language>
+        <sharedTo>
+            <role>CEC_Manager_Benelux</role>
+            <role>CEC_User_Benelux</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -8487,12 +8542,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>My_Open_Cases_DO_NOT_EDIT13</fullName>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>CASES.ORIGIN</columns>
-        <columns>Default_From_Address__c</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
+        <columns>CASES.ORIGIN</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>Action_Taken__c</columns>
         <columns>CORE.USERS.ALIAS</columns>

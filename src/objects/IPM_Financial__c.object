@@ -5516,7 +5516,7 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
     <listViews>
         <fullName>IPM_a7I0L000000GtyO_IPM_Financial</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000GtyO</label>
+        <label>IPM_TET2017_SEAA</label>
         <queue>IPM_a7I0L000000GtyO</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

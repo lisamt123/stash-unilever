@@ -300,8 +300,5 @@ CASE( Product2.FS_VATUA__c,
         <searchResultsAdditionalFields>PRODUCT.CUSTOMER_PRODUCT_ID</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>FS_Bracket_1__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PRODUCT.DEFAULT_PRICE</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>PRODUCT2.DESCRIPTION</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>PRODUCT2.FAMILY_ENUM</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>PRICEBOOK.ACTIVE</searchResultsAdditionalFields>
     </searchLayouts>
 </CustomObject>
