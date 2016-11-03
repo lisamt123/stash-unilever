@@ -140,7 +140,7 @@ public class IPM_FinancialControllerGKM3_Test {
                 system.assertEquals(localRollout.IPM_Project_Job_Status__c, IPM_ConstantUtils.JOB_STATUS_ELIGIBLE, 'Job Status not eligible found');
                 system.assertEquals(localRollout.Previous_Target_Launch_Date__c, System.today(), 'target lanuch date is not today'); //To cover 2523 line
             }
-
+            Test.stopTest();
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>(); 
             
@@ -177,7 +177,7 @@ public class IPM_FinancialControllerGKM3_Test {
              insert localproject;
           
         }
-        Test.stopTest();
+        
      } 
      
 
@@ -256,7 +256,7 @@ public class IPM_FinancialControllerGKM3_Test {
              callCtrlAction(ipmFinCon, EXEC_PART_2);
              callCtrlAction(ipmFinCon, EXEC_PART_3);
              callCtrlAction(ipmFinCon, EXEC_PART_4);
-
+             Test.stopTest(); 
              //asserts are in source method to check tab load
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              //Load Tab TopDown
@@ -269,7 +269,7 @@ public class IPM_FinancialControllerGKM3_Test {
  
         }
 
-        Test.stopTest();    
+           
      }
      
      //Use case: Global original Feasibility phase and consilidate financnials
@@ -484,7 +484,7 @@ public class IPM_FinancialControllerGKM3_Test {
              IPM_Financial__c globFin = [select id,Is_Nonkey_Business_Case_Changed__c, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c,Local_Project__r.IPM_Project_Rollout__r.Added_At_Stage__c,Local_Project__r.IPM_Project_Rollout__r.KeyMCO__c,Gate_Keeping_Model__c,
              Volume_Unit_Global__c,Volume_Unit_Local__c,Volume_Unit_Regional__c,Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='GKM3TestComments1_LA_BR'];
              system.assert(globFin!=null,'Finance record for global project not created.');
-             system.assertEquals(globFin.Financial_External_ID__c, 'GKM3TestComments1_LA_BR');
+             system.assertEquals(globFin.Financial_External_ID__c, 'GKM3TestComments1_LA_BR','External Id not matched');
 
             
                 
@@ -499,40 +499,40 @@ public class IPM_FinancialControllerGKM3_Test {
                  
                  ipmFinCon.getLabelValueGKM3();
                  
-                 system.assertEquals(ipmFinCon.getLabelValueGKM3(),IPM_ConstantUtils.BLANK);
+                 system.assertEquals(ipmFinCon.getLabelValueGKM3(),IPM_ConstantUtils.BLANK,'GKM3 Label Value is Blank');
                  
                  ipmFinCon.getLocalCurrencyViewButtonVisibility();
-                 system.assertEquals(ipmFinCon.getLocalCurrencyViewButtonVisibility(), true);
+                 system.assertEquals(ipmFinCon.getLocalCurrencyViewButtonVisibility(), true,'Local Currencty View Button is not visible');
                  
                  ipmFinCon.updateVolumeType();
                  
                  globFin.Volume_Unit_Global__c = Volume_Unit;
                  update globFin;
-                 system.assertEquals(globFin.Volume_Unit_Global__c,Volume_Unit);
+                 system.assertEquals(globFin.Volume_Unit_Global__c,Volume_Unit, 'Volume is not Matching');
     
                  ipmFinCon.UpdateVolumeType();
                  
                  
-                 Test.startTest();
+                 
                  
                  globFin.Copy_Local_to_Global__c = true;
                  update globFin;
                  ipmFinCon.refreshFromLocal();
                  system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),ERROR_MSG_NOT_CAPTURED);
                
-                 
+                 Test.startTest();
                  testCurrency();    
                 
                  ipmFinCon.resetNonKeyBusinessCaseChangedFlag(); 
-                 system.assertEquals(globFin.Is_Nonkey_Business_Case_Changed__c ,false);        
+                 system.assertEquals(globFin.Is_Nonkey_Business_Case_Changed__c ,false,'Non-key Business Not changed');        
                  
                  String LocalValue= ipmFinCon.tldAcceptFromValue;
-                 system.assertEquals(LocalValue, Label.Accept_from_Local);
+                 system.assertEquals(LocalValue, Label.Accept_from_Local,'Local value is Not set');
                  
                  globalOriginal.IPMProject_Span__c = PHASE_LOCAL;
                  update globalOriginal;
                  
-                 system.assertEquals(globalOriginal.IPMProject_Span__c,PHASE_LOCAL);
+                 system.assertEquals(globalOriginal.IPMProject_Span__c,PHASE_LOCAL,'Span is not Local');
                  
                  ApexPages.currentPage().getParameters().put('Id', globalOriginal.Id);
                  
@@ -543,18 +543,18 @@ public class IPM_FinancialControllerGKM3_Test {
                  //Load Tab TopDown
                  loadTab(globalOriginal.id, ipmFinCon1, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
                  
-                 System.assertEquals(ipmFinCon1.isEditMode, true);             
+                 System.assertEquals(ipmFinCon1.isEditMode, true,'Edit Mode Not Enabled');             
                   
                  String GlobalValue =  ipmFinCon.tldAcceptFromValue;
-                 system.assertEquals( GlobalValue,Label.Accept_from_Global);
+                 system.assertEquals( GlobalValue,Label.Accept_from_Global,'Global Value Not Matched');
                  
                  Boolean KeyNonKey = ipmFinCon.KeyNonKeyGKM;
                  
-                 system.assertEquals(KeyNonKey,false);
+                 system.assertEquals(KeyNonKey,false,'Key is not Non Key');
                  
                  ipmFinCon.getRenderMapGlobal();
                  
-                 System.assertEquals(ipmFinCon.getRenderMapGlobal(),true);
+                 System.assertEquals(ipmFinCon.getRenderMapGlobal(),true,'Map not Rendered on global');
               
               Test.stopTest();
                 
