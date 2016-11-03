@@ -22,7 +22,8 @@ private class CI_R2R_GetHistory_Test {
         CI_R2R_GetHistory.wrapper R2Rwrap = new CI_R2R_GetHistory.wrapper('name','name1','changedby','cDate');
         Historycls.getWrappervalues();
         
-        Historycls.changedby = 'test1';        
+        R2Rwrap.OldValue = 'test';
+		Historycls.changedby = 'test1';        
         Test.stopTest();
     } 
 }
