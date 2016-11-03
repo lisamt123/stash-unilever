@@ -1862,6 +1862,63 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
+	<!-- TPM fileds-->
+	<fields>
+        <fullName>UL_Activity_Sector_Division_Code__c</fullName>
+        <description>This attribute will be used as information only.  This attribute is linked to the product on the activity sector.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This attribute will be used as information only.  This attribute is linked to the product on the activity sector.</inlineHelpText>
+        <label>Activity Sector / Division Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Activity_Sector_Division_Description__c</fullName>
+        <description>This attribute will be used to segment a promotion (via customer sets).  This attribute is linked to the product on the activity sector.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This attribute will be used to segment a promotion (via customer sets).  This attribute is linked to the product on the activity sector.</inlineHelpText>
+        <label>Activity Sector / Division Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	    <fields>
+        <fullName>UL_Currency__c</fullName>
+        <description>Indicates whether the customer’s currency is British pounds (GBP) or Euros (EUR)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether the customer’s currency is British pounds (GBP) or Euros (EUR)</inlineHelpText>
+        <label>Currency</label>
+        <picklist>
+            <picklistValues>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EUR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Customer_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<!-- end-->
     <fields>
         <fullName>FS_RusianRegion__c</fullName>
         <description>To display the Russia related Regions</description>
