@@ -24,6 +24,8 @@ src/classes/IPM_BD_BB_Report_BatchSchedule.cls
 src/classes/IPM_BD_BB_Report_BatchSchedule.cls-meta.xml
 src/classes/IPM_BD_BB_Report_Batch_Test.cls
 src/classes/IPM_BD_BB_Report_Batch_Test.cls-meta.xml
+src/classes/IPM_BETHelper.cls
+src/classes/IPM_BETHelper.cls-meta.xml
 src/classes/IPM_BETSuggestedMembersController_Test.cls
 src/classes/IPM_BETSuggestedMembersController_Test.cls-meta.xml
 src/classes/IPM_BosscardController.cls
@@ -36,12 +38,16 @@ src/classes/IPM_CMIGateSectionController.cls
 src/classes/IPM_CMIGateSectionController.cls-meta.xml
 src/classes/IPM_CMIGateSectionController_Test.cls
 src/classes/IPM_CMIGateSectionController_Test.cls-meta.xml
+src/classes/IPM_CU_Complexity_Controller.cls
+src/classes/IPM_CU_Complexity_Controller.cls-meta.xml
 src/classes/IPM_ChangProjectDocStatusCntrlGKM3_Test.cls
 src/classes/IPM_ChangProjectDocStatusCntrlGKM3_Test.cls-meta.xml
 src/classes/IPM_ChangProjectDocStatusController_Test.cls
 src/classes/IPM_ChangProjectDocStatusController_Test.cls-meta.xml
 src/classes/IPM_ChangProjectDocumentStatusController.cls
 src/classes/IPM_ChangProjectDocumentStatusController.cls-meta.xml
+src/classes/IPM_ChatterFeedHelper.cls
+src/classes/IPM_ChatterFeedHelper.cls-meta.xml
 src/classes/IPM_ChatterUtilsHelper_Test.cls
 src/classes/IPM_ChatterUtilsHelper_Test.cls-meta.xml
 src/classes/IPM_ConstantUtils.cls
@@ -228,6 +234,8 @@ src/classes/IPM_RolloutPlanTLDSync.cls
 src/classes/IPM_RolloutPlanTLDSync.cls-meta.xml
 src/classes/IPM_RolloutPlansAddController.cls
 src/classes/IPM_RolloutPlansAddController.cls-meta.xml
+src/classes/IPM_RolloutPlansAddControllerGKM3_Test.cls
+src/classes/IPM_RolloutPlansAddControllerGKM3_Test.cls-meta.xml
 src/classes/IPM_RolloutPlansAddController_Test.cls
 src/classes/IPM_RolloutPlansAddController_Test.cls-meta.xml
 src/classes/IPM_RolloutPlansTableController.cls
@@ -269,6 +277,8 @@ src/components/IPM_BCC_ConsolidateView.component
 src/components/IPM_BCC_ConsolidateView.component-meta.xml
 src/components/IPM_CMIGateSection.component
 src/components/IPM_CMIGateSection.component-meta.xml
+src/components/IPM_CU_Complexity.component
+src/components/IPM_CU_Complexity.component-meta.xml
 src/components/IPM_Country_Feedback.component
 src/components/IPM_Country_Feedback.component-meta.xml
 src/components/IPM_FinancialSummaryTable.component
@@ -397,8 +407,6 @@ src/pages/IPM_ProjectDocumentSectionEditor.page
 src/pages/IPM_ProjectDocumentSectionEditor.page-meta.xml
 src/pages/IPM_ProjectOverview.page
 src/pages/IPM_ProjectOverview.page-meta.xml
-src/pages/IPM_ProjectSearchPage.page
-src/pages/IPM_ProjectSearchPage.page-meta.xml
 src/pages/IPM_ProjectSetUpView.page
 src/pages/IPM_ProjectSetUpView.page-meta.xml
 src/pages/IPM_Resource_Allocation.page
@@ -422,7 +430,6 @@ src/permissionsets/IPM_Central_Team.permissionset
 src/permissionsets/IPM_Finance_Team.permissionset
 src/permissionsets/IPM_ProjectLeader.permissionset
 src/permissionsets/IPM_Research_and_Development.permissionset
-src/permissionsets/IPM_System_Administrator_Permissions.permissionset
 src/reportTypes
 src/reportTypes/BB_BD_Report.reportType
 src/reportTypes/OTIF_Report.reportType
