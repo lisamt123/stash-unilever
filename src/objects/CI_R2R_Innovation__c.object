@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -223,6 +227,10 @@
         <label>Funnel Stage</label>
         <picklist>
             <picklistValues>
+                <fullName>ON HOLD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>1 Pre-ideas</fullName>
                 <default>false</default>
             </picklistValues>
@@ -231,11 +239,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>3 Capability</fullName>
+                <fullName>3 Feasibility</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>4 Feasibility</fullName>
+                <fullName>4 Capability</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -244,10 +252,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>6 Implemented</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ON HOLD</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -851,10 +855,10 @@ Green- On track</inlineHelpText>
     <fields>
         <fullName>Total_Cost__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( ISPICKVAL(Currency__c , &apos;EUR&apos;) , &apos;EUR&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c),
+        <formula>IF( ISPICKVAL(Currency__c , &apos;INR&apos;) , &apos;INR&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c),
 IF(ISPICKVAL(Currency__c , &apos;USD&apos;) , &apos;USD&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c),
 IF(ISPICKVAL(Currency__c , &apos;GBP&apos;) , &apos;GBP&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c),
-&apos;INR&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c) )) )</formula>
+&apos;EUR&apos; &amp; &apos; &apos; &amp; text(Business_cost__c  +  IT_Cost__c) )) )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Cost</label>
         <required>false</required>
@@ -978,11 +982,11 @@ IF(ISPICKVAL(Currency__c , &apos;GBP&apos;) , &apos;GBP&apos; &amp; &apos; &apos
                 <default>false</default>
             </values>
             <values>
-                <fullName>3 Capability</fullName>
+                <fullName>3 Feasibility</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>4 Feasibility</fullName>
+                <fullName>4 Capability</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1486,11 +1490,11 @@ IF(ISPICKVAL(Currency__c , &apos;GBP&apos;) , &apos;GBP&apos; &amp; &apos; &apos
                 <default>false</default>
             </values>
             <values>
-                <fullName>3 Capability</fullName>
+                <fullName>3 Feasibility</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>4 Feasibility</fullName>
+                <fullName>4 Capability</fullName>
                 <default>false</default>
             </values>
             <values>
