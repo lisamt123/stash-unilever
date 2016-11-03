@@ -18,14 +18,14 @@
         <table border="0" cellpadding="0" cellspacing="0" class="ipmTable table table-bordered">
             <thead> 
                 <tr>
-                    <th scope="col" width="10%"><span class="proName">{!$Label.IPM_Product_Name}</span></th>
-                    <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Format}</span></th>
-                    <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Formulation}</span></th>
-                    <th scope="col"  width="10%"><span>{!$Label.IPM_Product_Packaging}</span></th>
-                    <th scope="col"  width="8%"><span>{!$Label.IPM_Product_Size}</span></th>
-                    <th scope="col"  width="8%"><span>{!$Label.IPM_Product_of_GTo}</span></th>
-                    <th scope="col"  width="13%"><span>{!$Label.IPM_Product_Country_Mapping}</span></th>
-                    <th scope="col" width="40%">
+                    <th scope="col" width="80px"><span class="proName">{!$Label.IPM_Product_Name}</span></th>
+                    <th scope="col"  width="80px"><span>{!$Label.IPM_Product_Format}</span></th>
+                    <th scope="col"  width="80px"><span>{!$Label.IPM_Product_Formulation}</span></th>
+                    <th scope="col"  width="80px"><span>{!$Label.IPM_Product_Packaging}</span></th>
+                    <th scope="col"  width="60px"><span>{!$Label.IPM_Product_Size}</span></th>
+                    <th scope="col"  width="60px"><span>{!$Label.IPM_Product_of_GTo}</span></th>
+                    <th scope="col"  width="100px"><span>{!$Label.IPM_Product_Country_Mapping}</span></th>
+                    <th scope="col" width="300px">
                         <table width="100%" class="innerTable">
                             <thead>
                                 <tr>
@@ -43,22 +43,22 @@
                 <apex:repeat value="{!wrapperKeys}" var="wrKey">
                     <apex:repeat value="{!sourcePlanMap[wrKey]}" var="prodPlan">
                         <tr class="{!if(prodPlan.isDuplicateRow,'duplicateRow','')}">
-                            <td width="10%"><span >{!prodPlan.productPlan.IPM_Product_Name__c}</span></td>
-                            <td width="10%"><span >{!prodPlan.productPlan.IPM_Format__c}</span></td>
-                            <td width="10%"><span >{!prodPlan.productPlan.IPM_Formulation__c}</span></td>
-                            <td width="10%"><span >{!prodPlan.productPlan.IPM_Packing__c}</span></td>
-                            <td width="8%"><span >{!prodPlan.productPlan.IPM_ProductSize__c}</span>
+                            <td width="80px"><span >{!prodPlan.productPlan.IPM_Product_Name__c}</span></td>
+                            <td width="80px"><span >{!prodPlan.productPlan.IPM_Format__c}</span></td>
+                            <td width="80px"><span >{!prodPlan.productPlan.IPM_Formulation__c}</span></td>
+                            <td width="80px"><span >{!prodPlan.productPlan.IPM_Packing__c}</span></td>
+                            <td width="60px"><span >{!prodPlan.productPlan.IPM_ProductSize__c}</span>
                                             <span >{!prodPlan.productPlan.IPM_ProductSizeMetrics__c}</span></td>
-                            <td width="8%"><span >{!prodPlan.productPlan.IPM_Of_gTO__c}</span></td>
-                            <td width="13%" class="custLstCntryWidth"><span >{!prodPlan.countryStr}</span></td>
-                            <td width="40%">
+                            <td width="60px"><span >{!prodPlan.productPlan.IPM_Of_gTO__c}</span></td>
+                            <td width="100px" class="custLstCntryWidth"><span >{!prodPlan.countryStr}</span></td>
+                            <td width="300px">
                                 <table width="100%">
                                     <tbody>
                                         <apex:repeat value="{!sourceUnitMap[prodPlan.productProsition]}" var="sourcep">
                                             <tr>
                                                 <td width="90px"><span> {!sourcep.sourcingPlan.IPM_SourcingUnit__c}</span></td>
                                                 <td width="75px" class="alignCenter"><span>{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Confirmed','Not Yet')}</span></td>
-                                                <td width="70px">
+                                                <td width="63px">
                                                     <span>{!sourcep.sourceCountries}</span>
                                                 </td>
                                             </tr>

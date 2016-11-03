@@ -639,9 +639,6 @@ public class IPM_FinancialController_Test {
                 system.assert(doc == 'Charter','document not created');
                 
                 ipmFinCon.alignTLD(); //Should be after Sustainability method call
-                system.assertEquals(ipmFinCon.nextIndex, 0, INVALID_INDEX);
-                system.assertEquals(ipmFinCon.previousIndex, 0, INVALID_INDEX);
-
                 
         }
         if (part == EXEC_PART_3){
@@ -660,9 +657,6 @@ public class IPM_FinancialController_Test {
                 system.assertEquals(ipmFinCon.sustainabilityPeriodChanging, true,'Sustainability period could not be changed');
                 
                 ipmFinCon.checkSustainabilityPeriodChanged();
-                //verify after sustainability check cunters are reset
-                system.assertEquals(ipmFinCon.nextIndex, 0, INVALID_INDEX);
-                system.assertEquals(ipmFinCon.previousIndex, 0, INVALID_INDEX);
                 system.assertEquals(ipmFinCon.isNavigation, false, INCORRECT_NAVIGATION_RESULT);
              
                 ipmFinCon.selectedSustainabilityPeriod = SUST_PERIOD_5;
@@ -673,9 +667,6 @@ public class IPM_FinancialController_Test {
                 system.assertEquals(ipmFinCon.sustainabilityPeriodChanging, true, 'Invalid Sustainability period change');
                 
                 ipmFinCon.checkSustainabilityPeriodChanged();
-                //verify after sustainability check cunters are reset
-                system.assertEquals(ipmFinCon.nextIndex, 0, INVALID_INDEX);
-                system.assertEquals(ipmFinCon.previousIndex, 0, INVALID_INDEX);
                 system.assertEquals(ipmFinCon.isNavigation, false, INCORRECT_NAVIGATION_RESULT);
                 
                 ipmFinCon.isTargetLaunchDateMisaligned=true;
