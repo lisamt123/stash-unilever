@@ -547,7 +547,7 @@ private with sharing class IPM_CoreParameters_Test {
             string proBET = [select bet__c from IPM_Project__c where id = : testProject.id].bet__c;
             
             system.assertEquals(null, proBET, 'BET not unlinked from IPM Project!');
-            System.assertEquals(null, sic2.PreSelectedBet);
+            System.assertEquals(null, sic2.PreSelectedBet,'Bet is not Selected');
             apexpages.currentpage().getparameters().put(IPM_ConstantUtils.SF_ID,''); 
             
            
