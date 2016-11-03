@@ -8,10 +8,18 @@
     <approvalPageFields>
         <field>Name</field>
         <field>VPM_CountryRequestingVendor__c</field>
-        <field>RecordType</field>
+        <field>VPM_VendorName1__c</field>
         <field>VPM_WhatAreYouBuying__c</field>
-        <field>VPM_Spend__c</field>
+        <field>VPM_Country__c</field>
+        <field>VPM_BankCountryKey__c</field>
+        <field>VPM_BankKey__c</field>
+        <field>VPM_BankAccountNumber__c</field>
+        <field>VPM_BankControlKey__c</field>
+        <field>VPM_AccountHolderName__c</field>
+        <field>VPM_IBAN__c</field>
+        <field>RecordType</field>
         <field>CreatedBy</field>
+        <field>LastModifiedBy</field>
         <field>Owner</field>
     </approvalPageFields>
     <approvalStep>
@@ -239,5 +247,5 @@
         </action>
     </recallActions>
     <recordEditability>AdminOrCurrentApprover</recordEditability>
-    <showApprovalHistory>false</showApprovalHistory>
+    <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>

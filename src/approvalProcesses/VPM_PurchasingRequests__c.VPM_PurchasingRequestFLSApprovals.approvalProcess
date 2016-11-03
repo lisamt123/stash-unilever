@@ -10,17 +10,22 @@
     </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
+        <field>VPM_CountryRequestingVendor__c</field>
+        <field>VPM_VendorName1__c</field>
+        <field>VPM_Country__c</field>
         <field>VPM_WhatAreYouBuying__c</field>
         <field>VPM_Spend__c</field>
+        <field>VPM_Comments__c</field>
         <field>CreatedBy</field>
+        <field>LastModifiedBy</field>
         <field>Owner</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>VPM_FLS</name>
-                <type>queue</type>
+                <name>Owner</name>
+                <type>relatedUserField</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
@@ -28,7 +33,7 @@
         <name>VPM_FLSReview</name>
     </approvalStep>
     <description>Used for the FLS team to qualify the initial data entry as fit for onward processing. Triggered by the Business Requestor submitting the form.</description>
-    <enableMobileDeviceAccess>true</enableMobileDeviceAccess>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <criteriaItems>
             <field>VPM_PurchasingRequests__c.VPM_BusinessRequestorSubmitted__c</field>
@@ -92,10 +97,6 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangeOwnerToFLSQueue</name>
-            <type>FieldUpdate</type>
-        </action>
-        <action>
             <name>VPM_ChangeReworkStatusNo</name>
             <type>FieldUpdate</type>
         </action>
@@ -144,5 +145,5 @@
         </action>
     </recallActions>
     <recordEditability>AdminOrCurrentApprover</recordEditability>
-    <showApprovalHistory>false</showApprovalHistory>
+    <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>

@@ -7,8 +7,22 @@
     </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
+        <field>VPM_VendorName1__c</field>
+        <field>VPM_WhatAreYouBuying__c</field>
+        <field>VPM_Country__c</field>
+        <field>VPM_TradePartnerType__c</field>
+        <field>VPM_ShippingConditions__c</field>
+        <field>VPM_HouseNumber__c</field>
+        <field>VPM_AccountGroup__c</field>
+        <field>VPM_City__c</field>
+        <field>VPM_Regions__c</field>
+        <field>VPM_TransportZone__c</field>
+        <field>VPM_SCAC__c</field>
+        <field>VPM_PaymentTerms__c</field>
+        <field>RecordType</field>
+        <field>CreatedBy</field>
+        <field>LastModifiedBy</field>
         <field>Owner</field>
-        <field>VPM_Comments__c</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
@@ -195,5 +209,5 @@
         </action>
     </recallActions>
     <recordEditability>AdminOrCurrentApprover</recordEditability>
-    <showApprovalHistory>false</showApprovalHistory>
+    <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>

@@ -7,6 +7,22 @@
     </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
+        <field>VPM_VendorName1__c</field>
+        <field>VPM_WhatAreYouBuying__c</field>
+        <field>VPM_Country__c</field>
+        <field>VPM_CountryRequestingVendor__c</field>
+        <field>VPM_TaxNumber1__c</field>
+        <field>VPM_TaxNumber2__c</field>
+        <field>VPM_TaxNumber3__c</field>
+        <field>VPM_TaxNumber4__c</field>
+        <field>VPM_VATRegistrationNumber__c</field>
+        <field>VPM_PaymentTerms__c</field>
+        <field>VPM_SortKey__c</field>
+        <field>VPM_CashManagementGroup__c</field>
+        <field>VPM_PaymentMethod__c</field>
+        <field>RecordType</field>
+        <field>LastModifiedBy</field>
+        <field>CreatedBy</field>
         <field>Owner</field>
     </approvalPageFields>
     <approvalStep>
@@ -22,7 +38,7 @@
         <name>VPM_RussianCustomTaxReview</name>
     </approvalStep>
     <description>The approval process triggered by the Advanced Form being submitted by the Business Requestor or FLS.</description>
-    <enableMobileDeviceAccess>true</enableMobileDeviceAccess>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <criteriaItems>
@@ -169,5 +185,5 @@
         </action>
     </recallActions>
     <recordEditability>AdminOrCurrentApprover</recordEditability>
-    <showApprovalHistory>false</showApprovalHistory>
+    <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>

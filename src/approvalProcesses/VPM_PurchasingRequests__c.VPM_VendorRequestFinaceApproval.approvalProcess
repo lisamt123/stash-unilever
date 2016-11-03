@@ -8,10 +8,28 @@
     <approvalPageFields>
         <field>Name</field>
         <field>VPM_CountryRequestingVendor__c</field>
-        <field>RecordType</field>
+        <field>VPM_VendorName1__c</field>
         <field>VPM_WhatAreYouBuying__c</field>
-        <field>VPM_Spend__c</field>
+        <field>VPM_Country__c</field>
+        <field>VPM_PaymentTerms__c</field>
+        <field>VPM_VATRegistrationNumber__c</field>
+        <field>VPM_ReconciliationAccount__c</field>
+        <field>VPM_SortKey__c</field>
+        <field>VPM_CashManagementGroup__c</field>
+        <field>VPM_PaymentMethod__c</field>
+        <field>VPM_BankAccountNumber__c</field>
+        <field>VPM_BankCountryKey__c</field>
+        <field>VPM_BankKey__c</field>
+        <field>VPM_BankName__c</field>
+        <field>VPM_SwiftKey__c</field>
+        <field>VPM_PANNumber__c</field>
+        <field>VPM_CSTno__c</field>
+        <field>VPM_LSTno__c</field>
+        <field>VPM_SerRegNo__c</field>
+        <field>VPM_ExcIndVendor__c</field>
+        <field>RecordType</field>
         <field>CreatedBy</field>
+        <field>LastModifiedBy</field>
         <field>Owner</field>
     </approvalPageFields>
     <approvalStep>
@@ -64,7 +82,7 @@ RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;
 BEGINS(Text(VPM_VendorType__c),&quot;PI&quot;) || (BEGINS(Text(VPM_VendorType__c),&quot;SCS&quot;) &amp;&amp; BEGINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;3PM&quot;)) 
 )&amp;&amp; 
 (RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; || (RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; &amp;&amp; 
-VPM_ProvidedUnblockUndelete__c  || VPM_ProvidedBlockDelete__c  || VPM_ProvidedPaymentTerms__c  || VPM_ProvidedBankDetails__c  || VPM_ProvidedFinancialSensitive__c  || VPM_Is_changed_VAT__c  ) 
+VPM_ProvidedUnblockUndelete__c  || VPM_ProvidedBlockDelete__c  || VPM_ProvidedPaymentTerms__c  || VPM_ProvidedBankDetails__c  || VPM_ProvidedFinancialSensitive__c  || VPM_IsChangedVAT__c  ) 
 ), 
 /*USCC/UASCC,MBS/SCSCap,2611,5449,5496,5487*/ 
 (BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) || CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;CAP&quot;)) 
@@ -76,7 +94,7 @@ VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
 (RecordType.DeveloperName = &apos;VPM_VendorReqCreate&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || 
 AND 
 (RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;, 
-VPM_ProvidedBankDetails__c  || VPM_ProvidedFinancialSensitive__c  || VPM_Is_changed_VAT__c  
+VPM_ProvidedBankDetails__c  || VPM_ProvidedFinancialSensitive__c  || VPM_IsChangedVAT__c  
 )) ,
  
 /* USCC/UASCC,MBS(Indir)2611,5449,5496,5487*/ 
@@ -89,7 +107,7 @@ VPM_Commodity_Family__c = &quot;Out of Scope Procurement&quot;
 (RecordType.DeveloperName = &apos;VPM_VendorReqCreate&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || 
 AND ( 
 RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;, 
-VPM_ProvidedUnblockUndelete__c  || VPM_ProvidedBlockDelete__c  || VPM_ProvidedPaymentTerms__c  || VPM_ProvidedBankDetails__c || VPM_ProvidedFinancialSensitive__c  || VPM_Is_changed_VAT__c  
+VPM_ProvidedUnblockUndelete__c  || VPM_ProvidedBlockDelete__c  || VPM_ProvidedPaymentTerms__c  || VPM_ProvidedBankDetails__c || VPM_ProvidedFinancialSensitive__c  || VPM_IsChangedVAT__c  
 )) , 
 /*MBS Lakme,SCS Unica*/ 
 OR( 
@@ -219,5 +237,5 @@ RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; || AND(RecordType.
         </action>
     </recallActions>
     <recordEditability>AdminOrCurrentApprover</recordEditability>
-    <showApprovalHistory>false</showApprovalHistory>
+    <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>

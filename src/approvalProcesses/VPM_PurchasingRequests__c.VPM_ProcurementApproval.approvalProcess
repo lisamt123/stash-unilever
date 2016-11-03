@@ -10,6 +10,20 @@
     </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
+        <field>VPM_VendorName1__c</field>
+        <field>VPM_WhatAreYouBuying__c</field>
+        <field>VPM_Country__c</field>
+        <field>VPM_Commodity__c</field>
+        <field>VPM_CountryRequestingVendor__c</field>
+        <field>VPM_AlreadyAvailableSupplierUse__c</field>
+        <field>VPM_Spend__c</field>
+        <field>VPM_PaymentTerms__c</field>
+        <field>VPM_AdoptScanDate__c</field>
+        <field>VPM_VendorClassification__c</field>
+        <field>VPM_Bypass__c</field>
+        <field>VPM_E_Invoicing_Agreed__c</field>
+        <field>CreatedBy</field>
+        <field>LastModifiedBy</field>
         <field>Owner</field>
     </approvalPageFields>
     <approvalStep>
@@ -61,7 +75,7 @@
         <name>Single_Approval_Procurement</name>
     </approvalStep>
     <description>VPM - Approval process for Procurement Vendor Requests.</description>
-    <enableMobileDeviceAccess>true</enableMobileDeviceAccess>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <formula>OR(
 /*MBS/SCS Capex-MRO Vendors Create or Extend*/
@@ -303,5 +317,5 @@ VPM_Company_Code_Value__c = &apos;5487&apos;
         </action>
     </recallActions>
     <recordEditability>AdminOrCurrentApprover</recordEditability>
-    <showApprovalHistory>false</showApprovalHistory>
+    <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>
