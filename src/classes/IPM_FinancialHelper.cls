@@ -45,6 +45,7 @@ public with sharing class IPM_FinancialHelper
     public static Boolean SKIP_TRIGGER_EXECUTION = false;
     
     public static Map<String,Set<String>> consltdFinExtIdToFinYearMap = new Map<String,Set<String>>();
+    public static Map<String, Set<String>> consoltdFinNameToValidCalendarYearsMap  = new Map<String, Set<String>>(); 
     
     /*******************************************************************************************************
     * @description      Method to handle after insert Trigger context for IPM_Financial__c object. 
@@ -138,7 +139,7 @@ public with sharing class IPM_FinancialHelper
                 nonConsolidatedFinList.add(fin);
             }
         }
-        deleteIPMFinancialYears.addAll (getFinYearsToDelete(consolidatedFinList,nonConsolidatedFinList));
+    	getConsoltdFinNameToValidCalendarYearsMap(nonConsolidatedFinList);
         for(IPM_Financial__c consltdfin: consolidatedFinList){
             if(consoltdFinNameToValidCalendarYearsMap.containsKey(consltdfin.Financial_External_ID__c)){
                 for(IPM_Financial_Year__c finYear :consltdfin.IPM_Financial_Years__r){
@@ -155,9 +156,8 @@ public with sharing class IPM_FinancialHelper
     }
     
 	//Method to find all the financial years to be delete from the consolidated financials
-    public static List<IPM_Financial_Year__c> getFinYearsToDelete(List<IPM_Financial__c> consolidatedFinList, List<IPM_Financial__c> nonConsolidatedFinList){
-    	Map<String, Set<String>> consoltdFinNameToValidCalendarYearsMap  = new Map<String, Set<String>>(); 
-    	consoltdFinNameToValidCalendarYearsMap = getConsoltdFinNameToValidCalendarYearsMap(nonConsolidatedFinList);
+    public static List<IPM_Financial_Year__c> getFinYearsToDelete(List<IPM_Financial__c> consolidatedFinList){
+    	
     	List<IPM_Financial_Year__c> finYearsToDelete = new List<IPM_Financial_Year__c>();
     	
     	for(IPM_Financial__c consltdfin: consolidatedFinList){
@@ -985,12 +985,11 @@ public with sharing class IPM_FinancialHelper
     
     //Helper method for deleteFinancialyears() method 
     //This method prepares map of the consolidated Financial Extrenal id v/s the list of financial Years that are valid for that consolidated finanical
-    public static Map<String, Set<String>> getConsoltdFinNameToValidCalendarYearsMap(List<IPM_Financial__c> nonConsolidatedFinList){
-		Integer TLDYear = 0 ;
+    public static void getConsoltdFinNameToValidCalendarYearsMap(List<IPM_Financial__c> nonConsolidatedFinList){
+        Integer TLDYear = 0 ;
         String regionalConsoltdKey = '';
         String globalConsoltdKey = '';
-        Map<String, Set<String>> consoltdFinNameToValidCalendarYearsMap  = new Map<String, Set<String>>();
-        
+
         for(IPM_Financial__c nonConsltdfin: nonConsolidatedFinList){
 
         	TLDYear = nonConsltdfin.Target_Launch_Date__c.year();
