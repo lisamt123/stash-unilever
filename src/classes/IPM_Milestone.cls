@@ -82,7 +82,7 @@ public with sharing class IPM_Milestone {
             {
                 milestoneId = ApexPages.currentPage().getParameters().get(IPM_Utils.taskId);
                 sObjName = milestoneId.getSObjectType().getDescribe().getName();
-                String milestoneQuery = 'SELECT Id,IPM_Category__c,IPM_Completed_On__c,IPM_Completed__c,IPM_Due_Date__c,IPM_Milestone__c,IPM_Name__c,IPM_No_of_Days__c, IPM_Phase__c,IPM_Planned_Date__c,IPM_Project__c,IPM_Type_of_gate__c,IPM_BET__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c WHERE id =\''+ milestoneId + '\' ';
+                String milestoneQuery = 'SELECT Id,IPM_Category__c,IPM_Phase_Order__c,IPM_Completed_On__c,IPM_Completed__c,IPM_Due_Date__c,IPM_Due_Date_For_Sorting__c,IPM_Milestone__c,IPM_Name__c,IPM_No_of_Days__c, IPM_Phase__c,IPM_Planned_Date__c,IPM_Project__c,IPM_Type_of_gate__c,IPM_BET__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c WHERE id =\''+ milestoneId + '\' ';
                 msObject= Database.query(milestoneQuery);
                 
                 milestoneObj = (IPM_Milestone__c)msObject;
@@ -225,7 +225,7 @@ public with sharing class IPM_Milestone {
                 
                 Map<Id,IPM_Milestone__c> masterToProjectMileStone = new Map<Id,IPM_Milestone__c>();
                 
-                for(IPM_Milestone__c projectMilestone : [SELECT Id,IPM_Due_Date__c,IPM_Category__c,IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,
+                for(IPM_Milestone__c projectMilestone : [SELECT Id,IPM_Due_Date__c,IPM_Due_Date_For_Sorting__c,IPM_Category__c,IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,
                 IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c WHERE IPM_Project__c = :String.escapeSingleQuotes(String.valueOf(projectObject.Id)) 
                 AND IPM_Milestone__c in :selectedMiniMileMaster AND IPM_Phase__c in :selectedMiniMilePhases] )
                 {
@@ -271,6 +271,7 @@ public with sharing class IPM_Milestone {
                         msObj.IPM_Phase__c             = selectedMiniMileWrap.mile.IPM_Phase__c;
                         msObj.IPM_Planned_Date__c      = selectedMiniMileWrap.mile.IPM_Due_Date__c;
                         msObj.IPM_Due_Date__c          = selectedMiniMileWrap.mile.IPM_Due_Date__c;
+                        msObj.IPM_Due_Date_For_Sorting__c = msObj.IPM_Due_Date__c;
                         msObj.IPM_Type_of_Milestone__c = IPM_ConstantUtils.MINI;
                         msObj.IPM_Active__c            = true;
                         lstmiles.add(msObj);
@@ -316,8 +317,10 @@ public with sharing class IPM_Milestone {
             mile = c;
             if(c.IPM_BET__c && c.IPM_Name__c == IPM_Utils.BETFirstRelease){
                 mile.IPM_Due_Date__c = launchDate.month() < IPM_ConstantUtils.BET_DUEDATE_MONTH ? Date.newInstance(launchDate.year() -IPM_ConstantUtils.BET_DUEDATE_YEAR, IPM_ConstantUtils.BET_DUEDATE_H1_MONTH, IPM_ConstantUtils.BET_DUEDATE_H1_DAY):Date.newInstance(launchDate.year()-IPM_ConstantUtils.BET_DUEDATE_YEAR, IPM_ConstantUtils.BET_DUEDATE_H2_MONTH, IPM_ConstantUtils.BET_DUEDATE_H2_DAY);
+                mile.IPM_Due_Date_For_Sorting__c = mile.IPM_Due_Date__c;
             }else if(c.IPM_BET__c && c.IPM_Name__c == IPM_Utils.BETFinalReleasecompletewithApprovedCommunication){
                 mile.IPM_Due_Date__c=launchDate.addDays(-180);
+                mile.IPM_Due_Date_For_Sorting__c = mile.IPM_Due_Date__c;
             }
             checked = false;
             errorRecord = false;
@@ -333,7 +336,7 @@ public with sharing class IPM_Milestone {
             if(con == null) 
             {
                 Id mileStoneRecordType = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMMilestones).getRecordTypeId(); 
-                con = new ApexPages.StandardSetController(Database.getQueryLocator([SELECT Id,IPM_Project__c,IPM_Due_Date__c,IPM_Name__c,IPM_Category__c,IPM_Planned_Date__c,
+                con = new ApexPages.StandardSetController(Database.getQueryLocator([SELECT Id,IPM_Project__c,IPM_Due_Date__c, IPM_Due_Date_For_Sorting__c, IPM_Name__c,IPM_Category__c,IPM_Planned_Date__c,
                         IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_BET__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c,IPM_Phase_Order__c FROM IPM_Milestone__c 
                         WHERE RecordTypeId= : mileStoneRecordType AND IPM_Type_of_Milestone__c=: IPM_ConstantUtils.MINI 
                         AND IPM_Project_Type__c =: sourceProjectType order by IPM_Phase_Order__c, IPM_Name__c])); 
@@ -383,6 +386,7 @@ public with sharing class IPM_Milestone {
                     {    
                         milestoneObj.IPM_Planned_Date__c=miles.IPM_Planned_Date__c;
                         milestoneObj.IPM_Due_Date__c=miles.IPM_Planned_Date__c;
+                        milestoneObj.IPM_Due_Date_For_Sorting__c = milestoneObj.IPM_Due_Date__c;
                     }
                 }
             }
@@ -445,12 +449,12 @@ public with sharing class IPM_Milestone {
                 String stndMileStoneString = IPM_ConstantUtils.STANDARD;
                 
                 // Get the in context Milestone.
-                List<IPM_Milestone__c> incomingMileStoneList =[SELECT Id,IPM_Due_Date__c,IPM_Project__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Category__c,
+                List<IPM_Milestone__c> incomingMileStoneList =[SELECT Id,IPM_Due_Date__c,IPM_Due_Date_For_Sorting__c,IPM_Project__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Category__c,
                 IPM_Completed_On__c,IPM_Milestone__c,IPM_Milestone__r.IPM_Milestone__c,IPM_Phase__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c  
                 WHERE Id =:milestoneId ];
                 
                             
-                List<IPM_Milestone__c> projectSpecificMilestoneList = [SELECT Id,IPM_Name__c,IPM_Due_Date__c,IPM_Project__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Category__c,
+                List<IPM_Milestone__c> projectSpecificMilestoneList = [SELECT Id,IPM_Name__c,IPM_Due_Date__c,IPM_Due_Date_For_Sorting__c,IPM_Project__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Category__c,
                 IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c  
                 WHERE  IPM_Type_of_Milestone__c =:stndMileStoneString AND IPM_Project__c =:projectId AND IPM_Active__c =: true];
                 
@@ -666,15 +670,36 @@ public with sharing class IPM_Milestone {
     *@Description : To update the current milestone details 
      @return : Returns to milestone page
     *********************************************************************************/   
+    
+    public List<IPM_Milestone__c> alignMilestonesForSorting(IPM_Milestone__c milestone){
+    	List<IPM_Milestone__c> milesListforSort = [select Id, IPM_Name__c,IPM_Phase_Order__c, IPM_Due_Date__c, IPM_Due_Date_For_Sorting__c from IPM_Milestone__c where IPM_Phase_Order__c < :milestone.IPM_Phase_Order__c and IPM_Phase_Order__c >0 and IPM_Project__c = :milestone.IPM_Project__c];
+    	if(!(milesListforSort.isEmpty())){
+	    	for(IPM_Milestone__c mstone : milesListforSort){
+	    		mstone.IPM_Due_Date_For_Sorting__c = milestone.IPM_Due_Date__c;
+	    	}
+    		return milesListforSort;
+    	}else{
+    		return null;
+    	}
+    }
+   
+   /**********************************************************************************
+   *@Description: To update IPM_Due_Date_For_Sorting__c of milestones with phase lesser 
+    than that of the current milestone
+   so that they are sorted properly.
+   ***********************************************************************************/
+   
     public PageReference saveMilestones()
     {
         validateSuccess = validateMilestone();
         if(validateSuccess)
         {
+        	List<IPM_Milestone__c> mstoneLst = new List<IPM_Milestone__c>();
             milestoneObj.RecordTypeId = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId();
             milestoneObj.IPM_Planned_Date__c = milestoneObj.IPM_Due_Date__c;
             milestoneObj.IPM_Completed__c = String.IsNotBlank(String.valueOf(milestoneObj.IPM_Completed_On__c)) ? true : false;
             milestoneObj.IPM_Active__c =true;
+            milestoneObj.IPM_Due_Date_For_Sorting__c = milestoneObj.IPM_Due_Date__c;
             if(milestoneObj.IPM_Project__c == null){
                 milestoneObj.IPM_Project__c = projectId;
             }
@@ -683,9 +708,12 @@ public with sharing class IPM_Milestone {
             {
                 milestoneObj.IPM_Type_of_Milestone__c = IPM_constantUtils.ADHOC;
             }  
+            mstoneLst = alignMilestonesForSorting(milestoneObj);
+            mstoneLst.add(milestoneObj);
             try
             {
-                upsert milestoneObj;
+               // upsert milestoneObj;
+               upsert mstoneLst;
                 displayPopup = false;
             }
             catch(Exception ex)

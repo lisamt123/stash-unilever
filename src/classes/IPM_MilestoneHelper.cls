@@ -283,6 +283,7 @@ public with sharing class IPM_MilestoneHelper
                                    {
                                      newProjectMilestone.IPM_Planned_Date__c=null; 
                                      newProjectMilestone.IPM_Due_Date__c=null;
+                                     newProjectMilestone.IPM_Due_Date_For_Sorting__c = null;
                                    }
                                    else if(project.IPM_Market_Type__c ==IPM_Utils.DevelopingIPM_Market_Type && !(project.IPM_Fast_Track_Project__c) && 
                                         String.isNotEmpty(masterMilestone.IPM_No_Of_Days_for_Developing__c))
@@ -621,9 +622,10 @@ public with sharing class IPM_MilestoneHelper
         
         //Update Milestone dates for parent Milestones
         if(!setParentProjIds.isEmpty()){
-            for(IPM_Milestone__c ml : [select IPM_Project__c, IPM_Name__c,IPM_Due_Date_Feasibility__c, IPM_Project__r.IPM_Phase__c, IPM_Due_Date__c,IPM_Due_Date_Capability__c, IPM_Phase__c  from IPM_Milestone__c where IPM_Project__c in :setParentProjIds and ((IPM_Name__c =:IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE and IPM_Due_Date_Feasibility__c=null) OR (IPM_Name__c = :IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE AND IPM_Due_Date_Capability__c=null)) LIMIT 50000]){
+            for(IPM_Milestone__c ml : [select IPM_Project__c, IPM_Due_Date_For_Sorting__c, IPM_Name__c,IPM_Due_Date_Feasibility__c, IPM_Project__r.IPM_Phase__c, IPM_Due_Date__c,IPM_Due_Date_Capability__c, IPM_Phase__c  from IPM_Milestone__c where IPM_Project__c in :setParentProjIds and ((IPM_Name__c =:IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE and IPM_Due_Date_Feasibility__c=null) OR (IPM_Name__c = :IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE AND IPM_Due_Date_Capability__c=null)) LIMIT 50000]){
                 if(mapProjMlDuedate.containsKey(ml.IPM_Project__c) && mapProjMlDuedate.get(ml.IPM_Project__c).containskey(ml.IPM_Name__c)){
                     ml.IPM_Due_Date__c = mapProjMlDuedate.get(ml.IPM_Project__c).get(ml.IPM_Name__c);
+                    ml.IPM_Due_Date_For_Sorting__c = mapProjMlDuedate.get(ml.IPM_Project__c).get(ml.IPM_Name__c);
                     ml.IPM_Planned_Date__c = mapProjMlDuedate.get(ml.IPM_Project__c).get(ml.IPM_Name__c);
                     lstUpdateMiles.add(ml);
                 }
