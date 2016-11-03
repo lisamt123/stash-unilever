@@ -708,7 +708,12 @@ public with sharing class IPM_Milestone {
             {
                 milestoneObj.IPM_Type_of_Milestone__c = IPM_constantUtils.ADHOC;
             }  
-            mstoneLst = alignMilestonesForSorting(milestoneObj);
+			if( alignMilestonesForSorting(milestoneObj)==null){
+                mstoneLst = new list<IPM_Milestone__c>();
+            }
+            else{
+                mstoneLst = alignMilestonesForSorting(milestoneObj);    
+            }
             mstoneLst.add(milestoneObj);
             try
             {
