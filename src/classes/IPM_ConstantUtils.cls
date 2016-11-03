@@ -1302,4 +1302,7 @@ public class IPM_ConstantUtils {
     public static final String PDL_GOLDEN_PROTOTYPE = 'Golden_Prototype';
     public static final String PDL_QUALITY_STANDARDS = 'Quality_Standards';
 	public static final String SELECT_CLAIM = 'Select Claim';
+	
+	public static final String REGIONAL_PROJECT = ' Regional Project,';
+    public static final String GLOBAL_PROJECT = ' Global Project,';
 }
