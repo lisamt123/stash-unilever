@@ -5028,6 +5028,11 @@
         <field>IPM_Milestone__c.IPM_Violate_Preferred_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_For_Sorting__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Document_Section_Content__c.BETCurrentStatus__c</field>

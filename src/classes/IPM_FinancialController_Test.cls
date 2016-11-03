@@ -218,10 +218,7 @@ public class IPM_FinancialController_Test {
      //Use case: Global original Feasibility phase and NON consilidate financnials
      static testMethod void testGlobalOriginalNONConsolidate()
      {
-
-        
-
-        User globalProjectLeader = [Select Id,email from User where email =:GLOBAL_PL_EMAIL_ID];   
+             User globalProjectLeader = [Select Id,email from User where email =:GLOBAL_PL_EMAIL_ID];   
 
         System.runAs(globalProjectLeader)
         {
@@ -249,7 +246,7 @@ public class IPM_FinancialController_Test {
              callCtrlAction(ipmFinCon, EXEC_PART_2);
              callCtrlAction(ipmFinCon, EXEC_PART_3);
              
-             Test.stopTest();   
+               
              callCtrlAction(ipmFinCon, EXEC_PART_4);
 
              //asserts are in source method to check tab load
@@ -258,7 +255,7 @@ public class IPM_FinancialController_Test {
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
              //Load Tab Rollup
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
-             
+             Test.stopTest(); 
              //private method testCatch has ASSERTS statements so no duplicates here
              testCatch(globalOriginal, ipmFinCon);
             
