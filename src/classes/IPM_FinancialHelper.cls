@@ -44,6 +44,8 @@ public with sharing class IPM_FinancialHelper
     
     public static Boolean SKIP_TRIGGER_EXECUTION = false;
     
+    public static Map<String,Set<String>> consltdFinExtIdToFinYearMap = new Map<String,Set<String>>();
+    
     /*******************************************************************************************************
     * @description      Method to handle after insert Trigger context for IPM_Financial__c object. 
                         Creates Financial Year record whenever Financial Record is created.
@@ -54,6 +56,38 @@ public with sharing class IPM_FinancialHelper
     ********************************************************************************************************/
     public static void insertFinancialYears(List<IPM_Financial__c> newFinancials,Map<String,IPM_Financial_Year__c>  upsertFinancialYearMap)     
     {
+        
+        //pattern for all the consolidated financials' External Id
+        Set<String> consoltdExtIdPatternSet = new Set<String>();
+        
+        //prepare set of the external Id for consolidated financials
+        for(IPM_Financial__c financial : newFinancials)
+        {
+            consoltdExtIdPatternSet.add(financial.Global_External_Id__c+'%'+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE);
+        }
+        
+        
+        List<IPM_Financial__c> consolidatedFinLst = [Select Id ,recordtypeId,Financial_External_ID__c,Target_Launch_Date__c ,Project_Sustainability_Period__c,Global_External_Id__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.IPM_Rollout_Project__c,Regional_Project__c , Regional_Project__r.IPM_Project_Name__c, Parent_Project__c , Parent_Project__r.IPM_Project_Name__c, ( Select Id,Name from IPM_Financial_Years__r where Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR AND  (NOT Name like '%Y%') order by Name) from IPM_Financial__c 
+                                          where Financial_External_ID__c Like : consoltdExtIdPatternSet Limit 1000 ];
+          
+        
+        
+        for(IPM_Financial__c fin : consolidatedFinLst)
+        {
+            Set<String> finYrNameSet =  new Set<String>();
+            for(IPM_Financial_Year__c finYear : fin.IPM_Financial_Years__r){
+            	finYrNameSet.add(finYear.Name);	
+            }
+            
+            if(!consltdFinExtIdToFinYearMap.containsKey(fin.Financial_External_ID__c)){
+            	consltdFinExtIdToFinYearMap.put(fin.Financial_External_ID__c,finYrNameSet);
+            }
+            else{
+            	consltdFinExtIdToFinYearMap.get(fin.Financial_External_ID__c).addAll(finYrNameSet);
+            }
+            
+        }                              
+        
         for(IPM_Financial__c financial : newFinancials)
         {
             processIPMFinancialYears(financial,upsertFinancialYearMap);
@@ -67,8 +101,21 @@ public with sharing class IPM_FinancialHelper
     * @param1 newFinancials  List of Trigger.new records
     * @return               NONE
     ********************************************************************************************************/
-    public static void deleteFinancialYears(List<IPM_Financial__c> newFinancials)      
+    public static void deleteFinancialYears(List<IPM_Financial__c> newFinancials,Map<Id,IPM_Financial__c> oldFinancialMap)      
     {
+        Boolean isTLDChangedForAnyFin = false;
+        
+        for(IPM_Financial__c fin:newFinancials){
+        	if(fin.Target_Launch_Date__c != oldFinancialMap.get(fin.Id).Target_Launch_Date__c ){
+        		isTLDChangedForAnyFin = true;
+        		break;
+        	}
+        }
+        
+        if(!isTLDChangedForAnyFin){
+        	return;
+        }
+        
         List<IPM_Financial_Year__c> deleteIPMFinancialYears = new List<IPM_Financial_Year__c>();
         Id consolidatedFinRecordTypeId = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId();
         
@@ -80,6 +127,7 @@ public with sharing class IPM_FinancialHelper
         List<Id> rolloutIds = new List<Id>();
         List<Id> regionalProjIds = new List<Id>();
         List<String> globalConsilidatedExtIds = new List<String>();
+        List<String> financialExtIdPatternList = new List<String>();
         
         for(IPM_Financial__c fin :finListWithRollout){
             if(fin.IPM_Project_Rollout__c != null){
@@ -90,12 +138,11 @@ public with sharing class IPM_FinancialHelper
             }
             if(fin.Global_External_Id__c != null){
                 globalConsilidatedExtIds.add(fin.Global_External_Id__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE);
+                financialExtIdPatternList.add(fin.Global_External_Id__c+'%');
             }
         }
         
-        finList = [Select Id ,recordtypeId,Financial_External_ID__c,Target_Launch_Date__c ,Project_Sustainability_Period__c,Global_External_Id__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.IPM_Rollout_Project__c,Regional_Project__c , Regional_Project__r.IPM_Project_Name__c, Parent_Project__c , Parent_Project__r.IPM_Project_Name__c, ( Select Id,Name from IPM_Financial_Years__r where Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR AND  (NOT Name like '%Y%') order by Name) from IPM_Financial__c 
-                                          where IPM_Project_Rollout__c IN :rolloutIds OR Regional_Project__c IN :regionalProjIds or Financial_External_ID__c IN :globalConsilidatedExtIds Limit 1000 ];
-        
+        finList = [Select Id ,recordtypeId,Financial_External_ID__c,Target_Launch_Date__c ,Project_Sustainability_Period__c,Global_External_Id__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.IPM_Rollout_Project__c,Regional_Project__c , Regional_Project__r.IPM_Project_Name__c, Parent_Project__c , Parent_Project__r.IPM_Project_Name__c, ( Select Id,Name from IPM_Financial_Years__r where Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR AND  (NOT Name like '%Y%') order by Name) from IPM_Financial__c where Financial_External_ID__c Like : financialExtIdPatternList Limit 1000 ];
         
         
         List<IPM_Financial__c> nonConsolidatedFinList = new List<IPM_Financial__c>();
@@ -196,6 +243,19 @@ public with sharing class IPM_FinancialHelper
     private static void processIPMFinancialYears(IPM_Financial__c ipmFinancial,Map<String,IPM_Financial_Year__c>  upsertFinancialYearMap)
     {
         String externalId = ipmFinancial.Financial_External_ID__c;
+        
+        //find consolidated External IDs
+        String globalConsoltdKey = '';
+        String regionalConsoltdKey = '';
+        
+        if(ipmFinancial.Regional_External_Id__c != null){
+	    	regionalConsoltdKey = ipmFinancial.Regional_External_Id__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+	  	}
+		  
+	    if(ipmFinancial.Global_External_Id__c != null){
+	     	globalConsoltdKey = ipmFinancial.Global_External_Id__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+	    }
+        
 
         //Y0
         IPM_Financial_Year__c financialYear = null;
@@ -227,6 +287,26 @@ public with sharing class IPM_FinancialHelper
             
             financialYear = processFinancialYear(externalId, IPM_ConstantUtils.BLANK+calendarYear, IPM_ConstantUtils.BLANK+i, IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_INCREMENTAL,ipmFinancial.recordTypeId, ipmFinancial.Gate_Keeping_Model__c);
             upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
+            
+            //Add new financial year to the corresponding global consolidated financial
+            //first check if the calendar year is present, if not then add the calendar year
+            if(consltdFinExtIdToFinYearMap != null && consltdFinExtIdToFinYearMap.get(regionalConsoltdKey) != null && !consltdFinExtIdToFinYearMap.get(globalConsoltdKey).contains(String.valueOf(calendarYear))){
+            	financialYear = processFinancialYear(globalConsoltdKey, IPM_ConstantUtils.BLANK+calendarYear, '0', IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_GROSS,CONSOLIDATED_FINANCIAL_RECORDTYPE, ipmFinancial.Gate_Keeping_Model__c);
+            	upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
+            	
+            	financialYear = processFinancialYear(globalConsoltdKey, IPM_ConstantUtils.BLANK+calendarYear, '0', IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_INCREMENTAL,CONSOLIDATED_FINANCIAL_RECORDTYPE, ipmFinancial.Gate_Keeping_Model__c);
+            	upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
+            }
+            
+            //Add new financial year to the corresponding regional consolidated financial
+            //first check if the calendar year is present, if not then add the calendar year
+            if(consltdFinExtIdToFinYearMap != null && consltdFinExtIdToFinYearMap.get(regionalConsoltdKey) != null && !consltdFinExtIdToFinYearMap.get(regionalConsoltdKey).contains(String.valueOf(calendarYear))){
+            	financialYear = processFinancialYear(regionalConsoltdKey, IPM_ConstantUtils.BLANK+calendarYear, '1', IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_GROSS,CONSOLIDATED_FINANCIAL_RECORDTYPE, ipmFinancial.Gate_Keeping_Model__c);
+            	upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
+            	
+            	financialYear = processFinancialYear(regionalConsoltdKey, IPM_ConstantUtils.BLANK+calendarYear, '1', IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_INCREMENTAL,CONSOLIDATED_FINANCIAL_RECORDTYPE, ipmFinancial.Gate_Keeping_Model__c);
+            	upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
+            }
         }
     }
     
