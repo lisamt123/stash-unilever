@@ -66,30 +66,24 @@ public with sharing class IPM_FinancialHelper
             consoltdExtIdPatternSet.add(financial.Global_External_Id__c+'%'+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE);
         }
         
-        
         List<IPM_Financial__c> consolidatedFinLst = [Select Id ,recordtypeId,Financial_External_ID__c,Target_Launch_Date__c ,Project_Sustainability_Period__c,Global_External_Id__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.IPM_Rollout_Project__c,Regional_Project__c , Regional_Project__r.IPM_Project_Name__c, Parent_Project__c , Parent_Project__r.IPM_Project_Name__c, ( Select Id,Name from IPM_Financial_Years__r where Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR AND  (NOT Name like '%Y%') order by Name) from IPM_Financial__c 
                                           where Financial_External_ID__c Like : consoltdExtIdPatternSet Limit 1000 ];
           
-        
-        
-        for(IPM_Financial__c fin : consolidatedFinLst)
-        {
+        for(IPM_Financial__c fin : consolidatedFinLst){
             Set<String> finYrNameSet =  new Set<String>();
             for(IPM_Financial_Year__c finYear : fin.IPM_Financial_Years__r){
             	finYrNameSet.add(finYear.Name);	
             }
-            
+			
             if(!consltdFinExtIdToFinYearMap.containsKey(fin.Financial_External_ID__c)){
             	consltdFinExtIdToFinYearMap.put(fin.Financial_External_ID__c,finYrNameSet);
             }
             else{
             	consltdFinExtIdToFinYearMap.get(fin.Financial_External_ID__c).addAll(finYrNameSet);
-            }
-            
+            } 
         }                              
         
-        for(IPM_Financial__c financial : newFinancials)
-        {
+        for(IPM_Financial__c financial : newFinancials){
             processIPMFinancialYears(financial,upsertFinancialYearMap);
         }  
     }
@@ -121,35 +115,21 @@ public with sharing class IPM_FinancialHelper
         
         List<IPM_Financial__c> finList = new List<IPM_Financial__c>();
         
-        
         List<IPM_Financial__c> finListWithRollout = [Select Id,IPM_Project_Rollout__c,Regional_Project__c,Global_External_Id__c from IPM_Financial__c where Id in :newFinancials];
         
-        List<Id> rolloutIds = new List<Id>();
-        List<Id> regionalProjIds = new List<Id>();
-        List<String> globalConsilidatedExtIds = new List<String>();
         List<String> financialExtIdPatternList = new List<String>();
         
         for(IPM_Financial__c fin :finListWithRollout){
-            if(fin.IPM_Project_Rollout__c != null){
-                rolloutIds.add(fin.IPM_Project_Rollout__c);
-            }
-            if(fin.Regional_Project__c != null){
-                regionalProjIds.add(fin.Regional_Project__c);
-            }
             if(fin.Global_External_Id__c != null){
-                globalConsilidatedExtIds.add(fin.Global_External_Id__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE);
                 financialExtIdPatternList.add(fin.Global_External_Id__c+'%');
             }
         }
         
         finList = [Select Id ,recordtypeId,Financial_External_ID__c,Target_Launch_Date__c ,Project_Sustainability_Period__c,Global_External_Id__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.IPM_Rollout_Project__c,Regional_Project__c , Regional_Project__r.IPM_Project_Name__c, Parent_Project__c , Parent_Project__r.IPM_Project_Name__c, ( Select Id,Name from IPM_Financial_Years__r where Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR AND  (NOT Name like '%Y%') order by Name) from IPM_Financial__c where Financial_External_ID__c Like : financialExtIdPatternList Limit 1000 ];
         
-        
         List<IPM_Financial__c> nonConsolidatedFinList = new List<IPM_Financial__c>();
         List<IPM_Financial__c> consolidatedFinList = new List<IPM_Financial__c>();
-        
-        Map<String, Set<String>> consoltdFinNameToValidCalendarYearsMap  = new Map<String, Set<String>>();
-                
+     
         for(IPM_Financial__c fin: finList){
             if(fin.recordtypeId == consolidatedFinRecordTypeId){
                 consolidatedFinList.add(fin);
@@ -158,10 +138,7 @@ public with sharing class IPM_FinancialHelper
                 nonConsolidatedFinList.add(fin);
             }
         }
-        
-        
-        consoltdFinNameToValidCalendarYearsMap = getConsoltdFinNameToValidCalendarYearsMap(nonConsolidatedFinList);
-
+        deleteIPMFinancialYears.addAll (getFinYearsToDelete(consolidatedFinList,nonConsolidatedFinList));
         for(IPM_Financial__c consltdfin: consolidatedFinList){
             if(consoltdFinNameToValidCalendarYearsMap.containsKey(consltdfin.Financial_External_ID__c)){
                 for(IPM_Financial_Year__c finYear :consltdfin.IPM_Financial_Years__r){
@@ -170,15 +147,32 @@ public with sharing class IPM_FinancialHelper
                     }
                 }
             }
-            
         }
-        
-        
-        if(deleteIPMFinancialYears!=null && !deleteIPMFinancialYears.isEmpty()) 
-        {
+
+        if(deleteIPMFinancialYears!=null && !deleteIPMFinancialYears.isEmpty()){
           delete deleteIPMFinancialYears;
         } 
-           
+    }
+    
+	//Method to find all the financial years to be delete from the consolidated financials
+    public static List<IPM_Financial_Year__c> getFinYearsToDelete(List<IPM_Financial__c> consolidatedFinList, List<IPM_Financial__c> nonConsolidatedFinList){
+    	Map<String, Set<String>> consoltdFinNameToValidCalendarYearsMap  = new Map<String, Set<String>>(); 
+    	consoltdFinNameToValidCalendarYearsMap = getConsoltdFinNameToValidCalendarYearsMap(nonConsolidatedFinList);
+    	List<IPM_Financial_Year__c> finYearsToDelete = new List<IPM_Financial_Year__c>();
+    	
+    	for(IPM_Financial__c consltdfin: consolidatedFinList){
+            System.debug('consltdfin.Financial_External_ID__c ==>'+consltdfin.Financial_External_ID__c);
+            if( !consoltdFinNameToValidCalendarYearsMap.isEmpty() && consoltdFinNameToValidCalendarYearsMap.containsKey(consltdfin.Financial_External_ID__c)){
+                for(IPM_Financial_Year__c finYear :consltdfin.IPM_Financial_Years__r){
+                    if(!consoltdFinNameToValidCalendarYearsMap.get(consltdfin.Financial_External_ID__c).contains(finYear.Name)){
+                        System.debug('finYear to be deleted ==>'+finYear);
+                        finYearsToDelete.add(finYear);
+                    }
+                } 
+            }
+            
+        }
+        return finYearsToDelete;
     }
     
       /******************************************************************************************************************
@@ -189,7 +183,6 @@ public with sharing class IPM_FinancialHelper
     * @param4 upsertConsolidatedFinancialYearMap    Target Consolidated Financial Year Map.
     * @return               NONE
     *********************************************************************************************************************/ 
-    
     public static void manageFinancialYears(Map<Id,IPM_Financial__c> targetLaunchChangedDateMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertConsolidatedFinancialYearMap)
     {
         for(IPM_Financial__c financial : targetLaunchChangedDateMap.values())
@@ -255,7 +248,6 @@ public with sharing class IPM_FinancialHelper
 	    if(ipmFinancial.Global_External_Id__c != null){
 	     	globalConsoltdKey = ipmFinancial.Global_External_Id__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
 	    }
-        
 
         //Y0
         IPM_Financial_Year__c financialYear = null;
@@ -264,7 +256,7 @@ public with sharing class IPM_FinancialHelper
         {
             financialYear.put(fieldAPI,ipmFinancial.get(fieldAPI));    
         }
-        
+		
         upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
         
         financialYear = processFinancialYear(externalId, IPM_ConstantUtils.Y0_LABEL, IPM_ConstantUtils.Y0_YEARINDEX, IPM_ConstantUtils.YEAR_TYPE_CALENDAR, NULL,ipmFinancial.recordTypeId, ipmFinancial.Gate_Keeping_Model__c);
@@ -290,7 +282,7 @@ public with sharing class IPM_FinancialHelper
             
             //Add new financial year to the corresponding global consolidated financial
             //first check if the calendar year is present, if not then add the calendar year
-            if(consltdFinExtIdToFinYearMap != null && consltdFinExtIdToFinYearMap.get(regionalConsoltdKey) != null && !consltdFinExtIdToFinYearMap.get(globalConsoltdKey).contains(String.valueOf(calendarYear))){
+            if(consltdFinExtIdToFinYearMap != null && consltdFinExtIdToFinYearMap.get(globalConsoltdKey) != null && calendarYear!= null && !consltdFinExtIdToFinYearMap.get(globalConsoltdKey).contains(String.valueOf(calendarYear))){
             	financialYear = processFinancialYear(globalConsoltdKey, IPM_ConstantUtils.BLANK+calendarYear, '0', IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_GROSS,CONSOLIDATED_FINANCIAL_RECORDTYPE, ipmFinancial.Gate_Keeping_Model__c);
             	upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
             	
@@ -300,7 +292,7 @@ public with sharing class IPM_FinancialHelper
             
             //Add new financial year to the corresponding regional consolidated financial
             //first check if the calendar year is present, if not then add the calendar year
-            if(consltdFinExtIdToFinYearMap != null && consltdFinExtIdToFinYearMap.get(regionalConsoltdKey) != null && !consltdFinExtIdToFinYearMap.get(regionalConsoltdKey).contains(String.valueOf(calendarYear))){
+            if(consltdFinExtIdToFinYearMap != null && consltdFinExtIdToFinYearMap.get(regionalConsoltdKey) != null &&  calendarYear!= null && !consltdFinExtIdToFinYearMap.get(regionalConsoltdKey).contains(String.valueOf(calendarYear))){
             	financialYear = processFinancialYear(regionalConsoltdKey, IPM_ConstantUtils.BLANK+calendarYear, '1', IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_GROSS,CONSOLIDATED_FINANCIAL_RECORDTYPE, ipmFinancial.Gate_Keeping_Model__c);
             	upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
             	
@@ -358,19 +350,15 @@ public with sharing class IPM_FinancialHelper
         Set<String> globalProjectIdSet = new Set<String>();
         Set<String> regionalProjectIdSet = new Set<String>();
         
-        for(IPM_Financial__c financial : consolidationChangedFinancialList)
-        {
-            if(financialDetailMap.containsKey(financial.Id))
-            {
+        for(IPM_Financial__c financial : consolidationChangedFinancialList){
+            if(financialDetailMap.containsKey(financial.Id)){
                 IPM_Financial__c newfinancial = financialDetailMap.get(financial.Id);
                 
-                if(!String.isBlank(newfinancial.Global_External_Id__c))
-                {
+                if(!String.isBlank(newfinancial.Global_External_Id__c)){
                     globalProjectIdSet.add(newfinancial.Global_External_Id__c);
                 }
                     
-                if(!String.isBlank(newfinancial.Regional_External_Id__c)) 
-                {
+                if(!String.isBlank(newfinancial.Regional_External_Id__c)){
                     regionalProjectIdSet.add(newfinancial.Regional_External_Id__c);
                 }
             }  
@@ -382,18 +370,15 @@ public with sharing class IPM_FinancialHelper
         financialQuery = financialQuery + financialWhereClause;
         Map<Id,IPM_Financial__c> completeFinancialMap = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>) database.query(financialQuery));    
                  
-        for(IPM_Financial__c financial : completeFinancialMap.values()) 
-        {          
+        for(IPM_Financial__c financial : completeFinancialMap.values()){          
             IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials('IPM_Financial__c','Financial_External_ID__c',financial,consolidatedFinancialMap,consolidatedToRelatedFinancialMap,'Global_External_Id__c',financial.recordTypeId);
             IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials('IPM_Financial__c','Financial_External_ID__c',financial,consolidatedFinancialMap,consolidatedToRelatedFinancialMap,'Regional_External_Id__c',financial.recordTypeId);
         }
         
-        for(String consolidatedFinancialKey : consolidatedFinancialMap.KeySet())
-        {
+        for(String consolidatedFinancialKey : consolidatedFinancialMap.KeySet()){
             sObject consolidatedFinancial = consolidatedFinancialMap.get(consolidatedFinancialKey);
             
-            if(consolidatedToRelatedFinancialMap.containsKey(consolidatedFinancialKey))
-            { 
+            if(consolidatedToRelatedFinancialMap.containsKey(consolidatedFinancialKey)){ 
                 Map<Id,sObject> relatedDefaultFinancials = consolidatedToRelatedFinancialMap.get(consolidatedFinancialKey);    
                 IPM_FinancialUtils.processConsolidation('IPM_Financial__c','Financial_External_ID__c',consolidatedFinancialKey,consolidatedFinancial,relatedDefaultFinancials,upsertConsolidatedFinancialMap,fieldsToConsolidate);    
             }
@@ -620,7 +605,6 @@ public with sharing class IPM_FinancialHelper
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             update projList;
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
-            
         } 
     }
     
@@ -664,8 +648,7 @@ public with sharing class IPM_FinancialHelper
         }
        
     }
-    
-    
+
     /*******************************************************************************************************
     * @description          Method to handle before insert Trigger context for IPM_Financial__c object
     * @param newFinancials  List of Trigger.new records
@@ -686,7 +669,6 @@ public with sharing class IPM_FinancialHelper
             else if(finance.Regional_Project__c!= null)
             {
                 projectIdset.add(finance.Regional_Project__c);  
-                
             }
             else if(finance.Local_Project__c!= null)
             {
@@ -752,7 +734,7 @@ public with sharing class IPM_FinancialHelper
         if(changedFinancialMap.isEmpty()){
         	return;
         }
-        
+		
         for(Id financialID : changedFinancialMap.KeySet()) 
         {
             IPM_Financial__c changedFinancialDetail = financialDetailMap.get(financialID);
@@ -972,18 +954,16 @@ public with sharing class IPM_FinancialHelper
                }
             } 
             
-            if(!projIdsforY3iToSync.isEmpty())  
-            {   //skip project trigger on stoppage..
+            if(!projIdsforY3iToSync.isEmpty()){   
+				//skip project trigger on stoppage..
                 IPM_Utils.updateProjectY3ITOValue(projIdsforY3iToSync);  
-            }
-            
+            } 
     }
     
     public static List<IPM_Financial__c> updateManualMisalignment(List<IPM_Financial__c> newFinancials)
     {
         List<IPM_Financial__c> listFinancial = new List<IPM_Financial__c>();
-        if(!newFinancials.isEmpty())
-        {
+        if(!newFinancials.isEmpty()){
         	String finQuery = 'SELECT Id, Volume_Unit_Difference__c, NPV_Difference__c, IRR_Difference__c, Payback_Difference__c, CAPEX_Difference__c, BIC_Difference__c,  Total_FY_Difference__c, MisalignmentManual__c FROM IPM_Financial__c WHERE ID IN :newFinancials LIMIT 1000';
         	
         	listFinancial = Database.Query(finQuery);	
@@ -991,24 +971,18 @@ public with sharing class IPM_FinancialHelper
         
         List<IPM_Financial__c> updatedFinancials = new List<IPM_Financial__c>(); 
         
-        for(IPM_Financial__c financial : listFinancial)
-        {
-            
+        for(IPM_Financial__c financial : listFinancial){
             Decimal TotalDiffrence = financial.Volume_Unit_Difference__c + financial.NPV_Difference__c + financial.IRR_Difference__c + financial.Payback_Difference__c + financial.CAPEX_Difference__c + financial.BIC_Difference__c + financial.Total_FY_Difference__c;
             
             Boolean tempMisalignment   = TotalDiffrence > 0 ? true : false;
-            if(financial.MisalignmentManual__c != tempMisalignment) 
-            {
+            if(financial.MisalignmentManual__c != tempMisalignment){
                 financial.MisalignmentManual__c = tempMisalignment;
                 updatedFinancials.add(financial);
             }
-            
         }
-        
         return updatedFinancials;
     }
     
-
     //Helper method for deleteFinancialyears() method 
     //This method prepares map of the consolidated Financial Extrenal id v/s the list of financial Years that are valid for that consolidated finanical
     public static Map<String, Set<String>> getConsoltdFinNameToValidCalendarYearsMap(List<IPM_Financial__c> nonConsolidatedFinList){
@@ -1018,9 +992,9 @@ public with sharing class IPM_FinancialHelper
         Map<String, Set<String>> consoltdFinNameToValidCalendarYearsMap  = new Map<String, Set<String>>();
         
         for(IPM_Financial__c nonConsltdfin: nonConsolidatedFinList){
-        	
+
         	TLDYear = nonConsltdfin.Target_Launch_Date__c.year();
-        	//newFinYearNames.clear();
+			
         	Set<String> newFinYearNames = new Set<String>();
         	for(Integer i=0; i<Integer.valueOf(nonConsltdfin.Project_Sustainability_Period__c) ; i++){
         		newFinYearNames.add(String.valueOf(TLDYear+i));
@@ -1037,7 +1011,6 @@ public with sharing class IPM_FinancialHelper
         		globalConsoltdKey = nonConsltdfin.Global_External_Id__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
         	}
 
-        	
         	if(regionalConsoltdKey != ''){
         		if(consoltdFinNameToValidCalendarYearsMap.containsKey(regionalConsoltdKey)){
 	        		consoltdFinNameToValidCalendarYearsMap.get(regionalConsoltdKey).addAll(newFinYearNames);
@@ -1051,13 +1024,9 @@ public with sharing class IPM_FinancialHelper
         		consoltdFinNameToValidCalendarYearsMap.get(globalConsoltdKey).addAll(newFinYearNames);
         	}
         	else{
-        		consoltdFinNameToValidCalendarYearsMap.put(globalConsoltdKey,newFinYearNames);
+                consoltdFinNameToValidCalendarYearsMap.put(globalConsoltdKey,new Set<String>(newFinYearNames));
         	}
-        	
         }
-        
         return consoltdFinNameToValidCalendarYearsMap;
-
     }
-    
 }
