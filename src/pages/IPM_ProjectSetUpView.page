@@ -3,7 +3,7 @@
 *@Description:This is project initiation page, where user should enter all project details. User will get 5 tabs to complete the wizard.
 *@Author: Cognizant.
 *@Created Date: 22/01/2015 
-*@Copyright Â© 2015  Unilever  
+*@Copyright © 2015  Unilever  
 *************************************************************************************************************************************************************
 -->
 <apex:page standardController="IPM_Project__c" extensions="IPM_ProjectSetUpController,IPM_GetHelpDoc" sidebar="false" standardStylesheets="true" cache="false" docType="html-5.0">    
@@ -115,7 +115,7 @@
                                                     <apex:outputPanel layout="inline" styleClass="newProjinfo" rendered="{!isEditable}" >{!$Label.IPM_ESSENTIAL_INFFORMATION}</apex:outputPanel>
                                                 </div>
                                             </div>
-                                            <apex:outputPanel layout="block" id="Container5">
+                                            <apex:outputPanel layout="block" id="Container5" rendered="{!!OR(ISBLANK(project.Id),project.IPM_IsSaved__c,NOT(isEditable))}" >
                                                 <apex:outputPanel styleClass="oprtnTopAlertContainer" layout="block" >
                                                     <apex:outputLabel styleClass="oprtnTopAlertLabel" value="{!$Label.IPM_ProjectTypeAndCompany_ReadOnly}"  />
                                                 </apex:outputPanel>
