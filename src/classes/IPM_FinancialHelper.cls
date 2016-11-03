@@ -140,15 +140,9 @@ public with sharing class IPM_FinancialHelper
             }
         }
     	getConsoltdFinNameToValidCalendarYearsMap(nonConsolidatedFinList);
-        for(IPM_Financial__c consltdfin: consolidatedFinList){
-            if(consoltdFinNameToValidCalendarYearsMap.containsKey(consltdfin.Financial_External_ID__c)){
-                for(IPM_Financial_Year__c finYear :consltdfin.IPM_Financial_Years__r){
-                    if(!consoltdFinNameToValidCalendarYearsMap.get(consltdfin.Financial_External_ID__c).contains(finYear.Name)){
-                        deleteIPMFinancialYears.add(finYear);
-                    }
-                }
-            }
-        }
+        //get Financial years to delete from consolidated financials
+        deleteIPMFinancialYears.addAll (getFinYearsToDelete(consolidatedFinList));
+
 
         if(deleteIPMFinancialYears!=null && !deleteIPMFinancialYears.isEmpty()){
           delete deleteIPMFinancialYears;
@@ -1026,6 +1020,5 @@ public with sharing class IPM_FinancialHelper
                 consoltdFinNameToValidCalendarYearsMap.put(globalConsoltdKey,new Set<String>(newFinYearNames));
         	}
         }
-        return consoltdFinNameToValidCalendarYearsMap;
     }
 }
