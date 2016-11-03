@@ -5,5 +5,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>FS 55020 North Central Region Manager</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>FS_55_West_Zone_Leader</parentRole>
+    <parentRole>FS_HYBRID_North_Central_Midwest_Region</parentRole>
 </Role>

@@ -1341,7 +1341,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>FS_AmountOfVisitors__c</fullName>
         <description>For amount of visitors</description>
         <externalId>false</externalId>
-        <inlineHelpText>В день?</inlineHelpText>
+        <inlineHelpText>Количество чеков в день</inlineHelpText>
         <label>Amount Of Visitors</label>
         <precision>18</precision>
         <required>false</required>
@@ -5294,6 +5294,76 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>All Distributor Accounts</label>
         <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>UFS_Russia</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_NA_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Zone__c</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>All NA Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_NA_Distributor_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ICB_Type__pc</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS2_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Zone__c</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Distributor</value>
+        </filters>
+        <label>All NA Distributor Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_NA_Operator_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ICB_Type__pc</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS2_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Zone__c</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Operators</value>
+        </filters>
+        <label>All NA Operator Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>All_Operator_Accounts</fullName>
@@ -5317,6 +5387,9 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>All Operator Accounts</label>
         <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>UFS_Russia</roleAndSubordinatesInternal>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>ICB_TodasContas</fullName>
@@ -5357,6 +5430,76 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>My Distributor Accounts</label>
         <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>UFS_Russia</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_NA_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>Zone__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <label>My NA Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_NA_Distributor_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ICB_Type__pc</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS2_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Zone__c</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Distributor</value>
+        </filters>
+        <label>My NA Distributor Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_NA_Operator_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ICB_Type__pc</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS2_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Zone__c</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Operators</value>
+        </filters>
+        <label>My NA Operator Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>My_Operator_Accounts</fullName>
@@ -5381,6 +5524,9 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>My Operator Accounts</label>
         <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>UFS_Russia</roleAndSubordinatesInternal>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>NewThisWeek</fullName>

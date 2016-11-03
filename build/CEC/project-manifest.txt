@@ -4,6 +4,7 @@ src/classes
 src/flows
 src/objects
 src/queues
+src/sharingRules
 src/workflows
 src/approvalProcesses/TH1__Draft__c.CEC_Japan_TH_Quality_Check.approvalProcess
 src/classes/CEC_CaseTransferController.cls
@@ -21,5 +22,6 @@ src/objects/CEC_Case_Market_Mapping__c.object
 src/objects/cec_Org_Settings__c.object
 src/objects/mdm_Case_Product__c.object
 src/queues/CEC_Japan_TH_Quality_Check.queue
+src/sharingRules/mdm_Reason_Code__c.sharingRules
 src/workflows/CEC_Retrieval_Request__c.workflow
 src/workflows/EmailMessage.workflow
