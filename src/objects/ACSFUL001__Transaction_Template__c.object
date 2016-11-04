@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ACSFUL001__Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ACSFUL001__Description_Language_1__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Description Language 1</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACSFUL001__Description_Language_2__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Description Language 2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACSFUL001__Description_Language_3__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Description Language 3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACSFUL001__Description_Language_4__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Holds the description of language 4</description>
+        <externalId>false</externalId>
+        <label>Description Language 4</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACSFUL001__Description__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>CASE($User.ACSFUL001__Language_Postfix__c, 
+&quot;Language1&quot;, ACSFUL001__Description_Language_1__c, 
+&quot;Language2&quot;, ACSFUL001__Description_Language_2__c, 
+&quot;Language3&quot;, ACSFUL001__Description_Language_3__c,
+&quot;Language4&quot;, ACSFUL001__Description_Language_4__c, 
+ACSFUL001__Description_Language_1__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACSFUL001__Sales_Org__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <globalPicklist>ACSFUL001__Sales_Org</globalPicklist>
+        <label>Sales Org</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ACSFUL001__Sort__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sort</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ACSFUL001__Transaction_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Transaction Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Initial</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Transfer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Adjustment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deposit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cross Category Transfer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Cross_Category_Transfer_Allowed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field identifies if the transaction template is for Cross category transfer</description>
+        <externalId>false</externalId>
+        <label>Cross Category Transfer Allowed</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Transaction Template</label>
+    <listViews>
+        <fullName>ACSFUL001__All</fullName>
+        <columns>NAME</columns>
+        <columns>ACSFUL001__Active__c</columns>
+        <columns>UL_Cross_Category_Transfer_Allowed__c</columns>
+        <columns>ACSFUL001__Description__c</columns>
+        <columns>ACSFUL001__Transaction_Type__c</columns>
+        <columns>ACSFUL001__Sales_Org__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Transaction Template Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Transaction Templates</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>ACSFUL001__Active__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACSFUL001__Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACSFUL001__Transaction_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACSFUL001__Sales_Org__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>ACSFUL001__Active__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACSFUL001__Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACSFUL001__Transaction_Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ACSFUL001__Sales_Org__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACSFUL001__Active__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACSFUL001__Description__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACSFUL001__Transaction_Type__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ACSFUL001__Sales_Org__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>ACSFUL001__Active__c</searchFilterFields>
+        <searchFilterFields>ACSFUL001__Description__c</searchFilterFields>
+        <searchFilterFields>ACSFUL001__Transaction_Type__c</searchFilterFields>
+        <searchFilterFields>ACSFUL001__Sales_Org__c</searchFilterFields>
+        <searchResultsAdditionalFields>ACSFUL001__Active__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACSFUL001__Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACSFUL001__Transaction_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ACSFUL001__Sales_Org__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>ACSFUL001__Check_if_template_is_unique</fullName>
+        <active>true</active>
+        <errorConditionFormula>and( 
+Name = VLOOKUP 
+($ObjectType.ACSFUL001__Transaction_Template__c.Fields.Name , $ObjectType.ACSFUL001__Transaction_Template__c.Fields.Name, Name ), 
+
+not( 
+Id=VLOOKUP 
+($ObjectType.ACSFUL001__Transaction_Template__c.Fields.Id , $ObjectType.ACSFUL001__Transaction_Template__c.Fields.Name, Name )))</errorConditionFormula>
+        <errorMessage>Transaction template with same name already exists. Please use another name</errorMessage>
+    </validationRules>
+</CustomObject>
