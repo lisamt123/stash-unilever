@@ -1,0 +1,60 @@
+<apex:page standardController="Account" extensions="UL_FetchingLevels" rendered="{!displayPage}">
+<script>
+calfun();
+function calfun(){
+
+calaf();
+}
+</script>
+
+<apex:form >
+<apex:pageBlock >
+<apex:outputPanel id="link" >
+<apex:commandLink style="font-style: italic;" value="Select Default SoldTo Here" action="{!showPopup}" rerender="popup,link" status="status" rendered="{!!displayPopUp}"/>
+</apex:outputPanel>
+
+<apex:actionFunction name="calaf" action="{!showPopup}" rerender="popup" />  
+             <apex:outputPanel id="popup">
+                <apex:outputPanel id="popInnerOutputPnl" styleClass="customPopup" layout="block" rendered="{!displayPopUp}">
+                    
+                  
+                          <apex:outputLabel value="Select Default SoldTo" style="font-weight:bold;"></apex:outputLabel>             
+                            <apex:selectList value="{!defSoldTo}" multiselect="false" size="1" >
+                                <apex:selectOption itemLabel="--None--" itemValue="--None--"></apex:selectOption>
+                                <apex:selectOptions value="{!items}"/>
+                            </apex:selectList>
+                             <apex:commandButton value="Update" action="{!Save}" styleClass="closeButton" rerender="popup,redirectPanel">
+                     </apex:commandButton>
+                      <apex:commandButton value="Cancel" title="Close the popup" action="{!closePopup}" styleClass="closeButton" rerender="popup,link">
+                     </apex:commandButton>
+                     
+                    
+                </apex:outputPanel>
+            </apex:outputPanel>
+            <apex:outputPanel id="redirectPanel" >         
+           <apex:outputText rendered="{!defSoldTo != null}">
+                <script type="text/javascript">
+                    window.top.location.href = '{!redirectUrl}';
+                </script>
+            </apex:outputText>           
+        </apex:outputPanel>
+            </apex:pageBlock>
+            
+              </apex:form>
+              
+<style type="text/css">
+
+select {
+    color: #000;
+    left: 10px;
+    position: relative;
+}
+
+.closeButton {
+    left: 20px;
+    position: relative;
+}
+</style>
+
+
+</apex:page>
