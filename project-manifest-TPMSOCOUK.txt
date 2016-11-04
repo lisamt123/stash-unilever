@@ -4,12 +4,15 @@ src/objects/Account.object
 src/objects/ACSFUL001__Account_Payer__c.object
 src/objects/ACSFUL001__Account_Trade_Org_Hierarchy__c.object
 src/objects/ACSFUL001__Fund_Transaction__c.object
+src/objects/ACSFUL001__Product__c.object
+src/objects/ACSFUL001__Product_Condition__c.object
 src/objects/ACSFUL001__Product_Part__c.object
 src/objects/ACSFUL001__Promotion__c.object
 src/objects/ACSFUL001__Promotion_Template__c.object
+src/objects/ACSFUL001__Sales_Organization__c.object
 src/objects/ACSFUL001__Tactic__c.object
 src/objects/ACSFUL001__Tactic_Fund__c.object
 src/objects/ACSFUL001__Transaction_Template__c.object
 src/objects/ACSFUL001__Unit_of_Measure__c.object
 src/objects/UL_Approval_Threshold__c.object
-
+src/objects/Users.object
