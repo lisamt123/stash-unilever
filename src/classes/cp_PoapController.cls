@@ -784,7 +784,7 @@ public with sharing class cp_PoapController {
                     ', Key_Audience__c ' +
                     ', Key_Audience_Other__c ' +
                     ', OwnerId  ' +
-                    ', HostPlanner__c'+
+                    ', HostPlanner__c ' + 
                     ', Local_or_Global__c ' +
                     ', (Select Id, Planner__c, Planner__r.Name, OptOut__c, Activate__c From Planner_Locations__r) ' +
                     ', (Select Id From Related_Events__r) ' +
