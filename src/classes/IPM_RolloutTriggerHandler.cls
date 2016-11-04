@@ -537,6 +537,8 @@ public with sharing class IPM_RolloutTriggerHandler
         
         // Check if non Key Should be retained/Created based on whether there are non Key MCO's present. 
         Boolean  nonkeyActiveRolloutExists = false;
+        
+        Boolean  rolloutKeyValueChanged = false;
 
         for(IPM_Project_Rollout__c localRollout : associatedlocalRollouts)
         {
@@ -551,6 +553,9 @@ public with sharing class IPM_RolloutTriggerHandler
             {
                 nonkeyActiveRolloutExists = true; 
             }
+            if(oldProjectRollout != null && localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c ){
+            	rolloutKeyValueChanged = true;
+            }
                            
 
             generateKeyFinancials(localRollout, oldProjectRollout, financialExistingMap, financialExternalId , associatedPhase);
@@ -562,7 +567,7 @@ public with sharing class IPM_RolloutTriggerHandler
         {
             setDeleteFinancialExternalIds.add(financialNonKeyExternalId);
         }
-        if(nonkeyActiveRolloutExists && nonKeyFinancial != null){
+        if(nonkeyActiveRolloutExists && nonKeyFinancial != null && rolloutKeyValueChanged){
             
             //flag Is_Nonkey_Business_Case_Changed__c is set to true which indicates that the Non Key business case has been changed.
             //Non Key Business case is changed when A Nonkey MCO is added or removed from existing Non Key Business Case
