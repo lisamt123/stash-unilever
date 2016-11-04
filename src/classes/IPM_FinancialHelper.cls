@@ -75,13 +75,17 @@ public with sharing class IPM_FinancialHelper
             for(IPM_Financial_Year__c finYear : fin.IPM_Financial_Years__r){
             	finYrNameSet.add(finYear.Name);	
             }
-			
-            if(!consltdFinExtIdToFinYearMap.containsKey(fin.Financial_External_ID__c)){
-            	consltdFinExtIdToFinYearMap.put(fin.Financial_External_ID__c,finYrNameSet);
+            
+            if(!finYrNameSet.isEmpty()){
+            	if(!consltdFinExtIdToFinYearMap.containsKey(fin.Financial_External_ID__c)){
+	            	consltdFinExtIdToFinYearMap.put(fin.Financial_External_ID__c,finYrNameSet);
+	            }
+	            else{
+	            	consltdFinExtIdToFinYearMap.get(fin.Financial_External_ID__c).addAll(finYrNameSet);
+	            }
             }
-            else{
-            	consltdFinExtIdToFinYearMap.get(fin.Financial_External_ID__c).addAll(finYrNameSet);
-            } 
+            
+            
         }                              
         
         for(IPM_Financial__c financial : newFinancials){
@@ -277,10 +281,10 @@ public with sharing class IPM_FinancialHelper
             //Add new financial year to the corresponding global consolidated financial
             //first check if the calendar year is present, if not then add the calendar year
             if(consltdFinExtIdToFinYearMap != null && consltdFinExtIdToFinYearMap.get(globalConsoltdKey) != null && calendarYear!= null && !consltdFinExtIdToFinYearMap.get(globalConsoltdKey).contains(String.valueOf(calendarYear))){
-            	financialYear = processFinancialYear(globalConsoltdKey, IPM_ConstantUtils.BLANK+calendarYear, '0', IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_GROSS,CONSOLIDATED_FINANCIAL_RECORDTYPE, ipmFinancial.Gate_Keeping_Model__c);
+            	financialYear = processFinancialYear(globalConsoltdKey, IPM_ConstantUtils.BLANK+calendarYear, '1', IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_GROSS,CONSOLIDATED_FINANCIAL_RECORDTYPE, ipmFinancial.Gate_Keeping_Model__c);
             	upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
             	
-            	financialYear = processFinancialYear(globalConsoltdKey, IPM_ConstantUtils.BLANK+calendarYear, '0', IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_INCREMENTAL,CONSOLIDATED_FINANCIAL_RECORDTYPE, ipmFinancial.Gate_Keeping_Model__c);
+            	financialYear = processFinancialYear(globalConsoltdKey, IPM_ConstantUtils.BLANK+calendarYear, '1', IPM_ConstantUtils.YEAR_TYPE_CALENDAR, IPM_ConstantUtils.PL_TYPE_INCREMENTAL,CONSOLIDATED_FINANCIAL_RECORDTYPE, ipmFinancial.Gate_Keeping_Model__c);
             	upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
             }
             
@@ -335,7 +339,7 @@ public with sharing class IPM_FinancialHelper
     public static void initializeConsolidation(List<IPM_Financial__c> consolidationChangedFinancialList,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial__c> upsertConsolidatedFinancialMap,Set<String> fieldsToConsolidate) 
     {
         if(consolidationChangedFinancialList.isEmpty()){
-        	return;
+            return;
         }
         
         Map<String,Map<Id,sObject>> consolidatedToRelatedFinancialMap = new Map<String,Map<Id,sObject>>();
@@ -443,14 +447,35 @@ public with sharing class IPM_FinancialHelper
                     setExistingFinancialYears.add(existingFinancialYear.External_ID__c);
                 }
                 
+                
+                //find the lastCalendarYear for consolidated Financial (Required becaues the TLd of the consolidated financials remain unchanged)
+                Integer consolFinLastCalendarYear = 0;
+                if(financialDetail.recordTypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE){
+		        	for(IPM_Financial_Year__c existingFinancialYear : financialDetail.IPM_Financial_Years__r){
+		        		
+		        		if(existingFinancialYear.Name != 'Y0' && existingFinancialYear.Year_Type__c.equalsIgnoreCase(IPM_ConstantUtils.YEAR_TYPE_CALENDAR) && (Boolean)(consolFinLastCalendarYear < Integer.valueOf(existingFinancialYear.Name)) ){
+		        			consolFinLastCalendarYear = Integer.valueOf(existingFinancialYear.Name);
+		        		}	
+		        	}
+		        }
+
+                
                 //Change from 3 TO 5
                 Integer newSustainabilityPeriod = Integer.valueOf(financialDetail.Project_Sustainability_Period__c);
                 Integer oldSustainabilityPeriod = Integer.valueOf(oldFinancial.Project_Sustainability_Period__c);
                 
                 if(newSustainabilityPeriod > oldSustainabilityPeriod){
                     Integer difference = newSustainabilityPeriod - oldSustainabilityPeriod;
-                    Integer lastCalendarYear = financialDetail.Target_Launch_Date__c.year() + Integer.valueOf(oldFinancial.Project_Sustainability_Period__c) - 1;
                     
+                    //appropriately find the lastCalendarYear of the financial(Consolidated or Non Consolidated Fin)
+                    Integer lastCalendarYear =0;
+                    if(financialDetail.recordTypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE){
+                    	lastCalendarYear = consolFinLastCalendarYear;
+                    }
+                    else{
+                    	lastCalendarYear = financialDetail.Target_Launch_Date__c.year() + Integer.valueOf(oldFinancial.Project_Sustainability_Period__c) - 1;
+                    }
+
                     for(Integer i=1; i<=difference; i++)
                     {
                         IPM_Financial_Year__c financialYear = null;
@@ -726,9 +751,9 @@ public with sharing class IPM_FinancialHelper
     public static void copyOverFinancialFields(Map<Id,IPM_Financial__c> changedFinancialMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap,Map<Id,Set<String>> financialToChangedFeilds)
     {
         if(changedFinancialMap.isEmpty()){
-        	return;
+            return;
         }
-		
+        
         for(Id financialID : changedFinancialMap.KeySet()) 
         {
             IPM_Financial__c changedFinancialDetail = financialDetailMap.get(financialID);
