@@ -11,7 +11,7 @@ History
 VERSION    AUTHOR            DATE            DETAIL                   
 1.0        Mahesh           Nov-2016        INITIAL DEVELOPMENT   
 ***********************************************************************/
-public class CEC_ExceptionHandling {
+public with sharing class CEC_ExceptionHandling {
 	
     /****************************************************************************************************
     @Name CreateExceptionLog
