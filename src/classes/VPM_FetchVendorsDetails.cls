@@ -15,7 +15,7 @@ global class VPM_FetchVendorsDetails {
         VPM_ECCVendorSearchServiceOutput vendorDetail;
         HttpResponse resp;
         System.debug('-----inputCriteria-----'+inputCriteria);
-        if(inputCriteria != null && inputCriteria.size() > 0) {
+        if(!inputCriteria.isEmpty()) {
             System.debug('-----inputCriteria.size()-----'+inputCriteria.size());
             System.debug('-----vendor code and Input-----'+inputCriteria.get(0).vendorCodeInput + '  ' + 
                          inputCriteria.get(0).ecc + '  ' + inputCriteria.get(0).compnayCode);

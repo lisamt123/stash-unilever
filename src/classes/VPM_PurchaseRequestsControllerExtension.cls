@@ -384,15 +384,21 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
       public void callSendToSAPAPI() {
           System.debug('-----id of vendor request record is-----'+vendorReqId);
           String responseString='';
-          list<VPM_PurchasingRequests__c> vendorList = [SELECT RecordTypeId,VPM_Fieldtype__c ,VPM_VendorCodeLookup__r.mdm_ecc__c,VPM_CompanyCode__r.ECC__c from VPM_PurchasingRequests__c where id=:vendorReqId limit 1];
+          list<VPM_PurchasingRequests__c> vendorList = [SELECT RecordTypeId,VPM_VendorCached__c ,VPM_Fieldtype__c ,VPM_VendorCodeLookup__r.mdm_ecc__c,VPM_CompanyCode__r.ECC__c from VPM_PurchasingRequests__c where id=:vendorReqId limit 1];
               list<RecordType> RecordTypeList =[SELECT Name from RecordType where id=:vendorList[0].RecordTypeId limit 1];
                 system.debug('entering condition 1');
                 system.debug('RecordTypeList[0].Name '+RecordTypeList[0].Name);
               if(RecordTypeList[0].Name.contains(STR_CONST_CREATEREQTYPE)) {
               system.debug('condition 1');
               
-                  System.debug('-----calling create vendor mule api----');
+                 if(!vendorList[0].VPM_VendorCached__c)
+                 {
                   responseString = VPM_CreateVendorServiceHelper.createVendor(vendorReqId);
+                  }
+                  else
+                  {
+                   responseString = VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorReqId);
+                  }
                   System.debug('-----response string from create vendor mule api----' + responseString);
                   //responseString= responseString.replace(';', '\n');
                   system.debug('@@@responseString '+responseString);

@@ -14,6 +14,7 @@ public class VPM_FetchVendorsDetails_Test {
         eccSearchVendor = (List<VPM_ECCVendorSearchServiceOutput>) System.JSON.deserialize(jsonServiceResponse, List<VPM_ECCVendorSearchServiceOutput>.class);
         system.debug('55555 '+eccSearchVendor );
       Test.stopTest();
+      system.assertEquals(crit.ecc,'Cordillera');
   }
     
     @isTest static void getVendorDetailsTestVendorFound() {
@@ -27,6 +28,7 @@ public class VPM_FetchVendorsDetails_Test {
         Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(404));
         VPM_FetchVendorsDetails.getVendorDetails(inputCriteria);
       Test.stopTest();
+      system.assertEquals(crit.ecc,'Cordillera');
   } 
 
     static testMethod void getVendorDetailsTestNull() {
@@ -40,5 +42,6 @@ public class VPM_FetchVendorsDetails_Test {
         Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(300));
         VPM_FetchVendorsDetails.getVendorDetails(InputVariablesListObj);
         Test.stopTest();
+        system.assertEquals(InputVariablesObj.ecc,'ECC');
     }
 }

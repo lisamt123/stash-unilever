@@ -1,4 +1,4 @@
-global class VPM_MaintainGlobalVendorServiceHelper {
+global with sharing class VPM_MaintainGlobalVendorServiceHelper {
     
     global class errorMsgWrapper
     {
@@ -46,7 +46,7 @@ global class VPM_MaintainGlobalVendorServiceHelper {
         System.debug('------HTTP response status and status code are ------'+res.getStatus() + '  ' + res.getStatusCode());
        
 
-       VPM_PurchasingRequests__c VendorReq = [SELECT VPM_Fieldtype__c  FROM VPM_PurchasingRequests__c WHERE id =: vendorId];
+       VPM_PurchasingRequests__c VendorReq = [SELECT VPM_Fieldtype__c,VPM_VendorCodeLookup__r.mdm_ecc__c,VPM_CompanyCode__r.ECC__c  FROM VPM_PurchasingRequests__c WHERE id =: vendorId];
        maintainVenResp = (MaintainGlobalVendorResponse) System.JSON.deserialize(res.getBody(), MaintainGlobalVendorResponse.class);
        // 
        
@@ -67,33 +67,35 @@ global class VPM_MaintainGlobalVendorServiceHelper {
             {
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.successStatusReqCompleted ,msg,VPM_HttpUtil.successStatusMDM);
            }
-            else
+            else if(VendorReq.VPM_VendorCodeLookup__r.mdm_ecc__c.containsIgnoreCase(VendorReq.VPM_CompanyCode__r.ECC__c))
             {
-           
-            
-           responseString =responseString + VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorId);
+            responseString =responseString + VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorId);
             VPM_HttpUtil.updateFieldType(vendorId);
            VPM_HttpUtil.updateVendorMDMStatus(vendorId,null,msg,VPM_HttpUtil.successStatusMDM);
            }
+           else
+           {
+                VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.successStatus,msg,VPM_HttpUtil.successStatusMDM);
+           }
            
         } else if(res.getStatusCode() == 500) {
-             if(VendorReq.VPM_Fieldtype__c != 'Both')
+             //if(VendorReq.VPM_Fieldtype__c != 'Both')
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             responseString = 'Server Error. Please try after some time.';
         } else if(res.getStatusCode() == 504) {
-             if(VendorReq.VPM_Fieldtype__c != 'Both')
+            // if(VendorReq.VPM_Fieldtype__c != 'Both')
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             responseString = 'Timeout Error. Please try after some time.';
         } else if(res.getStatusCode() == 400) {
-             if(VendorReq.VPM_Fieldtype__c != 'Both')
+            // if(VendorReq.VPM_Fieldtype__c != 'Both')
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             //responseString = 'Please check request data and try again.';
         } else if(res.getStatusCode() == 503) {
-             if(VendorReq.VPM_Fieldtype__c != 'Both')
+           //  if(VendorReq.VPM_Fieldtype__c != 'Both')
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             responseString = 'SAP API not implemented.';
         } else {
-             if(VendorReq.VPM_Fieldtype__c != 'Both')
+            // if(VendorReq.VPM_Fieldtype__c != 'Both')
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             responseString = 'Some error occured while submitting request to SAP. Please try after some time.';
         }

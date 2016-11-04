@@ -11,12 +11,12 @@
     </columns>
     <columns>
         <aggregateTypes>Average</aggregateTypes>
-        <field>VPM_PurchasingRequests__c.VPM_DaysWithMDMOps__c</field>
+        <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithMDMOps__c</field>
     </columns>
     <description>Report on average request time in days with MDM Ops on per country basis</description>
     <filter>
         <criteriaItems>
-            <column>VPM_PurchasingRequests__c.VPM_DayswithFLS__c</column>
+            <column>VPM_PurchasingRequests__c.VPM_HoursSpentWithFLS__c</column>
             <operator>greaterThan</operator>
             <value>0</value>
         </criteriaItems>

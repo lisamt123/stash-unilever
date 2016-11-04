@@ -23,17 +23,6 @@
         <template>VPM_ApprovalEmails/VPM_Requesthasbeenlogged</template>
     </alerts>
     <alerts>
-        <fullName>Send_email_to_Vendor_Email</fullName>
-        <description>Send email to Vendor Email</description>
-        <protected>false</protected>
-        <recipients>
-            <type>creator</type>
-        </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>VPM_ApprovalEmails/VPM_SendEmailToVendor</template>
-    </alerts>
-    <alerts>
         <fullName>VPM_MDMRequestSubmitted</fullName>
         <description>VPM - Used to send Notification to the Business Requestor when the request (Bloc/Delete) is submitted manually</description>
         <protected>false</protected>
@@ -131,17 +120,6 @@
         <senderAddress>supplier.information@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_SendWebformtoVendor</template>
-    </alerts>
-    <alerts>
-        <fullName>VPM_SendEmailWebformSubmitted</fullName>
-        <description>Sends an email to the ‘Email of Webform Sender’</description>
-        <protected>false</protected>
-        <recipients>
-            <field>VPM_EmailOfWebformSender__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>VPM_ApprovalEmails/VPM_EmailOfWebformSender</template>
     </alerts>
     <fieldUpdates>
         <fullName>Terms_of_Payment_30DK_Default</fullName>
@@ -859,20 +837,5 @@ NOT(ISPICKVAL(VPM_IsVendorSME__c,&quot;Yes&quot;))
         <description>Resets certain system values in picklists and fields on create to ensure the request is considered as a new request if it is cloned from a different request</description>
         <formula>True</formula>
         <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>VPM_VendorWebformSubmitted</fullName>
-        <actions>
-            <name>VPM_SendEmailWebformSubmitted</name>
-            <type>Alert</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_VendorWebformSubmitted__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <description>When true, Sends an email to the ‘Email of Webform Sender’</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

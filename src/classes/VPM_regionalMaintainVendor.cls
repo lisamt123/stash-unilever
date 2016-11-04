@@ -1,4 +1,4 @@
-public  class VPM_regionalMaintainVendor {
+public with sharing class VPM_regionalMaintainVendor {
 
   public static void updateAndCheckFieldUpdate(List<VPM_PurchasingRequests__c> updatedVendorRequest , Map<Id,VPM_PurchasingRequests__c> OldVendorRequestValueList)
   {
@@ -26,7 +26,9 @@ public  class VPM_regionalMaintainVendor {
         //Logic for : Update fieldType Picklist with global or Regional filed update
        
          VPM_PurchasingRequests__c OldVendorRequestValue =OldVendorRequestValueList.get(vendorRequest.id);
-          if(VPM_SearchVendor1.CheckFlag != true && vendorRequest.VPM_checkForFieldUpdate__c == true && rec.id != OldVendorRequestValue.recordTypeId)
+         if(!VPM_SearchVendor1.CheckFlag)
+         {
+          if(vendorRequest.VPM_checkForFieldUpdate__c && rec.id != OldVendorRequestValue.recordTypeId)
           {
             
             for (VPM_listOfRegionalandGlobalField__c fieldList : globalFields)
@@ -39,9 +41,12 @@ public  class VPM_regionalMaintainVendor {
                         vendorRequest.VPM_Fieldtype__c = fieldList.VPM_fieldType__c;
                     }
                     else if((vendorRequest.VPM_Fieldtype__c == 'Global' && fieldList.VPM_fieldType__c=='Regional')||(vendorRequest.VPM_Fieldtype__c == 'Regional' && fieldList.VPM_fieldType__c=='Global'))
+                         {
                              vendorRequest.VPM_Fieldtype__c='Both';
+                          }
                 }
             }
+           }
          
       }
          
@@ -58,22 +63,25 @@ public  class VPM_regionalMaintainVendor {
             for(VPM_PurchasingRequests__c vendorReq : updatedVendorRequest)
             {
            // if(!(OldVendorRequestValueList.get(vendorReq.id).get('VPM_checkForFieldUpdate__c') ==true))
-              if(VPM_SearchVendor1.CheckFlag != true && vendorReq.VPM_checkForFieldUpdate__c == true)
-            {
-            if(vendorReq.get(str) != OldVendorRequestValueList.get(vendorReq.id).get(str))
-            { 
-                 system.debug(str +' :'+vendorReq.get(str));
-                     system.debug(str +' :'+OldVendorRequestValueList.get(vendorReq.id).get(str));
-                if( vendorReq.VPM_fieldUpdated__c != null){
-                if(!vendorReq.VPM_fieldUpdated__c.contains(str))
+           if(!VPM_SearchVendor1.CheckFlag)
+           {
+               if(vendorReq.VPM_checkForFieldUpdate__c)
                 {
-                     vendorReq.VPM_fieldUpdated__c =str+','+vendorReq.VPM_fieldUpdated__c ;
+                    if(vendorReq.get(str) != OldVendorRequestValueList.get(vendorReq.id).get(str))
+                    { 
+                         system.debug(str +' :'+vendorReq.get(str));
+                             system.debug(str +' :'+OldVendorRequestValueList.get(vendorReq.id).get(str));
+                        if( vendorReq.VPM_fieldUpdated__c != null){
+                        if(!vendorReq.VPM_fieldUpdated__c.contains(str))
+                        {
+                             vendorReq.VPM_fieldUpdated__c =str+','+vendorReq.VPM_fieldUpdated__c ;
+                        }
+                        
+                        }
+                        else
+                        vendorReq.VPM_fieldUpdated__c = str+',';
+                    } 
                 }
-                
-                }
-                else
-                vendorReq.VPM_fieldUpdated__c = str+',';
-            } 
             }
             
             
@@ -86,10 +94,10 @@ public  class VPM_regionalMaintainVendor {
  public static void InsertVendor(List<VPM_PurchasingRequests__c> venreqList , Map<Id,VPM_PurchasingRequests__c> vendReqOldMap)
     {
     List<VPM_PurchasingRequests__c> venReqLst = new List<VPM_PurchasingRequests__c>();
-    List<String> vendorList = new List<String>();
-    List<mdm_Vendors__c> venList = new List<mdm_Vendors__c>();
-    MAP<String,String> vendorVenReqMap = new MAP<String,String>();
-    MAP<String,String> venReqVendorMap = new MAP<String,String>();
+    //List<String> vendorList = new List<String>();
+   // List<mdm_Vendors__c> venList = new List<mdm_Vendors__c>();
+   // MAP<String,String> vendorVenReqMap = new MAP<String,String>();
+    //MAP<String,String> venReqVendorMap = new MAP<String,String>();
     String whereCon ='';
         for(VPM_PurchasingRequests__c venR : venreqList)
         {
@@ -131,10 +139,11 @@ public  class VPM_regionalMaintainVendor {
             if(!venReqLst.isEmpty())
             {
                // update venReqLst;
-                for(VPM_PurchasingRequests__c venR : venReqLst)
+                //for(VPM_PurchasingRequests__c venR : venReqLst)
                 {
-                    VPM_regionalMaintainVendor.callRegionalService(venR.Id);
+                    VPM_regionalMaintainVendor.callRegionalService(venReqLst[0].Id);
                 }
+                
             }
                 
         }

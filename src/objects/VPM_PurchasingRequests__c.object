@@ -6862,81 +6862,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_DaysWithBusinessRequestor__c</fullName>
-        <defaultValue>0.0</defaultValue>
-        <description>VPM - Amount of time for which request is being worked upon by Business Requestor due to rework.</description>
-        <externalId>false</externalId>
-        <label>Days with Business Requestor</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>6</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_DaysWithMDMOps__c</fullName>
-        <defaultValue>0.0</defaultValue>
-        <description>VPM - Number of days request was worked upon by MDM Ops.</description>
-        <externalId>false</externalId>
-        <label>Days with MDM Ops</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>6</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_DayswithFLS__c</fullName>
-        <defaultValue>0.0</defaultValue>
-        <description>VPM - Number of days for which request is being worked upon by FLS team.</description>
-        <externalId>false</externalId>
-        <label>Days with FLS</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>6</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_DayswithFinance__c</fullName>
-        <defaultValue>0.0</defaultValue>
-        <description>VPM - Number of days for which request is being worked upon by Finance Team.</description>
-        <externalId>false</externalId>
-        <label>Days with Finance</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>6</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_DayswithProcurement__c</fullName>
-        <defaultValue>0.0</defaultValue>
-        <description>VPM - Days for which request was worked upon by Procurement Team.</description>
-        <externalId>false</externalId>
-        <label>Days with Procurement</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>6</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_DefaultPartner__c</fullName>
         <defaultValue>false</defaultValue>
         <description>VPM - This field is used to store the value of DELDefault Partner.</description>
@@ -7593,15 +7518,15 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <label>Exception Type</label>
         <picklist>
             <picklistValues>
-                <fullName>1_Charity</fullName>
+                <fullName>Charity</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>2_Business Association</fullName>
+                <fullName>Business Association</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>3_Professional Body</fullName>
+                <fullName>Professional Body</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -8444,6 +8369,81 @@ FALSE))))))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_HoursSpentWithBankValidator__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <description>VPM - Amount of time for which request is being worked upon by Bank Data Validator .</description>
+        <externalId>false</externalId>
+        <label>Hours Spent With Bank Validator</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_HoursSpentWithFLS__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <description>VPM - Number of days for which request is being worked upon by FLS team.</description>
+        <externalId>false</externalId>
+        <label>Hours Spent With FLS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_HoursSpentWithFinance__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <description>VPM - Number of days for which request is being worked upon by Finance Team.</description>
+        <externalId>false</externalId>
+        <label>Hours Spent With Finance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_HoursSpentWithMDMOps__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <description>VPM - Number of days request was worked upon by MDM Ops.</description>
+        <externalId>false</externalId>
+        <label>Hours Spent With MDM Ops</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_HoursSpentWithProcurement__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <description>VPM - Days for which request was worked upon by Procurement Team.</description>
+        <externalId>false</externalId>
+        <label>Hours Spent With Procurement</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -21312,7 +21312,7 @@ VPM_Approver10__c = $User.Id))
         <fullName>VPM_TotalDaysWorked__c</fullName>
         <description>VPM - Total days for which request was worked upon by all teams</description>
         <externalId>false</externalId>
-        <formula>VPM_DayswithFLS__c  +  VPM_DayswithFinance__c  +  VPM_DayswithProcurement__c  +  VPM_DaysWithMDMOps__c  +  VPM_DaysWithBusinessRequestor__c</formula>
+        <formula>VPM_HoursSpentWithFLS__c  +  VPM_HoursSpentWithFinance__c  +  VPM_HoursSpentWithProcurement__c  +  VPM_HoursSpentWithMDMOps__c  +  VPM_HoursSpentWithBankValidator__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Days Worked</label>
         <precision>18</precision>
@@ -28714,7 +28714,7 @@ VPM_Approver10__c = $User.Id))
         <filters>
             <field>VPM_MDMInsertUpdateStatus__c</field>
             <operation>equals</operation>
-            <value>Failed to Submit to BPM,Approval Rejected in BPM</value>
+            <value>Failed to Submit to BPM</value>
         </filters>
         <filters>
             <field>VPM_ECC_InsertUpdateStatus__c</field>
@@ -35998,18 +35998,6 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
-                <fullName>1_Charity</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2_Business Association</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3_Professional Body</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>4_Medical</fullName>
                 <default>false</default>
             </values>
@@ -36023,6 +36011,18 @@ VPM_Approver10__c = $User.Id))
             </values>
             <values>
                 <fullName>7_Marketing Freelance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Association</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Body</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -53130,18 +53130,6 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
-                <fullName>1_Charity</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2_Business Association</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3_Professional Body</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>4_Medical</fullName>
                 <default>false</default>
             </values>
@@ -53155,6 +53143,18 @@ VPM_Approver10__c = $User.Id))
             </values>
             <values>
                 <fullName>7_Marketing Freelance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Association</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Body</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -70262,18 +70262,6 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
-                <fullName>1_Charity</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2_Business Association</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3_Professional Body</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>4_Medical</fullName>
                 <default>false</default>
             </values>
@@ -70287,6 +70275,18 @@ VPM_Approver10__c = $User.Id))
             </values>
             <values>
                 <fullName>7_Marketing Freelance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Association</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Body</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -87394,18 +87394,6 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
-                <fullName>1_Charity</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2_Business Association</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3_Professional Body</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>4_Medical</fullName>
                 <default>false</default>
             </values>
@@ -87419,6 +87407,18 @@ VPM_Approver10__c = $User.Id))
             </values>
             <values>
                 <fullName>7_Marketing Freelance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Association</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Body</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -99058,7 +99058,7 @@ IF(LEN(VPM_VendorPhone__c)==11 ,  NOT(REGEX(VPM_VendorPhone__c, &quot;0[1-9]{1}[
         var VPMRecordSentToSAPMessage =&quot;{!JSENCODE($Label.VPM_RecordSentToSAPAlert)}&quot;;
 var VPMRequestAbortedMessage =&quot;{!JSENCODE($Label.VPM_RequestAbortedAlert)}&quot;;
 	
-	if ((currentstatus.indexOf(&apos;Rejected&apos;) &gt;= 0 )) 
+	/*if ((currentstatus.indexOf(&apos;Rejected&apos;) &gt;= 0 )) 
 	{ 
 		alert(VPMRequestRejectedMessage ); 
 	}	 
@@ -99077,7 +99077,8 @@ else if ((currentstatus.indexOf(&apos;Aborted&apos;) &gt;= 0 ))
 		alert(VPMRequestAbortedMessage ); 
 	}
 	
-	else if((currentstatus.indexOf(&apos;Pending&apos;) != -1)&amp;&amp; (VPMIsLock == true || VPMIsLock == &quot;1&quot;))
+	else*/
+       if((currentstatus.indexOf(&apos;Pending&apos;) != -1)&amp;&amp; (VPMIsLock == true || VPMIsLock == &quot;1&quot;))
 	{
 		var result = 
 					sforce.connection.query(

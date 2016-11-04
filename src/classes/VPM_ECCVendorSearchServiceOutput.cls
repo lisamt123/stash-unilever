@@ -312,6 +312,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public string PostCode2; // new changes renamed to PostCode2
     public class PurchasingOrgFields {
         public boolean SMSIndicator;
+        public string PROACTControlProof;
         public boolean OrderAcknowledgmentRequirement;
         public String PurchasingOrganisation;  
         public String ShippingConditions;  

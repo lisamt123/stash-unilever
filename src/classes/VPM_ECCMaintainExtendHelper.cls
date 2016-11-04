@@ -19,8 +19,8 @@ public with sharing class VPM_ECCMaintainExtendHelper {
     final static string STR_CONST_COLON = '" : "';
 
     // All below string Represent JSON string
-    Map<string,string> objectInJSON = new Map<string,string>{STR_CONST_Dunning =>'',STR_CONST_InternationalVersions =>'',STR_CONST_WtaxType =>'','Address'=>'', 'BankDetails' => '', 'CIN' =>'', 'CompanyData' => '', 'PurchasingData' =>'','MainObject'=>'','VAT'=>''};
-    string valueForQuery='VPM_fieldUpdated__c, VPM_ECC__c,RecordTypeId,VPM_companyCodeMatch__c, VPM_purchasingOrgMatch__c, VPM_VendorCodeLookup__r.mdm_ID__c, VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c,VPM_VendorCodeLookup__r.mdm_vCodeSirius__c,VPM_VendorCodeLookup__r.mdm_vCodeFusion__c,VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,VPM_AccountGroup__c,VPM_PurchasingOrg__r.Name,VPM_CompanyCode__r.VPM_CompanyCode__c';
+    Map<string,string> objectInJSON = new Map<string,string>{STR_CONST_Dunning =>'',STR_CONST_InternationalVersions =>'',STR_CONST_WtaxType =>'','Address'=>'', 'BankDetails' => '', 'CIN' =>'', STR_CONST_CompanyData => '', STR_CONST_PurchasingData =>'',STR_CONST_MainObject=>'','VAT'=>''};
+    string valueForQuery='VPM_fieldUpdated__c, VPM_ECC__c,RecordTypeId,VPM_companyCodeMatch__c,VPM_OrderingEmailAddress__c, VPM_purchasingOrgMatch__c, VPM_VendorCodeLookup__r.mdm_ID__c, VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c,VPM_VendorCodeLookup__r.mdm_vCodeSirius__c,VPM_VendorCodeLookup__r.mdm_vCodeFusion__c,VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,VPM_AccountGroup__c,VPM_PurchasingOrg__r.Name,VPM_CompanyCode__r.VPM_CompanyCode__c';
     string  apiForCompantData = ',';
     string apiForPurchasingData=',';
     string Dunning=',';
@@ -49,9 +49,9 @@ public with sharing class VPM_ECCMaintainExtendHelper {
                 {
                     valueForQuery = valueForQuery +', '+RegionalandGlobalField.VPM_ApiName__c;
                 }
-                if(RegionalandGlobalField.VPM_parentElement__c == 'CompanyData' || RegionalandGlobalField.VPM_parentElement__c == 'WtaxType'){
+                if(RegionalandGlobalField.VPM_parentElement__c == STR_CONST_CompanyData || RegionalandGlobalField.VPM_parentElement__c == 'WtaxType'){
                     apiForCompantData=apiForCompantData+RegionalandGlobalField.VPM_ApiName__c+',';
-                }if(RegionalandGlobalField.VPM_parentElement__c == 'PurchasingData'){
+                }if(RegionalandGlobalField.VPM_parentElement__c == STR_CONST_PurchasingData){
                     apiForPurchasingData=apiForPurchasingData+RegionalandGlobalField.VPM_ApiName__c+',';
                 }if(RegionalandGlobalField.VPM_parentElement__c == STR_CONST_Dunning){
                     Dunning =Dunning +RegionalandGlobalField.VPM_ApiName__c+',';
@@ -67,6 +67,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
     
     
          valueToMatch =vendorReuest.VPM_fieldUpdated__c;
+         vendorReuest.VPM_fieldUpdated__c =  vendorReuest.VPM_fieldUpdated__c+'VPM_OrderingEmailAddress__c';
     //system.debug(vendorReuest);
     if(rec.Name.containsIgnoreCase('Extend'))
     {
@@ -81,46 +82,52 @@ public with sharing class VPM_ECCMaintainExtendHelper {
     
     if(ECC == 'U2K2')
       {
-      objectInJSON.put('MainObject',objectInJSON.get('MainObject')+'"ECC" :"'+vendorReuest.VPM_ECC__c+'","VendorCode" : "'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c+'"');
+      objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+'"ECC" :"'+vendorReuest.VPM_ECC__c+'","VendorCode" : "'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c+'"');
        
       }
    
     else if(ECC == 'Fusion')
     {
-         objectInJSON.put('MainObject',objectInJSON.get('MainObject')+'"ECC" :"'+vendorReuest.VPM_ECC__c+'","VendorCode" : "'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeFusion__c+'","AccountGroup" :"'+vendorReuest.VPM_AccountGroup__c+'"');
+         objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+'"ECC" :"'+vendorReuest.VPM_ECC__c+'","VendorCode" : "'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeFusion__c+'","AccountGroup" :"'+vendorReuest.VPM_AccountGroup__c+'"');
     }
     else if(ECC == 'Sirius')
     {
-         objectInJSON.put('MainObject',objectInJSON.get('MainObject')+'"ECC" :"'+vendorReuest.VPM_ECC__c+'","VendorCode" : "'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeSirius__c+'","AccountGroup" :"'+vendorReuest.VPM_AccountGroup__c+'"');
+         objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+'"ECC" :"'+vendorReuest.VPM_ECC__c+'","VendorCode" : "'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeSirius__c+'","AccountGroup" :"'+vendorReuest.VPM_AccountGroup__c+'"');
     }
     else if(ECC == 'Cordillera')
     {
-         objectInJSON.put('MainObject',objectInJSON.get('MainObject')+'"ECC" :"'+vendorReuest.VPM_ECC__c+'","VendorCode" : "'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c+'","AccountGroup" :"'+vendorReuest.VPM_AccountGroup__c+'"');
+         objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+'"ECC" :"'+vendorReuest.VPM_ECC__c+'","VendorCode" : "'+vendorReuest.VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c+'","AccountGroup" :"'+vendorReuest.VPM_AccountGroup__c+'"');
     } 
     
    for(string objectName : objectInJSON.keySet())
    {
 
-        if(objectInJSON.get(objectName) !='' && objectName != 'MainObject')
+        if(objectInJSON.get(objectName) !='' && objectName != STR_CONST_MainObject)
         {
             if(objectName == STR_CONST_PurchasingData)
+            {
                 objectInJSON.put(STR_CONST_PurchasingData,objectInJSON.get(objectName)+ '"PurchasingOrganisation" : "'+VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_PurchasingOrg__r.Name)+'",');
+            }
             else if(objectName == STR_CONST_CompanyData)
+            {
                  objectInJSON.put(STR_CONST_CompanyData,objectInJSON.get(objectName)+ '"CompanyCode" : "'+VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_CompanyCode__r.VPM_CompanyCode__c)+'", "CheckDoubleInvoices" : '+vendorReuest.VPM_CheckDoubleInvoices__c+',');
-             if(objectName == STR_CONST_WtaxType)
+            }if(objectName == STR_CONST_WtaxType)
+            {
                 objectInJSON.put(STR_CONST_CompanyData,objectInJSON.get(STR_CONST_CompanyData)+ '"WtaxType" : {'+objectInJSON.get(objectName).removeEnd(',')+'},');
+            }
            else
-            objectInJSON.put('MainObject',objectInJSON.get('MainObject') +',"'+objectName+'" :{ '+objectInJSON.get(objectName).removeEnd(',')+'}');
+           {
+            objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject) +',"'+objectName+'" :{ '+objectInJSON.get(objectName).removeEnd(',')+'}');
+           }
         }
-
     }
 
     system.debug('Print MainObject-----'+ '{'+objectInJSON.get(STR_CONST_WtaxType)+'}');
     
-    system.debug('Print MainObject-----'+ '{'+objectInJSON.get('MainObject')+'}');
+    system.debug('Print MainObject-----'+ '{'+objectInJSON.get(STR_CONST_MainObject)+'}');
     
 
-    return '{'+objectInJSON.get('MainObject')+'}';
+    return '{'+objectInJSON.get(STR_CONST_MainObject)+'}';
     }
 
 /* Created By : Ajay Rawat
@@ -136,7 +143,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
         {
         system.debug('field.VPM_parentElement__c '+vendorReuest.VPM_fieldUpdated__c);
            if(field.VPM_parentElement__c == STR_CONST_MainObject){
-            objectInJSON.put('MainObject',objectInJSON.get('MainObject')+formatFieldToJSONProperty(field));
+            objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+formatFieldToJSONProperty(field));
                // rootMaintainVendor = rootMaintainVendor+ formatFieldToJSONProperty(field);
             }else if(field.VPM_parentElement__c == STR_CONST_Address){
                     objectInJSON.put('Address',objectInJSON.get('Address')+formatFieldToJSONProperty(field));
@@ -151,11 +158,13 @@ public with sharing class VPM_ECCMaintainExtendHelper {
             }else if(field.VPM_parentElement__c == STR_CONST_CompanyData)
                  {
                  if(!field.VPM_ApiName__c.equalsignorecase('VPM_CheckDoubleInvoices__c'))
-                objectInJSON.put('CompanyData',objectInJSON.get('CompanyData')+formatFieldToJSONProperty(field));
+                 {
+                    objectInJSON.put(STR_CONST_CompanyData,objectInJSON.get(STR_CONST_CompanyData)+formatFieldToJSONProperty(field));
+                 }
                  }
                 //CompanyData = CompanyData + formatFieldToJSONProperty(field);
             else if(field.VPM_parentElement__c == STR_CONST_PurchasingData){
-                objectInJSON.put('PurchasingData',objectInJSON.get('PurchasingData')+formatFieldToJSONProperty(field));
+                objectInJSON.put(STR_CONST_PurchasingData,objectInJSON.get(STR_CONST_PurchasingData)+formatFieldToJSONProperty(field));
                 //PurchasingData = PurchasingData + formatFieldToJSONProperty(field);
             }else if(field.VPM_parentElement__c == STR_CONST_CIN){
                 objectInJSON.put('CIN',objectInJSON.get('CIN')+formatFieldToJSONProperty(field));
@@ -202,12 +211,18 @@ public with sharing class VPM_ECCMaintainExtendHelper {
               JSONElement = '"'+field.VPM_JSONFieldName__c+STR_CONST_COLON+reconcilAcc+'",'; 
             }
             else
+            {
             JSONElement = '"'+field.VPM_JSONFieldName__c+STR_CONST_COLON+vendorReuest.get(field.VPM_ApiName__c)+'",'; 
             }
+            }
             else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c))
+            {
              JSONElement = '"'+field.VPM_JSONFieldName__c+'" : "",';
+            }
              else
+             {
               JSONElement = '"'+field.VPM_JSONFieldName__c+'" : null,';
+              }
         }
         // Ajya Rawat : Condition to check field type and send any underscore Value after formatting it.
         else if(field.VPM_fieldDatatype__c == STR_CONST_valueWithUnderScore)
@@ -217,9 +232,13 @@ public with sharing class VPM_ECCMaintainExtendHelper {
             JSONElement = '"'+field.VPM_JSONFieldName__c+STR_CONST_COLON+VPM_HttpUtil.valueBeforeUnderscore(finalStringValue)+'",';   
             }
              else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c))
+             {
                 JSONElement = '"'+field.VPM_JSONFieldName__c+'" : "",';
-                else
+             }
+              else
+              {
               JSONElement = '"'+field.VPM_JSONFieldName__c+'" : null,';
+              }
                 
         }
         else if(field.VPM_fieldDatatype__c == STR_CONST_MultiPicklistValueWithUnderScore)
@@ -240,19 +259,29 @@ public with sharing class VPM_ECCMaintainExtendHelper {
             JSONElement = '"'+field.VPM_JSONFieldName__c+STR_CONST_COLON+paymentMeth.remove(' ') +'",';    
             }
              else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c))
+             {
                 JSONElement = '"'+field.VPM_JSONFieldName__c+'" : "",';
-                else
+            }
+             else
+             {
               JSONElement = '"'+field.VPM_JSONFieldName__c+'" : null,';
+              }
         }
         // Ajya Rawat : Condition to check field type and send any DateTime Value after formatting it.
         else if(field.VPM_fieldDatatype__c == STR_CONST_DateTime)
         {
                if(string.isNotBlank(String.valueOf(vendorReuest.get(field.VPM_ApiName__c))))
-            JSONElement = '"'+field.VPM_JSONFieldName__c+STR_CONST_COLON+formatDate(String.valueOf(vendorReuest.get(field.VPM_ApiName__c)))+'",';  
-             else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c)) 
+               {
+            JSONElement = '"'+field.VPM_JSONFieldName__c+STR_CONST_COLON+formatDate(String.valueOf(vendorReuest.get(field.VPM_ApiName__c)))+'",'; 
+                }
+             else if(valueToMatch.containsIgnoreCase(field.VPM_ApiName__c))
+                {
                      JSONElement = '"'+field.VPM_JSONFieldName__c+'" : "",';
-                      else
-              JSONElement = '"'+field.VPM_JSONFieldName__c+'" : null,';
+                }
+                else
+                {
+                 JSONElement = '"'+field.VPM_JSONFieldName__c+'" : null,';
+                }
         }
         return JSONElement;
     }

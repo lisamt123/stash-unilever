@@ -10,7 +10,7 @@ public class VPM_CreateVendorFetchFieldDetails {
                                                      VPM_DetailsofPlannedActivitiesSour__c, VPM_SupplierAuditSourcing__c, VPM_DetailsOfPlannedActivitiesSour2__c, VPM_MDMBPMRequestorName__c, VPM_MDMBPMRequestorPhone__c, VPM_MDMBPMRequestorEmail__c, VPM_MDMBPMRequestorDepartment__c, VPM_MDMBPMOriginatoEmail__c, VPM_MDMBPMRequestDate__c , 
                                                      VPM_AchillesRegistrationCode__c, VPM_DetailsTypeCheck__c, VPM_DUNSHierarchyInvestigationReq__c, VPM_GroupingKey__c, VPM_SMEComment__c, VPM_VATRegistrationNumber__c, VPM_CheckDigit__c, VPM_Comments__c, VPM_District__c, VPM_HouseNumSupplement__c, VPM_IsNaturalPerson__c, VPM_POBox__c, VPM_POBoxPostCode__c, VPM_SearchTerm2__c, VPM_Street2__c, VPM_Street3__c, VPM_Street4__c, VPM_TaxNumber2__c, VPM_TaxNumber4__c, VPM_TaxNumberType__c, VPM_VendorName2__c, VPM_Name3__c, VPM_Name4__c, VPM_PurchasingOrg__r.Name, VPM_CreditInfoNumber__c, VPM_TradingPartner__c, VPM_IntLocationNumber1__c, VPM_IntLocationNumber2__c, VPM_ExtManufacturer__c, VPM_SupplierAuditQuality__c from VPM_PurchasingRequests__c where id =: VendorRequestId LIMIT 1];
         system.debug('------------vendorList-------'+vendorList);
-        if(vendorList != null && vendorList.size() > 0) {
+        if(!vendorList.isEmpty()) {
             VPM_CreateVendorFieldDetailsWrapper VPM_InterfaceFieldDetails= new VPM_CreateVendorFieldDetailsWrapper();
             VPM_InterfaceFieldDetails.RequestorName = vendorList.get(0).VPM_MDMBPMRequestorName__c==null?'':vendorList.get(0).VPM_MDMBPMRequestorName__c;
             VPM_InterfaceFieldDetails.RequestID =  integer.ValueOf(vendorList.get(0).VPM_SAPBPMRequestID__c);
@@ -55,7 +55,7 @@ public class VPM_CreateVendorFetchFieldDetails {
             }
             //VPM_InterfaceFieldDetails.requestorEmail = vendorList.get(0).VPM_MDMBPMRequestorEmail__c==null?'':vendorList.get(0).VPM_MDMBPMRequestorEmail__c;
             VPM_InterfaceFieldDetails.originatorEmail = vendorList.get(0).VPM_MDMBPMOriginatoEmail__c==null?'':vendorList.get(0).VPM_MDMBPMOriginatoEmail__c;
-            Date requestDt = vendorList.get(0).VPM_MDMBPMRequestDate__c;
+           // Date requestDt = vendorList.get(0).VPM_MDMBPMRequestDate__c;
             //VPM_InterfaceFieldDetails.requestDate = requestDt==null?'':requestDt.format();
             VPM_InterfaceFieldDetails.requestDate = Datetime.now().format('yyyy-MM-dd');
             VPM_InterfaceFieldDetails.VendorType = vendorList.get(0).VPM_VendorType__c==null?'': VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_VendorType__c);
@@ -67,7 +67,7 @@ public class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetails.Name2 = vendorList.get(0).VPM_VendorName2__c == null ? '' : vendorList.get(0).VPM_VendorName2__c;
             VPM_InterfaceFieldDetails.searchTerm1 = vendorList.get(0).VPM_SearchTerm_1__c==null?'':vendorList.get(0).VPM_SearchTerm_1__c;
             VPM_InterfaceFieldDetails.street1 = vendorList.get(0).VPM_Street1__c==null?'':vendorList.get(0).VPM_Street1__c;
-            VPM_InterfaceFieldDetails.zipPostCode = vendorList.get(0).VPM_ZIPPostCode__c==null?'':vendorList.get(0).VPM_ZIPPostCode__c;
+            VPM_InterfaceFieldDetails.CityPostCode = vendorList.get(0).VPM_ZIPPostCode__c==null?'':vendorList.get(0).VPM_ZIPPostCode__c;
             VPM_InterfaceFieldDetails.city  = vendorList.get(0).VPM_City__c==null?'':vendorList.get(0).VPM_City__c;
             VPM_InterfaceFieldDetails.country   = vendorList.get(0).VPM_Country__c==null ? '' : VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_Country__c);
             VPM_InterfaceFieldDetails.achillesRegistrationCode = vendorList.get(0).VPM_AchillesRegistrationCode__c==null?'':vendorList.get(0).VPM_AchillesRegistrationCode__c;
@@ -80,7 +80,7 @@ public class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetails.region = vendorList.get(0).VPM_Regions__r.VPM_Code__c==null?'':vendorList.get(0).VPM_Regions__r.VPM_Code__c;
             VPM_InterfaceFieldDetails.IsVendorSME = vendorList.get(0).VPM_IsVendorSME__C==null ? false : VPM_HttpUtil.convertYesNoToBoolean(vendorList.get(0).VPM_IsVendorSME__C);
             VPM_InterfaceFieldDetails.IsVendorException = vendorList.get(0).VPM_IsVendorException__c==null ? false : VPM_HttpUtil.convertYesNoToBoolean(vendorList.get(0).VPM_IsVendorException__c);
-            VPM_InterfaceFieldDetails.exceptionType = vendorList.get(0).VPM_ExceptionType__c==null?'':vendorList.get(0).VPM_ExceptionType__c;
+            VPM_InterfaceFieldDetails.exceptionType = vendorList.get(0).VPM_ExceptionType__c==null?'':VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_ExceptionType__c);
             VPM_InterfaceFieldDetails.taxNumber1 = vendorList.get(0).VPM_TaxNumber1__c==null?'':vendorList.get(0).VPM_TaxNumber1__c;
             VPM_InterfaceFieldDetails.taxNumber3 = vendorList.get(0).VPM_TaxNumber3__c==null?'':vendorList.get(0).VPM_TaxNumber3__c;
             VPM_InterfaceFieldDetails.taxJurisdictionCode = vendorList.get(0).VPM_TaxJurisdictionCode__c==null?'':VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_TaxJurisdictionCode__c);

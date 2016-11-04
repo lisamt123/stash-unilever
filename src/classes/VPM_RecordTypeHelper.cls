@@ -67,6 +67,9 @@ public class VPM_RecordTypeHelper {
     public static final string SEARCH_VENDOR = 'searchVendor'; 
     public static final string VENDOR_LIST = 'vendorList'; 
     public static final string RE_WORK = 'Re-Work';
+    public static final string REJECTED = 'Rejected';
+    public static final string ABORTED = 'Aborted';
+    public static final string REQUEST_COMPLETED = 'Request Completed';
     public static final string CONST_LITERAL1 = '\\#';
     public static final string CONST_LITERAL2 = '\'%';
     
@@ -244,6 +247,68 @@ public class VPM_RecordTypeHelper {
           options.add(new SelectOption(f.getLabel(), f.getValue()));
        }       
        return options;
+    }
+    
+    /********************************************************************  
+    Created By   : Ajay Rawat
+    Created Date : 01st Sept 2016
+    Last Modify  : 03 Oct 2016
+    Description  : This method pulls the region based on vendor country and code
+    Return Type  : string
+    ********************************************************************/
+    public static string region(string regionWeb, string countryName ){    
+        try{
+            VPM_Region__c region =[select VPM_Code__c,Name,id, VPM_Country__c from VPM_Region__c where VPM_Code__c=: regionWeb and VPM_Country__c =: CountryName limit 1];
+            if(region <> null)
+            return region.id;
+        else
+            return null;
+        }
+        catch(Exception ex){return null;}            
+        
+    }
+    
+    /********************************************************************
+    Created By   : Ajay Rawat
+    Created Date : 16th June 2016
+    Last Modify  : 
+    Description  : Get details of selected vendor from SAP.
+    Return Type  : VPM_FetchVendorsDetails.OutputVariables
+    ********************************************************************/
+    public static VPM_ECCVendorSearchServiceOutput fetchVendorDeatilSAPService(string mdmVendorCodeInput , string ecc, string vendorQuery1ECC, string vendorQuery1PurchOrgName , string companyCode) {
+        system.debug('@@web service  is called');
+        List<string> eccList = new List<string>();
+        //string purchOrgName = vendorQuery1.VPM_PurchasingOrg__r.Name; // added recently for passing org 
+        string purchOrgName = vendorQuery1PurchOrgName; // added recently for passing org 
+        purchOrgName = string.isNotBlank(purchOrgName) ? purchOrgName.left(4) : null; // added recently for passing org 
+        system.debug('@@purchOrgName' +purchOrgName);        
+        VPM_FetchVendorsDetails.InputVariables ip = new VPM_FetchVendorsDetails.InputVariables();
+        List<VPM_FetchVendorsDetails.InputVariables> ipList = new List<VPM_FetchVendorsDetails.InputVariables>();
+        List<VPM_ECCVendorSearchServiceOutput> opList = new List<VPM_ECCVendorSearchServiceOutput>();
+        system.debug('@@MDMVendorCodeInput' +MDMVendorCodeInput);
+        if(string.isNotBlank(MDMVendorCodeInput)){
+            ip.vendorCodeInput = MDMVendorCodeInput;
+        }/*else {
+            ip.vendorCodeInput = vendorCodeAssignment();            
+        }*/
+        
+        if(string.isNotblank(ecc)) {
+            eccList = ecc.split(',');            
+        }
+        //vendorQuery1.VPM_CompanyCode__r.ECC__c)
+        
+        if(!ecc.contains(vendorQuery1ECC)) {  
+            ip.ecc = string.isNotBlank(eccList[0]) ? eccList[0] : vendorQuery1ECC;            
+        }else { 
+            ip.ecc = vendorQuery1ECC;
+        }
+        //ip.compnayCode = vendorQuery1.VPM_CompanyCode__r.VPM_CompanyCode__c;
+        ip.compnayCode = companyCode;
+        ip.purchasingOrg = purchOrgName; // added recently for passing org 
+        ipList.add(ip);
+        system.debug('@@ipList' + ipList);
+        opList = VPM_FetchVendorsDetails.getVendorDetails(ipList);
+        return opList[0];
     }
     
 }

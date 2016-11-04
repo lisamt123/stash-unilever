@@ -14,7 +14,7 @@ global class VPM_CreateVendorServiceHelper {
     }
     global static String createVendor(String vendorId) {
         System.debug('----------input vendor Id----------' + vendorId);
-        String reqBodyJson, responseString='',msg='',statusCodeStr;
+        String reqBodyJson ='', responseString='',msg='';
         Integer numTimes = 0;
         HttpResponse res;        
         CreateVendorResponse createVenResp;
@@ -28,7 +28,7 @@ global class VPM_CreateVendorServiceHelper {
                 res = VPM_HttpUtil.sendRequest('POST',reqBodyJson,'VPM_CreateVendorBPM');
                 System.debug('------whole response string----'+ res.toString());
                 System.debug('------HTTP response status, status code and response body are ------'+res.getStatus() + '  ' + res.getStatusCode() + '  '+res.getBody());
-                statusCodeStr = String.valueOf(res.getStatusCode());
+               // statusCodeStr = String.valueOf(res.getStatusCode());
                 if(String.isNotBlank(res.getBody())) {
                     if(res.getStatusCode() == 200 || res.getStatusCode() == 400) {
                         createVenResp = (CreateVendorResponse) System.JSON.deserialize(res.getBody(), CreateVendorResponse.class);
@@ -53,12 +53,12 @@ global class VPM_CreateVendorServiceHelper {
                         responseString = msg;
                         VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
                     } else if(res.getStatusCode() == 0) {
-                    System.debug('----inside block where status code is 0----' + statusCodeStr);
+                    //System.debug('----inside block where status code is 0----' + res.getStatusCode());
                     responseString = 'Some error occured while submitting request to SAP. Please try after some time.';
                     VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,responseString,VPM_HttpUtil.failStatusMDM);
                 }
                 } else {
-                    System.debug('----inside block where response body should be blank----' + statusCodeStr);
+                    System.debug('----inside block where response body should be blank----' + res.getStatusCode());
                     responseString = 'Some error occured while submitting request to SAP. Please try after some time.';
                     VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,responseString,VPM_HttpUtil.failStatusMDM);
                 }
@@ -79,7 +79,7 @@ global class VPM_CreateVendorServiceHelper {
                 VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             }
         } while ((res.getStatusCode() == 504 || res.getStatusCode() == 0) && numTimes <=4);
-        VPM_HttpUtil.sendEmail('deepak.moudekar@capgemini.com','Global Create Response from service',responseString + '\n' + '--response body--' + res.getBody() + '\n' + '--response code--'+ String.valueOf(res.getStatusCode()) + '\n' + reqBodyJson + '\n' + vendorId);
+        VPM_HttpUtil.sendEmail('deepak.moudekar@capgemini.com','Global Create Response from service',responseString + '\n' + '--response body--' + res.getBody() + '\n' + '--response code--'+ res.getStatusCode() + '\n' + reqBodyJson + '\n' + vendorId);
         return responseString;
     }
 }

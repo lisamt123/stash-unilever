@@ -19,6 +19,7 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 3.0 -    Epsita                        IAPR- 638 - Spend should not be mandatory for Non-Ariba Commodities
 4.0-     Vaishali    5 Oct 2016        IAPR-1475 - Logic for Global and Regional golden data Page
 5.0      Samrin      2 Nov 2016        IAVMD-1857 - Changes on maintain scenario are not visible to approver
+6.0      Samrin      4 Nov 2016        IAVMD-2325 : L2 Approvals for Sirius and Cordillera not working ( if there's no Custom Setting for the Country, the L2 approval doesn't get triggered)
 ****************************************************************************/
 
 
@@ -167,7 +168,7 @@ with Sharing public class VPM_GoldenDataController2 {
         newController = controller;
     try
     {
-        purchReqVar = [SELECT Id,VPM_TaxJurisdictionCode__c,VPM_Industry__c,VPM_IsLock__c,VPM_Status__c, VPM_VendorType__c,VPM_TradePartnerType__c,VPM_Commodity__c ,VPM_Commodity_Family__c,recordTypeId,
+        purchReqVar = [SELECT Id,VPM_TaxJurisdictionCode__c,VPM_RequestLastWithGroup__c,VPM_RequestGroupTime__c,VPM_Industry__c,VPM_IsLock__c,VPM_Status__c, VPM_VendorType__c,VPM_TradePartnerType__c,VPM_Commodity__c ,VPM_Commodity_Family__c,recordTypeId,
                        VPM_AdvancedFormSubmitted__c, VPM_FinanceApprovalRequired__c,VPM_Street1__c,VPM_CheckDoubleInvoices__c,VPM_VendorContactDetail__c,
                        VPM_ProcurementApprovalRequired__c,VPM_Location__c,VPM_City__C,VPM_TaxNumber1__c ,VPM_ExtensionType__c,
                        VPM_OrderingEmailAddress__c,VPM_PaymentTerms__c,VPM_BankCountryKey__c,VPM_Country__c,VPM_Fieldtype__c,VPM_ClerksInternet__c,
@@ -219,7 +220,8 @@ with Sharing public class VPM_GoldenDataController2 {
            
         
          if(purchReqVar.VPM_CashManagementGroup__c<>null)
-        vendorCashManagementGrp = purchReqVar.VPM_CashManagementGroup__c;
+         {  
+             vendorCashManagementGrp = purchReqVar.VPM_CashManagementGroup__c;}
         system.debug('@@ vendorCashManagementGrp' + vendorCashManagementGrp);
         //purchasingOrg = getPurchasingOrgItems();
         vendorPurchasingOrg = purchReqVar.VPM_PurchasingOrganisation__c;
@@ -579,7 +581,16 @@ with Sharing public class VPM_GoldenDataController2 {
         system.debug('@@ recordTypeId ' + recordTypeId);
         ApexPages.Message myMsg = null;
          pg= ApexPages.currentPage();
-
+        
+        /***********Added by Epsita -IAVMD-2320   **********/
+        if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA && purchReqVar.VPM_Country__c == VENDOR_COUNTRY){
+               system.debug('^^^^^^^^^^^^^'+taxJuriCodeDefValue);
+               if(string.isBlank(taxJuriCodeDefValue)){
+                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_TaxJurisdictionCodePageMessage);
+                }
+           }
+        /***************************************************/
+        
               if(recordTypeId==STR_CONST_MAINTAIN ) 
               { isMaintainRecord=true;  }  
               
@@ -608,31 +619,31 @@ with Sharing public class VPM_GoldenDataController2 {
                 {   myMsg=new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_PaymentmethodErrorMesg);  }              
             }
             
-            if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_FUSION || purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2){            
-                 if(string.isBlank(vendorAccountStatement) || vendorAccountStatement==STR_CONST_NONE)
-                {                
+            if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_FUSION || purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2) && (string.isBlank(vendorAccountStatement) || vendorAccountStatement==STR_CONST_NONE)){            
+                // if(string.isBlank(vendorAccountStatement) || vendorAccountStatement==STR_CONST_NONE)
+               // {                
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_AccountStatement);
-                }
+               // }
             }
-            if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_SIRIUS|| purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2){
+            if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_SIRIUS|| purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2) && (vendorCashManagementGrp ==STR_CONST_NONE || string.isBlank(vendorCashManagementGrp))) {
                 
-                if(vendorCashManagementGrp ==STR_CONST_NONE || string.isBlank(vendorCashManagementGrp)){
+               // if(vendorCashManagementGrp ==STR_CONST_NONE || string.isBlank(vendorCashManagementGrp)){
                 
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_CashManagementGroupPageMessage);
-                }
+                //}
                 //if(string.isBlank(entity.VPM_BankCountryKey__c)){
                     //myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_BankCountryKeyPageMessage);                
                // }                
             }            
             
-           if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_SIRIUS|| purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA  || purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2 ){
+           if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_SIRIUS|| purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA  || purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2 ) && (entity.VPM_SortKey__c ==STR_CONST_NONE ||string.isBlank(entity.VPM_SortKey__c))){
            
-                if(entity.VPM_SortKey__c ==STR_CONST_NONE ||string.isBlank(entity.VPM_SortKey__c)){
+               // if(entity.VPM_SortKey__c ==STR_CONST_NONE ||string.isBlank(entity.VPM_SortKey__c)){
         
              
              myMsg=new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_SortKeyPageMessage);
              
-            } 
+            //} 
            }
            
            if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA || purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2) && (string.isBlank(entity.VPM_OrderCurrency__c)) ){
@@ -690,7 +701,7 @@ with Sharing public class VPM_GoldenDataController2 {
         purchReqVar.VPM_SearchTerm_1__c = searchTerm1; 
         purchReqVar.VPM_PaymentTerms__c = vendorPaymentTerms;
         purchReqVar.VPM_TradePartnerType__c  = tradePartnerType;  
-        purchReqVar.VPM_TaxJurisdictionCode__c = taxJuriCodeDefValue;
+        //purchReqVar.VPM_TaxJurisdictionCode__c = taxJuriCodeDefValue;
         purchReqVar.VPM_Industry__c = industryOptionsDefValue;
         purchReqVar.VPM_AccountStatement__c = vendorAccountStatement;
         
@@ -836,21 +847,18 @@ with Sharing public class VPM_GoldenDataController2 {
             system.debug('@@ msg' + msg);
             /* Added by Epsita */
             if(purchReqVar.VPM_WebformSentToVendor__c  && (!purchReqVar.VPM_VendorWebformSubmitted__c) && (!purchReqVar.VPM_ShowWarning__c)){
-                msg = new ApexPages.Message(ApexPages.Severity.WARNING,System.label.VPM_Record_Submit_Warning);   
-              //  ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.WARNING,System.label.VPM_Record_Submit_Warning);   
+                ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.WARNING,System.label.VPM_Record_Submit_Warning);   
                 purchReqVar.VPM_ShowWarning__c= true;
                update purchReqVar;
            }
-           /*else
-               msg = null; commented by Piyush  */
-               
            /* Added by Epsita */
            
             msg = checkValidations();
+            
             if(msg <> null){
             
                 ApexPages.addMessage(msg);
-            
+                return null;
             }
             else{
             
@@ -924,7 +932,7 @@ public void approvalCallMethod()
                                 VPM_ReferenceSpecificationsBankDetail__c,VPM_BankControlKey__c,
                                 VPM_IBAN__c,VPM_CollectionAuthorization__c,VPM_Commodity__r.VPM_CommodityCode__c,
                                 VPM_BankName__c,VPM_SwiftKey__c,VPM_PartnerBankType__c,VPM_RequestType__c,
-                                RecordType.DeveloperName,VPM_CountryRequestingVendor__c,
+                                RecordType.DeveloperName,VPM_CountryRequestingVendor__c,VPM_RequestGroupTime__c ,
                                 VPM_Company_Code_Value__c,VPM_VendorBlockUnblockDelete__c,VPM_BankDataValidationRequired__c,
                                 VPM_Commodity__r.VPM_CommodityClass__c,VPM_VATRegistrationNumber__c ,VPM_IsChangedVAT__c
                                 FROM VPM_PurchasingRequests__c WHERE Id =: entity.id];                       
@@ -950,7 +958,10 @@ public void approvalCallMethod()
         system.debug('@@NewPaymentMethod' + NewPaymentMethod);
         
         // End : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
-
+        //Logic to set Request time Group for Reports
+         if(pr.VPM_RequestLastWithGroup__c=='' || pr.VPM_RequestLastWithGroup__c==null)
+             pr.VPM_RequestGroupTime__c = system.now();
+             
         pr.VPM_AdvancedFormSubmitted__c='YES'; 
         // Added by Ajay
         if(pr.VPM_Status__c.containsIgnoreCase(STR_CONST_DRAFT))
@@ -975,7 +986,7 @@ public void approvalCallMethod()
                     string OldpaymentMeth=''; 
                     for(String str:finalOldStringValueList) 
                     {
-                   		 OldpaymentMeth += str; 
+                         OldpaymentMeth += str; 
                     }
                     OldPaymentMethod = OldpaymentMeth.remove(' '); 
                 }else {
@@ -1081,11 +1092,11 @@ public void approvalCallMethod()
                 pr.VPM_FreightApprovalRequired__c  =true;
                 pr.VPM_RussianTaxApprovalRequired__c =false; 
                 // Changes for Bug 346
-                if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
-                {
-                     if ((!pr.VPM_ProvidedBlockDelete__c) && (!pr.VPM_ProvidedUnblockUndelete__c)  && (!pr.VPM_ProvidedPaymentTerms__c))
+                if((pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN) && ((!pr.VPM_ProvidedBlockDelete__c) && (!pr.VPM_ProvidedUnblockUndelete__c)  && (!pr.VPM_ProvidedPaymentTerms__c)))
+               // {
+                     //if ((!pr.VPM_ProvidedBlockDelete__c) && (!pr.VPM_ProvidedUnblockUndelete__c)  && (!pr.VPM_ProvidedPaymentTerms__c))
                      { pr.VPM_FreightApprovalRequired__c  =false; }
-                }
+               // }
                 //End  Changes for Bug 346
             }
         }
@@ -1382,6 +1393,12 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
                     pr.VPM_FinanceApprovalRequired__c= false;
                 //}   
             }
+            else if(approvalRequired==null && pr.VPM_FinanceApprovalRequired__c) // Changes for the bug  By Samrin on 4th Nov :  IAVMD-2325 : L2 Approvals for Sirius and Cordillera not working 
+            {
+                pr.VPM_NumberofApprovalsRequired__c= pr.VPM_NumberofApprovalsRequired__c - 1; 
+                pr.VPM_FinanceApprovalRequired__c= false; 
+            }
+            // End Changes for the bug  By Samrin on 4th Nov :  IAVMD-2325 : L2 Approvals for Sirius and Cordillera not working 
         }
 }
  /*  End of Function setLevelApproval  : VPM - Used to set L3 Approval process for Maintain Request & L2 should need to inculde/Exculde  for Create /Extend Request */
@@ -1590,9 +1607,19 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
     ********************************************************************/
     
     public pagereference saveAndBackToLaunchScreen() {
-        commonSaveMethod();
-        Pagereference pg = backToFlow();
-        return pg;
+        ApexPages.Message msg;
+        msg = checkValidations();
+            if(msg <> null){
+            
+                ApexPages.addMessage(msg);
+                return null;
+            
+            }else
+            {
+                commonSaveMethod();
+                Pagereference pg = backToFlow();
+                return pg;
+            }
     }
     
       /******************************************************************** 

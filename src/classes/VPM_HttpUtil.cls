@@ -1,4 +1,4 @@
-public class VPM_HttpUtil {
+public with sharing class VPM_HttpUtil {
     
     class CreateVendorResponse {
         public String Status {get; set;}
@@ -27,7 +27,7 @@ public class VPM_HttpUtil {
     public static String createEndPoint(String service) {
         String endpoint='',resource ='',clientId ='',clientSecret ='',finalUrl ='';
         List<VPM_ExternalService__mdt> serviceDetails = [SELECT DeveloperName, MasterLabel, VPM_ServiceEndpoint__c, VPM_ServiceResource__c FROM VPM_ExternalService__mdt WHERE DeveloperName = :service];
-        if(serviceDetails != null && serviceDetails.size() >0) {
+        if(!serviceDetails.isEmpty()) {
             endpoint = serviceDetails.get(0).VPM_ServiceEndpoint__c;
             resource = serviceDetails.get(0).VPM_ServiceResource__c;
         }
@@ -40,7 +40,7 @@ public class VPM_HttpUtil {
     public static HttpResponse sendRequest(String requestType, String requestBodyJson, String serviceName) {
         HttpResponse res = null;
         try {
-            String url;
+            String url ='';
             if(requestType != null && !requestType.equalsIgnoreCase('GET')) {
                 url = VPM_HttpUtil.createEndPoint(serviceName);
             }
@@ -77,7 +77,7 @@ public class VPM_HttpUtil {
     }
     public String convertRequestParams(Map<String,String> queryParameters) {
         String stringParams='';
-        if(queryParameters != null && queryParameters.size() >0) {
+        if(!queryParameters.isEmpty()) {
             for(String mapEntry : queryParameters.keySet()) {
                 stringParams = stringParams + '&' + EncodingUtil.urlEncode(mapEntry, 'UTF-8') + '=' + 
                     EncodingUtil.urlEncode(queryParameters.get(mapEntry), 'UTF-8');
@@ -110,10 +110,12 @@ public class VPM_HttpUtil {
         // Update MDM Ops user fields on vendor request record.
         List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_MDMInsertUpdateStatus__c,VPM_MDMInsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
        // List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
-        if(vendorList != null && vendorList.size() >0) {
+        if(!vendorList.isEmpty()) {
             VPM_PurchasingRequests__c vendor = vendorList.get(0);
             if(reqStatus != null)
+            {
             vendor.VPM_Status__c = reqStatus;
+            }
             vendor.VPM_MDMInsertUpdateStatusMessage__c = message;
             vendor.VPM_MDMInsertUpdateStatus__c = messageMDM;
             update vendor;
@@ -124,10 +126,12 @@ public class VPM_HttpUtil {
         // Update MDM Ops user fields on vendor request record.
         List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_ECC_InsertUpdateStatus__c,VPM_ECC_InsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
         //List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
-        if(vendorList != null && vendorList.size() >0) {
+        if(!vendorList.isEmpty()) {
             VPM_PurchasingRequests__c vendor = vendorList.get(0);
             if(string.isNotBlank(reqStatus))
+            {
             vendor.VPM_Status__c = reqStatus;
+            }
             vendor.VPM_ECC_InsertUpdateStatusMessage__c = message;
             vendor.VPM_ECC_InsertUpdateStatus__c = messageECC;
             system.debug('inside fail');
@@ -144,7 +148,7 @@ public class VPM_HttpUtil {
     }*/
     public static String valueBeforeUnderscore(String inputString) {
         List<String> inputArray = inputString.split('_');
-        if(inputArray != null && inputArray.size() >0) {
+        if(!inputArray.isEmpty()) {
             return inputArray.get(0);
         } else {
             return '';
@@ -153,7 +157,7 @@ public class VPM_HttpUtil {
     public static Map<String,String> fetchUserDetails() {
         Map<String, String> userDetails = new Map<String, String>();
         List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
-        if(userList != null && userList.size() > 0) {
+        if(!userList.isEmpty()) {
             userDetails.put('userName',userList.get(0).Name);
             if(String.isNotBlank(userList.get(0).Phone)) {
                 if(userList.get(0).Phone.length() > 20){
@@ -180,9 +184,10 @@ public class VPM_HttpUtil {
     }
      public static void updateRecordType(String venReqId) {
             
-        VPM_PurchasingRequests__c vendorList = [SELECT Id, RecordTypeId,VPM_FieldType__c  FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
-        recordType rec = [select Name, id from recordType where Name like '%Maintain%' limit 1];
-       vendorList.RecordTypeId = rec.id;
+        VPM_PurchasingRequests__c vendorList = [SELECT Id,VPM_VendorCached__c, RecordTypeId,VPM_FieldType__c  FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
+        //recordType rec = [select Name, id from recordType where Name like '%Maintain%' limit 1];
+       //vendorList.RecordTypeId = rec.id;
+       vendorList.VPM_VendorCached__c = true;
        vendorList.VPM_FieldType__c = 'Regional';
         update vendorList;
         }
@@ -203,19 +208,19 @@ public class VPM_HttpUtil {
         HttpResponse res = sendRequest('POST',inputRetry,'VPM_CreateVendorBPM');
         System.debug('------whole response string----'+ res.toString());
         System.debug('------HTTP response status and status code and response body are ------'+res.getStatus() + '  ' + res.getStatusCode() + '  '+res.getBody());
-        String statusCodeStr = String.valueOf(res.getStatusCode());
+        // String statusCodeStr = String.valueOf(res.getStatusCode());
         if(String.isNotBlank(res.getBody())) {
             if(res.getStatusCode() == 200) {
                 createVenResp = (CreateVendorResponse) System.JSON.deserialize(res.getBody(), CreateVendorResponse.class);
                 System.debug('---RequestID --and response status----' + createVenResp.RequestID + '  ' + createVenResp.status);
                 if(createVenResp != null && String.isNotBlank(createVenResp.status)) {
-                    msg = createVenResp.status + '  ' + statusCodeStr;
+                    msg = createVenResp.status + '  ' + res.getStatusCode();
                 }
             } else {
                 createVenFailResp = (CreateVendorFailureResponse) System.JSON.deserialize(res.getBody(), CreateVendorFailureResponse.class);
                 System.debug('---statusCode --and message are ----' + createVenFailResp.statusCode + '  ' + createVenFailResp.message);
                 if(createVenFailResp != null && String.isNotBlank(createVenFailResp.message)) {
-                    msg = createVenFailResp.message + '  ' + statusCodeStr;
+                    msg = createVenFailResp.message + '  ' + res.getStatusCode();
                 }
             }
         }
@@ -244,7 +249,7 @@ public class VPM_HttpUtil {
             //responseString = 'Some error occured while submitting request to SAP. Please try after some time.'+msg ;
             responseString = msg;
         } else {
-            responseString = 'Some error occured while submitting request to SAP. Please try after some time.' + '  ' + statusCodeStr;
+            responseString = 'Some error occured while submitting request to SAP. Please try after some time.' + '  ' + res.getStatusCode();
             updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             return responseString;
         }

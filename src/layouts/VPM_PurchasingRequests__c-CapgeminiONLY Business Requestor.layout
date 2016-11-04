@@ -291,6 +291,10 @@
                 <behavior>Edit</behavior>
                 <field>VPM_RequestType__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_FLSInCountryReqVen__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>

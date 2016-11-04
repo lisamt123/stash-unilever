@@ -1,4 +1,4 @@
-public  class VPM_MaintainVendorFetchFieldDetails {
+public with sharing class VPM_MaintainVendorFetchFieldDetails {
  public  final string STR_CONST_COMMA='", ';
     public string VPM_ConvertMaintainVendorFieldDetailsToJSON(string VendorRequestId) {
         //String maintainVendorObjectJSON;
@@ -156,8 +156,13 @@ public  class VPM_MaintainVendorFetchFieldDetails {
     mainJsonObject =mainJsonObject+ '"InternationalLocationNumber2" :"'+vendorList.get(0).VPM_IntLocationNumber2__c+STR_CONST_COMMA;
   if(vendorList.get(0).VPM_CheckDigit__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_CheckDigit__c'))
     mainJsonObject =mainJsonObject+ '"CheckDigit" :"'+vendorList.get(0).VPM_CheckDigit__c+STR_CONST_COMMA;
+  if(vendorList.get(0).VPM_ExceptionType__c != null)
+     mainJsonObject =mainJsonObject+ '"ExceptionType" :"'+VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_ExceptionType__c)+STR_CONST_COMMA;
   if(vendorList.get(0).VPM_TaxType__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_TaxType__c'))  
     mainJsonObject =mainJsonObject+ '"TaxType" :"'+VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_TaxType__c)+STR_CONST_COMMA;
+    
+  if(vendorList.get(0).VPM_ZIPPostcode__c!= null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_ZIPPostcode__c'))  
+    mainJsonObject =mainJsonObject+ '"ZipPostCode" :"'+VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_ZIPPostcode__c)+STR_CONST_COMMA;
    //F String urlAttach = URL.getSalesforceBaseUrl().toExternalForm()+'/'+vendorList.get(0).Id;
    // mainJsonObject =mainJsonObject+ '"AttachmentLink" :"'+urlAttach+STR_CONST_COMMA;
     

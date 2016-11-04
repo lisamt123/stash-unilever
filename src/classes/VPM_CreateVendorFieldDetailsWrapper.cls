@@ -33,7 +33,7 @@ public class VPM_CreateVendorFieldDetailsWrapper {
     public string Name4 {get; set;}
     public string SearchTerm1 {get; set;}
     public string Street1 {get; set;}
-    public string ZipPostCode {get; set;}
+    public string CityPostCode {get; set;}
     public string City {get; set;}
     public string Country {get; set;}    
     public string AchillesRegistrationCode {get; set;}

@@ -1,27 +1,24 @@
 <apex:page standardController="VPM_PurchasingRequests__c" recordSetVar="PurchasingRequests"  extensions="VPM_PurchaseRequestsControllerExtension" tabStyle="VPM_PurchasingRequests__c" standardStylesheets="false" sidebar="true" showHeader="true" >
-<!--[if !IE]> -->
+<!--[if !IE]-->
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VPM_StylesheetGeneral)}" />
+<!--![endif]-->
+<!--[if IE]-->
+  <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VPM_StylesheetIE)}" />
+<!--![endif]-->
     <apex:stylesheet value="{!URLFOR($Resource.vpmadvancedformcss)}" />
-<!-- <![endif]-->
+
     <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
     <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.4.js')}"/>
-<style>
+<script>
+    var browser = navigator.appVersion;
+    if(browser.toLowerCase().indexOf("gecko") > -1 || browser.toLowerCase().indexOf("trident") > -1){
+        $("form").attr("browser","ie");
+    }
+    else if(browser.toLowerCase().indexOf("chrome") > -1 || browser.toLowerCase().indexOf("safari") > -1){
+         $("form").attr("browser","chrome");
+    }
+</script>
 
-    [name="vpm_newvendorrequest"],.refreshListButton{
-        zoom:1.2;
-    }
-     input[name="vpm_newvendorrequest"], input[name="vpm_newvendorrequest"]:hover{
-        background : #3044B5;
-        color: white;
-        border-radius: 3px;
-        -moz-box-shadow: 3px 0 5px -3px #999,-3px 0 5px -3px #999;
-        -webkit-box-shadow: 3px 0 5px -3px #999,-3px 0 5px -3px #999;
-        box-shadow: 3px 0 5px -3px #999,-3px 0 5px -3px #999;
-        background-image: -moz-linear-gradient(rgba(255,255,255,.50),rgba(255,255,255,0) 12px);
-        background-image: -webkit-linear-gradient(rgba(255,255,255,.50),rgba(255,255,255,0) 12px);
-        background-image: -ms-linear-gradient(rgba(255,255,255,.50),rgba(255,255,255,0) 12px);
-        font-size: 1em;
-    }
-</style>
  <table cellPadding="10" width= "100%">       
           <TR> <TH> <apex:sectionHeader title="{!$Label.VPM_VendorRequestsHomePage}" subtitle="{!$Label.VPM_VendorRequestsHome}"/></TH> 
           <TH align="right"> <apex:image id="IAndALogo" value="{!$Resource.VPM_IandALogo}" width="251" height="30" style="float:right;"/>

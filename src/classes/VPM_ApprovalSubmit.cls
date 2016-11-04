@@ -18,7 +18,7 @@ with Sharing public class VPM_ApprovalSubmit {
     public static final string NO = 'No';
     public static final string FLS = 'FLS';
     public static final string DRAFT = 'Draft';
-     
+    
 @InvocableMethod(label='Submit for approval Process')
   public static void SubmitApproval(List<VPM_PurchasingRequests__c> purclst)
     {
@@ -47,7 +47,8 @@ string ProcessName ='';
             // Submit the record to specific process 
            // Get Process Name
                 if(purc.VPM_BusinessRequestorSubmitted__c==YES && purc.VPM_Rework__c==NO)
-               ProcessName='VPM_PurchasingRequestFLSApprovals'; // FLS Approval Process 
+                {  ProcessName='VPM_PurchasingRequestFLSApprovals'; }
+            // FLS Approval Process 
             else if(purc.VPM_Rework__c==NO && Purc.VPM_AdvancedFormSubmitted__c==YES && purc.VPM_ProcurementApprovalRequired__c && purc.VPM_ProcurementSubmitted__c==NO && (purc.VPM_IsInApprovalProcess__c=='' || purc.VPM_IsInApprovalProcess__c==null)
                    )
             {
@@ -80,7 +81,8 @@ string ProcessName ='';
                 submitRequest.setProcessDefinitionNameOrId(ProcessName);
  
                 // Submit the approval request for the account
-                Approval.ProcessResult result1 = Approval.process(submitRequest);
+               // Approval.ProcessResult result1 = Approval.process(submitRequest);
+               Approval.process(submitRequest);
                 System.debug('Approval.isLocked(purc)-------'+ Approval.isLocked(purc));
                 if(Approval.isLocked(purc))
                 {

@@ -11,12 +11,12 @@
     </columns>
     <columns>
         <aggregateTypes>Average</aggregateTypes>
-        <field>VPM_PurchasingRequests__c.VPM_DayswithFinance__c</field>
+        <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithFinance__c</field>
     </columns>
     <description>VPM - Report on the average time in days a create request is being worked on by the Finance team on a per country basis.</description>
     <filter>
         <criteriaItems>
-            <column>VPM_PurchasingRequests__c.VPM_DayswithFLS__c</column>
+            <column>VPM_PurchasingRequests__c.VPM_HoursSpentWithFLS__c</column>
             <operator>greaterThan</operator>
             <value>0</value>
         </criteriaItems>
