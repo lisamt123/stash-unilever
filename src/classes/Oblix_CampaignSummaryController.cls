@@ -470,5 +470,32 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         System.debug('### stage_identifier_pop_up.completedValueSet: ' + stage_identifier_pop_up.completedValueSet);
         return null;
     }
+    
+    //Added by suresh
+    
+      public Boolean can_see_sync_in_progress{
+        get {
+        
+            boolean inprogress = false;
+            IF(selected_project.Sync_Status__c  == 'Sync In Progress' || selected_project.Sync_Required_NFY__c == 'Sync In Progress' || selected_project.Sync_Status__c  == 'Sync Requested' || selected_project.Sync_Required_NFY__c == 'Sync Requested' || selected_project.Financial_Year__r.Sync_Status__c == 'Sync Requested'){
+                inprogress = true;
+
+            }
+            return inProgress && !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet();
+        }
+    }
+    
+     public Boolean syncinprogres{
+        get {
+        
+            boolean inprogress = false;
+            IF(selected_project.Sync_Status__c  == 'Sync In Progress' || selected_project.Sync_Required_NFY__c == 'Sync In Progress' || selected_project.Sync_Status__c  == 'Sync Requested' || selected_project.Sync_Required_NFY__c == 'Sync Requested' || selected_project.Financial_Year__r.Sync_Status__c == 'Sync Requested'){
+                inprogress = true;
+
+            }
+            return inProgress;
+        }
+    }
+    
 
 }
