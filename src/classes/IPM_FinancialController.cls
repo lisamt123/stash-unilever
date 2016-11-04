@@ -1927,7 +1927,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               //DO NOT CHANGE the order - Calendar years need to be saved first before Innovation Years to ensure Volume Units get saved appropriately
               saveFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
               saveFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
-              mapFinancialYears.clear();
+
               
               //Update Financial Record
               currentFinancial.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
@@ -4078,7 +4078,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Boolean checkIsFinancialInvalid(Boolean isFinancialInvalid, Boolean isFinancialInvalidInnovation, IPM_Financial__c finToEvaluate){
           Boolean isChanged = false;
           
-          if((isFinancialInvalid || isFinancialInvalidInnovation) || (finToEvaluate != null && !(Boolean)finToEvaluate.get(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX))){
+          if((isFinancialInvalid || isFinancialInvalidInnovation) && (finToEvaluate != null && !(Boolean)finToEvaluate.get(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX))){
             finToEvaluate.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, true);
             isChanged = true;
           }
