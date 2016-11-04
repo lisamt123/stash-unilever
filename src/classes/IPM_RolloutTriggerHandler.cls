@@ -532,9 +532,15 @@ public with sharing class IPM_RolloutTriggerHandler
         {
             financialExistingMap.put(ipmFinancial.Financial_External_Id__c,ipmFinancial);
         }
-            
-        IPM_Financial__c nonKeyFinancial = financialExistingMap.get(financialNonKeyExternalId);
         
+        processLocalRolloutFinancials(financialExistingMap,associatedPhase,associatedlocalRollouts,financialNonKeyExternalId, oldRolloutsMap );
+
+    }
+    
+    //method to updated/create or delete financials based on change in local rollouts
+    public void processLocalRolloutFinancials( Map<String,IPM_Financial__c> financialExistingMap, String associatedPhase, List<IPM_Project_Rollout__c> associatedlocalRollouts, String financialNonKeyExternalId, Map<Id, IPM_Project_Rollout__c> oldRolloutsMap){
+    	IPM_Financial__c nonKeyFinancial = financialExistingMap.get(financialNonKeyExternalId);
+    
         // Check if non Key Should be retained/Created based on whether there are non Key MCO's present. 
         Boolean  nonkeyActiveRolloutExists = false;
         
