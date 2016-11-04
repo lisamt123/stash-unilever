@@ -243,19 +243,11 @@ private class IPM_RolloutPlansAddControllerGKM3_Test {
          	    update projectListPhaseChange;
          	    
 	         	Test.StopTest();
-	         	
-	         	System.debug(LoggingLevel.ERROR,'Queries 1 ---->>'+Limits.getQueries());
-	         	
-	         	List<IPM_Project__c> regionalProjectList = [SELECT ID FROM IPM_Project__c where IPM_Parent_Project__c = :projectAssertList[0].Id];
-	         	
- 				System.assertEquals(regionalProjectList.size(),1,'Regional Project Creation Failed !!!');
- 				
+
      			Test.setCurrentPageReference(pageRef);
-				ApexPages.currentPage().getParameters().put(ID,regionalProjectList[0].Id); 
+				ApexPages.currentPage().getParameters().put(ID,projectListPhaseChange[0].Id); 
 	
 	       		IPM_RolloutPlansAddController irpRegional = new IPM_RolloutPlansAddController(); 
-				
-				System.debug(LoggingLevel.ERROR,'Queries 2 ---->>'+Limits.getQueries());
 				
 	       		irpRegional.regionalMco = 'AO,CM,NG,CG';
 	       		irpRegional.regionalUnselectedMco = 'CM';
@@ -267,6 +259,5 @@ private class IPM_RolloutPlansAddControllerGKM3_Test {
 	       		System.debug(LoggingLevel.ERROR,'Queries 3 ---->>'+Limits.getQueries());
      		}
       	} 
-     
- 
+
 }

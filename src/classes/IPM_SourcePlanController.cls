@@ -888,9 +888,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
             this.productProsition = productProsition;
             this.readModeRow = readModeRow;
             this.isDuplicateRow = isDuplicateRow;
-            if(countryStr != null && countryStr.trim() !='' && countryStr.contains(';'))
-               
-            this.countryStr = countryStr.replaceAll(';','; ');
+            this.countryStr = countryStr;
             this.sourceIntoList = sourceIntoList; 
         }
     }
@@ -902,9 +900,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         public string sourceCountries{get;set;}
         public sourceUnitWrapper(IPM_SourcingPlan__c sourcingPlan,string sourceCountries){
             this.sourcingPlan = sourcingPlan;
-            if(sourceCountries != null && sourceCountries.trim() !='' && sourceCountries.contains(';'))
-             
-            this.sourceCountries = sourceCountries.replaceAll(';','; ');
+            this.sourceCountries = sourceCountries;
             
         } 
     }
