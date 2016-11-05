@@ -2005,7 +2005,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
         <label>Level 2</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Accounts (Level 2)</relationshipLabel>
-        <relationshipName>Accounts1</relationshipName>
+        <relationshipName>Accounts1L</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
@@ -2018,7 +2018,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
         <label>Level 3</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Accounts (Level 3)</relationshipLabel>
-        <relationshipName>Accounts2</relationshipName>
+        <relationshipName>Accounts2L</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
