@@ -655,7 +655,7 @@
         <name>Issue_Card__c</name>
     </fields>
     <fields>
-        <label>年代</label>
+        <label>Local Identifier</label>
         <name>Local_Identifier__c</name>
     </fields>
     <fields>

@@ -2148,6 +2148,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CEC_CaseTransferControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CEC_CaseTriggerHelper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -55457,6 +55461,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>OrderItem-Order Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Outlook-LfO</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>PBS_Achievement_Assignment__c-Achievement Assignment Layout</layout>

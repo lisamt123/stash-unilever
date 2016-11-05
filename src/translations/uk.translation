@@ -19617,6 +19617,26 @@
         <name>dgec__promts_endpoint_url_error</name>
     </customLabels>
     <customLabels>
+        <label><!-- BadQuery --></label>
+        <name>dgpi__BadQuery</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BadRelationshipName --></label>
+        <name>dgpi__BadRelationshipName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FieldDoesNotExist --></label>
+        <name>dgpi__FieldDoesNotExist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FieldNotAccessible --></label>
+        <name>dgpi__FieldNotAccessible</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ObjectNotAccessible --></label>
+        <name>dgpi__ObjectNotAccessible</name>
+    </customLabels>
+    <customLabels>
         <label><!-- im_issueCreationDialogue_New --></label>
         <name>im_issueCreationDialogue_New</name>
     </customLabels>

@@ -4505,7 +4505,7 @@
         <name>CEC_Label_Action</name>
     </customLabels>
     <customLabels>
-        <label>ナレッジ</label>
+        <label>Knowledge Articles</label>
         <name>CEC_Label_Knowledge_Articles</name>
     </customLabels>
     <customLabels>
@@ -4529,7 +4529,7 @@
         <name>CEC_Latitude</name>
     </customLabels>
     <customLabels>
-        <label>年代</label>
+        <label>Local Identifier</label>
         <name>CEC_Local_Indentifier</name>
     </customLabels>
     <customLabels>
@@ -19615,6 +19615,26 @@
     <customLabels>
         <label><!-- promts endpoint url error --></label>
         <name>dgec__promts_endpoint_url_error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BadQuery --></label>
+        <name>dgpi__BadQuery</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BadRelationshipName --></label>
+        <name>dgpi__BadRelationshipName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FieldDoesNotExist --></label>
+        <name>dgpi__FieldDoesNotExist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FieldNotAccessible --></label>
+        <name>dgpi__FieldNotAccessible</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ObjectNotAccessible --></label>
+        <name>dgpi__ObjectNotAccessible</name>
     </customLabels>
     <customLabels>
         <label><!-- im_issueCreationDialogue_New --></label>

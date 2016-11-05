@@ -2148,6 +2148,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CEC_CaseTransferControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CEC_CaseTriggerHelper</apexClass>
         <enabled>true</enabled>
     </classAccesses>

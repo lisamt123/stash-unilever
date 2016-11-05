@@ -35,7 +35,7 @@
         <fullName>CEC_Set_Case_Status_New_RetrievalRequest</fullName>
         <description>CEC Set Case Status New is used to set the case status to &apos;New&apos; if Retrieval status = ‘Resolved’, ’Clothing Delivered’ .</description>
         <field>Status</field>
-        <literalValue>New</literalValue>
+        <literalValue>Reopened</literalValue>
         <name>CEC Set Case Status New</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>

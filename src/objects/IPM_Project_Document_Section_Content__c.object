@@ -11031,7 +11031,7 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
     <listViews>
         <fullName>IPM_a7I0L000000GyX2_IPM_Project_Document_Section_Content</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000GyX2</label>
+        <label>IPM_HRT SHIRAZ</label>
         <queue>IPM_a7I0L000000GyX2</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -11060,6 +11060,42 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
         <filterScope>Queue</filterScope>
         <label>IPM_a7I0L000000GyXH</label>
         <queue>IPM_a7I0L000000GyXH</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GyXR_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_HRT ROUND EU_EU</label>
+        <queue>IPM_a7I0L000000GyXR</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GyXW_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GyXW</label>
+        <queue>IPM_a7I0L000000GyXW</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GyXb_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GyXb</label>
+        <queue>IPM_a7I0L000000GyXb</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GyXg_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ST LUKE LA_LA</label>
+        <queue>IPM_a7I0L000000GyXg</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

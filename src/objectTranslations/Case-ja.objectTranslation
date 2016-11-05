@@ -1440,6 +1440,10 @@
             <translation>回収中</translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Reopened</masterLabel>
+            <translation><!-- Reopened --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Review Needed</masterLabel>
             <translation>承認待ち</translation>
         </picklistValues>
