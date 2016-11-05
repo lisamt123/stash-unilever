@@ -123,5 +123,9 @@
         <label><!-- Survey URL --></label>
         <name>Survey_URL__c</name>
     </fields>
+    <fields>
+        <label><!-- UpdateAccountOnSMSCase --></label>
+        <name>UpdateAccountOnSMSCase__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
