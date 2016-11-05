@@ -1233,7 +1233,7 @@
         <name>CEC_Label_Action</name>
     </customLabels>
     <customLabels>
-        <label>ナレッジ</label>
+        <label>Knowledge Articles</label>
         <name>CEC_Label_Knowledge_Articles</name>
     </customLabels>
     <customLabels>
@@ -1257,7 +1257,7 @@
         <name>CEC_Latitude</name>
     </customLabels>
     <customLabels>
-        <label>年代</label>
+        <label>Local Identifier</label>
         <name>CEC_Local_Indentifier</name>
     </customLabels>
     <customLabels>

@@ -104,6 +104,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Reopened</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Review Needed</fullName>
             <default>false</default>
         </values>
@@ -2848,7 +2852,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>Skill_Match__c</fullName>
         <description>CEC - A formula field to check whether Language &amp; Product  skill of a case contains Language &amp; Product Category of a User. And also checks the Status , Market of a case &amp; whether the case is assigned to a Queue or not.</description>
         <externalId>false</externalId>
-        <formula>AND(Case_Brand_Mapping__r.Country__r.Enable_Skill_Routing__c ,Is_Language_Skill_Match__c,Is_Product_Skill_Match__c,(TEXT(Status)=&apos;New&apos;),IF(Owner:Queue.DeveloperName !=&apos;&apos;, TRUE, FALSE))</formula>
+        <formula>AND(Case_Brand_Mapping__r.Country__r.Enable_Skill_Routing__c ,Is_Language_Skill_Match__c,Is_Product_Skill_Match__c,OR(TEXT(Status)=&apos;New&apos;,TEXT(Status)=&apos;Reopened&apos;),IF(Owner:Queue.DeveloperName !=&apos;&apos;, TRUE, FALSE))</formula>
         <label>Skill Match</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2943,6 +2947,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Closed as Duplicate</fullName>
                 <default>false</default>
                 <closed>true</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reopened</fullName>
+                <default>false</default>
+                <closed>false</closed>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -4946,6 +4955,28 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Japan</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.CREATED_DATE_DATE_ONLY</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>CEC Japan - 本日のケース（全件）</label>
+        <language>ja</language>
+        <sharedTo>
+            <role>CEC_Manager_Japan</role>
+            <role>CEC_User_Japan</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Japan_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <filters>
@@ -4960,6 +4991,31 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Japan</role>
             <role>CEC_Manager_North_Asia</role>
+            <role>CEC_User_Japan</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Japan_Queue</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.LAST_UPDATE</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Japan Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Japan_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Japan</role>
             <role>CEC_User_Japan</role>
         </sharedTo>
     </listViews>
@@ -7954,7 +8010,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Rebe</value>
+            <value>SarahE</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
@@ -7969,12 +8025,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Martin</value>
+            <value>Katja</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>maxel</value>
+            <value>avorw</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>

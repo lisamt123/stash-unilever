@@ -312,6 +312,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Japanese</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Moldavian</fullName>
                 <default>false</default>
             </picklistValues>

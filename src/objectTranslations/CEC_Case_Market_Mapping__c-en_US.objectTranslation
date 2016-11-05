@@ -146,6 +146,10 @@
             <translation><!-- Italian --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Japanese</masterLabel>
+            <translation><!-- Japanese --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Moldavian</masterLabel>
             <translation><!-- Moldavian --></translation>
         </picklistValues>

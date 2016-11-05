@@ -1426,6 +1426,10 @@
             <translation><!-- Pending with Courier --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Reopened</masterLabel>
+            <translation><!-- Reopened --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Review Needed</masterLabel>
             <translation>Επανεξέταση χρειάζεται</translation>
         </picklistValues>
