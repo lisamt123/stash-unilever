@@ -1918,6 +1918,282 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>UL_Customer_Unique__c</fullName>
+        <description>This attribute will be used to concatenate four fields</description>
+        <externalId>false</externalId>
+        <formula>ACSFUL001__Account_Number__c &amp; &quot;-&quot; &amp; UL_Sales_Organization__c + UL_Distribution_Channel_Code__c + UL_Activity_Sector_Division_Code__c</formula>
+        <label>Customer Unique</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_DefaultSoldTo__c</fullName>
+        <description>This attribute will be used as selecting the Sold To record for the levels where customer is</description>
+        <externalId>false</externalId>
+        <label>Selected Default SoldTo</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Direct_Indirect_Flag__c</fullName>
+        <description>Indicates whether the sold-to is a direct or an indirect customer.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether the sold-to is a direct or an indirect customer.</inlineHelpText>
+        <label>Direct/Indirect Flag</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indirect</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Distribution_Channel_Code__c</fullName>
+        <description>This attribute will be used as information only.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This attribute will be used as information only.</inlineHelpText>
+        <label>Distribution Channel Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Distribution_Channel_Description__c</fullName>
+        <description>This attribute will be used to segment a promotion (via customer sets).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This attribute will be used to segment a promotion (via customer sets).</inlineHelpText>
+        <label>Distribution Channel Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Level_1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 1 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 1</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 2 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 2</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Level 2)</relationshipLabel>
+        <relationshipName>Accounts1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 3 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 3</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Level 3)</relationshipLabel>
+        <relationshipName>Accounts2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 4 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 4</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Level 4)</relationshipLabel>
+        <relationshipName>Accounts3</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 5 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 5</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Level 5)</relationshipLabel>
+        <relationshipName>Accounts4</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_6__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 6 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 6</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Default Sold To (Actual)</relationshipLabel>
+        <relationshipName>Accounts5</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_7__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 7 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 7</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Level 7)</relationshipLabel>
+        <relationshipName>Accounts6</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Level_8__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This attribute will be used as Level 8 of customer hierarchy</description>
+        <externalId>false</externalId>
+        <label>Level 8</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Accounts (Level 8)</relationshipLabel>
+        <relationshipName>Accounts7</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UL_Market_Channel_Code__c</fullName>
+        <description>This attribute will be interfaced to the customer master data table, but will not be displayed on the account record.</description>
+        <externalId>false</externalId>
+        <label>Market Channel Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Market_Channel_Description__c</fullName>
+        <description>This attribute will be used to segment a promotion (via customer sets).  It is also possible to plan promotions at this level.</description>
+        <externalId>false</externalId>
+        <label>Market Channel Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Market_Code__c</fullName>
+        <description>This attribute will be be interfaced to the customer master data table, but will not be displayed on the account record.</description>
+        <externalId>false</externalId>
+        <label>Market Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Market_Description__c</fullName>
+        <description>This attribute will be used to segment a promotion (via customer sets).  It is also possible to plan promotions at this level.</description>
+        <externalId>false</externalId>
+        <label>Market Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_NCF_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicates whether a customer is a “No Customer Forecast” customer. This is used to enforce different restrictions in the planning process. Options are “Yes” and “No”</description>
+        <externalId>false</externalId>
+        <label>NCF Flag</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UL_Planning_Level__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This attribute is used as selecting the planning level for customer</description>
+        <externalId>false</externalId>
+        <label>Planning Level</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UL_Sales_Organization_Description__c</fullName>
+        <description>This attribute will be used to segment a promotion (via customer sets).</description>
+        <externalId>false</externalId>
+        <label>Sales Organization Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Sales_Organization__c</fullName>
+        <description>This attribute will be used as information only.</description>
+        <externalId>false</externalId>
+        <label>Sales Organization</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Territory_Code__c</fullName>
+        <description>This attribute will be used as information only.</description>
+        <externalId>false</externalId>
+        <label>Territory Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Territory_Description__c</fullName>
+        <description>This attribute will be used to segment a promotion (via customer sets).</description>
+        <externalId>false</externalId>
+        <label>Territory Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
 	<!-- end-->
     <fields>
         <fullName>FS_RusianRegion__c</fullName>
