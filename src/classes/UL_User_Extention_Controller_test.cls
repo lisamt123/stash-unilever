@@ -25,7 +25,7 @@ private static void CreateTestData(){
     testuser.ProfileId = p.id;
     testuser.UserRoleid = R.id;
     testuser.ACSFUL001__Sales_Organization__c = 'UK SO';
-    testuser.UL_Career_Level__c = 'CAM WL2-A';
+    //testuser.UL_Career_Level__c = 'CAM WL2-A';
     system.runAs(sysuser){
     insert testuser;
     }
