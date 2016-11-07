@@ -106,10 +106,10 @@
         <enabled>true</enabled>
         <name>EditPublicFilters</name>
     </userPermissions>
-    <userPermissions>
+    <!--<userPermissions>
         <enabled>true</enabled>
         <name>EditPublicReports</name>
-    </userPermissions>
+    </userPermissions>-->
     <userPermissions>
         <enabled>true</enabled>
         <name>EditPublicTemplates</name>
