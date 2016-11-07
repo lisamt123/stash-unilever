@@ -82,10 +82,10 @@
         <enabled>true</enabled>
         <name>DistributeFromPersWksp</name>
     </userPermissions>
-    <userPermissions>
+    <!--<userPermissions>
         <enabled>true</enabled>
         <name>EditBillingInfo</name>
-    </userPermissions>
+    </userPermissions>-->
     <userPermissions>
         <enabled>true</enabled>
         <name>EditBrandTemplates</name>
@@ -358,10 +358,10 @@
         <enabled>true</enabled>
         <name>ViewEventLogFiles</name>
     </userPermissions>
-    <!--<userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>ViewHelpLink</name>
-    </userPermissions>-->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewMyTeamsDashboards</name>
