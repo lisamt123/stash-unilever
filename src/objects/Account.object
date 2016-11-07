@@ -2159,15 +2159,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
-        <fullName>UL_Customer_Role_Valid_Thru__c</fullName>
-        <description>End date for the customer in the system. This should ideally be an effectivity end date as customers should not be deleted entirely from ECC.</description>
-        <externalId>false</externalId>
-        <label>Planning End Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Date</type>
-    </fields>
+
     <fields>
         <fullName>UL_Market_Channel_Description__c</fullName>
         <description>This attribute will be used to segment a promotion (via customer sets).  It is also possible to plan promotions at this level.</description>
