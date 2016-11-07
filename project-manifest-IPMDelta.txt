@@ -1,7 +1,5 @@
 src
 src/classes
-src/classes/IPMLocalSourcingTableController.cls
-src/classes/IPMLocalSourcingTableController.cls-meta.xml
 src/classes/IPM_ApproverList.cls
 src/classes/IPM_ApproverList.cls-meta.xml
 src/classes/IPM_AssesmentHandler_Helper.cls
@@ -164,6 +162,8 @@ src/classes/IPM_NewTask.cls
 src/classes/IPM_NewTask.cls-meta.xml
 src/classes/IPM_NewTask_Test.cls
 src/classes/IPM_NewTask_Test.cls-meta.xml
+src/classes/IPM_OTIFStatusController.cls
+src/classes/IPM_OTIFStatusController.cls-meta.xml
 src/classes/IPM_OTIF_Report_Batch.cls
 src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
 src/classes/IPM_OTIF_Report_BatchSchedule.cls
@@ -348,7 +348,7 @@ src/flows/IPM_Financial_business_case_Misalignment-1.flow
 src/flows/IPM_Notify_Local_Rollout_Project_Created-18.flow
 src/flows/IPM_Populate_Product_lock_design_status-1.flow
 src/flows/IPM_send_email_to_RPL_when_local_project_is_archived_from_rollout_plan-3.flow
-
+src/flows/IPM_send_email_when_project_stopped_completely-11.flow
 src/labels
 src/labels/CustomLabels.labels
 src/layouts
@@ -411,6 +411,8 @@ src/pages/IPM_ProjectDocumentSectionEditor.page
 src/pages/IPM_ProjectDocumentSectionEditor.page-meta.xml
 src/pages/IPM_ProjectOverview.page
 src/pages/IPM_ProjectOverview.page-meta.xml
+src/pages/IPM_ProjectSearchPage.page
+src/pages/IPM_ProjectSearchPage.page-meta.xml
 src/pages/IPM_ProjectSetUpView.page
 src/pages/IPM_ProjectSetUpView.page-meta.xml
 src/pages/IPM_Resource_Allocation.page
@@ -434,6 +436,7 @@ src/permissionsets/IPM_Central_Team.permissionset
 src/permissionsets/IPM_Finance_Team.permissionset
 src/permissionsets/IPM_ProjectLeader.permissionset
 src/permissionsets/IPM_Research_and_Development.permissionset
+src/permissionsets/IPM_System_Administrator_Permissions.permissionset
 src/reportTypes
 src/reportTypes/BB_BD_Report.reportType
 src/reportTypes/OTIF_Report.reportType

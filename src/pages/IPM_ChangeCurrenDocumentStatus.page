@@ -374,14 +374,28 @@
                         <!-- Below rendered condition will execute for approve with edits -->
                             <apex:outputPanel rendered="{!If(Status='Approved with Edits',true,false)}" > 
                                 <div class="col-xs-12 toolTipMsg marginTop "><apex:outputLabel value="{!$Label.IPM_APPROVED_AND_ALLOW_CHANGES}" /></div>
-                                <div class="approvedBox">
-                                    <apex:outputLabel value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/> <i>{!$Label.IPM_Document_Optional}</i>
+                                            <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft noPadright approvedBox">                           
+                                            <apex:outputPanel rendered="{!!isPDLApproved}">
+                                                <apex:outputPanel layout="block" styleClass="col-xs-12 messageBox infoMsg">
+                                                    <apex:outputPanel layout="block" styleClass="SecButtonSet">
+                                                        <a class="icoButton red-info" title="info"></a>
+                                                        <span class="msgTxt fullWidth">{!$Label.IPM_PDL_Not_Approved}</span>
+                                                    </apex:outputPanel>
+                                                </apex:outputPanel>                                           
+                                                <apex:outputPanel styleClass="errorBlock marginTop pull-left" layout="block" >
+                                                    <span class="errTitle">{!$Label.IPM_Product_Design_Lock_Document}</span> 
+                                                    <span class="errList">{!$Label.IPM_Fill_PDL_Document} </span> 
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!isPDLApproved}">
+                                                <apex:outputLabel value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/> <i>(Optional)</i>
+                                            </apex:outputPanel>
                      <!-- Below rendered condition is used to show output text for operational projects -->
                     <apex:outputPanel rendered="{!AND(project.IPM_Phase__c!=isCapability,isOperational)}">
                                     <span class="bluText">* Goes to <apex:outputText value="{!IF(projectDoc.IPM_GateDocuments__c='Charter',' Contract',(IF(projectDoc.IPM_GateDocuments__c='Contract',' Market Ready',(IF(projectDoc.IPM_GateDocuments__c='Market Ready',' Market Deployment',' PLE')))))}"></apex:outputText> Gate document, Section Feedback from Last Gate</span>
                      </apex:outputPanel>
-                </div>
-                                <apex:inputTextarea onfocus="checktextval();" styleClass="txtArea" value="{!projectDoc.IPM_Approved_Comments__c}"/>        
+                
+                                <apex:inputTextarea onfocus="checktextval();" styleClass="txtArea" value="{!projectDoc.IPM_Approved_Comments__c}" rendered="{!isPDLApproved}"/>        
                                  <!-- Below rendered condition will execute for charter gate document -->
                                 <apex:outputPanel layout="block" rendered="{!if(projectDoc.IPM_GateDocuments__c=='Charter',True,False)}">
                                      <!-- Below rendered condition will execute for non operational projects -->
@@ -420,10 +434,13 @@
                                             <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
                                     </div>
                                 </apex:outputPanel>  
+				</apex:outputPanel> 
+                           <apex:outputPanel rendered="{!isPDLApproved}">
                                 <div class="marginTop ipmButtonGroup pull-right apprWithEdits" data-toggle="modal" data-target="#ipmModalApproveEdits" title="Approve with Edits" data-backdrop="static" data-keyboard="false">
                                     <!--<span class="ipmButton primary">{!$Label.IPM_CHANGE}</span>-->
                                     <span class="ipmButton primary">Change</span>
                                 </div>      
+                            </apex:outputPanel>
                             </apex:outputPanel>
                         </apex:outputPanel>      
                         <apex:outputPanel layout="block" id="changeAction">
