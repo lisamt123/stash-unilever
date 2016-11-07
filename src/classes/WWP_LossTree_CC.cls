@@ -10,6 +10,9 @@ public with sharing class WWP_LossTree_CC{
       public boolean showingPanel{get;set;}
       public string showPanelsDiv{get;set;}
       public string code1{get;set;}
+      public boolean showpickVal{get;set;}
+      public boolean showMassFeature{get; set; }
+      public boolean showfeature{get;set;}
       
     public List<WWP_Loss_Tree__c> listLossTree{get; set;}
     public List<LossTreeWrapper> listLossTreeW{get; set;}
@@ -23,6 +26,12 @@ public with sharing class WWP_LossTree_CC{
     List<SelectOption> listbox1all = new List<SelectOption>();
     List<SelectOption> listbox2all = new List<SelectOption>();
     List<SelectOption> listbox3all = new List<SelectOption>();
+    public List<SelectOption> selectbox1all{get; set;}
+    public List<SelectOption> selectbox2all{get; set;}
+    public List<SelectOption> selectbox3all{get; set;}
+    public string selectedbox1{get;set;}
+    public string selectedbox2{get;set;}
+    public string selectedbox3{get;set;}
     public List<SelectOption> listPlantCodes{get; set;}
     public List<SelectOption> listWeekCodes{get; set;}
     public boolean dispalyAll{get; set;}
@@ -40,6 +49,8 @@ public with sharing class WWP_LossTree_CC{
     if(code != null){
     
     Map<string,WWP_Master_Table__c> masterTableValues= WWP_Master_Table__c.getAll();
+    
+    if(masterTableValues.get(code).OR_Tolerance__c != null)
             
     plantCode= masterTableValues.get(code).OR_Tolerance__c;
     
@@ -47,6 +58,28 @@ public with sharing class WWP_LossTree_CC{
     else{
     showingPanel = false;}
     //plantCode = 96;
+    system.debug(showingPanel);
+    
+    }
+    public void showPanelmassUpdate(){
+    
+        if(showMassFeature == true){
+        
+        showfeature = true;
+        
+        }
+        else{
+        showfeature = false;
+        }
+    
+    
+    }
+    
+    
+    public void getCustpickvalues(){
+   
+    
+    showpickVal = true;
     
     
     }
@@ -59,10 +92,16 @@ public with sharing class WWP_LossTree_CC{
          listPlantCodes = new List<SelectOption>(); 
          listWeekCodes = new List<SelectOption>(); 
          List<WWP_PlantCode_User_Mapping__c> plantcodeusers= new List<WWP_PlantCode_User_Mapping__c>();
-         plantcodeusers = [Select name,user__c,Plant_code__c from WWP_PlantCode_User_Mapping__c where user__c =: userinfo.getuseremail()];
+         plantcodeusers = [Select name,user__c,Plant_code__c from WWP_PlantCode_User_Mapping__c where user__c =: userinfo.getuseremail() limit 50000];
          listPlantCodes.add(new SelectOption(valueNull,'--None--'));
           listWeekCodes.add(new SelectOption(valueNull,'--None--'));
           showingPanel = false;
+          showpickVal = false;
+          showfeature = false;
+          showMassFeature = false;
+          selectbox1all = new List<selectOption>();
+          selectbox2all = new List<selectOption>();
+          selectbox3all = new List<selectOption>();
           
          Set<string> uniqueCodes = new Set<String>();
          if(!plantcodeusers.isEmpty()){             
@@ -83,7 +122,7 @@ public with sharing class WWP_LossTree_CC{
              message = label.WWP_NocodeAssigned_Err;
          }
          
-          List<WWP_Loss_Tree__c>   weeklistLossTree = [select id,name,Week__c from WWP_Loss_Tree__c where plant_code__c IN :uniqueCodes order by createddate  Limit 50000];
+          List<WWP_Loss_Tree__c>   weeklistLossTree = [select id,name,Week__c from WWP_Loss_Tree__c where plant_code__c IN :uniqueCodes order by createddate Limit 50000 ];
            system.debug('dddddddddddddddd'+weeklistLossTree.size());
            Map<String,String> weekMap = new Map<String,String>();
          
@@ -108,9 +147,12 @@ public with sharing class WWP_LossTree_CC{
      public void fetchLossTree(){
         listLossTree = new List<WWP_Loss_Tree__c>();
         listLossTreeW = new List<LossTreeWrapper>();
-        listbox1all .clear();
-        listbox2all .clear();
-        listbox3all .clear();
+        listbox1all.clear();
+        listbox2all.clear();
+        listbox3all.clear();
+        selectbox1all.clear();
+        selectbox2all.clear();
+        selectbox3all.clear();
         mapbox12.clear();
         mapbox13.clear();
         mapbox21.clear();
@@ -120,18 +162,23 @@ public with sharing class WWP_LossTree_CC{
         mapcombine12.clear();
         successmessage=valueNull;
         
+            showpickVal = true;
+        
+        
         
         if(lossTree.Loss_Type__c!=null && lossTree.Plant_Code__c!=null && selectedWeek !=null ){
+        showfeature = false;
+        showMassFeature = false;
             if(dispalyAll){
             system.debug(lossTree.Loss_Type__c +'>>> '+selectedWeek +'>>>>>'+lossTree.Plant_Code__c );
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,InsertedDate__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,Resource_Line__c,createddate,Remarks__c,
                              Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where   Week__c=:selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c=:losstree.loss_type__c   LIMIT 1000];
                              
                          
                              
             }
             else{
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,InsertedDate__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,Resource_Line__c,createddate,Remarks__c,
                              Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c and Week__c=:selectedWeek and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and Loss_Updated_in_Salesforce__c = false order by CreatedDate ASC LIMIT 1000];
             
                 
@@ -253,17 +300,19 @@ public with sharing class WWP_LossTree_CC{
          
          //new change
          else if(lossTree.Loss_Type__c!=null && lossTree.Plant_Code__c!=null && selectedWeek ==null ){
+         showfeature = false;
+         showMassFeature = false;
             if(dispalyAll){
             system.debug(lossTree.Loss_Type__c +'>>> '+selectedWeek +'>>>>>'+lossTree.Plant_Code__c );
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,InsertedDate__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where    Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c=:losstree.loss_type__c   LIMIT 1000];
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Resource_Line__c,Loss_Sub_Family__c,createddate,Remarks__c,
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where    Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c=:losstree.loss_type__c   limit 1000];
                              
                          
                              
             }
             else{
-            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,InsertedDate__c,Loss_Name__c,Loss_Sub_Family__c,createddate,Remarks__c,
-                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c  and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and Loss_Updated_in_Salesforce__c = false order by CreatedDate ASC LIMIT 1000];
+            listLossTree = [select id,name,Loss_Type__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Resource_Line__c,Loss_Sub_Family__c,createddate,Remarks__c,
+                             Loss_Description__c,Planned_Receipt__c,actual_Receipt__c,MRP_Loss_Value__c,DC__c,OR__C,OR_Loss_Value__c,Planned_dispatch__c,Actual_dispatch__c,Actual_Production__c,Planned_Production__c,DC_Loss_Value__c,Week__c,PR__c,STO_So__c,SKU_description__c  from WWP_Loss_Tree__c where Loss_Type__c=:lossTree.Loss_Type__c  and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and Loss_Updated_in_Salesforce__c = false order by CreatedDate ASC limit 1000];
             
                 
                    
@@ -384,6 +433,7 @@ public with sharing class WWP_LossTree_CC{
          
          
          else{
+         showfeature = false;
              message = label.WWP_RequiredFeilds_Err;
          }
          
@@ -407,6 +457,9 @@ public with sharing class WWP_LossTree_CC{
                 listbox3all.add(new SelectOption(s3,s3));
                 }
                 } 
+                selectbox1all.addAll(listbox1all);
+                selectbox2all.addAll(listbox2all);
+                selectbox3all.addAll(listbox3all);
                 integer y=-1;
          if(listLossTree!=null && !listLossTree.isEmpty()){
              for(WWP_Loss_Tree__c lt: listLossTree){
@@ -445,6 +498,7 @@ public with sharing class WWP_LossTree_CC{
             //getting custom settings values into MAP
             
             Map<string,WWP_Master_Table__c> masterTableValues= WWP_Master_Table__c.getAll();
+            
             
             orVal = masterTableValues.get(lt.Plant_Code__c).OR_Tolerance__c;
             
@@ -494,6 +548,7 @@ public with sharing class WWP_LossTree_CC{
            {
            
            isdisabled =true;
+           Remarks = 'above target';
            //system.debug('inside true');
            }
            else
@@ -713,6 +768,8 @@ public with sharing class WWP_LossTree_CC{
     
     public void controlMRP12(){
         integer ite = integer.valueof(Apexpages.currentPage().getParameters().get('mrpfirstParam'));
+        
+        system.debug('system'+ite);
         string lossname = Apexpages.currentPage().getParameters().get('mrpsecondParam');
         List<SelectOption> listboxmrp12select = new List<SelectOption>();
         List<SelectOption> listboxmrp11select = new List<SelectOption>();
@@ -755,6 +812,190 @@ public with sharing class WWP_LossTree_CC{
         }*/
     }
     
+    //===========================new picklist
+    
+        public void controls1(){
+        string lossname = Apexpages.currentPage().getParameters().get('firstParams1');
+        List<SelectOption> listbox12select = new List<SelectOption>();
+        List<SelectOption> listbox13select = new List<SelectOption>();
+        List<SelectOption> listbox11select = new List<SelectOption>();
+       system.debug('sssssssssssssss'+lossname);
+       showfeature = true;
+       
+        if(lossname!=null && lossname!=valueNone){
+        listbox11select.add(new SelectOption(lossname,lossname));
+       selectbox1all=listbox11select;
+        listbox12select.add(new SelectOption(valueNone,valueNone));
+            
+            
+            listbox13select.add(new SelectOption(valueNone,valueNone));
+            if(selectedbox2==valueNone){
+                for(string s2:Mapbox12.get(lossname)){
+                listbox12select.add(new SelectOption(s2,s2));
+                }           
+                selectbox2all=listbox12select;
+            
+                for(string s3:Mapbox13.get(lossname)){
+                    listbox13select.add(new SelectOption(s3,s3));
+                    
+                }
+                selectbox3all=listbox13select;
+            }
+            else{
+                if(selectedbox2!=valueNone && selectbox2all.size()==1){
+                    for(string s3:mapcombine12.get(lossname+selectedbox2)){
+                    listbox13select.add(new SelectOption(s3,s3));
+                    }
+                    selectbox3all=listbox13select;
+                }
+                if(selectedbox2!=valueNone && selectbox2all.size()>1){
+                    for(string s2:Mapbox12.get(lossname)){
+                    listbox12select.add(new SelectOption(s2,s2));
+                    }           
+                    selectbox2all=listbox12select;
+                
+                    for(string s3:Mapbox13.get(lossname)){
+                        listbox13select.add(new SelectOption(s3,s3));
+                    }
+                    selectbox3all=listbox13select;
+                }
+            }
+        }
+     
+    }
+    
+    
+    public void controls2(){
+        string losssubfamily = Apexpages.currentPage().getParameters().get('firstParams2');
+        List<SelectOption> listbox21select = new List<SelectOption>();
+        List<SelectOption> listbox23select = new List<SelectOption>();
+        List<SelectOption> listbox22select = new List<SelectOption>();
+        showfeature = true;
+        
+        if(losssubfamily!=null && losssubfamily!=valueNone){
+            if(selectbox1all.size()>1){
+                listbox21select.add(new SelectOption(valueNone,valueNone));
+                for(string s1:Mapbox21.get(losssubfamily)){
+       
+                    listbox21select.add(new SelectOption(s1,s1));
+                }            
+                selectbox1all=listbox21select;
+                listbox23select.add(new SelectOption(valueNone,valueNone));
+                for(string s3:Mapbox23.get(losssubfamily)){
+                    listbox23select.add(new SelectOption(s3,s3));
+                }
+                selectbox3all=listbox23select;
+                
+                
+            }
+            if(selectbox1all.size()==1 && selectedbox1!=valueNone){
+                listbox23select.add(new SelectOption(valueNone,valueNone));
+                for(string s3:mapcombine12.get(selectedbox1+losssubfamily)){
+                listbox23select.add(new SelectOption(s3,s3));
+                }
+                selectbox3all=listbox23select;    
+            }
+            listbox22select.add(new SelectOption(losssubfamily,losssubfamily));
+                selectbox2all=listbox22select;
+            
+        }
+        
+    
+    }
+    
+    
+    
+    public void controls3(){
+        string lossdesc = Apexpages.currentPage().getParameters().get('firstParams3');
+        List<SelectOption> listbox31select = new List<SelectOption>();
+        List<SelectOption> listbox32select = new List<SelectOption>();
+        List<SelectOption> listbox33select = new List<SelectOption>();
+        showfeature = true;
+        
+        system.debug('ddddddddddddddddddddd'+lossdesc);
+        if(lossdesc!=null && lossdesc!=valueNone){
+        
+            for(string s1:Mapbox31.get(lossdesc)){
+            system.debug('mmmmmmmmmmmm'+s1);
+                listbox31select.add(new SelectOption(s1,s1));
+                selectedbox1=s1;
+            }
+            
+            selectbox1all=listbox31select;
+         
+            for(string s2:Mapbox32.get(lossdesc)){
+                listbox32select.add(new SelectOption(s2,s2));
+                selectedbox2=s2;
+                
+            }
+            selectbox2all=listbox32select;
+                            
+              
+                listbox33select.add(new SelectOption(lossdesc,lossdesc));
+                selectbox3all=listbox33select;
+            
+           
+        }
+        
+       
+    
+    }
+    
+    
+    
+    //===============================
+    
+    
+    
+    
+    
+    //======================================================copy functionality
+     public void copyline(){
+     
+        
+     /*string lossname = Apexpages.currentPage().getParameters().get('lname');
+     string lossfam = Apexpages.currentPage().getParameters().get('lfam');
+     string lossdesc = Apexpages.currentPage().getParameters().get('ldesc');*/
+     
+     system.debug('name : '+selectedbox1);
+     system.debug('fam  : '+selectedbox2);
+     system.debug('desc : '+selectedbox3);
+     
+     
+     system.debug('sssss'+isdisabled);
+     integer count=0;
+     integer counter = 0;
+     for(integer i =0 ; i < listLossTreeW.size(); i++){
+     
+        if(listLossTreeW[i].checkbox1 == true  ){
+        counter++;
+        if(listLossTreeW[i].isdisabled == false)
+        {
+           system.debug('sssss'+listLossTreeW[i].isdisabled);
+                listLossTreeW[i].selectbox1 = selectedbox1;
+                listLossTreeW[i].selectbox2 = selectedbox2;
+                listLossTreeW[i].selectbox3 = selectedbox3;
+                count++;
+           }
+           }
+        }
+        if(counter == 0){
+            message=label.WWP_selectRecord_Err;
+            successmessage =valueNull;
+        }
+        else if(count == 0){
+            message = label.WWp_selectedrecord_disabled;
+            successmessage =valueNull;
+        }
+        else{
+            message =valueNull;                    
+        } 
+        
+      
+    }
+    
+    //=================================================End here
+    
     public void resetline(){
         integer ite = integer.valueof(Apexpages.currentPage().getParameters().get('resetite'));
         system.debug('iiiiiiiiiiiiiiiiiiii'+ite);
@@ -763,12 +1004,17 @@ public with sharing class WWP_LossTree_CC{
         
         
         listLossTreeW[ite].listbox1=listbox1all;
+        system.debug('debug'+listLossTreeW[ite].listbox1);
         listLossTreeW[ite].listbox2=listbox2all;
         listLossTreeW[ite].listbox3=listbox3all;
         listLossTreeW[ite].selectbox3=valueNone;
         listLossTreeW[ite].selectbox1=valueNone;
         listLossTreeW[ite].selectbox2=valueNone;
+        listLossTreeW[ite].checkbox1 = false;
         
+        
+    }
+    public void resetline1(){
         
     }
     public void updateLossTree(){
