@@ -35,14 +35,7 @@
         <value>Planning Level is already set on other level customer with overlapping Validity From/To dates OR 
 there is a different Currency on lower level customer(s)</value>
     </labels>
-    <labels>
-        <fullName>UL_PlanningLevelBetween3To7</fullName>
-        <categories>UL TPM Messages</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Planning Level Between 3 To 7</shortDescription>
-        <value>Planning Level can only be set between levels 3 to 7</value>
-    </labels>
+  
     <labels>
         <fullName>UL_PlanningStartEndDate</fullName>
         <categories>UL TPM Messages</categories>
@@ -66,3 +59,56 @@ there is a different Currency on lower level customer(s)</value>
         <shortDescription>Inclusive label</shortDescription>
         <value>Inclusive</value>
     </labels> 
+	 <labels>
+        <fullName>BaselineVolume</fullName>
+        <categories>KPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Baseline</shortDescription>
+        <value>Baseline</value>
+    </labels>
+    <labels>
+        <fullName>CLEAR_FILTER</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Clear Filter label.</shortDescription>
+        <value>Clear Filter</value>
+    </labels>
+    <labels>
+        <fullName>GSV</fullName>
+        <categories>KPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GSV</shortDescription>
+        <value>GSV</value>
+    </labels>
+    
+    <labels>
+        <fullName>PP_LBL_STATUS</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PP_LBL_STATUS</shortDescription>
+        <value>test lable</value>
+    </labels>
+   
+
+  
+    <labels>
+        <fullName>UL_PlanningLevelBetween3To7</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Planning Level Between 3 To 7</shortDescription>
+        <value>Planning Level can only be set between levels 3 to 7</value>
+    </labels>
+    
+   
+    <labels>
+        <fullName>weekShare</fullName>
+        <categories>KPI</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Weekly Split</shortDescription>
+        <value>Weekly Split</value>
+    </labels>

@@ -250,14 +250,14 @@ public with sharing class UL_CreatePromotionController{
      public PageReference redirPage(){
         Pagereference ref = null;
         try{          
-            List<UL_SalesOrg__c> sOrgValues = UL_SalesOrg__c.getall().values();
+           /* List<UL_SalesOrg__c> sOrgValues = UL_SalesOrg__c.getall().values();
             for(UL_SalesOrg__c sOrg:sOrgValues){
                 if(sOrg.Name.equals(salesOrg)){                    
                   ref = new Pagereference(UL_Utility.creationpage);                  
                   ref.setRedirect(true);    
                 } 
             }
-                         
+              */           
         }
         catch(Exception l_objEx){
             ref = null; 
