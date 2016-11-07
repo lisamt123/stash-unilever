@@ -1875,6 +1875,16 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>UL_Customer_Role_Valid_From__c</fullName>
+        <description>Effective date in the system (eg, first date that the customer has been received from ECC).</description>
+        <externalId>false</externalId>
+        <label>Planning Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Date</type>
+    </fields>
+	
     <fields>
         <fullName>UL_Activity_Sector_Division_Description__c</fullName>
         <description>This attribute will be used to segment a promotion (via customer sets).  This attribute is linked to the product on the activity sector.</description>
@@ -1886,6 +1896,55 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>UL_Customer_Hierarchy_Level__c</fullName>
+        <description>This attribute will be used to identify the customer level</description>
+        <externalId>false</externalId>
+        <label>Customer Hierarchy Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Level 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 7</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 8</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 9</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
     </fields>
 	    <fields>
         <fullName>UL_Currency__c</fullName>
@@ -1908,6 +1967,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
+	
     <fields>
         <fullName>UL_Customer_Description__c</fullName>
         <externalId>false</externalId>
@@ -2031,7 +2091,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
         <label>Level 4</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Accounts (Level 4)</relationshipLabel>
-        <relationshipName>Accounts3</relationshipName>
+        <relationshipName>Accounts3L</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
