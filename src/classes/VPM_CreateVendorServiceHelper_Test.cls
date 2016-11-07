@@ -11,6 +11,19 @@
         List<VPM_PurchasingRequests__c> pur1 = [SELECT Id,VPM_MDMInsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
         system.assertEquals(pur1[0].VPM_MDMInsertUpdateStatus__c,successStatusMDM);
     }
+       @isTest static void testExceptionCallout() {
+        List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
+        string vendorId = pur.get(0).id;
+        test.startTest();
+        Test.setMock(HttpCalloutMock.class, new VPM_CreateVendorServiceExceptionMock());
+        VPM_CreateVendorServiceHelper.createVendor(vendorId);
+            update pur;
+             VPM_CreateVendorServiceHelper.createVendor(vendorId);
+        test.stopTest();
+          
+        List<VPM_PurchasingRequests__c> pur1 = [SELECT Id,VPM_MDMInsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
+        //system.assertEquals(pur1[0].VPM_MDMInsertUpdateStatus__c,successStatusMDM);
+    }
     @isTest static void testCallout500() {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
         string vendorId = pur.get(0).id;

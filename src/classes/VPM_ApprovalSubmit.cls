@@ -76,7 +76,7 @@ public  class VPM_ApprovalSubmit {
                 submitRequest.setProcessDefinitionNameOrId(ProcessName);
  
                 // Submit the approval request for the account
-                Approval.ProcessResult result = Approval.process(submitRequest);
+              //  Approval.ProcessResult result = Approval.process(submitRequest);
                 System.debug('Approval.isLocked(purc)-------'+ Approval.isLocked(purc));
                 if(Approval.isLocked(purc))
                 {

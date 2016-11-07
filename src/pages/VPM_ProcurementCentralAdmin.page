@@ -193,7 +193,7 @@
             </apex:pageblock> 
           </apex:outputPanel>
      </apex:pageBlockSection>
-  <div style="text-align:center">
+  <center>
      <apex:pageBlockSection columns="2" rendered="{!buttonDisp}">
           <apex:pageBlockSectionItem >
                          <apex:commandButton value="Back" action="{!GoBack}" rerender="out" status="status" immediate="true" />
@@ -201,7 +201,7 @@
                         <apex:commandButton value="Change"  action="{!changeApprover}" oncomplete="callChangeApprover();" rerender="out" status="actStatusId" />
           </apex:pageBlockSectionItem>
      </apex:pageBlockSection>             
-  </div>   
+  </center>   
   <script>
    $('table div[id*="member"]').find('.mainTitle').css('width','30em');
    $('table[id*="member"] tr>td:nth-child(2),table[id*="member"] tr>td:nth-child(1)').css('text-align','center');

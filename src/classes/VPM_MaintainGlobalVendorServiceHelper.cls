@@ -34,7 +34,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
     global static String maintainGlobalVendor(String vendorId) {
         //try
         {
-        list<errorMsgWrapper> errorList;
+        //list<errorMsgWrapper> errorList;
         System.debug('----------input parameters passed are----------' + vendorId);
         String reqBodyJson,responseString ;
         MaintainGlobalVendorResponse maintainVenResp;

@@ -131,7 +131,7 @@ public with sharing  class VPM_ApprovalSubmitTest {
     static testMethod void VPM_ApprovalMethodFreight(){
         
          VPM_PurchasingRequests__c purId = TestDataFreightApprovalMethod();
-         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+       //  ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = 'FRGT_Freight Vendor_G001';
          purid.VPM_GlobalAuthorisationGroup__c='Freight_Freight';

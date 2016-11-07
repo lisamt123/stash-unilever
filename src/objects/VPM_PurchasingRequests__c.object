@@ -3993,11 +3993,16 @@ For non-Ariba Commodity enter 0000 and select &apos;Non-Ariba Commodity&apos;</i
         <label>Company Code</label>
         <lookupFilter>
             <active>true</active>
-            <errorMessage>Please select a Company code within your country.</errorMessage>
+            <errorMessage>Please select an active Company code within your country.</errorMessage>
             <filterItems>
                 <field>VPM_CompanyCode__c.VPM_Country__c</field>
                 <operation>equals</operation>
                 <valueField>$Source.VPM_CountryRequestingVendor__c</valueField>
+            </filterItems>
+            <filterItems>
+                <field>VPM_CompanyCode__c.VPM_IsInactive__c</field>
+                <operation>equals</operation>
+                <value>False</value>
             </filterItems>
             <infoMessage>Click &apos;All Fields&apos;,
 
