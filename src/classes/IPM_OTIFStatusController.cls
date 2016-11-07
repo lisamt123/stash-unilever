@@ -39,7 +39,10 @@ public with sharing class IPM_OTIFStatusController{
     {
         IPM_IECompatible.ieFix();//For IE Compatibility
         projectId = ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);
-        projDocSecId = ApexPages.currentPage().getParameters().get(PROJ_DOC_SEC_ID);
+        if(projDocSecId==null){
+            projDocSecId = ApexPages.currentPage().getParameters().get(PROJ_DOC_SEC_ID);
+        }
+
         List<IPM_Project_Document_Section_Content__c> secConList = new List<IPM_Project_Document_Section_Content__c>();
          
         String query=IPM_ConstantUtils.BLANK;
