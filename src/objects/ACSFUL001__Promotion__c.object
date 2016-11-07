@@ -2535,7 +2535,7 @@ Id=VLOOKUP
         <fullName>in_store_date_thru_validation</fullName>
         <active>true</active>
         <errorConditionFormula>IF( ACSFUL001__Promotion_Template__r.Calculate_In_store_Dates__c = true,if(ACSFUL001__Placement_Date_Thru__c&lt;TODAY() ,true,false), false)</errorConditionFormula>
-        <errorDisplayField>Account__c</errorDisplayField>
+        <errorDisplayField>UL_Account__c</errorDisplayField> 
         <errorMessage>Date should be greater then today date</errorMessage>
     </validationRules>
     <validationRules>

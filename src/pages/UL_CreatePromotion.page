@@ -42,7 +42,7 @@
                 columns="1">
                 <apex:pageBlockSectionItem >
                  <apex:outputPanel id="AnchorLabelBlock">
-                    <apex:outputLabel value="{!$ObjectType.ACSFUL001__Promotion__c.Fields.Account__c.Label}"
+                    <apex:outputLabel value="{!$ObjectType.ACSFUL001__Promotion__c.Fields.UL_Account__c.Label}"
                         for="Customer" />
                </apex:outputPanel>
                          <apex:actionRegion >
