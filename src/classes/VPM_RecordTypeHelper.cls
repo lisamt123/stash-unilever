@@ -62,16 +62,18 @@ public class VPM_RecordTypeHelper {
     public static final string UNIUQUEID = 'UniqueId'; 
     public static final string SHOW_LABEL = 'showLabel';
     public static final string LABEL_TEXT = 'labelText';
-	public static final string REQUEST_TYPE = 'requestType';  
+    public static final string REQUEST_TYPE = 'requestType';  
     public static final string NOT_LISTED = 'notlisted'; 
     public static final string SEARCH_VENDOR = 'searchVendor'; 
     public static final string VENDOR_LIST = 'vendorList'; 
     public static final string RE_WORK = 'Re-Work';
     public static final string REJECTED = 'Rejected';
+    public static final string APPROVALPENDING= 'Approval Pending';
     public static final string ABORTED = 'Aborted';
     public static final string REQUEST_COMPLETED = 'Request Completed';
     public static final string CONST_LITERAL1 = '\\#';
-    public static final string CONST_LITERAL2 = '\'%';
+    public static final string VENDOR_COUNTRY = 'BR_Brazil';
+    //public static final string CONST_LITERAL2 = '\'%';
     
     public class OptionWrapper{
         public String DetailOption{get;set;}
@@ -280,7 +282,6 @@ public class VPM_RecordTypeHelper {
         List<string> eccList = new List<string>();
         //string purchOrgName = vendorQuery1.VPM_PurchasingOrg__r.Name; // added recently for passing org 
         string purchOrgName = vendorQuery1PurchOrgName; // added recently for passing org 
-        purchOrgName = string.isNotBlank(purchOrgName) ? purchOrgName.left(4) : null; // added recently for passing org 
         system.debug('@@purchOrgName' +purchOrgName);        
         VPM_FetchVendorsDetails.InputVariables ip = new VPM_FetchVendorsDetails.InputVariables();
         List<VPM_FetchVendorsDetails.InputVariables> ipList = new List<VPM_FetchVendorsDetails.InputVariables>();
@@ -309,6 +310,86 @@ public class VPM_RecordTypeHelper {
         system.debug('@@ipList' + ipList);
         opList = VPM_FetchVendorsDetails.getVendorDetails(ipList);
         return opList[0];
+    }
+    
+    /******************************************************************** 
+    Created By   : Piyush Mathur
+    Created Date : 03rd Oct  2016
+    Last Modify  : 07th Oct 2016
+    Description  : This method pulls default data from custom medata types
+    Return Type  : List<Selectoption>
+    ********************************************************************/
+    public static List<SelectOption> paymentMathodMetaData(string countryCode, string countryName) { 
+        List<SelectOption> options = new List<SelectOption>();
+        List<VPM_PaymentMethods__mdt> metaValues = [select id, VPM_Country__c, VPM_CountryISO2__c, VPM_PaymentMethod__c from VPM_PaymentMethods__mdt where VPM_CountryISO2__c =: countryCode and VPM_Country__c =: countryName ];
+        
+        for(VPM_PaymentMethods__mdt mdtValue : metaValues) {
+            options.add(new SelectOption(mdtValue.VPM_PaymentMethod__c, mdtValue.VPM_PaymentMethod__c)); 
+        }
+        system.debug('@@Options' + Options);
+        
+        
+        return Options;
+    } 
+    
+    /******************************************************************** 
+    Created By   : Piyush Mathur
+    Created Date : 28th Sept 2016
+    Last Modify  : 5th Oct 2016
+    Description  : This method enables the button based on screen selected 
+                   on Launch screen.
+    Return Type  : boolean 
+    ********************************************************************/
+    public static string customMedataCallOrderCurrency(string ecc, string purchOrgName ,string countryName) {
+        string orderCurrencyValue = '';
+        system.debug('@@customMedataCallOrderCurrency is called');
+        List<VPM_OrderCurrencyDefaultValues__mdt> orderCurrencyMdtList = [select id, VPM_OrderCurrency__c, VPM_VendorCountry__c from VPM_OrderCurrencyDefaultValues__mdt where VPM_VendorCountry__c =: countryName];
+        if(orderCurrencyMdtList <> null && orderCurrencyMdtList.size() > 0) {
+            if(ecc.equals(VPM_RecordTypeHelper.ECC_SIRIUS) && purchOrgName.equals(VPM_RecordTypeHelper.PURCH_ORG)) {
+                orderCurrencyValue = '';
+            }else { 
+                orderCurrencyValue = orderCurrencyMdtList[0].VPM_OrderCurrency__c;
+            }
+        }
+        system.debug('@@orderCurrencyMdtList ' + orderCurrencyMdtList);
+        return orderCurrencyValue;
+    }
+    
+    /******************************************************************** 
+    Created By   : Piyush Mathur
+    Created Date : 28th Sept 2016
+    Last Modify  : 5th Oct 2016
+    Description  : This method provides default value
+    Return Type  : boolean
+    ********************************************************************/
+    public static string defaultPaymentTerm(string ecc, string isVendorSME) {
+        string paymentTermValue = '';
+        if(ecc.equals(VPM_RecordTypeHelper.ECC_FUSION)) {
+            if(string.isNotBlank(isVendorSME) && isVendorSME.equals(VPM_RecordTypeHelper.YES)) {
+                paymentTermValue = VPM_RecordTypeHelper.PAYMENT_TERM_30DK; 
+                //termsOFPayment = VPM_RecordTypeHelper.PAYMENT_TERM_30DK;
+            }else {
+                paymentTermValue = VPM_RecordTypeHelper.PAYMENT_TERM_90DK; 
+                //termsOFPayment = VPM_RecordTypeHelper.PAYMENT_TERM_90DK;
+            }
+        }else if(ecc.equals(VPM_RecordTypeHelper.ECC_U2K2)) {
+            if(string.isNotBlank(isVendorSME) && isVendorSME.equals(VPM_RecordTypeHelper.YES)) {
+                paymentTermValue = VPM_RecordTypeHelper.PAYMENT_TERM_P030; 
+                //termsOFPayment = VPM_RecordTypeHelper.PAYMENT_TERM_P030;
+            }else {
+                paymentTermValue = VPM_RecordTypeHelper.PAYMENT_TERM_S090; 
+                //termsOFPayment = VPM_RecordTypeHelper.PAYMENT_TERM_S090;
+            }
+        }else if(ecc.equals(VPM_RecordTypeHelper.ECC_CORDILLERA) || ecc.equals(VPM_RecordTypeHelper.ECC_SIRIUS)) {
+            if(string.isNotBlank(isVendorSME) && isVendorSME.equals(VPM_RecordTypeHelper.YES)) {
+                paymentTermValue = VPM_RecordTypeHelper.PAYMENT_TERM_P030; 
+                //termsOFPayment = VPM_RecordTypeHelper.PAYMENT_TERM_P030;
+            }else {
+                paymentTermValue = VPM_RecordTypeHelper.PAYMENT_TERM_P090; 
+                //termsOFPayment = VPM_RecordTypeHelper.PAYMENT_TERM_P090;
+            }
+        }
+        return paymentTermValue;
     }
     
 }

@@ -54,7 +54,7 @@
                  <!--apex:inputField value="{!VPM_PurchasingRequests__c.VPM_TradePartnerType__c}" /-->
                  </apex:outputPanel>
                  </apex:pageBlockSectionItem>
-                   
+                     
                 
                 
                <apex:pageBlockSectionItem >               
@@ -69,12 +69,11 @@
                  <apex:pageBlockSectionItem labelStyle="width: 300px" dataStyle="width: 200px" >
                   
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountStatement__c.Label}"/>
-                 <apex:outputPanel layout="block" styleClass="requiredInput">
-                 <apex:outputpanel layout="block" styleClass="requiredBlock"/>
+                 
                  <apex:selectList value="{!vendorAccountStatement}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountStatement__c.Label}" size="1">
                     <apex:selectOptions value="{!AccountStatement}"/>
                  </apex:selectList>
-                  </apex:outputpanel>
+                  
                   
                  </apex:pageBlockSectionItem>
                  

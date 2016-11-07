@@ -20,7 +20,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
 
     // All below string Represent JSON string
     Map<string,string> objectInJSON = new Map<string,string>{STR_CONST_Dunning =>'',STR_CONST_InternationalVersions =>'',STR_CONST_WtaxType =>'','Address'=>'', 'BankDetails' => '', 'CIN' =>'', STR_CONST_CompanyData => '', STR_CONST_PurchasingData =>'',STR_CONST_MainObject=>'','VAT'=>''};
-    string valueForQuery='VPM_fieldUpdated__c, VPM_ECC__c,RecordTypeId,VPM_companyCodeMatch__c,VPM_OrderingEmailAddress__c, VPM_purchasingOrgMatch__c, VPM_VendorCodeLookup__r.mdm_ID__c, VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c,VPM_VendorCodeLookup__r.mdm_vCodeSirius__c,VPM_VendorCodeLookup__r.mdm_vCodeFusion__c,VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,VPM_AccountGroup__c,VPM_PurchasingOrg__r.Name,VPM_CompanyCode__r.VPM_CompanyCode__c';
+    string valueForQuery='VPM_fieldUpdated__c, VPM_ECC__c,RecordTypeId,VPM_companyCodeMatch__c,VPM_SRVBasedVendorID__c,VPM_GRbasedIV__c,VPM_AutomaticPurchaseOrderGeneration__c,VPM_OrderingEmailAddress__c, VPM_purchasingOrgMatch__c, VPM_VendorCodeLookup__r.mdm_ID__c, VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c,VPM_VendorCodeLookup__r.mdm_vCodeSirius__c,VPM_VendorCodeLookup__r.mdm_vCodeFusion__c,VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,VPM_AccountGroup__c,VPM_PurchasingOrg__r.Name,VPM_CompanyCode__r.VPM_CompanyCode__c';
     string  apiForCompantData = ',';
     string apiForPurchasingData=',';
     string Dunning=',';
@@ -67,7 +67,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
     
     
          valueToMatch =vendorReuest.VPM_fieldUpdated__c;
-         vendorReuest.VPM_fieldUpdated__c =  vendorReuest.VPM_fieldUpdated__c+'VPM_OrderingEmailAddress__c';
+         vendorReuest.VPM_fieldUpdated__c =  vendorReuest.VPM_fieldUpdated__c+'VPM_OrderingEmailAddress__c'+'VPM_SRVBasedVendorID__c'+'VPM_GRbasedIV__c'+'VPM_AutomaticPurchaseOrderGeneration__c';
     //system.debug(vendorReuest);
     if(rec.Name.containsIgnoreCase('Extend'))
     {

@@ -39,7 +39,7 @@ public with sharing class VPM_SearchVendor1{
     public List<SelectOption> standardCommOptions{get;set;}
     public List<SelectOption> regStGrpOptions{get;set;}
     public List<SelectOption> recipentTypeOptions{get;set;}
-    public List<SelectOption> taxJuriCodeOptions{get;set;}
+    //public List<SelectOption> taxJuriCodeOptions{get;set;}
     public List<SelectOption> orderOPtimRestOptions{get;set;}
     public List<SelectOption> intCalcIndicatorOptions{get;set;}
     public List<SelectOption> confirmationControlOptions{get;set;}    
@@ -144,34 +144,12 @@ public with sharing class VPM_SearchVendor1{
     public boolean isReqOrderingEmail {get;set;} //changes for IAVMD-1271    
     public boolean isInternationalVersionCollapsed{get;set;}
     public boolean isFusion{get;set;}
-    public boolean isPaymentMetod1{get;set;}
-    public boolean isPaymentMetod2{get;set;}
+    //public boolean isPaymentMetod1{get;set;}
+    //public boolean isPaymentMetod2{get;set;}
     public boolean block{get;set;} 
     public boolean delete1{get;set;}
     public boolean isTrue{get;set;}
-    public static boolean checkFlag = false; // for recurrsive trigger 
-    public boolean suppPosiAssQualityOut{get;set;}
-    public boolean suppPosiAssQualityInp{get;set;}    
-    public boolean suppAssQuestQualityOut{get;set;}
-    public boolean suppAssQuestQualityInp{get;set;}
-    public boolean suppAuditQualityOut{get;set;}
-    public boolean suppAuditQualityInp{get;set;}
-    public boolean suppAssQualitySourceOut{get;set;}
-    public boolean suppAssQualitySourceInp{get;set;}
-    public boolean SupplierAssessmentQuestionnaireSourOut{get;set;}
-    public boolean SupplierAssessmentQuestionnaireSourInp{get;set;}
-    public boolean SupplierAuditSourcingOut{get;set;}
-    public boolean SupplierAuditSourcingInp{get;set;}
-    public boolean SupplierPosAssurSourcingOut{get;set;}
-    public boolean SupplierPosAssurSourcingInp{get;set;}
-    public boolean ReasonNoFinancialCheckOut{get;set;}
-    public boolean ReasonNoFinancialCheckInp{get;set;}    
-    public boolean AchillesExceptionDetailsOut{get;set;}
-    public boolean AchillesExceptionDetailsInp{get;set;}
-    public boolean DetailofTypeCheckOut{get;set;}  
-    public boolean DetailofTypeCheckIn{get;set;}
-    public boolean ArchillesRegistrationCodeOut{get;set;}  
-    public boolean ArchillesRegistrationCodeIn{get;set;}      
+    public static boolean checkFlag = false; // for recurrsive trigger        
     
     //Constants Used in advanced Form 
     /*public static final string CREATE = 'Create';
@@ -236,7 +214,38 @@ public with sharing class VPM_SearchVendor1{
     ********************************************************************/
     public VPM_SearchVendor1(ApexPages.StandardController controller) {
         system.debug('@@Constructor is called');
-        vendorReq = controller;
+        vendorReq = controller;        
+        recId = controller.getRecord().Id; 
+        vendorDetails = (VPM_PurchasingRequests__c)controller.getRecord();
+        try {
+            vendorQuery1 = [select Id,VPM_DetailsOfPlannedActivitiesSour2__c ,VPM_SupAudDetailsOfPlannedActivities__c ,VPM_PROATControlProof__c,VPM_VendorCode__c,VPM_ConfirmationControl__c,VPM_IndicatorForWithholdingTaxType__c,VPM_InstructionKeyDataExchange__c,VPM_Industry__c, VPM_StandardCommMethod__c,VPM_Vendor_SubType__c,VPM_IsMDMPISaved__c,VPM_PaymentMethodWeb__c,VPM_SSIStatus__c, VPM_TermsOfPayment__c, VPM_ReasonForExemption__c, VPM_ToleranceGroup__c,VPM_checkForFieldUpdate__c, VPM_City__c,isMaintain2__c,VPM_DeletionBlockFlag__c,VPM_Incoterms2__c,VPM_VendordoesntExistFlag__c, VPM_TradePartnerType__c, VPM_CheckDoubleInvoices__c,VPM_VendorContactDetail__c,VPM_ReconciliationAccount__c,VPM_BankCountryKey__c, VPM_Comments__c, VPM_VendorName1__c, VPM_VendorPhone__c,
+                            VPM_VendorName2__c,VPM_Name3__c,VPM_Name4__c,VPM_TaxNumber1__c,VPM_TaxNumber2__c,VPM_TaxNumber3__c,VPM_TaxNumber4__c,VPM_VATRegistrationNumber__c, VPM_RecipientType__c, VPM_RegStGrp__c,
+                            VPM_ECC__c, VPM_ExtensionType__c,VPM_PaymentTerms__c,VPM_Status__c,VPM_VendorCodeLookup__c, VPM_VendorCodeLookup__r.mdm_ecc__c, VPM_VendorCodeLookup__r.mdm_Code__c,VPM_Commodity__r.Name,VPM_Commodity__r.VPM_CommodityCode__c,VPM_Commodity__r.VPM_CSBVendor__c,
+                            VPM_CompanyCode__r.ECC__c,VPM_Commodity__c,VPM_Commodity__r.VPM_VendorType__c,VPM_VendorType__c, VPM_Commodity__r.VPM_AuthorisationGroup__c,VPM_GlobalAuthorisationGroup__c, VPM_Street1__c, VPM_Country__c, VPM_ZIPPostcode__c, VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c,
+                            VPM_VendorCodeLookup__r.mdm_vCodeFusion__c,VPM_VendorCodeLookup__r.mdm_vCodeSirius__c, VPM_PurchasingOrg__c,VPM_PurchasingOrg__r.Name, VPM_IsVendorSME__c,VPM_Fieldtype__c,
+                            recordTypeId,VPM_CompanyCode__r.VPM_CompanyCode__c,VPM_CashManagementGroup__c,VPM_Language__c,VPM_AccountStatement__c,VPM_PaymentBlock__c,VPM_GroupingKey__c,VPM_SchemaGroupVendor__c,VPM_Incoterms1__c,VPM_PaymentMethod__c,
+                            VPM_Regions__c,VPM_SearchTerm_1__c,VPM_ClerksInternet__c,VPM_OrderingEmailAddress__c,VPM_OrderCurrency__c,VPM_Authorization__c,VPM_TaxJurisdictionCode__c,VPM_InternationalVersion__c,VPM_StandardNumber__c,VPM_VATCountry__c,VPM_VATRegistrationNumber2__c,VPM_SortKey__c,VPM_SRVBasedVendorID__c,VPM_IsLock__c,createdbyid,VPM_PurchasingOrganisation__c,VPM_AuthorisationGroupFormula__c, VPM_VendorBlockUnblockDelete__c,
+                            VPM_SupplierFinancialStabilityCheck__c,VPM_DetailsTypeCheck__c,VPM_ReasonNoFinancialCheck__c,VPM_SupplierAchillesRegistration__c,VPM_AchillesRegistrationCode__c,VPM_AchillesExceptionDetails__c,VPM_SupplierPositiveAssuranceQuality__c,VPM_SupPosAssExcepDetailsQual__c,VPM_SupplierAssessmentQuestionnaireQual__c,VPM_DetailsOfPlannedActivitiesSour__c,VPM_SupplierAuditQuality__c,VPM_DetailsOfPlannedActivitiesQual__c,
+                            VPM_SupplierPositiveAssuranceSourcing__c,VPM_SupPosAssExcepDetailsSour__c,VPM_SupplierAssessmentQuestionnaireSour__c,VPM_SupplierAuditSourcing__c,VPM_OrderOptimRest__c,VPM_AccountingClerk__c,
+                            VPM_Interestcalculationindicator__c,VPM_SocialInsuranceCodeSoc__c,VPM_ShippingConditions__c, VPM_CompanyCode__r.VPM_Country__c,VPM_CompanyCode__r.VPM_CountryCode__c
+                            from VPM_PurchasingRequests__c where id = : recId];
+            
+            // assigning default values to rerender on advanced form
+            assignDefaultValue();
+        }catch(Exception ex) {
+            system.debug('@@Exception' + ex.getStackTraceString());
+        }
+    }
+    
+    /******************************************************************** 
+    Created By   : Piyush Mathur
+    Created Date : 05th June 2016
+    Last Modify  : 06th June 2016
+    Description  : This method assign default value to different properties
+                    used on advanced form page.
+    Return Type  : void
+    ********************************************************************/
+    public void assignDefaultValue() {
         goldendata2Screen  = false;
         goldendata2Screen2 = false;
         pageBlockTitle = ''; 
@@ -262,9 +271,7 @@ public with sharing class VPM_SearchVendor1{
         blockDelScreen = false;
         unblockUnDelScreen = false;
         isRequiredSpend = false;
-        isInternationalVersionCollapsed = true;        
-        isPaymentMetod1 = false;
-        isPaymentMetod2 = false;
+        isInternationalVersionCollapsed = true;
         regionalSpecificScreenCordillera = false;
         regionalSpecificScreenFusion = false;
         regionalSpecificScreenSirius = false;
@@ -272,42 +279,10 @@ public with sharing class VPM_SearchVendor1{
         showSearchVendor = false; 
         isBackToDetalPage = false;
         piVendorCreation = false;
-        renderBackBtn = false;
-        suppPosiAssQualityOut = true;
-        suppPosiAssQualityInp = false;
-        suppAssQuestQualityOut = true;
-        suppAssQuestQualityInp = false;        
-        suppAuditQualityOut = true;
-        suppAuditQualityInp = false;
-        suppAssQualitySourceOut = true;
-        suppAssQualitySourceInp = false;
-        SupplierPosAssurSourcingOut = true;
-        SupplierPosAssurSourcingInp = false;
-        SupplierAssessmentQuestionnaireSourOut = true;
-        SupplierAssessmentQuestionnaireSourInp = false;
-        SupplierAuditSourcingOut = true;
-        SupplierAuditSourcingInp = false;
-        ReasonNoFinancialCheckOut = true;
-        ReasonNoFinancialCheckInp = false;
-        AchillesExceptionDetailsOut = true;
-        AchillesExceptionDetailsInp = false;        
+        renderBackBtn = false;         
         sendWebFormLabel = system.label.VPM_Send_Button;
-        recId = controller.getRecord().Id; 
-        vendorDetails = (VPM_PurchasingRequests__c)controller.getRecord();  
-        try {
-            vendorQuery1 = [select Id,VPM_PROATControlProof__c,VPM_VendorCode__c,VPM_ConfirmationControl__c,VPM_IndicatorForWithholdingTaxType__c,VPM_InstructionKeyDataExchange__c,VPM_Industry__c, VPM_StandardCommMethod__c,VPM_Vendor_SubType__c,VPM_IsMDMPISaved__c,VPM_PaymentMethodWeb__c,VPM_SSIStatus__c, VPM_TermsOfPayment__c, VPM_ReasonForExemption__c, VPM_ToleranceGroup__c,VPM_checkForFieldUpdate__c, VPM_City__c,isMaintain2__c,VPM_DeletionBlockFlag__c,VPM_Incoterms2__c,VPM_VendordoesntExistFlag__c, VPM_TradePartnerType__c, VPM_CheckDoubleInvoices__c,VPM_VendorContactDetail__c,VPM_ReconciliationAccount__c,VPM_BankCountryKey__c, VPM_Comments__c, VPM_VendorName1__c, VPM_VendorPhone__c,
-                            VPM_VendorName2__c,VPM_Name3__c,VPM_Name4__c,VPM_TaxNumber1__c,VPM_TaxNumber2__c,VPM_TaxNumber3__c,VPM_TaxNumber4__c,VPM_VATRegistrationNumber__c, VPM_RecipientType__c, VPM_RegStGrp__c,
-                            VPM_ECC__c, VPM_ExtensionType__c,VPM_PaymentTerms__c,VPM_Status__c,VPM_VendorCodeLookup__c, VPM_VendorCodeLookup__r.mdm_ecc__c, VPM_VendorCodeLookup__r.mdm_Code__c,VPM_Commodity__r.Name,VPM_Commodity__r.VPM_CommodityCode__c,VPM_Commodity__r.VPM_CSBVendor__c,
-                            VPM_CompanyCode__r.ECC__c,VPM_Commodity__c,VPM_Commodity__r.VPM_VendorType__c,VPM_VendorType__c, VPM_Commodity__r.VPM_AuthorisationGroup__c,VPM_GlobalAuthorisationGroup__c, VPM_Street1__c, VPM_Country__c, VPM_ZIPPostcode__c, VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c,
-                            VPM_VendorCodeLookup__r.mdm_vCodeFusion__c,VPM_VendorCodeLookup__r.mdm_vCodeSirius__c, VPM_PurchasingOrg__c,VPM_PurchasingOrg__r.Name, VPM_IsVendorSME__c,VPM_Fieldtype__c,
-                            recordTypeId,VPM_CompanyCode__r.VPM_CompanyCode__c,VPM_CashManagementGroup__c,VPM_Language__c,VPM_AccountStatement__c,VPM_PaymentBlock__c,VPM_GroupingKey__c,VPM_SchemaGroupVendor__c,VPM_Incoterms1__c,VPM_PaymentMethod__c,
-                            VPM_Regions__c,VPM_SearchTerm_1__c,VPM_ClerksInternet__c,VPM_OrderingEmailAddress__c,VPM_OrderCurrency__c,VPM_Authorization__c,VPM_TaxJurisdictionCode__c,VPM_InternationalVersion__c,VPM_StandardNumber__c,VPM_VATCountry__c,VPM_VATRegistrationNumber2__c,VPM_SortKey__c,VPM_SRVBasedVendorID__c,VPM_IsLock__c,createdbyid,VPM_PurchasingOrganisation__c,VPM_AuthorisationGroupFormula__c, VPM_VendorBlockUnblockDelete__c,
-                            VPM_SupplierFinancialStabilityCheck__c,VPM_DetailsTypeCheck__c,VPM_ReasonNoFinancialCheck__c,VPM_SupplierAchillesRegistration__c,VPM_AchillesRegistrationCode__c,VPM_AchillesExceptionDetails__c,VPM_SupplierPositiveAssuranceQuality__c,VPM_SupPosAssExcepDetailsQual__c,VPM_SupplierAssessmentQuestionnaireQual__c,VPM_DetailsOfPlannedActivitiesSour__c,VPM_SupplierAuditQuality__c,VPM_DetailsOfPlannedActivitiesQual__c,
-                            VPM_SupplierPositiveAssuranceSourcing__c,VPM_SupPosAssExcepDetailsSour__c,VPM_SupplierAssessmentQuestionnaireSour__c,VPM_SupplierAuditSourcing__c,VPM_OrderOptimRest__c,VPM_AccountingClerk__c,
-                            VPM_Interestcalculationindicator__c,VPM_SocialInsuranceCodeSoc__c,VPM_ShippingConditions__c, VPM_CompanyCode__r.VPM_Country__c,VPM_CompanyCode__r.VPM_CountryCode__c
-                            from VPM_PurchasingRequests__c where id = : recId]; 
-            vendorPaymentMethod = '';     
-            paymentMethod = paymentMathodMetaData(null);    
+        vendorPaymentMethod = '';     
+            paymentMethod = VPM_RecordTypeHelper.paymentMathodMetaData(vendorQuery1.VPM_CompanyCode__r.VPM_CountryCode__c, vendorQuery1.VPM_CompanyCode__r.VPM_Country__c);    
             paymentMethodWebserviceValues = vendorQuery1.VPM_PaymentMethodWeb__c;
             confirmationControlDefaultValue = vendorQuery1.VPM_ConfirmationControl__c;
             ssIStatusDefaultValue = vendorQuery1.VPM_SSIStatus__c;
@@ -339,19 +314,15 @@ public with sharing class VPM_SearchVendor1{
             vendorIntVersion = vendorQuery1.VPM_InternationalVersion__c;
             vendorTradePartnerType = vendorQuery1.VPM_TradePartnerType__c;
             //standardCommDefValue = vendorQuery1.VPM_StandardCommMethod__c;
-            searchTerm1= vendorQuery1.VPM_SearchTerm_1__c ;             
+            searchTerm1= vendorQuery1.VPM_SearchTerm_1__c ; 
+            purchOrgName = string.isNotBlank(vendorQuery1.VPM_PurchasingOrg__r.Name) ? (vendorQuery1.VPM_PurchasingOrg__r.Name).left(4) : null;            
             // Added by Piyush - IAVMD - 10/20/2016
             if(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_U2K2)) { 
                 isU2k2 = true;
             } else {
                 isU2k2 = false;
             }
-            isTrue=true;
-            if(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_FUSION)) { 
-                isFusion =true;
-            } else {
-                isFusion =false;
-            }
+            isTrue = true;            
             if(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_CORDILLERA) || vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_FUSION)) {
                 isInternationalVersionRendered = false;
                 isCahsMGtRequired = false;
@@ -383,7 +354,7 @@ public with sharing class VPM_SearchVendor1{
                 isInputField = true;
                 isOutputField = false; 
             }   
-            if(vendorQuery1.VPM_CompanyCode__r.ecc__c <> '' || vendorQuery1.VPM_CompanyCode__r.ecc__c <> null) {
+            if(string.isBlank(vendorQuery1.VPM_CompanyCode__r.ecc__c)) {
                 vendorDetails.VPM_ECC__c = vendorQuery1.VPM_CompanyCode__r.ecc__c;
             }
             // assigning the picklist values based on company code ECC associated to vendor request.
@@ -411,10 +382,10 @@ public with sharing class VPM_SearchVendor1{
                 launchScreen =true;
                 pageBlockTitle = '';             
                 screenType = VPM_RecordTypeHelper.CREATE;                
-                if((vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI) || (vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM))))) {            
+                /*if((string.isNotBlank(vendorQuery1.VPM_VendorType__c) && vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI) || (string.isNotBlank(vendorQuery1.VPM_VendorType__c) && vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM))))) {      
                     system.debug('@@ Coming here');
                     PIBooleanFlags();                        
-                }
+                }*/
             }else if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.EXTEND)) {
                 showSearchVendor = false;
                 isBackToDetalPage = true; 
@@ -423,7 +394,7 @@ public with sharing class VPM_SearchVendor1{
                 screenType = VPM_RecordTypeHelper.EXTEND;
                 // screenVisited.add('Extend');
             } else if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN_2)){   
-				////// Added for 591 Start ////////////
+                ////// Added for 591 Start ////////////
                 system.debug('not calling web service');
                 isMaintainRecord = true;
                 showSearchVendor = false;
@@ -438,7 +409,7 @@ public with sharing class VPM_SearchVendor1{
                 }else {
                     requestType=VPM_RecordTypeHelper.MAINTAIN;
                 }
-                isPaymentMetod1 = true;
+                //isPaymentMetod1 = true;
                 screenVisited.add(VPM_RecordTypeHelper.VENDOR_LIST);                
                 launchScreen = true;
                 screenType = VPM_RecordTypeHelper.MAINTAIN;
@@ -451,17 +422,21 @@ public with sharing class VPM_SearchVendor1{
                 
             }
             setLaunchScreenText();
-        }catch(Exception ex) {
-            system.debug('@@Exception' + ex.getStackTraceString());
-        }
     }
     
-      public pageReference vendorNameChange() {
+    /******************************************************************** 
+    Created By   : Ajay Rawat
+    Created Date : 05th June 2016
+    Last Modify  : 06th June 2016
+    Description  : Contails logic to render search term on advanced form
+    Return Type  : pageReference
+    ********************************************************************/
+    public pageReference vendorNameChange() {
         searchTerm1 = string.isNotBlank(vendorName) ? vendorName.left(10) : '';
         system.debug('@@ searchTerm1' + searchTerm1);
         return null;
     }
-	
+    
     /******************************************************************** 
     Created By   : Ajay Rawat
     Created Date : 05th June 2016
@@ -487,8 +462,8 @@ public with sharing class VPM_SearchVendor1{
                 launchScreen =false;
                 screenVisited.add(VPM_RecordTypeHelper.SEARCH_VENDOR);
                 string countryNameSplitted = '';
-                if(string.isNotBlank(CountryName)) {                
-                    List<string> s2 = CountryName.split('_',-1);
+                if(string.isNotBlank(countryName)) {                
+                    List<string> s2 = countryName.split('_',-1);
                     countryNameSplitted = s2[1]; 
                 }
                 //labelText='Vendor List';
@@ -517,7 +492,7 @@ public with sharing class VPM_SearchVendor1{
                 mdmVendor = Database.query(searchQuery);
                 system.debug('@@mdmVendor' + mdmVendor);                
                 mdmDetailList = VPM_RecordTypeHelper.setmdmDetailOption(mdmVendor);
-                if(mdmDetailList == null || mdmDetailList.size() < 0 ) {
+                if(mdmDetailList.isEmpty()) {
                     hideSearchVendor = false;
                     heapMessageScreen = true;                
                     system.debug('@@ Please filter the search creteria');
@@ -549,11 +524,10 @@ public with sharing class VPM_SearchVendor1{
              //pageReference pageRef = null;
              // Condition : When vendor is not listed then blank value is assinged to "mdmVendorType"
              system.debug('mdmVendorType showSearchVendor '+mdmVendorType +' && '+showSearchVendor);
-             if(mdmVendorType == '' && !sendWebFormScreen){
+             if(string.isBlank(mdmVendorType) && !sendWebFormScreen){
                  ApexPages.addmessage(new ApexPages.message(ApexPages.severity.error, System.Label.VPM_Select_Option));
              } else if(mdmVendorType.equals(VPM_RecordTypeHelper.NOT_LISTED)) {
-                 system.debug('###initialReordType '+initialReordType);
-                 
+                 system.debug('###initialReordType '+initialReordType);                 
                  launchScreen= false;
                  hideSearchVendor =false;
                  sendWebFormScreen =true;
@@ -581,7 +555,7 @@ public with sharing class VPM_SearchVendor1{
                  screenType = requestType;
                  updateVendorDetail(null);
                  setLaunchScreenText();                 
-             } else if(mdmVendorType !='') {
+             } else if(string.isNotBlank(mdmVendorType)) {
                  
                  system.debug('###@initialReordType '+initialReordType);
                  pageBlockTitle = ''; 
@@ -589,7 +563,7 @@ public with sharing class VPM_SearchVendor1{
                                   
                  list<string> mdmVendorInfoList = mdmVendorType.split('\\\\#',-2);
                  //op = fetchVendorDeatilSAPService(mdmVendorInfoList[1], mdmVendorInfoList[2]);                 
-                 op = VPM_RecordTypeHelper.fetchVendorDeatilSAPService(mdmVendorInfoList[1], mdmVendorInfoList[2], vendorQuery1.VPM_CompanyCode__r.ECC__c, vendorQuery1.VPM_PurchasingOrg__r.Name,vendorQuery1.VPM_CompanyCode__r.VPM_CompanyCode__c);
+                 op = VPM_RecordTypeHelper.fetchVendorDeatilSAPService(mdmVendorInfoList[1], mdmVendorInfoList[2], vendorQuery1.VPM_CompanyCode__r.ECC__c, purchOrgName,vendorQuery1.VPM_CompanyCode__r.VPM_CompanyCode__c);
                  system.debug('@@op' + op);      
                  showSearchVendor  = false;
                  hideSearchVendor=false;
@@ -608,7 +582,7 @@ public with sharing class VPM_SearchVendor1{
                                      requestType = VPM_RecordTypeHelper.MAINTAIN;
                                      vendorQuery1.isMaintain2__c = false;
                                  }
-                                 isPaymentMetod1 = true;
+                                 //isPaymentMetod1 = true;
                                  webServiceData(op);  
                              }
                              screenVisited.add(VPM_RecordTypeHelper.VENDOR_LIST);
@@ -627,6 +601,7 @@ public with sharing class VPM_SearchVendor1{
                              }else {
                                  extensionType = VPM_RecordTypeHelper.GLOBAL_REQUEST;
                              }
+                             system.debug('@@extensionType' + extensionType);
                              webServiceData(op);  
                              screenVisited.add(VPM_RecordTypeHelper.VENDOR_LIST);
                          }
@@ -678,7 +653,7 @@ public with sharing class VPM_SearchVendor1{
     public pageReference processRequestType() {
       isBackToDetalPage = false;
       heapMessageScreen = false;      
-      pageReference pageRef;
+      pageReference pageRef = null;
       system.debug('@@screenVisited' +screenVisited);   
           system.debug('@@showSearchVendor' +showSearchVendor);
           system.debug('@@launchScreen' +launchScreen);
@@ -704,13 +679,9 @@ public with sharing class VPM_SearchVendor1{
           launchScreen =false;
           renderBackBtn = true;
           financialScreen = false;
-          generalVendorDetails = true;
-          
-          isInternationalVersionCollapsed();
-          
-          pageBlockTitle = System.label.VPM_General_Vendor_Details;
-          
-         
+          generalVendorDetails = true;          
+          isInternationalVersionCollapsed();          
+          pageBlockTitle = System.label.VPM_General_Vendor_Details;       
           system.debug('@@@@@@@@Vendor Type '+vendorQuery1.VPM_Commodity__r.VPM_VendorType__c);
           system.debug('@@@@@@@@Vendor Type '+vendorQuery1.VPM_VendorType__c);
           screenVisited.add(VPM_RecordTypeHelper.REQUEST_TYPE); 
@@ -724,7 +695,7 @@ public with sharing class VPM_SearchVendor1{
           renderBackBtn = true;
           financialScreen = false;
           generalVendorDetails = false;
-          if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN_2)) {
+          if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN_2)) {  
               unblockUnDelScreen = true;
               pageBlockTitle = System.label.VPM_UnBlockUnDeleteTitle;
               ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, System.label.VPM_UnblockDeleteHelpText));
@@ -811,10 +782,10 @@ public with sharing class VPM_SearchVendor1{
           ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, System.label.VPM_WebformHelpText));
       }else if(mdmVendorType.equals(system.label.VPM_SubmitVendorRequestforApproval)) {
           
-          /*if(!vendorQuery1.VPM_IsMDMPISaved__c && requestType == 'Create' && (vendorQuery1.VPM_VendorType__c == 'PI_Production Item Vendor_G001' || (vendorQuery1.VPM_VendorType__c == 'SCS_Supply Chain Services_G001' && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.containsIgnoreCase('3PM--3Pm'))))) {
+          if(!vendorQuery1.VPM_IsMDMPISaved__c && (string.isNotBlank(vendorQuery1.VPM_VendorType__c) && vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI) || (string.isNotBlank(vendorQuery1.VPM_VendorType__c) && vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM))))) {
               
               ApexPages.addmessage(new ApexPages.message(ApexPages.severity.error, System.Label.VPM_MDMBPMErrorMessage));
-          }else { */
+          }else {
              string queryString = '&isMaintain2=' + isMaintain2;    
              VPM_PurchasingRequests__c purch = [select id,VPM_Fieldtype__c,VPM_ExtensionType__c from VPM_PurchasingRequests__c where id =:recId];
              system.debug('@@ fieldType' + purch.VPM_Fieldtype__c);
@@ -853,7 +824,7 @@ public with sharing class VPM_SearchVendor1{
                   pageRef =  new Pagereference('/apex/VPM_GoldenData1?id=' + recId); 
             }        
               pageRef.setRedirect(true);
-        //}
+        }
      }else if(mdmVendorType.equals(system.label.VPM_Exitthisform)) {
           //update vendorQuery1; commented on 2016-11-02 7:56 PM IST monitoring
           pageRef =  new Pagereference('/' + recId); 
@@ -862,36 +833,7 @@ public with sharing class VPM_SearchVendor1{
       return pageRef;
     }
 
-    /*public List<SelectOption>  getRegionSpecificCustomSettingvalues(string ecc, string pickListName, string defaultValue){
-            Map<String, VPM_RegionSpecificFields__c> settingMap = new Map<String, VPM_RegionSpecificFields__c>();
-            Map<String, VPM_RegionSpecificFields__c> VPM_RegionSpecificMap = VPM_RegionSpecificFields__c.getAll();
-            List<String> settingList = new List<String>();
-            List<SelectOption> options = new List<SelectOption>();
-            options.add(new SelectOption('','--None--'));
-            if(string.isNotBlank(defaultValue)) {
-                options.add(new SelectOption(defaultValue,defaultValue));
-            }
-            for(VPM_RegionSpecificFields__c region : VPM_RegionSpecificMap.values()) {
-                if(region.Region__c == ecc && region.Picklist_Name__c == pickListName && region.Picklist_Values__c !=defaultValue){
-                    
-                    settingMap.put(region.Picklist_Values__c,region);
-                }
-            }
-            if(settingMap <> null && settingMap.size() > 0) {
-                // sorting based on values 
-                settingList.addAll(settingMap.keySet());
-                settingList.sort();
-                system.debug('@@ settingList' + settingList);
-                if(settingList <> null && settingList.size() > 0) {         
-                    for (String stateName : settingList) {
-                        VPM_RegionSpecificFields__c state = settingMap.get(stateName);                        
-                        options.add(new SelectOption(state.Picklist_Values__c, state.Picklist_Values__c));
-                    }
-                    system.debug('@@ Options' + options);
-                }
-            }
-            return options;
-        } */
+    
     
     
     /******************************************************************** 
@@ -907,7 +849,7 @@ public with sharing class VPM_SearchVendor1{
        vendorQuery1.VPM_VendorName1__c = vendorName;
        vendorQuery1.VPM_Street1__c = street1;
        vendorQuery1.VPM_ZIPPostcode__c = zipPostcode;
-       vendorQuery1.VPM_Country__c = CountryName;  
+       vendorQuery1.VPM_Country__c = countryName;  
        vendorQuery1.VPM_City__c = vendorDetails.VPM_City__c;
        vendorQuery1.RecordTypeId = VPM_RecordTypeHelper.getRecordTypeNameById(requestType);
        vendorQuery1.VPM_ECC__c = vendorQuery1.VPM_CompanyCode__r.ECC__c;
@@ -917,82 +859,6 @@ public with sharing class VPM_SearchVendor1{
        update vendorQuery1;
     }
 
-    /********************************************************************
-    Created By   : Ajay Rawat
-    Created Date : 16th June 2016
-    Last Modify  : 
-    Description  : Get details of selected vendor from SAP.
-    Return Type  : VPM_FetchVendorsDetails.OutputVariables
-    ********************************************************************/
-    /*public VPM_ECCVendorSearchServiceOutput fetchVendorDeatilSAPService(string mdmVendorCodeInput , string ecc) {
-        system.debug('@@web service  is called');
-        List<string> eccList = new List<string>();
-        purchOrgName = vendorQuery1.VPM_PurchasingOrg__r.Name; // added recently for passing org 
-        purchOrgName = string.isNotBlank(purchOrgName) ? purchOrgName.left(4) : null; // added recently for passing org 
-        system.debug('@@purchOrgName' +purchOrgName);        
-        VPM_FetchVendorsDetails.InputVariables ip = new VPM_FetchVendorsDetails.InputVariables();
-        List<VPM_FetchVendorsDetails.InputVariables> ipList = new List<VPM_FetchVendorsDetails.InputVariables>();
-        List<VPM_ECCVendorSearchServiceOutput> opList = new List<VPM_ECCVendorSearchServiceOutput>();
-        system.debug('@@MDMVendorCodeInput' +MDMVendorCodeInput);
-        if(string.isNotBlank(MDMVendorCodeInput)){
-            ip.vendorCodeInput = MDMVendorCodeInput;
-        }
-        vendorQuery1.VPM_VendorCode__c = mdmVendorCodeInput;
-        if(string.isNotblank(ecc)) {
-            eccList = ecc.split(',');            
-        }
-        if(!ecc.contains(vendorQuery1.VPM_CompanyCode__r.ECC__c)) {  
-            ip.ecc = string.isNotBlank(eccList[0]) ? eccList[0] : vendorQuery1.VPM_CompanyCode__r.ECC__c;            
-        }else { 
-            ip.ecc = vendorQuery1.VPM_CompanyCode__r.ECC__c;
-        }
-        ip.compnayCode = vendorQuery1.VPM_CompanyCode__r.VPM_CompanyCode__c;
-        ip.purchasingOrg = purchOrgName; // added recently for passing org 
-        ipList.add(ip);
-        system.debug('@@ipList' + ipList);
-        opList = VPM_FetchVendorsDetails.getVendorDetails(ipList);
-
-        
-        return opList[0];
-    } */
-
-    /********************************************************************  
-    Created By   : Ajay Rawat
-    Created Date : 05th June 2016
-    Last Modify  : 06th June 2016
-    Description  : This method assing value to wrapper class for displaying purpose.
-    Return Type  : List of Wrapper Class
-    ********************************************************************/
-    /*public list<VPM_RecordTypeHelper.OptionWrapper> setmdmDetailOption(list<mdm_Vendors__c> mdmDeatilList) 
-    {
-      List<VPM_RecordTypeHelper.OptionWrapper> options = new List<VPM_RecordTypeHelper.OptionWrapper>(); 
-      list<mdm_Vendors__c> mdmDeatilListNew = mdmDeatilList;  
-      //string mdmDisplayName;
-      system.debug('@@mdmDeatilList size' + mdmDeatilListNew.size());
-      system.debug('@@Heap size Limit' + Limits.getHeapSize());  
-        if(mdmDeatilListNew.size() > 1000  || Limits.getHeapSize() > 275000) {
-            //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.error, 'Please filter the search creteria Too many Vendors retrieved'));
-            //system.debug('@@ Please filter the search creteria');
-            options = null;
-            mdmDeatilListNew = null;  
-        }else { 
-            for(mdm_Vendors__c MDMDetail : mdmDeatilListNew)
-            {
-                VPM_RecordTypeHelper.OptionWrapper option = new VPM_RecordTypeHelper.OptionWrapper();
-                option.DetailOption =MDMDetail.VPM_FullDetails__c;
-                option.UniqueId = MDMDetail.id+ CONST_LITERAL1 + vendorCodeAssignmentSearchVen(MDMDetail.mdm_vCodeSirius__c,MDMDetail.mdm_vCodeCordillera__c,MDMDetail.mdm_vCodeU2K2__c,MDMDetail.mdm_vCodeFusion__c) 
-                                    +CONST_LITERAL1 +MDMDetail.mdm_ecc__c;
-                
-                options.add(option); 
-            }
-            VPM_RecordTypeHelper.OptionWrapper option = new VPM_RecordTypeHelper.OptionWrapper();
-            option.DetailOption =System.label.VPM_MyVendorisnotlisted;
-            option.UniqueId = VPM_RecordTypeHelper.NOT_LISTED;
-            options.add(option);                      
-        }
-      return options;
-
-    }   */
     
     /********************************************************************  
     Created By   : Ajay Rawat
@@ -1004,9 +870,10 @@ public with sharing class VPM_SearchVendor1{
     public void setLaunchScreenText() {
         
         system.debug('@@@ setting Launch screen options');
+        //string trueString = 
         String OptionWrapperJSON ='['; //
-        //Added by Epsita for IAPR-1756
-        if(vendorQuery1.VPM_IsLock__c ||  vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REJECTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.ABORTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REQUEST_COMPLETED)){
+        //Added by Epsita for IAPR-1756 //vendorQuery1.VPM_IsLock__c
+        if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.APPROVALPENDING)||  vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REJECTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.ABORTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REQUEST_COMPLETED)){
             system.debug('@@@ vendorQuery1.VPM_IsLock__c '+vendorQuery1.VPM_IsLock__c);
             if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.RE_WORK)) {
                 system.debug('@@@vendorQuery1.VPM_Status__c '+vendorQuery1.VPM_Status__c);
@@ -1144,51 +1011,6 @@ public with sharing class VPM_SearchVendor1{
          system.debug('@@launchScreen' +launchScreen);
      }
     
-    /******************************************************************** 
-    Created By   : Piyush Mathur
-    Created Date : 05th June 2016
-    Last Modify  : 06th June 2016
-    Description  : This method pulls country picklist values from Schema
-    Return Type  : List<Selectoption>
-    ********************************************************************/
-     /*public List<SelectOption> getCountries()
-    {
-      List<SelectOption> options = new List<SelectOption>();
-            
-       Schema.DescribeFieldResult fieldResult =
-     VPM_PurchasingRequests__c.VPM_Country__c.getDescribe();
-       List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
-            
-       for( Schema.PicklistEntry f : ple)
-       {
-          options.add(new SelectOption(f.getLabel(), f.getValue()));
-       }       
-       return options;
-    } */
-    
-    /******************************************************************** 
-    Created By   : Piyush Mathur
-    Created Date : 03rd Oct  2016
-    Last Modify  : 07th Oct 2016
-    Description  : This method pulls default data from custom medata types
-    Return Type  : List<Selectoption>
-    ********************************************************************/
-    public List<SelectOption> paymentMathodMetaData(string defaultValue) {
-        List<SelectOption> options = new List<SelectOption>();
-        List<VPM_PaymentMethods__mdt> metaValues = [select id, VPM_Country__c, VPM_CountryISO2__c, VPM_PaymentMethod__c from VPM_PaymentMethods__mdt where VPM_CountryISO2__c =: vendorQuery1.VPM_CompanyCode__r.VPM_CountryCode__c and VPM_Country__c =: vendorQuery1.VPM_CompanyCode__r.VPM_Country__c];
-        
-        if(string.isNotBlank(defaultValue)) 
-            options.add(new SelectOption(defaultValue, defaultValue));
-        
-        for(VPM_PaymentMethods__mdt mdtValue : metaValues) {
-            options.add(new SelectOption(mdtValue.VPM_PaymentMethod__c, mdtValue.VPM_PaymentMethod__c));    
-            
-        }
-        system.debug('@@Options' + Options);
-        
-        
-        return Options;
-    } 
     
     /********************************************************************  
     Created By   : Ajay Rawat
@@ -1203,7 +1025,7 @@ public with sharing class VPM_SearchVendor1{
         {
             isRequiredField = true;
             sendWebFormLabel = system.label.VPM_Send_Button;
-        }else {
+        }else { 
             isRequiredField = false;
             sendWebFormLabel = system.label.VPM_Next;
         } 
@@ -1238,7 +1060,7 @@ public with sharing class VPM_SearchVendor1{
                 vendorDetails.VPM_AlternativePayee__c = op.CompanyData[0].AlternativePayee;
                 vendorDetails.VPM_BExchangeLimit__c = string.isNotblank(op.CompanyData[0].BExchangeLimit) ? decimal.valueOF(op.CompanyData[0].BExchangeLimit) : 0;          
                 
-                vendorCashmgmntgroup = string.isNotBlank(op.CompanyData[0].CashMgmtGroup) ? op.CompanyData[0].CashMgmtGroup : vendorCashmgmntgroup;
+                vendorCashmgmntgroup = string.isNotBlank(op.CompanyData[0].CashManagementGroup) ? op.CompanyData[0].CashManagementGroup : vendorCashmgmntgroup;
                 system.debug('@@vendorCashmgmntgroup' + vendorCashmgmntgroup);
                 vendorQuery1.VPM_CheckDoubleInvoices__c = op.CompanyData[0].CheckDoubleInvoices <>null?op.CompanyData[0].CheckDoubleInvoices:false;
                 vendorDetails.VPM_ChkCashing__c = op.CompanyData[0].CheckCashing;
@@ -1266,7 +1088,7 @@ public with sharing class VPM_SearchVendor1{
                 //vendorQuery1.VPM_PaymentMethod__c = string.isNotBlank(op.CompanyData[0].paymentMethod) ?op.CompanyData[0].paymentMethod :vendorQuery1.VPM_PaymentMethod__c;
                 paymentMethodWebserviceValues = string.isNotBlank(op.CompanyData[0].paymentMethod) ?op.CompanyData[0].paymentMethod :vendorQuery1.VPM_PaymentMethod__c; 
                 //paymentMethodWebserviceValues = vendorPaymentMethod;
-                paymentMethod = paymentMathodMetaData(null);                
+                paymentMethod = VPM_RecordTypeHelper.paymentMathodMetaData(vendorQuery1.VPM_CompanyCode__r.VPM_CountryCode__c, vendorQuery1.VPM_CompanyCode__r.VPM_Country__c);                
                 
                 vendorDetails.VPM_PaymentMethodSupplement__c = op.CompanyData[0].PaymentMethodSupplement;
                 vendorDetails.VPM_Authorization__c = op.CompanyData[0].Authorization;     
@@ -1578,7 +1400,9 @@ public with sharing class VPM_SearchVendor1{
         }
         industryOptionsDefValue = op.Industry;
         industryOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.INDUSTRY,industryOptionsDefValue);
-        vendorDetails.VPM_AccountGroup__c = op.AccountGroup;
+        If(extensionType == VPM_RecordTypeHelper.REGIONAL_REQUEST) {
+            vendorDetails.VPM_AccountGroup__c = op.AccountGroup;
+        }
         vendorDetails.VPM_TaxNumAtResponsibleTaxAuthority__c = op.TaxNumberResponsibleAuthority;
         vendorDetails.VPM_CorporateGrp__c = op.CorporateGrp;
         vendorDetails.VPM_Customer__c = op.Customer;
@@ -1631,47 +1455,6 @@ public with sharing class VPM_SearchVendor1{
          //// updating for web service data for default        
         updateVendorReqRecord();             
     }
-
-    /********************************************************************  
-    Created By   : Ajay Rawat
-    Created Date : 01st Sept 2016
-    Last Modify  : 03 Oct 2016
-    Description  : This method pulls the region based on vendor country and code
-    Return Type  : string
-    ********************************************************************/
-    /*public string region(){
-    
-        try{
-            VPM_Region__c region =[select VPM_Code__c,Name,id, VPM_Country__c from VPM_Region__c where VPM_Code__c=:op.region and VPM_Country__c =:CountryName limit 1];
-            if(region <> null)
-            return region.id;
-        else
-            return null;
-        }
-        catch(Exception ex){return null;}
-            
-        
-    }*/
-    
-    /********************************************************************
-    Created By   : Ajay Rawat
-    Created Date : 16th June 2016
-    Last Modify  : 
-    Description  : Get details of selected vendor from SAP.
-    Return Type  : VPM_FetchVendorsDetails.OutputVariables
-    ********************************************************************/
-    /*public VPM_ECCVendorSearchServiceOutput FetchVendorDeatilSAPService(string mdmCode, string ECC, string VPMCompanyCode)
-    {   
-        VPM_FetchVendorsDetails.InputVariables ip = new VPM_FetchVendorsDetails.InputVariables();
-        List<VPM_FetchVendorsDetails.InputVariables> ipList = new List<VPM_FetchVendorsDetails.InputVariables>();
-        List<VPM_ECCVendorSearchServiceOutput> opList = new List<VPM_ECCVendorSearchServiceOutput>();
-        ip.vendorCodeInput = mdmCode;
-        ip.ecc = ECC;
-        ip.compnayCode = VPMCompanyCode;
-        ipList.add(ip);
-        opList = VPM_FetchVendorsDetails.getVendorDetails(ipList);
-        return opList[0];
-    } */ 
     
     /********************************************************************
     Created By   : Piyush Mathur
@@ -1691,13 +1474,11 @@ public with sharing class VPM_SearchVendor1{
             system.debug('Save Method inside error msg'); 
             ApexPages.addMessage(msg);
         }else {                      
-            updateVendorReqRecord();
-            
+            updateVendorReqRecord();            
             backBtnAction();  
         }  
         system.debug('trade partner type' +vendorQuery1.VPM_TradePartnerType__c);      
-    }    
-    
+    }
      
     /***********************************************************************************
     Created By   : Piyush Mathur
@@ -1717,8 +1498,7 @@ public with sharing class VPM_SearchVendor1{
             vendorQuery1.VPM_OrderOptimRest__c = orderOPtimRestDefValue;
             vendorQuery1.VPM_Interestcalculationindicator__c = intCalcIndicatorDefValues;     
             vendorQuery1.VPM_SocialInsuranceCodeSoc__c = socialInsuCodeDefValue;     
-            vendorQuery1.VPM_ShippingConditions__c = shippingConditionsDefValue;
-            
+            vendorQuery1.VPM_ShippingConditions__c = shippingConditionsDefValue;            
             vendorQuery1.VPM_RegStGrp__c = regStGrpDefValue;
             vendorQuery1.VPM_RecipientType__c = recipentTypeDefValue;
             vendorQuery1.VPM_TaxJurisdictionCode__c = taxJuriCodeDefValue;
@@ -1738,7 +1518,7 @@ public with sharing class VPM_SearchVendor1{
             vendorQuery1.VPM_ZIPPostcode__c = zipPostcode;
             vendorQuery1.VPM_Country__c = countryName; 
             If(string.isNotBlank(vendorPaymentMethod)  && vendorPaymentMethod <> '[]')  {
-            	vendorQuery1.VPM_PaymentMethod__c = vendorPaymentMethod;
+                vendorQuery1.VPM_PaymentMethod__c = vendorPaymentMethod;
             }else {
                 vendorQuery1.VPM_PaymentMethod__c = vendorQuery1.VPM_PaymentMethod__c;
             }
@@ -1766,14 +1546,10 @@ public with sharing class VPM_SearchVendor1{
             vendorQuery1.VPM_InstructionKeyDataExchange__c = instKeyDataExchangeDefValue;
             vendorQuery1.VPM_ConfirmationControl__c = confirmationControlDefaultValue;
              System.debug('@@@@@@  vendorQuery1 ------'+vendorQuery1);  
-            if(mdmVendorType == 'PIVendorCreationPreRequisites') {
-                
+            if(mdmVendorType.equals(System.label.VPM_PIVendorCreationPreRequisites) || piVendorCreation) {
                 vendorQuery1.VPM_IsMDMPISaved__c = true; 
-            }
-            
+            }            
             update vendorQuery1;
-          
-            //update vendorQuery1.VPM_Commodity__r;
             
             system.debug('@@ options  --------'+ opt  );
             if(opt.size() > 0){
@@ -1787,39 +1563,16 @@ public with sharing class VPM_SearchVendor1{
                     }
                 }              
             }  
-                    
-                
-                
-               // vendorDetails.VPM_DeletionBlockFlag__c= options;
-               
-                      
-            //vendorDetails.VPM_PurchasingOrganisation__c = vendorPurchasingOrg;
             vendorDetails.RecordTypeId = VPM_RecordTypeHelper.getRecordTypeNameById(requestType);
-            system.debug('@@mdmVendorType' + mdmVendorType);
-            
+            system.debug('@@mdmVendorType' + mdmVendorType);            
             update vendorDetails;             
-            vendorReq.save();
-            /*if(string.isBlank(vendorQuery1.VPM_PaymentMethod__c) || vendorQuery1.VPM_PaymentMethod__c == '[]') {
-                isPaymentMetod2 = false; 
-            }else {
-                isPaymentMetod2 = true; 
-            }*/
-            paymentMethodWebserviceValues = vendorQuery1.VPM_PaymentMethodWeb__c;
-            if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.CREATE)) {
-                isPaymentMetod1 = false;
-                if((vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI) || (vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM))))) {                    
-                    system.debug('@@ Coming here');
-                    PIBooleanFlags();                        
-                }
-            }
-            
+            vendorReq.save();            
+            paymentMethodWebserviceValues = vendorQuery1.VPM_PaymentMethodWeb__c;            
         }
         catch(exception ex){ 
             system.debug('@@Exception- ' + ex.getstacktracestring());
             system.debug('@@Exception- ' + ex.getMessage());
         }
-        
-        
     }
     
     /***********************************************************************************
@@ -1899,8 +1652,7 @@ public with sharing class VPM_SearchVendor1{
         isButtonVisible = false;
         bankDetailsScreen = false;
         paymentTermScreen = false;
-        sendWebFormScreen =false;
-        
+        sendWebFormScreen =false;        
         financialScreen = false;
         generalVendorDetails = false;
         blockDelScreen = false;
@@ -1909,8 +1661,7 @@ public with sharing class VPM_SearchVendor1{
         regionalSpecificScreenFusion = false;
         regionalSpecificScreenSirius = false;
         regionalSpecificScreenU2K2 = false;
-        showSearchVendor = false;
-        
+        showSearchVendor = false;        
         isBackToDetalPage = false;
         //vendorQuery1.VPM_Commodity__c = vendorDetails.VPM_Commodity__c;        
         vendorQuery1.VPM_TradePartnerType__c =vendortradepartnerType;
@@ -1938,8 +1689,7 @@ public with sharing class VPM_SearchVendor1{
             if(msg1<> null ) {
              system.debug('Save Method inside error msg'); 
            ApexPages.addMessage(msg1);
-            }else{
-            
+            }else{            
                 pageBlockTitle = ''; 
                 launchScreen = true;
                 goldendata2Screen = false;
@@ -1952,8 +1702,7 @@ public with sharing class VPM_SearchVendor1{
                 isButtonVisible = false;
                 bankDetailsScreen = false;
                 paymentTermScreen = false;
-                sendWebFormScreen =false;
-                
+                sendWebFormScreen =false;                
                 financialScreen = false;
                 generalVendorDetails = false;
                 blockDelScreen = false;
@@ -1976,8 +1725,6 @@ public with sharing class VPM_SearchVendor1{
                 if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN_2)) {
                     isMaintainRecord = true; 
                 }
-
-                
                 if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.CREATE) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.EXTEND)) {
                     /*if(string.isNotBlank(vendorQuery1.VPM_Commodity__r.VPM_CommodityCode__c) && (vendorQuery1.VPM_Commodity__r.VPM_CommodityCode__c.startsWith('0')) && string.isNotBlank(vendorQuery1.VPM_GlobalAuthorisationGroup__c) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.contains('MBS--Other')))  
                         isReqOrderingEmail = false;
@@ -1997,36 +1744,14 @@ public with sharing class VPM_SearchVendor1{
                     //vendorQuery1.VPM_SRVBasedVendorID__c = true;
                     //vendorQuery1.VPM_CheckDoubleInvoices__c = true; 
                     customMedataCall();
-                    customMedataCallOrderCurrency();   
-                    defaultPaymentTerm();
+                    VendorQuery1.VPM_OrderCurrency__c = VPM_RecordTypeHelper.customMedataCallOrderCurrency(vendorQuery1.VPM_CompanyCode__r.ECC__c, purchOrgName, countryName);   
+                    vendorPaymentTerms = VPM_RecordTypeHelper.defaultPaymentTerm(vendorQuery1.VPM_CompanyCode__r.ECC__c, vendorQuery1.VPM_IsVendorSME__c);
+                    termsOFPayment = VPM_RecordTypeHelper.defaultPaymentTerm(vendorQuery1.VPM_CompanyCode__r.ECC__c, vendorQuery1.VPM_IsVendorSME__c);
                     updateVendorReqRecord();                    
                  }
-            }
-            
+            }            
     }
     
-    /***********************************************************************************
-    Created By   : Piyush Mathur
-    Created Date : 27 OCt 2016
-    Last Modify  : 
-    Description  : This method sets the SAP value based on Record Type
-    Return Type  : void
-    ***********************************************************************************/    
-    /*public void setPaymentMethodRequired() {
-        if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.CREATE) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.EXTEND)) {
-            if(string.isNotBlank(vendorPaymentMethod) && vendorPaymentMethod <> '[]') {                
-                vendorQuery1.VPM_PaymentMethod__c = vendorPaymentMethod;
-            }else {
-                vendorQuery1.VPM_PaymentMethod__c = vendorQuery1.VPM_PaymentMethod__c;
-            }
-        }else {
-            if(string.isNotBlank(vendorPaymentMethod) && vendorPaymentMethod <> '[]') {  
-                vendorQuery1.VPM_PaymentMethod__c = vendorPaymentMethod;                
-            }else {
-                vendorQuery1.VPM_PaymentMethod__c = paymentMethodWebserviceValues;
-            }
-        }
-    }*/
     
     /***********************************************************************************
     Created By   : Piyush Mathur
@@ -2036,138 +1761,29 @@ public with sharing class VPM_SearchVendor1{
     Return Type  : void
     ***********************************************************************************/    
     public void PIMethod() {       
-            setLaunchScreenText();
-            suppPosiAssQualityOut = true;
-            suppPosiAssQualityInp = false;
-            suppAssQuestQualityOut = true;
-            suppAssQuestQualityInp = false;        
-            suppAuditQualityOut = true;
-            suppAuditQualityInp = false;
-            suppAssQualitySourceOut = true;
-            suppAssQualitySourceInp = false;
-            SupplierPosAssurSourcingOut = true;
-            SupplierPosAssurSourcingInp = false;
-            SupplierAssessmentQuestionnaireSourOut = true;
-            SupplierAssessmentQuestionnaireSourInp = false;
-            SupplierAuditSourcingOut = true;
-            SupplierAuditSourcingInp = false;
-            ReasonNoFinancialCheckOut = true;
-            ReasonNoFinancialCheckInp = false;
-            AchillesExceptionDetailsOut = true;
-            AchillesExceptionDetailsInp = false;
-            DetailofTypeCheckOut = false;
-            DetailofTypeCheckIn = true;
-            ArchillesRegistrationCodeOut = false;
-            ArchillesRegistrationCodeIn = true;
-            system.debug('@@PIMethod called');
-            vendorQuery1.VPM_SupplierFinancialStabilityCheck__c = VPM_RecordTypeHelper.YES;
-            vendorQuery1.VPM_SupplierAchillesRegistration__c = VPM_RecordTypeHelper.YES;
-            vendorQuery1.VPM_SupplierPositiveAssuranceQuality__c = VPM_RecordTypeHelper.YES;
-            vendorQuery1.VPM_SupplierAssessmentQuestionnaireQual__c = VPM_RecordTypeHelper.YES;
-            vendorQuery1.VPM_SupplierPositiveAssuranceSourcing__c = VPM_RecordTypeHelper.YES;
-            vendorQuery1.VPM_SupplierAuditQuality__c = VPM_RecordTypeHelper.YES;
-            vendorQuery1.VPM_SupplierAssessmentQuestionnaireSour__c = VPM_RecordTypeHelper.YES;
-            vendorQuery1.VPM_SupplierAuditSourcing__c = VPM_RecordTypeHelper.YES;     
-            //vendorDetails.VPM_SupplierFinancialStabilityCheck__c = VPM_RecordTypeHelper.YES;
-            //vendorDetails.VPM_SupplierAchillesRegistration__c = VPM_RecordTypeHelper.YES;
-            
-            vendorQuery1.VPM_DetailsOfPlannedActivitiesQual__c = '';
-            vendorQuery1.VPM_SupAudDetailsOfPlannedActivities__c = '';
-            vendorQuery1.VPM_DetailsOfPlannedActivitiesSour__c   = '';
-            vendorQuery1.VPM_DetailsOfPlannedActivitiesSour2__c = '';
-            vendorQuery1.VPM_SupPosAssExcepDetailsQual__c = '';
-            vendorQuery1.VPM_SupPosAssExcepDetailsSour__c = '';
-            vendorQuery1.VPM_ReasonNoFinancialCheck__c = '';
-            vendorQuery1.VPM_AchillesExceptionDetails__c = '';
-            //vendorQuery1.VPM_DetailsTypeCheck__c = '';  
-            //vendorQuery1.VPM_AchillesRegistrationCode__c = '';
-        
-    }    
-        
-    /******************************************************************** 
-    Created By   : Piyush Mathur
-    Created Date : 28th Sept 2016
-    Last Modify  : 5th Oct 2016
-    Description  : This method sets and render input and output field based 
-                   on picklist value selected.
-    Return Type  : void
-    ********************************************************************/
-    public void PIBooleanFlags() {        
-        if(vendorQuery1.VPM_SupplierFinancialStabilityCheck__c.equals(VPM_RecordTypeHelper.NO)){
-            ReasonNoFinancialCheckOut = false;
-            ReasonNoFinancialCheckInp = true;
-            DetailofTypeCheckOut = true;
-            DetailofTypeCheckIn = false;
-            vendorQuery1.VPM_DetailsTypeCheck__c = '';
-        }else {
-            ReasonNoFinancialCheckOut = true;
-            ReasonNoFinancialCheckInp = false; 
-            DetailofTypeCheckOut = false;
-            DetailofTypeCheckIn = true;
-            vendorQuery1.VPM_ReasonNoFinancialCheck__c = '';
-        }
-        if(vendorQuery1.VPM_SupplierAchillesRegistration__c.equals(VPM_RecordTypeHelper.NO)){
-            AchillesExceptionDetailsOut = false;
-            AchillesExceptionDetailsInp = true;
-            ArchillesRegistrationCodeOut = true;
-            ArchillesRegistrationCodeIn = false;
-            vendorQuery1.VPM_AchillesRegistrationCode__c = '';
-        }else {
-            AchillesExceptionDetailsOut = true;
-            AchillesExceptionDetailsInp = false;
-            ArchillesRegistrationCodeOut = false;
-            ArchillesRegistrationCodeIn = true;
-            vendorQuery1.VPM_AchillesExceptionDetails__c = '';
-        }
-        if(vendorQuery1.VPM_SupplierPositiveAssuranceQuality__c.equals(VPM_RecordTypeHelper.NO)) {
-            system.debug('@@Coimh here');
-            suppPosiAssQualityOut = false;
-            suppPosiAssQualityInp = true;
-        }else {
-            suppPosiAssQualityOut = true;
-            suppPosiAssQualityInp = false;
-            vendorQuery1.VPM_SupPosAssExcepDetailsQual__c = '';
-        }
-        if(vendorQuery1.VPM_SupplierAssessmentQuestionnaireQual__c.equals(VPM_RecordTypeHelper.NO)) {
-            suppAssQuestQualityOut = false;
-            suppAssQuestQualityInp = true;
-        }else {
-            suppAssQuestQualityOut = true;
-            suppAssQuestQualityInp = false;
-            vendorQuery1.VPM_DetailsOfPlannedActivitiesQual__c = '';
-        }
-        if(vendorQuery1.VPM_SupplierAuditQuality__c.equals(VPM_RecordTypeHelper.NO)) {
-            suppAuditQualityOut = false;
-            suppAuditQualityInp = true;
-        }else {
-            suppAuditQualityOut = true;
-            suppAuditQualityInp = false;
-            vendorQuery1.VPM_SupAudDetailsOfPlannedActivities__c = '';
-        }if(vendorQuery1.VPM_SupplierPositiveAssuranceSourcing__c == 'No') {
-            SupplierPosAssurSourcingOut = false;
-            SupplierPosAssurSourcingInp = true;
-        }else {
-            SupplierPosAssurSourcingOut = true;
-            SupplierPosAssurSourcingInp = false;
-            vendorQuery1.VPM_SupPosAssExcepDetailsSour__c = '';
-        }
-        if(vendorQuery1.VPM_SupplierAssessmentQuestionnaireSour__c == 'No') {
-            SupplierAssessmentQuestionnaireSourOut = false;
-            SupplierAssessmentQuestionnaireSourInp = true;            
-        }else {
-            SupplierAssessmentQuestionnaireSourOut = true;
-            SupplierAssessmentQuestionnaireSourInp = false;
-            vendorQuery1.VPM_DetailsOfPlannedActivitiesSour__c = '';
-        }if(vendorQuery1.VPM_SupplierAuditSourcing__c == 'No') {
-            SupplierAuditSourcingOut = false;
-            SupplierAuditSourcingInp = true;
-        }else {
-            SupplierAuditSourcingOut = true;
-            SupplierAuditSourcingInp = false;
-            vendorQuery1.VPM_DetailsOfPlannedActivitiesSour2__c = '';
-        }
-        
-    } 
+        setLaunchScreenText();            
+        system.debug('@@PIMethod called');
+        vendorQuery1.VPM_SupplierFinancialStabilityCheck__c = VPM_RecordTypeHelper.YES;
+        vendorQuery1.VPM_SupplierAchillesRegistration__c = VPM_RecordTypeHelper.YES;
+        vendorQuery1.VPM_SupplierPositiveAssuranceQuality__c = VPM_RecordTypeHelper.YES;
+        vendorQuery1.VPM_SupplierAssessmentQuestionnaireQual__c = VPM_RecordTypeHelper.YES;
+        vendorQuery1.VPM_SupplierPositiveAssuranceSourcing__c = VPM_RecordTypeHelper.YES;
+        vendorQuery1.VPM_SupplierAuditQuality__c = VPM_RecordTypeHelper.YES;
+        vendorQuery1.VPM_SupplierAssessmentQuestionnaireSour__c = VPM_RecordTypeHelper.YES;
+        vendorQuery1.VPM_SupplierAuditSourcing__c = VPM_RecordTypeHelper.YES;     
+        vendorDetails.VPM_SupplierFinancialStabilityCheck__c = VPM_RecordTypeHelper.YES;
+        vendorDetails.VPM_SupplierAchillesRegistration__c = VPM_RecordTypeHelper.YES;            
+        vendorQuery1.VPM_DetailsOfPlannedActivitiesQual__c = '';
+        vendorQuery1.VPM_SupAudDetailsOfPlannedActivities__c = '';
+        vendorQuery1.VPM_DetailsOfPlannedActivitiesSour__c   = '';
+        vendorQuery1.VPM_DetailsOfPlannedActivitiesSour2__c = '';
+        vendorQuery1.VPM_SupPosAssExcepDetailsQual__c = '';
+        vendorQuery1.VPM_SupPosAssExcepDetailsSour__c = '';
+        vendorQuery1.VPM_ReasonNoFinancialCheck__c = '';
+        vendorQuery1.VPM_AchillesExceptionDetails__c = '';
+        vendorQuery1.VPM_DetailsTypeCheck__c = '';  
+        vendorQuery1.VPM_AchillesRegistrationCode__c = '';        
+    }
     
     /******************************************************************** 
     Created By   : Piyush Mathur
@@ -2177,22 +1793,19 @@ public with sharing class VPM_SearchVendor1{
                    from advacned form and perform save and exit to detail page.
     Return Type  : void
     ********************************************************************/
-    Public Pagereference SaveAndExit()
-    {   
-    system.debug('Save and Exit');
+    Public Pagereference SaveAndExit() {   
+        system.debug('Save and Exit');
         //setPaymentMethodRequired();
         Pagereference pageRef = null;
         ApexPages.Message msg = checkValidations();
         if(msg <> null) {
             ApexPages.addMessage(msg);
-        }else {
-                  
+        }else {                  
             updateVendorReqRecord();    
             pageRef =  new Pagereference('/'+recId);  
             pageRef.setRedirect(true);
             system.debug('@@pageRef' + pageRef);
-        }
-        
+        }        
         return pageRef;       
     }
      
@@ -2204,14 +1817,14 @@ public with sharing class VPM_SearchVendor1{
                    on Launch screen.
     Return Type  : boolean
     ********************************************************************/
-    public boolean getButtonVisible() {
+    /*public boolean getButtonVisible() {
         isButtonVisible = false;
         if(bankDetailsScreen || unblockUnDelScreen || paymentTermScreen || generalVendorDetails || financialScreen  || blockDelScreen || regionalSpecificScreenSirius || regionalSpecificScreenCordillera || regionalSpecificScreenFusion || regionalSpecificScreenU2K2) {
             //if(options == null)  //this logic will remove save and return button from block/unblock Page                 
             isButtonVisible = true;                      
         }
         return isButtonVisible;
-    } 
+    } */
     
     /******************************************************************** 
     Created By   : Piyush Mathur
@@ -2224,52 +1837,7 @@ public with sharing class VPM_SearchVendor1{
         Pagereference pageRef =  new Pagereference('/'+recId); 
         pageRef.setRedirect(true);
         return pageRef; 
-    }
-    
-    /******************************************************************** 
-    Created By   : Piyush Mathur
-    Created Date : 5th June 2016
-    Last Modify  : 5th Oct 2016
-    Description  : This method assign the vendor code based on ECC
-    Return Type  : boolean
-    ********************************************************************/
-    /*public string vendorCodeAssignment() {
-        string vendorCodeInput = '';
-        If(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_SIRIUS)) {
-            vendorCodeInput = vendorQuery1.VPM_VendorCodeLookup__r.mdm_vCodeSirius__c;
-        }else If(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_CORDILLERA)) {
-            vendorCodeInput = vendorQuery1.VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c;
-        } else If(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_U2K2)) {
-            vendorCodeInput = vendorQuery1.VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c;
-        }else If(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_FUSION)) {
-            vendorCodeInput = vendorQuery1.VPM_VendorCodeLookup__r.mdm_vCodeFusion__c;
-        }
-        system.debug('@@vendorCodeInput ' +vendorCodeInput );
-        vendorCodeInput = (string.isNotBlank(vendorCodeInput) ? vendorCodeInput : '');
-        return vendorCodeInput;
-    } */
-    
-    /******************************************************************** 
-    Created By   : Piyush Mathur
-    Created Date : 5th June 2016
-    Last Modify  : 5th Oct 2016
-    Description  : This method assign the vendor code selected on search vendor screen
-    Return Type  : boolean
-    ********************************************************************/
-    /*public string vendorCodeAssignmentSearchVen(string mdm_vCodeSirius, string mdm_vCodeCordillera ,string mdm_vCodeU2K2,string mdm_vCodeFusion) {
-        string vendorCodeInput = '';
-        If(string.isNotBlank(mdm_vCodeSirius)) {
-            vendorCodeInput = mdm_vCodeSirius;
-        }else If(string.isNotBlank(mdm_vCodeCordillera)) {
-            vendorCodeInput = mdm_vCodeCordillera;
-        } else If(string.isNotBlank(mdm_vCodeU2K2)) {
-            vendorCodeInput = mdm_vCodeU2K2;
-        }else If(string.isNotBlank(mdm_vCodeFusion)) {
-            vendorCodeInput = mdm_vCodeFusion;
-        }
-        vendorCodeInput = (string.isNotBlank(vendorCodeInput) ? vendorCodeInput : '');
-        return vendorCodeInput;
-    }*/
+    }    
     
     /******************************************************************** 
     Created By   : Piyush Mathur
@@ -2279,14 +1847,13 @@ public with sharing class VPM_SearchVendor1{
                     found from web service callout.
     Return Type  : boolean
     ********************************************************************/
-    public boolean getExitButtonVisible() {
+    /*public boolean getExitButtonVisible() {
         isExitButtonVisible = false;
         if(vendorNotFound) {
             isExitButtonVisible = true;
-        }
-        
+        }        
         return isExitButtonVisible;
-    }
+    }*/
     
     /******************************************************************** 
     Created By   : Piyush Mathur
@@ -2298,7 +1865,6 @@ public with sharing class VPM_SearchVendor1{
     public boolean getButtonVisibleSaveMenu() {
         isButtonVisibleSaveMenu = false;        
         if(piVendorCreation || bankDetailsScreen || unblockUnDelScreen || blockDelScreen ||  paymentTermScreen || generalVendorDetails || financialScreen || regionalSpecificScreenSirius || regionalSpecificScreenCordillera || regionalSpecificScreenFusion || regionalSpecificScreenU2K2) {
-            
             isButtonVisibleSaveMenu = true;                      
         }
         return isButtonVisibleSaveMenu;
@@ -2315,7 +1881,6 @@ public with sharing class VPM_SearchVendor1{
     public boolean getButtonVisibleSaveExit() {
         isButtonVisibleSaveExit = false;
         if(piVendorCreation || bankDetailsScreen || paymentTermScreen || generalVendorDetails || financialScreen  || regionalSpecificScreenSirius || regionalSpecificScreenCordillera || regionalSpecificScreenFusion || regionalSpecificScreenU2K2) {
-            
             isButtonVisibleSaveExit = true;                      
         }
         return isButtonVisibleSaveExit;
@@ -2331,8 +1896,7 @@ public with sharing class VPM_SearchVendor1{
     Return Type  : ApexPages.Message
     ********************************************************************/
     public ApexPages.Message checkValidations() {    
-        system.debug('@@ Check Validations Called');
-        
+        system.debug('@@ Check Validations Called');        
         system.debug('@@vendorQuery1.VPM_PaymentMethod__c' + vendorQuery1.VPM_PaymentMethod__c);
         ApexPages.Message myMsg = null;      
         
@@ -2343,6 +1907,33 @@ public with sharing class VPM_SearchVendor1{
             if(string.isNotBlank(vendorName) && vendorName.length() < 3) {
                 myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, System.label.VPM_VendorNameLengthPageMessage);            
             }
+        }
+        if(piVendorCreation) {
+            if(string.isBlank(vendorQuery1.VPM_SupplierAchillesRegistration__c) ||  string.isBlank(vendorQuery1.VPM_SupplierPositiveAssuranceQuality__c) || string.isBlank(vendorQuery1.VPM_SupplierAssessmentQuestionnaireQual__c)
+               || string.isBlank(vendorQuery1.VPM_SupplierPositiveAssuranceSourcing__c)|| string.isBlank(vendorQuery1.VPM_SupplierAuditQuality__c) || string.isBlank(vendorQuery1.VPM_SupplierAssessmentQuestionnaireSour__c)
+               || string.isBlank(vendorQuery1.VPM_SupplierAuditSourcing__c) || string.isBlank(vendorQuery1.VPM_SupplierFinancialStabilityCheck__c) ) {
+                   myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'None cannot be selected');    
+               }else if(vendorQuery1.VPM_SupplierFinancialStabilityCheck__c.contains('No') && string.isBlank(vendorQuery1.VPM_ReasonNoFinancialCheck__c)) {
+                   myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_FinancialCheckError);
+               }else if(vendorQuery1.VPM_SupplierFinancialStabilityCheck__c.contains('Yes') && string.isBlank(vendorQuery1.VPM_DetailsTypeCheck__c)) {
+                   myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,'Please enter detail of type check');
+               }else if(vendorQuery1.VPM_SupplierAchillesRegistration__c.contains('Yes') && string.isBlank(vendorQuery1.VPM_AchillesRegistrationCode__c)) {
+                   myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,'Please enter Archilles Registration code');
+               }else if(vendorQuery1.VPM_SupplierAchillesRegistration__c.contains('No') && string.isBlank(vendorQuery1.VPM_AchillesExceptionDetails__c)) {
+                   myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_ExceptionDetailsError);
+               }else if(vendorQuery1.VPM_SupplierPositiveAssuranceQuality__c.contains('No') && string.isBlank(vendorQuery1.VPM_SupPosAssExcepDetailsQual__c)) {
+                   myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_ExceptionDetailsError);
+               }else if(vendorQuery1.VPM_SupplierAssessmentQuestionnaireQual__c.contains('No') && string.isBlank(vendorQuery1.VPM_DetailsOfPlannedActivitiesQual__c)) {
+                   myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_DetailsOfPlannedActivitiesError);
+               }else if(vendorQuery1.VPM_SupplierAuditQuality__c.contains('No') && string.isBlank(vendorQuery1.VPM_SupAudDetailsOfPlannedActivities__c)) {
+                   myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_DetailsOfPlannedActivitiesError);
+               }else if(vendorQuery1.VPM_SupplierPositiveAssuranceSourcing__c.contains('No') && string.isBlank(vendorQuery1.VPM_SupPosAssExcepDetailsSour__c)) {
+                   myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_ExceptionDetailsError);
+               }else if(vendorQuery1.VPM_SupplierAssessmentQuestionnaireSour__c.contains('No') && string.isBlank(vendorQuery1.VPM_DetailsOfPlannedActivitiesSour__c)) {
+                   myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_DetailsOfPlannedActivitiesError);
+               }else if(vendorQuery1.VPM_SupplierAuditSourcing__c.contains('No') && string.isBlank(vendorQuery1.VPM_DetailsOfPlannedActivitiesSour2__c)) {
+                   myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_DetailsOfPlannedActivitiesError);
+               }
         }
         
         if(generalVendorDetails && isInternationalVersionRendered) {
@@ -2369,18 +1960,15 @@ public with sharing class VPM_SearchVendor1{
             if(string.isNotBlank(vendorName) && vendorName.length() < 3) {
                 myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, System.label.VPM_VendorNameLengthPageMessage);  
             }
-            if(string.isBlank(CountryName)){
+            if(string.isBlank(countryName)){
                 myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_CountryPagemessage);  
             
             }if (string.isBlank(street1)) {
                 myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_Street1PageMessage);
             }            
-            /*if(string.isBlank(vendorQuery1.VPM_VendorType__c)){
-                myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_VendorTypeMessage);
-            }
-            if(string.isBlank(vendorQuery1.VPM_GlobalAuthorisationGroup__c)){
-                myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_GlobalAuthorisationGrpPageMessage);
-            }*/
+            if(string.isNotBlank(taxJuriCodeDefValue) && taxJuriCodeDefValue.length() > 15) {
+                myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, System.label.VPM_TaxJuriLengthMessage);  
+            } 
             if((!vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_U2K2)) && string.isNotBlank(industryOptionsDefValue) && industryOptionsDefValue.length() > 4){
                 myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_IndustryLengthError);
             }
@@ -2389,14 +1977,14 @@ public with sharing class VPM_SearchVendor1{
            VendorRequest__c obj = VendorRequest__c.getInstance('Countries');   
            system.debug('@@ LATAm Countries:' + obj);
            latam = obj.VPM_CountryName__c;
-           system.debug('Vendor country' + CountryName);
-           if(CountryName <> null) {
-                if(latam.contains(CountryName) && string.isBlank(vendorQuery1.VPM_TaxNumber1__c)){
+           system.debug('Vendor country' + countryName);
+           if(countryName <> null) {
+                if(latam.contains(countryName) && string.isBlank(vendorQuery1.VPM_TaxNumber1__c)){
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_TaxNumber1ErrorMessage);
                 }
             }
             //modified by vaishali Nagar for IAPR-605
-            if(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_CORDILLERA) && string.isBlank(taxJuriCodeDefValue)){
+            if(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_CORDILLERA) && countryName.contains(VPM_RecordTypeHelper.VENDOR_COUNTRY) && string.isBlank(taxJuriCodeDefValue)){
             
                 myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_TaxJuriCodeErrorMessage);
             
@@ -2483,75 +2071,6 @@ public with sharing class VPM_SearchVendor1{
         return myMsg;
     }
     
-    /******************************************************************** 
-    Created By   : Piyush Mathur
-    Created Date : 28th Sept 2016
-    Last Modify  : 5th Oct 2016
-    Description  : This method convert the boolean to string
-    Return Type  : void
-    ********************************************************************/   
-     /*public void booleanToStringMethod(boolean blocked, boolean deleted) { 
-         
-         System.debug('@@@@@@@ inside booleanToStringMethod ');
-         vendorBlockUnblockDelete = '';
-         if(blocked && deleted) {
-             vendorBlockUnblockDelete = VPM_RecordTypeHelper.BLOCKED + VPM_RecordTypeHelper.DELETED;
-         }else if(!blocked && deleted) {
-             vendorBlockUnblockDelete = VPM_RecordTypeHelper.DELETED;
-         }else if(blocked && !deleted) {
-             vendorBlockUnblockDelete = VPM_RecordTypeHelper.BLOCKED;
-         }
-         System.debug('@@@@@@@ End  booleanToStringMethod ' + vendorBlockUnblockDelete);
-     }*/
-         
-        /******************************************************************** 
-        Created By   : Epsita 
-        Created Date : 28th Sept 2016
-        Last Modify  : 5th Oct 2016
-        Description  : This remote action method is called on button click
-                       from detail page.
-        Return Type  : void
-        ********************************************************************/       
-      /*@RemoteAction
-      global static map<string,string> checkForBusinessReqUser() {
-          
-          boolean brUser = false;
-          String userRole = '';
-          // List<PermissionSetAssignment> lstcurrentUserPerSet= new  List<PermissionSetAssignment>();
-          List<PermissionSetAssignment> lstcurrentUserPerSet = [SELECT Id, PermissionSet.Name,PermissionSet.Label, AssigneeId
-                                                                FROM PermissionSetAssignment
-                                                                WHERE AssigneeId = :Userinfo.getUserId() order by PermissionSet.Label DESC];
-          //System.Debug('----list of permission sets assigned to logged in user------' + lstcurrentUserPerSet);
-          
-          // for (PermissionSetAssignment psa: lstcurrentUserPerSet) {
-          // system.debug('---------psa.PermissionSet.Label---------' + psa.PermissionSet.Label);
-          if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('FLS')) {
-              brUser = false;
-              userRole = 'FLS';
-              //return brUser;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('MDM')) {
-              brUser = false;
-              userRole = 'MDM';
-              // return brUser;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('Finance')) {
-              brUser = false;
-              userRole = 'FIN';
-              // return brUser;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('Procurement')) {
-              brUser = false;
-              userRole = 'PRO';
-              //return brUser;
-          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('Business Requestor')) {
-              brUser = true;
-              userRole = 'BUR';
-              // System.debug('----is user brUser----'+brUser);
-              //return brUser;
-          }
-          // }
-          map<string,string> returnResult = new map<string,string>{'brUser'=>brUser==true?'true':'false','userRole'=>userRole};
-              return returnResult;
-      }    
-    */
     
     /******************************************************************** 
     Created By   : Piyush Mathur
@@ -2560,24 +2079,22 @@ public with sharing class VPM_SearchVendor1{
     Description  : This method query commodity object and populate 
     Return Type  : boolean
     ********************************************************************/    
-    public void commodityLookupChanges() { 
-        
+    public void commodityLookupChanges() {         
         VPM_CommodityCode__c comm = [select id ,VPM_CSBVendor__c, name,VPM_CommodityCode__c, VPM_AuthorisationGroup__c, VPM_VendorType__c from VPM_CommodityCode__c where id = : vendorQuery1.VPM_Commodity__c];
         system.debug('@@comm' + comm);
-        if(string.isNotBlank(comm.VPM_CommodityCode__c) && (comm.VPM_CommodityCode__c.startsWith('0')) )
+        if(string.isNotBlank(comm.VPM_CommodityCode__c) && (comm.VPM_CommodityCode__c.startsWith('0'))) {
             isRequiredSpend = false;                 
-        else 
-            isRequiredSpend =true;   
-        
+        }else { 
+            isRequiredSpend =true;
+        }        
         if(requestType.equals(VPM_RecordTypeHelper.CREATE) || requestType.equals(VPM_RecordTypeHelper.EXTEND)) {
-            if(string.isNotBlank(comm.VPM_CommodityCode__c) && (comm.VPM_CommodityCode__c.startsWith('0')) && string.isNotBlank(vendorQuery1.VPM_GlobalAuthorisationGroup__c) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.contains('MBS--Other')))  
+            if(string.isNotBlank(comm.VPM_CommodityCode__c) && (comm.VPM_CommodityCode__c.startsWith('0')) && string.isNotBlank(vendorQuery1.VPM_GlobalAuthorisationGroup__c) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.contains('MBS--Other'))) {
                 isReqOrderingEmail = false;
-            else
+            }else {
                 isReqOrderingEmail =true;     
-        }
-        
-        commodityCBSFlag = comm.VPM_CSBVendor__c;
-        
+            }
+        }        
+        commodityCBSFlag = comm.VPM_CSBVendor__c;        
         vendorQuery1.VPM_VendorType__c = comm.VPM_VendorType__c; 
         vendorQuery1.VPM_GlobalAuthorisationGroup__c = comm.VPM_AuthorisationGroup__c;
         
@@ -2597,10 +2114,8 @@ public with sharing class VPM_SearchVendor1{
             }
                  vendorTradepartnerType =  vendorQuery1.VPM_TradePartnerType__c ;   
             system.debug('@@vendorTradepartnerType' +vendorTradepartnerType);
-        }
-        
-        vendorQuery1.VPM_TradePartnerType__c =vendorTradepartnerType;   
-        
+        }        
+        vendorQuery1.VPM_TradePartnerType__c =vendorTradepartnerType;
         commodityAuthorizationGrp = vendorQuery1.VPM_GlobalAuthorisationGroup__c;
         commodityVendorType = vendorQuery1.VPM_VendorType__c;
         commodityTradePartnerType = vendorQuery1.VPM_TradePartnerType__c;
@@ -2652,7 +2167,7 @@ public with sharing class VPM_SearchVendor1{
                    on Launch screen.
     Return Type  : boolean
     ********************************************************************/
-    public void customMedataCallOrderCurrency() {
+    /*public void customMedataCallOrderCurrency() {
         system.debug('@@customMedataCallOrderCurrency is called');
         List<VPM_OrderCurrencyDefaultValues__mdt> orderCurrencyMdtList = [select id, VPM_OrderCurrency__c, VPM_VendorCountry__c from VPM_OrderCurrencyDefaultValues__mdt where VPM_VendorCountry__c =: CountryName];
         if(orderCurrencyMdtList <> null && orderCurrencyMdtList.size() > 0) {
@@ -2662,7 +2177,7 @@ public with sharing class VPM_SearchVendor1{
                 VendorQuery1.VPM_OrderCurrency__c = orderCurrencyMdtList[0].VPM_OrderCurrency__c;
         }
         system.debug('@@orderCurrencyMdtList ' + orderCurrencyMdtList);
-    }
+    } */
     
     /******************************************************************** 
     Created By   : Piyush Mathur
@@ -2672,7 +2187,7 @@ public with sharing class VPM_SearchVendor1{
                    on Launch screen.
     Return Type  : boolean
     ********************************************************************/
-    public void defaultPaymentTerm() {
+    /*public void defaultPaymentTerm() {
         if(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_FUSION)) {
             if(string.isNotBlank(vendorQuery1.VPM_IsVendorSME__c) && vendorQuery1.VPM_IsVendorSME__c.equals(VPM_RecordTypeHelper.YES)) {
                 vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_30DK; 
@@ -2698,7 +2213,7 @@ public with sharing class VPM_SearchVendor1{
                 termsOFPayment = VPM_RecordTypeHelper.PAYMENT_TERM_P090;
             }
         }
-    }
+    }*/
     
     /********************************************************************
     */
@@ -2741,7 +2256,7 @@ public with sharing class VPM_SearchVendor1{
         standardNumber= VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.STANDARD_NUMBER,vendorStandardNumber);
         internationalVersion =VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.INT_VERSION,vendorIntVersion);  
         tradePartnerType = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.TRADE_PARTNER_TYPE,vendorTradePartnerType);  
-        // modified by Piyush newly added - 10/7/2016 
+        // modified by Piyush newly added - 10/7/2016   
         socialInsuCodeOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.SOCIAL_IN_CODE_SOC,socialInsuCodeDefValue);
         orderOPtimRestOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.ORDER_OPTIM_REST,orderOPtimRestDefValue);        
         intCalcIndicatorOptions= VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c, VPM_PicklistHelper.INTER_CALC_INDI,intCalcIndicatorDefValues);
@@ -2749,7 +2264,7 @@ public with sharing class VPM_SearchVendor1{
         ssIStatusOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.SSI_Status,ssIStatusDefaultValue);
         regStGrpOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.REG_ST_GRP,regStGrpDefValue);
         recipentTypeOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.RECIPENT_TYPE,recipentTypeDefValue);
-        taxJuriCodeOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.TAX_JURIDICATION_CODE,taxJuriCodeDefValue);
+        //taxJuriCodeOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.TAX_JURIDICATION_CODE,taxJuriCodeDefValue);
         //standardCommOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.STAND_COMM,standardCommDefValue);
         industryOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.INDUSTRY,industryOptionsDefValue);
         indicatorWithHoldingOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.IND_WITHHOLD_TAX,indicatorWithHoldingDefValue);

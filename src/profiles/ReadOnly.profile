@@ -98,6 +98,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>VPM_maintainGlobalVendorCalloutMock</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>VPM_regionalMaintainVendor</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1231,6 +1235,11 @@
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_ExternalMFG__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FLSInCountryReqVen__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -2543,6 +2552,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_VendorCached__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_VendorClassification__c</field>
         <readable>false</readable>
@@ -2991,10 +3005,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_GoldenData1</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>VPM_PageLayoutRequirement</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>

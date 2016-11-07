@@ -2,99 +2,51 @@
 <apex:stylesheet value="{!URLFOR($Resource.vpmadvancedformcss)}" />
 <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
 <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.4.js')}"/>
- <chatter:feedWithFollowers entityid="{!VPM_PurchasingRequests__c.Id}" id="ChatterBlock"  />
- <script type = "text/javascript">
-  $(document).ready(function(){
+<chatter:feedWithFollowers entityid="{!VPM_PurchasingRequests__c.Id}" id="ChatterBlock"  />
+<apex:includeScript value="{!$Resource.VPM_AdvancedFormScript}"/>
+<script>
+    $(document).ready(function(){
         var flag;   
         var criteria1 = "{!VPM_PurchasingRequests__c.VPM_Status__c}"; 
         var criteriaId = "{!VPM_PurchasingRequests__c.Id}";
-        var flsInCountry = "{!VPM_PurchasingRequests__c.VPM_FLSInCountryReqVendor__c}";
+        var flsInCountry = "{!VPM_PurchasingRequests__c.VPM_FLSInCountryReqVen__c}";
         var Islock = "{!VPM_PurchasingRequests__c.VPM_IsLock__c}";
         var pageId= "{!VPM_PurchasingRequests__c.Id}"
-         
-        
         makeFormReadOnly();
-        
-         Visualforce.remoting.Manager.invokeAction('VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser',
+        Visualforce.remoting.Manager.invokeAction('VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser',
             function(results, event){
-                debugger;
                 if(results.userRole=="FLS" && criteria1=="FLS Review") {
-                     debugger;
-                    removeStyleSheets();
                     $("#detailPage").show();
                     alert('{!$Label.VPM_ApprovReject}');
                  }
-                 else if(flsInCountry=="true" && results.brUser=="true" && criteria1=="Draft Request")
-                 {
-                     debugger;
-                       if(document.URL.indexOf("back=true")==-1)  
-                        {
-                            debugger;
-                         flag = confirm('{!$Label.VPM_BypassFrontlineTeam}');
-                    
-                         if(flag){
-                             $("#advForm").show();
-                             domManipulations();
-                             }
-                        else{
-                            debugger;
-                            removeStyleSheets();
-                            $("#detailPage2").show();
-                            }
-                        }
-                        else
-                        {
-                            debugger;
+                else if(flsInCountry=="true" && results.brUser=="true" && criteria1=="Draft Request"){
+                   if(document.URL.indexOf("back=true")==-1){
+                     flag = confirm('{!$Label.VPM_BypassFrontlineTeam}');
+                     if(flag){
                          $("#advForm").show();
-                         domManipulations();
+                         }
+                    else{
+                        $("#detailPage2").show();
                         }
+                    }
+                    else{
+                     $("#advForm").show();
+                    }
                 }
-                else if (!Islock)
-                {
+                else if (!Islock){
                     alert('Record is in Approval...');
                 }
                     else{ 
-                    domManipulations();
                     $("#advForm").show();                
-                } 
-           });
-       
+                }
+            });  
     });
-    function makeFormReadOnly(){
-        var customStatus= "{!VPM_PurchasingRequests__c.VPM_Status__c}"; 
-         if ((customStatus.indexOf('Rejected') >= 0 ) || (customStatus.indexOf('Aborted') >= 0 ) || (customStatus.indexOf('Request Completed') >= 0 )) 
-        { 
-            $("input:not(:radio):not(:submit):not(:button),select,textarea").prop("disabled" ,"disabled");
-            $('input[value="Save and Return to Menu"],input[value="Save & Exit"]').css('display','none');
-        }  
-    }
-    function removeStyleSheets(){
-            $('link[href*="vpmadvancedformcss"]').remove();
-            $('link[href*="vpmstyles"]').remove();
-    }
-    function domManipulations(){
-        var alignErrorMsg = $('span[id*="VPM_UnBlockUndeleteMessage"]');
-        if($(alignErrorMsg) && $(alignErrorMsg)!=[]){
-                $(alignErrorMsg).closest('tr').css("display","table-row").append('<br>');
-                $(alignErrorMsg).closest('td').append('<br>');
-        }
-    }
-    function openAttachment(page){
-    var self = this;
-        self.window.open('/apex/VPM_AttachmentSectionPopUp','Table','toolbar=yes, scrollbars=no, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70');
-        return false;
-    }
-    function showAttachments(id){
-        var self = this;
-        self.window.open('/apex/VPM_AttachFiles?id='+id,'Table','toolbar=yes, scrollbars=no, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70'); 
-    }
-    </script>
- 
+</script>
  <div id="advForm" style="display: none;">
    <apex:form >
 
       <apex:pageBlock title="{!pageBlockTitle}" id="Block1">
-        <apex:pagemessages id="pageMessages"/><br/>
+        <apex:pagemessages id="pageMessages"/><br/>  
         <div style="text-align:center">
          
           <apex:commandButton action="{!backBtnAction}" value="{!$Label.VPM_Back}" rendered="{!renderBackBtn}" reRender="Block1" status="actStatusId" immediate="true" oncomplete="makeFormReadOnly()"/>
@@ -453,14 +405,14 @@
             <!--<apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VATRegistrationNumber3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VATRegistrationNumber3__c}"/>-->
             <!--modified for IAPR-605 -->
             <!-- Tax Juri Code - Fusion Free Text and For Others Picklist -->  
-            <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" value="{!taxJuriCodeDefValue}" rendered="{!isFusion}"/>
-            <apex:selectList value="{!taxJuriCodeDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" size="1" rendered="{!Not(isFusion)}">
+            <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" value="{!taxJuriCodeDefValue}"/>
+            <!--apex:selectList value="{!taxJuriCodeDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" size="1" rendered="{!Not(isFusion)}">
                   <apex:selectOptions value="{!taxJuriCodeOptions}"/>
-                </apex:selectList>
+            </apex:selectList-->
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Customer__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Customer__c}"/>
           </apex:pageBlocksection>
           <apex:pageBlocksection title="{!$Label.VPM_Vendor_Contact_Details}"  rendered="{!generalVendorDetails}">
-            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Telephone__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Telephone__c}"/>            
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Telephone__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VendorPhone__c}"/>            
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExtensionPhone__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExtensionPhone__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Fax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Fax__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_FaxExtension__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_FaxExtension__c}"/>
@@ -639,7 +591,7 @@
           <apex:pageBlockSection columns="2" title="{!$Label.VPM_Withholding_Tax}" rendered="{!regionalSpecificScreenSirius}">
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCountryKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCountryKey__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCode__c}" />
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorForWithholdingTaxType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorForWithholdingTaxType__c}" />
+              <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorForWithholdingTaxType__c.Label}" value="{!indicatorWithHoldingDefValue}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Liable__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Liable__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionTo__c}"/>
@@ -652,12 +604,12 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Plant__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Plant__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ActualQMSystem__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ActualQMSystem__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_QMSystemTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_QMSystemTo__c}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_InstructionKeyDataExchange__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_InstructionKeyDataExchange__c}" />
+              <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_InstructionKeyDataExchange__c.Label}" value="{!instKeyDataExchangeDefValue}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ServiceAgent__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ServiceAgent__c}" /> 
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AddressForm__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AddressForm__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DepartmentNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DepartmentNumber__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PartnerNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PartnerNumber__c}"/>
-              
+               
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DataLine__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DataLine__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TeleBox__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TeleBox__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SalesPurchTax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SalesPurchTax__c}"/>
@@ -1071,134 +1023,64 @@
           <!---- PI Vendor Creation Start -------->
            <!-- Sectionn 1--  --> 
           <apex:pageBlockSection title="{!$Label.VPM_SupplierFinancialStabilityCheck}" collapsible="false" columns="2" id="thePageBlock11" rendered="{!piVendorCreation}" >
-              <apex:pageBlockSectionItem >
-                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierFinancialStabilityCheck__c.Label}" for="stage1"/>              
-                  <apex:outputPanel >
-                      <apex:actionRegion >                  
-                          <apex:inputField value="{!vendorQuery1.VPM_SupplierFinancialStabilityCheck__c }" id="stage1">
-                              <apex:actionSupport event="onchange" action="{!PIBooleanFlags}" reRender="thePageBlock11,Block1"/>                     
-                          </apex:inputField>                    
-                      </apex:actionRegion>
-                  </apex:outputPanel>             
-              </apex:pageBlockSectionItem>    
-              <apex:outputText label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ReasonNoFinancialCheck__c.Label}"  rendered="{!ReasonNoFinancialCheckOut}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ReasonNoFinancialCheck__c.Label}" value="{!vendorQuery1.VPM_ReasonNoFinancialCheck__c}" rendered="{!ReasonNoFinancialCheckInp}" required="true"/>
-              <apex:outputText label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsTypeCheck__c.Label}" value="{!vendorQuery1.VPM_DetailsTypeCheck__c}" rendered="{!DetailofTypeCheckOut}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsTypeCheck__c.Label}" value="{!vendorQuery1.VPM_DetailsTypeCheck__c}" rendered="{!DetailofTypeCheckIn}" required="true"/>    
-             </apex:pageBlockSection> 
-            <!--apex:pageBlockSection columns="2" rendered="{!piVendorCreation}" >                     
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsTypeCheck__c.Label}" value="{!vendorQuery1.VPM_DetailsTypeCheck__c}" required="true" />
-              </apex:pageBlockSection-->   
-            
+               <apex:inputField value="{!vendorQuery1.VPM_SupplierFinancialStabilityCheck__c }" label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierFinancialStabilityCheck__c.Label}" />                      
+				<apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ReasonNoFinancialCheck__c.Label}" value="{!vendorQuery1.VPM_ReasonNoFinancialCheck__c}"/>
+				<apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsTypeCheck__c.Label}" value="{!vendorQuery1.VPM_DetailsTypeCheck__c}"/>    
+		 </apex:pageBlockSection> 
              <!-- Sectionn 2--  --> 
-             <apex:pageBlockSection title="{!$Label.VPM_SupplierAchillesRegistration}" collapsible="false" id="thePageBlock12" rendered="{!piVendorCreation}" >
-                 <apex:pageBlockSectionItem >
-                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierAchillesRegistration__c.Label}" for="stage1"/>     
-                  <apex:outputPanel >
-                      <apex:actionRegion >                  
-                          <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierAchillesRegistration__c.Label}" value="{!vendorQuery1.VPM_SupplierAchillesRegistration__c}" >              
-                              <apex:actionSupport event="onchange" action="{!PIBooleanFlags}" reRender="thePageBlock12,Block1"/>                     
-                          </apex:inputField>                    
-                      </apex:actionRegion>
-                  </apex:outputPanel>             
-              </apex:pageBlockSectionItem>    
-              <apex:outputText label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_AchillesExceptionDetails__c.Label}"   rendered="{!AchillesExceptionDetailsOut}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_AchillesExceptionDetails__c.Label}" value="{!vendorQuery1.VPM_AchillesExceptionDetails__c}"   rendered="{!AchillesExceptionDetailsInp}" required="true"/>
-              <apex:outputText label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_AchillesRegistrationCode__c.Label}" value="{!vendorQuery1.VPM_AchillesRegistrationCode__c}"  rendered="{!ArchillesRegistrationCodeOut}"/>
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_AchillesRegistrationCode__c.Label}" value="{!vendorQuery1.VPM_AchillesRegistrationCode__c}"   rendered="{!ArchillesRegistrationCodeIn}" required="true"/>           
+		 <apex:pageBlockSection title="{!$Label.VPM_SupplierAchillesRegistration}" collapsible="false" id="thePageBlock12" rendered="{!piVendorCreation}" >                                
+			<apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierAchillesRegistration__c.Label}" value="{!vendorQuery1.VPM_SupplierAchillesRegistration__c}" />              
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_AchillesExceptionDetails__c.Label}" value="{!vendorQuery1.VPM_AchillesExceptionDetails__c}"/>
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_AchillesRegistrationCode__c.Label}" value="{!vendorQuery1.VPM_AchillesRegistrationCode__c}"/>           
           </apex:pageBlockSection>
 
            <!-- Sectionn 3--  --> 
           <apex:pageBlockSection title="{!$Label.VPM_SupplierQualityStatus}" collapsible="false" columns="2" rendered="{!piVendorCreation}"  id="thePageBlock1">
              <apex:pageBlockSectionItem >
-              <apex:outputLabel value="{!$Label.VPM_SuppPosiAssQualityTitle}" for="stage1"/>
-              
-                <apex:outputPanel >
-                   <apex:actionRegion >                  
-                     <apex:inputField value="{!vendorQuery1.VPM_SupplierPositiveAssuranceQuality__c }" id="stage1">
-                     <apex:actionSupport event="onchange" action="{!PIBooleanFlags}" reRender="thePageBlock1,Block1" />                     
-                   </apex:inputField>                    
-                 </apex:actionRegion>
-               </apex:outputPanel>             
+              <apex:outputLabel value="{!$Label.VPM_SuppPosiAssQualityTitle}" for="stage1"/>              
+                     <apex:inputField value="{!vendorQuery1.VPM_SupplierPositiveAssuranceQuality__c }" id="stage1"/>
               </apex:pageBlockSectionItem>
-              
-              <apex:outputText label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupPosAssExcepDetailsQual__c.Label}"  rendered="{!suppPosiAssQualityOut}"  id="stage2" />
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupPosAssExcepDetailsQual__c.Label}" value="{!vendorQuery1.VPM_SupPosAssExcepDetailsQual__c}"  rendered="{!suppPosiAssQualityInp}" required="true" id="stage3" />
-               </apex:pageBlockSection> 
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupPosAssExcepDetailsQual__c.Label}" value="{!vendorQuery1.VPM_SupPosAssExcepDetailsQual__c}"/>
+		   </apex:pageBlockSection> 
           
-              <apex:pageBlockSection collapsible="false" columns="2" rendered="{!piVendorCreation}"  id="thePageBlock2">
-              
+              <apex:pageBlockSection collapsible="false" columns="2" rendered="{!piVendorCreation}"  id="thePageBlock2">              
                   <apex:pageBlockSectionItem >   
                       <apex:outputLabel value="{!$Label.VPM_SupPosAssExcepDetailsQual}" for="stage1"/>
-                      <apex:outputPanel >
-                          <apex:actionRegion >                  
-                              <apex:inputField label="{!$Label.VPM_SupPosAssExcepDetailsQual}" value="{!vendorQuery1.VPM_SupplierAssessmentQuestionnaireQual__c}" >
-                                 <apex:actionSupport event="onchange" action="{!PIBooleanFlags}"  reRender="thePageBlock2,Block1"/>                     
-                              </apex:inputField>                       
-                          </apex:actionRegion>
-                      </apex:outputPanel>             
-                  </apex:pageBlockSectionItem>   
-                  <apex:outputText label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsOfPlannedActivitiesQual__c.Label}"  rendered="{!suppAssQuestQualityOut}"  />
-                  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsOfPlannedActivitiesQual__c.Label}" value="{!vendorQuery1.VPM_DetailsOfPlannedActivitiesQual__c}" rendered="{!suppAssQuestQualityInp}" required="true"  />
+                      <apex:inputField label="{!$Label.VPM_SupPosAssExcepDetailsQual}" value="{!vendorQuery1.VPM_SupplierAssessmentQuestionnaireQual__c}" />
+                  </apex:pageBlockSectionItem>
+                  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsOfPlannedActivitiesQual__c.Label}" value="{!vendorQuery1.VPM_DetailsOfPlannedActivitiesQual__c}" />
             </apex:pageBlockSection> 
           <apex:pageBlockSection collapsible="false" columns="2" rendered="{!piVendorCreation}"  id="thePageBlock3">
               <apex:pageBlockSectionItem >
                   <apex:outputLabel value="{!$Label.VPM_SupplerAuditTitle}" for="stage1"/>
-                      <apex:outputPanel >
-                          <apex:actionRegion >                  
-                              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierAuditQuality__c.Label}" value="{!vendorQuery1.VPM_SupplierAuditQuality__c}" >
-                                 <apex:actionSupport event="onchange" action="{!PIBooleanFlags}"  reRender="thePageBlock3,Block1"/>                     
-                              </apex:inputField>                       
-                          </apex:actionRegion>
-                      </apex:outputPanel>             
-                  </apex:pageBlockSectionItem>   
-              <apex:outputText label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupAudDetailsOfPlannedActivities__c.Label}"  rendered="{!suppAuditQualityOut}"  />
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupAudDetailsOfPlannedActivities__c.Label}" value="{!vendorQuery1.VPM_SupAudDetailsOfPlannedActivities__c}" rendered="{!suppAuditQualityInp}" required="true"  />
+                    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierAuditQuality__c.Label}" value="{!vendorQuery1.VPM_SupplierAuditQuality__c}" />
+                  </apex:pageBlockSectionItem>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupAudDetailsOfPlannedActivities__c.Label}" value="{!vendorQuery1.VPM_SupAudDetailsOfPlannedActivities__c}" />
          </apex:pageBlockSection> 
           
            <!-- Sectionn 4-- --> 
           <apex:pageBlockSection title="{!$Label.VPM_VendorResposnibleSourcing}" collapsible="false" columns="2" rendered="{!piVendorCreation}"  id="thePageBlock4">
               <apex:pageBlockSectionItem >
                   <apex:outputLabel value="{!$Label.VPM_SuppPosiAssQualityTitle}" for="stage1"/>
-                  <apex:outputPanel >
-                      <apex:actionRegion >                  
-                          <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierPositiveAssuranceSourcing__c.Label}" value="{!vendorQuery1.VPM_SupplierPositiveAssuranceSourcing__c}" >
-                              <apex:actionSupport event="onchange" action="{!PIBooleanFlags}"  reRender="thePageBlock4,Block1"/>                     
-                          </apex:inputField>                       
-                      </apex:actionRegion>
-                  </apex:outputPanel>             
+					  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierPositiveAssuranceSourcing__c.Label}" value="{!vendorQuery1.VPM_SupplierPositiveAssuranceSourcing__c}" />        
               </apex:pageBlockSectionItem> 
-              <apex:outputText label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupPosAssExcepDetailsSour__c.Label}"  rendered="{!SupplierPosAssurSourcingOut}"  />
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupPosAssExcepDetailsSour__c.Label}" value="{!vendorQuery1.VPM_SupPosAssExcepDetailsSour__c}" rendered="{!SupplierPosAssurSourcingInp}" required="true"  />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupPosAssExcepDetailsSour__c.Label}" value="{!vendorQuery1.VPM_SupPosAssExcepDetailsSour__c}"  />
           </apex:pageBlockSection>  
               
           <apex:pageBlockSection collapsible="false" columns="2" rendered="{!piVendorCreation}"  id="thePageBlock5"  >
               <apex:pageBlockSectionItem >  
                   <apex:outputLabel value="{!$Label.VPM_SupPosAssExcepDetailsQual}" for="stage1"/>
-                  <apex:outputPanel >
-                      <apex:actionRegion >                  
-                         <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierAssessmentQuestionnaireSour__c.Label}" value="{!vendorQuery1.VPM_SupplierAssessmentQuestionnaireSour__c}" >
-                              <apex:actionSupport event="onchange" action="{!PIBooleanFlags}"  reRender="thePageBlock5,Block1"/>                     
-                          </apex:inputField>                       
-                      </apex:actionRegion>
-                  </apex:outputPanel>             
+                  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierAssessmentQuestionnaireSour__c.Label}" value="{!vendorQuery1.VPM_SupplierAssessmentQuestionnaireSour__c}" />
               </apex:pageBlockSectionItem> 
-              <apex:outputText label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsOfPlannedActivitiesSour__c.Label}"   rendered="{!SupplierAssessmentQuestionnaireSourOut}"  />
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsOfPlannedActivitiesSour__c.Label}"  value="{!vendorQuery1.VPM_DetailsOfPlannedActivitiesSour__c}" rendered="{!SupplierAssessmentQuestionnaireSourInp}" required="true"  />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsOfPlannedActivitiesSour__c.Label}"  value="{!vendorQuery1.VPM_DetailsOfPlannedActivitiesSour__c}" />
           </apex:pageBlockSection>  
-              <apex:pageBlockSection collapsible="false" columns="2" rendered="{!piVendorCreation}"  id="thePageBlock6">
+		  
+		  <apex:pageBlockSection collapsible="false" columns="2" rendered="{!piVendorCreation}"  id="thePageBlock6">
                 <apex:pageBlockSectionItem >  
-                    <apex:outputLabel value="{!$Label.VPM_SupplerAuditTitle}" for="stage1"/>
-                  <apex:outputPanel >
-                      <apex:actionRegion >                  
-                         <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierAuditSourcing__c.Label}" value="{!vendorQuery1.VPM_SupplierAuditSourcing__c}" >
-                              <apex:actionSupport event="onchange" action="{!PIBooleanFlags}"  reRender="thePageBlock6,Block1"/>                     
-                          </apex:inputField>                       
-                      </apex:actionRegion>
-                  </apex:outputPanel>             
-              </apex:pageBlockSectionItem> 
-              <apex:outputText label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsOfPlannedActivitiesSour2__c.Label}"  rendered="{!SupplierAuditSourcingOut}"  />
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsOfPlannedActivitiesSour2__c.Label}" value="{!vendorQuery1.VPM_DetailsOfPlannedActivitiesSour2__c}" rendered="{!SupplierAuditSourcingInp}" required="true"  />  
+                    <apex:outputLabel value="{!$Label.VPM_SupplerAuditTitle}" for="stage1"/>           
+                         <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SupplierAuditSourcing__c.Label}" value="{!vendorQuery1.VPM_SupplierAuditSourcing__c}" />
+				</apex:pageBlockSectionItem> 
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_DetailsOfPlannedActivitiesSour2__c.Label}" value="{!vendorQuery1.VPM_DetailsOfPlannedActivitiesSour2__c}"/>  
           </apex:pageBlockSection>   
          <!--/apex:pageBlock--> 
           
@@ -1217,7 +1099,7 @@
           <apex:commandButton action="{!GoldenDataSave}"  value="{!$Label.VPM_Next}"  reRender="Block1"  rendered="{!goldendata2Screen}" status="actStatusId"/>      
           <apex:commandButton action="{!GoldenDataSave2}"  value="{!$Label.VPM_Next}"  reRender="Block1"  rendered="{!goldendata2Screen2}" status="actStatusId"/>          
           </div>
-      </apex:pageBlock>    
+      </apex:pageBlock>     
    
       <script>
       function changeValue(input, textid) {
@@ -1237,10 +1119,8 @@
     </div>  
  
    <apex:outputLink onclick="showAttachments('{!VPM_PurchasingRequests__c.Id}'); return false;"
-         rendered="{!VPM_PurchasingRequests__c.Id != null && VPM_PurchasingRequests__c.Id != '' && 
-                   VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}">Upload Supporting Documents</apex:outputLink>
+         rendered="{!VPM_PurchasingRequests__c.Id != null && VPM_PurchasingRequests__c.Id != '' && VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}">Upload Supporting Documents</apex:outputLink>
        <br/>
        <apex:outputLink onclick="openAttachment('{!$Page.VPM_AttachmentSectionPopUp}');return false;"
                          rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}">Help for Uploading Documents</apex:outputLink>  
- 
 </apex:page>

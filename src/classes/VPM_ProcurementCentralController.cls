@@ -84,6 +84,7 @@ with sharing public class VPM_ProcurementCentralController{
                       com.VPM_Approver1__c=null;         
                    }
                }catch(Exception e){
+                   system.debug(e.getMessage() +'  $$  ' +e.getLineNumber());
                         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, 'YOUR MESSAGE HERE'));
                }  
          }

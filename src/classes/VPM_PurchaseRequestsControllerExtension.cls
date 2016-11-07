@@ -19,6 +19,7 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 3.0 -    Ajay
 4.0 -    Samrin      27 Oct 2016     IAVMD-2243                Warning Message on 'Submit' button 
 5.0 -    Samrin      3 Nov 2016      IAVWD-2283                Rework Button Visibility - Bank Data User
+6.0 -    Samrin      4 Nov 2016      IAVWD-2289                Update any Existing 'FLS In Country' Components
 ****************************************************************************/
 
 global with sharing class  VPM_PurchaseRequestsControllerExtension {
@@ -170,7 +171,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           vendorDetailList =[select OwnerId, VPM_IsVendorSME__c,VPM_ECC__c, VPM_PaymentTerms__c,
           VPM_PaymentTermsIfNoneSelected__c,VPM_Country__c,VPM_CompanyCode__r.VPM_CompanyCode__c, VPM_CompanyCode__r.ECC__c, 
           VPM_ApprovalWorker__c, VPM_ApprovalWorkerID__c, VPM_ExceptionType__c, VPM_InternationalVersion__c, 
-          VPM_Status__c, VPM_CountryRequestingVendor__c,VPM_FLSInCountryReqVendor__c from VPM_PurchasingRequests__c where id =: recId];
+          VPM_Status__c, VPM_CountryRequestingVendor__c,VPM_FLSInCountryReqVen__c from VPM_PurchasingRequests__c where id =: recId];
           System.debug('%%%%vendorDetailList ===='+vendorDetailList );
           
           list<QueueSobject> QueueSobjectList =[Select Queue.Name From QueueSobject where QueueId =: vendorDetailList[0].OwnerId];
@@ -193,7 +194,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
        System.debug('@@@@@@@@#######vendorDetailList[0].VPM_PaymentTerms__c-'+ vendorDetailList[0].VPM_PaymentTerms__c);
        //System.debug('@@@@@@@@#######vendorDefaultPaymentTerm-'+vendorDefaultPaymentTerm);
     /* Start Samrin Shaikh : Changes : 27 -Oct : IAVMD-2243 :  Warning Message on 'Submit' button */
-       if(VendorDetailList[0].VPM_FLSInCountryReqVendor__c && VendorDetailList[0].VPM_Status__c.contains(STR_CONST_DRAFT) )
+       if(VendorDetailList[0].VPM_FLSInCountryReqVen__c && VendorDetailList[0].VPM_Status__c.contains(STR_CONST_DRAFT) )
        {
          if(VendorDetailList[0].VPM_CountryRequestingVendor__c.contains(STR_CONST_UK))
          {
@@ -947,12 +948,12 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
      //callJavaScriptAlert='<script> redirectToListView(); </script>';
       System.debug('SubmitRequestAction');
          try{
-               list<VPM_PurchasingRequests__c> VendorDetailList =[SELECT  VPM_Status__c,VPM_AdvancedFormSubmitted__c , VPM_FLSInCountryReqVendor__c, VPM_BusinessRequestorSubmitted__c, VPM_Rework__c, OwnerId
+               list<VPM_PurchasingRequests__c> VendorDetailList =[SELECT  VPM_Status__c,VPM_AdvancedFormSubmitted__c , VPM_FLSInCountryReqVen__c, VPM_BusinessRequestorSubmitted__c, VPM_Rework__c, OwnerId
                                                                  FROM VPM_PurchasingRequests__c WHERE id= : recId LIMIT 1];
                   
                   System.debug('@@@@@@ VendorDetailList '+VendorDetailList);
                   // Ajay : Open Advanceform for Non FLS in country
-                   if(!VendorDetailList[0].VPM_FLSInCountryReqVendor__c && (VendorDetailList[0].VPM_AdvancedFormSubmitted__c == STR_CONST_NO || VendorDetailList[0].VPM_AdvancedFormSubmitted__c ==null) )
+                   if(!VendorDetailList[0].VPM_FLSInCountryReqVen__c && (VendorDetailList[0].VPM_AdvancedFormSubmitted__c == STR_CONST_NO || VendorDetailList[0].VPM_AdvancedFormSubmitted__c ==null) )
                   { 
                         callJavaScriptAlert='<script> openAdvanceform(); </script>';
                   } 

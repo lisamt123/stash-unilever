@@ -229,7 +229,7 @@
         <description>VPM - This field is used to store the value of Accounting Clerk.</description>
         <externalId>false</externalId>
         <label>Accounting Clerk</label>
-        <length>4</length>
+        <length>2</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3797,7 +3797,7 @@
         <description>VPM - This field is used to store the value of Chk Cashing.</description>
         <externalId>false</externalId>
         <label>Chk Cashing</label>
-        <length>255</length>
+        <length>3</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -7729,6 +7729,17 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_FLSInCountryReqVen__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - This field is used to store the value whether the country is a FLS or Non FLS country.</description>
+        <externalId>false</externalId>
+        <label>FLS In Country Required</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_FLSInCountryReqVendor__c</fullName>
         <description>VPM - This field is used to store the value whether the country is a FLS or Non FLS country.</description>
         <externalId>false</externalId>
@@ -7740,7 +7751,7 @@ IF(ISPICKVAL(VPM_CountryRequestingVendor__c,&quot;United Kingdom&quot;),TRUE,
 IF(ISPICKVAL(VPM_CountryRequestingVendor__c,&quot;Philippines&quot;),TRUE, 
 FALSE))))))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>FLSInCountryReqVendor</label>
+        <label>DEL FLSInCountryReqVendor</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -11983,15 +11994,7 @@ VPM_Approver10__c = $User.Id))
         <label>PROACT Control Proof</label>
         <picklist>
             <picklistValues>
-                <fullName>1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>3</fullName>
+                <fullName>SAPD</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -22930,6 +22933,17 @@ VPM_Approver10__c = $User.Id))
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_VendorCached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM : This flag is use to find out vendor cached or not.</description>
+        <externalId>false</externalId>
+        <label>VPM_VendorCached</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_VendorClassification__c</fullName>
         <description>VPM -  stores the Vendor Classification value for the vendor.</description>
         <externalId>false</externalId>
@@ -24098,6 +24112,31 @@ VPM_Approver10__c = $User.Id))
         <language>en_US</language>
         <sharedTo>
             <group>VPM_MDMOps</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>VPM_CordilleraBankDataValidation_VPM_PurchasingRequests</fullName>
+        <columns>NAME</columns>
+        <columns>VPM_VendorName1__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>VPM_Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>contains</operation>
+            <value>Cordillera Banking Data Validation</value>
+        </filters>
+        <filters>
+            <field>VPM_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Aborted</value>
+        </filters>
+        <label>Cordillera Banking Data Validation</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>VPM_BankValidationCordillera</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -28033,6 +28072,31 @@ VPM_Approver10__c = $User.Id))
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>VPM_FusionBankingDataValidation_VPM_PurchasingRequests</fullName>
+        <columns>NAME</columns>
+        <columns>VPM_VendorName1__c</columns>
+        <columns>VPM_Status__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>Fusion Banking Data Validation</value>
+        </filters>
+        <filters>
+            <field>VPM_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Aborted</value>
+        </filters>
+        <label>Fusion Banking Data Validation</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>VPM_BankValidationFusion</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>VPM_GermanyVPMPurchasingRequestsEcypt</fullName>
         <columns>NAME</columns>
         <columns>VPM_VendorName1__c</columns>
@@ -29614,6 +29678,31 @@ VPM_Approver10__c = $User.Id))
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>VPM_SiriusBankingDataValidation_VPM_PurchasingRequests</fullName>
+        <columns>NAME</columns>
+        <columns>VPM_VendorName1__c</columns>
+        <columns>VPM_Status__c</columns>
+        <columns>VPM_VendorBlockUnblockDelete__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>Sirius Banking Data Validation</value>
+        </filters>
+        <filters>
+            <field>VPM_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Aborted</value>
+        </filters>
+        <label>Sirius Banking Data Validation</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>VPM_BankValidationSirius</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>VPM_SlovakiaVPMPurchasingRequestsEcypt</fullName>
         <columns>NAME</columns>
         <columns>VPM_VendorName1__c</columns>
@@ -30045,6 +30134,31 @@ VPM_Approver10__c = $User.Id))
         <language>en_US</language>
         <sharedTo>
             <group>VPM_FinanceTurkey</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>VPM_U2K2BankingDataValidation_VPM_PurchasingRequests</fullName>
+        <columns>NAME</columns>
+        <columns>VPM_VendorName1__c</columns>
+        <columns>VPM_Status__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>U2K2 Banking Data Validation</value>
+        </filters>
+        <filters>
+            <field>VPM_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Aborted</value>
+        </filters>
+        <label>U2K2 Banking Data Validation</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>VPM_BankValidationU2K2</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -38423,15 +38537,7 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_PROATControlProof__c</picklist>
             <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
+                <fullName>SAPD</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -55555,15 +55661,7 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_PROATControlProof__c</picklist>
             <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
+                <fullName>SAPD</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -72687,15 +72785,7 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_PROATControlProof__c</picklist>
             <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
+                <fullName>SAPD</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -89819,15 +89909,7 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_PROATControlProof__c</picklist>
             <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
+                <fullName>SAPD</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -99145,7 +99227,7 @@ var pur = new sforce.SObject(&quot;VPM_PurchasingRequests__c&quot;);
 pur.id=&quot;{!VPM_PurchasingRequests__c.Id}&quot;; 
 var currentstatus=&quot;{!VPM_PurchasingRequests__c.VPM_Status__c}&quot;; 
 var Rework=&quot;{!VPM_PurchasingRequests__c.VPM_Rework__c}&quot;; 
-var FLSinCountry=&quot;{!VPM_PurchasingRequests__c.VPM_FLSInCountryReqVendor__c }&quot;;
+var FLSinCountry=&quot;{!VPM_PurchasingRequests__c.VPM_FLSInCountryReqVen__c}&quot;;
 if(FLSinCountry==false)
 {
 	window.location = &apos;apex/VPM_AdvancedForm?id={!VPM_PurchasingRequests__c.Id}&apos;;

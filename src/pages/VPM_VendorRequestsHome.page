@@ -9,15 +9,6 @@
 
     <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
     <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.4.js')}"/>
-<script>
-    var browser = navigator.appVersion;
-    if(browser.toLowerCase().indexOf("gecko") > -1 || browser.toLowerCase().indexOf("trident") > -1){
-        $("form").attr("browser","ie");
-    }
-    else if(browser.toLowerCase().indexOf("chrome") > -1 || browser.toLowerCase().indexOf("safari") > -1){
-         $("form").attr("browser","chrome");
-    }
-</script>
 
  <table cellPadding="10" width= "100%">       
           <TR> <TH> <apex:sectionHeader title="{!$Label.VPM_VendorRequestsHomePage}" subtitle="{!$Label.VPM_VendorRequestsHome}"/></TH> 
@@ -36,19 +27,10 @@
                <apex:pageblockSectionItem > 
                    <apex:outputText value="{!$Label.VPM_HomePageLink2}" /> <apex:outputLink value="http://google.com/">Google</apex:outputLink>
                </apex:pageblockSectionItem>
-               <apex:pageblockSectionItem >
-                   <apex:outputText value="{!$Label.VPM_HomePageLink3}" /> <apex:outputLink value="http://google.com/">Google</apex:outputLink>
-               </apex:pageblockSectionItem>
-                <apex:pageblockSectionItem >
-                   <apex:outputText value="{!$Label.VPM_HomePageLink4}" /> <apex:outputLink value="http://google.com/">Google</apex:outputLink>
-               </apex:pageblockSectionItem>
          </apex:pageBlockSection>
      </apex:pageBlock>
       <apex:pageBlock title="Procurement Links" rendered="{!isProcure}">
           <apex:pageBlockSection >
-               <apex:pageblockSectionItem > 
-                    <apex:outputText value="{!$Label.VPM_HomePageLink1}" /> <apex:outputText value="{!$User.FirstName}" />
-               </apex:pageblockSectionItem> 
                <apex:pageblockSectionItem > 
                    <apex:outputText value="{!$Label.VPM_HomePageLink2}" /> <apex:outputLink value="http://google.com/">Google</apex:outputLink>
                </apex:pageblockSectionItem>

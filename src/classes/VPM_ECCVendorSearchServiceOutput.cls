@@ -44,7 +44,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String CollectionAuthorization;
     public String PartnerBankType;
     public String BankName;
-    public String SwiftKey; */
+    public String SwiftKey; */ 
     public String BankNumber;
     /*public String BeneficiaryAddress1;
     public String BeneficiaryAddress2;
@@ -365,9 +365,9 @@ global class VPM_ECCVendorSearchServiceOutput {
         public string PaymentTermsCreditMemoKey;
         public String ReconciliationAccount;
         public String PaymentTerms;
-        public String SortKey;
-        //public String CashManagementGroup; // old changes 
-        public string CashMgmtGroup;
+        public String SortKey; 
+        public String CashManagementGroup; // old changes 
+        //public string CashMgmtGroup; // new change 2016-11-04
         public String PaymentMethod;
         public String InterestCalculationIndicator;
         public boolean IndicatorClearingBetweenCustomerAndVendor;

@@ -1257,21 +1257,13 @@ IF(CONTAINS(mdm_ecc__c,&quot;U2K2&quot;), mdm_vCodeU2K2__c,
     <fields>
         <fullName>mdm_ecc__c</fullName>
         <externalId>false</externalId>
-        <formula>RIGHT(
-IF(ISBLANK(mdm_vCodeCordillera__c),&quot;&quot;,&quot; ,Cordillera&quot;) + 
+        <formula>IF(ISBLANK(mdm_vCodeCordillera__c),NULL,&quot;Cordillera,&quot;) + 
 
-IF(ISBLANK(mdm_vCodeFusion__c),&quot;&quot;,&quot; ,Fusion&quot;) + 
+IF(ISBLANK(mdm_vCodeFusion__c),NULL,&quot;Fusion,&quot;) + 
 
-IF(ISBLANK(mdm_vCodeSirius__c),&quot;&quot;,&quot; ,Sirius&quot;)+ 
+IF(ISBLANK(mdm_vCodeSirius__c),NULL,&quot;Sirius,&quot;)+ 
 
-IF(ISBLANK(mdm_vCodeU2K2__c),&quot;&quot;,&quot; ,U2K2&quot; )
-, LEN(IF(ISBLANK(mdm_vCodeCordillera__c),&quot;&quot;,&quot; ,Cordillera&quot;) + 
-
-IF(ISBLANK(mdm_vCodeFusion__c),&quot;&quot;,&quot; ,Fusion&quot;) + 
-
-IF(ISBLANK(mdm_vCodeSirius__c),&quot;&quot;,&quot; ,Sirius&quot;)+ 
-
-IF(ISBLANK(mdm_vCodeU2K2__c),&quot;&quot;,&quot; ,U2K2&quot; ))-2)</formula>
+IF(ISBLANK(mdm_vCodeU2K2__c),NULL,&quot;U2K2,&quot; )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>ECC</label>
         <required>false</required>

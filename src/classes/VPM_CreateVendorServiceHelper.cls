@@ -1,6 +1,7 @@
 global class VPM_CreateVendorServiceHelper {
     global class CreateVendorResponse {
         public String Status {get; set;}
+        public String message {get; set;}
         public String RequestID {get; set;}
         public CreateVendorResponse() {
         }
@@ -36,12 +37,17 @@ global class VPM_CreateVendorServiceHelper {
                         if(createVenResp != null && String.isNotBlank(createVenResp.status)) {
                             msg = createVenResp.status;
                         }
+                        else
+                        {
+                           msg = createVenResp.message;  
+                        }
                         responseString = msg;
                         if(res.getStatusCode() == 200 ) {
                             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.successStatus,msg,VPM_HttpUtil.successStatusMDM);
                             VPM_HttpUtil.updateRecordType(vendorId);
                            // VPM_HttpUtil.updateFieldType(vendorId);
                         } else if(res.getStatusCode() == 400 ) {
+                            
                             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
                         }                        
                     } else if(res.getStatusCode() == 500 || res.getStatusCode() == 504 || res.getStatusCode() == 503) {

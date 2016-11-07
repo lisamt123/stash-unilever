@@ -32,7 +32,8 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         
     }
     global static String maintainGlobalVendor(String vendorId) {
-        try{
+        //try
+        {
         list<errorMsgWrapper> errorList;
         System.debug('----------input parameters passed are----------' + vendorId);
         String reqBodyJson, requestStatus,responseString ;
@@ -101,9 +102,10 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         }
         return responseString;
     }
-        catch(exception ex){
+       /* catch(exception ex){
+            system.debug('ex '+ex.getMessage()+'   '+ex.getLineNumber());
             return '';
-        }
+        }*/
     }
     
     //Deepak : for global extend
@@ -206,7 +208,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             string JSON =res.getBody().right( res.getBody().length()-20).left(res.getBody().right( res.getBody().length()-20).length()-1);
             system.debug('JSON List '+JSON);
            
-            errorList= (List<errorMsgWrapper>) System.JSON.deserialize(JSON , List<errorMsgWrapper>.class);
+            //errorList= (List<errorMsgWrapper>) System.JSON.deserialize(JSON , List<errorMsgWrapper>.class);
             
             errorList111 = (errorMsg) System.JSON.deserialize(res.getBody(), errorMsg.class);
             for(errorMsgWrapper error : errorList111.SAP_Messages)
@@ -218,7 +220,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             VendorReq.VPM_ECC_InsertUpdateStatusMessage__c = responseString;
             VendorReq.VPM_fieldUpdated__c =',';
             update VendorReq;*/
-                system.debug('Error List '+errorList);
+               // system.debug('Error List '+errorList);
             //responseString = 'Vendor Request submitted successfully to SAP.';
             
         }  

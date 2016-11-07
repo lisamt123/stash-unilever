@@ -1,5 +1,6 @@
 public with sharing class VPM_MaintainVendorFetchFieldDetails {
  public  final string STR_CONST_COMMA='", ';
+ public  final string STR_CONST_BOOLEANCOMMA=',';
     public string VPM_ConvertMaintainVendorFieldDetailsToJSON(string VendorRequestId) {
         //String maintainVendorObjectJSON;
        
@@ -106,22 +107,22 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
     {
    if((vendorList.get(0).VPM_IsVendorSME__c==null || vendorList.get(0).VPM_IsVendorSME__c=='No'))
             {
-               mainJsonObject =mainJsonObject+'"SmeIndicator" :'+false+',';
+               mainJsonObject =mainJsonObject+'"SmeIndicator" :'+false+STR_CONST_BOOLEANCOMMA;
             }
             else
             {
-               mainJsonObject =mainJsonObject+'"SmeIndicator" :'+true+',';
+               mainJsonObject =mainJsonObject+'"SmeIndicator" :'+true+STR_CONST_BOOLEANCOMMA;
             }
     }
     if(vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_IsVendorException__c'))
     {
     if(vendorList.get(0).VPM_IsVendorException__c==null || vendorList.get(0).VPM_IsVendorException__c=='No')
             {
-                mainJsonObject =mainJsonObject+'"ExceptionIndicator" :'+false+',';
+                mainJsonObject =mainJsonObject+'"ExceptionIndicator" :'+false+STR_CONST_BOOLEANCOMMA;
             }
             else
             {
-                 mainJsonObject =mainJsonObject+'"ExceptionIndicator" :'+true+',';
+                 mainJsonObject =mainJsonObject+'"ExceptionIndicator" :'+true+STR_CONST_BOOLEANCOMMA;
             }
     }
   if(vendorList.get(0).VPM_POBox__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_POBox__c'))
@@ -169,28 +170,28 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
     if(vendorList.get(0).VPM_CompanyCode__r.ECC__c == 'Fusion')
             {
                
-               mainJsonObject =mainJsonObject+ '"Fusion" :'+True+',';
+               mainJsonObject =mainJsonObject+ '"Fusion" :'+True+STR_CONST_BOOLEANCOMMA;
                 
             }
             else 
             {
-              mainJsonObject =mainJsonObject+ '"Fusion" :'+False+',';
+              mainJsonObject =mainJsonObject+ '"Fusion" :'+False+STR_CONST_BOOLEANCOMMA;
             }
             if(vendorList.get(0).VPM_CompanyCode__r.ECC__c == 'U2K2')
             {
-               mainJsonObject =mainJsonObject+ '"U2K2" :'+True+','; 
+               mainJsonObject =mainJsonObject+ '"U2K2" :'+True+STR_CONST_BOOLEANCOMMA; 
             }
             else 
             {
-              mainJsonObject =mainJsonObject+ '"U2K2" :'+False+',';
+              mainJsonObject =mainJsonObject+ '"U2K2" :'+False+STR_CONST_BOOLEANCOMMA;
             }
             if(vendorList.get(0).VPM_CompanyCode__r.ECC__c == 'Sirius')
             {
-               mainJsonObject =mainJsonObject+ '"Sirius" :'+True+','; 
+               mainJsonObject =mainJsonObject+ '"Sirius" :'+True+STR_CONST_BOOLEANCOMMA; 
             } 
             else 
             {
-               mainJsonObject =mainJsonObject+ '"Sirius" :'+False+',';
+               mainJsonObject =mainJsonObject+ '"Sirius" :'+False+STR_CONST_BOOLEANCOMMA;
             }
             if(vendorList.get(0).VPM_CompanyCode__r.ECC__c == 'Cordillera')
             {

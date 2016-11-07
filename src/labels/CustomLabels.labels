@@ -1513,6 +1513,13 @@
         <value>Send to SAP</value>
     </labels>
     <labels>
+        <fullName>VPM_ShippingConditionMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_ShippingConditionMessage</shortDescription>
+        <value>Shipping Condition cannot be left blank.</value>
+    </labels>
+    <labels>
         <fullName>VPM_SiriusGoldenDataHelptext2</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1637,6 +1644,13 @@
         <protected>false</protected>
         <shortDescription>VPM_TaxJuriCodeErrorMessage</shortDescription>
         <value>Tax Jurisdiction Code Cannot be left blank</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TaxJuriLengthMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TaxJuriLengthMessage</shortDescription>
+        <value>Tax Jurisdiction Code cannot be more then 15 characters.</value>
     </labels>
     <labels>
         <fullName>VPM_TaxJurisdictionCodePageMessage</fullName>

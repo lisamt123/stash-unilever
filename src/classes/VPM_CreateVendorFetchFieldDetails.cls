@@ -1,4 +1,4 @@
-public class VPM_CreateVendorFetchFieldDetails {
+public with sharing class VPM_CreateVendorFetchFieldDetails {
     public string VPM_ConvertVendorFieldDetailsToJSON(string VendorRequestId) {
         String VPM_InterfaceFieldDetailsJSON ='';
         string eccVal ='';

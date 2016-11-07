@@ -1385,6 +1385,11 @@ IF(NOT(ISBLANK( VPM_Approver1__c )),1,
         <columns>VPM_Approver9__c</columns>
         <columns>VPM_Approver10__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>VPM_Country__c</field>
+            <operation>equals</operation>
+            <value>Philippines</value>
+        </filters>
         <label>All Commodity Approvers</label>
         <language>en_US</language>
     </listViews>

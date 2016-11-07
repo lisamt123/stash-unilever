@@ -14,9 +14,9 @@
     </columns>
     <columns>
         <aggregateTypes>Average</aggregateTypes>
-        <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithFLS__c</field>
+        <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithProcurement__c</field>
     </columns>
-    <description>VPM - Hours till which request is with FLS Team</description>
+    <description>VPM - Duration in hours till which request is with Procurement Team.</description>
     <filter>
         <criteriaItems>
             <column>VPM_PurchasingRequests__c.VPM_HoursSpentWithFLS__c</column>
@@ -26,7 +26,7 @@
         <criteriaItems>
             <column>VPM_PurchasingRequests__c.VPM_Status__c</column>
             <operator>contains</operator>
-            <value>FLS Review,FLS Approved,FLS Rejected,FLS Requested Re-Work</value>
+            <value>Procurement Requested Re-Work,Procurement Approved,Procurement Rejected</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
@@ -34,9 +34,9 @@
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>VPM_PurchasingRequests__c.VPM_Country__c</field>
-        <sortOrder>Desc</sortOrder>
+        <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Request Time With FLS  Team</name>
+    <name>Request Time With Procurement Team</name>
     <params>
         <name>co</name>
         <value>1</value>
