@@ -88,6 +88,21 @@ src/profiles/SoCo-System Admin.profile
 src/profiles/UK-Admin.profile
 src/profiles/UK-Authoriser.profile
 src/profiles/UK-Planner %28CAM%29.profile
+src/groups
+src/groups/Argentina_SO.group
+src/groups/Chile_HPF_SO.group
+src/groups/Chile_Ice_Cream_SO.group
+src/groups/Ireland_SO.group
+src/groups/Soco_Account_Planner_CL01.group
+src/groups/Soco_Account_Planner_CL03.group
+src/groups/SoCo_Account_Planner.group
+src/groups/SoCo_Admin_AR01.group
+src/groups/SoCo_Admin_CL01.group
+src/groups/SoCo_Admin_CL03.group
+src/groups/SoCo_Category_Planner_CL01.group
+src/groups/SoCo_Category_Planner_CL03.group
+src/groups/SoCo_Category_Planner.group
+src/groups/UK_SO.group
 src/sharingRules
 src/sharingRules/Account.sharingRules
 src/sharingRules/ACSFUL001__Fund_Template__c.sharingRules
