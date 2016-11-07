@@ -166,7 +166,7 @@ RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; || AND(RecordType.
             <type>FieldUpdate</type>
         </action>
     </finalRejectionActions>
-    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <finalRejectionRecordLock>true</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
             <name>VPM_ApprovalStatusPending</name>

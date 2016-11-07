@@ -5,9 +5,6 @@
     <allowedSubmitters>
         <type>creator</type>
     </allowedSubmitters>
-    <allowedSubmitters>
-        <type>owner</type>
-    </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
         <field>VPM_VendorName1__c</field>
@@ -238,7 +235,7 @@ VPM_Company_Code_Value__c = &apos;5487&apos;
             <type>Alert</type>
         </action>
     </finalRejectionActions>
-    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <finalRejectionRecordLock>true</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
             <name>VPM_ApprovalStatusPending</name>
