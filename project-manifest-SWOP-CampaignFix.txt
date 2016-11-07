@@ -11,8 +11,8 @@ src/pages
 src/pages/Oblix_CampaignSummary.page
 src/pages/Oblix_CampaignSummary.page-meta.xml
 src/components
-src/components/AF_ApprovalProcessForBrandEstimates.component
-src/components/AF_ApprovalProcessForBrandEstimates.component-meta.xml
+src/components/Oblix_CampaignStage.component
+src/components/Oblix_CampaignStage.component-meta.xml
 
 
 
