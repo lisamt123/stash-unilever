@@ -1,0 +1,7 @@
+ <labels>
+        <fullName>UL_CUSTOMER_GROUP</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Customer Group</shortDescription>
+        <value>Grupo de Cliente</value>
+    </labels>

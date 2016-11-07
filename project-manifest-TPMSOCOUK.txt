@@ -16,6 +16,8 @@ src/objects/ACSFUL001__Transaction_Template__c.object
 src/objects/ACSFUL001__Unit_of_Measure__c.object
 src/objects/UL_Approval_Threshold__c.object
 src/objects/Users.object
+src/labels
+src/labels/TPMSOCOUK.labels
 src/classes
 src/classes/UL_AccountTriggerHandler.cls
 src/classes/UL_AccountTriggerHandler.cls-meta.xml
