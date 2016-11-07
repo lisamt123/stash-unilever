@@ -3,6 +3,7 @@
     <defaultLandingTab>standard-home</defaultLandingTab>
     <label>Unilever Food Solutions</label>
     <logo>Food_Solutions_Unilever/Unilever_Food_Solutions_Logo.jpg</logo>
+    <tab>standard-Chatter</tab>
     <tab>standard-Account</tab>
     <tab>standard-Contact</tab>
     <tab>standard-Opportunity</tab>
