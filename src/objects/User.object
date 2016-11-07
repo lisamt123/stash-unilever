@@ -3014,6 +3014,122 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>UL_Career_Level__c</fullName>
+        <externalId>false</externalId>
+        <label>Career Level</label>
+        <picklist>
+            <controllingField>ACSFUL001__Sales_Organization__c</controllingField>
+            <picklistValues>
+                <fullName>Trade Exec WL1</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ireland SO</controllingFieldValues>
+                <controllingFieldValues>UK SO</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAM WL2-A</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ireland SO</controllingFieldValues>
+                <controllingFieldValues>UK SO</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAM WL2-B</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ireland SO</controllingFieldValues>
+                <controllingFieldValues>UK SO</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CBM - WL2-C</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ireland SO</controllingFieldValues>
+                <controllingFieldValues>UK SO</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AD - WL3</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ireland SO</controllingFieldValues>
+                <controllingFieldValues>UK SO</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VP - WL4</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ireland SO</controllingFieldValues>
+                <controllingFieldValues>UK SO</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chairman WL5</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ireland SO</controllingFieldValues>
+                <controllingFieldValues>UK SO</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DBA</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ireland SO</controllingFieldValues>
+                <controllingFieldValues>UK SO</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Threshold_Level__c</fullName>
+        <externalId>false</externalId>
+        <label>Threshold Level</label>
+        <picklist>
+            <controllingField>UL_Career_Level__c</controllingField>
+            <picklistValues>
+                <fullName>0.00</fullName>
+                <default>false</default>
+                <controllingFieldValues>DBA</controllingFieldValues>
+                <controllingFieldValues>Trade Exec WL1</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>50,000.00</fullName>
+                <default>false</default>
+                <controllingFieldValues>CAM WL2-A</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>100,000.00</fullName>
+                <default>false</default>
+                <controllingFieldValues>CAM WL2-B</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>250,000.00</fullName>
+                <default>false</default>
+                <controllingFieldValues>CBM - WL2-C</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>750,000.00</fullName>
+                <default>false</default>
+                <controllingFieldValues>AD - WL3</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3,000,000.00</fullName>
+                <default>false</default>
+                <controllingFieldValues>VP - WL4</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5,000,000.00</fullName>
+                <default>false</default>
+                <controllingFieldValues>Chairman WL5</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_User_Validity_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>User Validity Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Date</type>
+    </fields>
     <listViews>
         <fullName>ActiveUsers</fullName>
         <columns>FULL_NAME</columns>
