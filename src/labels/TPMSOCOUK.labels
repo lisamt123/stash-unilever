@@ -5,3 +5,56 @@
         <shortDescription>Customer Group</shortDescription>
         <value>Grupo de Cliente</value>
     </labels>
+	<labels>
+        <fullName>UL_CUSTOMER_NAME</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Customer Name</shortDescription>
+        <value>Cliente</value>
+    </labels>
+    <labels>
+        <fullName>UL_MARKET</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Market</shortDescription>
+        <value>Mercado</value>
+    </labels>
+    <labels>
+        <fullName>UL_MARKET_CHANNEL</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Market Channel</shortDescription>
+        <value>Canal de Mercado</value>
+    </labels>
+    <labels>
+        <fullName>UL_PlanningLevelAndCurrency</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Planning Level And Currency</shortDescription>
+        <value>Planning Level is already set on other level customer with overlapping Validity From/To dates OR 
+there is a different Currency on lower level customer(s)</value>
+    </labels>
+    <labels>
+        <fullName>UL_PlanningLevelBetween3To7</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Planning Level Between 3 To 7</shortDescription>
+        <value>Planning Level can only be set between levels 3 to 7</value>
+    </labels>
+    <labels>
+        <fullName>UL_PlanningStartEndDate</fullName>
+        <categories>UL TPM Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Planning Start And End Date</shortDescription>
+        <value>Please enter Planning Start and End Dates, then set Planning Level</value>
+    </labels>
+	<labels>
+        <fullName>Ul_EmptyAccounts</fullName>
+        <language>en_GB</language>
+        <protected>true</protected>
+        <shortDescription>Ul_EmptyAccounts</shortDescription>
+        <value>you do not have valid planning period Accounts!</value>
+    </labels>
