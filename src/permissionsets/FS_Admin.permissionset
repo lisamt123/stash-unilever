@@ -49883,7 +49883,7 @@
     </tabSettings>
     <tabSettings>
         <tab>FS_MonthlyPlanning</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>FS_Monthly_Claimed_Cases__c</tab>
