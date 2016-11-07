@@ -1449,12 +1449,6 @@ public with sharing class Oblix_SOWRollOverLogic {
                 set_original_ids.add(asset.Id);
                 set_original_parent_ids.add(asset.Agency_Projects__c);
             }
-            
-            System.debug('$$$$query_string ..'+query_string);
-            System.debug('$$$$query_stringrows ..'+database.query(query_string));
-            System.debug('$$$map_original_ids_to_original..'+map_original_ids_to_original);
-            System.debug('$$$set_original_ids,..'+set_original_ids);
-            System.debug('$$$set_original_parent_ids..'+set_original_parent_ids);
 
             result_msg += '\n query1 result rows: ' + set_original_ids.size() + ' - set_original_parent_ids: ' + JSON.serialize(set_original_parent_ids);
 
@@ -1479,14 +1473,6 @@ public with sharing class Oblix_SOWRollOverLogic {
             }
 
             result_msg += '\n query2 result rows: ' + map_original_ids_to_cloned.size();
-            
-            System.debug('$$$$query_string ..'+query_string2);
-            System.debug('$$$$query_stringrows ..'+database.query(query_string2));
-            
-            System.debug('$$$map_original_ids_to_cloned..'+map_original_ids_to_cloned);
-            
-
-
 
             Set<Id> set_cloned_campaign_pfy_ids = new Set<Id>();
             // get the NFY related records for the selected parent campaign Ids

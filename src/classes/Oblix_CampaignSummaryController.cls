@@ -100,7 +100,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     public String selected_asset_id {get;set;}
     public Decimal PercentToAdjust {get;set;}
     public Boolean is_enable_Adjust {get;set;}
-
+    public string sync_requested;
     public Oblix_DashboardsHandler scoresDashboard {get; set;}
     public Integer totalAssets { get; set; }
     /*******************************************************************************
@@ -110,7 +110,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     ********************************************************************************/
     public Oblix_CampaignSummaryController() {
         is_enable_Adjust = false;
-
+        sync_requested='Sync Requested';
         last_updated ='';
         p_start_date ='';
         p_completion_date ='';
@@ -477,7 +477,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         get {
         
             boolean inprogress = false;
-            IF(selected_project.Sync_Status__c  == 'Sync In Progress' || selected_project.Sync_Required_NFY__c == 'Sync In Progress' || selected_project.Sync_Status__c  == 'Sync Requested' || selected_project.Sync_Required_NFY__c == 'Sync Requested' || selected_project.Financial_Year__r.Sync_Status__c == 'Sync Requested'){
+            IF(selected_project.Sync_Status__c  == 'Sync In Progress' || selected_project.Sync_Required_NFY__c == 'Sync In Progress' || selected_project.Sync_Status__c  == sync_requested || selected_project.Sync_Required_NFY__c == sync_requested || selected_project.Financial_Year__r.Sync_Status__c == sync_requested){
                 inprogress = true;
 
             }
@@ -489,7 +489,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         get {
         
             boolean inprogress = false;
-            IF(selected_project.Sync_Status__c  == 'Sync In Progress' || selected_project.Sync_Required_NFY__c == 'Sync In Progress' || selected_project.Sync_Status__c  == 'Sync Requested' || selected_project.Sync_Required_NFY__c == 'Sync Requested' || selected_project.Financial_Year__r.Sync_Status__c == 'Sync Requested'){
+            IF(selected_project.Sync_Status__c  == 'Sync In Progress' || selected_project.Sync_Required_NFY__c == 'Sync In Progress' || selected_project.Sync_Status__c  == sync_requested || selected_project.Sync_Required_NFY__c == sync_requested || selected_project.Financial_Year__r.Sync_Status__c == sync_requested){
                 inprogress = true;
 
             }
