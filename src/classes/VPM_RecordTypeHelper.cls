@@ -5,7 +5,7 @@
   Description  : This class will retrieve recordtype name, id without query
   MetaData     : Sobject
 ********************************************************************/
-public class VPM_RecordTypeHelper {
+public with sharing class VPM_RecordTypeHelper {
     public static final string VendorReqGenericRecordType = 'Vendor Request';
     public static final string VendorReqCreateRecordType = 'Vendor Request (Create)';
     public static final string VendorReqMaintainRecordType = 'Vendor Request (Maintain)';
