@@ -58,3 +58,11 @@ there is a different Currency on lower level customer(s)</value>
         <shortDescription>Ul_EmptyAccounts</shortDescription>
         <value>you do not have valid planning period Accounts!</value>
     </labels>
+	<labels>
+        <fullName>INCLUSIVE</fullName>
+        <categories>Label</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Inclusive label</shortDescription>
+        <value>Inclusive</value>
+    </labels>
