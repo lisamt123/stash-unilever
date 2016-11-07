@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Product_sharing_Argentina_rule</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Product sharing Argentina rule</label>
+        <sharedTo>
+            <group>Argentina_SO</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>AR01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Product_sharing_Chile_HPF_rule</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Product sharing Chile HPF rule</label>
+        <sharedTo>
+            <group>Chile_HPF_SO</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>CL01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Product_sharing_Chile_Ice_Cream_rule</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Product sharing Chile Ice Cream rule</label>
+        <sharedTo>
+            <group>Chile_Ice_Cream_SO</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>CL03</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sharing_rules_for_Ireland_SO</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Sharing rules for Ireland SO</label>
+        <sharedTo>
+            <group>Ireland_SO</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>Ireland SO</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sharing_rules_for_UK_SO</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Sharing rules for UK SO</label>
+        <sharedTo>
+            <group>UK_SO</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>UK SO</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>
