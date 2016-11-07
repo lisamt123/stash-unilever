@@ -13,10 +13,13 @@ function PageReload(){
   return false;
 }
 
-function redirectToListView()
+function redirectToListView(customId)
 {
+	debugger;
+	alert(customId);
   var localhost = document.domain;
-  var id='{!VPM_PurchasingRequests__c.id}';
+  //var id='{!VPM_PurchasingRequests__c.id}';
+  var id=customId;
   window.top.location='https://'+localhost+'/apex/VPM_VendorRequestsHome';
   return false;
 }

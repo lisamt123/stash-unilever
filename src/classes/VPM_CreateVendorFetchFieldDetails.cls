@@ -67,7 +67,7 @@ public with sharing class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetails.Name2 = vendorList.get(0).VPM_VendorName2__c == null ? '' : vendorList.get(0).VPM_VendorName2__c;
             VPM_InterfaceFieldDetails.searchTerm1 = vendorList.get(0).VPM_SearchTerm_1__c==null?'':vendorList.get(0).VPM_SearchTerm_1__c;
             VPM_InterfaceFieldDetails.street1 = vendorList.get(0).VPM_Street1__c==null?'':vendorList.get(0).VPM_Street1__c;
-            VPM_InterfaceFieldDetails.CityPostCode = vendorList.get(0).VPM_ZIPPostCode__c==null?'':vendorList.get(0).VPM_ZIPPostCode__c;
+            VPM_InterfaceFieldDetails.PostalCode = vendorList.get(0).VPM_ZIPPostCode__c==null?'':vendorList.get(0).VPM_ZIPPostCode__c;
             VPM_InterfaceFieldDetails.city  = vendorList.get(0).VPM_City__c==null?'':vendorList.get(0).VPM_City__c;
             VPM_InterfaceFieldDetails.country   = vendorList.get(0).VPM_Country__c==null ? '' : VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_Country__c);
             VPM_InterfaceFieldDetails.achillesRegistrationCode = vendorList.get(0).VPM_AchillesRegistrationCode__c==null?'':vendorList.get(0).VPM_AchillesRegistrationCode__c;

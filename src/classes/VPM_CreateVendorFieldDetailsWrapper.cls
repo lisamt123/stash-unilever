@@ -33,7 +33,7 @@ public class VPM_CreateVendorFieldDetailsWrapper {
     public string Name4 {get; set;}
     public string SearchTerm1 {get; set;}
     public string Street1 {get; set;}
-    public string CityPostCode {get; set;}
+    //public string CityPostCode {get; set;}
     public string City {get; set;}
     public string Country {get; set;}    
     public string AchillesRegistrationCode {get; set;}
@@ -81,6 +81,7 @@ public class VPM_CreateVendorFieldDetailsWrapper {
     public boolean IsSupplierAssessmentQuestionnaireSour {get; set;}
     public string PoBox {get; set;}
     public string PoPostalCode {get; set;}
+    public string PostalCode {get; set;}
     public string TaxNumber {get; set;}
     public boolean Cordillera {get; set;}
     public boolean Sirius {get; set;}

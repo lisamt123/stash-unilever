@@ -36,7 +36,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         {
         list<errorMsgWrapper> errorList;
         System.debug('----------input parameters passed are----------' + vendorId);
-        String reqBodyJson, requestStatus,responseString ;
+        String reqBodyJson,responseString ;
         MaintainGlobalVendorResponse maintainVenResp;
         VPM_MaintainVendorFetchFieldDetails clas = new VPM_MaintainVendorFetchFieldDetails();
         reqBodyJson = clas.VPM_ConvertMaintainVendorFieldDetailsToJSON(vendorId);
@@ -171,9 +171,9 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
     // Ajay : For Regional maintain
     global static String maintainECCVendor(String vendorId) 
     {
-        String reqBodyJson, requestStatus,responseString ='' ;
+        String reqBodyJson,responseString ='' ;
         MaintainGlobalVendorResponse maintainVenResp;
-        list<errorMsgWrapper> errorList;
+        //list<errorMsgWrapper> errorList;
         errorMsg errorList111 ;
         //VPM_MaintainVendorFetchFieldDetails clas = new VPM_MaintainVendorFetchFieldDetails();
         //reqBodyJson = clas.VPM_ConvertMaintainVendorFieldDetailsToJSON(vendorId);
@@ -188,14 +188,14 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         system.debug('reqBodyJson '+res.getBody());
         maintainVenResp = (MaintainGlobalVendorResponse) System.JSON.deserialize(res.getBody(), MaintainGlobalVendorResponse.class);
          system.debug('%%%% '+maintainVenResp);
-        string msg='';
+        //string msg= '';
         system.debug('res '+res);
         system.debug('res body '+res.getBody());
         system.debug('res code'+res.getStatusCode());
         system.debug('maintainVenResp.status'+maintainVenResp.status);
-        if(maintainVenResp.status != null) {
+        /*if(maintainVenResp.status != null) {
             msg = maintainVenResp.status;
-        }
+        }*/
         VPM_PurchasingRequests__c VendorReq = [SELECT VPM_ECC_InsertUpdateStatusMessage__c,VPM_fieldUpdated__c  FROM VPM_PurchasingRequests__c WHERE id =: vendorId];
         try
         {

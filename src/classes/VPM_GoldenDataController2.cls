@@ -171,7 +171,7 @@ with Sharing public class VPM_GoldenDataController2 {
     {
         purchReqVar = [SELECT Id,VPM_TaxJurisdictionCode__c,VPM_RequestLastWithGroup__c,VPM_RequestGroupTime__c,VPM_Industry__c,VPM_IsLock__c,VPM_Status__c, VPM_VendorType__c,VPM_TradePartnerType__c,VPM_Commodity__c ,VPM_Commodity_Family__c,recordTypeId,
                        VPM_AdvancedFormSubmitted__c, VPM_FinanceApprovalRequired__c,VPM_Street1__c,VPM_CheckDoubleInvoices__c,VPM_VendorContactDetail__c,
-                       VPM_ProcurementApprovalRequired__c,VPM_Location__c,VPM_City__C,VPM_TaxNumber1__c ,VPM_ExtensionType__c,
+                       VPM_ProcurementApprovalRequired__c,VPM_Location__c,VPM_City__C,VPM_TaxNumber1__c ,VPM_ExtensionType__c,VPM_GlobalFieldChanged__c,VPM_RegionalFieldChanged__c,
                        VPM_OrderingEmailAddress__c,VPM_PaymentTerms__c,VPM_BankCountryKey__c,VPM_Country__c,VPM_Fieldtype__c,VPM_ClerksInternet__c,
                        VPM_BankKey__c,VPM_BankAccountNumber__c,VPM_AccountHolderName__c,VPM_PurchasingOrg__c,VPM_PurchasingOrg__r.Name,
                        VPM_Commodity__r.VPM_VendorType__c,VPM_Commodity__r.VPM_AuthorisationGroup__c, VPM_CompanyCode__r.VPM_CountryCode__c, VPM_CompanyCode__r.VPM_Country__c,
@@ -200,7 +200,9 @@ with Sharing public class VPM_GoldenDataController2 {
         VendorName = purchReqVar.VPM_VendorName1__c;
         searchTerm1 = purchReqVar.VPM_SearchTerm_1__c;
         if(string.isBlank(searchTerm1))
-        searchTerm1 = string.isNotBlank(VendorName) ? VendorName.left(10) : '';
+        {
+            searchTerm1 = string.isNotBlank(VendorName) ? VendorName.left(10) : '';
+        }
         isFusion = false;
         isU2k2 = false;
         
@@ -620,7 +622,8 @@ with Sharing public class VPM_GoldenDataController2 {
                     vendorPaymentMethod = vendorPaymentMethod.removeStart('['); 
                     vendorPaymentMethod = vendorPaymentMethod.removeEnd(']');
                     List<string> vendorPaymentMethodList  = vendorPaymentMethod.split(',');
-                    if(vendorPaymentMethodList <> null && vendorPaymentMethodList.size() > 0 && vendorPaymentMethodList.size() > 5)
+                   // if(vendorPaymentMethodList <> null && vendorPaymentMethodList.size() > 0 && vendorPaymentMethodList.size() > 5)
+                   if(!vendorPaymentMethodList.isEmpty() && vendorPaymentMethodList.size() > 5)
                     {   myMsg=new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_PaymentmethodErrorMesg);  }              
                 }
                 
@@ -780,7 +783,7 @@ with Sharing public class VPM_GoldenDataController2 {
                         { pg =  new Pagereference('/apex/VPM_U2K2GoldenData?id=' + entity.id); }
                         //pg =  new Pagereference('/'+entity.id);
                    
-                     
+                        
                                 
                     }else if(recordTypeId==STR_CONST_MAINTAIN || recordTypeId==STR_CONST_EXTEND)
                     {
@@ -816,7 +819,8 @@ with Sharing public class VPM_GoldenDataController2 {
                                  }
                                 if(purchReqVar.VPM_CompanyCode__r.ecc__c==STR_CONST_U2K2)
                                 { pg =  new Pagereference('/apex/VPM_U2K2GoldenData?id=' + entity.id); }
-                     
+                                  
+                                  
                                 }
                         }
                 pg.setRedirect(true);
@@ -894,11 +898,13 @@ with Sharing public class VPM_GoldenDataController2 {
                     update pr;
                     System.debug('@@purchReqVar ' + purchReqVar );
                     if(recordTypeId ==STR_CONST_CREATE || recordTypeId == STR_CONST_MAINTAIN ||recordTypeId ==STR_CONST_EXTEND){
+                    
                      pg =  new Pagereference('/'+entity.id);
                      pg.setRedirect(true);
                }
+               
                 
-                }
+              }
             }
             
             return pg;
@@ -924,14 +930,14 @@ public void approvalCallMethod()
         // Query the DB Fresh record
         
             pr = [SELECT Id, VPM_VendorType__c,VPM_GlobalAuthorisationGroup__c,
-                                VPM_Commodity_Family__c,
+                                VPM_Commodity_Family__c,VPM_AdvancedFormSubmittedTime__c,
                                 VPM_AdvancedFormSubmitted__c, VPM_FinanceApprovalRequired__c,VPM_ProcurementApprovalRequired__c,
                                 VPM_FreightApprovalRequired__c,VPM_RussianTaxApprovalRequired__c,
                                 VPM_ProvidedPaymentTerms__c,VPM_ProvidedBankDetails__c,
                                 VPM_ProvidedFinancialSensitive__c,VPM_ProvidedBlockDelete__c,VPM_ProvidedUnblockUndelete__c,
                                 VPM_PaymentTerms__c,VPM_DeletionBlockFlag__c,
                                 VPM_ReconciliationAccount__c,VPM_CheckDoubleInvoices__c,VPM_CashManagementGroup__c,VPM_SortKey__c,
-                                VPM_PaymentMethod__c,VPM_PaymentBlock__c,
+                                VPM_PaymentMethod__c,VPM_PaymentBlock__c,VPM_RegionalFieldChanged__c,VPM_GlobalFieldChanged__c,
                                 VPM_BankCountryKey__c,VPM_Status__c,VPM_RequestLastWithGroup__c ,
                                 VPM_BankKey__c,VPM_BankAccountNumber__c,VPM_AccountHolderName__c,
                                 VPM_ReferenceSpecificationsBankDetail__c,VPM_BankControlKey__c,
@@ -965,7 +971,9 @@ public void approvalCallMethod()
         // End : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
         //Logic to set Request time Group for Reports
          if(pr.VPM_RequestLastWithGroup__c=='' || pr.VPM_RequestLastWithGroup__c==null)
-             pr.VPM_RequestGroupTime__c = system.now();
+         {  pr.VPM_RequestGroupTime__c = system.now();
+            pr.VPM_AdvancedFormSubmittedTime__c= system.now();
+         }
              
         pr.VPM_AdvancedFormSubmitted__c='YES'; 
         // Added by Ajay
@@ -1181,9 +1189,9 @@ public void approvalCallMethod()
     ********************************************************************/
 public void setProcurementApprovalRequired()
 {
-if((pr.VPM_VendorType__c!=null) && (!pr.VPM_FinanceApprovalRequired__c) && (!pr.VPM_RussianTaxApprovalRequired__c) && (pr.VPM_GlobalAuthorisationGroup__c!=null))
-        {
-                        if( 
+if(((pr.VPM_VendorType__c!=null) && (!pr.VPM_FinanceApprovalRequired__c) && (!pr.VPM_RussianTaxApprovalRequired__c) && (pr.VPM_GlobalAuthorisationGroup__c!=null))
+   && 
+   ( 
                             /*MBS/SCS Capex-MRO Vendors Create or Extend*/                 
                             (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN && pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE 
                              && 
@@ -1224,6 +1232,49 @@ if((pr.VPM_VendorType__c!=null) && (!pr.VPM_FinanceApprovalRequired__c) && (!pr.
                          ( pr.VPM_Company_Code_Value__c == '2611' ||   pr.VPM_Company_Code_Value__c == '5449' ||   pr.VPM_Company_Code_Value__c == '5496' ||  pr.VPM_Company_Code_Value__c == '5487'
                          ))
                 )
+  )
+        {
+                       // if( 
+                            /*MBS/SCS Capex-MRO Vendors Create or Extend*/                 
+                        //    (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN && pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE 
+                        //     && 
+                       //     ( (pr.VPM_VendorType__c.contains(STR_CONST_MBS) && (!GlobalAuthorisationGroup.contains(STR_CONST_LAKME)))|| GlobalAuthorisationGroup.contains(STR_CONST_SCSCAPEX))                     
+                      //      )
+                       //     ||
+
+                            /*MBS/SCS Capex-MRO Vendors Maintain*/
+                     //   (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN &&
+                      //      ((pr.VPM_VendorType__c.contains(STR_CONST_MBS) &&(!GlobalAuthorisationGroup.contains(STR_CONST_LAKME)))|| GlobalAuthorisationGroup.contains(STR_CONST_SCSCAPEX)
+                        //    )
+                       //     && pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE
+                      //      && ( pr.VPM_ProvidedUnblockUndelete__c ||  pr.VPM_ProvidedBlockDelete__c || pr.VPM_ProvidedPaymentTerms__c  )
+                     //    )
+                    //    ||
+
+                        /*SCS Logistics*/ 
+                    //    ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN  && GlobalAuthorisationGroup.contains(STR_CONST_SCSLOG) &&  pr.VPM_ProvidedPaymentTerms__c
+                    //    )
+                     //   ||
+
+                        /*USCC/UASCC related MBS/SCS Capex 2611, 5449, 5496, 5487 Create or Extend*/ 
+                     //   (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN  &&
+                      //   ((pr.VPM_VendorType__c.contains(STR_CONST_MBS) &&(!GlobalAuthorisationGroup.contains(STR_CONST_LAKME)))|| GlobalAuthorisationGroup.contains(STR_CONST_SCSCAPEX) 
+                      //   )
+                      //   && pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE 
+                       //  &&
+                        // (pr.VPM_Company_Code_Value__c == '2611' ||   pr.VPM_Company_Code_Value__c == '5449' ||  pr.VPM_Company_Code_Value__c == '5496' ||  pr.VPM_Company_Code_Value__c == '5487'
+                       //  ))
+                      //  ||
+                        
+                        /*USCC/UASCC related MBS/SCS Capex 2611, 5449, 5496, 5487 Maintain*/ 
+                       // (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN  &&
+                       //  ( (pr.VPM_VendorType__c.contains(STR_CONST_MBS) &&(!GlobalAuthorisationGroup.contains(STR_CONST_LAKME)))|| GlobalAuthorisationGroup.contains(STR_CONST_SCSCAPEX) 
+                       //  ) && pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE &&
+                      //   ( pr.VPM_ProvidedUnblockUndelete__c  ||  pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c)
+                      //   &&
+                       //  ( pr.VPM_Company_Code_Value__c == '2611' ||   pr.VPM_Company_Code_Value__c == '5449' ||   pr.VPM_Company_Code_Value__c == '5496' ||  pr.VPM_Company_Code_Value__c == '5487'
+                        // ))
+               // )
                     {
                         pr.VPM_ProcurementApprovalRequired__c = true;
                         pr.VPM_RussianTaxApprovalRequired__c =false;
@@ -1243,9 +1294,9 @@ if((pr.VPM_VendorType__c!=null) && (!pr.VPM_FinanceApprovalRequired__c) && (!pr.
     ********************************************************************/
 public void setFinanceApprovalRequired()
 {
-    if(pr.VPM_VendorType__c!=null && (!pr.VPM_RussianTaxApprovalRequired__c) &&  GlobalAuthorisationGroup !=null)
-        {
-            if(
+    if((pr.VPM_VendorType__c!=null && (!pr.VPM_RussianTaxApprovalRequired__c) &&  GlobalAuthorisationGroup !=null)
+      && 
+       (
                 (
                     /*MBS(Indirect) Others (Out Scope Proc)*/ 
                     (pr.VPM_VendorType__c.contains(STR_CONST_MBS))  &&  pr.VPM_Commodity_Family__c == STR_CONST_OUTOFSCOPE
@@ -1334,6 +1385,98 @@ public void setFinanceApprovalRequired()
                     ((pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN && (pr.VPM_ProvidedBankDetails__c  ||  pr.VPM_ProvidedFinancialSensitive__c )) || (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN) )
                 )
               ) 
+      
+      )
+        {
+           // if(
+              //  (
+               //     /*MBS(Indirect) Others (Out Scope Proc)*/ 
+               //     (pr.VPM_VendorType__c.contains(STR_CONST_MBS))  &&  pr.VPM_Commodity_Family__c == STR_CONST_OUTOFSCOPE
+               //     && (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPECREATE || pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND
+                //        ||
+                //   ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN &&
+                //     (pr.VPM_ProvidedUnblockUndelete__c  || pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c  || pr.VPM_ProvidedBankDetails__c  ||  pr.VPM_ProvidedFinancialSensitive__c )
+                //    )) 
+               //  )
+                // ||
+                // (
+               //  /* Freight,SCS Log*/ 
+                //     (pr.VPM_VendorType__c.contains(STR_CONST_FREIGHT) || GlobalAuthorisationGroup.contains(STR_CONST_SCC_L))
+                //    && pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN && ( pr.VPM_ProvidedBankDetails__c  ||  pr.VPM_ProvidedFinancialSensitive__c )
+               //  )
+               //  ||
+               // (
+               //  /* SCS Log*/ 
+               //      (GlobalAuthorisationGroup.contains(STR_CONST_SCC_L)) && (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN)
+              //   )
+               //  ||
+               //  (
+                //    /*PI,3PM*/ 
+                //    (pr.VPM_VendorType__c.contains(STR_CONST_PI)  || 
+                  //  (pr.VPM_VendorType__c.contains(STR_CONST_SCS) && GlobalAuthorisationGroup.contains(STR_CONST_3PM))
+                  //  )  &&
+                   // ( pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN  ||
+                     //   ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN &&
+                    //        ( pr.VPM_ProvidedUnblockUndelete__c  || pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c  ||  pr.VPM_ProvidedBankDetails__c ||  pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_IsChangedVAT__c 
+                    //        )
+                    //    )
+                  //  )
+              //  )
+              //  ||
+              //  (
+               //  /*USCC/UASCC,MBS/SCSCap,2611,5449,5496,5487*/ 
+               //  (pr.VPM_VendorType__c.contains(STR_CONST_MBS) || GlobalAuthorisationGroup.contains(STR_CONST_CAP))
+                // &&   pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE
+                // && (pr.VPM_Company_Code_Value__c == '2611' || pr.VPM_Company_Code_Value__c == '5449'   || pr.VPM_Company_Code_Value__c == '5496' || pr.VPM_Company_Code_Value__c == '5487')
+                 //&&
+                 /*  pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN
+                 &&
+                   (   
+                               pr.VPM_ProvidedBankDetails__c  || pr.VPM_IsChangedVAT__c  || pr.VPM_ProvidedFinancialSensitive__c 
+                   ) */ 
+                  //  ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPECREATE || pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND
+                   // || ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN && (  pr.VPM_ProvidedBankDetails__c  ||   pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_IsChangedVAT__c ) )
+                   // )
+            //    )
+              //  ||
+               // (
+                 //   /* USCC/UASCC,MBS(Indir)2611,5449,5496,5487*/
+                  //  (pr.VPM_VendorType__c.contains(STR_CONST_MBS))  && pr.VPM_Commodity_Family__c == STR_CONST_OUTOFSCOPE
+                 //   &&
+                 //   (pr.VPM_Company_Code_Value__c == '2611' || pr.VPM_Company_Code_Value__c == '5449' 
+                  //  || pr.VPM_Company_Code_Value__c == '5496' || pr.VPM_Company_Code_Value__c == '5487')
+                  //  &&
+                  //  ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPECREATE || pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND
+                   // ||
+                     //   ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN &&
+                      //      ( pr.VPM_ProvidedUnblockUndelete__c  || pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c  ||  pr.VPM_ProvidedBankDetails__c  ||   pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_IsChangedVAT__c  )
+                     //   )
+                   // )
+               // )
+               // ||
+              //  (
+                 //   /*MBS Lakme,SCS Unica*/ 
+                //    (
+                //     (pr.VPM_VendorType__c.contains(STR_CONST_MBS) && GlobalAuthorisationGroup.contains(STR_CONST_LAKME) && pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE)
+                 //    || (pr.VPM_VendorType__c.contains(STR_CONST_SCS) && GlobalAuthorisationGroup.contains(STR_CONST_UNICA))
+                 //   )
+                //    &&
+                //    ( pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN ||
+                 //       ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN &&
+                    //        ( pr.VPM_ProvidedUnblockUndelete__c  ||pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c  ||    pr.VPM_ProvidedBankDetails__c  ||   pr.VPM_ProvidedFinancialSensitive__c   )
+                    //    )
+                  //  )                
+               // )
+              //  ||
+              //  (
+               //     /*MBS/SCS Cap-MRO*/
+               //      (pr.VPM_VendorType__c.contains(STR_CONST_MBS) || GlobalAuthorisationGroup.contains(STR_CONST_CAP))
+//                     &&
+                 //    pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE 
+                  //   &&
+                  //  ((pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN && (pr.VPM_ProvidedBankDetails__c  ||  pr.VPM_ProvidedFinancialSensitive__c )) || (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN) )
+                //)
+            //  ) 
             {
                 pr.VPM_FinanceApprovalRequired__c=true;
                 pr.VPM_RussianTaxApprovalRequired__c =false;

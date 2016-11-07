@@ -783,7 +783,7 @@ public with sharing class VPM_SearchVendor1{
           ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, System.label.VPM_WebformHelpText));
       }else if(mdmVendorType.equals(system.label.VPM_SubmitVendorRequestforApproval)) {
           
-          if(!vendorQuery1.VPM_IsMDMPISaved__c && (string.isNotBlank(vendorQuery1.VPM_VendorType__c) && vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI) || (string.isNotBlank(vendorQuery1.VPM_VendorType__c) && vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM))))) {
+          if(!vendorQuery1.VPM_IsMDMPISaved__c && requestType.equals(VPM_RecordTypeHelper.CREATE) &&  (string.isNotBlank(vendorQuery1.VPM_VendorType__c) && vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI) || (string.isNotBlank(vendorQuery1.VPM_VendorType__c) && vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM))))) {
               
               ApexPages.addmessage(new ApexPages.message(ApexPages.severity.error, System.Label.VPM_MDMBPMErrorMessage));
           }else {
@@ -809,7 +809,7 @@ public with sharing class VPM_SearchVendor1{
                 
              }else if(requestType.equals(VPM_RecordTypeHelper.EXTEND) && purch.VPM_ExtensionType__c.equals(VPM_RecordTypeHelper.REGIONAL_REQUEST)){
              
-                 if(purch.VPM_Fieldtype__c.equals(VPM_RecordTypeHelper.REGIONAL_REQUEST)  || string.isBlank(purch.VPM_Fieldtype__c)){
+                 if((string.isNotBlank(purch.VPM_Fieldtype__c) && purch.VPM_Fieldtype__c.equals(VPM_RecordTypeHelper.REGIONAL_REQUEST))  || string.isBlank(purch.VPM_Fieldtype__c)){
                       if(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_CORDILLERA)) {
                           pageRef =  new Pagereference('/apex/VPM_CordilleraGoldenData?id=' + recId + queryString); 
                       }else if(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_FUSION)) {
@@ -1361,7 +1361,7 @@ public with sharing class VPM_SearchVendor1{
             vendorDetails.VPM_PermittedPayee__c = op.PermittedPayee;
             vendorDetails.VPM_PlaceOfBirth__c = op.PlaceOfBirth;
             vendorDetails.VPM_OtherCommunication__c = op.OtherCommunication;
-            vendorDetails.VPM_OurAccNumWithVendor__c = op.OurAccNumWithVendor;
+            //vendorDetails.VPM_OurAccNumWithVendor__c = op.OurAccNumWithVendor;
             if(op.CIN <> null) {
                 vendorDetails.VPM_PANNumber__c = op.CIN.PANNumber;
                 vendorDetails.VPM_PANreference__c = op.CIN.PANreference;
@@ -1535,7 +1535,9 @@ public with sharing class VPM_SearchVendor1{
             vendorQuery1.VPM_SearchTerm_1__c = searchTerm1;
             vendorQuery1.VPM_Incoterms2__c = incoterms2;
             vendorQuery1.VPM_Country__c = countryName; //modified by vaishali nagar for IAPR-605
+            system.debug('@@vendorPaymentTerms' + vendorPaymentTerms);
             vendorQuery1.VPM_PaymentTerms__c = vendorPaymentTerms; 
+            system.debug('@@vendorPaymentTerms' + vendorQuery1.VPM_PaymentTerms__c);
             vendorQuery1.VPM_TermsOfPayment__c = termsOFPayment;
             system.debug('@@termsOFPayment' + termsOFPayment);
             vendorQuery1.VPM_TradePartnerType__c = vendorTradePartnerType;

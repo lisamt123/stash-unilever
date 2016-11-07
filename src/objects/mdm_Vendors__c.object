@@ -1335,6 +1335,7 @@ IF(ISBLANK(mdm_vCodeU2K2__c),NULL,&quot;U2K2,&quot; )</formula>
     <searchLayouts>
         <searchResultsAdditionalFields>mdm_Name1__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>mdm_Postcode__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>mdm_Country__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>mdm_ecc__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>mdm_vCodeCordillera__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>mdm_vCodeFusion__c</searchResultsAdditionalFields>

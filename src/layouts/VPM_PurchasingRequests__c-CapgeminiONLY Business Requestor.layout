@@ -261,10 +261,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_checkForFieldUpdate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>VPM_City__c</field>
             </layoutItems>
             <layoutItems>

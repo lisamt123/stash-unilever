@@ -124,24 +124,6 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           isRussian = false;
           isFreight = false;
           this.checkUser() ;
-        
-          commodityApprovers = [SELECT Id,VPM_isCurrentUserApprover1__c,VPM_isCurrentUserApprover2__c,VPM_isCurrentUserApprover3__c,VPM_isCurrentUserApprover4__c,
-                                VPM_isCurrentUserApprover5__c,VPM_isCurrentUserApprover6__c,VPM_isCurrentUserApprover7__c,
-                                VPM_isCurrentUserApprover8__c,VPM_isCurrentUserApprover9__c,VPM_isCurrentUserApprover10__c FROM VPM_CommodityApprover__c where id = : commodityApproverId]; 
-                                
-          isApprover1 = commodityApprovers[0].VPM_isCurrentUserApprover1__c;
-          isApprover2 = commodityApprovers[0].VPM_isCurrentUserApprover2__c;
-          isApprover3 = commodityApprovers[0].VPM_isCurrentUserApprover3__c;
-          isApprover4 = commodityApprovers[0].VPM_isCurrentUserApprover4__c;
-          isApprover5 = commodityApprovers[0].VPM_isCurrentUserApprover5__c;
-          isApprover6 = commodityApprovers[0].VPM_isCurrentUserApprover6__c;
-          isApprover7 = commodityApprovers[0].VPM_isCurrentUserApprover7__c;
-          isApprover8 = commodityApprovers[0].VPM_isCurrentUserApprover8__c;
-          isApprover9 = commodityApprovers[0].VPM_isCurrentUserApprover9__c;
-          isApprover10 = commodityApprovers[0].VPM_isCurrentUserApprover10__c;
-
-          
-          system.debug('-------------isProcure------'+isProcure);
         }
         catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());}
     }
@@ -495,7 +477,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               //return brUser;
           }
           // }
-          map<string,string> returnResult = new map<string,string>{'brUser'=>brUser==true?'true':'false','userRole'=>userRole};
+          map<string,string> returnResult = new map<string,string>{'brUser'=>brUser?'true':'false','userRole'=>userRole};
               return returnResult;
       }
         

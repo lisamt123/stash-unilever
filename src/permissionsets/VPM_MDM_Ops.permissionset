@@ -57,6 +57,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>VPM_GoldenDataController2Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>VPM_HttpUtil</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -85,10 +89,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>VPM_RecallApprovalTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>VPM_RecordTypeHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -102,6 +102,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_regionalMaintainVendor</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VPM_regionalMaintainVendorTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <description>Vendor Process Management: Master Data Management team member</description>

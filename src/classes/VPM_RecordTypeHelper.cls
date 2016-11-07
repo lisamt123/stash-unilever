@@ -83,7 +83,7 @@ public class VPM_RecordTypeHelper {
     }
     
     public static string getRecordTypes(string obj, id vendorReqRecordTypeID) {
-        string recordtypeName = '';
+        string recordtypeName;
         string objValue = 'VPM_PurchasingRequests__c';  
         Map<Id, string> recTypeNameWithIdMap = new Map<Id, string>();
         if(objValue!= null) {
@@ -116,8 +116,9 @@ public class VPM_RecordTypeHelper {
         return launchScreenVariable;
     }
     public static id getRecordTypeNameById(string recortTypeValue) {
-        Id vendorRecordtypeId = '';        
+        Id vendorRecordtypeId;        
         string VendorReqRecordType;
+        system.debug('@@recortTypeValue' + recortTypeValue);
         if(recortTypeValue.contains(GENERIC)) {
             VendorReqRecordType = GenricRecordType;
         }else if(recortTypeValue.contains(MAINTAIN)) {
@@ -143,7 +144,7 @@ public class VPM_RecordTypeHelper {
             }
         }
             system.debug('@@Map -' + vendorRecordtypeId);            
-        
+        system.debug('@@vendorRecordtypeId' + vendorRecordtypeId);
         return vendorRecordtypeId;
     }
     

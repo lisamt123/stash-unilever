@@ -58,6 +58,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>VPM_GoldenDataController2Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>VPM_HttpUtil</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -86,10 +90,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>VPM_RecallApprovalTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>VPM_RecordTypeHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -103,6 +103,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_regionalMaintainVendor</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VPM_regionalMaintainVendorTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
