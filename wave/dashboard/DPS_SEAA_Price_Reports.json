@@ -6174,10 +6174,10 @@
             "Date_of_audit_Year_Date_of_audit_Month_31": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011P9SAI",
-                        "label": "PRICE_COMPLIANCE",
-                        "name": "PRICE_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011P9SAI"
+                      "id": "0Fb2C00000011OkSAI",
+                      "label": "STRATEGIC_PRICE_SCORE",
+                      "name": "STRATEGIC_PRICE_SCORE",
+                      "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011OkSAI"
                     }
                 ],
                 "isFacet": false,

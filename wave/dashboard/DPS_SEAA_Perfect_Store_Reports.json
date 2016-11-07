@@ -1179,14 +1179,14 @@
                                 }
                             },
                             {
-                                "colspan": 2,
+                                "colspan": 1,
                                 "column": 8,
                                 "name": "number_psCompliance",
                                 "row": 3,
                                 "rowspan": 2,
                                 "widgetStyle": {
                                     "backgroundColor": "rgb(0, 94, 186)",
-                                    "borderColor": "#000000",
+                                    "borderColor": "rgb(0, 0, 0)",
                                     "borderEdges": [],
                                     "borderRadius": 0,
                                     "borderWidth": 2
@@ -1479,6 +1479,20 @@
                                 "rowspan": 1,
                                 "widgetStyle": {
                                     "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 1,
+                                "column": 9,
+                                "name": "number_6",
+                                "row": 3,
+                                "rowspan": 2,
+                                "widgetStyle": {
+                                    "backgroundColor": "rgb(0, 94, 186)",
+                                    "borderColor": "rgb(0, 0, 0)",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 2
                                 }
                             }
                         ]
@@ -5663,6 +5677,46 @@
                     "visualizationType": "hbar"
                 }
             },
+            "Compliance_Target_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C00000011OBSAY",
+                        "label": "COUNTRY_TARGETS",
+                        "name": "COUNTRY_TARGETS",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011OBSAY"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance_Target"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Country",
+                            "{{ column(Country_11.selection, [\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ column(Country_14.selection, [\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ column(Cluster_10.selection, [\"Country\"]).asObject() }}"
+                        ]
+                    ]
+                },
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
             "Last_Month_Month_36": {
                 "datasets": [
                     {
@@ -8363,6 +8417,21 @@
                 },
                 "type": "listselector"
             },
+            "number_6": {
+                "parameters": {
+                    "compact": false,
+                    "exploreLink": true,
+                    "measureField": "avg_Compliance_Target",
+                    "numberColor": "#FFFFFF",
+                    "numberSize": 32,
+                    "step": "Compliance_Target_1",
+                    "textAlignment": "center",
+                    "title": "Compliance Target",
+                    "titleColor": "#FFFFFF",
+                    "titleSize": 12
+                },
+                "type": "number"
+            },
             "header_enrollComCustomers": {
                 "parameters": {
                     "fontSize": 16,
@@ -9607,6 +9676,12 @@
             "label": "PS_OVERALL_COMPLIANCE_LV",
             "name": "PS_OVERALL_COMPLIANCE_LV",
             "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011MUSAY"
+        },
+        {
+            "id": "0Fb2C00000011OBSAY",
+            "label": "COUNTRY_TARGETS",
+            "name": "COUNTRY_TARGETS",
+            "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011OBSAY"
         },
         {
             "id": "0Fb2C00000011QvSAI",

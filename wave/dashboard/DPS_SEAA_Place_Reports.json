@@ -7981,10 +7981,10 @@
             "Date_Year_Date_Month_1": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PTSAY",
-                        "label": "PLACE_COMPLIANCE",
-                        "name": "PLACE_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PTSAY"
+                      "id": "0Fb2C00000011OpSAI",
+                      "label": "SOS_SCORE",
+                      "name": "SOS_SCORE",
+                      "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011OpSAI"
                     }
                 ],
                 "isFacet": false,
