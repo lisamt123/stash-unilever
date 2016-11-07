@@ -394,7 +394,7 @@
                     <apex:outputPanel rendered="{!AND(project.IPM_Phase__c!=isCapability,isOperational)}">
                                     <span class="bluText">* Goes to <apex:outputText value="{!IF(projectDoc.IPM_GateDocuments__c='Charter',' Contract',(IF(projectDoc.IPM_GateDocuments__c='Contract',' Market Ready',(IF(projectDoc.IPM_GateDocuments__c='Market Ready',' Market Deployment',' PLE')))))}"></apex:outputText> Gate document, Section Feedback from Last Gate</span>
                      </apex:outputPanel>
-                </div>
+                
                                 <apex:inputTextarea onfocus="checktextval();" styleClass="txtArea" value="{!projectDoc.IPM_Approved_Comments__c}" rendered="{!isPDLApproved}"/>        
                                  <!-- Below rendered condition will execute for charter gate document -->
                                 <apex:outputPanel layout="block" rendered="{!if(projectDoc.IPM_GateDocuments__c=='Charter',True,False)}">
