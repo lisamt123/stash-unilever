@@ -42,9 +42,10 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
       public static final string STR_CONST_COMPLETED='Completed';
       public static final string STR_CONST_YES='Yes';
       public static final string STR_CONST_NO='No';
-      public static final string STR_CONST_APPROVALPENDING='Approval Pending';
-      Public static final string STR_CONST_SWITZERLAND='Switzerland';
-      Public static final string STR_CONST_UK='United Kingdom';
+      public static final string STR_CONST_SWITZERLAND='Switzerland';
+      public static final string STR_CONST_UK='United Kingdom';
+      public static final string STR_CONST_EXCEPTIONDEBUGMSG='@@Exception ';
+      public static final string STR_CONST_CALLJAVASCRIPTMETHOD = '<script> redirectToListView(); </script>';
       public String vendorReqId {get; set;}
       public String usrRole {get; set;}
       public boolean renderSAPBtn {get; set;}
@@ -105,16 +106,15 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
       
       ApexPages.StandardController GstdController;
       ApexPages.StandardSetController GstdControllerSet; 
-    public VPM_PurchaseRequestsControllerExtension (ApexPages.StandardSetController stdSet) {
-    try{
+    
+        public VPM_PurchaseRequestsControllerExtension (ApexPages.StandardSetController stdSet) {
+        try{
           GstdControllerSet =stdSet;
           recId = stdSet.getRecord().Id; 
           commodityApproverId = UserInfo.getUserId();
       
           
           this.pr= (VPM_PurchasingRequests__c)stdSet.getRecord(); 
-          //recId1 = stdController.getRecord().Id; 
-          // callJavaScriptAlert='<script> func(); </script>';
           system.debug('11-------------isProcure------'+isProcure);
           isBR  = false;
           isFLS = false;
@@ -123,7 +123,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           isProcure = false;
           isRussian = false;
           isFreight = false;
-          checkUser() ;
+          this.checkUser() ;
         
           commodityApprovers = [SELECT Id,VPM_isCurrentUserApprover1__c,VPM_isCurrentUserApprover2__c,VPM_isCurrentUserApprover3__c,VPM_isCurrentUserApprover4__c,
                                 VPM_isCurrentUserApprover5__c,VPM_isCurrentUserApprover6__c,VPM_isCurrentUserApprover7__c,
@@ -143,7 +143,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           
           system.debug('-------------isProcure------'+isProcure);
         }
-        catch(exception ex){system.debug('@@Exception' +  ex.getstacktracestring());}
+        catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());}
     }
       public VPM_PurchaseRequestsControllerExtension (ApexPages.StandardController stdController) {
           try{
@@ -164,7 +164,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           isRussian = false;
           isFreight = false;
           
-          checkUser();
+          this.checkUser();
           venReqStatus = fetchRecordStatus(recId);
           isRequired = false;
         
@@ -338,7 +338,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
 
           System.debug('@@@@@@@@@@ SubmitRequestBtn  -------------------'+submitRequestBtn );
       }
-      catch(exception ex){system.debug('@@Exception' +  ex.getstacktracestring());}
+      catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());}
       }
     
  /******************************************************************** 
@@ -611,7 +611,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   manuallyMarkAsCompleteFlag =true;
                }
           }
-          catch(exception ex){system.debug('@@Exception' +  ex.getstacktracestring());}
+          catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());}
       }
      
     // Changes start  :  For Recall Visibility issue 
@@ -682,7 +682,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               }
               // Ajay : Adv BR submitted to Pro now Pro is sending for rework
               else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ && 
-              VendorDetailList[0].VPM_Status__c ==STR_CONST_APPROVALPENDING && VendorDetailList[0].VPM_ProcurementApprovalRequired__c )
+              VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING && VendorDetailList[0].VPM_ProcurementApprovalRequired__c )
               {
                   VendorDetailList[0].VPM_Status__c = 'Procurement Requested Re-Work'; 
                   VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById;
@@ -696,7 +696,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               }
               // Ajay : Adv BR submitted to FIN now FIN is sending for rework
               else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ && 
-              VendorDetailList[0].VPM_Status__c ==STR_CONST_APPROVALPENDING && 
+              VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING && 
               VendorDetailList[0].VPM_FinanceApprovalRequired__c && 
              !VendorDetailList[0].VPM_BankDataValidationRequired__c    &&    
               !VendorDetailList[0].VPM_FreightApprovalRequired__c
@@ -715,7 +715,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               }
            
              // Ajay : Adv FLS submitted to PRO now PRO is sending for rework
-              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_FLS && VendorDetailList[0].VPM_Status__c ==STR_CONST_APPROVALPENDING 
+              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_FLS && VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING 
               && VendorDetailList[0].VPM_ProcurementApprovalRequired__c )
               {
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name =: STR_CONST_FLS Limit 1];
@@ -753,7 +753,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     !VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_BankDataValidationRequired__c  &&
                     VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
-                     VendorDetailList[0].VPM_Status__c == STR_CONST_APPROVALPENDING &&
+                     VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
                      VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_FLS) 
               { 
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name =: STR_CONST_FLS Limit 1];
@@ -777,7 +777,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_BankDataValidationRequired__c    &&
                     !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
-                     VendorDetailList[0].VPM_Status__c == STR_CONST_APPROVALPENDING &&
+                     VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
                      VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_FLS) 
               { 
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = : STR_CONST_FLS Limit 1];
@@ -800,7 +800,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     VendorDetailList[0].VPM_FreightApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
-                     VendorDetailList[0].VPM_Status__c == STR_CONST_APPROVALPENDING &&
+                     VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
                      VendorDetailList[0].VPM_RequestLastWithGroup__c ==STR_CONST_FLS) 
               { 
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = : STR_CONST_FLS Limit 1];
@@ -824,7 +824,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     VendorDetailList[0].VPM_FreightApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
                      VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
-                     VendorDetailList[0].VPM_Status__c == STR_CONST_APPROVALPENDING &&
+                     VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
                      VendorDetailList[0].VPM_RequestLastWithGroup__c ==STR_CONST_FLS) 
               { 
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = : STR_CONST_FLS Limit 1];
@@ -847,7 +847,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     !VendorDetailList[0].VPM_BankDataValidationRequired__c    &&
                     VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
-                     VendorDetailList[0].VPM_Status__c == STR_CONST_APPROVALPENDING &&
+                     VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
                      VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ ) 
               { 
                       VendorDetailList[0].VPM_Status__c = 'Russian Custom Tax Requested Re-Work'; 
@@ -869,7 +869,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     VendorDetailList[0].VPM_FreightApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
-                     VendorDetailList[0].VPM_Status__c == STR_CONST_APPROVALPENDING &&
+                     VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
                      VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ) 
               { 
                      VendorDetailList[0].VPM_Status__c = STR_CONST_FREIGHTREWORK; 
@@ -890,7 +890,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     VendorDetailList[0].VPM_FreightApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
                     VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
-                     VendorDetailList[0].VPM_Status__c == STR_CONST_APPROVALPENDING &&
+                     VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
                      VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ) 
               { 
                      VendorDetailList[0].VPM_Status__c = STR_CONST_FREIGHTREWORK; 
@@ -906,7 +906,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               // Bank Data Validation Rework Cases   
               // Ajay : Adv FLS submitted to FRE now FRE is sending for rework
                else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_FLS && 
-                        VendorDetailList[0].VPM_Status__c == STR_CONST_APPROVALPENDING 
+                        VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING
                         && VendorDetailList[0].VPM_BankDataValidationRequired__c) 
               
               { 
@@ -924,7 +924,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   } 
               }
               // Ajay : Adv BR submitted to FRE now FRE is sending for rework
-                else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ  && VendorDetailList[0].VPM_Status__c == STR_CONST_APPROVALPENDING && VendorDetailList[0].VPM_BankDataValidationRequired__c) 
+                else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ  && VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING && VendorDetailList[0].VPM_BankDataValidationRequired__c) 
               { 
                      VendorDetailList[0].VPM_Status__c = 'Bank Data Validation Requested Re-Work'; 
                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Bank Data';
@@ -939,7 +939,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               
           }
           catch(exception ex){
-          system.debug('@@Exception' +  ex.getstacktracestring());
+          system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());
           }
       }
       
@@ -994,14 +994,14 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   List<QueueSobject> QueueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name =: STR_CONST_PROCUREMENT Limit 1];
                   if (QueueList.size() == 1)
                       { 
-                      VendorDetailList[0].VPM_Status__c = 'Approval Pending'; 
+                      VendorDetailList[0].VPM_Status__c = VPM_RecordTypeHelper.APPROVALPENDING; 
                       VendorDetailList[0].VPM_AdvancedFormSubmitted__c=STR_CONST_YES; 
                       VendorDetailList[0].VPM_Rework__c=STR_CONST_COMPLETED; 
                       //VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
                      VendorDetailList[0].OwnerId=QueueList[0].QueueId;  
                       } 
                       update VendorDetailList;
-                     callJavaScriptAlert='<script> redirectToListView(); </script>';
+                     callJavaScriptAlert=STR_CONST_CALLJAVASCRIPTMETHOD;
                        // Redirect();
                   }
                   // Ajay : FLS reworked and  submitted to FIN
@@ -1010,14 +1010,14 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                       List<QueueSobject> QueueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name =: STR_CONST_FINANCE Limit 1];
                       if (QueueList.size() == 1)
                           { 
-                          VendorDetailList[0].VPM_Status__c = 'Approval Pending'; 
+                          VendorDetailList[0].VPM_Status__c = VPM_RecordTypeHelper.APPROVALPENDING; 
                           VendorDetailList[0].VPM_Rework__c=STR_CONST_COMPLETED; 
                           VendorDetailList[0].VPM_AdvancedFormSubmitted__c=STR_CONST_YES; 
                           //VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
                            VendorDetailList[0].OwnerId=QueueList[0].QueueId; 
                           } 
                       update VendorDetailList;
-                      callJavaScriptAlert='<script> redirectToListView(); </script>';
+                      callJavaScriptAlert=STR_CONST_CALLJAVASCRIPTMETHOD;
                      // Redirect();
 
                       } 
@@ -1027,14 +1027,14 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                       List<QueueSobject> QueueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'Russian Custom Tax' Limit 1];
                       if (QueueList.size() == 1)
                           { 
-                          VendorDetailList[0].VPM_Status__c = 'Approval Pending'; 
+                          VendorDetailList[0].VPM_Status__c = VPM_RecordTypeHelper.APPROVALPENDING;
                           VendorDetailList[0].VPM_Rework__c=STR_CONST_COMPLETED; 
                           VendorDetailList[0].VPM_AdvancedFormSubmitted__c=STR_CONST_YES; 
                           //VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
                            VendorDetailList[0].OwnerId=QueueList[0].QueueId; 
                           } 
                       update VendorDetailList;
-                        callJavaScriptAlert='<script> redirectToListView(); </script>';
+                        callJavaScriptAlert=STR_CONST_CALLJAVASCRIPTMETHOD;
                       // Redirect();
 
                       } 
@@ -1044,14 +1044,14 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                       List<QueueSobject> QueueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name =: STR_CONST_FREIGHT Limit 1];
                       if (QueueList.size() == 1)
                           { 
-                          VendorDetailList[0].VPM_Status__c = 'Approval Pending'; 
+                          VendorDetailList[0].VPM_Status__c = VPM_RecordTypeHelper.APPROVALPENDING; 
                           VendorDetailList[0].VPM_Rework__c=STR_CONST_COMPLETED; 
                           VendorDetailList[0].VPM_AdvancedFormSubmitted__c='No'; 
                           //VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
                            VendorDetailList[0].OwnerId=QueueList[0].QueueId; 
                           } 
                       update VendorDetailList;
-                       callJavaScriptAlert='<script> redirectToListView(); </script>';
+                       callJavaScriptAlert=STR_CONST_CALLJAVASCRIPTMETHOD;
                       // Redirect();
 
                       } 
@@ -1061,19 +1061,19 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                       List<QueueSobject> QueueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'ECC' Limit 1];
                       if (QueueList.size() == 1)
                           { 
-                          VendorDetailList[0].VPM_Status__c = 'Approval Pending'; 
+                          VendorDetailList[0].VPM_Status__c = VPM_RecordTypeHelper.APPROVALPENDING; 
                           VendorDetailList[0].VPM_Rework__c=STR_CONST_COMPLETED; 
                           VendorDetailList[0].VPM_AdvancedFormSubmitted__c=STR_CONST_YES; 
                           //VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
                            VendorDetailList[0].OwnerId=QueueList[0].QueueId; 
                           } 
                       update VendorDetailList;
-                      callJavaScriptAlert='<script> redirectToListView(); </script>';
+                      callJavaScriptAlert=STR_CONST_CALLJAVASCRIPTMETHOD;
                       // Redirect();
 
                       }              
           }
-          catch(exception ex){system.debug('@@Exception' +  ex.getstacktracestring());}
+          catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG  +  ex.getstacktracestring());}
       } 
 
 /******************************************************************** 

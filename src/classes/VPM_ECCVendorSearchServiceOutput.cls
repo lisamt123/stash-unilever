@@ -117,8 +117,8 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String ExemptionTo;
     public String Extension2;
     public String Extension3;
-    //public String ExtensionPhone;
-    public String Extension1;
+    public String ExtensionPhone; 
+    //public String Extension1;
     public String ExternalMFG;
     public String Fax;
     public String FaxExtension;

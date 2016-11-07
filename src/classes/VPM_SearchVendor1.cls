@@ -470,24 +470,25 @@ public with sharing class VPM_SearchVendor1{
                 // Dynamic Query builded for search vendor
                
                 
-                string searchQuery ='SELECT id,mdm_Postcode__c,VPM_FullDetails__c,mdm_vCodeSirius__c,mdm_vCodeCordillera__c,mdm_vCodeU2K2__c,mdm_Name2__c,mdm_Name3__c,mdm_Name4__c,mdm_TaxNumber1__c,mdm_TaxNumber2__c,mdm_TaxNumber3__c,mdm_TaxNumber4__c,mdm_VATRegNum__c, mdm_vCodeFusion__c,mdm_Name1__c,mdm_Street__c ,mdm_City__c,mdm_Country__c,mdm_ecc__c,mdm_Code__c FROM mdm_Vendors__c  WHERE  mdm_Name1__c LIKE '+ CONST_LITERAL2 + String.escapeSingleQuotes(vendorName) + '%\'';
+                /*string searchQuery ='SELECT id,mdm_Postcode__c,VPM_FullDetails__c,mdm_vCodeSirius__c,mdm_vCodeCordillera__c,mdm_vCodeU2K2__c,mdm_Name2__c,mdm_Name3__c,mdm_Name4__c,mdm_TaxNumber1__c,mdm_TaxNumber2__c,mdm_TaxNumber3__c,mdm_TaxNumber4__c,mdm_VATRegNum__c, mdm_vCodeFusion__c,mdm_Name1__c,mdm_Street__c ,mdm_City__c,mdm_Country__c,mdm_ecc__c,mdm_Code__c FROM mdm_Vendors__c  WHERE  mdm_Name1__c LIKE '+ CONST_LITERAL2 + String.escapeSingleQuotes(vendorName) + '%\'';
                 searchQuery+=' AND mdm_Street__c LIKE '+ '\'%' + String.escapeSingleQuotes(Street1) + '%\'';
                 searchQuery+=' AND mdm_Postcode__c  = \'' + ZIPPostcode+'\'';
-                searchQuery+=' AND mdm_Country__c = \''  +  countryNameSplitted + '\'';
-                /*if(string.isNotBlank(street1) && string.isNotBlank(zipPostcode)) {
-                    searchQuery+=' AND mdm_Street__c LIKE '+ CONST_LITERAL2 + String.escapeSingleQuotes(street1) + CONST_LITERAL3;      
-                    searchQuery+=' AND mdm_Postcode__c = ' + zipPostcode;
-                    searchQuery+=' AND mdm_Country__c = ' + countryNameSplitted + ')';  
+                searchQuery+=' AND mdm_Country__c = \''  +  countryNameSplitted + '\''; */
+                string searchQuery ='SELECT id,mdm_Postcode__c,VPM_FullDetails__c,mdm_vCodeSirius__c,mdm_vCodeCordillera__c,mdm_vCodeU2K2__c,mdm_Name2__c,mdm_Name3__c,mdm_Name4__c,mdm_TaxNumber1__c,mdm_TaxNumber2__c,mdm_TaxNumber3__c,mdm_TaxNumber4__c,mdm_VATRegNum__c, mdm_vCodeFusion__c,mdm_Name1__c,mdm_Street__c ,mdm_City__c,mdm_Country__c,mdm_ecc__c,mdm_Code__c FROM mdm_Vendors__c  WHERE ( mdm_Name1__c LIKE '+'\'%' + String.escapeSingleQuotes(vendorName) + '%\'' ;
+                if(string.isNotBlank(street1) && string.isNotBlank(zipPostcode)) {
+                    searchQuery+=' OR mdm_Street__c LIKE '+ '\'%' + String.escapeSingleQuotes(street1) + '%\'';    
+                    searchQuery+=' OR mdm_Postcode__c LIKE '+ '\'%' + String.escapeSingleQuotes(zipPostcode)+ '%\')';
+                    searchQuery+=' AND mdm_Country__c LIKE '+ '\'%' + String.escapeSingleQuotes(countryNameSplitted)+ '%\'';
                 }else  if(string.isNotBlank(street1) && string.isBlank(zipPostcode)) {   
-                    searchQuery+=' OR mdm_Street__c LIKE '+ CONST_LITERAL2 + String.escapeSingleQuotes(street1) + CONST_LITERAL4;  
-                    searchQuery+=' AND mdm_Country__c LIKE '+ CONST_LITERAL2 + String.escapeSingleQuotes(countryNameSplitted)+ CONST_LITERAL3;
+                    searchQuery+=' OR mdm_Street__c LIKE '+ '\'%' + String.escapeSingleQuotes(street1) + '%\')';  
+                    searchQuery+=' AND mdm_Country__c LIKE '+ '\'%' + String.escapeSingleQuotes(countryNameSplitted)+ '%\'';
                 }else  if(string.isBlank(street1) && string.isNotBlank(zipPostcode)) {   
-                    searchQuery+=' AND mdm_Postcode__c LIKE '+ CONST_LITERAL2 + String.escapeSingleQuotes(zipPostcode)+ CONST_LITERAL4;
-                    searchQuery+=' AND mdm_Country__c LIKE '+ CONST_LITERAL2 + String.escapeSingleQuotes(countryNameSplitted)+ CONST_LITERAL3;
+                    searchQuery+=' OR mdm_Postcode__c LIKE '+ '\'%' + String.escapeSingleQuotes(zipPostcode)+ '%\')';
+                    searchQuery+=' AND mdm_Country__c LIKE '+ '\'%' + String.escapeSingleQuotes(countryNameSplitted)+ '%\'';
                 }else  if(string.isBlank(street1) && string.isBlank(zipPostcode)) {   
-                    searchQuery+=' AND mdm_Country__c LIKE '+ CONST_LITERAL2 + String.escapeSingleQuotes(countryNameSplitted)+ CONST_LITERAL4;
+                    searchQuery+=' AND mdm_Country__c LIKE '+ '\'%' + String.escapeSingleQuotes(countryNameSplitted)+ '%\')';
                 }
-                searchQuery+= 'LIMIT 999';    */            
+                searchQuery+= 'LIMIT 999';         
                 system.debug('@@mdmVendor' +searchQuery);
                 mdmVendor = Database.query(searchQuery);
                 system.debug('@@mdmVendor' + mdmVendor);                
@@ -1241,7 +1242,7 @@ public with sharing class VPM_SearchVendor1{
             vendorDetails.VPM_ExciseRegNo__c = op.ExciseRegNo;
             vendorDetails.VPM_Extension2__c = op.Extension2;
             vendorDetails.VPM_Extension3__c = op.Extension3;
-            vendorDetails.VPM_ExtensionPhone__c = op.Extension1;
+            vendorDetails.VPM_ExtensionPhone__c = op.ExtensionPhone;
             
             vendorDetails.VPM_Fax__c = op.Fax;
             vendorDetails.VPM_FaxExtension__c = op.FaxExtension;
