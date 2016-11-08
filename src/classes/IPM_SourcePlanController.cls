@@ -617,7 +617,6 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     @Description:save product country mapping data
     ****************************************************************************************************************************/
     public void saveProductCountry(list<IPM_Project_Product__c> producList,string holdProductCountry_STR){
-    	List<IPM_ProductPlan__c> lstProductPlanToDelete = new List<IPM_ProductPlan__c>(); 
         list<string> holdProductCoun = new list<string>();
         holdProductCoun = holdProductCountry_STR.split(IPM_ConstantUtils.Delimiter);
         list<IPM_ProductPlan__c> productPlanList = new list<IPM_ProductPlan__c>();
@@ -698,6 +697,8 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     public void saveSourceUnitPartOne(map<string,id> countryProductPalnMap,list<IPM_Project_Product__c> producList,list<sourceUnitWrapper> srcUnitList,Map<string,IPM_SourcingPlan__c> countrySourcePlanMap){
         list<IPM_SourcingPlan__c> sourcePlansList = new list<IPM_SourcingPlan__c>();
         list<IPM_SourcingPlan__c> sourcePlansListToUpdate = new list<IPM_SourcingPlan__c>();
+        list<IPM_SourcingPlan__c> lstSourcingPlanWithBlankCountry=new  list<IPM_SourcingPlan__c>();
+        list<IPM_ProductPlan__c> lstProductPlansToInsert = new list<IPM_ProductPlan__c>();
         list<string> getSourceinto = new list<string>(); 
         set<id> uniqueSourcePId = new set<id>();
         for(sourceUnitWrapper srcUnitClass:srcUnitList){ 
@@ -732,13 +733,13 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
             	{
 	            	IPM_ProductPlan__c objProductPlan = new IPM_ProductPlan__c();
 	            	objProductPlan.IPM_Project_Product__c = producList[0].Id;
-	            	insert  objProductPlan;
+	            	lstProductPlansToInsert.add(objProductPlan);
 	            	IPM_SourcingPlan__c sourPlan = new IPM_SourcingPlan__c();
 	               	sourPlan.IPM_SourcingUnit__c = srcUnitClass.sourcingPlan.IPM_SourcingUnit__c;
 	               	sourPlan.IPM_Sourcing_Unit__c = allSourceUnitsMap.get(srcUnitClass.sourcingPlan.IPM_SourcingUnit__c);
 	               	sourPlan.IPM_CapabilityConfirmed__c = srcUnitClass.sourcingPlan.IPM_CapabilityConfirmed__c;
 	               	sourPlan.IPM_ProductPlan__c= objProductPlan.Id;
-	               	sourcePlansList.add(sourPlan);
+	               	lstSourcingPlanWithBlankCountry.add(sourPlan);
             	}
             }                  
         }   
@@ -751,7 +752,19 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         if(!sourcePlansListToUpdate.isEmpty()){   
             update sourcePlansListToUpdate;
         }
-        
+        insertProductPlansWithBlankSourcingUnit(lstProductPlansToInsert,lstSourcingPlanWithBlankCountry);         
+    }
+    
+    public void insertProductPlansWithBlankSourcingUnit(list<IPM_ProductPlan__c> lstProductPlansToInsert,list<IPM_SourcingPlan__c> lstSourcingPlanWithBlankCountry)
+    {
+    	 if(!lstProductPlansToInsert.isEmpty() && !lstSourcingPlanWithBlankCountry.isEmpty())
+        {
+        	List<Database.SaveResult> lstResult = Database.Insert(lstProductPlansToInsert);
+        	 for (Integer i = 0; i < lstResult.size(); i++) {
+        	 	lstSourcingPlanWithBlankCountry[i].IPM_ProductPlan__c= lstResult[i].getId();
+        	 }
+        	 insert lstSourcingPlanWithBlankCountry;
+        }      
     }
     /***************************************************************************************************************************
     @Description:clone product record row and enable edit mode
