@@ -147,3 +147,6 @@ src/workflows/Account.workflow
 src/workflows/ACSFUL001__Product__c.workflow
 src/workflows/ACSFUL001__Promotion__c.workflow
 src/workflows/ACSFUL001__Tactic__c.workflow
+src/tabs
+src/tabs/ACSFUL001__Org_Unit_User__c.tab
+src/tabs/UL_Approval_Threshold__c.tab
