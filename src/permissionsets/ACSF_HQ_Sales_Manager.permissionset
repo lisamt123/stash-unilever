@@ -132,6 +132,7 @@
         <apexClass>UL_UtilityController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+    <description>For retail execution planning and retail execution monitoring (API Name: ACSF_HQ_Sales_Manager)</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.ACSFUL001__Account_Email__c</field>
@@ -1667,7 +1668,25 @@
         <field>User.UL_User_Validity_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <label>Reports and Dashboards</label>
+    <label>ACSF Sales Support</label>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Account</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Contact</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <pageAccesses>
         <apexPage>MyPromotionPlanning</apexPage>
         <enabled>false</enabled>
@@ -1694,11 +1713,11 @@
     </pageAccesses>
     <recordTypeVisibilities>
         <recordType>Account.ACSFUL001__Customer</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Contact.ACSFUL001__Contact</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Idea.InternalIdeasIdeaRecordType</recordType>
@@ -1713,15 +1732,15 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>standard-Account</tab>
+        <tab>standard-Asset</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>standard-Contact</tab>
+        <tab>standard-Campaign</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>standard-DandBCompany</tab>
+        <tab>standard-Case</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
@@ -1729,28 +1748,7 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>standard-StreamingChannel</tab>
+        <tab>standard-Solution</tab>
         <visibility>None</visibility>
     </tabSettings>
-    <tabSettings>
-        <tab>standard-UserProvisioningRequest</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <userLicense>Salesforce Platform</userLicense>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>EditReports</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ExportReport</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>NewReportBuilder</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>RunReports</name>
-    </userPermissions>
 </PermissionSet>

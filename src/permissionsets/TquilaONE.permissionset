@@ -1667,7 +1667,7 @@
         <field>User.UL_User_Validity_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <label>Reports and Dashboards</label>
+    <label>TquilaONE</label>
     <pageAccesses>
         <apexPage>MyPromotionPlanning</apexPage>
         <enabled>false</enabled>
@@ -1717,7 +1717,23 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>standard-Asset</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Campaign</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Case</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>standard-Contact</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Contract</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
@@ -1725,7 +1741,43 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>standard-DuplicateRecordSet</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>standard-Idea</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Lead</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Macro</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Opportunity</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Order</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Pricebook2</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Product2</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-SOSSession</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Solution</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
@@ -1736,21 +1788,9 @@
         <tab>standard-UserProvisioningRequest</tab>
         <visibility>None</visibility>
     </tabSettings>
-    <userLicense>Salesforce Platform</userLicense>
+    <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
-        <name>EditReports</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ExportReport</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>NewReportBuilder</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>RunReports</name>
+        <name>ApiEnabled</name>
     </userPermissions>
 </PermissionSet>
