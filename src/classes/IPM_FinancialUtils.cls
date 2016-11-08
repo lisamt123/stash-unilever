@@ -234,5 +234,48 @@ public with sharing class IPM_FinancialUtils
     }
     
     
+    /**************************************************************************************************************
+    * This method return of the type of the currently opened fianncial (CONSOLIDATED,KEY,NONKEY)
+    * Parameter : IPM_Financial__c currentFinancial i.e. the currently opened financial
+    **************************************************************************************************************/
+    public static string getCurrentFinancialType(String finExtId){
+        
+        string currentFinancialType = 'KEY';
+        
+        if(!string.isBlank(finExtId)){
+             If(finExtId.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+                currentFinancialType = IPM_ConstantUtils.CONSOLIDATED;
+            }
+            else if(finExtId.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)){
+                currentFinancialType = 'NONKEY';
+            }
+            
+        }
+        
+        return currentFinancialType;
+    }
+    
+    
+    /*************************************************************************************************************
+    * This method fetches the type of Financials to be evaluated for soft validations (KEY, NONkey or Consolidated)
+    * These informations are stored in IPM_Project_GKM_To_Phase_Matrix__mdt metdata type
+    * based on the project values the corresponding financial types are determined for soft validationa and then used for determining the eligibilty of financialSoft validations
+    * Parameter : IPM_Project__c the current project
+    * Return : IPM_Project_GKM_To_Phase_Matrix__mdt 
+    *************************************************************************************************************/
+    public static Map<String,String> getProjGKMToPhaseMatrixElement(){
+        
+        String queryString = IPM_Utils.prepareSOQLQuery('IPM_Project_GKM_To_Phase_Matrix__mdt',false, null, false);
+        queryString = queryString + ' Limit 100';
+        
+        Map<String,String> projKeyToFinToEvaluateMap = new Map<String,String>();
+        
+        for(IPM_Project_GKM_To_Phase_Matrix__mdt GKMPhaseMapEle : (List<IPM_Project_GKM_To_Phase_Matrix__mdt>) Database.query(queryString)){
+        	projKeyToFinToEvaluateMap.put(GKMPhaseMapEle.DeveloperName,GKMPhaseMapEle.Financial_Type_To_Validate__c);
+        }
+        
+        return projKeyToFinToEvaluateMap;
+    }
+    
     
 }
