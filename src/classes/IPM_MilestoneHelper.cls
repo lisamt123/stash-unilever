@@ -404,10 +404,12 @@ public with sharing class IPM_MilestoneHelper
                           targetProjectMap.put(regionalProject.Id,regionalProject);
                             
                            // If Copy Least Due date is true for regional,store this information 
-                          if(currentProjectType.CopyLeastMSDueDate__c.contains(regionalProject.IPMProject_Span__c))
-                          {
-                              targetProjecttoLeastMSDateMap.put(regionalProject.Id,true);   
-                          } 
+                          if(currentProjectType.CopyLeastMSDueDate__c != null){
+	                          if(currentProjectType.CopyLeastMSDueDate__c.contains(regionalProject.IPMProject_Span__c))
+	                          {
+	                              targetProjecttoLeastMSDateMap.put(regionalProject.Id,true);   
+	                          } 
+                          }
                       }
                       
                       if(currentProjectType.IPM_CopyMilestoneToGlobal__c && projectToGrandParentMapping.containsKey(projectId))
@@ -417,10 +419,12 @@ public with sharing class IPM_MilestoneHelper
                           targetProjectMap.put(globalProject.Id,globalProject); 
                           
                            // If Copy Least Due date is true for Global,store this information 
-                          if(currentProjectType.CopyLeastMSDueDate__c.contains(globalProject.IPMProject_Span__c))
-                          {
-                             targetProjecttoLeastMSDateMap.put(globalProject.Id,true);  
-                          }
+                            if(currentProjectType.CopyLeastMSDueDate__c != null){
+	                          if(currentProjectType.CopyLeastMSDueDate__c.contains(globalProject.IPMProject_Span__c))
+	                          {
+	                             targetProjecttoLeastMSDateMap.put(globalProject.Id,true);  
+	                          }
+                            }
                           
                       }
                       
@@ -440,9 +444,11 @@ public with sharing class IPM_MilestoneHelper
                           targetProjectMap.put(globalProject.Id,globalProject);
                           
                            // If Copy Least Due date is true for Global,store this information 
-                          if(currentProjectType.CopyLeastMSDueDate__c.contains(globalProject.IPMProject_Span__c))
-                          {
-                             targetProjecttoLeastMSDateMap.put(globalProject.Id,true);  
+                          if(currentProjectType.CopyLeastMSDueDate__c != null){
+	                          if(currentProjectType.CopyLeastMSDueDate__c.contains(globalProject.IPMProject_Span__c))
+	                          {
+	                             targetProjecttoLeastMSDateMap.put(globalProject.Id,true);  
+	                          }
                           }
                       }
                       
@@ -455,10 +461,12 @@ public with sharing class IPM_MilestoneHelper
                            // If Copy Least Due date is true for local,store this information 
                           for(IPM_Project__c localProject : localProjectMap.values())
                           {
-                              if(currentProjectType.CopyLeastMSDueDate__c.contains(localProject.IPMProject_Span__c))
-                              {
-                                 targetProjecttoLeastMSDateMap.put(localProject.Id,true);   
-                              } 
+                          	if(currentProjectType.CopyLeastMSDueDate__c != null){
+	                              if(currentProjectType.CopyLeastMSDueDate__c.contains(localProject.IPMProject_Span__c))
+	                              {
+	                                 targetProjecttoLeastMSDateMap.put(localProject.Id,true);   
+	                              }
+                          	} 
                           }
                           
                       }
@@ -477,10 +485,12 @@ public with sharing class IPM_MilestoneHelper
                           
                           for(IPM_Project__c regionalProject : regionalProjectMap.values())
                           {
+                          	if(currentProjectType.CopyLeastMSDueDate__c != null){
                               if(currentProjectType.CopyLeastMSDueDate__c.contains(regionalProject.IPMProject_Span__c))
                               {
                                  targetProjecttoLeastMSDateMap.put(regionalProject.Id,true);    
                               }
+                          	}
                           }     
                       }
                       
@@ -492,10 +502,12 @@ public with sharing class IPM_MilestoneHelper
                           
                           for(IPM_Project__c localProject : localProjectMap.values())
                           {
+                          	if(currentProjectType.CopyLeastMSDueDate__c != null){
                               if(currentProjectType.CopyLeastMSDueDate__c.contains(localProject.IPMProject_Span__c))
                               {
                                  targetProjecttoLeastMSDateMap.put(localProject.Id,true);   
                               }
+                          	}
                           } 
                       }
                   }

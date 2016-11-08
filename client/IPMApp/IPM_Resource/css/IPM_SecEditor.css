@@ -856,7 +856,7 @@ div.metric table.ecoDesignCountry tbody tr td div.cellWidth:first-child{
 .removeClaimText{padding:10px;}
 .glbPLDdrpdown{margin-top: -20px;}
 .glbPLDdrpdown>tbody>tr:nth-child(even) {background: #f8f8f8;}
-.selectClaim{position:relative;}
+.selectClaim{position:relative;display:block;}
 .gatepdlContainer{width: 100%;float: left;height: 100%;padding-left: 15px;}
 .claimList{width:100%;}
 .paddleft{padding-left:15px;}
