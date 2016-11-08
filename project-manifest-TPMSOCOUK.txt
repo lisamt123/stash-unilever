@@ -103,9 +103,6 @@ src/flows/Update_all_date_fileds-1.flow
 src/flows/Update_all_date_fileds-2.flow
 src/flows/Update_Promotion_Date_Fields_for_UKI-1.flow
 src/flows/updatePromotiontype-2.flow
-src/permissionsets
-src/permissionsets/ACSF_FM.permissionset
-src/permissionsets/ACSF_KAM.permissionset
 src/layouts
 src/layouts/ACSFUL001__Account_Set__c-SoCo_ Account Set Layout.layout
 src/layouts/ACSFUL001__Account_Set__c-UKI_ Account Set Layout.layout
