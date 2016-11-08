@@ -7,4 +7,5 @@ src/workflows/Opportunity.workflow
 src/layouts/Opportunity-Opportunity with TPR Calculation Layout ReadOnly.layout
 src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation.layout
 src/permissionsets/FS_RussiaSalesRep.permissionset
+src/permissionsets/FS_Admin.permissionset
 src/profiles/Unilever Food Solution - Russia.profile
