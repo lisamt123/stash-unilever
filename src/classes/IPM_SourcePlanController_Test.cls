@@ -273,6 +273,14 @@ private class IPM_SourcePlanController_Test{
              srcPlanController.sourceUnitMap.put(0,srcUnitList);
              srcPlanController.saveRow();
              
+             for(IPM_SourcePlanController.sourceUnitWrapper srcUnitClass:srcUnitList){ 
+             	srcUnitClass.sourcingPlan.IPM_SourcingUnit__c = 'Test0';
+             	srcUnitClass.sourceCountries = '';
+             }
+              
+             srcPlanController.sourceUnitMap.put(0,srcUnitList);
+             srcPlanController.saveRow();
+             
              List<IPM_ProductPlan__c> productPlanList = [SELECT name, IPM_Country__r.Country_Name__c FROM IPM_ProductPlan__c WHERE IPM_Project_Product__r.IPM_Project__c =:prj.id ];
              
              system.assert(productPlanList.size()>0, 'Product Plan was not saved');
