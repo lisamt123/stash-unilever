@@ -275,16 +275,16 @@
         <field>Account.Jigsaw</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+    <!--<fieldPermissions>
         <editable>false</editable>
         <field>Account.NaicsCode</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
+    </fieldPermissions>-->
+    <!--<fieldPermissions>
         <editable>false</editable>
         <field>Account.NaicsDesc</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>-->
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.NumberOfEmployees</field>
@@ -355,11 +355,11 @@
         <field>Account.TickerSymbol</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+    <!--<fieldPermissions>
         <editable>false</editable>
         <field>Account.Tradestyle</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>-->
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.Type</field>
