@@ -27,7 +27,8 @@ public class VPM_GoldenDataController2Test{
 	 Public static final string STR_AUTHGRPMARKETINGSERVICES='MBS--Marketing Services';
 	 public static final string STR_COMPANYCODENAME='Ad-hoc Market Research - Qualitative';
 	 public static final string STR_COMCODE='5702 - UN01580115';
-    public PageReference pg {get;set;}
+    public static final string STR_BRAZIL='Brazil';
+   // public PageReference pg {get;set;}
 	 
     
     static VPM_PurchasingRequests__c TestData(){
@@ -256,7 +257,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         mdm_Vendors__c vendor = new mdm_Vendors__c();
         vendor.mdm_Code__c = MDM_CODE;
         vendor.mdm_City__c = MDM_CITY;
-        vendor.mdm_Country__c ='Brazil';
+        vendor.mdm_Country__c =STR_BRAZIL;
         vendor.mdm_Name1__c ='Test Cordillera';
         vendor.mdm_ID__c = MDM_ID;
         insert vendor;
@@ -265,7 +266,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
         companyCode.VPM_CompanyCode__c = STR_COMPANYCODE;
         companyCode.ECC__c = STR_CONST_CORDILLERA;
-        companyCode.VPM_Country__c ='Brazil';
+        companyCode.VPM_Country__c =STR_BRAZIL;
         insert companyCode;
         system.assert(companyCode.Id!=null,STR_ERROR);
         
@@ -293,7 +294,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         //pur.VPM_CompanyCode__r.VPM_CompanyCode__c='PH01';
         //pur.VPM_CompanyCode__r.ECC__c=STR_CONST_U2K2;
         pur.VPM_Street1__c=STR_STREET1;
-        pur.VPM_CountryRequestingVendor__c='Brazil';
+        pur.VPM_CountryRequestingVendor__c=STR_BRAZIL;
         pur.VPM_VendorPhone__c=STR_VENDORPHONENO;
         //pur.VPM_Commodity__c=commodityCode.id;
         pur.VPM_ZIPPostcode__c =STR_ZIPCODE;
@@ -322,7 +323,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         mdm_Vendors__c vendor = new mdm_Vendors__c();
         vendor.mdm_Code__c = MDM_CODE;
         vendor.mdm_City__c = MDM_CITY;
-        vendor.mdm_Country__c ='Brazil';
+        vendor.mdm_Country__c =STR_BRAZIL;
         vendor.mdm_Name1__c ='Test Sirius';
         vendor.mdm_ID__c = MDM_ID;
         vendor.mdm_vCodeFusion__c=MDM_CODE;
@@ -335,7 +336,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
         companyCode.VPM_CompanyCode__c = STR_COMPANYCODE;
         companyCode.ECC__c = STR_CONST_CORDILLERA;
-        companyCode.VPM_Country__c ='Brazil';
+        companyCode.VPM_Country__c =STR_BRAZIL;
         insert companyCode;
         system.assert(companyCode.Id!=null,STR_ERROR);
         
@@ -364,7 +365,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         //pur.VPM_CompanyCode__r.VPM_CompanyCode__c='PH01';
         //pur.VPM_CompanyCode__r.ECC__c=STR_CONST_SIRIUS;
         pur.VPM_Street1__c=STR_STREET1;
-        pur.VPM_CountryRequestingVendor__c='Brazil';
+        pur.VPM_CountryRequestingVendor__c=STR_BRAZIL;
         pur.VPM_VendorPhone__c=STR_VENDORPHONENO;
         //pur.VPM_Commodity__c=commodityCode.id;
         pur.VPM_ZIPPostcode__c =STR_ZIPCODE;
@@ -526,7 +527,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
          ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
-        
+        purId.VPM_PaymentMethod__c='C-T-W';
                 update purId;
          system.debug('purId '+purId+'    '+purId.VPM_Commodity_Family__c);
         // Test.startTest();
@@ -551,9 +552,9 @@ static VPM_PurchasingRequests__c TestCordillera(){
          ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = FREIGHTVENDOR;
-         
+         purId.VPM_PaymentMethod__c='C-T-W';
         
-                update purId;
+         update purId;
          system.debug('purId '+purId+'    '+purId.VPM_Commodity_Family__c);
          goldenData.approvalCallMethod();
          
@@ -572,9 +573,8 @@ static VPM_PurchasingRequests__c TestCordillera(){
          VPM_PurchasingRequests__c purId = TestDataApprovalMethodMaintain();
          ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-         
          purId.VPM_VendorType__c  = STR_VENDORTYPEMSB;
-          
+         purId.VPM_PaymentMethod__c='C-T-W';
         
           
          update purId;
@@ -719,6 +719,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
          
          purId.VPM_VendorType__c  = STR_VENDORTYPEMSB;
          purId.VPM_GlobalAuthorisationGroup__c='SCS-CAPEX';
+   		 purId.VPM_PaymentMethod__c='C-T-W';
          //purId.
        
          
@@ -925,7 +926,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
     
     static testMethod void SaveRecord1(){
     
-      PageReference pg =null;
+  		PageReference pg =null;
         VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
@@ -939,8 +940,8 @@ static testMethod void VPM_ApprovalMethodFreight12(){
        PageReference pg =null;
         VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
-        VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-       // pg=goldenData.ErrorMessage();
+       // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+       // pg=goldenData.ErrorMessage(string Message);
 
    
    

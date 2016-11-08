@@ -966,6 +966,7 @@ public void approvalCallMethod()
             }
             NewPaymentMethod = paymentMeth.remove(' '); 
         }else {
+            NewPaymentMethod='';
             List<string> sText2 = finalStringValue.split('-');
             sText2.sort();
             string paymentMeth='';  

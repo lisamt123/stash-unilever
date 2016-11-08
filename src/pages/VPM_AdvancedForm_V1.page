@@ -93,11 +93,11 @@
 
         </apex:pageBlockSection>                
         
-          <center>
+          <div style="text-align:center">
               <apex:outputLabel rendered="{!heapMessageScreen}">     
                   {!$Label.VPM_MDMBPMErrorMessage}
               </apex:outputLabel>
-          </center>
+          </div>
         <apex:pageBlockSection columns="1" rendered="{!hideSearchVendor}">
             
           <apex:repeat value="{!mdmDetailList}" var="mdmDetail" id="theRepeat">
@@ -122,11 +122,11 @@
           <apex:inputHidden value="{!mdmVendorType}" id="RadioButtonValue" />
          
         </apex:pageBlockSection> 
-   <center> 
+   <div style="text-align:center"> 
      <apex:outputLabel rendered="{!vendorNotFound}">  
             {!webErrorMessage}
      </apex:outputLabel>
-   </center><br/><br/>
+   </div><br/><br/>
 
         <apex:pageBlockSection columns="1" id="thePageBlock" rendered="{!sendWebFormScreen}">                
           <apex:outputText Value="{!$Label.VPM_SendWebformRequestInfo}" ></apex:outputText>  

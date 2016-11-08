@@ -67,7 +67,7 @@ debugger;
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxNumber1__c.Label}" value="{!purchReqVar.VPM_TaxNumber1__c }" required="{!isRequiredtax1}" />
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxNumber3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TaxNumber3__c }" required="{!isRequiredFieldCountry}"/>
            
-           <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" value="{!taxJuriCodeDefValue}" />
+           <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" value="{!taxJuriCodeDefValue}" maxlength="15"/>
            <!--apex:selectList value="{!taxJuriCodeDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" size="1" rendered="{!isU2k2}" required="{!isrequiredtaxJurCode}">
                <apex:selectOptions value="{!taxJuriCodeOptions}"/>
            </apex:selectList--> 

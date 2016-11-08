@@ -34,7 +34,7 @@ public class VPM_regionalMaintainVendorTest{
 
  @testSetup static void setup() {
         String vCode = '5001010'; 
-        VPM_CompanyCode__c compCode = new VPM_CompanyCode__c(Name = 'Company Code 2', Company_Name__c = 'Unilever', VPM_CompanyCode__c = 'UN',VPM_Country__c ='Belgium',ECC__c ='U2K2');
+        VPM_CompanyCode__c compCode = new VPM_CompanyCode__c(Name = 'Company Code 2', Company_Name__c = 'Unilever', VPM_CompanyCode__c = 'UN',VPM_Country__c ='Belgium',ECC__c ='Fusion');
         insert compCode;
         mdm_Vendors__c vendor = new mdm_Vendors__c();
         vendor.mdm_Code__c = vCode;

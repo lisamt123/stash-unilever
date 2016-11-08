@@ -624,7 +624,8 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                 pwr.setWorkItemId(workitem[0].id);
                 pwr.setAction('Removed');                 
                 // Execute process request
-                Approval.ProcessResult pr = Approval.process(pwr);
+                //Approval.ProcessResult pr = Approval.process(pwr);
+                Approval.process(pwr);
             }
               
       }

@@ -1193,8 +1193,7 @@ public with sharing class VPM_SearchVendor1{
                 vendorQuery1.VPM_OrderCurrency__c = string.isNotBlank(op.PurchasingData[0].OrderCurrency) ?op.PurchasingData[0].OrderCurrency : vendorQuery1.VPM_OrderCurrency__c;
                 //vendorDetails.VPM_OrderOptimRest__c = op.PurchasingData[0].OrderOptimRest;
                 orderOPtimRestDefValue = op.PurchasingData[0].OrderOptimRest; 
-                vendorDetails.VPM_PlannedDeliveryTime__c = decimal.valueOF(op.PurchasingData[0].PlannedDeliveryTime);
-                vendorDetails.VPM_PROATControlProof__c = op.PurchasingData[0].PROATControlProof;
+                vendorDetails.VPM_PlannedDeliveryTime__c = decimal.valueOF(op.PurchasingData[0].PlannedDeliveryTime);                
                 
                 if(op.PurchasingData[0].Functions <> null && op.PurchasingData[0].Functions.size() > 0) {
                     vendorDetails.VPM_DefaultPartner__c = (op.PurchasingData[0].Functions[0].DefaultPartner <> null) ? op.PurchasingData[0].Functions[0].DefaultPartner :  false;
@@ -1309,7 +1308,7 @@ public with sharing class VPM_SearchVendor1{
             vendorDetails.VPM_TurkeyOldNumber__c = op.TurkeyOldNumber;
             vendorQuery1.VPM_VendorType__c = string.isNotBlank(op.TypeVendor) ? op.TypeVendor : vendorQuery1.VPM_VendorType__c;        
             vendorDetails.VPM_UkrainianVersion__c = op.UkrainianVersion;
-            vendorDetails.VPM_VATRegistrationNumber2__c = op.VATRegistrationNumber2;
+            vendorQuery1.VPM_VATRegistrationNumber2__c = op.VATRegistrationNumber2;
             //vendorDetails.VPM_VATRegistrationNumber3__c = op.VATRegistrationNumber3;
             
             if(op.VendorSubRange <> null && op.VendorSubRange.size() > 0) {
