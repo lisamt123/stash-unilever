@@ -9240,6 +9240,42 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000GyXv_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_BIG SMILEY EGY_N&amp;R</label>
+        <queue>IPM_a7I0L000000GyXv</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GyY0_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ROUX2W2 LA</label>
+        <queue>IPM_a7I0L000000GyY0</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GyY5_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TEST03_LA</label>
+        <queue>IPM_a7I0L000000GyY5</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GyYA_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TEST01_LA</label>
+        <queue>IPM_a7I0L000000GyYA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
