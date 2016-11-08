@@ -551,6 +551,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmittedTime__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitted__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1216,7 +1221,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FLSApproval__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_FLSInCountryReqVen__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FLSReworks__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1247,6 +1262,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_FinanceApprovalRequired__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FinanceApproval__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FinanceReworls__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1286,6 +1311,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FreightApproval__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FreightReworks__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_FreightSubmitted__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1308,6 +1343,11 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_GlobalAuthorisationGroup__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_GlobalFieldChanged__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1346,12 +1386,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithFreight__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithMDMOps__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithProcurement__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_HoursSpentWithRussianCustomTax__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1702,6 +1752,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_Name4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_NoOfDays__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -808,6 +808,17 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>VPM_AdvancedFormSubmittedTime__c</fullName>
+        <description>VPM- Time when the advanced form is submitted for approval</description>
+        <externalId>false</externalId>
+        <label>Advanced Form Submitted Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>VPM_AdvancedFormSubmitted__c</fullName>
         <description>VPM - System field to record when the FLS have submitted their additions to the request. Used by Process Builder to drive status change, approvals and reassignment</description>
         <externalId>false</externalId>
@@ -7734,6 +7745,17 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_FLSApproval__c</fullName>
+        <description>VPM- Time when the FLS approves the request.</description>
+        <externalId>false</externalId>
+        <label>FLS Approval</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>VPM_FLSInCountryReqVen__c</fullName>
         <defaultValue>false</defaultValue>
         <description>VPM - This field is used to store the value whether the country is a FLS or Non FLS country.</description>
@@ -7743,6 +7765,20 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_FLSReworks__c</fullName>
+        <description>VPM- Number of time FLS requests rework.</description>
+        <externalId>false</externalId>
+        <label>FLS Reworks</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_FaxExtension__c</fullName>
@@ -7833,6 +7869,31 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_FinanceApproval__c</fullName>
+        <description>VPM-When Finance approved the request</description>
+        <externalId>false</externalId>
+        <label>Finance Approval</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>VPM_FinanceReworls__c</fullName>
+        <description>VPM-  Number of time Finance requests for rework.</description>
+        <externalId>false</externalId>
+        <label>Finance Reworls</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_FinanceSubmitted__c</fullName>
@@ -7931,6 +7992,31 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_FreightApproval__c</fullName>
+        <description>VPM- Time when the Freight approves the request.</description>
+        <externalId>false</externalId>
+        <label>Freight Approval</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>VPM_FreightReworks__c</fullName>
+        <description>VPM- Number of time Freight requests rework.</description>
+        <externalId>false</externalId>
+        <label>Freight Reworks</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_FreightSubmitted__c</fullName>
@@ -8312,6 +8398,17 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_GlobalFieldChanged__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM- set to true when the global fields are changed.</description>
+        <externalId>false</externalId>
+        <label>Global Field Changed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_GrantDiscInKind__c</fullName>
         <defaultValue>false</defaultValue>
         <description>VPM - This field is used to store the value of Grant Disc in Kind.</description>
@@ -8416,6 +8513,20 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_HoursSpentWithFreight__c</fullName>
+        <description>VPM - Number of days for which request is being worked upon by Freight Team</description>
+        <externalId>false</externalId>
+        <label>Hours Spent With Freight</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_HoursSpentWithMDMOps__c</fullName>
         <defaultValue>0.0</defaultValue>
         <description>VPM - Number of days request was worked upon by MDM Ops.</description>
@@ -8439,6 +8550,20 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <precision>18</precision>
         <required>false</required>
         <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_HoursSpentWithRussianCustomTax__c</fullName>
+        <description>VPM - Number of days for which request is being worked upon byRussian Custom Tax Team</description>
+        <externalId>false</externalId>
+        <label>Hours Spent With Russian Custom Tax</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -10868,6 +10993,31 @@ VPM_Approver10__c = $User.Id))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_NoOfDays__c</fullName>
+        <description>VPM - calculate number of weekdays</description>
+        <externalId>false</externalId>
+        <formula>(CASE(MOD(DATEVALUE(VPM_RequestGroupTime__c) - DATE(1985,6,24),7), 
+0 , CASE( MOD( DATEVALUE(NOW()) - DATEVALUE(VPM_RequestGroupTime__c) ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+1 , CASE( MOD( DATEVALUE(NOW()) - DATEVALUE(VPM_RequestGroupTime__c) ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+2 , CASE( MOD( DATEVALUE(NOW()) - DATEVALUE(VPM_RequestGroupTime__c) ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+3 , CASE( MOD( DATEVALUE(NOW()) - DATEVALUE(VPM_RequestGroupTime__c) ,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+4 , CASE( MOD( DATEVALUE(NOW()) - DATEVALUE(VPM_RequestGroupTime__c) ,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+5 , CASE( MOD( DATEVALUE(NOW()) - DATEVALUE(VPM_RequestGroupTime__c) ,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+6 , CASE( MOD( DATEVALUE(NOW()) - DATEVALUE(VPM_RequestGroupTime__c) ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+999) 
++ 
+(FLOOR(( DATEVALUE(NOW()) - DATEVALUE(VPM_RequestGroupTime__c) )/7)*5))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>No Of Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>

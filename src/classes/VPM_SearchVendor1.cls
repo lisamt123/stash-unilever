@@ -305,7 +305,7 @@ public with sharing class VPM_SearchVendor1{
             vendorTradePartnerType = vendorQuery1.VPM_TradePartnerType__c;
             //standardCommDefValue = vendorQuery1.VPM_StandardCommMethod__c;
             searchTerm1= vendorQuery1.VPM_SearchTerm_1__c ; 
-            purchOrgName = string.isNotBlank(vendorQuery1.VPM_PurchasingOrg__r.Name) ? (vendorQuery1.VPM_PurchasingOrg__r.Name).left(4) : null;            
+            purchOrgName = string.isNotBlank(vendorQuery1.VPM_PurchasingOrg__r.Name) ? (vendorQuery1.VPM_PurchasingOrg__r.Name).left(4) : null;
             // Added by Piyush - IAVMD - 10/20/2016
             if(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_U2K2)) { 
                 isU2k2 = true;
@@ -1531,9 +1531,9 @@ public with sharing class VPM_SearchVendor1{
             vendorQuery1.VPM_Country__c = countryName; 
             If(string.isNotBlank(vendorPaymentMethod)  && vendorPaymentMethod <> '[]')  {
                 vendorQuery1.VPM_PaymentMethod__c = vendorPaymentMethod;
-            }else {
+            }/*else {
                 vendorQuery1.VPM_PaymentMethod__c = vendorQuery1.VPM_PaymentMethod__c;
-            }
+            }*/
             
             //VPM_SearchVendor1.checkFlag =true; 
             // 22 08 2016 : Changes By Samrin to Set VPM_VendorBlockUnblockDelete__c for the secodn time when user click on back button 
@@ -1733,8 +1733,9 @@ public with sharing class VPM_SearchVendor1{
                 }else { 
                     VPM_SearchVendor1.CheckFlag  = false;                   
                 }
-                    system.debug('### VPM_SearchVendor1.checkFlag '+VPM_SearchVendor1.CheckFlag  );
+                    system.debug('### VPM_SearchVendor1.checkFlag '+VPM_SearchVendor1.CheckFlag  ); 
                 update vendorQuery1;
+				vendorDetails.VPM_Telephone__c = vendorQuery1.VPM_VendorPhone__c; 		 		
                 
                 if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN_2)) {
                     isMaintainRecord = true; 

@@ -116,7 +116,7 @@ public class VPM_GoldenDataController2Test{
     
     VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
-        obj.Name='Countries';
+        obj.Name=COUNTRIES;
         insert obj;
     
         mdm_Vendors__c vendor = new mdm_Vendors__c();
@@ -182,7 +182,7 @@ public class VPM_GoldenDataController2Test{
     
     VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
-        obj.Name='Countries';
+        obj.Name=COUNTRIES;
         insert obj;
  
     
@@ -249,7 +249,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
        VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
-        obj.Name='Countries';
+        obj.Name=COUNTRIES;
         insert obj;
     
  
@@ -317,7 +317,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
     VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
-        obj.Name='Countries';
+        obj.Name=COUNTRIES;
         insert obj;
     
         mdm_Vendors__c vendor = new mdm_Vendors__c();
@@ -401,7 +401,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
     VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
-        obj.Name='Countries';
+        obj.Name=COUNTRIES;
         insert obj;
     
         mdm_Vendors__c vendor = new mdm_Vendors__c();
@@ -573,8 +573,9 @@ static VPM_PurchasingRequests__c TestCordillera(){
          VPM_PurchasingRequests__c purId = TestDataApprovalMethodMaintain();
          ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+         
          purId.VPM_VendorType__c  = STR_VENDORTYPEMSB;
-         purId.VPM_PaymentMethod__c='C-T-W';
+          purId.VPM_PaymentMethod__c='C-T-W';
         
           
          update purId;
@@ -585,33 +586,33 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
     static testMethod void SaveRecord(){
     
-        PageReference pg =null;
+       // PageReference pg =null;
         VPM_PurchasingRequests__c purId = TestData();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-        pg=goldenData.saveRecord();
+        goldenData.saveRecord();
     
     
     }
     
     static testMethod void backToFlow(){
     
-        PageReference pg=null;
+        //PageReference pg=null;
         VPM_PurchasingRequests__c purId = TestData();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-        pg=goldenData.backToFlow();
+        goldenData.backToFlow();
     
     
     }
 
     static testMethod void backToGoldenData1(){
     
-        PageReference pg=null;
+       // PageReference pg=null;
         VPM_PurchasingRequests__c purId = TestData();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-        pg=goldenData.backToGoldenData1();
+        goldenData.backToGoldenData1();
     
     
     }
@@ -619,11 +620,11 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
       static testMethod void Search(){
     
-        PageReference pg =null;
+        //PageReference pg =null;
         VPM_PurchasingRequests__c purId = TestData();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-        pg=goldenData.vendorNameChange();
+        goldenData.vendorNameChange();
     
     
     }
@@ -656,7 +657,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
       static testMethod void approvalMaintain1UnBlock(){
     
-        PageReference pg =null;
+       // PageReference pg =null;
         ApexPages.currentPage().getParameters().put('isMaintain2','isMaintain2');
         
         VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
@@ -664,7 +665,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         update purId;
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-        pg=goldenData.ApprovalMaintain1();
+        goldenData.ApprovalMaintain1();
         
         
     }
@@ -682,11 +683,11 @@ static VPM_PurchasingRequests__c TestCordillera(){
     } */
     static testMethod void newMethod(){
     
-        PageReference pg =null;
+       // PageReference pg =null;
         VPM_PurchasingRequests__c purId = TestDataApprovalMethod();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-        pg=goldenData.newMethod();
+        goldenData.newMethod();
     
     
     }
@@ -696,17 +697,18 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
      static testMethod void newMethod1(){
     
-        PageReference pg=null;
+       // PageReference pg=null;
         VPM_PurchasingRequests__c purId = TestDataApprovalMethod();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          
            
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-        pg=goldenData.newMethod1();
+        goldenData.newMethod1();
             Test.setCurrentPageReference(new PageReference('apex/VPM_GoldenData1'));
-         ApexPages.Message msg =null;
+        ApexPages.Message msg =null;
           
-          msg = goldenData.checkValidations(); 
+         msg=  goldenData.checkValidations(); 
+         System.debug('Msg @@@@@@'+ msg);
     
     
     }
@@ -926,22 +928,22 @@ static testMethod void VPM_ApprovalMethodFreight12(){
     
     static testMethod void SaveRecord1(){
     
-  		PageReference pg =null;
+  		//PageReference pg =null;
         VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-        pg=goldenData.saveRecord();
+        goldenData.saveRecord();
         
         
         
 }
 
    static testMethod void errorMessage(){
-       PageReference pg =null;
+    //   PageReference pg =null;
         VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
-       // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-       // pg=goldenData.ErrorMessage(string Message);
+        VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+       // pg=goldenData.ErrorMessage();
 
    
    

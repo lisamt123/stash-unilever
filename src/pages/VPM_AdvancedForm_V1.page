@@ -122,7 +122,7 @@
           <apex:inputHidden value="{!mdmVendorType}" id="RadioButtonValue" />
          
         </apex:pageBlockSection> 
-   <div style="text-align:center"> 
+   <div style="text-align:center">
      <apex:outputLabel rendered="{!vendorNotFound}">  
             {!webErrorMessage}
      </apex:outputLabel>
@@ -412,7 +412,7 @@
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Customer__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Customer__c}"/>
           </apex:pageBlocksection>
           <apex:pageBlocksection title="{!$Label.VPM_Vendor_Contact_Details}"  rendered="{!generalVendorDetails}">
-            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Telephone__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VendorPhone__c}"/>            
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Telephone__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Telephone__c}"/>            
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExtensionPhone__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExtensionPhone__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Fax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Fax__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_FaxExtension__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_FaxExtension__c}"/>
