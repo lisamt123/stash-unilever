@@ -72,22 +72,6 @@ src/pages/UL_DefaultSoldToPage.page
 src/pages/UL_DefaultSoldToPage.page-meta.xml
 src/pages/UL_User_Career_Level.page
 src/pages/UL_User_Career_Level.page-meta.xml
-src/profiles
-src/profiles/SoCo-Access Admin.profile
-src/profiles/SoCo-Account Manager.profile
-src/profiles/SoCo-Account Planner.profile
-src/profiles/SoCo-Category Manager.profile
-src/profiles/SoCo-Category Planner.profile
-src/profiles/SoCo-CD Finance Analyst.profile
-src/profiles/SoCo-CD Finance Manager.profile
-src/profiles/SoCo-Customer Marketing Director.profile
-src/profiles/SoCo-Finance Admin.profile
-src/profiles/SoCo-Process Officer.profile
-src/profiles/SoCo-Security Admin.profile
-src/profiles/SoCo-System Admin.profile
-src/profiles/UK-Admin.profile
-src/profiles/UK-Authoriser.profile
-src/profiles/UK-Planner %28CAM%29.profile
 src/groups
 src/groups/Argentina_SO.group
 src/groups/Chile_HPF_SO.group
@@ -110,3 +94,35 @@ src/sharingRules/ACSFUL001__Product__c.sharingRules
 src/sharingRules/ACSFUL001__Promotion__c.sharingRules
 src/sharingRules/ACSFUL001__Promotion_Template__c.sharingRules
 src/sharingRules/ACSFUL001__Transaction_Template__c.sharingRules
+src/flows
+src/flows/Update_all_date_fileds-1.flow
+src/flows/Update_all_date_fileds-2.flow
+src/flows/Update_Promotion_Date_Fields_for_UKI-1.flow
+src/flows/updatePromotiontype-2.flow
+src/permissionsets
+src/permissionsets/Account_Field_Edit_Access.permissionset
+src/permissionsets/ACSF_KAM.permissionset
+src/permissionsets/Create_Delete_Special_Products.permissionset
+src/permissionsets/Reports_and_Dashboards.permissionset
+src/layouts
+src/layouts/Account-Account Layout.layout
+src/layouts/Account-UL_Account Layout.layout
+src/layouts/Account-UL_SoCo_Account Layout.layout
+src/layouts/Account-UL_UKI_Account Layout - PlannerAuthoriser.layout
+src/layouts/Account-UL_UKI_Account Layout.layout
+src/layouts/ACSFUL001__Account_Set__c-SoCo_ Account Set Layout.layout
+src/layouts/ACSFUL001__Account_Set__c-UKI_ Account Set Layout.layout
+src/layouts/ACSFUL001__Fund__c-UL_SoCo_Fund_Layout.layout
+src/layouts/ACSFUL001__Product__c-SOCO_Product.layout
+src/layouts/ACSFUL001__Product__c-UKI_Product.layout
+src/layouts/ACSFUL001__Unit_of_Measure__c-SoC0 - Unit of Measure Layout.layout
+src/layouts/ACSFUL001__Unit_of_Measure__c-SoCo - Unit of Measure Layout.layout
+src/layouts/ACSFUL001__Unit_of_Measure__c-UKI - Unit of Measure Layout.layout
+src/layouts/User-SoCo-User layout.layout
+src/layouts/User-UKI-User layout.layout
+src/layouts/User-User Layout.layout
+src/workflows
+src/workflows/Account.workflow
+src/workflows/ACSFUL001__Product__c.workflow
+src/workflows/ACSFUL001__Promotion__c.workflow
+src/workflows/ACSFUL001__Tactic__c.workflow
