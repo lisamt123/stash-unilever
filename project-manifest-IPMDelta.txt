@@ -8,6 +8,8 @@ src/classes/IPM_FinGateController.cls
 src/classes/IPM_FinGateController.cls-meta.xml
 src/classes/IPM_FinancialController.cls
 src/classes/IPM_FinancialController.cls-meta.xml
+src/classes/IPM_FinancialUtils.cls
+src/classes/IPM_FinancialUtils.cls-meta.xml
 src/classes/IPM_FinancialYearHelper.cls
 src/classes/IPM_FinancialYearHelper.cls-meta.xml
 src/classes/IPM_MilestoneHelper.cls
