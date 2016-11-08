@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <folder>Test_CEC</folder>
+    <masterLabel>Test CEC</masterLabel>
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>phil.hood@unilever.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>philip.murray@guest.unilever.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+</WaveApplication>
