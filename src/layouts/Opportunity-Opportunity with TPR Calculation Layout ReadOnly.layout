@@ -376,7 +376,7 @@
         <fields>Product2</fields>
         <fields>Quantity</fields>
         <fields>UnitPrice</fields>
-        <fields>FS_listPriceCasePiece__c</fields>
+
         <fields>FS_tprPercent__c</fields>
         <fields>FS_turnover__c</fields>
         <fields>FS_gmWhenTPREqualsZero__c</fields>
