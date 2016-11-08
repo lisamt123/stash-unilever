@@ -198,7 +198,7 @@
                     <thead> 
                         <tr>
                             <th scope="col" width="40%"><span>{!$Label.IPM_Sourcing_Units}</span></th>
-                            <th scope="col" width="20%"><div class="capcon">{!$Label.IPM_Capability_Confirmed}</div></th>
+                            <th scope="col" width="20%"><div class="{!if(bIsPDLApproved,'approvalTip','capcon approvalTip')}">{!$Label.IPM_Capability_Confirmed}</div></th>
                             <th scope="col" width="40%"><span>{!$Label.IPM_Sourced_Into}</span></th>
                         </tr>
                     </thead>               
@@ -228,7 +228,7 @@
                                                             <label class="{!if(prodPlan.productPlan.IPM_GoldenPrototype__c,'goldbox','')}">{!if(prodPlan.productPlan.IPM_GoldenPrototype__c,'Golden','')}</label>
                                                         </div>
                                                     </td>
-                                                    <td width="20%"><span >{!prodPlan.countryStr}</span></td>
+                                                    <td width="20%"><span >{!prodPlan.countryStrToDisplay}</span></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -239,9 +239,9 @@
                                                 <apex:repeat value="{!sourceUnitMap[prodPlan.productProsition]}" var="sourcep">
                                                     <tr>
                                                         <td width="30%"><span> {!sourcep.sourcingPlan.IPM_SourcingUnit__c}</span></td>
-                                                        <td width="30%"><span>{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Confirmed','Not Yet')}</span></td>
+                                                        <td width="30%"><span>{!if(sourcep.sourcingPlan.IPM_CapabilityConfirmed__c,'Yes','Not Yet')}</span></td>
                                                         <td width="40%">
-                                                            <span>{!sourcep.sourceCountries}</span>
+                                                            <span>{!sourcep.sourceCountriesToDisplay}</span>
                                                         </td>
                                                     </tr>
                                                 </apex:repeat>

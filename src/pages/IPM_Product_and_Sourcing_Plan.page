@@ -317,7 +317,7 @@
                                                                             <label class="{!if(prodPlan.productPlan.IPM_GoldenPrototype__c,'goldbox','')}">{!if(prodPlan.productPlan.IPM_GoldenPrototype__c,'Golden','')}</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td width="12%" class="custLstCntryWidth"><span >{!prodPlan.countryStr}</span></td>
+                                                                    <td width="12%" class="custLstCntryWidth"><span >{!prodPlan.countryStrToDisplay}</span></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -341,7 +341,7 @@
 	                                                                        </apex:outputPanel>
                                                                         </td>
                                                                         <td width="13%">
-                                                                            <span>{!sourcep.sourceCountries}</span>
+                                                                            <span>{!sourcep.sourceCountriesToDisplay}</span>
                                                                         </td>
                                                                     </tr>
                                                                 </apex:repeat>
