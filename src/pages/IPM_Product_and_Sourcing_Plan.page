@@ -36,7 +36,7 @@
     <apex:actionfunction name="addNewSourceUnit" action="{!addNewSourcePlanRow}" reRender="sourceProductTable,refreshSourceUnit,scriptLoad" onComplete="firstsrcplan();scndsrcplan();thirdsrcplan();" status="loader">
      <apex:param name="addsourceRow" assignTo="{!row_Index}" value=""/>
     </apex:actionfunction>
-    <apex:actionFunction name="updateCapabilityForSourcingUnit" action="{!updateCapabilityForSourcingUnit}" reRender="sourceProductTable">
+    <apex:actionFunction name="updateCapabilityForSourcingUnit" action="{!updateCapabilityForSourcingUnit}" reRender="idCapabilityConfirmed" onComplete="firstsrcplan();">
      </apex:actionFunction>
     <apex:composition template="IPM_TemplateRevamp">
         <apex:define name="body">
@@ -232,8 +232,9 @@
                                                                                 </apex:outputPanel>
 																				<span class="deleteRow fa fa-times" onClick="deleteSourceUnit('{!wrKey}','{!sUnitRow}')"></span>
                                                                             </td>
-                                                                            <td width="6%" class="custSrcWidth">
-	                                                                            <apex:outputPanel rendered="{!bIsPDLApproved}">
+                                                                            <td width="6%" class="custSrcWidth" >
+                                                                             <apex:outputPanel id="idCapabilityConfirmed">
+                                                                               <apex:outputPanel rendered="{!bIsPDLApproved}">
 	                                                                                <div class="approvalCheckcontainer">
 	                                                                                    <apex:inputCheckbox id="approvalCheckBox" styleClass="greenBoxCheck" value="{!sourcep.sourcingPlan.IPM_CapabilityConfirmed__c}" />
 	                                                                                    <apex:outputLabel for="approvalCheckBox"></apex:outputLabel>
@@ -243,6 +244,7 @@
 	                                                                             	<div class="greyCapabilityConfirm">
 	                                                                            		<apex:outputLabel >Not yet</apex:outputLabel>
 	                                                                            	</div>
+	                                                                            </apex:outputPanel>
 	                                                                            </apex:outputPanel>
                                                                             </td>
                                                                             <td width="13%">
