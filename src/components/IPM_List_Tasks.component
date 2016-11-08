@@ -135,7 +135,7 @@
                                     <!-- Comment : if the functional role is not null + current user is functional leader + current user's functional role is equal to
                                     tasks' functional role + current user is having access for edit task then user can edit the task by double clicking on task name -->
                                         <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,isTaskReadOnly=false),'true','false')}" >
-                                        <div class="editTask" id="editTask" value="{!$Page.IPM_EditTask}?projectId={!projectId}&taskId={!p.record['Id']}" title="Edit Task"><apex:outputfield value="{!p.record['IPM_Task_Name__c']}" /></div>
+                                        <div class="editTask" id="editTask" value="{!$Page.IPM_EditTask}?projectId={!projectId}&taskId={!p.record['Id']}"><apex:outputfield value="{!p.record['IPM_Task_Name__c']}" /></div>
                                         </apex:outputPanel>
                                         <!-- Comment : if the functional role is not null + current user is functional leader + current user's functional role is not equal to
                                         tasks' functional role + current user is having access for edit task then user cannot edit the task by double clicking on task name -->
