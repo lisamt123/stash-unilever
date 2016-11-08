@@ -1092,6 +1092,25 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <trackHistory>true</trackHistory>
         <type>Lookup</type>
     </fields>
+	<fields>
+        <fullName>Active__c</fullName>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
     <fields>
         <fullName>Debit_Card_Status__c</fullName>
         <externalId>false</externalId>
