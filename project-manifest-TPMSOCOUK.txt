@@ -2,6 +2,7 @@ src
 src/objects
 src/objects/Account.object
 src/objects/ACSFUL001__Account_Payer__c.object
+src/objects/ACSFUL001__Account_Set_Account__c.object
 src/objects/ACSFUL001__Account_Trade_Org_Hierarchy__c.object
 src/objects/ACSFUL001__Fund_Transaction__c.object
 src/objects/ACSFUL001__Product__c.object

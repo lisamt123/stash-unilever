@@ -207,6 +207,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
 	<fields>
+        <fullName>NumberofLocations__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Locations</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
         <fullName>SLAExpirationDate__c</fullName>
         <externalId>false</externalId>
         <label>SLA Expiration Date</label>
