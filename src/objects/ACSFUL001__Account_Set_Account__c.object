@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Junction object between Customer and Customer Set.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fieldSets>
+        <fullName>ACSFUL001__MobilityRelevant</fullName>
+        <description>Field set used to restrict the amount of data on the mobility device.</description>
+        <displayedFields>
+            <field>ACSFUL001__Account_Set__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>MobilityRelevant</label>
+    </fieldSets>
+    <fields>
+        <fullName>ACSFUL001__Account_Set__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Customer Set</label>
+        <referenceTo>ACSFUL001__Account_Set__c</referenceTo>
+        <relationshipLabel>Customer Set Customers</relationshipLabel>
+        <relationshipName>Account_Set_Accounts</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ACSFUL001__Account__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Customer</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Customer Set Customers</relationshipLabel>
+        <relationshipName>Account_Set_Accounts</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ACSFUL001__Record_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; &amp;Id, $Label.ACSFUL001__RECORD_LINK, &quot;_top&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Customer Set Customer</label>
+    <nameField>
+        <displayFormat>ASA-{00000000}</displayFormat>
+        <label>Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Customer Set Customers</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>ACSFUL001__Compare_Customer_Set_Customer_Sales_Org</fullName>
+        <active>true</active>
+        <description>Validates that the sales org of Customer and Customer Set are same</description>
+        <errorConditionFormula>TEXT(ACSFUL001__Account__r.ACSFUL001__Account_Template__r.ACSFUL001__Sales_Org__c) &lt;&gt; TEXT(ACSFUL001__Account_Set__r.ACSFUL001__Sales_Org__c)</errorConditionFormula>
+        <errorMessage>Sales Org of Customer and Customer Set should be same</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Add_Customer</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Add Customer</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/UL_AddCustomer?setId={!ACSFUL001__Account_Set__c.Id}&amp;orgId={!ACSFUL001__Account_Set__c.ACSFUL001__Sales_Org__c}&amp;referer=/{!ACSFUL001__Account_Set__c.Id}&amp;setName={!ACSFUL001__Account_Set__c.Name}</url>
+    </webLinks>
+</CustomObject>

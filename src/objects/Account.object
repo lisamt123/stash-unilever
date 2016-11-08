@@ -194,6 +194,26 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Number</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>UL_Customer_Group_Code__c</fullName>
+        <description>This attribute will be interfaced to the customer master data table, but will not be displayed on the account record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This attribute will be interfaced to the customer master data table, but will not be displayed on the account record.</inlineHelpText>
+        <label>Customer Group Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>SLAExpirationDate__c</fullName>
+        <externalId>false</externalId>
+        <label>SLA Expiration Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Date</type>
+    </fields>
     <fields>
         <fullName>Additional_Information__c</fullName>
         <description>Additional information for &quot;Insurance, Trade Regs &amp; Policy&quot;.</description>
