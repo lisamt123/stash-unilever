@@ -100,8 +100,8 @@
 	                    </th>
 	                     <th scope="col">
 	                        <div class="claimHeader">Claim</div>
-	                        <apex:commandLink styleClass="ipmButton buttonMarginRight primary pull-right" value="Add all Global Claims to all countries" action="{!addProjectClaimsToAllCountries}" status="Loading" reRender="ProjectClaimTableId"/>
-	                    </th>
+                            	<apex:commandLink styleClass="ipmButton buttonMarginRight primary pull-right" value="Add all Global Claims to all countries" action="{!addProjectClaimsToAllCountries}" status="Loading" reRender="ProjectClaimTableId" rendered="{!$ObjectType.IPM_Project_Claim__c.Updateable}"/>
+                             </th>
 	                </tr>
 	            </thead>
 	        </table>
@@ -127,8 +127,8 @@
 	                    <tr>
 	                        <td class="pl15 glbCmnWidth"></td>
 	                        <td class=""><!-- <a class="ipmButton buttonMarginRight primary">Add Claim</a> -->
-	                            <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="Add Claim" action="{!addProjectClaims}" status="Loading" reRender="ProjectClaimTableId"/>
-	                        </td>
+                                	<apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="Add Claim" action="{!addProjectClaims}" status="Loading" reRender="ProjectClaimTableId" rendered="{!$ObjectType.IPM_Project_Claim__c.Updateable}"/>
+                            	</td>
 	                        <td></td>  
 	                    </tr>
 	                </tbody>
