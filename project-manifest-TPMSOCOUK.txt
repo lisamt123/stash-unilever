@@ -106,11 +106,6 @@ src/permissionsets/ACSF_KAM.permissionset
 src/permissionsets/Create_Delete_Special_Products.permissionset
 src/permissionsets/Reports_and_Dashboards.permissionset
 src/layouts
-src/layouts/Account-Account Layout.layout
-src/layouts/Account-UL_Account Layout.layout
-src/layouts/Account-UL_SoCo_Account Layout.layout
-src/layouts/Account-UL_UKI_Account Layout - PlannerAuthoriser.layout
-src/layouts/Account-UL_UKI_Account Layout.layout
 src/layouts/ACSFUL001__Account_Set__c-SoCo_ Account Set Layout.layout
 src/layouts/ACSFUL001__Account_Set__c-UKI_ Account Set Layout.layout
 src/layouts/ACSFUL001__Fund__c-UL_SoCo_Fund_Layout.layout
