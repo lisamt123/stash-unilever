@@ -466,6 +466,17 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
+	<fields>
+        <fullName>UL_Customer_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Code</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
 	<!--<fields>
         <fullName>DandbCompanyId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
