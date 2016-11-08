@@ -245,11 +245,11 @@
         <field>Account.BillingAddress</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+    <!--<fieldPermissions>
         <editable>false</editable>
         <field>Account.DandbCompanyId</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>-->
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.Description</field>
@@ -1175,11 +1175,11 @@
         <field>Lead.CurrentGenerators__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+    <!--<fieldPermissions>
         <editable>false</editable>
         <field>Lead.DandbCompanyId</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>-->
     <fieldPermissions>
         <editable>true</editable>
         <field>Lead.Description</field>
@@ -1720,9 +1720,9 @@
     <layoutAssignments>
         <layout>Contract-Contract Layout</layout>
     </layoutAssignments>
-    <layoutAssignments>
+    <!--<layoutAssignments>
         <layout>DandBCompany-D%26B Company Layout</layout>
-    </layoutAssignments>
+    </layoutAssignments>-->
     <layoutAssignments>
         <layout>DuplicateRecordSet-Duplicate Record Set Layout</layout>
     </layoutAssignments>
@@ -1888,7 +1888,7 @@
         <object>Contract</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-    <objectPermissions>
+    <!--<objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
@@ -1896,7 +1896,7 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>DandBCompany</object>
         <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
+    </objectPermissions>-->
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
@@ -2050,10 +2050,10 @@
         <tab>standard-Contract</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-    <tabVisibilities>
+    <!--<tabVisibilities>
         <tab>standard-DandBCompany</tab>
         <visibility>DefaultOff</visibility>
-    </tabVisibilities>
+    </tabVisibilities>-->
     <tabVisibilities>
         <tab>standard-DuplicateRecordSet</tab>
         <visibility>DefaultOn</visibility>

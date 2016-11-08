@@ -20,20 +20,7 @@ src/objects/UL_SalesOrg__c.object
 src/objects/User.object
 src/profiles
 src/profiles/SoCo-Access Admin.profile
-src/profiles/SoCo-Account Manager.profile
-src/profiles/SoCo-Account Planner.profile
-src/profiles/SoCo-Category Manager.profile
-src/profiles/SoCo-Category Planner.profile
-src/profiles/SoCo-CD Finance Analyst.profile
-src/profiles/SoCo-CD Finance Manager.profile
-src/profiles/SoCo-Customer Marketing Director.profile
-src/profiles/SoCo-Finance Admin.profile
-src/profiles/SoCo-Process Officer.profile
-src/profiles/SoCo-Security Admin.profile
-src/profiles/SoCo-System Admin.profile
-src/profiles/UK-Admin.profile
-src/profiles/UK-Authoriser.profile
-src/profiles/UK-Planner %28CAM%29.profile
+
 src/labels
 src/labels/TPMSOCOUK.labels
 src/classes
@@ -117,19 +104,8 @@ src/flows/Update_all_date_fileds-2.flow
 src/flows/Update_Promotion_Date_Fields_for_UKI-1.flow
 src/flows/updatePromotiontype-2.flow
 src/permissionsets
-src/permissionsets/Account_Field_Edit_Access.permissionset
-src/permissionsets/ACSF_FA.permissionset
 src/permissionsets/ACSF_FM.permissionset
-src/permissionsets/ACSF_HQ_Sales_Manager.permissionset
 src/permissionsets/ACSF_KAM.permissionset
-src/permissionsets/ACSF_Master_Data_Admin.permissionset
-src/permissionsets/ACSF_Sales_User.permissionset
-src/permissionsets/ACSF_Supervisor.permissionset
-src/permissionsets/Create_Delete_Special_Products.permissionset
-src/permissionsets/Defer_sharing_calculations.permissionset
-src/permissionsets/Reports_and_Dashboards.permissionset
-src/permissionsets/TquilaONE_Administrator.permissionset
-src/permissionsets/TquilaONE.permissionset
 src/layouts
 src/layouts/ACSFUL001__Account_Set__c-SoCo_ Account Set Layout.layout
 src/layouts/ACSFUL001__Account_Set__c-UKI_ Account Set Layout.layout
