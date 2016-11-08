@@ -4022,6 +4022,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isFinancialInvalid = false;
         isValidationError = false;
         isValidationErrorCal = false;
+        isFinancialInvalidInnovation = false;
         
         validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,finToEvaluate);
         validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,finToEvaluate);

@@ -390,7 +390,7 @@ public with sharing class IPM_FinancialYearHelper
             set<string> setAllFinacials = new set<string>(); //Set to store all Financial External Ids.
             
             //Get all Financial Year records for the related Financial records
-            for(IPM_Financial_Year__c finYr :[select id, Name,Turnover_Global__c, Turnover_Regional__c, Turnover_Local__c, Financial_External_ID__c, External_Id__c, IPM_Financial__r.Global_External_Id__c, IPM_Financial__r.Regional_Project__c, IPM_Financial__r.Local_Project__c, IPM_Financial__r.Financial_External_ID__c from IPM_Financial_Year__c where Financial_External_ID__c in : setFinExtId AND IPM_Financial__r.RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE and Name_isY0__c = :IPM_ConstantUtils.IPM_false and isActive__c = TRUE and IPM_Financial__r.isActive__c = TRUE  LIMIT 50000]){
+            for(IPM_Financial_Year__c finYr :[select id, Name,Turnover_Global__c, Turnover_Regional__c, Turnover_Local__c, Financial_External_ID__c, External_Id__c, IPM_Financial__r.Global_External_Id__c,IPM_Financial__r.Regional_External_Id__c, IPM_Financial__r.Regional_Project__c, IPM_Financial__r.Local_Project__c, IPM_Financial__r.Financial_External_ID__c from IPM_Financial_Year__c where Financial_External_ID__c in : setFinExtId AND IPM_Financial__r.RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE and Name_isY0__c = :IPM_ConstantUtils.IPM_false and isActive__c = TRUE and IPM_Financial__r.isActive__c = TRUE  LIMIT 50000]){
                 mapExtIdFinYear.put(finYr.External_Id__c, finYr);
 				setAllFinacials.add(finYr.IPM_Financial__r.Financial_External_ID__c);
 				
@@ -399,24 +399,26 @@ public with sharing class IPM_FinancialYearHelper
                     setGlobalProjExtIds.add(finYr.IPM_Financial__r.Global_External_Id__c);
                 }
                 //Regional Original Project's financial
-                else if(finYr.IPM_Financial__r.Regional_Project__c!= null){
-                    setRegionalOrigProjIds.add(finYr.IPM_Financial__r.Regional_Project__c);  
+                if(finYr.IPM_Financial__r.Regional_External_Id__c!= null){
+                    setRegionalOrigProjIds.add(finYr.IPM_Financial__r.Regional_External_Id__c);  
                 }   
             }
             //Get phase & type of all original Projects
             if(!setGlobalProjExtIds.isEmpty() || !setRegionalOrigProjIds.isEmpty()){
-                for(IPM_Project__c proj :[select id, Name, IPM_Phase__c, IPM_Project_Type__c from IPM_Project__c where Name in:setGlobalProjExtIds or id in :setRegionalOrigProjIds LIMIT 50000]){
-                    mapProj.put(proj.id, proj);
+                for(IPM_Project__c proj :[select id, Name, IPM_Phase__c,IPM_ProjectGKM__c, IPM_Project_Type__c from IPM_Project__c where Name in:setGlobalProjExtIds or Name in :setRegionalOrigProjIds LIMIT 50000]){
+
                     mapProj.put(proj.Name, proj);                       
                 }   
             }
             
             //Loop through all Financial Year records and get all invalid Parent Financials
             if(!mapExtIdFinYear.isEmpty()){
+
+                Map <string, IPM_Financial_Year__c> validExtIdtoFinYearMap = getValidFinYearsToValidate(mapExtIdFinYear,mapProj);
                 
-                getInvalidParentFinancialsGlobal(mapExtIdFinYear, mapProj);
-            	getInvalidParentFinancialsRegional(mapExtIdFinYear, mapProj);
-            	getInvalidParentFinancialsLocal(mapExtIdFinYear, mapProj);
+                getInvalidParentFinancialsGlobal(validExtIdtoFinYearMap, mapProj);
+            	getInvalidParentFinancialsRegional(validExtIdtoFinYearMap, mapProj);
+            	getInvalidParentFinancialsLocal(validExtIdtoFinYearMap, mapProj);
             	
             	list<IPM_Financial__c> lstInvalidFinance = getFinToUpdateWithInvalidFlags(setAllFinacials);
             	
@@ -559,5 +561,44 @@ public with sharing class IPM_FinancialYearHelper
             return lstInvalidFinance;
     }
     
+    
+    
+    //Find the Map Financial year Ext Id and the Financial year which is to be validated
+    //for the corresponding phase and GKM model
+    public static Map <string, IPM_Financial_Year__c> getValidFinYearsToValidate(map<string, IPM_Financial_Year__c> mapExtIdFinYear, map<string, IPM_Project__c> mapProj){
+    	
+    	Map<String,String> mapProjToFinToEvaluate = IPM_FinancialUtils.getProjGKMToPhaseMatrixElement();      
+        System.debug('mapProjToFinToEvaluate ==>'+mapProjToFinToEvaluate);
+    	Map <string, IPM_Financial_Year__c> validExtIdtoFinYearMap = new Map<string, IPM_Financial_Year__c>();
+        IPM_Project__c proj= null;
+        
+        for(IPM_Financial_Year__c finyear : mapExtIdFinYear.values()){
+        	proj = null;
+        	System.debug('finyear.IPM_Financial__r.Financial_External_ID__c ==>'+finyear.IPM_Financial__r.Financial_External_ID__c);
+        	proj= mapProj.get(finyear.IPM_Financial__r.Regional_External_Id__c);
+        	if(proj == null){
+        		proj= mapProj.get(finyear.IPM_Financial__r.Global_External_Id__c); 
+        	} 
+        	
+        	
+        	
+        	if(proj != null){
+        		
+        		System.debug('proj.IPM_ProjectGKM__c ==>'+proj.IPM_ProjectGKM__c);
+        		System.debug('proj.IPM_Phase__c ==>'+proj.IPM_Phase__c);
+        		
+        		string finTypesToEvaluate = mapProjToFinToEvaluate.get(proj.IPM_ProjectGKM__c+'_'+proj.IPM_Phase__c);
+        		if(finTypesToEvaluate != null && finTypesToEvaluate.contains(IPM_FinancialUtils.getCurrentFinancialType(finyear.IPM_Financial__r.Financial_External_ID__c))){
+            		
+            		System.debug('finyear.External_Id__c ==>'+finyear.External_Id__c);
+            		validExtIdtoFinYearMap.put(finyear.External_Id__c, finyear);
+            	}
+        	}
+        	
+        	
+        }
+        
+        return validExtIdtoFinYearMap;
+    }
     
 }
