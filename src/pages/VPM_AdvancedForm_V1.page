@@ -41,11 +41,6 @@
                 }
             });  
     });
-    
-     function showAttachments(id){
-        var self = this;
-        self.window.open('/apex/VPM_AttachFiles?id='+id,'Table','toolbar=yes, scrollbars=no, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70'); 
-    } 
 </script>
  <div id="advForm" style="display: none;">
    <apex:form >
@@ -60,7 +55,7 @@
           <apex:commandButton action="{!VendorSelected}" value="{!$Label.VPM_Next}" rendered="{!hideSearchVendor}" reRender="Block1" status="actStatusId"  oncomplete="makeFormReadOnly()"/>  
           <apex:commandButton action="{!processRequestType}" value="{!$Label.VPM_Next}"  rendered="{!launchScreen}" reRender="Block1" status="actStatusId"  oncomplete="makeFormReadOnly()"/>         
           <apex:commandButton action="{!SendWebformMethod}" value="{!sendWebFormLabel}" reRender="thePageBlock,Block1"  status="actStatusId" rendered="{!sendWebFormScreen}"  oncomplete="makeFormReadOnly()"/>           
-          <apex:commandButton action="{!SaveMethod}" value="{!$Label.VPM_SaveButton}" reRender="Block1" rendered="{!ButtonVisibleSaveMenu}" status="actStatusId" oncomplete="makeFormReadOnly()"/>   
+          <apex:commandButton action="{!SaveMethod}" value="{!$Label.VPM_SaveButton}" reRender="Block1,hiddenBlock" rendered="{!ButtonVisibleSaveMenu}" immediate="false" status="actStatusId" oncomplete="makeFormReadOnly()"/>   
           <apex:commandButton action="{!SaveAndExit}"  value="{!$Label.VPM_SaveExitButton}"  reRender="Block1"  rendered="{!ButtonVisibleSaveExit}" status="actStatusId" oncomplete="makeFormReadOnly()"/>
           <apex:commandButton action="{!backToDetailPage}"  value="{!$Label.VPM_Exit}"   reRender="Block1"  rendered="{!isExitButtonVisible}" status="actStatusId" oncomplete="makeFormReadOnly()"/>
           <apex:commandButton action="{!GoldenDataSave}"  value="{!$Label.VPM_Next}"   reRender="Block1"  rendered="{!goldendata2Screen}" status="actStatusId" oncomplete="makeFormReadOnly()"/>      
@@ -79,14 +74,14 @@
               
               <apex:outputLabel value="{!$Label.VPM_VendorName}" style="width:10%"/>
               <apex:outputPanel layout="block" styleClass="requiredInput"><apex:outputpanel layout="block" styleClass="requiredBlock"/>
-              <apex:inputText value="{!vendorName}" label="{!$Label.VPM_VendorName}"/>
+              <apex:inputText value="{!vendorName}" label="{!$Label.VPM_VendorName}" maxlength="40"/>
             </apex:outputPanel>  
           </apex:pageBlockSectionItem> 
         <apex:pageBlockSectionItem helpText="{!$Label.VPM_AddressLine1ReqHelpText}">
             <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Street1__c.Label}"/>
                 <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Street1__c.Label}" value="{!street1}"/>
             </apex:pageBlockSectionItem>
-          <apex:inputText value="{!zipPostcode}" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ZIPPostcode__c.Label}" />
+          <apex:inputText value="{!zipPostcode}" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ZIPPostcode__c.Label}" maxlength="10" />
           <apex:inputText value="{!taxCode}" label="{!$Label.VPM_TaxCode}" />
           <apex:pageBlockSectionItem helpText="{!$Label.VPM_VendorCountryReqHelpText}">
             <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Country__c.Label}"  /><apex:outputPanel layout="block" styleClass="requiredInput"><apex:outputpanel layout="block" styleClass="requiredBlock"/>
@@ -98,11 +93,11 @@
 
         </apex:pageBlockSection>                
         
-          <div style="text-align:center">
+          <center>
               <apex:outputLabel rendered="{!heapMessageScreen}">     
                   {!$Label.VPM_MDMBPMErrorMessage}
               </apex:outputLabel>
-          </div>
+          </center>
         <apex:pageBlockSection columns="1" rendered="{!hideSearchVendor}">
             
           <apex:repeat value="{!mdmDetailList}" var="mdmDetail" id="theRepeat">
@@ -127,11 +122,11 @@
           <apex:inputHidden value="{!mdmVendorType}" id="RadioButtonValue" />
          
         </apex:pageBlockSection> 
-   <div style="text-align:center">
+   <center> 
      <apex:outputLabel rendered="{!vendorNotFound}">  
             {!webErrorMessage}
      </apex:outputLabel>
-   </div><br/><br/>
+   </center><br/><br/>
 
         <apex:pageBlockSection columns="1" id="thePageBlock" rendered="{!sendWebFormScreen}">                
           <apex:outputText Value="{!$Label.VPM_SendWebformRequestInfo}" ></apex:outputText>  
@@ -344,7 +339,7 @@
                  <apex:outputPanel layout="block" styleClass="requiredInput">
                  <apex:outputpanel layout="block" styleClass="requiredBlock"/>
                  <apex:actionRegion >
-                  <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorName1__c.Label}" value="{!vendorName}">
+                  <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorName1__c.Label}" value="{!vendorName}" maxlength="40">
                   <apex:actionSupport event="onchange" reRender="section2" action="{!vendorNameChange}"/>
                   </apex:inputText>
                   </apex:actionRegion>
@@ -370,7 +365,7 @@
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Street5__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Street5__c}"/>
             
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_District__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_District__c}"/>
-            <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ZIPPostcode__c.Label}" value="{!zipPostcode}"/>
+            <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ZIPPostcode__c.Label}" value="{!zipPostcode}" maxlength="10" />
             <apex:pageBlockSectionItem helpText="{!$Label.VPM_CityReqHelpText}">
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_City__c.Label}" />
                  <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_City__c}" required="true"/>  
@@ -410,7 +405,7 @@
             <!--<apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VATRegistrationNumber3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VATRegistrationNumber3__c}"/>-->
             <!--modified for IAPR-605 -->
             <!-- Tax Juri Code - Fusion Free Text and For Others Picklist -->  
-            <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" value="{!taxJuriCodeDefValue}"/>
+            <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" value="{!taxJuriCodeDefValue}" maxlength="15" />
             <!--apex:selectList value="{!taxJuriCodeDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" size="1" rendered="{!Not(isFusion)}">
                   <apex:selectOptions value="{!taxJuriCodeOptions}"/>
             </apex:selectList-->
@@ -465,10 +460,10 @@
               </apex:selectList>
             <apex:pageBlockSectionItem >
              <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SearchTerm_1__c.Label}"/>
-            <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SearchTerm_1__c.Label}" value="{!searchTerm1}" maxlength="20"/>
+            <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SearchTerm_1__c.Label}" value="{!searchTerm1}" />
             
              </apex:pageBlockSectionItem>
-            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SearchTerm2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SearchTerm2__c}" />
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SearchTerm2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SearchTerm2__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CompanyPostCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CompanyPostCode__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Email2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Email2__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Email3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Email3__c}"/>
@@ -691,7 +686,7 @@
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_HouseBank__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_HouseBank__c}" />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountClerkTelephoneNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountClerkTelephoneNumber__c}" />
               
-              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingClerk__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountingClerk__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingClerk__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountingClerk__c}" />
               <apex:selectList value="{!vendorAccountStatement}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountStatement__c.Label}" size="1">
                   <apex:selectOptions value="{!accountStatement}"/>
               </apex:selectList>

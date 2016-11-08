@@ -152,19 +152,19 @@
            <apex:outputField label="{!$Label.VPM_NewPartner}" value="{!VPM_PurchasingRequests__c.VPM_ForaNewPartnerLinktoexistingTrade__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
             </apex:outputField>
-            <!--apex:pageBlockSectionItem>             
-                <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}" id="paymentTermsField"/>                     
-                     <apex:outputPanel layout="block" styleClass="requiredInput">
-                         <apex:outputpanel layout="block" styleClass="requiredBlock"/>      
-                        <apex:selectList value="{!vendorDefaultPaymentTerm}"  multiselect="false" size="1">
-                            <apex:selectOptions value="{!paymentTerms}"/>                            
-                        </apex:selectList>  
-                      </apex:outputPanel>
-             <!--/apex:pageBlockSectionItem-->
              
-              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" id="FreightPT">   
+              <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" id="FreightPT">   
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
-            </apex:outputField>
+            <!--/apex:outputField-->
+            <apex:pageBlockSectionItem >
+                     <apex:outputLabel for="pt" value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}"/>
+                          <apex:outputpanel layout="block" styleClass="requiredInput">
+                              <apex:outputpanel layout="block" styleClass="requiredBlock"/>                   
+                          <apex:selectList id="pt" value="{!vendorPaymentTerms}"  multiselect="false" size="1" >
+                              <apex:selectOptions value="{!paymentTerms}"/>                            
+                          </apex:selectList>
+                      </apex:outputPanel>
+                 </apex:pageBlockSectionItem>
                <apex:outputField label="Vendor Code" value="{!VPM_PurchasingRequests__c.VPM_VendorCodeLookup__r.mdm_Code__c}"/>
            </apex:pageBlockSection>
            <apex:pageBlockSection rendered="{!isRussian}" title="Russian at a Glance">
@@ -187,9 +187,18 @@
                  <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_ECC__c}" id="russianECC">             
                     <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton"/>
                 </apex:outputField> 
-                 <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" id="RussianPT">
+                 <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" id="RussianPT">
                      <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
-                </apex:outputField>
+                <!--/apex:outputField-->
+                <apex:pageBlockSectionItem >
+                     <apex:outputLabel for="pt" value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}"/>
+                          <apex:outputpanel layout="block" styleClass="requiredInput">
+                              <apex:outputpanel layout="block" styleClass="requiredBlock"/>                   
+                          <apex:selectList id="pt" value="{!vendorPaymentTerms}"  multiselect="false" size="1" >
+                              <apex:selectOptions value="{!paymentTerms}"/>                            
+                          </apex:selectList>
+                      </apex:outputPanel>
+                 </apex:pageBlockSectionItem>
                 <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_ReconciliationAccount__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
@@ -225,9 +234,18 @@
               <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_ECC__c}" id="financeECC">             
                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton"/>
               </apex:outputField> 
-              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" id="BRPT">  
+              <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" id="BRPT">  
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
-            </apex:outputField>
+            <!--/apex:outputField-->
+            <apex:pageBlockSectionItem >
+                     <apex:outputLabel for="pt" value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}"/>
+                          <apex:outputpanel layout="block" styleClass="requiredInput">
+                              <apex:outputpanel layout="block" styleClass="requiredBlock"/>                   
+                          <apex:selectList id="pt" value="{!vendorPaymentTerms}"  multiselect="false" size="1" >
+                              <apex:selectOptions value="{!paymentTerms}"/>                            
+                          </apex:selectList>
+                      </apex:outputPanel>
+                 </apex:pageBlockSectionItem>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_VATRegistrationNumber__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
@@ -314,9 +332,18 @@
               <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_ECC__c}" id="MDMECC">             
                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton"/>
             </apex:outputField> 
-               <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" id="MDMPT">
+               <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" id="MDMPT">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
-            </apex:outputField>
+            <!--/apex:outputField-->
+             <apex:pageBlockSectionItem >
+                     <apex:outputLabel for="pt" value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}"/>
+                          <apex:outputpanel layout="block" styleClass="requiredInput">
+                              <apex:outputpanel layout="block" styleClass="requiredBlock"/>                   
+                          <apex:selectList id="pt" value="{!vendorPaymentTerms}"  multiselect="false" size="1" >
+                              <apex:selectOptions value="{!paymentTerms}"/>                            
+                          </apex:selectList>
+                      </apex:outputPanel>
+                 </apex:pageBlockSectionItem>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_ReconciliationAccount__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>

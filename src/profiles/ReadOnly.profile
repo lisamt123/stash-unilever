@@ -397,6 +397,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>VPM_CompanyCode__c.VPM_IsInactive__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_CountriesWithFLS__mdt.FLS__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_CountriesWithFLS__mdt.VPM_Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>VPM_ExternalService__mdt.VPM_ServiceEndpoint__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -463,6 +478,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingOrganisation__c.VPM_Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingOrganisation__c.VPM_IsInactive__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1244,11 +1264,6 @@
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_FLSInCountryReqVen__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FLSInCountryReqVendor__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -2732,6 +2747,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>VPM_VendorRequestDefaultValues__mdt.VPM_PaymentMethod1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_VendorRequestDefaultValues__mdt.VPM_PaymentMethod2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_VendorRequestDefaultValues__mdt.VPM_PaymentMethod3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_VendorRequestDefaultValues__mdt.VPM_PaymentMethod5__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>VPM_VendorRequestDefaultValues__mdt.VPM_PaymentMethod__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2893,6 +2928,12 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>VPM_ExternalService__mdt-VPM External Service Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_OrderCurrencyDefaultValues__mdt-Order Currency Default Values Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>VPM_PaymentMethods__mdt-Payment Method Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>VPM_PurchasingRequests__c-Business Requestor</layout>

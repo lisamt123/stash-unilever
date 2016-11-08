@@ -102,7 +102,7 @@ public with sharing class VPM_RecordTypeHelper {
     }
     
     public static string getLaunchScreenVariable(string obj, id vendorReqRecordTypeID) {
-        string launchScreenVariable;
+        string launchScreenVariable = '';
         string recordTypeName = getRecordTypes(obj, vendorReqRecordTypeID);
         if(recordTypeName.contains(CREATE)){
             launchScreenVariable = CREATE;
@@ -116,8 +116,8 @@ public with sharing class VPM_RecordTypeHelper {
         return launchScreenVariable;
     }
     public static id getRecordTypeNameById(string recortTypeValue) {
-        Id vendorRecordtypeId = '';        
-        string VendorReqRecordType;
+        Id vendorRecordtypeId = null;     
+        string VendorReqRecordType = '';
         system.debug('@@recortTypeValue' + recortTypeValue);
         if(recortTypeValue.contains(GENERIC)) {
             VendorReqRecordType = GenricRecordType;

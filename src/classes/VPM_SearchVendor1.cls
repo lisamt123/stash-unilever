@@ -151,16 +151,6 @@ public with sharing class VPM_SearchVendor1{
     public boolean isTrue{get;set;}
     public static boolean checkFlag = false; // for recurrsive trigger        
     
-    //Constants Used in advanced Form 
-    /*public static final string CREATE = 'Create';
-    public static final string EXTEND = 'Extend';
-    public static final string MAINTAIN = 'Maintain';
-    public static final string MAINTAIN_2 = 'Maintain2'; */
-    public static final string CONST_LITERAL1 = '\\#';
-    public static final string CONST_LITERAL2 = '\'%'; 
-    public static final string CONST_LITERAL3 = '\'%';
-    public static final string CONST_LITERAL4 = '%\')';
-    
     public string industryOptionsDefValue{get;set;}
     public string standardCommDefValue{get;set;}
     public string regStGrpDefValue{get;set;}
@@ -227,7 +217,7 @@ public with sharing class VPM_SearchVendor1{
                             VPM_Regions__c,VPM_SearchTerm_1__c,VPM_ClerksInternet__c,VPM_OrderingEmailAddress__c,VPM_OrderCurrency__c,VPM_Authorization__c,VPM_TaxJurisdictionCode__c,VPM_InternationalVersion__c,VPM_StandardNumber__c,VPM_VATCountry__c,VPM_VATRegistrationNumber2__c,VPM_SortKey__c,VPM_SRVBasedVendorID__c,VPM_IsLock__c,createdbyid,VPM_PurchasingOrganisation__c,VPM_AuthorisationGroupFormula__c, VPM_VendorBlockUnblockDelete__c,
                             VPM_SupplierFinancialStabilityCheck__c,VPM_DetailsTypeCheck__c,VPM_ReasonNoFinancialCheck__c,VPM_SupplierAchillesRegistration__c,VPM_AchillesRegistrationCode__c,VPM_AchillesExceptionDetails__c,VPM_SupplierPositiveAssuranceQuality__c,VPM_SupPosAssExcepDetailsQual__c,VPM_SupplierAssessmentQuestionnaireQual__c,VPM_DetailsOfPlannedActivitiesSour__c,VPM_SupplierAuditQuality__c,VPM_DetailsOfPlannedActivitiesQual__c,
                             VPM_SupplierPositiveAssuranceSourcing__c,VPM_SupPosAssExcepDetailsSour__c,VPM_SupplierAssessmentQuestionnaireSour__c,VPM_SupplierAuditSourcing__c,VPM_OrderOptimRest__c,VPM_AccountingClerk__c,
-                            VPM_Interestcalculationindicator__c,VPM_SocialInsuranceCodeSoc__c,VPM_ShippingConditions__c, VPM_CompanyCode__r.VPM_Country__c,VPM_CompanyCode__r.VPM_CountryCode__c
+                            VPM_Interestcalculationindicator__c,VPM_SocialInsuranceCodeSoc__c,VPM_GlobalFieldChanged__c,VPM_RegionalFieldChanged__c,VPM_ShippingConditions__c, VPM_CompanyCode__r.VPM_Country__c,VPM_CompanyCode__r.VPM_CountryCode__c
                             from VPM_PurchasingRequests__c where id = : recId];
             
             // assigning default values to rerender on advanced form
@@ -250,7 +240,7 @@ public with sharing class VPM_SearchVendor1{
         goldendata2Screen2 = false;
         pageBlockTitle = ''; 
         screenType = ''; 
-        positions='Yes';
+        positions = VPM_RecordTypeHelper.YES;
         isExitButtonVisible = false;
         isRequiredField = true;
         heapMessageScreen = false;
@@ -468,25 +458,27 @@ public with sharing class VPM_SearchVendor1{
                 }
                 //labelText='Vendor List';
                 // Dynamic Query builded for search vendor
-               
+               final string CONST1 = '\'%';
+               final string CONST2 = '%\''; 
+               final string CONST3 = '%\')'; 
                 
                 /*string searchQuery ='SELECT id,mdm_Postcode__c,VPM_FullDetails__c,mdm_vCodeSirius__c,mdm_vCodeCordillera__c,mdm_vCodeU2K2__c,mdm_Name2__c,mdm_Name3__c,mdm_Name4__c,mdm_TaxNumber1__c,mdm_TaxNumber2__c,mdm_TaxNumber3__c,mdm_TaxNumber4__c,mdm_VATRegNum__c, mdm_vCodeFusion__c,mdm_Name1__c,mdm_Street__c ,mdm_City__c,mdm_Country__c,mdm_ecc__c,mdm_Code__c FROM mdm_Vendors__c  WHERE  mdm_Name1__c LIKE '+ CONST_LITERAL2 + String.escapeSingleQuotes(vendorName) + '%\'';
                 searchQuery+=' AND mdm_Street__c LIKE '+ '\'%' + String.escapeSingleQuotes(Street1) + '%\'';
                 searchQuery+=' AND mdm_Postcode__c  = \'' + ZIPPostcode+'\'';
                 searchQuery+=' AND mdm_Country__c = \''  +  countryNameSplitted + '\''; */
-                string searchQuery ='SELECT id,mdm_Postcode__c,VPM_FullDetails__c,mdm_vCodeSirius__c,mdm_vCodeCordillera__c,mdm_vCodeU2K2__c,mdm_Name2__c,mdm_Name3__c,mdm_Name4__c,mdm_TaxNumber1__c,mdm_TaxNumber2__c,mdm_TaxNumber3__c,mdm_TaxNumber4__c,mdm_VATRegNum__c, mdm_vCodeFusion__c,mdm_Name1__c,mdm_Street__c ,mdm_City__c,mdm_Country__c,mdm_ecc__c,mdm_Code__c FROM mdm_Vendors__c  WHERE ( mdm_Name1__c LIKE '+'\'%' + String.escapeSingleQuotes(vendorName) + '%\'' ;
+                string searchQuery ='SELECT id,mdm_Postcode__c,VPM_FullDetails__c,mdm_vCodeSirius__c,mdm_vCodeCordillera__c,mdm_vCodeU2K2__c,mdm_Name2__c,mdm_Name3__c,mdm_Name4__c,mdm_TaxNumber1__c,mdm_TaxNumber2__c,mdm_TaxNumber3__c,mdm_TaxNumber4__c,mdm_VATRegNum__c, mdm_vCodeFusion__c,mdm_Name1__c,mdm_Street__c ,mdm_City__c,mdm_Country__c,mdm_ecc__c,mdm_Code__c FROM mdm_Vendors__c  WHERE ( mdm_Name1__c LIKE '+ CONST1 + String.escapeSingleQuotes(vendorName) + CONST2 ;
                 if(string.isNotBlank(street1) && string.isNotBlank(zipPostcode)) {
-                    searchQuery+=' OR mdm_Street__c LIKE '+ '\'%' + String.escapeSingleQuotes(street1) + '%\'';    
-                    searchQuery+=' OR mdm_Postcode__c LIKE '+ '\'%' + String.escapeSingleQuotes(zipPostcode)+ '%\')';
-                    searchQuery+=' AND mdm_Country__c LIKE '+ '\'%' + String.escapeSingleQuotes(countryNameSplitted)+ '%\'';
+                    searchQuery+=' AND mdm_Street__c LIKE '+ CONST1 + String.escapeSingleQuotes(street1) + CONST2;    
+                    searchQuery+=' AND mdm_Postcode__c LIKE '+ CONST1 + String.escapeSingleQuotes(zipPostcode)+ CONST3;
+                    searchQuery+=' AND mdm_Country__c LIKE '+ CONST1 + String.escapeSingleQuotes(countryNameSplitted)+ CONST2;
                 }else  if(string.isNotBlank(street1) && string.isBlank(zipPostcode)) {   
-                    searchQuery+=' OR mdm_Street__c LIKE '+ '\'%' + String.escapeSingleQuotes(street1) + '%\')';  
-                    searchQuery+=' AND mdm_Country__c LIKE '+ '\'%' + String.escapeSingleQuotes(countryNameSplitted)+ '%\'';
+                    searchQuery+=' AND mdm_Street__c LIKE '+ CONST1 + String.escapeSingleQuotes(street1) + CONST3;  
+                    searchQuery+=' AND mdm_Country__c LIKE '+ CONST1 + String.escapeSingleQuotes(countryNameSplitted)+ CONST2;
                 }else  if(string.isBlank(street1) && string.isNotBlank(zipPostcode)) {   
-                    searchQuery+=' OR mdm_Postcode__c LIKE '+ '\'%' + String.escapeSingleQuotes(zipPostcode)+ '%\')';
-                    searchQuery+=' AND mdm_Country__c LIKE '+ '\'%' + String.escapeSingleQuotes(countryNameSplitted)+ '%\'';
+                    searchQuery+=' AND mdm_Postcode__c LIKE '+ CONST1 + String.escapeSingleQuotes(zipPostcode)+ CONST3;
+                    searchQuery+=' AND mdm_Country__c LIKE '+ CONST1 + String.escapeSingleQuotes(countryNameSplitted)+ CONST2;
                 }else  if(string.isBlank(street1) && string.isBlank(zipPostcode)) {   
-                    searchQuery+=' AND mdm_Country__c LIKE '+ '\'%' + String.escapeSingleQuotes(countryNameSplitted)+ '%\')';
+                    searchQuery+=' AND mdm_Country__c LIKE '+ CONST1 + String.escapeSingleQuotes(countryNameSplitted)+ CONST3;
                 }
                 searchQuery+= 'LIMIT 999';         
                 system.debug('@@mdmVendor' +searchQuery);
@@ -773,7 +765,7 @@ public with sharing class VPM_SearchVendor1{
           hideSearchVendor=false;
           launchScreen =false;
           renderBackBtn = true;  
-          IF(positions == 'Yes') {
+          IF(positions.equals(VPM_RecordTypeHelper.YES)) {
             isRequiredField = true;
           }else {
             isRequiredField = false;
@@ -803,9 +795,14 @@ public with sharing class VPM_SearchVendor1{
                   }else if(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_U2K2)) {
                       pageRef =  new Pagereference('/apex/VPM_U2K2GoldenData?id=' + recId +queryString); 
                   }
-           
+                   vendorQuery1.VPM_GlobalFieldChanged__c=false;
+                   vendorQuery1.VPM_RegionalFieldChanged__c = true;
                 }else
+                {
                     pageRef =  new Pagereference('/apex/VPM_GoldenData1?id=' + recId); 
+                    vendorQuery1.VPM_GlobalFieldChanged__c=true;
+                    
+                }
                 
              }else if(requestType.equals(VPM_RecordTypeHelper.EXTEND) && purch.VPM_ExtensionType__c.equals(VPM_RecordTypeHelper.REGIONAL_REQUEST)){
              
@@ -819,11 +816,19 @@ public with sharing class VPM_SearchVendor1{
                       }else if(vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_U2K2)) {
                           pageRef =  new Pagereference('/apex/VPM_U2K2GoldenData?id=' + recId +queryString); 
                       }
+                    vendorQuery1.VPM_GlobalFieldChanged__c=false;
+                    vendorQuery1.VPM_RegionalFieldChanged__c = true;
                 }else
+                {
                     pageRef =  new Pagereference('/apex/VPM_GoldenData1?id=' + recId);
+                    vendorQuery1.VPM_GlobalFieldChanged__c=true;
+                }
              }else if(requestType.equals(VPM_RecordTypeHelper.CREATE) || (requestType.equals(VPM_RecordTypeHelper.EXTEND) && purch.VPM_ExtensionType__c.equals(VPM_RecordTypeHelper.GLOBAL_REQUEST))){
                   pageRef =  new Pagereference('/apex/VPM_GoldenData1?id=' + recId); 
+                  vendorQuery1.VPM_GlobalFieldChanged__c=true;
+                  vendorQuery1.VPM_RegionalFieldChanged__c=true;
             }        
+              update vendorQuery1;
               pageRef.setRedirect(true);
         }
      }else if(mdmVendorType.equals(system.label.VPM_Exitthisform)) {
@@ -869,7 +874,13 @@ public with sharing class VPM_SearchVendor1{
     Return Type  : List of Wrapper Class
     ********************************************************************/
     public void setLaunchScreenText() {
-        
+        final string CONST1 = '{"';
+        final string CONST2 = '":"';
+        final string CONST3 = '"},';
+        final string CONST4 = '":""},';
+        final string CONST5 = '":false,"';
+        final string CONST6 = '":true,"';
+        final string CONST7 = '","';
         system.debug('@@@ setting Launch screen options');
         //string trueString = 
         String OptionWrapperJSON ='['; //
@@ -877,44 +888,44 @@ public with sharing class VPM_SearchVendor1{
         if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.APPROVALPENDING)||  vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REJECTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.ABORTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REQUEST_COMPLETED)){
             system.debug('@@@ vendorQuery1.VPM_IsLock__c '+vendorQuery1.VPM_IsLock__c);
             if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.RE_WORK)) {
-                system.debug('@@@vendorQuery1.VPM_Status__c '+vendorQuery1.VPM_Status__c);
-                OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_SubmitVendorRequestforApproval + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_SubmitVendorRequestforApproval+'","'+VPM_RecordTypeHelper.SHOW_LABEL+'":true,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":"'+System.label.VPM_Quick_Submit+'"},';
+                system.debug('@@@vendorQuery1.VPM_Status__c '+vendorQuery1.VPM_Status__c);  
+                OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_SubmitVendorRequestforApproval + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_SubmitVendorRequestforApproval+CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2+System.label.VPM_Quick_Submit+CONST3;
             }
         }else{
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_SubmitVendorRequestforApproval + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_SubmitVendorRequestforApproval+'","'+VPM_RecordTypeHelper.SHOW_LABEL+'":true,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":"'+System.label.VPM_Quick_Submit+'"},';
+            OptionWrapperJSON += CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_SubmitVendorRequestforApproval + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_SubmitVendorRequestforApproval+CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2+System.label.VPM_Quick_Submit+CONST3;
         }
         if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.CREATE)) {       
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_EnterGeneralVendorDetails + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_EnterGeneralVendorDetails + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":true,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":"'+System.label.VPM_Add_Additional_Information+'"},';
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_EnterBankDetails + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_EnterBankDetails + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":false,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":""},';
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_EnterPaymentTerms + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_EnterPaymentTerms + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":false,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":""},';
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_EnterFinanciallySensitiveFields + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_EnterFinanciallySensitiveFields + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":false,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":""},';
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_EnterRegionalSpecificFields + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_EnterRegionalSpecificFields + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":false,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":""},';
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_EnterGeneralVendorDetails + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_EnterGeneralVendorDetails + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2+System.label.VPM_Add_Additional_Information+CONST3;
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_EnterBankDetails + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_EnterBankDetails + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_EnterPaymentTerms + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_EnterPaymentTerms + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_EnterFinanciallySensitiveFields + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_EnterFinanciallySensitiveFields + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_EnterRegionalSpecificFields + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_EnterRegionalSpecificFields + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
             if((string.isNotBlank(vendorQuery1.VPM_VendorType__c) && vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI) || (string.isNotBlank(vendorQuery1.VPM_VendorType__c) && vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM))))) {            
-                OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_PIVendorCreationPreRequisites + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_PIVendorCreationPreRequisites + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":false,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":""},';        
+                OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_PIVendorCreationPreRequisites + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_PIVendorCreationPreRequisites + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;        
             }
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_Send_ResendWebformRequest + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_Send_ResendWebformRequest + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":true,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":"'+System.label.VPM_Contact_Vendor+'"},';
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_Send_ResendWebformRequest + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_Send_ResendWebformRequest + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2+System.label.VPM_Contact_Vendor+CONST3;
             
         }       
         if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.EXTEND))
         {
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_General_Vendor_Details+'","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_General_Vendor_Details + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":true,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":"'+System.label.VPM_Add_Additional_Information+'"},';
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_EditBankDetails+'","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_EditBankDetails + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":false,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":""},';
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_EditPaymentTerms + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_EditPaymentTerms + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":false,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":""},';
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_EditFinanciallySensitiveFields + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_EditFinanciallySensitiveFields + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":false,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":""},';  
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_EditRegionalSpecificFields + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_EditRegionalSpecificFields + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":false,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":""},';
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_General_Vendor_Details+CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_General_Vendor_Details + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2+System.label.VPM_Add_Additional_Information+CONST3;
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_EditBankDetails+CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_EditBankDetails + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_EditPaymentTerms + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_EditPaymentTerms + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_EditFinanciallySensitiveFields + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_EditFinanciallySensitiveFields + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;  
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_EditRegionalSpecificFields + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_EditRegionalSpecificFields + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
             
             if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN)) {
-                OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_RequestVendortoBlock_Delete+'","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_RequestVendortoBlock_Delete + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":false,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":""},';
+                OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_RequestVendortoBlock_Delete+CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_RequestVendortoBlock_Delete + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
             }
         }
         //Maintain 1
         else if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN_2))
         {
-            OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_RequestVendortoUnblock_Undelete + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_RequestVendortoUnblock_Undelete + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":true,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":"'+System.label.VPM_Add_Additional_Information+'"},';
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_RequestVendortoUnblock_Undelete + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_RequestVendortoUnblock_Undelete + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2+System.label.VPM_Add_Additional_Information+CONST3;
             isMaintain2 = true;
         }
         system.debug('@@OptionWrapperJSON' + OptionWrapperJSON);
-        OptionWrapperJSON +='{"'+VPM_RecordTypeHelper.DETAIL_OPTION+'":"'+System.label.VPM_Exitthisform + '","'+VPM_RecordTypeHelper.UNIUQUEID+'":"'+System.label.VPM_Exitthisform + '","'+VPM_RecordTypeHelper.SHOW_LABEL+'":true,"'+VPM_RecordTypeHelper.LABEL_TEXT+'":"'+System.label.VPM_Exit_Form+'"}]';
+        OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_Exitthisform + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_Exitthisform + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2+System.label.VPM_Exit_Form+'"}]';
         requestTypeList = (List<VPM_RecordTypeHelper.OptionWrapper>) System.JSON.deserialize(OptionWrapperJSON, List<VPM_RecordTypeHelper.OptionWrapper>.class);
         mdmVendorType ='';
     }
@@ -1022,7 +1033,7 @@ public with sharing class VPM_SearchVendor1{
     ********************************************************************/
     public void  newMethod() 
     {  
-        IF(positions == 'Yes')
+        IF(positions.equals(VPM_RecordTypeHelper.YES))
         {
             isRequiredField = true;
             sendWebFormLabel = system.label.VPM_Send_Button;
@@ -1489,6 +1500,7 @@ public with sharing class VPM_SearchVendor1{
     Return Type  : void
     ***********************************************************************************/
     public void updateVendorReqRecord() {
+        
         try
         {
             system.debug('@@ updateVendorReqRecord is called');
@@ -1572,9 +1584,9 @@ public with sharing class VPM_SearchVendor1{
             vendorReq.save();            
             paymentMethodWebserviceValues = vendorQuery1.VPM_PaymentMethodWeb__c;            
         }
-        catch(exception ex){ 
-            system.debug('@@Exception- ' + ex.getstacktracestring());
-            system.debug('@@Exception- ' + ex.getMessage());
+        catch(DMLException ex){
+            ApexPages.Message msg = new ApexPages.Message(Apexpages.Severity.ERROR, ex.getdmlMessage(0));
+			ApexPages.addMessage(msg); 
         }
     }
     
@@ -1749,7 +1761,7 @@ public with sharing class VPM_SearchVendor1{
                     customMedataCall();
                     VendorQuery1.VPM_OrderCurrency__c = VPM_RecordTypeHelper.customMedataCallOrderCurrency(vendorQuery1.VPM_CompanyCode__r.ECC__c, purchOrgName, countryName);   
                     vendorPaymentTerms = VPM_RecordTypeHelper.defaultPaymentTerm(vendorQuery1.VPM_CompanyCode__r.ECC__c, vendorQuery1.VPM_IsVendorSME__c);
-                    termsOFPayment = VPM_RecordTypeHelper.defaultPaymentTerm(vendorQuery1.VPM_CompanyCode__r.ECC__c, vendorQuery1.VPM_IsVendorSME__c);
+                    termsOFPayment = vendorPaymentTerms;
                     updateVendorReqRecord();                    
                  }
             }            
@@ -1916,25 +1928,25 @@ public with sharing class VPM_SearchVendor1{
                || string.isBlank(vendorQuery1.VPM_SupplierPositiveAssuranceSourcing__c)|| string.isBlank(vendorQuery1.VPM_SupplierAuditQuality__c) || string.isBlank(vendorQuery1.VPM_SupplierAssessmentQuestionnaireSour__c)
                || string.isBlank(vendorQuery1.VPM_SupplierAuditSourcing__c) || string.isBlank(vendorQuery1.VPM_SupplierFinancialStabilityCheck__c) ) {
                    myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'None cannot be selected');    
-               }else if(vendorQuery1.VPM_SupplierFinancialStabilityCheck__c.contains('No') && string.isBlank(vendorQuery1.VPM_ReasonNoFinancialCheck__c)) {
+               }else if(vendorQuery1.VPM_SupplierFinancialStabilityCheck__c.contains(VPM_RecordTypeHelper.NO) && string.isBlank(vendorQuery1.VPM_ReasonNoFinancialCheck__c)) {
                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_FinancialCheckError);
-               }else if(vendorQuery1.VPM_SupplierFinancialStabilityCheck__c.contains('Yes') && string.isBlank(vendorQuery1.VPM_DetailsTypeCheck__c)) {
+               }else if(vendorQuery1.VPM_SupplierFinancialStabilityCheck__c.contains(VPM_RecordTypeHelper.YES) && string.isBlank(vendorQuery1.VPM_DetailsTypeCheck__c)) {
                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,'Please enter detail of type check');
-               }else if(vendorQuery1.VPM_SupplierAchillesRegistration__c.contains('Yes') && string.isBlank(vendorQuery1.VPM_AchillesRegistrationCode__c)) {
+               }else if(vendorQuery1.VPM_SupplierAchillesRegistration__c.contains(VPM_RecordTypeHelper.YES) && string.isBlank(vendorQuery1.VPM_AchillesRegistrationCode__c)) {
                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,'Please enter Archilles Registration code');
-               }else if(vendorQuery1.VPM_SupplierAchillesRegistration__c.contains('No') && string.isBlank(vendorQuery1.VPM_AchillesExceptionDetails__c)) {
+               }else if(vendorQuery1.VPM_SupplierAchillesRegistration__c.contains(VPM_RecordTypeHelper.NO) && string.isBlank(vendorQuery1.VPM_AchillesExceptionDetails__c)) {
                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_ExceptionDetailsError);
-               }else if(vendorQuery1.VPM_SupplierPositiveAssuranceQuality__c.contains('No') && string.isBlank(vendorQuery1.VPM_SupPosAssExcepDetailsQual__c)) {
+               }else if(vendorQuery1.VPM_SupplierPositiveAssuranceQuality__c.contains(VPM_RecordTypeHelper.NO) && string.isBlank(vendorQuery1.VPM_SupPosAssExcepDetailsQual__c)) {
                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_ExceptionDetailsError);
-               }else if(vendorQuery1.VPM_SupplierAssessmentQuestionnaireQual__c.contains('No') && string.isBlank(vendorQuery1.VPM_DetailsOfPlannedActivitiesQual__c)) {
+               }else if(vendorQuery1.VPM_SupplierAssessmentQuestionnaireQual__c.contains(VPM_RecordTypeHelper.NO) && string.isBlank(vendorQuery1.VPM_DetailsOfPlannedActivitiesQual__c)) {
                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_DetailsOfPlannedActivitiesError);
-               }else if(vendorQuery1.VPM_SupplierAuditQuality__c.contains('No') && string.isBlank(vendorQuery1.VPM_SupAudDetailsOfPlannedActivities__c)) {
+               }else if(vendorQuery1.VPM_SupplierAuditQuality__c.contains(VPM_RecordTypeHelper.NO) && string.isBlank(vendorQuery1.VPM_SupAudDetailsOfPlannedActivities__c)) {
                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_DetailsOfPlannedActivitiesError);
-               }else if(vendorQuery1.VPM_SupplierPositiveAssuranceSourcing__c.contains('No') && string.isBlank(vendorQuery1.VPM_SupPosAssExcepDetailsSour__c)) {
+               }else if(vendorQuery1.VPM_SupplierPositiveAssuranceSourcing__c.contains(VPM_RecordTypeHelper.NO) && string.isBlank(vendorQuery1.VPM_SupPosAssExcepDetailsSour__c)) {
                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_ExceptionDetailsError);
-               }else if(vendorQuery1.VPM_SupplierAssessmentQuestionnaireSour__c.contains('No') && string.isBlank(vendorQuery1.VPM_DetailsOfPlannedActivitiesSour__c)) {
+               }else if(vendorQuery1.VPM_SupplierAssessmentQuestionnaireSour__c.contains(VPM_RecordTypeHelper.NO) && string.isBlank(vendorQuery1.VPM_DetailsOfPlannedActivitiesSour__c)) {
                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_DetailsOfPlannedActivitiesError);
-               }else if(vendorQuery1.VPM_SupplierAuditSourcing__c.contains('No') && string.isBlank(vendorQuery1.VPM_DetailsOfPlannedActivitiesSour2__c)) {
+               }else if(vendorQuery1.VPM_SupplierAuditSourcing__c.contains(VPM_RecordTypeHelper.NO) && string.isBlank(vendorQuery1.VPM_DetailsOfPlannedActivitiesSour2__c)) {
                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_DetailsOfPlannedActivitiesError);
                }
         }
@@ -1953,7 +1965,7 @@ public with sharing class VPM_SearchVendor1{
                 }
             }  
             vendorDetails.VPM_InternationalVersion__c = vendorIntVersion;
-            update vendorDetails;      
+            //update vendorDetails;      
         }
         
         if(generalVendorDetails){           
@@ -1962,16 +1974,16 @@ public with sharing class VPM_SearchVendor1{
             }
             if(string.isNotBlank(vendorName) && vendorName.length() < 3) {
                 myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, System.label.VPM_VendorNameLengthPageMessage);  
-            }
+            }            
             if(string.isBlank(countryName)){
-                myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_CountryPagemessage);  
+                myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_CountryPagemessage);   
             
             }if (string.isBlank(street1)) {
-                myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_Street1PageMessage);
+                myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_Street1PageMessage); 
             }            
-            if(string.isNotBlank(taxJuriCodeDefValue) && taxJuriCodeDefValue.length() > 15) {
+            /*if(string.isNotBlank(taxJuriCodeDefValue) && taxJuriCodeDefValue.length() > 15) {
                 myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, System.label.VPM_TaxJuriLengthMessage);  
-            } 
+            }*/ 
             if((!vendorQuery1.VPM_CompanyCode__r.ECC__c.equals(VPM_RecordTypeHelper.ECC_U2K2)) && string.isNotBlank(industryOptionsDefValue) && industryOptionsDefValue.length() > 4){
                 myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_IndustryLengthError);
             }

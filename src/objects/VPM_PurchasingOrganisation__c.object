@@ -934,6 +934,15 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_IsInactive__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM If set to true, the Purchasing organisation will be omitted from the Vendor request search layout</description>
+        <externalId>false</externalId>
+        <label>Inactive</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_POSystemText__c</fullName>
         <description>VPM - Text field populated via a workflow to update the value taken from the PO System picklist so it is searchable on lookup dialogues</description>
         <externalId>true</externalId>

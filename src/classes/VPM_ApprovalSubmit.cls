@@ -21,7 +21,7 @@ public  class VPM_ApprovalSubmit {
 @InvocableMethod(label='Submit for approval Process')
   public static void SubmitApproval(List<VPM_PurchasingRequests__c> purclst)
     {
-       try
+      try
         {
         System.debug('------SubmitApproval');
         string ProcessName ='';
@@ -76,7 +76,7 @@ public  class VPM_ApprovalSubmit {
                 submitRequest.setProcessDefinitionNameOrId(ProcessName);
  
                 // Submit the approval request for the account
-              //  Approval.ProcessResult result = Approval.process(submitRequest);
+                Approval.ProcessResult result = Approval.process(submitRequest);
                 System.debug('Approval.isLocked(purc)-------'+ Approval.isLocked(purc));
                 if(Approval.isLocked(purc))
                 {
@@ -85,11 +85,11 @@ public  class VPM_ApprovalSubmit {
                 System.debug('Approval.unlock(purc)-------'+ Approval.unlock(purc));
             }
         }
-        catch(exception ex){
-            System.debug('Exception in VPM_ApprovalSubmit Function' + Ex.getStacktraceString());
+       catch(exception ex){
+         System.debug('Exception in VPM_ApprovalSubmit Function' + Ex.getStacktraceString());
             
            
-        }   
+       }   
     }
     
     }

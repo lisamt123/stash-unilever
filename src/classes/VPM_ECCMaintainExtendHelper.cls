@@ -194,6 +194,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
         // Ajya Rawat : Condition to check field type and send free as a free text in JSON string.
         else if(field.VPM_fieldDatatype__c == STR_CONST_freeText)
         {
+            system.debug('hreee='+vendorReuest.get(field.VPM_ApiName__c));
             if(string.isNotBlank(String.valueOf(vendorReuest.get(field.VPM_ApiName__c))))
             {
             if(field.VPM_ApiName__c == 'VPM_ReconciliationAccount__c')

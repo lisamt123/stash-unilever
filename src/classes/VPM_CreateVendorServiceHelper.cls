@@ -3,15 +3,11 @@ global class VPM_CreateVendorServiceHelper {
         public String Status {get; set;}
         public String message {get; set;}
         public String RequestID {get; set;}
-        public CreateVendorResponse() {
-        }
     }
     global class CreateVendorFailureResponse {
         public String statusCode {get; set;}
         public String message {get; set;}
         public String details {get; set;}
-        public CreateVendorFailureResponse() {
-        }
     }
     global static String createVendor(String vendorId) {
         System.debug('----------input vendor Id----------' + vendorId);
@@ -69,9 +65,9 @@ global class VPM_CreateVendorServiceHelper {
                     VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,responseString,VPM_HttpUtil.failStatusMDM);
                 }
             } catch(System.CalloutException e) {
-                msg = e.getMessage();
+               // msg = e.getMessage();
                 System.debug('-----CalloutException while calling create vendor global-----'+msg);
-                responseString = msg;
+                responseString =  e.getMessage();
                 integer i=0;
                 do {
                     i++;
@@ -79,9 +75,9 @@ global class VPM_CreateVendorServiceHelper {
                 } while(i < 4);
                 VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             } catch (Exception ex) {
-                msg = ex.getMessage();
+                //msg = ex.getMessage();
                 System.debug('-----Exception while calling create vendor global-----'+msg);
-                responseString = msg;
+                responseString = ex.getMessage();
                 VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             }
         } while ((res.getStatusCode() == 504 || res.getStatusCode() == 0) && numTimes <=4);

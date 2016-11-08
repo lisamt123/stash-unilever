@@ -234,12 +234,12 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               manuallyMarkAsCompleteBtn= true;
               }//SubmitRequestBtn = false;
           }
-          else if(usrRole ==  'FRE' && QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_FREIGHT)) {
+          else if(usrRole == 'FRE') { // && QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_FREIGHT)
               reworkBtn=true;
                 renderSAPBtn = true;
               //  SubmitRequestBtn = true;
           }
-          else if(usrRole ==  'FIN' && QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_FINANCE)) {
+          else if(usrRole ==  'FIN') { //&& QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_FINANCE)
               reworkBtn=true;
                 renderSAPBtn = true;
                //SubmitRequestBtn = true;
@@ -249,7 +249,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                 renderSAPBtn = true;
                 submitRequestBtn = true;
           }
-           else if(usrRole ==  STR_CONST_FLS && QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_FLS)) {
+           else if(usrRole ==  STR_CONST_FLS ) { //&& QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_FLS)
                
               reworkBtn=true;
               renderSAPBtn = true;
@@ -346,16 +346,16 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                 }else if(pr.VPM_IsVendorSME__c==STR_CONST_YES && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_FUSION)){
                   vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_30DK;
                 }                
-           }else if(isProcure && string.isBlank(vendorDetailList[0].VPM_PaymentTerms__c) && string.isBlank(vendorDetailList[0].VPM_PaymentTermsIfNoneSelected__c)){
-                    if(pr.VPM_CompanyCode__r.ECC__c == STR_CONST_U2K2){
+           }else if((isProcure || isMDM || isFinance || isFreight || isRussian) && (string.isBlank(vendorDetailList[0].VPM_PaymentTerms__c) && string.isBlank(vendorDetailList[0].VPM_PaymentTermsIfNoneSelected__c))){
+                    if(vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_U2K2){
                       vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_S090;
-                    }else if(pr.VPM_CompanyCode__r.ECC__c == STR_CONST_FUSION){
+                    }else if(vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_FUSION){
                       vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_90DK;
-                    }else if(pr.VPM_CompanyCode__r.ECC__c == STR_CONST_SIRIUS || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_CORDILLERA){  
+                    }else if(vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_SIRIUS || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_CORDILLERA){  
                       vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_P090;
-                    }else if(pr.VPM_CompanyCode__r.ECC__c == STR_CONST_SIRIUS || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_U2K2 || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_CORDILLERA){
+                    }else if(vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_SIRIUS || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_U2K2 || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_CORDILLERA){
                       vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_P030;  
-                    }else if(pr.VPM_CompanyCode__r.ECC__c == STR_CONST_FUSION){
+                    }else if(vendorDetailList[0].VPM_CompanyCode__r.ECC__c == STR_CONST_FUSION){
                       vendorPaymentTerms = VPM_RecordTypeHelper.PAYMENT_TERM_30DK;
                     }
     
@@ -439,6 +439,8 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                    //callJavaScriptAlert='<script>alert(\''+responseString+'\'); PageReload();</script>';
                     callJavaScriptAlert='<script>debugger;var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); PageReload();</script>';
               }
+              vendorlist[0].VPM_MDMOpsFirstSubmittedToSAP__c=system.now();
+              update vendorList;
       }
       
       @RemoteAction

@@ -228,7 +228,8 @@ public with sharing class VPM_HttpUtil {
             updateVendorMDMStatus(vendorId,VPM_HttpUtil.successStatus,msg,VPM_HttpUtil.successStatusMDM);
             //responseString = 'Vendor Request submitted to SAP.'+msg ;
             responseString = msg;
-        } else if(res.getStatusCode() == 500) {
+        } 
+        /*else if(res.getStatusCode() == 500) {
            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             //responseString = 'Server Error. Please try after some time.';
             responseString = msg;
@@ -244,14 +245,18 @@ public with sharing class VPM_HttpUtil {
            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             //responseString = 'SAP API not implemented.';
             responseString = msg;
-        } else if(String.isNotBlank(msg)) {
-            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            //responseString = 'Some error occured while submitting request to SAP. Please try after some time.'+msg ;
-            responseString = msg;
+        }*/
+		else if(res.getStatusCode() == 0) {
+            
+            responseString = 'Some error occured while submitting request to SAP. Please try after some time.' ;
+            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,responseString,VPM_HttpUtil.failStatusMDM);
+            //responseString = msg;
+            
         } else {
-            responseString = 'Some error occured while submitting request to SAP. Please try after some time.' + '  ' + res.getStatusCode();
+            //responseString = 'Some error occured while submitting request to SAP. Please try after some time.' + '  ' + res.getStatusCode();
+            
             updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            return responseString;
+            return msg;
         }
         return responseString;
     }

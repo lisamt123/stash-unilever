@@ -396,6 +396,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>VPM_CompanyCode__c.VPM_IsInactive__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>VPM_PurchasingOrganisation__c.VPM_CompanyCodeException1__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -428,6 +433,11 @@
         <editable>false</editable>
         <field>VPM_PurchasingOrganisation__c.VPM_Country__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingOrganisation__c.VPM_IsInactive__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1208,11 +1218,6 @@
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_FLSInCountryReqVen__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FLSInCountryReqVendor__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

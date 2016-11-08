@@ -7745,23 +7745,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>VPM_FLSInCountryReqVendor__c</fullName>
-        <description>VPM - This field is used to store the value whether the country is a FLS or Non FLS country.</description>
-        <externalId>false</externalId>
-        <formula>IF(ISPICKVAL(VPM_CountryRequestingVendor__c,&quot;Argentina&quot;),TRUE,
-IF(ISPICKVAL(VPM_CountryRequestingVendor__c,&quot;India&quot;),TRUE, 
-IF(ISPICKVAL(VPM_CountryRequestingVendor__c,&quot;Algeria&quot;),TRUE, 
-IF(ISPICKVAL(VPM_CountryRequestingVendor__c,&quot;Switzerland&quot;),TRUE, 
-IF(ISPICKVAL(VPM_CountryRequestingVendor__c,&quot;United Kingdom&quot;),TRUE, 
-IF(ISPICKVAL(VPM_CountryRequestingVendor__c,&quot;Philippines&quot;),TRUE, 
-FALSE))))))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>DEL FLSInCountryReqVendor</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>VPM_FaxExtension__c</fullName>
         <description>VPM - This field is used to stores the Fax Extension Number of the Vendor.</description>
         <externalId>false</externalId>
@@ -9908,7 +9891,7 @@ FALSE))))))</formula>
         <defaultValue>false</defaultValue>
         <description>VPM - This field is used to store the value of Is changed VAT.</description>
         <externalId>false</externalId>
-        <label>Is changed VAT</label>
+        <label>General Vendor Details Changed</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -14969,7 +14952,7 @@ VPM_Approver10__c = $User.Id))
         <label>Purchasing Organisation</label>
         <lookupFilter>
             <active>true</active>
-            <booleanFilter>(1 AND 2 AND 3 AND 4 AND 5) OR (6 AND 7)</booleanFilter>
+            <booleanFilter>(1 AND 2 AND 3 AND 4 AND 5 AND 8) OR (6 AND 7 AND 8)</booleanFilter>
             <filterItems>
                 <field>VPM_PurchasingOrganisation__c.VPM_CompanyCode__c</field>
                 <operation>equals</operation>
@@ -15004,6 +14987,11 @@ VPM_Approver10__c = $User.Id))
                 <field>$Source.VPM_CompanyCode__c</field>
                 <operation>equals</operation>
                 <valueField>VPM_PurchasingOrganisation__c.VPM_CompanyCode__c</valueField>
+            </filterItems>
+            <filterItems>
+                <field>VPM_PurchasingOrganisation__c.VPM_IsInactive__c</field>
+                <operation>equals</operation>
+                <value>False</value>
             </filterItems>
             <infoMessage>Click &apos;All Fields&apos;. Enter the Country to see a list of all available Purchasing Organisations, or search using the start of the Purchasing Organisation name and a wildcard, e.g. 20* returns any Purchasing Org in your Country starting with 20</infoMessage>
             <isOptional>false</isOptional>
@@ -20478,6 +20466,98 @@ VPM_Approver10__c = $User.Id))
             </picklistValues>
             <picklistValues>
                 <fullName>96_D.N.I.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>79_VAT NUMBER</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>81_CI (Cedula de Identidade)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>82_CC (Cedula de Ciudadania)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>83_RNC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>84_RTN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>88_RFC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>91_CPF (Cadastro Pessoa Física)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>92_CNPJ (Cad.Nac. Pessoa Jur.)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>93_NIT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>95_RIF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>97_CJ (Cedula Juridica)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>98_RUT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>99_RUC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>V1_EUROPEAN UNION VAT NUMBER</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A1_Carnet de Fuerzas Policiales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A2_Carnet de Fuerzas Armadas</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A3_Carnet de Extranjeria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A4_Cédula de Extrangería</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C_</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E_</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>I_</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>N_</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>R_</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -45360,7 +45440,27 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>79_VAT NUMBER</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>80_C%2EU%2EI%2ET%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81_CI %28Cedula de Identidade%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>82_CC %28Cedula de Ciudadania%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>83_RNC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>84_RTN</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -45376,6 +45476,10 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>88_RFC</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>89_L%2EE%2E</fullName>
                 <default>false</default>
             </values>
@@ -45384,11 +45488,79 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>91_CPF %28Cadastro Pessoa Física%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>92_CNPJ %28Cad%2ENac%2E Pessoa Jur%2E%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>93_NIT</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>94_Passport</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>95_RIF</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>96_D%2EN%2EI%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>97_CJ %28Cedula Juridica%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>98_RUT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>99_RUC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A1_Carnet de Fuerzas Policiales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A2_Carnet de Fuerzas Armadas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A3_Carnet de Extranjeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A4_Cédula de Extrangería</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>I_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V1_EUROPEAN UNION VAT NUMBER</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -62484,7 +62656,27 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>79_VAT NUMBER</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>80_C%2EU%2EI%2ET%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81_CI %28Cedula de Identidade%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>82_CC %28Cedula de Ciudadania%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>83_RNC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>84_RTN</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -62500,6 +62692,10 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>88_RFC</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>89_L%2EE%2E</fullName>
                 <default>false</default>
             </values>
@@ -62508,11 +62704,79 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>91_CPF %28Cadastro Pessoa Física%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>92_CNPJ %28Cad%2ENac%2E Pessoa Jur%2E%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>93_NIT</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>94_Passport</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>95_RIF</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>96_D%2EN%2EI%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>97_CJ %28Cedula Juridica%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>98_RUT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>99_RUC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A1_Carnet de Fuerzas Policiales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A2_Carnet de Fuerzas Armadas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A3_Carnet de Extranjeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A4_Cédula de Extrangería</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>I_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V1_EUROPEAN UNION VAT NUMBER</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -79608,7 +79872,27 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>79_VAT NUMBER</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>80_C%2EU%2EI%2ET%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81_CI %28Cedula de Identidade%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>82_CC %28Cedula de Ciudadania%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>83_RNC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>84_RTN</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -79624,6 +79908,10 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>88_RFC</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>89_L%2EE%2E</fullName>
                 <default>false</default>
             </values>
@@ -79632,11 +79920,79 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>91_CPF %28Cadastro Pessoa Física%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>92_CNPJ %28Cad%2ENac%2E Pessoa Jur%2E%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>93_NIT</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>94_Passport</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>95_RIF</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>96_D%2EN%2EI%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>97_CJ %28Cedula Juridica%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>98_RUT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>99_RUC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A1_Carnet de Fuerzas Policiales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A2_Carnet de Fuerzas Armadas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A3_Carnet de Extranjeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A4_Cédula de Extrangería</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>I_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V1_EUROPEAN UNION VAT NUMBER</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -96732,7 +97088,27 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>79_VAT NUMBER</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>80_C%2EU%2EI%2ET%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81_CI %28Cedula de Identidade%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>82_CC %28Cedula de Ciudadania%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>83_RNC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>84_RTN</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -96748,6 +97124,10 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>88_RFC</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>89_L%2EE%2E</fullName>
                 <default>false</default>
             </values>
@@ -96756,11 +97136,79 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>91_CPF %28Cadastro Pessoa Física%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>92_CNPJ %28Cad%2ENac%2E Pessoa Jur%2E%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>93_NIT</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>94_Passport</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>95_RIF</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>96_D%2EN%2EI%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>97_CJ %28Cedula Juridica%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>98_RUT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>99_RUC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A1_Carnet de Fuerzas Policiales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A2_Carnet de Fuerzas Armadas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A3_Carnet de Extranjeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>A4_Cédula de Extrangería</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>I_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R_</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>V1_EUROPEAN UNION VAT NUMBER</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

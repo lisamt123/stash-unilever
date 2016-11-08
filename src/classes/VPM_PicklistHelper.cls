@@ -6,7 +6,7 @@ To make the picklsit value user friendly and to map SAP values to field level va
 
 
 */
-public class VPM_PicklistHelper {
+public with sharing class VPM_PicklistHelper {
     
     public static final string PURCHASING_ORG = 'Purchasing Organisation';
     public static final string CASH_MGMT = 'Cash mgmnt group';

@@ -130,6 +130,15 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>VPM_IsInactive__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM Checkbox to be used to set a company code to be Inactive</description>
+        <externalId>false</externalId>
+        <label>Inactive</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <label>Company Code</label>
     <nameField>
         <label>Company Code Name</label>

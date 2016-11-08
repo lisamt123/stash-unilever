@@ -199,6 +199,50 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_PaymentMethod1__c</fullName>
+        <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Payment Method 1</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PaymentMethod2__c</fullName>
+        <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Payment Method 2</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PaymentMethod3__c</fullName>
+        <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Payment Method 3</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PaymentMethod5__c</fullName>
+        <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Payment Method 5</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_PaymentMethod__c</fullName>
         <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
         <externalId>false</externalId>

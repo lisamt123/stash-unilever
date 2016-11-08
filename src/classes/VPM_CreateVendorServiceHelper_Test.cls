@@ -2,6 +2,9 @@
     public static final String failStatusMDM = 'Failed to Submit to BPM';// MDM status
     public static final String successStatusMDM = 'Submitted to BPM';// MDM status
     @isTest static void testCallout() {
+    //VPM_CreateVendorServiceHelper createVen = new VPM_CreateVendorServiceHelper();
+    VPM_CreateVendorServiceHelper.CreateVendorFailureResponse venRes = new VPM_CreateVendorServiceHelper.CreateVendorFailureResponse();
+    venRes.details = 'details';
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
         string vendorId = pur.get(0).id;
         test.startTest();
@@ -11,19 +14,22 @@
         List<VPM_PurchasingRequests__c> pur1 = [SELECT Id,VPM_MDMInsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
         system.assertEquals(pur1[0].VPM_MDMInsertUpdateStatus__c,successStatusMDM);
     }
-       @isTest static void testExceptionCallout() {
+    
+        @isTest static void testRetryCallout() {
+    //VPM_CreateVendorServiceHelper createVen = new VPM_CreateVendorServiceHelper();
+    VPM_CreateVendorServiceHelper.CreateVendorFailureResponse venRes = new VPM_CreateVendorServiceHelper.CreateVendorFailureResponse();
+    venRes.details = 'details';
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
         string vendorId = pur.get(0).id;
         test.startTest();
-        Test.setMock(HttpCalloutMock.class, new VPM_CreateVendorServiceExceptionMock());
-        VPM_CreateVendorServiceHelper.createVendor(vendorId);
-            update pur;
-             VPM_CreateVendorServiceHelper.createVendor(vendorId);
+        Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200));
+        VPM_HttpUtil.retryCreateVendorGlobal('',pur[0].id);
         test.stopTest();
-          
         List<VPM_PurchasingRequests__c> pur1 = [SELECT Id,VPM_MDMInsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
-        //system.assertEquals(pur1[0].VPM_MDMInsertUpdateStatus__c,successStatusMDM);
+        system.assertEquals(pur1[0].VPM_MDMInsertUpdateStatus__c,successStatusMDM);
     }
+    
+    
     @isTest static void testCallout500() {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
         string vendorId = pur.get(0).id;

@@ -20,6 +20,7 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 4.0-     Vaishali    5 Oct 2016        IAPR-1475 - Logic for Global and Regional golden data Page
 5.0      Samrin      2 Nov 2016        IAVMD-1857 - Changes on maintain scenario are not visible to approver
 6.0      Samrin      4 Nov 2016        IAVMD-2325 : L2 Approvals for Sirius and Cordillera not working ( if there's no Custom Setting for the Country, the L2 approval doesn't get triggered)
+7.0 	 Samrin 	 7 Nov 2016   	   IAVMD-2299 : Block-Delete Vendor - Warning message on new page
 ****************************************************************************/
 
 
@@ -895,11 +896,12 @@ with Sharing public class VPM_GoldenDataController2 {
                 }
                 else
                 {
-                    update pr;
+                    
                     System.debug('@@purchReqVar ' + purchReqVar );
                     if(recordTypeId ==STR_CONST_CREATE || recordTypeId == STR_CONST_MAINTAIN ||recordTypeId ==STR_CONST_EXTEND){
-                    
+                     pr.VPM_RegionalFieldChanged__c=true;
                      pg =  new Pagereference('/'+entity.id);
+                     update pr;
                      pg.setRedirect(true);
                }
                
@@ -935,7 +937,7 @@ public void approvalCallMethod()
                                 VPM_FreightApprovalRequired__c,VPM_RussianTaxApprovalRequired__c,
                                 VPM_ProvidedPaymentTerms__c,VPM_ProvidedBankDetails__c,
                                 VPM_ProvidedFinancialSensitive__c,VPM_ProvidedBlockDelete__c,VPM_ProvidedUnblockUndelete__c,
-                                VPM_PaymentTerms__c,VPM_DeletionBlockFlag__c,
+                                VPM_PaymentTerms__c,VPM_DeletionBlockFlag__c,VPM_TargetCompletion__c,
                                 VPM_ReconciliationAccount__c,VPM_CheckDoubleInvoices__c,VPM_CashManagementGroup__c,VPM_SortKey__c,
                                 VPM_PaymentMethod__c,VPM_PaymentBlock__c,VPM_RegionalFieldChanged__c,VPM_GlobalFieldChanged__c,
                                 VPM_BankCountryKey__c,VPM_Status__c,VPM_RequestLastWithGroup__c ,
@@ -964,7 +966,14 @@ public void approvalCallMethod()
             }
             NewPaymentMethod = paymentMeth.remove(' '); 
         }else {
-            NewPaymentMethod = finalStringValue;
+            List<string> sText2 = finalStringValue.split('-');
+            sText2.sort();
+            string paymentMeth='';  
+            for(String str:sText2) 
+            {
+                paymentMeth += str; 
+            }
+            NewPaymentMethod = NewPaymentMethod.remove(' '); 
         }
         system.debug('@@NewPaymentMethod' + NewPaymentMethod);
         
@@ -973,6 +982,7 @@ public void approvalCallMethod()
          if(pr.VPM_RequestLastWithGroup__c=='' || pr.VPM_RequestLastWithGroup__c==null)
          {  pr.VPM_RequestGroupTime__c = system.now();
             pr.VPM_AdvancedFormSubmittedTime__c= system.now();
+            pr.VPM_TargetCompletion__c = system.now() + 5;
          }
              
         pr.VPM_AdvancedFormSubmitted__c='YES'; 
@@ -992,19 +1002,16 @@ public void approvalCallMethod()
                  OldPaymentTerms = op.CompanyData[0].PaymentTerms == null?'': op.CompanyData[0].PaymentTerms;
 
                  // Start : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
-                string oldstring =op.CompanyData[0].PaymentMethod == null?'': op.CompanyData[0].PaymentMethod;
-                if(oldstring.contains('[')) {
-                    List<string> finalOldStringValueList = oldstring.split('-');
-                    finalOldStringValueList.sort();
-                    string OldpaymentMeth=''; 
-                    for(String str:finalOldStringValueList) 
-                    {
-                         OldpaymentMeth += str; 
-                    }
-                    OldPaymentMethod = OldpaymentMeth.remove(' '); 
-                }else {
-                    OldPaymentMethod = oldstring;
+                string oldstring =op.CompanyData[0].PaymentMethod == null?'': op.CompanyData[0].PaymentMethod;                
+                List<string> finalOldStringValueList = oldstring.split('-');
+                finalOldStringValueList.sort();
+                string OldpaymentMeth=''; 
+                for(String str:finalOldStringValueList) 
+                {
+                    OldpaymentMeth += str; 
                 }
+                OldPaymentMethod = OldpaymentMeth.remove(' '); 
+                
                 system.debug('@@OldPaymentMethod');              
                 // End Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016        
                     if(!(NewPaymentTerms.contains(OldPaymentTerms)))
@@ -1650,9 +1657,10 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
                         Errormsgblock= True ;
                         GoldenDatablock=false;
                         ApexPages.addMessage(msg);
-                        System.debug('@@@@@ My alsana------'+msg);
-                        pg=ErrorMessage();
-                        return  pg;
+                       /* Start : 7 Nov Samrin  Changes for : IAVMD-2299 : Block-Delete Vendor - Warning message on new page  */
+                            pg=ErrorMessage(msg.getSummary());
+                            return  pg;   
+                         /*  End  7 Nov Samrin  Changes for : IAVMD-2299 : Block-Delete Vendor - Warning message on new page  */
                     }
                     else
                     {
@@ -1675,8 +1683,10 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
                             Errormsgblock= True ;
                             GoldenDatablock=false;
                             ApexPages.addMessage(msg); 
-                            pg=ErrorMessage();
-                            return pg;    
+                        /* Start : 7 Nov Samrin  Changes for : IAVMD-2299 : Block-Delete Vendor - Warning message on new page  */
+                            pg=ErrorMessage(msg.getSummary());
+                            return  pg;   
+                         /*  End  7 Nov Samrin  Changes for : IAVMD-2299 : Block-Delete Vendor - Warning message on new page  */
                        // }
                     }
                 }
@@ -1720,43 +1730,34 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
         return opList[0];
     }
     
-    public PageReference GoToErrorMessagePage()
+   /* public PageReference GoToErrorMessagePage()
     {
         ApexPages.PageReference pr = new ApexPages.PageReference('/apex/VPM_ErrorMessage?id=' +purid);
         pr.SetRedirect(true);
         pr.GetParameters().Put('message', '');
         return pr;
-    } 
+    } */
       /******************************************************************** 
     
-    Created By   : Vaishali
-    Created Date : 29th June 2016
+    Created By   : Samrin Shaikh
+    Created Date : 7 Nov  2016
     Last Modify  : N/A
-    Description  : VPM - Used  display Error Message 
+    Description  : IAVMD-2299 : Block-Delete Vendor - Warning message on new page
     Return Type  : pagereference
     ********************************************************************/
-    Public pagereference  ErrorMessage()
-    {
-       /* String message = '' + ApexPages.CurrentPage().GetParameters().Get('message');
-        pagereference p = apexpages.Currentpage();
-        if(message != null)
+  Public pagereference  ErrorMessage(String message)
         {
-            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.Info,message);
-            apexpages.addmessage(msg);
-        }
-        return p; */ 
-        
-        String message = '' + ApexPages.CurrentPage().GetParameters().Get('message');
-        if(message != null)
-        {              
-                ApexPages.PageReference pr = new ApexPages.PageReference('/apex/VPM_ErrorMessage?id=' +purid);
-                pr.GetParameters().Put('message', message);
-                pr.SetRedirect(true);
-                return pr;          
-        }
-        Return Null;
-
-    } 
+            System.debug('@@@@@@message ------'+ message);
+            if(message != null)
+            {              
+                    ApexPages.PageReference pr = new ApexPages.PageReference('/apex/VPM_ErrorMessage?id=' +purid);
+                    pr.GetParameters().Put('message', message);
+                    pr.SetRedirect(true);
+                    return pr;          
+            }
+            Return Null;
+    
+        } 
     
        /******************************************************************** 
     Func.Name    : saveAndBackToLaunchScreen
