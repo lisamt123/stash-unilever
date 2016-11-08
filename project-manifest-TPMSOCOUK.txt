@@ -18,6 +18,22 @@ src/objects/ACSFUL001__Unit_of_Measure__c.object
 src/objects/UL_Approval_Threshold__c.object
 src/objects/UL_SalesOrg__c.object 
 src/objects/User.object
+src/profiles
+src/profiles/SoCo-Access Admin.profile
+src/profiles/SoCo-Account Manager.profile
+src/profiles/SoCo-Account Planner.profile
+src/profiles/SoCo-Category Manager.profile
+src/profiles/SoCo-Category Planner.profile
+src/profiles/SoCo-CD Finance Analyst.profile
+src/profiles/SoCo-CD Finance Manager.profile
+src/profiles/SoCo-Customer Marketing Director.profile
+src/profiles/SoCo-Finance Admin.profile
+src/profiles/SoCo-Process Officer.profile
+src/profiles/SoCo-Security Admin.profile
+src/profiles/SoCo-System Admin.profile
+src/profiles/UK-Admin.profile
+src/profiles/UK-Authoriser.profile
+src/profiles/UK-Planner %28CAM%29.profile
 src/labels
 src/labels/TPMSOCOUK.labels
 src/classes
