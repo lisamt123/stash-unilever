@@ -29,6 +29,8 @@ src/classes/CEC_InstantAlertActionHelper.cls
 src/classes/CEC_InstantAlertActionHelper.cls-meta.xml
 src/classes/CEC_Util.cls
 src/classes/CEC_Util.cls-meta.xml
+src/classes/cec_TestEmailMessageHelper.cls
+src/classes/cec_TestEmailMessageHelper.cls-meta.xml
 src/email/CEC_Unilever
 src/email/CEC_Unilever/CEC_Unilever-meta.xml
 src/email/CEC_Unilever/CEC_TH_Exception_Notification_Email.email
