@@ -184,6 +184,10 @@
                 <behavior>Readonly</behavior>
                 <field>PII_Data_Check__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>BusinessHoursId</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -278,7 +282,7 @@
                 <behavior>Readonly</behavior>
                 <field>Personal_Care__c</field>
             </layoutItems>
-			<layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>ACCC_Survey__c</field>
             </layoutItems>
@@ -400,6 +404,10 @@
                 <behavior>Readonly</behavior>
                 <field>Transient_External_Id__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Brand_Ambassador_Status__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -428,6 +436,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Claims_Notes__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Type</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

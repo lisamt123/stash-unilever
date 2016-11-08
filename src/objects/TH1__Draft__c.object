@@ -58,6 +58,18 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
+	<fields>
+        <fullName>Notification_Email_Id__c</fullName>
+        <defaultValue>$Setup.cec_Org_Settings__c.Notification_Email_Id__c</defaultValue>
+        <description>CEC Notification Email Id is used to capture the support teams email address from custom setting .</description>
+        <externalId>false</externalId>
+        <label>Notification Email Id</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Related_Lookup_CEC_Retrieval__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -280,6 +292,16 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Trigger_Time_15__c</fullName>
+        <description>CEC used to fire a time based workflow after 15 mins after a record is created.</description>
+        <externalId>false</externalId>
+        <formula>LastModifiedDate - 0.03109</formula>
+        <label>Trigger Time 15</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <label>Draft</label>
     <listViews>

@@ -61,7 +61,9 @@ public class CEC_CaseTriggerHelper{
                     else{
                         msgString = '<Html><Body> This is an automated email<BR/><BR/>CEC Carelines Account owner could not be updated. Please check the case market mapping record and take the necessary action.<BR/><BR/>Case Number: '+ c.CaseNumber+'<BR/><BR/>Thank You</Body></Html>';  
                         emailSubject = '[ERR004] Default Account Owner is either not populated or Inactive at CMM';
-                        CEC_Util.sendNotificationEmail(msgString,emailSubject);
+                        //CEC_Util.sendNotificationEmail(msgString,emailSubject);
+                        CEC_ExceptionHandling.CreateExceptionLog('Controller', 'emailMessage', 'cec_EmailMessageHelper', '', msgString+'---'+ emailSubject);
+            
                     }    
                 } 
             }
@@ -188,7 +190,9 @@ public class CEC_CaseTriggerHelper{
             if(failedCases !=''){
                 msgString = '<Html><Body> This is an automated email<BR/><BR/>CEC Carelines case could not be updated. Please check the error message and take the necessary action.<BR/><BR/>'+ failedCases+'<BR/><BR/>Thank You</Body></Html>';  
                 emailSubject = '[ERR003] Case could not be updated';
-                CEC_Util.sendNotificationEmail(msgString,emailSubject);
+                //CEC_Util.sendNotificationEmail(msgString,emailSubject);
+                CEC_ExceptionHandling.CreateExceptionLog('Controller', 'emailMessage', 'cec_EmailMessageHelper', '', msgString+'---'+ emailSubject);
+            
             }            
         }
         
