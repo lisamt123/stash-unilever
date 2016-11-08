@@ -46860,6 +46860,10 @@
         <recordType>Opportunity.FS_OpportunityTPR</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Opportunity-Opportunity with TPR Calculation Layout ReadOnly</layout>
+        <recordType>Opportunity.FS_OpportunityTPRReadOnly</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation</layout>
     </layoutAssignments>
     <layoutAssignments>
