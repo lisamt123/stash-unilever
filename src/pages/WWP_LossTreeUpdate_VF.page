@@ -505,6 +505,8 @@ function change3132(ite,lossdesc){
     
     
 }
+</script>
+<script>
 function change12(ite,lossname){
     AFchange12(ite,lossname.value);
 }
@@ -514,6 +516,8 @@ function change21(ite,lossfamily){
 function resetAll(ite){
     resetvalues(ite);
 }
+</script>
+<script>
 
 function changes1(lossname){
     
@@ -525,6 +529,8 @@ function changes2(lossname){
    AFchanges2(lossname.value);
    
 }
+</script>
+<script>
 function changes3(lossname){
     
    AFchanges3(lossname.value);

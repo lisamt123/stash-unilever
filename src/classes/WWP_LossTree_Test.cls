@@ -7,17 +7,19 @@ public class WWP_LossTree_Test {
     String ORName1 = 'ORName1';
     String ORSubfamily1 = 'ORSubfamily1';
     String S = '0';
+    string B = 'B100';
+    String O = 'ORdesc11';
          
         
         WWP_Master_Table__c wwpMaster = new WWP_Master_Table__c();
-        wwpMaster.name = 'B100';
+        wwpMaster.name = B;
         wwpMaster.OR_Tolerance__c = 95;
         insert wwpMaster;
        
     
         WWP_PlantCode_User_Mapping__c pcuser = new WWP_PlantCode_User_Mapping__c();
         pcuser.name='pcuser1';
-        pcuser.plant_code__c = 'B100';
+        pcuser.plant_code__c = B;
         pcuser.user__c = userinfo.getuseremail();
         insert pcuser;
         
@@ -31,7 +33,7 @@ public class WWP_LossTree_Test {
         setting1.Loss_Type__c=oRString ;
         setting1.Loss_Name__c=ORName1;
         setting1.Loss_Sub_Family__c=ORSubfamily1;
-        setting1.Loss_Description__c='ORdesc11';
+        setting1.Loss_Description__c=O;
         ltreesetting.add(setting1);
         
         setting2.name='OR2';
@@ -60,11 +62,11 @@ public class WWP_LossTree_Test {
         WWP_Loss_Tree__c ltree = new WWP_Loss_Tree__c();
         ltree.Loss_Updated_in_SCDG__c = false;
         ltree.Loss_Type__c= oRString ;
-        ltree.Plant_Code__c= 'B100';
+        ltree.Plant_Code__c= B;
         ltree.Week__c = '201512';
         ltree.Loss_Name__c=ORName1;
         ltree.Loss_Sub_Family__c=ORSubfamily1;
-        ltree.Loss_Description__c='ORdesc11';
+        ltree.Loss_Description__c=O;
         ltree.Planned_production__c = 234;
         insert ltree;
         
@@ -72,7 +74,7 @@ public class WWP_LossTree_Test {
         WWP_LossTree_CC wwp = new WWP_LossTree_CC();
         
         wwp.lossTree.Loss_Type__c = oRString ;
-        wwp.lossTree.Plant_Code__c= 'B100';
+        wwp.lossTree.Plant_Code__c= B;
         wwp.selectedWeek= '201512';
         wwp.dispalyAll = true;
         
@@ -97,9 +99,9 @@ public class WWP_LossTree_Test {
         system.assertEquals(wwp.listLossTreeW[0].listbox2[0].getvalue(),ORSubfamily1);
         
         Apexpages.currentPage().getParameters().put('firstParam3',S);
-        Apexpages.currentPage().getParameters().put('secondParam3','ORdesc11');
+        Apexpages.currentPage().getParameters().put('secondParam3',O);
         wwp.control3132();
-        system.assertEquals(wwp.listLossTreeW[0].listbox3[0].getvalue(),'ORdesc11');
+        system.assertEquals(wwp.listLossTreeW[0].listbox3[0].getvalue(),O);
         
         wwp.listLossTreeW[0].selectbox2=ORSubfamily1;
         wwp.control1213(); 
@@ -129,10 +131,10 @@ public class WWP_LossTree_Test {
         
         Apexpages.currentPage().getParameters().put('secondParam2',ORSubfamily1);
         wwp.controls2();
-        Apexpages.currentPage().getParameters().put('secondParam3','ORdesc11');
+        Apexpages.currentPage().getParameters().put('secondParam3',O);
         wwp.controls3();
         wwp.copyline();
-        wwp.resetline1();
+        
         
         
         
@@ -160,17 +162,19 @@ public class WWP_LossTree_Test {
     String ORName1 = 'ORName1';
     String ORSubfamily1 = 'ORSubfamily1';
     String S = '0';
+     string B = 'B100';
+    String O = 'ORdesc11';
          
         
         WWP_Master_Table__c wwpMaster = new WWP_Master_Table__c();
-        wwpMaster.name = 'B100';
+        wwpMaster.name = B;
         wwpMaster.OR_Tolerance__c = 95;
         insert wwpMaster;
        
     
         WWP_PlantCode_User_Mapping__c pcuser = new WWP_PlantCode_User_Mapping__c();
         pcuser.name='pcuser1';
-        pcuser.plant_code__c = 'B100';
+        pcuser.plant_code__c = B;
         pcuser.user__c = userinfo.getuseremail();
         insert pcuser;
         
@@ -184,7 +188,7 @@ public class WWP_LossTree_Test {
         setting1.Loss_Type__c=oRString ;
         setting1.Loss_Name__c=ORName1;
         setting1.Loss_Sub_Family__c=ORSubfamily1;
-        setting1.Loss_Description__c='ORdesc11';
+        setting1.Loss_Description__c=O;
         ltreesetting.add(setting1);
         
         setting2.name='OR2';
@@ -213,10 +217,10 @@ public class WWP_LossTree_Test {
         WWP_Loss_Tree__c ltree = new WWP_Loss_Tree__c();
         ltree.Loss_Updated_in_SCDG__c = false;
         ltree.Loss_Type__c= oRString ;
-        ltree.Plant_Code__c= 'B100';
+        ltree.Plant_Code__c= B;
         ltree.Loss_Name__c=ORName1;
         ltree.Loss_Sub_Family__c=ORSubfamily1;
-        ltree.Loss_Description__c='ORdesc11';
+        ltree.Loss_Description__c=O;
         ltree.Planned_production__c = 234;
         insert ltree;
         
@@ -224,7 +228,7 @@ public class WWP_LossTree_Test {
         WWP_LossTree_CC wwp = new WWP_LossTree_CC();
         
         wwp.lossTree.Loss_Type__c = oRString ;
-        wwp.lossTree.Plant_Code__c= 'B100';
+        wwp.lossTree.Plant_Code__c= B;
         wwp.dispalyAll = true;
         
         
@@ -248,9 +252,9 @@ public class WWP_LossTree_Test {
         system.assertEquals(wwp.listLossTreeW[0].listbox2[0].getvalue(),ORSubfamily1);
         
         Apexpages.currentPage().getParameters().put('firstParam3',S);
-        Apexpages.currentPage().getParameters().put('secondParam3','ORdesc11');
+        Apexpages.currentPage().getParameters().put('secondParam3',O);
         wwp.control3132();
-        system.assertEquals(wwp.listLossTreeW[0].listbox3[0].getvalue(),'ORdesc11');
+        system.assertEquals(wwp.listLossTreeW[0].listbox3[0].getvalue(),O);
         
         wwp.listLossTreeW[0].selectbox2=ORSubfamily1;
         wwp.control1213(); 
@@ -280,10 +284,10 @@ public class WWP_LossTree_Test {
         
         Apexpages.currentPage().getParameters().put('secondParam2',ORSubfamily1);
         wwp.controls2();
-        Apexpages.currentPage().getParameters().put('secondParam3','ORdesc11');
+        Apexpages.currentPage().getParameters().put('secondParam3',O);
         wwp.controls3();
         wwp.copyline();
-        wwp.resetline1();
+        
         
         
         
