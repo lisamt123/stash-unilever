@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Product --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Product --></value>
+    </caseValues>
+    <fields>
+        <label>Category Code</label>
+        <name>ACSFUL001__Criterion_1_Product_Code__c</name>
+    </fields>
+    <fields>
+        <label>Category Description</label>
+        <name>ACSFUL001__Criterion_1_Product_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only product with &apos;Category&apos; product level can be selected --></help>
+        <label>Category</label>
+        <name>ACSFUL001__Criterion_1_Product__c</name>
+        <relationshipLabel><!-- Products (Criterion 1 Product) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Sub Category Code</label>
+        <name>ACSFUL001__Criterion_2_Product_Code__c</name>
+    </fields>
+    <fields>
+        <label>Sub Category Description</label>
+        <name>ACSFUL001__Criterion_2_Product_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only product with &apos;Sub Category&apos; product level can be selected --></help>
+        <label>Sub Category</label>
+        <name>ACSFUL001__Criterion_2_Product__c</name>
+        <relationshipLabel><!-- Products (Criterion 2 Product) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Brand Code</label>
+        <name>ACSFUL001__Criterion_3_Product_Code__c</name>
+    </fields>
+    <fields>
+        <label>Brand Description</label>
+        <name>ACSFUL001__Criterion_3_Product_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only product with &apos;Brand&apos; product level can be selected --></help>
+        <label>Brand</label>
+        <name>ACSFUL001__Criterion_3_Product__c</name>
+        <relationshipLabel><!-- Products (Criterion 3 Product) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Brand Form Code</label>
+        <name>ACSFUL001__Criterion_4_Product_Code__c</name>
+    </fields>
+    <fields>
+        <label>Brand Form Description</label>
+        <name>ACSFUL001__Criterion_4_Product_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only product with &apos;Flavor&apos; product level can be selected --></help>
+        <label>Brand Form</label>
+        <name>ACSFUL001__Criterion_4_Product__c</name>
+        <relationshipLabel><!-- Products (Criterion 4 Product) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>SPF Code</label>
+        <name>ACSFUL001__Criterion_5_Product_Code__c</name>
+    </fields>
+    <fields>
+        <label>SPF Description</label>
+        <name>ACSFUL001__Criterion_5_Product_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only product with &apos;Package&apos; product level can be selected --></help>
+        <label>SPF</label>
+        <name>ACSFUL001__Criterion_5_Product__c</name>
+        <relationshipLabel><!-- Products (Criterion 5 Product) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>SPFV Code</label>
+        <name>ACSFUL001__Criterion_6_Product_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only product with &apos;Product&apos; product level can be selected --></help>
+        <label>SPFV</label>
+        <name>ACSFUL001__Criterion_6_Product__c</name>
+        <relationshipLabel><!-- Products (Criterion 6 Product) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Product Level --></label>
+        <name>ACSFUL001__Product_Level__c</name>
+        <picklistValues>
+            <masterLabel>Category</masterLabel>
+            <translation>Category</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commodity</masterLabel>
+            <translation>Sub category</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Group Brand</masterLabel>
+            <translation>Brand</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OPCO</masterLabel>
+            <translation><!-- OPCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product</masterLabel>
+            <translation>Pack Size Fill</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Group</masterLabel>
+            <translation>Brand Form</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SKU</masterLabel>
+            <translation>TU GTIN</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Size</masterLabel>
+            <translation>SPF</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Variant</masterLabel>
+            <translation>SPFV</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>SPFV Code</label>
+        <name>UL_Criterion_7_Product_Code__c</name>
+    </fields>
+    <fields>
+        <label>SPFV Description</label>
+        <name>UL_Criterion_7_Product_Description__c</name>
+    </fields>
+    <fields>
+        <label>SPFV</label>
+        <name>UL_Criterion_7_Product__c</name>
+        <relationshipLabel><!-- Products (UL_Criterion 7 Product) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>TU GTIN Code</label>
+        <name>UL_Criterion_8_Product_Code__c</name>
+    </fields>
+    <fields>
+        <label>TU GTIN Description</label>
+        <name>UL_Criterion_8_Product_Description__c</name>
+    </fields>
+    <fields>
+        <label>TU GTIN</label>
+        <name>UL_Criterion_8_Product__c</name>
+        <relationshipLabel><!-- Products (UL_Criterion 8 Product) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Criterion 9 Product Code --></label>
+        <name>UL_Criterion_9_Product_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Criterion 9 Product Description --></label>
+        <name>UL_Criterion_9_Product_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Criterion 9 Product --></label>
+        <name>UL_Criterion_9_Product__c</name>
+        <relationshipLabel><!-- Products (UL_Criterion 9 Product) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Distribution Channel --></label>
+        <name>UL_Distribution_Channel__c</name>
+    </fields>
+    <fields>
+        <label><!-- Division --></label>
+        <name>UL_Division__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fill --></label>
+        <name>UL_Fill__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group Code --></label>
+        <name>UL_Group_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group Description --></label>
+        <name>UL_Group_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group --></label>
+        <name>UL_Group__c</name>
+        <relationshipLabel><!-- Products (Group) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Main Group Code --></label>
+        <name>UL_Main_Group_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Main Group Description --></label>
+        <name>UL_Main_Group_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Main Group --></label>
+        <name>UL_Main_Group__c</name>
+        <relationshipLabel><!-- Products (Main Group) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Material Description --></label>
+        <name>UL_Material_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Type --></label>
+        <name>UL_Material_Type__c</name>
+        <picklistValues>
+            <masterLabel>FERT</masterLabel>
+            <translation><!-- FERT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TEST1</masterLabel>
+            <translation><!-- TEST1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TEST2</masterLabel>
+            <translation><!-- TEST2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZFIN</masterLabel>
+            <translation><!-- ZFIN --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>UL_Sales_Organization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Group Code --></label>
+        <name>UL_Sub_Group_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Group Description --></label>
+        <name>UL_Sub_Group_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Group --></label>
+        <name>UL_Sub_Group__c</name>
+        <relationshipLabel><!-- Products (Sub Group) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- sst_custom --></label>
+        <name>sst_custom__c</name>
+    </fields>
+    <fields>
+        <label><!-- test --></label>
+        <name>test__c</name>
+    </fields>
+    <nameFieldLabel><!-- Product Name --></nameFieldLabel>
+    <startsWith><!-- Consonant --></startsWith>
+</CustomObjectTranslation>
