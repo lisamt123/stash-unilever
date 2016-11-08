@@ -862,7 +862,7 @@ OR(ISPICKVAL(Opportunity.StageName, &quot;Closed Won&quot;),ISPICKVAL(Opportunit
     </validationRules>
     <validationRules>
         <fullName>Margin_Market_Code_Matches_on_Opportunit</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>The Opportunity Margin Market Code must match the Product Margin Market Code</description>
         <errorConditionFormula>FSNAMarginMarketCodeHelper__c  &lt;&gt;  TEXT(Opportunity.FSNA_Margin_Market_Code__c)</errorConditionFormula>
         <errorMessage>Opportunity Product Margin Market Code must match the Opportunity Margin Market Code</errorMessage>

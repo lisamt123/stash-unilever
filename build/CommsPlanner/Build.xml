@@ -42,7 +42,7 @@
 
 
   <target name="validate">
-    <echo level="info">Agent App Lightning Deployment</echo>
+    <echo level="info">Communication Planner Change Request Deployment</echo>
     <sf:deploy username="${sf.username}"
       password="${sf.password}"
       serverurl="${sf.serverurl}"
@@ -65,16 +65,7 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-      <runTest>Amr_AdManagerController_Test</runTest>
-	  <runTest>Amr_CAPJobPortfolioController_Test</runTest>
-	  <runTest>Amr_EmailSendingClass_Test</runTest>
-	  <runTest>Amr_JobSheetController_Test</runTest>
-	  <runTest>Amr_NewSaving_Test</runTest>
-	  <runTest>Amr_RAPJobPortfolioController_Test</runTest>
-	  <runTest>Amr_ReportTrigger_Test</runTest>
-	  <runTest>Amr_SavingSummaryController_Test</runTest>
-	  <runTest>Amr_SubmittedSavingController_Test</runTest>
-	  <runTest>Amr_TriggerFactory_Test</runTest>
+	  <runTest>cp_PoapControllerTest</runTest>
     </sf:deploy>
   </target>  
 
