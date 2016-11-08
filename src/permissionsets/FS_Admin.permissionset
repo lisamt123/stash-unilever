@@ -32459,6 +32459,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>OpportunityLineItem.FS_casesPiece__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>OpportunityLineItem.Actual_Quantity__c</field>
         <readable>true</readable>
     </fieldPermissions>
