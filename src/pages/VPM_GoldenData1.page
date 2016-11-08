@@ -39,7 +39,7 @@ debugger;
                  <apex:outputPanel layout="block" styleClass="requiredInput">
                  <apex:outputpanel layout="block" styleClass="requiredBlock"/>
                  <apex:actionRegion >
-                  <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorName1__c.Label}" value="{!VendorName}">
+                  <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorName1__c.Label}" value="{!VendorName}" maxlength="40">
                   <apex:actionSupport event="onblur" reRender="section1" action="{!vendorNameChange}"/>
                   </apex:inputText>
                   </apex:actionRegion>

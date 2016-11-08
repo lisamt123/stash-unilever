@@ -954,7 +954,7 @@ public void approvalCallMethod()
         // Start : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
         
         string finalStringValue = pr.VPM_PaymentMethod__c== null?'': pr.VPM_PaymentMethod__c;
-        if(finalStringValue.contains('[')) {
+        if(finalStringValue.contains('[') || finalStringValue.contains(',')) {
             string sText = finalStringValue.replaceAll( '\\s+', '');                
             string payMeth = sText.remove('['); 
             string payMeth1 = payMeth.remove(']');
@@ -962,19 +962,18 @@ public void approvalCallMethod()
             finalStringValueList.sort();              
             string paymentMeth=''; 
             for(String str:finalStringValueList) {
-                 paymentMeth += VPM_HttpUtil.valueBeforeUnderscore(str);
+                paymentMeth += VPM_HttpUtil.valueBeforeUnderscore(str);
             }
             NewPaymentMethod = paymentMeth.remove(' '); 
         }else {
-            NewPaymentMethod='';
             List<string> sText2 = finalStringValue.split('-');
-            sText2.sort();
+            sText2.sort(); 
             string paymentMeth='';  
             for(String str:sText2) 
             {
                 paymentMeth += str; 
             }
-            NewPaymentMethod = NewPaymentMethod.remove(' '); 
+            NewPaymentMethod = paymentMeth.remove(' '); 
         }
         system.debug('@@NewPaymentMethod' + NewPaymentMethod);
         
@@ -1003,17 +1002,16 @@ public void approvalCallMethod()
                  OldPaymentTerms = op.CompanyData[0].PaymentTerms == null?'': op.CompanyData[0].PaymentTerms;
 
                  // Start : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
-                string oldstring =op.CompanyData[0].PaymentMethod == null?'': op.CompanyData[0].PaymentMethod;                
-                List<string> finalOldStringValueList = oldstring.split('-');
-                finalOldStringValueList.sort();
-                string OldpaymentMeth=''; 
-                for(String str:finalOldStringValueList) 
-                {
-                    OldpaymentMeth += str; 
-                }
-                OldPaymentMethod = OldpaymentMeth.remove(' '); 
-                
-                system.debug('@@OldPaymentMethod');              
+                string oldstring =op.CompanyData[0].PaymentMethod == null?'': op.CompanyData[0].PaymentMethod;                    
+                    List<string> finalOldStringValueList = oldstring.split('-');
+                    finalOldStringValueList.sort();
+                    string OldpaymentMeth=''; 
+                    for(String str:finalOldStringValueList) 
+                    {
+                        OldpaymentMeth += str; 
+                    }                    
+                    OldPaymentMethod = OldpaymentMeth.remove(' ');                     
+                    system.debug('@@OldPaymentMethod' + OldPaymentMethod);       
                 // End Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016        
                     if(!(NewPaymentTerms.contains(OldPaymentTerms)))
                     { pr.VPM_ProvidedPaymentTerms__c= true; }
