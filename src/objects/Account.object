@@ -466,11 +466,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
-	<fields>
+	<!--<fields>
         <fullName>DandbCompanyId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Lookup</type>
-    </fields>
+    </fields>-->
     <fields>
         <fullName>Business_activity_types__c</fullName>
         <description>Please indicate the type of business activities your organisation is currently involved in. Please also distinguish between those that are currently provided to Unilever, and those that are not.</description>
