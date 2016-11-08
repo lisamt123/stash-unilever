@@ -11101,6 +11101,42 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000GyXv_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_BIG SMILEY EGY_N&amp;R</label>
+        <queue>IPM_a7I0L000000GyXv</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GyY0_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ROUX2W2 LA</label>
+        <queue>IPM_a7I0L000000GyY0</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GyY5_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TEST03_LA</label>
+        <queue>IPM_a7I0L000000GyY5</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GyYA_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TEST01_LA</label>
+        <queue>IPM_a7I0L000000GyYA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Project_Document_Section_Content</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
