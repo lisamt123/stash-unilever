@@ -55,6 +55,7 @@
             <runTest>CEC_AnonymiseConsumerBatchScheduler_Test</runTest>
 			<runTest>CEC_ChatSurveyBatchScheduler_Test</runTest>
             <runTest>CEC_ClearAlertData_BatchScheduler_Test</runTest>
+			<runTest>cec_TestEmailMessageHelper</runTest>
         </sf:deploy>
     </target>
 </project>

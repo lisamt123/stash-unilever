@@ -2,7 +2,7 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
         <fullName>CEC_TH_Exception_Notification_Email_Alert</fullName>
-        <description>CEC TH Exception Notification Email is used to send email alert to support team after 1 hour when the workflow is triggered.</description>
+        <description>CEC TH Exception Notification Email is used to send email alert to support team after 15 minutes when the workflow is triggered.</description>
         <protected>false</protected>
         <recipients>
             <field>Notification_Email_Id__c</field>
