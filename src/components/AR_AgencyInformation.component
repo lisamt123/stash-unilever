@@ -23,7 +23,7 @@
             <li class="website"><apex:outputField value="{!agency.Website}" /></li>
             <li class="mail"><apex:outputField value="{!agency.General_Email__c}" /></li>
             <li class="phone"><apex:outputField value="{!agency.Phone}" /></li>
-            <li class="staff">Procurement Contact:&nbsp;&nbsp;<apex:outputField value="{!agency.Agency_Contact__c}" /></li>
+            <li class="staff">Agency Contact:&nbsp;&nbsp;<apex:outputField value="{!agency.Agency_Contact__c}" /></li>
         </ul>
     </section>
 
