@@ -4,6 +4,11 @@
     <folder>CEC_Carelines</folder>
     <masterLabel>CEC Carelines</masterLabel>
     <shares>
+        <accessLevel>View</accessLevel>
+        <sharedTo>adina.raven-everett@unilever.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+    <shares>
         <accessLevel>Manage</accessLevel>
         <sharedTo>paul.van-gendt@unilever.com</sharedTo>
         <sharedToType>User</sharedToType>

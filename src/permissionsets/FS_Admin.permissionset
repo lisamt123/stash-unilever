@@ -40284,6 +40284,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.FS_casesPiece__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>OpportunityLineItem.FS_gmWhenTPREqualsZero__c</field>
         <readable>true</readable>
@@ -57562,7 +57567,7 @@
     </tabSettings>
     <tabSettings>
         <tab>FS_MonthlyPlanning</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>FS_Monthly_Claimed_Cases__c</tab>

@@ -233,6 +233,10 @@
         <name>FS_additionalDiscount__c</name>
     </fields>
     <fields>
+        <label><!-- Cases/Piece --></label>
+        <name>FS_casesPiece__c</name>
+    </fields>
+    <fields>
         <label><!-- GM when TPR = 0% --></label>
         <name>FS_gmWhenTPREqualsZero__c</name>
     </fields>
@@ -399,5 +403,9 @@
     <validationRules>
         <errorMessage><!-- Opportunity Product Margin Market Code must match the Opportunity Margin Market Code --></errorMessage>
         <name>Margin_Market_Code_Matches_on_Opportunit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Opportunity is already locked for update. --></errorMessage>
+        <name>Record_Locked_Validation</name>
     </validationRules>
 </CustomObjectTranslation>
