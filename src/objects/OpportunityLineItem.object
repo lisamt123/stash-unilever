@@ -833,6 +833,13 @@
         <fullName>UnitPrice</fullName>
     </fields>
     <validationRules>
+        <fullName>FS_Distributor_TMI_Req</fullName>
+        <active>true</active>
+        <description>Distributor__c field is required for FS NA</description>
+        <errorConditionFormula>AND($Profile.Name = &quot;Unilever Food Solution - NA&quot; , ISPICKVAL( Distributor__c,&apos;&apos;))</errorConditionFormula>
+        <errorMessage>Distributor TMI is required</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>FS_Inactive_Products</fullName>
         <active>true</active>
         <description>Check if inactive product is selected</description>
