@@ -269,9 +269,17 @@ public with sharing class IPM_ProjectOverviewCtrl {
        if(project.IPM_EligibleForReactivation__c && project.IPM_Stopped_Date_Time__c > dateToCompare)
        {
    	      //security for central team and BP users
+           List<IPM_Company_Card__c> checkBpOfCc = [SELECT IPM_Business_Partner__c FROM IPM_Company_Card__c WHERE Name = :project.IPM_Company_Card__r.Name LIMIT 1];
           IPM_CustomPermission custPermission = new IPM_CustomPermission();
-          reactivateProjectFlag = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
           
+           if(!checkBpOfCc.isEmpty() && (checkBpOfCc[0].IPM_Business_Partner__c == UserInfo.getUserId() && 
+                                         custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION))) 
+           {
+               reactivateProjectFlag = true;
+           }
+           else {
+               reactivateProjectFlag = false;
+           }
        }
        
        /**********************************************************
@@ -398,7 +406,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, IPM_PreviousDocumentStatus__c,IPM_PrepareForArchival__c, IPM_CountDown_Reference_Time__c,
         Deputy_Project_Leader__c, IPM_Approver_of_Charter__c, IPM_Finance_Lead__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
         IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Actual_Launch_Date__c,
-        IPM_ProjectGKM__c,IPM_Company_Card__c,IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,
+        IPM_ProjectGKM__c,IPM_Company_Card__c,IPM_Company_Card__r.Name,IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c, IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,
         (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
         IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,IPM_Active__c,
         IPM_Project__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,IPM_Function__c

@@ -1751,9 +1751,18 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
     	Boolean isEditAccess = isEditable; 
     	if(project.Is_Archieved__c && !isEditAccess )
     	{ 
-    		IPM_CustomPermission cpr = new IPM_CustomPermission();
-        	isEditAccess = cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+            List<IPM_Company_Card__c> checkBpOfCc = [SELECT IPM_Business_Partner__c FROM IPM_Company_Card__c WHERE Name = :project.IPM_Company_Card__r.Name LIMIT 1];
+            IPM_CustomPermission custPermission = new IPM_CustomPermission();
+            if(!checkBpOfCc.isEmpty() && (checkBpOfCc[0].IPM_Business_Partner__c == UserInfo.getUserId() && 
+                                          custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION))) 
+            {
+                isEditAccess = true;
     	}
+            else {
+                isEditAccess = false;
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage));
+            }
+        }
     	return isEditAccess;
 	}
 }
