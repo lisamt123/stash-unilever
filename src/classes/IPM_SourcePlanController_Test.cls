@@ -357,4 +357,119 @@ private class IPM_SourcePlanController_Test{
             
             insert sourcingUt;
             }
+            
+	    public static testMethod void testProductSourcingPlan(){
+    	List<IPM_SourcingPlan__c> lstSourcingPlan = new List<IPM_SourcingPlan__c>();  
+    	List<IPM_SourcingUnit__c> lstSourcingUnit = new List<IPM_SourcingUnit__c>();  	
+	    List<String> emailList = new List<String>{GLOBAL_PL_EMAIL_ID,REGIONAL_PL_EMAIL_ID,LOCAL_PL_EMAIL_ID};
+	        
+	    User globalProjectLeader =null; User regionalProjectLeader =null;  User localProjectLeader =null;
+	    for(User linkedUser : [Select Id,email from User where email in :emailList])
+	    {
+	        if(linkedUser.email == GLOBAL_PL_EMAIL_ID)
+	        {
+	            globalProjectLeader = linkedUser;
+	        }
+	        else if(linkedUser.email == REGIONAL_PL_EMAIL_ID)
+	        {
+	            regionalProjectLeader = linkedUser;
+	        }
+	        else
+	        {
+	            localProjectLeader = linkedUser;
+	        }
+	    }
+	    
+	    IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader}); 
+	    System.runAs(globalProjectLeader){ 
+	        Test.startTest();
+	        IPM_Project__c prj = [Select Id, Name, IPM_Phase__c, IPM_Project_Job_Status__c, (Select Id from Project_Documents__r),
+	                                       (Select Id from IPM_Financials_Consolidated__r) from IPM_Project__c WHERE name in :projectNameSet Limit 1];
+	                                       
+	        IPM_Project_Product__c oProjectProduct = new IPM_Project_Product__c();
+	        oProjectProduct.IPM_Project__c = prj.Id;
+	        oProjectProduct.IPM_Product_Name__c = 'Test Project Product';
+	        oProjectProduct.IPM_Format__c = 'Format';
+	        oProjectProduct.IPM_Formulation__c = 'Formulation';
+	        oProjectProduct.IPM_Packing__c='Packaging';
+	        oProjectProduct.IPM_ProductSize__c=12;
+	        oProjectProduct.IPM_ProductSizeMetrics__c='kg';
+	        oProjectProduct.IPM_GoldenPrototype__c=false;
+	        oProjectProduct.IPM_Of_gTO__c=12;
+	        oProjectProduct.IPM_Is_PDL_Approved__c=false;	        
+	        insert oProjectProduct;
+	        
+	        system.assert(oProjectProduct.id != null, 'Project product was not saved');
+	       	
+	       	IPM_SourcingUnit__c oSourcingUnit1 = new IPM_SourcingUnit__c();
+	        oSourcingUnit1.Category__c = 'Deodorants & Fragrances';
+	        oSourcingUnit1.Source_Unit_Name__c = 'AeroBRZ / Aguai';
+	        oSourcingUnit1.Status__c = true;	
+	        lstSourcingUnit.add(oSourcingUnit1);        
+	        
+	        IPM_SourcingUnit__c oSourcingUnit2 = new IPM_SourcingUnit__c();
+	        oSourcingUnit2.Category__c = 'Deodorants & Fragrances';
+	        oSourcingUnit2.Source_Unit_Name__c = 'AeroAsia / Khamgaon';
+	        oSourcingUnit2.Status__c = true;	
+	        lstSourcingUnit.add(oSourcingUnit2); 
+	        
+	        IPM_SourcingUnit__c oSourcingUnit3 = new IPM_SourcingUnit__c();
+	        oSourcingUnit3.Category__c = 'Hair Care; Skin Care; Skin Cleansing';
+	        oSourcingUnit3.Source_Unit_Name__c = 'Bydgoszcz';
+	        oSourcingUnit3.Status__c = true;	
+	        lstSourcingUnit.add(oSourcingUnit3); 
+	        
+	        insert lstSourcingUnit;	    
+	        
+	        lstSourcingUnit = [Select ID,Source_Unit_Name__c From IPM_SourcingUnit__c];
+	            
+	        system.assert(lstSourcingUnit.size() > 0, 'Sourcing unit was not saved');
+	        
+	        IPM_ProductPlan__c oProductPlan = new IPM_ProductPlan__c();
+	        oProductPlan.IPM_Project_Product__c=oProjectProduct.Id;
+	        insert oProductPlan;
+	        system.assert(oProductPlan.id != null, 'Product plan was not saved');
+	        
+	        IPM_SourcingPlan__c oSourcingPlan = new IPM_SourcingPlan__c();
+	        oSourcingPlan.IPM_SourcingUnit__c = lstSourcingUnit[2].Source_Unit_Name__c;
+	        oSourcingPlan.IPM_Sourcing_Unit__c = lstSourcingUnit[2].id ;
+	        oSourcingPlan.IPM_ProductPlan__c = oProductPlan.Id;
+	        lstSourcingPlan.add(oSourcingPlan);	        
+	        
+	        List<IPM_Country__c> lstCountry = [Select ID From IPM_Country__c]; 
+	        List<IPM_ProductPlan__c> lstProductPlan = new List<IPM_ProductPlan__c>();
+	        
+	        for(IPM_Country__c oCountry : lstCountry)
+	        {
+	        	IPM_ProductPlan__c objProductPlan = new IPM_ProductPlan__c();
+	        	objProductPlan.IPM_Project_Product__c=oProjectProduct.Id;
+	        	objProductPlan.IPM_Country__c = oCountry.Id;
+	        	lstProductPlan.add(objProductPlan);
+	        }
+	        
+	        List<Database.saveResult> lstResults = Database.Insert(lstProductPlan);
+	        
+	        
+	        for (Integer i = 0; i < lstResults.size(); i++) {
+	        	IPM_SourcingPlan__c objSourcingPlan = new IPM_SourcingPlan__c();
+		        objSourcingPlan.IPM_SourcingUnit__c = lstSourcingUnit[i].Source_Unit_Name__c;
+		        objSourcingPlan.IPM_Sourcing_Unit__c = lstSourcingUnit[i].id ;
+		        objSourcingPlan.IPM_ProductPlan__c = oProductPlan.Id;
+		        lstSourcingPlan.add(objSourcingPlan);       
+	        }
+	        
+	        Insert lstSourcingPlan;
+	        
+            Test.setCurrentPageReference(new PageReference('Page.IPM_Product_and_Sourcing_Plan')); 
+            System.currentPageReference().getParameters().put(IPM_ConstantUtils.SF_ID, prj.Id);
+            IPM_SourcePlanController srcPlanController = new IPM_SourcePlanController();
+            
+            lstSourcingUnit[0].Source_Unit_Name__c = 'test1';
+            update lstSourcingUnit[0];
+            
+            lstSourcingUnit = [Select ID From IPM_SourcingUnit__c Where Source_Unit_Name__c = 'test1'];
+            System.assert(lstSourcingUnit.size()>0,'Failed to update sourcing unit');
+            Test.stopTest();
+	    }
+    }
 }
