@@ -395,8 +395,7 @@ private class IPM_SourcePlanController_Test{
 	        oProjectProduct.IPM_ProductSize__c=12;
 	        oProjectProduct.IPM_ProductSizeMetrics__c='kg';
 	        oProjectProduct.IPM_GoldenPrototype__c=false;
-	        oProjectProduct.IPM_Of_gTO__c=12;
-	        oProjectProduct.IPM_Is_PDL_Approved__c=false;	        
+	        oProjectProduct.IPM_Of_gTO__c=12;        
 	        insert oProjectProduct;
 	        
 	        system.assert(oProjectProduct.id != null, 'Project product was not saved');
