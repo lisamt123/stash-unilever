@@ -1011,11 +1011,10 @@ Case(Global_Project_Phase__c,
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <fields>
+     <fields>
         <fullName>IPM_Parent_Project_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(TEXT(IPM_Rollout_Span__c) = &apos;Regional&apos; ,IPM_Project__r.Name, IF( Regional_Project__c &lt;&gt; null, Regional_Project__r.Name , Regional_Rollout__r.Name ))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>IF(TEXT(IPM_Rollout_Span__c) = &apos;Regional&apos; ,IPM_Project__r.IPM_Project_Name__c, IF( Regional_Project__c &lt;&gt; null, Regional_Project__r.IPM_Project_Name__c, Regional_Rollout__r.Name ))</formula>
         <label>Parent Project Name</label>
         <required>false</required>
         <trackHistory>false</trackHistory>

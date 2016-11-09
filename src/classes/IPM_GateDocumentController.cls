@@ -21,11 +21,11 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public IPM_Country__c country {get; set;} //Contains country Record
     public IPM_Project_Document__c projectDoc {get; set;} //Contains Project Document Record
     public String projectId{get; set;} //Contains Project Id from Page URL Parameter
-    public transient List<IPM_Project_Document_Section__c> projSectionList {get; set;} //Contains All Header Project Document Sections 
-    public transient List<IPM_Project_Document_Section__c> projSubSectionList {get; set;} //Contains All Sub-Header Project Document Sections 
-    public transient List<IPM_Project_Document_Section__c> projSubLevelSectionList{get;set;}
-    public transient List<IPM_Project_Document_Section__c> projDocSectionList {get; set;} //Contains All Project Document Sections Used for Gate Document PDF
-    public transient List<IPM_Project_Document_Section__c> projDocAppdxSectionList {get; set;} //Contains All Project Document Sections Related to Appendix
+    public List<IPM_Project_Document_Section__c> projSectionList {get; set;} //Contains All Header Project Document Sections 
+    public List<IPM_Project_Document_Section__c> projSubSectionList {get; set;} //Contains All Sub-Header Project Document Sections 
+    public List<IPM_Project_Document_Section__c> projSubLevelSectionList{get;set;}
+    public List<IPM_Project_Document_Section__c> projDocSectionList {get; set;} //Contains All Project Document Sections Used for Gate Document PDF
+    public List<IPM_Project_Document_Section__c> projDocAppdxSectionList {get; set;} //Contains All Project Document Sections Related to Appendix
     public String dueDate{get;set;}
     public Boolean DueDateMsg{get;set;}
     //Type
