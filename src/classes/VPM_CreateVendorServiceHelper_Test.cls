@@ -20,7 +20,7 @@
     VPM_CreateVendorServiceHelper.CreateVendorFailureResponse venRes = new VPM_CreateVendorServiceHelper.CreateVendorFailureResponse();
     venRes.details = 'details';
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
-        string vendorId = pur.get(0).id;
+        //string vendorId = pur.get(0).id;
         test.startTest();
         Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200));
         VPM_HttpUtil.retryCreateVendorGlobal('',pur[0].id);
