@@ -1,3 +1,4 @@
+
 /****************************************************************************************************************************
 @Author Cognizant
 @name IPM_ProjectHelper
@@ -1558,12 +1559,17 @@ public with sharing class IPM_ProjectHelper
                     if(oldProjectMap!=null && oldProjectMap.containsKey(projectId))
                     {
                         oldProject = oldProjectMap.get(projectId);
+                        IPM_Project__c newProject = projectPhaseChange.get(projectId);
                         if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS))
                         {
                             for(IPM_Project_Rollout__c rollout : rolloutsMap.values())
                             {
                                 // Update Rollouts with Charter References. Set Charter Approved as true
                                 rollout.IPM_CharterApproved__c = true;
+                                if(newProject.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
+                              	{
+                                rollout.KeyMCO__c = true;
+                              	}
                                 
                                 if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
                                 { 
