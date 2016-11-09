@@ -885,7 +885,8 @@ OR(ISPICKVAL(Opportunity.StageName, &quot;Closed Won&quot;),ISPICKVAL(Opportunit
         <errorConditionFormula>IF($Permission.FS_Admin, 
    false, 
    IF( Opportunity.RecordType.DeveloperName = &apos;FS_OpportunityTPRReadOnly&apos; 
-      &amp;&amp; ( ISCHANGED(Quantity) 
+      &amp;&amp; ( ISCHANGED(Quantity)
+      || ISCHANGED( UnitPrice )
       || ISCHANGED ( FS_tprPercent__c) 
       || ISCHANGED( FS_valueNecessaryWithVAT__c ) 
       || ISCHANGED( FS_DistributorMarkup__c )
