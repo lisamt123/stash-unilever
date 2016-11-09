@@ -281,6 +281,21 @@
     </fields>
     <label>Reason Code</label>
     <listViews>
+        <fullName>EL_Salvador_Reason_Code</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>Global_Listening_Tree__c</columns>
+        <columns>ISO_Country__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>SV</value>
+        </filters>
+        <label>EL Salvador Reason Code</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>LATAM_Reasons</fullName>
         <columns>NAME</columns>
         <columns>Active__c</columns>
