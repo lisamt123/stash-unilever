@@ -1057,10 +1057,6 @@
 		<enabled>true</enabled>
 	</classAccesses>
 	<classAccesses>
-		<apexClass>IPM_RolloutPlansTableController_TestGKM3</apexClass>
-		<enabled>true</enabled>
-	</classAccesses>
-	<classAccesses>
 		<apexClass>IPM_SourcePlanController_Test</apexClass>
 		<enabled>true</enabled>
 	</classAccesses>
