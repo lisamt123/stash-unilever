@@ -244,6 +244,6 @@
     </fields>
     <fields>
         <label><!-- test --></label>
-        <name>test__c</name>
+        <name><!--test__c--></name>
     </fields>
 </CustomObjectTranslation>
