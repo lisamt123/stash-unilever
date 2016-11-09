@@ -42,11 +42,8 @@ Global with sharing class IPM_CreateProject { //It is global class since we have
                 insert ipmProject; //Need to insert only one project
                 return ipmProject.id;
         }
-        catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+        catch(Exception ex){ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'createBosscard',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); return null;}
                 'createBosscard',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);                            
-            return null;
-        }
         
     }
     /*************************************************************** 
@@ -64,12 +61,9 @@ Global with sharing class IPM_CreateProject { //It is global class since we have
             insert ipmBosscard; //Need to insert only one bosscard
             return ipmBosscard.id;
         }
-        catch(Exception ex){
-                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+        catch(Exception ex){ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'createBosscard',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); return null; }
                 'createBosscard',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);                            
 
-            return null;                                      
-        }
     
     }
 }
