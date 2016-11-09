@@ -421,7 +421,7 @@ private class IPM_SourcePlanController_Test{
 	        
 	        insert lstSourcingUnit;	    
 	        
-	        lstSourcingUnit = [Select ID,Source_Unit_Name__c From IPM_SourcingUnit__c];
+	        lstSourcingUnit = [Select ID,Source_Unit_Name__c From IPM_SourcingUnit__c limit 10];
 	            
 	        system.assert(lstSourcingUnit.size() > 0, 'Sourcing unit was not saved');
 	        
@@ -436,7 +436,7 @@ private class IPM_SourcePlanController_Test{
 	        oSourcingPlan.IPM_ProductPlan__c = oProductPlan.Id;
 	        lstSourcingPlan.add(oSourcingPlan);	        
 	        
-	        List<IPM_Country__c> lstCountry = [Select ID From IPM_Country__c]; 
+	        List<IPM_Country__c> lstCountry = [Select ID From IPM_Country__c limit 10]; 
 	        List<IPM_ProductPlan__c> lstProductPlan = new List<IPM_ProductPlan__c>();
 	        
 	        for(IPM_Country__c oCountry : lstCountry)
@@ -463,6 +463,7 @@ private class IPM_SourcePlanController_Test{
             Test.setCurrentPageReference(new PageReference('Page.IPM_Product_and_Sourcing_Plan')); 
             System.currentPageReference().getParameters().put(IPM_ConstantUtils.SF_ID, prj.Id);
             IPM_SourcePlanController srcPlanController = new IPM_SourcePlanController();
+            srcPlanController.createProjectProductOnLoad();
             
             lstSourcingUnit[0].Source_Unit_Name__c = 'test1';
             update lstSourcingUnit[0];
