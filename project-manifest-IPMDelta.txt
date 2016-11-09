@@ -11,8 +11,11 @@ src/classes/IPM_SourcePlanController_Test.cls-meta.xml
 src/components
 src/components/IPM_ToDos.component
 src/components/IPM_ToDos.component-meta.xml
+src/components/IPM_SourcePlanInPDF.component
+src/components/IPM_SourcePlanInPDF.component-meta.xml
 src/objects
 src/objects/IPM_Project_Rollout__c.object
+src/objects/IPM_Project_Product__c.object
 src/pages
 src/pages/IPM_ProjectDocumentSectionEditor.page
 src/pages/IPM_ProjectDocumentSectionEditor.page-meta.xml
