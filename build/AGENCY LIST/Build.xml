@@ -1,0 +1,113 @@
+<!--    *******************************************************************************************************************-->
+<!--    Build Script in Ant for Unilever Salesforce Projects - BEGIN                                               -->
+<!--    ******************************************************************************************************************* -->
+<project name="salesforce" default="validate" basedir="." xmlns:sf="antlib:com.salesforce">
+
+  <!-- *************************************************************** -->
+  <!--   Properties for Salesforce ANT targets                         -->
+  <!-- *************************************************************** -->
+  <property file="${basedir}/build.properties"/>
+  <property environment="env"/>
+  <!-- Properties for salesforce dataloader CLI for IPM NG-->
+  <property name="dataLoaderAPIVersion" value="35.0.0-uber" />
+  <!-- *************************************************************** -->
+  <!--   Set-Up of Salesforce Ant / CLI Jar Classpath for IPM NG       -->
+  <!-- *************************************************************** -->
+  <!-- Define required jars for salesforce dataloder CLI-->
+  <path id="taskDependencies">
+    <pathelement location="${basedir}/lib/ant.jar"/>
+    <pathelement location="${basedir}/lib/antutils.jar"/>
+    <pathelement location="${basedir}/lib/commons-io-2.4.jar"/>
+    <pathelement location="${basedir}/lib/commons-lang-2.6.jar"/>
+    <pathelement location="${basedir}/lib/commons-logging-1.1.3.jar"/>
+    <pathelement location="${basedir}/lib/gson-2.2.4.jar"/>
+    <pathelement location="${basedir}/lib/httpclient-4.3.5.jar"/>
+    <pathelement location="${basedir}/lib/httpcore-4.3.2.jar"/>
+    <pathelement location="${basedir}/lib/json-20080701.jar"/>
+  </path>
+  <!-- Define salesforce Ant Jar-->
+  <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+    <classpath>
+      <pathelement location="${basedir}/lib/ant-salesforce.jar" />
+    </classpath>
+  </taskdef>
+  <!-- ***************************************************************************** -->
+  <!-- ANT Import Files for invoking APEX inside ANT Scripts                         -->
+  <!-- ***************************************************************************** -->
+  <import file="${basedir}/lib/exec_anon.xml"/>
+  <import file="${basedir}/lib/deploy.xml"/>
+  <import file="${basedir}/lib/undeploy.xml"/>
+  <import file="${basedir}/lib/run_tests.xml"/>
+  <import file="${basedir}/lib/package_generator.xml"/>
+
+
+<!-- ***************************************************************************** -->
+  <!-- Validate the  set of BET meta-data before deployment                          -->
+  <!-- ***************************************************************************** -->
+  <target name="validate">
+    <echo level="info">Testing the deployment of BET</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      testLevel="RunSpecifiedTests"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="src"
+      pollWaitMillis="10000"
+      maxPoll="4000">
+	   <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLoginControllerTest</runTest>
+      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+      <runTest>CommunitiesSelfRegControllerTest</runTest>
+      <runTest>ExceptionLoggingHelper_Test</runTest>
+      <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
+      <runTest>TestDataFactory</runTest>
+      <runTest>UserTestUtil</runTest>
+      <runTest>UserTrigger_Test</runTest>
+      <runTest>AR_CaptchaHttpMock.cls</runTest>
+      <runTest>AR_Test_AgencyDetail.cls</runTest>
+      <runTest>AR_Test_AgencyExpAndExperienceController.cls</runTest>
+      <runTest>AR_Test_AgencyGridView.cls</runTest>
+      <runTest>AR_Test_AgencyMyProfile.cls</runTest>
+      <runTest>AR_Test_AgencyMyProfileEdit.cls</runTest>
+      <runTest>AR_Test_AgencyMyProfileEditGeography.cls</runTest>
+      <runTest>AR_Test_AgencyMyProfileEditProjects.cls</runTest>
+      <runTest>AR_Test_AgencyPortfolioAndInformation.cls</runTest>
+      <runTest>AR_Test_AgencyProfileController.cls</runTest>
+      <runTest>AR_Test_Application_Trigger_Handler.cls</runTest>
+      <runTest>AR_Test_<runTest>AR_ProgressBarHandler.cls</runTest>
+      <runTest>AR_Test_<runTest>AR_SupplierCodeController.cls</runTest>
+      <runTest>AR_Test_AttachmentTransferClass.cls</runTest>
+      <runTest>AR_Test_BusinessBreakdownController.cls</runTest>
+      <runTest>AR_Test_CaptchaHelper.cls</runTest>
+      <runTest>AR_Test_CMSData.cls</runTest>
+      <runTest>AR_Test_DatePicker.cls</runTest>
+      <runTest>AR_Test_FaqsComponentController.cls</runTest>
+      <runTest>AR_Test_FinancialsController.cls</runTest>
+      <runTest>AR_Test_FixedDescriptionsHandler.cls</runTest>
+      <runTest>AR_Test_FixedRateCard.cls</runTest>
+      <runTest>AR_Test_ForgotPasswordController.cls</runTest>
+      <runTest>AR_Test_GeneralInformationController.cls</runTest>
+      <runTest>AR_Test_GeographyController.cls</runTest>
+      <runTest>AR_Test_InsuranceTradeRegsAndPolicyCtrl.cls</runTest>
+      <runTest>AR_Test_LandingPage.cls</runTest>
+      <runTest>AR_Test_Login.cls</runTest>
+      <runTest>AR_Test_PortfolioPopup.cls</runTest>
+      <runTest>AR_Test_ProgressBarComponentController.cls</runTest>
+      <runTest>AR_Test_RateCardController.cls</runTest>
+      <runTest>AR_Test_RateReviewPopup.cls</runTest>
+      <runTest>AR_Test_RegistrationController.cls</runTest>
+      <runTest>AR_Test_ResumeApplication.cls</runTest>
+      <runTest>AR_Test_SessionHandler.cls</runTest>
+      <runTest>AR_Test_SObjectHolder.cls</runTest>
+      <runTest>AR_Test_SupplierInfoController.cls</runTest>
+      <runTest>AR_Test_UniNonUniExperienceController.cls</runTest>
+<runTest>AR_Test_UploadHelper.cls</runTest>
+  </sf:deploy>
+  <!--<antcall target="generatePackage"/>-->
+  </target>
+</project>
