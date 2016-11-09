@@ -431,12 +431,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         analyticObj.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
         analyticObj.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
         analyticObj.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;
-       	analyticObj.IPM_BET_First_Release_Due_Date__c = parent.IPM_BET_First_Release_Due_Date__c;
-        analyticObj.IPM_BET_First_Released_On_Date__c = parent.IPM_BET_First_Released_On_Date__c;
-        analyticObj.IPM_BET_Final_Release_Due_date__c = parent.IPM_BET_Final_Release_Due_date__c;
-        analyticObj.IPM_BET_Final_Released_On_date__c = parent.IPM_BET_Final_Released_On_date__c;
-       
-      
        analyticObj = setrolloutdetailsGKM3(pr,analyticObj,parent);     
        if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
        		analyticObj.IPM_Project_Span__c =IPM_Utils.Regional;
@@ -1388,6 +1382,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         	 }
         	 
         	 analyticObj.IPM_Business_Impact_BD__c=parent.IPM_Business_Impact_BD__c;
+        	 analyticObj.IPM_BET_First_Release_Due_Date__c = parent.IPM_BET_First_Release_Due_Date__c;
+	         analyticObj.IPM_BET_First_Released_On_Date__c = parent.IPM_BET_First_Released_On_Date__c;
+	         analyticObj.IPM_BET_Final_Release_Due_date__c = parent.IPM_BET_Final_Release_Due_date__c;
+	         analyticObj.IPM_BET_Final_Released_On_date__c = parent.IPM_BET_Final_Released_On_date__c;
         	 
         	
         }

@@ -310,10 +310,17 @@ public without sharing class IPM_Utils {
        
        String strToReturn = '';
        try {
-           IPM_User_Profile__c usrObj = [SELECT IPM_User_Role__c FROM IPM_User_Profile__c WHERE IPM_User__c=:UserInfo.getUserId() limit 1];
-           strToReturn = usrObj.IPM_User_Role__c;
-           if(strToReturn == 'Supply Chain') {
-                strToReturn = 'SC';
+           List<IPM_User_Profile__c> UPL = [SELECT IPM_User_Role__c FROM IPM_User_Profile__c WHERE IPM_User__c=:UserInfo.getUserId() limit 1];
+           List<IPM_Company_Card__c> CCL = [SELECT ID FROM IPM_Company_Card__c WHERE IPM_Business_Partner__c=:UserInfo.getUserId() LIMIT 1];
+           If(UPL.isEmpty() && CCL.isEmpty()) {
+               ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage));
+           }
+           Else If (!UPL.isEmpty()) {
+               IPM_User_Profile__c usrObj = UPL[0];
+               strToReturn = usrObj.IPM_User_Role__c;
+               if(strToReturn == 'Supply Chain') {
+                   strToReturn = 'SC';
+               }
            }
        }catch(exception ex) { 
             ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);

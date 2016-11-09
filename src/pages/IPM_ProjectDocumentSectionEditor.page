@@ -193,7 +193,7 @@
                                                                                     </div>
                                                                                 </apex:outputPanel>
                                                                             </apex:repeat>
-                                                                            
+                                                                            </apex:outputPanel>
                                                                             <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="panel-group mrgbtmnone">
@@ -251,7 +251,7 @@
                                                             {!$Label.IPM_GENERATE_ROLLOUT_FOR_CONSUMER_EVIDENCE}                       
                                                         </div>
                                                     </div>
-                                                </apex:outputPanel>
+                                             
                                                                             
                                                                         </apex:outputPanel>
                                                                         <apex:actionFunction name="CallAttachId" action="{!delet}" reRender="outptattach">

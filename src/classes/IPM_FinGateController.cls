@@ -154,7 +154,7 @@ public with sharing class IPM_FinGateController {
                 queryString+= field + ', ';
             }
         }
-        queryString+= 'Id FROM IPM_Financial_Years__r ORDER BY Year__c)';
+        queryString+= 'Id FROM IPM_Financial_Years__r ORDER BY Name)';
         queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c =: ExternalId';// need to repace by external is
         
         currentFinancial = Database.query(queryString);
