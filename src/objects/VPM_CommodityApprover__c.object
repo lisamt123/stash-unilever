@@ -1366,6 +1366,16 @@ IF(NOT(ISBLANK( VPM_Approver1__c )),1,
         <columns>VPM_CommodityClass__c</columns>
         <columns>VPM_Country__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>VPM_CommodityClass__c</field>
+            <operation>equals</operation>
+            <value>Ad-hoc Research</value>
+        </filters>
+        <filters>
+            <field>VPM_Country__c</field>
+            <operation>equals</operation>
+            <value>Australia</value>
+        </filters>
         <label>All</label>
         <language>en_US</language>
     </listViews>

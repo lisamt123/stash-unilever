@@ -11,7 +11,9 @@ debugger;
     <apex:pageBlockButtons >    
         <apex:commandButton action="{!backToFlow}" value="{!$Label.VPM_GoldenDataBackButton}" immediate="true" status="actStatusId"/>
         <apex:commandButton action="{!saveAndBackToLaunchScreen}" value="{!$Label.VPM_SaveButton}" reRender="hiddenBlock,pageMessages" status="actStatusId"/>
-        <apex:commandButton action="{!saveRecord}" value="{!$Label.VPM_Next}" reRender="hiddenBlock,pageMessages" status="actStatusId"/>
+        <apex:commandButton action="{!saveRecord}" value="{!$Label.VPM_Next}" reRender="hiddenBlock,pageMessages" status="actStatusId" rendered="{!NOT(showSaveExit)}"/>
+        <apex:commandButton action="{!saveRecord}" value="{!$Label.VPM_SaveExitButton}" reRender="hiddenBlock,pageMessages" status="actStatusId" rendered="{!showSaveExit}"/>
+        
     </apex:pageBlockButtons>
     
        <apex:pageBlock id="hiddenBlock" rendered="false"></apex:pageBlock> 

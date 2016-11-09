@@ -7490,6 +7490,18 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_EmailCompanyCode__c</fullName>
+        <description>ECC company code field to be used on email templates</description>
+        <externalId>false</externalId>
+        <formula>VPM_VendorCodeLookup__r.mdm_Code__c</formula>
+        <label>Company Code For Emails</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_EmailOfWebformSender__c</fullName>
         <description>VPM - This field is used to store the value of Email of Webform Sender.</description>
         <externalId>false</externalId>
@@ -8524,12 +8536,13 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
     </fields>
     <fields>
         <fullName>VPM_HoursSpentWithFreight__c</fullName>
+        <defaultValue>0.0</defaultValue>
         <description>VPM - Number of days for which request is being worked upon by Freight Team</description>
         <externalId>false</externalId>
         <label>Hours Spent With Freight</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>6</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -8568,12 +8581,13 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
     </fields>
     <fields>
         <fullName>VPM_HoursSpentWithRussianCustomTax__c</fullName>
+        <defaultValue>0.0</defaultValue>
         <description>VPM - Number of days for which request is being worked upon byRussian Custom Tax Team</description>
         <externalId>false</externalId>
         <label>Hours Spent With Russian Custom Tax</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>6</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -10782,6 +10796,28 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_MDMOpsFirstSubmittedToSAP__c</fullName>
+        <description>VPM- The date/time &apos;Send to SAP&apos; was first clicked.</description>
+        <externalId>false</externalId>
+        <label>MDM Ops First Submitted to SAP</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>VPM_MDMOpsReview__c</fullName>
+        <description>VPM - The date/time the status changed to MDM Ops review</description>
+        <externalId>false</externalId>
+        <label>MDM Ops Review</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>VPM_MDMOpsSubmitted__c</fullName>
@@ -13939,6 +13975,32 @@ VPM_Approver10__c = $User.Id))
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>VPM_ProcurementApproval__c</fullName>
+        <description>VPM- When Procurement approved the request.</description>
+        <externalId>false</externalId>
+        <label>Procurement Approval</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ProcurementReworks__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>VPM - No of time procurement sends for rework.</description>
+        <externalId>false</externalId>
+        <label>Procurement Reworks</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_ProcurementSection__c</fullName>
         <description>VPM - This field is used to store the value of Procurement Section.</description>
         <externalId>false</externalId>
@@ -16339,6 +16401,17 @@ VPM_Approver10__c = $User.Id))
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_RegionalFieldChanged__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM- set to true when the Regional field is changed</description>
+        <externalId>false</externalId>
+        <label>Regional Field Changed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_Regions__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>VPM - This is a lookup filter to return the region for only those country which matches the country entered on the vendor request country field.</description>
@@ -16372,6 +16445,17 @@ VPM_Approver10__c = $User.Id))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_RequestCompleted__c</fullName>
+        <description>VPM -Date status changed to &apos;Request Completed&apos;or one of the Rejecetd statuses</description>
+        <externalId>false</externalId>
+        <label>Request Completed</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>VPM_RequestGroupTime__c</fullName>
@@ -16621,6 +16705,31 @@ VPM_Approver10__c = $User.Id))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_RussianCustomTaxReworks__c</fullName>
+        <description>VPM - Number of time russian custom tax requests rework.</description>
+        <externalId>false</externalId>
+        <label>Russian Custom Tax Reworks</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_RussianCustomsTaxApporval__c</fullName>
+        <description>VPM- Time when Russian Custom tax Approves the request.</description>
+        <externalId>false</externalId>
+        <label>Russian Customs Tax Apporval</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>VPM_RussianTaxApprovalRequired__c</fullName>
@@ -17694,6 +17803,18 @@ VPM_Approver10__c = $User.Id))
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_StoreText__c</fullName>
+        <externalId>false</externalId>
+        <label>Store Text</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_Street1Int__c</fullName>
         <description>VPM - International version of the Street 1, i.e. non-latin character set entry.</description>
         <externalId>false</externalId>
@@ -17810,6 +17931,17 @@ VPM_Approver10__c = $User.Id))
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_SubmissionToFLS__c</fullName>
+        <description>VPM- Based on when FLS approval process was triggered</description>
+        <externalId>false</externalId>
+        <label>Submission To FLS</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>VPM_SupAudDetailsOfPlannedActivities__c</fullName>
@@ -18054,6 +18186,17 @@ VPM_Approver10__c = $User.Id))
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_TargetCompletion__c</fullName>
+        <description>VPM - is +5 working days from when the Advanced Form was submitted</description>
+        <externalId>false</externalId>
+        <label>Target Completion</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>VPM_TargetECC__c</fullName>

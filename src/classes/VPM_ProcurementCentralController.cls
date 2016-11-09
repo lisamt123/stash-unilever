@@ -460,7 +460,7 @@ with sharing public class VPM_ProcurementCentralController{
                            com.checkFlag=true;
                            com.comApp =commAPP;
                            commApprover.add(com);
-                    } 
+                    }                   
                }else
                {                     
                            com.checkFlag=false;

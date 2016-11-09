@@ -103,11 +103,11 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_FreightApprovedYes</name>
+            <name>VPM_FreightApprovedTime</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_RequestLastwithGroupFreight</name>
+            <name>VPM_FreightApprovedYes</name>
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>
@@ -126,7 +126,7 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_RequestLastwithGroupFreight</name>
+            <name>VPM_FreightApprovedTime</name>
             <type>FieldUpdate</type>
         </action>
         <action>

@@ -20,7 +20,7 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 4.0-     Vaishali    5 Oct 2016        IAPR-1475 - Logic for Global and Regional golden data Page
 5.0      Samrin      2 Nov 2016        IAVMD-1857 - Changes on maintain scenario are not visible to approver
 6.0      Samrin      4 Nov 2016        IAVMD-2325 : L2 Approvals for Sirius and Cordillera not working ( if there's no Custom Setting for the Country, the L2 approval doesn't get triggered)
-7.0 	 Samrin 	 7 Nov 2016   	   IAVMD-2299 : Block-Delete Vendor - Warning message on new page
+7.0      Samrin      7 Nov 2016        IAVMD-2299 : Block-Delete Vendor - Warning message on new page
 ****************************************************************************/
 
 
@@ -107,6 +107,8 @@ with Sharing public class VPM_GoldenDataController2 {
     public Id purid{get;set;}
     public string userlang{get;set;}  
     public boolean vendorType{get;set;}
+    public boolean showSaveExit{get;set;}
+        
     public boolean authorisationGrp{get;set;}
     public boolean isReqOrderingEmail {get;set;} //changes for IAVMD-1271
     public boolean showOrderingEmail{get;set;}  //changes for IAVMD-1271
@@ -260,8 +262,12 @@ with Sharing public class VPM_GoldenDataController2 {
                   showOrderingEmail = false;
               }
             
-        } 
-        
+        }
+        if((recordTypeId==STR_CONST_MAINTAIN || (recordTypeId==STR_CONST_EXTEND && purchReqVar.VPM_ExtensionType__c=='Regional')) && purchReqVar.VPM_FieldType__c=='Global')
+           {showSaveExit=true;}  
+           else{showSaveExit=false;}       
+ 
+                    
          if(recordTypeId ==STR_CONST_MAINTAIN || recordTypeId ==STR_CONST_MAINTAIN2)
          { isMaintainRecord = true;}
              
@@ -954,7 +960,7 @@ public void approvalCallMethod()
         // Start : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
         
         string finalStringValue = pr.VPM_PaymentMethod__c== null?'': pr.VPM_PaymentMethod__c;
-        if(finalStringValue.contains('[') || finalStringValue.contains(',')) {
+        if(finalStringValue.contains('[') || finalStringValue.contains(',') || finalStringValue.contains('_')) {
             string sText = finalStringValue.replaceAll( '\\s+', '');                
             string payMeth = sText.remove('['); 
             string payMeth1 = payMeth.remove(']');
@@ -988,9 +994,13 @@ public void approvalCallMethod()
         pr.VPM_AdvancedFormSubmitted__c='YES'; 
         // Added by Ajay
         if(pr.VPM_Status__c.containsIgnoreCase(STR_CONST_DRAFT))
-        { pr.VPM_RequestLastWithGroup__c ='Business Requestor'; }
+        {   pr.VPM_RequestLastWithGroup__c ='Business Requestor';
+            pr.VPM_RequestGroupTime__c = system.now();
+         }
         else
-        {  pr.VPM_RequestLastWithGroup__c ='FLS'; }
+        {   pr.VPM_RequestLastWithGroup__c ='FLS';
+            pr.VPM_RequestGroupTime__c = system.now(); 
+        }
             //End here
         if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
         {

@@ -7,9 +7,12 @@ trigger VPM_setGlobalOrRegionalFieldUpdate on VPM_PurchasingRequests__c (before 
 
    if(trigger.isUpdate)
    {
+  
+   trigger.New[0].VPM_StoreText__c = String.ValueOf(trigger.New[0].VPM_NoOfDays__c);
        VPM_regionalMaintainVendor.updateAndCheckFieldUpdate(trigger.New , trigger.OldMap);
        // Use for calling maintain service after vendor code updated from Mulesoft Cache
        VPM_regionalMaintainVendor.InsertVendor(trigger.New , trigger.OldMap);
+
     }
 
 

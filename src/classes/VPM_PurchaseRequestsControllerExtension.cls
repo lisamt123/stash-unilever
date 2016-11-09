@@ -656,8 +656,8 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   VendorDetailList[0].VPM_Status__c = 'FLS Requested Re-Work'; 
                   VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById;
                   VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;
-                  VendorDetailList[0].VPM_RequestGroupTime__c=System.now();
-                  VendorDetailList[0].VPM_RequestLastWithGroup__c = 'FLS';
+                  //VendorDetailList[0].VPM_RequestGroupTime__c=System.now();
+                  //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'FLS';
                   VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                   VendorDetailList[0].VPM_ApprovalWorker__c=''; 
                   update VendorDetailList;

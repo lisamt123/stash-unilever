@@ -129,6 +129,10 @@
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>VPM_BankApprovedTime</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_ChangeIsInApprovalProcess</name>
             <type>FieldUpdate</type>
         </action>
@@ -153,6 +157,10 @@
     <finalRejectionActions>
         <action>
             <name>VPM_ApprovalStatusRejection</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_BankApprovedTime</name>
             <type>FieldUpdate</type>
         </action>
         <action>

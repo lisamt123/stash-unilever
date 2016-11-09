@@ -2,6 +2,17 @@
     <apex:stylesheet value="{!URLFOR($Resource.vpmadvancedformcss)}" />
     <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
     <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.4.js')}"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"/>
+    <apex:includeScript value="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" />>
+<apex:includeScript value="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.17.8/js/jquery.tablesorter.min.js" />
+<apex:stylesheet value="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.17.8/css/theme.blue.css" />
+
+    <script>
+  $(document).ready(function()
+  {
+    $("[id$='accsTable']").tablesorter({theme: 'blue', dateFormat : "dd/mm/yyyy"});
+  });
+</script>
 <script>
       function changeValue(input, textid) {
       debugger;
@@ -177,7 +188,7 @@
           <br/><br/>   
               <apex:outputPanel rendered="{!ClickGoRemove}">
                <apex:pageblock id="memberRemove" title="{!$Label.VPM_CommodityApproverRecords}" rendered="{!showTable}">
-                <apex:pageblockTable value="{!commApprover}" var="com1">
+                <apex:PageBlockTable id="theaddrs" styleclass="tablesorter" value="{!commApprover}" var="com1">
                     <apex:column headerValue="{!$Label.VPM_RecordID}">
                     <apex:inputCheckbox value="{!com1.setFlag}" disabled="{!com1.checkFlag}"/>
                     </apex:column>
@@ -188,7 +199,7 @@
                     <apex:outputLink value="/{!com1.comApp}" target="_blank">{!com1.comApp.VPM_CommodityClass__c}</apex:outputLink>
                     </apex:column> 
                     
-                </apex:pageblockTable>   
+                </apex:PageBlockTable>   
                     
             </apex:pageblock> 
           </apex:outputPanel>

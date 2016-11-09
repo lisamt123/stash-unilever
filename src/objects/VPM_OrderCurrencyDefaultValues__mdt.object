@@ -5,7 +5,7 @@
         <fullName>VPM_OrderCurrency__c</fullName>
         <description>VPM - Used to store the order currency values</description>
         <externalId>false</externalId>
-        <fieldManageability>DeveloperControlled</fieldManageability>
+        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Order Currency</label>
         <picklist>
             <picklistValues>
@@ -826,7 +826,7 @@
         <fullName>VPM_VendorCountry__c</fullName>
         <description>VPM- Used to store the country values.</description>
         <externalId>false</externalId>
-        <fieldManageability>DeveloperControlled</fieldManageability>
+        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Vendor Country</label>
         <picklist>
             <picklistValues>

@@ -6,7 +6,7 @@
         <defaultValue>false</defaultValue>
         <description>VPM - field will have the true if FLS is present for the country , if FLS is not available it will be false</description>
         <externalId>false</externalId>
-        <fieldManageability>DeveloperControlled</fieldManageability>
+        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>FLS</label>
         <type>Checkbox</type>
     </fields>
@@ -15,7 +15,7 @@
         <caseSensitive>false</caseSensitive>
         <description>VPM - Used to capture the Country Requesting Vendor</description>
         <externalId>false</externalId>
-        <fieldManageability>DeveloperControlled</fieldManageability>
+        <fieldManageability>SubscriberControlled</fieldManageability>
         <label>Country</label>
         <length>50</length>
         <required>false</required>

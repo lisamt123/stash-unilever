@@ -56,6 +56,10 @@
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>VPM_FLSApprovedTime</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_StatusFLSApproveds</name>
             <type>FieldUpdate</type>
         </action>
@@ -72,6 +76,10 @@
         </action>
         <action>
             <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_FLSApprovedTime</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -112,6 +120,10 @@
         <action>
             <name>VPM_NotificationForLogged</name>
             <type>Alert</type>
+        </action>
+        <action>
+            <name>VPM_SubmissiontoFLSTime</name>
+            <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>
     <label>FLS</label>

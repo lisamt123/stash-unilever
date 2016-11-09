@@ -79,11 +79,11 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_RequestLastwithGroupRussianCustom</name>
+            <name>VPM_RussiaApprovedSubmittedtoYes</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_RussiaApprovedSubmittedtoYes</name>
+            <name>VPM_RussianApprovedTime</name>
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>
@@ -98,12 +98,12 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_RequestLastwithGroupRussianCustom</name>
-            <type>FieldUpdate</type>
-        </action>
-        <action>
             <name>VPM_RequestRejectNotification</name>
             <type>Alert</type>
+        </action>
+        <action>
+            <name>VPM_RussianApprovedTime</name>
+            <type>FieldUpdate</type>
         </action>
         <action>
             <name>VPM_StatusRussianCustomTaxRejected</name>

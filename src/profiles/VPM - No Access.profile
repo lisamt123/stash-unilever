@@ -1181,6 +1181,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_EmailCompanyCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_EmailOfWebformSender__c</field>
         <readable>true</readable>
@@ -1741,6 +1746,16 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_MDMOpsFirstSubmittedToSAP__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_MDMOpsReview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_MDMOpsSubmitted__c</field>
         <readable>false</readable>
@@ -2011,6 +2026,16 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ProcurementApproval__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ProcurementReworks__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_ProcurementSection__c</field>
         <readable>false</readable>
@@ -2122,12 +2147,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_RegionalFieldChanged__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_Regions__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_RelevantForPriceDet__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_RequestCompleted__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2168,6 +2203,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_RussiaSubmitted__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_RussianCustomTaxReworks__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_RussianCustomsTaxApporval__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2311,6 +2356,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_StoreText__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_Street1Int__c</field>
         <readable>false</readable>
@@ -2353,6 +2403,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_Street5__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_SubmissionToFLS__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2418,6 +2473,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_TAXOfficeIdentLangKey__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_TargetCompletion__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

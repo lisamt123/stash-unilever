@@ -1,6 +1,7 @@
 @isTest
 public class VPM_regionalMaintainVendorTest{
-
+ public static final String ECCRegion=  'U2K2,Sirius,Fusion'; 
+ public static final String FieldType=  'Regional'; 
  @isTest static void updateAndCheckFieldUpdateTest() {
     VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
      purReq.VPM_Comments__c = 'test comment';
@@ -78,7 +79,7 @@ public class VPM_regionalMaintainVendorTest{
         VPM_listOfRegionalandGlobalField__c globalFields = new VPM_listOfRegionalandGlobalField__c();
         globalFields.Name = '0';
         globalFields.VPM_ApiName__c = 'VPM_TaxNumber1__c';
-        globalFields.VPM_ECCRegion__c = 'U2K2,Sirius,Fusion'; 
+        globalFields.VPM_ECCRegion__c = ECCRegion; 
         globalFields.VPM_fieldDatatype__C = 'Text';
         globalFields.VPM_fieldType__C = 'Global';
         globalFields.VPM_JSONFieldName__c = 'TaxNumber1';
@@ -89,9 +90,9 @@ public class VPM_regionalMaintainVendorTest{
         VPM_listOfRegionalandGlobalField__c globalFields1 = new VPM_listOfRegionalandGlobalField__c();
         globalFields1.Name = '1';
         globalFields1.VPM_ApiName__c = 'VPM_ActualQMSystem__c';
-        globalFields1.VPM_ECCRegion__c = 'U2K2,Sirius,Fusion'; 
+        globalFields1.VPM_ECCRegion__c =ECCRegion; 
         globalFields1.VPM_fieldDatatype__C = 'valueWithUnderScore';
-        globalFields1.VPM_fieldType__C = 'Regional';
+        globalFields1.VPM_fieldType__C = FieldType;
         globalFields1.VPM_JSONFieldName__c = 'ActualQMSystem';
         globalFields1.VPM_parentElement__c = 'CompanyData';
         globalFieldsList.add(globalFields1);
@@ -100,9 +101,9 @@ public class VPM_regionalMaintainVendorTest{
         VPM_listOfRegionalandGlobalField__c globalFields2 = new VPM_listOfRegionalandGlobalField__c();
         globalFields2.Name = '2';
         globalFields2.VPM_ApiName__c = 'VPM_OrderAcknowledgmentRequirement__c';
-        globalFields2.VPM_ECCRegion__c = 'U2K2,Sirius,Fusion'; 
+        globalFields2.VPM_ECCRegion__c = ECCRegion; 
         globalFields2.VPM_fieldDatatype__C = 'Boolean';
-        globalFields2.VPM_fieldType__C = 'Regional';
+        globalFields2.VPM_fieldType__C = FieldType;
         globalFields2.VPM_JSONFieldName__c = 'OrderAcknowledgmentRequirement';
         globalFields2.VPM_parentElement__c = 'WtaxType';
         globalFieldsList.add(globalFields2);
@@ -111,9 +112,9 @@ public class VPM_regionalMaintainVendorTest{
         VPM_listOfRegionalandGlobalField__c globalFields3 = new VPM_listOfRegionalandGlobalField__c();
         globalFields3.Name = '3';
         globalFields3.VPM_ApiName__c = 'VPM_PaymentMethod__c';
-        globalFields3.VPM_ECCRegion__c = 'U2K2,Sirius,Fusion'; 
+        globalFields3.VPM_ECCRegion__c = ECCRegion; 
         globalFields3.VPM_fieldDatatype__C = 'MultiPicklistValueWithUnderScore';
-        globalFields3.VPM_fieldType__C = 'Regional';
+        globalFields3.VPM_fieldType__C = FieldType;
         globalFields3.VPM_JSONFieldName__c = 'PaymentMethod';
         globalFields3.VPM_parentElement__c = 'MainObject';
         globalFieldsList.add(globalFields3);
@@ -121,9 +122,9 @@ public class VPM_regionalMaintainVendorTest{
         VPM_listOfRegionalandGlobalField__c globalFields4 = new VPM_listOfRegionalandGlobalField__c();
         globalFields4.Name = '4';
         globalFields4.VPM_ApiName__c = 'VPM_QMSystemTo__c';
-        globalFields4.VPM_ECCRegion__c = 'U2K2,Sirius,Fusion'; 
+        globalFields4.VPM_ECCRegion__c = ECCRegion; 
         globalFields4.VPM_fieldDatatype__C = 'DateTime';
-        globalFields4.VPM_fieldType__C = 'Regional';
+        globalFields4.VPM_fieldType__C = FieldType;
         globalFields4.VPM_JSONFieldName__c = 'QMSystemTo';
         globalFields4.VPM_parentElement__c = 'Address';
         globalFieldsList.add(globalFields4);
@@ -131,9 +132,9 @@ public class VPM_regionalMaintainVendorTest{
         VPM_listOfRegionalandGlobalField__c globalFields5 = new VPM_listOfRegionalandGlobalField__c();
         globalFields5.Name = '5';
         globalFields5.VPM_ApiName__c = 'VPM_ReasonForExemption__c';
-        globalFields5.VPM_ECCRegion__c = 'U2K2,Sirius,Fusion'; 
+        globalFields5.VPM_ECCRegion__c = ECCRegion; 
         globalFields5.VPM_fieldDatatype__C = 'valueWithUnderScore';
-        globalFields5.VPM_fieldType__C = 'Regional';
+        globalFields5.VPM_fieldType__C = FieldType;
         globalFields5.VPM_JSONFieldName__c = 'ReasonForExemption';
         globalFields5.VPM_parentElement__c = 'InternationalVersions';
         globalFieldsList.add(globalFields5);
@@ -141,9 +142,9 @@ public class VPM_regionalMaintainVendorTest{
         VPM_listOfRegionalandGlobalField__c globalFields6 = new VPM_listOfRegionalandGlobalField__c();
         globalFields6.Name = '6';
         globalFields6.VPM_ApiName__c = 'VPM_LSTno__c';
-        globalFields6.VPM_ECCRegion__c = 'U2K2,Sirius,Fusion'; 
+        globalFields6.VPM_ECCRegion__c = ECCRegion; 
         globalFields6.VPM_fieldDatatype__C = 'Text';
-        globalFields6.VPM_fieldType__C = 'Regional';
+        globalFields6.VPM_fieldType__C = FieldType;
         globalFields6.VPM_JSONFieldName__c = 'LSTno';
         globalFields6.VPM_parentElement__c = 'CIN';
         globalFieldsList.add(globalFields6);
@@ -151,9 +152,9 @@ public class VPM_regionalMaintainVendorTest{
         VPM_listOfRegionalandGlobalField__c globalFields7 = new VPM_listOfRegionalandGlobalField__c();
         globalFields7.Name = '7';
         globalFields7.VPM_ApiName__c = 'VPM_ReconciliationAccount__c';
-        globalFields7.VPM_ECCRegion__c = 'U2K2,Fusion'; 
+        globalFields7.VPM_ECCRegion__c = ECCRegion; 
         globalFields7.VPM_fieldDatatype__C = 'Text';
-        globalFields7.VPM_fieldType__C = 'Regional';
+        globalFields7.VPM_fieldType__C = FieldType;
         globalFields7.VPM_JSONFieldName__c = 'ReconciliationAccount';
         globalFields7.VPM_parentElement__c = 'CompanyData';
         globalFieldsList.add(globalFields7);

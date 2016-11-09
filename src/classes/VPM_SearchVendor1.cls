@@ -149,7 +149,8 @@ public with sharing class VPM_SearchVendor1{
     public boolean block{get;set;} 
     public boolean delete1{get;set;}
     public boolean isTrue{get;set;}
-    public static boolean checkFlag = false; // for recurrsive trigger        
+    public static boolean checkFlag = false; // for recurrsive trigger   
+    public static boolean UpdateNoOfHoursFlas= false; // for recurrsive trigger       
     
     public string industryOptionsDefValue{get;set;}
     public string standardCommDefValue{get;set;}
@@ -873,7 +874,8 @@ public with sharing class VPM_SearchVendor1{
     Description  : This method assing value to launch screen radio btn.
     Return Type  : List of Wrapper Class
     ********************************************************************/
-    public void setLaunchScreenText() {
+    //ORIGINAL- DO NOT DELETE
+   /* public void setLaunchScreenText() {
         final string CONST1 = '{"';
         final string CONST2 = '":"';
         final string CONST3 = '"},';
@@ -885,7 +887,7 @@ public with sharing class VPM_SearchVendor1{
         //string trueString = 
         String OptionWrapperJSON ='['; //
         //Added by Epsita for IAPR-1756 //vendorQuery1.VPM_IsLock__c
-        if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.APPROVALPENDING)||  vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REJECTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.ABORTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REQUEST_COMPLETED)){
+        if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.APPROVALPENDING)||  vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REJECTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.ABORTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REQUEST_COMPLETED) || vendorQuery1.VPM_Status__c.contains('MDM Ops')){
             system.debug('@@@ vendorQuery1.VPM_IsLock__c '+vendorQuery1.VPM_IsLock__c);
             if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.RE_WORK)) {
                 system.debug('@@@vendorQuery1.VPM_Status__c '+vendorQuery1.VPM_Status__c);  
@@ -929,7 +931,66 @@ public with sharing class VPM_SearchVendor1{
         requestTypeList = (List<VPM_RecordTypeHelper.OptionWrapper>) System.JSON.deserialize(OptionWrapperJSON, List<VPM_RecordTypeHelper.OptionWrapper>.class);
         mdmVendorType ='';
     }
-
+/********************************DO NOT DELETE********************************************/
+ public void setLaunchScreenText() 
+    {
+        final string CONST1 = '{"';
+        final string CONST2 = '":"';
+        final string CONST3 = '"},';
+        final string CONST4 = '":""},';
+        final string CONST5 = '":false,"';
+        final string CONST6 = '":true,"';
+        final string CONST7 = '","';
+        
+        system.debug('@@@ setting Launch screen options');
+        String OptionWrapperJSON ='['; //
+        //Added by Epsita for IAPR-1756
+        if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.APPROVALPENDING)||  vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REJECTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.ABORTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REQUEST_COMPLETED) || vendorQuery1.VPM_Status__c.contains('MDM Ops')){
+            system.debug('@@@ vendorQuery1.VPM_IsLock__c '+vendorQuery1.VPM_IsLock__c);
+            if(vendorQuery1.VPM_Status__c.contains('Re-Work')) {
+                system.debug('@@@vendorQuery1.VPM_Status__c '+vendorQuery1.VPM_Status__c);
+                OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_SubmitVendorRequestforApproval + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2+System.label.VPM_SubmitVendorRequestforApproval+CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2 +System.label.VPM_Quick_Submit+CONST3;
+            }
+        }
+        else{
+            OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2+System.label.VPM_SubmitVendorRequestforApproval +CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_SubmitVendorRequestforApproval+CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2 +System.label.VPM_Quick_Submit+CONST3;
+        }
+        if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.CREATE)) {       
+            OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_EnterGeneralVendorDetails + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_EnterGeneralVendorDetails + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2 +System.label.VPM_Add_Additional_Information+CONST3;
+            OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_EnterBankDetails + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_EnterBankDetails + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_EnterPaymentTerms + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_EnterPaymentTerms + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_EnterFinanciallySensitiveFields + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_EnterFinanciallySensitiveFields + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_EnterRegionalSpecificFields + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_EnterRegionalSpecificFields + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            if((string.isNotBlank(vendorQuery1.VPM_VendorType__c) && vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI) || (string.isNotBlank(vendorQuery1.VPM_VendorType__c) && vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM))))) {            
+                OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_PIVendorCreationPreRequisites + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_PIVendorCreationPreRequisites + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;        
+            }
+            OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_Send_ResendWebformRequest + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_Send_ResendWebformRequest + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2 +System.label.VPM_Contact_Vendor+CONST3;
+            
+        }       
+        if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.EXTEND))
+        {
+            OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_General_Vendor_Details+CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_General_Vendor_Details + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2 +System.label.VPM_Add_Additional_Information+CONST3;
+            OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_EditBankDetails+CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_EditBankDetails + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_EditPaymentTerms + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_EditPaymentTerms + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_EditFinanciallySensitiveFields + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_EditFinanciallySensitiveFields + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;  
+            OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_EditRegionalSpecificFields + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_EditRegionalSpecificFields + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            
+            if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN)) {
+                OptionWrapperJSON +=CONST1 +VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_RequestVendortoBlock_Delete+CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_RequestVendortoBlock_Delete + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST5+VPM_RecordTypeHelper.LABEL_TEXT+CONST4;
+            }
+        }
+        
+        //Maintain 1
+        else if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN_2))
+        {
+            OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_RequestVendortoUnblock_Undelete + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_RequestVendortoUnblock_Undelete + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2 +System.label.VPM_Add_Additional_Information+CONST3;
+            isMaintain2 = true;
+        }
+        system.debug('@@OptionWrapperJSON' + OptionWrapperJSON);
+        OptionWrapperJSON +=CONST1+VPM_RecordTypeHelper.DETAIL_OPTION+CONST2 +System.label.VPM_Exitthisform + CONST7+VPM_RecordTypeHelper.UNIUQUEID+CONST2 +System.label.VPM_Exitthisform + CONST7+VPM_RecordTypeHelper.SHOW_LABEL+CONST6+VPM_RecordTypeHelper.LABEL_TEXT+CONST2 +System.label.VPM_Exit_Form+'"}]';
+        requestTypeList = (List<VPM_RecordTypeHelper.OptionWrapper>) System.JSON.deserialize(OptionWrapperJSON, List<VPM_RecordTypeHelper.OptionWrapper>.class);
+        mdmVendorType ='';
+    }
     /********************************************************************  
     Created By   : Ajay Rawat
     Created Date : 21th June 2016
@@ -1585,7 +1646,7 @@ public with sharing class VPM_SearchVendor1{
         }
         catch(DMLException ex){
             ApexPages.Message msg = new ApexPages.Message(Apexpages.Severity.ERROR, ex.getdmlMessage(0));
-			ApexPages.addMessage(msg); 
+            ApexPages.addMessage(msg); 
         }
     }
     
@@ -1735,7 +1796,7 @@ public with sharing class VPM_SearchVendor1{
                 }
                     system.debug('### VPM_SearchVendor1.checkFlag '+VPM_SearchVendor1.CheckFlag  ); 
                 update vendorQuery1;
-				vendorDetails.VPM_Telephone__c = vendorQuery1.VPM_VendorPhone__c; 		 		
+                vendorDetails.VPM_Telephone__c = vendorQuery1.VPM_VendorPhone__c;               
                 
                 if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN_2)) {
                     isMaintainRecord = true; 
