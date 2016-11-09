@@ -9,4 +9,3 @@ src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product with TPR Ca
 src/permissionsets/FS_RussiaSalesRep.permissionset
 src/permissionsets/FS_Admin.permissionset
 src/profiles/Unilever Food Solution - Russia.profile
-src/pages/FS_MonthlyPlanningRussiaReport.page
