@@ -4,4 +4,5 @@
         <application>Agency_Roster_Management</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <label>Agency Roster - Marketing</label>
 </PermissionSet>
