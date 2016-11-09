@@ -84,7 +84,7 @@ public without sharing class FAU_EmailSender {
           system.debug('lparticipant'+lParticipantsFull);                                              
         List<FAU_Module_Participant__c> lModuleParticipant = [select id, FAU_Module_Start_Date__c,
                                                                         FAU_Module_End_Date__c 
-                                                                        from FAU_Module_Participant__c where FAU_Participant__c=:lParticipant];     
+                                                                        from FAU_Module_Participant__c where FAU_Participant__c=:lParticipant ORDER BY FAU_Module_Start_Date__c desc LIMIT 1];     
         system.debug('lModuleParticipant'+lModuleParticipant);
                                                                                                                    
         Id[] lUserId =new Id[]{}; 
@@ -112,7 +112,12 @@ public without sharing class FAU_EmailSender {
         }
         for (FAU_Module_Participant__c mParticipant : lModuleParticipant)
         {
-            lWhatId.add(mParticipant.Id);            
+         system.debug('Id if module Participant'+mParticipant.Id); 
+           if(mParticipant.FAU_Module_Start_Date__c>system.today())
+           {
+            lWhatId.add(mParticipant.Id);
+            system.debug('Id if module Participant inside if'+mParticipant.Id);            
+           }
         }
         if (lParticipantsFull.size() > 0 ){
             sendUserEmailwithTemplate(lUserId, lUserEmail, lWhatId, lTemplateId, lDtStart, lDtEnd, lLocation, lSummary, lDescription);
