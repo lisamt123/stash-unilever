@@ -1,5 +1,6 @@
+@testVisible
 global class VPM_ECCVendorSearchServiceOutput {
-    public List<CompanyCodeFields> CompanyData;
+    public List<CompanyCodeFields> CompanyData ;
     public List<PurchasingOrgFields> PurchasingData;
     public CINFields CIN;
     public String AccountNumberAlternativePayee;
@@ -359,41 +360,41 @@ global class VPM_ECCVendorSearchServiceOutput {
         public String DunningClerk;
     }
     public class CompanyCodeFields {
-        public string Authorization;
-        public boolean IndicatorAltPayeeAccountNumber;
-        public string RemittanceEmail;
-        public string PaymentTermsCreditMemoKey;
-        public String ReconciliationAccount;
-        public String PaymentTerms;
-        public String SortKey; 
-        public String CashManagementGroup; // old changes 
+        public string Authorization {get;set;}
+        public boolean IndicatorAltPayeeAccountNumber {get;set;}
+        public string RemittanceEmail {get;set;}
+        public string PaymentTermsCreditMemoKey {get;set;}
+        public String ReconciliationAccount {get;set;}
+        public String PaymentTerms {get;set;}
+        public String SortKey {get;set;}
+        public String CashManagementGroup {get;set;} // old changes 
         //public string CashMgmtGroup; // new change 2016-11-04
-        public String PaymentMethod;
+        public String PaymentMethod {get;set;}
         public String InterestCalculationIndicator;
         public boolean IndicatorClearingBetweenCustomerAndVendor;
-        public String AccountWithVendor;
-        public String ClerkAtVendor;
-        public String AccountMemo;
-        public String AccountingClerk;
-        public String AlternativePayee;
-        public String InterestFrequency;
-        public String LastInterestRun;
-        public String BExchangeLimit;
-        public String CheckCashing;
-        public boolean CheckDoubleInvoices;
-        public String ToleranceGroup;
-        public String HouseBank;
-        public boolean IndividualPayment;
-        public String ExemptionNumber;
-        public String ValidUntil;
-        public String PreviousAccountNumber;
-        public String GroupingKey;
-        public String PaymentMethodSupplement;
-        public String WithholdingTaxCountryKey;
-        public boolean PmtAdviceByEDI;
-        public String ClerksFax;
-        public String ClerksInternet;
-        public String AccountStatement;
+        public String AccountWithVendor {get;set;}
+        public String ClerkAtVendor {get;set;}
+        public String AccountMemo {get;set;}
+        public String AccountingClerk {get;set;}
+        public String AlternativePayee {get;set;}
+        public String InterestFrequency {get;set;}
+        public String LastInterestRun {get;set;}
+        public String BExchangeLimit {get;set;}
+        public String CheckCashing {get;set;}
+        public boolean CheckDoubleInvoices {get;set;}
+        public String ToleranceGroup {get;set;}
+        public String HouseBank {get;set;}
+        public boolean IndividualPayment {get;set;}
+        public String ExemptionNumber {get;set;}
+        public String ValidUntil {get;set;}
+        public String PreviousAccountNumber {get;set;}
+        public String GroupingKey {get;set;}
+        public String PaymentMethodSupplement {get;set;}
+        public String WithholdingTaxCountryKey {get;set;}
+        public boolean PmtAdviceByEDI {get;set;}
+        public String ClerksFax {get;set;}
+        public String ClerksInternet {get;set;}
+        public String AccountStatement {get;set;}
         public List<Dunning> Dunning;
         public List<WtaxType> WtaxType;
         public String AccountClerkTelephoneNumber;
@@ -455,8 +456,6 @@ global class VPM_ECCVendorSearchServiceOutput {
         Public String CENVAT;
         Public String Changedon;
         Public String ChangedBy;
-        Public String PANreference;
-
-    
+        Public String PANreference;    
     }
 }

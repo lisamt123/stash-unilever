@@ -56,6 +56,6 @@
     </values>
     <values>
         <field>VPM_VendorType__c</field>
-        <value xsi:type="xsd:string">FRGT_Freight Vendor_G001</value>
+        <value xsi:type="xsd:string">MBS_Marketing Business Services_G001</value>
     </values>
 </CustomMetadata>

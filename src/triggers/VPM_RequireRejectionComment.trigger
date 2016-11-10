@@ -1,11 +1,17 @@
 trigger VPM_RequireRejectionComment on VPM_PurchasingRequests__c (before update) {
      Map<Id, VPM_PurchasingRequests__c> rejectedStatements 
              = new Map<Id, VPM_PurchasingRequests__c>{};
-             if(!VPM_SearchVendor1.UpdateNoOfHoursFlas)
+           /* if(!VPM_SearchVendor1.UpdateNoOfHoursFlas)
+            {
+            trigger.new[0].VPM_CheckHours__c =true;
+            VPM_SearchVendor1.UpdateNoOfHoursFlas =!VPM_SearchVendor1.UpdateNoOfHoursFlas;
+            }
+             if((trigger.new[0].VPM_CheckHours__c))
              {
+            
              trigger.new[0].VPM_StoreHours__c=trigger.new[0].VPM_VendorSLA__c;
-             VPM_SearchVendor1.UpdateNoOfHoursFlas =!VPM_SearchVendor1.UpdateNoOfHoursFlas;
-             }
+             
+             }*/
 
   for(VPM_PurchasingRequests__c inv: trigger.new)
   {

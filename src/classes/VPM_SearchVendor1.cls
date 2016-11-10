@@ -618,7 +618,7 @@ public with sharing class VPM_SearchVendor1{
                  // Update purchasing request record after service call.
                  system.debug('$$$$Before calling update');      
                  updateVendorDetail(mdmVendorInfoList[0]);
-             } else {
+             }/* else {
                  system.debug('###!!initialReordType '+initialReordType);
                  showSearchVendor  = false;
                  pageBlockTitle = ''; 
@@ -629,7 +629,7 @@ public with sharing class VPM_SearchVendor1{
                  vendorQuery1.VPM_VendorContactDetail__c=vendorDetails.VPM_VendorContactDetail__c;
                  update vendorQuery1;  
                  setLaunchScreenText();
-             }
+             }*/
          }catch(exception ex) {
             system.debug('@@Exception' + ex.getCause() + ex.getLineNumber() + ex.getTypeName()+ ex.getMessage() + ex.getStackTraceString());
          } 
@@ -1500,7 +1500,7 @@ public with sharing class VPM_SearchVendor1{
         system.debug('@@op.City' +op.City);
         vendorDetails.VPM_City__c = op.City;
         system.debug('vendorDetails.VPM_City__c' +vendorDetails.VPM_City__c);
-        string region = VPM_RecordTypeHelper.region(op.Region, CountryName);           
+        string region = VPM_RecordTypeHelper.region(op.Region, countryName);           
         system.debug('region '+region);
         vendorDetails.VPM_Regions__c = region;
         vendorDetails.VPM_District__c = op.District;
@@ -2211,7 +2211,7 @@ public with sharing class VPM_SearchVendor1{
         string paymentMethodDefaultValue = '[';
         List<VPM_VendorRequestDefaultValues__mdt> vendorRequestList = [select Id, VPM_CashManagementGroup__c,VPM_CompanyCode__c,VPM_CSB__c,VPM_PaymentMethod__c,VPM_PaymentMethod1__c,
             VPM_PaymentMethod2__c,VPM_PaymentMethod3__c,VPM_PaymentMethod4__c,VPM_PaymentMethod5__c,VPM_ReconciliationAccount__c,VPM_SortKey__c,VPM_ToleranceGroup__c,VPM_VendorSubType__c,VPM_VendorType__c 
-            from VPM_VendorRequestDefaultValues__mdt  where VPM_VendorType__c =: vendorQuery1.VPM_VendorType__c and VPM_VendorSubType__c =: vendorQuery1.VPM_Vendor_SubType__c and VPM_CSB__c =: commodityCBSFlag and VPM_VendorType__c =: vendorQuery1.VPM_VendorType__c and VPM_CompanyCode__c =: vendorQuery1.VPM_CompanyCode__r.VPM_CompanyCode__c];
+            from VPM_VendorRequestDefaultValues__mdt  where VPM_VendorType__c =: vendorQuery1.VPM_VendorType__c and VPM_VendorSubType__c =: vendorQuery1.VPM_Vendor_SubType__c and VPM_CSB__c =: commodityCBSFlag and VPM_CompanyCode__c =: vendorQuery1.VPM_CompanyCode__r.VPM_CompanyCode__c];
         if(vendorRequestList <> null && vendorRequestList.size() > 0 ) {
                 vendorCashmgmntgroup = vendorRequestList[0].VPM_CashManagementGroup__c;                        
                 vendorDetails.VPM_ReconciliationAccount__c = vendorRequestList[0].VPM_ReconciliationAccount__c;

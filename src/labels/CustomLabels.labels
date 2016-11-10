@@ -1167,7 +1167,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM Record ID</shortDescription>
-        <value>Record ID</value>
+        <value>Update Commodity Class</value>
     </labels>
     <labels>
         <fullName>VPM_RecordIsInApproval</fullName>

@@ -5,42 +5,14 @@
 <chatter:feedWithFollowers entityid="{!VPM_PurchasingRequests__c.Id}" id="ChatterBlock"  />
 <apex:includeScript value="{!$Resource.VPM_AdvancedFormScript}"/>
 <script>
-    $(document).ready(function(){
         var flag;   
         var criteria1 = "{!VPM_PurchasingRequests__c.VPM_Status__c}"; 
         var criteriaId = "{!VPM_PurchasingRequests__c.Id}";
         var flsInCountry = "{!VPM_PurchasingRequests__c.VPM_FLSInCountryReqVen__c}";
         var Islock = "{!VPM_PurchasingRequests__c.VPM_IsLock__c}";
-        var pageId= "{!VPM_PurchasingRequests__c.Id}"
-        makeFormReadOnly();
-        Visualforce.remoting.Manager.invokeAction('VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser',
-            function(results, event){
-                if(results.userRole=="FLS" && criteria1=="FLS Review") {
-                    $("#detailPage").show();
-                    alert('{!$Label.VPM_ApprovReject}');
-                 }
-                else if(flsInCountry=="true" && results.brUser=="true" && criteria1=="Draft Request"){
-                   if(document.URL.indexOf("back=true")==-1){
-                     flag = confirm('{!$Label.VPM_BypassFrontlineTeam}');
-                     if(flag){
-                         $("#advForm").show();
-                         }
-                    else{
-                        $("#detailPage2").show();
-                        }
-                    }
-                    else{
-                     $("#advForm").show();
-                    }
-                }
-                else if (!Islock){
-                    alert('Record is in Approval...');
-                }
-                    else{ 
-                    $("#advForm").show();                
-                }
-            });  
-    });
+        var pageId= "{!VPM_PurchasingRequests__c.Id}";
+        var bypassFrontlineTeamLabel= "{!$Label.VPM_BypassFrontlineTeam}";
+        var approvRejectLabel = "{!$Label.VPM_ApprovReject}";
 </script>
  <div id="advForm" style="display: none;">
    <apex:form >

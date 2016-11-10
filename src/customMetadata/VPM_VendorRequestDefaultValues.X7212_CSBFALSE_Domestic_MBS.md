@@ -8,7 +8,7 @@
     </values>
     <values>
         <field>VPM_CashManagementGroup__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">V1010_Vendor FG_Vendors: Finished Goods</value>
     </values>
     <values>
         <field>VPM_CompanyCode__c</field>
@@ -56,6 +56,6 @@
     </values>
     <values>
         <field>VPM_VendorType__c</field>
-        <value xsi:type="xsd:string">FRGT_Freight Vendor_G001</value>
+        <value xsi:type="xsd:string">MBS_Marketing Business Services_G001</value>
     </values>
 </CustomMetadata>

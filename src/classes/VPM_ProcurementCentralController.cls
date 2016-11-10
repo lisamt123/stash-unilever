@@ -170,7 +170,7 @@ with sharing public class VPM_ProcurementCentralController{
            if(MDMVendor == STR_CONST_ASSIGN)
               {
                 ClickGoAssign = true;
-                buttonDisp = true;
+                buttonDisp = false;
                  showTable = true;
                 if(com.VPM_Approver2__c==null)
                  {
@@ -190,7 +190,7 @@ with sharing public class VPM_ProcurementCentralController{
               }else if(MDMVendor == STR_CONST_REMOVE)
               {
                   ClickGoRemove = true;
-                  buttonDisp = true;
+                  buttonDisp = false;
                   showTable = true;
                   if(com.VPM_Approver1__c==null)
                  {   Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_ApproverNotSelectedAssignOption));
@@ -409,23 +409,23 @@ with sharing public class VPM_ProcurementCentralController{
          List<VPM_CommodityApprover__c> commAppList =new List<VPM_CommodityApprover__c>();
          if(oldUser==null)
          {
-             commAppList = [SELECT id, VPM_ConfiguredApprovers__c, VPM_Approver1__c , VPM_Approver2__c,VPM_Approver3__c,VPM_Approver4__c,VPM_Approver5__c,
-                                   VPM_Approver6__c,VPM_Approver7__c,VPM_Approver8__c,VPM_Approver9__c,VPM_Approver10__c,VPM_CommodityClass__c 
+             commAppList = [SELECT id, VPM_ConfiguredApprovers__c, VPM_Approver1__c ,VPM_Approver1__r.Name , VPM_Approver2__c,VPM_Approver2__r.Name,VPM_Approver3__c,VPM_Approver3__r.Name,VPM_Approver4__r.Name,VPM_Approver4__c,VPM_Approver5__c,VPM_Approver5__r.Name,
+                                   VPM_Approver6__c,VPM_Approver6__r.Name,VPM_Approver7__c,VPM_Approver7__r.Name,VPM_Approver8__c,VPM_Approver8__r.Name,VPM_Approver9__c,VPM_Approver9__r.Name,VPM_Approver10__c,VPM_Approver10__r.Name,VPM_CommodityClass__c 
                             FROM VPM_CommodityApprover__c 
                             WHERE  VPM_Country__c =: country AND (VPM_Approver1__c !=: newUser AND VPM_Approver2__c !=: newUser 
                                                              AND VPM_Approver3__c !=: newUser AND VPM_Approver4__c !=: newUser
                                                              AND VPM_Approver5__c !=: newUser AND VPM_Approver6__c !=: newUser 
                                                              AND VPM_Approver7__c !=: newUser AND VPM_Approver8__c !=: newUser
-                                                             AND VPM_Approver9__c !=: newUser AND VPM_Approver10__c !=: newUser)LIMIT 50000];
+                                                             AND VPM_Approver9__c !=: newUser AND VPM_Approver10__c !=: newUser) ORDER BY VPM_CommodityClass__c ASC  LIMIT 50000];
                                                    
          }else
          {
-            commAppList = [SELECT id, VPM_Approver1__c , VPM_Approver2__c,VPM_Approver3__c,VPM_Approver4__c,VPM_Approver5__c,VPM_CommodityClass__c,
-                                  VPM_Approver6__c,VPM_Approver7__c,VPM_ConfiguredApprovers__c,VPM_Approver8__c,VPM_Approver9__c,VPM_Approver10__c 
+            commAppList = [SELECT id, VPM_ConfiguredApprovers__c, VPM_Approver1__c ,VPM_Approver1__r.Name , VPM_Approver2__c,VPM_Approver2__r.Name,VPM_Approver3__c,VPM_Approver3__r.Name,VPM_Approver4__r.Name,VPM_Approver4__c,VPM_Approver5__c,VPM_Approver5__r.Name,
+                                   VPM_Approver6__c,VPM_Approver6__r.Name,VPM_Approver7__c,VPM_Approver7__r.Name,VPM_Approver8__c,VPM_Approver8__r.Name,VPM_Approver9__c,VPM_Approver9__r.Name,VPM_Approver10__c,VPM_Approver10__r.Name,VPM_CommodityClass__c 
                            FROM VPM_CommodityApprover__c 
                            WHERE  VPM_Approver1__c =: oldUser OR VPM_Approver2__c =: oldUser OR VPM_Approver3__c =: oldUser OR VPM_Approver4__c =: oldUser
                                                     OR VPM_Approver5__c =: oldUser OR VPM_Approver6__c =: oldUser OR VPM_Approver7__c =: oldUser 
-                                                    OR VPM_Approver8__c =: oldUser OR VPM_Approver9__c =: oldUser OR VPM_Approver10__c =: oldUser LIMIT 50000];
+                                                    OR VPM_Approver8__c =: oldUser OR VPM_Approver9__c =: oldUser OR VPM_Approver10__c =: oldUser ORDER BY VPM_CommodityClass__c ASC LIMIT 50000];
         
         
          }

@@ -2374,6 +2374,32 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_BankValidatorApproval__c</fullName>
+        <description>VPM- Time when the bank Validator approves the request.</description>
+        <externalId>false</externalId>
+        <label>Bank Validator Approval</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>VPM_BankValidatorReworks__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>VPM - Number of times Bank Validator Requests rework.</description>
+        <externalId>false</externalId>
+        <label>Bank Validator Reworks</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_BeneficiaryAddress1__c</fullName>
         <description>VPM - This field is used to store the value of Beneficiary Address 1.</description>
         <externalId>false</externalId>
@@ -7568,19 +7594,19 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>4_Medical</fullName>
+                <fullName>Medical</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>5_Child Minder</fullName>
+                <fullName>Child Minder</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>6_Utilities</fullName>
+                <fullName>Utilities</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>7_Marketing Freelance</fullName>
+                <fullName>Marketing Freelance</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -7790,6 +7816,7 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
     </fields>
     <fields>
         <fullName>VPM_FLSReworks__c</fullName>
+        <defaultValue>0</defaultValue>
         <description>VPM- Number of time FLS requests rework.</description>
         <externalId>false</externalId>
         <label>FLS Reworks</label>
@@ -7905,6 +7932,7 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
     </fields>
     <fields>
         <fullName>VPM_FinanceReworls__c</fullName>
+        <defaultValue>0</defaultValue>
         <description>VPM-  Number of time Finance requests for rework.</description>
         <externalId>false</externalId>
         <label>Finance Reworls</label>
@@ -8028,6 +8056,7 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
     </fields>
     <fields>
         <fullName>VPM_FreightReworks__c</fullName>
+        <defaultValue>0</defaultValue>
         <description>VPM- Number of time Freight requests rework.</description>
         <externalId>false</externalId>
         <label>Freight Reworks</label>
@@ -16708,6 +16737,7 @@ VPM_Approver10__c = $User.Id))
     </fields>
     <fields>
         <fullName>VPM_RussianCustomTaxReworks__c</fullName>
+        <defaultValue>0</defaultValue>
         <description>VPM - Number of time russian custom tax requests rework.</description>
         <externalId>false</externalId>
         <label>Russian Custom Tax Reworks</label>
@@ -16922,7 +16952,7 @@ VPM_Approver10__c = $User.Id))
         <description>VPM - Used to send search term values to SAP. Defaults as the second ten characters of Vendor name.</description>
         <externalId>false</externalId>
         <label>Search Term 2</label>
-        <length>255</length>
+        <length>20</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -29133,7 +29163,7 @@ VPM_Approver10__c = $User.Id))
         <filters>
             <field>VPM_Status__c</field>
             <operation>equals</operation>
-            <value>MDM Ops Review,MDM Ops Review - Block,MDM Ops Review - Unblock</value>
+            <value>MDM Ops Review,MDM Ops Review - Unblock - Undelete</value>
         </filters>
         <filters>
             <field>VPM_Status__c</field>
@@ -36500,22 +36530,6 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
-                <fullName>4_Medical</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5_Child Minder</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6_Utilities</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7_Marketing Freelance</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Business Association</fullName>
                 <default>false</default>
             </values>
@@ -36524,7 +36538,23 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>Child Minder</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Freelance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Professional Body</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -53716,22 +53746,6 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
-                <fullName>4_Medical</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5_Child Minder</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6_Utilities</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7_Marketing Freelance</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Business Association</fullName>
                 <default>false</default>
             </values>
@@ -53740,7 +53754,23 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>Child Minder</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Freelance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Professional Body</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -70932,22 +70962,6 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
-                <fullName>4_Medical</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5_Child Minder</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6_Utilities</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7_Marketing Freelance</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Business Association</fullName>
                 <default>false</default>
             </values>
@@ -70956,7 +70970,23 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>Child Minder</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Freelance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Professional Body</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -88148,22 +88178,6 @@ VPM_Approver10__c = $User.Id))
         <picklistValues>
             <picklist>VPM_ExceptionType__c</picklist>
             <values>
-                <fullName>4_Medical</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>5_Child Minder</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>6_Utilities</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>7_Marketing Freelance</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Business Association</fullName>
                 <default>false</default>
             </values>
@@ -88172,7 +88186,23 @@ VPM_Approver10__c = $User.Id))
                 <default>false</default>
             </values>
             <values>
+                <fullName>Child Minder</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Freelance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medical</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Professional Body</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -99759,6 +99789,57 @@ VPM_Approver10__c = $User.Id))
         <searchResultsCustomButtons>VPM_NewVendorRequest</searchResultsCustomButtons>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>VPM_CannotAbortRequest</fullName>
+        <active>true</active>
+        <description>VPM - Vendor Request can not be Aborted if within an approval process, or if the record has been Rejected / Completed</description>
+        <errorConditionFormula>OR(
+AND(
+ISPICKVAL(PRIORVALUE( VPM_Status__c ),&quot;FLS Rejected&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;FLS Requested Re-Work&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;Approval Pending&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;Finance Requested Re-Work&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;Procurement Requested Re-Work&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;Finance Rejected&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;Procurement Rejected&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;Request Completed&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;SAP BPM Approval Rejected&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;Russian Custom Tax Rejected&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;Freight Requested Re-Work&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;Russian Custom Tax Requested Re-Work&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;Bank Data Validation Rejected&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+),
+AND(
+ISPICKVAL(PRIORVALUE(VPM_Status__c),&quot;Bank Data Validation Requested Re-Work&quot;), ISPICKVAL(VPM_Status__c,&quot;Aborted&quot;)
+)
+
+)</errorConditionFormula>
+        <errorMessage>This Request is pending approval/completed and can not be Aborted.</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>VPM_CannotChangeCompanyCode</fullName>
         <active>true</active>

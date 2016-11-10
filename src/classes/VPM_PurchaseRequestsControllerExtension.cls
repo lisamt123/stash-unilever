@@ -112,8 +112,17 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           GstdControllerSet =stdSet;
           recId = stdSet.getRecord().Id; 
           commodityApproverId = UserInfo.getUserId();
+      
+          
           this.pr= (VPM_PurchasingRequests__c)stdSet.getRecord(); 
-          isBR  = isFLS = isMDM = isFinance = isProcure = isProcure = isFreight = false;
+          system.debug('11-------------isProcure------'+isProcure);
+          isBR  = false;
+          isFLS = false;
+          isMDM = false;
+          isFinance = false;
+          isProcure = false;
+          isRussian = false;
+          isFreight = false;
           this.checkUser() ;
         }
         catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());}

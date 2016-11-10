@@ -199,12 +199,12 @@ public with sharing class VPM_ECCMaintainExtendHelper {
             {
             if(field.VPM_ApiName__c == 'VPM_ReconciliationAccount__c')
             {
-               Integer diff;
+               //Integer diff;
                String reconcilAcc = String.valueOf(vendorReuest.get(field.VPM_ApiName__c));
                if(reconcilAcc.length() < 10)
                {
-                  diff = 10 - reconcilAcc.length();
-                  for(Integer i=0;i<diff;i++)
+                  //diff = 10 - reconcilAcc.length();
+                  for(Integer i=0;i<(10 - reconcilAcc.length());i++)
                   {
                     reconcilAcc = '0'+reconcilAcc; 
                   }

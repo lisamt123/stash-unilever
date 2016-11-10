@@ -937,8 +937,8 @@ public void approvalCallMethod()
     {  
         // Query the DB Fresh record
         
-            pr = [SELECT Id, VPM_VendorType__c,VPM_GlobalAuthorisationGroup__c,
-                                VPM_Commodity_Family__c,VPM_AdvancedFormSubmittedTime__c,
+            pr = [SELECT Id,CreatedById,VPM_VendorType__c,VPM_GlobalAuthorisationGroup__c,VPM_HoursSpentWithProcurement__c,VPM_HoursSpentWithFreight__c,
+                                VPM_HoursSpentWithFLS__c,VPM_HoursSpentWithFinance__c,VPM_HoursSpentWithBankValidator__c,VPM_HoursSpentWithRussianCustomTax__c,VPM_Commodity_Family__c,VPM_AdvancedFormSubmittedTime__c,
                                 VPM_AdvancedFormSubmitted__c, VPM_FinanceApprovalRequired__c,VPM_ProcurementApprovalRequired__c,
                                 VPM_FreightApprovalRequired__c,VPM_RussianTaxApprovalRequired__c,
                                 VPM_ProvidedPaymentTerms__c,VPM_ProvidedBankDetails__c,
@@ -959,6 +959,35 @@ public void approvalCallMethod()
         System.debug('@@op ' + op ); 
         // Start : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
         
+        
+        //Query to get the permission set for FLS user
+        List<PermissionSetAssignment> lstcurrentUserPerSet = [SELECT Id, PermissionSet.Name,PermissionSet.Label, AssigneeId
+                                                                FROM PermissionSetAssignment
+                                                                WHERE AssigneeId = :pr.CreatedById AND (NOT PermissionSet.Label like '%Business Requestor%') order by PermissionSet.Label DESC];
+
+        system.debug('@@ permissionsetAssignment' + lstcurrentUserPerSet );
+        if(pr.VPM_Status__c.containsIgnoreCase(STR_CONST_DRAFT) || pr.VPM_Status__c.containsIgnoreCase('FLS Approved'))
+         {  //pr.VPM_RequestGroupTime__c = system.now();
+            pr.VPM_AdvancedFormSubmittedTime__c= system.now();
+            pr.VPM_TargetCompletion__c = system.now() + 5;
+         }
+         
+        if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_FLS)) 
+        {
+        pr.VPM_Status__c='FLS Approved';
+        
+            pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
+            
+            pr.VPM_RequestGroupTime__c = system.now();
+        }else
+        {
+         pr.VPM_Status__c='';
+            pr.VPM_RequestLastWithGroup__c = STR_CONST_BR;
+            
+            pr.VPM_RequestGroupTime__c = system.now();
+        }
+        
+        system.debug('@@ request last group' + pr.VPM_RequestLastWithGroup__c );
         string finalStringValue = pr.VPM_PaymentMethod__c== null?'': pr.VPM_PaymentMethod__c;
         if(finalStringValue.contains('[') || finalStringValue.contains(',') || finalStringValue.contains('_')) {
             string sText = finalStringValue.replaceAll( '\\s+', '');                
@@ -984,24 +1013,11 @@ public void approvalCallMethod()
         system.debug('@@NewPaymentMethod' + NewPaymentMethod);
         
         // End : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
-        //Logic to set Request time Group for Reports
-         if(pr.VPM_RequestLastWithGroup__c=='' || pr.VPM_RequestLastWithGroup__c==null)
-         {  pr.VPM_RequestGroupTime__c = system.now();
-            pr.VPM_AdvancedFormSubmittedTime__c= system.now();
-            pr.VPM_TargetCompletion__c = system.now() + 5;
-         }
+        
+         
              
         pr.VPM_AdvancedFormSubmitted__c='YES'; 
-        // Added by Ajay
-        if(pr.VPM_Status__c.containsIgnoreCase(STR_CONST_DRAFT))
-        {   pr.VPM_RequestLastWithGroup__c ='Business Requestor';
-            pr.VPM_RequestGroupTime__c = system.now();
-         }
-        else
-        {   pr.VPM_RequestLastWithGroup__c ='FLS';
-            pr.VPM_RequestGroupTime__c = system.now(); 
-        }
-            //End here
+        
         if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
         {
            System.debug('@@@@@@@ pr----------'+ pr);
@@ -1190,6 +1206,8 @@ public void approvalCallMethod()
             
             RecordTypeApprovalChanges = RecordTypeApprovalChanges.removeEnd(',');
             pr.VPM_RequestType__c=RecordTypeApprovalChanges;
+            
+        
         }
         /* End Changes By Samrin   : on 2 Nov 2016 : IAVMD-1857 - Changes on maintain scenario are not visible to approver */
 
