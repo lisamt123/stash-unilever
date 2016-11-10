@@ -38001,8 +38001,4 @@
         <enabled>true</enabled>
         <name>RunReports</name>
     </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewSetup</name>
-    </userPermissions>
 </PermissionSet>
