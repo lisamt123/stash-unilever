@@ -529,12 +529,16 @@ private class IPM_ProjectSetUpController_Test {
         shareProjectLst.add(projectWithOutBoss);
         List<IPM_Project__Share>projectShareList=IPM_TestFactory_Helper.shareIPMProject(shareProjectLst,userShareList);
         insert projectShareList;
-        
+        projectWithOutBoss.IPM_Project_Leader__c = u4.Id;
+        projectWithOutBoss.Deputy_Project_Leader__c= u5.Id;
+        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION =True;
+        update projectWithOutBoss;
+        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION =False;
         system.runAs(u4){ 
             sic.getProjectResource();//get project resource record
             sic.getMilesTaskIpmuserType();//get current logged in user access
             sic.getIpmuserType();//get current logged in user access
-            system.assert(!sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test
+            system.assert(sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test
             sic.project.Is_Archieved__c=null;
             sic.getMilesTaskIpmuserType();
         }
@@ -542,14 +546,14 @@ private class IPM_ProjectSetUpController_Test {
             sic.getProjectResource();//get project resource record
             sic.getMilesTaskIpmuserType();//get current logged in user access
             sic.getIpmuserType();//get current logged in user access
-            system.assert(!sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test
+            system.assert(sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test
         }
         
         system.runAs(u5){
             sic.getProjectResource();//get project resource record
             sic.getMilesTaskIpmuserType();//get current logged in user access
             sic.getIpmuserType();//get current logged in user access
-            system.assert(!sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test
+            system.assert(sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test
         }
         Test.stopTest();   
     }
