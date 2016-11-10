@@ -1,3 +1,5 @@
+
+
 /****************************************************************************************************************************
 @Author Cognizant
 @name IPM_ProjectHelper
@@ -1547,44 +1549,8 @@ public with sharing class IPM_ProjectHelper
             Map<Id,IPM_Project_Rollout__c> updateProjectRollout = new Map<Id,IPM_Project_Rollout__c>();
             Map<Id,IPM_Country__c> updateProjectCountry = new Map<Id,IPM_Country__c>();
             
-            // prepartion of Project Rollout map data which are to be updated
-            if(!projectToRolloutMap.isEmpty())
-            {
-                for(Id projectId : projectToRolloutMap.keySet())
-                {
-                    IPM_Project__c oldProject = null;
-                    Map<Id,IPM_Project_Rollout__c> rolloutsMap = projectToRolloutMap.get(projectId);
                     
-                    if(oldProjectMap!=null && oldProjectMap.containsKey(projectId))
-                    {
-                        oldProject = oldProjectMap.get(projectId);
-                        if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS))
-                        {
-                            for(IPM_Project_Rollout__c rollout : rolloutsMap.values())
-                            {
-                                // Update Rollouts with Charter References. Set Charter Approved as true
-                                rollout.IPM_CharterApproved__c = true;
                                 
-                                if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
-                                { 
-                                    if(rollout.IPM_CharterFinancial__c == null)
-                                    {
-                                        rollout.IPM_CharterFinancial__r = new IPM_Financial__c(Financial_External_ID__c =  IPM_Utils.getFinancialExternalId(rollout));
-                                    }
-                                }
-                                updateProjectRollout.put(rollout.Id,rollout);
-                            }       
-                        }
-                    }
-                }
-                // Empty check of Project rollout map 
-                if(!updateProjectRollout.isEmpty())
-                {
-                    IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
-                        update updateProjectRollout.values();
-                    IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
-                }
-            }
 
             if(!projectToCountryMap.isEmpty())
             {
@@ -1624,6 +1590,47 @@ public with sharing class IPM_ProjectHelper
                     IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true;
                         update updateProjectCountry.values();   
                     IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = false;
+                }
+            }
+            // prepartion of Project Rollout map data which are to be updated
+            if(!projectToRolloutMap.isEmpty())
+            {
+                for(Id projectId : projectToRolloutMap.keySet())
+                {
+                    IPM_Project__c oldProject = null;
+                    Map<Id,IPM_Project_Rollout__c> rolloutsMap = projectToRolloutMap.get(projectId);
+                    if(oldProjectMap!=null && oldProjectMap.containsKey(projectId))
+                    {
+                        oldProject = oldProjectMap.get(projectId);
+                        IPM_Project__c newProject = projectPhaseChange.get(projectId);
+                        if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS))
+                        {
+                            for(IPM_Project_Rollout__c rollout : rolloutsMap.values())
+                            {
+                                // Update Rollouts with Charter References. Set Charter Approved as true
+                                rollout.IPM_CharterApproved__c = true;
+                                if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+                                { 
+                                    if(rollout.IPM_CharterFinancial__c == null)
+                                    {
+                                        rollout.IPM_CharterFinancial__r = new IPM_Financial__c(Financial_External_ID__c =  IPM_Utils.getFinancialExternalId(rollout));
+                                    }
+                                }
+                                if(newProject.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
+                                {
+                                  rollout.KeyMCO__c = true;
+                                }
+                                updateProjectRollout.put(rollout.Id,rollout);
+                            }       
+                        }
+                    }
+                }
+                // Empty check of Project rollout map 
+                if(!updateProjectRollout.isEmpty())
+                {
+                    IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
+                    update updateProjectRollout.values();
+                    IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
                 }
             }
         }

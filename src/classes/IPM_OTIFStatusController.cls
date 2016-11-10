@@ -80,14 +80,11 @@ public with sharing class IPM_OTIFStatusController{
                  
         }
         catch (QueryException ex) {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_OTIFSTATUSCONTROLLER_STR,
-                SHOW_SECTION_CONTENT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR)); ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_OTIFSTATUSCONTROLLER_STR, SHOW_SECTION_CONTENT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+                    
         }
         catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_OTIFSTATUSCONTROLLER_STR,
-                SHOW_SECTION_CONTENT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR)); ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_OTIFSTATUSCONTROLLER_STR, SHOW_SECTION_CONTENT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
         return secConList;  
     }
@@ -110,14 +107,10 @@ public with sharing class IPM_OTIFStatusController{
             }
         }
         catch(DmlException ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_OTIFSTATUSCONTROLLER_STR,
-                UPDATE_OTIF_STATUS_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_OTIFSTATUSCONTROLLER_STR, UPDATE_OTIF_STATUS_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
         catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_OTIFSTATUSCONTROLLER_STR,
-                UPDATE_OTIF_STATUS_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR)); ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_OTIFSTATUSCONTROLLER_STR, UPDATE_OTIF_STATUS_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
     
@@ -143,14 +136,10 @@ public with sharing class IPM_OTIFStatusController{
             }
         }
         catch(DmlException ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_OTIFSTATUSCONTROLLER_STR,
-                UPDATE_OTIF_STATUS_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR)); ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_OTIFSTATUSCONTROLLER_STR, UPDATE_OTIF_STATUS_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
         catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_OTIFSTATUSCONTROLLER_STR,
-                UPDATE_OTIF_STATUS_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR)); ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_OTIFSTATUSCONTROLLER_STR, UPDATE_OTIF_STATUS_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
 }

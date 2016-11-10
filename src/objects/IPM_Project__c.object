@@ -2935,7 +2935,7 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
         <picklist>
             <picklistValues>
                 <fullName>Cleaning Tools</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Disinfectants</fullName>
@@ -4153,7 +4153,7 @@ IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Proj
             <picklist>IPM_Market__c</picklist>
             <values>
                 <fullName>Dishwash</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Household Cleaning</fullName>

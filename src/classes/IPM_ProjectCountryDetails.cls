@@ -1077,7 +1077,7 @@ public with sharing class IPM_ProjectCountryDetails{
 	 public static void assignCompanyCardLocal(Map<id,IPM_Country__c> countyrMap)
 	{
 	  List<IPM_Country__c>countryList=new list<IPM_Country__c>();
-	  countryList=[select Local_Rollout__c,Local_Rollout__r.IPM_Small_C__c,Country_Name__c from IPM_Country__c where 
+         countryList=[select Local_Rollout__c,IPM_Brand_Position__c,Local_Rollout__r.IPM_Small_C__c,Country_Name__c from IPM_Country__c where 
 					id IN:countyrMap.keyset() LIMIT 5000]; 
 	  List<IPM_Company_Card__c>companyCardLst=new List<IPM_Company_Card__c>(); 
 	  companyCardLst=[select Id,IPM_MCO__c,IPM_CompanyCard_Type__c,IPM_Managed_Category__c,RecordType.Name,IPM_TxtGeographical_Scope__c from IPM_Company_Card__c 

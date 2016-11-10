@@ -667,7 +667,7 @@ public with sharing class IPM_Milestone {
     }
     
      /********************************************************************************
-    *@Description : To update the current milestone details 
+    *@Description : To update the current non BET milestone details 
      @return : Returns to milestone page
     *********************************************************************************/   
     
@@ -712,6 +712,7 @@ public with sharing class IPM_Milestone {
                 mstoneLst = new list<IPM_Milestone__c>();
             }
             else{
+                if(milestoneObj.IPM_Name__c != IPM_ConstantUtils.PHASE_POSTLAUNCHEVAL)
                 mstoneLst = alignMilestonesForSorting(milestoneObj);    
             }
             mstoneLst.add(milestoneObj);

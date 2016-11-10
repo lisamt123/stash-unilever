@@ -1016,6 +1016,66 @@
         <apexClass>IPM_GlobalClaimPDLController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+		<classAccesses>
+		<apexClass>IPM_ChangProjectDocStatusCntrlGKM3_Test</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_ExportTeamMembersReportCntrl_Test</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_FinancialControllerGKM3_Test</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_FinancialControllerSoftVldtns_Test</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_FinancialMisalignment</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_FinancialMisalignment_Test</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_GlobalClaimPDLController_Test</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_PhaseChangeHelper</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_Report_Test</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_RolloutPlansAddControllerGKM3_Test</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_SourcePlanController_Test</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_SourcingUnitHandler</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_StopProjectHelper</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_SyncFinanceTableTLDLocal_Test</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
+	<classAccesses>
+		<apexClass>IPM_UpdateBETOnProject_Queueable</apexClass>
+		<enabled>true</enabled>
+	</classAccesses>
    <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Country_Level_Claim__c.IPM_Claim__c</field>
