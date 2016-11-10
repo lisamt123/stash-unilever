@@ -56,6 +56,8 @@ src/classes/IPM_CountryHandler.cls
 src/classes/IPM_CountryHandler.cls-meta.xml
 src/classes/IPM_CountryHandler_Test.cls
 src/classes/IPM_CountryHandler_Test.cls-meta.xml
+src/classes/IPM_CreateProject.cls
+src/classes/IPM_CreateProject.cls-meta.xml
 src/classes/IPM_CreateProject_Test.cls
 src/classes/IPM_CreateProject_Test.cls-meta.xml
 src/classes/IPM_CreateRolloutProjects.cls
@@ -142,8 +144,6 @@ src/classes/IPM_List_Milestones.cls
 src/classes/IPM_List_Milestones.cls-meta.xml
 src/classes/IPM_List_Milestones_Test.cls
 src/classes/IPM_List_Milestones_Test.cls-meta.xml
-src/classes/IPM_LocalSourcingTableController.cls
-src/classes/IPM_LocalSourcingTableController.cls-meta.xml
 src/classes/IPM_MarketPerformaceController.cls
 src/classes/IPM_MarketPerformaceController.cls-meta.xml
 src/classes/IPM_Milestone.cls
@@ -240,10 +240,10 @@ src/classes/IPM_RolloutPlansAddController_Test.cls
 src/classes/IPM_RolloutPlansAddController_Test.cls-meta.xml
 src/classes/IPM_RolloutPlansTableController.cls
 src/classes/IPM_RolloutPlansTableController.cls-meta.xml
+src/classes/IPM_RolloutPlansTableControllerGKM3_Test.cls
+src/classes/IPM_RolloutPlansTableControllerGKM3_Test.cls-meta.xml
 src/classes/IPM_RolloutPlansTableController_Test.cls
 src/classes/IPM_RolloutPlansTableController_Test.cls-meta.xml
-src/classes/IPM_RolloutPlansTableController_TestGKM3.cls
-src/classes/IPM_RolloutPlansTableController_TestGKM3.cls-meta.xml
 src/classes/IPM_RolloutTriggerHandler.cls
 src/classes/IPM_RolloutTriggerHandler.cls-meta.xml
 src/classes/IPM_SoqlUtilities.cls
@@ -256,6 +256,8 @@ src/classes/IPM_SourcePlanController_Test.cls
 src/classes/IPM_SourcePlanController_Test.cls-meta.xml
 src/classes/IPM_SourcingUnitHandler.cls
 src/classes/IPM_SourcingUnitHandler.cls-meta.xml
+src/classes/IPM_StopProjectHelper.cls
+src/classes/IPM_StopProjectHelper.cls-meta.xml
 src/classes/IPM_SyncFinanceTableTLD.cls
 src/classes/IPM_SyncFinanceTableTLD.cls-meta.xml
 src/classes/IPM_TaskHelper.cls
@@ -264,6 +266,8 @@ src/classes/IPM_Taskview.cls
 src/classes/IPM_Taskview.cls-meta.xml
 src/classes/IPM_TestFactory_Helper.cls
 src/classes/IPM_TestFactory_Helper.cls-meta.xml
+src/classes/IPM_UpdateBETOnProject_Queueable.cls
+src/classes/IPM_UpdateBETOnProject_Queueable.cls-meta.xml
 src/classes/IPM_Utils.cls
 src/classes/IPM_Utils.cls-meta.xml
 src/classes/IPM_ValidationHelper_Test.cls
@@ -297,6 +301,8 @@ src/components/IPM_LandingCoreParameters.component
 src/components/IPM_LandingCoreParameters.component-meta.xml
 src/components/IPM_List_Milestones.component
 src/components/IPM_List_Milestones.component-meta.xml
+src/components/IPM_List_Tasks.component
+src/components/IPM_List_Tasks.component-meta.xml
 src/components/IPM_Local_Sourcing_Table.component
 src/components/IPM_Local_Sourcing_Table.component-meta.xml
 src/components/IPM_NavMenu.component
@@ -307,6 +313,8 @@ src/components/IPM_Risk_QuestionnaireView.component
 src/components/IPM_Risk_QuestionnaireView.component-meta.xml
 src/components/IPM_SourcePlanInPDF.component
 src/components/IPM_SourcePlanInPDF.component-meta.xml
+src/components/IPM_ToDos.component
+src/components/IPM_ToDos.component-meta.xml
 src/customMetadata
 src/customMetadata/IPM_Category_EI_Matrix.Personal_Care_Deodorants.md
 src/customMetadata/IPM_Category_Thresholds.IPM_Global_Threshold_Beverages_Refresh.md
@@ -342,13 +350,15 @@ src/email/IPM_Emails/IPM_send_email_when_project_reactivated.email-meta.xml
 src/flows
 src/flows/IPM_Financial_Global_To_Local-4.flow
 src/flows/IPM_Financial_Local_To_Global-1.flow
+
 src/flows/IPM_Financial_Year_Global_To_Local-5.flow
+
 src/flows/IPM_Financial_Year_Local_To_Global-2.flow
 src/flows/IPM_Financial_business_case_Misalignment-1.flow
+
 src/flows/IPM_Notify_Local_Rollout_Project_Created-18.flow
 src/flows/IPM_Populate_Product_lock_design_status-1.flow
 src/flows/IPM_send_email_to_RPL_when_local_project_is_archived_from_rollout_plan-3.flow
-src/flows/IPM_send_email_when_project_stopped_completely-11.flow
 src/labels
 src/labels/CustomLabels.labels
 src/layouts
@@ -411,8 +421,6 @@ src/pages/IPM_ProjectDocumentSectionEditor.page
 src/pages/IPM_ProjectDocumentSectionEditor.page-meta.xml
 src/pages/IPM_ProjectOverview.page
 src/pages/IPM_ProjectOverview.page-meta.xml
-src/pages/IPM_ProjectSearchPage.page
-src/pages/IPM_ProjectSearchPage.page-meta.xml
 src/pages/IPM_ProjectSetUpView.page
 src/pages/IPM_ProjectSetUpView.page-meta.xml
 src/pages/IPM_Resource_Allocation.page
@@ -436,7 +444,6 @@ src/permissionsets/IPM_Central_Team.permissionset
 src/permissionsets/IPM_Finance_Team.permissionset
 src/permissionsets/IPM_ProjectLeader.permissionset
 src/permissionsets/IPM_Research_and_Development.permissionset
-src/permissionsets/IPM_System_Administrator_Permissions.permissionset
 src/reportTypes
 src/reportTypes/BB_BD_Report.reportType
 src/reportTypes/OTIF_Report.reportType
