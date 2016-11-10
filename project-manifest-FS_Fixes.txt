@@ -1,2 +1,3 @@
 src
+src/permissionsets
 src/permissionsets/FS_Sales_Rep.permissionset
