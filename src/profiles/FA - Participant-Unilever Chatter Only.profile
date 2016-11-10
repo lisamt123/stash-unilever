@@ -45974,8 +45974,4 @@
         <enabled>true</enabled>
         <name>ViewHelpLink</name>
     </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewSetup</name>
-    </userPermissions>
 </Profile>

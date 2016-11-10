@@ -1,0 +1,1 @@
+{"query":{"query":"{&quot;groups&quot;:[&quot;IPM_Document_Status__c&quot;,&quot;IPM_Project__c.IPM_Phase__c&quot;,&quot;IPM_GateDocuments__c&quot;],&quot;measures&quot;:[[&quot;count&quot;,&quot;*&quot;]]}","version":-1.0}}

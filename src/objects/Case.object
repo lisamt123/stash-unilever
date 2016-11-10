@@ -5070,7 +5070,58 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>TODAY</value>
         </filters>
-        <label>CEC Japan - 当日ケース（全件）</label>
+        <label>CEC Japan - 当日受付</label>
+        <language>ja</language>
+        <sharedTo>
+            <role>CEC_Manager_Japan</role>
+            <role>CEC_User_Japan</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Japan3</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CEC_Reason_Code__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Store</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notContain</operation>
+            <value>完了</value>
+        </filters>
+        <label>CEC Japan - コンプレーン</label>
+        <language>ja</language>
+        <sharedTo>
+            <role>CEC_Manager_Japan</role>
+            <role>CEC_User_Japan</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Japan4</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CEC_Reason_Code__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notContain</operation>
+            <value>完了</value>
+        </filters>
+        <label>CEC Japan - 未完了</label>
         <language>ja</language>
         <sharedTo>
             <role>CEC_Manager_Japan</role>
