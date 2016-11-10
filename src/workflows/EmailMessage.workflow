@@ -28,17 +28,8 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>EmailMessage.Incoming</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Case.Status</field>
-            <operation>notEqual</operation>
-            <value>New</value>
-        </criteriaItems>
         <description>CEC : Capture email responses so Case can be highlighted to an advisor</description>
+        <formula>NOT($Permission.CEC_Disable_Email_Message_Trigger)  &amp;&amp;  Incoming &amp;&amp;   NOT( ISPICKVAL( Parent.Status , &apos;New&apos;) )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
