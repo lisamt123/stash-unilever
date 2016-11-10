@@ -1,4 +1,3 @@
 src
 src/permissionsets
-src/permissionsets/FS_NA_Non_DDM.permissionset
-src/permissionsets/FS_RussiaSalesRep.permissionset
+src/permissionsets/FS_Sales_Rep.permissionset
