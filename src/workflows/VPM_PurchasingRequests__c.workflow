@@ -120,6 +120,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_BankReworks</fullName>
+        <description>VPM -used to track no of times bank sends for rework</description>
+        <field>VPM_BankValidatorReworks__c</field>
+        <formula>VPM_BankValidatorReworks__c  + 1</formula>
+        <name>Bank Reworks</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_ChangeAdvanceFormSubmittedtonull</fullName>
         <description>VPM - Reset Advance form Submitted Flag</description>
         <field>VPM_AdvancedFormSubmitted__c</field>
@@ -360,11 +370,31 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_FLSReworks</fullName>
+        <description>VPM - used to track no of times FLS sends for rework</description>
+        <field>VPM_FLSReworks__c</field>
+        <formula>VPM_FLSReworks__c  + 1</formula>
+        <name>FLS Reworks</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_FinanceApprovedTime</fullName>
         <description>VPM- Time when the finance approves the request.</description>
         <field>VPM_FinanceApproval__c</field>
         <formula>NOW()</formula>
         <name>Finance Approved Time</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_FinanceReworks</fullName>
+        <description>VPM - no of times Finance sends to reworl</description>
+        <field>VPM_FinanceReworls__c</field>
+        <formula>VPM_FinanceReworls__c  + 1</formula>
+        <name>Finance Reworks</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -400,6 +430,16 @@
         <operation>Literal</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_FreightReworks</fullName>
+        <description>VPM - used to track number of timed Freight sends to rework</description>
+        <field>VPM_FreightReworks__c</field>
+        <formula>VPM_FreightReworks__c  + 1</formula>
+        <name>Freight Reworks</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_IsInApprovalProcessBlank</fullName>
@@ -612,6 +652,16 @@
         <field>VPM_RussianCustomsTaxApporval__c</field>
         <formula>NOW()</formula>
         <name>Russian Approved Time</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_RussianReworks</fullName>
+        <description>VPM - used to track no of time russian custom tax sends for rework</description>
+        <field>VPM_RussianCustomTaxReworks__c</field>
+        <formula>VPM_RussianCustomTaxReworks__c  + 1</formula>
+        <name>Russian Reworks</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
