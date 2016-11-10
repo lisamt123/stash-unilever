@@ -301,7 +301,7 @@ public class WWP_LossTree_Test {
     try{
         wwpLt.showPanelsDiv1();
     }catch(Exception e){
-        string msg = e.getMEssage();
+        system.debug(''+e.getmessage());
     }
     Test.stopTest();    
     }
