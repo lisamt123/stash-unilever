@@ -1957,10 +1957,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               
               softValidate(currentFinancial);
               
-              //set the isFinancialInvalid__c flag on the financial (as true or false). If the new value is different from the old one then update the financial record
-              //method checkIsFinancialInvalid sets the flag appropriately
-              checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
-            
+	      //the invalid flags are set from the IPM_FinancialYearHelper
+
               financialsToUpdateSet.clear();
               //logic to calculate the consolidated financials validation cells value
               if(!currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)  &&  (projectType!= null && !projectType.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) )){
@@ -3606,9 +3604,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * These validation give the list of Red and Yellow erroneous cells (comma seperated string)
     * This string is then used to populate the erroneous cell names in the consolidated financials on creation/page load of financials
     ************************************************************************************************************************/
-    public void setConsolidatedFinancialValidationCells(){
-        try{
-            String queryString = 'SELECT ';
+    public void setConsolidatedFinancialValidationCells()
+    {
+        try
+        {
+        	if(project.IPM_SourceProjectType__c != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+        	{
+        		String queryString = 'SELECT ';
 
             
             //fetch all the financials from the current project
@@ -3689,7 +3691,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
                 
                 initializeFinancials();
-
+        	}
         }
         
         
