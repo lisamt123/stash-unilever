@@ -8,7 +8,6 @@ public class WWP_Losstree_Copy_Component_Ctrl_test{
     String oRString = 'Output Reliability';
     String ORName1 = 'ORName1';
     String ORSubfamily1 = 'ORSubfamily1';
-    String S = '0';
     string B = 'B100';
     String O = 'ORdesc11';
          

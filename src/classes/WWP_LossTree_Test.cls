@@ -298,8 +298,8 @@ public class WWP_LossTree_Test {
     insert wwpMaster;
     ApexPages.currentPage().getParameters().put('firstParams1',wwpMaster.Id);
     try{
-    	wwpLt.showPanelsDiv1();
-    }catch(NullPointerException e){}
+        wwpLt.showPanelsDiv1();
+    }catch(Exception e){}
     Test.stopTest();    
     }
  }
