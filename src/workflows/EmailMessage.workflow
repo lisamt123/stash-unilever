@@ -29,7 +29,7 @@
         </actions>
         <active>true</active>
         <description>CEC : Capture email responses so Case can be highlighted to an advisor</description>
-        <formula>NOT($Permission.CEC_Disable_Email_Message_Trigger)  &amp;&amp;  Incoming &amp;&amp;   NOT( ISPICKVAL( Parent.Status , &apos;New&apos;) )</formula>
+        <formula>NOT($Permission.CEC_Disable_Case_Trigger)  &amp;&amp;  Incoming &amp;&amp;   NOT( ISPICKVAL( Parent.Status , &apos;New&apos;) )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
