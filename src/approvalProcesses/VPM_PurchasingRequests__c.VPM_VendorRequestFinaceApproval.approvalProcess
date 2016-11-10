@@ -220,6 +220,10 @@ RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; || AND(RecordType.
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>VPM_FinanceReworks</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_IsInApprovalProcessBlank</name>
             <type>FieldUpdate</type>
         </action>

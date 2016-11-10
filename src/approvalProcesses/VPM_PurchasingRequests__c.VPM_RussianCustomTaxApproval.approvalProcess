@@ -183,6 +183,10 @@
             <name>VPM_ResetRussianApprovalflag</name>
             <type>FieldUpdate</type>
         </action>
+        <action>
+            <name>VPM_RussianReworks</name>
+            <type>FieldUpdate</type>
+        </action>
     </recallActions>
     <recordEditability>AdminOrCurrentApprover</recordEditability>
     <showApprovalHistory>true</showApprovalHistory>

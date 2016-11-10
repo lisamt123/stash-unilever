@@ -218,6 +218,10 @@
     <label>Bank Validation</label>
     <recallActions>
         <action>
+            <name>VPM_BankReworks</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_ChangeAdvanceFormSubmittedtonull</name>
             <type>FieldUpdate</type>
         </action>

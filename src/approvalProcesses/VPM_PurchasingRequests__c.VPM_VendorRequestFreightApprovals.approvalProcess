@@ -184,6 +184,10 @@
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>VPM_FreightReworks</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_IsInApprovalProcessBlank</name>
             <type>FieldUpdate</type>
         </action>
