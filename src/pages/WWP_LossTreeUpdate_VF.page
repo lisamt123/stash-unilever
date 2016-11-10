@@ -1,4 +1,4 @@
-<apex:page cache="false" sidebar="false" showHeader="false" docType="html-5.0" standardStylesheets="false" controller="WWP_LossTree_CC" >  
+<apex:page cache="false" sidebar="false" showHeader="false" docType="html-5.0" standardStylesheets="false" controller="WWP_LossTree_CC" extensions="WWP_Losstree_EXt" >  
 
    
   <div>  
@@ -42,8 +42,7 @@
     <script type="text/javascript" src="{!URLFOR($Resource.WWP_dataTables, '/DataTables-1.10.11/media/js/dataTables.bootstrap.min.js')}"></script>
     
         
-<link type="text/css" href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.0.3/css/dataTables.checkboxes.css" rel="stylesheet" />
-<script type="text/javascript" src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.0.3/js/dataTables.checkboxes.min.js"></script>
+
 
         
     
@@ -82,20 +81,25 @@ alert('ssss');
 </script> 
 <script>
 function callFunCop(){
+   
     
-    copyfn();
+    var lossname = document.getElementById('j_id0:frm1:j_id22:j_id23:v1').value;
+    var subfam = document.getElementById('j_id0:frm1:j_id22:j_id23:v2').value;
+    var lossDesc = document.getElementById('j_id0:frm1:j_id22:j_id23:v3').value;
+    copyfn(lossname,subfam,lossDesc);
 }
 </script> 
+ 
 <script>
-function resetpickVal(){
+function callAct(){
 
-document.getElementById('j_id0:frm1:v1').value = 'None';
-document.getElementById('j_id0:frm1:v2').value = 'None';
-document.getElementById('j_id0:frm1:v3').value = 'None';
+var ptCode = document.getElementById('j_id0:frm1:p1').value;
+
+showpan(ptCode);
 
 
 }
-</script> 
+</script>
     
     
     
@@ -126,8 +130,8 @@ document.getElementById('j_id0:frm1:v3').value = 'None';
         <div class="form-group">
           <label class="col-lg-2" >Plant Code  </label>
           <div class="col-lg-4"> 
-              <apex:selectList value="{!lossTree.Plant_Code__c}" styleclass="form-control" size="1"  >
-               <apex:actionSupport event="onchange" action="{!showPanelsDiv}"  />
+              <apex:selectList value="{!lossTree.Plant_Code__c}" styleclass="form-control" size="1" id="p1" onchange="callAct();">
+               <!--<apex:actionSupport event="onchange" action="{!showPanelsDiv}"  />-->
                 <apex:selectOptions value="{!listPlantCodes}" />
               </apex:selectList>
          <!-- <apex:inputField value="{!lossTree.Plant_Code__c}" styleclass="form-control"/> -->                                              
@@ -198,7 +202,7 @@ document.getElementById('j_id0:frm1:v3').value = 'None';
             <div class="panel-body">
             
             
-            <div align="center">
+            <!--<div align="center">
             <apex:outputpanel rendered="{!if( lossTree.Loss_Type__c='Dispatch Compliance' || lossTree.Loss_Type__c='Output Reliability',true,false)}" id="pan1">
             Enable Mass Update?
             <apex:inputcheckbox value="{!showMassFeature}">
@@ -209,33 +213,35 @@ document.getElementById('j_id0:frm1:v3').value = 'None';
              <thead>
                 <tr style="background-color:#0080ff">
                     <th></th>
-                    <!--<th></th>-->
-                    <!--<th></th>-->
+                    <th></th>
+                    <th></th>
                     <th class="col-md-2">Loss Level 1</th>
                     <th class="col-md-2">Loss Level 2</th>
                     <th class="col-md-2">Loss Level 3</th>  
-                    <th></th>
+                    <th>Reset</th>
                 </tr>
              </thead>
              <tbody >
                 <tr >
                     <td></td>
-                   <!-- <td></td>-->
-                    <!--<td></td>-->
+                    <td></td>
+                    <td></td>
                     <td><apex:selectList value="{!selectedbox1}" size="1" style="height:30px,width:30px" id="v1" onchange="changes1(this);"><apex:selectOptions value="{!selectbox1all}"/></apex:selectList></td>
                     <td><apex:selectList value="{!selectedbox2}" size="1" style="height:30px,width:30px" id="v2" onchange="changes2(this);"><apex:selectOptions value="{!selectbox2all}"/></apex:selectList></td>
                     <td><apex:selectList value="{!selectedbox3}" size="1" style="height:30px,width:30px" id="v3" onchange="changes3(this);"><apex:selectOptions value="{!selectbox3all}"/></apex:selectList></td>
-                    <td></td>
-                    <!--<td><apex:commandButton value="Reset" onclick="resetpickVal();" style="height:25px" image="{!$Resource.WWP_ResetImage}" rerender="frm1,resetor,resetm,panmass,ds,pan1,v1,v2,v3,tb"/></td>-->
+                    <td><apex:commandButton value="Reset" onclick="resetpickVal();" style="height:25px" image="{!$Resource.WWP_ResetImage}" rerender="resetor,resetm,panmass,ds,pan1,v1,v2,v3,tb"/></td>
                     </tr>
              </tbody>   
             </table>
             <apex:commandbutton value="Copy above values to selected losslevels" styleclass="buttonstyle" onclick="callFunCop();return false" rerender="resetor,resetm,ds,pan1,v1,v2,v3,tb" id="btns"/> 
            </apex:outputpanel>
            </apex:outputpanel>
-           </div>
-            
-            
+           </div>-->
+           <apex:outputpanel rendered="{!if( lossTree.Loss_Type__c='Dispatch Compliance' || lossTree.Loss_Type__c='Output Reliability',true,false)}" id="pan1">
+           <div align="center">
+               <c:WWP_Losstree_Copy_Component selectType="{!lossTree.Loss_Type__c}"/>
+          </div>
+           </apex:outputpanel> 
            <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c='Output Reliability',true,false)}"  >
              <div class="table-responsive" >
                     <table id="myTable1" class="display table" width="100%" >
@@ -351,8 +357,8 @@ document.getElementById('j_id0:frm1:v3').value = 'None';
                                     <td>{!w.wlt.Actual_Receipt__c}</td> 
                                     <td>{!w.wlt.MRP_Loss_Value__c}</td>
                                     
-                                    <td><apex:selectList value="{!w.selectbox1}" size="1" style="height:30px;width:100px" onchange="change12('{!w.i}',this);" id="mrp1"><apex:selectOptions value="{!w.listbox1}"/></apex:selectList></td>
-                                    <td><apex:selectList value="{!w.selectbox2}" size="1" style="height:30px;width:100px" onchange="change21('{!w.i}',this);" id="mrp2"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
+                                    <td><apex:selectList value="{!w.selectbox1}" size="1" style="height:30px;width:100px"  id="mrp1"><apex:selectOptions value="{!w.listbox1}"/></apex:selectList></td>
+                                    <td><apex:selectList value="{!w.selectbox2}" size="1" style="height:30px;width:100px"  id="mrp2"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
                                     <td><apex:inputtext value="{!w.Remarks}" id="rem1"/></td>
                                     <td><apex:commandButton title="Reset" style="height:25px" image="{!$Resource.WWP_ResetImage}" value="Reset" onclick="resetAll('{!w.i}');" rerender="resetm"/>  </td>
                                     
@@ -444,31 +450,34 @@ document.getElementById('j_id0:frm1:v3').value = 'None';
            <apex:param name="firstParam3" value="" />
            <apex:param name="secondParam3" value="" />           
            </apex:actionFunction>
-           <apex:actionFunction action="{!controlmrp12}" rerender="mrp1,mrp2,rem1" name="AFchange12">
+          <!-- <apex:actionFunction action="{!controlmrp12}" rerender="mrp1,mrp2,rem1" name="AFchange12">
            <apex:param name="mrpfirstParam" value="" />
            <apex:param name="mrpsecondParam" value="" />           
            </apex:actionFunction>
            <apex:actionFunction action="{!controlmrp21}" rerender="mrp1,mrp2,rem1,inputId1" name="AFchange21">
            <apex:param name="mrpfirstParam2" value="" />
            <apex:param name="mrpsecondParam2" value="" />           
-           </apex:actionFunction>
-           <apex:actionFunction action="{!resetline}" rerender="or1,or2,or3,mrp1,mrp2,dc1,dc2,dc3,rem,rem1,rem2,inputId,inputId1,inputId2" name="resetvalues" status="dcstatus">
+           </apex:actionFunction>-->
+           <apex:actionFunction action="{!resetline}" rerender="or1,or2,or3,mrp1,mrp2,dc1,dc2,dc3,rem,rem1,rem2" name="resetvalues" status="dcstatus">
            <apex:param name="resetite" value="" />                   
            </apex:actionFunction>
             <apex:actionFunction action="{!copyline}" rerender="frm1,pan1" name="copyfn" status="dcstatus" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')">
+            <apex:param name="losssecondParam1" value="" />
+           <apex:param name="losssecondParam2" value="" />
+            <apex:param name="losssecondParam3" value="" />
             </apex:actionfunction>
             
-            <apex:actionFunction action="{!controls1}" rerender="v1,v2,v3,panmass,pan1" name="AFchanges1">          
+           <apex:actionFunction action="{!showPanelsDiv1}" rerender="tpan,frm1" name="showpan">          
            <apex:param name="firstParams1" value="" />           
            </apex:actionFunction>
            
-           <apex:actionFunction action="{!controls2}" rerender="v1,v2,v3,panmass,pan1" name="AFchanges2">          
+           <!--<apex:actionFunction action="{!controls2}" rerender="v1,v2,v3,panmass,pan1" name="AFchanges2">          
            <apex:param name="firstParams2" value="" />          
            </apex:actionFunction>
            
            <apex:actionFunction action="{!controls3}" rerender="v1,v2,v3,panmass,pan1" name="AFchanges3">          
            <apex:param name="firstParams3" value="" />           
-           </apex:actionFunction>
+           </apex:actionFunction>-->
            
     </apex:form>
     </body>
@@ -478,15 +487,15 @@ document.getElementById('j_id0:frm1:v3').value = 'None';
                
   <script type="text/javascript">
        function selectAllCheckboxes(obj,receivedInputID){
-          var inputCheckBox = document.getElementsByTagName("input");                  
+            var inputCheckBox = document.getElementsByTagName("input");                  
             for(var i=0; i<inputCheckBox.length; i++){          
                 if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                    
                     inputCheckBox[i].checked = obj.checked;
                 }
             }
-            }
+        }
     </script>
-   
+
     
                
 <script>
@@ -518,7 +527,6 @@ function resetAll(ite){
 }
 </script>
 <script>
-
 function changes1(lossname){
     
    AFchanges1(lossname.value);
@@ -545,15 +553,18 @@ function copy(){
 }
 //=============================
 </script>
-
 <script>
 j$ = jQuery.noConflict();
 
 
 j$(document).ready(function() {
 
-var table = j$('#myTable1').dataTable();
-  
+var table = j$('#myTable1').DataTable();
+ 
+j$('#myTable1').on( 'page.dt', function () {
+    alert('test');
+   
+} );
 
 } );
 
@@ -571,7 +582,7 @@ var losstype = j$('[id$="lossT"]').val();
     j$('[id$="myTable1"]').dataTable({
         "paging":true,"ordering": true, "fixedColumns": true,"info":  false,"bFilter": false,"order": [[ 4, "asc" ], [8,"asc"],[1,"asc"]],
        "columnDefs": [ { "orderable": false, "targets": [0,9,10,11,12,13,14]}  ],"bStateSave": true,"scrollY": 300, "scrollX":300,"bSearchable":false,
-        "bLengthChange": true,"deferRender": true});}
+        "bLengthChange": true});}
     if(losstype == 'Dispatch Compliance'){
     j$('[id$="myTable1"]').dataTable({
         "paging":true,"ordering": true, "fixedColumns": true,"info":  false,"bFilter": false,"order": [[ 4, "asc" ], [8,"asc"],[1,"asc"]],

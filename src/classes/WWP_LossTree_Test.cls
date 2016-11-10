@@ -78,11 +78,7 @@ public class WWP_LossTree_Test {
         wwp.selectedWeek= '201512';
         wwp.dispalyAll = true;
         
-        
-        
-        
-        
-        wwp.showPanelsDiv();
+     
         wwp.fetchLossTree();
         
         
@@ -113,26 +109,19 @@ public class WWP_LossTree_Test {
         
         Apexpages.currentPage().getParameters().put('mrpfirstParam',S);
         Apexpages.currentPage().getParameters().put('mrpsecondParam','ORName2');
-        wwp.controlMRP12();
+       
         
         Apexpages.currentPage().getParameters().put('mrpfirstParam2',S);
         Apexpages.currentPage().getParameters().put('mrpsecondParam2','ORSubfamily21');
-        wwp.controlMRP21();
         
         Apexpages.currentPage().getParameters().put('resetite',S);
         wwp.resetline();
         
         wwp.control2123();
         
-        wwp.showPanelmassUpdate();
         
-        Apexpages.currentPage().getParameters().put('secondParam',ORName1);
-        wwp.controls1();
         
-        Apexpages.currentPage().getParameters().put('secondParam2',ORSubfamily1);
-        wwp.controls2();
-        Apexpages.currentPage().getParameters().put('secondParam3',O);
-        wwp.controls3();
+       
         wwp.copyline();
         
         
@@ -235,7 +224,7 @@ public class WWP_LossTree_Test {
         
         
         
-        wwp.showPanelsDiv();
+        
         wwp.fetchLossTree();
         
         
@@ -266,26 +255,12 @@ public class WWP_LossTree_Test {
         
         Apexpages.currentPage().getParameters().put('mrpfirstParam',S);
         Apexpages.currentPage().getParameters().put('mrpsecondParam','ORName2');
-        wwp.controlMRP12();
         
         Apexpages.currentPage().getParameters().put('mrpfirstParam2',S);
         Apexpages.currentPage().getParameters().put('mrpsecondParam2','ORSubfamily21');
-        wwp.controlMRP21();
-        
         Apexpages.currentPage().getParameters().put('resetite',S);
         wwp.resetline();
-        
-        wwp.control2123();
-        
-        wwp.showPanelmassUpdate();
-        
-        Apexpages.currentPage().getParameters().put('secondParam',ORName1);
-        wwp.controls1();
-        
-        Apexpages.currentPage().getParameters().put('secondParam2',ORSubfamily1);
-        wwp.controls2();
-        Apexpages.currentPage().getParameters().put('secondParam3',O);
-        wwp.controls3();
+       wwp.control2123();
         wwp.copyline();
         
         
@@ -309,5 +284,22 @@ public class WWP_LossTree_Test {
         Test.stopTest();
     }
     
-    
+    Static testMethod void testlosstre3(){
+    Test.Starttest();
+    WWP_LossTree_CC  cc = new WWP_LossTree_CC();
+    WWP_Losstree_EXt wwpLt = new WWP_Losstree_EXt(cc);
+    wwpLt.code1 = 'testcode';
+    //wwpLt.plantCode = decimal.valueof('100.00');
+    wwpLt.showingPanel = true;  
+    WWP_Master_Table__c wwpMaster = new WWP_Master_Table__c();
+    wwpMaster.name = 'B100';
+    wwpMaster.OR_Tolerance__c = 95;
+    wwpLt.plantCode = 95.00;
+    insert wwpMaster;
+    ApexPages.currentPage().getParameters().put('firstParams1',wwpMaster.Id);
+    try{
+    	wwpLt.showPanelsDiv1();
+    }catch(NullPointerException e){}
+    Test.stopTest();    
+    }
  }
