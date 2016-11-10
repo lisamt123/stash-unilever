@@ -32,7 +32,7 @@ src/classes/CEC_Util.cls-meta.xml
 src/classes/cec_TestEmailMessageHelper.cls
 src/classes/cec_TestEmailMessageHelper.cls-meta.xml
 src/email/CEC_Unilever
-src/email/CEC_Unilever/CEC_Unilever-meta.xml
+src/email/CEC_Unilever-meta.xml
 src/email/CEC_Unilever/CEC_TH_Exception_Notification_Email.email
 src/email/CEC_Unilever/CEC_TH_Exception_Notification_Email.email-meta.xml
 src/layouts/Case-Case Feed Layout.layout
