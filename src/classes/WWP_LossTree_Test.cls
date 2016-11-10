@@ -296,10 +296,13 @@ public class WWP_LossTree_Test {
     wwpMaster.OR_Tolerance__c = 95;
     wwpLt.plantCode = 95.00;
     insert wwpMaster;
+    system.assertEquals('B100',wwpMaster.name);
     ApexPages.currentPage().getParameters().put('firstParams1',wwpMaster.Id);
     try{
         wwpLt.showPanelsDiv1();
-    }catch(Exception e){}
+    }catch(Exception e){
+        string msg = e.getMEssage();
+    }
     Test.stopTest();    
     }
  }
