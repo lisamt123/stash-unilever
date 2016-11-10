@@ -12,4 +12,4 @@ src/objects/Case.object
 src/objects/CEC_Case_Market_Mapping__c.object
 src/queues/CEC_Brand_Ambassador.queue
 src/workflows/Case.workflow
-src/workflows/Emailmessage.workflow
+src/workflows/EmailMessage.workflow

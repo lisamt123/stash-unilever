@@ -54,4 +54,4 @@ src/queues/CEC_Brand_Ambassador.queue
 src/tabs/CEC_Exception_Log__c.tab
 src/workflows/Case.workflow
 src/workflows/TH1__Draft__c.workflow
-src/workflows/Emailmessage.workflow
+src/workflows/EmailMessage.workflow
