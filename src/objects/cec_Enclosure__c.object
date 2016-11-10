@@ -102,6 +102,10 @@
                 <fullName>E-Voucher</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>SMS Credit</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -248,6 +252,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Latvia</fullName>
                 <default>false</default>
             </picklistValues>
@@ -377,6 +385,7 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>

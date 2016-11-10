@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
-        <field>CUST_NAME</field>
+        <field>GEL_Global_Exception_Log__c.REF_Number__c</field>
     </columns>
     <format>Matrix</format>
     <groupingsAcross>

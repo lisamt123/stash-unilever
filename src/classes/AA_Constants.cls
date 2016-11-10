@@ -42,6 +42,10 @@ public with sharing class AA_Constants {
     public static final String GlobalString='Global';
     public static final String SourceSample='Overheard from 3rd parties, Unsolicited';
     public static final String NextLineText='\n\n';
+    public static final String MyReportSample='MyReports';
+    public static final String FilteredReportSample='FilteredReports';
+    public static final String SortLikeType='ShowMostlikedFirst';
+    public static final String SortLatestType='ShowLatestFirst';
     
     public static final String CompetitorBrandNameSample='BBOthers';
     public static final String TestEuropeString='Test Europe';
@@ -52,8 +56,10 @@ public with sharing class AA_Constants {
     public static final String StringSecondRandomNumber='3456';
     public static final String StringfilterReports='filterReports';
     public static final String SVC_AGENT_APP_AUTOCOMPLETELIST='getAutocompleteList';
-    
-   //cluster names Constants
+    public static final String nullString='null';
+    public static final String fromString=' from '; 
+    public static final String selectString='select '; 
+    //cluster names Constants
    public static final String CLUSTER_AFRICA='Africa';
        public static final String CLUSTER_EUROPE='Europe';
        public static final String CLUSTER_LATIN_AMERICA='Latin America';
@@ -63,5 +69,5 @@ public with sharing class AA_Constants {
        public static final String CLUSTER_NORTH_ASIA='North Asia';
        public static final String CLUSTER_SEAA='SEAA';
    
-   
+    public static final String CUSTOM_SETTING_NAME='GoogleMap';
 }

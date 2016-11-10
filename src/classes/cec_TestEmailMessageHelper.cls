@@ -246,7 +246,7 @@ public class cec_TestEmailMessageHelper{
             mail.setHTMLBody(msgString);
             Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
             
-            CEC_Util.sendNotificationEmail(msgString, emailSubject);
+           // CEC_Util.sendNotificationEmail(msgString, emailSubject);
         }
         Test.stopTest(); 
         

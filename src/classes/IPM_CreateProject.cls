@@ -60,6 +60,7 @@ Global with sharing class IPM_CreateProject { //It is global class since we have
         try {
             
             // Insert the bosscard.
+            ipmBosscard.IPM_Bosscard_Owner__c=userinfo.getuserid(); 
             insert ipmBosscard; //Need to insert only one bosscard
             return ipmBosscard.id;
         }

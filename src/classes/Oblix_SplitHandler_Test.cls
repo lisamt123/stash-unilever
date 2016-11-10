@@ -1,6 +1,6 @@
 @isTest
 public with sharing class Oblix_SplitHandler_Test {
-
+static String error_msg;
     private static String buildErrorMessage(Database.Error[] errs){
         String errorMsg = '';
         // Operation failed, get all errors. What was the cause?                
@@ -10,10 +10,10 @@ public with sharing class Oblix_SplitHandler_Test {
         return errorMsg;
     }
 
-	@isTest static void Oblix_SplitHandler_Test(){
+    @isTest static void Oblix_SplitHandler_Test(){
 
         insert Oblix_TestUtils.createOblixCustomSettings();
-		User u = Oblix_TestUtils.createTestUser();
+        User u = Oblix_TestUtils.createTestUser();
         
         System.runAs(u) {
             Test.startTest();
@@ -30,7 +30,7 @@ public with sharing class Oblix_SplitHandler_Test {
                 // insert with no errors
                 save_result = Database.insert(list_project_splits_to_insert, false);
                 Boolean has_error = false;
-                String error_msg = '';
+                error_msg = '';
 
                 for(Database.SaveResult ur : save_result){ 
                     if (!ur.isSuccess()){
@@ -68,5 +68,5 @@ public with sharing class Oblix_SplitHandler_Test {
 
             Test.stopTest();
         }
-	}
+    }
 }

@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>IPM_Milestone_Due_Date_in_Past_For_PLE</fullName>
+        <description>IPM Milestone Due Date in Past For PLE</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Deputy_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Gatekeeper_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_Due_Date_in_past_For_PLE</template>
+    </alerts>
+    <alerts>
         <fullName>IPM_Milestone_Due_Date_in_the_past</fullName>
         <description>IPM Milestone Due Date in the past</description>
         <protected>false</protected>
@@ -57,6 +76,25 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>IPM Milestone Due Date in Past For PLE</fullName>
+        <actions>
+            <name>IPM_Milestone_Due_Date_in_Past_For_PLE</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(
+ IPM_Milestone_Due_Date_In_Past__c = true,
+ NOT(ISPICKVAL( IPM_Phase__c , &apos;Post Launch Evaluation&apos;)),
+ IPM_Project__r.Is_Archieved__c = false,
+ ISPICKVAL( IPM_Type_of_Milestone__c , &apos;Standard&apos;),
+ IPM_Completed__c = false,
+ CreatedDate  &lt;&gt;  LastModifiedDate,
+ OR( IPM_Name__c  = &apos;Target Launch Date(Ship to Trade)&apos; ,
+     IPM_Name__c  = &apos;Ship To Trade (Target Launch Date)&apos; )
+)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>IPM Milestone Due Date in the Past</fullName>
         <actions>
             <name>IPM_Milestone_Due_Date_in_the_past</name>
@@ -69,7 +107,9 @@
  IPM_Project__r.Is_Archieved__c = false,
  ISPICKVAL( IPM_Type_of_Milestone__c , &apos;Standard&apos;),
  IPM_Completed__c = false,
- CreatedDate  &lt;&gt;  LastModifiedDate   
+ CreatedDate  &lt;&gt;  LastModifiedDate,
+ AND( IPM_Name__c  &lt;&gt; &apos;Target Launch Date(Ship to Trade)&apos; ,
+     IPM_Name__c  &lt;&gt; &apos;Ship To Trade (Target Launch Date)&apos; )
 )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

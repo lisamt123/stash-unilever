@@ -1,0 +1,12 @@
+src
+src/customPermissions
+src/permissionsets
+src/layouts
+src/objects
+src/workflows
+src/customPermissions/CEC_Disable_Email_Message_Trigger.customPermission
+src/sharingRules/CEC_Disable_All_Trigger.permissionset
+src/layouts/Case-Case Feed Layout.layout
+src/objects/Case.object
+src/workflows/Case.workflow
+src/workflows/Emailmessage.workflow

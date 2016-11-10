@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Сегментация</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Сегментации</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Сегментация</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Сегментации</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Сегментация</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Сегментации</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Сегментация</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Сегментации</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>false</plural>
+        <value>Сегментация</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>true</plural>
+        <value>Сегментации</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>false</plural>
+        <value>Сегментация</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>true</plural>
+        <value>Сегментации</value>
+    </caseValues>
+    <fields>
+        <label>Средняя цена за питание</label>
+        <name>FS_AveragePricePerMeal__c</name>
+    </fields>
+    <fields>
+        <label>Фактор удобства</label>
+        <name>FS_ConvenienceFactor__c</name>
+    </fields>
+    <fields>
+        <label>Дней в неделю</label>
+        <name>FS_DaysPerWeek__c</name>
+    </fields>
+    <fields>
+        <label>Финальный потенциал</label>
+        <name>FS_FinalPotential__c</name>
+    </fields>
+    <fields>
+        <label>Цена за питание</label>
+        <name>FS_FoodCost__c</name>
+    </fields>
+    <fields>
+        <label>Цена за питание %</label>
+        <name>FS_FoodPriceValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Food Turnover (RUB) --></label>
+        <name>FS_FoodTurnoverRUB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Food Turnover (EUR) --></label>
+        <name>FS_FoodTurnover__c</name>
+    </fields>
+    <fields>
+        <label>Питание в день</label>
+        <name>FS_MealsPerDay__c</name>
+    </fields>
+    <fields>
+        <label><!-- Potential UFS Share of Food Cost Euro --></label>
+        <name>FS_PotentialUFSShareOfFoodCostEuro__c</name>
+    </fields>
+    <fields>
+        <label><!-- Potential UFS Share of Food Cost % --></label>
+        <name>FS_PotentialUFSShareOfFoodCost__c</name>
+    </fields>
+    <fields>
+        <label>Недель в год</label>
+        <name>FS_WeeksPerYear__c</name>
+    </fields>
+    <gender>Neuter</gender>
+    <nameFieldLabel>Сегментация</nameFieldLabel>
+</CustomObjectTranslation>

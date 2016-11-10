@@ -74,6 +74,8 @@ public with sharing class IPM_ProjectSectionContentHelper
                                            projectDocSecContent.IPM_OTIF_HelpText_NA__c = os.OTIF_Help_Text__c;
                                            projectDocSecContent.IPM_OTIF_Sequence__c = os.OTIF_Sequence_Number__c; //sequence number for OTIF
                                            projectDocSecContent.Section_Content_Ext_Id__c=os.IPM_External_Id__c;
+                                           projectDocSecContent.DependentFieldAPIName__c = os.Dependent_Field__c;
+                                           projectDocSecContent.IPM_OTIF_Question_Help_Text__c = os.OTIF_Question_Readonly_Help_Text__c;
                                            
                                            if(sectionInformation.get(os.IPM_External_Id__c)!=null){
                                                projectDocSecContent.IPM_Section_Id__c = sectionInformation.get(os.IPM_External_Id__c).Id;
@@ -350,15 +352,6 @@ public with sharing class IPM_ProjectSectionContentHelper
                 IPM_Project__c parentProject = null;
                 List<IPM_Gate_CMI__c> parentProjectCMIGates = new List<IPM_Gate_CMI__c>();
                 
-                IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(currentProject);
-                
-                List<IPM_Project_Type__c> previousPhasesList = IPM_Utils.getPreviousPhases(currentProjectType,true);
-               /* Set<String> previousGates = new Set<String>();
-                
-                for(IPM_Project_Type__c projectType : previousPhasesList)
-                {
-                    previousGates.add(projectType.IPM_Gate_Document__c);
-                }*/
                 
                 List<IPM_Gate_CMI__c> targetCMIRecords = new List<IPM_Gate_CMI__c>();
                 
@@ -778,8 +771,6 @@ public with sharing class IPM_ProjectSectionContentHelper
                         associatedCountriesMap = IPM_ProjectHelper.projectToCountryMap.get(project.Id);
                     }
                     
-                    List<IPM_Project_Document_Section_Content__c> targetSectionContentList = new List<IPM_Project_Document_Section_Content__c>();
-                    
                     for(IPM_Project_Document_Section_Content__c sectionContent : IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id))
                     {
                         if(targetProjectDocumentSection!=null && sectionContent.IPM_Content_Type__c == IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE)
@@ -853,7 +844,6 @@ public with sharing class IPM_ProjectSectionContentHelper
             { 
                 IPM_Project__c currentProject = projectMap.get(project.Id);
                 IPM_Project__c parentProject = null;
-                Boolean referParentContent = false;
                 if(project.IPM_Parent_Project__c !=null)
                 {
                     if(IPM_ProjectHelper.projectMasterMap.containsKey(project.IPM_Parent_Project__c) && IPM_ProjectHelper.projectMasterMap.get(project.IPM_Parent_Project__c)!=null)
@@ -969,7 +959,6 @@ public with sharing class IPM_ProjectSectionContentHelper
                                                     IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
                                                   {
                                                     sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                    referParentContent = true;
                                                   }  
                                                   break;
                                             }
@@ -986,7 +975,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                 if(sourceProjectDocSection!=null && IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && 
                     IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null )
                 {
-                    List<IPM_Project_Document_Section_Content__c> targetSectionContentList = new List<IPM_Project_Document_Section_Content__c>();
+                    
                     for(IPM_Project_Document_Section_Content__c sectionContent : IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id))
                     {
                         if(sectionContent.IPM_Content_Type__c == IPM_ConstantUtils.CUSTOMER_CHANNEL_SECTION)
@@ -1052,7 +1041,6 @@ public with sharing class IPM_ProjectSectionContentHelper
             { 
                 IPM_Project__c currentProject = projectMap.get(project.Id);
                 IPM_Project__c parentProject = null;
-                Boolean referParentContent = false;
                 if(project.IPM_Parent_Project__c !=null)
                 {
                     if(IPM_ProjectHelper.projectMasterMap.containsKey(project.IPM_Parent_Project__c) && IPM_ProjectHelper.projectMasterMap.get(project.IPM_Parent_Project__c)!=null)
@@ -1169,7 +1157,6 @@ public with sharing class IPM_ProjectSectionContentHelper
                                                     IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
                                                   {
                                                     sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                    referParentContent = true;
                                                   }  
                                                   break;
                                             }
@@ -1186,7 +1173,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                 if(sourceProjectDocSection!=null && IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && 
                     IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null )
                 {
-                    List<IPM_Project_Document_Section_Content__c> targetSectionContentList = new List<IPM_Project_Document_Section_Content__c>();
+                    
                     for(IPM_Project_Document_Section_Content__c sectionContent : IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id))
                     {
                         if(sectionContent.IPM_Content_Type__c == IPM_ConstantUtils.FINANCIAL_ACTION_STANDARDS)
@@ -1246,7 +1233,7 @@ public with sharing class IPM_ProjectSectionContentHelper
             { 
                 IPM_Project__c currentProject = projectMap.get(project.Id);
                 IPM_Project__c parentProject = null;
-                Boolean referParentContent = false;
+                
                 if(project.IPM_Parent_Project__c !=null)
                 {
                     if(IPM_ProjectHelper.projectMasterMap.containsKey(project.IPM_Parent_Project__c) && IPM_ProjectHelper.projectMasterMap.get(project.IPM_Parent_Project__c)!=null)
@@ -1362,7 +1349,6 @@ public with sharing class IPM_ProjectSectionContentHelper
                                                     IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
                                                   {
                                                     sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                    referParentContent = true;
                                                   }  
                                                   break;
                                             }
@@ -1379,7 +1365,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                 if(sourceProjectDocSection!=null && IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && 
                     IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null )
                 {
-                    List<IPM_Project_Document_Section_Content__c> targetSectionContentList = new List<IPM_Project_Document_Section_Content__c>();
+                    
                     for(IPM_Project_Document_Section_Content__c sectionContent : IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id))
                     {
                         if(sectionContent.IPM_Content_Type__c == IPM_ConstantUtils.CUCOMPLEXITY_CONTENT_TYPE )
@@ -1426,7 +1412,6 @@ public with sharing class IPM_ProjectSectionContentHelper
             { 
                 IPM_Project__c currentProject = projectMap.get(project.Id);
                 IPM_Project__c parentProject = null;
-                Boolean referParentContent = false;
                 if(project.IPM_Parent_Project__c !=null)
                 {
                     if(IPM_ProjectHelper.projectMasterMap.containsKey(project.IPM_Parent_Project__c) && IPM_ProjectHelper.projectMasterMap.get(project.IPM_Parent_Project__c)!=null)
@@ -1543,7 +1528,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                                                     IPM_ProjectHelper.projectSectionMap.get(projectSection.Id)!=null)
                                                   {
                                                     sourceProjectDocSection = IPM_ProjectHelper.projectSectionMap.get(projectSection.Id);
-                                                    referParentContent = true;
+                                                    
                                                   }  
                                                   break;
                                             }
@@ -1560,7 +1545,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                 if(sourceProjectDocSection!=null && IPM_ProjectHelper.DBprojectSectionSpecificContentMap.containsKey(sourceProjectDocSection.Id) && 
                     IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id)!=null )
                 {
-                    List<IPM_Project_Document_Section_Content__c> targetSectionContentList = new List<IPM_Project_Document_Section_Content__c>();
+                    
                     for(IPM_Project_Document_Section_Content__c sectionContent : IPM_ProjectHelper.DBprojectSectionSpecificContentMap.get(sourceProjectDocSection.Id))
                     {
                         if(sectionContent.IPM_Content_Type__c == IPM_ConstantUtils.Assumptions )

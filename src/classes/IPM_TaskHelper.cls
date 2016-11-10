@@ -65,7 +65,7 @@ public with sharing class IPM_TaskHelper {
                projectIdSet.add(task.IPM_Project__c);
            }
                
-           List<IPM_Milestone__c> milestoneList = [SELECT Id,IPM_Due_Date__c,IPM_Phase__c,IPM_Project__c FROM IPM_Milestone__c WHERE IPM_Project__c IN : projectIdSet AND IPM_Due_Date__c != null AND IPM_Type_of_Milestone__c=: IPM_Utils.Standard];
+           List<IPM_Milestone__c> milestoneList = [SELECT Id,IPM_Due_Date__c,IPM_Phase__c,IPM_Project__c FROM IPM_Milestone__c WHERE IPM_Project__c IN : projectIdSet AND IPM_Due_Date_isNull__c = :IPM_ConstantUtils.IPM_false AND IPM_Type_of_Milestone__c=: IPM_Utils.Standard];
            
            if(milestoneList != null && !milestoneList.isEmpty()){  
                for(IPM_Task__c task : taskList){
@@ -109,7 +109,7 @@ public with sharing class IPM_TaskHelper {
                                 
             for(IPM_Task__c eachTask :  [SELECT IPM_Assignee__c, IPM_Function__c, IPM_Project__c FROM IPM_Task__c 
                                                                     WHERE IPM_Project__c IN :projectIds
-                                                                    AND IPM_Function__c IN :functionalRolesSet AND IPM_Completed__c != true]) {
+                                                                    AND IPM_Function__c IN :functionalRolesSet AND IPM_Completed__c = false]) {
                 IPM_Task__c tskObj = eachTask;
                 tskObj.IPM_Assignee__c = functionalRoleUserMap.get(eachTask.IPM_Function__c+'-'+eachTask.IPM_Project__c);
                 tasksToUpdate.add(tskObj);
@@ -340,10 +340,10 @@ public with sharing class IPM_TaskHelper {
     public static void assignUserToTask(set<Id> projectIdSet){
         
         // query all the task belonging to thhe project 
-        list<IPM_Project__c>projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Leader__c,
+        list<IPM_Project__c>projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Leader__c,IPM_Technical_Project_Leader__c,
                                                     (SELECT Id,IPM_User__c,IPM_Role_Type__c,IPM_Project_Role_Owner__c FROM IPM_Project_Resources__r),
                                                     (Select Id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Function__c,IPM_Type_of_Gate__c,IPM_Assignee__c,IPM_Active__c,IPM_Completed__c
-                                                    from Tasks__r where IPM_Completed__c != true)
+                                                    from Tasks__r where IPM_Completed__c = false)
                                                 from IPM_Project__c where Id IN:projectIdSet];
         
         //create functional role and assignee map for each project
@@ -366,6 +366,11 @@ public with sharing class IPM_TaskHelper {
                     if(funcAssigneeIdMap.containsKey(eachTask.IPM_Function__c) && eachTask.IPM_Assignee__c != funcAssigneeIdMap.get(eachTask.IPM_Function__c) )
                     {
                         tskObj.IPM_Assignee__c = funcAssigneeIdMap.get(eachTask.IPM_Function__c);
+                        tasksToUpdate.add(tskObj);
+                    }
+                    else if(eachTask.IPM_Function__c.equalsIgnoreCase('TPL') && eachTask.IPM_Assignee__c != project.IPM_Technical_Project_Leader__c)
+                    {
+                    	tskObj.IPM_Assignee__c = project.IPM_Technical_Project_Leader__c;
                         tasksToUpdate.add(tskObj);
                     }
                 }
@@ -399,7 +404,7 @@ public with sharing class IPM_TaskHelper {
     {
         for(IPM_Project_Resource__c projectResource : projResList)
         {
-            if(projectResource.IPM_Role_Type__c!=null && projectResource.IPM_Role_Type__c.equalsIgnoreCase(masterTask.IPM_Function__c) && projectResource.IPM_Project_Role_Owner__c)
+            if(projectResource.IPM_Role_Type__c!=null && projectResource.IPM_Role_Type__c.equalsIgnoreCase(newTask.IPM_Function__c) && projectResource.IPM_Project_Role_Owner__c)
             {
                 newTask.IPM_Assignee__c = projectResource.IPM_User__c; 
                 break;
@@ -433,6 +438,14 @@ public with sharing class IPM_TaskHelper {
 		
 		for(IPM_Task__c masterTask : masterTaskList)
     	{
+			list<String> functionalRoleList = new list<String>();
+    		
+    		if(!String.IsBlank(masterTask.IPM_Multiple_Functional_Role__c)){
+    			functionalRoleList = (masterTask.IPM_Multiple_Functional_Role__c).split(';');
+    		}
+    		functionalRoleList.add(masterTask.IPM_Function__c);
+    		
+    		for(String funRole : functionalRoleList){
     		//iterating over the master task list and craete project specific task
         	IPM_Task__c newTask = new IPM_Task__c();
             newTask.IPM_Task_Name__c = masterTask.IPM_Task_Name__c;
@@ -441,7 +454,7 @@ public with sharing class IPM_TaskHelper {
             newTask.IPM_Task_Type__c = masterTask.IPM_Task_Type__c;
             newTask.IPM_Type_of_Gate__c = masterTask.IPM_Type_of_Gate__c;
             newTask.IPM_Phase__c = masterTask.IPM_Phase__c;
-            newTask.IPM_Function__c = masterTask.IPM_Function__c;
+            newTask.IPM_Function__c = funRole;
             newTask.IPM_Version_Number__c = masterTask.IPM_Version_Number__c;
             newTask.IPM_Section__c = masterTask.IPM_Section__c;
             newTask.IPM_Master_Task__c = masterTask.Id;
@@ -467,6 +480,7 @@ public with sharing class IPM_TaskHelper {
 			//insert active task if does not associated with ENVIRONMENTAL IMPACT SECTION SEQUENCE.If Associated check if its project type is not BLG.
 			projectTaskList.add(newTask);
 	 	}
+		}
     	
     	projectToClonedTaskList.put(projectRec.Id,projectTaskList);
  	}
@@ -538,6 +552,10 @@ public with sharing class IPM_TaskHelper {
 					{
 						task.IPM_Active__c = false;
 					} 
+	 			}
+	 			
+	 			if(projectDetail.IPM_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL && task.IPM_Task_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL && task.IPM_Section__c == null){
+	 				task.IPM_Active__c = true;
 	 			}
  			}
  			makeNullDocumentSectionTaskInactive(task);
@@ -1103,6 +1121,59 @@ public with sharing class IPM_TaskHelper {
  		task.IPM_Active__c = false;
  	}
   }  
+     /**************************************************************
+    * @description: Removes duplicate tasks while displayed on vf page 
+    * @param1 taskList : list of tasks
     
- 
+    */
+  public static list<IPM_Task__c> removeDuplicateTaskForUser(list<IPM_Task__c> taskList){
+  		Map<String,IPM_Task__c> masterTaskToProjTaskRecMap = new Map<String,IPM_Task__c>();
+  		list<IPM_Task__c> updatedTaskList = new list<IPM_Task__c>();
+  		
+  		//iterate over whole task list
+  		for(IPM_Task__c taskRec : taskList)
+  		{
+  			if(taskRec.IPM_Master_Task__c != null && taskRec.IPM_Assignee__c != null )
+  			{
+  				//create key as task with different version is assigned to same user
+  				String KeyValue = taskRec.IPM_Project__c + '-' + taskRec.IPM_Master_Task__c + '-' + taskRec.IPM_Assignee__c;
+  				
+  				if((masterTaskToProjTaskRecMap.isEmpty()) || (!masterTaskToProjTaskRecMap.isEmpty() && !masterTaskToProjTaskRecMap.containsKey(KeyValue)))
+  				{
+  					masterTaskToProjTaskRecMap.put(KeyValue,taskRec);
+  				}
+  				//if multiple versions of tasks are assigned to same user get primary functional role task
+  				else if(!masterTaskToProjTaskRecMap.isEmpty() && masterTaskToProjTaskRecMap.containsKey(KeyValue) && 
+  						taskRec.IPM_Master_Task__r.IPM_Multiple_Functional_Role__c != null && taskRec.IPM_Function__c == taskRec.IPM_Master_Task__r.IPM_Function__c)
+  				{
+  					masterTaskToProjTaskRecMap.put(KeyValue,taskRec);
+  				}
+  			}
+  		}
+  		updatedTaskList.addAll(masterTaskToProjTaskRecMap.values());
+  		return updatedTaskList;
+  }
+ 	 /**************************************************************
+    * @description: If tasks with multiple versions are assigned to same user and if one of the tasks is completed other tasks should also be completed
+    * @param1 taskList : list of tasks
+    
+    */
+  public static list<IPM_Task__c> completeOtherRelatedTasks(IPM_Task__c taskRec){
+  	
+  	list<IPM_Task__c> updatedTaskList = new list<IPM_Task__c>();
+  	
+  	//get all versions of the task which is completed/incomplete with same user
+  	for(IPM_Task__c taskOtherRec :  [SELECT IPM_Completed__c, IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Project__c,Id
+								FROM IPM_Task__c 
+								where IPM_Master_Task__c =:taskRec.IPM_Master_Task__c AND IPM_Assignee__c =:taskRec.IPM_Assignee__c AND IPM_Project__c=:taskRec.IPM_Project__c])
+	{
+        if(taskOtherRec.Id != taskRec.ID) {
+            taskOtherRec.IPM_Completed__c = taskRec.IPM_Completed__c; 
+            taskOtherRec.IPM_Completed_Date__c = taskRec.IPM_Completed_Date__c;
+            updatedTaskList.add(taskOtherRec);	
+        }
+	}
+	return 	updatedTaskList;						   
+	
+  }
 }

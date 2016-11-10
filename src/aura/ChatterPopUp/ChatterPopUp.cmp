@@ -1,0 +1,57 @@
+<aura:component controller="ChatterPublisherHandler">
+<aura:attribute name="onclose1" type="Aura.Action" default="{!c.defaultCloseAction1}"/>
+<aura:attribute name="subjectId" type="String" description="Id of element to display related feed, use 'me' to display the feed of current user" />
+<aura:attribute name="feedType" type="String" description="Feed type" />
+<aura:attribute name="textToPost" type="String" />
+<aura:attribute name="recordId" type="Id" description="The current record Id to display" />
+<aura:registerEvent name="chatterRefreshFeed" type="c:ChatterRefreshFeed"/>
+<aura:handler name="ChatterUpdateLookupIdEvent" event="c:ChatterUpdateLookupIdEvent" action="{!c.handleAccountIdUpdate}"/>
+<aura:handler name="ChatterClearLookupIdEvent" event="c:ChatterClearLookupIdEvent" action="{!c.handleAccountIdClear}"/>
+<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+<div class="slds-hide ModalDialogPlaceholderFileUpload">	
+<div class="slds-modal slds-fade-in-open" aria-hidden="true" role="dialog">
+    <div class="slds-modal__container">
+      <div class="slds-modal__header">
+        <button onclick="{!v.onclose1}" class="slds-button slds-button--icon-inverse slds-modal__close">
+          <c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#close"  class="slds-button__icon" ariaHidden="true"/>  
+          <span class="slds-assistive-text">Close</span>
+        </button>
+        <h2 class="slds-text-heading--medium">Select File</h2>
+      </div>
+      <div class="slds-modal__content slds-p-around--medium" style="height:300px">
+	  <div class="slds-media slds-media--responsive">
+       <div id="drop-zone">
+         <div id="clickHere" class="slds-button slds-button--brand" >
+             <span>
+                  <c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#upload"  class="slds-button__icon" ariaHidden="true"/>
+                  Upload File
+             </span>  
+             <input type="file" id="file" style="position: absolute;top: 0;right: 0;margin: 0;padding: 0;font-size: 20px;cursor: pointer;opacity: 0;filter: alpha(opacity=0);"/>                  
+         </div>         
+      </div>
+         
+        <div class="slds-media__body">
+            <div style="border-left: 1px solid rgb(216, 221, 230);padding: 1rem;height:250px;padding-top:0px;margin-left: 16px;">
+            <!-- Lookup component -->          
+            <c:ChatterLookupObject label=" Search File... " pluralLabel="ContentDocument" sObjectAPIName="ContentDocument" listIconSVGPath="/resource/SLDS092/assets/icons/standard-sprite/svg/symbols.svg#account" listIconClass="slds-icon-standard-account" />                  
+            <!-- Record view -->
+            <aura:if isTrue="{!v.recordId!=null}">
+                <span>
+                <force:recordView recordId="{!v.recordId}" />
+                </span>
+            </aura:if>
+             </div>
+        </div>
+      </div>
+       
+      </div>
+      <div class="slds-modal__footer">
+          <ui:button class="slds-button slds-button--neutral" press="{!v.onclose1}" label="Cancel"/>
+          <ui:button class="slds-button slds-button--neutral slds-button--brand" press="{!v.onclose1}" label="Save"/>         
+      </div>
+    </div>
+  </div>
+  <div class="slds-backdrop slds-backdrop--open"></div> 
+ </div>   
+      
+</aura:component>

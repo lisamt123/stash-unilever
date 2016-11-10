@@ -390,11 +390,11 @@ to view there progress as they go throught the program -->
 
            <span id="logos">
 
-                   <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo}" height="117" /></span>
+                   <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo}" alt="FAU Side Logo" height="117" /></span>
 
-                   <span style="display:block; float:left; width:600px;"><img src="/{!FAU_Participant__c.FAU_program_banner_url__c}" height="117" /></span>
+                   <span style="display:block; float:left; width:600px;"><img src="/{!FAU_Participant__c.FAU_program_banner_url__c}" alt="FAU Program Banner" height="117" /></span>
 
-                   <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo_right}" height="117" /></span>
+                   <span style="display:block; float:left;"><img src="{!$Resource.FAU_side_logo_right}" alt="FAU Side Logo Right" height="117" /></span>
 
            </span>
 
@@ -404,15 +404,15 @@ to view there progress as they go throught the program -->
 
            <div id="background-container-one">
 
-			   <apex:outputPanel rendered="{!NOT(pageState=='Declined')}">
-               		<div id="content-header-one">
-                   		WELCOME TO <span id="content-header-blue">FOUR ACRES</span>
-               		</div>
+               <apex:outputPanel rendered="{!NOT(pageState=='Declined')}">
+                    <div id="content-header-one">
+                        WELCOME TO <span id="content-header-blue">FOUR ACRES</span>
+                    </div>
                </apex:outputPanel>
                <apex:outputPanel rendered="{!pageState=='Declined'}">
-               		<div id="content-header-one">
-                    	THANK <span id="content-header-blue">YOU</span>
-                	</div>
+                    <div id="content-header-one">
+                        THANK <span id="content-header-blue">YOU</span>
+                    </div>
                </apex:outputPanel>
 
                
@@ -420,13 +420,13 @@ to view there progress as they go throught the program -->
                <div id="container-one">
                
                
-               		<apex:outputPanel rendered="{!pageState=='Declined'}">
-        				<div style="clear:both; height:200px;"></div>
-            			<br/><br/>
-            			<h2><apex:outputText value="{!$Label.FAU_Invite_Declined}"/></h2>
-            			<div style="clear:both; height:300px;"></div>
-            			<div id="side_bar_right"></div>
-        			</apex:outputPanel>
+                    <apex:outputPanel rendered="{!pageState=='Declined'}">
+                        <div style="clear:both; height:200px;"></div>
+                        <br/><br/>
+                        <h2><apex:outputText value="{!$Label.FAU_Invite_Declined}"/></h2>
+                        <div style="clear:both; height:300px;"></div>
+                        <div id="side_bar_right"></div>
+                    </apex:outputPanel>
                
                    <apex:form rendered="{!NOT(pageState=='Declined')}">
 
@@ -539,15 +539,15 @@ to view there progress as they go throught the program -->
                                <td><apex:image id="Mod_Comp_Img" value="{!IF(MilePart.FAU_Status__c = "Completed", $Resource.FAU_Green,IF((MilePart.FAU_Due_Date__c - 3) < Today(), $Resource.FAU_Red, $Resource.FAU_Orange))}"/></td>
 
                                <td> 
-                               		<apex:outputText value="{0,date,dd' 'MMM' 'yyyy}">
-										<apex:param value="{!MilePart.FAU_Due_Date__c}" /> 
-                               		</apex:outputText> 
+                                    <apex:outputText value="{0,date,dd' 'MMM' 'yyyy}">
+                                        <apex:param value="{!MilePart.FAU_Due_Date__c}" /> 
+                                    </apex:outputText> 
                                </td>
                                
                               <td> 
-                              	<apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+ 'apex/FAU_UpdateParticipantMilestone?id=' +MilePart.Id}">
-                              		{!IF(MilePart.FAU_Milestone__r.FAU_Milestone_Completition__c == 'Participant Update','Update Needed',IF(MilePart.FAU_Milestone__r.FAU_Milestone_Completition__c == 'Information Needed','Insert Information',IF(MilePart.FAU_Milestone__r.FAU_Milestone_Completition__c == 'File Needed','Upload File','View')))}
-                              	</apex:outputlink>
+                                <apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+ 'apex/FAU_UpdateParticipantMilestone?id=' +MilePart.Id}">
+                                    {!IF(MilePart.FAU_Milestone__r.FAU_Milestone_Completition__c == 'Participant Update','Update Needed',IF(MilePart.FAU_Milestone__r.FAU_Milestone_Completition__c == 'Information Needed','Insert Information',IF(MilePart.FAU_Milestone__r.FAU_Milestone_Completition__c == 'File Needed','Upload File','View')))}
+                                </apex:outputlink>
                               </td>
                               
                            </tr>
@@ -634,17 +634,17 @@ to view there progress as they go throught the program -->
 
                        </table>
                        <table style="width:700px; margin-left:auto; margin-right:auto;">
-                       	<tr>
-                       		<td width="10%" style="border-style:none;"><apex:image id="Mod_Comp_Img_Green" value="{!$Resource.FAU_Green}"/></td><td style="border-style:none;vertical-align:middle;">This action has been completed.</td>
-                       	</tr>
-                       	<tr>
-							<td width="10%" style="border-style:none;"><apex:image id="Mod_Comp_Img_Orange" value="{!$Resource.FAU_Orange}"/></td><td style="border-style:none;vertical-align:middle;">This action has still to be done.</td>
-						</tr>
-                       	<tr>
-							<td width="10%" style="border-style:none;"><apex:image id="Mod_Comp_Img_Red" value="{!$Resource.FAU_Red}"/></td><td style="border-style:none;vertical-align:middle;">This action needs your attention as it is close to due or over due.</td>
-						</tr>
-					   </table>
-						
+                        <tr>
+                            <td width="10%" style="border-style:none;"><apex:image id="Mod_Comp_Img_Green" value="{!$Resource.FAU_Green}"/></td><td style="border-style:none;vertical-align:middle;">This action has been completed.</td>
+                        </tr>
+                        <tr>
+                            <td width="10%" style="border-style:none;"><apex:image id="Mod_Comp_Img_Orange" value="{!$Resource.FAU_Orange}"/></td><td style="border-style:none;vertical-align:middle;">This action has still to be done.</td>
+                        </tr>
+                        <tr>
+                            <td width="10%" style="border-style:none;"><apex:image id="Mod_Comp_Img_Red" value="{!$Resource.FAU_Red}"/></td><td style="border-style:none;vertical-align:middle;">This action needs your attention as it is close to due or over due.</td>
+                        </tr>
+                       </table>
+                        
                        <div style="clear:both; height:400px;"></div>
 
                        <div id="side_bar"></div>

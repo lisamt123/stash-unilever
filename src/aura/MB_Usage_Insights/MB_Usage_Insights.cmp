@@ -1,0 +1,112 @@
+<aura:component controller="MB_Controller_Charts">
+    <ltng:require styles="/resource/MB_Charts/slick/slick.css,/resource/MB_Charts/slick/slick-theme.css"
+                  scripts="/resource/MB_Charts/jquery-1.11.1.min.js,
+                           /resource/MB_Charts/slick/slick.min.js"  afterScriptsLoaded="{!c.doinit}"/>
+    <aura:attribute name="DataYou" type="Decimal"></aura:attribute>
+    <aura:attribute name="DataColleagues" type="Decimal"></aura:attribute>
+    <aura:attribute name="CallsYou" type="Decimal"></aura:attribute>
+    <aura:attribute name="CallsColleagues" type="Decimal"></aura:attribute>
+    <aura:attribute name="SMSYou" type="Decimal"></aura:attribute>
+    <aura:attribute name="SMSColleagues" type="Decimal"></aura:attribute>
+    <aura:attribute name="iPassYou" type="Decimal"></aura:attribute>
+    <aura:attribute name="iPassColleagues" type="Decimal"></aura:attribute>
+    <aura:attribute name="deviceName" type="String"/>
+    <aura:attribute name="CurrentMonth" type="String"/>
+    <aura:attribute name="deviceId" type="String"/>
+    <style>
+    .Insights{ 
+            background: #fff;
+            padding: 15px 25px; 
+            width: 93%;
+            margin: 4px auto;
+        	border-radius: 6px;
+    }
+        .slick-dots {
+        	left: 0px;
+        	bottom: -25px;
+        }
+        @media screen and (max-width:320px){
+        .message_body {
+            min-height: 526px;
+        }
+        .linechart{
+        width: 40% !important;
+        }
+        }
+        @media screen and (min-width:350px) and (max-width:500px){
+        .linechart{
+        width: 57%;
+        }
+        }
+    </style>
+    <div class="Insights">
+        <div class="slds-text-body--regular">
+            <div class="slds-text-body--regular">Total Data usage compared with your colleagues</div><br/>
+            <div>
+                <span class="bar_chart">Yours</span>
+                <div class="linechart">
+                    <span class="line_bar_data"></span>
+                </div>
+                <span>{!v.DataYou} MB</span>
+            </div><br/>
+            <div>
+                <span class="bar_chart">Avg</span>
+                <div  class="linechart">
+                    <span class="line_bars_data"></span>
+                </div >
+                <span>{!v.DataColleagues} MB</span>
+            </div> 
+        </div>
+         <div class="slds-text-body--regular">
+            <div class="slds-text-body--regular">Total Calls usage compared with your colleagues</div><br/>
+            <div>
+                <span class="bar_chart">Yours</span>
+                <div class="linechart">
+                    <span class="line_bar_calls"></span>
+                </div>
+                <span>{!v.CallsYou} Mins</span>
+            </div><br/>
+            <div>
+                <span class="bar_chart">Avg</span>
+                <div  class="linechart">
+                    <span class="line_bars_calls"></span>
+                </div >
+                <span>{!v.CallsColleagues} Mins</span>
+            </div> 
+        </div>
+         <div class="slds-text-body--regular">
+            <div class="slds-text-body--regular">Total Message usage compared with your colleagues</div><br/>
+            <div>
+                <span class="bar_chart">Yours.</span>
+                <div class="linechart">
+                    <span class="line_bar_SMS"></span>
+                </div>
+                <span>{!v.SMSYou}</span>
+            </div><br/>
+            <div>
+                <span class="bar_chart">Avg</span>
+                <div  class="linechart">
+                    <span class="line_bars_SMS"></span>
+                </div >
+                <span>{!v.SMSColleagues}</span>
+            </div> 
+        </div>
+         <div class="slds-text-body--regular">
+            <div class="slds-text-body--regular">Total Roaming Data compared with Total Roaming iPass</div><br/>
+            <div>
+                <span class="bar_chart">Data</span>
+                <div class="linechart">
+                    <span class="line_bar_iPass"></span>
+                </div>
+                <span>{!v.iPassYou} MB</span>
+            </div><br/>
+            <div>
+                <span class="bar_chart">iPass</span>
+                <div  class="linechart">
+                    <span class="line_bars_iPass"></span>
+                </div >
+                <span>{!v.iPassColleagues} MB</span>
+            </div> 
+        </div>
+    </div>
+</aura:component>

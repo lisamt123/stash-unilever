@@ -208,7 +208,7 @@
                         <div class="row boxTop">
                             <div class="col-sm-12">
                                 <div class="col-sm-6 centerAlign box3 noPadleft noPadright SecButtonSet" title="{!$Label.IPM_AskIPM}">
-                                    <a class="icoButton askipm" href="http://inside.unilever.com/marketing/IPM/Pages/askipm.aspx" target="_blank" title="Ask IPM"></a>
+                                    <a class="icoButton askipm" href="{!$Label.IPM_ASK_IPM_URL}" target="_blank" title="Ask IPM"></a>
                                     <span class="boxTitle">{!$Label.IPM_ASK_IPM}</span>           
                                 </div>
                                 <div class="col-sm-6 centerAlign box4 noPadleft noPadright SecButtonSet" title="{!$Label.IPM_GotoIPMPortal}">

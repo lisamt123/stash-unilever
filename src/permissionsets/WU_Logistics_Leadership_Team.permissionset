@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Warehouse LLT user permissions</description>
+	<classAccesses>
+        <apexClass>WU_LeadershipPermission</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<pageAccesses>
+        <apexPage>WU_LeadershipCheck</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <fieldPermissions>
         <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_Address__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.WU_Warehouse_Secondary_POC_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.Submitted_by__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -67,7 +85,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_CityName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -82,7 +100,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Country__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -157,7 +175,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_MCO__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -167,7 +185,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Network__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -192,12 +210,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_SAPCode_s__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -327,7 +345,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Warehouse_Capacity_Detail__c.WU_Committed_Max_PalletStorage__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -378,7 +396,7 @@
     </fieldPermissions>
     <label>WU-Logistics Leadership Team</label>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
@@ -397,79 +415,11 @@
     </objectPermissions>
     <recordTypeVisibilities>
         <recordType>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</recordType>
-        <visible>false</visible>
+        <visible>True</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>WU_Master_Warehouse__c.New_Warehouse_Capacity</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <userLicense>Salesforce Platform</userLicense>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ApiEnabled</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>CreateCustomizeDashboards</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>CreateCustomizeFilters</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>CreateCustomizeReports</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>CreateDashboardFolders</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>CreateReportFolders</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>EditMyDashboards</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>EditMyReports</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ExportReport</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ManageDashbdsInPubFolders</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ManageDynamicDashboards</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ManageReportsInPubFolders</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>MassInlineEdit</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>RunReports</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewMyTeamsDashboards</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewPublicDashboards</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewPublicReports</name>
-    </userPermissions>
 </PermissionSet>

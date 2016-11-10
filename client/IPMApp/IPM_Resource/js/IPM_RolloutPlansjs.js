@@ -7,8 +7,8 @@
 */
 var jq= jQuery.noConflict();
 jq(document).ready(function(){
-
-jq(".ipmAccordion").find(".pHead:first span.expico-square").removeClass("fa-plus").addClass("fa-minus");
+	selectDrpdown();
+	jq(".ipmAccordion").find(".pHead:first span.expico-square").removeClass("fa-plus").addClass("fa-minus");
 
     var selectedCountries=[];
     var unselectedCountries=[];
@@ -85,8 +85,11 @@ jq(".ipmAccordion").find(".pHead:first span.expico-square").removeClass("fa-plus
             findInput.prop("checked", false);
             findLabel.removeClass("selected");
         }
-    });
+    });  
+});
 
+
+jq(document).ready(function(){
 /* Below script works on click event. It opens the add member modal */
      jq(document).off('click', '#selectproLeader').on('click','#selectproLeader', function(e)
      {
@@ -99,9 +102,48 @@ jq(".ipmAccordion").find(".pHead:first span.expico-square").removeClass("fa-plus
         jq('#ipmAddMemberModal .modal-dialog').css({'margin-top': '2%','z-index': '999'});
         jq('#ipmAddMemberModal .modal-title').html(mtitle);
     });
-    scriptPanelLoad();  
-        
+    scriptPanelLoad();
+    jq('.rolloutsPageClass').load(function(){
+        rolloutsPageFunc();
+    });
+    function rolloutsPageFunc() {
+        var presentHeight;  
+        var currentPosition = '-1';
+        var headerHeight = jq('.bPageHeader').height();
+        var rolloutsPagePos = jq('.rolloutsPageClass').position();
+        var iframe = jq('.rolloutsPageClass').contents();
+        iframe.find(".ipmAddMemberModal").on('click',function(e){ 
+            if(!jq(e.target).is('.close')) {
+                jq('html, body').animate({ scrollTop: rolloutsPagePos.top+headerHeight+10 });
+            }                
+        });
+        iframe.find(".selectproLeader").on('click',function(){
+            currentPosition = jq(window).scrollTop();
+            presentHeight = jq('.rolloutsPageClass').contents().height();
+            if(presentHeight < '670') {
+                jq('.rolloutsPageClass').animate({height: '670px'}, 'fast');
+            }
+            jq('html, body').animate({ scrollTop: rolloutsPagePos.top+headerHeight+10 });
+        });
+        iframe.find(".focusRolloutmodal").on('click',function(){
+            presentHeight = jq('.rolloutsPageClass').contents().height();
+            if(presentHeight < '670') {
+                jq('.rolloutsPageClass').animate({height: '670px'}, 'fast');
+            }
+            jq('html, body').animate({ scrollTop: rolloutsPagePos.top+headerHeight+10 });
+            currentPosition = rolloutsPagePos.top+headerHeight+10;
+        });
+        iframe.find(".close").click(function(){
+            if(presentHeight < '670') {
+                jq('.rolloutsPageClass').animate({height: presentHeight}, 'fast');
+            }
+            jq("html, body").animate({ scrollTop: currentPosition });
+        });
+    } 
 });
+
+
+
 function setFocusOnLoad() {}
 function scriptPanelLoad(){
     var keyMCO = jq('#keyMCO');
@@ -174,6 +216,7 @@ function scriptPanelLoad(){
     var selectedDateInputBox = "";
     function setChangedDate()
     {
+        unsaved = false;
         saveChangedTLDjs();
     }
     
@@ -213,3 +256,70 @@ window.onbeforeunload = unloadPage;
 function skipValidation() {
     unsaved = false;
 }
+
+function selectDrpdown(){ 
+    jq('.rollSelectList').on('change', function (e) {
+        var valueSelected = this.value;
+        jq(this).prev('.hideDupfield').attr('value',valueSelected);
+        var dataId = jq(this).prev('.hideDupfield').attr('data-holder');
+        holdRolloutsBrand(dataId,valueSelected);
+    }); 
+    jq('.rollSelectList option').each(function(){
+      var holder = jq(this).parent().prev('.hideDupfield').attr('value');
+      if(jq(this).val() === holder){
+        jq(this).attr('selected', true);
+      }
+    });  
+    jq(".ipmAcrdnExpand").hide();
+    jq(".ipmAccordion").find(".pHead span.expico").removeClass("fa-minus");
+    jq(".ipmAccordion").find(".pHead span.expico").addClass("fa-plus");  
+}
+
+jq(document).ready(function(){
+    var murl = location.href;
+    jq('iframe').each(function(){
+        if(jq(this).attr('id') === 'rolloutmpage')
+        {
+            var urlholder = murl.replace(IPMProAppRP.rolloutplans,IPMProAppRP.rolloutplanstablepage);
+            jq("#rolloutmpage").attr('src',urlholder);
+            jq("#rolloutmpage").iFrameResize( [{autoResize: true, sizeWidth: true, checkOrigin: false}] );     
+        }
+        else if(jq(this).attr('id') === 'localrolloutpage')
+        {
+            var urlholder = murl.replace(IPMProAppRP.rolloutplans,IPMProAppRP.localrolloutpage);
+            jq("#localrolloutpage").attr('src',urlholder);
+            jq("#localrolloutpage").iFrameResize( [{autoResize: true, sizeWidth: true, checkOrigin: false}] );      
+        }
+        else if(jq(this).attr('id') === 'rolloutgkmpage')
+        {
+            var urlholder = murl.replace(IPMProAppRP.rolloutplans,IPMProAppRP.rolloutsgkmpage);
+            jq("#rolloutgkmpage").attr('src',urlholder);
+            jq("#rolloutgkmpage").iFrameResize( [{autoResize: true, sizeWidth: true, checkOrigin: false}] );      
+        }
+    });
+});    
+
+function movetoaddrollouts(){
+    var addUrl = jq('.addRolloutUrlStrClass').text();
+    window.top.location.href = addUrl; 
+}
+function aftercancel(){
+    var addUrl = jq('.cancelRolloutUrlStrClass').text();
+    window.top.location.href = addUrl; 
+}
+function afterdeleterollout(){
+    var addUrl = jq('.deleteMCORolloutUrlStrClass').text();
+    window.top.location.href = addUrl; 
+}
+function editRolloutFunc(){
+    var addUrl = jq('.editRolloutUrlStrClass').text();
+    window.top.location.href = addUrl; 
+}     
+function saveRolloutFunc(){
+    var addUrl = jq('.saveRolloutUrlStrClass').text();
+    window.top.location.href = addUrl; 
+} 
+jq('.userLink a').click(function(event) {
+    event.preventDefault();
+    window.open(jq(this).attr('href'));
+});
