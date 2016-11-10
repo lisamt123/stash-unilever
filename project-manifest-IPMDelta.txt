@@ -1,8 +1,4 @@
 src
 src/classes
-src/classes/IPM_Milestone.cls
-src/classes/IPM_Milestone.cls-meta.xml
-src/classes/IPM_MilestoneHandler.cls
-src/classes/IPM_MilestoneHandler.cls-meta.xml
-src/classes/IPM_ProjectHelper.cls
-src/classes/IPM_ProjectHelper.cls-meta.xml
+src/classes/IPM_FinancialController.cls
+src/classes/IPM_FinancialController.cls-meta.xml
