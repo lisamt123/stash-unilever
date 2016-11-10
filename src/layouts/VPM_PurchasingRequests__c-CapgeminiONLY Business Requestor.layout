@@ -213,6 +213,10 @@
                 <behavior>Edit</behavior>
                 <field>VPM_OrderCurrency__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>VPM_EmailCompanyCode__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -229,7 +233,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>VPM_Vendor_SubType__c</field>
+                <field>VPM_VendorSubType__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -290,6 +294,30 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>VPM_FLSInCountryReqVen__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_BankValidationApproverComments__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_FinanceApproverComments__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_FLSApproverComments__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_RussianCustomTaxApproverComments__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_ProcurementApproverComments__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_FreightApproverComments__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

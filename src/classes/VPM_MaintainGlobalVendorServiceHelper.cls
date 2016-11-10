@@ -86,7 +86,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         } else if(res.getStatusCode() == 504) {
             // if(VendorReq.VPM_Fieldtype__c != 'Both')
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            responseString = 'Timeout Error. Please try after some time.';
+            responseString = 'Connection to SAP has timed out. Please try again.';
         } else if(res.getStatusCode() == 400) {
             // if(VendorReq.VPM_Fieldtype__c != 'Both')
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);

@@ -950,7 +950,7 @@ public void approvalCallMethod()
                                 VPM_BankKey__c,VPM_BankAccountNumber__c,VPM_AccountHolderName__c,
                                 VPM_ReferenceSpecificationsBankDetail__c,VPM_BankControlKey__c,
                                 VPM_IBAN__c,VPM_CollectionAuthorization__c,VPM_Commodity__r.VPM_CommodityCode__c,
-                                VPM_BankName__c,VPM_SwiftKey__c,VPM_PartnerBankType__c,VPM_RequestType__c,
+                                VPM_BankName__c,VPM_SwiftKey__c,VPM_RequestFromFLSOrBR__c,VPM_PartnerBankType__c,VPM_RequestType__c,
                                 RecordType.DeveloperName,VPM_CountryRequestingVendor__c,VPM_RequestGroupTime__c ,
                                 VPM_Company_Code_Value__c,VPM_VendorBlockUnblockDelete__c,VPM_BankDataValidationRequired__c,
                                 VPM_Commodity__r.VPM_CommodityClass__c,VPM_VATRegistrationNumber__c ,VPM_IsChangedVAT__c
@@ -970,21 +970,25 @@ public void approvalCallMethod()
          {  //pr.VPM_RequestGroupTime__c = system.now();
             pr.VPM_AdvancedFormSubmittedTime__c= system.now();
             pr.VPM_TargetCompletion__c = system.now() + 5;
+            
          }
-         
-        if(lstcurrentUserPerSet[0].PermissionSet.Label.containsIgnoreCase(STR_CONST_FLS)) 
+         if(pr.VPM_RequestFromFLSOrBR__c != null)
+         {
+        if(pr.VPM_RequestFromFLSOrBR__c.containsIgnoreCase('FLS') ) 
         {
         pr.VPM_Status__c='FLS Approved';
         
             pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
             
             pr.VPM_RequestGroupTime__c = system.now();
-        }else
+        }
+        else if( pr.VPM_RequestFromFLSOrBR__c != null)
         {
          pr.VPM_Status__c='';
             pr.VPM_RequestLastWithGroup__c = STR_CONST_BR;
             
             pr.VPM_RequestGroupTime__c = system.now();
+        }
         }
         
         system.debug('@@ request last group' + pr.VPM_RequestLastWithGroup__c );
@@ -1017,6 +1021,16 @@ public void approvalCallMethod()
          
              
         pr.VPM_AdvancedFormSubmitted__c='YES'; 
+         if(pr.VPM_Status__c.containsIgnoreCase('DRAFT'))
+        {
+            pr.VPM_RequestFromFLSOrBR__c=STR_CONST_BR;
+             pr.VPM_RequestLastWithGroup__c = STR_CONST_BR;
+        }
+        else  if(pr.VPM_Status__c.containsIgnoreCase(STR_CONST_FLS))
+        {
+            pr.VPM_RequestFromFLSOrBR__c=STR_CONST_FLS;
+             pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
+        }
         
         if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
         {

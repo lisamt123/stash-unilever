@@ -2374,6 +2374,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_BankValidationApproverComments__c</fullName>
+        <description>VPM - Used to capture the Bank Validation Approver comments during Approve/Reject action</description>
+        <externalId>false</externalId>
+        <label>Bank Validation Approver Comments</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_BankValidatorApproval__c</fullName>
         <description>VPM- Time when the bank Validator approves the request.</description>
         <externalId>false</externalId>
@@ -3834,6 +3847,28 @@
         <description>VPM - This field is used to store the value of Check Double Invoices checkbox field.</description>
         <externalId>false</externalId>
         <label>Check Double Invoices</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_CheckForFieldUpdate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - check if the field is updated from its previous value. Used in trigger.</description>
+        <externalId>false</externalId>
+        <label>VPM_CheckForFieldUpdate</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_CheckHours__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>VPM- used in report to calculate no of hours difference.</description>
+        <externalId>false</externalId>
+        <label>CheckHours</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -7804,6 +7839,19 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>VPM_FLSApproverComments__c</fullName>
+        <description>VPM - Used to capture the FLS Approver comments during Approve/Reject action</description>
+        <externalId>false</externalId>
+        <label>FLS Approver Comments</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_FLSInCountryReqVen__c</fullName>
         <defaultValue>false</defaultValue>
         <description>VPM - This field is used to store the value whether the country is a FLS or Non FLS country.</description>
@@ -7931,6 +7979,19 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>VPM_FinanceApproverComments__c</fullName>
+        <description>VPM - Used to capture the Finance Approver Comments during Approve/Reject action</description>
+        <externalId>false</externalId>
+        <label>Finance Approver Comments</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_FinanceReworls__c</fullName>
         <defaultValue>0</defaultValue>
         <description>VPM-  Number of time Finance requests for rework.</description>
@@ -8053,6 +8114,19 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>VPM_FreightApproverComments__c</fullName>
+        <description>VPM - Used to capture the Russian Custom Tax Approver comments during Approve/Reject action</description>
+        <externalId>false</externalId>
+        <label>Freight Approver Comments</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_FreightReworks__c</fullName>
@@ -10138,6 +10212,17 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <description>VPM - This field determine if user has completed MDM BPM PI page</description>
         <externalId>false</externalId>
         <label>Is MDM PI Saved</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_IsMaintain2__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - This field helps to determine if  request is maintain or maintain2</description>
+        <externalId>false</externalId>
+        <label>IsMaintain2</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -14015,6 +14100,19 @@ VPM_Approver10__c = $User.Id))
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>VPM_ProcurementApproverComments__c</fullName>
+        <description>VPM - Used to capture the  Procurement Approval comments during Approve /Reject action</description>
+        <externalId>false</externalId>
+        <label>Procurement Approver Comments</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_ProcurementReworks__c</fullName>
         <defaultValue>0</defaultValue>
         <description>VPM - No of time procurement sends for rework.</description>
@@ -16487,6 +16585,19 @@ VPM_Approver10__c = $User.Id))
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>VPM_RequestFromFLSOrBR__c</fullName>
+        <description>VPM - to check whether the advanced form submitter is BR or FLS</description>
+        <externalId>false</externalId>
+        <label>Request From FLS Or BR</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_RequestGroupTime__c</fullName>
         <description>VPM - Time at which request was assigned to specific group</description>
         <externalId>false</externalId>
@@ -16734,6 +16845,19 @@ VPM_Approver10__c = $User.Id))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_RussianCustomTaxApproverComments__c</fullName>
+        <description>VPM - Used to capture the Russian Custom Tax Approver comments during Approve/Reject action</description>
+        <externalId>false</externalId>
+        <label>Russian Custom Tax Approver Comments</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_RussianCustomTaxReworks__c</fullName>
@@ -17831,6 +17955,19 @@ VPM_Approver10__c = $User.Id))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_StoreHours__c</fullName>
+        <externalId>false</externalId>
+        <label>VPM_StoreHours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_StoreText__c</fullName>
@@ -23534,6 +23671,30 @@ VPM_Approver10__c = $User.Id))
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_VendorSLA__c</fullName>
+        <externalId>false</externalId>
+        <formula>((VPM_NoOfDays__c-1)*24) 
+
++(VALUE(TEXT((VALUE(LEFT(MID ( TEXT (NOW()), 12, 5), FIND(&apos;:&apos;, MID ( TEXT (NOW()), 12, 5))-1)) 
++ 
+VALUE( 
+RIGHT(MID ( TEXT (NOW()), 12, 5), FIND(&apos;:&apos;, MID ( TEXT (NOW()), 12, 5))-1))/60) 
+- 
+(VALUE(LEFT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TEXT (VPM_RequestGroupTime__c), 12, 5))-1)) 
++ 
+VALUE( 
+RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TEXT (VPM_RequestGroupTime__c), 12, 5))-1))/60)) ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>VPM_VendorSLA</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_VendorStatus__c</fullName>
         <description>VPM - This field will have current status of vendor in SAP system. Eg Blocked/Unblocked</description>
         <externalId>false</externalId>
@@ -23554,6 +23715,18 @@ VPM_Approver10__c = $User.Id))
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorSubType__c</fullName>
+        <description>If requesting vendor country = vendor country then domestic else foreign</description>
+        <externalId>false</externalId>
+        <formula>IF( CONTAINS(TEXT(VPM_Country__c),TEXT(VPM_CountryRequestingVendor__c )) , &quot;Domestic&quot;, &quot;Foreign&quot;)</formula>
+        <label>Vendor Sub-Type</label>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -23639,18 +23812,6 @@ VPM_Approver10__c = $User.Id))
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_Vendor_SubType__c</fullName>
-        <description>If requesting vendor country = vendor country then domestic else foreign</description>
-        <externalId>false</externalId>
-        <formula>IF( CONTAINS(TEXT(VPM_Country__c),TEXT(VPM_CountryRequestingVendor__c )) , &quot;Domestic&quot;, &quot;Foreign&quot;)</formula>
-        <label>Vendor Sub-Type</label>
-        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -24446,17 +24607,6 @@ VPM_Approver10__c = $User.Id))
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_checkForFieldUpdate__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>VPM - check if the field is updated from its previous value. Used in trigger.</description>
-        <externalId>false</externalId>
-        <label>VPM_checkForFieldUpdate</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>VPM_companyCodeMatch__c</fullName>
@@ -99977,6 +100127,7 @@ IF(LEN(VPM_VendorPhone__c)==11 ,  NOT(REGEX(VPM_VendorPhone__c, &quot;0[1-9]{1}[
     var VPMRecordSentToSAPMessage =&quot;{!JSENCODE($Label.VPM_RecordSentToSAPAlert)}&quot;;
     var VPMRequestAbortedMessage =&quot;{!JSENCODE($Label.VPM_RequestAbortedAlert)}&quot;;
 	
+        setTimeout(function(){ }, 50);
 	if ((currentstatus.indexOf(&apos;Rejected&apos;) &gt;= 0 )) 
 	{ 
 		alert(VPMRequestRejectedMessage ); 

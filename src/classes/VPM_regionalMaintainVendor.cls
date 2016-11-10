@@ -1,8 +1,8 @@
-public with sharing class VPM_regionalMaintainVendor {
+public with sharing class VPM_RegionalMaintainVendor {
 
   public static void updateAndCheckFieldUpdate(List<VPM_PurchasingRequests__c> updatedVendorRequest , Map<Id,VPM_PurchasingRequests__c> OldVendorRequestValueList)
   {
-    List<VPM_listOfRegionalandGlobalField__c> globalFields = VPM_listOfRegionalandGlobalField__c.getall().values();
+    List<VPM_ListOfRegionalandGlobalField__c> globalFields = VPM_ListOfRegionalandGlobalField__c.getall().values();
     list<id> vendorRequestCompanyCode = new list<id>();
     recordType rec =[select id , Name from recordType where Name like '%Create%' AND sobjectType='VPM_PurchasingRequests__c' LIMIT 1];
 
@@ -15,7 +15,7 @@ public with sharing class VPM_regionalMaintainVendor {
      for (VPM_PurchasingRequests__c vendorRequest : updatedVendorRequest)
     {
         // Logic for : Update company code ECC when new company code is added to vendor request
-         VPM_CompanyCode__c companyCode =companyCodeMap.get(vendorRequest.VPM_CompanyCode__c);       
+         VPM_CompanyCode__c companyCode =companyCodeMap.get(vendorRequest.VPM_CompanyCode__c);        
          if(Trigger.isUpdate){
             if(companyCode.ECC__c != vendorRequest.VPM_ECC__c && companyCode.ECC__c!=null)
             {
@@ -31,7 +31,7 @@ public with sharing class VPM_regionalMaintainVendor {
           if(vendorRequest.VPM_checkForFieldUpdate__c && rec.id != OldVendorRequestValue.recordTypeId)
           {
             
-            for (VPM_listOfRegionalandGlobalField__c fieldList : globalFields)
+            for (VPM_ListOfRegionalandGlobalField__c fieldList : globalFields)
             {
                  if(vendorRequest.get(fieldList.VPM_ApiName__c) != OldVendorRequestValue.get(fieldList.VPM_ApiName__c))
                 {
@@ -141,7 +141,7 @@ public with sharing class VPM_regionalMaintainVendor {
                // update venReqLst;
                 //for(VPM_PurchasingRequests__c venR : venReqLst)
                 {
-                    VPM_regionalMaintainVendor.callRegionalService(venReqLst[0].Id);
+                    VPM_RegionalMaintainVendor.callRegionalService(venReqLst[0].Id);
                 }
                 
             }

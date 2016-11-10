@@ -120,6 +120,76 @@
         <value>Selected Commodity Approvers has been Temporary replaced successfully</value>
     </labels>
     <labels>
+        <fullName>VPM_Approver_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_1</shortDescription>
+        <value>Approver 1</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_10</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_10</shortDescription>
+        <value>Approver 10</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_2</shortDescription>
+        <value>Approver 2</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_3</shortDescription>
+        <value>Approver 3</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_4</shortDescription>
+        <value>Approver 4</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_5</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_5</shortDescription>
+        <value>Approver 5</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_6</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_6</shortDescription>
+        <value>Approver 6</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_7</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_7</shortDescription>
+        <value>Approver 7</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_8</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_8</shortDescription>
+        <value>Approver 8</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Approver_9</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Approver_9</shortDescription>
+        <value>Approver 9</value>
+    </labels>
+    <labels>
         <fullName>VPM_Assign</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1198,6 +1268,13 @@
         <value>Includes Regional specific data fields</value>
     </labels>
     <labels>
+        <fullName>VPM_RelevantBlocksDeletesLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_RelevantBlocksDeletesLabel</shortDescription>
+        <value>Only relevant for Manual Blocks/Unblocks/Deletes/Undeletes</value>
+    </labels>
+    <labels>
         <fullName>VPM_Remove</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1429,6 +1506,13 @@
         <value>Select Action</value>
     </labels>
     <labels>
+        <fullName>VPM_SelectCommodity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SelectCommodity</shortDescription>
+        <value>2) Select Commodity Classes to Update</value>
+    </labels>
+    <labels>
         <fullName>VPM_SelectCountry</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1448,6 +1532,13 @@
         <protected>false</protected>
         <shortDescription>VPM - Used as Help Text to Select Old Approver</shortDescription>
         <value>Enter Old Approver Name</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SelectUser</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SelectUser</shortDescription>
+        <value>1) Select User to Update</value>
     </labels>
     <labels>
         <fullName>VPM_SelectUserAssign</fullName>

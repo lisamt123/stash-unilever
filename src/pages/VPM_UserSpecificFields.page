@@ -355,7 +355,7 @@
              <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_TaxJurisdictionCode__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
              <!--/apex:outputField-->
-             <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TaxJurisdictionCode__c}" maxlength="15" />
+              <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxJurisdictionCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TaxJurisdictionCode__c}" maxlength="15" />
          </apex:pageBlockSection>
          <br/>
          <div align="center">

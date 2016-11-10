@@ -639,14 +639,14 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               callJavaScriptAlert='<script>redirectToListView(); </script>';
               list<VPM_PurchasingRequests__c> VendorDetailList =[SELECT  VPM_ApprovalWorker__c,
                                                                  VPM_ApprovalWorkerID__c,VPM_Status__c,
-                                                                 VPM_RussianTaxApprovalRequired__c, 
+                                                                 VPM_RussianTaxApprovalRequired__c,VPM_RequestFromFLSOrBR__c, 
                                                                  VPM_RequestGroupTime__c, 
                                                                  VPM_FreightApprovalRequired__c, 
                                                                  VPM_RequestLastWithGroup__c, 
                                                                  VPM_FinanceApprovalRequired__c, 
                                                                  VPM_ProcurementApprovalRequired__c, 
                                                                  CreatedById, OwnerId, VPM_Rework__c,
-                                                                 VPM_BankDataValidationRequired__c
+                                                                 VPM_BankDataValidationRequired__c,VPM_ProcurementReworks__c
                                                                  FROM VPM_PurchasingRequests__c WHERE id= : recId LIMIT 1];
                 
               System.debug('@@@@@ Rework :::----'+ VendorDetailList);
@@ -675,6 +675,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement';
                   VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                   VendorDetailList[0].VPM_ApprovalWorker__c=''; 
+                  VendorDetailList[0].VPM_ProcurementReworks__c = VendorDetailList[0].VPM_ProcurementReworks__c + 1;
                   update VendorDetailList;
                   //
                   //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
@@ -711,6 +712,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                       VendorDetailList[0].VPM_Rework__c=STR_CONST_YES;  
                       VendorDetailList[0].VPM_ApprovalWorkerID__c='';
                       VendorDetailList[0].VPM_ApprovalWorker__c=''; 
+                      VendorDetailList[0].VPM_ProcurementReworks__c = VendorDetailList[0].VPM_ProcurementReworks__c + 1;
                       update VendorDetailList;
                       //
                       //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
@@ -739,7 +741,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     !VendorDetailList[0].VPM_BankDataValidationRequired__c  &&
                     VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
                      VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
-                     VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_FLS) 
+                     VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_FLS) 
               { 
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name =: STR_CONST_FLS Limit 1];
                   if (queueList.size() == 1){                     

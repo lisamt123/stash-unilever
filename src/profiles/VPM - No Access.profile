@@ -94,15 +94,15 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>VPM_RegionalMaintainVendor</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>VPM_SearchVendor1</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_maintainGlobalVendorCalloutMock</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_regionalMaintainVendor</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -782,6 +782,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_BankValidationApproverComments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_BankValidatorApproval__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -888,6 +893,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_CheckDoubleInvoices__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_CheckForFieldUpdate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_CheckHours__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1292,6 +1307,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FLSApproverComments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_FLSInCountryReqVen__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1337,6 +1357,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FinanceApproverComments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_FinanceReworls__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1378,6 +1403,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_FreightApproval__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_FreightApproverComments__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1633,6 +1663,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_IsMDMPISaved__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_IsMaintain2__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2042,6 +2077,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_ProcurementApproverComments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ProcurementReworks__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2176,6 +2216,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_RequestFromFLSOrBR__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_RequestGroupTime__c</field>
         <readable>false</readable>
@@ -2213,6 +2258,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_RussiaSubmitted__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_RussianCustomTaxApproverComments__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2364,6 +2414,11 @@
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_StoreHours__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2761,6 +2816,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_VendorSLA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_VendorStatus__c</field>
         <readable>true</readable>
@@ -2768,6 +2828,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_VendorSubRange__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_PurchasingRequests__c.VPM_VendorSubType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2789,11 +2854,6 @@
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_VendorWebformURL__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Vendor_SubType__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2828,11 +2888,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_ZIPPostcode__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_checkForFieldUpdate__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3172,6 +3227,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_AttachmentSectionPopUp</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>VPM_CordilleraGoldenData</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>

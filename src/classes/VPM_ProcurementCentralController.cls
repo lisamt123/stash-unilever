@@ -275,13 +275,27 @@ with sharing public class VPM_ProcurementCentralController{
     public void removeProcurmentPermission(String oldUser, String newUser)
     {
         PermissionSet pr =[SELECT  id FROM PermissionSet WHERE name =: STR_CONST_PROCENTRALADMIN LIMIT 1];
+        Group gr = [Select Id From Group where DeveloperName='VPM_Procurement' AND Type='Queue' limit 1]; 
         if(oldUser != null)
         {
+             List<GroupMember> gmList = [Select Id from GroupMember where GroupId=:gr.Id AND UserOrGroupId=:oldUser];
+             if(!gmList.isEmpty())
+             {
+               delete gmList;
+             }
              list<PermissionSetAssignment> perSetAss = [SELECT id , AssigneeId FROM PermissionSetAssignment WHERE  AssigneeId=:oldUser AND PermissionSetId=:pr.id];
-            delete perSetAss;
+            if(!perSetAss.isEmpty())
+            {
+             delete perSetAss;
+             }
         }
         if(newUser != null)
         {
+           GroupMember gm = new GroupMember();
+            gm.UserOrGroupId = newUser;
+            gm.GroupId = gr.Id;
+            Insert gm;
+            
             list<PermissionSetAssignment> checkProcPermission = [SELECT Assignee.Name, PermissionSet.Id FROM PermissionSetAssignment WHERE  Assignee.id=:newUser AND PermissionSetId=:pr.id limit 1];      
            //if(checkProcPermission.size() == 0)
            if(checkProcPermission.isEmpty())
