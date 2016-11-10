@@ -8211,37 +8211,7 @@
 		<editable>false</editable>
 		<field>IPM_Project__c.IPM_Duration_Bosscard__c</field>
 		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>IPM_Project__c.IPM_Duration_Capability__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>IPM_Project__c.IPM_Duration_Feasibility__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>IPM_Project__c.IPM_Duration_Idea__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>IPM_Project__c.IPM_Duration_Market_Deployment__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>IPM_Project__c.IPM_Duration_Market_Ready__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>IPM_Project__c.IPM_Duration_PLE__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
+	</fieldPermissions>	
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>IPM_Project__c.IPM_EligibleForReactivation__c</field>
