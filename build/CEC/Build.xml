@@ -51,8 +51,11 @@
             <runTest>TestDataFactory</runTest>
             <runTest>UserTestUtil</runTest>
             <runTest>UserTrigger_Test</runTest>
-            <runTest>CEC_CaseTransferControllerTest</runTest>
-            <runTest>CEC_CaseTriggerHelperExtTest</runTest>
+            <runTest>CEC_AlertActionHelperTest</runTest>
+            <runTest>CEC_AnonymiseConsumerBatchScheduler_Test</runTest>
+			<runTest>CEC_ChatSurveyBatchScheduler_Test</runTest>
+            <runTest>CEC_ClearAlertData_BatchScheduler_Test</runTest>
+			<runTest>cec_TestEmailMessageHelper</runTest>
         </sf:deploy>
     </target>
 </project>
