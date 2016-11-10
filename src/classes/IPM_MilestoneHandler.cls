@@ -212,6 +212,13 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
           newMilestone.ExternalField__c = associatedProject.IPM_Project_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newMilestone.IPM_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newMilestone.IPM_Phase__c + '-'+ newMilestone.IPM_Project_Type__c;   
           
           newMilestone.IPM_Due_Date__c = newMilestone.IPM_Planned_Date__c;          
+          if(newMilestone.IPM_Due_Date__c !=null){
+          	 newMilestone.IPM_Due_Date_For_Sorting__c = newMilestone.IPM_Due_Date__c;
+          } 
+        } else if(newMilestone.IPM_Project__c !=null && ipmProjects.containsKey(newMilestone.IPM_Project__c) && newMilestone.IPM_type_of_Milestone__c != null && newMilestone.IPM_type_of_Milestone__c == IPM_ConstantUtils.BET){
+        	if(newMilestone.IPM_Due_Date__c !=null){
+          	 newMilestone.IPM_Due_Date_For_Sorting__c = newMilestone.IPM_Due_Date__c;
+          }
         } 
         
     }
