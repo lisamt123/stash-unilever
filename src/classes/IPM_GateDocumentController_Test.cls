@@ -353,7 +353,7 @@ private class IPM_GateDocumentController_Test{
             test.startTest();  
        
             ipmGateDocContrl=new IPM_GateDocumentController();
-            ipmGateDocContrl.exportToPdf();
+            
             ipmGateDocContrl.moveToPLE();
             ipmGateDocContrl.ResetFilters();
             System.assert(ipmGateDocContrl.IsTypeAll,'value failed to reset');
