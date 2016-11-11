@@ -223,7 +223,13 @@ public with sharing class IPM_TaskHelper {
             }
         }
         
-        upsertNotNullTasks(upsertTaskList,deleteTaskMap);            
+        Map<String,IPM_Task__c> uniqueExtIdTaskMap = new Map<String,IPM_Task__c>();
+        
+        for(IPM_Task__c task : upsertTaskList)
+        {
+        	uniqueExtIdTaskMap.put(task.ExternalField__c,task);
+        } 
+        upsertNotNullTasks(uniqueExtIdTaskMap.values(),deleteTaskMap);            
         
         if(deleteTaskMap!=null && !deleteTaskMap.isEmpty())
         {
@@ -411,6 +417,9 @@ public with sharing class IPM_TaskHelper {
             }       
         }
     }
+    else if(newTask.IPM_Function__c.equalsIgnoreCase('TPL')&& newTask.IPM_Assignee__c == null){
+    	newTask.IPM_Assignee__c = projectRec.IPM_Technical_Project_Leader__c;
+    }
     // if no team member present for specific functional role assign task to PL
     else if(projectRec.IPM_Project_Leader__c != null && newTask.IPM_Assignee__c == null)
     {
@@ -520,10 +529,18 @@ public with sharing class IPM_TaskHelper {
     * @param1 projectDocToSectionMap : project specific document section
     */
  public static void setSectionWiseTaskVisibility(Map<Id,IPM_Project__c> projectMap,Map<Id,IPM_Project_Document__c> projectToDocumentMap,Map<Id,List<IPM_Project_Document_Section__c>> projectDocToSectionMap,Map<Id,List<IPM_Task__c>> projectToTaskListMap)
- {
- 	
+ { 	
+ 	Map<Id,Map<Id,IPM_Project_Document_Section__c>> projectToPDLSectionMap = getPDLSpecificSection(projectMap);
+ 	 	
  	for(Id projectId : projectMap.keySet())
  	{
+ 		List<IPM_Project_Document_Section__c> pdlSectionsList = new List<IPM_Project_Document_Section__c>();
+ 		
+ 		if( projectToPDLSectionMap.containsKey(projectId) )
+ 		{
+ 			Map<Id,IPM_Project_Document_Section__c> pdlSectionsMap = projectToPDLSectionMap.get(projectId);
+	 		pdlSectionsList = pdlSectionsMap.values(); 
+ 		}
  		List<IPM_Project_Document_Section__c> projectDocSectionList = new List<IPM_Project_Document_Section__c>();
  		//task list for project
  		List<IPM_Task__c> taskList =  ProjectToTaskListMap != null && !ProjectToTaskListMap.isEmpty() && ProjectToTaskListMap.containsKey(projectId) ? ProjectToTaskListMap.get(projectId) : new List<IPM_Task__c>();
@@ -534,6 +551,13 @@ public with sharing class IPM_TaskHelper {
  		}
  		
  		IPM_Project__c projectDetail = projectMap.get(projectId);
+ 		
+ 		getTaskSections(projectDetail, taskList, projectDocSectionList, pdlSectionsList);
+ 			
+ 	}
+ }
+ 
+ public static void getTaskSections(IPM_Project__c projectDetail, List<IPM_Task__c> taskList, List<IPM_Project_Document_Section__c> projectDocSectionList, List<IPM_Project_Document_Section__c> pdlSectionsList){
 		for(IPM_Task__c task : taskList)
  		{
  			if(task.IPM_Active__c)
@@ -544,7 +568,7 @@ public with sharing class IPM_TaskHelper {
 	 				
 	 				complexityMatch= checkComplexityMatch(projectDetail,task);
 	 				  
-	    			updateTaskSections(complexityMatch,task,projectDocSectionList);
+	    			updateTaskSections(complexityMatch,task,projectDocSectionList,pdlSectionsList);
 	 			}
 	 			else
 	 			{
@@ -559,7 +583,6 @@ public with sharing class IPM_TaskHelper {
 	 			}
  			}
  			makeNullDocumentSectionTaskInactive(task);
- 		}
  	}
  }
  
@@ -743,6 +766,25 @@ public with sharing class IPM_TaskHelper {
 	 	}
  	}
  	
+ 	private static Map<Id,Map<Id,IPM_Project_Document_Section__c>> getPDLSpecificSection(Map<Id,IPM_Project__c> projectMap)
+ 	{
+ 		
+ 		
+ 		Map<Id,Map<Id,IPM_Project_Document_Section__c>> tempProjectToProjectDocSectionMap = new Map<Id,Map<Id,IPM_Project_Document_Section__c>>();
+ 		
+ 		Set<Id> projectIdSet = projectMap.keySet();
+ 		
+ 		for(IPM_Project_Document__c projectDocument : [SELECT Id,IPM_Project__c,(SELECT id, IPM_Default_Section__c, IPM_Section_Name__c, IPM_Section_Sequence__c, IPM_Section__c from IPM_Project_Sections__r) from IPM_Project_Document__c WHERE IPM_GateDocuments__c = 'Product Design Lock' AND IPM_Project__c =:projectIdSet])
+ 		{
+ 			tempProjectToProjectDocSectionMap.put(projectDocument.IPM_Project__c,new Map<Id,IPM_Project_Document_Section__c>(projectDocument.IPM_Project_Sections__r));
+ 		}
+		
+		
+		
+        return tempProjectToProjectDocSectionMap; 
+       
+ 	}
+ 	
  	/**************************************************************
     * @description: Get the tasks specific to gate document
     * @param1 incomingProjectMap : project
@@ -783,7 +825,9 @@ public with sharing class IPM_TaskHelper {
 	 			{
 					// If the Task gate is same as Project Gate & task span(Standard tasks) is blank = It is an existing Gate Task.
 					// If the Task gate is same as Project Gate & task span is not blank and equal to Gate Tasks(Future Tasks) = It is an existing Gate Task.
-	 				if(!String.isBlank(task.IPM_Type_of_Gate__c) && !String.isBlank(projectCurrentGate) && task.IPM_Type_of_Gate__c.containsIgnoreCase(projectCurrentGate))
+	 				if(!String.isBlank(task.IPM_Type_of_Gate__c) && !String.isBlank(projectCurrentGate) && 
+	 				(task.IPM_Type_of_Gate__c.containsIgnoreCase(projectCurrentGate) || 
+	 					task.IPM_Type_of_Gate__c.containsIgnoreCase(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT) ) )
 	 				{
 	 					if(String.isBlank(task.IPM_TaskSpan__c) || ( task.IPM_TaskSpan__c == project.IPMProject_Span__c ) )
 	 					{ 
@@ -1060,7 +1104,12 @@ public with sharing class IPM_TaskHelper {
     * @param2 task : current project tasks
     * @param3 projectDocSectionList : project document sections
     */
- private static void updateTaskSections(Boolean complexityMatch,IPM_Task__c task ,List<IPM_Project_Document_Section__c> projectDocSectionList){
+ private static void updateTaskSections(Boolean complexityMatch,IPM_Task__c task ,List<IPM_Project_Document_Section__c> projectDocSectionList,List<IPM_Project_Document_Section__c> pdlSectionsList)
+ {
+ 	if(pdlSectionsList !=null && !pdlSectionsList.isEmpty())
+ 	{
+ 		projectDocSectionList.addAll(pdlSectionsList);	
+ 	}
  	
  	if(complexityMatch ||String.isBlank(task.IPM_Task_Complexity__c))
 		{

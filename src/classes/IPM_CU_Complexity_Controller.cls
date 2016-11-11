@@ -36,9 +36,9 @@ public with sharing class IPM_CU_Complexity_Controller {
     public String cuCount{get;set;}//For saving CuCount
     public Id projDocSecConId{get;set;}//For getting section content id
     public IPM_Project_Document_Section_Content__c projDocSecCon{get;set;}//For getting Content record 
-    
-    
-    
+    public string increaseInComBy{get;set;}
+    public string decreaseInComBy{get;set;}    
+        
     /******************************************************************
     @Description :To Create CuCount value  
     @return: Void
@@ -49,6 +49,8 @@ public with sharing class IPM_CU_Complexity_Controller {
         projectId=ApexPages.currentPage().getParameters().get('Id');
         projDocSecCon=new IPM_Project_Document_Section_Content__c();
         contentCount=0;
+        increaseInComBy = IPM_ConstantUtils.INCREASE_IN_COM_BY;
+        decreaseInComBy = IPM_ConstantUtils.DECREASE_IN_COM_BY;
         try{
             contentCount=[SELECT Count() FROM IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c=:projectSecId and IPM_Gate_Type__c=:typeOfGate];
             if(contentCount>0){

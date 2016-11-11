@@ -83,7 +83,7 @@ public with sharing class IPM_ApproverList {
         String per_Str='%';
         String UQuery='SELECT IPM_User__c,IPM_User__r.name,IPM_User__r.smallphotourl,IPM_User__r.email ';
         UQuery+=' FROM IPM_User_Profile__c WHERE  IPM_User__r.IsActive=True AND (IPM_User__r.name Like \'' + per_Str + String.escapeSingleQuotes(searchapprover_STR) + per_Str + '\' ';
-        UQuery+=' OR IPM_User__r.email Like \'' + per_Str + String.escapeSingleQuotes(searchapprover_STR) + per_Str + '\') LIMIT 50000';                            
+        UQuery+=' OR IPM_User__r.email Like \'' + per_Str + String.escapeSingleQuotes(searchapprover_STR) + per_Str + '\') LIMIT 999';                            
         approverList=database.query(UQuery);
         for(IPM_User_Profile__c up:approverList){
             if(!avoidDupUsemap.containskey(up.IPM_User__c)){
@@ -92,7 +92,7 @@ public with sharing class IPM_ApproverList {
             
         }
         approverList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,IPM_User__r.email,
-                      IPM_User__r.SmallPhotoUrl FROM IPM_user_profile__c WHERE id IN:avoidDupUsemap.values() ORDER BY IPM_User__r.name limit 50000];
+                      IPM_User__r.SmallPhotoUrl FROM IPM_user_profile__c WHERE id IN:avoidDupUsemap.values() ORDER BY IPM_User__r.name limit 999];
         
     }
 }

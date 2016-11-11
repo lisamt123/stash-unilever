@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPM_Notification_Letterhead</letterhead>
+    <name>IPM Notify Local Leader when Non key local project created</name>
+    <style>freeForm</style>
+    <subject>Local Project {!IPM_Project__c.IPM_Project_Name__c} has been created</subject>
+    <textOnly>Dear {!IPM_Project__c.IPM_Project_Leader__r.FirstName} {!IPM_Project__c.IPM_Project_Leader__r.LastName},
+
+Your project has been activated by {!IPM_Project__c.IPM_Parent_Project__r.IPM_Project_Leader__r.FirstName} {!IPM_Project__c.IPM_Parent_Project__r.IPM_Project_Leader__r.LastName}.
+
+{!IPM_Project__c.IPM_Project_Name__c} 
+Project Leader : {!IPM_Project__c.IPM_Project_Leader__r.FirstName} {!IPM_Project__c.IPM_Project_Leader__r.LastName} 
+Finance Member : {!IPM_Project__c.IPM_Finance_Lead__r.FirstName} {!IPM_Project__c.IPM_Finance_Lead__r.LastName} 
+Category : {!IPM_Project__c.IPM_UserCategory__c} 
+Brand Positioning: {!IPM_Project__c.IPM_Brand_Positioning__c} 
+Activity Description : {!IPM_Project__c.IPM_Project_Description__c} 
+Phase : {!IPM_Project__c.IPM_Phase__c} 
+Planned BD Contract Gate : {!IPM_Project__c.Parent_Planned_Global_Contract_Date__c} 
+Target Launch Date : {!IPM_Project__c.IPM_Target_Launch_Dates__c} 
+
+NEXT STEPS
+(1) Please review and update {!IPM_Project__c.IPM_Project_Name__c} project parameters in IPM Navigator within the next two weeks, including:
+Add a deputy project leader
+Confirm finance member assignment of or add a finance team member 
+Add a local project team
+Confirm launch date
+Confirm brand and project description
+Confirm or indicate gatekeeper
+
+(2) Upload financials of {!IPM_Project__c.IPM_Project_Name__c}  which will roll up to value of {!IPM_Project__c.IPM_Parent_Project__r.IPM_Project_Name__c}  
+
+If you are not the correct Project Leader, then please reassign the project in IPM Navigator and also notify the brand development Project Leader {!IPM_Project__c.IPM_Project_Leader__r.FirstName} {!IPM_Project__c.IPM_Project_Leader__r.LastName}.  
+
+
+If {!IPM_Project__c.IPM_Project_Name__c} was created in error, please stop it and also notify the Brand Development Project Leader {!IPM_Project__c.IPM_Parent_Project__r.IPM_Project_Leader__r.FirstName} {!IPM_Project__c.IPM_Parent_Project__r.IPM_Project_Leader__r.LastName}.
+
+QUESTIONS
+Project: Contact {!IPM_Project__c.IPM_Parent_Project__r.IPM_Project_Leader__r.FirstName} {!IPM_Project__c.IPM_Parent_Project__r.IPM_Project_Leader__r.LastName}
+Process &amp; How To’s: Visit IPM.Unilever.com
+Technical: Contact your IPM Business Partner.</textOnly>
+    <type>html</type>
+</EmailTemplate>
