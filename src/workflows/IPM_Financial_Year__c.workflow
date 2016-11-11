@@ -61,6 +61,16 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Copy_ValueMarketShare_Local_To_Global</fullName>
+        <field>Value_Market_Share_Global__c</field>
+        <formula>Value_Market_Share_Local__c</formula>
+        <name>Copy ValueMarketShare Local To Global</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Copy_ValueMarketShare_Local_To_Regional</fullName>
         <field>Value_Market_Share_Regional__c</field>
         <formula>Value_Market_Share_Local__c</formula>
@@ -279,55 +289,10 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>FY_Copy_G2L_Advertising_Promotions</fullName>
-        <field>Advertising_Promotions_Local__c</field>
-        <formula>Advertising_Promotions_Global__c</formula>
-        <name>FY Copy G2L Advertising &amp; Promotions</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>FY_Copy_G2L_Gross_Profit</fullName>
-        <field>Gross_Profit_Local__c</field>
-        <formula>Gross_Profit_Global__c</formula>
-        <name>FY Copy G2L Gross Profit</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>FY_Copy_G2L_Profit_Before_Overheads</fullName>
-        <field>Profit_Before_Overheads_Local__c</field>
-        <formula>Profit_Before_Overheads_Global__c</formula>
-        <name>FY Copy G2L Profit Before Overheads</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>FY_Copy_G2L_Turnover</fullName>
-        <field>Turnover_Local__c</field>
-        <formula>Turnover_Global__c</formula>
-        <name>FY Copy G2L Turnover</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>FY_Copy_G2L_Value_Market_Share</fullName>
         <field>Value_Market_Share_Local__c</field>
         <formula>Value_Market_Share_Global__c</formula>
         <name>FY Copy G2L Value Market Share</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>FY_Copy_G2L_Volume</fullName>
-        <field>Volume_Local__c</field>
-        <formula>Volume_Global__c</formula>
-        <name>FY Copy G2L Volume</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -441,55 +406,10 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>FY_Copy_R2L_Advertising_Promotions</fullName>
-        <field>Advertising_Promotions_Local__c</field>
-        <formula>Advertising_Promotions_Regional__c</formula>
-        <name>FY Copy R2L Advertising &amp; Promotions</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>FY_Copy_R2L_Gross_Profit</fullName>
-        <field>Gross_Profit_Local__c</field>
-        <formula>Gross_Profit_Regional__c</formula>
-        <name>FY Copy R2L Gross Profit</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>FY_Copy_R2L_Profit_Before_Overheads</fullName>
-        <field>Profit_Before_Overheads_Local__c</field>
-        <formula>Profit_Before_Overheads_Regional__c</formula>
-        <name>FY Copy R2L Profit Before Overheads</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>FY_Copy_R2L_Turnover</fullName>
-        <field>Turnover_Local__c</field>
-        <formula>Turnover_Regional__c</formula>
-        <name>FY Copy R2L Turnover</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>FY_Copy_R2L_Value_Market_Share</fullName>
         <field>Value_Market_Share_Local__c</field>
         <formula>Value_Market_Share_Regional__c</formula>
         <name>FY Copy R2L Value Market Share</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>FY_Copy_R2L_Volume</fullName>
-        <field>Volume_Local__c</field>
-        <formula>Volume_Regional__c</formula>
-        <name>FY Copy R2L Volume</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -693,15 +613,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>FY_Set_Copy_G2L_FALSE</fullName>
-        <field>Copy_Global_to_Local__c</field>
-        <literalValue>0</literalValue>
-        <name>FY Set Copy G2L FALSE</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>FY_Set_Copy_G2R_FALSE</fullName>
         <field>Copy_Global_to_Regional__c</field>
         <literalValue>0</literalValue>
@@ -715,15 +626,6 @@
         <field>Copy_Local_to_Regional__c</field>
         <literalValue>0</literalValue>
         <name>FY Set Copy L2R FALSE</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>FY_Set_Copy_R2L_FALSE</fullName>
-        <field>Copy_Regional_to_Local__c</field>
-        <literalValue>0</literalValue>
-        <name>FY Set Copy R2L FALSE</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -877,6 +779,17 @@
         <active>true</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Global_to_Regional__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy ValueMarketShare Local To Global</fullName>
+        <actions>
+            <name>Copy_ValueMarketShare_Local_To_Global</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
+        <formula>Copy_Local_to_Global__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

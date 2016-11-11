@@ -557,17 +557,15 @@ private class IPM_NewTask_Test{
                  newTask.tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
                  newTask.tasks.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
                  newTask.doSaveTasks(); 
-                 
+               
                  list<IPM_Task__c> taskList = [SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Function__c,IPM_Type_of_Task__c FROM IPM_Task__c WHERE IPM_Project__c =:projDetailList11[0].Id AND IsSystemGenerated__c=false and IPM_Task_Name__c =: 'Feasibility Task' ];
                  for(IPM_Task__c tsk: taskList)
                  {
                      system.assertEquals(tsk.IPM_Type_of_Task__c,IPM_ConstantUtils.FUTURE_ADHOC_TASKS, 'Future AdHoc Task not saved');
                  }
-                 
-                 
             }
       Test.stopTest();               
-    } 
+    }    
     
     /***********************************
       @name: testTodoWithStandardPhase

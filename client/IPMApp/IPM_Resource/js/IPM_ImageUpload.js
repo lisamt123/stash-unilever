@@ -13,10 +13,10 @@ var unsaved = false;
          if(uploadImg === 'true'){
             if(window.parent.location.href.indexOf("Bosscard") > -1) {
              window.parent.location.href=IPMAppImgLoad.bossurl + '?id=' + IPMAppImgLoad.bosscardId;
-           }else if(window.parent.location.href.indexOf('Project') > -1){
+           }else if(window.parent.location.href.indexOf('ProjectSet') > -1){
             window.parent.location.href=IPMAppImgLoad.ProjectSetupUrl + '?Pid=' + IPMAppImgLoad.bosscardId+'&Projectid=projectdetails';
           }else{
-                  window.parent.location.reload();       
+               window.parent.location.reload();       
           }
         }
     });

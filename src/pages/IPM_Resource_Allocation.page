@@ -190,39 +190,41 @@
                     <apex:commandLink styleClass="btnNomargin convertLowercase ipmButton primary" status="Loading" action="{!updateCoreMember}" value="{!$Label.IPM_Update} {!ButtonLabel}" html-data-dismiss="modal" rerender="none" onComplete="closepopup()"/>
                 </div>
             </apex:outputPanel>
-                
-                <!-- Rollouts Leader selection -->
-            <apex:outputPanel rendered="{!isInvokedFromRollouts}">
-                 <div class="col-sm-12 noPadleft radioContainer">
+            <apex:outputText value="{!$Label.IPM_Select_This_MCO_Members}" rendered="{!AND(!isMyORAllCatSelectAva,rolloutSpan!='Regional',rolloutSpan!=null,!ISBLANK(rolloutSpan))}" styleclass=" categoryTitle col-sm-12 pull-left"/> 
+               
+                <!-- Rollouts Leader selection --->
+            <apex:outputPanel rendered="{!isMyORAllCatSelectAva}"> 
+                 <div class="col-sm-12 noPadleft radioContainer"> 
                      <div class="col-sm-12">
                         <div class="categoryButtons">
                            <div class="ipmRadioButton">
                               <input id="mycategory" checked="checked" class="rbutton" type="radio" name="category" onclick="callsearch({!isInvokedFromRollouts});"></input>
                               <label for="mycategory"></label>
                            </div>
-                           <apex:actionFunction action="{!getSameCategoryRolloutProfiles}" name="searchLeaderMem" reRender="SearchLeader,mycatNallcatRolloutProfs">
+                           <apex:actionFunction action="{!getUsersAvailableOnFiltering}" name="searchLeaderMem" reRender="SearchLeader,mycatNallcatRolloutProfs">
                               <apex:param name="mycatLeader" assignTo="{!SearchLeaderbyCat}" value="mycategory"/>
                            </apex:actionFunction>
-                           <span class="categoryLabel">{!$Label.IPM_FROM_MY_CATAGRY}</span>
+                           <span class="categoryLabel">{!$Label.IPM_Select_This_MCO}</span>
                         </div>
                         <div class="categoryButtons">
                            <div class="ipmRadioButton">
                               <input id="allcategory" class="rbutton" type="radio" name="category" onclick="callsearch({!isInvokedFromRollouts});"></input>
                               <label for="allcategory"></label>
                            </div>
-                           <apex:actionFunction action="{!getSameCategoryRolloutProfiles}" name="searchallLeaderMem" reRender="SearchLeader,mycatNallcatRolloutProfs">
+                           <apex:actionFunction action="{!getUsersAvailableOnFiltering}" name="searchallLeaderMem" reRender="SearchLeader,mycatNallcatRolloutProfs">
                               <apex:param name="allcateg" assignTo="{!SearchLeaderbyCat}" value="allcategory"/>
                            </apex:actionFunction>
-                           <span class="categoryLabel">{!$Label.IPM_FROM_ALL_CATAGRY}</span>
+                           <span class="categoryLabel">{!$Label.IPM_Select_All}</span>
                         </div>
                     </div>
                     <div class="col-sm-12 pull-left">
                          <span class="categoryTitle">
                             <apex:outputPanel id="mycatNallcatRolloutProfs">
                             <!--Below rendered condition is used for showing output text --> 
-                               <apex:outputText value="Select members from my category" rendered="{! if(SearchLeaderbyCat='mycategory','true','false')}" id="mycatRolloutProf"/>
-                              <!--Below rendered condition is used for showing output text --> 
+                             <!--apex:outputText value="Select members from my category" rendered="{! if(SearchLeaderbyCat='mycategory','true','false')}" id="mycatRolloutProf"-->
+                              <!--Below rendered condition is used for showing output text -->  
                                <apex:outputText value="Select members from all categories" rendered="{! if(SearchLeaderbyCat='allcategory','true','false')}" id="allcatRolloutProf"/>
+                               <apex:outputText value="{!$Label.IPM_Select_This_MCO}" rendered="{!AND(rolloutSpan!='Regional',SearchLeaderbyCat!='allcategory')}" styleclass=" categoryTitle col-sm-12 pull-left"/> 
                             </apex:outputPanel>
                          </span>
                       </div> 
@@ -235,7 +237,7 @@
                     <div class="col-sm-12 greybg">
                         <div class="col-sm-12 noPadleft categorySearch teamSearch3">
                             <apex:inputtext html-placeholder="Search name, email ID" value="{!SearchLeader}">
-                                <apex:actionSupport event="onkeyup" action="{!FilterLeaderMember}" reRender="SearchLeader,leaderNotFound"/>
+                                <apex:actionSupport event="onkeyup" action="{!getUsersAvailableOnFiltering}" reRender="SearchLeader,leaderNotFound"/>
                             </apex:inputtext>
                             <apex:image styleClass="srchImage" value="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}"  />
                         </div>
