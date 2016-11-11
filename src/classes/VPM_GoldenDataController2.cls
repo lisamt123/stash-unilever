@@ -1045,13 +1045,18 @@ public void approvalCallMethod()
         {
            System.debug('@@@@@@@ pr----------'+ pr);
            System.debug('@@@@@@@ op----------'+ op); 
-            if(op!=null)
+           if(op!=null)
             {
                  NewPaymentTerms= pr.VPM_PaymentTerms__c== null?'': pr.VPM_PaymentTerms__c;
-                 OldPaymentTerms = op.CompanyData[0].PaymentTerms == null?'': op.CompanyData[0].PaymentTerms;
+                string oldstring='';
+                if(op.CompanyData!=null)
+               
+                { OldPaymentTerms = op.CompanyData[0].PaymentTerms == null?'': op.CompanyData[0].PaymentTerms;
 
                  // Start : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
-                string oldstring =op.CompanyData[0].PaymentMethod == null?'': op.CompanyData[0].PaymentMethod;                    
+                  oldstring =op.CompanyData[0].PaymentMethod == null?'': op.CompanyData[0].PaymentMethod;  
+                }
+            
                     List<string> finalOldStringValueList = oldstring.split('-');
                     finalOldStringValueList.sort();
                     string OldpaymentMeth=''; 
@@ -1061,11 +1066,17 @@ public void approvalCallMethod()
                     }                    
                     OldPaymentMethod = OldpaymentMeth.remove(' ');                     
                     system.debug('@@OldPaymentMethod' + OldPaymentMethod);       
-                // End Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016        
+                // End Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016    
+                
+                	
+                if(String.isNotBlank(OldPaymentTerms))
+                {
                     if(!(NewPaymentTerms.contains(OldPaymentTerms)))
                     { pr.VPM_ProvidedPaymentTerms__c= true; }
                     else 
                     { pr.VPM_ProvidedPaymentTerms__c= False; }
+                }
+                   
                     
             
                 // VAT Related Change 
@@ -1075,11 +1086,15 @@ public void approvalCallMethod()
                     { pr.VPM_IsChangedVAT__c= false; }
                 
                 // FinanciallySensitive Flag Set
-                     
+                    
+            if(op.CompanyData!=null)
+                { 
                      NewCashManagementGroup= pr.VPM_CashManagementGroup__c== null?'': pr.VPM_CashManagementGroup__c;
                      OldCashManagementGroup = op.CompanyData[0].CashManagementGroup == null?'': op.CompanyData[0].CashManagementGroup;
                      NewSortKey= pr.VPM_SortKey__c== null?'': pr.VPM_SortKey__c;
                      OldSortKey = op.CompanyData[0].SortKey == null?'': op.CompanyData[0].SortKey;
+                
+                
                 
                      if((
                             ( pr.VPM_ReconciliationAccount__c!=null && (String.isBlank(pr.VPM_ReconciliationAccount__c) != String.isBlank(op.CompanyData[0].ReconciliationAccount))))
@@ -1101,6 +1116,7 @@ public void approvalCallMethod()
                      {  pr.VPM_ProvidedFinancialSensitive__c=true; }
                      else 
                      {     pr.VPM_ProvidedFinancialSensitive__c=false; }
+                    }
                     }
                 }
             else{

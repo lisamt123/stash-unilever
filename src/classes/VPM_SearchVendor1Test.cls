@@ -1,7 +1,10 @@
 @isTest
 public class VPM_SearchVendor1Test{
     public static final string vpmCountry = 'IN_India';  
+    public static final string vpmCompanyCountry = 'India';   
     public static final string vendorCode = '5001010';  
+    public static final string eccU2k2 = 'U2K2';
+    public static final string eccFusion = 'Fusion';
     static void customSettingData(string regionVar) {
         VPM_RegionSpecificFields__c region = new VPM_RegionSpecificFields__c();
         List<VPM_RegionSpecificFields__c> regionList = new List<VPM_RegionSpecificFields__c>();
@@ -15,7 +18,7 @@ public class VPM_SearchVendor1Test{
     }    
 
     static  VPM_PurchasingRequests__c TestDataU2K2(){    
-        customSettingData('U2K2');    
+        customSettingData(eccU2k2);    
         VPM_Region__c reg = new VPM_Region__c();
         reg.VPM_Code__c = '05';
         reg.Name = vpmCountry;
@@ -30,7 +33,7 @@ public class VPM_SearchVendor1Test{
         vendor.mdm_Name1__c ='Test Sirius';
         vendor.mdm_Street__c = 'Test Street';
         vendor.mdm_Postcode__c = '54132';
-        vendor.mdm_Country__c = 'India';
+        vendor.mdm_Country__c = vpmCompanyCountry;
         vendor.mdm_ID__c = '1234';
         vendor.mdm_vCodeFusion__c= vendorCode;
         vendor.mdm_vCodeCordillera__c=vendorCode;
@@ -43,7 +46,7 @@ public class VPM_SearchVendor1Test{
        
        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
         companyCode.VPM_CompanyCode__c = 'PH01';
-        companyCode.ECC__c = 'U2K2';
+        companyCode.ECC__c = eccU2k2;
         companyCode.VPM_Country__c ='Philippines';
         insert companyCode;
         system.assert(companyCode.Id!=null,'Error');
@@ -55,10 +58,10 @@ public class VPM_SearchVendor1Test{
         commodityCode.VPM_AuthorisationGroup__c = 'Chemicals--Inorganics_VMBA Inorganics';
         commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research';
         commodityCode.VPM_CommodityCode__c = '5702 - UN01580116';
-        commodityCode.VPM_Region__c  = 'U2K2';
+        commodityCode.VPM_Region__c  = eccU2k2;
             
         VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
-        pur.VPM_ECC__c = 'U2K2';
+        pur.VPM_ECC__c = eccU2k2;
         pur.VPM_VendorName1__c ='Test Sirius';
         pur.VPM_Status__c = 'Draft Request';
         pur.VPM_VendorCodeLookup__c = vendorList[0].id;
@@ -88,10 +91,10 @@ public class VPM_SearchVendor1Test{
     }
     
     static  VPM_PurchasingRequests__c TestDataFusion(){    
-        customSettingData('Fusion');    
+        customSettingData(eccFusion);    
         VPM_Region__c reg = new VPM_Region__c();
         reg.VPM_Code__c = '13';
-        reg.Name = 'India'; 
+        reg.Name = vpmCompanyCountry; 
         reg.VPM_Country__c = vpmCountry;
         insert reg;
         
@@ -103,7 +106,7 @@ public class VPM_SearchVendor1Test{
         vendor.mdm_Name1__c ='Test Sirius';
         vendor.mdm_Street__c = 'Test Street';
         vendor.mdm_Postcode__c = '54132';
-        vendor.mdm_Country__c = 'India';
+        vendor.mdm_Country__c = vpmCompanyCountry;
         vendor.mdm_ID__c = '1234';
         vendor.mdm_vCodeFusion__c= vendorCode;
         vendor.mdm_vCodeCordillera__c=vendorCode;
@@ -116,8 +119,8 @@ public class VPM_SearchVendor1Test{
        
        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
         companyCode.VPM_CompanyCode__c = 'H';
-        companyCode.ECC__c = 'Fusion';
-        companyCode.VPM_Country__c ='India';
+        companyCode.ECC__c = eccFusion;
+        companyCode.VPM_Country__c = vpmCompanyCountry;
         insert companyCode;
         system.assert(companyCode.Id!=null,'Error');
         
@@ -128,16 +131,16 @@ public class VPM_SearchVendor1Test{
         commodityCode.VPM_AuthorisationGroup__c = 'MBS--Other_MBS--Other';
         commodityCode.VPM_CommodityClass__c = 'Payment';
         commodityCode.VPM_CommodityCode__c = '6902 - 80141629';
-        commodityCode.VPM_Region__c  = 'Fusion';
+        commodityCode.VPM_Region__c  = eccFusion;
             
         VPM_PurchasingOrganisation__c purcOrg = new VPM_PurchasingOrganisation__c();
         purcOrg.Name = 'ULAB_ARIBA Pur.Orgn';
-        purcOrg.VPM_Country__c = 'India';
+        purcOrg.VPM_Country__c = vpmCompanyCountry;
         purcOrg.VPM_POSystem__c = 'Ariba';    
         insert purcOrg;    
             
         VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
-        pur.VPM_ECC__c = 'Fusion';
+        pur.VPM_ECC__c = eccFusion;
         pur.VPM_VendorName1__c ='Test Sirius';
         pur.VPM_Status__c = 'Draft Request';
         pur.VPM_VendorCodeLookup__c = vendorList[0].id;
@@ -148,7 +151,7 @@ public class VPM_SearchVendor1Test{
         //pur.VPM_CompanyCode__r.VPM_CompanyCode__c='PH01';
         //pur.VPM_CompanyCode__r.ECC__c='Sirius';
         pur.VPM_Street1__c='Test Street';
-        pur.VPM_CountryRequestingVendor__c='India';
+        pur.VPM_CountryRequestingVendor__c = vpmCompanyCountry;
         pur.VPM_VendorPhone__c='1234567895';
         pur.VPM_Commodity__c=commodityCode.id;
         pur.VPM_ZIPPostcode__c ='54132';
@@ -308,6 +311,10 @@ public class VPM_SearchVendor1Test{
         VPM_PurchasingRequests__c purId = TestDataU2K2();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1 (vendorDetail);
+        
+        VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purId.id];
+        system.assertEquals(purch.VPM_ECC__c, 'U2K2');
+        
         Test.startTest();
         searchVendor.mdmVendorType = '';
         searchVendor.processRequestType();

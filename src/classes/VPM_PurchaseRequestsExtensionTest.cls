@@ -2,7 +2,7 @@
 private class VPM_PurchaseRequestsExtensionTest{
  static testMethod void checkForUserTestMethod() {
   
-  map<string,string> userRole =new map<string,string>();
+ // map<string,string> userRole =new map<string,string>();
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = 'PH01';
     companyCode.ECC__c = 'U2K2';

@@ -37,7 +37,7 @@ public with sharing class VPM_SearchVendor1{
     public List<SelectOption> socialInsuCodeOptions{get;set;}
     public List<SelectOption> payTermsCreditMemosOptions{get;set;}
     public List<SelectOption> industryOptions{get;set;}
-    public List<SelectOption> standardCommOptions{get;set;}
+    //public List<SelectOption> standardCommOptions{get;set;}
     public List<SelectOption> regStGrpOptions{get;set;}
     public List<SelectOption> recipentTypeOptions{get;set;}
     //public List<SelectOption> taxJuriCodeOptions{get;set;}
@@ -73,15 +73,15 @@ public with sharing class VPM_SearchVendor1{
     public string screenType{get;set;}    
     public string street1{get; set;}
     public string taxCode{get;set;}
-    public string vendorCodeInput{get;set;}
+    //public string vendorCodeInput{get;set;}
     public string vendorName{get;set;}    
     public string countryName{get;set;}
     public string incoterms2{get;set;}
-    public string display{get;set;}
-    public string labelText{get;set;}
-    public string unblockBlockUnDeleteDelete {get;set;}   
+    //public string display{get;set;}
+    //public string labelText{get;set;}
+    //public string unblockBlockUnDeleteDelete {get;set;}   
     public string zipPostcode{get; set;}  
-    public string deletionBlockFlag  {get;set;}
+    //public string deletionBlockFlag  {get;set;}
     public string userlang{get;set;}  
     public string pageBlockTitle{get;set;}
     //public string VendorType{get;set;}
@@ -104,7 +104,7 @@ public with sharing class VPM_SearchVendor1{
     public boolean isCahsMGtRequired{get;set;}
     public boolean hideSearchVendor{get;set;}
     public boolean heapMessageScreen{get;set;}
-    public boolean mdmBPMPIErrorMessage{get;set;}
+    //public boolean mdmBPMPIErrorMessage{get;set;}
     public boolean launchScreen{get;set;}
     public boolean commodityCBSFlag = false ;
     public boolean isU2k2{get;set;}
@@ -116,8 +116,8 @@ public with sharing class VPM_SearchVendor1{
     public boolean piVendorCreation{get;set;}
     public boolean vendorNotFound{get;set;}
     public boolean showSearchVendor{get;set;}
-    Public Boolean isBlockDeleted {get;set;}
-    Public Boolean isUnBlockUnDeleted {get;set;} 
+    //Public Boolean isBlockDeleted {get;set;}
+    //Public Boolean isUnBlockUnDeleted {get;set;} 
     Public Boolean isIncoTerms2Required{get;set;}
     Public Boolean isInputField{get;set;}
     Public Boolean isOutputField{get;set;}
@@ -144,18 +144,18 @@ public with sharing class VPM_SearchVendor1{
     public boolean isRequiredSpend{get;set;}
     public boolean isReqOrderingEmail {get;set;} //changes for IAVMD-1271    
     public boolean isInternationalVersionCollapsed{get;set;}
-    public boolean isFusion{get;set;}
+    //public boolean isFusion{get;set;}
     //public boolean isPaymentMetod1{get;set;}
     //public boolean isPaymentMetod2{get;set;}
-    public boolean block{get;set;} 
-    public boolean delete1{get;set;}
+    //public boolean block{get;set;} 
+    //public boolean delete1{get;set;}
     public boolean isTrue{get;set;}
     public static boolean checkFlag = false; // for recurrsive trigger   
     public static boolean updateNoOfHoursFlag= false; // for recurrsive trigger       
     
     public string industryOptionsDefValue{get;set;}
     public string paymentTermsCreditMemos{get;set;}
-    public string standardCommDefValue{get;set;}
+    //public string standardCommDefValue{get;set;}
     public string regStGrpDefValue{get;set;}
     public string recipentTypeDefValue{get;set;}
     public string taxJuriCodeDefValue{get;set;}
@@ -163,7 +163,7 @@ public with sharing class VPM_SearchVendor1{
     public string orderOPtimRestDefValue{get;set;}
     public string intCalcIndicatorDefValues{get;set;}
     public string shippingConditionsDefValue{get;set;}
-    public string accountingClerkDefValue{get;set;}
+    //public string accountingClerkDefValue{get;set;}
     public string confirmationControlDefaultValue{get;set;}
     public string vendorCashmgmntgroup{get;set;}
     public string vendorLanguage{get;set;}
@@ -278,7 +278,7 @@ public with sharing class VPM_SearchVendor1{
             paymentMethod = VPM_RecordTypeHelper.paymentMathodMetaData(vendorQuery1.VPM_CompanyCode__r.VPM_CountryCode__c, vendorQuery1.VPM_CompanyCode__r.VPM_Country__c);    
             paymentMethodWebserviceValues = vendorQuery1.VPM_PaymentMethodWeb__c;
             paymentTermsCreditMemos = vendorQuery1.VPM_PaymentTermsKeyCreditMemos__c;
-        	confirmationControlDefaultValue = vendorQuery1.VPM_ConfirmationControl__c;
+            confirmationControlDefaultValue = vendorQuery1.VPM_ConfirmationControl__c;
             ssIStatusDefaultValue = vendorQuery1.VPM_SSIStatus__c;
             orderOPtimRestDefValue = vendorQuery1.VPM_OrderOptimRest__c;
             intCalcIndicatorDefValues = vendorQuery1.VPM_Interestcalculationindicator__c;     
@@ -1013,7 +1013,7 @@ public with sharing class VPM_SearchVendor1{
          goldendata2Screen2 = false;   
          try{
              system.debug('@@screenVisited' +screenVisited);
-             string currentScreen = screenVisited[screenVisited.size() -1];
+             string currentScreen = screenVisited[screenVisited.size() -1];     
              system.debug('@@currentScreen' +currentScreen);   
              system.debug('@@showSearchVendor' +showSearchVendor);
              system.debug('@@launchScreen' +launchScreen);
@@ -1599,7 +1599,7 @@ public with sharing class VPM_SearchVendor1{
                 vendorQuery1.VPM_PaymentMethod__c = vendorPaymentMethod;
             }
             vendorQuery1.VPM_VendorBlockUnblockDelete__c = vendorBlockUnblockDelete == null? vendorBlockUnblockDelete: vendorQuery1.VPM_VendorBlockUnblockDelete__c;
-          	vendorQuery1.VPM_VendorName1__c = vendorName;
+            vendorQuery1.VPM_VendorName1__c = vendorName;
             vendorQuery1.VPM_SearchTerm_1__c = searchTerm1;
             vendorQuery1.VPM_Incoterms2__c = incoterms2;
             vendorQuery1.VPM_Country__c = countryName;           
@@ -2052,10 +2052,10 @@ public with sharing class VPM_SearchVendor1{
             }
             //modified by vaishali Nagar for IAPR-605
             if(countryName.contains(VPM_RecordTypeHelper.VENDOR_COUNTRY) && string.isBlank(taxJuriCodeDefValue)){
-				myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_TaxJuriCodeErrorMessage);            
+                myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_TaxJuriCodeErrorMessage);            
             }
             if(countryName.contains(VPM_RecordTypeHelper.VENDOR_COUNTRY) && string.isBlank(vendorQuery1.VPM_TaxNumber3__c)){
-				myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,'Tax Number 3 cannot be left blank');            
+                myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,'Tax Number 3 cannot be left blank');            
             }
             //modified for IAPR-575
             else if(string.isNotBlank(vendorQuery1.VPM_VATRegistrationNumber2__c) && string.isBlank(vendorQuery1.VPM_VATCountry__c)){            
