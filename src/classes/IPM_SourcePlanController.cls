@@ -38,12 +38,10 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     public string sSortOrder{get;set;}
     public List<SelectOption> SourcingUnits{get;set;}
     public integer sourceUnitIndex{get;set;}
-    public boolean isLocalView;
     /********************************************************************************************
     @Description-Constructor  
     *********************************************************************************************/
     public IPM_SourcePlanController(){
-    	isLocalView=false;
         totalRowsInTable = 0;
         wrapperPosition = 0;
         row_Index = null;
@@ -320,9 +318,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
                 parentProId = project.IPM_Parent_Project__c;
             }
             projectProductList = [SELECT IPM_Of_gTO__c,IPM_Format__c,IPM_Formulation__c,IPM_GoldenPrototype__c,IPM_Project__c,IPM_Packing__c,IPM_Product_Name__c,IPM_ProductSize__c,IPM_ProductSizeMetrics__c,(SELECT IPM_Country__r.Country_Name__c,IPM_Project_Product__c FROM IPM_ProductPlans__r WHERE IPM_Country_Null__c = false and IPM_Country__r.isActive__c = true AND IPM_Country__c IN : lstCountryIDs) FROM IPM_Project_Product__c WHERE  IPM_Project__c =:parentProId order by IPM_Product_Name__c asc limit 1000];
-            if(projectProductList.size()>0){
-            	isLocalView =true;
-            }
+              
         } 
         sourcePlanMap.clear();     
         IF(projectProductList.isEmpty())
@@ -365,8 +361,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
             }
         }
         for(IPM_Project_Product__c product:projectProductList)
-        {        	
-        	boolean bIsSourcingUnitBlank = false;
+        {
             String country_STR = IPM_ConstantUtils.BLANK;
             List<string> lstCountry = new list<string>();
             if(productNCountryMap.containsKey(product.id)){
@@ -386,13 +381,12 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
                 IPM_SourcingPlan__c sourcePlan = new IPM_SourcingPlan__c();
                 sourceUnitMap.put(wrapperPosition, new list<sourceUnitWrapper>());
                 sourceUnitMap.get(wrapperPosition).add(new sourceUnitWrapper(sourcePlan,countryStr));
-                bIsSourcingUnitBlank = true;
                 
             }else{
                 sourceUnitMap.put(wrapperPosition, productWrapperMap.get(product.id));
             }
-            if((isLocalView && !bIsSourcingUnitBlank) || !isLocalView)
-            	sourcePlanMap.put(wrapperPosition,new sourcePlanWrapper(wrapperPosition,false,false,product,country_STR,sourceIntoList));
+            
+            sourcePlanMap.put(wrapperPosition,new sourcePlanWrapper(wrapperPosition,false,false,product,country_STR,sourceIntoList));
             wrapperPosition++;
         }
         totalRowsInTable = sourcePlanMap.size(); 
