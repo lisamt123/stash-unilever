@@ -120,6 +120,19 @@ src/workflows/ACSFUL001__Tactic__c.workflow
 src/tabs
 src/tabs/ACSFUL001__Org_Unit_User__c.tab
 src/tabs/UL_Approval_Threshold__c.tab
-src/objectTranslations
-src/objectTranslations/ACSFUL001__Product__c-en_GB.objectTranslation
-src/objectTranslations/ACSFUL001__Product__c-en_US.objectTranslation
+src/profiles
+src/profiles/SoCo-Account Manager.profile
+src/profiles/SoCo-Account Planner.profile
+src/profiles/SoCo-Category Manager.profile
+src/profiles/SoCo-Category Planner.profile
+src/profiles/SoCo-CD Finance Analyst.profile
+src/profiles/SoCo-CD Finance Manager.profile
+src/profiles/SoCo-Customer Marketing Director.profile
+src/profiles/SoCo-Finance Admin.profile
+src/profiles/SoCo-Process Officer.profile
+src/profiles/SoCo-Security Admin.profile
+src/profiles/SoCo-System Admin.profile
+src/profiles/UKI-Admin.profile
+src/profiles/UKI-Authoriser.profile
+src/profiles/UKI-Planner %28CAM%29.profile
+
