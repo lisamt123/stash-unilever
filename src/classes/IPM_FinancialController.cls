@@ -385,8 +385,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         exRate=1;
         showNonKeyBusinessCaseChangedAlert = false;  //initiating the variable to false
         
-        redValidationCellsString = IPM_ConstantUtils.BLANK;
-        yellowValidationCellsString = IPM_ConstantUtils.BLANK ;
         currentFinancialType = IPM_ConstantUtils.BLANK;
         isFinacialConsolidated = false;
         isCAPEXInvalid = false;
