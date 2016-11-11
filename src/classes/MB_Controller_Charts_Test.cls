@@ -19,7 +19,7 @@ public class MB_Controller_Charts_Test{
   
   Test.startTest();
   
-     String jobId ='';   
+      
   ID adminProfileID = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].ID;
   user  userObject1 = new User(username='firstuserdb@test.com',
                                   alias = 'fu',
@@ -249,7 +249,7 @@ public class MB_Controller_Charts_Test{
         Integer Year= Date.Today().Year()+1;
         String YearCurrent=String.valueof(Year);
         String scheduleTime=DATE_EXP+' '+ YearCurrent;
-   jobId = System.schedule('ScheduleApexClassTest',scheduleTime,new MB_Scheduler());
+  System.schedule('ScheduleApexClassTest',scheduleTime,new MB_Scheduler());
                          
   Test.stopTest();
   
