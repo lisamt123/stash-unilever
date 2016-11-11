@@ -445,7 +445,7 @@
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Profession_c__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Profession_c__c}"/>
       </apex:pageBlocksection>
       <apex:outputText value="{!callCollapsefunc}" escape="false"></apex:outputText>
-      <apex:pageBlocksection id="section1Int" collapsible="true" title="{!$Label.VPM_International_Version}"  rendered="{!AND(generalVendorDetails,isInternationalVersionRendered)}">
+      <apex:pageBlocksection id="section1Int" collapsible="{!isInternationalVersionCollapsed}" title="{!$Label.VPM_International_Version}"  rendered="{!AND(generalVendorDetails,isInternationalVersionRendered)}">
 
       <apex:pageBlockSectionItem >             
           <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_InternationalVersion__c.Label}" />    

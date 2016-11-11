@@ -1,6 +1,7 @@
 @isTest
 public class VPM_SearchVendor1Test{
-    
+    public static final string vpmCountry = 'IN_India';  
+    public static final string vendorCode = '5001010';  
     static void customSettingData(string regionVar) {
         VPM_RegionSpecificFields__c region = new VPM_RegionSpecificFields__c();
         List<VPM_RegionSpecificFields__c> regionList = new List<VPM_RegionSpecificFields__c>();
@@ -17,13 +18,13 @@ public class VPM_SearchVendor1Test{
         customSettingData('U2K2');    
         VPM_Region__c reg = new VPM_Region__c();
         reg.VPM_Code__c = '05';
-        reg.Name = 'IN_India'; 
-        reg.VPM_Country__c = 'IN_India';
+        reg.Name = vpmCountry;
+        reg.VPM_Country__c = vpmCountry;
         insert reg;
         
         List<mdm_Vendors__c> vendorList = new List<mdm_Vendors__c>();
         mdm_Vendors__c vendor = new mdm_Vendors__c();
-        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_Code__c = vendorCode;
         vendor.mdm_City__c = 'Andorra';
         vendor.mdm_Country__c ='DZ_Algeria';
         vendor.mdm_Name1__c ='Test Sirius';
@@ -31,10 +32,10 @@ public class VPM_SearchVendor1Test{
         vendor.mdm_Postcode__c = '54132';
         vendor.mdm_Country__c = 'India';
         vendor.mdm_ID__c = '1234';
-        vendor.mdm_vCodeFusion__c='5001010';
-        vendor.mdm_vCodeCordillera__c='5001010';
-        vendor.mdm_vCodeSirius__c='5001010';
-        vendor.mdm_vCodeU2K2__c='5001010';
+        vendor.mdm_vCodeFusion__c= vendorCode;
+        vendor.mdm_vCodeCordillera__c=vendorCode;
+        vendor.mdm_vCodeSirius__c=vendorCode;
+        vendor.mdm_vCodeU2K2__c=vendorCode;
         vendorList.add(vendor);
         insert vendorList;
         system.debug('@@vendorList' + vendorList);
@@ -76,7 +77,7 @@ public class VPM_SearchVendor1Test{
         pur.VPM_OrderingEmailAddress__c = '';
         pur.VPM_VendorType__c = 'PI_Production Item Vendor_G001';  
         pur.VPM_ClerksInternet__c = '';
-        pur.VPM_Country__c = 'IN_India';
+        pur.VPM_Country__c = vpmCountry;
         pur.VPM_ExtensionType__c = VPM_RecordTypeHelper.REGIONAL_REQUEST;
         pur.VPM_Industry__c = '9001_Oils';
         insert pur;
@@ -91,12 +92,12 @@ public class VPM_SearchVendor1Test{
         VPM_Region__c reg = new VPM_Region__c();
         reg.VPM_Code__c = '13';
         reg.Name = 'India'; 
-        reg.VPM_Country__c = 'IN_India';
+        reg.VPM_Country__c = vpmCountry;
         insert reg;
         
         List<mdm_Vendors__c> vendorList = new List<mdm_Vendors__c>();
         mdm_Vendors__c vendor = new mdm_Vendors__c();
-        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_Code__c = vendorCode;
         vendor.mdm_City__c = 'Andorra';
         vendor.mdm_Country__c ='DZ_Algeria';
         vendor.mdm_Name1__c ='Test Sirius';
@@ -104,10 +105,10 @@ public class VPM_SearchVendor1Test{
         vendor.mdm_Postcode__c = '54132';
         vendor.mdm_Country__c = 'India';
         vendor.mdm_ID__c = '1234';
-        vendor.mdm_vCodeFusion__c='5001010';
-        vendor.mdm_vCodeCordillera__c='5001010';
-        vendor.mdm_vCodeSirius__c='5001010';
-        vendor.mdm_vCodeU2K2__c='5001010';
+        vendor.mdm_vCodeFusion__c= vendorCode;
+        vendor.mdm_vCodeCordillera__c=vendorCode;
+        vendor.mdm_vCodeSirius__c=vendorCode;
+        vendor.mdm_vCodeU2K2__c=vendorCode;
         vendorList.add(vendor);
         insert vendorList;
         system.debug('@@vendorList' + vendorList);
@@ -156,7 +157,7 @@ public class VPM_SearchVendor1Test{
         pur.VPM_OrderingEmailAddress__c = '';
         pur.VPM_VendorType__c = 'MBS--Other_MBS--Other';
         pur.VPM_ClerksInternet__c = '';
-        pur.VPM_Country__c = 'IN_India';
+        pur.VPM_Country__c = vpmCountry;
         pur.VPM_Industry__c = '9001_Oils';
         insert pur;
         insert commodityCode;
@@ -170,11 +171,13 @@ public class VPM_SearchVendor1Test{
     static testMethod void VPM_SearchVendor2(){
             
         VPM_PurchasingRequests__c purId = TestDataU2K2();
-        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
-        purId.recordTypeId=recordTypeId;
+        string recordTypeId = [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
+        purId.recordTypeId = recordTypeId;
         update purId;
+        VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purId.id];
+        system.assertEquals(purch.VPM_ECC__c, 'U2K2');
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
-        VPM_SearchVendor1 searchVendorConst = new VPM_SearchVendor1 ();
+        
         VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
         searchVendor.getVendorDetailList();     
         
@@ -201,7 +204,7 @@ public class VPM_SearchVendor1Test{
 
 		searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.VENDOR_LIST);
 		searchVendor.SaveMethod();
-
+		Test.startTest();
 		searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.REQUEST_TYPE);
 		searchVendor.SaveMethod(); 
         searchVendor.GoldenDataSave();  
@@ -211,16 +214,20 @@ public class VPM_SearchVendor1Test{
         searchVendor.isInternationalVersionCollapsed();
         searchVendor.getButtonVisibleSaveMenu();
         searchVendor.getButtonVisibleSaveExit();
+        searchVendor.backToDetailPage();
+        Test.stopTest();    
         //searchVendor.getExitButtonVisible();    
     }
     
     static testMethod void VPM_SearchVendor1(){        
     	VPM_PurchasingRequests__c purId = TestDataU2K2();
-        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Extend)'].Id; 
         purId.recordTypeId=recordTypeId;
         update purId;
+        VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purId.id];
+        system.assertEquals(purch.VPM_ECC__c, 'U2K2');
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
-        VPM_SearchVendor1 searchVendorConst = new VPM_SearchVendor1 ();
+        
         VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
         searchVendor.intCalcIndicatorDefValues = '01';
         searchVendor.getVendorDetailList();        
@@ -254,11 +261,13 @@ public class VPM_SearchVendor1Test{
     
     static testMethod void VPM_SearchVendor3(){        
     	VPM_PurchasingRequests__c purId = TestDataFusion();
-        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id; 
         purId.recordTypeId=recordTypeId;
         update purId;
+        VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purId.id];
+        system.assertEquals(purch.VPM_ECC__c, 'Fusion');
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
-        VPM_SearchVendor1 searchVendorConst = new VPM_SearchVendor1 ();
+        
         VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
         searchVendor.getVendorDetailList();        
                 
@@ -287,69 +296,67 @@ public class VPM_SearchVendor1Test{
         //searchVendor.getExitButtonVisible();    
 	}
     
-    static void backBtnActionData(){     
+    /*static void backBtnActionData(){     
 		pageReference pg = null;
 		VPM_PurchasingRequests__c purId = TestDataU2K2();
 		ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
 		VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1 (vendorDetail);		
-		
-		
-		
-	}
+	}*/
 
     static testMethod void processRequestType(){
-        pageReference pg = null;
+        
         VPM_PurchasingRequests__c purId = TestDataU2K2();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1 (vendorDetail);
+        Test.startTest();
         searchVendor.mdmVendorType = '';
-        pg = searchVendor.processRequestType();
+        searchVendor.processRequestType();
         
         searchVendor.mdmVendorType = System.label.VPM_EnterBankDetails;
-        pg = searchVendor.processRequestType();
+        searchVendor.processRequestType();
     
         // For ReviewRequestBrief
         searchVendor.mdmVendorType = System.label.VPM_EnterGeneralVendorDetails;
-        pg = searchVendor.processRequestType();
+        searchVendor.processRequestType();
     
         // For ReviewRequestBrief
         searchVendor.mdmVendorType = System.label.VPM_RequestVendortoBlock_Delete;
         searchVendor.requestType= 'Maintain';
-        pg = searchVendor.processRequestType();
+        searchVendor.processRequestType();
         
         searchVendor.mdmVendorType = System.label.VPM_RequestVendortoBlock_Delete;
         searchVendor.requestType= 'Maintain2';
-        pg = searchVendor.processRequestType();
+        searchVendor.processRequestType();
             
            // For ReviewRequestBrief
         searchVendor.mdmVendorType = System.label.VPM_EnterPaymentTerms;
-        pg = searchVendor.processRequestType();
-    
+        searchVendor.processRequestType();    
         
          // For ReviewRequestBrief
         searchVendor.mdmVendorType = System.label.VPM_PIVendorCreationPreRequisites; 
-        pg = searchVendor.processRequestType();
+        searchVendor.processRequestType();
     
         searchVendor.mdmVendorType = System.label.VPM_EditFinanciallySensitiveFields;
-        pg = searchVendor.processRequestType();
+        searchVendor.processRequestType();
         
         searchVendor.mdmVendorType = System.label.VPM_EnterRegionalSpecificFields;
-        pg = searchVendor.processRequestType();
+        searchVendor.processRequestType();
          
         searchVendor.mdmVendorType = system.label.VPM_SubmitVendorRequestforApproval;
         searchVendor.requestType= 'Maintain';
-        pg = searchVendor.processRequestType();
+        searchVendor.processRequestType();
         
         searchVendor.mdmVendorType = system.label.VPM_SubmitVendorRequestforApproval;
         searchVendor.requestType= 'Extend';
-        pg = searchVendor.processRequestType();
+        searchVendor.processRequestType();
     
          // For ReviewRequestBrief
         searchVendor.mdmVendorType = system.label.VPM_Exitthisform;
-        pg = searchVendor.processRequestType();
+        searchVendor.processRequestType();
     
         //for SendResendWebform
         searchVendor.mdmVendorType = system.label.VPM_Send_ResendWebformRequest;
-        pg = searchVendor.processRequestType();
+        searchVendor.processRequestType();
+        Test.stopTest();
 	}
 }

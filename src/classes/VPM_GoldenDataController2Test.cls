@@ -28,14 +28,16 @@ public class VPM_GoldenDataController2Test{
 	 public static final string STR_COMPANYCODENAME='Ad-hoc Market Research - Qualitative';
 	 public static final string STR_COMCODE='5702 - UN01580115';
     public static final string STR_BRAZIL='Brazil';
+	public static final string STR_TEST_DATA_SIRIUS='Test Sirius';
    // public PageReference pg {get;set;}
+   string recordTypeId {get;set;}
 	 
     
     static VPM_PurchasingRequests__c TestData(){
     
         try
         {
-        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
         VendorRequest__c obj = new VendorRequest__c();
         obj.Name=COUNTRIES;
@@ -112,7 +114,7 @@ public class VPM_GoldenDataController2Test{
    
     static VPM_PurchasingRequests__c TestU2K2(){
     
-        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
     VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
@@ -178,7 +180,7 @@ public class VPM_GoldenDataController2Test{
     
     static VPM_PurchasingRequests__c TestFusion(){
     
-        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
     VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
@@ -245,7 +247,7 @@ public class VPM_GoldenDataController2Test{
     
 static VPM_PurchasingRequests__c TestCordillera(){
     
-        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
        VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
@@ -313,7 +315,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
      static VPM_PurchasingRequests__c TestDataApprovalMethod(){
     
-        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
     VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
@@ -324,7 +326,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         vendor.mdm_Code__c = MDM_CODE;
         vendor.mdm_City__c = MDM_CITY;
         vendor.mdm_Country__c =STR_BRAZIL;
-        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_Name1__c =STR_TEST_DATA_SIRIUS;
         vendor.mdm_ID__c = MDM_ID;
         vendor.mdm_vCodeFusion__c=MDM_CODE;
         vendor.mdm_vCodeCordillera__c=MDM_CODE;
@@ -394,10 +396,9 @@ static VPM_PurchasingRequests__c TestCordillera(){
     }
     
     static VPM_PurchasingRequests__c TestDataApprovalMethodMaintain(){
-        try
-        {
+        
     
-        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
+         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
     
     VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
@@ -408,7 +409,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         vendor.mdm_Code__c = MDM_CODE;
         vendor.mdm_City__c = MDM_CITY;
         vendor.mdm_Country__c =ALGERIA;
-        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_Name1__c =STR_TEST_DATA_SIRIUS;
         vendor.mdm_ID__c = MDM_ID;
         insert vendor;
         system.assert(vendor.Id!=null,STR_ERROR);
@@ -472,11 +473,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         //system.assertequals(commodityCode.VPM_CommodityFamily__c,pur1.VPM_Commodity_Family__c );
         return pur1;
        
-        }
-        catch(exception ex){
-            System.debug('Exception in saveRecord Function' + Ex.getStacktraceString());
-            Return Null;
-        }   
+        
        
     }
  
@@ -558,7 +555,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
          system.debug('purId '+purId+'    '+purId.VPM_Commodity_Family__c);
          goldenData.approvalCallMethod();
          
-         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
+          string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
          purId.recordTypeId =recordTypeId;
          update purId;
          goldenData.approvalCallMethod();
@@ -749,18 +746,18 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         
         List<mdm_Vendors__c> vendorList = new List<mdm_Vendors__c>();
         mdm_Vendors__c vendor = new mdm_Vendors__c();
-        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_Code__c = MDM_CODE;
         vendor.mdm_City__c = 'Andorra';
         vendor.mdm_Country__c ='DZ_Algeria';
-        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_Name1__c =STR_TEST_DATA_SIRIUS;
         vendor.mdm_Street__c = 'Test Street';
         vendor.mdm_Postcode__c = '54132';
         vendor.mdm_Country__c = 'India';
         vendor.mdm_ID__c = '1234';
-        vendor.mdm_vCodeFusion__c='5001010';
-        vendor.mdm_vCodeCordillera__c='5001010';
-        vendor.mdm_vCodeSirius__c='5001010';
-        vendor.mdm_vCodeU2K2__c='5001010';
+        vendor.mdm_vCodeFusion__c=MDM_CODE;
+        vendor.mdm_vCodeCordillera__c=MDM_CODE;
+        vendor.mdm_vCodeSirius__c=MDM_CODE;
+        vendor.mdm_vCodeU2K2__c=MDM_CODE;
         vendorList.add(vendor);
         insert vendorList;
         system.debug('@@vendorList' + vendorList);
@@ -784,10 +781,10 @@ static testMethod void VPM_ApprovalMethodFreight12(){
             
         VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
         pur.VPM_ECC__c = 'U2K2';
-        pur.VPM_VendorName1__c ='Test Sirius';
+        pur.VPM_VendorName1__c =STR_TEST_DATA_SIRIUS;
         pur.VPM_Status__c = 'Draft Request';
         pur.VPM_VendorCodeLookup__c = vendorList[0].id;
-        //pur.recordTypeId=recordTypeId;
+        pur.recordTypeId=recordTypeId;
         
         pur.VPM_CompanyCode__c=companyCode.Id;
         //pur.VPM_CompanyCode__r.VPM_CompanyCode__c='PH01';
@@ -824,7 +821,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         vendor.mdm_Code__c = MDM_CODE;
         vendor.mdm_City__c = MDM_CITY;
         vendor.mdm_Country__c ='DZ_Algeria';
-        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_Name1__c =STR_TEST_DATA_SIRIUS;
         vendor.mdm_ID__c = MDM_ID;
         insert vendor;
         system.assert(vendor.Id!=null,STR_ERROR);
@@ -931,7 +928,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
 
    static testMethod void errorMessage(){
     //   PageReference pg =null;
-       try {
+      
        	VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
         purId.recordTypeId=recordTypeId;
@@ -940,20 +937,17 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_SearchVendor1 searchVendorConst = new VPM_SearchVendor1 ();
         VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
-        searchVendor.intCalcIndicatorDefValues = '01';
-        searchVendor.getVendorDetailList();        
-        searchVendor.mdmVendorType = '';
-        searchVendor.VendorSelected(); 
-        VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+      //  searchVendor.intCalcIndicatorDefValues = '01';
+     //   searchVendor.getVendorDetailList();        
+      //  searchVendor.mdmVendorType = '';
+           Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200,'Maintain'));
+        //searchVendor.requestType ='Maintain';  
+       // Test.startTest();
+      //  searchVendor.VendorSelected(); 
+       // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
        // pg=goldenData.ErrorMessage();
-            }
-       catch(exception ex){
-            System.debug('Exception in errorMessage' + Ex.getStacktraceString());
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,ex.getMessage()));
-}
+       purId.VPM_VendorName1__c='TEST VENDOR';
 
-   
-   
    } 
    
   

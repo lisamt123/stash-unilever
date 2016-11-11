@@ -3073,7 +3073,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_CordilleraGoldenData</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_FusionGoldenData</apexPage>
@@ -3085,11 +3085,11 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_ProcurementAtAGlance</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_ProcurementCentralAdmin</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_SendToSAP</apexPage>

@@ -668,7 +668,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                 
               System.debug('@@@@@ Rework :::----'+ VendorDetailList);
                 // Ajay : BR submitted to FLS now FLS is sending for rework
-              if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ && VendorDetailList[0].VPM_Status__c==STR_CONST_FLSREVIEW) 
+              if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ && VendorDetailList[0].VPM_Status__c==STR_CONST_FLSREVIEW) 
               { 
                   VendorDetailList[0].VPM_Status__c = 'FLS Requested Re-Work'; 
                   VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById;
@@ -683,7 +683,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   
               }
               // Ajay : Adv BR submitted to Pro now Pro is sending for rework
-              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ && 
+              else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ && 
               VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING && VendorDetailList[0].VPM_ProcurementApprovalRequired__c )
               {
                   VendorDetailList[0].VPM_Status__c = 'Procurement Requested Re-Work'; 
@@ -698,7 +698,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   //AssigneeApproval(VendorDetailList[0].OwnerId,recId);
               }
               // Ajay : Adv BR submitted to FIN now FIN is sending for rework
-              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ && 
+              else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ && 
               VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING && 
               VendorDetailList[0].VPM_FinanceApprovalRequired__c && 
              !VendorDetailList[0].VPM_BankDataValidationRequired__c    &&    
@@ -718,7 +718,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               }
            
              // Ajay : Adv FLS submitted to PRO now PRO is sending for rework
-              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_FLS && VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING 
+              else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_FLS && VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING 
               && VendorDetailList[0].VPM_ProcurementApprovalRequired__c )
               {
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name =: STR_CONST_FLS Limit 1];
@@ -782,7 +782,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     !VendorDetailList[0].VPM_BankDataValidationRequired__c    &&
                     !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
                      VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
-                     VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_FLS) 
+                     VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_FLS) 
               { 
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = : STR_CONST_FLS Limit 1];
                   if (queueList.size() == 1){                     
@@ -805,7 +805,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     !VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
                      VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
-                     VendorDetailList[0].VPM_RequestLastWithGroup__c ==STR_CONST_FLS) 
+                     VendorDetailList[0].VPM_RequestFromFLSOrBR__c==STR_CONST_FLS) 
               { 
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = : STR_CONST_FLS Limit 1];
                   if (queueList.size() == 1){                     
@@ -829,7 +829,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     !VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
                      VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
                      VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
-                     VendorDetailList[0].VPM_RequestLastWithGroup__c ==STR_CONST_FLS) 
+                     VendorDetailList[0].VPM_RequestFromFLSOrBR__c==STR_CONST_FLS) 
               { 
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = : STR_CONST_FLS Limit 1];
                   if (queueList.size() == 1){                     
@@ -852,7 +852,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
                      VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
-                     VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ ) 
+                     VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ ) 
               { 
                       VendorDetailList[0].VPM_Status__c = 'Russian Custom Tax Requested Re-Work'; 
                       //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Russian Custom Tax'; 
@@ -874,7 +874,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     !VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
                     !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
                      VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
-                     VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ) 
+                     VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ) 
               { 
                      VendorDetailList[0].VPM_Status__c = STR_CONST_FREIGHTREWORK; 
                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight';
@@ -895,7 +895,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     !VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
                     VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
                      VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING &&
-                     VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ) 
+                     VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ) 
               { 
                      VendorDetailList[0].VPM_Status__c = STR_CONST_FREIGHTREWORK; 
                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight';
@@ -909,7 +909,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
               }
               // Bank Data Validation Rework Cases   
               // Ajay : Adv FLS submitted to FRE now FRE is sending for rework
-               else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_FLS && 
+               else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_FLS && 
                         VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING
                         && VendorDetailList[0].VPM_BankDataValidationRequired__c) 
               
@@ -928,7 +928,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   } 
               }
               // Ajay : Adv BR submitted to FRE now FRE is sending for rework
-                else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == STR_CONST_BUSREQ  && VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING && VendorDetailList[0].VPM_BankDataValidationRequired__c) 
+                else if (VendorDetailList[0].VPM_RequestFromFLSOrBR__c== STR_CONST_BUSREQ  && VendorDetailList[0].VPM_Status__c == VPM_RecordTypeHelper.APPROVALPENDING && VendorDetailList[0].VPM_BankDataValidationRequired__c) 
               { 
                      VendorDetailList[0].VPM_Status__c = 'Bank Data Validation Requested Re-Work'; 
                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Bank Data';

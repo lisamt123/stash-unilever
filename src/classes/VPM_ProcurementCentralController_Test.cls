@@ -104,6 +104,8 @@ public class VPM_ProcurementCentralController_Test {
         controller.com.VPM_Country__c = 'Algeria';
         controller.goAssign();
         controller.GoBack();
+        system.assertEquals(comlist1.checkFlag,true);
+        system.assertEquals(comlist1.setFlag,false);
             
         }
 
@@ -151,6 +153,8 @@ public class VPM_ProcurementCentralController_Test {
             controller.com.VPM_Approver2__c = Approver2.id;
         controller.goAssign();
         controller.GoBack();
+        system.assertEquals(comlist2.setFlag,true);
+        system.assertequals(comlist2.setFlag,true);
             
         }
 

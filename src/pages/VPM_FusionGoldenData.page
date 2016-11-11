@@ -16,7 +16,7 @@
             <apex:pageBlockButtons > 
             <apex:commandButton action="{!backToGlobalScreen}" value="{!$Label.VPM_Back}" immediate="true"/>
             <apex:commandButton action="{!saveAndBackToLaunchScreen}" value="{!$Label.VPM_SaveButton}" reRender="hiddenBlock,pageMessages" status="actStatusId"/>    
-            <apex:commandButton action="{!saveRecordRegional}" value="{!$Label.VPM_SaveExitButton}" reRender="hiddenBlock,pageMessages" status="actStatusId" />
+            <apex:commandButton action="{!saveRecordRegional}" value="{!$Label.VPM_SaveSubmitLabel}" reRender="hiddenBlock,pageMessages" status="actStatusId" />
 
         </apex:pageBlockButtons>
          <apex:pageBlock id="hiddenBlock" rendered="false"></apex:pageBlock> 

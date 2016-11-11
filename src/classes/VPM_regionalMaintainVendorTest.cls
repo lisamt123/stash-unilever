@@ -163,6 +163,7 @@ public class VPM_RegionalMaintainVendorTest{
         pur.VPM_ReasonForExemption__c= 'TE_TEST';
         pur.VPM_LSTno__c ='test';
         pur.VPM_ReconciliationAccount__c ='0902334';
+        pur.VPM_PANNumber__c ='2344';
      pur.VPM_LastKeyDate__c = null;
      pur.VPM_LastInterestRun__c = null;
         insert pur;
@@ -242,6 +243,8 @@ public class VPM_RegionalMaintainVendorTest{
         globalFields6.VPM_parentElement__c = 'CIN';
         globalFieldsList.add(globalFields6);
         
+        
+        
         VPM_listOfRegionalandGlobalField__c globalFields7 = new VPM_listOfRegionalandGlobalField__c();
         globalFields7.Name = '7';
         globalFields7.VPM_ApiName__c = 'VPM_ReconciliationAccount__c';
@@ -261,6 +264,16 @@ public class VPM_RegionalMaintainVendorTest{
         globalFields8.VPM_JSONFieldName__c = 'QMSystemTo';
         globalFields8.VPM_parentElement__c = 'CompanyData';
         globalFieldsList.add(globalFields8);
+        
+        VPM_listOfRegionalandGlobalField__c globalFields9 = new VPM_listOfRegionalandGlobalField__c();
+        globalFields9.Name = '9';
+        globalFields9.VPM_ApiName__c = 'VPM_PANNumber__c';
+        globalFields9.VPM_ECCRegion__c = ECCRegion; 
+        globalFields9.VPM_fieldDatatype__C = 'Text';
+        globalFields9.VPM_fieldType__C = FieldType;
+        globalFields9.VPM_JSONFieldName__c = 'PANNumber';
+        globalFields9.VPM_parentElement__c = 'CIN';
+        globalFieldsList.add(globalFields9);
      
   
         

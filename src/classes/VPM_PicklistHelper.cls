@@ -18,7 +18,7 @@ public with sharing class VPM_PicklistHelper {
     public static final string INCOTERMS_1= 'Incoterms 1';    
     public static final string PAYMENT_TERMS = 'Payment Terms';
     public static final string STANDARD_NUMBER='StandardNumber';
-    public static final string INT_VERSION='InternationalVersion';
+    public static final string INT_VERSION='InternationalVersion'; 
     public static final string TRADE_PARTNER_TYPE='TradePartnerType';
     public static final string SSI_Status ='SSI Status';    
     public static final string SOCIAL_IN_CODE_SOC ='Social Insurance Code - [Soc. Ins. Code]';
@@ -28,7 +28,7 @@ public with sharing class VPM_PicklistHelper {
     public static final string TAX_JURIDICATION_CODE = 'Tax Jurisdiction Code';
     public static final string REG_ST_GRP = 'Reg. St. Grp';
     public static final string RECIPENT_TYPE = 'Type of Recipient';
-    public static final string STAND_COMM = 'Standard Communication';
+    //public static final string STAND_COMM = 'Standard Communication';
     public static final string INDUSTRY = 'Industry';
     public static final string IND_WITHHOLD_TAX = 'Indicator WithHolding Tax';
     public static final string INS_KEYDATA_EXCHANGE = 'Instruction Data Exchange';

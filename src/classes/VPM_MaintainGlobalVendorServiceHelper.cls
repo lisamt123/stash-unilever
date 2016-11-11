@@ -48,8 +48,17 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
        
 
        VPM_PurchasingRequests__c VendorReq = [SELECT VPM_Fieldtype__c,VPM_VendorCodeLookup__r.mdm_ecc__c,VPM_CompanyCode__r.ECC__c  FROM VPM_PurchasingRequests__c WHERE id =: vendorId];
+     try{  
        maintainVenResp = (MaintainGlobalVendorResponse) System.JSON.deserialize(res.getBody(), MaintainGlobalVendorResponse.class);
-       // 
+      }
+    Catch(Exception ex)
+    {
+            if(ex.getmessage().containsIgnoreCase('unquoted character'))
+            {
+            responseString = 'Please avoid using special character like double quotes for field values';
+            }
+            return responseString;
+    }  
        
         //System.debug('---bpm id -- and response status---' + maintainVenResp.bpmID + '  ' + maintainVenResp.status);
         string msg='';
@@ -186,8 +195,18 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         //VPM_HttpUtil utilClass = new VPM_HttpUtil();
         HttpResponse res = VPM_HttpUtil.sendRequest('PUT',reqBodyJson,'VPM_ECCVendorSearch');
         system.debug('reqBodyJson '+res.getBody());
+    try{
         maintainVenResp = (MaintainGlobalVendorResponse) System.JSON.deserialize(res.getBody(), MaintainGlobalVendorResponse.class);
          system.debug('%%%% '+maintainVenResp);
+        }
+    Catch(Exception ex)
+    {
+            if(ex.getmessage().containsIgnoreCase('unquoted character'))
+            {
+            responseString = 'Please avoid using special character like double quotes for field values';
+            }
+            return responseString;
+    }
         //string msg= '';
         system.debug('res '+res);
         system.debug('res body '+res.getBody());
@@ -196,8 +215,8 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         /*if(maintainVenResp.status != null) {
             msg = maintainVenResp.status;
         }*/
-        VPM_PurchasingRequests__c VendorReq = [SELECT VPM_ECC_InsertUpdateStatusMessage__c,VPM_fieldUpdated__c  FROM VPM_PurchasingRequests__c WHERE id =: vendorId];
-       // try
+        //VPM_PurchasingRequests__c VendorReq = [SELECT VPM_ECC_InsertUpdateStatusMessage__c,VPM_fieldUpdated__c  FROM VPM_PurchasingRequests__c WHERE id =: vendorId];
+        try
         {
         if(res.getStatusCode() == 200) {
          
@@ -324,15 +343,16 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             update VendorReq;
         }*/
     }
-    /*catch (exception ex)
+    catch (exception ex)
     {
-         responseString = maintainVenResp.message;
-         VendorReq.VPM_ECC_InsertUpdateStatus__c = 'Failed to Submit to ECC';
+    system.debug('error occurred');
+         //responseString = maintainVenResp.message;
+        /* VendorReq.VPM_ECC_InsertUpdateStatus__c = 'Failed to Submit to ECC';
             VendorReq.VPM_ECC_InsertUpdateStatusMessage__c = responseString;
              VendorReq.VPM_Status__c= 'MDM Ops Review - SAP ECC submit Failed';
             //VendorReq.VPM_fieldUpdated__c ='';
-            update VendorReq;
-    }*/
+            update VendorReq;*/
+    }
         return responseString;
     }
     }
