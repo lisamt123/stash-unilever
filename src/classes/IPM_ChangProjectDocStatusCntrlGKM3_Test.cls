@@ -206,7 +206,7 @@ public class IPM_ChangProjectDocStatusCntrlGKM3_Test {
             ipmGateDocCtrl.isPDLApproved = true; 
             ipmGateDocCtrl.projectDoc.IPM_Document_Status__c = IPM_ConstantUtils.STATUS_APPROVED;
             
-            ipmGateDocCtrl.exportToPdf();
+            
         } 
        
     }
