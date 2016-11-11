@@ -17,7 +17,7 @@
         <name>Brand_Centre_Management</name>
     </customApplications>
     <customApplications>
-        <label><!-- CEC Admin --></label>
+        <label>CEC管理者</label>
         <name>CEC_Admin</name>
     </customApplications>
     <customApplications>
@@ -1025,11 +1025,11 @@
         <name>Business_Case_Update_Needed_Value</name>
     </customLabels>
     <customLabels>
-        <label>Account Site</label>
+        <label>アカウントサイト</label>
         <name>CEC_Account_Site</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Address --></label>
+        <label>住所</label>
         <name>CEC_Address</name>
     </customLabels>
     <customLabels>
@@ -1037,7 +1037,7 @@
         <name>CEC_AlertActionSchedulerName</name>
     </customLabels>
     <customLabels>
-        <label>Brand</label>
+        <label>ブランド</label>
         <name>CEC_Brand</name>
     </customLabels>
     <customLabels>
@@ -1053,19 +1053,19 @@
         <name>CEC_CBM_NotificationSubject</name>
     </customLabels>
     <customLabels>
-        <label>取引先責任者（お客様）をケースに紐づけてください。</label>
+        <label>アカウントを案件に紐づけてから対応履歴を作成してください。</label>
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseAccountPersonDetailsError --></label>
+        <label>対応履歴を作成するには、何らかの住所情報が入力されている必要があります。</label>
         <name>CEC_CaseAccountPersonDetailsError</name>
     </customLabels>
     <customLabels>
-        <label>国とサマリは必須です。</label>
+        <label>国名は必須です。</label>
         <name>CEC_CaseCountryVerbitimMessage</name>
     </customLabels>
     <customLabels>
-        <label>ケース番号</label>
+        <label>案件番号</label>
         <name>CEC_CaseNumber</name>
     </customLabels>
     <customLabels>
@@ -1077,11 +1077,11 @@
         <name>CEC_Case_Factory_Survey_Reference</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab cannot be opened --></label>
+        <label>エラー：プライマリータブをオープンできません。</label>
         <name>CEC_Case_TabNotOpened</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Category --></label>
+        <label>カテゴリ</label>
         <name>CEC_Category</name>
     </customLabels>
     <customLabels>
@@ -1101,79 +1101,79 @@
         <name>CEC_ChequeBook_input_fields_missing</name>
     </customLabels>
     <customLabels>
-        <label>City</label>
+        <label>市区郡</label>
         <name>CEC_City</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ClickHere --></label>
+        <label>クリック</label>
         <name>CEC_ClickHere</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab not refresh --></label>
+        <label>入力済みの変更を保存してから顧客の登録を行ってください。</label>
         <name>CEC_Console_Message1</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab cannot be opened --></label>
+        <label>プライマリータブをオープンできません。</label>
         <name>CEC_Console_Message2</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error Occured --></label>
+        <label>エラーが発生しました</label>
         <name>CEC_Console_Message3</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerCreateContactButtonDisplay --></label>
+        <label>新規コンタクト作成</label>
         <name>CEC_ConsumerCreateContactButtonDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerInfoDisplay --></label>
+        <label>インフォメーション：顧客情報は既にリンク済みです。</label>
         <name>CEC_ConsumerInfoDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerNotFoundInfo --></label>
+        <label>顧客情報なし？</label>
         <name>CEC_ConsumerNotFoundInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsDisplay --></label>
+        <label>結果</label>
         <name>CEC_ConsumerResultsDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsNoMatchTitle --></label>
+        <label>合致する情報がありません。</label>
         <name>CEC_ConsumerResultsNoMatchTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsTitleDisplay --></label>
+        <label>検索結果</label>
         <name>CEC_ConsumerResultsTitleDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerSearchDisplay --></label>
+        <label>検索</label>
         <name>CEC_ConsumerSearchDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Consumer Duplicate Error --></label>
+        <label>顧客情報が重複しています。</label>
         <name>CEC_Consumer_Duplicate_Error</name>
     </customLabels>
     <customLabels>
-        <label><!-- To Display Click Ok to replace the existing Consumer or Cancel to return to the --></label>
+        <label>既存の顧客を置きかえる場合はOKをクリックしてください。キャンセルするとトップ画面に戻ります。</label>
         <name>CEC_Consumer_Message1</name>
     </customLabels>
     <customLabels>
-        <label>取引先責任者（お客様）がケースに紐づけられているためアクションを完了できません。</label>
+        <label>アクションを完了できません：顧客情報が既に案件に紐づいています。</label>
         <name>CEC_Consumer_Record_Update</name>
     </customLabels>
     <customLabels>
-        <label>Country</label>
+        <label>国</label>
         <name>CEC_Country</name>
     </customLabels>
     <customLabels>
-        <label>Country/Region</label>
+        <label>国/地域</label>
         <name>CEC_Country_region</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CreateContactDisplay --></label>
+        <label>コンタクト作成</label>
         <name>CEC_CreateContactDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- Create_Button --></label>
+        <label>作成</label>
         <name>CEC_Create_Button</name>
     </customLabels>
     <customLabels>
@@ -1193,11 +1193,11 @@
         <name>CEC_DebitCardDetails_No_Active_DebitCard_For_Country</name>
     </customLabels>
     <customLabels>
-        <label>製品詳細確認</label>
+        <label>どの部分が既知であるかを特定してください。</label>
         <name>CEC_Detail_Request_Info</name>
     </customLabels>
     <customLabels>
-        <label><!-- records are being displayed --></label>
+        <label>表示中</label>
         <name>CEC_Display_Records</name>
     </customLabels>
     <customLabels>
@@ -1205,15 +1205,15 @@
         <name>CEC_Distance</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Email required message --></label>
+        <label>メール：値を入力してください</label>
         <name>CEC_Email</name>
     </customLabels>
     <customLabels>
-        <label>Email</label>
+        <label>メール</label>
         <name>CEC_Email_Label</name>
     </customLabels>
     <customLabels>
-        <label>氏名（カナ）</label>
+        <label>姓</label>
         <name>CEC_FirstName</name>
     </customLabels>
     <customLabels>
@@ -1221,7 +1221,7 @@
         <name>CEC_Fulfilment_PostOption_Complaints</name>
     </customLabels>
     <customLabels>
-        <label>Otherwise</label>
+        <label>？？？</label>
         <name>CEC_Fulfilment_PostOption_otherwise</name>
     </customLabels>
     <customLabels>
@@ -1229,15 +1229,15 @@
         <name>CEC_InvalidChatterGroupName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Action --></label>
+        <label>アクション</label>
         <name>CEC_Label_Action</name>
     </customLabels>
     <customLabels>
-        <label>Knowledge Articles</label>
+        <label>ナレッジ</label>
         <name>CEC_Label_Knowledge_Articles</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Subject --></label>
+        <label>件名</label>
         <name>CEC_Label_Subject</name>
     </customLabels>
     <customLabels>
@@ -1245,11 +1245,11 @@
         <name>CEC_Label_Type</name>
     </customLabels>
     <customLabels>
-        <label>氏名（漢字）</label>
+        <label>名</label>
         <name>CEC_Last_Name</name>
     </customLabels>
     <customLabels>
-        <label>氏名（漢字）を入力してください。</label>
+        <label>名：入力してください</label>
         <name>CEC_Lastname</name>
     </customLabels>
     <customLabels>
@@ -1257,7 +1257,7 @@
         <name>CEC_Latitude</name>
     </customLabels>
     <customLabels>
-        <label>Local Identifier</label>
+        <label>ローカル識別子</label>
         <name>CEC_Local_Indentifier</name>
     </customLabels>
     <customLabels>
@@ -1265,19 +1265,19 @@
         <name>CEC_Longitude</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Marketing_Opt_in --></label>
+        <label>マーケティング利用可否</label>
         <name>CEC_Marketing_Opt_in</name>
     </customLabels>
     <customLabels>
-        <label><!-- Consumer record could not be created --></label>
+        <label>[ERR002] 顧客情報が作成できません。</label>
         <name>CEC_MatchingResponse_AccountNotCreated</name>
     </customLabels>
     <customLabels>
-        <label><!-- If Duplicate accounts found display this error message --></label>
+        <label>[ERR001] メールアドレスが同一の顧客情報が複数存在します。手動による更新が必要です。</label>
         <name>CEC_MatchingResponse_DuplicateAccount</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Missing_Information --></label>
+        <label>不足情報</label>
         <name>CEC_Missing_Information</name>
     </customLabels>
     <customLabels>
@@ -1285,31 +1285,31 @@
         <name>CEC_Name</name>
     </customLabels>
     <customLabels>
-        <label>新規ケースを作成できません。</label>
+        <label>エラー：新規案件を作成できません。</label>
         <name>CEC_NewCaseError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC NewCaseError BeforeAddNewArticle --></label>
+        <label>入力済みの変更を保存してから記事の登録を行ってください。</label>
         <name>CEC_NewCaseError_BeforeAddNewArticle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Save case record before add a new consumer. --></label>
+        <label>入力済みの変更を保存してから顧客の検索を行ってください。顧客を新規登録した場合は再検索が必要です。</label>
         <name>CEC_NewCaseError_BeforeAddNewConsumer</name>
     </customLabels>
     <customLabels>
-        <label>スキルに合致するケースがありません。</label>
+        <label>スキルに合致する案件がありません。</label>
         <name>CEC_No_Cases_are_available_based_on_the_skill</name>
     </customLabels>
     <customLabels>
-        <label><!-- No matching consumers --></label>
+        <label>合致する顧客情報がありません。</label>
         <name>CEC_No_Matching_Consumer</name>
     </customLabels>
     <customLabels>
-        <label><!-- To displayOrigin as required message --></label>
+        <label>エラー：値の入力が必要です。</label>
         <name>CEC_Origin</name>
     </customLabels>
     <customLabels>
-        <label>その他詳細</label>
+        <label>詳細</label>
         <name>CEC_OtherDetailsSection</name>
     </customLabels>
     <customLabels>
@@ -1317,39 +1317,39 @@
         <name>CEC_PageSize</name>
     </customLabels>
     <customLabels>
-        <label>親ケース番号</label>
+        <label>親案件番号</label>
         <name>CEC_ParentCaseNumber</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Phone --></label>
+        <label>電話番号</label>
         <name>CEC_Phone</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PhoneSearchValidationError --></label>
+        <label>電話番号検索は6桁の数字で行います。</label>
         <name>CEC_PhoneSearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PostCode --></label>
+        <label>郵便番号</label>
         <name>CEC_PostCode</name>
     </customLabels>
     <customLabels>
-        <label>製品選択欄</label>
+        <label>製品</label>
         <name>CEC_Product</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ProductCategory --></label>
+        <label>製品カテゴリ</label>
         <name>CEC_ProductCategory</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ProductCode --></label>
+        <label>製品lコード</label>
         <name>CEC_ProductCode</name>
     </customLabels>
     <customLabels>
-        <label>Product Locator</label>
+        <label>製品検索</label>
         <name>CEC_ProductLocator</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Product_Hierarchy --></label>
+        <label>製品階層</label>
         <name>CEC_Product_Hierarchy</name>
     </customLabels>
     <customLabels>
@@ -1357,7 +1357,7 @@
         <name>CEC_Product_Tag</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Quick Code Change Error --></label>
+        <label>クイックコードを変更するまえに国コードを入力してください。</label>
         <name>CEC_Quick_Code_Change_Error</name>
     </customLabels>
     <customLabels>
@@ -1365,59 +1365,59 @@
         <name>CEC_Reason</name>
     </customLabels>
     <customLabels>
-        <label>ロスツリー Level 5</label>
+        <label>理由コード</label>
         <name>CEC_ReasonCode</name>
     </customLabels>
     <customLabels>
-        <label>ロスツリー Level 1 &amp; 2</label>
+        <label>理由階層</label>
         <name>CEC_Reason_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_RecommendedProducts --></label>
+        <label>推奨製品</label>
         <name>CEC_RecommendedProducts</name>
     </customLabels>
     <customLabels>
-        <label>関連ケース</label>
+        <label>関連案件</label>
         <name>CEC_RelatedCases</name>
     </customLabels>
     <customLabels>
-        <label>検索条件（メールアドレスか電話番号）を入力してください。</label>
+        <label>エラー：何らかの検索条件を入力してください。</label>
         <name>CEC_SearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Search_Button --></label>
+        <label>検索</label>
         <name>CEC_Search_Button</name>
     </customLabels>
     <customLabels>
-        <label>製品詳細確認</label>
+        <label>どの部分が既知であるかを特定してください。</label>
         <name>CEC_Specify_Details_in_Missing_Info</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_State --></label>
+        <label>都道府県</label>
         <name>CEC_State</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Case Status as required message --></label>
+        <label>入力エラー：値を入力してください。</label>
         <name>CEC_Status</name>
     </customLabels>
     <customLabels>
-        <label>住所</label>
+        <label>番地</label>
         <name>CEC_Street</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SurveyLink --></label>
+        <label>アンケートリンク</label>
         <name>CEC_SurveyLink</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SurveyName --></label>
+        <label>アンケート名</label>
         <name>CEC_SurveyName</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_SurveyResults --></label>
+        <label>アンケート結果</label>
         <name>CEC_SurveyResults</name>
     </customLabels>
     <customLabels>
-        <label>対話相手</label>
+        <label>件名</label>
         <name>CEC_Title</name>
     </customLabels>
     <customLabels>
@@ -1429,19 +1429,19 @@
         <name>CEC_ValidEmailTemplate</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ZipCode --></label>
+        <label>郵便番号</label>
         <name>CEC_ZipCode</name>
     </customLabels>
     <customLabels>
-        <label>剤型情報あり</label>
+        <label>既知のフォームですか。</label>
         <name>CEC_isFormKnown</name>
     </customLabels>
     <customLabels>
-        <label>サイズ情報あり</label>
+        <label>既知のサイズですか。</label>
         <name>CEC_isPacksizeKnown</name>
     </customLabels>
     <customLabels>
-        <label>バリアント情報あり</label>
+        <label>既知のバリアントですか。</label>
         <name>CEC_isVariantKnown</name>
     </customLabels>
     <customLabels>
@@ -8985,7 +8985,7 @@
         <name>KPI_Notifications</name>
     </customTabs>
     <customTabs>
-        <label>私の承認</label>
+        <label>承認履歴</label>
         <name>My_Approvals_Custom</name>
     </customTabs>
     <customTabs>
