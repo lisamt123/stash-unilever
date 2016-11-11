@@ -97,8 +97,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public IPM_Financial__c finLocal{get;set;}// for Financial Local Business Impact
     public boolean isFinancialInvalid{get;set;}
     
-    public String redValidationCellsString = IPM_ConstantUtils.BLANK;
-    public String yellowValidationCellsString = IPM_ConstantUtils.BLANK ;
+    public static String redValidationCellsString = IPM_ConstantUtils.BLANK;
+    public static String yellowValidationCellsString = IPM_ConstantUtils.BLANK ;
     public String currentFinancialType;
     public Boolean isFinacialConsolidated;
     public Set<IPM_Financial__c> financialsToUpdateSet= new  Set<IPM_Financial__c>();
