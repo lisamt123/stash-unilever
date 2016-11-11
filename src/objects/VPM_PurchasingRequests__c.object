@@ -10143,7 +10143,7 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <defaultValue>false</defaultValue>
         <description>VPM - This field is used to store the value of Is changed VAT.</description>
         <externalId>false</externalId>
-        <label>General Vendor Details Changed</label>
+        <label>IsChangedVAT</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

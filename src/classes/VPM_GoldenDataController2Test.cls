@@ -30,14 +30,14 @@ public class VPM_GoldenDataController2Test{
     public static final string STR_BRAZIL='Brazil';
 	public static final string STR_TEST_DATA_SIRIUS='Test Sirius';
    // public PageReference pg {get;set;}
-   string recordTypeId {get;set;}
+
 	 
     
     static VPM_PurchasingRequests__c TestData(){
     
         try
         {
-         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+       string  recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
         VendorRequest__c obj = new VendorRequest__c();
         obj.Name=COUNTRIES;
@@ -114,7 +114,7 @@ public class VPM_GoldenDataController2Test{
    
     static VPM_PurchasingRequests__c TestU2K2(){
     
-         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
     VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
@@ -180,7 +180,7 @@ public class VPM_GoldenDataController2Test{
     
     static VPM_PurchasingRequests__c TestFusion(){
     
-         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
     VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
@@ -247,7 +247,7 @@ public class VPM_GoldenDataController2Test{
     
 static VPM_PurchasingRequests__c TestCordillera(){
     
-         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
        VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
@@ -315,7 +315,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
      static VPM_PurchasingRequests__c TestDataApprovalMethod(){
     
-         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
     VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
@@ -398,7 +398,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
     static VPM_PurchasingRequests__c TestDataApprovalMethodMaintain(){
         
     
-         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
+      string   recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
     
     VendorRequest__c obj = new VendorRequest__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
@@ -555,7 +555,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
          system.debug('purId '+purId+'    '+purId.VPM_Commodity_Family__c);
          goldenData.approvalCallMethod();
          
-          string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
+        string  recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
          purId.recordTypeId =recordTypeId;
          update purId;
          goldenData.approvalCallMethod();
@@ -733,7 +733,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
    
     static VPM_PurchasingRequests__c TestDataApprovalMethodcreate(){
     
-        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
+    string    recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
     
  
     
@@ -813,7 +813,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
     
     static VPM_PurchasingRequests__c TestDataApprovalMethodcreate1(){
     
-        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
+      string  recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
     
  
     
@@ -935,18 +935,20 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         update purId;
        
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
-        VPM_SearchVendor1 searchVendorConst = new VPM_SearchVendor1 ();
-        VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
-      //  searchVendor.intCalcIndicatorDefValues = '01';
-     //   searchVendor.getVendorDetailList();        
-      //  searchVendor.mdmVendorType = '';
-           Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200,'Maintain'));
+      //  VPM_SearchVendor1 searchVendorConst = new VPM_SearchVendor1 ();
+       // VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
+     //   searchVendor.intCalcIndicatorDefValues = '01';
+       // searchVendor.getVendorDetailList();        
+       // searchVendor.mdmVendorType = '';
+         //  Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200,'Maintain'));
         //searchVendor.requestType ='Maintain';  
-       // Test.startTest();
-      //  searchVendor.VendorSelected(); 
-       // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+        //Test.startTest();
+       // searchVendor.VendorSelected(); 
+        VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
        // pg=goldenData.ErrorMessage();
        purId.VPM_VendorName1__c='TEST VENDOR';
+       goldenData.commonSaveMethod();
+       
 
    } 
    

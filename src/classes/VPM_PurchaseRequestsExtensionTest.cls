@@ -1,22 +1,36 @@
 @isTest 
-private class VPM_PurchaseRequestsExtensionTest{
+public class VPM_PurchaseRequestsExtensionTest{
+ 
+ static string Company = 'PH01';
+ static string Ecc = 'U2K2';
+ static string country = 'Algeria';
+ static String ErrorMsg = 'Error';
+ static string buyingStuff = 'test';
+ static string phone='1234567895';
+ static string code = '5001010';
+ static string bussReq = 'Business Requestor';
+ static string Status = 'Approval Pending';
+ static string Request ='FLS';
+ static string reworkStat = 'Yes';
+ 
  static testMethod void checkForUserTestMethod() {
+
   
  // map<string,string> userRole =new map<string,string>();
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-    companyCode.VPM_CompanyCode__c = 'PH01';
-    companyCode.ECC__c = 'U2K2';
-    companyCode.VPM_Country__c ='Algeria';
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
     insert companyCode;
-    system.assert(companyCode.Id!=null,'Error');
+    system.assert(companyCode.Id!=null,ErrorMsg);
     
     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
-    VPM_CountryRequestingVendor__c='Algeria',
+    VPM_CountryRequestingVendor__c=country,
     VPM_CompanyCode__c=companyCode.id,
-    VPM_WhatAreYouBuying__c='test',
-    VPM_Comments__c='test',
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
     VPM_Country__c='IE_Ireland',
-    VPM_VendorPhone__c='1234567895',
+    VPM_VendorPhone__c=phone,
     VPM_IsVendorSME__c ='No');
      insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_IsVendorSME__c,VPM_Country__c,VPM_Comments__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c from VPM_PurchasingRequests__c where id=:pur.Id ];
@@ -35,7 +49,7 @@ private class VPM_PurchaseRequestsExtensionTest{
    
     List<mdm_Vendors__c> vendorList = new List<mdm_Vendors__c>();
     mdm_Vendors__c vendor = new mdm_Vendors__c();
-    vendor.mdm_Code__c = '5001010';
+    vendor.mdm_Code__c = code;
     vendor.mdm_City__c = 'Andorra';
     vendor.mdm_Country__c ='DZ_Algeria';
     vendor.mdm_Name1__c ='Test Sirius';
@@ -43,31 +57,31 @@ private class VPM_PurchaseRequestsExtensionTest{
     vendor.mdm_Postcode__c = '54132';
     vendor.mdm_Country__c = 'India';
     vendor.mdm_ID__c = '1234';
-    vendor.mdm_vCodeFusion__c='5001010';
-    vendor.mdm_vCodeCordillera__c='5001010';
-    vendor.mdm_vCodeSirius__c='5001010';
-    vendor.mdm_vCodeU2K2__c='5001010';
+    vendor.mdm_vCodeFusion__c=code;
+    vendor.mdm_vCodeCordillera__c=code;
+    vendor.mdm_vCodeSirius__c=code;
+    vendor.mdm_vCodeU2K2__c=code;
     vendorList.add(vendor);
     insert vendorList;
     system.debug('@@vendorList' + vendorList);
-    system.assert(vendor.Id!=null,'Error');
+    system.assert(vendor.Id!=null,ErrorMsg);
     
     
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-    companyCode.VPM_CompanyCode__c = 'PH01';
-    companyCode.ECC__c = 'U2K2';
-    companyCode.VPM_Country__c ='Algeria';
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
     insert companyCode;
-    system.assert(companyCode.Id!=null,'Error');
+    system.assert(companyCode.Id!=null,ErrorMsg);
     
     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
-    VPM_CountryRequestingVendor__c='Algeria',
+    VPM_CountryRequestingVendor__c=country,
     VPM_CompanyCode__c=companyCode.Id,
-    VPM_WhatAreYouBuying__c='test',
-    VPM_Comments__c='test',
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
     VPM_VendorCodeLookup__c = vendorList[0].id,
     //recordTypeId=recordTypeId,
-    VPM_VendorPhone__c='1234567895');
+    VPM_VendorPhone__c=phone);
      insert pur;
         pur.recordTypeId = recordTypeId;
         update pur;
@@ -103,29 +117,29 @@ private class VPM_PurchaseRequestsExtensionTest{
      static testMethod void reworkActionTest() {
     
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-    companyCode.VPM_CompanyCode__c = 'PH01';
-    companyCode.ECC__c = 'U2K2';
-    companyCode.VPM_Country__c ='Algeria';
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
     insert companyCode;
-    system.assert(companyCode.Id!=null,'Error');
+    system.assert(companyCode.Id!=null,ErrorMsg);
     
     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
-    VPM_CountryRequestingVendor__c='Algeria',
+    VPM_CountryRequestingVendor__c=country,
     VPM_CompanyCode__c=companyCode.Id,
-    VPM_WhatAreYouBuying__c='test',
-    VPM_Comments__c='test',
-    VPM_VendorPhone__c='1234567895');
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
        
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-         pur.VPM_RequestLastWithGroup__c ='Business Requestor';
+         pur.VPM_RequestLastWithGroup__c =bussReq;
          pur.VPM_Status__c ='FLS Review';
          update pur;
          VendorDetail.ReworkAction();
-         pur.VPM_Status__c = 'Approval Pending';
+         pur.VPM_Status__c = Status;
          pur.VPM_ProcurementApprovalRequired__c=true;
          pur.VPM_FinanceApprovalRequired__c = true;
          update pur;
@@ -140,8 +154,8 @@ private class VPM_PurchaseRequestsExtensionTest{
          update pur;
          VendorDetail.ReworkAction();
          
-          pur.VPM_RequestLastWithGroup__c ='FLS';
-         pur.VPM_Status__c = 'Approval Pending';
+          pur.VPM_RequestLastWithGroup__c =Request;
+         pur.VPM_Status__c = Status;
          pur.VPM_ProcurementApprovalRequired__c=true;
          pur.VPM_FinanceApprovalRequired__c = true;
          update pur;
@@ -151,8 +165,8 @@ private class VPM_PurchaseRequestsExtensionTest{
           pur.VPM_FreightApprovalRequired__c=false;
           pur.VPM_RussianTaxApprovalRequired__c=false;
           pur.VPM_FinanceApprovalRequired__c =true;
-          pur.VPM_status__c='Approval Pending';
-          pur.VPM_RequestLastWithGroup__c = 'FLS';
+          pur.VPM_status__c=Status;
+          pur.VPM_RequestLastWithGroup__c = Request;
           update pur;
           VendorDetail.ReworkAction();
           
@@ -160,8 +174,8 @@ private class VPM_PurchaseRequestsExtensionTest{
           pur.VPM_FreightApprovalRequired__c=false;
           pur.VPM_RussianTaxApprovalRequired__c=true;
           pur.VPM_FinanceApprovalRequired__c =true;
-          pur.VPM_status__c='Approval Pending';
-          pur.VPM_RequestLastWithGroup__c = 'FLS';
+          pur.VPM_status__c=Status;
+          pur.VPM_RequestLastWithGroup__c = Request;
           update pur;
           VendorDetail.ReworkAction();
           
@@ -169,8 +183,8 @@ private class VPM_PurchaseRequestsExtensionTest{
           pur.VPM_FreightApprovalRequired__c=true;
           pur.VPM_RussianTaxApprovalRequired__c=false;
           pur.VPM_FinanceApprovalRequired__c =false;
-          pur.VPM_status__c='Approval Pending';
-          pur.VPM_RequestLastWithGroup__c = 'FLS';
+          pur.VPM_status__c=Status;
+          pur.VPM_RequestLastWithGroup__c = Request;
           update pur;
           VendorDetail.ReworkAction();
           
@@ -178,8 +192,8 @@ private class VPM_PurchaseRequestsExtensionTest{
           pur.VPM_FreightApprovalRequired__c=false;
           pur.VPM_RussianTaxApprovalRequired__c=true;
           pur.VPM_FinanceApprovalRequired__c =false;
-          pur.VPM_status__c='Approval Pending';
-          pur.VPM_RequestLastWithGroup__c = 'Business Requestor';
+          pur.VPM_status__c=Status;
+          pur.VPM_RequestLastWithGroup__c = bussReq;
           update pur;
           VendorDetail.ReworkAction();
           
@@ -187,8 +201,8 @@ private class VPM_PurchaseRequestsExtensionTest{
           pur.VPM_FreightApprovalRequired__c=true;
           pur.VPM_RussianTaxApprovalRequired__c=false;
           pur.VPM_FinanceApprovalRequired__c =false;
-          pur.VPM_status__c='Approval Pending';
-          pur.VPM_RequestLastWithGroup__c = 'Business Requestor';
+          pur.VPM_status__c=Status;
+          pur.VPM_RequestLastWithGroup__c = bussReq;
           update pur;
           VendorDetail.ReworkAction();
           
@@ -197,8 +211,8 @@ private class VPM_PurchaseRequestsExtensionTest{
           pur.VPM_RussianTaxApprovalRequired__c=true;
           pur.VPM_FinanceApprovalRequired__c =false;
           pur.VPM_BankDataValidationRequired__c = false;
-          pur.VPM_status__c='Approval Pending';
-          pur.VPM_RequestLastWithGroup__c = 'FLS';
+          pur.VPM_status__c=Status;
+          pur.VPM_RequestLastWithGroup__c = Request;
           update pur;
           VendorDetail.ReworkAction();
           
@@ -207,8 +221,8 @@ private class VPM_PurchaseRequestsExtensionTest{
           pur.VPM_RussianTaxApprovalRequired__c=false;
           pur.VPM_FinanceApprovalRequired__c =true;
           pur.VPM_BankDataValidationRequired__c = false;
-          pur.VPM_status__c='Approval Pending';
-          pur.VPM_RequestLastWithGroup__c = 'FLS';
+          pur.VPM_status__c=Status;
+          pur.VPM_RequestLastWithGroup__c = Request;
           update pur;
           VendorDetail.ReworkAction();
           
@@ -217,8 +231,8 @@ private class VPM_PurchaseRequestsExtensionTest{
           pur.VPM_RussianTaxApprovalRequired__c=false;
           pur.VPM_FinanceApprovalRequired__c =true;
           pur.VPM_BankDataValidationRequired__c = false;
-          pur.VPM_status__c='Approval Pending';
-          pur.VPM_RequestLastWithGroup__c = 'Business Requestor';
+          pur.VPM_status__c=Status;
+          pur.VPM_RequestLastWithGroup__c = bussReq;
           update pur;
           VendorDetail.ReworkAction();
           
@@ -227,8 +241,8 @@ private class VPM_PurchaseRequestsExtensionTest{
           pur.VPM_RussianTaxApprovalRequired__c=false;
           pur.VPM_FinanceApprovalRequired__c =false;
           pur.VPM_BankDataValidationRequired__c = true;
-          pur.VPM_status__c='Approval Pending';
-          pur.VPM_RequestLastWithGroup__c = 'FLS';
+          pur.VPM_status__c=Status;
+          pur.VPM_RequestLastWithGroup__c = Request;
           update pur;
           VendorDetail.ReworkAction();
           
@@ -237,8 +251,8 @@ private class VPM_PurchaseRequestsExtensionTest{
           pur.VPM_RussianTaxApprovalRequired__c=false;
           pur.VPM_FinanceApprovalRequired__c =false;
           pur.VPM_BankDataValidationRequired__c = true;
-          pur.VPM_status__c='Approval Pending';
-          pur.VPM_RequestLastWithGroup__c = 'Business Requestor';
+          pur.VPM_status__c=Status;
+          pur.VPM_RequestLastWithGroup__c = bussReq;
           update pur;
           VendorDetail.ReworkAction();
           
@@ -250,20 +264,20 @@ private class VPM_PurchaseRequestsExtensionTest{
      }
     static testMethod void ManuallyMarkAsCompleteActionTest()
     {
-        map<string,string> userRole =new map<string,string>();
+       // map<string,string> userRole =new map<string,string>();
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-    companyCode.VPM_CompanyCode__c = 'PH01';
-    companyCode.ECC__c = 'U2K2';
-    companyCode.VPM_Country__c ='Algeria';
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
     insert companyCode;
-    system.assert(companyCode.Id!=null,'Error');
+    system.assert(companyCode.Id!=null,ErrorMsg);
     
     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
-    VPM_CountryRequestingVendor__c='Algeria',
+    VPM_CountryRequestingVendor__c=country,
     VPM_CompanyCode__c=companyCode.Id,
-    VPM_WhatAreYouBuying__c='test',
-    VPM_Comments__c='test',
-    VPM_VendorPhone__c='1234567895',
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
     VPM_DeletionBlockFlag__c='Block',
     VPM_Status__c ='MDM Ops Review - Block');
      insert pur;
@@ -281,25 +295,25 @@ private class VPM_PurchaseRequestsExtensionTest{
     {
         
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-    companyCode.VPM_CompanyCode__c = 'PH01';
-    companyCode.ECC__c = 'U2K2';
-    companyCode.VPM_Country__c ='Algeria';
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
     insert companyCode;
-    system.assert(companyCode.Id!=null,'Error');
+    system.assert(companyCode.Id!=null,ErrorMsg);
     
     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
-    VPM_CountryRequestingVendor__c='Algeria',
+    VPM_CountryRequestingVendor__c=country,
     VPM_CompanyCode__c=companyCode.Id,
-    VPM_WhatAreYouBuying__c='test',
-    VPM_Comments__c='test',
-    VPM_VendorPhone__c='1234567895',
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
     VPM_Status__c ='Draft Request');
      insert pur;
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
        VendorDetail.SubmitRequestAction();
         pur.VPM_Status__c='FLS Requested Re-Work';
-        pur.VPM_Rework__c ='Yes';
+        pur.VPM_Rework__c =reworkStat;
         update pur;
          VendorDetail.SubmitRequestAction();
         pur.VPM_Status__c='Procurement Requested Re-Work';
@@ -309,23 +323,23 @@ private class VPM_PurchaseRequestsExtensionTest{
         update pur;
          VendorDetail.SubmitRequestAction();
         pur.VPM_Status__c='FLS Review';
-        pur.VPM_Rework__c ='Yes';
+        pur.VPM_Rework__c =reworkStat;
         update pur;
          VendorDetail.SubmitRequestAction();
          pur.VPM_Status__c='Russian Custom Tax Requested Re-Work';
-        pur.VPM_Rework__c ='Yes';
+        pur.VPM_Rework__c =reworkStat;
         update pur;
          VendorDetail.SubmitRequestAction();
          pur.VPM_Status__c='Russian Custom Tax Requested Re-Work';
-        pur.VPM_Rework__c ='Yes';
+        pur.VPM_Rework__c =reworkStat;
         update pur;
          VendorDetail.SubmitRequestAction();
          pur.VPM_Status__c='Freight Requested Re-Work';
-        pur.VPM_Rework__c ='Yes';
+        pur.VPM_Rework__c =reworkStat;
         update pur;
          VendorDetail.SubmitRequestAction();
          pur.VPM_Status__c='Bank Data Validation Requested Re-Work';
-        pur.VPM_Rework__c ='Yes';
+        pur.VPM_Rework__c =reworkStat;
         update pur;
          VendorDetail.SubmitRequestAction();
          
@@ -335,19 +349,19 @@ private class VPM_PurchaseRequestsExtensionTest{
         string ownerId= [Select Id From User limit 1].Id; 
        
        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-       companyCode.VPM_CompanyCode__c = 'PH01';
-       companyCode.ECC__c = 'U2K2';
-       companyCode.VPM_Country__c ='Algeria';
+       companyCode.VPM_CompanyCode__c = Company;
+       companyCode.ECC__c = Ecc;
+       companyCode.VPM_Country__c =country;
        insert companyCode;
-       system.assert(companyCode.Id!=null,'Error');
+       system.assert(companyCode.Id!=null,ErrorMsg);
        
         VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
-        VPM_CountryRequestingVendor__c='Algeria',
+        VPM_CountryRequestingVendor__c=country,
         VPM_CompanyCode__c=companyCode.Id,
-        VPM_WhatAreYouBuying__c='test',
+        VPM_WhatAreYouBuying__c=buyingStuff,
         VPM_ApprovalWorkerID__c=null,
         VPM_ApprovalWorker__c = null,
-        VPM_VendorPhone__c='1234567895',
+        VPM_VendorPhone__c=phone,
         OwnerId =ownerId,
         VPM_Status__c ='Draft Request');
      insert pur;
@@ -370,19 +384,19 @@ private class VPM_PurchaseRequestsExtensionTest{
     /*static testMethod void fetchisVenderSMETest(){
     
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-    companyCode.VPM_CompanyCode__c = 'PH01';
+    companyCode.VPM_CompanyCode__c = Company
     companyCode.ECC__c = 'Sirius';
-    companyCode.VPM_Country__c ='Algeria';
+    companyCode.VPM_Country__c =country;
     insert companyCode;
-    system.assert(companyCode.Id!=null,'Error');
+    system.assert(companyCode.Id!=null,ErrorMsg);
     
     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
-        VPM_CountryRequestingVendor__c='Algeria',
+        VPM_CountryRequestingVendor__c=country,
         VPM_CompanyCode__c=companyCode.Id,
-        VPM_WhatAreYouBuying__c='test',
-        VPM_IsVendorSME__c='Yes',
+        VPM_WhatAreYouBuying__c=buyingStuff,
+        VPM_IsVendorSME__c=reworkStat,
         VPM_ExceptionType__c= 'E001',
-        VPM_VendorPhone__c='1234567895',
+        VPM_VendorPhone__c=phone,
         VPM_InternationalVersion__c='International Version',
         VPM_Status__c ='Draft Request');
      insert pur;
@@ -411,19 +425,19 @@ private class VPM_PurchaseRequestsExtensionTest{
         insert psaf;
         
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-    companyCode.VPM_CompanyCode__c = 'PH01';
-    companyCode.ECC__c = 'U2K2';
-    companyCode.VPM_Country__c ='Algeria';
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
     insert companyCode;
-    system.assert(companyCode.Id!=null,'Error');
+    system.assert(companyCode.Id!=null,ErrorMsg);
     
     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
-        VPM_CountryRequestingVendor__c='Algeria',
+        VPM_CountryRequestingVendor__c=country,
         VPM_CompanyCode__c=companyCode.Id,
-        VPM_WhatAreYouBuying__c='test',
-        VPM_IsVendorSME__c='Yes',
+        VPM_WhatAreYouBuying__c=buyingStuff,
+        VPM_IsVendorSME__c=reworkStat,
         VPM_ExceptionType__c= 'E001',
-        VPM_VendorPhone__c='1234567895',
+        VPM_VendorPhone__c=phone,
         VPM_InternationalVersion__c='International Version',
         VPM_Status__c ='Draft Request');
      insert pur;
@@ -548,19 +562,20 @@ private class VPM_PurchaseRequestsExtensionTest{
     
          string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-    companyCode.VPM_CompanyCode__c = 'PH01';
+        string country1 = 'Algeria';
+    companyCode.VPM_CompanyCode__c = Company;
     companyCode.ECC__c = 'Sirius';
-    companyCode.VPM_Country__c ='Algeria';
+    companyCode.VPM_Country__c =country1;
     insert companyCode;
-    system.assert(companyCode.Id!=null,'Error');
+    system.assert(companyCode.Id!=null,ErrorMsg);
     
     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
-        VPM_CountryRequestingVendor__c='Algeria',
+        VPM_CountryRequestingVendor__c=country1,
         VPM_CompanyCode__c=companyCode.Id,
-        VPM_WhatAreYouBuying__c='test',
-        VPM_IsVendorSME__c='Yes',
+        VPM_WhatAreYouBuying__c=buyingStuff,
+        VPM_IsVendorSME__c=reworkStat,
         VPM_ExceptionType__c= 'E001',
-        VPM_VendorPhone__c='1234567895',
+        VPM_VendorPhone__c=phone,
         recordTypeId=recordTypeId,
         VPM_Status__c ='Draft Request');
      insert pur;
