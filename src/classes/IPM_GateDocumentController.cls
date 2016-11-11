@@ -1,4 +1,3 @@
-
 /***********************************************************************************************************************************************************
 * @author Cognizant
 * @date  15/12/2014
@@ -320,7 +319,11 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         gateDocPDFWithAppendixURLStr = baseUrl + exportToPdf('true').getUrl();
         gateDocPDFWithoutAppendixURLStr = baseUrl + exportToPdf('false').getUrl();
         chkClaims();
+        getAppendixCheck();
         
+    } 
+    
+    public void getAppendixCheck() {
         If(ApexPages.currentPage().getURL().containsIgnoreCase('ipm_gatedocumentpdf')) {
             if(ApexPages.currentPage().getParameters().get('isWithAppendix') == 'true') {isWithAppendix = true;}
             else {isWithAppendix = false;}
@@ -332,7 +335,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         if(isWithAppendix){
             getAppendixSections();
         }
-    } 
+    }
     
     public void initializeVariables() {
         isPDLDocument = false;
