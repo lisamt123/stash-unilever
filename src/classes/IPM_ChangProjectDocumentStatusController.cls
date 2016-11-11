@@ -951,7 +951,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 		    			pdfGateDocRef.getParameters().put('printDoc',IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT);
 		    			pdfGateDocRef.getParameters().put('StatusDate',projectDoc.IPM_Approval_Date__c.format());
 		    			pdfGateDocRef.getParameters().put('OperatedBy',tempProjectDoc.IPM_Updated_User_By__r.Name);
-		    			
+		    			pdfGateDocRef.getParameters().put(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER,'true'); 
 		    			Attachment gateDocPDFAttachment = new Attachment(Name=project.IPM_Project_Name__c+'_PDL.pdf',ParentId=projectDoc.id,ContentType='pdf',Body=pdfGateDocRef.getContentAsPDF());
 	    			Integer PDFCounter = [SELECT COUNT() FROM Attachment where Name = :project.IPM_Project_Name__c+'_PDL'];
 	    			if(PDFCounter == 0){

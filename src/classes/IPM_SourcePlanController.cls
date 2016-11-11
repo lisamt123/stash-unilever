@@ -4,6 +4,7 @@
 ************************************************************************************************/
 
 public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermediateController { 
+	public String docType ;
     public map<integer,sourcePlanWrapper> sourcePlanMap{get;set;}//map of wrapper class to store product and product plan data 
     public map<integer,list<sourceUnitWrapper>> sourceUnitMap{get;set;}//map wrapper class to store source plan data
     public list<IPM_Country__c> allCountryList{get;set;}//get all country list
@@ -52,6 +53,7 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         searchUnit_STR =IPM_ConstantUtils.BLANK;
         holdSelectedProCountry = IPM_ConstantUtils.BLANK;
         projectId=ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);
+        docType = Apexpages.currentPage().getParameters().get('DocumentType');
         sourcePlanMap = new map<integer,sourcePlanWrapper>();
         sourceUnitMap = new map<integer,list<sourceUnitWrapper>> ();
         allCountryList = new list<IPM_Country__c>();
@@ -85,7 +87,9 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         sFilterColumn = 'IPM_Product_Name__c';
         sSortOrder ='asc';
         createProjectProductOnLoad();
-        getAllSourcingUnits(); 
+        if(docType!='PDF'){
+        	getAllSourcingUnits();
+        }
     }
     /***************************************************************************************************************************
     @Description:get all source unit names
@@ -94,8 +98,10 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
         sourceUnitsList = new list<IPM_SourcingUnit__c>();
         sourceUnitsList =[SELECT Source_Unit_Name__c FROM IPM_SourcingUnit__c WHERE Source_Unit_Name__c Like: '%'+searchUnit_STR +'%' AND Status__c = true order by Source_Unit_Name__c ASC LIMIT 1000];
         bIsPDLApproved=false;
-        getPDLApprovedStatus();
-        isCentralTeam=IPM_SourcePlanController_Helper.isCentralTeamMember();        
+        if(docType!='PDF'){
+        	getPDLApprovedStatus();
+        	isCentralTeam=IPM_SourcePlanController_Helper.isCentralTeamMember(); 
+        }
     }
     public pageReference updateSourcinngUnit()
     {
@@ -291,9 +297,11 @@ public with sharing class IPM_SourcePlanController extends IPM_ProjectIntermedia
     public void createProjectProductOnLoad(){
     	List<IPM_Project_Product__c> projectProductListwithNullCountries;
         sizeMeasureList = IPM_SourcePlanController_Helper.getAllSize();
-        isEditable = IPM_SourcePlanController_Helper.getUserType(projectId,isEditable);
-        isEditable = IPM_SourcePlanController_Helper.getCentralBPUsers(isEditable);
-        getSourceUnit();  
+        if(docType!='PDF'){
+	        isEditable = IPM_SourcePlanController_Helper.getUserType(projectId,isEditable);
+	        isEditable = IPM_SourcePlanController_Helper.getCentralBPUsers(isEditable);
+        }        
+      	getSourceUnit();
         allSourceUnitsMap = IPM_SourcePlanController_Helper.getMapofSourceUnit(sourceUnitsList);
         map<id,set<string>> productNCountryMap = new map<id,set<string>>();
         set<id> productPlanIds = new set<id>();

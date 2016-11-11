@@ -623,6 +623,7 @@
                 .goldenCheckcontainer label.goldbox {width: 80%;background: #FBBE2E;color: #000;border: 1px solid #E28A3C;padding: 5px;font-size: 8px !important;}
                 .goldenCheckcontainer label {width:100%;background: #999;padding:4px 18px;height: 29px;}  
                 .alignCenter{text-align:center;}
+            .srcbrkWord{word-wrap:break-word;word-break: break-word;background:#000;}
             </style>
         </head>
     
@@ -908,7 +909,7 @@
                         <div class="row clearfix marginbottom">
                             <div class="col-sm-8 innerHead bold">
                                 <span class="user">Approved By: </span>
-                               <span class="user"> <apex:outputText value="{!projectDoc.IPM_Updated_User_By__r.Name}"/></span>
+                                    <span class="user"> <apex:outputText value="{!IF($CurrentPage.parameters.OperatedBy!=null,$CurrentPage.parameters.OperatedBy,projectDoc.IPM_Updated_User_By__r.Name)}"/></span>
                                 <span class="status-date">On </span>
                                 <apex:outputfield value="{!projectDoc.IPM_Approval_Date__c}"/>
                             </div>
@@ -978,7 +979,7 @@
                 </apex:repeat> 
                 
                 <apex:outputText value="Appendix" styleClass="heading2 bold"/>
-                <apex:repeat value="{!projDocAppdxSectionList}" var="apxSec">
+                    <apex:repeat value="{!projDocAppdxSectionList}" var="apxSec" rendered="{!isWithAppendix}">
                     
                     <apex:outputPanel rendered="{!IF(apxSec.IPM_Section__r.IPM_Section_Type__c='Header',true,false)}"> 
                         <apex:outputText value="{!apxSec.IPM_Section_Sequence__c} {!apxSec.IPM_Section_Name__c}" styleClass="heading2 bold"/>
