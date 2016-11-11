@@ -432,7 +432,7 @@
         </actions>
         <active>true</active>
         <description>CEC Brand Ambassador Case Assignment  - Assignment case For Brand Ambassador and Shut the status to InProgress</description>
-        <formula>AND(CONTAINS(Country__r.Brand_Ambassador_Brands__c ,Brand__c) , ISPICKVAL( Origin , &apos;Web&apos;),ISPICKVAL(  Type  , &apos;Product Question&apos;)  )</formula>
+        <formula>AND(CONTAINS(LOWER(Country__r.Brand_Ambassador_Brands__c),LOWER(Brand__c)) , ISPICKVAL( Origin , &apos;Web&apos;),ISPICKVAL(  Type  , &apos;Product Question&apos;)  )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>

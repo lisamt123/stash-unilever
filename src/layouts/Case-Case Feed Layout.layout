@@ -206,8 +206,7 @@
                 <field>Description</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
-        <style>TwoColumnsTopToBottom</style>
+        <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -383,6 +382,14 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>SuppliedName</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Type</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Out_of_Hours__c</field>
             </layoutItems>
             <layoutItems>
@@ -390,30 +397,15 @@
                 <field>Action_Taken__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Original_Description__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>DW_Order_Number__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Transient_External_Id__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Brand_Ambassador_Status__c</field>
+                <field>Original_Description__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>SuppliedName</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SuppliedEmail</field>
@@ -423,7 +415,8 @@
                 <field>Brand__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Edit</behavior>
+                <field>Brand_Ambassador_Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -436,10 +429,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Claims_Notes__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Type</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -461,6 +450,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Legacy_Reference__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Transient_External_Id__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -497,9 +490,6 @@
         <fields>SuppliedEmail</fields>
     </miniLayout>
     <quickActionList>
-        <quickActionListItems>
-            <quickActionName>Case.Email</quickActionName>
-        </quickActionListItems>
         <quickActionListItems>
             <quickActionName>Case.ONE_Correspond_Email</quickActionName>
         </quickActionListItems>
