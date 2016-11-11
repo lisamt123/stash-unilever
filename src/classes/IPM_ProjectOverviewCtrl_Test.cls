@@ -811,6 +811,7 @@ private class IPM_ProjectOverviewCtrl_Test
 
             ipmProj.IPM_BET_Toolkit__c = IPM_ConstantUtils.CREATE_NEW_BET ;
             update ipmProj;
+            Test.StopTest();
             System.assertEquals(IPM_ConstantUtils.CREATE_NEW_BET , [Select Id, IPM_BET_Toolkit__c from IPM_Project__c where Id=: ipmProj.Id limit 100][0].IPM_BET_Toolkit__c, 'New BET toolkit is not successfully linked to the project.');
             
             PageReference pRef2 = new PageReference(sPageRefURL+ipmProj.ID);
@@ -820,7 +821,7 @@ private class IPM_ProjectOverviewCtrl_Test
             
             system.assertEquals(System.label.IPM_NewBETMessage,overCtrl2.betInformationMessage,BET_ERROR_MSG);
             
-            Test.StopTest();
+            
         
         }
         
