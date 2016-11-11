@@ -126,6 +126,8 @@ src/classes/IPM_GateDocumentRiskManagement_Test.cls
 src/classes/IPM_GateDocumentRiskManagement_Test.cls-meta.xml
 src/classes/IPM_Gate_RollOuts_Controller.cls
 src/classes/IPM_Gate_RollOuts_Controller.cls-meta.xml
+src/classes/IPM_GatekeeperChecklist.cls
+src/classes/IPM_GatekeeperChecklist.cls-meta.xml
 src/classes/IPM_GatekeeperChecklist_Test.cls
 src/classes/IPM_GatekeeperChecklist_Test.cls-meta.xml
 src/classes/IPM_GlobalClaimPDLController.cls
@@ -260,6 +262,8 @@ src/classes/IPM_StopProjectHelper.cls
 src/classes/IPM_StopProjectHelper.cls-meta.xml
 src/classes/IPM_SyncFinanceTableTLD.cls
 src/classes/IPM_SyncFinanceTableTLD.cls-meta.xml
+src/classes/IPM_TaskCompCtrl_Test.cls
+src/classes/IPM_TaskCompCtrl_Test.cls-meta.xml
 src/classes/IPM_TaskHelper.cls
 src/classes/IPM_TaskHelper.cls-meta.xml
 src/classes/IPM_Taskview.cls
@@ -360,6 +364,7 @@ src/flows/IPM_Notify_Local_Rollout_Project_Created-18.flow
 src/flows/IPM_Populate_Product_lock_design_status-1.flow
 src/flows/IPM_send_email_to_RPL_when_local_project_is_archived_from_rollout_plan-3.flow
 src/labels
+
 src/labels/CustomLabels.labels
 src/layouts
 src/layouts/IPM_SourcingUnit__c-IPM SourcingUnit Layout.layout
