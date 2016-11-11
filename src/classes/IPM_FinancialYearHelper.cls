@@ -572,24 +572,24 @@ public with sharing class IPM_FinancialYearHelper
         IPM_Project__c proj= null;
         
         for(IPM_Financial_Year__c finyear : mapExtIdFinYear.values()){
-        	proj = null;
-        	proj= mapProj.get(finyear.IPM_Financial__r.Regional_External_Id__c);
-        	if(proj == null){
-        		proj= mapProj.get(finyear.IPM_Financial__r.Global_External_Id__c); 
-        	} 
-        	
-        	
-        	
-        	if(proj != null){
-        		
-        		string finTypesToEvaluate = mapProjToFinToEvaluate.get(proj.IPM_ProjectGKM__c+'_'+proj.IPM_Phase__c);
-        		if(finTypesToEvaluate != null && finTypesToEvaluate.contains(IPM_FinancialUtils.getCurrentFinancialType(finyear.IPM_Financial__r.Financial_External_ID__c))){
-            		
-            		validExtIdtoFinYearMap.put(finyear.External_Id__c, finyear);
-            	}
-        	}
-        	
-        	
+            proj = null;
+            proj= mapProj.get(finyear.IPM_Financial__r.Regional_External_Id__c);
+            if(proj == null){
+                proj= mapProj.get(finyear.IPM_Financial__r.Global_External_Id__c); 
+            } 
+            
+            
+            
+            if(proj != null){
+                
+                string finTypesToEvaluate = mapProjToFinToEvaluate.get((proj.IPM_ProjectGKM__c+'_'+proj.IPM_Phase__c).toLowerCase());
+                if(finTypesToEvaluate != null && finTypesToEvaluate.contains(IPM_FinancialUtils.getCurrentFinancialType(finyear.IPM_Financial__r.Financial_External_ID__c))){
+                    
+                    validExtIdtoFinYearMap.put(finyear.External_Id__c, finyear);
+                }
+            }
+            
+            
         }
         
         return validExtIdtoFinYearMap;

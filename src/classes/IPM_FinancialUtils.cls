@@ -271,7 +271,7 @@ public with sharing class IPM_FinancialUtils
         Map<String,String> projKeyToFinToEvaluateMap = new Map<String,String>();
         
         for(IPM_Project_GKM_To_Phase_Matrix__mdt GKMPhaseMapEle : (List<IPM_Project_GKM_To_Phase_Matrix__mdt>) Database.query(queryString)){
-        	projKeyToFinToEvaluateMap.put(GKMPhaseMapEle.DeveloperName,GKMPhaseMapEle.Financial_Type_To_Validate__c);
+            projKeyToFinToEvaluateMap.put(GKMPhaseMapEle.DeveloperName.toLowerCase(),GKMPhaseMapEle.Financial_Type_To_Validate__c);
         }
         
         return projKeyToFinToEvaluateMap;
