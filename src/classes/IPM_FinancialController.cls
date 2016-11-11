@@ -92,7 +92,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public boolean isTDLAcceptNBC_Confirm{get;set;}
     public string tldAcceptedBCConfirmed{get;set;}
     public string globalbusinessImpactStr  {get; set;}
-    public IPM_Financial__c fin {get; set;}
+    public static IPM_Financial__c fin {get; set;}
     public IPM_Financial__c finRegional{get;set;}// for Financial Regional Business Impact
     public IPM_Financial__c finLocal{get;set;}// for Financial Local Business Impact
     public boolean isFinancialInvalid{get;set;}
@@ -582,7 +582,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                (Select Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c FROM IPM_Project_Rollout__r 
                                                    WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND KeyMCO__c = FALSE AND Regional_Rollout_External_Id__c= :financialExtID AND isActive__c = true),
                                                (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c  FROM Regional_Project_Rollout__r 
-                                                   WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND Regional_Rollout_External_Id__c = :financialExtID AND isActive__c = true)           
+                                                   WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND KeyMCO__c = FALSE AND Regional_Rollout_External_Id__c = :financialExtID AND isActive__c = true)           
                                             FROM IPM_Project__c WHERE Id =:Project.Id];
                     } 
                 } 
@@ -1435,7 +1435,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
       
         queryString+= 'Id FROM IPM_Financial_Years__r ORDER BY Name)';
-        queryString+= 'FROM IPM_Financial__c WHERE Id =: currentFinancialId FOR UPDATE'; //Added For Update to obtain exclusive access to the record
+        queryString+= 'FROM IPM_Financial__c WHERE Id =: currentFinancialId '; //Added For Update to obtain exclusive access to the record
         
         List<IPM_Financial__c> LstCurrentFinancial = new List<IPM_Financial__c>();
         LstCurrentFinancial = Database.query(queryString);
@@ -3871,8 +3871,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         if(lstRolloutWrappers!= null && !lstRolloutWrappers.isEmpty()){
             for(RolloutWrapper rollWrapper : lstRolloutWrappers ){
-                for(IPM_Financial__c fin : rollWrapper.lstFinancials){
-                    financialExtIdsForCurrentTab.add(fin.Financial_External_ID__c);
+                for(IPM_Financial__c finance : rollWrapper.lstFinancials){
+                    financialExtIdsForCurrentTab.add(finance.Financial_External_ID__c);
                 }
             }
             
