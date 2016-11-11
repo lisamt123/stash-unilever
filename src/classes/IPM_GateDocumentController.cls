@@ -1,4 +1,3 @@
-
 /***********************************************************************************************************************************************************
 * @author Cognizant
 * @date  15/12/2014
@@ -144,6 +143,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public static final String DOCUMENT_TYPE ='DocumentType';
     public static final String PDF ='PDF';
     public static String projDocSecId = ' ';
+    public String baseUrl = 'https://' + string.valueOf(ApexPages.currentPage().getHeaders().get('Host'));
+    public string gateDocPDFWithAppendixURLStr{get;set;}
+    public string gateDocPDFWithoutAppendixURLStr{get;set;}
     
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
@@ -314,11 +316,29 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         }
         
         isRedStylingApplicable=((IPM_ConstantUtils.STATUS_APPROVED.equals(projectDoc.IPM_Document_Status__c) ? projectDoc.IPM_Category_Status_while_Approved__c:project.IPM_Threshold_Status__c)== Label.IPM_BelowThreshold) && (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL) ;
+        gateDocPDFWithAppendixURLStr = baseUrl + exportToPdf('true').getUrl();
+        gateDocPDFWithoutAppendixURLStr = baseUrl + exportToPdf('false').getUrl();
+        chkClaims();
+        getAppendixCheck();
         
     } 
     
-	public void initializeVariables() {
-		isPDLDocument = false;
+    public void getAppendixCheck() {
+        If(ApexPages.currentPage().getURL().containsIgnoreCase('ipm_gatedocumentpdf')) {
+            if(ApexPages.currentPage().getParameters().get('isWithAppendix') == 'true') {isWithAppendix = true;}
+            else {isWithAppendix = false;}
+        }
+        Else If(ApexPages.currentPage().getURL().containsIgnoreCase('ipm_gatedocument')) {
+            isWithAppendix = true;
+        }
+        
+        if(isWithAppendix){
+            getAppendixSections();
+        }
+    }
+    
+    public void initializeVariables() {
+        isPDLDocument = false;
         isPDLapproved = false;
         showAttach=false;
         showSummaryAttach=false;
@@ -328,8 +348,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         isExemptFromThresholdITO=false;
         bDocStatusNotStartedOrApproved = false;
         isDisplayWithoutAppendix=false;//phase 2.0
-        isWithAppendix=true;
-		showBBCtable = false;
+        showBBCtable = false;
         //Total filter counts
         NonNegotiableCount=0;
         OptionalCount=0;
@@ -850,22 +869,23 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     @Business Rule: This functions is used to Display the data in for the Gate Documetn PDF, i which data needs to be pulled from Various entities, hence it is complex.
     
     */  
-    public PageReference exportToPdf()
+    
+    public PageReference exportToPdf(String isWithAppendixStr)
     { 
         try
         {
-    	    PageReference gateDocPDFURL = null;
-            gateDocPDFURL = Page.IPM_GateDocumentPDF;
-            gateDocPDFURL.setRedirect(false);
-            gateDocumentData(project.Id); 
-            chkClaims();
-            Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.ATTACHMENT_CONTENT_DISPOSITION, IPM_ConstantUtils.ATTACHMENT_FILE_NAME+project.IPM_Project_Name__c+ '_'+projectDoc.IPM_GateDocuments__c+IPM_ConstantUtils.ATTACHMENT_DOCUMENT+system.today().format()+IPM_ConstantUtils.ATTACHMENT_FILE_TYPE);
+            PageReference gateDocPDFURL = null;
+            gateDocPDFURL = Page.IPM_GateDocumentPDFDownload;
+            gateDocPDFURL.setRedirect(true);
+             
+            
+           
             gateDocPDFURL.getParameters().put(IPM_ConstantUtils.ID_PARAMETER, ProjectId);
 	    gateDocPDFURL.getParameters().put('projDocSecId', projDocSecId);
             gateDocPDFURL.getParameters().put(IPM_ConstantUtils.PROJECTNAME_PARAMETER, project.IPM_Project_Name__c);
             gateDocPDFURL.getParameters().put(IPM_ConstantUtils.PRINTDOC_PARAMETER, PrintDoc);
             gateDocPDFURL.getParameters().put(DOCUMENT_TYPE, PDF);
-            gateDocPDFURL.getParameters().put(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER,String.valueOf(isWithAppendix)); 
+            gateDocPDFURL.getParameters().put(IPM_ConstantUtils.ISWITHAPPENDIX_PARAMETER,String.valueOf(isWithAppendixStr)); 
             return gateDocPDFURL; 
         }
         catch(Exception ex){
@@ -1003,9 +1023,6 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 	     		projDocSecId = pd.Id;
 		}
            
-            if(isWithAppendix){
-                getAppendixSections();
-            }
     
     }
     catch(Exception ex){
