@@ -1,5 +1,5 @@
 /*Secondar Batch which gets called by Main Batch for Mobile Billing*/
-global class MB_MobileBillingBatch implements Database.Batchable<Sobject>,Database.Stateful {
+global with sharing class MB_MobileBillingBatch implements Database.Batchable<Sobject>,Database.Stateful {
   
    global final string month;
    global final string  country;
@@ -35,7 +35,7 @@ global class MB_MobileBillingBatch implements Database.Batchable<Sobject>,Databa
         system.debug('Scope Billing Insight ===>'+ scope);
        
         for (MB_Billing_Entity__c so : scope)  {
-            integer countryUserCount = 1;
+         //   integer countryUserCount = 1;
             if(so.Usage_Type__r.Name != 'iPass'){
                 if(mapCountryList.containsKey(so.Billing_Month__c+'__'+so.User_Country__c)){
                     //Integer icount = mapCountryList.get(so.Billing_Month__c+'__'+so.User_Country__c);
@@ -94,7 +94,7 @@ global class MB_MobileBillingBatch implements Database.Batchable<Sobject>,Databa
         update serviceUserCountList;
     }
     global void finish(Database.BatchableContext BC){
-    
+    //No Finish Job required
        
     }    
 }

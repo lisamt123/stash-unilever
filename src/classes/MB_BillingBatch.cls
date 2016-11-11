@@ -1,6 +1,6 @@
 /*Main Batch for Mobile Biiling*/
 
-global class MB_BillingBatch implements Database.Batchable<Sobject>,Database.Stateful {
+global with sharing class MB_BillingBatch implements Database.Batchable<Sobject>,Database.Stateful {
 
    global set<String>  countryMonthList=new set<String>();
    global set<String>  countryMonthBillingInsightList=new set<String>();
@@ -24,7 +24,7 @@ global class MB_BillingBatch implements Database.Batchable<Sobject>,Database.Sta
        return Database.getQueryLocator(query);
     }
     global void execute(Database.BatchableContext BC,List<MB_Billing_Entity__c> scope){
-        List<MobileBillingInsights__c> lst = [Select id, Month__c, Country__c From MobileBillingInsights__c];
+        List<MobileBillingInsights__c> lst = [Select id, Month__c, Country__c From MobileBillingInsights__c where Month__c!='' and Country__c!=''  ];
         for (MobileBillingInsights__c ur : lst)  {
             if(ur.Month__c != null && ur.Country__c != null){
                  concatString = ur.Month__c.trim()+'__'+ ur.Country__c.trim();

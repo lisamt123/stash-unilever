@@ -1,4 +1,4 @@
-global class MB_Scheduler implements Schedulable{
+global with sharing class MB_Scheduler implements Schedulable{
   
    global void execute(SchedulableContext sc) {
 
