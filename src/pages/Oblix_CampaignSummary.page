@@ -195,7 +195,11 @@
                             <div class="row">
                                 <div class="col-lg-12 confirm_assets_accordion">
                                     <div class="status_completion_chevron_bar_main_styling add_asset_chevron_styling">
-                                        <p class="cancel_campaign_modal_note">Are you sure you want to cancel this Campaign?</p>
+                                        <p class="cancel_campaign_modal_note">Are you sure you want to cancel this Campaign? 
+                                        </p>
+                                        <p class="cancel_campaign_modal_note"><Strong>Please ensure you have updated the % of fee paid at cancelation. The amount will be added to the scope of work value.</Strong>
+                                        </p>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -733,4 +737,3 @@
         </apex:define>
     </apex:composition>
 </apex:page>
-                            

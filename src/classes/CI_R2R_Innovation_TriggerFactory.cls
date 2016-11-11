@@ -41,15 +41,15 @@ public with sharing class CI_R2R_Innovation_TriggerFactory
             handler.bulkBefore();
             
             // Iterate through the records to be deleted passing them to the handler.
-            if (Trigger.isDelete)
+            /*if (Trigger.isDelete)
             {
                 for (SObject so : Trigger.old)
                 {
                     handler.beforeDelete(so);
                 }
-            }
+            }*/
             // Iterate through the records to be inserted passing them to the handler.
-            else if (Trigger.isInsert)
+            if (Trigger.isInsert)
             {
                 for (SObject so : Trigger.new)
                 {
@@ -71,15 +71,15 @@ public with sharing class CI_R2R_Innovation_TriggerFactory
             handler.bulkAfter();
             
             // Iterate through the records deleted passing them to the handler.
-            if (Trigger.isDelete)
+            /*if (Trigger.isDelete)
             {
                 for (SObject so : Trigger.old)
                 {
                     handler.afterDelete(so);
                 }
-            }
+            }*/
             // Iterate through the records inserted passing them to the handler.
-            else if (Trigger.isInsert)
+            if (Trigger.isInsert)
             {
                 for (SObject so : Trigger.new)
                 {

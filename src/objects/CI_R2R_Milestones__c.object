@@ -46,7 +46,7 @@
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
-    <enableHistory>false</enableHistory>
+    <enableHistory>true</enableHistory>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -61,15 +61,26 @@
         <relationshipName>CI_R2R_Milestones</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Milestone_Description__c</fullName>
         <externalId>false</externalId>
         <label>Milestone Description</label>
         <length>131072</length>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>7</visibleLines>
@@ -80,16 +91,19 @@
         <formula>IMAGE(CASE(RAG__c,&quot;Green&quot;, &quot;/img/samples/color_green.gif&quot;, 
 &quot;Amber&quot;, &quot;/img/samples/color_yellow.gif&quot;, 
 &quot;Red&quot;, &quot;/img/samples/color_red.gif&quot;, 
+&quot;NA&quot;, &quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHmrhXnCAeeK606bQNDHNKSt8P-xddQan-FlU3jczon211tAee&quot;, 
+&quot;Null&quot;, &quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHmrhXnCAeeK606bQNDHNKSt8P-xddQan-FlU3jczon211tAee&quot;, 
 &quot;/s.gif&quot;), 
 &quot;status color&quot;,30, 80)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>RAG Color</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
+    <fields>
         <fullName>RAG__c</fullName>
         <externalId>false</externalId>
         <label>RAG</label>
@@ -106,11 +120,30 @@
                 <fullName>Green</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Null</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Target_Closure_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Closure Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <label>CI_R2R Milestones</label>
     <listViews>
@@ -120,6 +153,7 @@
     </listViews>
     <nameField>
         <label>Milestones Name</label>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>CI_R2R Milestones</pluralLabel>

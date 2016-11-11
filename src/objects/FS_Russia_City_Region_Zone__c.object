@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>FS_City_Russia__c</fullName>
+        <externalId>false</externalId>
+        <label>FS City Russia</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FS_Region_Russia__c</fullName>
+        <externalId>false</externalId>
+        <label>FS Region Russia</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FS_Zone_Russia__c</fullName>
+        <externalId>false</externalId>
+        <label>FS Zone Russia</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>FS Russia City Region Zone</label>
+    <visibility>Public</visibility>
+</CustomObject>

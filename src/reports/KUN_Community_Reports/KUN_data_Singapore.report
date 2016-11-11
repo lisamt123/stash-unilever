@@ -41,7 +41,7 @@
         <criteriaItems>
             <column>User$Country</column>
             <operator>equals</operator>
-            <value>Malaysia</value>
+            <value>Singapore</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

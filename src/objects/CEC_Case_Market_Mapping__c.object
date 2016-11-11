@@ -66,6 +66,29 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>Brand_Ambassador_Brands__c</fullName>
+        <description>CEC Brand Ambassador Brands is used to enter the status for advisor</description>
+        <externalId>false</externalId>
+        <label>Brand Ambassador Brands</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>Consumer_Phone_Search_Digits__c</fullName>
+        <description>CEC: For SMS Cases Search will be performed on the last N digitis</description>
+        <externalId>false</externalId>
+        <label>Consumer Phone Search Digits</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>CSAT_Delay__c</fullName>
         <description>CEC: No of days the case closure the CSAT survey can be sent</description>
@@ -296,6 +319,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Italian</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Japanese</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

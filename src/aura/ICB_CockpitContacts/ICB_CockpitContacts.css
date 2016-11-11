@@ -1,7 +1,6 @@
 .THIS .image--align{
     float:left;
     margin-left:3%;
-  
 }
 .THIS .text-size-2{
     margin-left:36%;
@@ -85,7 +84,6 @@
  .THIS .ImageHidden{
         display : none !important;
     }
-
 @media(max-width:700px){
     .THIS .hidden{
         display : none !important;

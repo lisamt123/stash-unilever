@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Ежедневный отчет</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Ежедневный отчет</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Ежедневный отчет</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Ежедневный отчет</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Ежедневный отчет</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Ежедневный отчет</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Ежедневный отчет</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Ежедневный отчет</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>false</plural>
+        <value>Ежедневный отчет</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>true</plural>
+        <value>Ежедневный отчет</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>false</plural>
+        <value>Ежедневный отчет</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>true</plural>
+        <value>Ежедневный отчет</value>
+    </caseValues>
+    <fields>
+        <label><!-- Amount Of Non-Working Days --></label>
+        <name>FS_AmountOfNonWorkingDays__c</name>
+    </fields>
+    <fields>
+        <label><!-- Critical % Achive Today --></label>
+        <name>FS_CriticalAchiveToday__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>FS_EndDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Minimum Achive today --></label>
+        <name>FS_MinimumAchivetoday__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plan For Daily Events --></label>
+        <name>FS_PlanForDailyEvents__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plan For Monthly Events --></label>
+        <name>FS_PlanForMonthlyEvents__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plan --></label>
+        <name>FS_Plan__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>FS_StartDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>FS_User__c</name>
+        <relationshipLabel><!-- Monthly Planner --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Working Days Passed --></label>
+        <name>FS_WorkingDaysPassed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Working Days --></label>
+        <name>FS_WorkingDays__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date Of Month --></label>
+        <name>Start_Date_Of_Month__c</name>
+    </fields>
+    <gender>Neuter</gender>
+    <nameFieldLabel>Ежедневный отчет</nameFieldLabel>
+</CustomObjectTranslation>

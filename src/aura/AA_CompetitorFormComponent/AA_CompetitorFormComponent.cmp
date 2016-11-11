@@ -50,6 +50,9 @@
     <aura:attribute name="submitButtonError" type="Boolean" default="false"/>
     <aura:attribute name="check" type="Boolean" default="false"/>
     <aura:registerEvent name="clearLookupIdEvent" type="c:AA_ClearLookupId"/> 
+     <!-- winter 17' critical issue-->
+    <aura:registerEvent name="navigateToPageDetailEvent" type="c:AA_NavigateToPageDetail"/>
+    
     <aura:handler name="getCountryCityLatLng" event="c:AA_GoogleMapEvent" action="{!c.getLocationDetails}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="change" value="{!v.competitorBrandId}" action="{!c.handleCompetitorBrandChange}"/>
@@ -91,7 +94,6 @@
         </style>
     </aura:if>
     <div class="container slds-text-body--regular" aura:id="containerDiv">
-        <div aura:id="scrollID" class="scroller">
             <div class="slds-scrollable--y"> 
                 <div  aura:id="submitForm" >
                     <div class="row ">
@@ -389,5 +391,4 @@
                 </aura:if>
             </div>
         </div>
-    </div>
 </aura:component>

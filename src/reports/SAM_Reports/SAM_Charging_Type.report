@@ -56,7 +56,7 @@
         <field>CUST_NAME</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>SAM Charging Type</name>
+    <name>SAM Demand: Charging Type</name>
     <params>
         <name>co</name>
         <value>1</value>

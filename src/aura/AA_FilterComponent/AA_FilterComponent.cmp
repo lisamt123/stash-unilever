@@ -12,6 +12,8 @@
         }
     </style>
     <div onclick="{!c.filterRecord}">
-        <img class="image-slds" src="/resource/Lightning_designing_style/assets/icons/utility/filterList_60.png" ></img>
+        <div aura:id="scrollID" class="scroller">
+            <img class="image-slds" src="/resource/Lightning_designing_style/assets/icons/utility/filterList_60.png" ></img>
+        </div>
     </div>
 </aura:component>
