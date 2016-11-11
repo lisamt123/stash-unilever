@@ -197,7 +197,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             msg = maintainVenResp.status;
         }*/
         VPM_PurchasingRequests__c VendorReq = [SELECT VPM_ECC_InsertUpdateStatusMessage__c,VPM_fieldUpdated__c  FROM VPM_PurchasingRequests__c WHERE id =: vendorId];
-        try
+       // try
         {
         if(res.getStatusCode() == 200) {
          
@@ -230,25 +230,28 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             //responseString = 'Server Error. Please try after some time.';
             //responseString = maintainVenResp.message;
             //String JsonAgain = string.escapeSingleQuotes(res.getBody());
-            //system.debug('deep='+JsonAgain.substringBetween('{'));
             errorList111 = (errorMsg) System.JSON.deserialize(res.getBody(), errorMsg.class);
             system.debug('Error List 11= '+errorList111.SAP_Messages);
             string JSON =string.escapeSingleQuotes(res.getBody().right( res.getBody().length()-20).left(res.getBody().right( res.getBody().length()-20).length()-1));
             
            system.debug('Error List '+JSON);
            // VPM_HttpUtil.updateVendorECCStatus(vendorId,VPM_HttpUtil.ECCfailStatus,'Test Mesa',VPM_HttpUtil.failStatusECC);
-          //JSON ='[{"'+JSON;
+          
            // errorList= (List<errorMsgWrapper>) System.JSON.deserialize(JSON , List<errorMsgWrapper>.class);
             //system.debug('Error List '+errorList);
           //  system.debug('errorList List '+errorList);
+           if(errorList111.SAP_Messages != null)
+          {
             for(errorMsgWrapper error : errorList111.SAP_Messages)
             {
                 responseString = responseString+error.Message+';';
                 }
+           }
             VPM_HttpUtil.updateVendorECCStatus(vendorId,VPM_HttpUtil.ECCfailStatus,responseString,VPM_HttpUtil.failStatusECC);
         } 
 
-        /*else if(res.getStatusCode() == 504) 
+        /*else if(res.getStatusCode() == 504)
+                
         {
             VPM_HttpUtil.updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             //responseString = maintainVenResp.message;
@@ -321,7 +324,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             update VendorReq;
         }*/
     }
-    catch (exception ex)
+    /*catch (exception ex)
     {
          responseString = maintainVenResp.message;
          VendorReq.VPM_ECC_InsertUpdateStatus__c = 'Failed to Submit to ECC';
@@ -329,7 +332,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
              VendorReq.VPM_Status__c= 'MDM Ops Review - SAP ECC submit Failed';
             //VendorReq.VPM_fieldUpdated__c ='';
             update VendorReq;
-    }
+    }*/
         return responseString;
     }
     }

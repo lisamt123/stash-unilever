@@ -740,85 +740,76 @@ static testMethod void VPM_ApprovalMethodFreight12(){
     
  
     
+ //customSettingData('U2K2');    
+        VPM_Region__c reg = new VPM_Region__c();
+        reg.VPM_Code__c = '05';
+        reg.Name = 'IN_India'; 
+        reg.VPM_Country__c = 'IN_India';
+        insert reg;
+        
+        List<mdm_Vendors__c> vendorList = new List<mdm_Vendors__c>();
         mdm_Vendors__c vendor = new mdm_Vendors__c();
-        vendor.mdm_Code__c = MDM_CODE;
-        vendor.mdm_City__c = MDM_CITY;
+        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_City__c = 'Andorra';
         vendor.mdm_Country__c ='DZ_Algeria';
         vendor.mdm_Name1__c ='Test Sirius';
-        vendor.mdm_ID__c = MDM_ID;
-        insert vendor;
-        system.assert(vendor.Id!=null,STR_ERROR);
-        
-        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-        companyCode.VPM_CompanyCode__c = 'PH01';
-        companyCode.ECC__c = STR_CONST_U2K2;
-        companyCode.VPM_Country__c =ALGERIA;
-        insert companyCode;
-        system.assert(companyCode.Id!=null,STR_ERROR);
-        
-         VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
-        commodityCode.VPM_VendorType__c =STR_VENDORTYPEMSB;
-        commodityCode.VPM_AuthorisationGroup__c =STR_AUTHGRPMARKETINGSERVICES;
-        commodityCode.VPM_CommodityClass__c = STR_COMMODITYCLASS; 
-        commodityCode.Name=STR_COMPANYCODENAME;
-        commodityCode.VPM_CommodityCode__c=STR_COMCODE;
-        commodityCode.VPM_CommodityClass__c=STR_COMMCLASS;
-        commodityCode.VPM_Region__c=STR_CONST_U2K2;
-          
-        insert commodityCode;
-        system.assert(commodityCode.Id!=null,STR_ERROR);
-        
-        VPM_PurchasingOrganisation__c org =new VPM_PurchasingOrganisation__c();
-        org.VPM_CompanyCode__c=companyCode.id;
-        org.Name='PurchasingOrg';
-        insert org;
-        system.assert(org.Id!=null,STR_ERROR);
-        VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
-        pur.VPM_ECC__c = STR_CONST_U2K2;
-        pur.VPM_ProvidedBankDetails__c = TRUE;
+        vendor.mdm_Street__c = 'Test Street';
+        vendor.mdm_Postcode__c = '54132';
+        vendor.mdm_Country__c = 'India';
+        vendor.mdm_ID__c = '1234';
+        vendor.mdm_vCodeFusion__c='5001010';
+        vendor.mdm_vCodeCordillera__c='5001010';
+        vendor.mdm_vCodeSirius__c='5001010';
+        vendor.mdm_vCodeU2K2__c='5001010';
+        vendorList.add(vendor);
+        insert vendorList;
+        system.debug('@@vendorList' + vendorList);
+        system.assert(vendor.Id!=null,'Error');
        
-        pur.VPM_Status__c = STR_CONST_DRAFT;
-        pur.VPM_AccountGroup__c ='ZGS1';
-        pur.VPM_VendorCodeLookup__c =vendor.Id;
-        pur.recordTypeId=recordTypeId;
-         
-        //pur.VPM_VendorCodeLookup__r.mdm_Code__c=vendor.mdm_Code__c;
+       VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.ECC__c = 'U2K2';
+        companyCode.VPM_Country__c ='Philippines';
+        insert companyCode;
+        system.assert(companyCode.Id!=null,'Error');
+        
+        VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
+        commodityCode.Name = 'Advertising Pre-Testing - Digital';
+        commodityCode.VPM_CommodityFamily__c = 'Market Research';
+        commodityCode.VPM_VendorType__c = 'PI_Production Item Vendor_G001';
+        commodityCode.VPM_AuthorisationGroup__c = 'Chemicals--Inorganics_VMBA Inorganics';
+        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research';
+        commodityCode.VPM_CommodityCode__c = '5702 - UN01580116';
+        commodityCode.VPM_Region__c  = 'U2K2';
+            
+        VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
+        pur.VPM_ECC__c = 'U2K2';
+        pur.VPM_VendorName1__c ='Test Sirius';
+        pur.VPM_Status__c = 'Draft Request';
+        pur.VPM_VendorCodeLookup__c = vendorList[0].id;
+        //pur.recordTypeId=recordTypeId;
+        
         pur.VPM_CompanyCode__c=companyCode.Id;
         //pur.VPM_CompanyCode__r.VPM_CompanyCode__c='PH01';
-        //pur.VPM_CompanyCode__r.ECC__c=STR_CONST_SIRIUS;
-        pur.VPM_Street1__c=STR_STREET1;
-        pur.VPM_CountryRequestingVendor__c=ALGERIA;
-        pur.VPM_VendorPhone__c=STR_VENDORPHONENO;
-        //pur.VPM_Commodity__c=commodityCode.id;
-        pur.VPM_ZIPPostcode__c =STR_ZIPCODE;
-        pur.VPM_GlobalAuthorisationGroup__c='SCS-CAPEX AFR ASIA SEAA_VMBA CAPEX AAR';
-        pur.VPM_AdvancedFormSubmitted__c ='Yes';
-        pur.VPM_PaymentTerms__c ='Payment Terms';
-        pur.VPM_BankCountryKey__c ='Bank Country Key';
-        pur.VPM_ReconciliationAccount__c ='Recouncil';
-        pur.VPM_DeletionBlockFlag__c='Undelete';
-        pur.VPM_DeletionBlockFlag__c ='delete';
-        pur.VPM_Incoterms1__c='UN _Not Free';
-        pur.VPM_PurchasingOrg__c=org.id;
-        pur.VPM_VendorType__c =FREIGHTVENDOR;
-        pur.VPM_Country__c =VPM_COUNTRYNAME;
-        //pur.VPM_Commodity_Family__c = 'Out of Scope';
-        pur.VPM_SRVBasedVendorID__c=FALSE;
-        pur.VPM_CashManagementGroup__c='None';
+        //pur.VPM_CompanyCode__r.ECC__c='Sirius';
+        pur.VPM_Street1__c='Test Street';
+        pur.VPM_CountryRequestingVendor__c='Philippines';
+        pur.VPM_VendorPhone__c='1234567895';
+        pur.VPM_Commodity__c=commodityCode.id;
+        pur.VPM_ZIPPostcode__c ='54132';    
+        pur.VPM_GlobalAuthorisationGroup__c = 'Chemicals--Inorganics_VMBA Inorganics';
+        pur.VPM_PaymentTerms__c = '';
+        pur.VPM_OrderingEmailAddress__c = '';
+        pur.VPM_VendorType__c = 'PI_Production Item Vendor_G001';  
+        pur.VPM_ClerksInternet__c = '';
+        pur.VPM_Country__c = 'IN_India';
+        pur.VPM_ExtensionType__c = VPM_RecordTypeHelper.REGIONAL_REQUEST;
+        pur.VPM_Industry__c = '9001_Oils';
         insert pur;
-        system.assert(pur.Id!=null,STR_ERROR);
-         pur.VPM_VendorName1__c =null;
-         pur.VPM_CheckDoubleInvoices__c=FALSE;
-         pur.VPM_Commodity__c=commodityCode.id;
-        update pur;
-        VPM_PurchasingRequests__c pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_CheckDoubleInvoices__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,VPM_Commodity_Family__c from VPM_PurchasingRequests__c  where id =: pur.id limit 1];
-        system.assertEquals(pur.VPM_CheckDoubleInvoices__c,pur1.VPM_CheckDoubleInvoices__c);
-        system.assertEquals(pur.VPM_Commodity__c,pur1.VPM_Commodity__c);
-        system.debug(pur.VPM_VendorName1__c);
-        system.debug(pur1.VPM_VendorName1__c);
-        system.assertEquals(pur.VPM_VendorName1__c ,pur1.VPM_VendorName1__c );
-        return pur1;
-       
+        insert commodityCode;
+        pur.VPM_Commodity__c = commodityCode.id;
+        update pur; 
+        return pur;   
        
        
     }
@@ -940,10 +931,26 @@ static testMethod void VPM_ApprovalMethodFreight12(){
 
    static testMethod void errorMessage(){
     //   PageReference pg =null;
-        VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
+       try {
+       	VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
+        purId.recordTypeId=recordTypeId;
+        update purId;
+       
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        VPM_SearchVendor1 searchVendorConst = new VPM_SearchVendor1 ();
+        VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
+        searchVendor.intCalcIndicatorDefValues = '01';
+        searchVendor.getVendorDetailList();        
+        searchVendor.mdmVendorType = '';
+        searchVendor.VendorSelected(); 
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
        // pg=goldenData.ErrorMessage();
+            }
+       catch(exception ex){
+            System.debug('Exception in errorMessage' + Ex.getStacktraceString());
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,ex.getMessage()));
+}
 
    
    

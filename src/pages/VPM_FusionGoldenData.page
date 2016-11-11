@@ -107,6 +107,10 @@
                                <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}"/ -->
                          </apex:outputPanel>
               </apex:pageBlockSectionItem>
+              <apex:selectList value="{!vendorCashManagementGrp}"  multiselect="false" size="1" label="Cash management Group">
+                    <apex:selectOptions value="{!CashManagementGrp}"/>
+                  </apex:selectList>
+              <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_SortKey__c}" />
                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ReconciliationAccount__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReconciliationAccount__c}" required="true"/>
                  <!--apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SortKey__c.Label}"/>

@@ -35,6 +35,7 @@ public with sharing class VPM_SearchVendor1{
     public List <SelectOption> countryNameList{get;set;} 
     public List<string> opt{get;set;}
     public List<SelectOption> socialInsuCodeOptions{get;set;}
+    public List<SelectOption> payTermsCreditMemosOptions{get;set;}
     public List<SelectOption> industryOptions{get;set;}
     public List<SelectOption> standardCommOptions{get;set;}
     public List<SelectOption> regStGrpOptions{get;set;}
@@ -153,6 +154,7 @@ public with sharing class VPM_SearchVendor1{
     public static boolean updateNoOfHoursFlag= false; // for recurrsive trigger       
     
     public string industryOptionsDefValue{get;set;}
+    public string paymentTermsCreditMemos{get;set;}
     public string standardCommDefValue{get;set;}
     public string regStGrpDefValue{get;set;}
     public string recipentTypeDefValue{get;set;}
@@ -216,7 +218,7 @@ public with sharing class VPM_SearchVendor1{
                             VPM_VendorCodeLookup__r.mdm_vCodeFusion__c,VPM_VendorCodeLookup__r.mdm_vCodeSirius__c, VPM_PurchasingOrg__c,VPM_PurchasingOrg__r.Name, VPM_IsVendorSME__c,VPM_Fieldtype__c,
                             recordTypeId,VPM_CompanyCode__r.VPM_CompanyCode__c,VPM_CashManagementGroup__c,VPM_Language__c,VPM_AccountStatement__c,VPM_PaymentBlock__c,VPM_GroupingKey__c,VPM_SchemaGroupVendor__c,VPM_Incoterms1__c,VPM_PaymentMethod__c,
                             VPM_VendorSubType__c, VPM_Regions__c,VPM_SearchTerm_1__c,VPM_ClerksInternet__c,VPM_OrderingEmailAddress__c,VPM_OrderCurrency__c,VPM_Authorization__c,VPM_TaxJurisdictionCode__c,VPM_InternationalVersion__c,VPM_StandardNumber__c,VPM_VATCountry__c,VPM_VATRegistrationNumber2__c,VPM_SortKey__c,VPM_SRVBasedVendorID__c,VPM_IsLock__c,createdbyid,VPM_PurchasingOrganisation__c,VPM_AuthorisationGroupFormula__c, VPM_VendorBlockUnblockDelete__c,
-                            VPM_SupplierFinancialStabilityCheck__c,VPM_DetailsTypeCheck__c,VPM_ReasonNoFinancialCheck__c,VPM_SupplierAchillesRegistration__c,VPM_AchillesRegistrationCode__c,VPM_AchillesExceptionDetails__c,VPM_SupplierPositiveAssuranceQuality__c,VPM_SupPosAssExcepDetailsQual__c,VPM_SupplierAssessmentQuestionnaireQual__c,VPM_DetailsOfPlannedActivitiesSour__c,VPM_SupplierAuditQuality__c,VPM_DetailsOfPlannedActivitiesQual__c,
+                            VPM_PaymentTermsKeyCreditMemos__c,VPM_SupplierFinancialStabilityCheck__c,VPM_DetailsTypeCheck__c,VPM_ReasonNoFinancialCheck__c,VPM_SupplierAchillesRegistration__c,VPM_AchillesRegistrationCode__c,VPM_AchillesExceptionDetails__c,VPM_SupplierPositiveAssuranceQuality__c,VPM_SupPosAssExcepDetailsQual__c,VPM_SupplierAssessmentQuestionnaireQual__c,VPM_DetailsOfPlannedActivitiesSour__c,VPM_SupplierAuditQuality__c,VPM_DetailsOfPlannedActivitiesQual__c,
                             VPM_CheckForFieldUpdate__c,VPM_SupplierPositiveAssuranceSourcing__c,VPM_SupPosAssExcepDetailsSour__c,VPM_SupplierAssessmentQuestionnaireSour__c,VPM_SupplierAuditSourcing__c,VPM_OrderOptimRest__c,VPM_AccountingClerk__c,
                             VPM_Interestcalculationindicator__c,VPM_SocialInsuranceCodeSoc__c,VPM_GlobalFieldChanged__c,VPM_RegionalFieldChanged__c,VPM_ShippingConditions__c, VPM_CompanyCode__r.VPM_Country__c,VPM_CompanyCode__r.VPM_CountryCode__c
                             from VPM_PurchasingRequests__c where id = : recId];
@@ -275,7 +277,8 @@ public with sharing class VPM_SearchVendor1{
         vendorPaymentMethod = '';     
             paymentMethod = VPM_RecordTypeHelper.paymentMathodMetaData(vendorQuery1.VPM_CompanyCode__r.VPM_CountryCode__c, vendorQuery1.VPM_CompanyCode__r.VPM_Country__c);    
             paymentMethodWebserviceValues = vendorQuery1.VPM_PaymentMethodWeb__c;
-            confirmationControlDefaultValue = vendorQuery1.VPM_ConfirmationControl__c;
+            paymentTermsCreditMemos = vendorQuery1.VPM_PaymentTermsKeyCreditMemos__c;
+        	confirmationControlDefaultValue = vendorQuery1.VPM_ConfirmationControl__c;
             ssIStatusDefaultValue = vendorQuery1.VPM_SSIStatus__c;
             orderOPtimRestDefValue = vendorQuery1.VPM_OrderOptimRest__c;
             intCalcIndicatorDefValues = vendorQuery1.VPM_Interestcalculationindicator__c;     
@@ -297,10 +300,8 @@ public with sharing class VPM_SearchVendor1{
             vendorSchemaGroupVendor=vendorQuery1.VPM_SchemaGroupVendor__c;
             incoterms2 = vendorQuery1.VPM_Incoterms2__c;
             //modified for IAPR-600
-            vendorPaymentTerms = vendorQuery1.VPM_PaymentTerms__c;
-            system.debug('@@vendorQuery1.VPM_TermsOfPayment__c' + vendorQuery1.VPM_TermsOfPayment__c);
-            termsOFPayment = vendorQuery1.VPM_TermsOfPayment__c;
-            system.debug('@@termsOFPayment' + termsOFPayment);
+            vendorPaymentTerms = vendorQuery1.VPM_PaymentTerms__c; 
+            termsOFPayment = vendorQuery1.VPM_TermsOfPayment__c;            
             vendorStandardNumber = vendorQuery1.VPM_StandardNumber__c;
             vendorIntVersion = vendorQuery1.VPM_InternationalVersion__c;
             vendorTradePartnerType = vendorQuery1.VPM_TradePartnerType__c;
@@ -424,8 +425,10 @@ public with sharing class VPM_SearchVendor1{
     Return Type  : pageReference
     ********************************************************************/
     public pageReference vendorNameChange() {
-        searchTerm1 = string.isNotBlank(vendorName) ? vendorName.left(10) : '';
-        system.debug('@@ searchTerm1' + searchTerm1);
+        if(!screenType.equals(VPM_RecordTypeHelper.MAINTAIN)) {
+            searchTerm1 = string.isNotBlank(vendorName) ? vendorName.left(10) : '';
+            system.debug('@@ searchTerm1' + searchTerm1);
+        }
         return null;
     }
     
@@ -858,7 +861,6 @@ public with sharing class VPM_SearchVendor1{
        vendorQuery1.VPM_Street1__c = street1;
        vendorQuery1.VPM_ZIPPostcode__c = zipPostcode;
        vendorQuery1.VPM_Country__c = countryName;  
-       vendorQuery1.VPM_City__c = vendorDetails.VPM_City__c;
        vendorQuery1.RecordTypeId = VPM_RecordTypeHelper.getRecordTypeNameById(requestType);
        vendorQuery1.VPM_ECC__c = vendorQuery1.VPM_CompanyCode__r.ECC__c;
        vendorQuery1.VPM_ExtensionType__c = extensionType;
@@ -946,7 +948,7 @@ public with sharing class VPM_SearchVendor1{
         system.debug('@@@ setting Launch screen options');
         String OptionWrapperJSON ='['; //
         //Added by Epsita for IAPR-1756
-        if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.APPROVALPENDING)||  vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REJECTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.ABORTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REQUEST_COMPLETED) || vendorQuery1.VPM_Status__c.contains('MDM Ops')){
+        if(vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.APPROVALPENDING) || vendorQuery1.VPM_Status__c.contains('BPM Record Submitted ') || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REJECTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.ABORTED) || vendorQuery1.VPM_Status__c.contains(VPM_RecordTypeHelper.REQUEST_COMPLETED) || vendorQuery1.VPM_Status__c.contains('MDM Ops')){
             system.debug('@@@ vendorQuery1.VPM_IsLock__c '+vendorQuery1.VPM_IsLock__c);
             if(vendorQuery1.VPM_Status__c.contains('Re-Work')) {
                 system.debug('@@@vendorQuery1.VPM_Status__c '+vendorQuery1.VPM_Status__c);
@@ -1180,7 +1182,8 @@ public with sharing class VPM_SearchVendor1{
                 vendorDetails.VPM_ThirdPartyAddress1__c = op.CompanyData[0].ThirdPartyAddress1;  
                 vendorDetails.VPM_ThirdPartyAddress2__c = op.CompanyData[0].ThirdPartyAddress2;
                 vendorDetails.VPM_ThirdPartyAddress3__c = op.CompanyData[0].ThirdPartyAddress3;  
-                vendorDetails.VPM_PaymentTermsKeyCreditMemos__c =  op.CompanyData[0].PaymentTermsCreditMemoKey;
+                //vendorDetails.VPM_PaymentTermsKeyCreditMemos__c =  op.CompanyData[0].PaymentTermsCreditMemoKey;
+                paymentTermsCreditMemos = op.CompanyData[0].PaymentTermsCreditMemoKey;
                 vendorDetails.VPM_ThirdPartyAddress4__c = op.CompanyData[0].ThirdPartyAddress4;  
                 vendorDetails.VPM_FreeText1__c = op.CompanyData[0].FreeText1;
                 vendorDetails.VPM_FreeText2__c = op.CompanyData[0].FreeText2;  
@@ -1496,11 +1499,11 @@ public with sharing class VPM_SearchVendor1{
         vendorDetails.VPM_HouseNumSupplement__c = op.HouseNumSupplement;
         vendorQuery1.VPM_TaxNumber1__c = string.isNotBlank(op.TaxNumber1) ?op.TaxNumber1:vendorQuery1.VPM_TaxNumber1__c;
         vendorDetails.VPM_TaxNumber2__c = op.TaxNumber2;
-        vendorDetails.VPM_TaxNumber3__c = op.TaxNumber3;
+        vendorQuery1.VPM_TaxNumber3__c = op.TaxNumber3;
         vendorDetails.VPM_TaxNumber4__c = op.TaxNumber4;
         system.debug('@@op.City' +op.City);
-        vendorDetails.VPM_City__c = op.City;
-        system.debug('vendorDetails.VPM_City__c' +vendorDetails.VPM_City__c);
+        vendorQuery1.VPM_City__c = op.City;
+        
         string region = VPM_RecordTypeHelper.region(op.Region, countryName);           
         system.debug('region '+region);
         vendorDetails.VPM_Regions__c = region;
@@ -1565,6 +1568,7 @@ public with sharing class VPM_SearchVendor1{
         try
         {
             system.debug('@@ updateVendorReqRecord is called');
+            system.debug('### VPM_SearchVendor1.checkFlag '+VPM_SearchVendor1.CheckFlag  ); 
             //added recently - 2016-10-07
             vendorQuery1.VPM_PaymentMethodWeb__c = paymentMethodWebserviceValues;
             system.debug('@@vendorQuery1.VPM_PaymentMethodWeb__c' + vendorQuery1.VPM_PaymentMethodWeb__c);
@@ -1576,7 +1580,7 @@ public with sharing class VPM_SearchVendor1{
             vendorQuery1.VPM_RegStGrp__c = regStGrpDefValue;
             vendorQuery1.VPM_RecipientType__c = recipentTypeDefValue;
             vendorQuery1.VPM_TaxJurisdictionCode__c = taxJuriCodeDefValue;
-            
+            vendorQuery1.VPM_PaymentTermsKeyCreditMemos__c = paymentTermsCreditMemos;
             //vendorQuery1.VPM_PurchasingOrganisation__c = vendorPurchasingOrg;
             vendorQuery1.VPM_CashManagementGroup__c= vendorCashmgmntgroup;
             system.debug('@@ vendorQuery1.VPM_Language__c' + vendorQuery1.VPM_Language__c);
@@ -1593,26 +1597,14 @@ public with sharing class VPM_SearchVendor1{
             vendorQuery1.VPM_Country__c = countryName; 
             If(string.isNotBlank(vendorPaymentMethod)  && vendorPaymentMethod <> '[]')  {
                 vendorQuery1.VPM_PaymentMethod__c = vendorPaymentMethod;
-            }/*else {
-                vendorQuery1.VPM_PaymentMethod__c = vendorQuery1.VPM_PaymentMethod__c;
-            }*/
-            
-            //VPM_SearchVendor1.checkFlag =true; 
-            // 22 08 2016 : Changes By Samrin to Set VPM_VendorBlockUnblockDelete__c for the secodn time when user click on back button 
+            }
             vendorQuery1.VPM_VendorBlockUnblockDelete__c = vendorBlockUnblockDelete == null? vendorBlockUnblockDelete: vendorQuery1.VPM_VendorBlockUnblockDelete__c;
-          
-          
-          //vendorQuery1.VPM_VendorBlockUnblockDelete__c = vendorBlockUnblockDelete;
-         
-            vendorQuery1.VPM_VendorName1__c = vendorName;
+          	vendorQuery1.VPM_VendorName1__c = vendorName;
             vendorQuery1.VPM_SearchTerm_1__c = searchTerm1;
             vendorQuery1.VPM_Incoterms2__c = incoterms2;
-            vendorQuery1.VPM_Country__c = countryName; //modified by vaishali nagar for IAPR-605
-            system.debug('@@vendorPaymentTerms' + vendorPaymentTerms);
-            vendorQuery1.VPM_PaymentTerms__c = vendorPaymentTerms; 
-            system.debug('@@vendorPaymentTerms' + vendorQuery1.VPM_PaymentTerms__c);
+            vendorQuery1.VPM_Country__c = countryName;           
+            vendorQuery1.VPM_PaymentTerms__c = vendorPaymentTerms;
             vendorQuery1.VPM_TermsOfPayment__c = termsOFPayment;
-            system.debug('@@termsOFPayment' + termsOFPayment);
             vendorQuery1.VPM_TradePartnerType__c = vendorTradePartnerType;
             vendorQuery1.VPM_InternationalVersion__c = vendorIntVersion;
             vendorQuery1.VPM_StandardNumber__c = vendorStandardNumber;
@@ -1640,10 +1632,12 @@ public with sharing class VPM_SearchVendor1{
                 }              
             }  
             vendorDetails.RecordTypeId = VPM_RecordTypeHelper.getRecordTypeNameById(requestType);
+            vendorDetails.VPM_PaymentTerms__c = vendorQuery1.VPM_PaymentTerms__c;
             system.debug('@@mdmVendorType' + mdmVendorType);            
             update vendorDetails;             
             vendorReq.save();            
-            paymentMethodWebserviceValues = vendorQuery1.VPM_PaymentMethodWeb__c;            
+            paymentMethodWebserviceValues = vendorQuery1.VPM_PaymentMethodWeb__c;  
+            system.debug('### VPM_SearchVendor1.checkFlag '+VPM_SearchVendor1.CheckFlag  ); 
         }
         catch(DMLException ex){
             ApexPages.Message msg = new ApexPages.Message(Apexpages.Severity.ERROR, ex.getdmlMessage(0));
@@ -1795,7 +1789,7 @@ public with sharing class VPM_SearchVendor1{
                 }else { 
                     VPM_SearchVendor1.CheckFlag  = false;                   
                 }
-                    system.debug('### VPM_SearchVendor1.checkFlag '+VPM_SearchVendor1.CheckFlag  ); 
+                system.debug('### VPM_SearchVendor1.checkFlag '+VPM_SearchVendor1.CheckFlag  ); 
                 update vendorQuery1;
                 vendorDetails.VPM_Telephone__c = vendorQuery1.VPM_VendorPhone__c;               
                 
@@ -1803,10 +1797,7 @@ public with sharing class VPM_SearchVendor1{
                     isMaintainRecord = true; 
                 }
                 if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.CREATE) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.EXTEND)) {
-                    /*if(string.isNotBlank(vendorQuery1.VPM_Commodity__r.VPM_CommodityCode__c) && (vendorQuery1.VPM_Commodity__r.VPM_CommodityCode__c.startsWith('0')) && string.isNotBlank(vendorQuery1.VPM_GlobalAuthorisationGroup__c) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.contains('MBS--Other')))  
-                        isReqOrderingEmail = false;
-                    else
-                        isReqOrderingEmail =true;    */                   
+                    system.debug('@@Coming here');               
                     if(string.isNotBlank(vendorDetails.VPM_VendorContactDetail__c)){        
                         if(string.isBlank(vendorQuery1.VPM_OrderingEmailAddress__c))
                             vendorQuery1.VPM_OrderingEmailAddress__c = vendorQuery1.VPM_VendorContactDetail__c;
@@ -2063,7 +2054,7 @@ public with sharing class VPM_SearchVendor1{
             if(countryName.contains(VPM_RecordTypeHelper.VENDOR_COUNTRY) && string.isBlank(taxJuriCodeDefValue)){
 				myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_TaxJuriCodeErrorMessage);            
             }
-            if(countryName.contains(VPM_RecordTypeHelper.VENDOR_COUNTRY) && string.isBlank(vendorDetails.VPM_TaxNumber3__c)){
+            if(countryName.contains(VPM_RecordTypeHelper.VENDOR_COUNTRY) && string.isBlank(vendorQuery1.VPM_TaxNumber3__c)){
 				myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,'Tax Number 3 cannot be left blank');            
             }
             //modified for IAPR-575
@@ -2331,6 +2322,7 @@ public with sharing class VPM_SearchVendor1{
         //modified by vaishali nagar for IAPR-600
         paymentTerms = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.PAYMENT_TERMS,vendorPaymentTerms);
         termsofPaymentOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.PAYMENT_TERMS,termsOFPayment);        
+        payTermsCreditMemosOptions = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.PAYMENT_TERMS,paymentTermsCreditMemos);  
         standardNumber= VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.STANDARD_NUMBER,vendorStandardNumber);
         internationalVersion =VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.INT_VERSION,vendorIntVersion);  
         tradePartnerType = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetails.VPM_ECC__c,VPM_PicklistHelper.TRADE_PARTNER_TYPE,vendorTradePartnerType);  

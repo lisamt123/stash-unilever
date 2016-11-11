@@ -49,7 +49,7 @@
     <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>VPM - Used to store the data to allow an end user to make a purchasing request that is reassigned to and approved by FLS, Finance, Procurement and MDM Ops. This could branch out to a Vendor Request interfaced with SAP, or to an Ariba Purchasing Requisition.</description>
+    <description>VPM - Used to store the data to allow an end user to make a Vendor Request that is reassigned to and approved by teams like FLS, Finance, Procurement and MDM Ops. This could branch out to a Vendor Request interfaced with SAP.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableEnhancedLookup>true</enableEnhancedLookup>
@@ -6625,7 +6625,7 @@ Enter the Country to see a list of all available Company Codes, or search using 
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>TC _Turks &amp; Caicos (Turksh Caicosin)</fullName>
+                <fullName>TC_Turks &amp; Caicos (Turksh Caicosin)</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -22379,22 +22379,6 @@ VPM_Approver10__c = $User.Id))
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_UnresolvedExceptions__c</fullName>
-        <description>VPM - counts the number of unactioned related &apos;Vendor Request Exceptions&apos;, i.e. those with a status of &apos;Logged&apos;</description>
-        <externalId>false</externalId>
-        <label>Unresolved Exceptions</label>
-        <summaryFilterItems>
-            <field>VPM_VendorRequestException__c.VPM_Status__c</field>
-            <operation>equals</operation>
-            <value>Logged</value>
-        </summaryFilterItems>
-        <summaryForeignKey>VPM_VendorRequestException__c.VPM_RelatedVendorRequest__c</summaryForeignKey>
-        <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
         <fullName>VPM_VATCountry__c</fullName>
         <description>VPM -  stores the VAT Country value for the vendor.</description>
         <externalId>false</externalId>
@@ -23486,17 +23470,6 @@ VPM_Approver10__c = $User.Id))
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_VendorCached__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>VPM : This flag is use to find out vendor cached or not.</description>
-        <externalId>false</externalId>
-        <label>VPM_VendorCached</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>VPM_VendorClassification__c</fullName>
@@ -24630,6 +24603,17 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>VPM_isVendorCached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM : Check vendor is cached in SFDC or not</description>
+        <externalId>false</externalId>
+        <label>VPM_isVendorCached</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>VPM_purchasingOrgMatch__c</fullName>
@@ -36210,7 +36194,7 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
                 <default>false</default>
             </values>
             <values>
-                <fullName>TC _Turks %26 Caicos %28Turksh Caicosin%29</fullName>
+                <fullName>TC_Turks %26 Caicos %28Turksh Caicosin%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -53426,7 +53410,7 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
                 <default>false</default>
             </values>
             <values>
-                <fullName>TC _Turks %26 Caicos %28Turksh Caicosin%29</fullName>
+                <fullName>TC_Turks %26 Caicos %28Turksh Caicosin%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -70642,7 +70626,7 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
                 <default>false</default>
             </values>
             <values>
-                <fullName>TC _Turks %26 Caicos %28Turksh Caicosin%29</fullName>
+                <fullName>TC_Turks %26 Caicos %28Turksh Caicosin%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -87858,7 +87842,7 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
                 <default>false</default>
             </values>
             <values>
-                <fullName>TC _Turks %26 Caicos %28Turksh Caicosin%29</fullName>
+                <fullName>TC_Turks %26 Caicos %28Turksh Caicosin%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -100132,9 +100116,11 @@ IF(LEN(VPM_VendorPhone__c)==11 ,  NOT(REGEX(VPM_VendorPhone__c, &quot;0[1-9]{1}[
 	{ 
 		alert(VPMRequestRejectedMessage ); 
 		window.top.location=&apos;https://&apos;+localhost+&apos;/apex/VPM_AdvancedForm_v1?id={!VPM_PurchasingRequests__c.Id}&apos;;
-	}	 
+	}
+         if(currentstatus.indexOf(&apos;BPM Record Submitted&apos;)!= -1){                                       window.top.location=&apos;https://&apos;+localhost+&apos;/apex/VPM_AdvancedForm_v1?id={!VPM_PurchasingRequests__c.Id}&apos;;
+             }	 
 	else if((currentstatus.indexOf(&apos;BPM&apos;) != -1)&amp;&amp; currentstatus!=&quot;MDM Ops Review - SAP BPM submit Failed&quot;){ 
-		alert(VPMRecordSentToSAPMessage ); 
+		alert(VPMRecordSentToSAPMessage );
 	}	 
 	else if((currentstatus.indexOf(&apos;Re-Work&apos;) != -1)&amp;&amp; (VPMIsLock == true || VPMIsLock == &quot;1&quot;)){ 
 			alert(VPMReworkAlert); 

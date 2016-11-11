@@ -136,7 +136,6 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           
           this.pr= (VPM_PurchasingRequests__c)stdController.getRecord(); 
           //recId1 = stdController.getRecord().Id; 
-          // callJavaScriptAlert='<script> func(); </script>';
           
           isBR  = false;
           isFLS = false;
@@ -153,7 +152,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           vendorDetailList =[select OwnerId, VPM_IsVendorSME__c,VPM_ECC__c, VPM_PaymentTerms__c,
           VPM_PaymentTermsIfNoneSelected__c,VPM_Country__c,VPM_CompanyCode__r.VPM_CompanyCode__c, VPM_CompanyCode__r.ECC__c, 
           VPM_ApprovalWorker__c, VPM_ApprovalWorkerID__c, VPM_ExceptionType__c, VPM_InternationalVersion__c, 
-          VPM_Status__c, VPM_CountryRequestingVendor__c,VPM_FLSInCountryReqVen__c from VPM_PurchasingRequests__c where id =: recId];
+          VPM_Status__c, VPM_CountryRequestingVendor__c,VPM_FLSInCountryReqVen__c,VPM_BankKey__c,VPM_BankAccountNumber__c from VPM_PurchasingRequests__c where id =: recId];
           System.debug('%%%%vendorDetailList ===='+vendorDetailList );
           
           list<QueueSobject> QueueSobjectList =[Select Queue.Name From QueueSobject where QueueId =: vendorDetailList[0].OwnerId];
@@ -363,18 +362,20 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
            pr.VPM_PaymentTerms__c = vendorPaymentTerms; 
            paymentTerms = VPM_PicklistHelper.getRegionSpecificCustomSettingvalues(vendorDetailList[0].VPM_CompanyCode__r.ECC__c , PAYMENT_TERMS,vendorPaymentTerms);        
     }
+   
+  
       
       public void callSendToSAPAPI() {
           System.debug('-----id of vendor request record is-----'+vendorReqId);
           String responseString='';
-          list<VPM_PurchasingRequests__c> vendorList = [SELECT RecordTypeId,VPM_VendorCached__c ,VPM_Fieldtype__c ,VPM_VendorCodeLookup__r.mdm_ecc__c,VPM_CompanyCode__r.ECC__c from VPM_PurchasingRequests__c where id=:vendorReqId limit 1];
+          list<VPM_PurchasingRequests__c> vendorList = [SELECT RecordTypeId,VPM_isVendorCached__c,VPM_Fieldtype__c ,VPM_VendorCodeLookup__r.mdm_ecc__c,VPM_CompanyCode__r.ECC__c from VPM_PurchasingRequests__c where id=:vendorReqId limit 1];
               list<RecordType> RecordTypeList =[SELECT Name from RecordType where id=:vendorList[0].RecordTypeId limit 1];
                 system.debug('entering condition 1');
                 system.debug('RecordTypeList[0].Name '+RecordTypeList[0].Name);
               if(RecordTypeList[0].Name.contains(STR_CONST_CREATEREQTYPE)) {
               system.debug('condition 1');
               
-                 if(!vendorList[0].VPM_VendorCached__c)
+                 if(!vendorList[0].VPM_isVendorCached__c)
                  {
                   responseString = VPM_CreateVendorServiceHelper.createVendor(vendorReqId);
                   }
@@ -392,6 +393,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   if(vendorList[0].VPM_VendorCodeLookup__r.mdm_ecc__c.containsIgnoreCase(vendorList[0].VPM_CompanyCode__r.ECC__c))
                    {
                   System.debug('-----calling extend global vendor mule api----');
+                 
                   if(vendorList[0].VPM_Fieldtype__c == 'Global'){
                       responseString = VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorReqId);
                    }else if(vendorList[0].VPM_Fieldtype__c == 'Regional'){
@@ -399,12 +401,20 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                    }else if(vendorList[0].VPM_Fieldtype__c == 'both')
                    {
                    system.debug('call service 1');
+                   if(!vendorList[0].VPM_isVendorCached__c)
+                   {
                      responseString = VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorReqId);
+                   }
+                   else
+                   {
+                      responseString = VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorReqId);
+                   }  
                      system.debug('call service 2');
                     // responseString = VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorReqId);
                    }
                    else{
-                       responseString ='Since you haven\'t Edited/Modified any fields in the Advance Form there is no data to be maintained, Hence you cannot send the record to SAP';
+                   responseString = VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorReqId);
+                       //responseString ='Since you haven\'t Edited/Modified any fields in the Advance Form there is no data to be maintained, Hence you cannot send the record to SAP';
                     }                   
                    }
                    else
@@ -415,7 +425,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                     responseString= string.isNotBlank(responseString) ? responseString.replace('\'','') : '';
                     system.debug(responseString);
                    //callJavaScriptAlert='<script>alert(\''+responseString+'\'); PageReload();</script>';
-                    callJavaScriptAlert='<script>debugger;var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); PageReload();</script>';
+                    callJavaScriptAlert='<script>var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); PageReload();</script>';
               }else if(RecordTypeList[0].Name.contains('(Maintain)')) {
                   
                   System.debug('-----calling extend global vendor mule api----');
@@ -426,7 +436,14 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                   }else if(vendorList[0].VPM_Fieldtype__c == 'both')
                    {
                    system.debug('call service 1');
+                     if(!vendorList[0].VPM_isVendorCached__c)
+                   {
                      responseString = VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorReqId);
+                   }
+                   else
+                   {
+                      responseString = VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorReqId);
+                   }
                      system.debug('call service 2');
                     // responseString = VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorReqId);
                    }
@@ -1087,7 +1104,10 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
          try{
           if(string.isBlank(vendorPaymentTerms) && string.isBlank(pr.VPM_PaymentTermsIfNoneSelected__c)){
                      ApexPages.addmessage(new ApexPages.message(ApexPages.severity.error,System.label.VPM_PaymentTermsIfNoneSelected));
-           }            
+           }  
+           /*if(string.isBlank(pr.VPM_BankAccountNumber__c)){
+              ApexPages.addmessage(new ApexPages.message(ApexPages.Severity.ERROR,'Bank Key mandatory'));
+           }  */        
            else {
                 
                     pr.VPM_PaymentTerms__c = vendorPaymentTerms;
@@ -1097,7 +1117,6 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                         callJavaScriptAlert='<script> PageReload(); </script>';  
                     }  
               }
-             
            }
            catch(Exception e){
               ApexPages.addMessages(e);

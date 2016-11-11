@@ -133,28 +133,8 @@
         <template>VPM_ApprovalEmails/VPM_SendWebformtoVendor</template>
     </alerts>
     <fieldUpdates>
-        <fullName>Terms_of_Payment_30DK_Default</fullName>
-        <description>Sets default value of Terms of  Payment  to 30DK</description>
-        <field>VPM_TermsOfPayment__c</field>
-        <literalValue>30DK_30 days  from Document date</literalValue>
-        <name>Terms of Payment 30DK Default</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Terms_of_Payment_90DK_Default</fullName>
-        <description>Sets Terms of Payment to 90DK</description>
-        <field>VPM_TermsOfPayment__c</field>
-        <literalValue>90DK_Within 90 days Due net (90NET)</literalValue>
-        <name>Terms of Payment 90DK Default</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>VPM_AssignRequestToMDMOps</fullName>
-        <description>Assign request to MDM Ops</description>
+        <description>VPM - Assign request to MDM Ops</description>
         <field>OwnerId</field>
         <lookupValue>VPM_MDMOps</lookupValue>
         <lookupValueType>Queue</lookupValueType>
@@ -221,6 +201,7 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_Email_of_Webform_Sender</fullName>
+        <description>VPM - Sends email to Vendor with Webform details</description>
         <field>VPM_EmailOfWebformSender__c</field>
         <formula>$User.Email</formula>
         <name>Email of Webform Sender</name>
@@ -241,6 +222,7 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_NextApproverNameMDMOps</fullName>
+        <description>VPM update Vendor Request: VPM Set Approver Name to MDM Ops User</description>
         <field>VPM_Set_Approver_Name__c</field>
         <literalValue>MDM Ops User</literalValue>
         <name>VPM - Next Approver Name MDM Ops</name>
@@ -251,7 +233,7 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_PaymentTerms30DKDefault</fullName>
-        <description>Sets default value of Payment Terms to 30DK</description>
+        <description>VPM - Sets default value of Payment Terms to 30DK</description>
         <field>VPM_PaymentTerms__c</field>
         <literalValue>30DK_Within 30 days Due net (30NET)</literalValue>
         <name>Payment Terms 30DK Default</name>
@@ -261,7 +243,7 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_PaymentTerms90DKDefault</fullName>
-        <description>Sets Payment Terms to 90DK</description>
+        <description>VPM - Sets Payment Terms to 90DK</description>
         <field>VPM_PaymentTerms__c</field>
         <literalValue>90DK_Within 90 days Due net (90NET)</literalValue>
         <name>Payment Terms 90DK Default</name>
@@ -271,7 +253,7 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_PaymentTermsP030Default</fullName>
-        <description>Default payment terms for Sirius, U2K2 and Cordillera if Vendor is an SME</description>
+        <description>VPM - Default payment terms for Sirius, U2K2 and Cordillera if Vendor is an SME</description>
         <field>VPM_PaymentTerms__c</field>
         <literalValue>P030_Within 30 days Due net (30NET)</literalValue>
         <name>Payment Terms P030 Default</name>
@@ -281,7 +263,7 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_PaymentTermsP090Default</fullName>
-        <description>Sets Payment Terms to P090</description>
+        <description>VPM - Sets Payment Terms to P090</description>
         <field>VPM_PaymentTerms__c</field>
         <literalValue>P090_Within 90 days Due net (90NET)</literalValue>
         <name>Payment Terms P090 Default</name>
@@ -291,7 +273,7 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_PaymentTermsS090Default</fullName>
-        <description>Sets Payment terms to S090</description>
+        <description>VPM - Sets Payment terms to S090</description>
         <field>VPM_PaymentTerms__c</field>
         <literalValue>S090_Within 90 days Due net (90NET)</literalValue>
         <name>Payment Terms S090 Default</name>
@@ -323,7 +305,7 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_RecordTypeVendorRequest</fullName>
-        <description>Changes record type to Vendor Request, i.e. the default record type where a Vendor lookup has not yet been completed</description>
+        <description>VPM - Changes record type to Vendor Request, i.e. the default record type where a Vendor lookup has not yet been completed</description>
         <field>RecordTypeId</field>
         <lookupValue>VPM_VendorReq</lookupValue>
         <lookupValueType>RecordType</lookupValueType>
@@ -344,22 +326,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>VPM_SearchTerm2Update</fullName>
-        <field>VPM_SearchTerm2__c</field>
-        <formula>IF( LEN( VPM_VendorName1__c) &gt;= 20 
-
-,  RIGHT(LEFT(VPM_VendorName1__c, 20),10) 
-,
- IF(LEN( VPM_VendorName1__c) &gt; 10 , 
-RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
-,&apos;&apos;) 
-)</formula>
-        <name>VPM_Search Term 2 Update</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>VPM_SetPaymentTermsDefaultNonSME</fullName>
         <field>VPM_PaymentTerms__c</field>
         <name>VPM Set Payment Terms Default non SME</name>
@@ -369,7 +335,7 @@ RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_SetPaymentTermsDefaultValuesSME</fullName>
-        <description>Sets the 30 day limited payment term values if Vendor is an SME</description>
+        <description>VPM - Sets the 30 day limited payment term values if Vendor is an SME</description>
         <field>VPM_PaymentTerms__c</field>
         <name>VPM Set Payment Terms Default values SME</name>
         <notifyAssignee>false</notifyAssignee>
@@ -379,7 +345,7 @@ RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_Set_Email_Flag_to_No</fullName>
-        <description>Resets the Flag once work flow rule has been fired</description>
+        <description>VPM - Resets the Flag once work flow rule has been fired</description>
         <field>VPM_VendordoesntExistFlag__c</field>
         <name>VPM Set Email Flag to Blank</name>
         <notifyAssignee>false</notifyAssignee>
@@ -389,7 +355,7 @@ RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_StatusDraftRequest</fullName>
-        <description>Sets the record status in the custom status field back to &apos;Draft Request&apos;</description>
+        <description>VPM - Sets the record status in the custom status field back to &apos;Draft Request&apos;</description>
         <field>VPM_Status__c</field>
         <literalValue>Draft Request</literalValue>
         <name>VPM - Status is Draft Request</name>
@@ -433,7 +399,7 @@ RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_TermsOfPaymentP030Default</fullName>
-        <description>Default terms of payment for Sirius, U2K2 and Cordillera if Vendor is an SME</description>
+        <description>VPM - Default terms of payment for Sirius, U2K2 and Cordillera if Vendor is an SME</description>
         <field>VPM_TermsOfPayment__c</field>
         <literalValue>P030_Within 30 days Due net (30NET)</literalValue>
         <name>Terms of Payment P030 Default</name>
@@ -443,7 +409,7 @@ RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_TermsOfPaymentP090Default</fullName>
-        <description>Sets Terms of Payment to P090</description>
+        <description>VPM - Sets Terms of Payment to P090</description>
         <field>VPM_TermsOfPayment__c</field>
         <literalValue>P090_Within 90 days Due net (90NET)</literalValue>
         <name>Terms of Payment P090 Default</name>
@@ -452,8 +418,28 @@ RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_TermsofPayment30DKDefault</fullName>
+        <description>VPM - Sets default value of Terms of  Payment  to 30DK</description>
+        <field>VPM_TermsOfPayment__c</field>
+        <literalValue>30DK_30 days  from Document date</literalValue>
+        <name>Terms of Payment 30DK Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_TermsofPayment90DKDefault</fullName>
+        <description>VPM - Sets Terms of Payment to 90DK</description>
+        <field>VPM_TermsOfPayment__c</field>
+        <literalValue>90DK_Within 90 days Due net (90NET)</literalValue>
+        <name>Terms of Payment 90DK Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_UpdateOwner</fullName>
-        <description>VPM Update the Vendor Request: Owner To MDM Ops Queue</description>
+        <description>VPM - Update the Vendor Request: Owner To MDM Ops Queue</description>
         <field>OwnerId</field>
         <lookupValue>VPM_MDMOps</lookupValue>
         <lookupValueType>Queue</lookupValueType>
@@ -474,7 +460,7 @@ RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_UpdateSearchTerm1</fullName>
-        <description>Updates Search Term 1 with the first 10 characters of Vendor Name</description>
+        <description>VPM - Updates Search Term 1 with the first 10 characters of Vendor Name</description>
         <field>VPM_SearchTerm_1__c</field>
         <formula>LEFT(VPM_VendorName1__c,10)</formula>
         <name>Update Search Term 1</name>
@@ -484,7 +470,7 @@ RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_UpdateStatusBPMSubmitFail</fullName>
-        <description>VPM Update Status when BPM submit fails</description>
+        <description>VPM - Update Status when BPM submit fails</description>
         <field>VPM_Status__c</field>
         <literalValue>MDM Ops Review - SAP BPM submit Failed</literalValue>
         <name>Update Status when BPM submit fails</name>
@@ -505,8 +491,8 @@ RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_UpdateStatusRejected</fullName>
+        <description>VPM - Update the Vendor Request: Status to None</description>
         <field>VPM_Status__c</field>
-        <literalValue>MDM Ops Review - SAP BPM Approval Rejected</literalValue>
         <name>VPM Update request status when rejected</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -514,7 +500,7 @@ RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_UpdateStatusToSubmitted</fullName>
-        <description>Updates Status with the BPM Record Submitted</description>
+        <description>VPM - Updates Status with the BPM Record Submitted</description>
         <field>VPM_Status__c</field>
         <literalValue>BPM Record Submitted</literalValue>
         <name>Update Request Status Submitted to BPM</name>
@@ -524,7 +510,7 @@ RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_Webform_sent_to_Vendor</fullName>
-        <description>VPM Update the Vendor Request: Webform sent to Vendor To True</description>
+        <description>VPM - Update the Vendor Request: Webform sent to Vendor To True</description>
         <field>VPM_WebformSentToVendor__c</field>
         <literalValue>1</literalValue>
         <name>Webform sent to Vendor</name>
@@ -534,10 +520,6 @@ RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
     </fieldUpdates>
     <rules>
         <fullName>VPM Default Search Term 1 and 2</fullName>
-        <actions>
-            <name>VPM_SearchTerm2Update</name>
-            <type>FieldUpdate</type>
-        </actions>
         <actions>
             <name>VPM_UpdateSearchTerm1</name>
             <type>FieldUpdate</type>

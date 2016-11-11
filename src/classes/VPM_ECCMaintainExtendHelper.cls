@@ -20,7 +20,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
 
     // All below string Represent JSON string
     Map<string,string> objectInJSON = new Map<string,string>{STR_CONST_Dunning =>'',STR_CONST_InternationalVersions =>'',STR_CONST_WtaxType =>'','Address'=>'', 'BankDetails' => '', 'CIN' =>'', STR_CONST_CompanyData => '', STR_CONST_PurchasingData =>'',STR_CONST_MainObject=>'','VAT'=>''};
-    string valueForQuery='VPM_fieldUpdated__c, VPM_ECC__c,RecordTypeId,VPM_companyCodeMatch__c,VPM_SRVBasedVendorID__c,VPM_GRbasedIV__c,VPM_AutomaticPurchaseOrderGeneration__c,VPM_OrderingEmailAddress__c, VPM_purchasingOrgMatch__c, VPM_VendorCodeLookup__r.mdm_ID__c, VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c,VPM_VendorCodeLookup__r.mdm_vCodeSirius__c,VPM_VendorCodeLookup__r.mdm_vCodeFusion__c,VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,VPM_AccountGroup__c,VPM_PurchasingOrg__r.Name,VPM_CompanyCode__r.VPM_CompanyCode__c';
+    string valueForQuery='VPM_fieldUpdated__c,VPM_PANNumber__c, VPM_ECC__c,RecordTypeId,VPM_companyCodeMatch__c,VPM_SRVBasedVendorID__c,VPM_GRbasedIV__c,VPM_AutomaticPurchaseOrderGeneration__c,VPM_OrderingEmailAddress__c, VPM_purchasingOrgMatch__c, VPM_VendorCodeLookup__r.mdm_ID__c, VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c,VPM_VendorCodeLookup__r.mdm_vCodeSirius__c,VPM_VendorCodeLookup__r.mdm_vCodeFusion__c,VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,VPM_AccountGroup__c,VPM_PurchasingOrg__r.Name,VPM_CompanyCode__r.VPM_CompanyCode__c';
     string  apiForCompantData = ',';
     string apiForPurchasingData=',';
     string Dunning=',';
@@ -111,7 +111,12 @@ public with sharing class VPM_ECCMaintainExtendHelper {
             else if(objectName == STR_CONST_CompanyData)
             {
                  objectInJSON.put(STR_CONST_CompanyData,objectInJSON.get(objectName)+ '"CompanyCode" : "'+VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_CompanyCode__r.VPM_CompanyCode__c)+'", "CheckDoubleInvoices" : '+vendorReuest.VPM_CheckDoubleInvoices__c+',');
-            }if(objectName == STR_CONST_WtaxType)
+            }
+            else if(objectName == STR_CONST_CIN)
+            {
+                objectInJSON.put(STR_CONST_CIN,objectInJSON.get(objectName)+ '"PANNumber" : "'+VPM_HttpUtil.valueBeforeUnderscore(vendorReuest.VPM_PANNumber__c)+'",');
+            }
+            if(objectName == STR_CONST_WtaxType)
             {
                 objectInJSON.put(STR_CONST_CompanyData,objectInJSON.get(STR_CONST_CompanyData)+ '"WtaxType" : {'+objectInJSON.get(objectName).removeEnd(',')+'},');
             }
@@ -141,7 +146,7 @@ public with sharing class VPM_ECCMaintainExtendHelper {
    //system.debug('field.VPM_ApiName__c '+field.VPM_ApiName__c);
         if(vendorReuest.VPM_fieldUpdated__c.containsIgnoreCase(field.VPM_ApiName__c))
         {
-        system.debug('field.VPM_parentElement__c '+vendorReuest.VPM_fieldUpdated__c);
+        //system.debug('field.VPM_parentElement__c '+vendorReuest.VPM_fieldUpdated__c);
            if(field.VPM_parentElement__c == STR_CONST_MainObject){
             objectInJSON.put(STR_CONST_MainObject,objectInJSON.get(STR_CONST_MainObject)+formatFieldToJSONProperty(field));
                // rootMaintainVendor = rootMaintainVendor+ formatFieldToJSONProperty(field);
@@ -194,17 +199,18 @@ public with sharing class VPM_ECCMaintainExtendHelper {
         // Ajya Rawat : Condition to check field type and send free as a free text in JSON string.
         else if(field.VPM_fieldDatatype__c == STR_CONST_freeText)
         {
-            system.debug('hreee='+vendorReuest.get(field.VPM_ApiName__c));
+            //system.debug('hreee='+vendorReuest.get(field.VPM_ApiName__c));
             if(string.isNotBlank(String.valueOf(vendorReuest.get(field.VPM_ApiName__c))))
             {
             if(field.VPM_ApiName__c == 'VPM_ReconciliationAccount__c')
             {
-               //Integer diff;
+               
                String reconcilAcc = String.valueOf(vendorReuest.get(field.VPM_ApiName__c));
+               
                if(reconcilAcc.length() < 10)
                {
-                  //diff = 10 - reconcilAcc.length();
-                  for(Integer i=0;i<(10 - reconcilAcc.length());i++)
+                  Integer diff = 10 - reconcilAcc.length();
+                  for(Integer i=0;i<diff;i++)
                   {
                     reconcilAcc = '0'+reconcilAcc; 
                   }

@@ -897,6 +897,13 @@
         <value>Indicator Clearing between Customer and Vendor</value>
     </labels>
     <labels>
+        <fullName>VPM_Industry</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>custom validation error message for Industry field</shortDescription>
+        <value>Industry: Please select the value</value>
+    </labels>
+    <labels>
         <fullName>VPM_IndustryLengthError</fullName>
         <language>en_US</language>
         <protected>false</protected>

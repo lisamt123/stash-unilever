@@ -364,9 +364,6 @@
         <quickActionListItems>
             <quickActionName>VPM_PurchasingRequests__c.VPM_AbortRequest</quickActionName>
         </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>VPM_PurchasingRequests__c.VPM_LogException</quickActionName>
-        </quickActionListItems>
     </quickActionList>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
@@ -378,14 +375,6 @@
         <fields>Actor</fields>
         <fields>Comments</fields>
         <relatedList>RelatedProcessHistoryList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>VPM_ExceptionSummary__c</fields>
-        <fields>VPM_Category__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>VPM_VendorRequestException__c.VPM_RelatedVendorRequest__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

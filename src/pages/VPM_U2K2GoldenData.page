@@ -136,20 +136,15 @@
                    <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Industry__c.Label}"/>
                    <apex:outputPanel layout="block" styleClass="requiredInput">
                        <apex:outputpanel layout="block" styleClass="requiredBlock"/>  
-                       <apex:selectList value="{!industryOptionsDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Industry__c.Label}" size="1" rendered="{!isU2k2}" required="true">
+                       <apex:selectList value="{!industryOptionsDefValue}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Industry__c.Label}" size="1" rendered="{!isU2k2}" >
                            <apex:selectOptions value="{!industryOptions}"/>
                        </apex:selectList>
                    </apex:outputPanel>
                </apex:pageBlockSectionItem>       
                  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ToleranceGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ToleranceGroup__c}" required="true" />
-                 
-                 <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px">
-                 <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SortKey__c.Label}"/>
-                 <apex:outputPanel layout="block" styleClass="requiredInput">
-                 <apex:outputpanel layout="block" styleClass="requiredBlock"/>
+                
                  <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_SortKey__c}" />
-                 </apex:outputPanel>
-                 </apex:pageBlockSectionItem>
+                 
                  
                  <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SortKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SortKey__c}"  rendered="{!isU2K2Extend}" / -->
                  </apex:pageBlockSection>   

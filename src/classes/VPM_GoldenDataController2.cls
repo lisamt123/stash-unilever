@@ -634,6 +634,13 @@ with Sharing public class VPM_GoldenDataController2 {
                     {   myMsg=new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_PaymentmethodErrorMesg);  }              
                 }
                 
+                if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2) && (string.isBlank(industryOptionsDefValue) || industryOptionsDefValue==STR_CONST_NONE)){            
+                    // if(string.isBlank(vendorAccountStatement) || vendorAccountStatement==STR_CONST_NONE)
+                    // {                
+                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_Industry);
+                    // }
+                }
+                
                 if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2) && (string.isBlank(vendorAccountStatement) || vendorAccountStatement==STR_CONST_NONE)){            
                     // if(string.isBlank(vendorAccountStatement) || vendorAccountStatement==STR_CONST_NONE)
                     // {                
@@ -654,7 +661,7 @@ with Sharing public class VPM_GoldenDataController2 {
                     myMsg=new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_ShippingConditionMessage);
                 }
                 
-                if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_SIRIUS|| purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA  || purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2 ) && (entity.VPM_SortKey__c ==STR_CONST_NONE ||string.isBlank(entity.VPM_SortKey__c))){
+                if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_SIRIUS ) && (entity.VPM_SortKey__c ==STR_CONST_NONE ||string.isBlank(entity.VPM_SortKey__c))){
                     
                     // if(entity.VPM_SortKey__c ==STR_CONST_NONE ||string.isBlank(entity.VPM_SortKey__c)){
                     
@@ -1025,11 +1032,13 @@ public void approvalCallMethod()
         {
             pr.VPM_RequestFromFLSOrBR__c=STR_CONST_BR;
              pr.VPM_RequestLastWithGroup__c = STR_CONST_BR;
+             pr.VPM_RequestGroupTime__c = system.now();
         }
         else  if(pr.VPM_Status__c.containsIgnoreCase(STR_CONST_FLS))
         {
             pr.VPM_RequestFromFLSOrBR__c=STR_CONST_FLS;
              pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
+             pr.VPM_RequestGroupTime__c = system.now();
         }
         
         if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)

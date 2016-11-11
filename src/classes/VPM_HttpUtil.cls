@@ -55,7 +55,9 @@ public with sharing class VPM_HttpUtil {
             req.setTimeout(120000);
             req.setClientCertificateName(certName);
             //req.setCompressed(true);
+            system.debug('before callout time='+system.now());
             res = h.send(req);
+            system.debug('after callout time='+system.now());
         } catch (Exception ex) {
             res = new HttpResponse();
         }
@@ -72,7 +74,9 @@ public with sharing class VPM_HttpUtil {
         req.setTimeout(120000);
         req.setClientCertificateName(certName);
         //req.setCompressed(true);
+        system.debug('before callout time='+system.now());
         res = h.send(req);
+        system.debug('After callout time='+system.now());
         return res;
     }
     public String convertRequestParams(Map<String,String> queryParameters) {
@@ -119,12 +123,13 @@ public with sharing class VPM_HttpUtil {
             vendor.VPM_MDMInsertUpdateStatusMessage__c = message;
             vendor.VPM_MDMInsertUpdateStatus__c = messageMDM;
             update vendor;
+           
             }
         }
      public static void updateVendorECCStatus(String venReqId, String reqStatus, String message, String messageECC) {
         // Update vendor request record status after send to SAP.
         // Update MDM Ops user fields on vendor request record.
-        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_ECC_InsertUpdateStatus__c,VPM_ECC_InsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
+        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c,VPM_ECC_InsertUpdateStatus__c,VPM_isVendorCached__c,VPM_ECC_InsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
         //List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
         if(!vendorList.isEmpty()) {
             VPM_PurchasingRequests__c vendor = vendorList.get(0);
@@ -132,10 +137,12 @@ public with sharing class VPM_HttpUtil {
             {
             vendor.VPM_Status__c = reqStatus;
             }
+            vendor.VPM_isVendorCached__c=True;
             vendor.VPM_ECC_InsertUpdateStatusMessage__c = message;
             vendor.VPM_ECC_InsertUpdateStatus__c = messageECC;
-            system.debug('inside fail');
+            system.debug('inside failkkk'+vendor.VPM_isVendorCached__c);
             update vendor;
+             
             }
          }   
     /*public static Integer generateRandomNumber() {
@@ -184,10 +191,10 @@ public with sharing class VPM_HttpUtil {
     }
      public static void updateRecordType(String venReqId) {
             
-        VPM_PurchasingRequests__c vendorList = [SELECT Id,VPM_VendorCached__c, RecordTypeId,VPM_FieldType__c  FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
+        VPM_PurchasingRequests__c vendorList = [SELECT Id,VPM_isVendorCached__c, RecordTypeId,VPM_FieldType__c  FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
         //recordType rec = [select Name, id from recordType where Name like '%Maintain%' limit 1];
        //vendorList.RecordTypeId = rec.id;
-       vendorList.VPM_VendorCached__c = true;
+       vendorList.VPM_isVendorCached__c= true;
        vendorList.VPM_FieldType__c = 'Regional';
         update vendorList;
         }
@@ -246,7 +253,7 @@ public with sharing class VPM_HttpUtil {
             //responseString = 'SAP API not implemented.';
             responseString = msg;
         }*/
-		else if(res.getStatusCode() == 0) {
+        else if(res.getStatusCode() == 0) {
             
             responseString = 'Some error occured while submitting request to SAP. Please try after some time.' ;
             updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,responseString,VPM_HttpUtil.failStatusMDM);

@@ -1,7 +1,10 @@
 @isTest
-public class VPM_regionalMaintainVendorTest{
+public class VPM_RegionalMaintainVendorTest{
  public static final String ECCRegion=  'U2K2,Sirius,Fusion'; 
  public static final String FieldType=  'Regional'; 
+ public static final String VendorCode=  '5001010'; 
+  public static final String successStatusMDM = 'ECC Insert / Update Succeeded'; 
+  public static final String successStatusMsg = 'mdm insert/update succeeded'; 
  @isTest static void updateAndCheckFieldUpdateTest() {
     VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
      purReq.VPM_Comments__c = 'test comment';
@@ -18,10 +21,10 @@ public class VPM_regionalMaintainVendorTest{
  }
  
  @isTest static void InsertVendorTestFusion(){
-        String successStatusMDM = 'ECC Insert / Update Succeeded';
+        //String successStatusMDM = 'ECC Insert / Update Succeeded';
        VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
-        purReq.VPM_MDMInsertUpdateStatus__c = 'MDM Insert/Update Succeeded';
-        purReq.VPM_VendorCode__c='5001010';
+        purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
+        purReq.VPM_VendorCode__c=VendorCode;
      purReq.VPM_companyCodeMatch__c = false;
      purReq.VPM_purchasingOrgMatch__c = false;
            recordType VendorReordType  = [select Name, id from recordType where developerName = 'VPM_VendorReqExtend'];
@@ -32,15 +35,15 @@ public class VPM_regionalMaintainVendorTest{
        // VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(purReq.Id);
         test.stopTest(); 
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
-        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM); 
+        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM ); 
  }
     
     
      @isTest static void InsertVendorTestSirius(){
-        String successStatusMDMSirius = 'ECC Insert / Update Succeeded';
+        //String successStatusMDMSirius = 'ECC Insert / Update Succeeded';
        VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
-        purReq.VPM_MDMInsertUpdateStatus__c = 'MDM Insert/Update Succeeded';
-        purReq.VPM_VendorCode__c='5001010';
+        purReq.VPM_MDMInsertUpdateStatus__c = successStatusMsg ;
+        purReq.VPM_VendorCode__c=VendorCode;
      purReq.VPM_companyCodeMatch__c = false;
      purReq.VPM_purchasingOrgMatch__c = false;
            recordType VendorReordType  = [select Name, id from recordType where developerName = 'VPM_VendorReqExtend'];
@@ -54,14 +57,14 @@ public class VPM_regionalMaintainVendorTest{
        // VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(purReq.Id);
         test.stopTest(); 
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
-        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDMSirius); 
+        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM ); 
  }
     
          @isTest static void InsertVendorTestU2K2(){
-        String successStatusMDMU2K2 = 'ECC Insert / Update Succeeded';
+        //String successStatusMDMU2K2 = 'ECC Insert / Update Succeeded';
        VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
-        purReq.VPM_MDMInsertUpdateStatus__c = 'MDM Insert/Update Succeeded';
-        purReq.VPM_VendorCode__c='5001010';
+        purReq.VPM_MDMInsertUpdateStatus__c = successStatusMsg ;
+        purReq.VPM_VendorCode__c=VendorCode;
      purReq.VPM_companyCodeMatch__c = false;
      purReq.VPM_purchasingOrgMatch__c = false;
            recordType VendorReordType  = [select Name, id from recordType where developerName = 'VPM_VendorReqExtend'];
@@ -75,15 +78,15 @@ public class VPM_regionalMaintainVendorTest{
        // VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(purReq.Id);
         test.stopTest(); 
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
-        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDMU2K2); 
+        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM ); 
  }
     
     
              @isTest static void InsertVendorTestCordillera(){
-        String successStatusMDMCordillera = 'ECC Insert / Update Succeeded';
+        //String successStatusMDMCordillera = 'ECC Insert / Update Succeeded';
        VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
-        purReq.VPM_MDMInsertUpdateStatus__c = 'MDM Insert/Update Succeeded';
-        purReq.VPM_VendorCode__c='5001010';
+        purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
+        purReq.VPM_VendorCode__c=VendorCode;
      purReq.VPM_companyCodeMatch__c = false;
      purReq.VPM_purchasingOrgMatch__c = false;
            recordType VendorReordType  = [select Name, id from recordType where developerName = 'VPM_VendorReqExtend'];
@@ -97,15 +100,15 @@ public class VPM_regionalMaintainVendorTest{
        // VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(purReq.Id);
         test.stopTest(); 
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
-        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDMCordillera); 
+        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM ); 
  }
     
     
      @isTest static void InsertVendorTest(){
-        String successStatusMDM = 'ECC Insert / Update Succeeded';
+        //String successStatusMDM = 'ECC Insert / Update Succeeded';
        VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
-        purReq.VPM_MDMInsertUpdateStatus__c = 'MDM Insert/Update Succeeded';
-        purReq.VPM_VendorCode__c='5001010';
+        purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
+        purReq.VPM_VendorCode__c=VendorCode;
      purReq.VPM_companyCodeMatch__c = false;
      purReq.VPM_purchasingOrgMatch__c = false;
            recordType VendorReordType  = [select Name, id from recordType where developerName = 'VPM_VendorReqExtend'];
@@ -116,7 +119,7 @@ public class VPM_regionalMaintainVendorTest{
        // VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(purReq.Id);
         test.stopTest(); 
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
-        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM); 
+        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM ); 
  }
 
 

@@ -86,8 +86,16 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>VPM_ProcurementCentralController_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>VPM_PurchaseRequestsControllerExtension</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VPM_PurchaseRequestsExtensionTest</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_RecordTypeHelper</apexClass>
@@ -98,15 +106,23 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>VPM_RegionalMaintainVendorTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>VPM_SearchVendor1</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>VPM_maintainGlobalVendorCalloutMock</apexClass>
+        <apexClass>VPM_SearchVendor1Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>VPM_regionalMaintainVendorTest</apexClass>
+        <apexClass>VPM_TestDataFactory</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VPM_maintainGlobalVendorCalloutMock</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
@@ -2726,11 +2742,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_UnresolvedExceptions__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_VATCountry__c</field>
         <readable>true</readable>
@@ -2753,11 +2764,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_VendorBlockUnblockDelete__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_VendorCached__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2902,6 +2908,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>VPM_PurchasingRequests__c.VPM_isVendorCached__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_purchasingOrgMatch__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2979,21 +2990,6 @@
         <editable>false</editable>
         <field>VPM_VendorRequestDefaultValues__mdt.VPM_VendorType__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>VPM_VendorRequestException__c.VPM_Category__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>VPM_VendorRequestException__c.VPM_Description__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>VPM_VendorRequestException__c.VPM_Status__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -3140,9 +3136,6 @@
         <recordType>VPM_PurchasingRequests__c.VPM_VendorReqMaintain</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>VPM_VendorRequestException__c-Vendor Request Exception Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>mdm_Vendors__c-Vendor Layout</layout>
     </layoutAssignments>
     <objectPermissions>
@@ -3205,15 +3198,6 @@
         <allowEdit>false</allowEdit>
         <allowRead>false</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>VPM_VendorRequestException__c</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
         <object>mdm_Vendors__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
@@ -3242,19 +3226,11 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>VPM_PaymentTerms</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>VPM_ProcurementAtAGlance</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_ProcurementCentralAdmin</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>VPM_RequestBrief</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>

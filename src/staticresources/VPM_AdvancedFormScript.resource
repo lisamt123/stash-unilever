@@ -45,7 +45,7 @@ $(document).ready(function() {
         self.window.open('/apex/VPM_AttachFiles?id='+id,'Table','toolbar=yes, scrollbars=no, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70'); 
     }
 	 function makeFormReadOnly(){
-         if ((criteria1.indexOf('Rejected') >= 0 ) || (criteria1.indexOf('Aborted') >= 0 ) || (criteria1.indexOf('Request Completed') >= 0 )) 
+         if ((criteria1.indexOf('Rejected') >= 0 ) || (criteria1.indexOf('Aborted') >= 0 ) || (criteria1.indexOf('Request Completed') >= 0 ) || (criteria1.indexOf('BPM Record Submitted') >= 0 ) || (criteria1.indexOf('Approval Pending') >= 0 )) 
         { 
             $("input:not(:radio):not(:submit):not(:button),select,textarea").prop("disabled" ,"disabled");
             $('input[value="Save and Return to Menu"],input[value="Save & Exit"]').css('display','none');
