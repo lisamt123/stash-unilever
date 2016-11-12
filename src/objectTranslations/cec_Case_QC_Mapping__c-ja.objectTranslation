@@ -5,7 +5,7 @@
         <value><!-- Case QC Mapping --></value>
     </caseValues>
     <fields>
-        <label><!-- Country --></label>
+        <label>国</label>
         <name>Country__c</name>
         <relationshipLabel><!-- Case QC Mappings --></relationshipLabel>
     </fields>
@@ -32,39 +32,39 @@
         <name>Status__c</name>
         <picklistValues>
             <masterLabel>Awaiting Information from Consumer</masterLabel>
-            <translation>消費者連絡待ち</translation>
+            <translation>顧客情報待ち</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Awaiting Knowledge Response</masterLabel>
-            <translation>Awaiting Knowledge Response</translation>
+            <translation>ナレッジレスポンス待ち</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Closed</masterLabel>
-            <translation>完了</translation>
+            <translation>案件完了</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Closed as Duplicate</masterLabel>
-            <translation>完了 - 重複</translation>
+            <translation>案件完了 - 重複</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Escalated</masterLabel>
-            <translation>エスカレーション中</translation>
+            <translation>エスカレーション済み</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>In Progress</masterLabel>
-            <translation><!-- In Progress --></translation>
+            <translation>進行中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>New</masterLabel>
-            <translation>受付中</translation>
+            <translation>新規</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>On Hold</masterLabel>
-            <translation>保留中</translation>
+            <translation>保留</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Review Needed</masterLabel>
-            <translation>承認待ち</translation>
+            <translation>要承認</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -87,7 +87,7 @@
     </layouts>
     <nameFieldLabel><!-- Case QC Mapping Name --></nameFieldLabel>
     <validationRules>
-        <errorMessage>製品、ロスツリー、国がQCマッピングの国と一致している必要があります。</errorMessage>
+        <errorMessage>製品、理由コード、国名がQCにマップされた国名と一致している必要があります。</errorMessage>
         <name>Product_and_Reason_Code_Validation</name>
     </validationRules>
 </CustomObjectTranslation>

@@ -1427,7 +1427,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Reopened</masterLabel>
-            <translation><!-- Reopened --></translation>
+            <translation>Heropend</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Review Needed</masterLabel>

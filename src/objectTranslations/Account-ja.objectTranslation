@@ -2596,8 +2596,8 @@ At least 3 out of 4 = 5 --></help>
         <name>KeyCustomerLevel6Name__c</name>
     </fields>
     <fields>
-        <help><!-- Select type of consumer --></help>
-        <label><!-- Known Consumer --></label>
+        <help>顧客検索タイプ</help>
+        <label>既知の顧客</label>
         <name>Known_Consumer__c</name>
         <picklistValues>
             <masterLabel>Frequent</masterLabel>
@@ -2613,11 +2613,11 @@ At least 3 out of 4 = 5 --></help>
         <name>Latest_Case_Number__c</name>
     </fields>
     <fields>
-        <label>直近ケースの製品コード</label>
+        <label>直近案件の製品コード</label>
         <name>Latest_Case_Product_Code__c</name>
     </fields>
     <fields>
-        <label>直近ケースのロスツリー</label>
+        <label>直近案件の理由コード</label>
         <name>Latest_Case_Reason_Code__c</name>
     </fields>
     <fields>
@@ -2662,7 +2662,7 @@ At least 3 out of 4 = 5 --></help>
         <name>Local_Identifier_No_Special_Char__c</name>
     </fields>
     <fields>
-        <label>Local Identifier</label>
+        <label>ローカル識別子</label>
         <name>Local_Identifier__c</name>
     </fields>
     <fields>
@@ -2723,7 +2723,7 @@ At least 3 out of 4 = 5 --></help>
         <name>Phone_No_Special_Char__c</name>
     </fields>
     <fields>
-        <label><!-- Preferred Channel --></label>
+        <label>希望のチャネル</label>
         <name>Preferred_Channel__c</name>
         <picklistValues>
             <masterLabel>Email</masterLabel>
@@ -3968,15 +3968,15 @@ At least 3 out of 4 = 5 --></help>
         <name>Unilever_Opt_In__c</name>
         <picklistValues>
             <masterLabel>Brand</masterLabel>
-            <translation>Brand</translation>
+            <translation>ブランド</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Neutral</masterLabel>
-            <translation>Neutral</translation>
+            <translation>どちらとも言えない</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>No</masterLabel>
-            <translation>No</translation>
+            <translation>不可</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Yes</masterLabel>
@@ -4182,23 +4182,23 @@ At least 3 out of 4 = 5 --></help>
         <layout>Person Account Layout</layout>
         <layoutType>PersonAccount</layoutType>
         <sections>
-            <label><!-- Additional Address Information --></label>
+            <label>追加情報（住所）</label>
             <section>Additional Address Information</section>
         </sections>
         <sections>
-            <label><!-- Debit Card --></label>
+            <label>デビットカード</label>
             <section>Debit Card</section>
         </sections>
         <sections>
-            <label><!-- Identifier Information --></label>
+            <label>識別情報</label>
             <section>Identifier Information</section>
         </sections>
         <sections>
-            <label><!-- Preferences --></label>
+            <label>アカウントレイアウト</label>
             <section>Preferences</section>
         </sections>
         <sections>
-            <label><!-- Social Information --></label>
+            <label>社会情報</label>
             <section>Social Information</section>
         </sections>
     </layouts>
@@ -4291,7 +4291,7 @@ At least 3 out of 4 = 5 --></help>
         <name>FS_UserNotabletochangetheCity</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Invalid CPF number (Should contain 11 digit numeric value) --></errorMessage>
+        <errorMessage>CPF番号エラー（11桁の整数です）</errorMessage>
         <name>LocalIdentifier_Length_Validation</name>
     </validationRules>
     <validationRules>

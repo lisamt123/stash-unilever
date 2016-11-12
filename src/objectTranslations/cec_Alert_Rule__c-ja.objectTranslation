@@ -13,7 +13,7 @@
         <name>Alert_Type_Image__c</name>
     </fields>
     <fields>
-        <help><!-- When selected, the rule will apply to all markets regardless of the Market field --></help>
+        <help>この選択により、マーケットフィールドにかかわらず全てのマーケットにこのルールが適用されます。</help>
         <label><!-- All Markets --></label>
         <name>All_Market__c</name>
     </fields>
@@ -27,8 +27,8 @@
         <name>Consumer_Product_Descriptor_no_size__c</name>
     </fields>
     <fields>
-        <help>この選択をすると、ケースの追跡ににロットまたは日付コードの入力が必須になります。</help>
-        <label><!-- Group By Day Code? --></label>
+        <help>この選択により、案件への製造番号または日付コードの入力が必須になります。</help>
+        <label>日付コードグループ</label>
         <name>Group_By_Day_Code__c</name>
     </fields>
     <fields>
@@ -80,7 +80,7 @@
         <name>L7_Product_Category__c</name>
     </fields>
     <fields>
-        <label><!-- Market --></label>
+        <label>マーケット</label>
         <name>Market__c</name>
         <picklistValues>
             <masterLabel>ANZ</masterLabel>
@@ -205,7 +205,7 @@
         <relationshipLabel><!-- Alert Rule --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- After selecting a product category, this field determines what level to use for matching. --></help>
+        <help>製品カテゴリの選択により、マッチングに使用されるレベルが決定します。</help>
         <label><!-- Product Level --></label>
         <name>Product_Level__c</name>
         <picklistValues>
@@ -247,7 +247,7 @@
         <relationshipLabel><!-- Alert Rule --></relationshipLabel>
     </fields>
     <fields>
-        <help><!-- After selecting a reason code, this field determines what level to use for matching. --></help>
+        <help>理由コードの選択により、マッチングに使用されるレベルが決定します。</help>
         <label><!-- Reason Level --></label>
         <name>Reason_Level__c</name>
         <picklistValues>
@@ -264,7 +264,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help><!-- When the count of matching records is equal to or greater than this value, the alert actions associated to this rule will be triggered. --></help>
+        <help>検索結果がこの件数を超えると本ルールの警告アクションが発動されます。</help>
         <label><!-- Threshold --></label>
         <name>Threshold__c</name>
     </fields>
@@ -305,7 +305,7 @@
     </layouts>
     <nameFieldLabel><!-- Alert Rule Name --></nameFieldLabel>
     <validationRules>
-        <errorMessage><!-- Please make sure that  the Product Category&apos;s  &apos;Division Name&apos; is not null for &apos;Safety&apos; alerts. --></errorMessage>
+        <errorMessage>製品カテゴリの部門名が入力されていることを確認してください。</errorMessage>
         <name>L0_Product_Category_Mandatory_Validation</name>
     </validationRules>
     <validationRules>
@@ -313,11 +313,14 @@
         <name>L2_Product_Category_Mandatory_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage>チェックが必要です：-\n ロスツリーがレベル5まで入力されているか,  \n ロスツリー   value is not empty and\n select the value on Type field</errorMessage>
+        <errorMessage>チェックが必要です：-
+ 理由コードがレベル5まで入力されているか,  
+ 理由コード   value is not empty and
+ select the value on Type field</errorMessage>
         <name>L5_ReasonCode_Mandatory_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Please specify the Market or Check All Market field --></errorMessage>
+        <errorMessage>マーケットを選択してください（もしくは全マーケットを選択してください）。</errorMessage>
         <name>Market_And_Global_Flag_Validation</name>
     </validationRules>
     <validationRules>

@@ -2202,11 +2202,11 @@ Customer Delivers Directly = 5 --></help>
         <name>FS_SegmentRussia__c</name>
         <picklistValues>
             <masterLabel>Canteens</masterLabel>
-            <translation>Столовые</translation>
+            <translation><!-- Canteens --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Hotels</masterLabel>
-            <translation>Отели</translation>
+            <translation><!-- Hotels --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Metro</masterLabel>
@@ -2214,7 +2214,7 @@ Customer Delivers Directly = 5 --></help>
         </picklistValues>
         <picklistValues>
             <masterLabel>Offices</masterLabel>
-            <translation>Офисы</translation>
+            <translation><!-- Offices --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Others</masterLabel>
@@ -2222,7 +2222,7 @@ Customer Delivers Directly = 5 --></help>
         </picklistValues>
         <picklistValues>
             <masterLabel>Pubs/Bars/Entertaining center/Caffee</masterLabel>
-            <translation>Пабы/Бары/Развлекателбный центр/Кафе</translation>
+            <translation><!-- Pubs/Bars/Entertaining center/Caffee --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>QSR</masterLabel>
@@ -2230,19 +2230,19 @@ Customer Delivers Directly = 5 --></help>
         </picklistValues>
         <picklistValues>
             <masterLabel>Restaurants</masterLabel>
-            <translation>Ресторан</translation>
+            <translation><!-- Restaurants --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Take Away</masterLabel>
-            <translation>С собой</translation>
+            <translation><!-- Take Away --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Travel</masterLabel>
-            <translation>Путешествия</translation>
+            <translation><!-- Travel --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Wholesalers</masterLabel>
-            <translation>Отптовики</translation>
+            <translation><!-- Wholesalers --></translation>
         </picklistValues>
     </fields>
     <fields>

@@ -9,7 +9,7 @@
         <name>Active__c</name>
     </fields>
     <fields>
-        <label>Brand</label>
+        <label>ブランド</label>
         <name>Brand__c</name>
     </fields>
     <fields>
@@ -45,7 +45,7 @@
         <name>Company__c</name>
     </fields>
     <fields>
-        <label><!-- Country --></label>
+        <label>国</label>
         <name>Country__c</name>
         <picklistValues>
             <masterLabel>Argentina</masterLabel>

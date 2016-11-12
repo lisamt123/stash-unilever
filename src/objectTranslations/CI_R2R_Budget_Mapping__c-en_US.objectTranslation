@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CI_R2R Budget Mapping</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CI_R2R Budget Mapping</value>
+    </caseValues>
+    <fields>
+        <label><!-- Company Code --></label>
+        <name>Company_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cost Centre --></label>
+        <name>Cost_Centre__c</name>
+    </fields>
+    <fields>
+        <label><!-- ICC Number --></label>
+        <name>ICC_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- R2R SME Area --></label>
+        <name>R2R_SME_Area__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

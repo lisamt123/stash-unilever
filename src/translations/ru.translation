@@ -25,6 +25,18 @@
         <name>CEC_Admin</name>
     </customApplications>
     <customApplications>
+        <label><!-- CI_R2R Budget --></label>
+        <name>CI_R2R_Budget</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- CI_R2R Innovation --></label>
+        <name>CI_R2R_Innovation</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- CI_SME Weekly Update --></label>
+        <name>CI_SME_Weekly_Update</name>
+    </customApplications>
+    <customApplications>
         <label><!-- Communications Planner --></label>
         <name>Comms_Planer</name>
     </customApplications>
@@ -25049,7 +25061,7 @@
         <name>EA_Demo</name>
     </customTabs>
     <customTabs>
-        <label><!-- Monthly Planning --></label>
+        <label>Ежедневный отчет</label>
         <name>FS_MonthlyPlanning</name>
     </customTabs>
     <customTabs>

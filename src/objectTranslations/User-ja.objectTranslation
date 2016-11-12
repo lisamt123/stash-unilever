@@ -326,7 +326,7 @@
     </fields>
     <fields>
         <help><!-- Language skills held by the user --></help>
-        <label><!-- Language Skill --></label>
+        <label>言語習熟度</label>
         <name>Language__c</name>
         <picklistValues>
             <masterLabel>Bosnian</masterLabel>
@@ -925,8 +925,8 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>CECフィールド：メールケースの承認要求レベルを決定します。</help>
-        <label><!-- Quality Check Percentage --></label>
+        <help>CECフィールド：メール案件の承認要求レベルを決定します。</help>
+        <label>品質チェック率</label>
         <name>Quality_Check_Percentage__c</name>
     </fields>
     <fields>

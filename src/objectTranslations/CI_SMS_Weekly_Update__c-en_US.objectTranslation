@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CI_SME Weekly Update</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CI_SME Weekly Update</value>
+    </caseValues>
+    <fields>
+        <label><!-- CIR2R Innovation --></label>
+        <name>CIR2R_Innovation__c</name>
+        <relationshipLabel><!-- CI_SME Weekly Update --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SME Weekly Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Funnel Ref# --></label>
+        <name>Funnel_Ref__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Category --></label>
+        <name>Project_Cat__c</name>
+        <picklistValues>
+            <masterLabel>APM/SCOA/Reporting updates</masterLabel>
+            <translation><!-- APM/SCOA/Reporting updates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business / Global Functions initiated</masterLabel>
+            <translation><!-- Business / Global Functions initiated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Continuous Improvements</masterLabel>
+            <translation><!-- Continuous Improvements --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Controls Embedding / enhancement</masterLabel>
+            <translation><!-- Controls Embedding / enhancement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dependency</masterLabel>
+            <translation><!-- Dependency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EFCR roll out</masterLabel>
+            <translation><!-- EFCR roll out --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Efficiency</masterLabel>
+            <translation><!-- Efficiency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Efficiency (with 3PSP)</masterLabel>
+            <translation><!-- Efficiency (with 3PSP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GPM &amp; Exception resolution</masterLabel>
+            <translation><!-- GPM &amp; Exception resolution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local / Fiscal projects</masterLabel>
+            <translation><!-- Local / Fiscal projects --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System Related</masterLabel>
+            <translation><!-- System Related --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project/Task Name --></label>
+        <name>Project_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- R2R SME Area --></label>
+        <name>R2R_SME_Area__c</name>
+        <picklistValues>
+            <masterLabel>Account Reconciliation</masterLabel>
+            <translation><!-- Account Reconciliation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Continuous Improvement</masterLabel>
+            <translation><!-- Continuous Improvement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Tax</masterLabel>
+            <translation><!-- Direct Tax --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FX Revaluation</masterLabel>
+            <translation><!-- FX Revaluation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Financial Reporting</masterLabel>
+            <translation><!-- Financial Reporting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fixed Assets</masterLabel>
+            <translation><!-- Fixed Assets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GL MDM</masterLabel>
+            <translation><!-- GL MDM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GPM</masterLabel>
+            <translation><!-- GPM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indirect Tax</masterLabel>
+            <translation><!-- Indirect Tax --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intercompany</masterLabel>
+            <translation><!-- Intercompany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Journal Entries</masterLabel>
+            <translation><!-- Journal Entries --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period-End</masterLabel>
+            <translation><!-- Period-End --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project</masterLabel>
+            <translation><!-- Project --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAP Roles</masterLabel>
+            <translation><!-- SAP Roles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCOA</masterLabel>
+            <translation><!-- SCOA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SI – External</masterLabel>
+            <translation><!-- SI – External --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tools</masterLabel>
+            <translation><!-- Tools --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- RAG Color --></label>
+        <name>RAG_Color__c</name>
+    </fields>
+    <fields>
+        <help><!-- Updates/changes of this field will be reflected in CI_R2R Innovation --></help>
+        <label><!-- RAG --></label>
+        <name>RAG__c</name>
+        <picklistValues>
+            <masterLabel>Amber</masterLabel>
+            <translation><!-- Amber --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Green</masterLabel>
+            <translation><!-- Green --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Null</masterLabel>
+            <translation><!-- Null --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Red</masterLabel>
+            <translation><!-- Red --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- SME Weekly Name --></label>
+        <name>SME_Weekly_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scope --></label>
+        <name>Scope__c</name>
+        <picklistValues>
+            <masterLabel>AAR</masterLabel>
+            <translation><!-- AAR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All Countries</masterLabel>
+            <translation><!-- All Countries --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>America</masterLabel>
+            <translation><!-- America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arabia*ANZ also</masterLabel>
+            <translation><!-- Arabia*ANZ also --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BENELUX &amp; DACH</masterLabel>
+            <translation><!-- BENELUX &amp; DACH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Benelux</masterLabel>
+            <translation><!-- Benelux --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>China</masterLabel>
+            <translation><!-- China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe</masterLabel>
+            <translation><!-- Europe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>France</masterLabel>
+            <translation><!-- France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GB</masterLabel>
+            <translation><!-- GB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GCAD</masterLabel>
+            <translation><!-- GCAD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ghana</masterLabel>
+            <translation><!-- Ghana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grater Caribbean</masterLabel>
+            <translation><!-- Grater Caribbean --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HK and TW</masterLabel>
+            <translation><!-- HK and TW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India &amp; Sri Lanka</masterLabel>
+            <translation><!-- India &amp; Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India - Branch and HO</masterLabel>
+            <translation><!-- India - Branch and HO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ireland</masterLabel>
+            <translation><!-- Ireland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italy</masterLabel>
+            <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Latam</masterLabel>
+            <translation><!-- Latam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Latam excluding Mexico</masterLabel>
+            <translation><!-- Latam excluding Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MYSG</masterLabel>
+            <translation><!-- MYSG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mexico</masterLabel>
+            <translation><!-- Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mexico, UASCC</masterLabel>
+            <translation><!-- Mexico, UASCC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Middle America</masterLabel>
+            <translation><!-- Middle America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>North America</masterLabel>
+            <translation><!-- North America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>North America and Europe</masterLabel>
+            <translation><!-- North America and Europe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>P&amp;H</masterLabel>
+            <translation><!-- P&amp;H --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PHP(phillipines)</masterLabel>
+            <translation><!-- PHP(phillipines) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poland</masterLabel>
+            <translation><!-- Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RUB</masterLabel>
+            <translation><!-- RUB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sirius Phase I (CEE, NORDICS, DACH)</masterLabel>
+            <translation><!-- Sirius Phase I (CEE, NORDICS, DACH) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sirius Phase II (Benelux, France)</masterLabel>
+            <translation><!-- Sirius Phase II (Benelux, France) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sirius Phase III (Spain)</masterLabel>
+            <translation><!-- Sirius Phase III (Spain) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Souther cone</masterLabel>
+            <translation><!-- Souther cone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UAE</masterLabel>
+            <translation><!-- UAE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UAPL</masterLabel>
+            <translation><!-- UAPL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Various</masterLabel>
+            <translation><!-- Various --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Hold</masterLabel>
+            <translation><!-- On Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Updates/changes of this field will be reflected in CI_R2R Innovation --></help>
+        <label><!-- Target Closure --></label>
+        <name>Target_Closure__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique Id --></label>
+        <name>Unique_Id__c</name>
+    </fields>
+    <layouts>
+        <layout>CI_R2R SME Read only</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- SME Weekly Comments --></label>
+            <section>SME Weekly Comments</section>
+        </sections>
+        <sections>
+            <label><!-- SME Weekly Update --></label>
+            <section>SME Weekly Update</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CI_SME without CI</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- SME Weekly Comments --></label>
+            <section>SME Weekly Comments</section>
+        </sections>
+        <sections>
+            <label><!-- SME Weekly Update --></label>
+            <section>SME Weekly Update</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SME Weekly Update Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- SME Weekly Comments --></label>
+            <section>SME Weekly Comments</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- CI R2R SME Read Only --></label>
+        <name>CI_R2R_SME_Read_Only</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Record with CI reference --></label>
+        <name>CI_SME_with_CI</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Independent task --></label>
+        <name>CI_SME_without_CI</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

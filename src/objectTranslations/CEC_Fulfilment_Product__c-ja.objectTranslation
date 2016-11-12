@@ -5,28 +5,28 @@
         <value><!-- Fulfilment Product --></value>
     </caseValues>
     <fields>
-        <label>Brand</label>
+        <label>ブランド</label>
         <name>Brand__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Product Descriptor (Local Lang) --></label>
+        <label>製品識別子（ローカル言語）</label>
         <name>Consumer_Product_Descriptor_Local_Lang__c</name>
     </fields>
     <fields>
-        <label><!-- Fulfilment Id --></label>
+        <label>対応ID</label>
         <name>Fulfilment_Id__c</name>
-        <relationshipLabel><!-- Fulfilment Products --></relationshipLabel>
+        <relationshipLabel>製品</relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Pack Size / Net Content --></label>
+        <label>サイズ / 内容量</label>
         <name>Pack_Size_Net_Content__c</name>
     </fields>
     <fields>
-        <label><!-- Product CU Description (English) --></label>
+        <label>製品CU(詳細）</label>
         <name>Product_CU_Description_English__c</name>
     </fields>
     <fields>
-        <label><!-- Product CU MRDR Code --></label>
+        <label>製品CU(MRDRコード）</label>
         <name>Product_CU_MRDR_Code__c</name>
     </fields>
     <fields>
@@ -34,13 +34,13 @@
         <name>Product_EAN__c</name>
     </fields>
     <fields>
-        <label><!-- Product Quantity --></label>
+        <label>製品数量</label>
         <name>Product_Quantity__c</name>
     </fields>
     <fields>
-        <label>代替品</label>
+        <label>製品</label>
         <name>Product__c</name>
-        <relationshipLabel><!-- Fulfilment Product&apos;s --></relationshipLabel>
+        <relationshipLabel>製品</relationshipLabel>
     </fields>
     <fields>
         <label><!-- Retrieval Id --></label>

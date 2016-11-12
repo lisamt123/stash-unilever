@@ -5,11 +5,11 @@
         <value><!-- Case Product --></value>
     </caseValues>
     <fields>
-        <label><!-- Active for CEC --></label>
+        <label>CEC有効</label>
         <name>Active_for_CEC__c</name>
     </fields>
     <fields>
-        <label>Brand</label>
+        <label>ブランド</label>
         <name>Brand__c</name>
     </fields>
     <fields>

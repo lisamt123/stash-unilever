@@ -51,7 +51,7 @@
         <name>Salutation</name>
         <picklistValues>
             <masterLabel>Dr.</masterLabel>
-            <translation>医師</translation>
+            <translation>先生</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Miss</masterLabel>
@@ -59,7 +59,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Mr.</masterLabel>
-            <translation>お客様（男）</translation>
+            <translation>様</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Mr./Ms.</masterLabel>
@@ -67,15 +67,15 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Mrs.</masterLabel>
-            <translation>ご家族</translation>
+            <translation>様</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Ms.</masterLabel>
-            <translation>お客様（女）</translation>
+            <translation>様</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Prof.</masterLabel>
-            <translation>学校</translation>
+            <translation>教授</translation>
         </picklistValues>
     </fields>
     <fields>

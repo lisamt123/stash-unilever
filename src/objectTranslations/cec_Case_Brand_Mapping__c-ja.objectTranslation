@@ -5,19 +5,19 @@
         <value><!-- Case Brand Mapping --></value>
     </caseValues>
     <fields>
-        <label><!-- Auto Response Template --></label>
+        <label>自動返信テンプレート</label>
         <name>Auto_Response_Template__c</name>
     </fields>
     <fields>
-        <label>Brand Market</label>
+        <label>ブランドマーケット</label>
         <name>Brand_Market__c</name>
     </fields>
     <fields>
-        <label>Brand</label>
+        <label>ブランド</label>
         <name>Brand__c</name>
     </fields>
     <fields>
-        <label><!-- Country --></label>
+        <label>国</label>
         <name>Country__c</name>
         <relationshipLabel><!-- Case Brand Mapping --></relationshipLabel>
     </fields>
@@ -35,15 +35,15 @@
         <name>External_Image_Address__c</name>
     </fields>
     <fields>
-        <label><!-- Inbound Email --></label>
+        <label>受信メール</label>
         <name>Inbound_Email__c</name>
     </fields>
     <fields>
-        <label><!-- Language --></label>
+        <label>言語</label>
         <name>Language__c</name>
     </fields>
     <fields>
-        <label><!-- Outbound Email Address --></label>
+        <label>送付先メールアドレス</label>
         <name>Outbound_Email_Address__c</name>
     </fields>
     <fields>

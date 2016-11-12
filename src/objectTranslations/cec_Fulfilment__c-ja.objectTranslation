@@ -5,19 +5,19 @@
         <value><!-- Fulfilment --></value>
     </caseValues>
     <fields>
-        <label><!-- Account Card Number --></label>
+        <label>アカウントカード番号</label>
         <name>Account_Card_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Account Card Status --></label>
+        <label>アカウントカードステータス</label>
         <name>Account_Card_Status__c</name>
     </fields>
     <fields>
-        <label><!-- Account Id --></label>
+        <label>アカウントID</label>
         <name>Account_Id__c</name>
     </fields>
     <fields>
-        <label><!-- Advisor Name --></label>
+        <label>担当者</label>
         <name>Advisor_Name__c</name>
     </fields>
     <fields>
@@ -45,7 +45,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Brand Logo</label>
+        <label>ブランドロゴ</label>
         <name>Brand_Logo__c</name>
         <relationshipLabel>代替品返金</relationshipLabel>
     </fields>
@@ -88,35 +88,35 @@
         <name>Cheque_Voided__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Document Number --></label>
+        <label>ドキュメント番号</label>
         <name>Consumer_Document_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Document Type --></label>
+        <label>ドキュメントタイプ</label>
         <name>Consumer_Document_Type__c</name>
     </fields>
     <fields>
-        <label>氏名（カナ）</label>
+        <label>姓</label>
         <name>Consumer_First_Name__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Home Phone Number --></label>
+        <label>電話番号</label>
         <name>Consumer_Home_Phone_Number__c</name>
     </fields>
     <fields>
-        <label>氏名（漢字）</label>
+        <label>名</label>
         <name>Consumer_Last_Name__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Mobile Phone Number --></label>
+        <label>携帯番号</label>
         <name>Consumer_Mobile_Phone_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Other Phone Number --></label>
+        <label>電話番号2</label>
         <name>Consumer_Other_Phone_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Phone Number --></label>
+        <label>電話番号</label>
         <name>Consumer_Phone_Number__c</name>
     </fields>
     <fields>
@@ -124,7 +124,7 @@
         <name>Country_BrandLogo__c</name>
     </fields>
     <fields>
-        <label>Country</label>
+        <label>国</label>
         <name>Country__c</name>
         <picklistValues>
             <masterLabel>Argentina</masterLabel>
@@ -392,11 +392,11 @@
         <name>Currency_Text__c</name>
     </fields>
     <fields>
-        <label>Date Approved</label>
+        <label>承認日</label>
         <name>Date_Approved__c</name>
     </fields>
     <fields>
-        <label>Date of Birth</label>
+        <label>誕生日</label>
         <name>Date_of_Birth__c</name>
     </fields>
     <fields>
@@ -413,7 +413,7 @@
         <name>Debit_Card_Value__c</name>
     </fields>
     <fields>
-        <label><!-- Document Approval --></label>
+        <label>ドキュメント承認</label>
         <name>Document_Approval__c</name>
     </fields>
     <fields>
@@ -430,11 +430,11 @@
         <name>E_Voucher_Value__c</name>
     </fields>
     <fields>
-        <label>金額1</label>
+        <label>送付物1-メモ</label>
         <name>Enclosure1_Notes__c</name>
     </fields>
     <fields>
-        <label>Enclosure1 Quantity</label>
+        <label>送付物1-数量</label>
         <name>Enclosure1_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -462,16 +462,16 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>費目1</label>
+        <label>送付物1</label>
         <name>Enclosure1__c</name>
         <relationshipLabel>代替品返金</relationshipLabel>
     </fields>
     <fields>
-        <label>金額2</label>
+        <label>送付物2-メモ</label>
         <name>Enclosure2_Notes__c</name>
     </fields>
     <fields>
-        <label>Enclosure2 Quantity</label>
+        <label>送付物2-数量</label>
         <name>Enclosure2_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -499,16 +499,16 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>費目2</label>
+        <label>送付物2</label>
         <name>Enclosure2__c</name>
-        <relationshipLabel><!-- Fulfilment (Enclosure2) --></relationshipLabel>
+        <relationshipLabel>対応済み（送付物2)</relationshipLabel>
     </fields>
     <fields>
-        <label>金額3</label>
+        <label>送付物3-メモ</label>
         <name>Enclosure3_Notes__c</name>
     </fields>
     <fields>
-        <label>Enclosure3 Quantity</label>
+        <label>送付物3-数量</label>
         <name>Enclosure3_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -536,16 +536,16 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>費目3</label>
+        <label>送付物3</label>
         <name>Enclosure3__c</name>
-        <relationshipLabel><!-- Fulfilment (Enclosure3) --></relationshipLabel>
+        <relationshipLabel>対応済み（送付物3)</relationshipLabel>
     </fields>
     <fields>
-        <label>金額4</label>
+        <label>送付物4-メモ</label>
         <name>Enclosure4_Notes__c</name>
     </fields>
     <fields>
-        <label>Enclosure4 Quantity</label>
+        <label>送付物4-数量</label>
         <name>Enclosure4_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -573,16 +573,16 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>費目4</label>
+        <label>送付物4</label>
         <name>Enclosure4__c</name>
-        <relationshipLabel><!-- Fulfilment (Enclosure4) --></relationshipLabel>
+        <relationshipLabel>対応済み（送付物4)</relationshipLabel>
     </fields>
     <fields>
-        <label>金額5</label>
+        <label>送付物5-メモ</label>
         <name>Enclosure5_Notes__c</name>
     </fields>
     <fields>
-        <label>Enclosure5 Quantity</label>
+        <label>送付物5-数量</label>
         <name>Enclosure5_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -610,28 +610,28 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>費目5</label>
+        <label>送付物5</label>
         <name>Enclosure5__c</name>
-        <relationshipLabel><!-- Fulfilment (Enclosure5) --></relationshipLabel>
+        <relationshipLabel>対応済み（送付物5)</relationshipLabel>
     </fields>
     <fields>
         <label><!-- Estimated Total Product Value --></label>
         <name>EstimatedTotalProductValue__c</name>
     </fields>
     <fields>
-        <label><!-- Expiry Date --></label>
+        <label>期限</label>
         <name>Expiry_Date__c</name>
     </fields>
     <fields>
-        <label>Fulfilled</label>
+        <label>対応済み</label>
         <name>Fulfilled__c</name>
     </fields>
     <fields>
-        <label>Full Name</label>
+        <label>名称</label>
         <name>Full_Name__c</name>
     </fields>
     <fields>
-        <label>Full Name</label>
+        <label>名称</label>
         <name>Fullname__c</name>
     </fields>
     <fields>
@@ -643,35 +643,35 @@
         <name>ID__c</name>
     </fields>
     <fields>
-        <label>Include Gift</label>
+        <label>ギフト</label>
         <name>Include_Gift__c</name>
     </fields>
     <fields>
-        <label>Printed Locally</label>
+        <label>印刷</label>
         <name>IsPrintedLocally__c</name>
     </fields>
     <fields>
-        <label><!-- Issue Card --></label>
+        <label>カード発行</label>
         <name>Issue_Card__c</name>
     </fields>
     <fields>
-        <label>Local Identifier</label>
+        <label>ローカル識別子</label>
         <name>Local_Identifier__c</name>
     </fields>
     <fields>
-        <label><!-- Mailing Address --></label>
+        <label>住所</label>
         <name>Mailing_Address__c</name>
     </fields>
     <fields>
-        <label><!-- Market --></label>
+        <label>マーケット</label>
         <name>Market__c</name>
     </fields>
     <fields>
-        <label><!-- Message --></label>
+        <label>メッセージ</label>
         <name>Message__c</name>
     </fields>
     <fields>
-        <label>No of Replacement Items</label>
+        <label>代替品の数量</label>
         <name>No_of_Replacement_Items__c</name>
     </fields>
     <fields>
@@ -679,23 +679,23 @@
         <name>Payable_To__c</name>
     </fields>
     <fields>
-        <label>Person Email</label>
+        <label>メール</label>
         <name>PersonEmail__c</name>
     </fields>
     <fields>
-        <label>Post Option</label>
+        <label>オプション</label>
         <name>PostOption__c</name>
     </fields>
     <fields>
-        <label>Product Notes</label>
+        <label>製品メモ</label>
         <name>Product_Notes__c</name>
     </fields>
     <fields>
-        <label>Product Sent</label>
+        <label>製品送付済み</label>
         <name>Product_Sent__c</name>
     </fields>
     <fields>
-        <label><!-- QA flag --></label>
+        <label>QAフラグ</label>
         <name>QA_flag__c</name>
     </fields>
     <fields>
@@ -724,7 +724,7 @@
         <name>Retrieval_Status__c</name>
     </fields>
     <fields>
-        <label>Salutation</label>
+        <label>敬称</label>
         <name>Salutation__c</name>
     </fields>
     <fields>
@@ -744,7 +744,7 @@
         <name>TotalFulfilmentValue__c</name>
     </fields>
     <fields>
-        <label>Type</label>
+        <label>タイプ</label>
         <name>Type__c</name>
         <picklistValues>
             <masterLabel>Dosing Request</masterLabel>
@@ -756,15 +756,15 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Standard Letter</masterLabel>
-            <translation>Standard Letter</translation>
+            <translation>標準レター</translation>
         </picklistValues>
     </fields>
     <fields>
-        <label>Approved</label>
+        <label>承認済み</label>
         <name>isApproved__c</name>
     </fields>
     <fields>
-        <label><!-- isSubmitted --></label>
+        <label>送信</label>
         <name>isSubmitted__c</name>
     </fields>
     <layouts>
@@ -786,15 +786,15 @@
             <section>E-Voucher Details</section>
         </sections>
         <sections>
-            <label>代金返納</label>
+            <label>送付物</label>
             <section>Enclosures</section>
         </sections>
         <sections>
-            <label>Letter and Consumer Details</label>
+            <label>手紙と顧客情報</label>
             <section>Letter and Consumer Details</section>
         </sections>
         <sections>
-            <label><!-- Message --></label>
+            <label>メッセージ</label>
             <section>Message</section>
         </sections>
         <sections>
@@ -802,7 +802,7 @@
             <section>New Section</section>
         </sections>
         <sections>
-            <label>代替品の詳細</label>
+            <label>製品詳細</label>
             <section>Product Details</section>
         </sections>
         <sections>
@@ -812,7 +812,7 @@
     </layouts>
     <nameFieldLabel><!-- Fulfilment Name --></nameFieldLabel>
     <validationRules>
-        <errorMessage><!-- Fulfilment cannot be created until the consumer address has been added --></errorMessage>
+        <errorMessage>対応履歴を登録するには顧客情報の登録が必要です。</errorMessage>
         <name>Case_Information_Vlidation</name>
     </validationRules>
     <validationRules>
@@ -824,11 +824,11 @@
         <name>E_Voucher_Value_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Enclosure quantity is mandatory for the selected enclosure. --></errorMessage>
+        <errorMessage>送付物の数量を入力してください</errorMessage>
         <name>Enclosure_Quantity_Check</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Unable to create Fulfilment with empty &apos;Type&apos; information. Select appropriate &apos;Country&apos; value to proceed. --></errorMessage>
+        <errorMessage>対応履歴の作成には「タイプ」の入力が必要です。適切な国を選択して処理を進めてください。</errorMessage>
         <name>FulfilmentType_MandatoryCheck</name>
     </validationRules>
     <validationRules>
@@ -856,16 +856,14 @@
         <name>Add_Retrieval_Request</name>
     </webLinks>
     <webLinks>
-        <label>新規代替品返金</label>
+        <label>新規送付物</label>
         <name>New_Fulfilment</name>
     </webLinks>
     <workflowTasks>
-        <description><!-- Your consumer correspondence has been rejected by the Quality Check team and needs further amendments before being sent.
+        <description>返信不可：修正が必要です。
 
-Please follow the link to the record and amend as requested. 
-
-Thank you. --></description>
+リンクをクリックして修正内容を確認してください。</description>
         <name>CEC_Rejected_correspondence</name>
-        <subject><!-- Rejected correspondence --></subject>
+        <subject>承認不可履歴</subject>
     </workflowTasks>
 </CustomObjectTranslation>

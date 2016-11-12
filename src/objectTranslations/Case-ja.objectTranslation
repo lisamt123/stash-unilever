@@ -19,7 +19,7 @@
         <name>ACCC_Survey__c</name>
     </fields>
     <fields>
-        <label><!-- Action Taken --></label>
+        <label>アクション済み</label>
         <name>Action_Taken__c</name>
     </fields>
     <fields>
@@ -31,7 +31,7 @@
         <name>Brand_Reporting__c</name>
     </fields>
     <fields>
-        <label><!-- Contact us Brand --></label>
+        <label>ブランド</label>
         <name>Brand__c</name>
     </fields>
     <fields>
@@ -201,19 +201,19 @@
         <name>Claims_Notes__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Email --></label>
+        <label>メール</label>
         <name>Consumer_Email__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Note --></label>
+        <label>メモ</label>
         <name>Consumer_Note__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Product Descriptor no size --></label>
+        <label>製品識別子（数量/サイズ）</label>
         <name>Consumer_Product_Descriptor_no_size__c</name>
     </fields>
     <fields>
-        <label><!-- Country Name --></label>
+        <label>国名</label>
         <name>Country_Name__c</name>
         <picklistValues>
             <masterLabel>Argentina</masterLabel>
@@ -429,7 +429,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Country --></label>
+        <label>国</label>
         <name>Country__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
     </fields>
@@ -442,11 +442,11 @@
         <name>Date_of_Manufacture__c</name>
     </fields>
     <fields>
-        <label><!-- Date of Manufacture --></label>
+        <label>製造日</label>
         <name>Date_of_Manufacture_str__c</name>
     </fields>
     <fields>
-        <label><!-- DayCode --></label>
+        <label>日付コード</label>
         <name>DayCode__c</name>
     </fields>
     <fields>
@@ -454,7 +454,7 @@
         <name>DefaultCMMAccountOwner_Id__c</name>
     </fields>
     <fields>
-        <label><!-- Default From Address --></label>
+        <label>発信元</label>
         <name>Default_From_Address__c</name>
     </fields>
     <fields>
@@ -535,7 +535,7 @@
         <name>Inconsistent_Case__c</name>
     </fields>
     <fields>
-        <label><!-- Ingestion --></label>
+        <label>摂取</label>
         <name>Ingestion__c</name>
     </fields>
     <fields>
@@ -615,7 +615,7 @@
         <name>L7_Product_Reporting__c</name>
     </fields>
     <fields>
-        <label><!-- Language --></label>
+        <label>言語</label>
         <name>Language__c</name>
     </fields>
     <fields>
@@ -627,7 +627,7 @@
         <name>Machine_ID__c</name>
     </fields>
     <fields>
-        <label>Manual Override Reason</label>
+        <label>手動修正理由</label>
         <name>Manual_Override_Reason__c</name>
         <picklistValues>
             <masterLabel>1-Legal</masterLabel>
@@ -635,19 +635,19 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>2-Customer Request</masterLabel>
-            <translation>2-Customer Request</translation>
+            <translation>2-顧客要望</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>3-Default</masterLabel>
-            <translation>3-Default</translation>
+            <translation>3-標準</translation>
         </picklistValues>
     </fields>
     <fields>
-        <label>Manual Retention Override</label>
+        <label>手動</label>
         <name>Manual_Retention_Override__c</name>
     </fields>
     <fields>
-        <label><!-- Market --></label>
+        <label>マーケット</label>
         <name>Market__c</name>
         <picklistValues>
             <masterLabel>Benelux</masterLabel>
@@ -675,7 +675,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Matching Response --></label>
+        <label>マッチリスト</label>
         <name>Matching_Response__c</name>
     </fields>
     <fields>
@@ -854,7 +854,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Store</masterLabel>
-            <translation>エリアコンプレーン</translation>
+            <translation>店舗</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Web</masterLabel>
@@ -870,15 +870,15 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Original Description --></label>
+        <label>元の入力情報</label>
         <name>Original_Description__c</name>
     </fields>
     <fields>
-        <label><!-- Out of Hours --></label>
+        <label>時間外</label>
         <name>Out_of_Hours__c</name>
     </fields>
     <fields>
-        <label><!-- Override From Address --></label>
+        <label>住所フィールドを修正</label>
         <name>Override_From_Address__c</name>
         <picklistValues>
             <masterLabel>Careline.bd@unilever.com</masterLabel>
@@ -1039,30 +1039,30 @@
     </fields>
     <fields>
         <help><!-- Green: No PII Data ; Red: PII Data present in the Description field --></help>
-        <label><!-- PII Data Check --></label>
+        <label>PIIデータチェック</label>
         <name>PII_Data_Check__c</name>
     </fields>
     <fields>
-        <label><!-- PII Warning Check --></label>
+        <label>PII警告チェック</label>
         <name>PII_Warning_Check__c</name>
     </fields>
     <fields>
-        <label><!-- Personal Care --></label>
+        <label>パーソナルケア</label>
         <name>Personal_Care__c</name>
     </fields>
     <fields>
         <name>Priority</name>
         <picklistValues>
             <masterLabel>1 - High</masterLabel>
-            <translation>1 - Red</translation>
+            <translation>1 - 高</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>2 - Medium</masterLabel>
-            <translation>2 - Yellow</translation>
+            <translation>2 - 中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>3 - Low</masterLabel>
-            <translation>3 - Green</translation>
+            <translation>3 - 低</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1078,7 +1078,7 @@
         <name>Product_ISO_Country_Code__c</name>
     </fields>
     <fields>
-        <label><!-- Product Skill --></label>
+        <label>製品スキル</label>
         <name>Product_Skill__c</name>
         <picklistValues>
             <masterLabel>Bluewater</masterLabel>
@@ -1222,15 +1222,15 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Product UPC --></label>
+        <label>製品UPC</label>
         <name>Product_UPC__c</name>
     </fields>
     <fields>
-        <label>ロット</label>
+        <label>製品lコード</label>
         <name>Production_Code__c</name>
     </fields>
     <fields>
-        <label><!-- Purchase Date --></label>
+        <label>購入日</label>
         <name>Purchase_Date__c</name>
     </fields>
     <fields>
@@ -1241,7 +1241,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Duplicate</masterLabel>
-            <translation><!-- Duplicate --></translation>
+            <translation>重複</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Enquiry</masterLabel>
@@ -1249,7 +1249,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Existing problem</masterLabel>
-            <translation><!-- Existing problem --></translation>
+            <translation>既知の問題</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Praise</masterLabel>
@@ -1261,13 +1261,13 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>ロスツリー保持日</label>
+        <label>理由コード保持日</label>
         <name>Reason_Code_Retention_Days__c</name>
     </fields>
     <fields>
-        <label>ロスツリー Level 5</label>
+        <label>理由コード</label>
         <name>Reason_Code__c</name>
-        <relationshipLabel>ケース番号</relationshipLabel>
+        <relationshipLabel>案件</relationshipLabel>
     </fields>
     <fields>
         <label><!-- Reason L0 desc --></label>
@@ -1405,23 +1405,23 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Awaiting Information from Consumer</masterLabel>
-            <translation>消費者連絡待ち</translation>
+            <translation>顧客情報待ち</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Awaiting Knowledge Response</masterLabel>
-            <translation>Awaiting Knowledge Response</translation>
+            <translation>ナレッジレスポンス待ち</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Closed</masterLabel>
-            <translation>完了</translation>
+            <translation>案件完了</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Closed as Duplicate</masterLabel>
-            <translation>完了 – 重複</translation>
+            <translation>案件完了 - 重複</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Escalated</masterLabel>
-            <translation>エスカレーション中</translation>
+            <translation>エスカレーション済み</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>In Progress</masterLabel>
@@ -1429,11 +1429,11 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>New</masterLabel>
-            <translation>受付中</translation>
+            <translation>新規</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>On Hold</masterLabel>
-            <translation>保留中</translation>
+            <translation>保留</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Pending with Courier</masterLabel>
@@ -1445,15 +1445,15 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Review Needed</masterLabel>
-            <translation>承認待ち</translation>
+            <translation>要承認</translation>
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Store Location --></label>
+        <label>店舗所在地</label>
         <name>Store_Location__c</name>
     </fields>
     <fields>
-        <label><!-- Store --></label>
+        <label>店舗</label>
         <name>Store__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
     </fields>
@@ -1508,7 +1508,7 @@
 -Regular User : Used This Exact Product &amp; Variant Before
 
 -Unknown : Information Not Available --></help>
-        <label><!-- Used Product Previously --></label>
+        <label>前回使用された製品</label>
         <name>Used_Product_Previously__c</name>
         <picklistValues>
             <masterLabel>Brand</masterLabel>
@@ -1642,15 +1642,15 @@
         <name>dgai__Template_ID__c</name>
     </fields>
     <fields>
-        <label><!-- isFormKnown --></label>
+        <label>フォーム（新/既）</label>
         <name>isFormKnown__c</name>
     </fields>
     <fields>
-        <label><!-- isPacksizeKnown --></label>
+        <label>サイズ（新/既）</label>
         <name>isPacksizeKnown__c</name>
     </fields>
     <fields>
-        <label><!-- isVariantKnown --></label>
+        <label>バリアント（新/既）</label>
         <name>isVariantKnown__c</name>
     </fields>
     <fields>
@@ -1668,27 +1668,27 @@
     <layouts>
         <layout>Case Feed Layout</layout>
         <sections>
-            <label>追加情報（ケース）</label>
+            <label>追加情報（問題）</label>
             <section>Additional Issue Information</section>
         </sections>
         <sections>
-            <label><!-- Attachments --></label>
+            <label>添付ファイル</label>
             <section>Attachments</section>
         </sections>
         <sections>
-            <label><!-- CosmetoVigilance links --></label>
+            <label>化粧品安全情報リンク</label>
             <section>CosmetoVigilance links</section>
         </sections>
         <sections>
-            <label>基礎情報</label>
+            <label>発行情報</label>
             <section>Issue Information</section>
         </sections>
         <sections>
-            <label>関連ケース</label>
+            <label>関連案件</label>
             <section>Related Cases</section>
         </sections>
         <sections>
-            <label><!-- Related Contact Roles --></label>
+            <label>関連するコンタクトの役割</label>
             <section>Related Contact Roles</section>
         </sections>
         <sections>
@@ -1703,14 +1703,14 @@
     <layouts>
         <layout>Case Layout</layout>
         <sections>
-            <label>基礎情報</label>
+            <label>発行情報</label>
             <section>Issue Information</section>
         </sections>
     </layouts>
     <layouts>
         <layout>Case QC Spam Layout</layout>
         <sections>
-            <label>基礎情報</label>
+            <label>発行情報</label>
             <section>Issue Information</section>
         </sections>
     </layouts>
@@ -1758,11 +1758,11 @@
         <name>CEC_Check_CV_Status</name>
     </validationRules>
     <validationRules>
-        <errorMessage>国とサマリは必須です。</errorMessage>
+        <errorMessage>国名は必須です。</errorMessage>
         <name>CEC_Country_and_Verbatim_fields</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Please populate the &apos;Manual Retention Override&apos; field. --></errorMessage>
+        <errorMessage>手動修正フィールドを入力してください。</errorMessage>
         <name>CEC_RetentionDetailCheck</name>
     </validationRules>
     <validationRules>
@@ -1770,15 +1770,15 @@
         <name>CEC_UsedProductPreviouslyCheck</name>
     </validationRules>
     <validationRules>
-        <errorMessage>製品コードとロスツリーを選択してください。</errorMessage>
+        <errorMessage>製品コードと理由コードを選択してください。</errorMessage>
         <name>Product_and_Reason_Code_Required</name>
     </validationRules>
     <webLinks>
-        <label>継続作成</label>
+        <label>問題追加</label>
         <name>Add_Issue</name>
     </webLinks>
     <webLinks>
-        <label><!-- Cosmetovigilence --></label>
+        <label>パーソナルケア安全情報</label>
         <name>Cosmetovigilence</name>
     </webLinks>
     <webLinks>
@@ -1790,11 +1790,11 @@
         <name>Ingestion_Cosmetovigilence</name>
     </webLinks>
     <webLinks>
-        <label>新規ケース</label>
+        <label>新規案件</label>
         <name>New_Case</name>
     </webLinks>
     <webLinks>
-        <label>次のケース</label>
+        <label>次の案件</label>
         <name>Next_Case</name>
     </webLinks>
     <webLinks>

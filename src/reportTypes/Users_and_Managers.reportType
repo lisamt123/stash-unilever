@@ -172,6 +172,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>CurrentStatus</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Debit_Card_Refund_Limit__c</field>
             <table>User</table>
         </columns>

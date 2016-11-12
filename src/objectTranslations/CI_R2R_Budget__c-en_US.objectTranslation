@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CI R2R Budget</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CI R2R Budget</value>
+    </caseValues>
+    <fields>
+        <label><!-- Budget Line --></label>
+        <name>Budget_Line__c</name>
+    </fields>
+    <fields>
+        <label><!-- CI_R2R Innovation --></label>
+        <name>CI_R2R_Innovation__c</name>
+        <relationshipLabel><!-- R2R Budget --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Committed Amount --></label>
+        <name>Committed_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Committed Amount in EUR --></label>
+        <name>Committed_Amount_in_EUR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Code --></label>
+        <name>Company_Code__c</name>
+        <picklistValues>
+            <masterLabel>1388</masterLabel>
+            <translation><!-- 1388 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1609</masterLabel>
+            <translation><!-- 1609 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2000</masterLabel>
+            <translation><!-- 2000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2465</masterLabel>
+            <translation><!-- 2465 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2646</masterLabel>
+            <translation><!-- 2646 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3009</masterLabel>
+            <translation><!-- 3009 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3128</masterLabel>
+            <translation><!-- 3128 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5069</masterLabel>
+            <translation><!-- 5069 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- EUR Conversion Rate --></label>
+        <name>Conversion_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cost Centre --></label>
+        <name>Cost_Centre__c</name>
+        <picklistValues>
+            <masterLabel>1105700018</masterLabel>
+            <translation><!-- 1105700018 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>17439</masterLabel>
+            <translation><!-- 17439 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>17441</masterLabel>
+            <translation><!-- 17441 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>19193</masterLabel>
+            <translation><!-- 19193 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>86I4451</masterLabel>
+            <translation><!-- 86I4451 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>86ROW15</masterLabel>
+            <translation><!-- 86ROW15 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956000239</masterLabel>
+            <translation><!-- A956000239 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956000242</masterLabel>
+            <translation><!-- A956000242 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956000632</masterLabel>
+            <translation><!-- A956000632 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956000847</masterLabel>
+            <translation><!-- A956000847 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956000848</masterLabel>
+            <translation><!-- A956000848 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956001274</masterLabel>
+            <translation><!-- A956001274 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956001278</masterLabel>
+            <translation><!-- A956001278 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956001279</masterLabel>
+            <translation><!-- A956001279 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956001280</masterLabel>
+            <translation><!-- A956001280 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956001281</masterLabel>
+            <translation><!-- A956001281 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956001282</masterLabel>
+            <translation><!-- A956001282 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956001283</masterLabel>
+            <translation><!-- A956001283 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956001284</masterLabel>
+            <translation><!-- A956001284 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956001285</masterLabel>
+            <translation><!-- A956001285 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A956001286</masterLabel>
+            <translation><!-- A956001286 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B500171733</masterLabel>
+            <translation><!-- B500171733 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B600100847</masterLabel>
+            <translation><!-- B600100847 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B600171947</masterLabel>
+            <translation><!-- B600171947 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C002R872</masterLabel>
+            <translation><!-- C002R872 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C002R873</masterLabel>
+            <translation><!-- C002R873 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02O103</masterLabel>
+            <translation><!-- UU02O103 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02P001</masterLabel>
+            <translation><!-- UU02P001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02P002</masterLabel>
+            <translation><!-- UU02P002 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02P003</masterLabel>
+            <translation><!-- UU02P003 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02P004</masterLabel>
+            <translation><!-- UU02P004 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02P005</masterLabel>
+            <translation><!-- UU02P005 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02P006</masterLabel>
+            <translation><!-- UU02P006 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02P007</masterLabel>
+            <translation><!-- UU02P007 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02P008</masterLabel>
+            <translation><!-- UU02P008 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02P009</masterLabel>
+            <translation><!-- UU02P009 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02P128</masterLabel>
+            <translation><!-- UU02P128 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02P879</masterLabel>
+            <translation><!-- UU02P879 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02P977</masterLabel>
+            <translation><!-- UU02P977 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU02R873</masterLabel>
+            <translation><!-- UU02R873 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Cost Type --></label>
+        <name>Cost_Type_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- DO/ PWO/ SP/ NPR --></label>
+        <name>DO_PWO_SP_NPR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Forecast Amount --></label>
+        <name>Forecast_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Forecast Amount in EUR --></label>
+        <name>Forecast_Amount_in_EUR__c</name>
+    </fields>
+    <fields>
+        <label><!-- ICC Number --></label>
+        <name>ICC_Number2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Innovation Funnel No --></label>
+        <name>Innovation_Funnel_No__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local Currency --></label>
+        <name>Local_Currency__c</name>
+        <picklistValues>
+            <masterLabel>EUR</masterLabel>
+            <translation><!-- EUR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GBP</masterLabel>
+            <translation><!-- GBP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INR</masterLabel>
+            <translation><!-- INR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USD</masterLabel>
+            <translation><!-- USD --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project Name --></label>
+        <name>Project_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor/Cross charging team --></label>
+        <name>Vendor_Cross_charging_team__c</name>
+        <picklistValues>
+            <masterLabel>ACN</masterLabel>
+            <translation><!-- ACN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IBM</masterLabel>
+            <translation><!-- IBM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UL internal cross-charge</masterLabel>
+            <translation><!-- UL internal cross-charge --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>R2R Budget Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
