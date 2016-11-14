@@ -1679,7 +1679,7 @@ public with sharing class VPM_SearchVendor1{
             goldendata2Screen = false;            
         } else {
             pageBlockTitle = system.label.VPM_GoldenDataScreenTitle;   
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, 'Please select commodity'));   
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, system.label.VPM_SeletCommodity));   
             //QueryVendorRequest(); 
             launchScreen = false;
             goldendata2Screen = true;

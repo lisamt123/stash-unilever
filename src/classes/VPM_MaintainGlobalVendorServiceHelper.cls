@@ -36,7 +36,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         {
         //list<errorMsgWrapper> errorList;
         System.debug('----------input parameters passed are----------' + vendorId);
-        String reqBodyJson,responseString ;
+        String reqBodyJson ='',responseString='' ;
         MaintainGlobalVendorResponse maintainVenResp;
         VPM_MaintainVendorFetchFieldDetails clas = new VPM_MaintainVendorFetchFieldDetails();
         reqBodyJson = clas.VPM_ConvertMaintainVendorFieldDetailsToJSON(vendorId);
