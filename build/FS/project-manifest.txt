@@ -1,7 +1,11 @@
 src
-src/roles/FS_55015_Midwest_District_Manager.role
-src/roles/FS_55020_North_Central_Region_Manager.role
-src/roles/FS_59030_Rocky_Mountain_District_Manager.role
-src/roles/FS_59035_South_West_Region_Manager.role
-src/roles/FS_HYBRID_North_Central_Midwest_Region.role
-src/roles/FS_HYBRID_South_West_Rocky_Mountain_Region.role
+src/workflows/Account.workflow
+src/objects/Opportunity.object
+src/objects/OpportunityLineItem.object
+src/approvalProcesses/Opportunity.FS_TPR_Opportunity_Process.approvalProcess
+src/workflows/Opportunity.workflow
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout ReadOnly.layout
+src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation.layout
+src/permissionsets/FS_RussiaSalesRep.permissionset
+src/permissionsets/FS_Admin.permissionset
+src/profiles/Unilever Food Solution - Russia.profile
