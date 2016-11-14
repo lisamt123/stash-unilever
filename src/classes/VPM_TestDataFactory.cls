@@ -1,4 +1,4 @@
-@isTest (seeAllData=true)
+@isTest
 public class VPM_TestDataFactory {
 
    public static user CreateUser(string Alias, string Email, string UserName, string Profile){
