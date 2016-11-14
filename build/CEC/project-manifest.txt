@@ -46,6 +46,7 @@ src/objects/CEC_Exception_Log__c.object
 src/objects/cec_Org_Settings__c.object
 src/objects/TH1__Draft__c.object
 src/permissionsets/CEC_Business_Admin.permissionset
+src/permissionsets/CEC_Brand_Ambassador.permissionset
 src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_Exception_Handling.permissionset
 src/permissionsets/CEC_User.permissionset

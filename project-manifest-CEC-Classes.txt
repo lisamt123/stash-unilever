@@ -1,15 +1,5 @@
 src
-src/customPermissions
 src/permissionsets
-src/layouts
-src/objects
-src/queues
-src/workflows
-src/customPermissions/CEC_Disable_Case_Trigger.customPermission
-src/permissionsets/CEC_Disable_All_Trigger.permissionset
-src/layouts/Case-Case Feed Layout.layout
-src/objects/Case.object
-src/objects/CEC_Case_Market_Mapping__c.object
-src/queues/CEC_Brand_Ambassador.queue
-src/workflows/Case.workflow
-src/workflows/EmailMessage.workflow
+src/permissionsets/CEC_Brand_Ambassador.permissionset
+
+
