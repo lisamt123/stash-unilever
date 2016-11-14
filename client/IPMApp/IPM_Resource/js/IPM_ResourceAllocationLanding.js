@@ -65,3 +65,11 @@ function closepopup(){
  function skipValidation() {
      unsaved = false;
  }
+function callSearchPerCare(){
+          if (document.getElementById('myMCO').checked) { 
+            searchTeamMem();  
+           }
+          if (document.getElementById('myCat').checked) {
+            searchallTeamMem();
+           } 
+        } 

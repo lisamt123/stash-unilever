@@ -496,3 +496,8 @@ table.ipmTable.table.table-bordered.ecoDesignCountry tbody td div.inputField.cel
     float: left;
     width: 50%;
 }
+.SecButtonSet.pdlnoMtop{margin-top:0px;}
+.pdlSummary .sfdc_richtext{padding:10px;}
+.risktabhead .noBold{float:none;}
+.riskTablecolor .bggray{text-align:center;}
+.riskMainHead.projectRiskLbl{padding: 8px 8px;}

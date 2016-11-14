@@ -1,6 +1,11 @@
 src
-src/layouts/Account-Operators Russia.layout
-src/permissionsets/FS_Admin.permissionset
-src/flows/FS_Account_Status_Change-13.flow
-src/applications/Unilever_Food_Solutions.app
+src/workflows/Account.workflow
+src/objects/Opportunity.object
 src/objects/OpportunityLineItem.object
+src/approvalProcesses/Opportunity.FS_TPR_Opportunity_Process.approvalProcess
+src/workflows/Opportunity.workflow
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout ReadOnly.layout
+src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation.layout
+src/permissionsets/FS_RussiaSalesRep.permissionset
+src/permissionsets/FS_Admin.permissionset
+src/profiles/Unilever Food Solution - Russia.profile

@@ -1,3 +1,5 @@
+
+
 /****************************************************************************************************************************
 @Author Cognizant
 @name IPM_ProjectHelper
@@ -778,7 +780,7 @@ public with sharing class IPM_ProjectHelper
                                 }
                                 
                                 // Update Country References.
-                                if(sourceRollOutToCountryListMap.containsKey(localRollout.Id) && sourceRollOutToCountryListMap.get(localRollout.Id) !=null)
+                                if(sourceRollOutToCountryListMap.containsKey(localRollout.Id) && sourceRollOutToCountryListMap.get(localRollout.Id) !=null && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
                                 {
                                     Map<Id,IPM_Country__c> associatedCountryMap =  sourceRollOutToCountryListMap.get(localRollout.Id);
                                     for(IPM_Country__c associatedCountry : associatedCountryMap.values())
@@ -802,8 +804,15 @@ public with sharing class IPM_ProjectHelper
                     }
                     else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && sourceRollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
                     {
+                    	if(sourceRollout.Local_Project__c != project.Id)
+                        {
                         sourceRollout.Local_Project__c = project.Id;
+                        	rolloutUpdate = true;
+                    	}
+                    	if(rolloutUpdate)
+                    	{
                         updateRolloutMap.put(sourceRollout.Id,sourceRollout);
+                    	}
                         
                         // Update Country References.
                         if(sourceRollOutToCountryListMap.containsKey(sourceRollout.Id) && sourceRollOutToCountryListMap.get(sourceRollout.Id) !=null)
@@ -819,7 +828,7 @@ public with sharing class IPM_ProjectHelper
                                     updateCountry = true;
                                 }
                                 
-                                if(project.IPM_Parent_Project__c !=null && associatedCountry.IPM_Regional_Project__c != project.IPM_Parent_Project__c)
+                                if(project.IPM_Parent_Project__c !=null && associatedCountry.IPM_Regional_Project__c != project.IPM_Parent_Project__c && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
                                 {
                                     if(associatedCountry.IPM_Regional_Project__c != project.IPM_Parent_Project__c)
                                     {
@@ -841,7 +850,9 @@ public with sharing class IPM_ProjectHelper
         
         if(!updateRolloutMap.isEmpty())
         {
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =true;
             update updateRolloutMap.values();
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION =false;
         }
         
         if(!updateCountriesMap.isEmpty())
@@ -866,11 +877,16 @@ public with sharing class IPM_ProjectHelper
    
     public static void manageProjectFinancials(Map<Id,IPM_Project__c> incomingProjectMap,Map<Id,IPM_Project__c> oldProjectMap)
     {
+        
         if(incomingProjectMap == null || incomingProjectMap.isEmpty())
         {
-        	return;
+            return;
         }
         
+        Map<Id,IPM_Project_Rollout__c> sourceToRegionalRolloutMap = getSourceToRegionalRolloutMap(incomingProjectMap);
+        
+        
+                
         Map<String,IPM_Financial__c> finUniqueKeyToFinancialMap = new Map<String,IPM_Financial__c>();
         Map<String,IPM_Financial__c> financialsToUpsert = new Map<String,IPM_Financial__c>();
         
@@ -879,6 +895,7 @@ public with sharing class IPM_ProjectHelper
         
         if(!incomingProjectMap.isEmpty())
         {
+        
             for(IPM_Project__c project : incomingProjectMap.values())
             {
                 Map<String,Set<String>> postFixToUniqueFinancialKeySet = new Map<String,Set<String>>();
@@ -902,7 +919,8 @@ public with sharing class IPM_ProjectHelper
                         String[] financialsInsertFormats = associatedProjectType.IPM_FinancialsInsertPostfix__c.split(IPM_ConstantUtils.COMMA);
                         resultantPostFixSet.addAll(financialsInsertFormats);
                     }
-                        
+                    
+                    
                     for(String KEY_POSTFIX  : resultantPostFixSet )
                     {
                         Set<String> uniqueFinancialKeySet = new Set<String>();
@@ -911,11 +929,13 @@ public with sharing class IPM_ProjectHelper
                         {
                             uniqueFinancialKeySet = postFixToUniqueFinancialKeySet.get(KEY_POSTFIX);  
                         }
-                            
+                        
                         // If PostFix is default, in that case use ProjectName
                         if(KEY_POSTFIX == 'DEFAULT')
                         {
-                            uniqueFinancialKeySet.add(project.IPM_Project_Name__c);           
+                            
+                            uniqueFinancialKeySet.add(project.Source_Rollout_External_Id__c);
+                            
                         }
                         else if(KEY_POSTFIX == 'KEY')
                         {
@@ -928,11 +948,40 @@ public with sharing class IPM_ProjectHelper
                                         uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c);
                                     }
                                 }
-                            }   
+                            }  
                         }
                         else
                         {
-                            uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                            
+                            
+                            uniqueFinancialKeySet.add(project.Source_Rollout_External_Id__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                            
+                            if(KEY_POSTFIX=='NONKEY' && projectToRolloutMap.containsKey(project.Id))
+                            {
+                                
+                                for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
+                                {
+                                    if(associatedRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
+                                    {
+                                        uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c+IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                                    }
+                                }
+                            }
+                            else{
+                            	
+                            	if(project != null && projectToRolloutMap != null && projectToRolloutMap.get(project.Id) != null){
+                            		for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
+	                                {
+	                                    if(associatedRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
+	                                    {
+	                                        uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c+IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+	                                    }
+	                                }
+	                            }
+                            	
+                            	uniqueFinancialKeySet.add(project.Source_Rollout_External_Id__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+                            }  
+                             //uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
                         }
                         
                         // Add to the comprehensive list of unique Financial Keys.
@@ -950,7 +999,6 @@ public with sharing class IPM_ProjectHelper
                 }
             }   
         }
-        
         
         if(!projectToPostFixToUniqueFinancialKeySet.isEmpty())
         {   
@@ -1006,6 +1054,8 @@ public with sharing class IPM_ProjectHelper
                             }
                         }
                         
+                        Set<String> updateFieldAPIsLowerCase = new Set<String>();
+                        
                         for(String financePostFix  : financeUniquePostFixToAPIMap.keySet())
                         {
                             Set<String> financialUniqueKeySet =  PostFixToUniqueFinancialKeySet.get(financePostFix);
@@ -1019,16 +1069,20 @@ public with sharing class IPM_ProjectHelper
                                     IPM_Financial__c financialObj = finUniqueKeyToFinancialMap.get(financeUniqueKey);
                                     
                                     // Get Associated Fields which needs to be updated based on PostFix
+                                    updateFieldAPIsLowerCase.clear();
                                     Set<String> updateFieldAPIs = financeUniquePostFixToAPIMap.get(financePostFix);
+                                    for(String apiName : updateFieldAPIs){
+                                        updateFieldAPIsLowerCase.add(apiName.toLowerCase());
+                                    }
                                     
                                     if(updateFieldAPIs!=null && !updateFieldAPIs.isEmpty())
                                     {
-                                      Id localProject = null;
-                                      Id regionalProject = null;
-                                      Id globalProject = null;
-                                      Id regionalRollout = null;
-                                     
-                                      // Prepare Data if Project is local
+                                        Id localProject = null;
+                                        Id regionalProject = null;
+                                        Id globalProject = null;
+                                        Id regionalRollout = null;
+                                        
+                                        // Prepare Data if Project is local
                                         if( project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL )
                                         {
                                             localProject = project.Id;
@@ -1047,7 +1101,7 @@ public with sharing class IPM_ProjectHelper
                                         {
                                             if(project.IPM_CompanyCardText__c == IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL)
                                             {
-                                               globalProject = project.Id;
+                                                globalProject = project.Id;
                                             }
                                             else
                                             {
@@ -1063,27 +1117,27 @@ public with sharing class IPM_ProjectHelper
                                                 regionalRollout = associatedRolloutId;
                                             }
                                         }
-                                    
+                                                                                
                                         // Populate financial data with calculated values starts
-                                        if(localProject !=null && financialObj.get('local_Project__c') != localProject && updateFieldAPIs.contains('local_Project__c'))
+                                        if(localProject !=null && financialObj.get('local_Project__c') != localProject && updateFieldAPIsLowerCase.contains('local_Project__c'.toLowerCase()))
                                         {
                                             financialObj.Local_Project__c = localProject;
                                             isChanged = true;   
                                         }
-                                    
-                                        if(regionalProject!=null && financialObj.get('Regional_Project__c') != regionalProject && updateFieldAPIs.contains('Regional_Project__c'))
+                                        
+                                        if(regionalProject!=null && financialObj.get('Regional_Project__c') != regionalProject && updateFieldAPIsLowerCase.contains('Regional_Project__c'.toLowerCase()))
                                         {
                                             financialObj.Regional_Project__c = regionalProject;
                                             isChanged = true;
                                         }
-                                    
-                                        if(globalProject!=null && financialObj.get('Parent_Project__c') != globalProject && updateFieldAPIs.contains('Parent_Project__c'))
+                                        
+                                        if(globalProject!=null && financialObj.get('Parent_Project__c') != globalProject && updateFieldAPIsLowerCase.contains('Parent_Project__c'.toLowerCase()))
                                         {
                                             financialObj.Parent_Project__c = globalProject;
                                             isChanged = true;
                                         }
-                                    
-                                        if(regionalRollout!=null && financialObj.get(IPM_PROJECT_ROLLOUT) != regionalRollout && updateFieldAPIs.contains(IPM_PROJECT_ROLLOUT))
+                                        
+                                        if(regionalRollout!=null && financialObj.get(IPM_PROJECT_ROLLOUT) != regionalRollout && updateFieldAPIsLowerCase.contains(IPM_PROJECT_ROLLOUT.toLowerCase()))
                                         {
                                             financialObj.IPM_Project_Rollout__c= regionalRollout;
                                             isChanged = true;
@@ -1092,20 +1146,24 @@ public with sharing class IPM_ProjectHelper
                                     
                                     
                                     // Check if Financial is updated with Gate indicator
-                                    
                                     String gateIndicatorString = associatedProjectType.IPM_FinancialGateApprovalIndicator__c;
+                                    
                                     if(gateIndicatorString!=null && !String.isBlank(gateIndicatorString))
                                     {
+                                    	
                                         String[] gateIndicatorArray = gateIndicatorString.split(IPM_ConstantUtils.COMMA);
-                                    
+                                        
                                         for(String gateIndicator :  gateIndicatorArray)
                                         {
                                             if(!String.isBlank(gateIndicator))
                                             {
+                                            	
                                                 Boolean gateApprovalValue = (Boolean)financialObj.get(gateIndicator);
+                                                
                                                 if(gateApprovalValue!=null && !gateApprovalValue)
                                                 {
                                                     financialObj.put(gateIndicator,true);
+                                                    
                                                     isChanged = true;                
                                                 }
                                             }   
@@ -1120,7 +1178,9 @@ public with sharing class IPM_ProjectHelper
                                     
                                     if(isChanged)
                                     {
-                                        financialsToUpsert.put(financialObj.Financial_External_ID__c,financialObj);   
+                                        
+                                        financialsToUpsert.put(financialObj.Financial_External_ID__c,financialObj);
+                                    
                                     }
                                 }   
                             }
@@ -1136,37 +1196,51 @@ public with sharing class IPM_ProjectHelper
                         if( !String.isBlank(associatedProjectType.IPM_FinancialsInsertPostfix__c) &&  !String.isBlank(associatedProjectType.IPM_InsertFinancialsAPIName__c)  )
                         {
                             String[] financialPostFixArray = associatedProjectType.IPM_FinancialsInsertPostfix__c.split(IPM_ConstantUtils.COMMA);
-                            
+                          
+                          
                             for(String KEY_POSTFIX : financialPostFixArray)
                             {
-                               String[] financialInsertformats = associatedProjectType.IPM_InsertFinancialsAPIName__c.split(IPM_ConstantUtils.TILDA_DELIMITER);
-                               for(String postFixToAPINameString : financialInsertformats)
-                               {
-                                   String[] postFixToAPINameArray = postFixToAPINameString.split(IPM_ConstantUtils.EQUALS_DELIMITER); 
-                                   if(postFixToAPINameArray!=null && !postFixToAPINameArray.isEmpty() && postFixToAPINameArray[0] == KEY_POSTFIX)
-                                   {
-                                       String finAPINameString = postFixToAPINameArray[1];
-                                       if(!String.isBlank(finAPINameString))
-                                       {
-                                           Set<String> finAPINameSet = new Set<String>(finAPINameString.split(IPM_ConstantUtils.COMMA));
-                                           financeUniquePostFixToAPIMap.put(KEY_POSTFIX,finAPINameSet);
-                                       }
-                                   }
-                               }
-    
-                               String[] financialInsertRecordTypes = associatedProjectType.IPM_FinancialsInsertRecordType__c.split(IPM_ConstantUtils.COMMA);
-                               for(String postFixToRecordTypeName : financialInsertRecordTypes)
-                               {
-                                   String[] postFixToRecordTypeArray = postFixToRecordTypeName.split(IPM_ConstantUtils.EQUALS_DELIMITER);
-                                   if(postFixToRecordTypeArray!=null && !postFixToRecordTypeArray.isEmpty() && postFixToRecordTypeArray[0] == KEY_POSTFIX )
-                                   {
-                                        financeUniquePostFixToRecordMap.put(KEY_POSTFIX,postFixToRecordTypeArray[1]);
-                                   }    
-                               }
+                                String[] financialInsertformats = associatedProjectType.IPM_InsertFinancialsAPIName__c.split(IPM_ConstantUtils.TILDA_DELIMITER);
                               
+                           	 
+                                for(String postFixToAPINameString : financialInsertformats)
+                                {
+                                    String[] postFixToAPINameArray = postFixToAPINameString.split(IPM_ConstantUtils.EQUALS_DELIMITER); 
+                                   
+                           	 	   
+                                    if(postFixToAPINameArray!=null && !postFixToAPINameArray.isEmpty() && postFixToAPINameArray[0] == KEY_POSTFIX)
+                                    {
+                                        String finAPINameString = postFixToAPINameArray[1];
+                                        if(!String.isBlank(finAPINameString))
+                                        {
+                                            Set<String> finAPINameSet = new Set<String>(finAPINameString.split(IPM_ConstantUtils.COMMA));
+                                            financeUniquePostFixToAPIMap.put(KEY_POSTFIX,finAPINameSet);
+                                            
+                           	 	  		    
+                                        }
+                                    }
+                                }
+                                
+                                String[] financialInsertRecordTypes = associatedProjectType.IPM_FinancialsInsertRecordType__c.split(IPM_ConstantUtils.COMMA);
+                                
+                                
+                                
+                                for(String postFixToRecordTypeName : financialInsertRecordTypes)
+                                {
+                                    String[] postFixToRecordTypeArray = postFixToRecordTypeName.split(IPM_ConstantUtils.EQUALS_DELIMITER);
+                                    if(postFixToRecordTypeArray!=null && !postFixToRecordTypeArray.isEmpty() && postFixToRecordTypeArray[0] == KEY_POSTFIX )
+                                    {
+                                        financeUniquePostFixToRecordMap.put(KEY_POSTFIX,postFixToRecordTypeArray[1]);
+                                        
+                                    }    
+                                }
+                                
                             }
                         }
-                               
+                        
+                        
+                        Set<String> insertFieldAPIsLowercase = new Set<String>();
+                        
                         for(String financePostKey : financeUniquePostFixToAPIMap.KeySet())
                         {
                             Set<String> financialUniqueKeySet =  PostFixToUniqueFinancialKeySet.get(financePostKey);
@@ -1183,7 +1257,11 @@ public with sharing class IPM_ProjectHelper
                                     Boolean isChanged = false;
                                     
                                     // Get Associated Fields which needs to be updated
+                                    insertFieldAPIsLowercase.clear();
                                     Set<String> insertFieldAPIs = financeUniquePostFixToAPIMap.get(financePostKey);
+                                    for(String apiName : insertFieldAPIs){
+                                        insertFieldAPIsLowercase.add(apiName.toLowerCase());
+                                    }
                                     String configuredRecordType =  financeUniquePostFixToRecordMap.get(financePostKey);
                                     
                                     
@@ -1213,7 +1291,12 @@ public with sharing class IPM_ProjectHelper
                                                 if(childToParentProject.containsKey(project.IPM_Parent_Project__c))
                                                 {
                                                     globalProject = childToParentProject.get(project.IPM_Parent_Project__c);
-                                                }        
+                                                } 
+                                                
+
+
+                                                regionalRollout = getRegionRolloutId(project, sourceToRegionalRolloutMap);
+                                                    
                                             } 
                                             else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
                                             {   
@@ -1233,25 +1316,26 @@ public with sharing class IPM_ProjectHelper
                                                 globalProject = project.Id;
                                             }
                                             
-                                            if(localProject !=null && financialObj.get('Local_Project__c') != localProject && insertFieldAPIs.contains('Local_Project__c'))
+                                            if(localProject !=null && financialObj.get('Local_Project__c') != localProject && insertFieldAPIsLowercase.contains('Local_Project__c'.toLowerCase()))
                                             {   
+                                             
                                                 financialObj.Local_Project__c = localProject;
                                                 isChanged = true;   
                                             }
-                                    
-                                            if(regionalProject!=null && financialObj.get('Regional_Project__c') != regionalProject && insertFieldAPIs.contains('Regional_Project__c'))
+                                            
+                                            if(regionalProject!=null && financialObj.get('Regional_Project__c') != regionalProject && insertFieldAPIsLowercase.contains('Regional_Project__c'.toLowerCase()))
                                             {   
                                                 financialObj.Regional_Project__c = regionalProject;
                                                 isChanged = true;
                                             }
-    
-                                            if(globalProject!=null && financialObj.get('Parent_Project__c') != globalProject && insertFieldAPIs.contains('Parent_Project__c')) //this api can be chnaged into custome settiing
+                                            
+                                            if(globalProject!=null && financialObj.get('Parent_Project__c') != globalProject && insertFieldAPIsLowercase.contains('Parent_Project__c'.toLowerCase())) //this api can be chnaged into custome settiing
                                             {   
                                                 financialObj.Parent_Project__c = globalProject;
                                                 isChanged = true;
                                             }
-                                    
-                                            if(regionalRollout!=null && financialObj.get(IPM_PROJECT_ROLLOUT) != regionalRollout && insertFieldAPIs.contains(IPM_PROJECT_ROLLOUT))
+                                            
+                                            if(regionalRollout!=null && financialObj.get(IPM_PROJECT_ROLLOUT) != regionalRollout && insertFieldAPIsLowercase.contains(IPM_PROJECT_ROLLOUT.toLowerCase()))
                                             {   
                                                 financialObj.IPM_Project_Rollout__c= regionalRollout;
                                                 isChanged = true;
@@ -1278,11 +1362,14 @@ public with sharing class IPM_ProjectHelper
                                             
                                             if(isChanged)
                                             {
+                                                
                                                 financialsToUpsert.put(financialObj.Financial_External_Id__c,financialObj);
+                                                
                                             }
                                         }
                                     }                                               
                                 }
+                                
                             }
                         }
                     }
@@ -1294,6 +1381,37 @@ public with sharing class IPM_ProjectHelper
         {
             upsert financialsToUpsert.values() Financial_External_Id__c; 
         }       
+    }
+    
+    /*
+    	Get Source to Regional Rollout map
+    */
+    private static Map<Id,IPM_Project_Rollout__c> getSourceToRegionalRolloutMap(Map<Id,IPM_Project__c> incomingProjectMap){
+    	
+    	Set<Id> sourceRolloutIdSet =  new Set<Id>();
+        Map<Id,IPM_Project_Rollout__c> mapSourceToRegionalRollout = null;
+        for(IPM_Project__c newProj : incomingProjectMap.values()){
+        	if( newProj.IPMProject_Span__c == 'Local' && newProj.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && newProj.IPM_Project_Rollout__c != null){
+        		sourceRolloutIdSet.add(newProj.IPM_Project_Rollout__c); 
+        	}
+        }
+        if(!sourceRolloutIdSet.isEmpty()){
+           mapSourceToRegionalRollout = new Map<Id,IPM_Project_Rollout__c>([Select id,Regional_Rollout__c from IPM_Project_Rollout__c Where Id IN : sourceRolloutIdSet  Limit 10000]);
+        }
+        return mapSourceToRegionalRollout;
+    }
+    
+    /*
+    	Get regional rollout id from local project financial
+    */
+    private static Id getRegionRolloutId(IPM_Project__c project, Map<Id,IPM_Project_Rollout__c> mapSourceToRegionalRollout){
+    	if(project.IPM_ProjectGKM__c ==IPM_ConstantUtils.GKM_3 &&
+              mapSourceToRegionalRollout != null &&
+              mapSourceToRegionalRollout.containsKey(project.IPM_Project_Rollout__c) )
+        {
+            return mapSourceToRegionalRollout.get(project.IPM_Project_Rollout__c).Regional_Rollout__c;
+        }
+        return null;
     }
     
     
@@ -1431,44 +1549,8 @@ public with sharing class IPM_ProjectHelper
             Map<Id,IPM_Project_Rollout__c> updateProjectRollout = new Map<Id,IPM_Project_Rollout__c>();
             Map<Id,IPM_Country__c> updateProjectCountry = new Map<Id,IPM_Country__c>();
             
-            // prepartion of Project Rollout map data which are to be updated
-            if(!projectToRolloutMap.isEmpty())
-            {
-                for(Id projectId : projectToRolloutMap.keySet())
-                {
-                    IPM_Project__c oldProject = null;
-                    Map<Id,IPM_Project_Rollout__c> rolloutsMap = projectToRolloutMap.get(projectId);
                     
-                    if(oldProjectMap!=null && oldProjectMap.containsKey(projectId))
-                    {
-                        oldProject = oldProjectMap.get(projectId);
-                        if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS))
-                        {
-                            for(IPM_Project_Rollout__c rollout : rolloutsMap.values())
-                            {
-                                // Update Rollouts with Charter References. Set Charter Approved as true
-                                rollout.IPM_CharterApproved__c = true;
                                 
-                                if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
-                                { 
-                                    if(rollout.IPM_CharterFinancial__c == null)
-                                    {
-                                        rollout.IPM_CharterFinancial__r = new IPM_Financial__c(Financial_External_ID__c =  IPM_Utils.getFinancialExternalId(rollout));
-                                    }
-                                }
-                                updateProjectRollout.put(rollout.Id,rollout);
-                            }       
-                        }
-                    }
-                }
-                // Empty check of Project rollout map 
-                if(!updateProjectRollout.isEmpty())
-                {
-                    IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
-                        update updateProjectRollout.values();
-                    IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
-                }
-            }
 
             if(!projectToCountryMap.isEmpty())
             {
@@ -1492,7 +1574,7 @@ public with sharing class IPM_ProjectHelper
                                if(updateProjectRollout.containsKey(country.local_Rollout__c)) 
                                {
                                     IPM_Project_Rollout__c rollout  = updateProjectRollout.get(country.local_Rollout__c); 
-                                    if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+                                    if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE && country.IPM_FinancialAtCharter__c==null )
                                     {
                                         country.IPM_FinancialAtCharter__r = new IPM_Financial__c(Financial_External_ID__c =  IPM_Utils.getFinancialExternalId(rollout));
                                     }
@@ -1508,6 +1590,47 @@ public with sharing class IPM_ProjectHelper
                     IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true;
                         update updateProjectCountry.values();   
                     IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = false;
+                }
+            }
+            // prepartion of Project Rollout map data which are to be updated
+            if(!projectToRolloutMap.isEmpty())
+            {
+                for(Id projectId : projectToRolloutMap.keySet())
+                {
+                    IPM_Project__c oldProject = null;
+                    Map<Id,IPM_Project_Rollout__c> rolloutsMap = projectToRolloutMap.get(projectId);
+                    if(oldProjectMap!=null && oldProjectMap.containsKey(projectId))
+                    {
+                        oldProject = oldProjectMap.get(projectId);
+                        IPM_Project__c newProject = projectPhaseChange.get(projectId);
+                        if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS))
+                        {
+                            for(IPM_Project_Rollout__c rollout : rolloutsMap.values())
+                            {
+                                // Update Rollouts with Charter References. Set Charter Approved as true
+                                rollout.IPM_CharterApproved__c = true;
+                                if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+                                { 
+                                    if(rollout.IPM_CharterFinancial__c == null)
+                                    {
+                                        rollout.IPM_CharterFinancial__r = new IPM_Financial__c(Financial_External_ID__c =  IPM_Utils.getFinancialExternalId(rollout));
+                                    }
+                                }
+                                if(newProject.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
+                                {
+                                  rollout.KeyMCO__c = true;
+                                }
+                                updateProjectRollout.put(rollout.Id,rollout);
+                            }       
+                        }
+                    }
+                }
+                // Empty check of Project rollout map 
+                if(!updateProjectRollout.isEmpty())
+                {
+                    IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
+                    update updateProjectRollout.values();
+                    IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
                 }
             }
         }

@@ -27,7 +27,7 @@
              <!--Below rendered condition is used for executing the output panel if CoreMembers details is empty -->
                 <apex:outputPanel rendered="{! if(CoreMembers !='','false','true')}">
                     <!-- output panel for guest user -->
-                    <apex:outputPanel rendered="{! if(RoleType='Guest','false','true')}">
+                    <apex:outputPanel rendered="{! AND( if(RoleType='Guest',false,true) ,!AND(ipmproject.IPM_ProjectGKM__c=='GKM3',ipmproject.IPMProject_Span__c=='Local') )}">
                         <div class="col-sm-12 radioContainer clearfix">                        
                             <div class="categoryButtons">
                                 <div class="ipmRadioButton">
@@ -50,12 +50,39 @@
                                 <span class="categoryLabel">{!$Label.IPM_FROM_ALL_CATAGRY}</span>
                             </div>
                         </div>
+                    </apex:outputPanel> 
+                    
+                    <apex:outputPanel rendered="{!AND(ipmproject.IPM_ProjectGKM__c=='GKM3',ipmproject.IPMProject_Span__c=='Local') }">
+                        <div class="col-sm-12 radioContainer clearfix">                        
+                            <div class="categoryButtons">
+                                <div class="ipmRadioButton">
+                                    <input id="myMCO" checked="checked" class="rbutton" type="radio" name="category" onclick="callSearchPerCare();"></input>
+                                    <label for="myMCO"></label>  
+                                </div>
+                                <apex:actionFunction action="{!getSameCategory}" name="searchTeamMem" reRender="SameCat,mycatNallcat"> 
+                                    <apex:param name="mycateg" assignTo="{!SearchTeambyCat}" value="myMCO"/>
+                                </apex:actionFunction>             
+                                <span class="categoryLabel">{!$Label.Show_My_MCO_User}</span>
+                            </div>
+                            <div class="categoryButtons">
+                                <div class="ipmRadioButton">
+                                    <input id="myCat" class="rbutton" type="radio" name="category" onclick="callSearchPerCare();"></input>
+                                    <label for="myCat"></label>
+                                </div>
+                                <apex:actionFunction action="{!getSameCategory}" name="searchallTeamMem" reRender="SameCat,mycatNallcat"> 
+                                    <apex:param name="myCat" assignTo="{!SearchTeambyCat}" value="mycategory"/>
+                                </apex:actionFunction>
+                                <span class="categoryLabel">{!$Label.Show_AllUsers_PersonalCare}</span>  
+                            </div>
+                        </div>
                     </apex:outputPanel>
+                    
                     <div class="col-sm-12">
                         <span class="categoryTitle">
                             <apex:outputPanel id="mycatNallcat">
                             <!-- Below rendered condition is used for showing output text -->
-                                <apex:outputText value="{!$Label.IPM_Select_members_from_my_category}" rendered="{! if(SearchTeambyCat='mycategory','true','false')}" id="mycat"/> 
+                                <apex:outputText value="{!$Label.IPM_Select_members_from_my_category}" rendered="{! if(SearchTeambyCat='mycategory','true','false')}" id="mycateg"/> 
+                                <apex:outputText value="{!$Label.Show_My_MCO_User}" rendered="{! SearchTeambyCat=='myMCO'}" id="mycat"/> 
                                 <!-- Below rendered condition is used for showing output text -->
                                 <apex:outputText value="{!$Label.IPM_Select_members_from_all_categories}" rendered="{! if(SearchTeambyCat='allcategory','true','false')}" id="allcat"/> 
                             </apex:outputPanel>   
@@ -166,7 +193,8 @@
             </div>  
             <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> 
             <script>
-                var IPMApp = {teamurl:'{!URLFOR($Page.IPM_Team)}', projectID:'{!projectID}',wmessage:'{!$Label.IPM_Unsaved_Alert}'};  
+                var IPMApp = {teamurl:'{!URLFOR($Page.IPM_Team)}', projectID:'{!projectID}',wmessage:'{!$Label.IPM_Unsaved_Alert}'}; 
+                      
             </script>
             
         </apex:pageBlock>

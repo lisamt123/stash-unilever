@@ -589,6 +589,6 @@ private class IPM_ProjectSearchCtrl_Test {
         
         Test.stopTest();
     }
-    
+     
     
 }

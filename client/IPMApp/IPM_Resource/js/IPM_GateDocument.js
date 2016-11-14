@@ -13,7 +13,7 @@ jq(document).ready(function() {
     }
     jq(".contenWrapper").find(".ipmAcrdnExpand").find(".aHead:last").css("border", "none");
     jq(".contenWrapper .ipmAcrdnExpand:first").not(':empty').show();
-    
+    jq(".pdlCollapse .ipmAcrdnExpand:first").hide();
     gateAccrdn();
     gateexpcollapse();  
     
@@ -47,17 +47,6 @@ jq(document).ready(function() {
         jq(".ipmAccordion").find(".ipmAcrdnExpand ").slideUp("fast");
         jq(".ipmAccordion").find(".pHead .expico").addClass("fa-plus");
         jq(".ipmAccordion").find(".pHead .expico").removeClass("fa-minus");
-    });
-    jq(document).ready(function() {
-        jq(".removebutton input").removeClass('btn');
-        
-/* Below script works on page load. It adds the + mark for the collapsed one's and adds - for the expanded one */
-        jq(".contenWrapper").find(".ipmAccordian .aHead .expico").removeClass("fa-minus");
-        jq(".contenWrapper").find(".ipmAccordian .aHead .expico").addClass("fa-plus");
-        jq(".contenWrapper").find(".ipmAccordian .aHead:first .expico").removeClass("fa-plus");
-        jq(".contenWrapper").find(".ipmAccordian .aHead:first .expico").addClass("fa-minus");
-        jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").removeClass("fa-minus");
-        jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").addClass("fa-plus");
     });
     jq(".ipmFinancetable").closest("div").css("overflow", "auto");
     jq(".history").each(function() {
@@ -102,6 +91,19 @@ jq(document).ready(function() {
     openCommentModal();
     filterBlock();
 });
+
+jq(document).ready(function() {
+        jq(".removebutton input").removeClass('btn');
+/* Below script works on page load. It adds the + mark for the collapsed one's and adds - for the expanded one */
+        jq(".contenWrapper").find(".ipmAccordian .aHead .expico").removeClass("fa-minus");
+        jq(".contenWrapper").find(".ipmAccordian .aHead .expico").addClass("fa-plus");
+        jq(".contenWrapper").find(".ipmAccordian .aHead:first .expico").removeClass("fa-plus");
+        jq(".contenWrapper").find(".ipmAccordian .aHead:first .expico").addClass("fa-minus");
+        jq(".pdlCollapse").find(".ipmAccordian .aHead:first .expico").removeClass("fa-minus");
+        jq(".pdlCollapse").find(".ipmAccordian .aHead:first .expico").addClass("fa-plus");
+        jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").removeClass("fa-minus");
+        jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").addClass("fa-plus");
+    });
 
 function gateAccrdn(){
     /* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
