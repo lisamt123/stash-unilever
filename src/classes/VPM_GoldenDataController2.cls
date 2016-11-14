@@ -866,18 +866,18 @@ with Sharing public class VPM_GoldenDataController2 {
         {
             
             //Pagereference pg= null;
-            ApexPages.Message msg;
+           // ApexPages.Message msg;
            
-            system.debug('@@ msg' + msg);
+            //system.debug('@@ msg' + msg);
             /* Added by Epsita */
             if(purchReqVar.VPM_WebformSentToVendor__c  && (!purchReqVar.VPM_VendorWebformSubmitted__c) && (!purchReqVar.VPM_ShowWarning__c)){
-                ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.WARNING,System.label.VPM_Record_Submit_Warning);   
+                new ApexPages.Message(ApexPages.Severity.WARNING,System.label.VPM_Record_Submit_Warning);   
                 purchReqVar.VPM_ShowWarning__c= true;
                update purchReqVar;
            }
            /* Added by Epsita */
            
-            msg = checkValidations();
+           ApexPages.Message msg = checkValidations();
             
             if(msg <> null){
             
