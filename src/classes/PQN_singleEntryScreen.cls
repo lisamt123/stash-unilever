@@ -40,6 +40,7 @@ public with sharing class PQN_singleEntryScreen{
             return recordPage;
         } 
         
-        return null;  
+        return null;
+          
     }
 }
