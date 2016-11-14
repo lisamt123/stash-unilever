@@ -7,11 +7,13 @@
 *******************************************************************************************/
 /* ===GLOBAL STYLES=== */
 .panel,table{border:0 ;}
-.headerlogo table.htmlDetailElementTable{margin-bottom:0 ;display:none;}
-.headerSearchLeftRoundedCorner .phSearchInput{top:2px ;}
+.headerlogo{margin-top:-5px;}
+.headerlogo table.htmlDetailElementTable{margin-bottom:0 ;border: none;}
+.headerSearchLeftRoundedCorner #phSearchInput{top:2px ;}
 .ipmProjectDetails .panel{padding:0 ;margin-top: 10px;border: 0;}
 label{cursor:auto ;}
-.grentxt{margin-top: 4px;}
+.grentxt{margin-top: 0;}
+.projDetails .orgIcon {margin-top: 0;}
 ul, ol, dl{font-size:1em ;}
 .pageHeadToolbar{border-bottom:0 ;}
 .noPadleft{padding-left:0 ;}

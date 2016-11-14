@@ -139,7 +139,7 @@ private class IPM_ProjectResourceHandler_Test {
         parentProj.IPM_Project_Name__c = 'testParentProj';
         parentProj.IPM_Project_Leader__c = runningUser.id; 
         insert parentProj;
-        
+        Test.StartTest();
         List<IPM_Project__c>parentPList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE id=:parentProj.id  LIMIT 1];
         system.assertEquals(parentPList[0].IPM_Project_Name__c,parentProj.IPM_Project_Name__c,'Project name is:'+parentPList[0].IPM_Project_Name__c);
         
@@ -187,7 +187,7 @@ private class IPM_ProjectResourceHandler_Test {
         
             
             List<IPM_Project_Resource__c> prjResrcList= IPM_TestFactory_Helper.createIPMProjectResourceList(false,2);
-            
+            Test.StopTest();
             prjResrcList[0].IPM_User__c = UserInfo.getuserId();
             prjResrcList[0].IPM_Role_Type__c = BD_ROLE_TYPE;
             prjResrcList[0].IPM_Project__c = projectList[3].id;
@@ -196,9 +196,9 @@ private class IPM_ProjectResourceHandler_Test {
             prjResrcList[1].IPM_Role_Type__c = BD_ROLE_TYPE;
             prjResrcList[1].IPM_Project__c = projectList[2].id;
             
-            Test.StartTest();
+            
             insert prjResrcList ;
-            Test.StopTest();
+            
             
             system.assertEquals([select UserId__c from BET_Member_Request__c limit 1].UserId__c, UserInfo.getuserId(), 'BET Access Request  not sent.');
             system.assertEquals([Select Count() from BET_Member_Request__c limit 1000], 3, 'Failed to generate BET Member Request');
