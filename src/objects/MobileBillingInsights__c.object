@@ -104,6 +104,11 @@
         <unique>false</unique>
     </fields>
     <label>MB_Billing_Insight</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>MB-{0}</displayFormat>
         <label>MB_Billing_Insights Name</label>

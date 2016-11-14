@@ -1,6 +1,8 @@
 src/classes
 src/classes/MB_BillingBatch.cls
 src/classes/MB_BillingBatch.cls-meta.xml
+src/classes/MB_Scheduler.cls
+src/classes/MB_Scheduler.cls-meta.xml
 src/classes/MB_MobileBillingBatch.cls
 src/classes/MB_MobileBillingBatch.cls-meta.xml
 src/classes/MB_Controller_Charts.cls
@@ -15,5 +17,3 @@ src/objects/MB_Billing_Entity__c.object
 src/objects/MB_ReportingGA__c.object
 src/permissionsets
 src/permissionsets/MB_Admin_User.permissionset
-src/tabs
-src/tabs/MobileBillingInsights__c.tab
