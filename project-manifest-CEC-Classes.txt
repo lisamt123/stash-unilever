@@ -1,7 +1,5 @@
 src
 src/permissionsets
-src/objects
 src/permissionsets/CEC_Brand_Ambassador.permissionset
-src/objects/Case.object
 
 
