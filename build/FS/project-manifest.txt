@@ -1,6 +1,7 @@
 src
-src/layouts/Account-Operators Russia.layout
-src/permissionsets/FS_Admin.permissionset
-src/flows/FS_Account_Status_Change-13.flow
-src/applications/Unilever_Food_Solutions.app
-src/objects/OpportunityLineItem.object
+src/roles/FS_55015_Midwest_District_Manager.role
+src/roles/FS_55020_North_Central_Region_Manager.role
+src/roles/FS_59030_Rocky_Mountain_District_Manager.role
+src/roles/FS_59035_South_West_Region_Manager.role
+src/roles/FS_HYBRID_North_Central_Midwest_Region.role
+src/roles/FS_HYBRID_South_West_Rocky_Mountain_Region.role
