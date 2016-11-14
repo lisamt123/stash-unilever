@@ -449,6 +449,13 @@
         <value>Indicator Is there Collection Authorization</value>
     </labels>
     <labels>
+        <fullName>VPM_CommodityApprovReportLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CommodityApprovReportLink</shortDescription>
+        <value>https://unilever--capgvenman.cs24.my.salesforce.com/00O19000000GqR7</value>
+    </labels>
+    <labels>
         <fullName>VPM_CommodityApprover</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -862,6 +869,13 @@
         <value>Then the last thing you should try &gt;</value>
     </labels>
     <labels>
+        <fullName>VPM_HouseNumberLeftBlankVenCouBrazil</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg When House  Number  is left blank for Vendor Country &apos;Brazil&apos;</shortDescription>
+        <value>House Number cannot be left blank for Vendor Country &quot;Brazil&quot;</value>
+    </labels>
+    <labels>
         <fullName>VPM_IAmWorkingOnIt</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -958,6 +972,13 @@
         <protected>false</protected>
         <shortDescription>VPM_LaunchScreenHelpText</shortDescription>
         <value>Search for your Vendor from the global database</value>
+    </labels>
+    <labels>
+        <fullName>VPM_LinkToReports</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_LinkToReports</shortDescription>
+        <value>Link To Reports</value>
     </labels>
     <labels>
         <fullName>VPM_MDMBPMErrorMessage</fullName>
@@ -1184,6 +1205,13 @@
         <value>Postal Code</value>
     </labels>
     <labels>
+        <fullName>VPM_PostalCodeLeftBlankVenCouBrazil</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg When Postal Code is left blank for Vendor Country  &quot;Brazil&quot;</shortDescription>
+        <value>Postal Code cannot be left blank for Vendor Country &quot;Brazil&quot;</value>
+    </labels>
+    <labels>
         <fullName>VPM_PreSelectedPaymentMethod</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1196,6 +1224,13 @@
         <protected>false</protected>
         <shortDescription>VPM Procurement at Glance</shortDescription>
         <value>Procurement at Glance</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ProcurementLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_ProcurementLink</shortDescription>
+        <value>Procurement Links</value>
     </labels>
     <labels>
         <fullName>VPM_ProcurementPermissionName</fullName>
@@ -1266,6 +1301,13 @@
         <protected>false</protected>
         <shortDescription>VPM Record Submit Warning</shortDescription>
         <value>The Vendor has been sent a request to complete their details via a Webform and they have not yet responded. If you proceed to the approval stage, any submission the Vendor makes in the future will not be appended to this request. The person who sent the Vendor the request will be notified if a submission happens.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RegionLeftBlankVenCouBrazil</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg When Region is left blank for Vendor Country &quot;Brazil&quot;</shortDescription>
+        <value>Region cannot be left blank for Vendor Country &quot;Brazil&quot;</value>
     </labels>
     <labels>
         <fullName>VPM_RegionalSpecificHelpText</fullName>
@@ -1569,6 +1611,13 @@
         <value>Please select at least one option.</value>
     </labels>
     <labels>
+        <fullName>VPM_SeletCommodity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SeletCommodity</shortDescription>
+        <value>Please select commodity</value>
+    </labels>
+    <labels>
         <fullName>VPM_SendWebFormRequest</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1770,6 +1819,13 @@
         <protected>false</protected>
         <shortDescription>VPM_TaxNumber1PageMessage</shortDescription>
         <value>Tax Number 1: You must select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TaxNumber3LeftBlankVenCouBrazil</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Error Msg When Tax Number 3 is left blank for Vendor Country Brazil</shortDescription>
+        <value>Tax Number 3 cannot be left blank for Vendor Country &quot;Brazil&quot;</value>
     </labels>
     <labels>
         <fullName>VPM_Tax_Information</fullName>

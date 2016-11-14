@@ -55,8 +55,9 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
     {
             if(ex.getmessage().containsIgnoreCase('unquoted character'))
             {
-            responseString = 'Please avoid using special character like double quotes for field values';
+            responseString = System.Label.VPM_UnquotedError;
             }
+            VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,responseString,VPM_HttpUtil.failStatusMDM);
             return responseString;
     }  
        
@@ -68,12 +69,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         system.debug('%%%% '+maintainVenResp);
          responseString = maintainVenResp.status;
         if(res.getStatusCode() == 200) {
-        
-
-            
-                
-
-            if(VendorReq.VPM_Fieldtype__c != 'Both')
+         if(VendorReq.VPM_Fieldtype__c != 'Both')
             {
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.successStatusReqCompleted ,msg,VPM_HttpUtil.successStatusMDM);
            }
@@ -91,11 +87,11 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         } else if(res.getStatusCode() == 500) {
              //if(VendorReq.VPM_Fieldtype__c != 'Both')
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            responseString = 'Server Error. Please try after some time.';
+            responseString = System.Label.VPM_ServerError;
         } else if(res.getStatusCode() == 504) {
             // if(VendorReq.VPM_Fieldtype__c != 'Both')
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            responseString = 'Connection to SAP has timed out. Please try again.';
+            responseString = System.Label.VPM_ConnectionError;
         } else if(res.getStatusCode() == 400) {
             // if(VendorReq.VPM_Fieldtype__c != 'Both')
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
@@ -103,11 +99,11 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         } else if(res.getStatusCode() == 503) {
            //  if(VendorReq.VPM_Fieldtype__c != 'Both')
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            responseString = 'SAP API not implemented.';
+            responseString = System.Label.VPM_SAPError;
         } else {
             // if(VendorReq.VPM_Fieldtype__c != 'Both')
             VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            responseString = 'Some error occured while submitting request to SAP. Please try after some time.';
+            responseString = System.Label.VPM_SAPRequstError;
         }
         return responseString;
     }
@@ -203,8 +199,9 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
     {
             if(ex.getmessage().containsIgnoreCase('unquoted character'))
             {
-            responseString = 'Please avoid using special character like double quotes for field values';
+            responseString = System.Label.VPM_UnquotedError;
             }
+            VPM_HttpUtil.updateVendorECCStatus(vendorId,VPM_HttpUtil.ECCfailStatus,responseString,VPM_HttpUtil.failStatusECC);
             return responseString;
     }
         //string msg= '';

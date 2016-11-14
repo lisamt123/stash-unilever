@@ -56,12 +56,12 @@ global class VPM_CreateVendorServiceHelper {
                         VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
                     } else if(res.getStatusCode() == 0) {
                     //System.debug('----inside block where status code is 0----' + res.getStatusCode());
-                    responseString = 'Some error occured while submitting request to SAP. Please try after some time.';
+                    responseString = System.Label.VPM_SAPRequstError;
                     VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,responseString,VPM_HttpUtil.failStatusMDM);
                 }
                 } else {
                     System.debug('----inside block where response body should be blank----' + res.getStatusCode());
-                    responseString = 'Some error occured while submitting request to SAP. Please try after some time.';
+                    responseString = System.Label.VPM_SAPRequstError;
                     VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,responseString,VPM_HttpUtil.failStatusMDM);
                 }
             } catch(System.CalloutException e) {

@@ -456,8 +456,12 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                    //callJavaScriptAlert='<script>alert(\''+responseString+'\'); PageReload();</script>';
                     callJavaScriptAlert='<script>debugger;var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); PageReload();</script>';
               }
-              vendorlist[0].VPM_MDMOpsFirstSubmittedToSAP__c=system.now();
-              update vendorList;
+              VPM_PurchasingRequests__c vendor = [SELECT id,VPM_MDMOpsFirstSubmittedToSAP__c,VPM_Status__c from VPM_PurchasingRequests__c where id=:vendorReqId limit 1];
+               if(vendor.VPM_Status__c=='MDM Ops Review')
+              {
+                  vendor.VPM_MDMOpsFirstSubmittedToSAP__c=system.now();
+                  update vendor;
+              }
       }
       
       @RemoteAction

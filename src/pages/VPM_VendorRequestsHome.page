@@ -29,13 +29,13 @@
                </apex:pageblockSectionItem>
          </apex:pageBlockSection>
      </apex:pageBlock>
-      <apex:pageBlock title="Procurement Links" rendered="{!isProcure}">
+      <apex:pageBlock title="{!$Label.VPM_ProcurementLink}" rendered="{!isProcure}">
           <apex:pageBlockSection >
                <apex:pageblockSectionItem > 
                    <apex:outputText value="{!$Label.VPM_HomePageLink2}" /> <apex:outputLink value="http://google.com/">Google</apex:outputLink>
                </apex:pageblockSectionItem>
                <apex:pageblockSectionItem >
-                       <apex:outputText value="Link to Reports" /><apex:outputLink value="https://unilever--capgvenman.cs24.my.salesforce.com/00O19000000GqR7">Commodity Approver Records Assigned to me </apex:outputLink>
+                       <apex:outputText value="{!$Label.VPM_LinkToReports}" /><apex:outputLink value="{!$Label.VPM_CommodityApprovReportLink}">Commodity Approver Records Assigned to me </apex:outputLink>
                </apex:pageblockSectionItem>
           </apex:pageBlockSection>
       </apex:pageBlock>

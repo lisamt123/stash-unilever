@@ -1,4 +1,4 @@
-@isTest 
+@isTest (seeAllData=true)
 public class VPM_TestDataFactory {
 
    public static user CreateUser(string Alias, string Email, string UserName, string Profile){
@@ -8,6 +8,10 @@ public class VPM_TestDataFactory {
                           EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
                           LocaleSidKey='en_US', ProfileId = p.Id,
                           TimeZoneSidKey='America/Los_Angeles',     UserName = UserName);
+        
+        //Group gr = [Select Id From Group where DeveloperName='VPM_Procurement' AND Type='Queue' limit 1]; 
+        
+            
         return NewUser;
             
     }

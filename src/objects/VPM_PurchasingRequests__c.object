@@ -61,32 +61,6 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
-        <fullName>Approval_Status__c</fullName>
-        <description>VPM - This field is used to store the different statuses/stages of the Approval Flow.</description>
-        <externalId>false</externalId>
-        <label>Approval Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Pending</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>VPM_ABCIndicator__c</fullName>
         <description>VPM - This field is used to store the value of the ABC Indicator.</description>
         <externalId>false</externalId>
@@ -141,7 +115,7 @@
         <description>VPM - This field is used to store the value of Account with Vendor.</description>
         <externalId>false</externalId>
         <label>Account with Vendor</label>
-        <length>200</length>
+        <length>12</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -154,7 +128,7 @@
         <description>VPM - This field is used to store the Account Clerk Telephone Number.</description>
         <externalId>false</externalId>
         <label>Account Clerk Telephone Number</label>
-        <length>200</length>
+        <length>30</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -194,7 +168,7 @@
         <description>VPM - This field is used to store the value of Account Memo.</description>
         <externalId>false</externalId>
         <label>Account Memo</label>
-        <length>100</length>
+        <length>30</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -923,13 +897,39 @@
         <description>VPM - This field is used to store the Alternative Payee name.</description>
         <externalId>false</externalId>
         <label>Alternative Payee</label>
-        <length>200</length>
+        <length>10</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ApprovalStatus__c</fullName>
+        <description>VPM - This field is used to store the different statuses/stages of the Approval Flow.</description>
+        <externalId>false</externalId>
+        <label>Approval Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_ApprovalWorkerID__c</fullName>
@@ -1164,7 +1164,7 @@
         <description>VPM - This field is used to store the value of  Authorization.</description>
         <externalId>false</externalId>
         <label>Authorization</label>
-        <length>255</length>
+        <length>4</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3569,7 +3569,7 @@
         <description>VPM - This field is used to store the value of Car Freight Group.</description>
         <externalId>false</externalId>
         <label>Car Freight Group</label>
-        <length>255</length>
+        <length>4</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3918,7 +3918,7 @@
         <description>VPM - This field is used to store the value of Clerk at Vendor.</description>
         <externalId>false</externalId>
         <label>Clerk at Vendor</label>
-        <length>200</length>
+        <length>15</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3931,7 +3931,7 @@
         <description>VPM - This field is used to store the value of Clerks Fax.</description>
         <externalId>false</externalId>
         <label>Clerks Fax</label>
-        <length>200</length>
+        <length>31</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3944,7 +3944,7 @@
         <description>VPM - This field is used to store the value of Clerks Internet (Remittance Email addr).</description>
         <externalId>false</externalId>
         <label>Clerks Internet (Remittance Email addr)</label>
-        <length>255</length>
+        <length>130</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -7308,7 +7308,7 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <description>VPM - This field is used to store the value of Dunn Recipient.</description>
         <externalId>false</externalId>
         <label>Dunn Recipient</label>
-        <length>255</length>
+        <length>10</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -7707,7 +7707,7 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <description>VPM - This field is used to store the Exemption Number given to the vendor.</description>
         <externalId>false</externalId>
         <label>Exemption Number</label>
-        <length>255</length>
+        <length>10</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -8046,7 +8046,7 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <description>VPM - This field is used to store the value of Vendor Fiscal Address.</description>
         <externalId>false</externalId>
         <label>Fiscal Address</label>
-        <length>255</length>
+        <length>10</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -8527,7 +8527,7 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <defaultValue>false</defaultValue>
         <description>VPM- set to true when the global fields are changed.</description>
         <externalId>false</externalId>
-        <label>Global Field Changed</label>
+        <label>Global Data Changed</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -8584,7 +8584,7 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <description>VPM - This field is used to store the value of Head Office Account Number.</description>
         <externalId>false</externalId>
         <label>Head Office Account Number</label>
-        <length>200</length>
+        <length>10</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -8702,7 +8702,7 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <description>VPM - This field is used to store the value of House Bank.</description>
         <externalId>false</externalId>
         <label>House Bank</label>
-        <length>255</length>
+        <length>5</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -13981,7 +13981,7 @@ VPM_Approver10__c = $User.Id))
         <description>VPM - This field is used to store the value of Plant.</description>
         <externalId>false</externalId>
         <label>Plant</label>
-        <length>200</length>
+        <length>4</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -14031,7 +14031,7 @@ VPM_Approver10__c = $User.Id))
         <description>VPM - This field is used to store the value of Previous Account No.</description>
         <externalId>false</externalId>
         <label>Previous Account No.</label>
-        <length>200</length>
+        <length>10</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -16532,7 +16532,7 @@ VPM_Approver10__c = $User.Id))
         <defaultValue>false</defaultValue>
         <description>VPM- set to true when the Regional field is changed</description>
         <externalId>false</externalId>
-        <label>Regional Field Changed</label>
+        <label>Regional Data Changed</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -17089,7 +17089,7 @@ VPM_Approver10__c = $User.Id))
         <description>VPM - Used to store Search Term 1 to be interfaced with SAP. Defaults to the first 10 characters of Vendor Name.</description>
         <externalId>false</externalId>
         <label>Search Term 1</label>
-        <length>255</length>
+        <length>20</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -17958,6 +17958,7 @@ VPM_Approver10__c = $User.Id))
     </fields>
     <fields>
         <fullName>VPM_StoreHours__c</fullName>
+        <description>VPM - stores the calculated hours spent with each approver group(used in reporting)</description>
         <externalId>false</externalId>
         <label>VPM_StoreHours</label>
         <precision>18</precision>
@@ -21043,7 +21044,7 @@ VPM_Approver10__c = $User.Id))
         <description>VPM -  stores the Tax office identification for the vendor.</description>
         <externalId>false</externalId>
         <label>Tax Office Identification</label>
-        <length>40</length>
+        <length>10</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -21858,7 +21859,7 @@ VPM_Approver10__c = $User.Id))
         <description>VPM -  stores the tolerance group value for the vendor.</description>
         <externalId>false</externalId>
         <label>Tolerance Group</label>
-        <length>255</length>
+        <length>4</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -23645,6 +23646,7 @@ VPM_Approver10__c = $User.Id))
     </fields>
     <fields>
         <fullName>VPM_VendorSLA__c</fullName>
+        <description>VPM- to calculate the week days in hours (used in reporting)</description>
         <externalId>false</externalId>
         <formula>((VPM_NoOfDays__c-1)*24) 
 
@@ -23685,7 +23687,7 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <description>VPM -  stores the vendor sub range value for the vendor.</description>
         <externalId>false</externalId>
         <label>Vendor Sub Range</label>
-        <length>255</length>
+        <length>20</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -31039,21 +31041,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <description>Request raised by a Business Requestor</description>
         <label>Vendor Request</label>
         <picklistValues>
-            <picklist>Approval_Status__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_AccountStatement__c</picklist>
             <values>
                 <fullName>close</fullName>
@@ -31573,6 +31560,21 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>Russian</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ApprovalStatus__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -48255,21 +48257,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <description>Request qualified as needing a Vendor Create in SAP</description>
         <label>Vendor Request (Create)</label>
         <picklistValues>
-            <picklist>Approval_Status__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_AccountStatement__c</picklist>
             <values>
                 <fullName>close</fullName>
@@ -48789,6 +48776,21 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>Russian</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ApprovalStatus__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -65471,21 +65473,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <description>Request qualified as needing a Vendor Extend in SAP</description>
         <label>Vendor Request (Extend)</label>
         <picklistValues>
-            <picklist>Approval_Status__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_AccountStatement__c</picklist>
             <values>
                 <fullName>close</fullName>
@@ -66005,6 +65992,21 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>Russian</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ApprovalStatus__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -82687,21 +82689,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <description>Request qualified as needing a Vendor Maintain in SAP</description>
         <label>Vendor Request (Maintain)</label>
         <picklistValues>
-            <picklist>Approval_Status__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_AccountStatement__c</picklist>
             <values>
                 <fullName>close</fullName>
@@ -83221,6 +83208,21 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>Russian</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ApprovalStatus__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -100112,14 +100114,15 @@ IF(LEN(VPM_VendorPhone__c)==11 ,  NOT(REGEX(VPM_VendorPhone__c, &quot;0[1-9]{1}[
     var VPMRequestAbortedMessage =&quot;{!JSENCODE($Label.VPM_RequestAbortedAlert)}&quot;;
 	
         setTimeout(function(){ }, 50);
-	if ((currentstatus.indexOf(&apos;Rejected&apos;) &gt;= 0 )) 
+	/*if ((currentstatus.indexOf(&apos;Rejected&apos;) &gt;= 0 )) 
 	{ 
 		alert(VPMRequestRejectedMessage ); 
 		window.top.location=&apos;https://&apos;+localhost+&apos;/apex/VPM_AdvancedForm_v1?id={!VPM_PurchasingRequests__c.Id}&apos;;
 	}
          if(currentstatus.indexOf(&apos;BPM Record Submitted&apos;)!= -1){                                       window.top.location=&apos;https://&apos;+localhost+&apos;/apex/VPM_AdvancedForm_v1?id={!VPM_PurchasingRequests__c.Id}&apos;;
              }	 
-	else if((currentstatus.indexOf(&apos;BPM&apos;) != -1)&amp;&amp; currentstatus!=&quot;MDM Ops Review - SAP BPM submit Failed&quot;){ 
+	else*/
+if((currentstatus.indexOf(&apos;BPM&apos;) != -1)&amp;&amp; currentstatus!=&quot;MDM Ops Review - SAP BPM submit Failed&quot;){ 
 		alert(VPMRecordSentToSAPMessage );
 	}	 
 	else if((currentstatus.indexOf(&apos;Re-Work&apos;) != -1)&amp;&amp; (VPMIsLock == true || VPMIsLock == &quot;1&quot;)){ 
@@ -100129,10 +100132,10 @@ IF(LEN(VPM_VendorPhone__c)==11 ,  NOT(REGEX(VPM_VendorPhone__c, &quot;0[1-9]{1}[
 	{
 		alert(VPMFLSReview);
 	}	
-    else if ((currentstatus.indexOf(&apos;Aborted&apos;) &gt;= 0 )) 
+    /*else if ((currentstatus.indexOf(&apos;Aborted&apos;) &gt;= 0 )) 
 	{ 
 		alert(VPMRequestAbortedMessage ); 
-	}
+	}*/
 	
 	else if((currentstatus.indexOf(&apos;Pending&apos;) != -1)&amp;&amp; (VPMIsLock == true || VPMIsLock == &quot;1&quot;))
 	{
@@ -100154,11 +100157,8 @@ IF(LEN(VPM_VendorPhone__c)==11 ,  NOT(REGEX(VPM_VendorPhone__c, &quot;0[1-9]{1}[
 				alert(VPMAlertinApproval);
 			}
 			else 
-			{ 
-				var localhost = document.domain; 
-				window.top.location=&apos;https://&apos;+localhost+&apos;/apex/VPM_AdvancedForm_v1?id={!VPM_PurchasingRequests__c.Id}&apos;; 
+			{ window.top.location=&apos;https://&apos;+localhost+&apos;/apex/VPM_AdvancedForm_v1?id={!VPM_PurchasingRequests__c.Id}&apos;; 
 			} 
-  
 		}	
 		else 
 		{  

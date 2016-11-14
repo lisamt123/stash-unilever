@@ -1,3 +1,21 @@
+/*********************************************************************************************************
+Name:  VPM_ECCMaintainExtendHelper 
+Copyright ? 2016  Unilever
+==========================================================================================================
+==========================================================================================================
+Purpose:  To perform search Vendor from cache, make web service callout,
+          show different screen based on buisness user selected on Launch 
+         screen, perform validations and save functionality.    
+1. VPM_AdvancedForm
+
+==========================================================================================================
+==========================================================================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR       DATE             DETAIL                  Description
+1.0 -    Ajay      --              INITIAL DEVELOPMENT       Create MuleSoft payload for regional maintain.
+2.0 -    Deepak    11 Nov 2016     IAVMD-2410                Create MuleSoft payload for regional extend.  
+************************************************************************************************************/
 public with sharing class VPM_ECCMaintainExtendHelper {
 
     // List of all constant values
@@ -292,6 +310,11 @@ public with sharing class VPM_ECCMaintainExtendHelper {
         }
         return JSONElement;
     }
+    
+/* Created By : Deepak
+   Created on : 25 Sep 2016
+   Description: Formt DateTime field into mm-dd-yyyy.
+*/
       public string formatDate(string dt)
     {
     List<string> formatedDate = new List<String>();

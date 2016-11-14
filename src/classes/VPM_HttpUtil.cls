@@ -1,3 +1,21 @@
+/*********************************************************************************************************
+Name:  VPM_HttpUtil 
+Copyright ? 2016  Unilever
+==========================================================================================================
+==========================================================================================================
+Purpose:  Conatins logic for all service callouts.
+          Conatins logic for SAP data formating.   
+1. VPM_HttpUtil 
+
+==========================================================================================================
+==========================================================================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR       DATE             DETAIL                  Description
+1.0 -    Girish      --              INITIAL DEVELOPMENT       Build search Vendor,web service callout
+2.0 -    Ajay      29 June 2016      Callouts                  Regional and Global maintatin service callout.
+3.0 -    Deepak    3rd Oct 2016      Callouts                  Regional and Global Extend Service callout.
+************************************************************************************************************/
 public with sharing class VPM_HttpUtil {
     
     class CreateVendorResponse {
@@ -23,7 +41,16 @@ public with sharing class VPM_HttpUtil {
     public static final string successStatusECC = 'ECC Insert / Update Succeeded';
     public static final string failStatusECC = 'Failed to Submit to ECC';
     public static final String ECCfailStatus = 'MDM Ops Review - SAP ECC submit Failed';// VPM_Status__c
+    
   
+  
+    /******************************************************************** 
+    Created By   : Girish
+    Created Date : 05th June 2016
+    Last Modify  : 06th June 2016
+    Description  : Create end point from salesforce custom metadata.
+    Return Type  : String final endpoint after appending client and scerate ID.
+    ********************************************************************/
     public static String createEndPoint(String service) {
         String endpoint='',resource ='',clientId ='',clientSecret ='',finalUrl ='';
         List<VPM_ExternalService__mdt> serviceDetails = [SELECT DeveloperName, MasterLabel, VPM_ServiceEndpoint__c, VPM_ServiceResource__c FROM VPM_ExternalService__mdt WHERE DeveloperName = :service];
@@ -37,6 +64,14 @@ public with sharing class VPM_HttpUtil {
         System.debug('---HttpUtil-createEndPoint--final endpoint url-------'+ finalUrl);
         return finalUrl;
     }
+    
+    /******************************************************************** 
+    Created By   : Girish
+    Created Date : 05th June 2016
+    Last Modify  : 06th June 2016
+    Description  : Send final response to SAP. HTTP GET response
+    Return Type  : HttpResponse.
+    ********************************************************************/
     public static HttpResponse sendRequest(String requestType, String requestBodyJson, String serviceName) {
         HttpResponse res = null;
         try {
@@ -109,6 +144,14 @@ public with sharing class VPM_HttpUtil {
             update vendor;
         }
     }*/
+    
+    /******************************************************************** 
+    Created By   : Deepak
+    Created Date : 24 Sep 2016
+    Last Modify  : 06 Oct 2016
+    Description  : Update vendor request status and MDM service call message
+    Return Type  : Void.
+    ********************************************************************/
      public static void updateVendorMDMStatus(String venReqId, String reqStatus, String message, String messageMDM) {
         // Update vendor request record status after send to SAP.
         // Update MDM Ops user fields on vendor request record.
@@ -126,6 +169,15 @@ public with sharing class VPM_HttpUtil {
            
             }
         }
+        
+        
+    /******************************************************************** 
+    Created By   : Deepak
+    Created Date : 24 Sep 2016
+    Last Modify  : 06 Oct 2016
+    Description  : Update vendor request status and ECC service call message
+    Return Type  : Void.
+    ********************************************************************/
      public static void updateVendorECCStatus(String venReqId, String reqStatus, String message, String messageECC) {
         // Update vendor request record status after send to SAP.
         // Update MDM Ops user fields on vendor request record.
@@ -153,6 +205,13 @@ public with sharing class VPM_HttpUtil {
         system.debug('-------Random Number------' + reqNum);
         return reqNum;
     }*/
+    /******************************************************************** 
+    Created By   : Ajay
+    Created Date : 24 June 2016
+    Last Modify  : 06 July 2016
+    Description  : Extract value before updescore value from picklist.
+    Return Type  : Void.
+    ********************************************************************/
     public static String valueBeforeUnderscore(String inputString) {
         List<String> inputArray = inputString.split('_');
         if(!inputArray.isEmpty()) {
@@ -189,6 +248,14 @@ public with sharing class VPM_HttpUtil {
         System.debug('------' + o1.get(fieldName));
         update o1;
     }
+    
+    /******************************************************************** 
+    Created By   : Deepak
+    Created Date : 2 Oct 2016
+    Last Modify  : 6 Oct 2016
+    Description  : Update vendor cache after Global Create Successfull.
+    Return Type  : Void.
+    ********************************************************************/
      public static void updateRecordType(String venReqId) {
             
         VPM_PurchasingRequests__c vendorList = [SELECT Id,VPM_isVendorCached__c, RecordTypeId,VPM_FieldType__c  FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
@@ -207,6 +274,14 @@ public with sharing class VPM_HttpUtil {
         }
         return booleanValue;
     }
+    
+    /******************************************************************** 
+    Created By   : Deepak
+    Created Date : 2 Oct 2016
+    Last Modify  : 6 Oct 2016
+    Description  : Retry call after first scervice call failed
+    Return Type  : String.
+    ********************************************************************/
     public static String retryCreateVendorGlobal(String inputRetry, String vendorId) {
         System.debug('-----input json request body for create vendor is-----' + inputRetry);
         String msg = '', responseString;
@@ -273,6 +348,14 @@ public with sharing class VPM_HttpUtil {
         vendor.VPM_FieldType__c = 'Regional';
         update vendor;
     }
+    
+    /******************************************************************** 
+    Created By   : Deepak
+    Created Date : 2 Oct 2016
+    Last Modify  : 6 Oct 2016
+    Description  : Send Email and payload after service call
+    Return Type  : String.
+    ********************************************************************/
     public static void sendEmail(String toEmail, String subjectEmail, String bodyEmail) {
         List<String> toAddressList = new List<String>();
         toAddressList.add(toEmail);

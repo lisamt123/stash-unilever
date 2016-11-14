@@ -163,4 +163,79 @@ public static void callRegionalService(string vendorId)
              
 }
 
+public static void requireRejectionComment(List<VPM_PurchasingRequests__c> updatedVendorRequest , Map<Id,VPM_PurchasingRequests__c> OldVendorRequestValueList)
+{ 
+      Map<Id, VPM_PurchasingRequests__c> rejectedStatements = new Map<Id, VPM_PurchasingRequests__c>{};
+
+  for(VPM_PurchasingRequests__c inv: updatedVendorRequest)
+  {
+    
+     /* 
+      Set the hours spent with each approver group and store it in VPM_StoreHours.
+    */
+             
+            if(!VPM_SearchVendor1.UpdateNoOfHoursFlag)
+            {
+            inv.VPM_CheckHours__c =true;
+            VPM_SearchVendor1.UpdateNoOfHoursFlag =!VPM_SearchVendor1.UpdateNoOfHoursFlag;
+            }
+             if((inv.VPM_CheckHours__c))
+             {
+            system.debug('VPM_VendorSLA__c '+inv.VPM_VendorSLA__c);
+             inv.VPM_StoreHours__c=inv.VPM_VendorSLA__c;
+             
+             }
+    
+    /* 
+      Get the old object record, and check if the approval status 
+      field has been updated to rejected. If so, put it in a map 
+      so we only have to use 1 SOQL query to do all checks.
+    */
+    
+    VPM_PurchasingRequests__c oldInv = OldVendorRequestValueList.get(inv.Id);
+
+    if (oldInv.VPM_ApprovalStatus__c != 'Rejected' 
+     && inv.VPM_ApprovalStatus__c == 'Rejected')
+    { 
+      rejectedStatements.put(inv.Id, inv);  
+    }
+  }
+   
+  if (!rejectedStatements.isEmpty())  
+  {
+    // UPDATE 2/1/2014: Get the most recent approval process instance for the object.
+    // If there are some approvals to be reviewed for approval, then
+    // get the most recent process instance for each object.
+    List<Id> processInstanceIds = new List<Id>{};
+    
+    for (VPM_PurchasingRequests__c invs : [SELECT (SELECT ID
+                                              FROM ProcessInstances
+                                              ORDER BY CreatedDate DESC
+                                              LIMIT 1)
+                                      FROM VPM_PurchasingRequests__c
+                                      WHERE ID IN :rejectedStatements.keySet()])
+    {
+        processInstanceIds.add(invs.ProcessInstances[0].Id);
+    }
+      
+    // Now that we have the most recent process instances, we can check
+    // the most recent process steps for comments.  
+    for (ProcessInstance pi : [SELECT TargetObjectId,
+                                   (SELECT Id, StepStatus, Comments 
+                                    FROM Steps
+                                    ORDER BY CreatedDate DESC
+                                    LIMIT 1 )
+                               FROM ProcessInstance
+                               WHERE Id IN :processInstanceIds
+                               ORDER BY CreatedDate DESC])   
+    {                   
+      if ((pi.Steps[0].Comments == null || 
+           pi.Steps[0].Comments.trim().length() == 0))
+      {
+        rejectedStatements.get(pi.TargetObjectId).addError(
+          'Operation Cancelled: Please provide a rejection reason!');
+      }
+    }  
+  }
+}
 }

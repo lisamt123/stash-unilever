@@ -263,6 +263,7 @@ with Sharing public class VPM_GoldenDataController2 {
               }
             
         }
+        showSaveExit = false;
         if((recordTypeId==STR_CONST_MAINTAIN || (recordTypeId==STR_CONST_EXTEND && purchReqVar.VPM_ExtensionType__c=='Regional')) && purchReqVar.VPM_FieldType__c=='Global')
            {showSaveExit=true;}  
            else{showSaveExit=false;}       
@@ -987,7 +988,7 @@ public void approvalCallMethod()
         
             pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
             
-            pr.VPM_RequestGroupTime__c = system.now();
+           // pr.VPM_RequestGroupTime__c = system.now();
         }
         else if( pr.VPM_RequestFromFLSOrBR__c != null)
         {
@@ -1038,7 +1039,7 @@ public void approvalCallMethod()
         {
             pr.VPM_RequestFromFLSOrBR__c=STR_CONST_FLS;
              pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
-             pr.VPM_RequestGroupTime__c = system.now();
+             //pr.VPM_RequestGroupTime__c = system.now();
         }
         
         if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
@@ -1068,7 +1069,7 @@ public void approvalCallMethod()
                     system.debug('@@OldPaymentMethod' + OldPaymentMethod);       
                 // End Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016    
                 
-                	
+                    
                 if(String.isNotBlank(OldPaymentTerms))
                 {
                     if(!(NewPaymentTerms.contains(OldPaymentTerms)))
