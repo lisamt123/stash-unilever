@@ -21861,7 +21861,8 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <description>To restrict the changes on account name for Russia sales rep users.</description>
         <errorConditionFormula>AND( 
 NOT(ISNEW()),OR(RecordType.Name=&apos;Operator Russia&apos;, RecordType.Name=&apos;Operator&apos;),
-OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilever Food Solution - Russia&apos; 
+OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilever Food Solution - Russia&apos; ,
+!($Permission.FS_Admin) 
 )</errorConditionFormula>
         <errorMessage>Don&apos;t Update the Account Name / Account Currency .</errorMessage>
     </validationRules>
