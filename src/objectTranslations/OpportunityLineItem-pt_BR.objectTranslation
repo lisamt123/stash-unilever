@@ -381,6 +381,10 @@
         </sections>
     </layouts>
     <validationRules>
+        <errorMessage><!-- Distributor TMI is required --></errorMessage>
+        <name>FS_Distributor_TMI_Req</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- You can&apos;t select a product which is inactive. --></errorMessage>
         <name>FS_Inactive_Products</name>
     </validationRules>

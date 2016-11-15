@@ -27,7 +27,7 @@
         <name>Consumer_Product_Descriptor_no_size__c</name>
     </fields>
     <fields>
-        <help>この選択により、案件への製造番号または日付コードの入力が必須になります。</help>
+        <help>この選択をすると、ケースの追跡ににロットまたは日付コードの入力が必須になります。</help>
         <label>日付コードグループ</label>
         <name>Group_By_Day_Code__c</name>
     </fields>
@@ -313,10 +313,7 @@
         <name>L2_Product_Category_Mandatory_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage>チェックが必要です：-
- 理由コードがレベル5まで入力されているか,  
- 理由コード   value is not empty and
- select the value on Type field</errorMessage>
+        <errorMessage>チェックが必要です：-\n ロスツリーがレベル5まで入力されているか, \n ロスツリー value is not empty and\n select the value on Type field</errorMessage>
         <name>L5_ReasonCode_Mandatory_Validation</name>
     </validationRules>
     <validationRules>

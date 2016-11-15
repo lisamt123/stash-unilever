@@ -41,7 +41,7 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>dmitriy.kalichkin@unilever.com</name>
+                <name>chatter.support@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -63,7 +63,7 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>anna.orekhova@unilever.com</name>
+                <name>chatter.support@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -90,6 +90,10 @@
     <finalApprovalActions>
         <action>
             <name>FS_Update_TPR_Approved</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>FS_UpdateRecordTypetoReadOnly</name>
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>

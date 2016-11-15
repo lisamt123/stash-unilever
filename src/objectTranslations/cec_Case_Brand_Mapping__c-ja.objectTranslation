@@ -9,11 +9,11 @@
         <name>Auto_Response_Template__c</name>
     </fields>
     <fields>
-        <label>ブランドマーケット</label>
+        <label>Brand Market</label>
         <name>Brand_Market__c</name>
     </fields>
     <fields>
-        <label>ブランド</label>
+        <label>Brand</label>
         <name>Brand__c</name>
     </fields>
     <fields>

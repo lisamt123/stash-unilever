@@ -9,7 +9,7 @@
         <name>Active_for_CEC__c</name>
     </fields>
     <fields>
-        <label>ブランド</label>
+        <label>Brand</label>
         <name>Brand__c</name>
     </fields>
     <fields>

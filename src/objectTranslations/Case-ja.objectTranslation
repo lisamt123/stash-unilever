@@ -627,7 +627,7 @@
         <name>Machine_ID__c</name>
     </fields>
     <fields>
-        <label>手動修正理由</label>
+        <label>Manual Override Reason</label>
         <name>Manual_Override_Reason__c</name>
         <picklistValues>
             <masterLabel>1-Legal</masterLabel>
@@ -635,15 +635,15 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>2-Customer Request</masterLabel>
-            <translation>2-顧客要望</translation>
+            <translation>2-Customer Request</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>3-Default</masterLabel>
-            <translation>3-標準</translation>
+            <translation>3-Default</translation>
         </picklistValues>
     </fields>
     <fields>
-        <label>手動</label>
+        <label>Manual Retention Reason</label>
         <name>Manual_Retention_Override__c</name>
     </fields>
     <fields>
@@ -854,7 +854,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Store</masterLabel>
-            <translation>店舗</translation>
+            <translation>エリアコンプレーン</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Web</masterLabel>
@@ -1054,15 +1054,15 @@
         <name>Priority</name>
         <picklistValues>
             <masterLabel>1 - High</masterLabel>
-            <translation>1 - 高</translation>
+            <translation>1 - Red</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>2 - Medium</masterLabel>
-            <translation>2 - 中</translation>
+            <translation>2 - Yellow</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>3 - Low</masterLabel>
-            <translation>3 - 低</translation>
+            <translation>3 - Green</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1226,7 +1226,7 @@
         <name>Product_UPC__c</name>
     </fields>
     <fields>
-        <label>製品lコード</label>
+        <label>ロット</label>
         <name>Production_Code__c</name>
     </fields>
     <fields>
@@ -1261,13 +1261,13 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>理由コード保持日</label>
+        <label>ロスツリー保持日</label>
         <name>Reason_Code_Retention_Days__c</name>
     </fields>
     <fields>
-        <label>理由コード</label>
+        <label>ロスツリー Level 5</label>
         <name>Reason_Code__c</name>
-        <relationshipLabel>案件</relationshipLabel>
+        <relationshipLabel>ケース番号</relationshipLabel>
     </fields>
     <fields>
         <label><!-- Reason L0 desc --></label>
@@ -1405,23 +1405,23 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Awaiting Information from Consumer</masterLabel>
-            <translation>顧客情報待ち</translation>
+            <translation>消費者連絡待ち</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Awaiting Knowledge Response</masterLabel>
-            <translation>ナレッジレスポンス待ち</translation>
+            <translation>Awaiting Knowledge Response</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Closed</masterLabel>
-            <translation>案件完了</translation>
+            <translation>完了</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Closed as Duplicate</masterLabel>
-            <translation>案件完了 - 重複</translation>
+            <translation>完了 – 重複</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Escalated</masterLabel>
-            <translation>エスカレーション済み</translation>
+            <translation>エスカレーション中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>In Progress</masterLabel>
@@ -1429,11 +1429,11 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>New</masterLabel>
-            <translation>新規</translation>
+            <translation>受付中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>On Hold</masterLabel>
-            <translation>保留</translation>
+            <translation>保留中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Pending with Courier</masterLabel>
@@ -1441,11 +1441,11 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Reopened</masterLabel>
-            <translation><!-- Reopened --></translation>
+            <translation>再オープン</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Review Needed</masterLabel>
-            <translation>要承認</translation>
+            <translation>承認待ち</translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1668,7 +1668,7 @@
     <layouts>
         <layout>Case Feed Layout</layout>
         <sections>
-            <label>追加情報（問題）</label>
+            <label>追加情報（ケース）</label>
             <section>Additional Issue Information</section>
         </sections>
         <sections>
@@ -1680,11 +1680,11 @@
             <section>CosmetoVigilance links</section>
         </sections>
         <sections>
-            <label>発行情報</label>
+            <label>基礎情報</label>
             <section>Issue Information</section>
         </sections>
         <sections>
-            <label>関連案件</label>
+            <label>関連ケース</label>
             <section>Related Cases</section>
         </sections>
         <sections>
@@ -1710,7 +1710,7 @@
     <layouts>
         <layout>Case QC Spam Layout</layout>
         <sections>
-            <label>発行情報</label>
+            <label>基礎情報</label>
             <section>Issue Information</section>
         </sections>
     </layouts>
@@ -1774,7 +1774,7 @@
         <name>Product_and_Reason_Code_Required</name>
     </validationRules>
     <webLinks>
-        <label>問題追加</label>
+        <label>継続作成</label>
         <name>Add_Issue</name>
     </webLinks>
     <webLinks>
@@ -1790,11 +1790,11 @@
         <name>Ingestion_Cosmetovigilence</name>
     </webLinks>
     <webLinks>
-        <label>新規案件</label>
+        <label>新規ケース</label>
         <name>New_Case</name>
     </webLinks>
     <webLinks>
-        <label>次の案件</label>
+        <label>次のケース</label>
         <name>Next_Case</name>
     </webLinks>
     <webLinks>

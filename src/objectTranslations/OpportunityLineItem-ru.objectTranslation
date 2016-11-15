@@ -233,7 +233,7 @@
         <name>FS_additionalDiscount__c</name>
     </fields>
     <fields>
-        <label><!-- Cases/Piece --></label>
+        <label>Коробка/штука</label>
         <name>FS_casesPiece__c</name>
     </fields>
     <fields>
@@ -380,6 +380,10 @@
             <section>TPR Calculation</section>
         </sections>
     </layouts>
+    <validationRules>
+        <errorMessage><!-- Distributor TMI is required --></errorMessage>
+        <name>FS_Distributor_TMI_Req</name>
+    </validationRules>
     <validationRules>
         <errorMessage>Вы не можете выбрать неактивный продукт</errorMessage>
         <name>FS_Inactive_Products</name>

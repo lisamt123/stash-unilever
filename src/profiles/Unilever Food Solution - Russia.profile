@@ -55860,6 +55860,10 @@
         <recordType>Opportunity.FS_OpportunityTPR</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Opportunity-Opportunity with TPR Calculation Layout ReadOnly</layout>
+        <recordType>Opportunity.FS_OpportunityTPRReadOnly</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -60120,6 +60124,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Opportunity.FS_OpportunityTPR</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.FS_OpportunityTPRReadOnly</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

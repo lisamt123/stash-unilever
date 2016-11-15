@@ -73,7 +73,19 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
+                <name>dhunia.clermont@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>eric.shoemaker@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>niki.vedawala@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>yassmin.urena@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

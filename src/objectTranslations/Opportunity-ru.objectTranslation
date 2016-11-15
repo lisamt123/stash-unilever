@@ -1081,6 +1081,17 @@ Enter competitor pricing if available --></help>
             <section>Totals TPR</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>Opportunity with TPR Calculation Layout ReadOnly</layout>
+        <sections>
+            <label><!-- Calculation TPR --></label>
+            <section>Calculation TPR</section>
+        </sections>
+        <sections>
+            <label><!-- Totals TPR --></label>
+            <section>Totals TPR</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label>Существующий</label>
         <name>FS_ExistingBusiness</name>
@@ -1092,6 +1103,10 @@ Enter competitor pricing if available --></help>
     <recordTypes>
         <label>UFS Возможность - Россия</label>
         <name>FS_OpportunityTPR</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- RUFS Opportunity TPR ReadOnly --></label>
+        <name>FS_OpportunityTPRReadOnly</name>
     </recordTypes>
     <recordTypes>
         <label><!-- Mobile Channel --></label>
@@ -1142,6 +1157,10 @@ Enter competitor pricing if available --></help>
         <name>Opportunity_for_Stage_5</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- Opportunity is already locked for update. --></errorMessage>
+        <name>Record_Locked_Validation</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Cases / Pieces is a required field. --></errorMessage>
         <name>Required_Cases_Pieces_field</name>
     </validationRules>
@@ -1160,6 +1179,10 @@ Enter competitor pricing if available --></help>
     <validationRules>
         <errorMessage><!-- Internal Order is a required field. --></errorMessage>
         <name>Required_Internal_Order</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Reason and Reason Description are required fields --></errorMessage>
+        <name>Required_Opportunity_Reason</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Ship to Code value is a required field. --></errorMessage>

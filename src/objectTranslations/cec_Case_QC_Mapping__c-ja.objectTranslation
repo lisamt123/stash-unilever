@@ -32,23 +32,23 @@
         <name>Status__c</name>
         <picklistValues>
             <masterLabel>Awaiting Information from Consumer</masterLabel>
-            <translation>顧客情報待ち</translation>
+            <translation>消費者連絡待ち</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Awaiting Knowledge Response</masterLabel>
-            <translation>ナレッジレスポンス待ち</translation>
+            <translation>Awaiting Knowledge Response</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Closed</masterLabel>
-            <translation>案件完了</translation>
+            <translation>完了</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Closed as Duplicate</masterLabel>
-            <translation>案件完了 - 重複</translation>
+            <translation>完了 - 重複</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Escalated</masterLabel>
-            <translation>エスカレーション済み</translation>
+            <translation>エスカレーション中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>In Progress</masterLabel>
@@ -56,15 +56,15 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>New</masterLabel>
-            <translation>新規</translation>
+            <translation>受付中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>On Hold</masterLabel>
-            <translation>保留</translation>
+            <translation>保留中</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Review Needed</masterLabel>
-            <translation>要承認</translation>
+            <translation>承認待ち</translation>
         </picklistValues>
     </fields>
     <fields>

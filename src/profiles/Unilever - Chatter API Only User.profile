@@ -55851,6 +55851,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Opportunity-Opportunity Layout</layout>
+        <recordType>Opportunity.FS_OpportunityTPRReadOnly</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Opportunity Layout</layout>
         <recordType>Opportunity.ICB_Mobile_Channel</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -64648,6 +64652,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Opportunity.FS_OpportunityTPR</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.FS_OpportunityTPRReadOnly</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

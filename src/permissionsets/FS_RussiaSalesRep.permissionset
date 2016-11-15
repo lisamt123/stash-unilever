@@ -40650,7 +40650,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.FS_casesPiece__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -42640,7 +42640,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>PricebookEntry.FS_Comment__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -42650,17 +42650,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>PricebookEntry.FS_List_Price_including_VAT__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>PricebookEntry.FS_Price_per_piece_with_VAT__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>PricebookEntry.FS_Price_per_piece_without_VAT__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -42810,7 +42810,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Product2.FS_NetWeight__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -57125,6 +57125,10 @@
     <recordTypeVisibilities>
         <recordType>Opportunity.FS_OpportunityTPR</recordType>
         <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Opportunity.FS_OpportunityTPRReadOnly</recordType>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Opportunity.ICB_Mobile_Channel</recordType>

@@ -171,6 +171,17 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>FS_UpdateRecordTypetoReadOnly</fullName>
+        <description>Update the opportunity record type to Read Only</description>
+        <field>RecordTypeId</field>
+        <lookupValue>FS_OpportunityTPRReadOnly</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Update Record Type to ReadOnly</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>FS_Update_Owner_Manager</fullName>
         <description>Updates users Manager</description>
         <field>FS_Owner_Manager__c</field>

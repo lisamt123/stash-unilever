@@ -925,7 +925,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <help>CECフィールド：メール案件の承認要求レベルを決定します。</help>
+        <help>CECフィールド：メールケースの承認要求レベルを決定します。</help>
         <label>品質チェック率</label>
         <name>Quality_Check_Percentage__c</name>
     </fields>

@@ -45,7 +45,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>ブランドロゴ</label>
+        <label>Brand Logo</label>
         <name>Brand_Logo__c</name>
         <relationshipLabel>代替品返金</relationshipLabel>
     </fields>
@@ -96,7 +96,7 @@
         <name>Consumer_Document_Type__c</name>
     </fields>
     <fields>
-        <label>姓</label>
+        <label>氏名（カナ）</label>
         <name>Consumer_First_Name__c</name>
     </fields>
     <fields>
@@ -104,7 +104,7 @@
         <name>Consumer_Home_Phone_Number__c</name>
     </fields>
     <fields>
-        <label>名</label>
+        <label>氏名（漢字）</label>
         <name>Consumer_Last_Name__c</name>
     </fields>
     <fields>
@@ -124,7 +124,7 @@
         <name>Country_BrandLogo__c</name>
     </fields>
     <fields>
-        <label>国</label>
+        <label>Country</label>
         <name>Country__c</name>
         <picklistValues>
             <masterLabel>Argentina</masterLabel>
@@ -392,11 +392,11 @@
         <name>Currency_Text__c</name>
     </fields>
     <fields>
-        <label>承認日</label>
+        <label>Date Approved</label>
         <name>Date_Approved__c</name>
     </fields>
     <fields>
-        <label>誕生日</label>
+        <label>Date of Birth</label>
         <name>Date_of_Birth__c</name>
     </fields>
     <fields>
@@ -430,11 +430,11 @@
         <name>E_Voucher_Value__c</name>
     </fields>
     <fields>
-        <label>送付物1-メモ</label>
+        <label>金額1</label>
         <name>Enclosure1_Notes__c</name>
     </fields>
     <fields>
-        <label>送付物1-数量</label>
+        <label>Enclosure1 Quantity</label>
         <name>Enclosure1_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -462,16 +462,16 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>送付物1</label>
+        <label>費目1</label>
         <name>Enclosure1__c</name>
         <relationshipLabel>代替品返金</relationshipLabel>
     </fields>
     <fields>
-        <label>送付物2-メモ</label>
+        <label>金額2</label>
         <name>Enclosure2_Notes__c</name>
     </fields>
     <fields>
-        <label>送付物2-数量</label>
+        <label>Enclosure2 Quantity</label>
         <name>Enclosure2_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -499,16 +499,16 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>送付物2</label>
+        <label>費目2</label>
         <name>Enclosure2__c</name>
         <relationshipLabel>対応済み（送付物2)</relationshipLabel>
     </fields>
     <fields>
-        <label>送付物3-メモ</label>
+        <label>金額3</label>
         <name>Enclosure3_Notes__c</name>
     </fields>
     <fields>
-        <label>送付物3-数量</label>
+        <label>Enclosure3 Quantity</label>
         <name>Enclosure3_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -536,16 +536,16 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>送付物3</label>
+        <label>費目3</label>
         <name>Enclosure3__c</name>
         <relationshipLabel>対応済み（送付物3)</relationshipLabel>
     </fields>
     <fields>
-        <label>送付物4-メモ</label>
+        <label>金額4</label>
         <name>Enclosure4_Notes__c</name>
     </fields>
     <fields>
-        <label>送付物4-数量</label>
+        <label>Enclosure4 Quantity</label>
         <name>Enclosure4_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -573,16 +573,16 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>送付物4</label>
+        <label>費目4</label>
         <name>Enclosure4__c</name>
         <relationshipLabel>対応済み（送付物4)</relationshipLabel>
     </fields>
     <fields>
-        <label>送付物5-メモ</label>
+        <label>金額5</label>
         <name>Enclosure5_Notes__c</name>
     </fields>
     <fields>
-        <label>送付物5-数量</label>
+        <label>Enclosure5 Quantity</label>
         <name>Enclosure5_Quantity__c</name>
         <picklistValues>
             <masterLabel>1</masterLabel>
@@ -610,7 +610,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>送付物5</label>
+        <label>費目5</label>
         <name>Enclosure5__c</name>
         <relationshipLabel>対応済み（送付物5)</relationshipLabel>
     </fields>
@@ -623,15 +623,15 @@
         <name>Expiry_Date__c</name>
     </fields>
     <fields>
-        <label>対応済み</label>
+        <label>Fulfilled</label>
         <name>Fulfilled__c</name>
     </fields>
     <fields>
-        <label>名称</label>
+        <label>Full Name</label>
         <name>Full_Name__c</name>
     </fields>
     <fields>
-        <label>名称</label>
+        <label>Fullname</label>
         <name>Fullname__c</name>
     </fields>
     <fields>
@@ -643,11 +643,11 @@
         <name>ID__c</name>
     </fields>
     <fields>
-        <label>ギフト</label>
+        <label>Include Gift</label>
         <name>Include_Gift__c</name>
     </fields>
     <fields>
-        <label>印刷</label>
+        <label>Printed Locally</label>
         <name>IsPrintedLocally__c</name>
     </fields>
     <fields>
@@ -655,7 +655,7 @@
         <name>Issue_Card__c</name>
     </fields>
     <fields>
-        <label>ローカル識別子</label>
+        <label>Local Identifier</label>
         <name>Local_Identifier__c</name>
     </fields>
     <fields>
@@ -671,7 +671,7 @@
         <name>Message__c</name>
     </fields>
     <fields>
-        <label>代替品の数量</label>
+        <label>No of Replacement Items</label>
         <name>No_of_Replacement_Items__c</name>
     </fields>
     <fields>
@@ -679,19 +679,19 @@
         <name>Payable_To__c</name>
     </fields>
     <fields>
-        <label>メール</label>
+        <label>Person Email</label>
         <name>PersonEmail__c</name>
     </fields>
     <fields>
-        <label>オプション</label>
+        <label>Post Option</label>
         <name>PostOption__c</name>
     </fields>
     <fields>
-        <label>製品メモ</label>
+        <label>Product Notes</label>
         <name>Product_Notes__c</name>
     </fields>
     <fields>
-        <label>製品送付済み</label>
+        <label>Product Sent</label>
         <name>Product_Sent__c</name>
     </fields>
     <fields>
@@ -724,7 +724,7 @@
         <name>Retrieval_Status__c</name>
     </fields>
     <fields>
-        <label>敬称</label>
+        <label>Salutation</label>
         <name>Salutation__c</name>
     </fields>
     <fields>
@@ -744,7 +744,7 @@
         <name>TotalFulfilmentValue__c</name>
     </fields>
     <fields>
-        <label>タイプ</label>
+        <label>Type</label>
         <name>Type__c</name>
         <picklistValues>
             <masterLabel>Dosing Request</masterLabel>
@@ -760,7 +760,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>承認済み</label>
+        <label>Approved</label>
         <name>isApproved__c</name>
     </fields>
     <fields>
@@ -786,11 +786,11 @@
             <section>E-Voucher Details</section>
         </sections>
         <sections>
-            <label>送付物</label>
+            <label>代金返納</label>
             <section>Enclosures</section>
         </sections>
         <sections>
-            <label>手紙と顧客情報</label>
+            <label>Letter and Consumer Details</label>
             <section>Letter and Consumer Details</section>
         </sections>
         <sections>
@@ -802,7 +802,7 @@
             <section>New Section</section>
         </sections>
         <sections>
-            <label>製品詳細</label>
+            <label>代替品の詳細</label>
             <section>Product Details</section>
         </sections>
         <sections>
@@ -856,7 +856,7 @@
         <name>Add_Retrieval_Request</name>
     </webLinks>
     <webLinks>
-        <label>新規送付物</label>
+        <label>新規代替品返金</label>
         <name>New_Fulfilment</name>
     </webLinks>
     <workflowTasks>

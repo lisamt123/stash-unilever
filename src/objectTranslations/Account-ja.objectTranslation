@@ -2613,11 +2613,11 @@ At least 3 out of 4 = 5 --></help>
         <name>Latest_Case_Number__c</name>
     </fields>
     <fields>
-        <label>直近案件の製品コード</label>
+        <label>直近ケースの製品コード</label>
         <name>Latest_Case_Product_Code__c</name>
     </fields>
     <fields>
-        <label>直近案件の理由コード</label>
+        <label>直近ケースのロスツリー</label>
         <name>Latest_Case_Reason_Code__c</name>
     </fields>
     <fields>
@@ -2662,7 +2662,7 @@ At least 3 out of 4 = 5 --></help>
         <name>Local_Identifier_No_Special_Char__c</name>
     </fields>
     <fields>
-        <label>ローカル識別子</label>
+        <label>Local Identifier</label>
         <name>Local_Identifier__c</name>
     </fields>
     <fields>
@@ -3968,15 +3968,15 @@ At least 3 out of 4 = 5 --></help>
         <name>Unilever_Opt_In__c</name>
         <picklistValues>
             <masterLabel>Brand</masterLabel>
-            <translation>ブランド</translation>
+            <translation>Brand</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Neutral</masterLabel>
-            <translation>どちらとも言えない</translation>
+            <translation>Neutral</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>No</masterLabel>
-            <translation>不可</translation>
+            <translation>No</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Yes</masterLabel>
