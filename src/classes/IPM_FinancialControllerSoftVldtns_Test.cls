@@ -222,7 +222,9 @@ private class IPM_FinancialControllerSoftVldtns_Test
       
       User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
       
-      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Local_Project__c,Gate_Keeping_Model__c, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
+      Id defaultFinlRecordType = Schema.SObjectType.IPM_Financial__c.RecordTypeInfosByName.get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).RecordTypeId;
+      
+      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Local_Project__c,Gate_Keeping_Model__c, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c WHERE recordTypeId = :defaultFinlRecordType  limit 1000]);
       List<IPM_Project__c> lstProjects = [Select id, name, IPMProject_Span__c, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name NOT IN ('IPM_MasterProject')];
       
       
