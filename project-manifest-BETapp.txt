@@ -1,4 +1,4 @@
 src
 src/classes
-src/classes/uw_FinishEnableExternalUserBatchJob.cls
-src/classes/uw_FinishEnableExternalUserBatchJob.cls-meta.xml
+src/classes/BET_Team_MemberHandler.cls
+src/classes/BET_Team_MemberHandler.cls-meta.xml
