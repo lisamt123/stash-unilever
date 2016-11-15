@@ -42783,6 +42783,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Opportunity.FS_OpportunityTPRReadOnly</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Opportunity.ICB_Mobile_Channel</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>

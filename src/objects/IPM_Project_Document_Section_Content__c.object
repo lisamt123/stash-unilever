@@ -2533,6 +2533,15 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
         <label>All</label>
     </listViews>
     <listViews>
+        <fullName>IPM_ALMATI_CANCUN_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ALMATI CANCUN</label>
+        <queue>IPM_ALMATI_CANCUN</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7I0L000000GqFa_IPM_Project_Document_Section_Content</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7I0L000000GqFa</label>
@@ -11247,7 +11256,7 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
     <listViews>
         <fullName>IPM_a7I0L000000Gyxp_IPM_Project_Document_Section_Content</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000Gyxp</label>
+        <label>IPM_MOUNT ARARAT_N&amp;R</label>
         <queue>IPM_a7I0L000000Gyxp</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -11321,6 +11330,78 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
         <filterScope>Queue</filterScope>
         <label>IPM_a7I0L000000GzP9</label>
         <queue>IPM_a7I0L000000GzP9</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzPE_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GzPE</label>
+        <queue>IPM_a7I0L000000GzPE</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzPs_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GzPs</label>
+        <queue>IPM_a7I0L000000GzPs</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzQ2_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MOUNTARARAT_N&amp;R</label>
+        <queue>IPM_a7I0L000000GzQ2</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzQW_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GzQW</label>
+        <queue>IPM_a7I0L000000GzQW</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzQb_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_AMSTEL2W4_EU</label>
+        <queue>IPM_a7I0L000000GzQb</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzQg_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_JWL DRAGON US_NA</label>
+        <queue>IPM_a7I0L000000GzQg</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzQl_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GzQl</label>
+        <queue>IPM_a7I0L000000GzQl</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzQq_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_O SANTIAGO LA _LA</label>
+        <queue>IPM_a7I0L000000GzQq</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
