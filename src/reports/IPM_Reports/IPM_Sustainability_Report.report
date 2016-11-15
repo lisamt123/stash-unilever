@@ -88,7 +88,7 @@
         <field>IPM_Assessment__c.IPM_Country_Name__c</field>
     </columns>
     <columns>
-        <field>IPM_Project__c.IPM_LocalProject_Brand__c</field>
+        <field>IPM_Assessment__c.IPM_LocalRolloutBrand__c</field>
     </columns>
     <columns>
         <field>IPM_Assessment__c.IPM_Assessment_GHG_PCU__c</field>
