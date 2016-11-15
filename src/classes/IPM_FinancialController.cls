@@ -836,6 +836,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                         // This is so that the key Financial Flags are displayed for charter tab in GKM3 projects
                         // This tab is visbile for Global projects only in GKM3 projects
                         showKeyFinancial = true; 
+                        globalCharter = true;
                         getGlobalTopDownWrappers();
                     }
                     else if (currentTab == IPM_ConstantUtils.TAB_ROLLUP_NAME)
