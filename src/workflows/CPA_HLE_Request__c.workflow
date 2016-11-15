@@ -103,10 +103,6 @@
             <field>eml_VDM_group_email__c</field>
             <type>email</type>
         </recipients>
-        <recipients>
-            <field>lkp_Owner__c</field>
-            <type>userLookup</type>
-        </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_Request_SLA1</template>
     </alerts>
@@ -140,10 +136,6 @@
         <recipients>
             <field>eml_VDM_group_email__c</field>
             <type>email</type>
-        </recipients>
-        <recipients>
-            <field>lkp_Owner__c</field>
-            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_Request_SLA2</template>

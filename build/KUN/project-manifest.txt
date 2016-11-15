@@ -1,0 +1,94 @@
+src/applications
+src/applications/KUN_Community_APP.app
+src/classes
+src/classes/Kun_Community_Test.cls
+src/classes/Kun_Community_Test.cls-meta.xml
+src/classes/KUN_Profile_CC_Test.cls
+src/classes/KUN_Profile_CC_Test.cls-meta.xml
+src/classes/Kun_HomeView_CC.cls
+src/classes/Kun_HomeView_CC.cls-meta.xml
+src/classes/KUN_Links.cls
+src/classes/KUN_Links.cls-meta.xml
+src/classes/KUN_Profile_CC.cls
+src/classes/KUN_Profile_CC.cls-meta.xml
+src/classes/KUN_ProfileTriggerHandler.cls
+src/classes/KUN_ProfileTriggerHandler.cls-meta.xml
+src/classes/KUNDataFactory.cls
+src/classes/KUNDataFactory.cls-meta.xml
+src/groups
+src/groups/KUN_Administrators_Community.group
+src/groups/KUN_Community_Users.group
+src/labels
+src/labels/KUN.LABELS
+src/layouts
+src/layouts/KUN_Activities__c-KUN  News Layout.layout
+src/layouts/KUN_Activities__c-KUN  Spotlight Layout.layout
+src/layouts/KUN_Activities__c-KUN Broadcast Message Layout.layout
+src/layouts/KUN_Activities__c-KUN Document And Reports Layout.layout
+src/layouts/KUN_Activities__c-KUN Events Layout.layout
+src/layouts/KUN_Activities__c-KUN Experts Layout.layout
+src/layouts/KUN_Activities__c-KUN Facts and Figures Layout.layout
+src/layouts/KUN_Activities__c-KUN Global Business Actions Layout.layout
+src/layouts/KUN_Activities__c-KUN Quick Link Layout.layout
+src/layouts/KUN_Profile__c-KUN Profile Layout.layout
+src/objects
+src/objects/KUN_Activities__c.object
+src/objects/KUN_Profile__c.object
+src/objects/KUN_GA__c.object
+src/objectTranslations
+src/objectTranslations/KUN_Activities__c-en_US.objectTranslation
+src/objectTranslations/KUN_Profile__c-en_US.objectTranslation
+src/pages
+src/pages/Kun_HomeView.page
+src/pages/Kun_HomeView.page-meta.xml
+src/pages/KUN_Profile_VF.page
+src/pages/KUN_Profile_VF.page-meta.xml
+src/pages/KUN_Profile_View.page
+src/pages/KUN_Profile_View.page-meta.xml
+src/permissionsets
+src/permissionsets/KUN_APP_Administrator.permissionset
+src/permissionsets/KUN_Super_Administrator.permissionset
+src/permissionsets/KUN_Users.permissionset
+src/reports
+src/reports/KUN_All_Infomation
+src/reports/KUN_All_Infomation/KUN_All_Info.report
+src/reports/KUN_All_Infomation-meta.xml
+src/reports/KUN_Capability_Reports
+src/reports/KUN_Capability_Reports/KUN_Capability_Deliver.report
+src/reports/KUN_Capability_Reports/KUN_Capability_Make.report
+src/reports/KUN_Capability_Reports/KUN_Capability_Order_to_Cash_O2C.report
+src/reports/KUN_Capability_Reports/KUN_Capability_Plan_to_Forecast_P2F.report
+src/reports/KUN_Capability_Reports/KUN_Capability_Procurement.report
+src/reports/KUN_Capability_Reports/KUN_Capability_Purchase_to_Pay_P2P.report
+src/reports/KUN_Capability_Reports/KUN_Capability_Record_to_Report_R2R.report
+src/reports/KUN_Capability_Reports/KUN_Capability_Supply_Chain_Finance.report
+src/reports/KUN_Capability_Reports-meta.xml
+src/reports/KUN_Community_Reports
+src/reports/KUN_Community_Reports/KUN_data_Bangladesh.report
+src/reports/KUN_Community_Reports/KUN_data_China.report
+src/reports/KUN_Community_Reports/KUN_Data_Indonesia.report
+src/reports/KUN_Community_Reports/KUN_Data_India.report
+src/reports/KUN_Community_Reports/KUN_data_Japan.report
+src/reports/KUN_Community_Reports/KUN_data_Malaysia.report
+src/reports/KUN_Community_Reports/KUN_data_Pakistan.report
+src/reports/KUN_Community_Reports/KUN_data_Philippines.report
+src/reports/KUN_Community_Reports/KUN_data_Singapore.report
+src/reports/KUN_Community_Reports/KUN_data_Thailand.report
+src/reports/KUN_Community_Reports/KUn_data_Vietnam.report
+src/reports/KUN_Community_Reports-meta.xml
+src/reportTypes
+src/reportTypes/KUN_Profiles_with_User_Info.reportType
+src/staticresources
+src/staticresources/KUN.resource
+src/staticresources/KUN.resource-meta.xml
+src/tabs
+src/tabs/KUN_Activities__c.tab
+src/tabs/KUN_Community_TAB.tab
+src/tabs/KUN_Profile__c.tab
+src/tabs/KUN_Profile_tab.tab
+src/triggers
+src/triggers/KUN_ProfileTrigger.trigger
+src/triggers/KUN_ProfileTrigger.trigger-meta.xml
+src/objects
+src/objects/KUN_GA__c.object
+src/objects/KUN_Profile__c.object

@@ -1,0 +1,4 @@
+src
+src/objects/OpportunityLineItem.object
+src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
+src/permissionsets/FS_Sales_Rep.permissionset

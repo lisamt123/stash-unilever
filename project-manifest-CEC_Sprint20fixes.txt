@@ -1,11 +1,3 @@
 src
-src/permissionsets
-src/flows
-src/layouts
 src/objects
-src/permissionsets/CEC_Enable_Audit_Fields.permissionset
-src/flows/CEC_Close_Case_Survey-17.flow
-src/flows/CEC_Update_CV_Questionare_on_Case-4.flow
-src/layouts/Case-Case Feed Layout.layout
 src/objects/Case.object
-src/objects/cec_Additional_Case_Information__c.object

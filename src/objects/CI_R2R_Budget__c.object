@@ -139,8 +139,10 @@
                 <fullName>2000</fullName>
                 <default>false</default>
             </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -321,9 +323,11 @@
             <picklistValues>
                 <fullName>19193</fullName>
                 <default>false</default>
-            </picklistValues>            
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -383,7 +387,7 @@ ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;GL MDM&apos;) , ISPICKVA
 ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;Project&apos;) , ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;SAP Roles&apos;) ,
 ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;GPM&apos;) , ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;FX Revaluation&apos;) ,
 ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;Financial Reporting&apos;) , ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;Period-End&apos;) ) , &apos;ICC13071&apos; ,
-IF( ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;Intercompany&apos;) , &apos;ICC11825&apos;,
+IF( ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;Intercompany&apos;) , &apos;ICC13071&apos;,
 IF( ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;Direct Tax&apos;) , &apos;ICC13605&apos;,
 IF( ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;Indirect Tax&apos;) , &apos;ICC13606&apos;,
 IF( ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;SCOA&apos;) , &apos;ICC14131&apos;, &apos;&apos;
@@ -400,7 +404,7 @@ IF( ISPICKVAL( CI_R2R_Innovation__r.R2R_SME_Area__c , &apos;SCOA&apos;) , &apos;
         <fullName>Innovation_Funnel_No__c</fullName>
         <externalId>false</externalId>
         <formula>HYPERLINK(&quot;/&quot;&amp;Id , 
-CI_R2R_Innovation__r.Project3__c
+CI_R2R_Innovation__r.Project2__c
 ,&apos;_self&apos; )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Innovation Funnel No</label>
@@ -433,6 +437,7 @@ CI_R2R_Innovation__r.Project3__c
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -466,8 +471,10 @@ CI_R2R_Innovation__r.Project3__c
                 <fullName>UL internal cross-charge</fullName>
                 <default>false</default>
             </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

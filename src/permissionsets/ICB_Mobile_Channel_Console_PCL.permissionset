@@ -337,10 +337,6 @@
         <visible>true</visible>
     </recordTypeVisibilities>
 	<recordTypeVisibilities>
-        <recordType>Product2.ICB_MobileChannel</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>Contact.ICB_Salesman</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>

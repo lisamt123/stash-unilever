@@ -123,6 +123,14 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>SAP_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>External_Id__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>RecordTypeId</field>
             </layoutItems>
             <layoutItems>

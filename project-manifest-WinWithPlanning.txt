@@ -18,3 +18,12 @@ src/permissionsets/WWP_Super_Admin_Permissions.permissionset
 src/tabs/WWP_Loss_Tree__c.tab
 src/staticresources/CCFOT_Reports_UnileverLogo.resource
 src/staticresources/CCFOT_Reports_UnileverLogo.resource-meta.xml
+src/classes/WWP_Losstree_Copy_Component_Ctrl_test.cls
+src/classes/WWP_Losstree_Copy_Component_Ctrl_test.cls-meta.xml
+src/classes/WWP_Losstree_Copy_Component_Ctrl.cls
+src/classes/WWP_Losstree_Copy_Component_Ctrl.cls-meta.xml
+src/components/WWP_Losstree_Copy_Component.component
+src/components/WWP_Losstree_Copy_Component.component-meta.xml
+src/labels/WWP.labels
+src/classes/WWP_Losstree_EXt.cls
+src/classes/WWP_Losstree_EXt.cls-meta.xml

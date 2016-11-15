@@ -92,6 +92,10 @@
             <name>FS_Update_TPR_Approved</name>
             <type>FieldUpdate</type>
         </action>
+        <action>
+            <name>FS_UpdateRecordTypetoReadOnly</name>
+            <type>FieldUpdate</type>
+        </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
