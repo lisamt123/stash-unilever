@@ -315,6 +315,7 @@
         <fields>FS_DISTTMI__c</fields>
         <fields>Turnover__c</fields>
         <fields>GPPercent__c</fields>
+        <fields>TotalCOGS__c</fields>
         <relatedList>RelatedLineItemList</relatedList>
     </relatedLists>
     <relatedLists>
