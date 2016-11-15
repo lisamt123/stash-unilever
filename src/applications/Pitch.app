@@ -5,4 +5,6 @@
     <tab>standard-Account</tab>
     <tab>Expertise__c</tab>
     <tab>standard-report</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

@@ -80,13 +80,6 @@ public without sharing class FAU_EmailSender {
                                                         FAU_Is_deferred_To_PA__c,
                                                         FAU_Email_Address__c
                                                         from FAU_Participant__c where Id= :lParticipant];
-                                                        
-          system.debug('lparticipant'+lParticipantsFull);                                              
-        List<FAU_Module_Participant__c> lModuleParticipant = [select id, FAU_Module_Start_Date__c,
-                                                                        FAU_Module_End_Date__c 
-                                                                        from FAU_Module_Participant__c where FAU_Participant__c=:lParticipant ORDER BY FAU_Module_Start_Date__c desc LIMIT 1];     
-        system.debug('lModuleParticipant'+lModuleParticipant);
-                                                                                                                   
         Id[] lUserId =new Id[]{}; 
         Id[] lWhatId =new Id[]{}; 
         String[] lUserEmail = new String[]{};  
@@ -100,7 +93,7 @@ public without sharing class FAU_EmailSender {
         for(FAU_Participant__c oParticipant : lParticipantsFull) 
         {
             lUserId.add(oParticipant.FAU_User__c);
-            //lWhatId.add(oParticipant.Id);
+            lWhatId.add(oParticipant.Id);
             lUserEmail.add(oParticipant.FAU_Email_Address__c);
             lTemplateId.add(idTemplateId);
             lDtStart.add(null);
@@ -109,14 +102,6 @@ public without sharing class FAU_EmailSender {
             lSummary.add(''); 
             lDescription.add('');
 
-        }
-        for (FAU_Module_Participant__c mParticipant : lModuleParticipant)
-        {
-            if(mParticipant.FAU_Module_Start_Date__c>system.today())
-            {
-
-                lWhatId.add(mParticipant.Id);   
-            }             
         }
         if (lParticipantsFull.size() > 0 ){
             sendUserEmailwithTemplate(lUserId, lUserEmail, lWhatId, lTemplateId, lDtStart, lDtEnd, lLocation, lSummary, lDescription);
@@ -143,6 +128,8 @@ public without sharing class FAU_EmailSender {
     ********************************************************************/
     private static Blob createIcsBlob(Datetime dtStart, Datetime dtEnd, String sLocation, String sSummary, String sDescription) {
         String txtInvite = '';
+       
+        String yyyymmdd = 'yyyyMMdd';// Changes made by Suman Sarita Mahapatra 28/04/2016 , to rectify "The String literal 'yyyymmdd' appears 5 times in this file; " in sonar.
 
         txtInvite += 'BEGIN:VCALENDAR\n';
         txtInvite += 'PRODID:-//Microsoft Corporation//Outlook 12.0 MIMEDIR//EN\n';
@@ -151,11 +138,11 @@ public without sharing class FAU_EmailSender {
         txtInvite += 'X-MS-OLK-FORCEINSPECTOROPEN:TRUE\n';
         txtInvite += 'BEGIN:VEVENT\n';
         txtInvite += 'CLASS:PUBLIC\n';
-        txtInvite += 'CREATED:' + datetime.now().formatGmt('yyyyMMdd') + 'T' + datetime.now().formatGmt('HHmmss') + 'Z\n';
-        txtInvite += 'DTEND:' + dtEnd.formatGmt('yyyyMMdd') + 'T' + dtEnd.formatGmt('HHmmss') + 'Z\n';
-        txtInvite += 'DTSTAMP:'+ datetime.now().formatGmt('yyyyMMdd') + 'T' + datetime.now().formatGmt('HHmmss') + 'Z\n';
-        txtInvite += 'DTSTART:' + dtStart.formatGmt('yyyyMMdd') + 'T' + dtStart.formatGmt('HHmmss') + 'Z\n';
-        txtInvite += 'LAST-MODIFIED:'+ datetime.now().formatGmt('yyyyMMdd') + 'T' + datetime.now().formatGmt('HHmmss') + 'Z\n';
+        txtInvite += 'CREATED:' + datetime.now().formatGmt(yyyymmdd ) + 'T' + datetime.now().formatGmt('HHmmss') + 'Z\n';
+        txtInvite += 'DTEND:' + dtEnd.formatGmt(yyyymmdd ) + 'T' + dtEnd.formatGmt('HHmmss') + 'Z\n';
+        txtInvite += 'DTSTAMP:'+ datetime.now().formatGmt(yyyymmdd ) + 'T' + datetime.now().formatGmt('HHmmss') + 'Z\n';
+        txtInvite += 'DTSTART:' + dtStart.formatGmt(yyyymmdd ) + 'T' + dtStart.formatGmt('HHmmss') + 'Z\n';
+        txtInvite += 'LAST-MODIFIED:'+ datetime.now().formatGmt(yyyymmdd ) + 'T' + datetime.now().formatGmt('HHmmss') + 'Z\n';
         txtInvite += 'LOCATION:'+ sLocation +'\n';
         txtInvite += 'PRIORITY:5\n';
         txtInvite += 'SEQUENCE:0\n';

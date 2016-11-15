@@ -36,6 +36,14 @@
                 <behavior>Readonly</behavior>
                 <field>FAU_Start_Date_Quarter__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Mod_1_Start_date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Start_Date_of_Module_2__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

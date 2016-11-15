@@ -77,17 +77,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Category_Search__c</fullName>
-        <description>CEC: Stores the L7 Product Category for recommended product search. Accessible to CEC_User permission only.</description>
-        <externalId>false</externalId>
-        <formula>Global_CPG_Code__r.L7_Product_Category__c</formula>
-        <label>Category Search</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Consumer_Product_Descriptor_Local_Lang__c</fullName>
         <externalId>false</externalId>
         <label>Consumer Product Descriptor (Local Lang)</label>
@@ -247,38 +236,11 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
-        <fullName>Product_Name_Other__c</fullName>
-        <description>CEC Product Name &amp; Other field will mention (FS)  for all food products</description>
-        <externalId>false</externalId>
-        <formula>IF( LOWER(Product_Status__c) = &apos;inactive&apos; , 
-IF(ISBLANK(Other__c) &amp;&amp; ISBLANK(Last_Sold_Manufactured__c) , Name &amp; &quot; *DL&quot;, 
-IF(ISBLANK(Other__c), Name &amp; &quot; *DL&quot; &amp; &quot; LS:&quot; &amp; Last_Sold_Manufactured__c , 
-IF(NOT(ISBLANK(Other__c))&amp;&amp; ISBLANK(Last_Sold_Manufactured__c),Name &amp; &quot; (&quot; &amp; Other__c &amp; &quot;)&quot; &amp; &quot; *DL&quot;, 
-Name &amp; &quot; (&quot; &amp; Other__c &amp; &quot;)&quot; &amp; &quot; *DL&quot; &amp; &quot; LS:&quot; &amp; Last_Sold_Manufactured__c ))), 
-IF(ISBLANK(Other__c), Name , Name &amp; &quot; (&quot; &amp; Other__c &amp; &quot;)&quot;))</formula>
-        <label>Product Name &amp; Other</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <fields>
         <fullName>Product_Status__c</fullName>
         <externalId>false</externalId>
         <label>Product Status</label>
         <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Product_Tag__c</fullName>
-        <description>CEC : To store the tag related to the product</description>
-        <externalId>false</externalId>
-        <label>Product Tag</label>
-        <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -300,7 +262,6 @@ IF(ISBLANK(Other__c), Name , Name &amp; &quot; (&quot; &amp; Other__c &amp; &quo
         <columns>NAME</columns>
         <columns>Brand__c</columns>
         <columns>Consumer_Product_Descriptor_Local_Lang__c</columns>
-        <columns>GTIN_EAN_UPC_Code__c</columns>
         <columns>Global_CPG_Code__c</columns>
         <columns>Form__c</columns>
         <columns>ISO_Country_Code__c</columns>

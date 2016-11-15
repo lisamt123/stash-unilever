@@ -13,10 +13,6 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 ***********************************************************************/
 @isTest
 public class WINatPOSDropDownController_Test {
-	
-	public static final String GLOBALSTR = 'Global';
-	public static final String APPROVEDSTR = 'Approved';
-	public static final String TESTSTR = 'test';
 	/*******************************************************************
     Purpose: Helper class to create test data
     Parameters: Void
@@ -126,9 +122,9 @@ public class WINatPOSDropDownController_Test {
             asset.Brand__c = brandAxe.id;
             asset.Placement__c = 'Primary';
             asset.POS_Asset_Type__c = 'Masterbrand';
-            asset.Market_Cluster__c = GLOBALSTR;
+            asset.Market_Cluster__c = 'Global';
             asset.Channels__c='Cash & Carry;Convenience';
-            asset.Status__c = APPROVEDSTR;
+            asset.Status__c = 'Approved';
             asset.Country__c='UK';
             asset.Carousel_Published__c=true;
             asset.Description__c='test';
@@ -140,9 +136,9 @@ public class WINatPOSDropDownController_Test {
             asset1.Brand__c=brandDove.id;
             asset1.Placement__c = 'Secondary';
             asset1.POS_Asset_Type__c = 'Innovation';
-            asset1.Market_Cluster__c = GLOBALSTR;
+            asset1.Market_Cluster__c = 'Global';
             asset1.Channels__c='Hypermarkets';
-            asset1.Status__c = APPROVEDSTR;
+            asset1.Status__c = 'Approved';
             asset1.Description__c='test';
             finalTestAsset.add(asset1);
             
@@ -153,9 +149,9 @@ public class WINatPOSDropDownController_Test {
             asset2.Brand__c=brandDove.id;
             asset2.Placement__c = 'Secondary';
             asset2.POS_Asset_Type__c = 'Innovation';
-            asset2.Market_Cluster__c = GLOBALSTR;
+            asset2.Market_Cluster__c = 'Global';
             asset2.Channels__c='Hypermarkets';
-            asset2.Status__c = APPROVEDSTR;
+            asset2.Status__c = 'Approved';
             asset2.Description__c='test';
             finalTestAsset.add(asset2);
             
@@ -164,10 +160,10 @@ public class WINatPOSDropDownController_Test {
             asset3.Category__c = cat1.Id;
             asset3.Brand__c=brandDove.id;
             asset3.Placement__c = 'Secondary';
-            asset3.POS_Asset_Type__c = 'Best Practices';
-            asset3.Market_Cluster__c = GLOBALSTR;
+            asset3.POS_Asset_Type__c = 'In Store Execution';
+            asset3.Market_Cluster__c = 'Global';
             asset3.Channels__c='Hypermarkets';
-            asset3.Status__c = APPROVEDSTR;
+            asset3.Status__c = 'Approved';
             asset3.Description__c='test';
             finalTestAsset.add(asset3);
             
@@ -177,9 +173,9 @@ public class WINatPOSDropDownController_Test {
             asset4.Brand__c=brandDove.id;
             asset4.Placement__c = 'Secondary';
             asset4.POS_Asset_Type__c = 'Repeatable Model';
-            asset4.Market_Cluster__c = GLOBALSTR;
+            asset4.Market_Cluster__c = 'Global';
             asset4.Channels__c='Hypermarkets';
-            asset4.Status__c = APPROVEDSTR;
+            asset4.Status__c = 'Approved';
             asset4.Description__c='test';
             finalTestAsset.add(asset4);
         }
@@ -206,11 +202,6 @@ public class WINatPOSDropDownController_Test {
         ApexPages.currentPage().getParameters().put('retURL',retUrl);
         WINatPOSDropDownController contFromAssetGroup=new WINatPOSDropDownController(new ApexPages.StandardController(initialAsset));
         
-        cont.selectedAgenciesEdit = new List<SelectOption>{new SelectOption('EditValue1', 'EditLabel1'), new SelectOption('EditValue2', 'EditLabel2')};
-        cont.selectedAgenciesView = new List<SelectOption>{new SelectOption('ViewValue1', 'ViewLabel1'), new SelectOption('ViewValue2', 'ViewLabel2')};
-        
-        PageReference resultPageReference = cont.saveAsset();
-        
         List<selectOption> catList=cont.getCategories();
         List<selectOption> brandList=cont.getBrands();
         List<selectOption> assetGroupList= cont.getAssetGroups();
@@ -218,7 +209,6 @@ public class WINatPOSDropDownController_Test {
         List<selectOption> brandListNarrowDowned=cont.getBrands();
         //cont.currentAsset.
         Test.stopTest();
-
         //check if picklist for lookup fields are populated
         system.assertEquals(true, catList.size()>0);
         system.assertEquals(true, brandList.size()>0);
@@ -228,11 +218,7 @@ public class WINatPOSDropDownController_Test {
         system.debug(brandList.size());
         //system.assertEquals(true, brandListNarrowDowned.size()<brandList.size(), 'Brand picklist should be narrowed down when catogory is selected');
         system.assertEquals(true, cont.currentAsset != null, 'Asset record should be initialized inside controller');
-        System.assert(resultPageReference != null);
         
-        Asset__c resultAsset = [SELECT Agency_Read_Access_Text__c, Agency_Edit_Access_Text__c FROM Asset__c WHERE Id = :cont.currentAsset.Id];
-        System.assert(!String.isBlank(resultAsset.Agency_Read_Access_Text__c));
-        System.assert(!String.isBlank(resultAsset.Agency_Edit_Access_Text__c));
         //check if fields were populared from Asset Group when Asset Created under asset group
         Asset_Group__c parentAssetGroup=ts.finalTestAssetGroup.get(0);
         system.assertEquals(true, contFromAssetGroup.currentAsset.Asset_Group__c == parentAssetGroup.id);

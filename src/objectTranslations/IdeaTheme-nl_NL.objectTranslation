@@ -64,10 +64,6 @@
     <fields>
         <name>Status</name>
         <picklistValues>
-            <masterLabel>Active</masterLabel>
-            <translation><!-- Active --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Archived</masterLabel>
             <translation><!-- Archived --></translation>
         </picklistValues>

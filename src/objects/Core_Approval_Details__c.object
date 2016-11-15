@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <compactLayouts>
         <fullName>Ariba_Line_Details_Compact_Layout</fullName>
@@ -66,6 +67,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -419,6 +421,7 @@ null))))))</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -579,12 +582,9 @@ null))))))</formula>
                 <fullName>Remedy</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Invoice</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -703,10 +703,6 @@ null))))))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Invoice</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Remedy</fullName>
                 <default>false</default>
             </values>
@@ -752,61 +748,6 @@ null))))))</formula>
             </values>
             <values>
                 <fullName>GTES</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Invoice</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Remedy</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Invoice</fullName>
-        <active>true</active>
-        <label>Invoice</label>
-        <picklistValues>
-            <picklist>Payment_Type__c</picklist>
-            <values>
-                <fullName>CADV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CARD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CASH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CPAID</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MADV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PADV</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Source_System__c</picklist>
-            <values>
-                <fullName>Ariba</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GTES</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Invoice</fullName>
                 <default>false</default>
             </values>
             <values>

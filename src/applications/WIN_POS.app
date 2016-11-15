@@ -13,4 +13,6 @@
     <tab>Asset_Group__c</tab>
     <tab>Asset__c</tab>
     <tab>User_Admin</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

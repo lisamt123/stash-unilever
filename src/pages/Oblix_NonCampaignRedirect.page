@@ -1,5 +1,0 @@
-<apex:page showHeader="true" sidebar="false"  standardController="Marketing_Basics__c" extensions="Oblix_NonCampaignRedirectController"  standardStylesheets="true" action="{!redirectToNonCampaign}">
-	<apex:detail rendered="{!hasPermissionToStandardPage}" inlineEdit="true"  />
-</apex:page>
-
-

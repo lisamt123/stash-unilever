@@ -1,2 +1,0 @@
-{!Opportunity.Name} for Account {!Opportunity.Account} has been Won.  Please see the following link for more details 
-Opportunity Link: {!Opportunity.Link}

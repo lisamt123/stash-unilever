@@ -3,32 +3,33 @@
 
 <apex:outputPanel id="JS">  
   <script type="text/javascript">
-      function refreshPrimarySpamTab(countryCheck, isEmptyCountryVerbatimCheck) {
-        if(countryCheck && !isEmptyCountryVerbatimCheck){
-            sforce.console.getFocusedPrimaryTabId(doRefresh);
-        }else if(!countryCheck){
-            alert('{!$Label.CEC_Quick_Code_Change_Error}');
-        } else if (isEmptyCountryVerbatimCheck) {
-            alert('{!$Label.CEC_CaseCountryVerbitimMessage}');
-        }  
+      function refreshPrimaryTab() {
+          if({!isCountryPopulated}){
+              sforce.console.getFocusedPrimaryTabId(doRefresh);
+          }else{
+              alert('{!$Label.CEC_Quick_Code_Change_Error}');
+          }
       }
+        
       var doRefresh = function doRefresh(result) {
           sforce.console.refreshPrimaryTabById(result.id, true, refreshSuccess);
       };
+    
       var refreshSuccess = function refreshSuccess(result) {
           //Report whether refreshing the primary tab was successful
           if (result.success != true) {
-               alert('{!$Label.CEC_CaseRefreshAlertError}');
+               alert('Please save the inline changes to your case record');
           }
       };
   </script> 
  </apex:outputPanel>
+  
   <apex:pageMessages ></apex:pageMessages>        
   <apex:form id="frm">
     <apex:inputField value="{!caseRecord.RecordTypeId}">
       <apex:actionSupport event="onchange" 
                           action="{!selectQuickcode}" 
-                          oncomplete="refreshPrimarySpamTab({!isCountryPopulated}, {!isEmptyCountryVerbatimCheck})" rerender="JS,frm"/>
+                          oncomplete="refreshPrimaryTab()" rerender="JS,frm"/>
     </apex:inputField>       
   </apex:form>
 </apex:page>

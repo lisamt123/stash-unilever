@@ -33,6 +33,14 @@
                 <behavior>Edit</behavior>
                 <field>FAU_Training_Centre__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Mod_1_Start_date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Start_Date_of_Module_2__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -54,6 +62,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FAU_Don_t_Send_Reminders__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FAU_Start_Date_Quarter__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FAU_Module_1_Start_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -84,10 +100,6 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>FAU_Start_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FAU_Start_Date_Quarter__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -221,7 +233,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hc0000000Gyaz</masterLabel>
+        <masterLabel>00hE000000AtxeM</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>2</sizeY>
         <summaryLayoutItems>

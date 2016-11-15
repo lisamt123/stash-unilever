@@ -11,4 +11,6 @@
     <tab>cp_Planner__c</tab>
     <tab>cp_PlannerPreference__c</tab>
     <tab>cp_ULE_Contact__c</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

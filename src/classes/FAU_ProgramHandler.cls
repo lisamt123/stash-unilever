@@ -107,6 +107,7 @@ public with sharing class FAU_ProgramHandler
             System.debug('Entering FAU_ProgramHandler.chatterGroups' + chatterGroups.size());
             
             chatterGroups.add(service.createChatterGroup((FAU_Program__c)so, (Id)so.get('OwnerId')));
+            FAU_ProgramClsSC.createProgramMilestones((FAU_Program__c) so, (FAU_Program__c) so,10);
             
             System.debug('Exiting FAU_ProgramHandler.chatterGroups' + chatterGroups);
         }
@@ -139,7 +140,7 @@ public with sharing class FAU_ProgramHandler
         }*/
     }
      
-//Implementin Itrigger So need to override below methods.   
+
     public void beforeDelete(SObject so)
     {   
     }

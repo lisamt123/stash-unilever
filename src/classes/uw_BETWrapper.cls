@@ -11,26 +11,25 @@ application
 History
 -------
 VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
-1.0 -   Maciej Krol             26/11/2014      INITIAL DEVELOPMENT
-1.1 -   Piotr Czechumski        10/09/2015      Add to BetSearchItem fields Group category, category, brand position, brand
+1.0 -   Maciej Krol         	26/11/2014     	INITIAL DEVELOPMENT
 **********************************************************************/
 
 /*******************************************************************
-    Purpose: Main wrapper class which is returend for all RemoteActions executed
-    in Bet application on home page 
-    ********************************************************************/
+	Purpose: Main wrapper class which is returend for all RemoteActions executed
+	in Bet application on home page 
+	********************************************************************/
 public with sharing class uw_BETWrapper {
-    public String message=null;
+	public String message=null;
     public String status=null;
     public Map<String, Object> data=null;
     public String error=null;   
 
-    public uw_BETWrapper(String cMessage, String cStatus, Map<String, Object> cData, String cError) {
-        this.message = cMessage;
+	public uw_BETWrapper(String cMessage, String cStatus, Map<String, Object> cData, String cError) {
+		this.message = cMessage;
         this.status = cStatus;
         this.data = cData;
         this.error = cError;
-    }
+	}
 
     /*******************************************************************
     Purpose: Sub class which is a wrapper used in search method is placeholder
@@ -131,10 +130,6 @@ public with sharing class uw_BETWrapper {
         public String assetDescription;
         public String assetDownloadLink;
         public Boolean assetOwner;
-        public Integer displayOrder;
-        public String assetPreviewLink;
-
-        public String validLinkPrefix = 'sfc/servlet.shepherd/version/download/';
        
         public AssetItem(uw_Asset__c asset, Boolean aOwner){            
             this.assetId = asset.Id;
@@ -144,22 +139,7 @@ public with sharing class uw_BETWrapper {
             this.assetLastModifiedDate = asset.LastModifiedDate;
             this.assetDescription = asset.Description__c;
             this.assetDownloadLink = asset.Url_of_asset__c;  
-            this.assetOwner = aOwner;    
-            this.displayOrder = (Integer)asset.Order_Of_Display__c;
-
-            if(asset.File_Id__c != null){
-                this.assetPreviewLink = '/apex/BET_AssetDispatcher?fileId='+asset.File_Id__c+'&type='+BET_AssetDispatcherController.PREVIEW;
-                this.assetDownloadLink = '/apex/BET_AssetDispatcher?fileId='+asset.File_Id__c+'&type='+BET_AssetDispatcherController.DOWNLOAD+'&downloadLink='+this.assetDownloadLink;
-            } else {
-                if(this.assetDownloadLink != null && this.assetDownloadLink.contains(validLinkPrefix)){ 
-                    Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/'); 
-                    if(startIdx > -1){
-                        this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, startIdx+25);
-                    }
-                } else if(this.assetDownloadLink != null){
-                    this.assetPreviewLink = this.assetDownloadLink;
-                }
-            }
+            this.assetOwner = aOwner;         
         }
     }
 
@@ -211,10 +191,10 @@ public with sharing class uw_BETWrapper {
         }
     }
 
-    /*******************************************************************
-    Purpose: Sub class which is a wrapper used in getBET method and 
+	/*******************************************************************
+	Purpose: Sub class which is a wrapper used in getBET method and 
     is responsible for presenting data for single BET record
-    ********************************************************************/
+	********************************************************************/
     public class BetSearchItem{
         public String betId;
         public String betName;
@@ -222,9 +202,6 @@ public with sharing class uw_BETWrapper {
         public String betBrandName;
         public String betRegion;
         public String betProjectName;
-        public String betProjectId;
-        public String betIPMProjectName;
-        public String betIPMProjectId;
         public String betStatus;
         public Datetime betLastUpdated;
         public Boolean betActive;
@@ -241,8 +218,6 @@ public with sharing class uw_BETWrapper {
         public String betChatterGroupId;  
         public Datetime betFirstRelease;  
         public Datetime betFinalRelease;  
-        public Datetime betFirstReleaseDueDate;  
-        public Datetime betFinalReleaseDueDate;
         public String betPresentationId;
         public String betBackgroundColor;
         public String betBannerLocation;
@@ -251,54 +226,23 @@ public with sharing class uw_BETWrapper {
         public String betBorderColor;
         public String betIconLocation; 
         public Datetime betLaunchDate;
-        public String betOwnerId;
-        public String betVisibility;
-
-
-        public String groupCategory;
-        public String category;
-        public String brandPosition;
-        public String brand;
-        public String betBrandPositionName;
-
-        public Boolean currentUserHasAccessToIPM;
-
-        public Boolean archived;
-
-        public Boolean completedFirstAfterDueDate = false;
-        public Boolean completedFinalAfterDueDate = false;
-
-        public Integer totalActualAssets;
-        public Integer totalExpectedAssets;
-
-        public Boolean beforeFinalDueDate;
-        public Boolean beforeFirstDueDate;
-
-        public Boolean expectedAssetsProvided {get;set;}
-
-        public Boolean assetPrioritySet {get;set;}
         
-        public BetSearchItem(String betId, String betName, String betChatterGroupId, Datetime betFinalRelease, String betPresentationId, String betIconLocation, String betDescription, String betBrandName, String betRegion, String betProjectName,
-            String betIPMProjectName,  
+        public BetSearchItem(String betId, String betName, String betChatterGroupId, Datetime betFinalRelease, String betPresentationId, String betIconLocation, String betDescription, String betBrandName, String betRegion, String betProjectName, 
             String betStatus, Datetime betLastUpdated, String betOwnerName, Boolean betActive, Boolean betHasAccess, Boolean betOwner, String betBrandKeyword, 
             String betCategoryKeyword, String betOwnerKeyword, String betRegionKeyword, String betInfoprojectKeyword){
             
             this.betId = betId;
             this.betName = betName;
-            this.betDescription = betDescription;
-            this.betBrandName = betBrandName;
-            this.betRegion = betRegion; 
-            this.betProjectName = betProjectName;
-            this.betIPMProjectName = betIPMProjectName;
-            if(!String.isBlank(this.betIPMProjectName)){
-                this.betProjectName = this.betIPMProjectName;
-            }
-            this.betStatus = betStatus;
-            this.betLastUpdated = betLastUpdated;
-            this.betActive = betActive;
-            this.betHasAccess = betHasAccess;  
-            this.betOwner = betOwner;     
-            this.betOwnerName = betOwnerName;   
+        	this.betDescription = betDescription;
+        	this.betBrandName = betBrandName;
+        	this.betRegion = betRegion; 
+        	this.betProjectName = betProjectName;
+        	this.betStatus = betStatus;
+        	this.betLastUpdated = betLastUpdated;
+        	this.betActive = betActive;
+        	this.betHasAccess = betHasAccess;  
+        	this.betOwner = betOwner;     
+            this.betOwnerName = betOwnerName; 	
             this.betBrandKeyword = betBrandKeyword;
             this.betCategoryKeyword = betCategoryKeyword;
             this.betOwnerKeyword = betOwnerKeyword;
@@ -309,30 +253,21 @@ public with sharing class uw_BETWrapper {
             this.betPresentationId = betPresentationId;
             this.betIconLocation = betIconLocation;
             this.betIsPublic = false;
-            this.archived = !betActive;
         }
 
         public BetSearchItem(uw_BET__c bet, Boolean betPending, Boolean betActive, Boolean betHasAccess, Boolean betOwner){            
             this.betId = bet.Id;
             this.betName = bet.Name;
             this.betDescription = bet.Description__c;
-            this.betBrandName = bet.Product_Brand__r.Name;
+            this.betBrandName = bet.uw_Brand__r.Name;
             this.betRegion = bet.Region__c; 
             this.betProjectName = bet.Inoplan_Project__r.Name;
-            this.betProjectId = bet.Inoplan_Project__c;
-            this.betIPMProjectName = String.isBlank(bet.IPM_Project__r.Name) ? bet.Inoplan_Project_Keyword_Search__c : bet.IPM_Project__r.Name;
-            this.betIPMProjectId = bet.IPM_Project__c;
-            this.betVisibility=bet.sharing__C;
-            if(!String.isBlank(this.betIPMProjectId)){
-                this.betProjectName = this.betIPMProjectName;
-            }
             this.betStatus = bet.Status__c;
             this.betLastUpdated = bet.LastModifiedDate;
             this.betActive = betActive; 
             this.betHasAccess = betHasAccess;  
             this.betOwner = betOwner;     
-            this.betOwnerName = bet.Owner.Name;
-            this.betOwnerId = bet.OwnerId;   
+            this.betOwnerName = bet.Owner.Name;   
             this.betBrandKeyword = bet.Brand_Keyword_Search__c;
             this.betCategoryKeyword = bet.Category_Keyword_Search__c;
             this.betOwnerKeyword = bet.Owner_Keyword_Search__c;
@@ -340,10 +275,8 @@ public with sharing class uw_BETWrapper {
             this.betInfoprojectKeyword = bet.Inoplan_Project_Keyword_Search__c;
             this.betHasAccessPending = betPending;
             this.betChatterGroupId = bet.Studio_Chatter_Group__c;
-            this.betFirstRelease = bet.FirstReleaseDate__c;
-            this.betFinalRelease = bet.FinalReleaseDate__c;
-            this.betFirstReleaseDueDate = bet.First_Release_Due_Date__c;
-            this.betFinalReleaseDueDate = bet.Final_Release_Due_Date__c;
+            this.betFirstRelease = bet.First_release_date__c;
+            this.betFinalRelease = bet.Final_release_date__c;
             this.betPresentationId = bet.Presentation_Id__c;
             this.betIconLocation = bet.Icon_Location__c;
 
@@ -354,33 +287,6 @@ public with sharing class uw_BETWrapper {
             this.betFontColor = bet.Font_Colour__c;
             this.betIsPublic = bet.sharing__c == 'Public';
             this.betLaunchDate = bet.Launch_Date__c;
-
-            this.groupCategory          = bet.Category_Group__c;
-            this.category               = bet.Product_Category__c;
-            this.brandPosition          = bet.Brand_Position__c;
-            this.brand                  = bet.Product_Brand__c;
-            this.archived               = bet.Is_Archived__c;
-            this.betBrandPositionName   = bet.Brand_Position__r.name;
-
-            this.totalActualAssets      = bet.Total_Actual_Assets__c != null ? Integer.valueOf(bet.Total_Actual_Assets__c) : 0;
-            this.totalExpectedAssets    = bet.Total_Expected_Assets__c != null ? Integer.valueOf(bet.Total_Expected_Assets__c) : 0;
-
-
-            if(this.betFirstRelease != null && this.betFirstReleaseDueDate != null ){
-                this.completedFirstAfterDueDate = this.betFirstRelease >  this.betFirstReleaseDueDate;
-            }
-            
-            if(this.betFinalRelease != null && this.betFinalReleaseDueDate != null ){
-                this.completedFinalAfterDueDate = this.betFinalRelease >  this.betFinalReleaseDueDate;
-            }
-
-            if(this.betFinalReleaseDueDate != null) {
-                this.beforeFinalDueDate = Date.today() <= this.betFinalReleaseDueDate;
-            }
-
-            if(this.betFirstReleaseDueDate != null) {
-                this.beforeFirstDueDate = Date.today() <= this.betFirstReleaseDueDate;
-            }
         }
     }
 }

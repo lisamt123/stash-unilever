@@ -2,4 +2,6 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <defaultLandingTab>standard-AppLauncher</defaultLandingTab>
     <tab>standard-AppLauncher</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

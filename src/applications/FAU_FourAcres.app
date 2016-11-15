@@ -10,4 +10,5 @@
     <tab>FAU_Webinar__c</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

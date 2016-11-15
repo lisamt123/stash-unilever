@@ -103,6 +103,7 @@ private class OV_ContentDocumentHandler_Test {
     
     @isTest
     static void handleDocumentContentDeleteWithEntitiesTest() {
+        
         OV_Trigger_Enablement__c triggerSwitchCustomSetting = OV_Trigger_Enablement__c.getOrgDefaults();
         triggerSwitchCustomSetting.ContentDocument__c = true;
         insert triggerSwitchCustomSetting;

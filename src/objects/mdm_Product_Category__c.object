@@ -50,7 +50,7 @@
     <description>MDM - mdm_Product_Category__c</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
@@ -133,6 +133,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -443,9 +444,6 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Product Categories</pluralLabel>
-    <searchLayouts>
-        <lookupDialogsAdditionalFields>L2_Product_Category__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Corp_Brand_Name__c</lookupDialogsAdditionalFields>
-    </searchLayouts>
+    <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

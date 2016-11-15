@@ -127,6 +127,10 @@ public with sharing class OV_TriggerFactory {
 			
 			return new OV_ContentProxyHandler();
 			
+		}else if(soType == OV_KPI_Element__c.sObjectType){
+			
+			return new OV_KpiElementHandler();
+			
 		}
 		
 		return null;

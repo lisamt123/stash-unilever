@@ -5,4 +5,6 @@
     <tab>standard-Workspace</tab>
     <tab>standard-ContentSearch</tab>
     <tab>standard-ContentSubscriptions</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

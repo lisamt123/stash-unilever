@@ -1,22 +1,17 @@
-<!--  
-   *************************************************************************
-   *@Description:This page is used to input a file
-   *@Author: Cognizant
-   *@Created Date: 19/07/2014 
-   *************************************************************************
-   -->
 <apex:page controller="AF_AttachmentUploadController" showHeader="false" sidebar="false" >
-   <apex:form >
-      <apex:pageBlock >
-         <apex:pageBlockSection >
-            <apex:pageBlockSectionItem >
-               <apex:outputLabel value="File" for="file" style="font-size:14px;"/>
-               <apex:outputPanel layout="block" styleClass="requiredInput">
-                  <apex:outputPanel layout="block" styleClass="requiredBlock" />
-                  <apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file"  style="background: wheat;"/>
-               </apex:outputPanel>
-            </apex:pageBlockSectionItem>
-         </apex:pageBlockSection>
-      </apex:pageBlock>
-   </apex:form>
+ 
+ <apex:form >
+ <apex:pageBlock >
+ <apex:pageBlockSection >
+ <apex:pageBlockSectionItem >
+          <apex:outputLabel value="File" for="file" style="font-size:14px;"/>
+          <apex:outputPanel layout="block" styleClass="requiredInput">
+          <apex:outputPanel layout="block" styleClass="requiredBlock" />
+          <apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file"  style="background: wheat;"/>
+          </apex:outputPanel>
+ </apex:pageBlockSectionItem>
+ </apex:pageBlockSection>
+ </apex:pageBlock>
+ </apex:form>
+
 </apex:page>

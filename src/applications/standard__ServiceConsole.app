@@ -174,7 +174,15 @@
     <tab>standard-Lead</tab>
     <tab>standard-Knowledge</tab>
     <tab>standard-LiveAgent</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
     <workspaceMappings>
+        <mapping>
+            <tab>Test_Shruti__c</tab>
+        </mapping>
+        <mapping>
+            <tab>pca__Action__c</tab>
+        </mapping>
         <mapping>
             <tab>standard-Account</tab>
         </mapping>

@@ -58,6 +58,34 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
+        <fullName>Billing_and_travel_Accomodation_details__c</fullName>
+        <externalId>false</externalId>
+        <label>Billing and travel/Accomodation details</label>
+        <picklist>
+            <picklistValues>
+                <fullName>NO Billing - NO Travel/Accommodation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Billing - NO Travel/Accommodation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NO Billing - Travel/Accommodation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Billing - Travel/Accommodation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Chatter_Group_Id__c</fullName>
         <externalId>false</externalId>
         <label>Chatter Group Id</label>
@@ -359,6 +387,7 @@ True, False)</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -510,6 +539,7 @@ Completed - The Participant Completed</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1058,6 +1088,7 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

@@ -14,11 +14,10 @@ public class ExceptionsTest
      */
     static testMethod void  testExceptionsInnerClass()
     { 
+        User stdUser = FA_createTestData.createUser('navTst1');       
         Test.startTest();
-      /*  User stdUser = FA_createTestData.createUser('navTst1');       
-        
     
-        System.runAs(stdUser) */
+        System.runAs(stdUser) 
         {
             Exceptions ex = new Exceptions();
             Exceptions.IllegalArgumentException iae = new Exceptions.IllegalArgumentException();

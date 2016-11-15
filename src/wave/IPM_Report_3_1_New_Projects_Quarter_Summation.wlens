@@ -1,1 +1,0 @@
-{"query":{"query":"{&quot;filters&quot;:[[&quot;Created Date&quot;,[[[&quot;quarter&quot;,-1],[&quot;quarter&quot;,-1]]],&quot;&gt;=&lt;=&quot;]],&quot;measures&quot;:[[&quot;count&quot;,&quot;*&quot;]]}","version":-1.0}}

@@ -8,4 +8,6 @@
     <tab>standard-Idea</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

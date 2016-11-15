@@ -4,7 +4,7 @@
         <div class="headerBarBackground" id="pageTop">
             <table class="headerBarWidth">
                 <tr>
-                    <td class="headerBarRowAlign"> <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" ng-click='gotoApprovalDetailPage()' alt="back" class="homePageFilter"/> </td>
+                    <td class="headerBarRowAlign"> <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" ng-click='gotoApprovalDetailPage()' class="homePageFilter"/> </td>
                     <td class="headerBarRowAlign" id="alignCenter"> <label class="headerBarTitle">{{approvalLineDetailRequestData.RequestId}}</label> </td>
                     <td class="headerBarRowAlign"> </td>
                 </tr>
@@ -17,8 +17,8 @@
                         <label class="detailSectionHeader">{{'LBL_PUR_LINEITEM_DETAIL_PRODUCT_DESCRIPTION' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="productDescriptionPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="productDescriptionPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="productDescriptionPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="productDescriptionPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>                
                 </div>
                 <div ng-hide="productDescriptionPanel" class="responsiveDetailSectionTable">
@@ -31,8 +31,8 @@
                         <label class="detailSectionHeader" >{{'LBL_PUR_LINEITEM_DETAIL_PRICING_SUPPLIER_DETAILS' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="pricingAndSupplierDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="pricingAndSupplierDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="pricingAndSupplierDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="pricingAndSupplierDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>
                 </div>
                 <div ng-hide="pricingAndSupplierDetailsPanel" id="responsiveDetailSectionwrapper">
@@ -129,8 +129,8 @@
                         <label class="detailSectionHeader">{{'LBL_PUR_LINEITEM_DETAIL_SPLIT_ACCOUNTING' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="splitAccountingPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="splitAccountingPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="splitAccountingPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="splitAccountingPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>                
                 </div>
                 <div ng-hide="splitAccountingPanel" class="responsiveDetailSectionTable">
@@ -143,8 +143,8 @@
                         <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_COMMENTS' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>     
                 </div>
                 <div ng-hide="commentsPanel" class="responsiveDetailSectionTable">

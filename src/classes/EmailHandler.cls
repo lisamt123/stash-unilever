@@ -18,12 +18,7 @@ public class EmailHandler
                 if(item.ParentId.getSobjectType() == newsArticleType && item.Type!='PollPost' && item.Type!='RypplePost'){
                     List<News_Article__c> lstArticle=[SELECT Name,Sharepoint_URL__c,Site_Type__c,Admin_Chatter_Group__c FROM News_Article__c WHERE Id=:item.ParentId];
                     
-                    //Pattern Matching code
-                    String regex = '([a-zA-Z0-9_\\-\\.]+)@(((\\[a-z]{1,3}\\.[a-z]{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3}))';       
-                    Pattern myPattern = Pattern.compile(regex);    
-                    Matcher myMatcher = myPattern.matcher(lstArticle[0].Admin_Chatter_Group__c);
-                    
-                    if(lstArticle[0].Site_Type__c =='News Centre' || (lstArticle[0].Site_Type__c =='Paul\'s Blog' && myMatcher.find())){
+                    if(lstArticle[0].Site_Type__c =='News Centre'){
                         //Null check for lstArticle
                         string strArticlename;
                         if(lstArticle.size()>0)
@@ -41,7 +36,7 @@ public class EmailHandler
                             mail.setSaveAsActivity(false);             
                         } 
                         else {
-                            String[] toAddresses = lstArticle[0].Admin_Chatter_Group__c.split(','); //new String[] {lstArticle[0].Admin_Chatter_Group__c.split(',') };
+                            String[] toAddresses = new String[] {lstArticle[0].Admin_Chatter_Group__c };
                             mail.setToAddresses(toAddresses);             
                         }                      
                         mail.setSubject('Post On News Article' );
@@ -60,7 +55,7 @@ public class EmailHandler
                         
                     }
                     
-                    else if(lstArticle[0].Site_Type__c =='MCO' || (lstArticle[0].Site_Type__c =='Paul\'s Blog' && !myMatcher.find())){
+                    else if(lstArticle[0].Site_Type__c =='MCO'){
                         feeditem fdItem=[SELECT CreatedById,Createdby.name FROM FeedItem where id=:item.id limit 1];
                         string strBody='A new Post has been created by '+fdItem.CreatedBy.name+' with the below mentioned content:'+'\n'+'"'+item.Body+'"';
                         List<FeedItem> lstfdItm=new List<FeedItem>();
@@ -101,13 +96,7 @@ public class EmailHandler
                         
                         //to get the article name
                         List<News_Article__c> lstArticle=[SELECT Name,Sharepoint_URL__c,Site_Type__c,Admin_Chatter_Group__c FROM News_Article__c WHERE Id=:item.ParentId];
-                        
-                        //Pattern Matching code
-                        String regex = '([a-zA-Z0-9_\\-\\.]+)@(((\\[a-z]{1,3}\\.[a-z]{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3}))';       
-                        Pattern myPattern = Pattern.compile(regex);    
-                        Matcher myMatcher = myPattern.matcher(lstArticle[0].Admin_Chatter_Group__c);
-                        
-                        if(lstArticle[0].Site_Type__c =='News Centre' || (lstArticle[0].Site_Type__c =='Paul\'s Blog' && myMatcher.find())){
+                        if(lstArticle[0].Site_Type__c =='News Centre'){
                             //Null check for ltsArticle          
                             string strArticlename;
                             if(lstArticle.size()>0)
@@ -126,7 +115,7 @@ public class EmailHandler
                                 mail.setSaveAsActivity(false);             
                             } 
                             else {
-                                String[] toAddresses = lstArticle[0].Admin_Chatter_Group__c.split(','); //new String[] {lstArticle[0].Admin_Chatter_Group__c.split(',') };
+                                String[] toAddresses = new String[] {lstArticle[0].Admin_Chatter_Group__c };
                                 mail.setToAddresses(toAddresses);             
                             }                      
                             mail.setSubject('Comments On News Article' );
@@ -136,7 +125,7 @@ public class EmailHandler
                             
                             lstMails.add(mail);
                         }
-                        else if(lstArticle[0].Site_Type__c =='MCO' || (lstArticle[0].Site_Type__c =='Paul\'s Blog' && !myMatcher.find())){
+                        else if(lstArticle[0].Site_Type__c =='MCO'){
                             feedcomment fdItem=[SELECT CreatedById,Createdby.name FROM Feedcomment where id=:item.id limit 1];
                             string strBody='A new Comment has been created by '+fdItem.CreatedBy.name+' with the below mentioned content:'+'\n'+'"'+item.CommentBody+'"' ;
                             List<FeedItem> lstfdItm=new List<FeedItem>();

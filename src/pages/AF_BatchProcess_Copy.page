@@ -1,16 +1,10 @@
-<!--  
-   *************************************************************************
-   *@Description:This page is used to move brand estimate from new quarters 
-   *@Author: Cognizant
-   *@Created Date: 22/07/2014 
-   *************************************************************************
-   -->
 <apex:page controller="AF_BatchProcess_copy" showHeader="false" sidebar="false">
 <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
 <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.js')}"></script>
 <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.min.js')}"></script>
 <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.css')}"/>
 <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.min.css')}"/>
+
     <script>
         var $ = jQuery.noConflict();
         function btnClick() {           
@@ -18,6 +12,7 @@
             $('input[id*=confirmBtn]').attr('class','btnDisabled');
             callSave();
         }
+        
         function btnComplete(){
             $('input[id*=confirmBtn]').attr('value','Save');
             $('input[id*=confirmBtn]').attr('class','save_btn');
@@ -25,28 +20,50 @@
         }
       function redirection()
     {
-    parent.location.assign('apex/AF_AgencyHomePage');
+    
+    parent.location.assign('apex/AgencyHomePage');
+
     }  
    function callclosepopup(){
     CallClose();
    } 
+    
     </script>
+    
    <div id="test">
     </div>
  <apex:form >
   <apex:pageBlock id="blockrefersh">
       <apex:pageMessages id="pm1"></apex:pageMessages> 
+      
       <div class="heading_main">
          <h1 class="heading_text"> Copy Previous Year Records  </h1>
+         
       </div>
+      
       <span class="heading_bottom"></span>
      <apex:outputLabel value="Records will be created which are 'Ready for PO'" style="margin-left:30px;font-weight:bold;"> </apex:outputLabel>
+         
       <apex:pageBlockButtons location="bottom">
+      <!-- <apex:commandButton id="confirmBtn" value="Confirm" oncomplete="redirection();" onclick="this.disabled=true;" styleclass="save_btn" action="{!confirm}"  /> -->
        <apex:actionFunction name="callSave" action="{!displayMsg}" reRender="pm1"/>
        <apex:commandButton id="confirmBtn" value="Confirm" oncomplete="redirection();" onclick="this.disabled=true;callSave();" styleclass="save_btn" action="{!confirm}"  />
       </apex:pageBlockButtons>
+        
+         
+      <!--<apex:outputPanel id="ContinuePopup" >
+        <apex:outputPanel styleClass="popupBackground" layout="block"/>
+            <apex:outputPanel styleClass="custPopup custPopup1" layout="block">
+                The records are sucessfully created
+             <apex:actionFunction name="CallClose" action="{!closePopup}" reRender="ContinuePopup"/>
+<apex:image url="{!$Resource.fancy_close}" styleClass="closeButton2" onclick="callclosepopup();" />
+        </apex:outputPanel>
+      </apex:outputPanel> -->
+       
   </apex:pageBlock> 
  </apex:form>
+ 
+ 
 <style>
  .save_btn{
     background: none repeat scroll 0 0 #E400A7 !important;
@@ -91,6 +108,7 @@ top: 123px;
 width: 500px;
 z-index: 9999;
 }
+        
         .custPopup1{color:purple;font-size: 17px;}
          .popupBackground{
             background-color:#5A5757;
@@ -103,6 +121,7 @@ z-index: 9999;
             left: 0;
             z-index: 9998;
         }
+        
         .closeButton2
 {
  border: 1px solid #000000;
@@ -114,6 +133,8 @@ z-index: 9999;
     position: absolute;
     display: block;
 }
+        
+        
          .closeButton {
     display:block;
     position:absolute;
@@ -123,6 +144,7 @@ z-index: 9999;
   .bPageBlock .list {
     width: 99%!important;
 }
+
  .heading_main{
     margin-left: 0;
     margin-right: 0;
@@ -144,11 +166,13 @@ z-index: 9999;
     position: absolute;
     width: 98%;
 }
+
  .heading_bottom{
     display: block;
     margin-top: 0;
     padding-top: 58px;
 }
+
   body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
    {
       background:#346115;
@@ -157,14 +181,37 @@ z-index: 9999;
  .pbBody, .pbBody a, .pbBody td, .lbBody a, .lbBodyDescription, .list .headerRow .noRowsHeader {
     color: black;
 } 
+      
+/*
+body .bPageBlock, body #bodyCell .bResource .secondaryPalette, 
+body .secondaryPalette.bPageBlock, 
+body .individualPalette .secondaryPalette.bPageBlock, 
+body .bodyDiv .genericTable, 
+body .genericPageBlockTable, 
+body .bodyDiv .bSubBlock, 
+body .bComponentBlock .bPageBlock, 
+body .bMyDashboard .bPageBlock, 
+body.rlHoverFrame .bPageBlock,
+body.subjectSelectionPopup div.choicesBox, 
+body.lookupTab .secondaryPalette.bPageBlock, 
+body.popupTab .secondaryPalette.bPageBlock, 
+body.UserTagStatsPage .secondaryPalette.bPageBlock
+{
+border: 1px solid grey;
+}
+
+*/
 .apexp .bPageBlock.apexDefaultPageBlock .pbBody {
     margin:0px;
 }
+
 .bPageBlock .requiredInput {
     height: 100%;
     margin-left: 60px;
     position: relative;
 }   
+
+
 .btnDisabled
 {
 cursor: inherit;
@@ -182,6 +229,11 @@ margin-top: 13px;
 padding-bottom: 20px;
 padding-top: 5px;
 width: 132px;
+  
+    
 }
+  
+      
  </style>
+ 
 </apex:page>

@@ -5,10 +5,6 @@
         <description>OOPS Actual Approved</description>
         <protected>false</protected>
         <recipients>
-            <field>AF_AgencyUsers10__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
             <field>AF_AgencyUsers1__c</field>
             <type>email</type>
         </recipients>
@@ -26,22 +22,6 @@
         </recipients>
         <recipients>
             <field>AF_AgencyUsers5__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <field>AF_AgencyUsers6__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <field>AF_AgencyUsers7__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <field>AF_AgencyUsers8__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <field>AF_AgencyUsers9__c</field>
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
@@ -52,10 +32,6 @@
         <description>OOPS Actual Rejected</description>
         <protected>false</protected>
         <recipients>
-            <field>AF_AgencyUsers10__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
             <field>AF_AgencyUsers1__c</field>
             <type>email</type>
         </recipients>
@@ -75,22 +51,6 @@
             <field>AF_AgencyUsers5__c</field>
             <type>email</type>
         </recipients>
-        <recipients>
-            <field>AF_AgencyUsers6__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <field>AF_AgencyUsers7__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <field>AF_AgencyUsers8__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <field>AF_AgencyUsers9__c</field>
-            <type>email</type>
-        </recipients>
         <senderType>CurrentUser</senderType>
         <template>Agency_Fees/AF_OOPS_Actual_Rejected_HTML</template>
     </alerts>
@@ -99,44 +59,24 @@
         <description>OOPS Actual Submitted</description>
         <protected>false</protected>
         <recipients>
-            <field>AF_Cat_Finance_Approver_10__c</field>
-            <type>userLookup</type>
+            <field>AF_Cat_Finance_Email_1__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <field>AF_Cat_Finance_Approver_1__c</field>
-            <type>userLookup</type>
+            <field>AF_Cat_Finance_Email_2__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <field>AF_Cat_Finance_Approver_2__c</field>
-            <type>userLookup</type>
+            <field>AF_Cat_Finance_Email_3__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <field>AF_Cat_Finance_Approver_3__c</field>
-            <type>userLookup</type>
+            <field>AF_Cat_Finance_Email_4__c</field>
+            <type>email</type>
         </recipients>
         <recipients>
-            <field>AF_Cat_Finance_Approver_4__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>AF_Cat_Finance_Approver_5__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>AF_Cat_Finance_Approver_6__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>AF_Cat_Finance_Approver_7__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>AF_Cat_Finance_Approver_8__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>AF_Cat_Finance_Approver_9__c</field>
-            <type>userLookup</type>
+            <field>AF_Cat_Finance_Email_5__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>Agency_Fees/AF_OOPS_Actual_Submitted_HTML</template>

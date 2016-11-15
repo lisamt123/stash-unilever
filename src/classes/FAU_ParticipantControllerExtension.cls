@@ -256,7 +256,7 @@ public with sharing class FAU_ParticipantControllerExtension
  
         if(inviteState == INVITE_STATE_INVITED)
         {          
-            if (participant.FAU_Is_deferred_To_PA__c){
+            if (participant.FAU_Is_deferred_To_PA__c == true){
                 this.stage = STAGE_REGISTERING;
             }else{
                 this.stage = STAGE_INITIAL; 
@@ -286,7 +286,7 @@ public with sharing class FAU_ParticipantControllerExtension
     {
         System.debug('Entering FAU_ParticipantControllerExtension.programForParticipant participant: ' + participant);
 
-        List<FAU_Program__c> programs = [SELECT Id, Name, FAU_Start_Date__c, FAU_Primary_Location__c, FAU_Invite_Form_Text__c FROM FAU_Program__c WHERE Id = :participant.FAU_Program_Wave__c LIMIT 1];
+        List<FAU_Program__c> programs = [SELECT Id, Name, FAU_Start_Date__c,FAU_Program_Type__c, FAU_Primary_Location__c, FAU_Invite_Form_Text__c, FAU_Participant_Chatter_Group__c, FAU_Participant_Chatter_Group_Id__c  FROM FAU_Program__c WHERE Id = :participant.FAU_Program_Wave__c LIMIT 1];
         if(programs.size() != 1)
         {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, ERROR_PROGRAM_NOT_FOUND));

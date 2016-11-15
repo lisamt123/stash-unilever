@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <defaultLandingTab>standard-home</defaultLandingTab>
-    <description>OneView Reporting Administration Screen</description>
+    <description>One View Reporting Administration Screen</description>
     <label>OneView</label>
     <tab>OV_Shelf__c</tab>
     <tab>OV_Shelf_Tile__c</tab>
@@ -16,4 +16,6 @@
     <tab>OV_ContentProxy__c</tab>
     <tab>standard-Workspace</tab>
     <tab>standard-ContentSearch</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

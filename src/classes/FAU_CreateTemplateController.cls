@@ -22,12 +22,12 @@ public with sharing class FAU_CreateTemplateController {
                                                     FAU_Invite_Form_Text__c, FAU_Primary_Location__c, FAU_Program_Banner__c, 
                                                     FAU_Program_Banner_URL__c, FAU_Program_Description__c, FAU_Program_Fee__c, 
                                                     FAU_Program_Type__c, FAU_Start_Date__c, FAU_Status__c, FAU_Biography_Deadline__c,
-                                                    FAU_Training_Centre__c, Id,  Name, OwnerId, RecordTypeId 
+                                                    FAU_Training_Centre__c, Id,  Name, OwnerId, RecordTypeId,Mod_1_Start_date__c,FAU_Module_1_Start_Date__c
                                                     from FAU_Program__c 
                                                     where id =:theId
                                                     LIMIT 1];
         FAU_Program__c oProgramInsert = FAU_ProgramClsSC.createProgram(oProgram, oFAUProgram.Name, oRecordtype, oProgram.FAU_Start_Date__c.daysBetween(oFAUProgram.FAU_Start_Date__c));
-            
+        system.debug('oProgramInsert====='+oProgramInsert);
  
         // Redirect the user back to the original page
         PageReference pageRef = new PageReference('/' + oProgramInsert.Id);

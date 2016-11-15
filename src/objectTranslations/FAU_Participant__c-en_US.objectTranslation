@@ -9,6 +9,26 @@
         <value>Participants</value>
     </caseValues>
     <fields>
+        <label><!-- Billing and travel/Accomodation details --></label>
+        <name>Billing_and_travel_Accomodation_details__c</name>
+        <picklistValues>
+            <masterLabel>Billing - NO Travel/Accommodation</masterLabel>
+            <translation><!-- Billing - NO Travel/Accommodation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Billing - Travel/Accommodation</masterLabel>
+            <translation><!-- Billing - Travel/Accommodation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NO Billing - NO Travel/Accommodation</masterLabel>
+            <translation><!-- NO Billing - NO Travel/Accommodation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NO Billing - Travel/Accommodation</masterLabel>
+            <translation><!-- NO Billing - Travel/Accommodation --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Chatter Group Id --></label>
         <name>Chatter_Group_Id__c</name>
     </fields>

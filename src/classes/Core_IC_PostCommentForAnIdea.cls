@@ -7,7 +7,7 @@
 */
 global with sharing class Core_IC_PostCommentForAnIdea {
 
-    /*******************************************************************************************************
+	/*******************************************************************************************************
     * @description This method get the wrapper data and send to the baseService application.
     * @param Core_CA_ApplicationWrapper wrapper 
     * @return Core_IC_WrapperUtility.IdeaCommentResponse wrapper
@@ -17,9 +17,9 @@ global with sharing class Core_IC_PostCommentForAnIdea {
        try{
             objCommentForIdeas = processCommentForIdeas(appWrapperObj);
        }
-  /*     catch(Core_CA_BaseServiceException baseServEx){ 
+       catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }*/
+       }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_PostVoteForIdeas : postVoteForIdeas method ', ex);
        }    
@@ -34,17 +34,17 @@ global with sharing class Core_IC_PostCommentForAnIdea {
     private static Core_IC_WrapperUtility.IdeaCommentResponse processCommentForIdeas(Core_CA_ApplicationWrapper appWrapperObj){
        Core_IC_WrapperUtility.IdeaCommentResponse objCommentForIdeas = new Core_IC_WrapperUtility.IdeaCommentResponse(); 
        try{
-           IdeaComment ideaComment=new IdeaComment();
-           ideaComment.CommentBody=appWrapperObj.ideaCommentRequest.CommentBody;
-           ideaComment.IdeaId=appWrapperObj.ideaCommentRequest.IdeaId;
-           insert ideaComment;
-           
-           objCommentForIdeas.IdeaComments=getIdeaCommentsList(appWrapperObj);
-           objCommentForIdeas.CommentCount=objCommentForIdeas.IdeaComments.size();
-           
+       	   IdeaComment ideaComment=new IdeaComment();
+       	   ideaComment.CommentBody=appWrapperObj.ideaCommentRequest.CommentBody;
+       	   ideaComment.IdeaId=appWrapperObj.ideaCommentRequest.IdeaId;
+       	   insert ideaComment;
+       	   
+       	   objCommentForIdeas.IdeaComments=getIdeaCommentsList(appWrapperObj);
+       	   objCommentForIdeas.CommentCount=objCommentForIdeas.IdeaComments.size();
+       	   
            objCommentForIdeas.message=Core_IC_AppConstants.RESPONSE_SUCCESS_MSG;
            objCommentForIdeas.statusCode=Core_IC_AppConstants.RESPONSE_SUCCESS_CODE;
-           
+       	   
        }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_PostVoteForIdeas : processVoteForIdeas method ', ex);
@@ -54,7 +54,7 @@ global with sharing class Core_IC_PostCommentForAnIdea {
     }
     
     
-    /*******************************************************************************************************
+	/*******************************************************************************************************
     * @description This method is used to get all the comments for an Idea.
     * @param Core_CA_ApplicationWrapper wrapper 
     * @return List<Core_IC_WrapperUtility.IdeaComments> wrapper
@@ -84,9 +84,9 @@ global with sharing class Core_IC_PostCommentForAnIdea {
                 lstIdeaComments.add(ideaComment);
             }
        }
-      /* catch(Core_CA_BaseServiceException baseServEx){ 
+       catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }*/
+       }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_IdeaDetail : processIdeaComments method ', ex);
        }   

@@ -275,6 +275,7 @@ public without sharing class uw_OwnerUpdate {
     private static void test_CollaborationUpdate() {
         User u1 = uw_UnitTestDataFactory.initInternalUser('a1', 'a1@email.edu.edu', 'jones', 'jones@edu.edu');
         User u2 = uw_UnitTestDataFactory.initInternalUser('a2', 'a2@email.edu.edu', 'smith', 'smith@edu.edu');
+        uw_Brand__c brand = uw_UnitTestDataFactory.initBrand('brandName', true);
         //IDC- 14 Jun - Creating test data for Inoplan object
         uw_Inoplan_Project__c inoPlanProject = uw_UnitTestDataFactory.createInoplan();
         insert inoPlanProject;        
@@ -283,7 +284,7 @@ public without sharing class uw_OwnerUpdate {
         System.runAs(u1) {
             //bet = uw_UnitTestDataFactory.createBet_New(brand, 'betName'+Math.random(),newProject2);
             //IDC- 14 Jun - new Inoplan parameter added     
-            bet = uw_UnitTestDataFactory.initBET('betName',true,inoPlanProject);           
+            bet = uw_UnitTestDataFactory.initBET('betName', brand, true,inoPlanProject);           
         }
         
         List<CollaborationGroupMember> cgms = [SELECT Id, CollaborationGroupId, CollaborationRole, MemberId FROM CollaborationGroupMember];
@@ -346,12 +347,13 @@ public without sharing class uw_OwnerUpdate {
         // 2. where the new team member already exists
         User u1 = uw_UnitTestDataFactory.initInternalUser('a1', 'a1@email.edu.edu', 'jones', 'jones@edu.edu');
         User u2 = uw_UnitTestDataFactory.initInternalUser('a2', 'a2@email.edu.edu', 'smith', 'smith@edu.edu');
+        uw_Brand__c brand = uw_UnitTestDataFactory.initBrand('brandName', true);
         //IDC- 14 Jun - Creating test data for Inoplan object
         uw_Inoplan_Project__c inoPlanProject = uw_UnitTestDataFactory.createInoplan();
         insert inoPlanProject;       
         uw_BET__c bet;
         System.runAs(u1) {                     
-        bet = uw_UnitTestDataFactory.initBET('betName', true,inoPlanProject);           
+        bet = uw_UnitTestDataFactory.initBET('betName', brand, true,inoPlanProject);           
         }
 
         String accessLevel1 = uw_Constants.ACCESS_LEVEL_FULL;
@@ -424,8 +426,9 @@ public without sharing class uw_OwnerUpdate {
         
         
         System.runAs(u1) {
+            uw_Brand__c brand = uw_UnitTestDataFactory.initBrand('brandName', true);
             //IDC- 14 Jun - new Inoplan parameter added     
-            bet = uw_UnitTestDataFactory.initBET('betName', true,inoPlanProject);           
+            bet = uw_UnitTestDataFactory.initBET('betName', brand, true,inoPlanProject);           
             uw_BET__Share bsnew = new uw_BET__Share(AccessLevel='Edit',ParentId=bet.Id,
                                                   RowCause='Manual', UserOrGroupId=u2.Id);
             insert bsnew;       

@@ -63,7 +63,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Brand_Name_For_KeyWord_Search__c</fullName>
         <externalId>false</externalId>
@@ -174,6 +174,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -188,17 +189,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>New_Indicator__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Identifies whether the Asset Group display (made up of the asset thumbnails) should have a New indicator or not</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Identifies whether the Asset Group display (made up of the asset thumbnails) should have a New indicator or not</inlineHelpText>
-        <label>New Indicator?</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Type__c</fullName>
@@ -216,19 +206,16 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>In Store Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Repeatable Model</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Call To Action</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Best Practices</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

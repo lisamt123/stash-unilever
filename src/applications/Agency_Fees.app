@@ -3,10 +3,11 @@
     <defaultLandingTab>Agency_Fees</defaultLandingTab>
     <description>This contain all of the relevant objects and tabs for Agency Fees</description>
     <label>Agency Fees</label>
-    <logo>AF_Images/Agency_Fees_Masthead.png</logo>
     <tab>Agency_Fees</tab>
     <tab>standard-report</tab>
     <tab>Custom_Settings</tab>
     <tab>Agency_Fee_Field_History__c</tab>
     <tab>standard-Chatter</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

@@ -3,7 +3,6 @@
     <defaultLandingTab>standard-Chatter</defaultLandingTab>
     <description>Unilever Chatter Only Application - Provisioned for all standard Unilever users. Owner - Oliver.Elstob@unilever.com</description>
     <label>Unilever</label>
-    <logo>Unilever_Images/New_Unilever_Way_Logo.png</logo>
     <tab>standard-UserProfile</tab>
     <tab>standard-Chatter</tab>
     <tab>standard-CollaborationGroup</tab>
@@ -13,4 +12,6 @@
     <tab>standard-Dashboard</tab>
     <tab>My_Approvals_Custom</tab>
     <tab>standard-Idea</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

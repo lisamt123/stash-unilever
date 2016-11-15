@@ -1,3 +1,0 @@
-<apex:page showHeader="true" sidebar="true" action="{!redirectToSwopMain}" standardController="Oblix_Project_Assets__c" extensions="Oblix_AssetRedirectController" >
-	<apex:detail />
-</apex:page>

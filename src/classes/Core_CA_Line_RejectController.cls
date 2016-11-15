@@ -59,7 +59,7 @@ public with sharing class Core_CA_Line_RejectController {
         List<Core_Approver_Details__c> lstApprover=[SELECT Interested_Party__c,Id,Status__c,Source_System__c,Role__c,Is_Active__c,CreatedDate,Action__c FROM Core_Approver_Details__c WHERE Approval_Header__c =:HeaderId ORDER BY CreatedDate ASC];
         if(!lstApprover.isempty()){
             for(Core_Approver_Details__c Approver : lstApprover){
-                    if(Approver.Interested_Party__c==Userinfo.getuserId() && Approver.Role__c=='APP'&&Approver.Source_System__c=='Ariba' && Approver.Is_Active__c) count++;
+                    if(Approver.Interested_Party__c==Userinfo.getuserId() && Approver.Role__c=='APP'&&Approver.Source_System__c=='Ariba' && Approver.Is_Active__c==true) count++;
                     if(Approver.Role__c=='EMP'&& Approver.Action__c =='CANC'&& Approver.Source_System__c=='GTES') bolGTES_CANC=true;
                 }
                 for(Core_Approver_Details__c Approver : lstApprover){
@@ -69,7 +69,7 @@ public with sharing class Core_CA_Line_RejectController {
                         bolAribaChkBox=true;
                     }
                         //For single approver having same Interested Party user with same role for both Ariba/GTES system
-                        if((Approver.Source_System__c=='GTES' && Approver.Action__c!='COPY') || (Approver.Source_System__c=='Ariba' && Approver.Is_Active__c && count==1)){
+                        if((Approver.Source_System__c=='GTES' && Approver.Action__c!='COPY') || (Approver.Source_System__c=='Ariba' && Approver.Is_Active__c==true && count==1)){
                             if(Approver.Status__c=='Approved'||Approver.Status__c=='Rejected') bolAppRej=true; 
                             //if(Approver.Source_System__c=='Ariba') bolAribaChkBox=true;
                             if(Approver.Source_System__c=='GTES') bolGTESChkBox=true;
@@ -78,11 +78,11 @@ public with sharing class Core_CA_Line_RejectController {
                                 approverRecId =Approver.id;
                                 strStatus=Approver.Status__c;
                                 strSourceSystem=Approver.Source_System__c;
-                                if(bolGTES_CANC) bolCANCConfirm=true;
+                                if(bolGTES_CANC==true) bolCANCConfirm=true;
                                 break;
                         }
                         //For multiple approver having same Interested Party user with same role for Ariba
-                        else if(Approver.Source_System__c=='Ariba' && Approver.Is_Active__c && count>1){
+                        else if(Approver.Source_System__c=='Ariba' && Approver.Is_Active__c==true && count>1){
                                 if(Approver.Status__c=='Approved'||Approver.Status__c=='Rejected'){
                                     bolAppRej=true;
                                     continue;
@@ -103,9 +103,9 @@ public with sharing class Core_CA_Line_RejectController {
                 }
             }
         }
-        if(bolAppRej||bolCANCConfirm){
-            if(bolAppRej) strMsg=CORE_Chatter_Approval__c.getinstance('AppRejAlreadyStatus').Text_Value__c;
-            if(bolCANCConfirm) strMsg=CORE_Chatter_Approval__c.getinstance('AppRejGTESCANCMessage').Text_Value__c;
+        if(bolAppRej==true||bolCANCConfirm==true){
+            if(bolAppRej==true) strMsg=CORE_Chatter_Approval__c.getinstance('AppRejAlreadyStatus').Text_Value__c;
+            if(bolCANCConfirm==true) strMsg=CORE_Chatter_Approval__c.getinstance('AppRejGTESCANCMessage').Text_Value__c;
             //strMsg= strMsg.replace('XXXXXX',strStatus);
             bolApprover =false;
         }
@@ -128,13 +128,13 @@ public with sharing class Core_CA_Line_RejectController {
         ObjAppDetails.Send_to_Source_System__c='Yes';
         //if(strSourceSystem=='Ariba') ObjAppDetails.Visible_to_Supplier__c=AribaChkBox;
         if(approverComments==null||approverComments=='') bolGTESEmptyComments=true;
-        if(approverComments.length()<=255 && !bolGTESEmptyComments){
+        if(approverComments.length()<=255 && bolGTESEmptyComments==false){
             lstAppDetails.add(ObjAppDetails);
         }
         else
         {
             strConfirmationMsg =CORE_Chatter_Approval__c.getinstance('AppRejStringLengthMessage').Text_Value__c;
-            if(bolGTESEmptyComments) strConfirmationMsg =CORE_Chatter_Approval__c.getinstance('AppRejGTESCommErrMessage').Text_Value__c;
+            if(bolGTESEmptyComments==true) strConfirmationMsg =CORE_Chatter_Approval__c.getinstance('AppRejGTESCommErrMessage').Text_Value__c;
             bolConfirmation =true;
             strConfirmStatus ='error';  
         }

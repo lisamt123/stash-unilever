@@ -56,7 +56,7 @@ private class uw_BetAndAssetPromotionTest {
         update assets;
         
         // make the bet private
-        //bet.Sharing__c = 'Private';
-        //update bet;
+        bet.Sharing__c = 'Private';
+        update bet;
     }
 }

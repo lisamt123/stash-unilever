@@ -566,6 +566,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -583,18 +584,6 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>File_Id__c</fullName>
-        <externalId>false</externalId>
-        <label>File Id</label>
-        <length>18</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Is_bucket_field__c</fullName>
@@ -623,8 +612,8 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Digital OOH</fullName>
-                <controllingFieldValues>unchecked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>unchecked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Fees</fullName>
@@ -632,8 +621,8 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Gaming</fullName>
-                <controllingFieldValues>unchecked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>unchecked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>In Store</fullName>
@@ -641,33 +630,33 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Interactive TV</fullName>
-                <controllingFieldValues>unchecked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>unchecked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mobile</fullName>
-                <controllingFieldValues>unchecked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>unchecked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Online Display</fullName>
-                <controllingFieldValues>unchecked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>unchecked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Online Search</fullName>
-                <controllingFieldValues>unchecked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>unchecked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Online Video</fullName>
-                <controllingFieldValues>unchecked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>unchecked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Other Digital</fullName>
-                <controllingFieldValues>unchecked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>unchecked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Out of Home</fullName>
@@ -695,8 +684,8 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Social Media</fullName>
-                <controllingFieldValues>unchecked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>unchecked</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>TV</fullName>
@@ -704,11 +693,12 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Other</fullName>
-                <controllingFieldValues>unchecked</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>unchecked</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -790,6 +780,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -864,6 +855,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -885,6 +877,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -905,6 +898,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

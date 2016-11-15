@@ -18,9 +18,9 @@ global with sharing class Core_IC_IdeaDetail{
        try{
             objIdeaDetailResponse = processIdeaDetailResponse(appWrapperObj);
        }
-     /*  catch(Core_CA_BaseServiceException baseServEx){ 
+       catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }*/
+       }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_IdeaDetail : getIdeaDetail method ', ex);
        }    
@@ -43,9 +43,9 @@ global with sharing class Core_IC_IdeaDetail{
            objIdeaDetailResponse.message=Core_IC_AppConstants.RESPONSE_SUCCESS_MSG;
            objIdeaDetailResponse.statusCode=Core_IC_AppConstants.RESPONSE_SUCCESS_CODE;
        }
-     /*  catch(Core_CA_BaseServiceException baseServEx){ 
+       catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }*/
+       }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_IdeaDetail : processIdeaDetailResponse method ', ex);
        }   
@@ -98,9 +98,9 @@ global with sharing class Core_IC_IdeaDetail{
             String strCategories=ideaTheme.Categories__c.ReplaceAll(', ',',');
             ObjIdeaDetailResponse.Categories=strCategories.split(',');
        }
-     /*  catch(Core_CA_BaseServiceException baseServEx){ 
+       catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }*/
+       }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_IdeaDetail : processIdeaDetail method ', ex);
        }   
@@ -139,9 +139,9 @@ global with sharing class Core_IC_IdeaDetail{
                 lstIdeaComments.add(ideaComment);
             }
        }
-      /* catch(Core_CA_BaseServiceException baseServEx){ 
+       catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-       }*/
+       }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_IC_IdeaDetail : processIdeaComments method ', ex);
        }   

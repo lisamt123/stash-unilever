@@ -29,7 +29,7 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>CP_Event_Approvers_Queue</name>
+                <name>CP_Events_Approvers</name>
                 <type>queue</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -55,7 +55,7 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>CP_Event_Approvers_Queue</name>
+                <name>CP_Events_Approvers</name>
                 <type>queue</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

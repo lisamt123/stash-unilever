@@ -105,8 +105,6 @@ public class WINatPOSRemoteActionWrapper {
         public String itemId=null;
         public String image=null;
         public String parentCategory;
-        public String categoryUrl = null;
-        public String categoryUrl2 = null;
         
         public MenuLineItemWrapper(String cName,String cItemId, String cImage,String cParentCategory){
             this.name=cName;
@@ -114,17 +112,6 @@ public class WINatPOSRemoteActionWrapper {
             this.image=cImage;
             this.parentCategory=cParentCategory;
         }
-        
-        public MenuLineItemWrapper(String cName, String cItemId, String cImage, String cParentCategory, String cCategoryUrl, String cCategoryUrl2){
-            this.name = cName;
-            this.itemId = cItemId;
-            this.image = cImage;
-            this.parentCategory = cParentCategory;
-            this.categoryUrl = cCategoryUrl;
-            this.categoryUrl2 = cCategoryUrl2;
-        }
-        
-        
     }
     
     /* moved to phase 2 
@@ -265,7 +252,6 @@ public class WINatPOSRemoteActionWrapper {
         public String feedId{get;set;}
         public String assetPrimaryFileId{get;set;}
         public String assetDownloadPdfUrl{get;set;}
-        public String videoUrl{get;set;}
         public List<AssetDetailStats> downloadStatistics;
         public List<AssetDetailStats> shareStatistics;
         public List<AssetDetailStats> followStatistics;
@@ -319,9 +305,8 @@ public class WINatPOSRemoteActionWrapper {
         public Integer likeCount;
         public Integer commentCount;
         public Set<String> topics;
-        public String modifyDate;
-        public String videoUrl;
-        public AssetCaruselWrapper(String cAssetId,String cAssetName,String cAssetDescription,String cAssetType, List<String> cRelatedFiles,Integer cLikeCount,Integer cCommentCount,Set<String> cTopics,String cModifyDate, String cVideoUrl){
+        public String modifyDate; 
+        public AssetCaruselWrapper(String cAssetId,String cAssetName,String cAssetDescription,String cAssetType, List<String> cRelatedFiles,Integer cLikeCount,Integer cCommentCount,Set<String> cTopics,String cModifyDate){
             this.assetId=cAssetId;
             this.relatedFiles=cRelatedFiles;
             this.assetName=cAssetName;
@@ -331,7 +316,6 @@ public class WINatPOSRemoteActionWrapper {
             this.commentCount=cCommentCount;
             this.topics=cTopics;
             this.modifyDate=cModifyDate;
-            this.videoUrl = cVideoUrl;
         }
     }
     

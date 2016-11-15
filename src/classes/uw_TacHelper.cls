@@ -304,10 +304,11 @@ public without sharing class uw_TacHelper
         final String email = 'inviteeEmail@a.b.c.edu.edu';
         final String email2 = 'inviteeEmail2@a.b.c.edu.edu';
         User u1 = uw_UnitTestDataFactory.initExternalUser('test', email, 'LastName', email);
+        uw_Brand__c brand = uw_UnitTestDataFactory.initBrand('brandName', true);
         //IDC- 14 Jun - Creating test data for Inoplan object
         uw_Inoplan_Project__c inoPlanProject = uw_UnitTestDataFactory.createInoplan();
         insert inoPlanProject;
-        uw_BET__c bet = uw_UnitTestDataFactory.initBET('betName', true,inoPlanProject);
+        uw_BET__c bet = uw_UnitTestDataFactory.initBET('betName', brand, true,inoPlanProject);
         
         uw_TacHelper.populateTacRecord(email, bet);       
     }

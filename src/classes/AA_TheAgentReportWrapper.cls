@@ -1,4 +1,4 @@
-public with sharing class AA_TheAgentReportWrapper {
+public class AA_TheAgentReportWrapper {
 
     @RemoteAction @AuraEnabled
     public aa_Agent_Report__c agent_report { get; set; }

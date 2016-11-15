@@ -10,4 +10,6 @@
     <tab>PSAR_Alert_Details__c</tab>
     <tab>PSAR_Location__c</tab>
     <tab>PSARSupplyChainMetrics</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

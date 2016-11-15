@@ -8,4 +8,6 @@
     <tab>FA_Training_Room__c</tab>
     <tab>FourAcres_App</tab>
     <tab>FA_Course_ChatterGroup__c</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

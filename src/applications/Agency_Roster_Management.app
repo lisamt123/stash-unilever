@@ -2,10 +2,10 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <defaultLandingTab>standard-home</defaultLandingTab>
     <label>Agency Roster Management</label>
-    <tab>standard-Chatter</tab>
-    <tab>Agency_List</tab>
     <tab>standard-Account</tab>
     <tab>ar_Application__c</tab>
     <tab>standard-report</tab>
     <tab>ar_Agency_Portal_CMS__c</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

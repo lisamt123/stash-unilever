@@ -1160,17 +1160,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>ChatKey__c</fullName>
-        <description>To store chatkey for live chat transcripts. Used to link live chat surveys to cases</description>
-        <externalId>false</externalId>
-        <label>ChatKey</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Close_Case_2__c</fullName>
         <externalId>false</externalId>
         <label>Our response to your issue was addressed</label>
@@ -2315,17 +2304,6 @@
         <externalId>false</externalId>
         <label>Question100</label>
         <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Record_Type__c</fullName>
-        <externalId>false</externalId>
-        <formula>RecordType.DeveloperName</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Record Type Developer Name</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

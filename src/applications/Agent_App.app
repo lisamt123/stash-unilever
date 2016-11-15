@@ -5,4 +5,6 @@
     <label>Agent App</label>
     <tab>Agent_App</tab>
     <tab>aa_Agent_Report__c</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

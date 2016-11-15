@@ -7,4 +7,6 @@
     <tab>standard-Chatter</tab>
     <tab>standard-CollaborationGroup</tab>
     <tab>standard-report</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

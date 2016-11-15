@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-right">                            
                             <div id="announcementPost" ui-view="annoucement"></div>
-                            <div id="chatter-container" class="chatter-container" style="display: none">
+                            <div id="chatter-container" class="chatter-container">
                                 <apex:outputText value="<div ps-chatter-display></div>" escape="false"></apex:outputText>
                                 <div class="chatter-box">
                                     
@@ -26,11 +26,10 @@
                                         <apex:form >
     <apex:actionFunction name="UpdateChatterFeed" action="{!updateChatterFeed}" rerender="chatterFeed" oncomplete="Ps.Chatter.onActionCallComplete();">
         <apex:param name="entityId" assignTo="{!entityId}" value="" />
-    </apex:actionFunction>                                   
+    </apex:actionFunction>
 </apex:form>
 <div id="chatter"></div>
-                                     
-<chatter:feed id="chatterFeed" entityid="{!winAtPosGroupId}" onComplete="Ps.Chatter.onChatterComplete();"/> 
+<chatter:feed id="chatterFeed" entityid="{!winAtPosGroupId}" onComplete="Ps.Chatter.onChatterComplete();"/>
 
                                     </div>
                                 </div>
@@ -46,23 +45,14 @@
     
     <script src="{!$Resource.winatposapp}/scripts/vendor.a2a2d2cd.js"></script>
     <script type="text/javascript">
-    var winAtPOSUrlArray = {!winAtPOSUrlJson};
-    var winAtPOSUrlMap = {};
-    for (var i = 0; i < winAtPOSUrlArray.length; i++) {
-        winAtPOSUrlMap[winAtPOSUrlArray[i].Name] = winAtPOSUrlArray[i];
-    }
-
     //here are some variables for application init on  salsforce 
     var appConfig = angular.module('appConfig', []).constant('resourceBasePath', '{!URLFOR($Resource.winatposapp, '')}' + '/')    
                                                    .constant('environment', 'SF')
                                                    .constant('userGroupName', '{!winAtPosGroupName}')
-                                                   .constant('userGroupId', '{!winAtPosGroupId}')
-                                                   .constant('customUrls', winAtPOSUrlMap)
-                                                   .constant('newTabs', '{!$Setup.WinAtPOS_New_Tabs__c.Tab_String__c}')
-    											   .constant('isCommunityUser', '{!isCommunityUser}');
+                                                   .constant('userGroupId', '{!winAtPosGroupId}');
     //hide global search
     $(document).ready(function() { 
-        $(".searchCell").hide();
+        $(".searchCell").hide(); 
     });                                                    
 </script>
      
@@ -85,6 +75,6 @@
                 console.log(rule2);
                 rule2.style.marginTop = -this.scrollTop+'px';
             });
-        });
+        });                                                   
     </script>
 </apex:page>

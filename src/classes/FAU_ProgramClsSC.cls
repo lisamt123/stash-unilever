@@ -99,6 +99,19 @@ public with sharing class FAU_ProgramClsSC {
                         WHERE FAU_Program_Wave__c = :oProgram.Id];
 
     }
+    
+    /*****************************************************************/
+    /*public static FAU_Milestone__c[] retrieveProgramMilestonespreeti(FAU_Milestone__c oProgram){
+        
+        
+        return [select CreatedById, CreatedDate, FAU_1st_Reminder__c, FAU_2nd_Reminder__c, FAU_Description__c, 
+                        FAU_Due_Date__c, FAU_Milestone_Completition__c, FAU_Program_Wave__c, FAU_Type__c, Id, Name,
+                        FAU_Information_to_Complete__c
+                        FROM FAU_Milestone__c
+                        WHERE FAU_Program_Wave__c = 'a2I180000006mQZEAY'];
+
+    }*/
+    /*****************************************************************/
 
 
     /*******************************************************************
@@ -117,23 +130,29 @@ public with sharing class FAU_ProgramClsSC {
         oProgramInsert =  createProgramObject(oProgram, sProgramName, 
                                                     oRecordtype, iNumberOfDays);       
         insert oProgramInsert;
+        system.debug('Insert Program');
         
         if(oRecordtype.DeveloperName == TEMPLATE_RECORDTYPE_DEVELOPERNAME){
             oProgram.FAU_Program_Template__c = oProgramInsert.Id;
             update oProgram;
+            system.debug('Update Program');
         }else{
             oProgramInsert.FAU_Program_Template__c = oProgram.Id;
             update oProgramInsert;
+            system.debug('Update Program');
         }
 
         lModulesInsert = createProgramModules(oProgram, oProgramInsert, iNumberOfDays);
         insert lModulesInsert;
+        system.debug('lModulesInsert');
 
         lWebinarsInsert = createProgramWebinars(oProgram, oProgramInsert, iNumberOfDays);
         insert lWebinarsInsert;
+        system.debug('lWebinarsInsert');
 
         lMilestonesInsert = createProgramMilestones(oProgram, oProgramInsert, iNumberOfDays);
         insert lMilestonesInsert;
+        system.debug(lMilestonesInsert);
 
         return oProgramInsert;
 
@@ -224,14 +243,62 @@ public with sharing class FAU_ProgramClsSC {
                                                                 Integer iNumberOfDays){
         List<FAU_Milestone__c> lMilestonesInsert = new List<FAU_Milestone__c>();
         List<FAU_Milestone__c> lMilestones = new List<FAU_Milestone__c>();
+        Map<string, MilestoneNames__c> MN = MilestoneNames__c.getall();
 
         lMilestones = retrieveProgramMilestones(oProgram); 
+            for(FAU_Milestone__c oMilestone: lMilestones){
+                FAU_Milestone__c oMilestoneInsert = oMilestone.clone(false, true, false, false);               //See sObject Clone Method
+                oMilestoneInsert.FAU_Program_Wave__c = oProgramInsert.Id;           
+                //oMilestone.FAU_Due_Date__c <> null &&  MN.containsKey(oMilestone.Name)){
+                if (oMilestone.FAU_Due_Date__c <> null && oMilestone.Name.contains('IDP') ){ 
+                    
+                    oMilestoneInsert.FAU_Due_Date__c = oProgram.Mod_1_Start_date__c-56;
+                   // oMilestone.FAU_Due_Date__c = oProgram.FAU_Module_1_Start_Date__c-56;
+                    /*oMilestone.FAU_Due_Date__c = oProgram.FAU_Start_Date_of_Module_1__c;
+                    oMilestoneInsert.FAU_Due_Date__c = oProgram.FAU_Module_1_Start_Date__c-56; //oMilestone.FAU_Due_Date__c.addDays(56);
+                    system.debug('oMilestoneInsert.FAU_Due_Date__c'+oMilestoneInsert.FAU_Due_Date__c);*/
+                }
+                if (oMilestone.FAU_1st_Reminder__c <> null && oMilestone.Name.contains('IDP') ){
+                    //oProgram.FAU_Module_1_Start_Date__c = oProgram.FAU_Start_Date_of_Module_1__c;
+                    oMilestoneInsert.FAU_1st_Reminder__c = oProgram.Mod_1_Start_date__c-14;   //oMilestone.FAU_1st_Reminder__c.addDays(iNumberOfDays);
+                }
+                if (oMilestone.FAU_2nd_Reminder__c <> null){
+                    oMilestoneInsert.FAU_2nd_Reminder__c = oMilestone.FAU_2nd_Reminder__c.addDays(iNumberOfDays);
+                }
+    
+                lMilestonesInsert.add(oMilestoneInsert);
+            
+            }
+       return lMilestonesInsert;
 
-        for(FAU_Milestone__c oMilestone: lMilestones){
+    }
+    
+    /*************************************************/
+    
+    /*public static FAU_Milestone__c[] createProgramMilestonespreeti(FAU_Milestone__c oProgram, FAU_Milestone__c oProgramInsert,
+                                                                Integer iNumberOfDays){
+        List<FAU_Milestone__c> lMilestonesInsert = new List<FAU_Milestone__c>();
+        List<FAU_Milestone__c> lMilestones = new List<FAU_Milestone__c>();
+        Map<string, MilestoneNames__c> MN = MilestoneNames__c.getall();
+        
+        lMilestones = [select CreatedById, CreatedDate, FAU_1st_Reminder__c, FAU_2nd_Reminder__c, FAU_Description__c, 
+                        FAU_Due_Date__c, FAU_Milestone_Completition__c, FAU_Program_Wave__c, FAU_Type__c, Id, Name,
+                        FAU_Information_to_Complete__c,FAU_Program_Wave__r.FAU_Start_Date_of_Module_1__c
+                        FROM FAU_Milestone__c
+                        WHERE FAU_Program_Wave__c = 'a2I180000006mQZEAY'];                       
+*/
+        //lMilestones = retrieveProgramMilestonespreeti(oProgram); 
+
+        /*for(FAU_Milestone__c oMilestone: lMilestones){
             FAU_Milestone__c oMilestoneInsert = oMilestone.clone(false, true, false, false);               //See sObject Clone Method
             oMilestoneInsert.FAU_Program_Wave__c = oProgramInsert.Id;
-            if (oMilestone.FAU_Due_Date__c <> null){
-                oMilestoneInsert.FAU_Due_Date__c = oMilestone.FAU_Due_Date__c.addDays(iNumberOfDays);
+            
+            system.debug('***Preetiiiiiiiiiiiiiiiiiiiiiiiiiiiii*****'+MN.get(oMilestone.Name).No_Of_days__c);
+            
+            system.debug('***Preeiiii###################*****'+oMilestone.FAU_Program_Wave__r.FAU_Start_Date_of_Module_1__c.addDays(-(integer.ValueOf(MN.get(oMilestone.Name).No_Of_days__c))));
+            
+            if (oMilestone.FAU_Due_Date__c <> null && MN.containsKey(oMilestone.Name)){
+                oMilestoneInsert.FAU_Due_Date__c = oMilestone.FAU_Program_Wave__r.FAU_Start_Date_of_Module_1__c.addDays(-(integer.ValueOf(MN.get(oMilestone.Name).No_Of_days__c)));
             }
             if (oMilestone.FAU_1st_Reminder__c <> null){
                 oMilestoneInsert.FAU_1st_Reminder__c = oMilestone.FAU_1st_Reminder__c.addDays(iNumberOfDays);
@@ -243,9 +310,9 @@ public with sharing class FAU_ProgramClsSC {
             lMilestonesInsert.add(oMilestoneInsert);
         
         }
+        //update lMilestonesInsert;
        return lMilestonesInsert;
-
-    }
+    }*/
 
 
 }

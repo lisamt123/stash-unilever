@@ -266,6 +266,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>MultiselectPicklist</type>
         <visibleLines>7</visibleLines>
     </fields>
@@ -324,6 +325,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>MultiselectPicklist</type>
         <visibleLines>6</visibleLines>
     </fields>

@@ -1,6 +1,0 @@
-<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
-<tr valign="top" height="400" >
-<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
-<![CDATA[<font size="2"><span style="font-family: Arial, Helvetica, sans-serif; background-color: rgb(255, 255, 255);">Your Bosscard: {!IPM_Bosscard__</span><a href="http://c.name/" target="_blank" style="color: rgb(0, 0, 0); font-family: Arial, Helvetica, sans-serif;">c.Name</a><span style="font-family: Arial, Helvetica, sans-serif; background-color: rgb(255, 255, 255);">} will soon be deleted due to inactivity. Please provide an update to this record if you would like to prevent it from being deleted.</span></font>]]></td>
-</tr>
-</table>

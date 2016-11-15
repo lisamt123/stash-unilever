@@ -135,32 +135,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Brand_Position_Keyword_Search__c</fullName>
-        <externalId>false</externalId>
-        <label>Brand Position Keyword Search</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Brand_Position__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Brand Positioning</label>
-        <referenceTo>MDO_BrandPosition__c</referenceTo>
-        <relationshipLabel>Brand Experience List</relationshipLabel>
-        <relationshipName>Brand_Experience_List</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Brand__c</fullName>
         <externalId>false</externalId>
         <formula>HYPERLINK(&quot;/&quot; +  uw_Brand__r.Id , uw_Brand__r.Name  , &quot;_self&quot;)</formula>
@@ -171,32 +145,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Category_Group_Keyword_Search__c</fullName>
-        <externalId>false</externalId>
-        <label>Category Group Keyword Search</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Category_Group__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Category Group</label>
-        <referenceTo>MDO_Category__c</referenceTo>
-        <relationshipLabel>Brand Experience List</relationshipLabel>
-        <relationshipName>Brand_Experience_List</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Category_Keyword_Search__c</fullName>
@@ -219,121 +167,122 @@
             <controllingField>Product_Category_Sub_Division__c</controllingField>
             <picklistValues>
                 <fullName>Coffee &amp; Snacks</fullName>
-                <controllingFieldValues>Refreshment</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Refreshment</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cooking Fats &amp; Oils Category</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Deodorants &amp; Fragrances</fullName>
-                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Desserts Category</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dressings</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Frozen Foods Category</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hair Care</fullName>
-                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Household Care</fullName>
-                <controllingFieldValues>Home Care excl Other Operations</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Home Care excl Other Operations</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ice Cream</fullName>
-                <controllingFieldValues>Refreshment</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Refreshment</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Laundry</fullName>
-                <controllingFieldValues>Home Care excl Other Operations</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Home Care excl Other Operations</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Non Corporate Home Care Category</fullName>
-                <controllingFieldValues>Home Care excl Other Operations</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Home Care excl Other Operations</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Non Corporate Personal Care Cat</fullName>
-                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Oral Care</fullName>
-                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Other Foods</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Prestige Legacy</fullName>
-                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Personal Care excl Skin</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Savoury</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Skin Care</fullName>
-                <controllingFieldValues>Skin</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Skin</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Skin Cleansing</fullName>
-                <controllingFieldValues>Skin</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Skin</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Spreads</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Tea and Soy &amp; Fruit Beverages</fullName>
-                <controllingFieldValues>Refreshment</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Refreshment</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Vitality Shots Category</fullName>
-                <controllingFieldValues>Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Water Purification Category</fullName>
-                <controllingFieldValues>Refreshment</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Refreshment</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Weight Management</fullName>
-                <controllingFieldValues>Refreshment</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Refreshment</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -348,231 +297,232 @@
             <controllingField>Category_Level_2__c</controllingField>
             <picklistValues>
                 <fullName>Colourants</fullName>
-                <controllingFieldValues>Hair Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Hair Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cooking Fats &amp; Oils</fullName>
-                <controllingFieldValues>Cooking Fats &amp; Oils Category</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Cooking Fats &amp; Oils Category</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cooking Products</fullName>
-                <controllingFieldValues>Savoury</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Creams</fullName>
-                <controllingFieldValues>Spreads</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Deodorants</fullName>
-                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Desserts</fullName>
-                <controllingFieldValues>Desserts Category</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Desserts Category</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Dishwash</fullName>
-                <controllingFieldValues>Household Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Household Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Fabric Conditioners</fullName>
-                <controllingFieldValues>Laundry</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Fabrics Cleaning</fullName>
-                <controllingFieldValues>Laundry</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Laundry</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Face</fullName>
-                <controllingFieldValues>Skin Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Fragrances</fullName>
-                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Frozen Foods</fullName>
-                <controllingFieldValues>Frozen Foods Category</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Frozen Foods Category</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hand &amp; Body Care</fullName>
-                <controllingFieldValues>Skin Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Skin Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Household Cleaning</fullName>
-                <controllingFieldValues>Household Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Household Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>In Home Ice Cream</fullName>
-                <controllingFieldValues>Ice Cream</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Leaf &amp; Instant Tea</fullName>
-                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mayonnaise</fullName>
-                <controllingFieldValues>Dressings</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Meals &amp; Dishes</fullName>
-                <controllingFieldValues>Savoury</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Mouthwash &amp; Other Oral</fullName>
-                <controllingFieldValues>Oral Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Non Corporate Home Care</fullName>
-                <controllingFieldValues>Non Corporate Home Care Category</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Non Corporate Home Care Category</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Non Corporate Personal Care</fullName>
-                <controllingFieldValues>Non Corporate Personal Care Cat</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Non Corporate Personal Care Cat</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Other Dressings</fullName>
-                <controllingFieldValues>Dressings</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Other Hair Care</fullName>
-                <controllingFieldValues>Hair Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Hair Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Other Misc Foods</fullName>
-                <controllingFieldValues>Other Foods</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Other Foods</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Other Savoury</fullName>
-                <controllingFieldValues>Savoury</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Other Spreads</fullName>
-                <controllingFieldValues>Spreads</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Out of Home Ice Cream</fullName>
-                <controllingFieldValues>Ice Cream</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Perms &amp; Relaxers</fullName>
-                <controllingFieldValues>Hair Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Hair Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Prestige Fragrance</fullName>
-                <controllingFieldValues>Prestige Legacy</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Prestige Legacy</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Prestige Skin Care</fullName>
-                <controllingFieldValues>Prestige Legacy</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Prestige Legacy</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ready To Drink Tea</fullName>
-                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Salad Dressings</fullName>
-                <controllingFieldValues>Dressings</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sauces</fullName>
-                <controllingFieldValues>Savoury</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Skin Cleansing</fullName>
-                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Skin Cleansing</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Snacks</fullName>
-                <controllingFieldValues>Coffee &amp; Snacks</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Coffee &amp; Snacks</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Soups</fullName>
-                <controllingFieldValues>Savoury</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Soy &amp; Fruit Beverages</fullName>
-                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Styling</fullName>
-                <controllingFieldValues>Hair Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Hair Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Toothbrush</fullName>
-                <controllingFieldValues>Oral Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Toothpaste</fullName>
-                <controllingFieldValues>Oral Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Vitality Shots</fullName>
-                <controllingFieldValues>Vitality Shots Category</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Vitality Shots Category</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Wash &amp; Care</fullName>
-                <controllingFieldValues>Hair Care</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Hair Care</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Water Purification</fullName>
-                <controllingFieldValues>Water Purification Category</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Water Purification Category</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>WM Weight Management</fullName>
-                <controllingFieldValues>Weight Management</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Weight Management</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Yellow Fats</fullName>
-                <controllingFieldValues>Spreads</controllingFieldValues>
                 <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -649,19 +599,9 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Deletion_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Deletion Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Add text that will help others search for your brand experience. If the text was copied over from an IPM project, editing this text will not modify the description of the IPM Navigator project, and only affects the description field of your BET.</inlineHelpText>
+        <inlineHelpText>Add text that will help others search for your Brand Experience</inlineHelpText>
         <label>Description</label>
         <length>10000</length>
         <trackFeedHistory>false</trackFeedHistory>
@@ -669,26 +609,6 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>10</visibleLines>
-    </fields>
-    <fields>
-        <fullName>FinalReleaseDate__c</fullName>
-        <externalId>false</externalId>
-        <label>Final Release Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Final_Release_Due_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>Final Release Due Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>Final_release_date__c</fullName>
@@ -701,38 +621,6 @@ DATE(YEAR(Launch_Date__c), MONTH(Launch_Date__c)-6, 1)
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Final release date</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Final_release_otif__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(AND( NOT(ISNULL(FinalReleaseDate__c)), NOT(ISNULL(Final_Release_Due_Date__c))),IF(FinalReleaseDate__c &gt; Final_Release_Due_Date__c, &quot;Late&quot; , &quot;On Time&quot;), &quot;&quot;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Final release otif</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>FirstReleaseDate__c</fullName>
-        <externalId>false</externalId>
-        <label>First Release Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>First_Release_Due_Date__c</fullName>
-        <externalId>false</externalId>
-        <label>First Release Due Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -751,18 +639,6 @@ DATE(YEAR(Launch_Date__c)-1, 6, 30)
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>First_release_otif__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(AND( NOT(ISNULL(FirstReleaseDate__c)), NOT(ISNULL(First_Release_Due_Date__c))),IF(FirstReleaseDate__c &gt; First_Release_Due_Date__c, &quot;Late&quot; , &quot;On Time&quot;), &quot;&quot;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>First release otif</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Font_Colour__c</fullName>
@@ -786,20 +662,6 @@ DATE(YEAR(Launch_Date__c)-1, 6, 30)
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Url</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Project__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>IPM Project</label>
-        <referenceTo>IPM_Project__c</referenceTo>
-        <relationshipLabel>Brand Experience List</relationshipLabel>
-        <relationshipName>Brand_Experience_List</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Icon_Location__c</fullName>
@@ -828,9 +690,8 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
     </fields>
     <fields>
         <fullName>Inoplan_Project_Keyword_Search__c</fullName>
-        <description>Field holds related project name. If toolkit is related to Inoplan project it holds Inoplan project&apos;s name if it is related to IPM Project it holds IPM project&apos;s name</description>
         <externalId>false</externalId>
-        <label>Project Keyword Search</label>
+        <label>Inoplan Project Keyword Search</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -865,26 +726,6 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Is_Deleted__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Is Deleted</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Is_Fabric_Conditioners__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Is this a Fabric Conditioner BET ?</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Launch_Date__c</fullName>
         <description>This should be your IPM Target Launch Date (ie: Ship to Trade date)</description>
         <externalId>false</externalId>
@@ -895,17 +736,6 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Link__c</fullName>
-        <externalId>false</externalId>
-        <formula>Left($Api.Enterprise_Server_URL_190,(find(&apos;/services&apos;,$Api.Enterprise_Server_URL_190))) +  Id</formula>
-        <label>Link</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Market_Cluster__c</fullName>
@@ -927,6 +757,7 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -973,6 +804,7 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1045,20 +877,6 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Product_Brand__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Brand</label>
-        <referenceTo>MDO_Brand__c</referenceTo>
-        <relationshipLabel>Brand Experience List</relationshipLabel>
-        <relationshipName>Brand_Experience_List</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Product_Category_Sub_Division__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Which category this BET will sit under. For example, &apos;Foods&apos; or &apos;Refreshment&apos;.</inlineHelpText>
@@ -1090,24 +908,11 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Product_Category__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Category</label>
-        <referenceTo>MDO_Category__c</referenceTo>
-        <relationshipLabel>Brand Experience List (Product Category)</relationshipLabel>
-        <relationshipName>Brand_Experience_List1</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Project_ID__c</fullName>
@@ -1168,6 +973,7 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1192,6 +998,7 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1216,6 +1023,7 @@ Public toolkits will be accessible to all who have access to the Brand Experienc
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1251,6 +1059,7 @@ Expired - when the BET and its associated assets have expired.</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1295,6 +1104,7 @@ Expired - when the BET and its associated assets have expired.</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1322,28 +1132,6 @@ Expired - when the BET and its associated assets have expired.</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Total_Actual_Assets__c</fullName>
-        <externalId>false</externalId>
-        <label>Total Actual Assets</label>
-        <summarizedField>BET_ExpectedAssets__c.Computed_Actual__c</summarizedField>
-        <summaryForeignKey>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>Total_Expected_Assets__c</fullName>
-        <externalId>false</externalId>
-        <label>Total Expected Assets</label>
-        <summarizedField>BET_ExpectedAssets__c.Expected__c</summarizedField>
-        <summaryForeignKey>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Total_Number_of_Members__c</fullName>
@@ -1431,15 +1219,6 @@ Note: If you cannot find your brand then you can select any brand and uncheck &a
         <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
-    <validationRules>
-        <fullName>VisibilityChangeBackToPrivate</fullName>
-        <active>true</active>
-        <errorConditionFormula>AND( NOT(ISNEW()),
-      ISCHANGED(Sharing__c),
-      ISPICKVAL(Sharing__c,&apos;Private&apos;) 
-      )</errorConditionFormula>
-        <errorMessage>Bet visibility cannot be set back to Private</errorMessage>
-    </validationRules>
     <webLinks>
         <fullName>UploadKeyVisual</fullName>
         <availability>online</availability>

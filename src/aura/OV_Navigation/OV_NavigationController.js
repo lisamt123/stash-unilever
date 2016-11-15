@@ -1,11 +1,7 @@
 ({
     doInit: function(component, event, helper) {
-        var Browser = $A.get('$Browser');
-
-        if (Browser.isPhone === false && Browser.isTablet === false) {
-            // welcome to the house of fun ...
-            helper.redirect(component);
-        }
+        // welcome to the house of fun ...
+        helper.redirectByToken(component);
     },
 
     swapInComponent: function(component, event, helper) {
@@ -54,22 +50,14 @@
     },
 
     handleTileClick: function(component, event, helper) {
-        var activeShelfTile      = event.getParam('isVisible') === true ? event.getParam('shelfId') : null;
-
-        component.set('v.activeShelfTile', activeShelfTile);
-        component.set('v.activeShelfFolderTile', null);
-        component.set('v.activeFolderName', null);
-
-        helper.replaceShelfHistoryEntry(component, activeShelfTile);
+        // console.log('handleTileClick ....');
+        // console.log(event.getParams());
+        // helper.replaceShelfHistoryEntry(component, event.getParam('isVisible') === true ? event.getParam('shelfId') : null);
     },
 
     handleFolderClick: function(component, event, helper) {
-        var activeShelfFolderTile = event.getParam('isVisible') === true ? event.getParam('shelfTileId') : null;
-        var activeFolderName      = event.getParam('isVisible') === true ? event.getParam('folderName') : null;
-
-        component.set('v.activeShelfFolderTile', activeShelfFolderTile);
-        component.set('v.activeFolderName', activeFolderName);
-
-        helper.replaceShelfFolderHistoryEntry(component, activeShelfFolderTile, activeFolderName);
+        // console.log('handleFolderClick ....');
+        // console.log(event.getParams());
+        // helper.replaceShelfFolderHistoryEntry(component, event.getParam('isVisible') === true ? event.getParam('shelfTileId') : null);
     }
 })

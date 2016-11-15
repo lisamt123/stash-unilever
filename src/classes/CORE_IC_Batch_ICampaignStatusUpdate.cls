@@ -4,7 +4,7 @@
 ** Updated By : Mindtree to check for executing trigger only if start date changed. Date: 04-Jun-2015 
 ** Updated By : Mindtree on 10-June-2015 Change : Updating only field BatchInvoked__c to trigger CORE_IC_UpdateIdeaCampaignFields. The status logic done only in trigger now.
 */
-global with sharing class CORE_IC_Batch_ICampaignStatusUpdate implements Database.Batchable<sObject>
+global class CORE_IC_Batch_ICampaignStatusUpdate implements Database.Batchable<sObject>
 {
     global final String query;
     global CORE_IC_Batch_ICampaignStatusUpdate(string q)
@@ -31,6 +31,5 @@ global with sharing class CORE_IC_Batch_ICampaignStatusUpdate implements Databas
     //finish Mehtod
     global void finish(Database.BatchableContext BC)
     {
-        System.debug('Apex job finished');
     }
 }

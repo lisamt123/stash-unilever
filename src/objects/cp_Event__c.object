@@ -433,6 +433,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -591,6 +592,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -628,6 +630,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -782,6 +785,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -815,6 +819,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -864,6 +869,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -890,27 +896,28 @@
             <controllingField>Budget_Tracker__c</controllingField>
             <picklistValues>
                 <fullName>Total Budget</fullName>
+                <default>false</default>
                 <controllingFieldValues>Funded by Business</controllingFieldValues>
                 <controllingFieldValues>Funded by Comms</controllingFieldValues>
                 <controllingFieldValues>Funded by Comms and Business</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Training and Entertainment</fullName>
+                <default>false</default>
                 <controllingFieldValues>Funded by Business</controllingFieldValues>
                 <controllingFieldValues>Funded by Comms</controllingFieldValues>
                 <controllingFieldValues>Funded by Comms and Business</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Brought in Cost (e.g. Agency)</fullName>
+                <default>false</default>
                 <controllingFieldValues>Funded by Business</controllingFieldValues>
                 <controllingFieldValues>Funded by Comms</controllingFieldValues>
                 <controllingFieldValues>Funded by Comms and Business</controllingFieldValues>
-                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -965,6 +972,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1096,6 +1104,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1132,6 +1141,7 @@ Only available to super users (who can modify field) OR Leena/Emma Flack.</descr
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1161,6 +1171,7 @@ Only available to super users (who can modify field) OR Leena/Emma Flack.</descr
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1298,6 +1309,7 @@ You need to update the validation rule Additional_Status_Details (if red is rena
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1319,6 +1331,7 @@ You need to update the validation rule Additional_Status_Details (if red is rena
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1442,6 +1455,7 @@ You need to update the validation rule Additional_Status_Details (if red is rena
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1536,6 +1550,7 @@ You need to update the validation rule Additional_Status_Details (if red is rena
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1614,6 +1629,7 @@ You need to update the validation rule Additional_Status_Details (if red is rena
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1691,6 +1707,7 @@ You need to update the validation rule Additional_Status_Details (if red is rena
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1720,6 +1737,7 @@ You need to update the validation rule Additional_Status_Details (if red is rena
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1765,6 +1783,7 @@ Non Unilever events refers to events which Unilever is not directly involved how
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1789,6 +1808,7 @@ Workflow rule will kick in and change the record type - hiding this field for us
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1946,6 +1966,7 @@ Workflow rule will kick in and change the record type - hiding this field for us
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2143,15 +2164,6 @@ Workflow rule will kick in and change the record type - hiding this field for us
         <label>All Events</label>
     </listViews>
     <listViews>
-        <fullName>CP_Event_Approvers_Queue_cp_Event</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CP Event Approvers</label>
-        <queue>CP_Event_Approvers_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>My_Confirmed_Events</fullName>
         <columns>NAME</columns>
         <columns>Activity_Status__c</columns>
@@ -2205,6 +2217,15 @@ Workflow rule will kick in and change the record type - hiding this field for us
             <value>Tentative</value>
         </filters>
         <label>My Tentative Events</label>
+    </listViews>
+    <listViews>
+        <fullName>Test_Bhavneesh_cp_Event</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CP Events Approvers</label>
+        <queue>CP_Events_Approvers</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <nameField>
         <label>Event Name</label>

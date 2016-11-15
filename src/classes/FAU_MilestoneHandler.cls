@@ -55,6 +55,7 @@ public with sharing class FAU_MilestoneHandler
     public void beforeInsert(SObject so)
     {
         FAUMilestoneCls.updateParticipantMilestones((FAU_Milestone__c) so, lMilestoneParticipantsUpdate);
+        /*FAU_ProgramClsSC.createProgramMilestonespreeti((FAU_Milestone__c) so, (FAU_Milestone__c) so, 12);*/
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
@@ -63,27 +64,22 @@ public with sharing class FAU_MilestoneHandler
     }
      
 
-  // This Class is implementing ITrigger, So can't remove this Function
-  
-   public void beforeDelete(SObject so)
-    { 
+    public void beforeDelete(SObject so)
+    {   
     }
-     // This Class is implementing ITrigger, So can't remove this Function
-     
+    
     public void afterInsert(SObject so) 
     {
+    //FAU_ProgramClsSC.createProgramMilestonespreeti((FAU_Milestone__c) so, (FAU_Milestone__c) so, 12);
     }
-     // This Class is implementing ITrigger, So can't remove this Function
-     
+    
     public void afterUpdate(SObject oldSo, SObject so)
     {
     }
-     // This Class is implementing ITrigger, So can't remove this Function
-     
+    
     public void afterDelete(SObject so)
-   {
-   } 
-
+    {
+    }
     
     /**
      * andFinally

@@ -194,7 +194,7 @@
     </fields>
     <fields>
         <help><!-- Start Date of Program --></help>
-        <label><!-- Start Date --></label>
+        <label><!-- Date Created --></label>
         <name>FAU_Start_Date__c</name>
     </fields>
     <fields>
@@ -230,6 +230,14 @@
         <help><!-- Hyperlink of a You Tube video introduction. Leave blank if you have none. --></help>
         <label><!-- Video Introduction --></label>
         <name>FAU_Video_Introduction__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mod 1 Start date --></label>
+        <name>Mod_1_Start_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date of Module 2 --></label>
+        <name>Start_Date_of_Module_2__c</name>
     </fields>
     <layouts>
         <layout>FAU Core</layout>

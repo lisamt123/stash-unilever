@@ -1,10 +1,3 @@
-<!--  
-   *************************************************************************
-   *@Description:This page is used to adjust the BrandEstimate Quarters 
-   *@Author: Cognizant
-   *@Created Date: 15/07/2014 
-   *************************************************************************
-   -->
 <apex:page controller="AF_AdjustQuater_Homepage_lightbox" docType="HTML-5.0"  showHeader="false" sidebar="false"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=2.0, width=device-width" />
 <script type="text/javascript">
@@ -28,7 +21,7 @@
 
 </script>
 <!-- Common_Style File Start -->
-<link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
 <!-- Common_Style File End -->
 
 <apex:form styleClass="AF_AjustBaseQuater">
@@ -63,7 +56,7 @@
      
       <apex:column headerValue="">
             <apex:facet name="header">       
-            <apex:commandLink action="{!queryBrandEstimate}" rerender="pb1" styleClass="basefeeName"> {!$Label.AF_Current_Base_Fee}
+            <apex:commandLink action="{!queryBrandEstimate}" rerender="pb1" styleClass="basefeeName"> Current Base Fee Name
              
             <img src="/img/sort_asc_arrow.gif" alt="Sorted Ascending" title="Sorted Ascending" width="21" align="texttop" height="14" style="{!IF((sortDir = 'asc'),'','display:none')}"/>            
             <img src="/img/sort_desc_arrow.gif" alt="Sorted Descending" title="Sorted Descending" width="21" align="texttop" height="14" style="{!IF((sortDir = 'desc'),'','display:none')}"/>              
@@ -76,7 +69,7 @@
    <apex:column headerValue="Quarters">
    <apex:facet name="header">       
         <apex:outputPanel >
-         
+          <!--  <apex:outputLabel value="Quarters" style="padding-left:22px;font-weight:bold;"/>-->
     <apex:inputCheckbox value="{!QE.Q1}"  onclick="selectAllCheckboxes(this,'chkQ1')"/>
     <apex:outputLabel value="All"/>
         </apex:outputPanel>
@@ -130,10 +123,11 @@
                 Are you sure you want to associate the selected Base Fees to the selected quarter(s)? This will result in the selected Base Fee names being automatically updated. 
                 You will be notified by email when the process is finished.<br/><br/>
                  <apex:commandButton action="{!saveBrandEstimate}"  value="Confirm" id="theUpdate" reRender="pb1" styleClass="continue_btn" oncomplete="setfocus();"/>
-              
+              <!--   <apex:commandButton Value="X" styleClass="closeButton" action="{!closePopup}" rerender="ContinuePopup"/>
+                  <apex:commandButton styleClass="closeButton" action="{!closePopup}" rerender="ContinuePopup"> -->
                  <apex:actionFunction name="CallClose" action="{!closePopup}" reRender="ContinuePopup,pbt"/>
                  <apex:image url="{!$Resource.Green_Close}" styleClass="closeButton2" onclick="callclosepopup();" />
-                
+                <!--    <apex:/commandButton> -->
             </apex:outputPanel>
         </apex:outputPanel>   
   </apex:pageBlock>

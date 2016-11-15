@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>This is RAP Job portfolio tab.</description>
-    <label>RAP Job Portfolio</label>
-    <mobileReady>false</mobileReady>
-    <motif>Custom38: Camera</motif>
-    <page>Amr_RAPJobPortfolio</page>
-</CustomTab>

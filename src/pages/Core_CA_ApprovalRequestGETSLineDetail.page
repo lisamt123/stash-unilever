@@ -4,7 +4,7 @@
         <div class="headerBarBackground" id="pageTop">
             <table class="headerBarWidth">
                 <tr>
-                    <td class="headerBarRowAlign"> <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" alt="back" ng-click='gotoApprovalDetailPage()' class="homePageFilter"/> </td>
+                    <td class="headerBarRowAlign"> <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" ng-click='gotoApprovalDetailPage()' class="homePageFilter"/> </td>
                     <td class="headerBarRowAlign" id="alignCenter"> <label class="headerBarTitle">{{approvalLineDetailRequestData.RequestId}}</label> </td>
                     <td class="headerBarRowAlign"> </td>
                 </tr>
@@ -16,8 +16,8 @@
                         <label class="detailSectionHeader" >{{'LBL_EXP_LINEITEM_DETAIL_EXPENSE_DETAILS' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="expenseDetailsPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="expenseDetailsPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="expenseDetailsPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="expenseDetailsPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>
                 </div>
                 <div ng-hide="expenseDetailsPanelDisplay" id="responsiveDetailSectionwrapper">
@@ -109,8 +109,8 @@
                         <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_PURPOSE_REASON' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="purposeAndReasonPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="purposeAndReasonPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="purposeAndReasonPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="purposeAndReasonPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>                
                 </div>
                 <div ng-hide="purposeAndReasonPanel">
@@ -130,8 +130,8 @@
                         <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_EXPENSE_DESCRIPTION' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="expenseDescriptionPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="expenseDescriptionPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="expenseDescriptionPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="expenseDescriptionPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>                
                 </div>
                 <div ng-hide="expenseDescriptionPanel" class="responsiveDetailSectionTable">
@@ -144,8 +144,8 @@
                         <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_ATTENDEES' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="attendeesPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="attendeesPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="attendeesPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="attendeesPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>                
                 </div>
                 <div ng-hide="attendeesPanel" class="responsiveDetailSectionTable">
@@ -158,8 +158,8 @@
                         <label class="detailSectionHeader">{{'LBL_EXP_LINETEMS_DETAIL_CAR_DETAILS' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="carDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="carDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="carDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="carDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>                
                 </div>
                 <div ng-hide="carDetailsPanel" class="responsiveDetailSectionTable">
@@ -172,8 +172,8 @@
                         <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_FLIGHT_DETAILS' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="flightDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="flightDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="flightDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="flightDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>                
                 </div>
                 <div ng-hide="flightDetailsPanel" class="responsiveDetailSectionTable">
@@ -186,8 +186,8 @@
                         <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_ROOM_DETAILS' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="roomDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="roomDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="roomDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="roomDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>                
                 </div>
                 <div ng-hide="roomDetailsPanel" class="responsiveDetailSectionTable">
@@ -200,8 +200,8 @@
                         <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="prediemPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="hideArrow" />
-                        <img class="arrowButtonStyle" ng-show="prediemPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="showArrow" />
+                        <img class="arrowButtonStyle" ng-hide="prediemPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="prediemPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>                
                 </div>
                 <div ng-hide="prediemPanel" class="responsiveDetailSectionTable">
@@ -221,8 +221,8 @@
                         <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_COMMENTS' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>                
                 </div>
                 <div ng-hide="commentsPanel" class="responsiveDetailSectionTable">
@@ -235,8 +235,8 @@
                         <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_POLICY_EXCEPTIONS' | translate}}</label>
                     </span>
                     <span class="alignRight">                    
-                        <img class="arrowButtonStyle" ng-hide="policyExceptionsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
-                        <img class="arrowButtonStyle" ng-show="policyExceptionsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}" alt="hideArrow" />
+                        <img class="arrowButtonStyle" ng-hide="policyExceptionsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                        <img class="arrowButtonStyle" ng-show="policyExceptionsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                     </span>                
                 </div>
                 <div ng-hide="policyExceptionsPanel" class="responsiveDetailSectionTable">

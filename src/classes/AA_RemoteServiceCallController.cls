@@ -10,7 +10,6 @@ global with sharing class AA_RemoteServiceCallController {
             
         }catch(Exception e){  
         	//BaseServiceException baseAppEx;
-        	system.debug('Exception'+e);
         }
         system.debug('Serialize Response will be ->'+JSON.serialize(responseObj));
         return JSON.serialize(responseObj);
@@ -22,7 +21,6 @@ global with sharing class AA_RemoteServiceCallController {
             responseObj =   AA_BaseApplicationServices.invokeService(constructRequestBody(serviceJSONObject, serviceName, requestType,urlParameter));
         }
         catch(Exception e){ //BaseServiceException baseAppEx){
-        	   system.debug('Exception'+e);
         }
         return JSON.serialize(responseObj);
     }
@@ -36,7 +34,6 @@ global with sharing class AA_RemoteServiceCallController {
             appWrapperObj.urlParameters = urlParameter;
         }catch(Exception e){ //(BaseServiceException baseAppEx){ 
             //throw new BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method ',baseAppEx);
-            system.debug('Exception'+e);
         }
         
         return appWrapperObj;

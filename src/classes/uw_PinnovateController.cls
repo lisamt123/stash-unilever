@@ -1,4 +1,4 @@
-global without sharing class uw_PinnovateController {
+global with sharing class uw_PinnovateController {
     
 
     

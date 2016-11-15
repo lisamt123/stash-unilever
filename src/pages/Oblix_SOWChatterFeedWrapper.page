@@ -1,3 +1,0 @@
-<apex:page standardController="Marketing_SOW__c" showHeader="false" sidebar="false">
-    <chatter:feedWithFollowers entityId="{!Marketing_SOW__c.Id}" showHeader="false"/>
-</apex:page>

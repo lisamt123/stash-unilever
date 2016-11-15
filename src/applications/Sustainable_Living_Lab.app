@@ -4,4 +4,6 @@
     <label>Sustainable Living Lab</label>
     <tab>Sustainable_Living_Lab</tab>
     <tab>Event__c</tab>
+    <tab>pca__Action__c</tab>
+    <tab>Test_Shruti__c</tab>
 </CustomApplication>

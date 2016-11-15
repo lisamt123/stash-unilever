@@ -37,6 +37,8 @@ public static List<uw_PinnovateController.PinnovateRow> getPinnotaveTestRows()
     String testLongBody = '1234567890 1234567890 1234567890';
     String testBody = testLongBody;
     
+    system.assertEquals(testBody ,'1234567890 1234567890 1234567890');
+    
     List<FeedItem> posts = new List<FeedItem>();
     
     for (Integer i = 0; i < 2; i++)
@@ -60,6 +62,7 @@ public static List<uw_PinnovateController.PinnovateRow> getPinnotaveTestRows()
     
     Topic topicOne = new Topic(Name = 'TopicOne');
     insert topicOne;
+    System.assert(topicOne!= null);
     
     TopicAssignment topicAssign = new TopicAssignment(TopicId = topicOne.Id, EntityId = posts[0].Id);
     insert topicAssign;
@@ -92,7 +95,8 @@ public static List<uw_PinnovateController.PinnovateRow> getPinnotaveTestRows()
     insert feedLikes;
     insert feedComments;
     
-    
+    Pinnovate_Preference__c  objPinnovatePref = new Pinnovate_Preference__c (Name = 'DEFAULT');
+    insert objPinnovatePref;
     
     uw_PinnovateController controller = new uw_PinnovateController();
     controller.topicName = 'TopicOne';
@@ -127,6 +131,8 @@ public static List<uw_PinnovateController.PinnovateRow> getPinnotaveTestRows()
     uw_PinnovateController.PinnovateTableData ptd = new uw_PinnovateController.PinnovateTableData();
     
     Datetime dt = Datetime.now();
+    System.assert(dt != null);
+    
     ptd.createdDate = dt;
     for (Integer i = 0; i < 2; i++)
     {
@@ -169,8 +175,11 @@ public static List<uw_PinnovateController.PinnovateRow> getPinnotaveTestRows()
    public static TestMethod void testcommentpopup()
    {
       test.starttest();
+      Pinnovate_Preference__c  objPinnovatePref = new Pinnovate_Preference__c (Name = 'DEFAULT');
+      insert objPinnovatePref;
       
       uw_PinnovateController controller= new uw_PinnovateController();
+      System.assert(controller != null);
       controller.refCommentDetails();
       controller.closePopupLik();
       controller.closePopupCom();
@@ -182,6 +191,7 @@ public static List<uw_PinnovateController.PinnovateRow> getPinnotaveTestRows()
    public static TestMethod void testWrappersforCommentsandLikepopup(){
       test.starttest();
         List<user> u=[select id,smallphotourl from user limit 10];
+        System.assert(u != null);
         List<uw_PinnovateController.ClsCommentDet> ccd=new List<uw_PinnovateController.ClsCommentDet>();
       
       
@@ -204,6 +214,7 @@ public static List<uw_PinnovateController.PinnovateRow> getPinnotaveTestRows()
           CollaborationGroup newGroup = new CollaborationGroup(Name='A public chatter group');
           newGroup.CollaborationType = 'public';
           insert newGroup;
+          System.assert(newGroup != null);
           
           Apexpages.currentPage().getParameters().put('id',newGroup.id);
           String strCollaborationGroupID = ApexPages.currentPage().getParameters().get('id');
@@ -238,6 +249,8 @@ public static List<uw_PinnovateController.PinnovateRow> getPinnotaveTestRows()
           fdLik.feeditemid=objFi.id;
           insert fdLik;
           
+          Pinnovate_Preference__c  objPinnovatePref = new Pinnovate_Preference__c (Name = 'DEFAULT');
+          insert objPinnovatePref;
           
           uw_PinnovateController controller= new uw_PinnovateController();
           controller.Comm='Hello';

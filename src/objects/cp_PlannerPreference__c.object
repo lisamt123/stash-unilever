@@ -92,10 +92,10 @@
         <label>All</label>
     </listViews>
     <listViews>
-        <fullName>CP_Event_Approvers_Queue_cp_PlannerPreference</fullName>
+        <fullName>Test_Bhavneesh_cp_PlannerPreference</fullName>
         <filterScope>Queue</filterScope>
-        <label>CP Event Approvers</label>
-        <queue>CP_Event_Approvers_Queue</queue>
+        <label>CP Events Approvers</label>
+        <queue>CP_Events_Approvers</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

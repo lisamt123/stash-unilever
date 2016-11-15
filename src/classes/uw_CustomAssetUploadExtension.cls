@@ -15,26 +15,6 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 **********************************************************************/
 
 public with sharing class uw_CustomAssetUploadExtension {
-
-    public static final String BET_ASSET_APPROVED = 'Approved';
-    public static final String BET_ASSET_SHARED = 'Shared';
-    public static final String BET_ASSET_DRAFT = 'Draft';
-    public static final String BET_ASSET_TYPE_BEP = 'Brand Experience Presentation';
-    public static final String BET_ASSET_TYPE_CW = 'Creative Work';
-    public static final String BET_ASSET_MEDIA_TYPE_KW = 'Key Visual';
-
-    public static final String TAB_APPROVED = 'approved';
-    public static final String TAB_SHARING = 'sharing';
-    public static final String TAB_DRAFT = 'draft';
-    
-    public String tabInFocus {get;set;}
-
-    public static final Map<String,String> tabRelatedStatusMap = new Map<String,String>{
-        TAB_APPROVED => BET_ASSET_APPROVED,
-        TAB_SHARING  => BET_ASSET_SHARED,
-        TAB_DRAFT    => BET_ASSET_DRAFT
-    };
-
     @TestVisible private Integer throwUTException;
     public uw_BET__C bet{get;set;}
     public uw_Asset__c file {get; set;}
@@ -46,14 +26,11 @@ public with sharing class uw_CustomAssetUploadExtension {
     public String message{get;set;}
     public String errorMessage{get; protected set;}    
     public Boolean hasModifyAccess {get; protected set;}
-    public Boolean isBetOwnerOrManager {get;set;}
 
     private final SObject parent;
     private String feedid = '';    
     
     PageReference pageRef = null;
-
-    public String assetTab {get;set;}
 
     public void setFeedid(String n) {
         feedid = n;
@@ -70,7 +47,6 @@ public with sharing class uw_CustomAssetUploadExtension {
         errorMessage = '';
         if (parentId != null && parentId.startsWith( CollaborationGroup.sObjectType.getDescribe().getKeyPrefix()) ){
             parentId = String.valueOf(Id.valueOf(parentId));
-            System.debug('parentId ' + parentId);
             List<uw_BET__C> betList = [SELECT Id, Status__c, Presentation_Id__c FROM uw_BET__C WHERE Studio_Chatter_Group__c = :parentId LIMIT 1];
             if(betList.size() > 0){
                 list<CollaborationGroup> chatterGroups = [SELECT IsArchived FROM CollaborationGroup WHERE Id =: parentId];
@@ -78,15 +54,12 @@ public with sharing class uw_CustomAssetUploadExtension {
                     errorMessage = 'You don\'t have access to this group.';
                     displayForm = false;
                 } else if (chatterGroups[0].IsArchived) {
-                    System.debug('chatterGroups[0] ' + chatterGroups[0]);
                     errorMessage = 'This chatter group has been archived. Please contact your group owner/manager for reactivation.';
                     displayForm = false;
                 }else {
                     bet = betList[0];
-                    System.debug('bet[0] ' + bet);
                     file.uw_BET__c = bet.Id;
                     displayForm = true;
-                    isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(file.uw_BET__c, UserInfo.getUserId());
                     pepareForm();
                 }
             }else{
@@ -109,7 +82,7 @@ public with sharing class uw_CustomAssetUploadExtension {
             file.Sub_Function__c = 'Brand Development';
         }else{
             file.Sub_Function__c = 'Brand Building';
-            file.Status__c = BET_ASSET_SHARED;
+            file.Status__c = 'Shared';
         }
     }
     
@@ -120,16 +93,12 @@ public with sharing class uw_CustomAssetUploadExtension {
         throwUTException = 0;
         pageRef = ApexPages.currentPage();
         parentId = ApexPages.currentPage().getParameters().get('id');
-        assetTab = ApexPages.currentPage().getParameters().get('assetTab');
+
         runJsSuccess = false;
         isPresentationUploaded = false;
         message = '';
+
         file = new uw_Asset__c();
-        if(!String.isBlank(assetTab)){
-            file.Status__c = tabRelatedStatusMap.get(assetTab);
-        }
-        file.Studio_Asset_Type__c = BET_ASSET_TYPE_BEP;
-        tabInFocus = 'name2';
     }   
     
      /*T0-Begin*/  
@@ -138,13 +107,15 @@ public with sharing class uw_CustomAssetUploadExtension {
     Returns: Boolean
     Author: Blessy Voola
     ********************************************************************/
-    public boolean isVisualApproved(){
-        for(uw_Asset__c flist : [SELECT Name, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c,Media_Type__c,Status__c FROM uw_Asset__c WHERE uw_bet__c =: file.uw_BET__c]){
-            if(flist.Media_Type__c == BET_ASSET_MEDIA_TYPE_KW && flist.Status__c == BET_ASSET_APPROVED){
-                return true;
-            }
-        }
-        return false;
+    public boolean isVisualApproved()
+    {
+    List<uw_Asset__c> fl=  [SELECT Name, Sub_Function__c, Studio_Asset_Type__c, Media_Type__c, Country__c, Status__c, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c FROM uw_Asset__c WHERE uw_bet__c =: file.uw_BET__c];
+              for(uw_Asset__c flist:fl)
+              {
+              if(flist.Media_Type__c == 'Key Visual'&&flist.Status__c == 'Approved')
+              return true;
+              }
+              return false;
     }
         /*T0-End*/
         
@@ -154,7 +125,6 @@ public with sharing class uw_CustomAssetUploadExtension {
     public PageReference saveFileAndConnect(){     
         runJsSuccess = false;
         isPresentationUploaded = false;
-        Boolean brandExperiencePresnetationIsThere = false;
         message = '';
         System.debug('__________________________'+feedid );
         
@@ -187,11 +157,10 @@ public with sharing class uw_CustomAssetUploadExtension {
             ca = (ConnectApi.ContentAttachment) fi.attachment;
             file.URL_of_Asset__c = ca.downloadUrl;
             file.thumbnail__c = ca.renditionUrl;
-            file.File_Id__c = ca.id;
         }
         Boolean updateBet = false;
-        if(file.Sub_Function__c == 'Brand Development' && file.Status__c == BET_ASSET_APPROVED){
-            if( file.Studio_Asset_Type__c == BET_ASSET_TYPE_BEP){
+        if(file.Sub_Function__c == 'Brand Development' && file.Status__c == 'Approved'){
+            if( file.Studio_Asset_Type__c == 'Brand Experience Presentation'){
                 if(bet.Status__c != 'Final release' && bet.Status__c != 'First release'){
                  /*T0-Begin*/
                 if(isVisualApproved()){
@@ -210,53 +179,27 @@ public with sharing class uw_CustomAssetUploadExtension {
                /*T0-End*/      
                    
                 
-            }else if(file.Studio_Asset_Type__c == BET_ASSET_TYPE_CW){
-
-                if(file.Media_Type__c == BET_ASSET_MEDIA_TYPE_KW && bet.Status__c == 'First release'){
+            }else if(file.Studio_Asset_Type__c == 'Creative Work'){
+                if(file.Media_Type__c == 'Key Visual' && bet.Status__c == 'First release'){
                     bet.Status__c = 'Final release';
                     message = 'Your BET is now in Final Release';
                     updateBet = true;
                 }
-
-                if(file.Media_Type__c == BET_ASSET_MEDIA_TYPE_KW && file.Status__c == BET_ASSET_APPROVED){ // IPM-BET US43
-                    brandExperiencePresnetationIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
-                                                          where Studio_Asset_Type__c =: BET_ASSET_TYPE_BEP
-                                                          and Status__c =: BET_ASSET_APPROVED
-                                                          and uw_bet__c =: file.uw_BET__c].isEmpty();
-                    if(brandExperiencePresnetationIsThere) {
-                        bet.FinalReleaseDate__c = date.today();
-                        updateBet = true;
-                    }
-                }
-
             }
         }
 
         //@todo: how to determine if it's main presentation or not
-        if(file.Studio_Asset_Type__c == BET_ASSET_TYPE_BEP){
-
-            if(file.Status__c == BET_ASSET_APPROVED){ // IPM-BET US43
-                bet.FirstReleaseDate__c = date.today();
-
-                Boolean keyVisualIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
-                                                          where Studio_Asset_Type__c =: BET_ASSET_TYPE_CW
-                                                          and Media_Type__c =: BET_ASSET_MEDIA_TYPE_KW
-                                                          and Status__c =: BET_ASSET_APPROVED
-                                                          and uw_bet__c =: file.uw_BET__c].isEmpty();
-                if(keyVisualIsThere){
-                    bet.FinalReleaseDate__c = date.today();
-                }
-            }
-
+        if(file.Studio_Asset_Type__c == 'Brand Experience Presentation'){
             file.Think_Big_Promotion_Date__c = Datetime.now();
             file.Big_Think_Pack__c = true;
             file.Media_Type__c = 'BET Presentation';
             if (Test.isRunningTest()) {
                 bet.Presentation_Id__c = BET_TestingHelper.UT_PRESENTATIONID;
+                updateBet = true;
             } else {
                 bet.Presentation_Id__c = ca.id;
+                updateBet = true;
             }
-            updateBet = true;
             isPresentationUploaded = true;
         }
 
@@ -303,7 +246,7 @@ public with sharing class uw_CustomAssetUploadExtension {
         runJsSuccess = true;
         file = new uw_Asset__c();
         checkfeed();                
-        return null;      
+        return null;           
     }
 
     /*****************************************************************************************
@@ -351,7 +294,7 @@ public with sharing class uw_CustomAssetUploadExtension {
 
                 file.Studio_Asset_Type__c = null;
                 //members should only upload shared documents
-                file.Status__c = BET_ASSET_SHARED;
+                file.Status__c = 'Shared';
          
                 if(file.Media_Type__c == null || file.Media_Type__c == ''){
                     errorList.add('Media Type cannot be empty.');
@@ -367,9 +310,5 @@ public with sharing class uw_CustomAssetUploadExtension {
             }
         }
         return errorList;
-    }
-
-    public void setJSSuccessFlag(){
-        runJsSuccess = true;
     }
 }

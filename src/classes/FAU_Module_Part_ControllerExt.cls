@@ -37,7 +37,7 @@ public with sharing class FAU_Module_Part_ControllerExt {
         addFieldsTo(standardController);
 
         this.standardController = standardController;
-           If ((((FAU_Module_Participant__c)this.standardController.getRecord()).FAU_Is_Local__c)){
+            If ((((FAU_Module_Participant__c)this.standardController.getRecord()).FAU_Is_Local__c) == true){
                 isLocal = false;
             }else{
                 isLocal = true;
@@ -76,7 +76,7 @@ public with sharing class FAU_Module_Part_ControllerExt {
        Purpose:     Sets the isLocal Variable                                               
     ********************************************************************/
     public PageReference updateisLocal() {
-            if ((((FAU_Module_Participant__c)this.standardController.getRecord()).FAU_Is_Local__c)){
+            if ((((FAU_Module_Participant__c)this.standardController.getRecord()).FAU_Is_Local__c) == true){
                 isLocal = false;
             }else{
                 isLocal = true;
@@ -98,11 +98,11 @@ public with sharing class FAU_Module_Part_ControllerExt {
     ********************************************************************/
     private void addFieldsTo(ApexPages.StandardController standardController)
     {
-        if(!Test.isRunningTest())
-        {
-            standardController.addFields(FIELDS);
-        }
-    }
+       if(!Test.isRunningTest())
+       {
+           standardController.addFields(FIELDS);
+       }
+   }
 
     /*******************************************************************
        Purpose:     Saves data and redirects to Landing Page                                               

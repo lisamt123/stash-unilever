@@ -23,8 +23,6 @@ global class BET_ReleaseDateEmails implements Database.Batchable<sObject>, Datab
     }
     
     global Database.QueryLocator start(Database.BatchableContext BC) {
-        Datetime d1 = system.today().addDays(30);
-        Date due = Date.newInstance(d1.year(),d1.month(),d1.day());
         return Database.getQueryLocator(query);
     }
 
@@ -33,6 +31,7 @@ global class BET_ReleaseDateEmails implements Database.Batchable<sObject>, Datab
 
         BET_Request_Access__c settings  = BET_Request_Access__c.getInstance();
 
+        String template = '';
         List<String> toAddresses = new List<String>();
         Messaging.SingleEmailMessage mail;
         //T0-Begin
@@ -51,36 +50,31 @@ global class BET_ReleaseDateEmails implements Database.Batchable<sObject>, Datab
                 if(bet.Status__c == 'First release'){
                     continue;
                 }
-                mail.setSubject('REMINDER: '+bet.Name+' BET is due for First Release on '+bet.First_Release_Due_Date__c);
+                mail.setSubject('REMINDER: '+bet.Name+' BET is due for First Release on '+bet.First_release_date__c);
             }else{
                 if(bet.Status__c == 'Final release'){
                     continue;
                 }
-                mail.setSubject('REMINDER: '+bet.Name+' BET is due for Final Release on '+bet.Final_Release_Due_Date__c);
+                mail.setSubject('REMINDER: '+bet.Name+' BET is due for Final Release on '+bet.Final_release_date__c);
             }           
-            mailList.add(updateEmailParams(mail,bet,settings,isFirst,toAddresses));
+            template = BET_ReleaseDateEmails.generateTemplate(bet, settings, isFirst);
+                    //T0-Begin
+            //comment out below line
+          // mail.setSenderDisplayName(settings.From_Name__c);
+                  //T0-End
+            mail.setToAddresses(toAddresses);
+            mail.setHtmlBody(template);
+                                //T0-Begin
+            //comment out below line
+          //  mail.setReplyTo(settings.Email_Address__c);
+                  //T0-End
+            mailList.add(mail);
         }
 
         List<Messaging.Sendemailresult> mailResult;
         if(!Test.isRunningTest()){
             mailResult = Messaging.sendEmail(mailList); 
         }
-    }
-
-    @TestVisible
-    private static Messaging.SingleEmailMessage updateEmailParams(Messaging.SingleEmailMessage mail,uw_BET__c bet,BET_Request_Access__c settings,Boolean isFirst,List<String> toAddresses){
-        String template = BET_ReleaseDateEmails.generateTemplate(bet, settings, isFirst);
-                    //T0-Begin
-            //comment out below line
-          // mail.setSenderDisplayName(settings.From_Name__c);
-                  //T0-End
-        mail.setToAddresses(toAddresses);
-        mail.setHtmlBody(template);
-                                //T0-Begin
-            //comment out below line
-          //  mail.setReplyTo(settings.Email_Address__c);
-                  //T0-End
-        return mail;
     }
 
     @TestVisible
@@ -93,11 +87,11 @@ global class BET_ReleaseDateEmails implements Database.Batchable<sObject>, Datab
                             +'<tbody><tr>'
                             +'<td colspan="2">';
                             if(isFirst){
-                                template += '<div class="headlineText" style="margin-top: 30px; margin-bottom: 19px;">Dear '+bet.Owner.Name+'<br />Your Brand Experience Toolkit (BET) '+bet.Name+' is due for FIRST RELEASE on '+bet.First_Release_Due_Date__c;
-                                template +='<br />Please ensure your Brand Experience Presentation is available in the BET by '+bet.First_Release_Due_Date__c+'</div>';
+                                template += '<div class="headlineText" style="margin-top: 30px; margin-bottom: 19px;">Dear '+bet.Owner.Name+'<br />Your Brand Experience Toolkit (BET) '+bet.Name+' is due for FIRST RELEASE on '+bet.First_release_date__c;
+                                template +='<br />Please ensure your Brand Experience Presentation is available in the BET by '+bet.First_release_date__c+'</div>';
                             }else{
-                                template += '<div class="headlineText" style="margin-top: 30px; margin-bottom: 19px;">Dear '+bet.Owner.Name+'<br />Your Brand Experience Toolkit (BET) '+bet.Name+' is due for FINAL RELEASE on '+bet.Final_Release_Due_Date__c;
-                                template +='<br />Please ensure your Brand Experience Key Visual is available in the BET by '+bet.Final_Release_Due_Date__c+'</div>';
+                                template += '<div class="headlineText" style="margin-top: 30px; margin-bottom: 19px;">Dear '+bet.Owner.Name+'<br />Your Brand Experience Toolkit (BET) '+bet.Name+' is due for FINAL RELEASE on '+bet.Final_release_date__c;
+                                template +='<br />Please ensure your Brand Experience Key Visual is available in the BET by '+bet.Final_release_date__c+'</div>';
                             }                            
                             template +='</td>'
                             +'</tr>'                  

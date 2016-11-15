@@ -1,62 +1,76 @@
-<!--  
-   *************************************************************************
-   *@Description:This page is used upload documents 
-   *@Author: Cognizant
-   *@Created Date: 24/07/2014 
-   *************************************************************************
-   -->
 <apex:page controller="AF_AttachmentUploadController" showHeader="false" sidebar="false" >
-   <!-- Common_Style File Start -->
-   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
-   <!-- Common_Style File End -->
-   <script>
-      function closeAndRefresh()
-      {    
-          parent.location.reload(); 
-      }
-   </script>
-   <apex:form enctype="multipart/form-data" id="Theform" styleClass="AF_UploadAnAttachment">
-      <div class="row">
-         <div class="col-lg-12 charttable1">
-            <apex:image url="{!$Resource.header_new}" styleClass="headimg"/>
-         </div>
+
+<!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
+
+   
+ <script>
+     function closeAndRefresh()
+     {    
+         
+         parent.location.reload(); // or opener.location.href = opener.location.href;
+     }
+ </script>
+ 
+ <apex:form enctype="multipart/form-data" id="Theform" styleClass="AF_UploadAnAttachment">
+  <div class="row">           
+        <div class="col-lg-12 charttable1">         
+            <apex:image url="{!$Resource.header_new}" styleClass="headimg"/>            
+        </div>          
+    </div>
+    <apex:pageMessages id="TheMessage"/>
+   
+    <div class="heading_main">
+       <h1 class="heading_text"> Upload Document </h1>
       </div>
-      <apex:pageMessages id="TheMessage"/>
-      <div class="heading_main">
-         <h1 class="heading_text"> Upload Document </h1>
-      </div>
-      <apex:pageBlock id="ThePB" >
-         <apex:pageBlockSection showHeader="false" id="block1" columns="1">
-            <apex:pageBlockSectionItem >
-               <apex:outputLabel value="Type" for="Type" styleClass="fontSize14P"/>
-               <apex:selectList id="chooseColor"  size="1" value="{!attachment.ContentType}" styleClass="DropStyle">
-                  <apex:selectOptions value="{!CtTypes}"/>
-               </apex:selectList>
-            </apex:pageBlockSectionItem>
-            <apex:pageBlockSectionItem >
-               <apex:outputLabel value="File" for="file" styleClass="fontSize14P"/>
-               <apex:outputPanel layout="block" styleClass="requiredInput">
-                  <apex:outputPanel layout="block" styleClass="requiredBlock" />
-                  <apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file" styleclass="BgWeat"/>
-               </apex:outputPanel>
-            </apex:pageBlockSectionItem>
-            <apex:pageBlockSectionItem >
-               <apex:outputLabel value="Add Comments" for="description" styleClass="fontSize14P"/>
-               <apex:outputPanel layout="block" styleClass="requiredInput">
-                  <apex:outputPanel layout="block" styleClass="requiredBlock" />
-                  <apex:inputTextarea value="{!attachment.description}" id="description" cols="100" styleClass="attachDiscrip"/>
-               </apex:outputPanel>
-            </apex:pageBlockSectionItem>
-         </apex:pageBlockSection>
-      </apex:pageBlock>
-      <apex:actionRegion >
-         <apex:outputPanel id="ThePanel">
-            <apex:pageBlock >
-               <apex:pageBlockButtons location="bottom">
-                  <apex:commandButton value="Upload Document" styleClass="upLoadDoc" action="{!uploadFile}"  />
-               </apex:pageBlockButtons>
-            </apex:pageBlock>
+    <apex:pageBlock id="ThePB" >
+        <apex:pageBlockSection showHeader="false" id="block1" columns="1">
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="Type" for="Type" styleClass="fontSize14P"/>
+          <apex:selectList id="chooseColor"  size="1" value="{!attachment.ContentType}" styleClass="DropStyle">
+            <apex:selectOptions value="{!CtTypes}"/>
+          </apex:selectList> 
+        </apex:pageBlockSectionItem>
+        
+         <apex:pageBlockSectionItem >
+          <apex:outputLabel value="File" for="file" styleClass="fontSize14P"/>
+          <apex:outputPanel layout="block" styleClass="requiredInput">
+          <apex:outputPanel layout="block" styleClass="requiredBlock" />
+          <apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file" styleclass="BgWeat"/>
+          </apex:outputPanel>
+        </apex:pageBlockSectionItem> 
+        
+       <!-- <apex:outputPanel >
+        <apex:pageBlockSectionItem >
+        <apex:iframe src="AF_InputFile"/>
+        </apex:pageBlockSectionItem>
+         </apex:outputPanel> -->
+         
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel value="Add Comments" for="description" styleClass="fontSize14P"/>
+          <apex:outputPanel layout="block" styleClass="requiredInput">
+          <apex:outputPanel layout="block" styleClass="requiredBlock" />
+          <apex:inputTextarea value="{!attachment.description}" id="description" cols="100" styleClass="attachDiscrip"/>
+          </apex:outputPanel>
+        </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+        
+        </apex:pageBlock>
+        <apex:actionRegion >
+        <apex:outputPanel id="ThePanel">
+        <apex:pageBlock >
+        
+        <apex:pageBlockButtons location="bottom">
+        
+        <apex:commandButton value="Upload Document" styleClass="upLoadDoc" action="{!uploadFile}"  />
+       
+       
+        </apex:pageBlockButtons>
+        
+         </apex:pageBlock>
          </apex:outputPanel>
-      </apex:actionRegion>
-   </apex:form>
+         </apex:actionRegion>
+        
+ </apex:form>
 </apex:page>
