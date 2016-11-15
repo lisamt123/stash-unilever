@@ -15,11 +15,11 @@ public with sharing class ICB_Product2DAO {
     
     // Instance Class
     private static final ICB_Product2DAO instance = new ICB_Product2DAO();
+    String productRecId = Schema.SObjectType.Product2.getRecordTypeInfosByName().get('Mobile Channel').getRecordTypeId();
         
     // Construtor 
     public ICB_Product2DAO() {}
-        
-    // Get Instance method to return a static final instance of this object. 
+     // Get Instance method to return a static final instance of this object. 
     public static ICB_Product2DAO getInstance()
     {
     	return instance;
@@ -32,7 +32,7 @@ public with sharing class ICB_Product2DAO {
         return [Select 	Name, 
                		   	Description
                	From 	Product2
-                Where 	isActive =: true];
+                Where 	RecordTypeId =: productRecId AND isActive =: true Order By Name];
     }
     public Product2 getProduct(String idProductParam)
     {

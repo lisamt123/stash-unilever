@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>FS Stage after 3 days on closed date</name>
+    <style>none</style>
+    <subject>{!Opportunity.Name} Stage after 3 days on close date</subject>
+    <textOnly>This Opportunity for  {!Opportunity.Account} is at Stage {!Opportunity.StageName} after 3 days on close date. {!Opportunity.Link}</textOnly>
+    <type>custom</type>
+</EmailTemplate>

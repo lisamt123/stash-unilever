@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Holds the list of recipients for MDM request</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>FS_EmailAddress__c</fullName>
+        <description>Purpose: holds the email address of the recipient</description>
+        <externalId>false</externalId>
+        <label>Email Address</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <label>FS MDM Request Recipient</label>
+    <visibility>Protected</visibility>
+</CustomObject>

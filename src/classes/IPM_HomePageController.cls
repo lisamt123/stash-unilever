@@ -91,13 +91,13 @@ public with sharing class IPM_HomePageController
 *@Description : This is to order the projectsNames
 ****************************************************************/
         
-        List<IPM_Project__c> lstProjects =[Select Name,IPM_Project_Type__c,Rollout_Plan_Target_Launch_Date__c,IPMProject_Span__c,IPM_Bosscard_Status__c,IPM_Bosscard__r.IPM_Brand__c,IPMRegion__c,IPM_Bosscard__r.Name,
+        List<IPM_Project__c> lstProjects =[Select Name,IPM_ProjectGKM__c,IPM_Project_Type__c,Rollout_Plan_Target_Launch_Date__c,IPMProject_Span__c,IPM_Bosscard_Status__c,IPM_Bosscard__r.IPM_Brand__c,IPMRegion__c,IPM_Bosscard__r.Name,
                                            IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Logo__c,IPM_Brand__c,IPM_Category_Text__c,Deputy_Project_Leader__r.Name,IPM_Target_Launch_Dates__c,
                                            BET_TLD_First_Release_Date__c,BET_MS_First_Release_Date__c,IPM_Project_Leader__r.Name,BET_TLD_Final_Release_Date__c,BET_MS_Final_Release_Date__c,
                                             (SELECT IPM_Project_Name__c,IPM_Target_Launch_Dates__c,Rollout_Plan_Target_Launch_Date__c from IPM_Projects__r),
                                            (Select id,name,IPM_Project__c,Geography__r.Market_Type__c from IPM_Countries__r),IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,
                                            IPM_GateKeeping_Model__c ,IPM_CompanyCardText__c,IPM_FilledIn_Percentage__c,IPM_Phase__c,IPM_Project_Name__c FROM IPM_Project__c 
-                                           WHERE  IPM_Project_Leader__c = : UserInfo.getUserId() and Is_Archieved__c = false Order By IPM_Project_Name__c LIMIT 50000];
+                                           WHERE  IPM_Project_Leader__c = : UserInfo.getUserId() and Is_Archieved__c = false Order By IPM_Project_Name__c LIMIT 1000];
         Map<id,String> projCountry = new Map<id,String>();
         Map<Id,date> ProjDueDateMap = new Map<Id,date>();
         for(IPM_Project__c proj : lstProjects){

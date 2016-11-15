@@ -403,3 +403,11 @@ div.ipmAccordion.currency .projectContainer .ipmAcrdnExpand ul.accordionFilters 
 div.ipmAccordion.currency .projectContainer .ipmAcrdnExpand ul.accordionFilters li div.projectContainer div.ipmAcrdnExpand ul li.finRecord{
 padding:10px 7px;
 }
+.sdropDownDiv .requiredInput{Display:inline-block;}
+.SecButtonSet.infoMarTop .icoButton.info.smalllinfo {
+    top: 3px;
+    left: 0;
+}
+.sdropDownDiv .tooltip.bottom .tooltip-arrow {
+    border-bottom-color: #01B1A6;
+}

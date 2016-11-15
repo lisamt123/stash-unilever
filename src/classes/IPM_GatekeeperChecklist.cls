@@ -113,9 +113,16 @@ public with sharing class IPM_GatekeeperChecklist{
     *  Description Constructor Getting Project Id From Page URL Parameter
     *  @name IPM_GatekeeperChecklist
     */
+    
     public IPM_GatekeeperChecklist(){
-        IPM_IECompatible.ieFix();//For IE Compatibility
-        projectID=ApexPages.currentPage().getParameters().get('Id'); 
+        if(ApexPages.currentPage().getParameters().get('id') != null) {
+            if(ApexPages.currentPage().getParameters().get('isEditable') == 'true') {isEditable = true;} else {isEditable = false;}
+            gateType = ApexPages.currentPage().getParameters().get('gateType');
+            if(ApexPages.currentPage().getParameters().get('editTable') == 'true') {editTable = true;} else {editTable = false;}
+            projectID = ApexPages.currentPage().getParameters().get('Id');
+            gateTypeRND = ApexPages.currentPage().getParameters().get('gateTypeRND');
+        }
+        IPM_IECompatible.ieFix();//For IE Compatibility        
         readOnlyQuestionnaireMap = new Map<Id,IPM_Questionnaire__c>(); 
     }
     
@@ -155,47 +162,50 @@ public with sharing class IPM_GatekeeperChecklist{
         try
         {
             //Retrieving Record Type Ids
+            readOnlyQuestionnaireMap = new Map<Id,IPM_Questionnaire__c>(); 
             getRecordTypeId();  
-            
+            projectID=ApexPages.currentPage().getParameters().get('Id'); //this is not passing to this method from constructor
             String sObjectName = 'IPM_Questionnaire__c';
             Schema.DescribeSObjectResult sObjectDescribe = Schema.getGlobalDescribe().get(sObjectName).getDescribe();
         
         	Map<String,Schema.SObjectField> sobjectFieldMap = sObjectDescribe.fields.getMap();
-        	String query = ' SELECT ';
-	        for(String fieldAPIName :  sobjectFieldMap.keySet())
-	        {   
-	            if(!(fieldAPIName.equalsIgnoreCase('Id')))
-	            {
-	                query += ' '+fieldAPIName+',';
-	            }
-	        }
-	        
-	        query += 'Id,IPM_Project_Document_Section__r.IPM_Section_Name__c from '+ sObjectName +' WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
-            
-            if(projDocSec!=null){
-                string projDocSecSequence=string.escapeSingleQuotes(projDocSec.IPM_Section_Sequence__c);//exception of unused local varaibale of Sonar. Used in below query
-                gkChecklist=Database.query(query+' AND IPM_Section_Sequence_Number__c=:projDocSecSequence order by IPM_Sequence_Number__c ASC LIMIT 50000');
-            } 
-            else
-            {   
-               gkChecklist=Database.Query(query+' order by IPM_Sequence_Number__c ASC LIMIT 50000');        
-            } 
+            If(gateType != NULL) {
+                String query = ' SELECT ';
+                for(String fieldAPIName :  sobjectFieldMap.keySet())
+                {   
+                    if(!(fieldAPIName.equalsIgnoreCase('Id')))
+                    {
+                        query += ' '+fieldAPIName+',';
+                    }
+                }
+                
+                query += 'Id,IPM_Project_Document_Section__r.IPM_Section_Name__c from '+ sObjectName +' WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
+                
+                if(projDocSec!=null){
+                    string projDocSecSequence=string.escapeSingleQuotes(projDocSec.IPM_Section_Sequence__c);//exception of unused local varaibale of Sonar. Used in below query
+                    gkChecklist=Database.query(query+' AND IPM_Section_Sequence_Number__c=:projDocSecSequence order by IPM_Sequence_Number__c ASC LIMIT 50000');
+                } 
+                else
+                {   
+                    gkChecklist=Database.Query(query+' order by IPM_Sequence_Number__c ASC LIMIT 50000');        
+                } 
+            }
           
             // Get BET status and Set BET Gatekeeping answer
-          for(IPM_Questionnaire__c ipmQue : gkChecklist) 
-          {
-            String dependentFieldAPIName = ipmQue.DependentFieldAPIName__c; 
-              if(String.isNotBlank(dependentFieldAPIName))
-          {
-                ipmQue.put('IPM_GK_Answers__c',(String)ipmQue.get(dependentFieldAPIName));
-                readOnlyQuestionnaireMap.put(ipmQue.Id,ipmQue);
-              }   
-          }     
-          
-   
+              
             
             if(gkChecklist!=null && !gkChecklist.isEmpty())  
             {
+                for(IPM_Questionnaire__c ipmQue : gkChecklist) 
+                {
+                    String dependentFieldAPIName = ipmQue.DependentFieldAPIName__c; 
+                    if(String.isNotBlank(dependentFieldAPIName))
+                    {
+                        ipmQue.put('IPM_GK_Answers__c',(String)ipmQue.get(dependentFieldAPIName));
+                        readOnlyQuestionnaireMap.put(ipmQue.Id,ipmQue);
+                    }   
+                } 
+                
                 gkChecklistAnsMap  = new Map<Id , List<SelectOption>>();
                 
                 for(IPM_Questionnaire__c ipmQue : gkChecklist) 
@@ -352,7 +362,7 @@ public with sharing class IPM_GatekeeperChecklist{
             else if(checklistType==IPM_ConstantUtils.TRADEMARK_RECORD_TYPE){ 
                 checklistRecordType=recTypeTrademark;
             }
-            if(String.isNotBlank(checklistRecordType)){
+            if(String.isNotBlank(checklistRecordType) && gateType != NULL){
                 //Getting Supply Chain Questionnaires for Project
                 quesList=[SELECT ID,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,
                           IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_Section_External_Id__c,IPM_GK_Answers__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId 

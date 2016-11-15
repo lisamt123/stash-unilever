@@ -161,7 +161,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CI_R2R_Innovation__c.Benifit_Amount__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -171,7 +171,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CI_R2R_Innovation__c.Business_cost__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_R2R_Innovation__c.CI_Funnel_Name__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -201,7 +206,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CI_R2R_Innovation__c.IT_Cost__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -266,7 +271,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CI_R2R_Innovation__c.Total_Cost__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_R2R_Milestones__c.Comments__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -281,6 +291,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CI_R2R_Milestones__c.RAG__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_R2R_Milestones__c.Target_Closure_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -330,6 +345,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CI_SMS_Weekly_Update__c.SME_Weekly_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CI_SMS_Weekly_Update__c.Scope__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -343,6 +363,11 @@
         <field>CI_SMS_Weekly_Update__c.Target_Closure__c</field>
         <readable>false</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_SMS_Weekly_Update__c.Unique_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <label>CI_R2R KUN user</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -353,6 +378,10 @@
         <object>CI_R2R_Innovation__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>CI_R2R_Comments_Section</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <pageAccesses>
         <apexPage>CI_R2R_Comments_Section_for_SME</apexPage>
         <enabled>true</enabled>
@@ -366,6 +395,18 @@
         <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
+        <recordType>CI_R2R_Innovation__c.CI_R2R_Innovation_with_SME</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CI_R2R_Innovation__c.CI_R2R_Innovation_with_SME_Read_Only</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CI_SMS_Weekly_Update__c.CI_R2R_SME_Read_Only</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_with_CI</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -373,7 +414,7 @@
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_without_CI</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
-    <tabSettings>
+	<tabSettings>
         <tab>CI_R2R_Budget__c</tab>
         <visibility>None</visibility>
     </tabSettings>

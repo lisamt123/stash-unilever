@@ -528,6 +528,7 @@ public with sharing class IPM_GateCMIController{
                 else{
                     if(secCon.IPM_CMI_Is_Free_Text__c){
                         secCon.IPM_CMI_Free_Text__c=resultCMI;
+                        secCon.IPM_CMI_Input__c=resultCMI;
                     }
                     else{
                         if(colorMapping!=null && !String.isBlank(colorMapping.get(resultCMI).IPM_CMI_Color__c)){

@@ -5,19 +5,14 @@
         <backgroundColor2>#FFFFFF</backgroundColor2>
         <backgroundFadeDir>Diagonal</backgroundFadeDir>
         <chartSummaries>
-            <axisBinding>y</axisBinding>
-            <column>RowCount</column>
-        </chartSummaries>
-        <chartSummaries>
             <aggregate>Sum</aggregate>
             <axisBinding>y</axisBinding>
             <column>SAM_Quote_Line_Item__c.Spend_In_Euros__c</column>
         </chartSummaries>
         <chartType>VerticalColumn</chartType>
-        <enableHoverLabels>false</enableHoverLabels>
+        <enableHoverLabels>true</enableHoverLabels>
         <expandOthers>true</expandOthers>
         <groupingColumn>SAM_Quote_Line_Item__c.pkl_Publisher__c</groupingColumn>
-        <legendPosition>Right</legendPosition>
         <location>CHART_TOP</location>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
@@ -46,7 +41,7 @@
         <field>CUST_NAME</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>SAM Publisher Wise Split For Dashboard</name>
+    <name>SAM Demad: Publisher Wise Split</name>
     <params>
         <name>co</name>
         <value>1</value>

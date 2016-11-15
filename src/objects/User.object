@@ -225,6 +225,15 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>CEC_Disable_Case_Trigger__c</fullName>
+        <description>CEC - Check whether the case trigger execution should be disabled or not</description>
+        <externalId>false</externalId>
+        <formula>$Permission.CEC_Disable_Case_Trigger</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CEC Disable Case Trigger</label>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>CEC_User_Reference__c</fullName>
         <description>CEC - This field is used to contain reference text that can be filtered using a view on the user record to simplify the user creation process and reduce errors.</description>
@@ -550,7 +559,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+   <fields>
         <fullName>Language__c</fullName>
         <description>CEC: Language skills held by the user</description>
         <externalId>false</externalId>
@@ -652,6 +661,11 @@
                 <controllingFieldValues>Italy</controllingFieldValues>
             </picklistValues>
             <picklistValues>
+                <fullName>Japanese</fullName>
+                <default>false</default>
+                <controllingFieldValues>Japan</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Moldavian</fullName>
                 <default>false</default>
             </picklistValues>
@@ -708,6 +722,7 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
@@ -928,7 +943,7 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
-    <fields>
+     <fields>
         <fullName>Market__c</fullName>
         <externalId>false</externalId>
         <label>Market</label>
@@ -983,6 +998,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Italy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Japan</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1043,6 +1062,7 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
     </fields>
@@ -1183,6 +1203,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1214,6 +1235,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1245,6 +1267,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1276,6 +1299,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1307,6 +1331,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1338,6 +1363,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1369,6 +1395,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1400,6 +1427,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1431,6 +1459,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1462,6 +1491,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1493,6 +1523,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1524,6 +1555,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1555,6 +1587,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1586,6 +1619,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1617,6 +1651,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1648,6 +1683,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1679,6 +1715,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1710,6 +1747,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1741,6 +1779,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1772,6 +1811,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1803,6 +1843,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1834,6 +1875,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1865,6 +1907,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1896,6 +1939,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1927,6 +1971,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1958,6 +2003,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -1989,6 +2035,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -2020,6 +2067,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -2051,6 +2099,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -2082,6 +2131,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -2113,6 +2163,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -2144,6 +2195,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -2175,6 +2227,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -2206,6 +2259,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -2237,6 +2291,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Indonesia</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Japan</controllingFieldValues>
                 <controllingFieldValues>Middle Americas</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
                 <controllingFieldValues>North America</controllingFieldValues>
@@ -2254,6 +2309,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>

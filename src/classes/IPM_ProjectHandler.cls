@@ -130,6 +130,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                             IPM_BETHelper.sendBETAccessRequestonFirstRelease(project.BET__c);   
                         }
                     }
+					
+					//Reinstate GKM Model in case it's getting overridden with null value
+                    if(project.IPM_ProjectGKM__c == null && ((IPM_Project__c) trigger.oldmap.get(project.id)).IPM_ProjectGKM__c!=null){
+                        project.IPM_ProjectGKM__c = ((IPM_Project__c) trigger.oldmap.get(project.id)).IPM_ProjectGKM__c;
+                    }
                 }
             }
         } 
@@ -298,8 +303,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     if(incomingProject.IPM_Phase__c != oldProject.IPM_Phase__c && !String.isBlank(incomingProject.IPM_Phase__c))
                     {
                         projectsWithPhaseChanged.add(incomingProject);
-                    
-                        if(incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_PROCESSING)
+            
+                        if(incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_PROCESSING || (incomingProject.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && incomingProject.IPM_Phase__c == IPM_ConstantUtils.MARKET_READY_GATE)  )
                         {
                             if(IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED)
                             {  
@@ -761,7 +766,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
 
               IPM_StopProjectHelper.processUnArchival(unArchievedProjectMap);  
 
-            //call update project name in all objects records
+			  set<id> archivalprojIds = new set<id>();
+              archivalprojIds.addAll(archievedProjectMap.keySet());
+              archivalprojIds.addAll(unArchievedProjectMap.keySet());
+              IPM_MilestoneHelper.rollupMilestoneDuedate(archivalprojIds);
+			//call update project name in all objects records
             if(!updateNewProNameMap.IsEmpty()){
                 IPM_UpdateGlobalProjectName.updateProjectName(updateNewProNameMap,oldprojectnameMap);
                 IPM_ChatterFeedHelper.notifyProjectNameChange(changedNameProjectList);

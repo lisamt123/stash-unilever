@@ -606,15 +606,15 @@ Returns:
      public PageReference  brandPositionListData(){    
        try{
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-        Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
+        Set<MDO_BrandPosition__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
 
         Set<String> brnadPosNameSet = new Set<String>();
-        for(MDO_BrandPositions__c bps : brandPositionlst){
+        for(MDO_BrandPosition__c bps : brandPositionlst){
 
-            if(!brnadPosNameSet.contains(bps.brand_position_id__r.name)){
-                listOfBrandPosition.add(new selectOption(bps.brand_position_id__r.name,bps.brand_position_id__r.name));
+            if(!brnadPosNameSet.contains(bps.name)){
+                listOfBrandPosition.add(new selectOption(bps.name,bps.name));
 
-                brnadPosNameSet.add(bps.brand_position_id__r.name);
+                brnadPosNameSet.add(bps.name);
             }
         }
 
@@ -636,14 +636,14 @@ Returns: It will return list of brands.
 
         listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-        Set<MDO_BrandPositions__c> brandlst = utiltyObj.brandValues(categoryName,brandPosName);
+        Set<MDO_Brand__C> brandlst = utiltyObj.brandValues(categoryName,brandPosName);
         Set<String> brnadNameSet = new Set<String>();
-        for(MDO_BrandPositions__c bps : brandlst){
+        for(MDO_Brand__C bps : brandlst){
 
-            if(!brnadNameSet.contains(bps.brand_id__r.name)){
-                listOfBrand.add(new selectOption(bps.brand_id__r.name,bps.brand_id__r.name));
+            if(!brnadNameSet.contains(bps.name)){
+                listOfBrand.add(new selectOption(bps.name,bps.name));
 
-                brnadNameSet.add(bps.brand_id__r.name);
+                brnadNameSet.add(bps.name);
             }
         }
                 
