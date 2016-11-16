@@ -1097,7 +1097,7 @@
         <name>CEC_Fulfilment_PostOption_Complaints</name>
     </customLabels>
     <customLabels>
-        <label>？？？</label>
+        <label>Otherwise</label>
         <name>CEC_Fulfilment_PostOption_otherwise</name>
     </customLabels>
     <customLabels>
@@ -1189,7 +1189,7 @@
         <name>CEC_Product</name>
     </customLabels>
     <customLabels>
-        <label>製品階層</label>
+        <label>最終選択製品</label>
         <name>CEC_Product_Hierarchy</name>
     </customLabels>
     <customLabels>
