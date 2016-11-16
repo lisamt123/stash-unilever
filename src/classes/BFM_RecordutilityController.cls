@@ -1,4 +1,4 @@
-public class BFM_RecordutilityController {
+public with sharing class BFM_RecordutilityController {
     public void cceCheck(Map<string,id> OldKeyMap,Map<string,id> NewRecordMap, string FileType , List<BFM_CC_e__c> CCeRecord ,set<string> CNPJId){
         List<BFM_Error_Log__c> errlist= New List<BFM_Error_Log__c>();
         set<string> accCNPJ = new set<string>();
@@ -74,12 +74,12 @@ public class BFM_RecordutilityController {
             mapacc.put(ac.CNPJ__c,ac);
         }
         for(BFM_MDF_e__c mdfe : mdfeRecord){
-            if(mapacc.containskey(mdfe.Issuer_CNPJ__c) && mapacc.get(mdfe.Issuer_CNPJ__c)!=null){
+            /*if(mapacc.containskey(mdfe.Issuer_CNPJ__c) && mapacc.get(mdfe.Issuer_CNPJ__c)!=null){
           //      mdfe.Carrier_Account__c = mapacc.get(mdfe.Issuer_CNPJ__c).id;
             }
             if(mapacc.containskey(mdfe.Taker_CNPJ__c) && mapacc.get(mdfe.Taker_CNPJ__c)!=null){
           //      mdfe.Unilever_Account__c = mapacc.get(mdfe.Taker_CNPJ__c).id;
-            }
+            }*/
             if(OldKeyMap.containsKey(mdfe.MDFE_Access_Key__c)){
                 mdfe.MDF_e_Duplicate_Record_Status__c= Label.BFM_Validation_Error; 
                 mdfe.MDF_e_Status__c = Label.BFM_Validation_Error;             
