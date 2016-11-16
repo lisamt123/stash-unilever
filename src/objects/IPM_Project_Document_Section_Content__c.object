@@ -11058,7 +11058,7 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
     <listViews>
         <fullName>IPM_a7I0L000000GyXC_IPM_Project_Document_Section_Content</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000GyXC</label>
+        <label>IPM_OLAF_NA</label>
         <queue>IPM_a7I0L000000GyXC</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -11402,6 +11402,78 @@ IF(IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Pa
         <filterScope>Queue</filterScope>
         <label>IPM_O SANTIAGO LA _LA</label>
         <queue>IPM_a7I0L000000GzQq</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzR0_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_BLK GLEE4 CN_NAS</label>
+        <queue>IPM_a7I0L000000GzR0</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzSz_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_THOR_EU</label>
+        <queue>IPM_a7I0L000000GzSz</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzTZ_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TO BE DELETED</label>
+        <queue>IPM_a7I0L000000GzTZ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzV1_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_GET READY</label>
+        <queue>IPM_a7I0L000000GzV1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gzh6_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000Gzh6</label>
+        <queue>IPM_a7I0L000000Gzh6</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GzhV_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000GzhV</label>
+        <queue>IPM_a7I0L000000GzhV</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gzok_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000Gzok</label>
+        <queue>IPM_a7I0L000000Gzok</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000Gzph_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SHREK_NA</label>
+        <queue>IPM_a7I0L000000Gzph</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

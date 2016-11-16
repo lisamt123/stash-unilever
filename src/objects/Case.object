@@ -5052,10 +5052,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>CEC_Japan</fullName>
         <booleanFilter>1 OR 2</booleanFilter>
-        <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
         <columns>CEC_Reason_Code__c</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CORE.USERS.ALIAS</columns>
@@ -5080,13 +5082,16 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Japan1</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>PARENT.CASE_NUMBER</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CEC_Reason_Code__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>NAME</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -5102,14 +5107,18 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Japan3</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>PARENT.CASE_NUMBER</columns>
+        <columns>CASES.ORIGIN</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.STATUS</columns>
-        <columns>CEC_Reason_Code__c</columns>
         <columns>CASES.SUBJECT</columns>
-        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>CEC_Reason_Code__c</columns>
+        <columns>OWNER_NAME</columns>
         <columns>NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.ORIGIN</field>
@@ -5130,10 +5139,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Japan4</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>PARENT.CASE_NUMBER</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.STATUS</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
         <columns>CEC_Reason_Code__c</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CORE.USERS.ALIAS</columns>
@@ -5145,6 +5156,31 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>完了</value>
         </filters>
         <label>CEC Japan - 未完了</label>
+        <language>ja</language>
+        <sharedTo>
+            <role>CEC_Manager_Japan</role>
+            <role>CEC_User_Japan</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Japan5</fullName>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>PARENT.CASE_NUMBER</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CEC_Reason_Code__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>NAME</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>contains</operation>
+            <value>エスカレーション中,承認待ち</value>
+        </filters>
+        <label>CEC Japan - 承認依頼中/エスカ中</label>
         <language>ja</language>
         <sharedTo>
             <role>CEC_Manager_Japan</role>
@@ -5190,6 +5226,36 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <queue>CEC_Japan_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Japan</role>
+            <role>CEC_User_Japan</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Japan_Web</fullName>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>PARENT.CASE_NUMBER</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CEC_Reason_Code__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>contains</operation>
+            <value>Email,Webフォーム</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notContain</operation>
+            <value>完了</value>
+        </filters>
+        <label>CEC Japan - メール/Webフォーム</label>
+        <language>ja</language>
+        <sharedTo>
             <role>CEC_Manager_Japan</role>
             <role>CEC_User_Japan</role>
         </sharedTo>
