@@ -1507,16 +1507,20 @@ public with sharing class Oblix_SOWRollOverLogic {
             Map<Id, Oblix_Project_Assets__c> map_assets_to_update = new Map<Id,Oblix_Project_Assets__c>();
             List<Oblix_Project_Assets__c> list_assets_to_clone = new List<Oblix_Project_Assets__c>();
             List<Oblix_Project_Assets__c> list_NFY_assets_to_update = new List<Oblix_Project_Assets__c>();
-
+            List<Oblix_Project_Assets__c> list_NFY_assets_to_delete = new List<Oblix_Project_Assets__c>();
+            Set<Oblix_Project_Assets__c> set_NFY_assets_to_delete = new Set<Oblix_Project_Assets__c>();
+            
             // this map is used to copy over values from original to cloned assets
             Map<String, Schema.SObjectField> map_name_and_field = Oblix_Utils.fetchAllFieldsForObject(ASSET_OBJECT);
             
             //added by suresh - starts
             Set<String> set_asset_mdm_ID = new Set<String>();
+            Set<String> set_asset_mdm_ID_for_delete = new Set<String>();
             Map<String,String> map_mdm_id_to_asset_id = new Map<String,String>();
             for (Oblix_Project_Assets__c asset: map_original_ids_to_original.values()){
                   // Added by Suresh
                 set_asset_mdm_ID.add(asset.mdm_id__c);
+                set_asset_mdm_ID_for_delete.add(asset.mdm_id__c);
                 map_mdm_id_to_asset_id.put(asset.mdm_id__c,asset.id);
                 /*If(Set_Cloned_MDM_IDs.contains(asset.mdm_id__c)){
                    Oblix_Project_Assets__c temp =  map_NFY_Assets_with_MDMIds.get(asset.mdm_id__c);  
@@ -1535,7 +1539,24 @@ public with sharing class Oblix_SOWRollOverLogic {
                     map_original_ids_to_cloned.put(map_mdm_id_to_asset_id.get(mdm_id),temp);
                 }
             }
-            update list_NFY_assets_to_update;
+            boolean asset_set_for_delete_changed = set_asset_mdm_ID_for_delete.removeAll(Set_Cloned_MDM_IDs);
+            if(asset_set_for_delete_changed){
+                for(String mdm_id : set_asset_mdm_ID_for_delete){
+                    Oblix_Project_Assets__c temp =  map_NFY_Assets_with_MDMIds.get(mdm_id);  
+                    
+                    set_NFY_assets_to_delete.add(temp);
+                }
+            }
+            
+            if(!list_NFY_assets_to_update.isEmpty()){
+                update list_NFY_assets_to_update;
+            }
+            if(!set_NFY_assets_to_delete.isEmpty()){
+                set_NFY_assets_to_delete.remove(null);
+                list_NFY_assets_to_delete.addAll(set_NFY_assets_to_delete);
+                delete list_NFY_assets_to_delete;
+            }
+            
              //added by suresh - ends
 
             for (Oblix_Project_Assets__c asset: map_original_ids_to_original.values()){
