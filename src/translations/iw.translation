@@ -4673,7 +4673,7 @@
         <name>CEC_ProductLocator</name>
     </customLabels>
     <customLabels>
-        <label>最終選択製品</label>
+        <label><!-- CEC_Product_Hierarchy --></label>
         <name>CEC_Product_Hierarchy</name>
     </customLabels>
     <customLabels>

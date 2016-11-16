@@ -1758,7 +1758,7 @@
         <name>CEC_Check_CV_Status</name>
     </validationRules>
     <validationRules>
-        <errorMessage>国名は必須です。</errorMessage>
+        <errorMessage>国とサマリは必須です。</errorMessage>
         <name>CEC_Country_and_Verbatim_fields</name>
     </validationRules>
     <validationRules>
@@ -1770,7 +1770,7 @@
         <name>CEC_UsedProductPreviouslyCheck</name>
     </validationRules>
     <validationRules>
-        <errorMessage>製品コードと理由コードを選択してください。</errorMessage>
+        <errorMessage>製品コードとロスツリーを選択してください。</errorMessage>
         <name>Product_and_Reason_Code_Required</name>
     </validationRules>
     <webLinks>

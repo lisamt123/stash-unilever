@@ -87,7 +87,7 @@
     </layouts>
     <nameFieldLabel><!-- Case QC Mapping Name --></nameFieldLabel>
     <validationRules>
-        <errorMessage>製品、理由コード、国名がQCにマップされた国名と一致している必要があります。</errorMessage>
+        <errorMessage>製品、ロスツリー、国がQCマッピングの国と一致している必要があります。</errorMessage>
         <name>Product_and_Reason_Code_Validation</name>
     </validationRules>
 </CustomObjectTranslation>
