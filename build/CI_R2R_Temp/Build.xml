@@ -65,10 +65,7 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-	    <runTest>CI_R2R_Budget_Trigger_Test</runTest>
-      <runTest>CI_R2R_GetHistory_Test</runTest>
-	    <runTest>CI_R2R_Innovation_Trigger_Test</runTest>
-	    <runTest>CI_R2R_SME_GetHistory_Test</runTest>
+	    <runTest>BET_LinkingServiceTestOne</runTest>
     </sf:deploy>
   </target>  
 
