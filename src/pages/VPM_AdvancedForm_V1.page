@@ -486,7 +486,15 @@
             </script> 
           <!-- Sirius RegionSpecific ---->
           <apex:pageBlockSection columns="2" title="{!$Label.VPM_Company_Code_Details}" rendered="{!regionalSpecificScreenSirius}">
-
+              <apex:pageBlockSectionItem helpText="{!$Label.VPM_TermsOfPaymentReqHelpText}">             
+                    <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TermsOfPayment__c.Label}" />    
+                         <apex:outputPanel layout="block" styleClass="requiredInput">
+                             <apex:outputpanel layout="block" styleClass="requiredBlock"/>                  
+                               <apex:selectList value="{!termsOFPayment}"  multiselect="false" size="1">
+                               <apex:selectOptions value="{!termsofPaymentOptions}"/>                            
+                               </apex:selectList>                                 
+                         </apex:outputPanel>
+              </apex:pageBlockSectionItem>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorPayItemsSeparately__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorPayItemsSeparately__c}"/>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AlternativePayee__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AlternativePayee__c}"/> 
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentMethodSupplement__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PaymentMethodSupplement__c}" />
@@ -742,6 +750,15 @@
           
           <!-- Cordillera RegionSpecific ---->  
           <apex:pageBlocksection title="{!$Label.VPM_Company_Code_Details}"  rendered="{!regionalSpecificScreenCordillera}">
+              <apex:pageBlockSectionItem helpText="{!$Label.VPM_TermsOfPaymentReqHelpText}">             
+                    <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TermsOfPayment__c.Label}" />    
+                         <apex:outputPanel layout="block" styleClass="requiredInput">
+                             <apex:outputpanel layout="block" styleClass="requiredBlock"/>                  
+                               <apex:selectList value="{!termsOFPayment}"  multiselect="false" size="1">
+                               <apex:selectOptions value="{!termsofPaymentOptions}"/>                            
+                               </apex:selectList>                                 
+                         </apex:outputPanel>
+              </apex:pageBlockSectionItem>
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_MinorityIndicators__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_MinorityIndicators__c}"  />
               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AlternativePayee__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AlternativePayee__c}"/> 
               <apex:selectList value="{!vendorGroupingKey}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_GroupingKey__c.Label}" size="1">

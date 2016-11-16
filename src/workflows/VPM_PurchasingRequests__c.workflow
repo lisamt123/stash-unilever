@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
-        <fullName>Notification_For_Logged_Email</fullName>
-        <description>Notification For Logged Email</description>
-        <protected>false</protected>
-        <recipients>
-            <type>creator</type>
-        </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>VPM_ApprovalEmails/VPM_Requesthasbeenlogged</template>
-    </alerts>
-    <alerts>
-        <fullName>Notification_for_Logged_for_2_Approvals</fullName>
-        <description>Notification for Logged for 2 Approvals</description>
-        <protected>false</protected>
-        <recipients>
-            <type>creator</type>
-        </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>VPM_ApprovalEmails/VPM_Requesthasbeenlogged</template>
-    </alerts>
-    <alerts>
         <fullName>VPM_MDMRequestSubmitted</fullName>
         <description>VPM - Used to send Notification to the Business Requestor when the request (Bloc/Delete) is submitted manually</description>
         <protected>false</protected>
@@ -32,6 +10,17 @@
         <senderAddress>supplier.information@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_Requesthasbeencompleted</template>
+    </alerts>
+    <alerts>
+        <fullName>VPM_NotificationForLogged</fullName>
+        <description>VPM - Notification For Logged</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_Requesthasbeenlogged</template>
     </alerts>
     <alerts>
         <fullName>VPM_RequestAbortedNotification</fullName>
@@ -89,6 +78,17 @@
         <template>VPM_ApprovalEmails/VPM_RequestReviewNotification</template>
     </alerts>
     <alerts>
+        <fullName>VPM_RequesthasbeenloggedMDM</fullName>
+        <description>VPM_RequesthasbeenloggedMDM</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_RequesthasbeenloggedMDM</template>
+    </alerts>
+    <alerts>
         <fullName>VPM_ReworkNotification</fullName>
         <description>VPM - Used to send Notification to the Business Requestor when the request is send for Rework</description>
         <protected>false</protected>
@@ -104,7 +104,8 @@
         <description>VPM Send Email to Requestor After Webform Update</description>
         <protected>false</protected>
         <recipients>
-            <type>owner</type>
+            <field>VPM_EmailOfWebformSender__c</field>
+            <type>email</type>
         </recipients>
         <senderAddress>supplier.information@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
@@ -115,7 +116,8 @@
         <description>VPM Send Email to Requestor Before Webform Update</description>
         <protected>false</protected>
         <recipients>
-            <type>owner</type>
+            <field>VPM_EmailOfWebformSender__c</field>
+            <type>email</type>
         </recipients>
         <senderAddress>supplier.information@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
@@ -133,15 +135,100 @@
         <template>VPM_ApprovalEmails/VPM_SendWebformtoVendor</template>
     </alerts>
     <fieldUpdates>
-        <fullName>VPM_AssignRequestToMDMOps</fullName>
-        <description>VPM - Assign request to MDM Ops</description>
+        <fullName>VPM_ApprovalStatusAproval</fullName>
+        <description>VPM - Used to Set the status as &quot;Approved&quot; when the request is Approved by the team</description>
+        <field>VPM_ApprovalStatus__c</field>
+        <literalValue>Approved</literalValue>
+        <name>VPM - Approval Status Approval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ApprovalStatusPending</fullName>
+        <description>Update the Approval Status to Pending</description>
+        <field>VPM_ApprovalStatus__c</field>
+        <literalValue>Pending</literalValue>
+        <name>VPM - Approval Status Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ApprovalStatusRejection</fullName>
+        <description>VPM - Used to set the flag as &quot;Reject&quot;</description>
+        <field>VPM_ApprovalStatus__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>VPM - Approval Status Rejection</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ApprovedTime</fullName>
+        <description>VPM- Time the Request is Approved by the group.</description>
+        <field>VPM_ProcurementApproval__c</field>
+        <formula>NOW()</formula>
+        <name>VPM - Approved Time</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_AssigntoRussian</fullName>
+        <description>VPM - Used to set the Owner as &quot;Russian Queue&quot;</description>
         <field>OwnerId</field>
-        <lookupValue>VPM_MDMOps</lookupValue>
+        <lookupValue>VPM_RussianCustomTax</lookupValue>
         <lookupValueType>Queue</lookupValueType>
-        <name>Assign request to MDM Ops</name>
+        <name>VPM - Assign to Russian</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangeAdvanceFormSubmittedtonull</fullName>
+        <description>VPM - Reset Advance form Submitted Flag</description>
+        <field>VPM_AdvancedFormSubmitted__c</field>
+        <name>VPM - Change Adv Form Submitted  null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangeBusinessRequestorFlagtoNull</fullName>
+        <description>VPM - Reset the Business Requester Submitted Flag to Null</description>
+        <field>VPM_BusinessRequestorSubmitted__c</field>
+        <name>VPM - Change BusinessReqFlag to Null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangeIsInApprovalProcess</fullName>
+        <description>VPM - Used to set the Is In Approval Process Flag as &quot;Approval Compeleted&quot;</description>
+        <field>VPM_IsInApprovalProcess__c</field>
+        <literalValue>Approval Completed</literalValue>
+        <name>VPM - Change IsInApprovalPro To Complet</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangeIsinApprovalStatus</fullName>
+        <description>VPM - Used as Flag which will set the Is In Approved Values &amp; these field is used in PB</description>
+        <field>VPM_IsInApprovalProcess__c</field>
+        <literalValue>In Approval Process</literalValue>
+        <name>VPM - Change IsinApproval Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_ChangeOwnerToFLSQueue</fullName>
@@ -156,26 +243,148 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>VPM_ChangeOwnerToFinanceQueue</fullName>
-        <description>VPM - Sets the Owner to Finance Queue on entering Approval Process</description>
+        <fullName>VPM_ChangeOwnerToFreightQueue</fullName>
+        <description>VPM - Sets the Owner as Freight Queue on entering approval process.</description>
         <field>OwnerId</field>
-        <lookupValue>VPM_Finance</lookupValue>
+        <lookupValue>VPM_Freight</lookupValue>
         <lookupValueType>Queue</lookupValueType>
-        <name>Change Owner To Finance Queue</name>
+        <name>VPM - Change Owner To Freight Queue</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>VPM_ChangeOwnerToMDMOpsQueue</fullName>
-        <description>VPM - Sets the Owner as MDM Ops Queue on entering approval process.</description>
+        <fullName>VPM_ChangeOwnerToProcurement_Queue</fullName>
+        <description>VPM - Sets the Owner as Procurement Queue on entering Approval Process.</description>
         <field>OwnerId</field>
-        <lookupValue>VPM_MDMOps</lookupValue>
+        <lookupValue>VPM_Procurement</lookupValue>
         <lookupValueType>Queue</lookupValueType>
-        <name>Change Owner To MDM Ops Queue</name>
+        <name>VPM - Change Owner To Procurement Queue</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangeOwnertoECCQueue</fullName>
+        <description>VPM - Used to set the Owner as &quot;ECC queue&quot;</description>
+        <field>OwnerId</field>
+        <lookupValue>VPM_ECCQueue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>VPM - Change Owner to ECC Queue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangeReworkStatusNo</fullName>
+        <description>VPM - Used to set Rework Flag as &quot;No&quot;</description>
+        <field>VPM_Rework__c</field>
+        <literalValue>No</literalValue>
+        <name>VPM - Change Rework Status to No</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangeStatusBankApproved</fullName>
+        <description>VPM -  Used to reset the status as &quot;Bank Data Validation Approved &quot; when the request is approved by Bank Data team</description>
+        <field>VPM_Status__c</field>
+        <literalValue>Bank Data Validation Approved</literalValue>
+        <name>VPM - Change Status Bank Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangeStatusToFreightReject</fullName>
+        <description>VPM - Used to Set the status as &quot;Freight Reject&quot; when the request get rejected</description>
+        <field>VPM_Status__c</field>
+        <literalValue>Freight Rejected</literalValue>
+        <name>VPM - Change Status To Freight Reject</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangeStatustoFLSreview</fullName>
+        <description>VPM - Used to set the status as &quot;FLS Review&quot;</description>
+        <field>VPM_Status__c</field>
+        <literalValue>FLS Review</literalValue>
+        <name>VPM - Change Status to FLS review</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangelastGroupwithFLS</fullName>
+        <description>VPM - Used to set Last Group so that it will be used in Reporting</description>
+        <field>VPM_RequestLastWithGroup__c</field>
+        <literalValue>FLS</literalValue>
+        <name>VPM - Change last Group with FLS</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangesIslockStatusNo</fullName>
+        <description>VPM - Set the islock flaf to false when the record ia Approve/reject/recall</description>
+        <field>VPM_IsLock__c</field>
+        <literalValue>0</literalValue>
+        <name>VPM - Changes Is lock Status to False</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangesStatusFinanceApproved</fullName>
+        <description>VPM - Used to set the status as &quot;Finance Approved &quot; when the request is approved by the Finance Team</description>
+        <field>VPM_Status__c</field>
+        <literalValue>Finance Approved</literalValue>
+        <name>VPM - Changes Status Finance Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangesStatusFreightApproved</fullName>
+        <description>VPM - Used to set the status as &quot;Freight Approved&quot; when the request is Approved by Freight team</description>
+        <field>VPM_Status__c</field>
+        <literalValue>Freight Approved</literalValue>
+        <name>VPM - Changes Status Freight Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangesStatusProcurementApprove</fullName>
+        <description>VPM - Used to set the status as &quot;Procurement Approved&quot; when the Procurement Team approved the Request</description>
+        <field>VPM_Status__c</field>
+        <literalValue>Procurement Approved</literalValue>
+        <name>VPM - Changes Status Procurement Approve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangesStatusRussianApprove</fullName>
+        <description>VPM - Used to set the status as &quot;Russian Approved &quot; when the Request is approved by Russian Team member</description>
+        <field>VPM_Status__c</field>
+        <literalValue>Russian Custom Tax Approved</literalValue>
+        <name>VPM - Changes Status Russian Approve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
@@ -200,14 +409,15 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>VPM_Email_of_Webform_Sender</fullName>
-        <description>VPM - Sends email to Vendor with Webform details</description>
-        <field>VPM_EmailOfWebformSender__c</field>
-        <formula>$User.Email</formula>
-        <name>Email of Webform Sender</name>
+        <fullName>VPM_ECCSubmittedToYes</fullName>
+        <description>VPM - Used to set falg which will indicate the Bank Approved has approved the request</description>
+        <field>VPM_BankDataValidationSubmitted__c</field>
+        <literalValue>Yes</literalValue>
+        <name>VPM - Status Bank Data Submitted To Yes</name>
         <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
+        <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_FinanceSubmittedYes</fullName>
@@ -215,6 +425,93 @@
         <field>VPM_FinanceSubmitted__c</field>
         <literalValue>Yes</literalValue>
         <name>VPM - Finance Submitted Yes</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_FreightApprovedYes</fullName>
+        <description>VPM  - Used as Flag which will denote as &quot;Freight&quot; has Approved the request</description>
+        <field>VPM_FreightSubmitted__c</field>
+        <literalValue>Yes</literalValue>
+        <name>VPM - Freight Approved Yes</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_IsInApprovalProcessBlank</fullName>
+        <description>VPM - Resets is in approval process to blank on recall</description>
+        <field>VPM_IsInApprovalProcess__c</field>
+        <name>VPM - Is in Approval Process Blank</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_IsLockTrue</fullName>
+        <description>VPM - set a Flag which is used for check the request is in Approval or Not</description>
+        <field>VPM_IsLock__c</field>
+        <literalValue>1</literalValue>
+        <name>VPM - Change IsLockTrue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_NextApproveNameRussian</fullName>
+        <description>VPM - Used to set the Next Approval Name so that it can be used in Email Templates</description>
+        <field>VPM_Set_Approver_Name__c</field>
+        <literalValue>Russian User</literalValue>
+        <name>VPM - Next Approve Name Russian</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_NextApproverNameBank</fullName>
+        <description>VPM Update the VPM Set Approver Name To Bank user</description>
+        <field>VPM_Set_Approver_Name__c</field>
+        <literalValue>Bank user</literalValue>
+        <name>VPM - Next Approver Name Bank</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_NextApproverNameFLS</fullName>
+        <description>VPM - Used to set the Next Approval so that it can be used in Email Template</description>
+        <field>VPM_Set_Approver_Name__c</field>
+        <literalValue>FLS User</literalValue>
+        <name>VPM - Next Approver Name FLS</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_NextApproverNameFin</fullName>
+        <description>VPM - Used to set the Next Approval Name so that it can be used in ermail Alert</description>
+        <field>VPM_Set_Approver_Name__c</field>
+        <literalValue>Finance User</literalValue>
+        <name>VPM - Next Approver NameFinance</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_NextApproverNameFreight</fullName>
+        <description>VPM - Used to Set the Next Approval Name which will be used in Email Template</description>
+        <field>VPM_Set_Approver_Name__c</field>
+        <literalValue>Freight User</literalValue>
+        <name>VPM - Next Approver Nam eFreight</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -232,54 +529,15 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>VPM_PaymentTerms30DKDefault</fullName>
-        <description>VPM - Sets default value of Payment Terms to 30DK</description>
-        <field>VPM_PaymentTerms__c</field>
-        <literalValue>30DK_Within 30 days Due net (30NET)</literalValue>
-        <name>Payment Terms 30DK Default</name>
+        <fullName>VPM_NextApproverNameProcurement</fullName>
+        <description>VPM - Used to set the approval Name as &quot;Procurement User &quot; which is used in  Email Template</description>
+        <field>VPM_Set_Approver_Name__c</field>
+        <literalValue>Procurement User</literalValue>
+        <name>VPM  - Next Approver Name Procurement</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>VPM_PaymentTerms90DKDefault</fullName>
-        <description>VPM - Sets Payment Terms to 90DK</description>
-        <field>VPM_PaymentTerms__c</field>
-        <literalValue>90DK_Within 90 days Due net (90NET)</literalValue>
-        <name>Payment Terms 90DK Default</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>VPM_PaymentTermsP030Default</fullName>
-        <description>VPM - Default payment terms for Sirius, U2K2 and Cordillera if Vendor is an SME</description>
-        <field>VPM_PaymentTerms__c</field>
-        <literalValue>P030_Within 30 days Due net (30NET)</literalValue>
-        <name>Payment Terms P030 Default</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>VPM_PaymentTermsP090Default</fullName>
-        <description>VPM - Sets Payment Terms to P090</description>
-        <field>VPM_PaymentTerms__c</field>
-        <literalValue>P090_Within 90 days Due net (90NET)</literalValue>
-        <name>Payment Terms P090 Default</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>VPM_PaymentTermsS090Default</fullName>
-        <description>VPM - Sets Payment terms to S090</description>
-        <field>VPM_PaymentTerms__c</field>
-        <literalValue>S090_Within 90 days Due net (90NET)</literalValue>
-        <name>Payment Terms S090 Default</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_ProcurementRejected</fullName>
@@ -326,6 +584,94 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_RequestLastwithGroupFreight</fullName>
+        <description>VPM - USed to set the Request Last with . which will be used in Report</description>
+        <field>VPM_RequestLastWithGroup__c</field>
+        <literalValue>Freight</literalValue>
+        <name>VPM - Request Last with Group Freight</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_RequestLastwithGroupRussianCustom</fullName>
+        <description>VPM - Used to Set the Last Request Last with which is used in Reporting</description>
+        <field>VPM_RequestLastWithGroup__c</field>
+        <literalValue>Russian Custom Tax</literalValue>
+        <name>VPM - Req Last with Grp Russian</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ResetBankApprovalflag</fullName>
+        <description>VPM - Used to reset the  Bank Approval flag</description>
+        <field>VPM_BankDataValidationRequired__c</field>
+        <literalValue>0</literalValue>
+        <name>VPM - Reset Bank Approval flag</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ResetFinanceApprovalflag</fullName>
+        <description>VPM - Used to reset the Finance Required flag when the Request is recall</description>
+        <field>VPM_FinanceApprovalRequired__c</field>
+        <literalValue>0</literalValue>
+        <name>VPM - Reset Finance Approval Flag</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ResetFreightApprovalflag</fullName>
+        <description>VPM - Used to reset the flag which is used to indicate whether the procurement Approval required</description>
+        <field>VPM_FreightApprovalRequired__c</field>
+        <literalValue>0</literalValue>
+        <name>VPM - Reset Freight Approval flag</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ResetProcurementApprovalflag</fullName>
+        <description>VPM - Used to reset the Procurement Required flag when the Request is recall</description>
+        <field>VPM_ProcurementApprovalRequired__c</field>
+        <literalValue>0</literalValue>
+        <name>VPM - Reset Procurement Approval flag</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ResetRussianApprovalflag</fullName>
+        <description>VPM - Used to Reset the Flag which is indication whether the Russian Approval is required or not</description>
+        <field>VPM_RussianTaxApprovalRequired__c</field>
+        <literalValue>0</literalValue>
+        <name>VPM - Reset Russian Approval flag</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_RussiaApprovedSubmittedtoYes</fullName>
+        <description>VPM - Used to Set the Flag which will Russian has Approved the request</description>
+        <field>VPM_RussiaSubmitted__c</field>
+        <literalValue>Yes</literalValue>
+        <name>VPM - Russia Approved to yes</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_SetPaymentTermsDefaultNonSME</fullName>
         <field>VPM_PaymentTerms__c</field>
         <name>VPM Set Payment Terms Default non SME</name>
@@ -365,6 +711,17 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_StatusECCRejected</fullName>
+        <description>VPM - Used to set te Status as &quot;ECC Rejectd &quot;</description>
+        <field>VPM_Status__c</field>
+        <literalValue>Bank Data Validation Rejected</literalValue>
+        <name>VPM - Status Bank Data Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_StatusFLSApproveds</fullName>
         <description>VPM-  Used to set the Status as &quot;FLS Approvved &quot;</description>
         <field>VPM_Status__c</field>
@@ -398,44 +755,26 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>VPM_TermsOfPaymentP030Default</fullName>
-        <description>VPM - Default terms of payment for Sirius, U2K2 and Cordillera if Vendor is an SME</description>
-        <field>VPM_TermsOfPayment__c</field>
-        <literalValue>P030_Within 30 days Due net (30NET)</literalValue>
-        <name>Terms of Payment P030 Default</name>
+        <fullName>VPM_StatusRussianCustomTaxRejected</fullName>
+        <description>VPM - Sets the Purchasing Request status to &apos;Russian Custom Tax Rejected&apos; based on Russian Custom Tax rejection decision</description>
+        <field>VPM_Status__c</field>
+        <literalValue>Russian Custom Tax Rejected</literalValue>
+        <name>VPM - Status Russian Custom Tax Rejected</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>VPM_TermsOfPaymentP090Default</fullName>
-        <description>VPM - Sets Terms of Payment to P090</description>
-        <field>VPM_TermsOfPayment__c</field>
-        <literalValue>P090_Within 90 days Due net (90NET)</literalValue>
-        <name>Terms of Payment P090 Default</name>
+        <fullName>VPM_StatustoApprovalPending</fullName>
+        <description>VPM - Used to set the Status as &quot;Approval Pending&quot;</description>
+        <field>VPM_Status__c</field>
+        <literalValue>Approval Pending</literalValue>
+        <name>VPM - Status to Approval Pending</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>VPM_TermsofPayment30DKDefault</fullName>
-        <description>VPM - Sets default value of Terms of  Payment  to 30DK</description>
-        <field>VPM_TermsOfPayment__c</field>
-        <literalValue>30DK_30 days  from Document date</literalValue>
-        <name>Terms of Payment 30DK Default</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>VPM_TermsofPayment90DKDefault</fullName>
-        <description>VPM - Sets Terms of Payment to 90DK</description>
-        <field>VPM_TermsOfPayment__c</field>
-        <literalValue>90DK_Within 90 days Due net (90NET)</literalValue>
-        <name>Terms of Payment 90DK Default</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_UpdateOwner</fullName>
@@ -454,26 +793,6 @@
         <field>VPM_RequestLastWithGroup__c</field>
         <literalValue>Procurement</literalValue>
         <name>VPM - UpdateRequestGroup</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>VPM_UpdateSearchTerm1</fullName>
-        <description>VPM - Updates Search Term 1 with the first 10 characters of Vendor Name</description>
-        <field>VPM_SearchTerm_1__c</field>
-        <formula>LEFT(VPM_VendorName1__c,10)</formula>
-        <name>Update Search Term 1</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>VPM_UpdateStatusBPMSubmitFail</fullName>
-        <description>VPM - Update Status when BPM submit fails</description>
-        <field>VPM_Status__c</field>
-        <literalValue>MDM Ops Review - SAP BPM submit Failed</literalValue>
-        <name>Update Status when BPM submit fails</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -498,41 +817,6 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>VPM_UpdateStatusToSubmitted</fullName>
-        <description>VPM - Updates Status with the BPM Record Submitted</description>
-        <field>VPM_Status__c</field>
-        <literalValue>BPM Record Submitted</literalValue>
-        <name>Update Request Status Submitted to BPM</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>VPM_Webform_sent_to_Vendor</fullName>
-        <description>VPM - Update the Vendor Request: Webform sent to Vendor To True</description>
-        <field>VPM_WebformSentToVendor__c</field>
-        <literalValue>1</literalValue>
-        <name>Webform sent to Vendor</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <rules>
-        <fullName>VPM Default Search Term 1 and 2</fullName>
-        <actions>
-            <name>VPM_UpdateSearchTerm1</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
-            <operation>equals</operation>
-            <value>Draft Request</value>
-        </criteriaItems>
-        <description>VPM - takes the value in the &apos;name&apos; field and uses it to default &apos;Search Term 1&apos; and &apos;Search Term 2&apos; in SAP</description>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
     <rules>
         <fullName>VPM Email to Requestor After Webform Update</fullName>
         <actions>
@@ -567,111 +851,10 @@
         </criteriaItems>
         <criteriaItems>
             <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitted__c</field>
-            <operation>equals</operation>
-            <value>No</value>
-        </criteriaItems>
-        <description>Send Email to Requestor if web form updated before request has been sent for approval</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>VPM Notification Logged Message for 2 level of Approval</fullName>
-        <actions>
-            <name>Notification_for_Logged_for_2_Approvals</name>
-            <type>Alert</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_NumberofApprovalsRequired__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitter__c</field>
-            <operation>equals</operation>
-            <value>Procurement</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_FinanceApprovalRequired__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c</field>
-            <operation>equals</operation>
-            <value>Business Requestor</value>
-        </criteriaItems>
-        <description>Email Notification for logged when 2 level of approvals</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>VPM Notification for Logged MDM Ops Review</fullName>
-        <actions>
-            <name>Notification_For_Logged_Email</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>VPM_NextApproverNameMDMOps</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
-            <operation>equals</operation>
-            <value>MDM Ops Review</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitter__c</field>
-            <operation>equals</operation>
-            <value>Business Requestor</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_NumberofApprovalsRequired__c</field>
             <operation>notEqual</operation>
-            <value>0</value>
-        </criteriaItems>
-        <description>send notification for logged email to the request creator when the status is MDM Ops Review</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>VPM Send email to Vendor</fullName>
-        <actions>
-            <name>VPM_SendEmailToVendorEmail</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>VPM_Email_of_Webform_Sender</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>VPM_Set_Email_Flag_to_No</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>VPM_Webform_sent_to_Vendor</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_VendordoesntExistFlag__c</field>
-            <operation>equals</operation>
             <value>Yes</value>
         </criteriaItems>
-        <description>Sends email to Vendor with Webform details</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>VPM Update Salesforce Request Submitted to MDM</fullName>
-        <actions>
-            <name>VPM_UpdateStatusToSubmitted</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_MDMInsertUpdateStatus__c</field>
-            <operation>equals</operation>
-            <value>Submitted to BPM</value>
-        </criteriaItems>
-        <description>Update Salesforce status depending on MDM service call</description>
+        <description>Send Email to Requestor if web form updated before request has been sent for approval</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -691,25 +874,6 @@
             <value>Failed to Submit to BPM</value>
         </criteriaItems>
         <description>Update status field in salesforce depending on MDM service call</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>VPM Update salesforce when request gets rejected at BPM</fullName>
-        <actions>
-            <name>VPM_AssignRequestToMDMOps</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>VPM_UpdateStatusRejected</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_MDMInsertUpdateStatus__c</field>
-            <operation>equals</operation>
-            <value>Approval Rejected in BPM</value>
-        </criteriaItems>
-        <description>Update salesforce record depending on MDM service call</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

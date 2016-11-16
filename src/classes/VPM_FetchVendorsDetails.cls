@@ -1,18 +1,48 @@
+/*********************************************************************************************************
+Name:  VPM_FetchVendorsDetails
+Copyright ? 2016  Unilever
+==========================================================================================================
+==========================================================================================================
+Purpose:  This class has been used to make 'GET' web service callout.
+
+==========================================================================================================
+==========================================================================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR       DATE             DETAIL                                                Description
+1.0 -    Ajay       09-09-2016    getVendorDetails method    Added the Code to do 'GET' web service callout operation.
+2.0 -    Deepak     19-10-2016    getVendorDetails method    Added the code to fetch Json response.                   
+**********************************************************************************************************/
 global class VPM_FetchVendorsDetails {
+
+ /*
+    Wrapper class to send the input to 'GET' web service callout.
+ */
     global class InputVariables {
         public String vendorCodeInput;
         public String ecc;
         public String compnayCode;
         public String purchasingOrg;
     }
+    
+  /*
+    Wrapper class to fetch the response message for 'GET' web service callout.
+ */
     global class serviceErrorResponse {
         public string statusCode;
         public string message;
     }
+    
+  /*
+    Author      : Ajay & Deepak
+    Parameter   : 'InputVariables' wrapper class input variale
+    Return Type : List<VPM_ECCVendorSearchServiceOutput> list of wrapper class 'VPM_ECCVendorSearchServiceOutput' to fetch the 'GET' response
+    Description : This method is used to fetch the response of vendor on the basis of 'input variable' send. It perform 'GET' web service callout.
+  */  
     global static List<VPM_ECCVendorSearchServiceOutput> getVendorDetails(List<InputVariables> inputCriteria) {
         String compnayCode='', vendorCode='', eccInput='', purchasingOrg='';
-        List<VPM_ECCVendorSearchServiceOutput> vendorDetailsOutput = new List<VPM_ECCVendorSearchServiceOutput>();
-        VPM_ECCVendorSearchServiceOutput vendorDetail;
+@TestVisible List<VPM_ECCVendorSearchServiceOutput> vendorDetailsOutput = new List<VPM_ECCVendorSearchServiceOutput>();
+@TestVisible VPM_ECCVendorSearchServiceOutput vendorDetail;
         HttpResponse resp;
         System.debug('-----inputCriteria-----'+inputCriteria);
         if(!inputCriteria.isEmpty()) {

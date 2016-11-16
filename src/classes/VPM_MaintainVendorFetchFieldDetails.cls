@@ -1,6 +1,28 @@
+/*********************************************************************************************************
+Name:  VPM_MaintainVendorFetchFieldDetails 
+Copyright ? 2016  Unilever
+==========================================================================================================
+==========================================================================================================
+Purpose:  This class has been used to generate JSON payload for 'Create' web service callout.
+
+==========================================================================================================
+==========================================================================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR       DATE             DETAIL                                                Description
+1.0 -    Ajay       09-10-2016    VPM_ConvertMaintainVendorFieldDetailsToJSON method    Added the Code for Json generation
+2.0 -    Deepak     12-10-2016    VPM_ConvertMaintainVendorFieldDetailsToJSON method    Added the code to send only if updated field values else none.                   
+**********************************************************************************************************/
 public with sharing class VPM_MaintainVendorFetchFieldDetails {
  public static final string STR_CONST_COMMA='", ';
  public static final string STR_CONST_BOOLEANCOMMA=',';
+ 
+ /*
+    Author      : Deepak & Ajay
+    Parameter   : VPM_PurchasingRequests__c  object id.
+    Return Type : Json String.
+    Description : Creating Json string adding mandatory data all time. For rest of fields only added if they are updated by user only.
+ */
     public string VPM_ConvertMaintainVendorFieldDetailsToJSON(string VendorRequestId) {
         //String maintainVendorObjectJSON;
        

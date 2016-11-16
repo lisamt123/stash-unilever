@@ -1,4 +1,20 @@
-@testVisible
+/*********************************************************************************************************
+Name:  VPM_ECCVendorSearchServiceOutput 
+Copyright ? 2016  Unilever
+==========================================================================================================
+==========================================================================================================
+Purpose:  Wrapper for search Vendor output 
+1. VPM_ECCVendorSearchServiceOutput 
+
+==========================================================================================================
+==========================================================================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR       DATE             DETAIL                  Description
+1.0 -    Girish        --              INITIAL DEVELOPMENT       Build search Vendor,web service callout
+
+************************************************************************************************************/
+
 global class VPM_ECCVendorSearchServiceOutput {
     public List<CompanyCodeFields> CompanyData ;
     public List<PurchasingOrgFields> PurchasingData;
@@ -298,7 +314,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String VATRegistrationNumber;
     public String VATRegistrationNumber2; 
     //public String VATRegistrationNumber3;
-    public String VendorCode;
+    public String VendorCode{get; set;}
     public String VendorName1;
     public String VendorName2;
     public String VendorName3;

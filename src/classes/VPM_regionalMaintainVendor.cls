@@ -1,4 +1,32 @@
+/*********************************************************************************************************
+Name:  VPM_RegionalMaintainVendor 
+Copyright ? 2016  Unilever
+==========================================================================================================
+==========================================================================================================
+Purpose:  To perform search Vendor from cache, make web service callout,
+          show different screen based on buisness user selected on Launch 
+         screen, perform validations and save functionality.    
+1. VPM_AdvancedForm
+
+==========================================================================================================
+==========================================================================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR       DATE             DETAIL                  Description
+1.0 -    Deepak       06 Oct 2016      Trigger handler         Use to call maintain service when vendor cached or updated by MuleSoft.
+2.0 -    Deepak       06 Oct 2016      Trigger handler         Track field updated in Advance form
+3.0 -    Ajay         10 Oct 2016      Trigger handler         Update Vendor ECC with Commodity ECC.
+4.0 -    Vaishali     06 Nov 2016      Trigger handler         Set SLA for different queue.
+************************************************************************************************************/
 public with sharing class VPM_RegionalMaintainVendor {
+
+    /******************************************************************** 
+    Created By   : Ajay
+    Created Date : 10th Oct 2016
+    Last Modify  : 10th Oct 2016
+    Description  : Track field updated in Advance form.Update Vendor ECC with Commodity ECC.
+    Return Type  : Contructor no return type.
+    ********************************************************************/
 
   public static void updateAndCheckFieldUpdate(List<VPM_PurchasingRequests__c> updatedVendorRequest , Map<Id,VPM_PurchasingRequests__c> OldVendorRequestValueList)
   {
@@ -91,6 +119,15 @@ public with sharing class VPM_RegionalMaintainVendor {
     }
   }
 
+
+
+    /******************************************************************** 
+    Created By   : Deepak
+    Created Date : 06th Oct 2016
+    Last Modify  : 06th Oct 2016
+    Description  :  Use to call maintain service when vendor cached or updated by MuleSoft.
+    Return Type  : Contructor no return type.
+    ********************************************************************/
  public static void InsertVendor(List<VPM_PurchasingRequests__c> venreqList , Map<Id,VPM_PurchasingRequests__c> vendReqOldMap)
     {
     List<VPM_PurchasingRequests__c> venReqLst = new List<VPM_PurchasingRequests__c>();
@@ -150,6 +187,14 @@ public with sharing class VPM_RegionalMaintainVendor {
     
     }
 
+
+ /******************************************************************** 
+    Created By   : Deepak
+    Created Date : 06th Oct 2016
+    Last Modify  : 06th Oct 2016
+    Description  :  Use to call maintain service when vendor cached or updated by MuleSoft.
+    Return Type  : Contructor no return type.
+    ********************************************************************/
 @future(Callout = true)
 public static void callRegionalService(string vendorId)
 {

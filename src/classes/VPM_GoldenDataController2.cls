@@ -985,16 +985,13 @@ public void approvalCallMethod()
         if(pr.VPM_RequestFromFLSOrBR__c.containsIgnoreCase('FLS') ) 
         {
         pr.VPM_Status__c='FLS Approved';
-        
-            pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
-            
+        pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
            // pr.VPM_RequestGroupTime__c = system.now();
         }
         else if( pr.VPM_RequestFromFLSOrBR__c != null)
         {
-         pr.VPM_Status__c='';
+         	pr.VPM_Status__c='';
             pr.VPM_RequestLastWithGroup__c = STR_CONST_BR;
-            
             pr.VPM_RequestGroupTime__c = system.now();
         }
         }
@@ -1024,24 +1021,20 @@ public void approvalCallMethod()
         }
         system.debug('@@NewPaymentMethod' + NewPaymentMethod);
         
-        // End : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016 
-        
-         
-             
+        // End : Changes with Payment Method : IAVMD-1793 : Approval Process Adaptation On 17 Oct 2016       
         pr.VPM_AdvancedFormSubmitted__c='YES'; 
          if(pr.VPM_Status__c.containsIgnoreCase('DRAFT'))
         {
-            pr.VPM_RequestFromFLSOrBR__c=STR_CONST_BR;
+             pr.VPM_RequestFromFLSOrBR__c=STR_CONST_BR;
              pr.VPM_RequestLastWithGroup__c = STR_CONST_BR;
              pr.VPM_RequestGroupTime__c = system.now();
         }
         else  if(pr.VPM_Status__c.containsIgnoreCase(STR_CONST_FLS))
         {
-            pr.VPM_RequestFromFLSOrBR__c=STR_CONST_FLS;
+             pr.VPM_RequestFromFLSOrBR__c=STR_CONST_FLS;
              pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
              //pr.VPM_RequestGroupTime__c = system.now();
         }
-        
         if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
         {
            System.debug('@@@@@@@ pr----------'+ pr);
@@ -1077,9 +1070,7 @@ public void approvalCallMethod()
                     else 
                     { pr.VPM_ProvidedPaymentTerms__c= False; }
                 }
-                   
-                    
-            
+
                 // VAT Related Change 
                     if((String.isBlank(pr.VPM_VATRegistrationNumber__c) != String.isBlank(op.VATRegistrationNumber)))
                     {  pr.VPM_IsChangedVAT__c= true; }
@@ -1094,9 +1085,7 @@ public void approvalCallMethod()
                      OldCashManagementGroup = op.CompanyData[0].CashManagementGroup == null?'': op.CompanyData[0].CashManagementGroup;
                      NewSortKey= pr.VPM_SortKey__c== null?'': pr.VPM_SortKey__c;
                      OldSortKey = op.CompanyData[0].SortKey == null?'': op.CompanyData[0].SortKey;
-                
-                
-                
+  
                      if((
                             ( pr.VPM_ReconciliationAccount__c!=null && (String.isBlank(pr.VPM_ReconciliationAccount__c) != String.isBlank(op.CompanyData[0].ReconciliationAccount))))
                                 ||
@@ -1308,47 +1297,7 @@ if(((pr.VPM_VendorType__c!=null) && (!pr.VPM_FinanceApprovalRequired__c) && (!pr
                 )
   )
         {
-                       // if( 
-                            /*MBS/SCS Capex-MRO Vendors Create or Extend*/                 
-                        //    (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN && pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE 
-                        //     && 
-                       //     ( (pr.VPM_VendorType__c.contains(STR_CONST_MBS) && (!GlobalAuthorisationGroup.contains(STR_CONST_LAKME)))|| GlobalAuthorisationGroup.contains(STR_CONST_SCSCAPEX))                     
-                      //      )
-                       //     ||
-
-                            /*MBS/SCS Capex-MRO Vendors Maintain*/
-                     //   (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN &&
-                      //      ((pr.VPM_VendorType__c.contains(STR_CONST_MBS) &&(!GlobalAuthorisationGroup.contains(STR_CONST_LAKME)))|| GlobalAuthorisationGroup.contains(STR_CONST_SCSCAPEX)
-                        //    )
-                       //     && pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE
-                      //      && ( pr.VPM_ProvidedUnblockUndelete__c ||  pr.VPM_ProvidedBlockDelete__c || pr.VPM_ProvidedPaymentTerms__c  )
-                     //    )
-                    //    ||
-
-                        /*SCS Logistics*/ 
-                    //    ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN  && GlobalAuthorisationGroup.contains(STR_CONST_SCSLOG) &&  pr.VPM_ProvidedPaymentTerms__c
-                    //    )
-                     //   ||
-
-                        /*USCC/UASCC related MBS/SCS Capex 2611, 5449, 5496, 5487 Create or Extend*/ 
-                     //   (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN  &&
-                      //   ((pr.VPM_VendorType__c.contains(STR_CONST_MBS) &&(!GlobalAuthorisationGroup.contains(STR_CONST_LAKME)))|| GlobalAuthorisationGroup.contains(STR_CONST_SCSCAPEX) 
-                      //   )
-                      //   && pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE 
-                       //  &&
-                        // (pr.VPM_Company_Code_Value__c == '2611' ||   pr.VPM_Company_Code_Value__c == '5449' ||  pr.VPM_Company_Code_Value__c == '5496' ||  pr.VPM_Company_Code_Value__c == '5487'
-                       //  ))
-                      //  ||
-                        
-                        /*USCC/UASCC related MBS/SCS Capex 2611, 5449, 5496, 5487 Maintain*/ 
-                       // (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN  &&
-                       //  ( (pr.VPM_VendorType__c.contains(STR_CONST_MBS) &&(!GlobalAuthorisationGroup.contains(STR_CONST_LAKME)))|| GlobalAuthorisationGroup.contains(STR_CONST_SCSCAPEX) 
-                       //  ) && pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE &&
-                      //   ( pr.VPM_ProvidedUnblockUndelete__c  ||  pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c)
-                      //   &&
-                       //  ( pr.VPM_Company_Code_Value__c == '2611' ||   pr.VPM_Company_Code_Value__c == '5449' ||   pr.VPM_Company_Code_Value__c == '5496' ||  pr.VPM_Company_Code_Value__c == '5487'
-                        // ))
-               // )
+                      
                     {
                         pr.VPM_ProcurementApprovalRequired__c = true;
                         pr.VPM_RussianTaxApprovalRequired__c =false;
@@ -1462,95 +1411,7 @@ public void setFinanceApprovalRequired()
       
       )
         {
-           // if(
-              //  (
-               //     /*MBS(Indirect) Others (Out Scope Proc)*/ 
-               //     (pr.VPM_VendorType__c.contains(STR_CONST_MBS))  &&  pr.VPM_Commodity_Family__c == STR_CONST_OUTOFSCOPE
-               //     && (pr.RecordType.DeveloperName == STR_CONST_RECORDTYPECREATE || pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND
-                //        ||
-                //   ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN &&
-                //     (pr.VPM_ProvidedUnblockUndelete__c  || pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c  || pr.VPM_ProvidedBankDetails__c  ||  pr.VPM_ProvidedFinancialSensitive__c )
-                //    )) 
-               //  )
-                // ||
-                // (
-               //  /* Freight,SCS Log*/ 
-                //     (pr.VPM_VendorType__c.contains(STR_CONST_FREIGHT) || GlobalAuthorisationGroup.contains(STR_CONST_SCC_L))
-                //    && pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN && ( pr.VPM_ProvidedBankDetails__c  ||  pr.VPM_ProvidedFinancialSensitive__c )
-               //  )
-               //  ||
-               // (
-               //  /* SCS Log*/ 
-               //      (GlobalAuthorisationGroup.contains(STR_CONST_SCC_L)) && (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN)
-              //   )
-               //  ||
-               //  (
-                //    /*PI,3PM*/ 
-                //    (pr.VPM_VendorType__c.contains(STR_CONST_PI)  || 
-                  //  (pr.VPM_VendorType__c.contains(STR_CONST_SCS) && GlobalAuthorisationGroup.contains(STR_CONST_3PM))
-                  //  )  &&
-                   // ( pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN  ||
-                     //   ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN &&
-                    //        ( pr.VPM_ProvidedUnblockUndelete__c  || pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c  ||  pr.VPM_ProvidedBankDetails__c ||  pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_IsChangedVAT__c 
-                    //        )
-                    //    )
-                  //  )
-              //  )
-              //  ||
-              //  (
-               //  /*USCC/UASCC,MBS/SCSCap,2611,5449,5496,5487*/ 
-               //  (pr.VPM_VendorType__c.contains(STR_CONST_MBS) || GlobalAuthorisationGroup.contains(STR_CONST_CAP))
-                // &&   pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE
-                // && (pr.VPM_Company_Code_Value__c == '2611' || pr.VPM_Company_Code_Value__c == '5449'   || pr.VPM_Company_Code_Value__c == '5496' || pr.VPM_Company_Code_Value__c == '5487')
-                 //&&
-                 /*  pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN
-                 &&
-                   (   
-                               pr.VPM_ProvidedBankDetails__c  || pr.VPM_IsChangedVAT__c  || pr.VPM_ProvidedFinancialSensitive__c 
-                   ) */ 
-                  //  ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPECREATE || pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND
-                   // || ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN && (  pr.VPM_ProvidedBankDetails__c  ||   pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_IsChangedVAT__c ) )
-                   // )
-            //    )
-              //  ||
-               // (
-                 //   /* USCC/UASCC,MBS(Indir)2611,5449,5496,5487*/
-                  //  (pr.VPM_VendorType__c.contains(STR_CONST_MBS))  && pr.VPM_Commodity_Family__c == STR_CONST_OUTOFSCOPE
-                 //   &&
-                 //   (pr.VPM_Company_Code_Value__c == '2611' || pr.VPM_Company_Code_Value__c == '5449' 
-                  //  || pr.VPM_Company_Code_Value__c == '5496' || pr.VPM_Company_Code_Value__c == '5487')
-                  //  &&
-                  //  ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPECREATE || pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEEXTEND
-                   // ||
-                     //   ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN &&
-                      //      ( pr.VPM_ProvidedUnblockUndelete__c  || pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c  ||  pr.VPM_ProvidedBankDetails__c  ||   pr.VPM_ProvidedFinancialSensitive__c  || pr.VPM_IsChangedVAT__c  )
-                     //   )
-                   // )
-               // )
-               // ||
-              //  (
-                 //   /*MBS Lakme,SCS Unica*/ 
-                //    (
-                //     (pr.VPM_VendorType__c.contains(STR_CONST_MBS) && GlobalAuthorisationGroup.contains(STR_CONST_LAKME) && pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE)
-                 //    || (pr.VPM_VendorType__c.contains(STR_CONST_SCS) && GlobalAuthorisationGroup.contains(STR_CONST_UNICA))
-                 //   )
-                //    &&
-                //    ( pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN ||
-                 //       ( pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN &&
-                    //        ( pr.VPM_ProvidedUnblockUndelete__c  ||pr.VPM_ProvidedBlockDelete__c  ||  pr.VPM_ProvidedPaymentTerms__c  ||    pr.VPM_ProvidedBankDetails__c  ||   pr.VPM_ProvidedFinancialSensitive__c   )
-                    //    )
-                  //  )                
-               // )
-              //  ||
-              //  (
-               //     /*MBS/SCS Cap-MRO*/
-               //      (pr.VPM_VendorType__c.contains(STR_CONST_MBS) || GlobalAuthorisationGroup.contains(STR_CONST_CAP))
-//                     &&
-                 //    pr.VPM_Commodity_Family__c != STR_CONST_OUTOFSCOPE 
-                  //   &&
-                  //  ((pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN && (pr.VPM_ProvidedBankDetails__c  ||  pr.VPM_ProvidedFinancialSensitive__c )) || (pr.RecordType.DeveloperName != STR_CONST_RECORDTYPEMAINTAIN) )
-                //)
-            //  ) 
+          
             {
                 pr.VPM_FinanceApprovalRequired__c=true;
                 pr.VPM_RussianTaxApprovalRequired__c =false;

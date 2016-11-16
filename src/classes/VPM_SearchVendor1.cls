@@ -2165,6 +2165,15 @@ public with sharing class VPM_SearchVendor1{
                 myMsg=new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_SortKeyPageMessage);
             } 
         }
+        
+        if(regionalSpecificScreenSirius || regionalSpecificScreenCordillera || regionalSpecificScreenFusion || regionalSpecificScreenU2K2){
+            if(string.isBlank(termsOfPayment))
+            {
+            
+             //myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_TermsOfPayment);
+            
+            }
+        }
         return myMsg;
     }
     

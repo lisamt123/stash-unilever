@@ -1,4 +1,26 @@
+/*********************************************************************************************************
+Name:  VPM_CreateVendorFetchFieldDetails 
+Copyright ? 2016  Unilever
+==========================================================================================================
+==========================================================================================================
+Purpose:  This class has been used to generate JSON payload for 'Create' web service callout.
+
+==========================================================================================================
+==========================================================================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR       DATE             DETAIL                                    Description
+1.0 -    Ajay       07-10-2016    VPM_ConvertVendorFieldDetailsToJSON method    Added the Code for Json generation
+2.0 -    Deepak     12-10-2016    VPM_ConvertVendorFieldDetailsToJSON method    Added the code to handle null values to be send as blank.                  
+**********************************************************************************************************/
 public with sharing class VPM_CreateVendorFetchFieldDetails {
+
+   /*
+     Author      : Ajay & Deepak
+     Parameter   : VPM_PurchasingRequests__c object Id.
+     Return Type : Json String.
+     Description : Used to generate the JSON String for 'Create' web service callout.
+   */
     public string VPM_ConvertVendorFieldDetailsToJSON(string VendorRequestId) {
         String VPM_InterfaceFieldDetailsJSON ='';
         string eccVal ='';

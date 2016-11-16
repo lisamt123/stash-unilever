@@ -453,7 +453,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM_CommodityApprovReportLink</shortDescription>
-        <value>https://unilever--capgvenman.cs24.my.salesforce.com/00O19000000GqR7</value>
+        <value>/00O19000000GqR7</value>
     </labels>
     <labels>
         <fullName>VPM_CommodityApprover</fullName>
@@ -510,6 +510,13 @@
         <protected>false</protected>
         <shortDescription>VPM Company Code help text</shortDescription>
         <value>To change the Company Code, please exit this form and edit the Rapid form.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ConnectionError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_ConnectionError</shortDescription>
+        <value>Connection to SAP has timed out. Please try again.</value>
     </labels>
     <labels>
         <fullName>VPM_ContactPerson</fullName>
@@ -1492,11 +1499,25 @@
         <value>Rounding Profile Group</value>
     </labels>
     <labels>
+        <fullName>VPM_SAPError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SAPError</shortDescription>
+        <value>SAP API not implemented.</value>
+    </labels>
+    <labels>
         <fullName>VPM_SAPPaymentMethod</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM_SAPPaymentMethod</shortDescription>
         <value>Existing SAP Payment Methods</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SAPRequstError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SAPRequstError</shortDescription>
+        <value>Some error occurred while submitting request to SAP. Please try after some time.</value>
     </labels>
     <labels>
         <fullName>VPM_SRVBasedVendorID</fullName>
@@ -1660,6 +1681,13 @@
         <value>Send to SAP</value>
     </labels>
     <labels>
+        <fullName>VPM_ServerError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_ServerError</shortDescription>
+        <value>Server Error. Please try after some time.</value>
+    </labels>
+    <labels>
         <fullName>VPM_ShippingConditionMessage</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1776,7 +1804,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM - Display Pop Msg Switzerland has FLS enabled on submit button Click</shortDescription>
-        <value>You can only submit at this stage if you if you are part of  UK Corporate Centre. If you are not, please click on Advanced Form and complete that before submitting</value>
+        <value>You can only submit at this stage for PI and 3rd party manufacturing (3PM) vendors. If you are not, please click on Advanced Form and complete that before submitting.</value>
     </labels>
     <labels>
         <fullName>VPM_TaxCode</fullName>
@@ -1958,7 +1986,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM - Display Pop Msg UK has FLS enabled on submit button Click</shortDescription>
-        <value>You can only submit at this stage for PI and 3rd party manufacturing (3PM) vendors. If you are not, please click on Advanced Form and complete that before submitting</value>
+        <value>You can only submit at this stage if you are part of UK Corporate Centre. If you are not, please click on Advanced Form and complete that before submitting</value>
     </labels>
     <labels>
         <fullName>VPM_UnBlockUnDeleteTitle</fullName>
@@ -1973,6 +2001,13 @@
         <protected>false</protected>
         <shortDescription>VPM_UnblockDeleteHelpText</shortDescription>
         <value>Indicate if you want to Unblock/Undelete Vendor?</value>
+    </labels>
+    <labels>
+        <fullName>VPM_UnquotedError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_UnquotedError</shortDescription>
+        <value>Please remove special character like double quotes for field values &amp; try again.</value>
     </labels>
     <labels>
         <fullName>VPM_VATCountryPageMessage</fullName>

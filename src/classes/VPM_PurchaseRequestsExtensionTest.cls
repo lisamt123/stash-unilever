@@ -12,11 +12,50 @@ public class VPM_PurchaseRequestsExtensionTest{
  static string Status = 'Approval Pending';
  static string Request ='FLS';
  static string reworkStat = 'Yes';
+ static boolean FLSInCountryReqVen = true;
  
+ 
+ 
+  static testMethod void ManuallyMarkAsCompleteActionTest()
+    {
+       // map<string,string> userRole =new map<string,string>();
+    VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+    VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_DeletionBlockFlag__c='Block',
+    VPM_Status__c ='MDM Ops Review - Unblock');
+     insert pur;
+     
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_DeletionBlockFlag__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+      ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+      VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+      VendorDetail.recId=pur.Id;
+        VendorDetail.ManuallyMarkAsCompleteAction();
+        
+        
+        
+    }
+    
+    
  static testMethod void checkForUserTestMethod() {
 
   
  // map<string,string> userRole =new map<string,string>();
+   
+   
+        
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
     companyCode.ECC__c = Ecc;
@@ -31,9 +70,10 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_Comments__c=buyingStuff,
     VPM_Country__c='IE_Ireland',
     VPM_VendorPhone__c=phone,
-    VPM_IsVendorSME__c ='No');
+    VPM_IsVendorSME__c ='No',
+    VPM_PaymentTermsIfNoneSelected__c = null);
      insert pur;
-     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_IsVendorSME__c,VPM_Country__c,VPM_Comments__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c from VPM_PurchasingRequests__c where id=:pur.Id ];
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_IsVendorSME__c,VPM_PaymentTermsIfNoneSelected__c,VPM_Country__c,VPM_Comments__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c from VPM_PurchasingRequests__c where id=:pur.Id ];
        
        system.assertEquals(pur.Id,pur1.Id);
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
@@ -41,9 +81,23 @@ public class VPM_PurchaseRequestsExtensionTest{
       vendorDetail.isProcure =true;
       vendorDetail.setPaymentTermsDefaultValues();
       
+      
+      
+      vendorDetail.saveFromUser();
+      vendorDetail.saveUserValues();
+      vendorDetail.cancelFromUser();
+      //vendordetail.AssigneeApproval(UserInfo.getUserId(),pur.Id);
+      
+      pur.VPM_Status__c = 'Bank Data Validation Requested Re-Work' ;
+      pur.VPM_Rework__c = reworkStat;
+      test.startTest();
+      update pur;
+      vendorDetail.SubmitRequestAction();
+      test.stopTest();
+      
   
  }
-    static testMethod void callSendToSAPAPITest() {
+   /* static testMethod void callSendToSAPAPITest() {
    
    string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
    
@@ -114,7 +168,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         
 
     }
-     static testMethod void reworkActionTest() {
+      static testMethod void reworkActionTest1() {
     
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
@@ -128,172 +182,92 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_CompanyCode__c=companyCode.Id,
     VPM_WhatAreYouBuying__c=buyingStuff,
     VPM_Comments__c=buyingStuff,
-    VPM_VendorPhone__c=phone);
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
        
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-         pur.VPM_RequestLastWithGroup__c =bussReq;
+         pur.VPM_RequestFromFLSOrBR__c=bussReq;
          pur.VPM_Status__c ='FLS Review';
+         test.startTest();
          update pur;
          VendorDetail.ReworkAction();
-         pur.VPM_Status__c = Status;
-         pur.VPM_ProcurementApprovalRequired__c=true;
-         pur.VPM_FinanceApprovalRequired__c = true;
-         update pur;
-         VendorDetail.ReworkAction();
-         
-         pur.VPM_ProcurementApprovalRequired__c=false;
-         pur.VPM_FinanceApprovalRequired__c = true;
-         update pur;
-         VendorDetail.ReworkAction();
-         pur.VPM_ProcurementApprovalRequired__c=true;
-         pur.VPM_FinanceApprovalRequired__c = false;
-         update pur;
-         VendorDetail.ReworkAction();
-         
-          pur.VPM_RequestLastWithGroup__c =Request;
-         pur.VPM_Status__c = Status;
-         pur.VPM_ProcurementApprovalRequired__c=true;
-         pur.VPM_FinanceApprovalRequired__c = true;
-         update pur;
-         VendorDetail.ReworkAction();
-         
-         pur.VPM_ProcurementApprovalRequired__c=false;
-          pur.VPM_FreightApprovalRequired__c=false;
-          pur.VPM_RussianTaxApprovalRequired__c=false;
-          pur.VPM_FinanceApprovalRequired__c =true;
-          pur.VPM_status__c=Status;
-          pur.VPM_RequestLastWithGroup__c = Request;
-          update pur;
-          VendorDetail.ReworkAction();
-          
-          pur.VPM_ProcurementApprovalRequired__c=false;
-          pur.VPM_FreightApprovalRequired__c=false;
-          pur.VPM_RussianTaxApprovalRequired__c=true;
-          pur.VPM_FinanceApprovalRequired__c =true;
-          pur.VPM_status__c=Status;
-          pur.VPM_RequestLastWithGroup__c = Request;
-          update pur;
-          VendorDetail.ReworkAction();
-          
-          pur.VPM_ProcurementApprovalRequired__c=false;
-          pur.VPM_FreightApprovalRequired__c=true;
-          pur.VPM_RussianTaxApprovalRequired__c=false;
-          pur.VPM_FinanceApprovalRequired__c =false;
-          pur.VPM_status__c=Status;
-          pur.VPM_RequestLastWithGroup__c = Request;
-          update pur;
-          VendorDetail.ReworkAction();
-          
-          pur.VPM_ProcurementApprovalRequired__c=false;
-          pur.VPM_FreightApprovalRequired__c=false;
-          pur.VPM_RussianTaxApprovalRequired__c=true;
-          pur.VPM_FinanceApprovalRequired__c =false;
-          pur.VPM_status__c=Status;
-          pur.VPM_RequestLastWithGroup__c = bussReq;
-          update pur;
-          VendorDetail.ReworkAction();
-          
-          pur.VPM_ProcurementApprovalRequired__c=false;
-          pur.VPM_FreightApprovalRequired__c=true;
-          pur.VPM_RussianTaxApprovalRequired__c=false;
-          pur.VPM_FinanceApprovalRequired__c =false;
-          pur.VPM_status__c=Status;
-          pur.VPM_RequestLastWithGroup__c = bussReq;
-          update pur;
-          VendorDetail.ReworkAction();
-          
-          pur.VPM_ProcurementApprovalRequired__c=false;
-          pur.VPM_FreightApprovalRequired__c=false;
-          pur.VPM_RussianTaxApprovalRequired__c=true;
-          pur.VPM_FinanceApprovalRequired__c =false;
-          pur.VPM_BankDataValidationRequired__c = false;
-          pur.VPM_status__c=Status;
-          pur.VPM_RequestLastWithGroup__c = Request;
-          update pur;
-          VendorDetail.ReworkAction();
-          
-          pur.VPM_ProcurementApprovalRequired__c=false;
-          pur.VPM_FreightApprovalRequired__c=true;
-          pur.VPM_RussianTaxApprovalRequired__c=false;
-          pur.VPM_FinanceApprovalRequired__c =true;
-          pur.VPM_BankDataValidationRequired__c = false;
-          pur.VPM_status__c=Status;
-          pur.VPM_RequestLastWithGroup__c = Request;
-          update pur;
-          VendorDetail.ReworkAction();
-          
-          pur.VPM_ProcurementApprovalRequired__c=false;
-          pur.VPM_FreightApprovalRequired__c=true;
-          pur.VPM_RussianTaxApprovalRequired__c=false;
-          pur.VPM_FinanceApprovalRequired__c =true;
-          pur.VPM_BankDataValidationRequired__c = false;
-          pur.VPM_status__c=Status;
-          pur.VPM_RequestLastWithGroup__c = bussReq;
-          update pur;
-          VendorDetail.ReworkAction();
-          
-          pur.VPM_ProcurementApprovalRequired__c=false;
-          pur.VPM_FreightApprovalRequired__c=false;
-          pur.VPM_RussianTaxApprovalRequired__c=false;
-          pur.VPM_FinanceApprovalRequired__c =false;
-          pur.VPM_BankDataValidationRequired__c = true;
-          pur.VPM_status__c=Status;
-          pur.VPM_RequestLastWithGroup__c = Request;
-          update pur;
-          VendorDetail.ReworkAction();
-          
-          pur.VPM_ProcurementApprovalRequired__c=false;
-          pur.VPM_FreightApprovalRequired__c=false;
-          pur.VPM_RussianTaxApprovalRequired__c=false;
-          pur.VPM_FinanceApprovalRequired__c =false;
-          pur.VPM_BankDataValidationRequired__c = true;
-          pur.VPM_status__c=Status;
-          pur.VPM_RequestLastWithGroup__c = bussReq;
-          update pur;
-          VendorDetail.ReworkAction();
-          
-          vendorDetail.cancelFromUser();
-          vendorDetail.saveFromUser();
-          
-       
-  
+         test.stopTest();
+        
      }
-    static testMethod void ManuallyMarkAsCompleteActionTest()
-    {
-       // map<string,string> userRole =new map<string,string>();
-    VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+
+     static testMethod void reworkActionTest2() {
+     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
     companyCode.ECC__c = Ecc;
     companyCode.VPM_Country__c =country;
     insert companyCode;
     system.assert(companyCode.Id!=null,ErrorMsg);
     
-    VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
     VPM_CountryRequestingVendor__c=country,
     VPM_CompanyCode__c=companyCode.Id,
     VPM_WhatAreYouBuying__c=buyingStuff,
     VPM_Comments__c=buyingStuff,
     VPM_VendorPhone__c=phone,
-    VPM_DeletionBlockFlag__c='Block',
-    VPM_Status__c ='MDM Ops Review - Block');
-     insert pur;
-     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_DeletionBlockFlag__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
        
        system.assertEquals(pur.Id,pur1.Id);
-      ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-      VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-        VendorDetail.ManuallyMarkAsCompleteAction();
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+         pur.VPM_RequestFromFLSOrBR__c=bussReq;
+         pur.VPM_Status__c = Status;
+         pur.VPM_ProcurementApprovalRequired__c=true;
+         //pur.VPM_FinanceApprovalRequired__c = true;
         
+         test.startTest();
+         update pur;
+         VendorDetail.ReworkAction();
+         test.stopTest();
         
+     }
+
+     static testMethod void reworkActionTest3() {
+     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+         pur.VPM_RequestFromFLSOrBR__c=bussReq;
+         pur.VPM_ProcurementApprovalRequired__c=false;
+         pur.VPM_FreightApprovalRequired__c=false;
+         pur.VPM_RussianTaxApprovalRequired__c=false;
+         pur.VPM_FinanceApprovalRequired__c =true;
+         pur.VPM_status__c=Status;
+         
+         test.startTest();
+          update pur;
+          VendorDetail.ReworkAction();
+          test.stopTest();
         
-    }
-    static testMethod void SubmitRequestActionTest()
-    {
-        
+     }
+
+    static testMethod void reworkActionTest4() {
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
     companyCode.ECC__c = Ecc;
@@ -301,52 +275,351 @@ public class VPM_PurchaseRequestsExtensionTest{
     insert companyCode;
     system.assert(companyCode.Id!=null,ErrorMsg);
     
-    VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
     VPM_CountryRequestingVendor__c=country,
     VPM_CompanyCode__c=companyCode.Id,
     VPM_WhatAreYouBuying__c=buyingStuff,
     VPM_Comments__c=buyingStuff,
     VPM_VendorPhone__c=phone,
-    VPM_Status__c ='Draft Request');
-     insert pur;
-      ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-      VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-       VendorDetail.SubmitRequestAction();
-        pur.VPM_Status__c='FLS Requested Re-Work';
-        pur.VPM_Rework__c =reworkStat;
-        update pur;
-         VendorDetail.SubmitRequestAction();
-        pur.VPM_Status__c='Procurement Requested Re-Work';
-        update pur;
-         VendorDetail.SubmitRequestAction();
-         pur.VPM_Status__c='Finance Requested Re-Work';
-        update pur;
-         VendorDetail.SubmitRequestAction();
-        pur.VPM_Status__c='FLS Review';
-        pur.VPM_Rework__c =reworkStat;
-        update pur;
-         VendorDetail.SubmitRequestAction();
-         pur.VPM_Status__c='Russian Custom Tax Requested Re-Work';
-        pur.VPM_Rework__c =reworkStat;
-        update pur;
-         VendorDetail.SubmitRequestAction();
-         pur.VPM_Status__c='Russian Custom Tax Requested Re-Work';
-        pur.VPM_Rework__c =reworkStat;
-        update pur;
-         VendorDetail.SubmitRequestAction();
-         pur.VPM_Status__c='Freight Requested Re-Work';
-        pur.VPM_Rework__c =reworkStat;
-        update pur;
-         VendorDetail.SubmitRequestAction();
-         pur.VPM_Status__c='Bank Data Validation Requested Re-Work';
-        pur.VPM_Rework__c =reworkStat;
-        update pur;
-         VendorDetail.SubmitRequestAction();
-         
-    }
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+          pur.VPM_ProcurementApprovalRequired__c=true;
+          pur.VPM_FreightApprovalRequired__c=false;
+          pur.VPM_RussianTaxApprovalRequired__c=false;
+          pur.VPM_FinanceApprovalRequired__c =false;
+          pur.VPM_RequestFromFLSOrBR__c=Request;
+          pur.VPM_status__c=Status;
+          
+          test.startTest();
+          update pur;
+          VendorDetail.ReworkAction();
+          test.stoptest();
+        
+     }
+
+     static testMethod void reworkActionTest5() {
+     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+         pur.VPM_ProcurementApprovalRequired__c=false;
+          pur.VPM_FreightApprovalRequired__c=false;
+          pur.VPM_RussianTaxApprovalRequired__c=false;
+          pur.VPM_FinanceApprovalRequired__c =true;
+          pur.VPM_RequestFromFLSOrBR__c=Request;
+          pur.VPM_status__c=Status;
+          test.startTest();
+          update pur;
+          VendorDetail.ReworkAction();
+          test.stoptest();
+        
+     }
+
+     static testMethod void reworkActionTest6() {
+     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+          pur.VPM_ProcurementApprovalRequired__c=false;
+          pur.VPM_FreightApprovalRequired__c=false;
+          pur.VPM_RussianTaxApprovalRequired__c=true;
+          pur.VPM_FinanceApprovalRequired__c =false;
+          pur.VPM_RequestFromFLSOrBR__c=Request;
+          pur.VPM_status__c=Status;
+          
+          test.startTest();
+          update pur;
+          VendorDetail.ReworkAction();
+          test.stoptest();
+        
+     }
+
+     static testMethod void reworkActionTest7() {
+     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+          pur.VPM_ProcurementApprovalRequired__c=false;
+          pur.VPM_FreightApprovalRequired__c=true;
+          pur.VPM_RussianTaxApprovalRequired__c=false;
+          pur.VPM_FinanceApprovalRequired__c =false;
+          pur.VPM_RequestFromFLSOrBR__c=Request;
+          pur.VPM_status__c=Status;
+          test.startTest();
+          update pur;
+          VendorDetail.ReworkAction();
+          test.stopTest();
+        
+     }
+
+     static testMethod void reworkActionTest8() {
+     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+          pur.VPM_ProcurementApprovalRequired__c=false;
+          pur.VPM_FreightApprovalRequired__c=true;
+          pur.VPM_RussianTaxApprovalRequired__c=false;
+          pur.VPM_FinanceApprovalRequired__c =true;
+          pur.VPM_RequestFromFLSOrBR__c=Request;
+          pur.VPM_status__c=Status;
+          test.startTest();
+          update pur;
+          VendorDetail.ReworkAction();
+          test.stopTest();
+        
+     }
+
+     static testMethod void reworkActionTest9() {
+     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+          pur.VPM_ProcurementApprovalRequired__c=false;
+          pur.VPM_FreightApprovalRequired__c=false;
+          pur.VPM_RussianTaxApprovalRequired__c=true;
+          pur.VPM_FinanceApprovalRequired__c =false;
+          pur.VPM_RequestFromFLSOrBR__c=bussReq;
+          pur.VPM_status__c=Status;
+          test.startTest();
+          update pur;
+          VendorDetail.ReworkAction();
+          test.stopTest();
+        
+     }
+
+     static testMethod void reworkActionTest10() {
+     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+           pur.VPM_ProcurementApprovalRequired__c=false;
+          pur.VPM_FreightApprovalRequired__c=true;
+          pur.VPM_RussianTaxApprovalRequired__c=false;
+          pur.VPM_FinanceApprovalRequired__c =false;
+          pur.VPM_RequestFromFLSOrBR__c=bussReq;
+          pur.VPM_status__c=Status;
+          test.startTest();
+          update pur;
+          VendorDetail.ReworkAction();
+          test.stopTest();
+        
+     }
+
+     static testMethod void reworkActionTest11() {
+     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+            pur.VPM_ProcurementApprovalRequired__c=false;
+          pur.VPM_FreightApprovalRequired__c=true;
+          pur.VPM_RussianTaxApprovalRequired__c=false;
+          pur.VPM_FinanceApprovalRequired__c =true;
+          pur.VPM_RequestFromFLSOrBR__c=bussreq;
+          pur.VPM_status__c=Status;
+          test.startTest();
+          update pur;
+          VendorDetail.ReworkAction();
+          test.stopTest();
+        
+     }
+
+     static testMethod void reworkActionTest12() {
+     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+          pur.VPM_ProcurementApprovalRequired__c=false;
+          pur.VPM_FreightApprovalRequired__c=false;
+          pur.VPM_RussianTaxApprovalRequired__c=false;
+          pur.VPM_FinanceApprovalRequired__c =false;
+          pur.VPM_BankDataValidationRequired__c = true;
+          pur.VPM_RequestFromFLSOrBR__c=Request;
+          pur.VPM_status__c=Status;
+          test.startTest();
+          update pur;
+          VendorDetail.ReworkAction();
+          test.stopTest();
+        
+     }
+
+      static testMethod void reworkActionTest13() {
+      VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_RequestFromFLSOrBR__c =bussReq);
+    insert pur;
+     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       
+       system.assertEquals(pur.Id,pur1.Id);
+          ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+         VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+           pur.VPM_ProcurementApprovalRequired__c=false;
+          pur.VPM_FreightApprovalRequired__c=false;
+          pur.VPM_RussianTaxApprovalRequired__c=false;
+          pur.VPM_FinanceApprovalRequired__c =false;
+          pur.VPM_BankDataValidationRequired__c = true;
+          pur.VPM_RequestFromFLSOrBR__c=bussReq;
+          pur.VPM_status__c=Status;
+          test.startTest();
+          update pur;
+          VendorDetail.ReworkAction();
+          test.stopTest();
+        
+     }
+   
     
     static testMethod void changeButtonValues(){
-        string ownerId= [Select Id From User limit 1].Id; 
+        Profile p = [SELECT Id FROM Profile WHERE Name='VPM - No Access'];
+     User u = new User(Alias = 'standt', Email='standarduser@testorg.com',
+                          EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
+                          LocaleSidKey='en_US', ProfileId = p.Id,
+                          TimeZoneSidKey='America/Los_Angeles',     UserName='testpermissionsetuser@testorg.com');
+        insert u;
+        
        
        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
        companyCode.VPM_CompanyCode__c = Company;
@@ -362,7 +635,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         VPM_ApprovalWorkerID__c=null,
         VPM_ApprovalWorker__c = null,
         VPM_VendorPhone__c=phone,
-        OwnerId =ownerId,
+        OwnerId =u.Id,
         VPM_Status__c ='Draft Request');
      insert pur;
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
@@ -372,191 +645,16 @@ public class VPM_PurchaseRequestsExtensionTest{
        
        system.assertEquals(pur.Id,pur1.Id);
       
-       pur.VPM_ApprovalWorkerID__c='User';
-       update pur;
+       //pur.VPM_ApprovalWorkerID__c='User';
+       //update pur;
        
-       pur1 = [select VPM_CountryRequestingVendor__c,OwnerId,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_ApprovalWorkerID__c,VPM_ApprovalWorker__c ,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       system.assertEquals(pur.VPM_ApprovalWorkerID__c,pur1.VPM_ApprovalWorkerID__c);
-       VendorDetail.changeButtonValues();
+       //pur1 = [select VPM_CountryRequestingVendor__c,OwnerId,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_ApprovalWorkerID__c,VPM_ApprovalWorker__c ,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
+       //system.assertEquals(pur.VPM_ApprovalWorkerID__c,pur1.VPM_ApprovalWorkerID__c);
+       //VendorDetail.changeButtonValues();
        
     }
     
-    /*static testMethod void fetchisVenderSMETest(){
-    
-    VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-    companyCode.VPM_CompanyCode__c = Company
-    companyCode.ECC__c = 'Sirius';
-    companyCode.VPM_Country__c =country;
-    insert companyCode;
-    system.assert(companyCode.Id!=null,ErrorMsg);
-    
-    VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
-        VPM_CountryRequestingVendor__c=country,
-        VPM_CompanyCode__c=companyCode.Id,
-        VPM_WhatAreYouBuying__c=buyingStuff,
-        VPM_IsVendorSME__c=reworkStat,
-        VPM_ExceptionType__c= 'E001',
-        VPM_VendorPhone__c=phone,
-        VPM_InternationalVersion__c='International Version',
-        VPM_Status__c ='Draft Request');
-     insert pur;
-      ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-      VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-       VendorDetail.fetchisVenderSME();
-
-    }*/
-    
-    static testMethod void checkLoggedInUserRole(){
-    
-     Profile p = [SELECT Id FROM Profile WHERE Name='VPM - No Access'];
-     User u = new User(Alias = 'standt', Email='standarduser@testorg.com',
-                          EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
-                          LocaleSidKey='en_US', ProfileId = p.Id,
-                          TimeZoneSidKey='America/Los_Angeles',     UserName='testpermissionsetuser@testorg.com');
-        insert u;
-        
-         //for FLS User
-        PermissionSet psf = [SELECT Id FROM PermissionSet WHERE Name = 'VPM_FLS'];
-       
-        // Assign the above inserted user for the above Permission Set.
-        PermissionSetAssignment psaf = new PermissionSetAssignment();
-        psaf.AssigneeId = u.Id;
-        psaf.PermissionSetId = psf.Id;
-        insert psaf;
-        
-        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
-    companyCode.VPM_CompanyCode__c = Company;
-    companyCode.ECC__c = Ecc;
-    companyCode.VPM_Country__c =country;
-    insert companyCode;
-    system.assert(companyCode.Id!=null,ErrorMsg);
-    
-    VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
-        VPM_CountryRequestingVendor__c=country,
-        VPM_CompanyCode__c=companyCode.Id,
-        VPM_WhatAreYouBuying__c=buyingStuff,
-        VPM_IsVendorSME__c=reworkStat,
-        VPM_ExceptionType__c= 'E001',
-        VPM_VendorPhone__c=phone,
-        VPM_InternationalVersion__c='International Version',
-        VPM_Status__c ='Draft Request');
-     insert pur;
-     
-     VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_IsVendorSME__c,VPM_ExceptionType__c,VPM_VendorPhone__c,VPM_InternationalVersion__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-     system.assertEquals(pur.Id,pur1.Id);
-        system.runAs(u){
-            ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-            VPM_PurchaseRequestsControllerExtension vendor=new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-            VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser();
-            VPM_PurchaseRequestsControllerExtension.checkLoggedInUserRole();
-            vendor.checkUser();
-        }
-        
-        //for MDM User
-        
-        PermissionSet pm = [SELECT Id FROM PermissionSet WHERE Name = 'VPM_MDM_Ops'];
-       
-        // Assign the above inserted user for the above Permission Set.
-        PermissionSetAssignment psam = new PermissionSetAssignment();
-        psam.AssigneeId = u.Id;
-        psam.PermissionSetId = pm.Id;
-        insert psam;
-        
-        system.runAs(u){
-            ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-            VPM_PurchaseRequestsControllerExtension vendor=new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-            VPM_PurchaseRequestsControllerExtension.checkLoggedInUserRole();
-            vendor.checkUser();
-        }
-        //VPM_PurchaseRequestsControllerExtension.checkLoggedInUserRole();
-        
-        //for Finance User
-        PermissionSet psfi = [SELECT Id FROM PermissionSet WHERE Name = 'VPM_Finance'];
-       
-        // Assign the above inserted user for the above Permission Set.
-        PermissionSetAssignment psafi = new PermissionSetAssignment();
-        psafi.AssigneeId = u.Id;
-        psafi.PermissionSetId = psfi.Id;
-        insert psafi;
-        
-        system.runAs(u){
-            ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-            VPM_PurchaseRequestsControllerExtension vendor=new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-            VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser();
-            VPM_PurchaseRequestsControllerExtension.checkLoggedInUserRole();
-            vendor.checkUser();
-        }
-        
-         //For Procurement User
-        PermissionSet psp = [SELECT Id FROM PermissionSet WHERE Name = 'VPM_Procurement'];
-       
-        // Assign the above inserted user for the above Permission Set.
-        PermissionSetAssignment psap = new PermissionSetAssignment();
-        psap.AssigneeId = u.Id;
-        psap.PermissionSetId = psp.Id;
-        insert psap;
-        
-        system.runAs(u){
-            ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-            VPM_PurchaseRequestsControllerExtension vendor=new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-            VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser();
-            VPM_PurchaseRequestsControllerExtension.checkLoggedInUserRole();
-            vendor.checkUser();
-        }
-        
-        //for Freight user
-        PermissionSet psfe = [SELECT Id FROM PermissionSet WHERE Name = 'VPM_Freight'];
-       
-        // Assign the above inserted user for the above Permission Set.
-        PermissionSetAssignment psafe = new PermissionSetAssignment();
-        psafe.AssigneeId = u.Id;
-        psafe.PermissionSetId = psfe.Id;
-        insert psafe;
-        
-       system.runAs(u){
-            ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-            VPM_PurchaseRequestsControllerExtension vendor=new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-            VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser();
-            VPM_PurchaseRequestsControllerExtension.checkLoggedInUserRole();
-            vendor.checkUser();
-        }
-        
-        //for Russian user
-        PermissionSet psr = [SELECT Id FROM PermissionSet WHERE Name = 'VPM_RussianTax'];
-       
-        // Assign the above inserted user for the above Permission Set.
-        PermissionSetAssignment psar = new PermissionSetAssignment();
-        psar.AssigneeId = u.Id;
-        psar.PermissionSetId = psr.Id;
-        insert psar;
-        
-        system.runAs(u){
-           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-            VPM_PurchaseRequestsControllerExtension vendor=new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-            VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser();
-            VPM_PurchaseRequestsControllerExtension.checkLoggedInUserRole();
-            vendor.checkUser();
-        }
-        
-        //for Bank Data User
-        PermissionSet psb = [SELECT Id FROM PermissionSet WHERE Name = 'VPM_BankDatavalidation'];
-       
-        // Assign the above inserted user for the above Permission Set.
-        PermissionSetAssignment psab = new PermissionSetAssignment();
-        psab.AssigneeId = u.Id;
-        psab.PermissionSetId = psb.Id;
-        insert psab;
-        
-        system.runAs(u){
-            ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-            VPM_PurchaseRequestsControllerExtension vendor=new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-            VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser();
-            VPM_PurchaseRequestsControllerExtension.checkLoggedInUserRole();
-            vendor.checkUser();
-        }
-        
-     
-    }
+   
     
      static testMethod void EnableManuallyMarkAsCompleteBtn(){
     
@@ -583,5 +681,190 @@ public class VPM_PurchaseRequestsExtensionTest{
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
        VendorDetail.EnableManuallyMarkAsCompleteBtn();
     }
+    
+    static testMethod void checkForBusinessReqUserTest(){
+    
+        VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser();
+    }
+    
+    static testMethod void SubmitRequestActionTest1()
+    {
+    
+       VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+    VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_FLSInCountryReqVen__c=FLSInCountryReqVen,
+    VPM_AdvancedFormSubmitted__c = 'No',
+    VPM_Status__c ='Draft Request');
+     insert pur;
+     
+      ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+      VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+      vendorDetail.SubmitRequestAction();
+      
+      pur.VPM_Rework__c = reworkStat;
+      pur.VPM_Status__c = 'FLS Requested Re-Work' ;
+      test.startTest();
+      update pur;
+      vendorDetail.SubmitRequestAction();
+      test.stopTest();
+      
+      
+    }
+    
+     static testMethod void SubmitRequestActionTest2()
+    {
+    
+       VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+    VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_FLSInCountryReqVen__c=FLSInCountryReqVen,
+    VPM_AdvancedFormSubmitted__c = 'No',
+    VPM_Status__c ='Procurement Requested Re-Work',
+    VPM_Rework__c =reworkStat );
+     insert pur;
+     
+      ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+      VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+      vendorDetail.SubmitRequestAction();
+      
+      
+      pur.VPM_Status__c = 'Finance Requested Re-Work' ;
+      test.startTest();
+      update pur;
+      vendorDetail.SubmitRequestAction();
+      test.stopTest();
+      
+      
+    }
+    
+     static testMethod void SubmitRequestActionTest3()
+    {
+    
+       VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+    VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_FLSInCountryReqVen__c=FLSInCountryReqVen,
+    VPM_AdvancedFormSubmitted__c = 'No',
+    VPM_Status__c ='Russian Custom Tax Requested Re-Work',
+    VPM_Rework__c =reworkStat );
+     insert pur;
+     
+      ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+      VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+      vendorDetail.SubmitRequestAction();
+      
+      
+      pur.VPM_Status__c = 'Freight Requested Re-Work' ;
+      test.startTest();
+      update pur;
+      vendorDetail.SubmitRequestAction();
+      test.stopTest();
+      
+      
+    }
+    
+    static testMethod void SubmitRequestActionTest4()
+    {
+    
+       VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+    VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_FLSInCountryReqVen__c=FLSInCountryReqVen,
+    VPM_AdvancedFormSubmitted__c = 'No',
+    VPM_Status__c ='',
+    VPM_Rework__c =reworkStat );
+     insert pur;
+     
+      ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+      VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+      vendorDetail.SubmitRequestAction();
+      
+      
+      pur.VPM_Status__c = 'Procurement Requested Re-Work' ;
+      test.startTest();
+      update pur;
+      vendorDetail.SubmitRequestAction();
+      test.stopTest();
+      
+      
+    }
+    
+    static testMethod void SubmitRequestActionTest5()
+    {
+    
+       VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = Ecc;
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    system.assert(companyCode.Id!=null,ErrorMsg);
+    
+    VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCode.Id,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorPhone__c=phone,
+    VPM_FLSInCountryReqVen__c=FLSInCountryReqVen,
+    VPM_AdvancedFormSubmitted__c = 'No',
+    VPM_Status__c ='',
+    VPM_Rework__c =reworkStat );
+     insert pur;
+     
+      ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+      VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+      vendorDetail.SubmitRequestAction();
+      
+      
+      pur.VPM_Status__c = 'Russian Custom Tax Requested Re-Work' ;
+      test.startTest();
+      update pur;
+      vendorDetail.SubmitRequestAction();
+      test.stopTest();
+      
+      
+    }*/
+    
      
 }

@@ -587,6 +587,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                                                         Id = :recId LIMIT 1];
           //list<PermissionSetAssignment> permissionAssigned =[SELECT Assignee.Name, PermissionSet.Name ,id FROM PermissionSetAssignment
           //                                                   WHERE AssigneeId =:recId AND PermissionSet.Name ='VPM_MDM_Ops' limit 1];
+          system.debug('heheheh='+vendorList);
           if(vendorList[0].VPM_Status__c.contains('Block') || vendorList[0].VPM_Status__c.contains('Unblock')
              || vendorList[0].VPM_Status__c.contains('Delete') || vendorList[0].VPM_Status__c.contains('Undelete')) {
                  vendorList[0].VPM_Status__c = 'Request Completed';

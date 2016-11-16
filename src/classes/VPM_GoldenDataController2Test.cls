@@ -490,11 +490,29 @@ static VPM_PurchasingRequests__c TestCordillera(){
         static testMethod void VPM_GoldenDataControllerU2K2(){
         
          VPM_PurchasingRequests__c purId = TestU2K2();
+            PageReference pageRef = Page.VPM_GoldenData1;
+			Test.setCurrentPage(pageRef);
          ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          goldenData.newMethod();
          goldenData.newMethod1();
-    
+           purId.VPM_TradePartnerType__c='';
+       		 update purid; 
+            goldenData.checkValidations();
+          //  purid.VPM_CompanyCode__r.ecc__c='U2K2';
+            purid.VPM_AccountStatement__c='';
+            update purid; 
+            
+            goldenData.checkValidations();
+             string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
+         	purId.recordTypeId =recordTypeId;
+            purId.VPM_VendorBlockUnblockDelete__c ='Block';
+            goldenData.checkValidations();
+            
+      //   goldenData.saveAndBackToLaunchScreen();
+    	// purId.VPM_ProcurementApprovalRequired__c=true;
+        // update purid; 
+           // goldenData.ProcurementApproval();
     }
     
     static testMethod void VPM_GoldenDataControllerFusion(){
@@ -550,13 +568,15 @@ static VPM_PurchasingRequests__c TestCordillera(){
          VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = FREIGHTVENDOR;
          purId.VPM_PaymentMethod__c='C-T-W';
-        
+        purId.VPM_Status__c='FLS Approved';
          update purId;
          system.debug('purId '+purId+'    '+purId.VPM_Commodity_Family__c);
          goldenData.approvalCallMethod();
          
         string  recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
          purId.recordTypeId =recordTypeId;
+      	 purId.VPM_PaymentTerms__c='90DK_Within 90 days Due net (90NET)';
+      	
          update purId;
          goldenData.approvalCallMethod();
          
@@ -706,7 +726,9 @@ static VPM_PurchasingRequests__c TestCordillera(){
           
          msg=  goldenData.checkValidations(); 
          System.debug('Msg @@@@@@'+ msg);
-    
+         purId.VPM_ExtensionType__c ='Global';
+         update purId;
+    	goldenData.saveRecord();
     
     }
     
@@ -718,7 +740,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
          
          purId.VPM_VendorType__c  = STR_VENDORTYPEMSB;
          purId.VPM_GlobalAuthorisationGroup__c='SCS-CAPEX';
-   		 purId.VPM_PaymentMethod__c='C-T-W';
+    purId.VPM_PaymentMethod__c='[3_ACC - HSBC At Par Cheque, 4_CCC - UTI At Par Cheque]';
          //purId.
        
          
@@ -920,6 +942,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+        purId.VPM_ExtensionType__c='Global';
         goldenData.saveRecord();
         
         

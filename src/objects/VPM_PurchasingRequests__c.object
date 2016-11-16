@@ -932,6 +932,20 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_ApprovalSubmitter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>VPM - Used to keep initial submitter ID.</description>
+        <externalId>false</externalId>
+        <label>Approval Submitter</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Vendor_Requests</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>VPM_ApprovalWorkerID__c</fullName>
         <description>VPM - Used to store the values on click of &apos;I am working on it&apos; button.</description>
         <externalId>false</externalId>
@@ -1134,19 +1148,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_ArabicVersion__c</fullName>
-        <description>VPM - This field is used to store the value of DELArabic Version.</description>
-        <externalId>false</externalId>
-        <label>DELArabic Version</label>
-        <length>45</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_AuthorisationGroupFormula__c</fullName>
         <description>VPM - This field is used to store the value of Authorisation Group Formula field.</description>
         <externalId>false</externalId>
@@ -1171,17 +1172,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_AutoEvalGRSetmtDel__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>VPM - This field is used to store the value of DELAuto Eval GR Setmt Del.</description>
-        <externalId>false</externalId>
-        <label>DELAuto Eval GR Setmt Del</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>VPM_AutoEvalGRSetmtRet__c</fullName>
@@ -2320,6 +2310,29 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_BankDetailsChanged__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - set to true when the bank details section is changed on advanced form</description>
+        <externalId>false</externalId>
+        <label>Bank Details Changed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_BankDetailsChanges__c</fullName>
+        <description>Used to record the updates to bank details fields for posting on Chatter group</description>
+        <externalId>false</externalId>
+        <label>Bank Details Changes</label>
+        <length>4000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>VPM_BankDetailsScreen__c</fullName>
@@ -3552,6 +3565,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_CRVT__c</fullName>
+        <description>VPM - System field to store the text value of Country Requesting Vendor for use in the Finance Approval entry Criteria. API name shortened to deal with text limits in approval rule entry critiera.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(VPM_CountryRequestingVendor__c)</formula>
+        <label>Country Requesting Vendor (Text)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_CSTno__c</fullName>
         <description>VPM - This field is used to store the CST No.</description>
         <externalId>false</externalId>
@@ -3562,6 +3587,31 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_CalculateTotalNoOfHours__c</fullName>
+        <description>VPM- Formula to Calculate duration till which request is with each Approver group.</description>
+        <externalId>false</externalId>
+        <formula>((VPM_NoOfDays__c-1)*24) 
+
++(VALUE(TEXT((VALUE(LEFT(MID ( TEXT (NOW()), 12, 5), FIND(&apos;:&apos;, MID ( TEXT (NOW()), 12, 5))-1)) 
++ 
+VALUE( 
+RIGHT(MID ( TEXT (NOW()), 12, 5), FIND(&apos;:&apos;, MID ( TEXT (NOW()), 12, 5))-1))/60) 
+- 
+(VALUE(LEFT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TEXT (VPM_RequestGroupTime__c), 12, 5))-1)) 
++ 
+VALUE( 
+RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TEXT (VPM_RequestGroupTime__c), 12, 5))-1))/60)) ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Calculate Total No Of Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -4228,32 +4278,6 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>VPM_ContactPersonSurname__c</fullName>
-        <description>VPM - This field is used to store the value of DELContact Person-Surname.</description>
-        <externalId>false</externalId>
-        <label>DELContact Person-Surname</label>
-        <length>200</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_ContactPerson__c</fullName>
-        <description>VPM - This field is used to store the value of DELContact Person.</description>
-        <externalId>false</externalId>
-        <label>DELContact Person</label>
-        <length>200</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_CorporateGrp__c</fullName>
@@ -6949,17 +6973,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_DefaultPartner__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>VPM - This field is used to store the value of DELDefault Partner.</description>
-        <externalId>false</externalId>
-        <label>DELDefault Partner</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>VPM_DeletionBlockFlag__c</fullName>
         <description>VPM - Used by the MDM Ops Team to denoted the request is for Deletion / Block, Unblock &amp; UnDeletion.</description>
         <externalId>false</externalId>
@@ -7011,19 +7024,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_DepartmentDescription__c</fullName>
-        <description>VPM - This field is used to store the value of DELDepartment Description.</description>
-        <externalId>false</externalId>
-        <label>DELDepartment Description</label>
-        <length>200</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_DepartmentNumber__c</fullName>
         <description>VPM - This field is used to store the value of Department Number.</description>
         <externalId>false</externalId>
@@ -7035,24 +7035,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_Department__c</fullName>
-        <description>VPM - This field is used to store the value of DELDepartment.</description>
-        <externalId>false</externalId>
-        <label>DELDepartment</label>
-        <picklist>
-            <picklistValues>
-                <fullName>finance</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_Description__c</fullName>
@@ -7410,19 +7392,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_ECCNo__c</fullName>
-        <description>VPM - This field is used to store the value of DELECC No.</description>
-        <externalId>false</externalId>
-        <label>DELECC No.</label>
-        <length>40</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_ECCSystem__c</fullName>
         <defaultValue>false</defaultValue>
         <description>VPM - This field tracks  if it is in ECC system.</description>
@@ -7567,18 +7536,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <description>VPM - This field is used to store the value of Email of Webform Sender.</description>
         <externalId>false</externalId>
         <label>Email of Webform Sender</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_Email__c</fullName>
-        <description>VPM - This field is used to store the value of DELE-mail.</description>
-        <externalId>false</externalId>
-        <label>DELE-mail</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -7754,32 +7711,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_Extension2__c</fullName>
-        <description>VPM - This field is used to store the value of DELExtension 2.</description>
-        <externalId>false</externalId>
-        <label>DELExtension 2</label>
-        <length>10</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_Extension3__c</fullName>
-        <description>VPM - This field is used to store the value of DELExtension 3.</description>
-        <externalId>false</externalId>
-        <label>DELExtension 3</label>
-        <length>10</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_ExtensionPhone__c</fullName>
         <description>VPM - This field is used to stores the Extension 1 number.</description>
         <externalId>false</externalId>
@@ -7883,32 +7814,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <externalId>false</externalId>
         <label>Fax Extension</label>
         <length>10</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_FaxNumber2__c</fullName>
-        <description>VPM - This field is used to store the value of DELFax Number  2.</description>
-        <externalId>false</externalId>
-        <label>DELFax Number  2</label>
-        <length>30</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_FaxNumber3__c</fullName>
-        <description>VPM - This field is used to store the value of DELFax Number  3.</description>
-        <externalId>false</externalId>
-        <label>DELFax Number  3</label>
-        <length>30</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -8042,6 +7947,17 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_FinancialFieldsChanged__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - set to true when the user edits the financial section on advanced form.</description>
+        <externalId>false</externalId>
+        <label>Financial Fields Changed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_FiscalAddress__c</fullName>
         <description>VPM - This field is used to store the value of Vendor Fiscal Address.</description>
         <externalId>false</externalId>
@@ -8166,50 +8082,22 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>VPM_FunctionDescription__c</fullName>
-        <description>VPM - This field is used to store the value of DELFunction Description.</description>
-        <externalId>false</externalId>
-        <label>DELFunction Description</label>
-        <length>200</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_Function__c</fullName>
-        <description>VPM - This field is used to store the value of DELFunction.</description>
-        <externalId>false</externalId>
-        <label>DELFunction</label>
-        <picklist>
-            <picklistValues>
-                <fullName>1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>3</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>VPM_GRbasedIV__c</fullName>
         <defaultValue>true</defaultValue>
         <description>VPM - This field is used to store the value of GR based IV.</description>
         <externalId>false</externalId>
         <label>GR based IV</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_GeneralVendorDetailsChanged__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - set to true when the user edits the general vendor details section on advanced from.</description>
+        <externalId>false</externalId>
+        <label>General Vendor Details Changed</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -8926,6 +8814,17 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_IndicatorAlternativePayeeAllowed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - This field is used to store the value of Indicator:Alt Payee in Document Allowed?.</description>
+        <externalId>false</externalId>
+        <label>Indicator:Alt Payee in Document Allowed?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_IndicatorClearingBetwCustomerNVendor__c</fullName>
         <defaultValue>false</defaultValue>
         <description>VPM - This field is used to store the value of Indicator Clearing b/w Customer &amp; Vendor.</description>
@@ -8935,6 +8834,19 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_IndicatorCollectionAuthorization__c</fullName>
+        <description>Indicator for Withholding Tax Type Indicator collection authorization.</description>
+        <externalId>false</externalId>
+        <label>Indicator collection authorization</label>
+        <length>52</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_IndicatorForWithholdingTaxType__c</fullName>
@@ -10764,19 +10676,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>VPM_Local2Version__c</fullName>
-        <description>VPM - This field is used to store the value of DEL Local 2 Version.</description>
-        <externalId>false</externalId>
-        <label>DEL Local 2 Version</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_Location__c</fullName>
         <description>VPM - This field is used to store the value of Location.</description>
         <externalId>false</externalId>
@@ -11019,32 +10918,6 @@ MDM Insert/Update Succeeded = Vendor created in MDM and Vendor code returned to 
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>VPM_MobilePhone2__c</fullName>
-        <description>VPM - This field is used to store the value of DEL Mobile Phone 2.</description>
-        <externalId>false</externalId>
-        <label>DEL Mobile Phone 2</label>
-        <length>30</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_MobilePhone3__c</fullName>
-        <description>VPM - This field is used to store the value of DEL Mobile Phone 3.</description>
-        <externalId>false</externalId>
-        <label>DEL Mobile Phone 3</label>
-        <length>30</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_MobilePhone__c</fullName>
         <description>VPM - This field is used to store the Mobile Phone Number of the vendor.</description>
         <externalId>false</externalId>
@@ -11172,6 +11045,20 @@ VPM_Approver10__c = $User.Id))
 (FLOOR(( DATEVALUE(NOW()) - DATEVALUE(VPM_RequestGroupTime__c) )/7)*5))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>No Of Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Now__c</fullName>
+        <externalId>false</externalId>
+        <formula>(NOW() -  VPM_RequestGroupTime__c) * 24</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Now</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -12317,150 +12204,6 @@ VPM_Approver10__c = $User.Id))
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_PartnerFunctionName__c</fullName>
-        <description>VPM - This field is used to store the value of DELPartner Function Name.</description>
-        <externalId>false</externalId>
-        <label>DELPartner Function Name</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_PartnerFunction__c</fullName>
-        <description>VPM - This field is used to store the value of DELPartner Function.</description>
-        <externalId>false</externalId>
-        <label>DELPartner Function</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_PartnerFunctions__c</fullName>
-        <description>VPM - This field is used to store the value of DELPartner Functions.</description>
-        <externalId>false</externalId>
-        <label>DELPartner Functions</label>
-        <picklist>
-            <picklistValues>
-                <fullName>AD_Additionals</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>AL_Additionals</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PE_Con.pers.fresh prod.</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CP_Contact person</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>OA_Ordering address</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>VN_Vendor</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PI_Invoicing Party</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CA_Contract address</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>GS_Goods supplier</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z1_CHA Charges</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z3_Pre-shipt inspector</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z4_Pre-shipt Surveyor</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z5_Certificate Charges</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z6_Import ctry facilita</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z7_Miscellaneous vendor</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z8_Legal charges Vendor</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z9_Palletisation Vendor</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ZA_Doc charges vendor</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ZB_Export Com.Vendor</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ER_Employee respons.</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>OR_Only Representative</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>R1_REACH Contact (Vend)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>HR_Manufacturer</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>LA_Local Agent</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TF_Freight service agt</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TU_LoadTrasServProvidr</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>VPM_PartnerName__c</fullName>
         <description>VPM - This field is used to store the Partner Name.</description>
         <externalId>false</externalId>
@@ -12736,6 +12479,19 @@ VPM_Approver10__c = $User.Id))
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_PaymentMethodWeb__c</fullName>
+        <description>VPM - This holds the values which comes from web service.</description>
+        <externalId>false</externalId>
+        <label>Payment Method Web</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_PaymentMethod__c</fullName>
         <description>VPM - Specifies the list of Payment Methods for the Vendor.</description>
         <externalId>false</externalId>
@@ -12844,6 +12600,17 @@ VPM_Approver10__c = $User.Id))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_PaymentTermsAndPurchasingDataChanged__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - set to true when the user changes payments terms section on advanced from</description>
+        <externalId>false</externalId>
+        <label>Payment terms/Purchasing Data Changed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>VPM_PaymentTermsIfNoneSelected__c</fullName>
@@ -15355,24 +15122,6 @@ VPM_Approver10__c = $User.Id))
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>VPM_PurchasingOrganisation__c</fullName>
-        <description>VPM - Specifies the Purchasing Organization.</description>
-        <externalId>false</externalId>
-        <label>DELPurchasing Organisation</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Purchasing Organisation</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>VPM_QMSystemTo__c</fullName>
         <description>VPM - This field is used to store the value of QM System To.</description>
         <externalId>false</externalId>
@@ -16314,225 +16063,22 @@ VPM_Approver10__c = $User.Id))
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>VPM_Region__c</fullName>
-        <description>VPM - This field is used to store the value of DELRegion.</description>
-        <externalId>false</externalId>
-        <label>DELRegion</label>
-        <picklist>
-            <picklistValues>
-                <fullName>01_Andra Pradesh</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>02_Arunachal Pradesh</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>03_Assam</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>04_Bihar</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>05_Goa</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>06_Gujarat</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>07_Haryana</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>08_Himachal Pradesh</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>09_Jammu und Kashmir</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>10_Karnataka</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>11_Kerala</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>12_Madhya Pradesh</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>13_Maharashtra</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>14_Manipur</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>15_Megalaya</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>16_Mizoram</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>17_Nagaland</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>18_Orissa</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>19_Punjab</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>20_Rajasthan</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>21_Sikkim</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>22_Tamil Nadu</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>23_Tripura</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>24_Uttar Pradesh</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>25_West Bengal</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>26_Andaman und Nico.In.</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>27_Chandigarh</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>28_Dadra und Nagar Hav.</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>29_Daman und Diu</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>30_Delhi</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>31_Lakshadweep</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>32_Pondicherry</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>33_Chattisgarh</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>34_Jharkand</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>35_Uttaranchal</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>36_Telangana</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>37_Residuary AP State</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>A1_</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>A2_</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>A3_</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>A4_</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SAS_SOUTH ASIA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z1_Bhutan</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z2_Nepal</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z3_Maharashtra B</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z4_Haryana B</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z5_Uttar Pradesh B</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z6_Pondicherry B</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Z7_Pondicherry C</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>LK_Sri Lanka</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>VPM_RegionalFieldChanged__c</fullName>
         <defaultValue>false</defaultValue>
         <description>VPM- set to true when the Regional field is changed</description>
         <externalId>false</externalId>
         <label>Regional Data Changed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_RegionalFieldsChanged__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - set to true when the user edits regional specific fields section on advanced from.</description>
+        <externalId>false</externalId>
+        <label>Regional Fields Changed</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -16825,6 +16371,17 @@ VPM_Approver10__c = $User.Id))
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_RunWFRForPaymentTerms__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - Flag used to decide whether WFR for Payment Terms needs to run.</description>
+        <externalId>false</externalId>
+        <label>Run WFR for Payement Terms</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_RussiaSubmitted__c</fullName>
         <description>VPM - System field used to record that Russian queue have finished with their changes to the form details. This field triggers Process Builder to handle other elements of the process. Not integrated with SAP.</description>
         <externalId>false</externalId>
@@ -16897,30 +16454,14 @@ VPM_Approver10__c = $User.Id))
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>VPM_RussianVersion__c</fullName>
-        <description>VPM - This field is used to store the value of DEL Russian Version.</description>
-        <externalId>false</externalId>
-        <label>DEL Russian Version</label>
-        <length>78</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
+        <fullName>VPM_SAPBPMRequestID__c</fullName>
+        <description>VPM - Used to generate and store the SAP BPM Request ID that will be populated in SAP BPM on a create or maintain request.</description>
+        <displayFormat>{0000000}</displayFormat>
+        <externalId>true</externalId>
+        <label>SAP BPM RequestID</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_SAPECCComments__c</fullName>
-        <description>VPM - This field is used to store the value of DELComments (SAP ECC).</description>
-        <externalId>false</externalId>
-        <label>DELComments (SAP ECC)</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>AutoNumber</type>
     </fields>
     <fields>
         <fullName>VPM_SCAC__c</fullName>
@@ -17387,6 +16928,17 @@ VPM_Approver10__c = $User.Id))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_SocialInsurance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - This field is used to store the value of Social Insurance.</description>
+        <externalId>false</externalId>
+        <label>Social Insurance</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>VPM_SortCriterion__c</fullName>
@@ -18110,6 +17662,28 @@ VPM_Approver10__c = $User.Id))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>VPM_SubsequentSettlementIndex__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - This field is used to store the value of Subsequent Settlement Index.</description>
+        <externalId>false</externalId>
+        <label>Subsequent Settlement Index</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_SubsequentSettlement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - This field is used to store the value of Subsequent Settlement.</description>
+        <externalId>false</externalId>
+        <label>Subsequent Settlement</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>VPM_SupAudDetailsOfPlannedActivities__c</fullName>
@@ -21115,32 +20689,6 @@ VPM_Approver10__c = $User.Id))
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_Telephone2__c</fullName>
-        <description>VPM - This field is used to store the value of DELTelephone 2.</description>
-        <externalId>false</externalId>
-        <label>DELTelephone 2</label>
-        <length>30</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_Telephone3__c</fullName>
-        <description>VPM - This field is used to store the value of DELTelephone 3.</description>
-        <externalId>false</externalId>
-        <label>DELTelephone 3</label>
-        <length>30</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_Telephone__c</fullName>
         <description>VPM - Telephone Number of the Vendor</description>
         <externalId>false</externalId>
@@ -22352,19 +21900,6 @@ VPM_Approver10__c = $User.Id))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>VPM_UkrainianVersion__c</fullName>
-        <description>VPM - This field is used to store the value of DEL Ukrainian Version.</description>
-        <externalId>false</externalId>
-        <label>DEL Ukrainian Version</label>
-        <length>56</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_UnitOfMeasureGrp__c</fullName>
@@ -24607,6 +24142,17 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>VPM_isProcureAtAGlanceScreen__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - This is a flag set to identify if it&apos;s a Procurement At a Glance new page</description>
+        <externalId>false</externalId>
+        <label>VPM isProcureAtAGlanceScreen</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_isVendorCached__c</fullName>
         <defaultValue>false</defaultValue>
         <description>VPM : Check vendor is cached in SFDC or not</description>
@@ -24666,6 +24212,27 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <language>en_US</language>
         <sharedTo>
             <group>VPM_MDMOps</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>VPM_AbortedRequests</fullName>
+        <columns>NAME</columns>
+        <columns>VPM_VendorName1__c</columns>
+        <columns>VPM_Status__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>VPM_VendorBlockUnblockDelete__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>VPM_Status__c</field>
+            <operation>equals</operation>
+            <value>Aborted</value>
+        </filters>
+        <label>My Aborted Requests</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -30105,6 +29672,29 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <language>en_US</language>
         <sharedTo>
             <group>VPM_FinanceRomania</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>VPM_RussianCustomTax_VPM_PurchasingRequests</fullName>
+        <columns>NAME</columns>
+        <columns>VPM_VendorName1__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>Russian Custom Tax</value>
+        </filters>
+        <filters>
+            <field>VPM_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Aborted</value>
+        </filters>
+        <label>Russian Custom Tax</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>VPM_RussianCustomTax</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -36407,13 +35997,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Department__c</picklist>
-            <values>
-                <fullName>finance</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_DunnProcedure__c</picklist>
             <values>
                 <fullName>0001_three-level dunning notice SAGIT</fullName>
@@ -36739,21 +36322,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_Function__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -39096,113 +38664,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_PartnerFunctions__c</picklist>
-            <values>
-                <fullName>AD_Additionals</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>AL_Additionals</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CA_Contract address</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CP_Contact person</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ER_Employee respons%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GS_Goods supplier</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HR_Manufacturer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LA_Local Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OA_Ordering address</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OR_Only Representative</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PE_Con%2Epers%2Efresh prod%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PI_Invoicing Party</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>R1_REACH Contact %28Vend%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TF_Freight service agt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TU_LoadTrasServProvidr</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>VN_Vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z1_CHA Charges</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z3_Pre-shipt inspector</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z4_Pre-shipt Surveyor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z5_Certificate Charges</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z6_Import ctry facilita</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z7_Miscellaneous vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z8_Legal charges Vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z9_Palletisation Vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ZA_Doc charges vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ZB_Export Com%2EVendor</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_PaymentBlock__c</picklist>
             <values>
                 <fullName>Cash</fullName>
@@ -41483,13 +40944,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_PurchasingOrganisation__c</picklist>
-            <values>
-                <fullName>Purchasing Organisation</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_ReasonForExemption__c</picklist>
             <values>
                 <fullName>01_Outside the scheme</fullName>
@@ -42319,209 +41773,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>MUM_Bombay</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_Region__c</picklist>
-            <values>
-                <fullName>01_Andra Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>02_Arunachal Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>03_Assam</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>04_Bihar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>05_Goa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>06_Gujarat</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>07_Haryana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>08_Himachal Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>09_Jammu und Kashmir</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>10_Karnataka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>11_Kerala</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>12_Madhya Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>13_Maharashtra</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>14_Manipur</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>15_Megalaya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>16_Mizoram</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>17_Nagaland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>18_Orissa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>19_Punjab</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>20_Rajasthan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>21_Sikkim</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>22_Tamil Nadu</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>23_Tripura</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>24_Uttar Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>25_West Bengal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>26_Andaman und Nico%2EIn%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>27_Chandigarh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>28_Dadra und Nagar Hav%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>29_Daman und Diu</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>30_Delhi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>31_Lakshadweep</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>32_Pondicherry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>33_Chattisgarh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>34_Jharkand</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>35_Uttaranchal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>36_Telangana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>37_Residuary AP State</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A1_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A2_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A3_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A4_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LK_Sri Lanka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SAS_SOUTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z1_Bhutan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z2_Nepal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z3_Maharashtra B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z4_Haryana B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z5_Uttar Pradesh B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z6_Pondicherry B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z7_Pondicherry C</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -53623,13 +52874,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Department__c</picklist>
-            <values>
-                <fullName>finance</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_DunnProcedure__c</picklist>
             <values>
                 <fullName>0001_three-level dunning notice SAGIT</fullName>
@@ -53955,21 +53199,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_Function__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -56312,113 +55541,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_PartnerFunctions__c</picklist>
-            <values>
-                <fullName>AD_Additionals</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>AL_Additionals</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CA_Contract address</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CP_Contact person</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ER_Employee respons%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GS_Goods supplier</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HR_Manufacturer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LA_Local Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OA_Ordering address</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OR_Only Representative</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PE_Con%2Epers%2Efresh prod%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PI_Invoicing Party</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>R1_REACH Contact %28Vend%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TF_Freight service agt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TU_LoadTrasServProvidr</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>VN_Vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z1_CHA Charges</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z3_Pre-shipt inspector</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z4_Pre-shipt Surveyor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z5_Certificate Charges</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z6_Import ctry facilita</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z7_Miscellaneous vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z8_Legal charges Vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z9_Palletisation Vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ZA_Doc charges vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ZB_Export Com%2EVendor</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_PaymentBlock__c</picklist>
             <values>
                 <fullName>Cash</fullName>
@@ -58699,13 +57821,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_PurchasingOrganisation__c</picklist>
-            <values>
-                <fullName>Purchasing Organisation</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_ReasonForExemption__c</picklist>
             <values>
                 <fullName>01_Outside the scheme</fullName>
@@ -59535,209 +58650,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>MUM_Bombay</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_Region__c</picklist>
-            <values>
-                <fullName>01_Andra Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>02_Arunachal Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>03_Assam</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>04_Bihar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>05_Goa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>06_Gujarat</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>07_Haryana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>08_Himachal Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>09_Jammu und Kashmir</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>10_Karnataka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>11_Kerala</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>12_Madhya Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>13_Maharashtra</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>14_Manipur</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>15_Megalaya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>16_Mizoram</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>17_Nagaland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>18_Orissa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>19_Punjab</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>20_Rajasthan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>21_Sikkim</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>22_Tamil Nadu</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>23_Tripura</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>24_Uttar Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>25_West Bengal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>26_Andaman und Nico%2EIn%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>27_Chandigarh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>28_Dadra und Nagar Hav%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>29_Daman und Diu</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>30_Delhi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>31_Lakshadweep</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>32_Pondicherry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>33_Chattisgarh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>34_Jharkand</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>35_Uttaranchal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>36_Telangana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>37_Residuary AP State</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A1_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A2_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A3_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A4_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LK_Sri Lanka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SAS_SOUTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z1_Bhutan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z2_Nepal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z3_Maharashtra B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z4_Haryana B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z5_Uttar Pradesh B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z6_Pondicherry B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z7_Pondicherry C</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -70839,13 +69751,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Department__c</picklist>
-            <values>
-                <fullName>finance</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_DunnProcedure__c</picklist>
             <values>
                 <fullName>0001_three-level dunning notice SAGIT</fullName>
@@ -71171,21 +70076,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_Function__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -73528,113 +72418,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_PartnerFunctions__c</picklist>
-            <values>
-                <fullName>AD_Additionals</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>AL_Additionals</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CA_Contract address</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CP_Contact person</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ER_Employee respons%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GS_Goods supplier</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HR_Manufacturer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LA_Local Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OA_Ordering address</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OR_Only Representative</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PE_Con%2Epers%2Efresh prod%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PI_Invoicing Party</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>R1_REACH Contact %28Vend%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TF_Freight service agt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TU_LoadTrasServProvidr</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>VN_Vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z1_CHA Charges</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z3_Pre-shipt inspector</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z4_Pre-shipt Surveyor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z5_Certificate Charges</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z6_Import ctry facilita</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z7_Miscellaneous vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z8_Legal charges Vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z9_Palletisation Vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ZA_Doc charges vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ZB_Export Com%2EVendor</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_PaymentBlock__c</picklist>
             <values>
                 <fullName>Cash</fullName>
@@ -75915,13 +74698,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_PurchasingOrganisation__c</picklist>
-            <values>
-                <fullName>Purchasing Organisation</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_ReasonForExemption__c</picklist>
             <values>
                 <fullName>01_Outside the scheme</fullName>
@@ -76751,209 +75527,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>MUM_Bombay</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_Region__c</picklist>
-            <values>
-                <fullName>01_Andra Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>02_Arunachal Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>03_Assam</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>04_Bihar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>05_Goa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>06_Gujarat</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>07_Haryana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>08_Himachal Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>09_Jammu und Kashmir</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>10_Karnataka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>11_Kerala</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>12_Madhya Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>13_Maharashtra</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>14_Manipur</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>15_Megalaya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>16_Mizoram</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>17_Nagaland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>18_Orissa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>19_Punjab</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>20_Rajasthan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>21_Sikkim</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>22_Tamil Nadu</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>23_Tripura</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>24_Uttar Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>25_West Bengal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>26_Andaman und Nico%2EIn%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>27_Chandigarh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>28_Dadra und Nagar Hav%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>29_Daman und Diu</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>30_Delhi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>31_Lakshadweep</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>32_Pondicherry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>33_Chattisgarh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>34_Jharkand</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>35_Uttaranchal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>36_Telangana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>37_Residuary AP State</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A1_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A2_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A3_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A4_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LK_Sri Lanka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SAS_SOUTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z1_Bhutan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z2_Nepal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z3_Maharashtra B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z4_Haryana B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z5_Uttar Pradesh B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z6_Pondicherry B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z7_Pondicherry C</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -88055,13 +86628,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Department__c</picklist>
-            <values>
-                <fullName>finance</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_DunnProcedure__c</picklist>
             <values>
                 <fullName>0001_three-level dunning notice SAGIT</fullName>
@@ -88387,21 +86953,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_Function__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>3</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -90744,113 +89295,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_PartnerFunctions__c</picklist>
-            <values>
-                <fullName>AD_Additionals</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>AL_Additionals</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CA_Contract address</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CP_Contact person</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ER_Employee respons%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GS_Goods supplier</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HR_Manufacturer</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LA_Local Agent</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OA_Ordering address</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OR_Only Representative</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PE_Con%2Epers%2Efresh prod%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PI_Invoicing Party</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>R1_REACH Contact %28Vend%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TF_Freight service agt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TU_LoadTrasServProvidr</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>VN_Vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z1_CHA Charges</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z3_Pre-shipt inspector</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z4_Pre-shipt Surveyor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z5_Certificate Charges</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z6_Import ctry facilita</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z7_Miscellaneous vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z8_Legal charges Vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z9_Palletisation Vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ZA_Doc charges vendor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ZB_Export Com%2EVendor</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_PaymentBlock__c</picklist>
             <values>
                 <fullName>Cash</fullName>
@@ -93131,13 +91575,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_PurchasingOrganisation__c</picklist>
-            <values>
-                <fullName>Purchasing Organisation</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_ReasonForExemption__c</picklist>
             <values>
                 <fullName>01_Outside the scheme</fullName>
@@ -93967,209 +92404,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>MUM_Bombay</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_Region__c</picklist>
-            <values>
-                <fullName>01_Andra Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>02_Arunachal Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>03_Assam</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>04_Bihar</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>05_Goa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>06_Gujarat</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>07_Haryana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>08_Himachal Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>09_Jammu und Kashmir</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>10_Karnataka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>11_Kerala</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>12_Madhya Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>13_Maharashtra</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>14_Manipur</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>15_Megalaya</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>16_Mizoram</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>17_Nagaland</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>18_Orissa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>19_Punjab</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>20_Rajasthan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>21_Sikkim</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>22_Tamil Nadu</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>23_Tripura</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>24_Uttar Pradesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>25_West Bengal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>26_Andaman und Nico%2EIn%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>27_Chandigarh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>28_Dadra und Nagar Hav%2E</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>29_Daman und Diu</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>30_Delhi</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>31_Lakshadweep</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>32_Pondicherry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>33_Chattisgarh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>34_Jharkand</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>35_Uttaranchal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>36_Telangana</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>37_Residuary AP State</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A1_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A2_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A3_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>A4_</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LK_Sri Lanka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SAS_SOUTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z1_Bhutan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z2_Nepal</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z3_Maharashtra B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z4_Haryana B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z5_Uttar Pradesh B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z6_Pondicherry B</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Z7_Pondicherry C</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -100034,6 +98268,38 @@ ISPICKVAL(VPM_Status__c , &quot;Draft Request&quot;)
         <errorMessage>It is not possible to change the Country Requesting Vendor once the request hashas been created . To change the Country please create a new Vendor Request.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>VPM_GlobalAuthGroupECCMismatch</fullName>
+        <active>false</active>
+        <description>Fires if the Global Authorisation group not available in the ECC is selected</description>
+        <errorConditionFormula>OR(
+(
+OR(
+ISPICKVAL(VPM_ECC__c, &quot;Fusion&quot;),
+ISPICKVAL(VPM_ECC__c, &quot;Sirius&quot;),
+ISPICKVAL(VPM_ECC__c, &quot;Cordillera&quot;)
+)
+&amp;&amp;
+ISPICKVAL( VPM_GlobalAuthorisationGroup__c ,&quot;SCS-UNICA_VMBA UNICA&quot;)
+),
+(
+OR(
+ISPICKVAL(VPM_ECC__c, &quot;U2K2&quot;),
+ISPICKVAL(VPM_ECC__c, &quot;Sirius&quot;),
+ISPICKVAL(VPM_ECC__c, &quot;Cordillera&quot;)
+)
+&amp;&amp;
+ISPICKVAL( VPM_GlobalAuthorisationGroup__c ,&quot;MBS--Lakme Lever Ltd_VMBA Lakme Lever Ltd&quot;)
+)
+)</errorConditionFormula>
+        <errorMessage>Incorrect Global Authorisation group selected. Please select another.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>VPM_Incoterm</fullName>
+        <active>false</active>
+        <errorConditionFormula>IF(AND(NOT(ISPICKVAL(VPM_ECC__c , &quot;U2K2&quot;)),NOT(ISBLANK(TEXT(VPM_Incoterms1__c))), ISBLANK(VPM_Incoterms2__c)),NOT(ISBLANK(  VPM_Incoterms2__c )) , false)</errorConditionFormula>
+        <errorMessage>Please enter the value for Incoterms2</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>VPM_InternationalVersion_Required</fullName>
         <active>false</active>
         <description>If there is any data in fields 364-377, VPM_InternationalVersion__c must not be blank</description>
@@ -100048,6 +98314,15 @@ ISPICKVAL(VPM_Status__c , &quot;Draft Request&quot;)
         <errorConditionFormula>AND(ISPICKVAL( VPM_IsVendorException__c, &quot;Yes&quot;),isBlank(Text(VPM_ExceptionType__c)))</errorConditionFormula>
         <errorDisplayField>VPM_ExceptionType__c</errorDisplayField>
         <errorMessage>Please select Exception Type</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>VPM_NewRecordIsNotVendorRequestRT</fullName>
+        <active>false</active>
+        <description>Test</description>
+        <errorConditionFormula>ISNEW()
+&amp;&amp;
+ RecordType.Name &lt;&gt; &quot;Vendor Request&quot;</errorConditionFormula>
+        <errorMessage>Record type incorrect</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>VPM_SetPaymentTermsifNoneSelected</fullName>
@@ -100085,7 +98360,9 @@ ISBLANK(VPM_VendorPhone__c)
 &amp;&amp;
 IF(LEN(VPM_VendorPhone__c)==11 ,  NOT(REGEX(VPM_VendorPhone__c, &quot;0[1-9]{1}[0-9]{9}&quot;)) , 
  IF(BEGINS(VPM_VendorPhone__c, &quot;0&quot;), NOT(REGEX(VPM_VendorPhone__c, &quot;[0-9]{1}[1-9]{2}[0-9]{3}[0-9]{4}&quot;)), NOT(REGEX(VPM_VendorPhone__c, &quot;[1-9]{1}[0-9]{2}[0-9]{3}[0-9]{4}&quot;)))  
-)</errorConditionFormula>
+)
+&amp;&amp;
+ $User.FirstName &lt;&gt; &quot;Clicktools&quot;</errorConditionFormula>
         <errorMessage>Phone Number must not start with 00 or include an international dialling code, e.g. +22</errorMessage>
     </validationRules>
     <webLinks>
@@ -100183,6 +98460,33 @@ if((currentstatus.indexOf(&apos;BPM&apos;) != -1)&amp;&amp; currentstatus!=&quot
         <openType>sidebar</openType>
         <page>VPM_AdvancedForm_V1</page>
         <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>VPM_AdvancedFormForBR</fullName>
+        <availability>online</availability>
+        <description>Button to send the Advanced Business Requestor user to the Advanced form.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Advanced Form for BR</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;/soap/ajax/34.0/connection.js&apos;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+{
+var pur = new sforce.SObject(&quot;VPM_PurchasingRequests__c&quot;); 
+pur.id=&quot;{!VPM_PurchasingRequests__c.Id}&quot;; 
+var currentstatus=&quot;{!VPM_PurchasingRequests__c.VPM_Status__c}&quot;; 
+if ((currentstatus.indexOf(&apos;Rejected&apos;) &gt;= 0 ))
+{
+alert(&apos;You cannot complete the Advanced form because this request has been rejected&apos;);
+}
+else
+{
+var localhost = document.domain;
+window.top.location=&apos;https://&apos;+localhost+&apos;/apex/VPM_AdvancedForm?id={!VPM_PurchasingRequests__c.Id}&apos;;
+}
+	
+}</url>
     </webLinks>
     <webLinks>
         <fullName>VPM_BusinessReqSubmit</fullName>
@@ -100291,6 +98595,17 @@ var res = sforce.connection.describeSObjects([&apos;VPM_PurchasingRequests__c&ap
 }</url>
     </webLinks>
     <webLinks>
+        <fullName>VPM_CustomCloneButton</fullName>
+        <availability>online</availability>
+        <description>Research POC</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Custom Clone Button</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.location= &apos;/{!VPM_PurchasingRequests__c.Id}/e?clone=1&apos;;</url>
+    </webLinks>
+    <webLinks>
         <fullName>VPM_HelpUpload</fullName>
         <availability>online</availability>
         <description>Help for Uploading Documents</description>
@@ -100358,7 +98673,26 @@ if(result.getArray(&quot;records&quot;).length &lt;=0)
         <openType>replace</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>/a0X/e?retURL=%2Fa0X%2Fo&amp;RecordType={!VPM_PurchasingRequests__c.RecordTypeId}&amp;ent=VPM_PurchasingRequests</url>
+        <url>/{!$Setup.VPM_OrgSettings__c.VPMRequestPrefix__c}/e?retURL=%2F{!$Setup.VPM_OrgSettings__c.VPMRequestPrefix__c}%2Fo&amp;RecordType=&amp;ent=VPM_PurchasingRequests</url>
+    </webLinks>
+    <webLinks>
+        <fullName>VPM_ProurementAtAGlance</fullName>
+        <availability>online</availability>
+        <description>View Procurement at a glance fields in Detail</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Prourement at a Glance</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/34.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+
+{ 
+var pur = new sforce.SObject(&quot;VPM_PurchasingRequests__c&quot;); 
+pur.id=&quot;{!VPM_PurchasingRequests__c.Id}&quot;; 
+var localhost = document.domain; 
+window.top.location=&apos;https://&apos;+localhost+&apos;/apex/VPM_UserSpecificFields?id={!VPM_PurchasingRequests__c.Id}&apos;;
+}</url>
     </webLinks>
     <webLinks>
         <fullName>VPM_Rework</fullName>

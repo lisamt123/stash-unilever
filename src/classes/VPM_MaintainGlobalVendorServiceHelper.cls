@@ -1,5 +1,26 @@
+/*********************************************************************************************************
+Name:  VPM_MaintainGlobalVendorServiceHelper 
+Copyright ? 2016  Unilever
+==========================================================================================================
+==========================================================================================================
+Purpose:  This class has been used to do apex callout for 'maintain' & 'extend' web service and get the
+their JSON response parsed. 
+
+==========================================================================================================
+==========================================================================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR       DATE             DETAIL                  Description
+1.0 -    Ajay       07-09-2016         maintainECCVendor         This method is used to do 'Regional maintain/extend' callout
+2.0 -    Deepak     10-10-2016         maintainGlobalVendor      This method is used to do 'Global maintain/extend' callout                        
+**********************************************************************************************************/
 global with sharing class VPM_MaintainGlobalVendorServiceHelper {
     
+    /*
+       
+       This is wrapper class used to fetch response from Mule.
+    
+    */
     global class errorMsgWrapper
     {
         public String Message {get;set;}
@@ -31,6 +52,14 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         public String statusCode {set; get;}
         
     }
+    
+    /*
+                       This Method is get called when we click on Send to SAP button for 'Global Maintain/Extend' scenario.
+        Author      :  Deepak Moudekar
+        Parameter   :  VPM_PurchasingRequests__c object Id.
+        Description :  It's perform the apex callout 'PUT' method to send JSON payload to Mule.In response it fetch JSON response & deserialize it.
+     
+    */
     global static String maintainGlobalVendor(String vendorId) {
         //try
         {
@@ -113,67 +142,13 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         }*/
     }
     
-    //Deepak : for global extend
-  /*  global static String extendGlobalVendor(String vendorId) {
-        try{
-          String reqBodyJson, requestStatus,responseString ;
-          MaintainGlobalVendorResponse maintainVenResp;
-          VPM_ExtendVendorFetchFieldDetails clas = new VPM_ExtendVendorFetchFieldDetails();
-          reqBodyJson = clas.VPM_ConvertExtendVendorFieldDetailsToMap(vendorId);
-          
-          HttpResponse res = VPM_HttpUtil.sendRequest('PUT',reqBodyJson,'VPM_MaintainExtendGlobalVendorBPM');
-        System.debug('-----whloe response string-----'+ res.toString());
-        System.debug('------HTTP response status and status code are ------'+res.getStatus() + '  ' + res.getStatusCode());
-       
-
-       VPM_PurchasingRequests__c VendorReq = [SELECT VPM_Fieldtype__c  FROM VPM_PurchasingRequests__c WHERE id =: vendorId];
-       maintainVenResp = (MaintainGlobalVendorResponse) System.JSON.deserialize(res.getBody(), MaintainGlobalVendorResponse.class);
-       // 
-       
-        //System.debug('---bpm id -- and response status---' + maintainVenResp.bpmID + '  ' + maintainVenResp.status);
-        string msg='';
-        if(maintainVenResp.status != null) {
-            msg = maintainVenResp.status;
-        }
-        system.debug('%%%% '+maintainVenResp);
-        if(res.getStatusCode() == 200) {
-         responseString = 'Vendor Request submitted successfully to SAP.';
-            if(VendorReq.VPM_Fieldtype__c != 'Both')
-            VPM_HttpUtil.updateVendorStatus(vendorId,VPM_HttpUtil.successStatus,msg,VPM_HttpUtil.successStatusMDM);
-            else
-           responseString =responseString + VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorId);
-           
-        } else if(res.getStatusCode() == 500) {
-             if(VendorReq.VPM_Fieldtype__c != 'Both')
-            VPM_HttpUtil.updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            responseString = 'Server Error. Please try after some time.';
-        } else if(res.getStatusCode() == 504) {
-             if(VendorReq.VPM_Fieldtype__c != 'Both')
-            VPM_HttpUtil.updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            responseString = 'Timeout Error. Please try after some time.';
-        } else if(res.getStatusCode() == 400) {
-             if(VendorReq.VPM_Fieldtype__c != 'Both')
-            VPM_HttpUtil.updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            responseString = 'Please check request data and try again.';
-        } else if(res.getStatusCode() == 503) {
-             if(VendorReq.VPM_Fieldtype__c != 'Both')
-            VPM_HttpUtil.updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            responseString = 'SAP API not implemented.';
-        } else {
-             if(VendorReq.VPM_Fieldtype__c != 'Both')
-            VPM_HttpUtil.updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            responseString = 'Some error occured while submitting request to SAP. Please try after some time.';
-        }
-        return responseString;
-          
-        }
-        catch(exception ex){
-            return '';
-        }
-        
-    }*/
-    
-    // Ajay : For Regional maintain
+     /*
+                       This Method is get called when we click on Send to SAP button for 'Regional Maintain/Extend' scenario.
+        Author      :  Ajay Rawat               
+        Parameter   :  VPM_PurchasingRequests__c object Id.
+        Description :  It's perform the apex callout 'PUT' method to send JSON payload to Mule.In response it fetch JSON response & deserialize it.
+     
+    */
     global static String maintainECCVendor(String vendorId) 
     {
         String reqBodyJson,responseString ='' ;
@@ -221,8 +196,8 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             /*responseString = 'Vendor Request submitted successfully to SAP.';*/
             //errorList= (List<errorMsgWrapper>) System.JSON.deserialize(res.getBody(), List<errorMsgWrapper>.class);
              system.debug('JSON List '+res.getBody());
-            string JSON =res.getBody().right( res.getBody().length()-20).left(res.getBody().right( res.getBody().length()-20).length()-1);
-            system.debug('JSON List '+JSON);
+            //string JSON =res.getBody().right( res.getBody().length()-20).left(res.getBody().right( res.getBody().length()-20).length()-1);
+            //system.debug('JSON List '+JSON);
            
             //errorList= (List<errorMsgWrapper>) System.JSON.deserialize(JSON , List<errorMsgWrapper>.class);
             
@@ -248,9 +223,9 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             //String JsonAgain = string.escapeSingleQuotes(res.getBody());
             errorList111 = (errorMsg) System.JSON.deserialize(res.getBody(), errorMsg.class);
             system.debug('Error List 11= '+errorList111.SAP_Messages);
-            string JSON =string.escapeSingleQuotes(res.getBody().right( res.getBody().length()-20).left(res.getBody().right( res.getBody().length()-20).length()-1));
+           // string JSON =string.escapeSingleQuotes(res.getBody().right( res.getBody().length()-20).left(res.getBody().right( res.getBody().length()-20).length()-1));
             
-           system.debug('Error List '+JSON);
+          // system.debug('Error List '+JSON);
            // VPM_HttpUtil.updateVendorECCStatus(vendorId,VPM_HttpUtil.ECCfailStatus,'Test Mesa',VPM_HttpUtil.failStatusECC);
           
            // errorList= (List<errorMsgWrapper>) System.JSON.deserialize(JSON , List<errorMsgWrapper>.class);
@@ -262,6 +237,10 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
             {
                 responseString = responseString+error.Message+';';
                 }
+           }
+           else
+           {
+             responseString = maintainVenResp.message;
            }
             VPM_HttpUtil.updateVendorECCStatus(vendorId,VPM_HttpUtil.ECCfailStatus,responseString,VPM_HttpUtil.failStatusECC);
         } 

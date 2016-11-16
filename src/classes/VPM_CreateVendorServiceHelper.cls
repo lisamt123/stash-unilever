@@ -1,4 +1,25 @@
+/*********************************************************************************************************
+Name:  VPM_CreateVendorServiceHelper 
+Copyright ? 2016  Unilever
+==========================================================================================================
+==========================================================================================================
+Purpose:  This class has been used to do apex callout for 'create' web service and get the
+their JSON response parsed. 
+
+==========================================================================================================
+==========================================================================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR       DATE             DETAIL                  Description
+1.0 -    Ajay       07-10-2016         createVendor method    Added the logic for 'POST' web service callout
+2.0 -    Deepak     12-10-2016         createVendor method    Added the code to handle different error messages.                   
+**********************************************************************************************************/
+
 global class VPM_CreateVendorServiceHelper {
+
+    /*
+        Wrapper class for fetch mule response.
+    */
     global class CreateVendorResponse {
         public String Status {get; set;}
         public String message {get; set;}
@@ -9,6 +30,13 @@ global class VPM_CreateVendorServiceHelper {
         public String message {get; set;}
         public String details {get; set;}
     }
+    
+    /*
+      Author      : Ajay & Deepak
+      Parameter   : VPM_PurchasingRequests__c object Id.
+      Description : This method is used to make 'POST' callout to perform create request in SAP.
+    
+    */
     global static String createVendor(String vendorId) {
         System.debug('----------input vendor Id----------' + vendorId);
         String reqBodyJson ='', responseString='',msg='';

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>VPM- Stores the MDM Countries</description>
+    <fields>
+        <fullName>Country_Code__c</fullName>
+        <description>VPM- Stores the Country Code for the Country</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Country Code</label>
+        <length>15</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Country_Name__c</fullName>
+        <description>VPM-  Stores the Country Name</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Country Name</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Country_Name_with_Code__c</fullName>
+        <description>VPM-  Stores the Country Name with Code.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Country Name with Code</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>MDM Country</label>
+    <pluralLabel>MDM Country</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -232,6 +232,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_PaymentMethod4__c</fullName>
+        <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Payment Method 4</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_PaymentMethod5__c</fullName>
         <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
         <externalId>false</externalId>
@@ -241,123 +252,6 @@
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_PaymentMethod__c</fullName>
-        <description>VPM- Records the default value of &apos;Payment Method&apos; to be applied based on the definition attributes</description>
-        <externalId>false</externalId>
-        <fieldManageability>SubscriberControlled</fieldManageability>
-        <label>DELPayment Method</label>
-        <picklist>
-            <picklistValues>
-                <fullName>0_NEFT-National Electr Fund Tran</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>1_TRFR-Fund Tran Fr HSBC To HSBC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2_RTGS-Real TimeGross Settlement</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>3_ACC - HSBC At Par Cheque</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>4_CCC - UTI At Par Cheque</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>5_IDD -DD Issu by HSBC On Oth Bk</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>6_DDP - Demand Draft</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>7_RMP - Remote DD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>8_ICO - Inter company order</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>B_E-Payment-Interbank Tr-ICICI</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>C_E-Payment - Cheques</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>D_E-Payment - Demand draft</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>H_Foreign Currency</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>I_E-Payment-Interbank Tr - HDFC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>J_NEFT-S</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>K_TRFR-S</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>L_RTGS-S</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>M_Cheque payments</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>N_Demand draft Payments</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>T_Bank Transfer payments</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>U_NEFT-T National Electr Fund Tr</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>V_TRFR-T Fund Tr Fr HSBC To HSBC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>W_RTGS-T Real Time Gr Settlement</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>X_eTAX- Payment Method for DB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>E</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Payment Method 1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_ReconciliationAccount__c</fullName>
