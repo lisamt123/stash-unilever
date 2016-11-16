@@ -1,5 +1,7 @@
 src
 src/classes
+src/classes/BET_Team_MemberHandler.cls
+src/classes/BET_Team_MemberHandler.cls-meta.xml
 src/classes/IPM_ApproverList.cls
 src/classes/IPM_ApproverList.cls-meta.xml
 src/classes/IPM_AssesmentHandler_Helper_Test.cls
