@@ -431,6 +431,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         analyticObj.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
         analyticObj.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
         analyticObj.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;
+      	analyticObj.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
+         if(pr.Target_LaunchYear__c != null){
+             analyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;
+         }
        analyticObj = setrolloutdetailsGKM3(pr,analyticObj,parent);     
        if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
        		analyticObj.IPM_Project_Span__c =IPM_Utils.Regional;
@@ -659,7 +663,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		nonKeyAnalytic.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;//need to set the global project value
 		nonKeyAnalytic.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;//need to set the global project value
 		nonKeyAnalytic.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;//need to set the global project value
-    	
+    	//CR0550
+    	nonKeyAnalytic.IPM_Target_Launch_Month_BD__c = parent.IPM_Target_Launch_Month_BD__c;
+        nonKeyAnalytic.IPM_Target_Launch_Year_BD__c = parent.IPM_Target_Launch_Year_BD__c;
     	if(nonKeyFinancial.Gate_Keeping_Model__c==IPM_Utils.GATE_KEEPING_MODEL_3){
     		nonKeyAnalytic.IPM_Parent_Project_Name__c = nonKeyFinancial.Global_External_Id__c;//need to set the global project name
 			nonKeyAnalytic.IPM_Company__c = nonKeyFinancial.IPM_Parent_Company_Card__c;//need to set the global project value
@@ -1376,10 +1382,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         	 analyticObj.IPM_Expected_Market_Ready_Approval_Date__c = parent.IPM_Expected_Market_Ready_Approval_Date__c;
              analyticObj.IPM_Expected_Market_Deployment_App_Date__c = parent.IPM_Expected_Market_Deployment_App_Date__c;
                   
-             analyticObj.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
-        	 if(pr.Target_LaunchYear__c != null){
-             analyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;
-        	 }
         	 
         	 analyticObj.IPM_Business_Impact_BD__c=parent.IPM_Business_Impact_BD__c;
         	 analyticObj.IPM_BET_First_Release_Due_Date__c = parent.IPM_BET_First_Release_Due_Date__c;

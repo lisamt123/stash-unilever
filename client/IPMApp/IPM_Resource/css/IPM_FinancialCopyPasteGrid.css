@@ -27,3 +27,8 @@ button.ipmButton.green{height:34px ;}
 .gridInfo label{color: #007DBB ;}
 .navbar .navbar-nav>li a{font-size:14px;}
 .btn.ipmButton.green,.btnDisabled.ipmButton.green{height:32px;font-size:16px;}
+.tit_head{margin-bottom: 15px;border-bottom: 1px solid #ccc;}
+.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td.TDwidth2 {border-top:0px;}
+.table>tbody>tr>td.TDwidth1{border-top: 0px;}
+.bodyDiv.brdPalette.brandPrimaryBrd table{margin-bottom:0px;}
+.ipmTable.table{ border-top:0px;}
