@@ -1,9 +1,10 @@
-<apex:component controller="WWP_Losstree_Copy_Component_Ctrl" access="global">
-<apex:attribute name="selectType" type="String" description="Selected LossType" assignTo="{!getSelectedType}"/>
-<div align="center">
+<apex:component controller="WWP_Losstree_Copy_Component_Ctrl"  access="global" >
+<apex:attribute name="selectType" type="String" description="Selected LossType" assignTo="{!getSelectedType}" id="att"/>
+
+<div align="center" id="di">
     <apex:outputpanel id="pan1">
     Enable Mass Update?
-        <apex:inputcheckbox value="{!showMassFeature}">
+        <apex:inputcheckbox value="{!showMassFeature}"  id="check">
             <apex:actionSupport event="onchange" action="{!showPanelmassUpdate}" reRender="resetor,panmass,pan1,ds"/>
             </apex:inputcheckbox>
             <apex:outputpanel rendered="{!showfeature}" id="panmass">
@@ -24,18 +25,33 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><apex:selectList value="{!selectedbox1}" size="1" style="height:30px,width:30px" id="v1" onchange="changes1(this);"><apex:selectOptions value="{!selectbox1all}"/></apex:selectList></td>
-                            <td><apex:selectList value="{!selectedbox2}" size="1" style="height:30px,width:30px" id="v2" onchange="changes2(this);"><apex:selectOptions value="{!selectbox2all}"/></apex:selectList></td>
-                            <td><apex:selectList value="{!selectedbox3}" size="1" style="height:30px,width:30px" id="v3" onchange="changes3(this);"><apex:selectOptions value="{!selectbox3all}"/></apex:selectList></td>
+                            <td><apex:selectList value="{!selectedbox1}" size="1" style="height:30px,width:30px" id="v1" onchange="changes1(this);return false;"><apex:selectOptions value="{!selectbox1all}"/>
+                            </apex:selectList></td>
+                            <td><apex:selectList value="{!selectedbox2}" size="1" style="height:30px,width:30px" id="v2" onchange="changes2(this);return false;"><apex:selectOptions value="{!selectbox2all}"/>
+                            </apex:selectList></td>
+                            <td><apex:selectList value="{!selectedbox3}" size="1" style="height:30px,width:30px" id="v3" onchange="changes3(this);return false;"><apex:selectOptions value="{!selectbox3all}"/>
+                            </apex:selectList></td>
                             
-                            <td><apex:commandButton value="Reset" action="{!resetd}" style="height:25px" image="{!$Resource.WWP_ResetImage}" rerender="resetor,resetm,panmass,ds,pan1,v1,v2,v3,tb"/></td>
+                            <td><apex:commandButton value="Reset" action="{!resetd}" style="height:25px" image="{!$Resource.WWP_ResetImage}" reRender="pan1"/></td>
                             </tr>
                      </tbody>   
                 </table>
-                <apex:commandbutton value="Copy above values to selected losslevels" styleclass="buttonstyle" onclick="callFunCop();return false" rerender="frm1,resetor,resetm,ds,pan1,v1,v2,v3,tb"  id="btns"/> 
+                <apex:commandbutton value="Copy above values to selected losslevels" styleclass="buttonstyle" onclick="callFunCop();return false" rerender="frm1,resetor,resetm,ds,pan1,v1,v2,v3,tb" status="status"  id="btns"> 
+            <apex:actionStatus id="status">
+            <apex:facet name="start">
+            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.75; z-index: 1000; background-color: black;">
+                &nbsp;
+            </div>
+            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 30% 50%">
+                <img src="/img/loading.gif" alt="In progress..."/>
+            </div>
+            </apex:facet>
+        </apex:actionStatus>
+        </apex:commandbutton>
            </apex:outputpanel>
     </apex:outputpanel>
-    <apex:actionFunction action="{!controls11}" rerender="v1,v2,v3,panmass,pan1" name="AFchanges1">          
+    
+    <apex:actionFunction action="{!controls11}"  rerender="v1,v2,v3,panmass,pan1" name="AFchanges1">          
            <apex:param name="firstParams1" value="" />           
            </apex:actionFunction>
            
@@ -43,32 +59,27 @@
            <apex:param name="firstParams2" value="" />          
            </apex:actionFunction>
            
-           <apex:actionFunction action="{!controls33}" rerender="v1,v2,v3,panmass,pan1" name="AFchanges3">          
+           <apex:actionFunction action="{!controls33}"  rerender="v1,v2,v3,panmass,pan1" name="AFchanges3">          
            <apex:param name="firstParams3" value="" />           
            </apex:actionFunction>
 </div>
 <script>
 function changes1(lossname){
-    
+    //alert(lossname.value);
    AFchanges1(lossname.value);
    
 }
 function changes2(lossname){
-    
-   AFchanges2(lossname.value);
+    //alert(lossname.value);
+  AFchanges2(lossname.value);
    
 }
 </script>
 <script>
 function changes3(lossname){
-    
+   //alert(lossname.value); 
    AFchanges3(lossname.value);
    
 }
-//==========================
-
-//=============================
 </script>
-
- 
 </apex:component>

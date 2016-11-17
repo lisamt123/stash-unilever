@@ -65,7 +65,7 @@ public class WWP_Losstree_Copy_Component_Ctrl_test{
     WWP_Losstree_Copy_Component_Ctrl ectrl = new WWP_Losstree_Copy_Component_Ctrl();
     
     ectrl.getSelectedType ='Output Reliability';
-    ectrl.fetchLossTree();
+    ectrl.fetchLossTree1();
     ectrl.resetd();
     
     Apexpages.currentPage().getParameters().put('firstParams3',O);

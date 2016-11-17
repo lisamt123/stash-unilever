@@ -12,23 +12,30 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
     String valueNull = '';
     public boolean dispalyAll{get; set;}
     public List<WWP_Loss_Tree__c> listLossTree{get; set;}
-    public List<LossTreeWrapper> listLossTreeW{get; set;}
+    //public List<LossTreeWrapper> listLossTreeW{get; set;}
     Map<string, set<string>> mapbox12 ;
     Map<string, set<string>> mapbox13 ;
     Map<string, set<string>> mapbox21 ;
     Map<string, set<string>> mapbox23 ;
     Map<string, set<string>> mapbox31 ;
     Map<string, set<string>> mapbox32 ;
-    Map<string, set<string>> mapcombine12 = new Map<string, set<string>>();
-    List<SelectOption> listbox1all = new List<SelectOption>();
-    List<SelectOption> listbox2all = new List<SelectOption>();
-    List<SelectOption> listbox3all = new List<SelectOption>();
+    Map<string, set<string>> mapcombine12 ;
     
+        List<SelectOption> listbox1all ;
+    List<SelectOption> listbox2all;
+    List<SelectOption> listbox3all;
+
     public string getSelectedType{get;set;}
     public string resetd{get;set;}
     
-    
-    public WWP_Losstree_Copy_Component_Ctrl(){
+   public WWP_Losstree_Copy_Component_Ctrl(){
+       system.debug('called constructor');
+       system.debug('called resetor');
+       showMassFeature = false;
+       showfeature = false;
+       listbox1all = new List<SelectOption>();
+       listbox2all = new List<SelectOption>();
+       listbox3all = new List<SelectOption>();
           mapbox12 = new Map<string, set<string>>();
           mapbox13 = new Map<string, set<string>>();
           mapbox21 = new Map<string, set<string>>();
@@ -39,20 +46,32 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
           selectbox1all = new List<selectOption>();
           selectbox2all = new List<selectOption>();
           selectbox3all = new List<selectOption>();
-          //getSelectedType ='Output Reliability'; 
-          
           //fetchLossTree();
-         // getSelectedType = 'Output Reliability';
-          //losstree1 = [select Loss_Type__c from WWP_Loss_Tree__c where Loss_Type__c = 'MRP Compliance' LIMIT 1];
-          
-    }
-    public void fetchLossTree(){
+          showfeature = false;
+          }
+          public void showPanelmassUpdate(){
+    if(showMassFeature){
+           
+            showfeature = true;
+        }
+        
+        fetchLossTree1(); 
+     }
+    public void fetchLossTree1(){
+    system.debug('entering hereeeeeeee');
        selectbox1all.clear();
        selectbox2all.clear();
        selectbox3all.clear();
        listbox1all.clear();
        listbox2all.clear();
        listbox3all.clear();
+       mapbox12.clear();
+       mapbox13.clear();
+       mapbox21.clear();
+       mapbox23.clear();
+       mapbox31.clear();
+       mapbox32.clear();
+       mapcombine12.clear();
        List<WWP_LossTree__c> listCodes = WWP_LossTree__c.getAll().values();
        system.debug('fdfdfd'+getSelectedType);
        set<string> setbox1all = new set<string>();
@@ -129,24 +148,10 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
                 system.debug('Mapbox31@@@'+Mapbox31);  
                }
             }          
-        
-        system.debug('setbox3all-->'+setbox3all);    
+         system.debug('setbox3all-->'+setbox3all);    
         fetchLossTreeExt(setbox1all,setbox2all,setbox3all);
-        
     }
-    
-    public void showPanelmassUpdate(){
-    
-        if(showMassFeature){        
-            showfeature = true;
-        }
-        else{
-            showfeature = false;
-        }
-        
-        fetchLossTree();  
-    }
-    
+   
     public void fetchLossTreeExt(set<string> setbox1all, set<string> setbox2all, set<string> setbox3all){
         listbox1all.add(new SelectOption(valueNone,valueNone));
         listbox2all.add(new SelectOption(valueNone,valueNone));
@@ -159,25 +164,25 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
                 for(string s2:setbox2all){
                 listbox2all.add(new SelectOption(s2,s2));
                 }
-                //if(getSelectedType !='MRP Compliance'){
+                if(getSelectedType !='MRP Compliance'){
                 for(string s3:setbox3all){
                 listbox3all.add(new SelectOption(s3,s3));
                 }
-                //}
+                }
                 selectbox1all.addAll(listbox1all);
                 selectbox2all.addAll(listbox2all);
                 selectbox3all.addAll(listbox3all);
                 
                 integer y=-1;
-         if(listLossTree!=null && !listLossTree.isEmpty()){
+        /* if(listLossTree!=null && !listLossTree.isEmpty()){
              for(WWP_Loss_Tree__c lt: listLossTree){             
                 LossTreeWrapper ltW = new LossTreeWrapper(lt,listbox1all,listbox2all,listbox3all,y);  
                 listLossTreeW.add(ltW); 
                 y=ltw.i;
             } 
-         } 
+         } */
     }
-    public class LossTreeWrapper {
+  /*  public class LossTreeWrapper {
     public list<WWP_Loss_Tree__c> redcolor {get; set;}
         public boolean isdisabled { get; set; }        
         public boolean checkbox1{get; set;}
@@ -190,16 +195,16 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
         public List<SelectOption> listbox2{get; set;}
         public List<SelectOption> listbox3{get; set;}
         public integer i{get; set;}
-        
         public LossTreeWrapper(WWP_Loss_Tree__c lt,List<SelectOption> listbox1all,List<SelectOption> listbox2all,List<SelectOption> listbox3all,integer y){           
            listbox1 = listbox1all; 
            listbox2 = listbox2all;
            listbox3 = listbox3all;           
         }
-    }
-        
+    }*/
     public void controls11(){
-    fetchLossTree();
+    system.debug('entered here.,.,.,.,.,');
+    fetchLossTree1();
+    system.debug('getSelectedType-->'+getSelectedType);
         string lossname = Apexpages.currentPage().getParameters().get('firstParams1');
         system.debug('lossname');
         List<SelectOption> listbox12select = new List<SelectOption>();
@@ -211,7 +216,6 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
         listbox11select.add(new SelectOption(lossname,lossname));
         selectbox1all=listbox11select;
         listbox12select.add(new SelectOption(valueNone,valueNone));            
-            
             listbox13select.add(new SelectOption(valueNone,valueNone));
             if(selectedbox2==valueNone){
                 for(string s2:Mapbox12.get(lossname)){
@@ -224,6 +228,7 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
                     
                 }
                 selectbox3all=listbox13select;
+                system.debug('selectbox3all---->'+selectbox3all);
             }
             else{
                 if(selectedbox2!=valueNone && selectbox2all.size()==1){
@@ -249,13 +254,13 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
     }    
     
     public void controls22(){
-    fetchLossTree();
+    system.debug('entered here2.,.,.,.,.,');
+    fetchLossTree1();
         string losssubfamily = Apexpages.currentPage().getParameters().get('firstParams2');
         List<SelectOption> listbox21select = new List<SelectOption>();
         List<SelectOption> listbox23select = new List<SelectOption>();
         List<SelectOption> listbox22select = new List<SelectOption>();
         showfeature = true;
-        
         if(losssubfamily!=null && losssubfamily!=valueNone){
             if(selectbox1all.size()>1){
                 listbox21select.add(new SelectOption(valueNone,valueNone));
@@ -269,7 +274,6 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
                     listbox23select.add(new SelectOption(s3,s3));
                 }
                 selectbox3all=listbox23select;                
-                
             }
             if(selectbox1all.size()==1 && selectedbox1!=valueNone){
                 listbox23select.add(new SelectOption(valueNone,valueNone));
@@ -286,7 +290,8 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
     }   
     
     public void controls33(){
-        fetchLossTree(); 
+    system.debug('entered here3.,.,.,.,.,');
+        fetchLossTree1(); 
         system.debug('Mapbox31--->'+Mapbox31);
         string lossdesc = Apexpages.currentPage().getParameters().get('firstParams3');
         List<SelectOption> listbox31select = new List<SelectOption>();
@@ -299,13 +304,11 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
         
         if(lossdesc!=null && lossdesc!=valueNone){
             system.debug('Mapbox31-->'+Mapbox31.get(lossdesc));           
-            if(Mapbox31.get(lossdesc)!=null){
             for(string s1:Mapbox31.get(lossdesc)){
             system.debug('mmmmmmmmmmmm'+s1);
                 listbox31select.add(new SelectOption(s1,s1));
                 selectedbox1=s1;
             }
-            }          
             selectbox1all=listbox31select;                     
             for(string s2:Mapbox32.get(lossdesc)){
                 listbox32select.add(new SelectOption(s2,s2));
@@ -317,22 +320,32 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
         }
         
     }
-    
-    
-     public void resetd(){
-        
-       system.debug('sssssssssssssss');
+   public void resetd(){
+   
+       /*selectbox1all.clear();
+       selectbox2all.clear();
+       selectbox3all.clear();
+
        selectbox1all=listbox1all;
-        
-        selectbox2all=listbox2all;
-        selectbox3all=listbox3all;
-        
+       selectbox2all=listbox2all;
+       selectbox3all=listbox3all;
         selectedbox1=valueNone;
+        selectedbox2=valueNone;
+        selectedbox3=valueNone;*/
+        
+        fetchLossTree1();
         selectedbox1=valueNone;
-        selectedbox1=valueNone;
-        
-        
-        
-    }
+        selectedbox2=valueNone;
+        selectedbox3=valueNone;
+        system.debug('ggg');
+     /*PageReference pageRef = new PageReference(ApexPages.currentPage().getUrl());
+       pageRef.setRedirect(false);
+       showMassFeature = false;
+       //fetchLossTree();
+       return pageRef;*/
+       
+       //return null;
+      
+       }
     
 }
