@@ -2,3 +2,6 @@ src
 src/classes
 src/classes/cec_EmailMessageHelper.cls
 src/classes/cec_EmailMessageHelper.cls-meta.xml
+src/classes/CEC_ExceptionHandling.cls
+src/classes/CEC_ExceptionHandling.cls-meta.xml
+
