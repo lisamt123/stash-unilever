@@ -4098,6 +4098,38 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Benelux_On_hold</fullName>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.LAST_UPDATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>On Hold</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>notEqual</operation>
+            <value>svan,n van,nnira,mstee</value>
+        </filters>
+        <label>CEC Benelux On hold</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_Benelux</role>
+            <role>CEC_User_Benelux</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Benelux_Recall</fullName>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
@@ -8032,6 +8064,35 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Vietnam_Legacy_Data</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>OWNER_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Legacy_Reference__c</field>
+            <operation>contains</operation>
+            <value>VNC</value>
+        </filters>
+        <filters>
+            <field>Country__c</field>
+            <operation>equals</operation>
+            <value>Vietnam</value>
+        </filters>
+        <label>CEC Vietnam Legacy Data</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Vietnam</role>
+            <role>CEC_User_Vietnam</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Vietnam_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <filters>
@@ -8065,7 +8126,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>In Progress,New,Pending with Courier</value>
+            <value>New,In Progress,Reopened</value>
         </filters>
         <filters>
             <field>CASES.ORIGIN</field>
@@ -8095,12 +8156,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>,In Progress,New</value>
+            <value>New,In Progress,Reopened</value>
         </filters>
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Email,Email Brazil,Web</value>
+            <value>Email,Email Brazil,Web,Chat</value>
         </filters>
         <label>CEC Brazil Casos BackOffice EMAIL</label>
         <language>pt_BR</language>
