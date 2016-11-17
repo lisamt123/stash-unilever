@@ -48,7 +48,8 @@ Purpose: To display case market mapping on the basis of user input.
         } else {
             String searchparam = '%' + marketMapping.removeEnd('*') + '%';
             System.debug('*******searchparam**********' + searchparam );
-            caseMarketMappings  = [SELECT Id, Name, Market__c, Language__c, Country__r.ISO_3166_1_Code__c, DefaultCaseOwnerId__c, Country__r.Name FROM CEC_Case_Market_Mapping__c
+            caseMarketMappings  = [SELECT Id, Account_Owner_Active_Flag__c,Name, Market__c, Language__c, Country__r.ISO_3166_1_Code__c, Country__r.Name,DefaultCaseOwnerId__c,DefaultAccountOwnerId__c 
+                                   FROM CEC_Case_Market_Mapping__c
                                    WHERE Market__c != :transCase.Case_Market__c AND (Name Like :searchparam OR Market__c Like :searchparam)    limit 10000];
             System.debug('*******caseMarketMappings **********' + caseMarketMappings  );
             if (caseMarketMappings.isEmpty()) {
@@ -68,14 +69,16 @@ Purpose: To transfer case to the advisor selected market.
 ********************************************************************/
     
     public void transferCase() {
+         Account acct = new Account();
         isTransferSuccess = false;
         if (String.isBlank(caseMktMapIdStr)) {                        
             ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.Info, Label.CEC_SelectMktMappingMsg);
             ApexPages.addMessage(myMsg);
         } else {
             Id caseMktMapId = (Id)caseMktMapIdStr;
-            case oldCase = [SELECT  Id, Country__c, Country__r.name, owner.Name, Store__c, Store__r.name, 
-                                    CEC_Product__r.Name, Account.Name, Reason_Code__c, Reason_Code__r.Name
+            case oldCase = [SELECT  Id, AccountId,Country__c, Country__r.name, owner.Name, Store__c, Store__r.name, 
+                                    CEC_Product__r.Name,
+                                    Reason_Code__c, Reason_Code__r.Name
                                     FROM Case 
                                     WHERE Id = : transCase.Id];
             
@@ -88,11 +91,18 @@ Purpose: To transfer case to the advisor selected market.
             transCase.ownerId = mktMapSelected.DefaultCaseOwnerId__c;
             transCase.Store__c = null;
             transCase.CEC_Product__c = null;
-            transCase.AccountId = null;
-            transCase.ContactId = null;
+            //transCase.AccountId = null;
+            //transCase.ContactId = null;
             transCase.Reason_Code__c = null;
             
+            if(oldCase.AccountId != null && mktMapSelected.Account_Owner_Active_Flag__c)
+                acct = new Account(Id=oldCase.AccountId, ownerId =mktMapSelected.DefaultAccountOwnerId__c);
+            
             try {
+                
+                if(acct.Id != null)
+                    update acct;
+                
                 update transCase;
                 currentCaseOwner = [SELECT Id, Name FROM Group WHERE Id = : mktMapSelected.DefaultCaseOwnerId__c];
                 
@@ -102,8 +112,8 @@ Purpose: To transfer case to the advisor selected market.
                 if (oldCase.Store__r.name != null)
                     commentBody  += 'Removed Store : ' + oldCase.Store__r.name + lineBreak;
     
-                if (oldCase.Account.Name != null)
-                    commentBody  += 'Removed Contact Name : ' + oldCase.Account.Name + lineBreak ;
+                /*if (oldCase.Account.Name != null)
+                    commentBody  += 'Removed Contact Name : ' + oldCase.Account.Name + lineBreak ; */
                 
                 if (oldCase.CEC_Product__r.Name != null)
                     commentBody  += 'Removed Product : ' + oldCase.CEC_Product__r.Name + lineBreak ;

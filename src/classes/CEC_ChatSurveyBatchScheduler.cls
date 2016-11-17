@@ -42,9 +42,10 @@ global with sharing class CEC_ChatSurveyBatchScheduler implements Database.Batch
             System.debug('Entering execute method : Scope = ' + scope);
             chatSurveyHelper.fetchAndUpdateSurveyRecords(scope);  
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN PROCESSING THE CHAT SURVEY IN THE BATCH JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
-            CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Processing batch Job for chat survey failed');
-            System.debug(msgBodyStr);
+            //String msgBodyStr = '*** ERROR IN PROCESSING THE CHAT SURVEY IN THE BATCH JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
+            CEC_ExceptionHandling.CreateExceptionLog('Scheduler', 'execute', 'CEC_ChatSurveyBatchScheduler', '', e.getStackTraceString());
+            //CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Processing batch Job for chat survey failed');
+            //System.debug(msgBodyStr);
         }     
     }
     
@@ -66,9 +67,10 @@ global with sharing class CEC_ChatSurveyBatchScheduler implements Database.Batch
             database.executebatch(chatSurveyBatch);
 
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN EXECUTION IN THE CEC CHAT BATCH SURVEY SCHEDULER CLASS *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
-            CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Execution in Apex Scheduler Class CEC_ChatSurveyBatchScheduler Failed');
-            System.debug(msgBodyStr);
+            //String msgBodyStr = '*** ERROR IN EXECUTION IN THE CEC CHAT BATCH SURVEY SCHEDULER CLASS *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
+           	CEC_ExceptionHandling.CreateExceptionLog('Scheduler', 'execute', 'CEC_ChatSurveyBatchScheduler', '', e.getStackTraceString());
+            //CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Execution in Apex Scheduler Class CEC_ChatSurveyBatchScheduler Failed');
+            //System.debug(msgBodyStr);
         }
     }
     

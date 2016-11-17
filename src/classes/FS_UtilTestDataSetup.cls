@@ -1,3 +1,4 @@
+@isTest
 public with sharing class FS_UtilTestDataSetup {    
     Private Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');
     String oppStageName='FS_Stages';

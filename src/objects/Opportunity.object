@@ -56,7 +56,7 @@
             <fullName>Open</fullName>
             <default>false</default>
         </values>
-    </businessProcesses>    
+    </businessProcesses>
     <businessProcesses>
         <fullName>NA FS Sales Process</fullName>
         <description>NA FS Sales Process</description>
@@ -384,6 +384,10 @@ Total_Opp_COGS__c) /(Amount -
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>FOH ACCELERATION</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>FOH MAYO</fullName>
                 <default>false</default>
             </picklistValues>
@@ -425,6 +429,10 @@ Total_Opp_COGS__c) /(Amount -
             </picklistValues>
             <picklistValues>
                 <fullName>LCB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>N1 CRYSTAL</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -558,21 +566,28 @@ FSNA_Margin_Market_Code__c,
 &quot;6I DRESSINGS-CONDIMENTS-DIPS&quot;,0.265,
 &quot;6K SAUCES-GRAVIES&quot;,0.385,
 &quot;93 MAYONNAISE&quot;,0.338,
-&quot;FOH MAYO&quot;,0.32,
-&quot;BOH MAYO&quot;,0.251,
+&quot;Z5 FOH MAYO&quot;,0.32,
+&quot;Z1 BOH MAYO&quot;,0.251,
 &quot;D1 SOUPS&quot;,0.33,
-&quot;SDJ&quot;,0.22,
+&quot;X4 US SDJ&quot;,0.22,
+&quot;Z3 CAN SDJ&quot;,0.29,
 &quot;E1 BASES-BOUILLIONS&quot;,0.295,
-&quot;Knorr Ultimate Low/Reduced Sodium*&quot;,0.23,
-&quot;LCB&quot;,0.22,
+&quot;Z9 Knorr Ultimate Low/Reduced Sodium*&quot;,0.23,
+&quot;X1 US LCB&quot;,0.22,
+&quot;Z2 CAN LCB&quot;,0.339,
 &quot;F1 SPREADS AND TOPPING&quot;,0.2,
 &quot;G1 TEA-BEVERAGES&quot;,0.3,
-&quot;SPECIALTY TEA&quot;,0.238929580293853,
-&quot;HOT TEA&quot;,0.229022571071625,
-&quot;ICED TEA&quot;,0.342713952331212,
+&quot;X2 SPECIALTY TEA CANADA&quot;,0.404640144481131,
+&quot;Z6 HOT TEA CANADA&quot;,0.308416596202267,
+&quot;X3 SPECIALTY TEA US&quot;,0.238929580293853,
+&quot;Z7 HOT TEA US&quot;,0.229022571071625,
+&quot;Z8 ICED TEA&quot;,0.342713952331212,
 &quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,0.668,
 &quot;K1 MEALS&quot;,0.35,
+&quot;N1 CRYSTAL&quot;,0,
 &quot;8Z RETAIL&quot;,0.45,
+&quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,0.668,
+&quot;FOH ACCELERATION&quot;,0.15,
 &quot;Q1 MISCELLANEOUS&quot;,0.595,
 0),
 IF(
@@ -581,21 +596,28 @@ CASE(FSNA_Margin_Market_Code__c,
 &quot;6I DRESSINGS-CONDIMENTS-DIPS&quot;,0.265,
 &quot;6K SAUCES-GRAVIES&quot;,0.385,
 &quot;93 MAYONNAISE&quot;,0.338,
-&quot;FOH MAYO&quot;,0.3,
-&quot;BOH MAYO&quot;,0.237976924226836,
+&quot;Z5 FOH MAYO&quot;,0.3,
+&quot;Z1 BOH MAYO&quot;,0.237976924226836,
 &quot;D1 SOUPS&quot;,0.33,
-&quot;SDJ&quot;,0.258215324788885,
+&quot;X4 US SDJ&quot;,0.22,
+&quot;Z3 CAN SDJ&quot;,0.258215324788885,
 &quot;E1 BASES-BOUILLIONS&quot;,0.240715650567646,
-&quot;Knorr Ultimate Low/Reduced Sodium*&quot;,0.23,
-&quot;LCB&quot;,0.339,
+&quot;Z9 Knorr Ultimate Low/Reduced Sodium*&quot;,0.23,
+&quot;X1 US LCB&quot;,0.22,
+&quot;Z2 CAN LCB&quot;,0.339,
 &quot;F1 SPREADS AND TOPPING&quot;,0.2,
 &quot;G1 TEA-BEVERAGES&quot;,0.3,
-&quot;SPECIALTY TEA&quot;,0.404640144481131,
-&quot;HOT TEA&quot;,0.25,
-&quot;ICED TEA&quot;,0.3,
+&quot;X2 SPECIALTY TEA CANADA&quot;,0.404640144481131,
+&quot;Z6 HOT TEA CANADA&quot;,0.25,
+&quot;X3 SPECIALTY TEA US&quot;,0.238929580293853,
+&quot;Z7 HOT TEA US&quot;,0.229022571071625,
+&quot;Z8 ICED TEA&quot;,0.3,
 &quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,0.668,
 &quot;K1 MEALS&quot;,0.35,
+&quot;N1 CRYSTAL&quot;,0,
 &quot;8Z RETAIL&quot;,0.45,
+&quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,0.668,
+&quot;FOH ACCELERATION&quot;,0.15,
 &quot;Q1 MISCELLANEOUS&quot;,0.595,
 0),
 0)
@@ -2671,10 +2693,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>BOH MAYO</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>D1 SOUPS</fullName>
                 <default>false</default>
             </values>
@@ -2687,7 +2705,7 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>FOH MAYO</fullName>
+                <fullName>FOH ACCELERATION</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2699,23 +2717,11 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>HOT TEA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ICED TEA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>K1 MEALS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Knorr Ultimate Low%2FReduced Sodium*</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LCB</fullName>
+                <fullName>N1 CRYSTAL</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2723,19 +2729,51 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SDJ</fullName>
+                <fullName>X1 US LCB</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SPECIALTY TEA</fullName>
+                <fullName>X2 SPECIALTY TEA CANADA</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>X4</fullName>
+                <fullName>X3 SPECIALTY TEA US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X4 US SDJ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z1 BOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z2 CAN LCB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z3 CAN SDJ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z5 FOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z6 HOT TEA CANADA</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Z7 HOT TEA US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z8 ICED TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z9 Knorr Ultimate Low%2FReduced Sodium*</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3139,10 +3177,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>BOH MAYO</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>D1 SOUPS</fullName>
                 <default>false</default>
             </values>
@@ -3155,7 +3189,7 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>FOH MAYO</fullName>
+                <fullName>FOH ACCELERATION</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3167,23 +3201,11 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>HOT TEA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ICED TEA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>K1 MEALS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Knorr Ultimate Low%2FReduced Sodium*</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LCB</fullName>
+                <fullName>N1 CRYSTAL</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3191,15 +3213,51 @@ Enter competitor pricing if available</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SDJ</fullName>
+                <fullName>X1 US LCB</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SPECIALTY TEA</fullName>
+                <fullName>X2 SPECIALTY TEA CANADA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X3 SPECIALTY TEA US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X4 US SDJ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z1 BOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z2 CAN LCB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z3 CAN SDJ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z5 FOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z6 HOT TEA CANADA</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Z7 HOT TEA US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z8 ICED TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z9 Knorr Ultimate Low%2FReduced Sodium*</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3587,7 +3645,7 @@ Enter competitor pricing if available</inlineHelpText>
         <picklistValues>
             <picklist>FSNA_Margin_Market_Code__c</picklist>
             <values>
-                <fullName>X4</fullName>
+                <fullName>X4 US SDJ</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3650,10 +3708,6 @@ Enter competitor pricing if available</inlineHelpText>
             <picklist>FS_ExistingBusinessType__c</picklist>
             <values>
                 <fullName>Grab</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Grib</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3959,6 +4013,500 @@ Enter competitor pricing if available</inlineHelpText>
         </picklistValues>
     </recordTypes>
     <recordTypes>
+        <fullName>FS_OpportunityTPRReadOnly</fullName>
+        <active>true</active>
+        <businessProcess>RFS Sales Process</businessProcess>
+        <label>RUFS Opportunity TPR ReadOnly</label>
+        <picklistValues>
+            <picklist>FSNA_Margin_Market_Code__c</picklist>
+            <values>
+                <fullName>6I DRESSINGS-CONDIMENTS-DIPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6K SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8Z RETAIL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>93 MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D1 SOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E1 BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1 SPREADS AND TOPPING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FOH ACCELERATION</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>G1 TEA-BEVERAGES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>H1 FLAVOUR DELIVERY SYS-SEASONING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>K1 MEALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1 CRYSTAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Q1 MISCELLANEOUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X1 US LCB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X2 SPECIALTY TEA CANADA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X3 SPECIALTY TEA US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X4 US SDJ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z1 BOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z2 CAN LCB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z3 CAN SDJ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z5 FOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z6 HOT TEA CANADA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z7 HOT TEA US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z8 ICED TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Z9 Knorr Ultimate Low%2FReduced Sodium*</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_DistributorTMI__c</picklist>
+            <values>
+                <fullName>CA Direct</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CA GFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CA Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CA Sysco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colabor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PFG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinhart</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US Direct %2F CED</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US Foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US GFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US OTher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US Only %28Food Buy%2C Aramark%2C Sodexho%2C Compass%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US Sysco</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_ExistingBusinessType__c</picklist>
+            <values>
+                <fullName>Grab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grib</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_casesPiece__c</picklist>
+            <values>
+                <fullName>cases</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>piece</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_internalOrder__c</picklist>
+            <values>
+                <fullName>40002843 TPRs of Chains team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002981 TPRs of Moscow_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002982 TPRs of St Peterburg_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002983 TPRs of Slabco team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002984 TPRs of Metro team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002985 TPRs of Regions_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002986 TPRs for write-off_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Sales_Locale_List__c</picklist>
+            <values>
+                <fullName>Empty</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonWonLost__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sales_Cycle__c</picklist>
+            <values>
+                <fullName>00 - Lost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>01 - Universe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>02 - Above</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03 - In the Funnel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04 - Best Few</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05 - Won</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>06 - Not Pursued</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07 - Deleted%2FInactive Accts</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
         <fullName>ICB_Mobile_Channel</fullName>
         <active>true</active>
         <businessProcess>ICB Mobile Channel</businessProcess>
@@ -4157,16 +4705,35 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <errorMessage>Opportunities must be approved in order to advance it to 05 - Won</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Required_Cases_Pieces_field</fullName>
+        <fullName>Record_Locked_Validation</fullName>
         <active>true</active>
+        <description>Validation for approved TPR record.</description>
+        <errorConditionFormula>IF($Permission.FS_Admin,
+     false, 
+     IF ( RecordType.DeveloperName = &apos;FS_OpportunityTPRReadOnly&apos;
+       &amp;&amp; ( ISCHANGED(Name)  
+          || ISCHANGED( CurrencyIsoCode ) 
+          || ISCHANGED( CloseDate )
+          || ISCHANGED(OwnerId)
+           ),
+           true,
+           false 
+         )
+)</errorConditionFormula>
+        <errorMessage>Opportunity is already locked for update.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Required_Cases_Pieces_field</fullName>
+        <active>false</active>
         <description>Use for validating required fields in TPR section.</description>
         <errorConditionFormula>RecordType.DeveloperName = &apos;FS_OpportunityTPR&apos;  
-&amp;&amp; ISBLANK( TEXT( FS_casesPiece__c ) ) 
+&amp;&amp; ISBLANK( TEXT( FS_casesPiece__c ) )
 &amp;&amp; ( NOT( ISBLANK( ShipToCode__c ) )
      || NOT( ISBLANK( TEXT( FS_internalOrder__c )) )
      || NOT( ISBLANK( FS_startDateTPR__c ) )
      || NOT( ISBLANK( FS_endDateTPR__c ) )
-     || NOT( ISBLANK( FS_Comment__c ) ) )</errorConditionFormula>
+     || NOT( ISBLANK( FS_Comment__c ) ) 
+)</errorConditionFormula>
         <errorMessage>Cases / Pieces is a required field.</errorMessage>
     </validationRules>
     <validationRules>
@@ -4179,7 +4746,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
      || NOT( ISBLANK( TEXT( FS_internalOrder__c ) ) )
      || NOT( ISBLANK( FS_startDateTPR__c ) )
      || NOT( ISBLANK( FS_endDateTPR__c ) )
-     || NOT( ISBLANK( TEXT( FS_casesPiece__c ) ) ) 
     )</errorConditionFormula>
         <errorMessage>Comment is a required field.</errorMessage>
     </validationRules>
@@ -4193,7 +4759,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
      || NOT( ISBLANK( TEXT( FS_internalOrder__c )) )
      || NOT( ISBLANK( FS_startDateTPR__c ) )
      || NOT( ISBLANK( FS_endDateTPR__c ) )
-     || NOT( ISBLANK( TEXT( FS_casesPiece__c ) ) )
      || NOT( ISBLANK( FS_Comment__c ) ) 
     )</errorConditionFormula>
         <errorMessage>Distributor is a required field.</errorMessage>
@@ -4207,7 +4772,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
 &amp;&amp; ( NOT( ISBLANK( ShipToCode__c ) )
      || NOT( ISBLANK( TEXT( FS_internalOrder__c )) )
      || NOT( ISBLANK( FS_startDateTPR__c ) )
-     || NOT( ISBLANK( TEXT( FS_casesPiece__c ) ) )
      || NOT( ISBLANK( FS_Comment__c ) ) 
     )</errorConditionFormula>
         <errorMessage>End Date TPR is a required field.</errorMessage>
@@ -4221,10 +4785,24 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
 &amp;&amp; ( NOT( ISBLANK( ShipToCode__c ) )
     || NOT( ISBLANK( FS_startDateTPR__c ) )
     || NOT( ISBLANK( FS_endDateTPR__c ) )
-    || NOT( ISBLANK( TEXT( FS_casesPiece__c ) ) )
     || NOT( ISBLANK( FS_Comment__c ) ) 
     )</errorConditionFormula>
         <errorMessage>Internal Order is a required field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Required_Opportunity_Reason</fullName>
+        <active>true</active>
+        <description>set Opportunity Reason to required if Stage is set to 3b-Lost and 5c-Lost</description>
+        <errorConditionFormula>RecordType.DeveloperName = &apos;FS_OpportunityTPRReadOnly&apos; 
+&amp;&amp; ( 
+    ISPICKVAL(StageName, &apos;3b-Lost&apos;)
+ || ISPICKVAL(StageName, &apos;5c-Lost&apos;)
+  )
+&amp;&amp; (
+    ISBLANK(TEXT(Reason__c))  
+    || ISBLANK( FS_ReasonDescription__c ) 
+   )</errorConditionFormula>
+        <errorMessage>Reason and Reason Description are required fields</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Required_ShipToCode_Field</fullName>
@@ -4235,7 +4813,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
 &amp;&amp; ( NOT( ISBLANK( TEXT( FS_internalOrder__c )) )
      || NOT( ISBLANK( FS_startDateTPR__c ) )
      || NOT( ISBLANK( FS_endDateTPR__c ) )
-     || NOT( ISBLANK( TEXT( FS_casesPiece__c ) ) )
      || NOT( ISBLANK( FS_Comment__c ) ) 
    )</errorConditionFormula>
         <errorMessage>Ship to Code value is a required field.</errorMessage>
@@ -4249,7 +4826,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
 &amp;&amp; ( NOT( ISBLANK( ShipToCode__c ) )
     || NOT( ISBLANK( TEXT( FS_internalOrder__c )) )
     || NOT( ISBLANK( FS_endDateTPR__c ) )
-    || NOT( ISBLANK( TEXT( FS_casesPiece__c ) ) )
     || NOT( ISBLANK( FS_Comment__c ) ) 
    )</errorConditionFormula>
         <errorMessage>Start Date TPR is a required field.</errorMessage>

@@ -22,7 +22,8 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
     * Return type : Boolean
     * Description : This method identifies week ends and returns true or false
     */
-    public static Boolean isWeekendDay(Date dateParam)
+    //no where we are using this method hence commenting for code coverage
+   /* public static Boolean isWeekendDay(Date dateParam)
     {
         boolean result     = false;
         //Recover the day of the week
@@ -32,6 +33,7 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
         result = dayOfWeek == 0 || dayOfWeek == 6 ? true : false;
         return result;
     } 
+   */
    
    /*******************************************************************
     Purpose: This method is used to add business days to the given date
@@ -39,7 +41,9 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
     Returns: Date
     Throws [Exceptions]: 
     ********************************************************************/
-   public static Date addBusinessDays(Date startDate, integer businessDaysToAdd )
+    
+   //no where we are using this method hence commenting for code coverage
+   /* public static Date addBusinessDays(Date startDate, integer businessDaysToAdd )
     {
         Integer businessDaysCount = 0;
         businessDaysCount = businessDaysToAdd;
@@ -57,6 +61,7 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
         }
         return finalDate;
     }
+    */
    
     /**   Method Name : generateInternalPWOID
     * Parameter   : oldPWORFList,newPWORFList
@@ -66,7 +71,7 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
     */
    public static void generateInternalPWOID(List<CPA_PWORF__c> oldPWORFList, List<CPA_PWORF__c> newPWORFList){
        if(newPWORFList[0].pkl_Status__c != null && (newPWORFList[0].pkl_Status__c.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.ACCEPTED)|| newPWORFList[0].pkl_Status__c=='Auto Accepted')  && (!oldPWORFList[0].pkl_Status__c.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.ACCEPTED)|| oldPWORFList[0].pkl_Status__c!='Auto Accepted')){
-            List<CPA_PWORF__c> pworfs = [SELECT txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newPWORFList[0].ID];
+            //List<CPA_PWORF__c> pworfs = [SELECT txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newPWORFList[0].ID];
             newPWORFList[0].txt_Internal_PWO_ID__c = pwoInternalCountLogic(false);           
         }
     }

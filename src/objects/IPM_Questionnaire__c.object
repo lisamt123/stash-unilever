@@ -98,6 +98,10 @@ CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;,
                 <fullName>RQS_Charter_Answered__c</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>PDLDocument_Status__c</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -575,6 +579,17 @@ CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;,
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>PDLDocument_Status__c</fullName>
+        <defaultValue>&quot;No&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>PDLDocument Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>RQS_Charter_Answered_3__c</fullName>
         <externalId>false</externalId>
         <formula>IF(IPM_Project__r.RQS_Charter_Answered_3__c &gt; 0,&apos;Yes&apos;,
@@ -917,6 +932,10 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
             <picklist>DependentFieldAPIName__c</picklist>
             <values>
                 <fullName>BETCurrentStatus%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PDLDocument_Status%5F%5Fc</fullName>
                 <default>false</default>
             </values>
             <values>

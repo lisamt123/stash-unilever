@@ -52,7 +52,7 @@
     text-align: left ;
 }
 .mSpacing {
-    margin: 10px 0px;
+    margin: 25px 0px;
 }
 .textRight {
     text-align: right;
@@ -522,6 +522,7 @@ table .editblock {
 }
 .ipmTable.table-bordered {
     border-top: 1px solid #7fa19e ;
+	margin-top: 5px;
 }
 .table-bordered > thead > tr > th {
     border: 0px ;

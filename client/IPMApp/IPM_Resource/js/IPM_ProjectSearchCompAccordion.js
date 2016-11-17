@@ -13,7 +13,6 @@ function rerenderAccordion(){
         jq( "div.projectContainer.gfirstLevel ul" ).addClass( "docFilter accordionFilters clusterListUl" );
     
         jq(document).on('click', 'li.clusterCheckLi', function(){
-         jq('blockquote').each(function() { jq(this).replaceWith("<ul>"+jq(this).html()+"</ul>") });
          jq( "div.projectContainer.gfirstLevel ul" ).addClass( "docFilter accordionFilters clusterListUl" );
        });
         jq('.geographyFilters input:checkbox, .projectContainer input:checkbox, ul.docFilter.typeLabel input:checkbox').each(function(){

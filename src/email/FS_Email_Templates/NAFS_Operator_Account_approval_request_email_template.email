@@ -1,1 +1,4 @@
 A newly created Operator account requires your review and approval {!Account.Link}.
+
+The requester has added the following comment to his request:
+{!Account.Requester_Comment__c}

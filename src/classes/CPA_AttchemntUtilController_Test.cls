@@ -74,7 +74,7 @@ public class CPA_AttchemntUtilController_Test {
 
         CPA_CR__c objCR = CPA_testContractClass.createCR(objPWO);
         insert objCR;
-        CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
+        //CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
         Blob bBlob2 = Blob.valueOf(BLOBDATA);
         Attachment attachment2 = new Attachment();
         attachment2.ParentId = objCR.ID;
@@ -108,6 +108,8 @@ public class CPA_AttchemntUtilController_Test {
             System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment2.ContentType);
             CPA_AttachmentUtil.updateLOI(listLOi);
             CPA_AttachmentUtil.DeleteLOI(listLOi);
+                   
+           // CPA_AttachmentUtil.deleteCommericalData(listLOi);
         Test.stopTest();
         
         System.Assert(objLOICheck.chk_Contract_Attached__c);
@@ -166,7 +168,7 @@ public class CPA_AttchemntUtilController_Test {
             
             CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO151);
             insert objCR1;
-            CPA_project_work_order__c pwo12 = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR1.CPA_Project_Work_Order__c];
+            //CPA_project_work_order__c pwo12 = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR1.CPA_Project_Work_Order__c];
             //objCR1.CPA_project_work_order__c = pwo12.id;
             Blob bBlob21 = Blob.valueOf(BLOBDATA);
             Attachment attachment21 = new Attachment();
@@ -261,4 +263,173 @@ public class CPA_AttchemntUtilController_Test {
             
             
     }
+    
+     /*******************************************************************
+    Purpose: This method covers attachment commercial util functionality
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static testmethod void Test_CPA_AttchemntCommerical_util() { 
+    //*---------------------------------------------------------------*//
+    //CPA_AttchemntCommerical_util  objCPA_AttchemntCommerical_util  = new CPA_AttchemntCommerical_util();
+    CPA_project_work_order__c cpaobj = new CPA_project_work_order__c();
+    CPA_CR__c cpaobj1 = new CPA_CR__c();
+  
+    
+     Test.startTest();
+     cpaobj =CPA_AttchemntCommerical_util.CommericalDataBlankPWO(cpaobj);
+     cpaobj1 =CPA_AttchemntCommerical_util.CommericalDataBlankCR(cpaobj1);
+     system.assert(!cpaobj.chk_Excel_Attached__c);
+     system.assertEquals(NULL,cpaobj.num_Expense_charges_of_work_order__c);
+     system.assert(!cpaobj1.chk_Contract_Excel_Attached__c );
+     system.assertEquals(NULL,cpaobj1.num_Estimated_Man_days_of_CR__c);
+     Test.stopTest();
+    
+    
+    
+    }
+    
+    
+    static testmethod void CPA_AttchemntUtilController_DeleteTest() {   
+        CPA_PWORF__c objPWORF= CPA_testPWORFClass_util.createTest_other_PWORF();
+        insert objPWORF;
+        objPWORF.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
+        update objPWORF;
+        
+        
+        CPA_Trigger_Pattern__c ATTACHMENTTRIGERNAME = CPA_testCustomSettingClass_util.createTest_AfterAttachmentTriggerPattern();
+        insert ATTACHMENTTRIGERNAME;
+        
+        List<Attachment>  listAttachment = new List<Attachment>();             
+        
+               
+       // CPA_project_work_order__c objPWO = CPA_testContractClass.createPWO(14);
+        CPA_project_work_order__c objPwo = new CPA_project_work_order__c();
+        User testUSer = createTestUser();
+        
+        CPA_Requirements_and_Deliverables__c objRaD = CPA_testPWORFClass_util.createRequirementsDeliverables(objPWORF);
+        insert objRaD;
+        CPA_Risk_Assessment_and_Mitigation__c objRAM = CPA_testPWORFClass_util.createRiskAssessment(objPWORF);
+        insert objRAM;
+        CPA_Key_Contacts__c objKCs = CPA_testPWORFClass_util.CreateKeyContacts(objPWORF);
+        insert objKCs;
+        
+        /*objPWORF.pkl_Status__c = 'Submitted';
+        update  objPWORF;*/
+       // objPWORF.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
+       // update  objPWORF;
+        
+        objPwo.txt_Accenture_Project_Manager__c = CPA_ConstantsForContractingAppClasses.TEST;
+        objPwo.num_Authorisation_charges__c = 100;
+        objPwo.num_Authorisation_man_days__c = 100;
+        objPwo.pkl_Billing_Details__c = 'Unilever Europe';
+        objPwo.Comments__c = CPA_ConstantsForContractingAppClasses.TEST;
+        objPwo.Currency__c = 'EUR';
+        objPwo.num_Estimated_Man_days_of_PWO__c = 10;
+        objPwo.pec_Estimated_Off_shore__c = 1;
+        objPwo.pec_Estimated_On_shore__c=1;
+        objPwo.num_Estimated_Value_of_PWO__c =10;
+        objPwo.pec_Expense__c =1;
+        objPwo.num_Expense_charges_of_work_order__c=10;
+        
+        objPwo.num_ITC_resources_man_days__c = 10;
+        objPwo.num_On_shore_senior_resources_man_days__c  =10;
+        objPwo.txt_Previous_Status_Value__c='sdkj';
+        objPwo.pkl_Pricing_Model__c = 'Fixed Price';
+        objPwo.mpkl_Project_Classification__c = 'Complex';
+        objPwo.mpkl_Project_Phases__c = CPA_ConstantsForContractingAppClasses.PLAN_ANALYSE;
+        objPwo.txt_PWO_number__c = 'PWO-001';
+        objPwo.PWORF_ID__c = objPWORF.Id;
+        objPwo.txt_PWO_title__c = 'Titke';
+        objPwo.pkl_Region__c = CPA_ConstantsForContractingAppClasses.EUROPE;
+        objPwo.num_RMS_value__c = 1;
+        objPwo.num_Senior_resources_man_days__c=1;
+        objPwo.num_Target_Blend_Rate__c = 1;
+        objPwo.num_Total_work_order_charge__c =1;
+        objPwo.mpkl_Unilever_Innovation_Area__c = 'HR';
+        objPwo.txt_Unilever_Project_Name__c = CPA_ConstantsForContractingAppClasses.TEST;
+        objPwo.txt_Unilever_Reference__c = 'Uni';
+        objPwo.pec_Variance__c =1;
+        objPwo.num_Varied_Target_Blend_Rate__c = 1;
+        objPwo.dt_Date_PWORF_accepted__c = system.Today();
+        objPwo.dt_Project_Initiation_Date__c = system.today();
+        objPwo.dt_Expected_Start_Date__c = system.today();
+        objPwo.dt_Expected_End_date__c = system.today();
+        objPWO.lkp_Unilever_budget_approver__c = testUSer.Id;
+        objPWO.lkp_Unilever_content_approver__c =testUSer.Id;
+        objPWO.lkp_Unilever_Finance_BP_Contact__c = testUSer.Id;
+       // objPWO.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
+        insert objPWO;
+        
+        
+
+        Blob bBlob = Blob.valueOf(BLOBDATA);
+        Attachment attachment = new Attachment();
+        attachment.ParentId = objPWO.ID;
+        attachment.Name = CPA_ConstantsForContractingAppClasses.COMMERCIALPWOCSV;//'Commercial for PWO.csv'
+        attachment.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL;
+        attachment.Body = bBlob;
+        
+        listAttachment.add(attachment);
+        
+        Blob bBlob1 = Blob.valueOf(CPA_ConstantsForContractingAppClasses.TEST);
+        Attachment attachment1 = new Attachment();
+        attachment1.ParentId = objPWO.ID;
+        attachment1.Name = CPA_ConstantsForContractingAppClasses.PWOPDFFILENAME;
+        attachment1.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONPDF;
+        attachment1.Body = bBlob1;
+      
+        listAttachment.add(attachment1);
+        
+       /*CPA_project_work_order__c objPWOCheck1 = [Select Id,chk_Excel_Attached__c,chk_PDF_Attached__c from CPA_project_work_order__c where id=: objPWO.id];
+        objPWOCheck1 .pkl_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
+        update objPWOCheck1;  */   
+
+        objPWO.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
+        update objPWO;    
+         
+        CPA_Commercial_Details__c obj1 = new CPA_Commercial_Details__c();
+        obj1.Project_Work_Order__c = objPWO.id;
+        insert  obj1;    
+       
+        Test.startTest();
+            insert listAttachment;
+           
+            CPA_project_work_order__c objPWOCheck = [Select Id,chk_Excel_Attached__c,chk_PDF_Attached__c from CPA_project_work_order__c where id=: objPWO.id];
+           
+           
+           // System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment3.ContentType);
+           // System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment2.ContentType);
+           
+           
+           DELETE listAttachment;
+        Test.stopTest();
+        
+  
+        System.Assert(objPWOCheck.chk_Excel_Attached__c);
+        System.Assert(objPWOCheck.chk_PDF_Attached__c);
+        
+        
+       // System.Assert(objCRChek.chk_Contract_Excel_Attached__c);
+        //System.Assert(objCRChek.chk_Contract_Attached__c);
+        
+       // System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment3.ContentType);
+       // System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment2.ContentType);
+    }
+    
+    public static User createTestUser (){
+        //User testUser; - commented as this variable not used anywhere, just initialized on line number 7, but returning testUser1
+        Profile p = [select id from profile where name='system Administrator'];
+        
+        //testUser = new User(alias = 'u1', email='u1@unilever.com',
+        //emailencodingkey='UTF-8', lastname='Testing', languagelocalekey='en_US',
+        //localesidkey='en_US', profileid = p.Id, country='United States',
+        //timezonesidkey='America/Los_Angeles', username='u1@unilever.com');
+        User testUser1 = [Select Id,profileid,isactive from user where profileid  =: p.Id AND isactive = true limit 1];
+        return testUser1;
+    
+    }
+
+    
 }

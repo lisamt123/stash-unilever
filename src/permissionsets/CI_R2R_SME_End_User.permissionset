@@ -17,6 +17,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CI_R2R_Budget_Trigger_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CI_R2R_GetHistory</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -270,9 +274,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CI_R2R_Milestones__c.Comments__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -290,9 +294,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CI_R2R_Milestones__c.Target_Closure_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -359,6 +363,11 @@
         <field>CI_SMS_Weekly_Update__c.Target_Closure__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_SMS_Weekly_Update__c.Unique_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <label>CI_R2R SME End User</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -422,6 +431,18 @@
         <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
+        <recordType>CI_R2R_Innovation__c.CI_R2R_Innovation_with_SME</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CI_R2R_Innovation__c.CI_R2R_Innovation_with_SME_Read_Only</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CI_SMS_Weekly_Update__c.CI_R2R_SME_Read_Only</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_with_CI</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -429,7 +450,7 @@
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_without_CI</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <tabSettings>
+	<tabSettings>
         <tab>CI_R2R_Budget__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>

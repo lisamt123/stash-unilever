@@ -119,7 +119,11 @@ IF(ISPICKVAL(Regional_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp
         </actions>
         <active>true</active>
         <description>Notification to Global Finance Leader for TLD change in MCO/Country Plan</description>
-        <formula>IF( ISPICKVAL(IPM_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp;&amp;ISPICKVAL(IPM_Project__r.IPM_Phase__c, &apos;Ideas&apos;) &amp;&amp; ( !ISBLANK(IPM_Project__r.IPM_Finance_Lead__c ) &amp;&amp; ISCHANGED(Previous_Target_Launch_Date__c) ) ,  true ,   IF(ISPICKVAL(Regional_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp;&amp; ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Ideas&apos;) &amp;&amp; ( !ISBLANK(Regional_Project__r.IPM_Finance_Lead__c )), true, false))</formula>
+        <formula>IF( ISPICKVAL(IPM_Project__r.IPM_Project_Type__c, &apos;Original&apos;)
+ &amp;&amp;ISPICKVAL(IPM_Project__r.IPM_Phase__c, &apos;Ideas&apos;) &amp;&amp; NOT(ISPICKVAL(IPM_Project__r.IPM_ProjectGKM__c, &apos;GKM3&apos;))
+ &amp;&amp; ( !ISBLANK(IPM_Project__r.IPM_Finance_Lead__c )
+ &amp;&amp; ISCHANGED(Previous_Target_Launch_Date__c) ) , true ,
+ IF(ISPICKVAL(Regional_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp;&amp; ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Ideas&apos;) &amp;&amp; ( !ISBLANK(Regional_Project__r.IPM_Finance_Lead__c )), true, false))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
