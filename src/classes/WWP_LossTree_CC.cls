@@ -1,5 +1,6 @@
 public with sharing class WWP_LossTree_CC{
-
+    public boolean showMassFeature{get; set; }
+    public boolean checkdissable{get;set;}
     public Boolean nonedit { get; set; }
     public WWP_Loss_Tree__c lossTree{get; set;}
     public string message{get; set;}
@@ -93,6 +94,7 @@ public with sharing class WWP_LossTree_CC{
         mapcombine12.clear();
         successmessage=valueNull;
         showpickVal = true;
+        showMassFeature = false;
         if(lossTree.Loss_Type__c!=null && lossTree.Plant_Code__c!=null && selectedWeek !=null ){
            
             if(dispalyAll){
@@ -254,10 +256,16 @@ public with sharing class WWP_LossTree_CC{
             }
         }
         fetchLossTreeExt(setbox1all, setbox2all, setbox3all);
+        
          }
          }else{         
              message = label.WWP_RequiredFeilds_Err;
          }
+         WWP_Losstree_Copy_Component_Ctrl cmp = new WWP_Losstree_Copy_Component_Ctrl();
+         //system.debug('called');
+        //cmp.fetchLossTree1();
+        
+
     }    
     public void fetchLossTreeExt(set<string> setbox1all, set<string> setbox2all, set<string> setbox3all){
         listbox1all.add(new SelectOption(valueNone,valueNone));
@@ -290,7 +298,8 @@ public with sharing class WWP_LossTree_CC{
     
     public class LossTreeWrapper {
     public list<WWP_Loss_Tree__c> redcolor {get; set;}
-        public boolean isdisabled { get; set; }        
+        public boolean isdisabled { get; set; }
+        public boolean checkdissable{get;set;}        
         public boolean checkbox1{get; set;}
         public WWP_Loss_Tree__c wlt{get; set;}
         public List<SelectOption> listbox1{get; set;}
@@ -341,15 +350,19 @@ public with sharing class WWP_LossTree_CC{
           if(lt.loss_type__c == 'Output Reliability' ){
           if(lossdiff <= plVal){
            isdisabled =true;
+           checkdissable = true;
            Remarks = 'above target';
            }else{
            isdisabled=false;
+           checkdissable = false;
            }
            }else{
            if(lossdiffDC <= 0.05){           
            isdisabled =true;
+           checkdissable = true;
            }else{
-           isdisabled=false;           
+           isdisabled=false;
+           checkdissable = false;           
            }           
            }           
             i=y+1;            
@@ -516,14 +529,14 @@ public with sharing class WWP_LossTree_CC{
         integer ite = integer.valueof(Apexpages.currentPage().getParameters().get('resetite'));
         system.debug('iiiiiiiiiiiiiiiiiiii'+ite);
         listLossTreeW[ite].listbox1=listbox1all;
-        system.debug('debug'+listLossTreeW[ite].listbox1);
         listLossTreeW[ite].listbox2=listbox2all;
         listLossTreeW[ite].listbox3=listbox3all;
         listLossTreeW[ite].selectbox3=valueNone;
         listLossTreeW[ite].selectbox1=valueNone;
         listLossTreeW[ite].selectbox2=valueNone;
+        listLossTreeW[ite].Remarks = valueNull;
         listLossTreeW[ite].checkbox1 = false;
-    }    
+     }    
     public void updateLossTree(){
         integer count=0;
         List<WWP_Loss_Tree__c> updateLTW = new List<WWP_Loss_Tree__c>();
@@ -564,6 +577,8 @@ public with sharing class WWP_LossTree_CC{
             if(updateLTW!=null && !updateLTW.isEmpty()){
                 update updateLTW;
                 fetchLossTree();
+               // WWP_Losstree_Copy_Component_Ctrl cmp = new WWP_Losstree_Copy_Component_Ctrl();
+               // cmp.fetchLossTree1();
                 successmessage=label.WWP_RecordsUpdated_Msg;
                 message =valueNull;
             }
