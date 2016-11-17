@@ -9818,6 +9818,10 @@
         <enabled>true</enabled>
     </pageAccesses>
 	<pageAccesses>
+        <apexPage>IPM_RolloutPlansAddManage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
         <apexPage>IPM_LocalRolloutPlansTablePage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
