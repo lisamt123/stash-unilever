@@ -1,7 +1,9 @@
 src
 src/classes
-src/classes/BET_Team_MemberHandler.cls
-src/classes/BET_Team_MemberHandler.cls-meta.xml
+src/classes/BET_LinkingServiceTestOne.cls
+src/classes/BET_LinkingServiceTestOne.cls-meta.xml
+src/classes/CI_R2R_SME_GetHistory_Test.cls
+src/classes/CI_R2R_SME_GetHistory_Test.cls-meta.xml
 src/classes/IPM_ApproverList.cls
 src/classes/IPM_ApproverList.cls-meta.xml
 src/classes/IPM_AssesmentHandler_Helper_Test.cls
