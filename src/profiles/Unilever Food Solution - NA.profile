@@ -32394,17 +32394,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.FSNA_Gross_Margin__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Opportunity.FSNA_Margin_Market_Code__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.FSNA_Margin_Market_Target__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -32794,7 +32794,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.Total_Opp_COGS__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

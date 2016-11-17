@@ -475,6 +475,7 @@ private with sharing class IPM_CoreParameters_Test {
      ***************************************************************/
     static testmethod  void testUnlinkBET() {
         initializedData();
+        Test.startTest();
         //handled mix dml
         system.runAs(newAdminUser){
         //Initialize BET data
@@ -526,12 +527,12 @@ private with sharing class IPM_CoreParameters_Test {
         
             uw_bet__c bet1 = BET_TestUtils.getTestBet();
             insert bet1;
-            
+            Test.stopTest();
             testProject.BET_Link_Requested__c = bet1.id;
             testProject.bet__c = bet1.id;
 
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, testProject.id);
-            Test.startTest();
+            
             sic.initialise();
             sic.Replace();
             ProjectWithOutBoss.BET_Link_Requested__c = '';
@@ -544,9 +545,9 @@ private with sharing class IPM_CoreParameters_Test {
             sic2.Replace();
             sic2.projbetlink = 'testProjectName';
             string proBET = [select bet__c from IPM_Project__c where id = : testProject.id].bet__c;
-            Test.stopTest();
+            
             system.assertEquals(null, proBET, 'BET not unlinked from IPM Project!');
-            System.assertEquals(null, sic2.PreSelectedBet);
+            System.assertEquals(null, sic2.PreSelectedBet,'Bet is not Selected');
             apexpages.currentpage().getparameters().put(IPM_ConstantUtils.SF_ID,''); 
             
            

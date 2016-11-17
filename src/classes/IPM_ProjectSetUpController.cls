@@ -1,3 +1,4 @@
+
 /****************************************************************************
 @Description : To meet requirements  REQ00003
 @Created Date: March 2015
@@ -102,6 +103,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public Boolean isBrandEditable{get;set;}
     public Boolean isBrandVisible{get;set;}
     public string selectedBrand{get;set;}
+    public Boolean isBusinessPartnerBool{get;set;}
+    public Boolean isCentralTeamBool{get;set;}
     /****************************************************************************
     @Description : Initialization of the constructor
     *****************************************************************************/
@@ -140,6 +143,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         companyCardToRecordType = new Map<Id,String>();
         projectTypeList = new List<IPM_Project_Metadata__mdt>();
         isRollout =  IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+        IPM_CustomPermission custPermission = new IPM_CustomPermission();
+        isBusinessPartnerBool = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+        isCentralTeamBool = custPermission.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
         
         if(project!=null)
         {
@@ -208,8 +214,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
        if(project.IPM_EligibleForReactivation__c && project.IPM_Stopped_Date_Time__c > dateToCompare)
        {
    	      //security for central team and BP users
-          IPM_CustomPermission custPermission = new IPM_CustomPermission();
-          reactivateProject = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+          reactivateProject = isBusinessPartnerBool;
        }
        if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(project.IPM_Project_Type__c))
         {   
@@ -745,6 +750,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 project.IPM_Complexity__c =  projectMetadata.IPM_DefaultComplexity__c;
                 project.IPM_Child_Complexity__c = projectMetadata.IPM_DefaultComplexity__c; 
                 project.IPM_ProjectGKM__c =  projectMetadata.MasterLabel;
+                
+                if(projectMetadata.MasterLabel == IPM_ConstantUtils.GKM_3){
+                	project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GKM_3;
+                }
                                 
         }
         
@@ -1008,11 +1017,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             }
             
             //security for central team and BP users
-            IPM_CustomPermission cpr = new IPM_CustomPermission();
             boolean isCentralTeam=false;
             boolean isBPUser=false;
-            isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
-            isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+            isCentralTeam = isCentralTeamBool;
+            isBPUser=isBusinessPartnerBool;
             if(isCentralTeam || isBPUser){
                 isEditable=true;
             }   
@@ -1040,11 +1048,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             checkUserList(loggedInUser);
             
             //security for central team and BP users
-                IPM_CustomPermission cpr = new IPM_CustomPermission();
                 boolean isCentralTeam=false;
                 boolean isBPUser=false;
-                isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
-                isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+                isCentralTeam = isCentralTeamBool;
+                isBPUser=isBusinessPartnerBool;
                 if(isCentralTeam || isBPUser){
                     isMilestoneEditable=true;
                     isTaskeditable=true;

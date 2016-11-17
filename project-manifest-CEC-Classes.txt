@@ -1,3 +1,5 @@
 src
-src/sharingRules
-src/sharingRules/mdm_Reason_Code__c.sharingRules
+src/permissionsets
+src/permissionsets/CEC_Brand_Ambassador.permissionset
+
+

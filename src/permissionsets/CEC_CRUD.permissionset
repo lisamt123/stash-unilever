@@ -187,6 +187,11 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
+        <editable>true</editable>
+        <field>CEC_Case_Market_Mapping__c.Brand_Ambassador_Brands__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.Account_Owner_Active_Flag__c</field>
         <readable>true</readable>
@@ -304,6 +309,11 @@
 	<fieldPermissions>
         <editable>true</editable>
         <field>Case.AssetId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Brand_Ambassador_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -774,6 +784,36 @@
 	<fieldPermissions>
         <editable>false</editable>
         <field>CEC_Claim_Note__c.Note__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>CEC_Exception_Log__c.Error_Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CEC_Exception_Log__c.Reference_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CEC_Exception_Log__c.Source_Component_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CEC_Exception_Log__c.Source_Method_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CEC_Exception_Log__c.Source_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CEC_Exception_Log__c.User__c</field>
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
@@ -4948,6 +4988,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>CEC_Enclosure_Inventory__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+	<objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>CEC_Exception_Log__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
 	<objectPermissions>
