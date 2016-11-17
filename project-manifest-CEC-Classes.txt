@@ -1,5 +1,9 @@
 src
-src/permissionsets
-src/permissionsets/CEC_Brand_Ambassador.permissionset
-
+src/classes
+src/objects
+src/classes/cec_EmailMessageHelper.cls
+src/classes/cec_EmailMessageHelper.cls-meta.xml
+src/classes/CEC_ExceptionHandling.cls
+src/classes/CEC_ExceptionHandling.cls-meta.xml
+src/objects/CEC_Exception_Log__c.object
 
