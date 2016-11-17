@@ -6709,10 +6709,36 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <filters>
             <field>CORE.USERS.LAST_NAME</field>
-            <operation>contains</operation>
+            <operation>equals</operation>
             <value>Tezuka,Ohashi,Nakajima,Kishi,Hamashouji,Itoh,Akiyoshi,Murakami,Ishiwata</value>
         </filters>
         <label>All Japan Accounts</label>
+        <language>ja</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Japan</role>
+            <role>CEC_User_Japan</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_Japan_Accounts_Testing_Load</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>PC_EMAIL</columns>
+        <columns>PC_ADDRESS2_COUNTRY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>IS_PERSON_ACCOUNT</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>Tezuka,Ohashi,Nakajima,Kishi,Hamashouji,Itoh,Akiyoshi,Murakami,Ishiwata</value>
+        </filters>
+        <label>All Japan Accounts - Testing Load</label>
         <language>ja</language>
         <sharedTo>
             <role>CEC_Global_Head</role>
@@ -23301,7 +23327,8 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <description>To restrict the changes on account name for Russia sales rep users.</description>
         <errorConditionFormula>AND( 
 NOT(ISNEW()),OR(RecordType.Name=&apos;Operator Russia&apos;, RecordType.Name=&apos;Operator&apos;),
-OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilever Food Solution - Russia&apos; 
+OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilever Food Solution - Russia&apos; ,
+!($Permission.FS_Admin) 
 )</errorConditionFormula>
         <errorMessage>Don&apos;t Update the Account Name / Account Currency .</errorMessage>
     </validationRules>
