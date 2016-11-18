@@ -64,16 +64,20 @@
         
             <apex:inputField value="{!pqn.SKU__c}" required="true" id="SKU_NameId" styleClass="SKU_Name"/>
 
-            <apex:outputField value="{!pqn.Product_Name__c}"/>            
+            <!--<apex:outputField value="{!pqn.Product_Name__c}"/>            
             <apex:outputField value="{!pqn.Product_Group__c}"/>            
-            <apex:outputField value="{!pqn.Product_Category__c}"/>
+            <apex:outputField value="{!pqn.Product_Category__c}"/>-->
+            
+            <apex:inputField value="{!pqn.Product_Name__c}" required="true" />
+            <apex:inputField value="{!pqn.Product_Group__c}" required="true"/>
+            <apex:inputField value="{!pqn.Product_Category__c}" required="true"/>
             
             <!--<apex:actionRegion>
                 
                 <apex:commandButton value="Validate" action="{!validate}" reRender="populateId,renderErrorMsg"/>
             </apex:actionRegion>-->
             <apex:inputField value="{!pqn.Suppliers__c}" required="true"/>
-            <apex:inputField value="{!pqn.Supplier_type__c}" required="true"/>                      
+            <apex:inputField value="{!pqn.Supplier_type__c}" required="true"/>
             <apex:inputField value="{!pqn.Non_compliance_reason_code__c}" required="true"/>            
             <apex:inputField value="{!pqn.Number_of_Pallets_Per_SKU_Non_Compliant__c}" required="true"/>
             <apex:inputField value="{!pqn.Date_Pallet_Received__c}" required="true"/>  

@@ -264,4 +264,20 @@
         <apexPage>PQN_UploadNCData</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
+    <tabSettings>
+        <tab>PQN_DC_Volumes__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>PQN_Pallet_Quality_Non_Conformance__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>PQN_Targets__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Pallet_Quality_Non_Conformance_VF</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>
