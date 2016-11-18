@@ -108,7 +108,7 @@ public with sharing class TriggerFactory
      *
      * Returns:     ITrigger - A trigger handler if one exists or null.
      */
-    private static ITrigger getHandler(Schema.sObjectType soType)
+    @TestVisible private static ITrigger getHandler(Schema.sObjectType soType)
     {
         if (soType == FAU_Participant__c.sObjectType)
         {
@@ -197,6 +197,9 @@ public with sharing class TriggerFactory
         }
 		if (soType == IPM_Project_Document_Section__c.sObjectType){
             return new IPM_ProjectDocumentSectionHandler();
+        }
+        if (soType == IPM_SourcingUnit__c.sObjectType){
+            return new IPM_SourcingUnitHandler();
         }
 		if (soType == Core_Approval_Details__c.sObjectType){
             return new Core_CA_LineItem_Handler();

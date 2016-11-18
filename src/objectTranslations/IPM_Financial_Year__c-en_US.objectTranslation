@@ -97,6 +97,10 @@
         <name>Copy_Global_to_Regional__c</name>
     </fields>
     <fields>
+        <label><!-- Copy Local to Global --></label>
+        <name>Copy_Local_to_Global__c</name>
+    </fields>
+    <fields>
         <label><!-- Copy Local to Regional --></label>
         <name>Copy_Local_to_Regional__c</name>
     </fields>
@@ -147,6 +151,10 @@
     <fields>
         <label><!-- GM (% of T/O) Regional --></label>
         <name>GM_of_TO_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gate Keeping Model --></label>
+        <name>Gate_Keeping_Model__c</name>
     </fields>
     <fields>
         <label><!-- Global External Id --></label>
@@ -397,6 +405,10 @@
     <fields>
         <label><!-- Volume Contract --></label>
         <name>Volume_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume Difference Value --></label>
+        <name>Volume_Difference_Value__c</name>
     </fields>
     <fields>
         <label><!-- Volume Difference --></label>

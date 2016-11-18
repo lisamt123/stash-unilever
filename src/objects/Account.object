@@ -6701,7 +6701,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <columns>ACCOUNT.PHONE1</columns>
         <columns>PC_EMAIL</columns>
         <columns>PC_ADDRESS2_COUNTRY</columns>
-        <filterScope>Mine</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>PC_ADDRESS2_COUNTRY</field>
             <operation>equals</operation>
@@ -6712,7 +6712,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <operation>equals</operation>
             <value>Tezuka,Ohashi,Nakajima,Kishi,Hamashouji,Itoh,Akiyoshi,Murakami,Ishiwata</value>
         </filters>
-        <label>All Japan Accounts</label>
+        <label>CEC Japan - 全ての取引先</label>
         <language>ja</language>
         <sharedTo>
             <role>CEC_Global_Head</role>
@@ -6837,6 +6837,33 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <language>en_US</language>
         <sharedTo>
             <roleAndSubordinatesInternal>UFS_Russia</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Japan</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>PC_EMAIL</columns>
+        <columns>PC_ADDRESS2_COUNTRY</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>PC_ADDRESS2_COUNTRY</field>
+            <operation>equals</operation>
+            <value>Japan</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>Tezuka,Ohashi,Nakajima,Kishi,Hamashouji,Itoh,Akiyoshi,Murakami,Ishiwata</value>
+        </filters>
+        <label>CEC Japan - 私の取引先</label>
+        <language>ja</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Japan</role>
+            <role>CEC_User_Japan</role>
         </sharedTo>
     </listViews>
     <listViews>

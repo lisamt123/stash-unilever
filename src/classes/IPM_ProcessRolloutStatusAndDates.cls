@@ -249,12 +249,16 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
             if(IPM_Utils.TargetLaunchDateShiptoTrade.equals(ipmMileStone.IPM_Name__c) || IPM_ConstantUtils.SHIPTO_TRADE_TLD.equals(ipmMileStone.IPM_Name__c)) 
             {
             	ipmMileStone.IPM_Planned_Date__c = ipmMileStone.IPM_Project__r.IPM_Target_Launch_Dates__c;
+            	ipmMileStone.IPM_Due_Date__c = ipmMileStone.IPM_Project__r.IPM_Target_Launch_Dates__c;
             }
             updatedMilestoneList.add(ipmMileStone);
         }
         if(!updatedMilestoneList.isEmpty())
         {
+            IPM_MilestoneHelper.SKIP_TRIGGER_EXECUTION = true; 
             update updatedMilestoneList;
+            IPM_MilestoneHelper.SKIP_TRIGGER_EXECUTION = false;
+            IPM_MilestoneHelper.rollupMilestoneDuedate(projectIdSet); 
         }
     }
 }

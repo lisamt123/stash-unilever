@@ -9,8 +9,29 @@
         <value>Project Type</value>
     </caseValues>
     <fields>
+        <label><!-- Adhoc Local Project Creation Filter --></label>
+        <name>Adhoc_Local_Project_Creation_Filter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Allign All MCO Choice --></label>
+        <name>Allign_All_MCO_Choice__c</name>
+    </fields>
+    <fields>
+        <help><!-- Provide span for project, where least milestones due date need to be copied. --></help>
+        <label><!-- Copy Least MS Due Date --></label>
+        <name>CopyLeastMSDueDate__c</name>
+    </fields>
+    <fields>
         <label><!-- FinancialCopyOverPrefix --></label>
         <name>FinancialCopyOverPrefix__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financial Edit Visibility --></label>
+        <name>Financial_Edit_Visibility__c</name>
+    </fields>
+    <fields>
+        <label><!-- GKM Model --></label>
+        <name>GKM_Model__c</name>
     </fields>
     <fields>
         <label><!-- Associated Company Card --></label>
@@ -69,6 +90,10 @@
         <name>IPM_CreateRegionalProjects__c</name>
     </fields>
     <fields>
+        <label><!-- Disable Key/NonKey --></label>
+        <name>IPM_Disable_Key_NonKey__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Dont Sync Proj To EcoDesign --></label>
         <name>IPM_Dont_Sync_Proj_To_EcoDesign__c</name>
     </fields>
@@ -83,6 +108,10 @@
     <fields>
         <label><!-- Financial Gate Approval Indicator --></label>
         <name>IPM_FinancialGateApprovalIndicator__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financial Confirm button --></label>
+        <name>IPM_Financial_Confirm_button__c</name>
     </fields>
     <fields>
         <label><!-- Financials Insert Postfix --></label>

@@ -137,6 +137,10 @@
         <name>Copy_Global_to_Regional__c</name>
     </fields>
     <fields>
+        <label><!-- Copy Local to Global --></label>
+        <name>Copy_Local_to_Global__c</name>
+    </fields>
+    <fields>
         <label><!-- Copy Local to Regional --></label>
         <name>Copy_Local_to_Regional__c</name>
     </fields>
@@ -193,6 +197,10 @@
     <fields>
         <label><!-- GM Y1 bps vs DNDS Regional --></label>
         <name>GM_Y1_bps_vs_DNDS_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gate Keeping Model --></label>
+        <name>Gate_Keeping_Model__c</name>
     </fields>
     <fields>
         <label><!-- Global External Id --></label>
@@ -308,6 +316,10 @@
         <name>IPM_Key_Financial__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Parent Company Card --></label>
+        <name>IPM_Parent_Company_Card__c</name>
+    </fields>
+    <fields>
         <label><!-- Regional Rollout --></label>
         <name>IPM_Project_Rollout__c</name>
         <relationshipLabel><!-- IPM Financials --></relationshipLabel>
@@ -401,12 +413,32 @@
         <name>Incremental_Y1_Turnover_Regional__c</name>
     </fields>
     <fields>
+        <label><!-- IsFinancialInvalidGlobal --></label>
+        <name>IsFinancialInvalidGlobal__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsFinancialInvalidLocal --></label>
+        <name>IsFinancialInvalidLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsFinancialInvalidRegional --></label>
+        <name>IsFinancialInvalidRegional__c</name>
+    </fields>
+    <fields>
         <label><!-- IsFinancialInvalid --></label>
         <name>IsFinancialInvalid__c</name>
     </fields>
     <fields>
+        <label><!-- IsKeyFinancialAtCapability --></label>
+        <name>IsKeyFinancialAtCapability__c</name>
+    </fields>
+    <fields>
         <label><!-- Is BC Confirmed Capability --></label>
         <name>Is_BC_Confirmed_Capability__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Nonkey Business Case Changed --></label>
+        <name>Is_Nonkey_Business_Case_Changed__c</name>
     </fields>
     <fields>
         <label><!-- Last Saved By (Global) --></label>
@@ -472,6 +504,10 @@
     <fields>
         <label><!-- MisalignmentDateTime --></label>
         <name>MisalignmentDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- MisalignmentManual --></label>
+        <name>MisalignmentManual__c</name>
     </fields>
     <fields>
         <label><!-- NPV Charter --></label>
@@ -591,6 +627,18 @@
         <name>Project_Sustainability_Period__c</name>
     </fields>
     <fields>
+        <label><!-- Red Validation Cells Global --></label>
+        <name>Red_Validation_Cells_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Red Validation Cells Local --></label>
+        <name>Red_Validation_Cells_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Red Validation Cells Regional --></label>
+        <name>Red_Validation_Cells_Regional__c</name>
+    </fields>
+    <fields>
         <label><!-- Red Validation Cells --></label>
         <name>Red_Validation_Cells__c</name>
     </fields>
@@ -610,6 +658,10 @@
     <fields>
         <label><!-- Sorting Order --></label>
         <name>Sorting_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Project --></label>
+        <name>Source_Project__c</name>
     </fields>
     <fields>
         <label><!-- Status(Global) --></label>
@@ -694,6 +746,10 @@
     <fields>
         <label><!-- Target Launch Date --></label>
         <name>Target_Launch_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Project --></label>
+        <name>Target_Project__c</name>
     </fields>
     <fields>
         <label><!-- Threshold Status Global --></label>
@@ -838,6 +894,18 @@
     <fields>
         <label><!-- Year 3 iTO Regional --></label>
         <name>Year_3_iTO_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Yellow Validation Cells Global --></label>
+        <name>Yellow_Validation_Cells_Global__c</name>
+    </fields>
+    <fields>
+        <label><!-- Yellow Validation Cells Local --></label>
+        <name>Yellow_Validation_Cells_Local__c</name>
+    </fields>
+    <fields>
+        <label><!-- Yellow Validation Cells Regional --></label>
+        <name>Yellow_Validation_Cells_Regional__c</name>
     </fields>
     <fields>
         <label><!-- Yellow Validation Cells --></label>

@@ -99,6 +99,10 @@
         <name>IPM_Due_Date_Feasibility__c</name>
     </fields>
     <fields>
+        <label><!-- Due Date For Sorting --></label>
+        <name>IPM_Due_Date_For_Sorting__c</name>
+    </fields>
+    <fields>
         <help><!-- Snapshot of Idea Due Date --></help>
         <label><!-- Due Date@Idea --></label>
         <name>IPM_Due_Date_Idea__c</name>
@@ -361,6 +365,10 @@
     <fields>
         <label><!-- Preferred Date Violated? --></label>
         <name>IPM_Violate_Preferred_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- SystemSetDueDate --></label>
+        <name>SystemSetDueDate__c</name>
     </fields>
     <layouts>
         <layout>IPM Milestone</layout>

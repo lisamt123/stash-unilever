@@ -3039,7 +3039,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Alert No Assessment For EI Country</shortDescription>
-        <value>Please complete at least one assessment in Eco-Design for all your EI Countries in Section 5.3!</value>
+        <value>Please complete at least one assessment in Eco-Design for Section 5.3</value>
     </labels>
     <labels>
         <fullName>IPM_Alert_Please_be_aware_that_some_of_your_regional_rollouts_have_not_progresse</fullName>
@@ -5129,7 +5129,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_DO_WE_NEED_TO_UPDATE_TASKS</shortDescription>
-        <value>Do We need to update tasks?</value>
+        <value>Do you want the system to update tasks automatically?</value>
     </labels>
     <labels>
         <fullName>IPM_DO_YOU_WANT_TO_CRT_PRO_RESOURCE</fullName>
@@ -7894,7 +7894,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Not Performing Same role</shortDescription>
-        <value>is no longing performing the same role, according to the Unilever Active Directory. You may need to find another person to fill this role on your project.</value>
+        <value>is no longer performing the same role, according to the Unilever Active Directory. You may need to find another person to fill this role on your project.</value>
     </labels>
     <labels>
         <fullName>IPM_Not_ProjectMember</fullName>
@@ -8573,7 +8573,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning</shortDescription>
-        <value>Clicking on Change would submit your request for phase change. Once processing is complete, you would be notified via email.</value>
+        <value>Clicking on Change would submit your request for phase change. Once processing is complete, you will be notified via email.</value>
     </labels>
     <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning_Local</fullName>
@@ -8587,7 +8587,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning_Regional</shortDescription>
-        <value>Clicking on save would submit your request for creation of regional project as soon as the regional project leader is assigned.A Regional Rollout project, once projected, cannot be deleted by the project leader and will have to be done via regional project leader through stop project. Once Processing is complete,you would be notified via Email.</value>
+        <value>Clicking on save would submit your request for creation of regional project as soon as the regional project leader is assigned.A Regional Rollout project, once projected, cannot be deleted by the project leader and will have to be done via regional project leader through stop project. Once Processing is complete,you will be notified via Email.</value>
     </labels>
     <labels>
         <fullName>IPM_PhaseLabel</fullName>
@@ -10225,7 +10225,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM TLD Misaligned</shortDescription>
-        <value>is no longer aligned with the Target Launch Date of the Regional Project,</value>
+        <value>is no longer aligned with the Target Launch Date of the</value>
     </labels>
     <labels>
         <fullName>IPM_TLD_SHOULD_BE_GREATER_THAN_TODAY</fullName>

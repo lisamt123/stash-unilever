@@ -140,6 +140,17 @@
         <template>IPM_Emails/IPM_Notify_Leads_TLD_is_changed</template>
     </alerts>
     <alerts>
+        <fullName>IPM_Notify_the_Local_Project_leader_when_Non_Key_local_project_created</fullName>
+        <description>IPM Notify the Local Project leader when Non Key local project created</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_Notify_Local_Leader_when_Non_key_local_project_created</template>
+    </alerts>
+    <alerts>
         <fullName>IPM_Notify_the_Local_Project_leader_when_local_project_created</fullName>
         <description>IPM Notify the Local Project leader when local project created</description>
         <protected>false</protected>
@@ -271,6 +282,17 @@
         </recipients>
         <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_send_email_when_current_project_is_stopped_in_ideas_phase</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_BBPL_When_Global_PL_initiates_Archival</fullName>
+        <description>Notify BBPL When Global PL initiates Archival</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_to_BBPL_when_Global_PL_initiates_Archival</template>
     </alerts>
     <alerts>
         <fullName>Notify_BBPL_When_Regional_PL_initiates_Archival</fullName>

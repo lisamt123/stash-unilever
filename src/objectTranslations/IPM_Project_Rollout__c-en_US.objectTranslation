@@ -104,6 +104,10 @@
         <name>IPM_PhaseChangeQueueJobId__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Project GKM --></label>
+        <name>IPM_Project_GKM__c</name>
+    </fields>
+    <fields>
         <label><!-- Project Job Status --></label>
         <name>IPM_Project_Job_Status__c</name>
         <picklistValues>

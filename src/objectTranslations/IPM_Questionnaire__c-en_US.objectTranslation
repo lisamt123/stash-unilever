@@ -20,6 +20,10 @@
             <translation><!-- BETCurrentStatus__c --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>PDLDocument_Status__c</masterLabel>
+            <translation><!-- PDLDocument_Status__c --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>RQS_Charter_Answered_3__c</masterLabel>
             <translation><!-- RQS_Charter_Answered_3__c --></translation>
         </picklistValues>
@@ -285,6 +289,10 @@
     <fields>
         <label><!-- Is Master --></label>
         <name>Is_Master__c</name>
+    </fields>
+    <fields>
+        <label><!-- PDLDocument Status --></label>
+        <name>PDLDocument_Status__c</name>
     </fields>
     <fields>
         <label><!-- RQS Charter Answered &gt; 3 --></label>
