@@ -33,6 +33,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>PQN_UploadNCData</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PQN_UploadNCDatatest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PQN_singleEntryScreen</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -253,10 +261,6 @@
     <pageAccesses>
         <apexPage>PQN_Targets_List_View</apexPage>
         <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>PQN_UploadNCData</apexPage>
-        <enabled>false</enabled>
     </pageAccesses>
     <tabSettings>
         <tab>PQN_DC_Volumes__c</tab>
