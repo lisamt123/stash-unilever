@@ -1317,6 +1317,9 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             for(IPM_Project_Rollout__c localRollout : mapUpsertRollouts.values())
             {
                 localRollout.Id = null;
+                if(localRollout.Regional_Rollout__c != null){
+                  localRollout.Regional_Rollout__r = null;
+                }
             }
             try
 		{
