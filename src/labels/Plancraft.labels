@@ -2028,3 +2028,24 @@
         <shortDescription>PBS_soqllimit</shortDescription>
         <value>50000</value>
     </labels>
+	       <fullName>PBS_Worklevel1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PBS Worklevel1</shortDescription>
+        <value>Supply Planner,Demand Planner,Demand & Supply Planner,Repack Planner/Officer,Innovation Planner,Supply/Requirements Planner,Materials Planner,Distribution Planner</value>
+    </labels>
+	  <labels>
+        <fullName>PBS_Worklevel2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PBS Worklevel2</shortDescription>
+        <value>Demand Planning Manager,Supply Planning Manager (MSO/MCO),Repack Operations Manager,S&OP Manager,Demand & Supply Planning Manager(MSO/MCO),Site Supply Planning Manager</value>
+    </labels>
+		  <labels>
+        <fullName>PBS_Worklevel3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PBS Worklevel3</shortDescription>
+        <value>Planning Director (MSO/MCO),Category / Brand SC Director, 
+Strategic Planning Director Product Group</value>
+    </labels>
