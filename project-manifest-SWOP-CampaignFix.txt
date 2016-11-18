@@ -6,6 +6,8 @@ src/classes/Oblix_SWOPparentController.cls
 src/classes/Oblix_SWOPparentController.cls-meta.xml
 src/classes/Oblix_SOWRollOverLogic.cls
 src/classes/Oblix_SOWRollOverLogic.cls-meta.xml
+src/classes/Oblix_SOWMainDetalControllerExt.cls
+src/classes/Oblix_SOWMainDetalControllerExt.cls-meta.xml
 src/pages
 src/pages/Oblix_CampaignSummary.page
 src/pages/Oblix_CampaignSummary.page-meta.xml
