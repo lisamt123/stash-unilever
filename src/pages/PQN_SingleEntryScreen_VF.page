@@ -61,11 +61,13 @@
                         
         </apex:pageBlockSection>
         <apex:pageBlockSection title="Pallet Quality Non Compliance Details" columns="2" collapsible="false" id="PBSId1">
-                      
-            <apex:inputField value="{!pqn.Product_Name__c}" required="true"/>            
-            <apex:inputField value="{!pqn.Product_Group__c}" required="true"/>            
-            <apex:inputField value="{!pqn.Product_Category__c}" required="true"/>
+        
             <apex:inputField value="{!pqn.SKU__c}" required="true" id="SKU_NameId" styleClass="SKU_Name"/>
+
+            <apex:outputField value="{!pqn.Product_Name__c}"/>            
+            <apex:outputField value="{!pqn.Product_Group__c}"/>            
+            <apex:outputField value="{!pqn.Product_Category__c}"/>
+            
             <!--<apex:actionRegion>
                 
                 <apex:commandButton value="Validate" action="{!validate}" reRender="populateId,renderErrorMsg"/>
