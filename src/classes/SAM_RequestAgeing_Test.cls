@@ -3,7 +3,7 @@ Name: SAM_RequestAgeing_Test ()
 Copyright © 2016 Salesforce
 ======================================================
 ======================================================
-Purpose: This is the test class for age calulation.
+Purpose: This is the test class for age calulation
 
 -------
 ======================================================
