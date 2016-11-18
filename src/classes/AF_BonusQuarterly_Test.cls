@@ -42,6 +42,7 @@ public class AF_BonusQuarterly_Test
             //Insert AnnualBonusQual
             List<AF_AnnualBonus_Qual__c> Anuualbonusqual = AF_TestFactory_Helper.insertAnnualBonusQual(1,true);
             List<AF_AnnualBonus_Qual__c> Anuualbonusqual1 = AF_TestFactory_Helper.insertAnnualBonus(1,true);
+            System.assertEquals(Anuualbonusqual!=null,Anuualbonusqual1!=null,ANNAUL_BONNUS);
             List<AF_AnnualBonus_Qual__c> AnuualbonusqualQuery = [SELECT Id FROM AF_AnnualBonus_Qual__c LIMIT 1];
             System.assert(AnuualbonusqualQuery[0].Id!=null ,ANNAUL_BONNUS);
             //Insert BrandEstimate
@@ -82,11 +83,13 @@ public class AF_BonusQuarterly_Test
             //Insert Agency Entity
             List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
             List<AF_Entity__c> AFEntity3 = AF_TestFactory_Helper.insertEntity3(1,true);
+            System.assertEquals(AFEntity[0].id!=null,AFEntity3[0].id!=null,AF_TestFactory_Helper.AGENCY_ENTITY);
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
             List<AF_Entity__c> AFEntity4 = AF_TestFactory_Helper.insertEntity4(1,true);
+            System.AssertEquals(AFEntity4!=null,AFUnileverEntity!=null,AF_TestFactory_Helper.UNILEVER_ENTITY);
             List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE LIMIT 1];
             System.Assert(AFUnileverEntityQuery[0].Id != null, AF_TestFactory_Helper.UNILEVER_ENTITY);
             //Insert Agency Estimate.
@@ -188,6 +191,7 @@ public class AF_BonusQuarterly_Test
             ApexPages.currentPage().getParameters().put('Agencyid',acc[0].id);
             ApexPages.currentPage().getParameters().put('Year',currYear);
             AF_BonusQuarterly bonQuart=new AF_BonusQuarterly();
+            bonQuart.CallBonusQuarterly();
         }
     }
     /***********************************************************************************
@@ -217,9 +221,11 @@ public class AF_BonusQuarterly_Test
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
             //Insert Dummyuser Custom settings
             List<DummyUser__c> duuser = AF_TestFactory_Helper.createDummyUser(true);
+            System.Assert(duuser[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
             //Insert AnnualBonusQual
             List<AF_AnnualBonus_Qual__c> Anuualbonusqual = AF_TestFactory_Helper.insertAnnualBonusQual(1,true);
             List<AF_AnnualBonus_Qual__c> Anuualbonusqual1 = AF_TestFactory_Helper.insertAnnualBonus(1,true);
+            System.assertEquals(Anuualbonusqual!=null,Anuualbonusqual1!=null,ANNAUL_BONNUS);
             List<AF_AnnualBonus_Qual__c> AnuualbonusqualQuery = [SELECT Id FROM AF_AnnualBonus_Qual__c LIMIT 1];
             System.assert(AnuualbonusqualQuery[0].Id!=null ,ANNAUL_BONNUS);
             //Insert BrandEstimate
@@ -235,6 +241,7 @@ public class AF_BonusQuarterly_Test
             }
             insert BrandEstlist;
             List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEst LIMIT 1]; 
+            System.assertEquals(BrandEstQuery[0].Brand__c, AFCategoryBrand[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
             //insert Quarterly Bonus.
             List<AF_QuarterlyBonus__c> QuarterlyBonus = AF_TestFactory_Helper.insertQuarterlyBonus(1,false);
             List<AF_QuarterlyBonus__c> QuarterlyBonuslist = new List<AF_QuarterlyBonus__c>();
@@ -264,7 +271,7 @@ public class AF_BonusQuarterly_Test
             }
             insert AFEntitylist;
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,false);
             List<AF_Entity__c> AFUnileverEntitylist=new List<AF_Entity__c>();
@@ -372,9 +379,11 @@ public class AF_BonusQuarterly_Test
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
             //Insert Dummyuser Custom settings
             List<DummyUser__c> duuser = AF_TestFactory_Helper.createDummyUser(true);
+            System.Assert(duuser[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
             //Insert AnnualBonusQual
             List<AF_AnnualBonus_Qual__c> Anuualbonusqual = AF_TestFactory_Helper.insertAnnualBonusQual(1,true);
             List<AF_AnnualBonus_Qual__c> Anuualbonusqual1 = AF_TestFactory_Helper.insertAnnualBonus(1,true);
+            System.assertEquals(Anuualbonusqual!=null,Anuualbonusqual1!=null,ANNAUL_BONNUS);
             List<AF_AnnualBonus_Qual__c> AnuualbonusqualQuery = [SELECT Id FROM AF_AnnualBonus_Qual__c LIMIT 1];
             System.assert(AnuualbonusqualQuery[0].Id!=null ,ANNAUL_BONNUS);
             //Insert BrandEstimate
@@ -390,6 +399,7 @@ public class AF_BonusQuarterly_Test
             }
             insert BrandEstlist;
             List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEst LIMIT 1]; 
+            System.assertEquals(BrandEstQuery[0].Brand__c, AFCategoryBrand[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
             //insert Quarterly Bonus.
             List<AF_QuarterlyBonus__c> QuarterlyBonus = AF_TestFactory_Helper.insertQuarterlyBonus(1,false);
             List<AF_QuarterlyBonus__c> QuarterlyBonuslist = new List<AF_QuarterlyBonus__c>();
@@ -419,7 +429,7 @@ public class AF_BonusQuarterly_Test
             }
             insert AFEntitylist;
             List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-            System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+            System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
             //Insert Unilever Entity
             List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,false);
             List<AF_Entity__c> AFUnileverEntitylist=new List<AF_Entity__c>();

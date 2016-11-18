@@ -67,7 +67,7 @@ public class AF_BrandEstimateController2_Test
 			//Insert Agency Entity
 			List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
 			List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-			System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+			System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
 			//Insert Unilever Entity
 			List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
 			List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -99,8 +99,9 @@ public class AF_BrandEstimateController2_Test
 			List<AF_Bonus_Threshold__c> BonusThresholdQuery = [Select Agency_Name__c from AF_Bonus_Threshold__c where Id IN:BonusThreshold LIMIT 1];
 			System.assertEquals(BonusThresholdQuery[0].Agency_Name__c,acc[0].id, AF_TestFactory_Helper.BONUSTHERSHOLD_RECORD);
 			//Instantiate AF_BrandEstimateController  Class
-			AF_brandEstimatehandlerHelper helper=new AF_brandEstimatehandlerHelper();
+			AF_brandEstimatehandlerHelper.brandEstApprovalProcess();
 			AF_Brand_EstimateHandler handler=new AF_Brand_EstimateHandler();
+			handler.andFinally();
 			ApexPages.currentPage().getParameters().put('id',brandEst[0].id);
 			AF_BrandEstimateController2 stdCtrl=new AF_BrandEstimateController2();
 			stdCtrl.IsPilotModel=true;
@@ -173,7 +174,7 @@ public class AF_BrandEstimateController2_Test
 			//Insert Agency Entity
 			List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
 			List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-			System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+			System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
 			//Insert Unilever Entity
 			List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
 			List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -197,7 +198,7 @@ public class AF_BrandEstimateController2_Test
 			//Insert AnnualBonusQual
 			List<AF_AnnualBonus_Qual__c> Anuualbonusqual = AF_TestFactory_Helper.insertAnnualBonusQual(1,true);
 			List<AF_AnnualBonus_Qual__c> AnuualbonusqualQuery = [SELECT Id FROM AF_AnnualBonus_Qual__c LIMIT 1];
-			System.assert(AnuualbonusqualQuery[0].Id!=null ,ANNUAL_QUAL);
+			System.assertEquals(AnuualbonusqualQuery[0].Id!=null ,Anuualbonusqual!=null,ANNUAL_QUAL);
 			//Insert Bonus Summary
 			List<AF_Bonus_Summary__c> AFBonusSummary = AF_TestFactory_Helper.insertBonusSummary(1,true);
 			List<AF_Bonus_Summary__c> AFBonusSummaryQuery = [Select AF_Agency__c from AF_Bonus_Summary__c where Id IN:AFBonusSummary LIMIT 1];
@@ -246,8 +247,9 @@ public class AF_BrandEstimateController2_Test
 			List<AF_Sub_Result__c> subResultsQuery = [SELECT ID,AF_Bonus_Threshold__c FROM AF_Sub_Result__c WHERE ID IN : subResults LIMIT 1];
 			System.assertEquals(subResultsQuery[0].AF_Bonus_Threshold__c ,BonusThresholdQuery[0].id, 'SubResult is inserted');
 			//instantiate the brandestimate helper class
-			AF_brandEstimatehandlerHelper helper=new AF_brandEstimatehandlerHelper();
+			AF_brandEstimatehandlerHelper.brandEstApprovalProcess();
 			AF_Brand_EstimateHandler handler=new AF_Brand_EstimateHandler();
+			handler.andFinally();
 			//instantiate the class
 			ApexPages.currentPage().getParameters().put('id',brandEst[0].id);
 			AF_BrandEstimateController2 stdCtrl1=new AF_BrandEstimateController2();
@@ -295,6 +297,7 @@ public class AF_BrandEstimateController2_Test
 			System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
 			//Insert Dummyuser Custom settings
 			List<DummyUser__c> duuser = AF_TestFactory_Helper.createDummyUser(true);
+			System.Assert(duuser[0].Id != null, AF_TestFactory_Helper.ACCOUNT_RECORD);
 			//Insert BrandEstimate
 			List<AF_Brand_Estimate__c> BrandEst = AF_TestFactory_Helper.insertAFBrandEstList(1,true);
 			List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEst LIMIT 1]; 
@@ -306,7 +309,7 @@ public class AF_BrandEstimateController2_Test
 			//Insert Agency Entity
 			List<AF_Entity__c> AFEntity = AF_TestFactory_Helper.insertAgencyEntityList(1,true);
 			List<AF_Entity__c> AFEntityQuery = [SELECT AF_Agency__c FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_AGENCY_ENTITY_RECTYPE and Id IN:AFEntity LIMIT 1];
-			System.assertEquals(AFEntity[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
+			System.assertEquals(AFEntityQuery[0].AF_Agency__c, acc[0].id,AF_TestFactory_Helper.AGENCY_ENTITY);
 			//Insert Unilever Entity
 			List<AF_Entity__c> AFUnileverEntity = AF_TestFactory_Helper.insertUnileverEntityListRec(1,true);
 			List<AF_Entity__c> AFUnileverEntityQuery = [SELECT Id FROM AF_Entity__c where RecordTypeId=:AF_TestFactory_Helper.AF_UNILIVER_ENTITY_RECTYPE and Id IN:AFUnileverEntity LIMIT 1];
@@ -328,7 +331,7 @@ public class AF_BrandEstimateController2_Test
 			//Insert AnnualBonusQual
 			List<AF_AnnualBonus_Qual__c> Anuualbonusqual = AF_TestFactory_Helper.insertAnnualBonusQual(1,true);
 			List<AF_AnnualBonus_Qual__c> AnuualbonusqualQuery = [SELECT Id FROM AF_AnnualBonus_Qual__c LIMIT 1];
-			System.assert(AnuualbonusqualQuery[0].Id!=null ,'The AnnualBonusQual Record inserted');
+			System.assertEquals(AnuualbonusqualQuery[0].Id!=null ,Anuualbonusqual!=null,'The AnnualBonusQual Record inserted');
 			//Insert Bonus Summary
 			List<AF_Bonus_Summary__c> AFBonusSummary = AF_TestFactory_Helper.insertBonusSummary(1,true);
 			List<AF_Bonus_Summary__c> AFBonusSummaryQuery = [Select AF_Agency__c from AF_Bonus_Summary__c where Id IN:AFBonusSummary LIMIT 1];
@@ -355,8 +358,9 @@ public class AF_BrandEstimateController2_Test
 			List<AF_Sub_Result__c> subResult = AF_TestFactory_Helper.insertSubResult(1,true);
 			List<AF_Sub_Result__c> subResultQuery = [SELECT Id,AF_Bonus_Threshold__c FROM AF_Sub_Result__c WHERE ID IN : subResult LIMIT 1];
 			System.assertEquals(subResultQuery[0].AF_Bonus_Threshold__c ,BonusThreshold[0].Id,AF_TestFactory_Helper.SUBRESULT_RECORD);
-			AF_brandEstimatehandlerHelper helper=new AF_brandEstimatehandlerHelper();
+			AF_brandEstimatehandlerHelper.brandEstApprovalProcess();
 			AF_Brand_EstimateHandler handler=new AF_Brand_EstimateHandler();
+			handler.andFinally();
 			ApexPages.currentPage().getParameters().put('id',brandEst[0].id);
 			AF_BrandEstimateController2 stdCtrl1=new AF_BrandEstimateController2();
 			stdCtrl1.IsPilotModel=true;
