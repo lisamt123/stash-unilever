@@ -77,7 +77,6 @@
 			<runTest>CEC_TestDataFactory</runTest>
 			<runTest>CEC_Test_FulfilmentQualityCheckHelper</runTest>
 			<runTest>CEC_Test_IssueCreationPageController</runTest>
-			<runTest>cec_TestEmailMessageHelper</runTest>
 			<runTest>CEC_Test_NewAccountCaseController</runTest>
 			<runTest>CEC_TypeaheadTest</runTest>
 			<runTest>CEC_UserDefaultSettingTriggerHelperTest</runTest>

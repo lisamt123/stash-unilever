@@ -3578,6 +3578,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>TextArea</type>
     </fields>
     <fields>
+            <fullName>Procurement_Contact__c</fullName>
+            <deleteConstraint>SetNull</deleteConstraint>
+            <description>Procurement Contact</description>
+            <externalId>false</externalId>
+            <label>Procurement Contact</label>
+            <referenceTo>User</referenceTo>
+            <relationshipName>Accounts2</relationshipName>
+            <required>false</required>
+            <trackFeedHistory>false</trackFeedHistory>
+            <trackHistory>false</trackHistory>
+            <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Profession__c</fullName>
         <description>TO : Profession</description>
         <externalId>false</externalId>
