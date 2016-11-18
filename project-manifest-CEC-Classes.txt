@@ -1,5 +1,9 @@
 src
 src/classes
+src/objects
+src/classes/cec_EmailMessageHelper.cls
+src/classes/cec_EmailMessageHelper.cls-meta.xml
 src/classes/cec_TestEmailMessageHelper.cls
 src/classes/cec_TestEmailMessageHelper.cls-meta.xml
+src/objects/CEC_Exception_Log__c.object
 
