@@ -4,7 +4,7 @@
  * @Author      -   Deepika Gulati, Mindtree Ltd     
  */
 
-@isTest(SeeAllData=true)
+@isTest
 public class PACV_Questions_AnswerCreation_Test {
 /*******************************************************************
 Purpose: Method to test trigger by creating a question record.
