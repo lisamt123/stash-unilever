@@ -1,10 +1,22 @@
 <apex:page standardController="PQN_Pallet_Quality_Non_Conformance__c" extensions="PQN_singleEntryScreen" showHeader="false">
 <head>
+    <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/js/jquery-1.11.1.min.js')}"></script>
+    
+    <script>
+        j$ = jQuery.noConflict();
+        j$(document).ready( function () {
+            $("input.SKU_Name").after('<button type="button" class="btn btn-default" onclick="doValidate();"><i class="fa fa-search"></i></button>');
+        });
+        function appendSearch() {
+            $("input.SKU_Name").after('<button type="button" class="btn btn-default" onclick="doValidate();"><i class="fa fa-search"></i></button>');
+            
+        }
+    </script>
     <script>
         function doValidate() {
            // alert("tes");
-           var SKU_Name = document.getElementsByClassName('SKU_Name')[0].value;
-           console.log(SKU_Name);
+            var SKU_Name = document.getElementsByClassName('SKU_Name')[0].value;
+            console.log(SKU_Name);
             Validate(SKU_Name);
         }
         </script>
@@ -35,7 +47,7 @@
 <div id="page-wrapper">
     <div class="container-fluid">
     <apex:form id="frm">
-            <apex:actionFunction name="Validate" action="{!validate}" reRender="frm" immediate="{!immediate}">
+            <apex:actionFunction name="Validate" action="{!validate}" reRender="frm" immediate="{!immediate}" oncomplete="appendSearch()">
                 <apex:param name="skuName" value=""/>
             </apex:actionFunction>
             
@@ -57,27 +69,28 @@
             <apex:inputField value="{!pqn.Cluster__c}"/>
             <apex:inputField value="{!pqn.Sub_Cluster__c}"/>
             <apex:inputField value="{!pqn.Delivery_Note_Number__c}"/>
-            <apex:inputField value="{!pqn.Description__c}"/>            
+            <!--<apex:inputField value="{!pqn.Description__c}"/>-->       
                         
         </apex:pageBlockSection>
         <apex:pageBlockSection title="Pallet Quality Non Compliance Details" columns="2" collapsible="false" id="PBSId1">
         
-            <apex:inputField value="{!pqn.SKU__c}" required="true" id="SKU_NameId" styleClass="SKU_Name"/>
-
-            <!--<apex:outputField value="{!pqn.Product_Name__c}"/>            
-            <apex:outputField value="{!pqn.Product_Group__c}"/>            
-            <apex:outputField value="{!pqn.Product_Category__c}"/>-->
-            
-            <apex:inputField value="{!pqn.Product_Name__c}" required="true" />
-            <apex:inputField value="{!pqn.Product_Group__c}" required="true"/>
-            <apex:inputField value="{!pqn.Product_Category__c}" required="true"/>
-            
+            <apex:inputField value="{!pqn.SKU__c}" required="true" id="SKU_NameId" styleClass="SKU_Name" />
             <!--<apex:actionRegion>
                 
                 <apex:commandButton value="Validate" action="{!validate}" reRender="populateId,renderErrorMsg"/>
             </apex:actionRegion>-->
-            <apex:inputField value="{!pqn.Suppliers__c}" required="true"/>
-            <apex:inputField value="{!pqn.Supplier_type__c}" required="true"/>
+            <!--<apex:outputField value="{!pqn.Product_Name__c}"/>            
+            <apex:outputField value="{!pqn.Product_Group__c}"/>            
+            <apex:outputField value="{!pqn.Product_Category__c}"/>-->
+            
+            <apex:inputField value="{!pqn.Product_Name__c}" onfocus="this.blur()" />
+            <apex:inputField value="{!pqn.Product_Group__c}" onfocus="this.blur()"/>
+            <apex:inputField value="{!pqn.Product_Category__c}" onfocus="this.blur()"/>
+            
+            
+            <apex:inputField value="{!pqn.Supplier_Number__c}" required="true"/>
+            <apex:inputField value="{!pqn.Supplier__c}" onfocus="this.blur()"/>
+            <apex:inputField value="{!pqn.Supplier_type__c}" onfocus="this.blur()"/>
             <apex:inputField value="{!pqn.Non_compliance_reason_code__c}" required="true"/>            
             <apex:inputField value="{!pqn.Number_of_Pallets_Per_SKU_Non_Compliant__c}" required="true"/>
             <apex:inputField value="{!pqn.Date_Pallet_Received__c}" required="true"/>  

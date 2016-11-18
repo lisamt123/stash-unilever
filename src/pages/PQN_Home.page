@@ -163,10 +163,10 @@
                 </div>
                 <div class="col-sm-2 portfolio-item">
                     <a href="./PQN_List_View">
-                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/reports.png')}" class="img-responsive" alt="Reports"/>
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/reports.png')}" class="img-responsive" alt="Archive"/>
                     </a>
                     <div class="text-center">
-                        <span class="name">Reports</span>
+                        <span class="name">Archive</span>
                     </div>
                 </div>
                 

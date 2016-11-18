@@ -179,7 +179,7 @@
                     
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="" style="{!If(navigationName=='reports' ,'color: #fff;
-    background-color: #004976;','')}" aria-expanded="true"><i class="fa fa-fw fa-th-list"></i> Reports<i class="fa fa-fw fa-caret-down"></i></a>
+    background-color: #004976;','')}" aria-expanded="true"><i class="fa fa-fw fa-th-list"></i> Archive<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse in" aria-expanded="true">
                             <li class="{!If(navigationName=='pqnView' ,'active','')}">
                                 <a href="./PQN_List_View">PQN Entries</a>

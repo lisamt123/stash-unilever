@@ -8,7 +8,7 @@ public with sharing class PQN_singleEntryScreen{
         pqnId = Apexpages.currentpage().getparameters().get('id');
         if(pqnId!=null){
             pqn = [select id,Reporting_DC__c,Region__c,DC_Country__c,MCO__c,Cluster__c,Sub_Cluster__c,Delivery_Note_Number__c,Description__c,
-                    Product_Name__c,Product_Group__c,Product_Category__c,SKU__c,Suppliers__c,Supplier_type__c,Non_compliance_reason_code__c,
+                    Product_Name__c,Product_Group__c,Product_Category__c,SKU__c,Supplier_type__c,Non_compliance_reason_code__c,
                     Number_of_Pallets_Per_SKU_Non_Compliant__c,Date_Pallet_Received__c,Comments__c,Days_Left_Before_Freeze__c 
                     from PQN_Pallet_Quality_Non_Conformance__c where id=: pqnId];    
         }

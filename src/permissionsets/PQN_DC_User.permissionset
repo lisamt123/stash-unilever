@@ -33,14 +33,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PQN_UploadNCData</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>PQN_UploadNCDatatest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>PQN_singleEntryScreen</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -146,6 +138,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier__c</field>
         <readable>true</readable>
@@ -153,11 +150,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>PQN_Pallet_Quality_Non_Conformance__c.Suppliers__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
