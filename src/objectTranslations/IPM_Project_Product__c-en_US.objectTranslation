@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM Project Product</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM Project Products</value>
+    </caseValues>
+    <fields>
+        <label><!-- Format --></label>
+        <name>IPM_Format__c</name>
+    </fields>
+    <fields>
+        <label><!-- Formulation --></label>
+        <name>IPM_Formulation__c</name>
+    </fields>
+    <fields>
+        <label><!-- GoldenPrototype --></label>
+        <name>IPM_GoldenPrototype__c</name>
+    </fields>
+    <fields>
+        <label><!-- % Of gTO --></label>
+        <name>IPM_Of_gTO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Packing --></label>
+        <name>IPM_Packing__c</name>
+    </fields>
+    <fields>
+        <label><!-- ProductSizeMetrics --></label>
+        <name>IPM_ProductSizeMetrics__c</name>
+        <picklistValues>
+            <masterLabel>Kg</masterLabel>
+            <translation><!-- Kg --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Piece</masterLabel>
+            <translation><!-- Piece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>flOz</masterLabel>
+            <translation><!-- flOz --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>g</masterLabel>
+            <translation><!-- g --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>mL</masterLabel>
+            <translation><!-- mL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>mg</masterLabel>
+            <translation><!-- mg --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ProductSize --></label>
+        <name>IPM_ProductSize__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Name --></label>
+        <name>IPM_Product_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project --></label>
+        <name>IPM_Project__c</name>
+        <relationshipLabel><!-- IPM Project Products --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

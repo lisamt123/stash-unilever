@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Letterhead xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <backgroundColor>#CCCCCC</backgroundColor>
+    <bodyColor>#FFFFFF</bodyColor>
+    <bottomLine>
+        <color>#FFFFFF</color>
+        <height>1</height>
+    </bottomLine>
+    <description>Lynx Email Template</description>
+    <footer>
+        <backgroundColor>#FFFFFF</backgroundColor>
+        <height>196</height>
+        <horizontalAlignment>Center</horizontalAlignment>
+        <logo>CEC_Branding/Lynx_Dark_footer.jpg</logo>
+        <verticalAlignment>Top</verticalAlignment>
+    </footer>
+    <header>
+        <backgroundColor>#FFFFFF</backgroundColor>
+        <height>100</height>
+        <horizontalAlignment>Center</horizontalAlignment>
+        <logo>CEC_Logos/Lynx_White_Logo.jpg</logo>
+        <verticalAlignment>Top</verticalAlignment>
+    </header>
+    <middleLine>
+        <color>#FFFFFF</color>
+        <height>1</height>
+    </middleLine>
+    <name>CEC Unilever Lynx</name>
+    <topLine>
+        <color>#000000</color>
+        <height>1</height>
+    </topLine>
+</Letterhead>

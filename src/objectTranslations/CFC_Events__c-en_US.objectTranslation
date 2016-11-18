@@ -92,10 +92,6 @@
             <section>Event Details</section>
         </sections>
     </layouts>
-    <quickActions>
-        <label><!-- Attend --></label>
-        <name>Attend</name>
-    </quickActions>
     <recordTypes>
         <label><!-- CFC_Create --></label>
         <name>CFC_Create</name>

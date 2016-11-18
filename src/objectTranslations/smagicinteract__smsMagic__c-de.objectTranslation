@@ -1,12 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fields>
-        <label><!-- Case --></label>
-        <name>Case__c</name>
-        <relationshipLabel><!-- SMS History --></relationshipLabel>
-    </fields>
-    <validationRules>
-        <errorMessage><!-- SMS Character cannot be greater than 700. --></errorMessage>
-        <name>CEC_Outgoing_SMS_Character_Limit</name>
-    </validationRules>
-</CustomObjectTranslation>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata"/>
+

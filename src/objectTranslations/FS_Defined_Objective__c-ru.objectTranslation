@@ -1493,18 +1493,6 @@
         </sections>
     </layouts>
     <nameFieldLabel>Выбранная цель</nameFieldLabel>
-    <quickActions>
-        <label>Создать риск</label>
-        <name>Create_Risk</name>
-    </quickActions>
-    <quickActions>
-        <label>Новая возможность</label>
-        <name>New_Opportunity</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- Create New Opportunity --></label>
-        <name>New_Russia_Opportunity</name>
-    </quickActions>
     <recordTypes>
         <label>Цель дистрибутора</label>
         <name>Distributor_Objective</name>

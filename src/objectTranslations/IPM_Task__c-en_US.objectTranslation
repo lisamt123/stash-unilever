@@ -286,6 +286,10 @@
             <masterLabel>PLE/Learnings</masterLabel>
             <translation><!-- PLE/Learnings --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Design Lock</masterLabel>
+            <translation><!-- Product Design Lock --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- IPM Type of Task --></label>

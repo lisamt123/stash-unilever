@@ -153,14 +153,6 @@
             <section>Description</section>
         </sections>
     </layouts>
-    <quickActions>
-        <label><!-- New Distributor Objective --></label>
-        <name>New_Distributor_Objective</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- New Operator Objective --></label>
-        <name>New_Operator_Objective</name>
-    </quickActions>
     <recordTypes>
         <label><!-- Distributor --></label>
         <name>Distributor</name>

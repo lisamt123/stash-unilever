@@ -129,8 +129,19 @@
     </listViews>
     <listViews>
         <fullName>CEC_Brazil_Queue_CEC_Factory_Details</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>Country_Name__c</columns>
+        <columns>Email__c</columns>
+        <columns>Type__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>CREATEDBY_USER.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Brazil Queue</label>
+        <language>en_US</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

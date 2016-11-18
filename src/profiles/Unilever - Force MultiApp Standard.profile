@@ -4091,6 +4091,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>IPM_ChangProjectDocStatusCntrlGKM3_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>IPM_ChangProjectDocStatusController_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -4287,6 +4291,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>IPM_FinancialControllerGKM3_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>IPM_FinancialControllerRegional_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -4312,6 +4320,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_FinancialHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_FinancialMisalignment</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_FinancialMisalignment_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4379,6 +4395,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>IPM_GateDocumentPDFDownloadController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>IPM_GateDocumentRiskManagement</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -4424,6 +4444,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_GetHelpDoc_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_GlobalClaimPDLController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_GlobalClaimPDLController_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4584,6 +4612,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_PerformanceBreakdownController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_PhaseChangeHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4767,6 +4799,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>IPM_Report_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>IPM_Resource_Allocation</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -4783,11 +4819,19 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>IPM_RolloutPlansAddControllerGKM3_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>IPM_RolloutPlansAddController_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_RolloutPlansTableController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_RolloutPlansTableControllerGKM3_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4808,6 +4852,22 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_SoqlUtilities</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_SourcePlanController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_SourcePlanController_Helper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_SourcePlanController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_SourcingUnitHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4967,6 +5027,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>MB_BillingBatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>MB_Constants</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -5015,7 +5079,15 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>MB_MobileBillingBatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>MB_ScheduleBillingDataDeletion_Batch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>MB_Scheduler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -7855,22 +7927,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
-    <externalDataSourceAccesses>
-        <enabled>false</enabled>
-        <externalDataSource>Inside_Unilever_com</externalDataSource>
-    </externalDataSourceAccesses>
-    <externalDataSourceAccesses>
-        <enabled>false</enabled>
-        <externalDataSource>Unilever_Messaging_Colloboration</externalDataSource>
-    </externalDataSourceAccesses>
-    <externalDataSourceAccesses>
-        <enabled>false</enabled>
-        <externalDataSource>Unilever_OneDrive</externalDataSource>
-    </externalDataSourceAccesses>
-    <externalDataSourceAccesses>
-        <enabled>false</enabled>
-        <externalDataSource>Unilever_SFDev</externalDataSource>
-    </externalDataSourceAccesses>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Agency_Estimate__c.AF_1stSave__c</field>
@@ -27668,6 +27724,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_GKM__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics_OTIF__c.IPM_Geography__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28283,6 +28344,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Market_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Market_Place_Activity__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28373,6 +28439,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Sector__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28389,6 +28460,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Sub_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Sub_Sector__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -28953,6 +29029,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Bosscard__c.IPM_Category_Group__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Bosscard__c.IPM_Category_Icon__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -29323,6 +29404,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Country_Level_Claim__c.Country_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Country_Level_Claim__c.IPM_Claim__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Country__c.AddedAtStage__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -29543,6 +29634,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_EmailOut_Notification__c.Confirmed_By__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_EmailOut_Notification__c.MCO_Country_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -29753,6 +29849,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Financial_Year__c.Copy_Local_to_Global__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Financial_Year__c.Copy_Local_to_Regional__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -29814,6 +29915,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial_Year__c.GM_of_TO_Regional__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial_Year__c.Gate_Keeping_Model__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -30098,6 +30204,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Financial_Year__c.Volume_Difference_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Financial_Year__c.Volume_Difference__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -30328,6 +30439,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Financial__c.Copy_Local_to_Global__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Financial__c.Copy_Local_to_Regional__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -30394,6 +30510,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial__c.GM_Y1_bps_vs_DNDS_Regional__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.Gate_Keeping_Model__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -30523,6 +30644,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Financial__c.IPM_Parent_Company_Card__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Financial__c.IPM_Project_Rollout__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -30638,12 +30764,37 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Financial__c.IsFinancialInvalidGlobal__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.IsFinancialInvalidLocal__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.IsFinancialInvalidRegional__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Financial__c.IsFinancialInvalid__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Financial__c.IsKeyFinancialAtCapability__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Financial__c.Is_BC_Confirmed_Capability__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.Is_Nonkey_Business_Case_Changed__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -30719,6 +30870,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial__c.MisalignmentDateTime__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.MisalignmentManual__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -30863,6 +31019,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Financial__c.Red_Validation_Cells_Global__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.Red_Validation_Cells_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.Red_Validation_Cells_Regional__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Financial__c.Red_Validation_Cells__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -30888,6 +31059,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Financial__c.Source_Project__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Financial__c.Status_Global__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -30909,6 +31085,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial__c.Target_Launch_Date_Updated_From__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.Target_Project__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -31034,6 +31215,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial__c.Year_3_iTO_Regional__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.Yellow_Validation_Cells_Global__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.Yellow_Validation_Cells_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.Yellow_Validation_Cells_Regional__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -31588,6 +31784,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_For_Sorting__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Milestone__c.IPM_Due_Date_Idea__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -31799,6 +32000,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Milestone__c.IPM_Violate_Preferred_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Milestone__c.SystemSetDueDate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_ProductPlan__c.IPM_Country_Null__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_ProductPlan__c.IPM_Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Claim__c.IPM_Claim__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -33023,6 +33244,46 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Project_Product__c.IPM_Format__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Product__c.IPM_Formulation__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Product__c.IPM_GoldenPrototype__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Product__c.IPM_Of_gTO__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Product__c.IPM_Packing__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Product__c.IPM_ProductSizeMetrics__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Product__c.IPM_ProductSize__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Product__c.IPM_Product_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Project_Resource_History__c.Change_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -33224,6 +33485,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Rollout__c.IPM_PhaseChangeQueueJobId__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Rollout__c.IPM_Project_GKM__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -34553,6 +34819,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Project__c.Source_Rollout_External_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Project__c.Success_Timestamp_EcoDesign__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -34753,6 +35024,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Questionnaire__c.PDLDocument_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Questionnaire__c.RQS_Charter_Answered_3__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -34914,6 +35190,31 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Section__c.ProjectSpan__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_SourcingPlan__c.IPM_CapabilityConfirmed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_SourcingPlan__c.IPM_SourcingUnit__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_SourcingUnit__c.Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_SourcingUnit__c.Source_Unit_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_SourcingUnit__c.Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -37073,11 +37374,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>LiveChatTranscript.Visitors_Device_type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>MB_Billing_Entity__c.Billing_Currency__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -38249,6 +38545,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Unilever_SOW_Approver_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MobileBillingInsights__c.Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MobileBillingInsights__c.Month__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MobileBillingInsights__c.TotalDevices__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MobileBillingInsights__c.TotalUsers__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -41109,136 +41425,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.Turnover__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Order.UID_Bill__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Order.UID_Channel__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Order.UID_Distributor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Order.UID_IOP_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Order.UID_IOP__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Order.UID_Incoterm__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Order.UID_Invoice_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Order.UID_Month__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Order.UID_Order_RecordType__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Order.UID_Quarter__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Order.UID_Report_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Order.UID_Stock_Unit__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Brand__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Customer_Group__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Distributor_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Invoice_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Invoice_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Material_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Material_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Month__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Order_Quantity__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Purchase_Order__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Sales_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Sales_Flag__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OrderItem.UID_Source__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -45153,116 +45339,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>TASKRAY__Project_Task__c.Budget__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project_Task__c.Country__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project_Task__c.Dependency_Offset__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project_Task__c.Duration__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project_Task__c.Parent__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project_Task__c.Pillar_Program__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>TASKRAY__Project_Task__c.Pillar__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project_Task__c.Project__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project_Task__c.Projects__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project_Task__c.pillar_programs__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project_Task__c.task_by_Pillar_Programs__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project__c.Budget__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project__c.Country__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project__c.Linea_de_Costo__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project__c.Parent__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>TASKRAY__Project__c.Pillar__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project__c.Project__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project__c.Projects__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TASKRAY__Project__c.Saving__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TH1__Draft__c.Related_Lookup_CEC_Retrieval__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TH1__Draft__c.Related_Lookup_Case__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>TH1__Draft__c.Related_Lookup_cec_Fulfilment__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>TO_FAQ__kav.Additional_Information__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -47680,16 +47756,6 @@
         <editable>false</editable>
         <field>aa_Topic__c.Topic_Order__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>almond__Training_Track__c.Geography__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>almond__Training_Track__c.Work_Level__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -53367,11 +53433,6 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>smagicinteract__smsMagic__c.Case__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>uw_Asset__c.Agency__c</field>
         <readable>true</readable>
@@ -55230,6 +55291,9 @@
         <layout>IPM_CorePara_helps_example__c-IPM CoreParameter helps Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>IPM_Country_Level_Claim__c-Country Level Claim Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>IPM_Country__c-IPM Country Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -55289,6 +55353,12 @@
         <recordType>IPM_Milestone__c.IPM_Snapshot</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>IPM_ProductPlan__c-IPM ProductPlan Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>IPM_Project_Claim__c-Project Claim Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>IPM_Project_Document_Section_Content__c-IPM Section Content Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -55302,6 +55372,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>IPM_Project_Metadata__mdt-Project Metadata Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>IPM_Project_Product__c-IPM Project Product Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>IPM_Project_Resource_History__c-IPM Project Resource History Layout</layout>
@@ -55374,6 +55447,12 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>IPM_Section__c-Section Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>IPM_SourcingPlan__c-IPM SourcingPlan Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>IPM_SourcingUnit__c-IPM SourcingUnit Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>IPM_Task__c-Task Layout</layout>
@@ -55644,6 +55723,9 @@
     <layoutAssignments>
         <layout>Marketing_SOW__c-Marketing SOW Layout</layout>
         <recordType>Marketing_SOW__c.ParentSowMarketing</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MobileBillingInsights__c-MB_Billing_Insight Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>My_Library__c-My Library Layout</layout>
@@ -57875,6 +57957,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>IPM_Download_Source_Plan</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>IPM_EditMilestone</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -57931,6 +58017,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>IPM_GateDocumentPDFDownload</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>IPM_HomePage</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -57952,6 +58042,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>IPM_PosQuestions</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>IPM_Product_and_Sourcing_Plan</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -57991,11 +58085,19 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>IPM_RolloutPlansAddManage</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>IPM_RolloutPlansRegional</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>IPM_RolloutPlansTablePage</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>IPM_RolloutPlansTable_GKM3Page</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -61598,6 +61700,10 @@
     <tabVisibilities>
         <tab>standard-Contract</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-Document</tab>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-DuplicateRecordSet</tab>

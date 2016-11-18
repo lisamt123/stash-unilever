@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>FAU_Core_Read</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>All Core Administrators have Read access to All Template programs</description>
+        <label>FAU Core_Read</label>
+        <sharedTo>
+            <group>FAU_Program_Administrators</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Template</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FAU_Core_ReadWrite</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Give Read Write Access to non Template</description>
+        <label>FAU Core_ReadWrite</label>
+        <sharedTo>
+            <group>FAU_Program_Administrators</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Template,Template (Inactive)</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FAU_Franchise1</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>FAU Franchise</label>
+        <sharedTo>
+            <group>FAU_Franchise</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Template</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>FAU_Category__c</field>
+            <operation>equals</operation>
+            <value>Franchise</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>FAU_Africa</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FAU Africa</label>
+        <sharedTo>
+            <group>FAU_Africa</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FAU_Africa</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FAU_Europe</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FAU Europe</label>
+        <sharedTo>
+            <group>FAU_Europe</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FAU_Europe</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FAU_Franchise_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>FAU Franchise Share</label>
+        <sharedTo>
+            <group>FAU_Franchise</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FAU_Franchise</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FAU_Latin_America</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FAU Latin America</label>
+        <sharedTo>
+            <group>FAU_Latin_America</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FAU_Latin_America</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FAU_NAMET_RUB</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FAU NAMET &amp; RUB</label>
+        <sharedTo>
+            <group>FAU_NAMET_RUB</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FAU_NAMET_RUB</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FAU_North_America</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FAU North America</label>
+        <sharedTo>
+            <group>FAU_North_America</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FAU_North_America</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FAU_North_Asia</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FAU North Asia</label>
+        <sharedTo>
+            <group>FAU_North_Asia</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FAU_North_Asia</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FAU_SEAA</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FAU SEAA</label>
+        <sharedTo>
+            <group>FAU_SEAA</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FAU_SEAA</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>FAU_South_Asia</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FAU South Asia</label>
+        <sharedTo>
+            <group>FAU_South_Asia</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>FAU_South_Asia</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

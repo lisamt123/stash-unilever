@@ -865,9 +865,4 @@
         <label>Nuovo Adempimento</label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <description>La corrispondenza  consumatore è stata respinta dal Quality Check Team, ha bisogno di alcune correzioni prima di essere inviata.  Si prega di seguire il link per registrare e correggere come richiesto</description>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>Corrispondenza respinta</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

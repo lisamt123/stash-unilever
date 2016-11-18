@@ -859,11 +859,4 @@
         <label>新規代替品返金</label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <description>返信不可：修正が必要です。
-
-リンクをクリックして修正内容を確認してください。</description>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>承認不可履歴</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

@@ -926,9 +926,4 @@
         <label><!-- New_Fulfilment --></label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <description>Korespondencja do konsumenta został odrzucony przez Zespół Kontroli Jakości i wymaga dalszych zmian przed wysłaniem. \ r \ n \ r \ nProszę kliknąć w link do rejestru i zmienić wpis jak wskazano. \ r \ n \ r \ nDziękujemy.</description>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>Korespondencja odrzucona</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

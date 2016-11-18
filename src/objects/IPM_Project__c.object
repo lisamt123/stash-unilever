@@ -2542,16 +2542,14 @@ OwnerId))</formula>
         <externalId>false</externalId>
         <formula>IF(  ISPICKVAL( IPM_SourceProjectType__c , &apos;Original&apos;) ,
 	IF( ISPICKVAL( IPMProject_Span__c , &apos;Global&apos;) ,  BI__c ,
-	IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Local&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;), ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM4&apos;),ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM3&apos;) ),  
+	
+IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Local&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;),OR( ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM4&apos;),ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM3&apos;)) ),  
 		           IPM_Parent_Project__r.BI__c ,
-	IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Local&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;),NOT(ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM4&apos;)),NOT(ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM3&apos;))),
+
+				   IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Local&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;),NOT(ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM4&apos;)),NOT(ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM3&apos;))),
 				   IPM_Parent_Project__r.IPM_Parent_Project__r.BI__c,
 				   
-				   
-				   IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;)),IPM_Parent_Project__r.BI__c ,BI__c))))
-
-
-,&apos;&apos;)</formula>
+IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;)),IPM_Parent_Project__r.BI__c ,BI__c)))),&apos;&apos;)</formula>
         <label>Parent_BI</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -2835,13 +2833,31 @@ OwnerId))</formula>
         <fullName>IPM_Project_Based_Threshold_Status__c</fullName>
         <description>Check independently of the cluster whether the Project is below or above threshold.</description>
         <externalId>false</externalId>
-        <formula>IF(NOT(ISPICKVAL(IPM_Project_Type__c,&apos;Rollout&apos;)),
-  IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Project_Y3iTO__c &lt; IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
-    IF(ISPICKVAL(IPMProject_Span__c,&apos;Regional&apos;),
-       IF(IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
-       IF(IPM_Parent_Project__r.IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;))
-       )
-  )</formula>
+        <formula>IF((OR(ISBLANK(IPM_Parent_Project__c),ISNULL(IPM_Parent_Project__c))), 
+    IF(Exempt_from_Threshold__c,
+     &apos;Exempt&apos;,
+     IF(IPM_Category_Thresh__c &lt; IPM_Project_Y3iTO__c ,
+     &apos;Above Threshold&apos;,
+     &apos;Below Threshold&apos;
+      )
+  ), 
+    IF(OR(ISBLANK(IPM_Parent_Project__r.IPM_Parent_Project__c),ISNULL(IPM_Parent_Project__r.IPM_Parent_Project__c)),
+     IF(IPM_Parent_Project__r.Exempt_from_Threshold__c,
+       &apos;Exempt&apos;,
+       IF(IPM_Parent_Project__r.IPM_Category_Thresh__c &lt; IPM_Parent_Project__r.IPM_Project_Y3iTO__c ,
+        &apos;Above Threshold&apos;,
+        &apos;Below Threshold&apos;
+      )
+     ),
+     IF(IPM_Parent_Project__r.IPM_Parent_Project__r.Exempt_from_Threshold__c,
+      &apos;Exempt&apos;,
+      IF(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Category_Thresh__c &lt; IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Y3iTO__c ,
+        &apos;Above Threshold&apos;,
+        &apos;Below Threshold&apos;
+      )
+     )
+  )  
+)</formula>
         <label>IPM Project Based Threshold Status</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -3223,7 +3239,7 @@ OwnerId))</formula>
         <picklist>
             <picklistValues>
                 <fullName>Cleaning Tools</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Disinfectants</fullName>
@@ -3972,6 +3988,18 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Source_Rollout_External_Id__c</fullName>
+        <description>External Id of Source rollout</description>
+        <externalId>false</externalId>
+        <formula>IF( AND( NOT( ISBLANK(IPM_Project_Rollout__c) ), NOT(ISNULL(IPM_Project_Rollout__c)) ) , IPM_Project_Rollout__r.IPM_Rollout_Project__c, IPM_Project_Name__c )</formula>
+        <label>IPM Source Rollout External Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Success_Timestamp_EcoDesign__c</fullName>
@@ -13130,6 +13158,24 @@ OwnerId))</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000H05P_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H05P</label>
+        <queue>IPM_a7I0L000000H05P</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H05U_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H05U</label>
+        <queue>IPM_a7I0L000000H05U</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Project</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
@@ -17852,7 +17898,7 @@ OwnerId))</formula>
             <picklist>IPM_Market__c</picklist>
             <values>
                 <fullName>Dishwash</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Household Cleaning</fullName>

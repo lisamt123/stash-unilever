@@ -218,10 +218,6 @@
             <section>Geolocation Details</section>
         </sections>
     </layouts>
-    <quickActions>
-        <label><!-- Check-In --></label>
-        <name>ICB_CheckIn</name>
-    </quickActions>
     <recordTypes>
         <label><!-- FS Event --></label>
         <name>FS_Event</name>

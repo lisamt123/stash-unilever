@@ -107,6 +107,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Communication-Contract</displayNameOverride>
             <field>Contract_Communication__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
@@ -231,7 +232,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>MD Calendar Y3 GM%</displayNameOverride>
+            <displayNameOverride>MD Calendar Y3  GM%</displayNameOverride>
             <field>IPM_MD_Y3_GM__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
@@ -402,37 +403,19 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Calendar Y3 GM% (BB)</displayNameOverride>
-            <field>Y3_GM_BB__c</field>
-            <table>IPM_Analytics_OTIF__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>Calendar Y3 GM% (BD)</displayNameOverride>
             <field>Y3_GM_BD__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Calendar Y3 gT0 (BB)</displayNameOverride>
-            <field>IPM_Y3_gTO_BB__c</field>
-            <table>IPM_Analytics_OTIF__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Calendar Y3 gT0 (BD)</displayNameOverride>
+            <displayNameOverride>Calendar Y3 gTO (BD)</displayNameOverride>
             <field>IPM_Y3_gTO_BD__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Calendar Y3 iT0 (BB)</displayNameOverride>
-            <field>IPM_Y3_iTO_BB__c</field>
-            <table>IPM_Analytics_OTIF__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Calendar Y3 iT0 (BD)</displayNameOverride>
+            <displayNameOverride>Calendar Y3 iTO (BD)</displayNameOverride>
             <field>IPM_Y3_iTO_BD__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
@@ -454,7 +437,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Charter Innovation Y1 gTO</displayNameOverride>
+            <displayNameOverride>Charter Innovation Y1 gTO  </displayNameOverride>
             <field>IPM_Charter_Y1_gTO__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
@@ -472,13 +455,13 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Contract Innovation Y1 gTO</displayNameOverride>
+            <displayNameOverride>Contract Innovation Y1 gTO </displayNameOverride>
             <field>IPM_Contract_Y1_gTO__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Contract Innovation Y1 iTO</displayNameOverride>
+            <displayNameOverride>Contract Innovation Y1 iTO </displayNameOverride>
             <field>IPM_Contract_Y1_iTO__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
@@ -490,25 +473,13 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>MR Innovation Y1 gTO</displayNameOverride>
-            <field>IPM_MR_Y1_gTO__c</field>
-            <table>IPM_Analytics_OTIF__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>MR Innovation Y1 iTO</displayNameOverride>
-            <field>IPM_MR_Y1_iTO__c</field>
-            <table>IPM_Analytics_OTIF__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>MR Innovation Y1 GM%</displayNameOverride>
             <field>IPM_MR_Y1_GM__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>MD Innovation Y1 gTO</displayNameOverride>
+            <displayNameOverride>MD Innovation Y1 gTO </displayNameOverride>
             <field>IPM_MD_Y1_gTO__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
@@ -522,6 +493,18 @@
             <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>MD Innovation Y1 GM%</displayNameOverride>
             <field>IPM_MD_Y1_GM__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>MR Innovation Y1 gTO</displayNameOverride>
+            <field>IPM_MR_Y1_gTO__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>MR Innovation Y1 iTO </displayNameOverride>
+            <field>IPM_MR_Y1_iTO__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
         <columns>
@@ -544,7 +527,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Project/Phantom/NonKey</displayNameOverride>
             <field>IPM_Project_Phantom_Non_Key__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>

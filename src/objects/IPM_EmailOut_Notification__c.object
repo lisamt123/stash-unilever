@@ -58,6 +58,16 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
+        <fullName>Confirmed_By__c</fullName>
+        <externalId>false</externalId>
+        <label>Confirmed By</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>MCO_Country_Name__c</fullName>
         <description>This field is used to store either MCO or Country Name</description>
         <externalId>false</externalId>

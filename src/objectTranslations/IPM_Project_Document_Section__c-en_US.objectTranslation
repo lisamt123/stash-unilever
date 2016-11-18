@@ -296,6 +296,10 @@
             <masterLabel>Market Ready</masterLabel>
             <translation><!-- Market Ready --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Design Lock</masterLabel>
+            <translation><!-- Product Design Lock --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Has Appendix --></label>

@@ -896,9 +896,4 @@
         <label>Neues Fulfilment</label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <description>Ihre Konsumentenkorrespondenz ist vom Quality Team abgelehnt worden und benötigt Änderungen bevor sie verschickt werden kann. /R/N/R/ Bitte klicken sie den Link um Anmerkungen zu sehen und fügen diese um. R/N/R/N Danke.</description>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>Zurückgewiesene Korrespondenz</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

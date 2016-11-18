@@ -59,7 +59,7 @@
                                                    <apex:repeat value="{!lstRolloutWrappers}" var="rolloutWrapper">
                                                    <li>
                                                        <div class="projectContainer">
-                                                            <div class="pHead accrHead filterSubTitle {!IF(currentFinancialId == mapConsolidatedFinancials[rolloutWrapper.regionName].Id, 'selected', '')}">
+                                                            <div class="pHead accrHead filterSubTitle {!IF(project.IPMProject_Span__c != 'Local' && currentFinancialId == mapConsolidatedFinancials[rolloutWrapper.regionName].Id, 'selected', '')}">
                                                             <!--Rendered when project is not span ie it will render for all other span types-->    
                                                             <apex:outputText rendered="{!project.IPMProject_Span__c != 'Local'}" >
                                                                 <span class='expico-square fa fa-minus'></span>
@@ -219,8 +219,9 @@
                                                                     validationErrorMessageCal="{!validationErrorMessageCal}" 
                                                                     isNonkey="{!isNonkey}"
                                                                     isProjectStop="{!isProjectStop}"
+                                                                    exRate="{!exRate}"
                                                                 />
-                                                        		
+                                                                
                                                                 
                                                                 <c:IPM_FinancialSummaryTable ipmFinancial="{!currentFinancial}"
                                                                     fieldSuffix="{!fieldSuffix}"
@@ -268,6 +269,7 @@
                                                                     validationErrorMessageCal="{!validationErrorMessageCal}"
                                                                     isNonkey="{!isNonkey}"
                                                                     isProjectStop="{!isProjectStop}"
+                                                                    exRate="{!exRate}"
                                                                 />
                                                                 </apex:outputPanel>
                                                                  
@@ -281,6 +283,7 @@
                                                                 colSpan="{!colSpan}"
                                                                 sustainabilityPeriod="{!sustainabilityPeriod}"
                                                                 fieldSuffix="{!fieldSuffix}"
+                                                                exRate="{!exRate}"
                                                             />
                                                          
                                                         </div>
@@ -293,6 +296,7 @@
                                                                 colSpan="{!colSpan}"
                                                                 sustainabilityPeriod="{!sustainabilityPeriod}"
                                                                 fieldSuffix="{!fieldSuffix}"
+                                                                exRate="{!exRate}"
                                                             />
                                                         </div>                            
                                                     </div>

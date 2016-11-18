@@ -864,13 +864,4 @@
         <label>Nieuwe fulfilment/Inwilliging</label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <description>De correspondentie naar de consument werd niet goedgekeurd door het Quality Check Team en moet aangepast worden alvorens verstuurd wordt.
-
-  Gelieve de link naar het record te volgen en maak de gevraagde aanpassingen. 
-
-  Dank u.</description>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>Geweigerde correspondentie</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

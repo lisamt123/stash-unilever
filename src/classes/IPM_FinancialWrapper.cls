@@ -13,6 +13,7 @@ public class IPM_FinancialWrapper{
     public List<IPM_FinancialValueWrapper> lstGrossPLValueMarketShare {get; set;}
     public List<IPM_FinancialValueWrapper> lstIncrementalPLValueMarketShare {get; set;}
     //Newly added for new misalignment format or Regional and Local instead of difference in the tooltip
+    public Decimal y0ValueMarketShareGlobal {get;set;}
     public Decimal y0ValueMarketShareRegional {get;set;} 
     public Decimal y0ValueMarketShareLocal {get;set;} 
 
@@ -22,6 +23,7 @@ public class IPM_FinancialWrapper{
     public List<IPM_FinancialValueWrapper> lstGrossPLVolume {get; set;}
     public List<IPM_FinancialValueWrapper> lstIncrementalPLVolume {get; set;}
     //Newly added for new misalignment format or Regional and Local instead of difference in the tooltip
+    public Decimal y0VolumeGlobal {get;set;}
     public Decimal y0VolumeRegional {get;set;} 
     public Decimal y0VolumeLocal {get;set;} 
 
@@ -31,6 +33,7 @@ public class IPM_FinancialWrapper{
     public List<IPM_FinancialValueWrapper> lstGrossPLVolumeTons {get; set;}
     public List<IPM_FinancialValueWrapper> lstIncrementalPLVolumeTons {get; set;}
     //Newly added for new misalignment format or Regional and Local instead of difference in the tooltip
+    public Decimal y0VolumeTonsGlobal {get;set;}
     public Decimal y0VolumeTonsRegional {get;set;} 
     public Decimal y0VolumeTonsLocal {get;set;} 
 
@@ -40,6 +43,7 @@ public class IPM_FinancialWrapper{
     public List<IPM_FinancialValueWrapper> lstGrossPLTurnover {get; set;}
     public List<IPM_FinancialValueWrapper> lstIncrementalPLTurnover {get; set;}
     //Newly added for new misalignment format or Regional and Local instead of difference in the tooltip
+    public Decimal y0TurnoverGlobal {get;set;}
     public Decimal y0TurnoverRegional {get;set;} 
     public Decimal y0TurnoverLocal {get;set;} 
 
@@ -48,6 +52,7 @@ public class IPM_FinancialWrapper{
     public Decimal y0GrossProfitDifference {get{return this.y0GrossProfitDifference.setScale(2);} set;}
     public List<IPM_FinancialValueWrapper> lstGrossPLGrossProfit {get; set;}
     public List<IPM_FinancialValueWrapper> lstIncrementalPLGrossProfit {get; set;}
+    public Decimal y0GrossProfitGlobal {get;set;} 
     public Decimal y0GrossProfitRegional {get;set;} 
     public Decimal y0GrossProfitLocal {get;set;} 
 
@@ -57,6 +62,7 @@ public class IPM_FinancialWrapper{
     public List<IPM_FinancialValueWrapper> lstGrossPLAdvertising {get; set;}
     public List<IPM_FinancialValueWrapper> lstIncrementalPLAdvertising {get; set;}
     //Newly added for new misalignment format or Regional and Local instead of difference in the tooltip
+    public Decimal y0AdvertisingGlobal {get;set;}
     public Decimal y0AdvertisingRegional {get;set;} 
     public Decimal y0AdvertisingLocal {get;set;}
 
@@ -66,6 +72,7 @@ public class IPM_FinancialWrapper{
     public List<IPM_FinancialValueWrapper> lstGrossPLProfit {get; set;}
     public List<IPM_FinancialValueWrapper> lstIncrementalPLProfit {get; set;}
     //Newly added for new misalignment format or Regional and Local instead of difference in the tooltip
+    public Decimal y0ProfitGlobal {get;set;}
     public Decimal y0ProfitRegional {get;set;} 
     public Decimal y0ProfitLocal {get;set;}
 
@@ -75,6 +82,7 @@ public class IPM_FinancialWrapper{
     public List<IPM_FinancialValueWrapper> lstGrossPLGM {get; set;}
     public List<IPM_FinancialValueWrapper> lstIncrementalPLGM {get; set;}
     //Newly added for new misalignment format or Regional and Local instead of difference in the tooltip
+    public Decimal y0GMGlobal {get;set;}
     public Decimal y0GMRegional {get;set;} 
     public Decimal y0GMLocal {get;set;}
 
@@ -84,6 +92,7 @@ public class IPM_FinancialWrapper{
     public List<IPM_FinancialValueWrapper> lstGrossPLAP {get; set;}
     public List<IPM_FinancialValueWrapper> lstIncrementalPLAP {get; set;}
     //Newly added for new misalignment format or Regional and Local instead of difference in the tooltip
+    public Decimal y0APGlobal {get;set;}
     public Decimal y0APRegional {get;set;} 
     public Decimal y0APLocal {get;set;}
 
@@ -93,6 +102,7 @@ public class IPM_FinancialWrapper{
     public List<IPM_FinancialValueWrapper> lstGrossPLPBO {get; set;}
     public List<IPM_FinancialValueWrapper> lstIncrementalPLPBO {get; set;}
     //Newly added for new misalignment format or Regional and Local instead of difference in the tooltip
+    public Decimal y0PBOGlobal {get;set;}
     public Decimal y0PBORegional {get;set;} 
     public Decimal y0PBOLocal {get;set;}
     
@@ -108,6 +118,7 @@ public class IPM_FinancialWrapper{
         this.y0ValueMarketShareDifference = 0;
         this.lstGrossPLValueMarketShare = new List<IPM_FinancialValueWrapper>();
         this.lstIncrementalPLValueMarketShare = new List<IPM_FinancialValueWrapper>();
+        this.y0ValueMarketShareGlobal = 0;
         this.y0ValueMarketShareRegional = 0;
         this.y0ValueMarketShareLocal = 0;
 
@@ -115,6 +126,7 @@ public class IPM_FinancialWrapper{
         this.y0VolumeDifference = 0;
         this.lstGrossPLVolume = new List<IPM_FinancialValueWrapper>();
         this.lstIncrementalPLVolume = new List<IPM_FinancialValueWrapper>();
+        this.y0VolumeGlobal = 0;
         this.y0VolumeRegional = 0;
         this.y0VolumeLocal = 0;
 
@@ -122,6 +134,7 @@ public class IPM_FinancialWrapper{
         this.y0VolumeTonsDifference = 0;
         this.lstGrossPLVolumeTons = new List<IPM_FinancialValueWrapper>();
         this.lstIncrementalPLVolumeTons = new List<IPM_FinancialValueWrapper>();
+        this.y0VolumeTonsGlobal = 0;
         this.y0VolumeTonsRegional = 0;
         this.y0VolumeTonsLocal = 0; 
 
@@ -129,6 +142,7 @@ public class IPM_FinancialWrapper{
         this.y0TurnoverDifference = 0;
         this.lstGrossPLTurnover = new List<IPM_FinancialValueWrapper>();
         this.lstIncrementalPLTurnover = new List<IPM_FinancialValueWrapper>();
+        this.y0TurnoverGlobal = 0;
         this.y0TurnoverRegional = 0;
         this.y0TurnoverLocal = 0;
 
@@ -136,6 +150,7 @@ public class IPM_FinancialWrapper{
         this.y0GrossProfitDifference = 0;
         this.lstGrossPLGrossProfit = new List<IPM_FinancialValueWrapper>();
         this.lstIncrementalPLGrossProfit = new List<IPM_FinancialValueWrapper>();
+        this.y0GrossProfitGlobal = 0;
         this.y0GrossProfitRegional = 0;
         this.y0GrossProfitLocal = 0;  
 
@@ -143,6 +158,7 @@ public class IPM_FinancialWrapper{
         this.y0AdvertisingDifference = 0;
         this.lstGrossPLAdvertising = new List<IPM_FinancialValueWrapper>();
         this.lstIncrementalPLAdvertising = new List<IPM_FinancialValueWrapper>();
+        this.y0AdvertisingGlobal = 0;
         this.y0AdvertisingRegional = 0;
         this.y0AdvertisingLocal = 0;
 
@@ -150,6 +166,7 @@ public class IPM_FinancialWrapper{
         this.y0ProfitDifference = 0;
         this.lstGrossPLProfit = new List<IPM_FinancialValueWrapper>();
         this.lstIncrementalPLProfit = new List<IPM_FinancialValueWrapper>();
+        this.y0ProfitGlobal = 0;
         this.y0ProfitRegional = 0;
         this.y0ProfitLocal = 0; 
 
@@ -157,6 +174,7 @@ public class IPM_FinancialWrapper{
         this.y0GMDifference = 0;
         this.lstGrossPLGM = new List<IPM_FinancialValueWrapper>();
         this.lstIncrementalPLGM = new List<IPM_FinancialValueWrapper>();
+        this.y0GMGlobal = 0;
         this.y0GMRegional = 0;
         this.y0GMLocal = 0; 
 
@@ -164,6 +182,7 @@ public class IPM_FinancialWrapper{
         this.y0APDifference = 0;
         this.lstGrossPLAP = new List<IPM_FinancialValueWrapper>();
         this.lstIncrementalPLAP = new List<IPM_FinancialValueWrapper>();
+        this.y0APGlobal = 0;
         this.y0APRegional = 0;
         this.y0APLocal = 0; 
 
@@ -171,6 +190,7 @@ public class IPM_FinancialWrapper{
         this.y0PBODifference = 0;
         this.lstGrossPLPBO = new List<IPM_FinancialValueWrapper>();
         this.lstIncrementalPLPBO = new List<IPM_FinancialValueWrapper>();
+        this.y0PBOGlobal = 0;
         this.y0PBORegional = 0;
         this.y0PBOLocal = 0;
     }

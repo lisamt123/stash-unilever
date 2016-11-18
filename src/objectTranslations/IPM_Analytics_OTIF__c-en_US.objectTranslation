@@ -173,6 +173,10 @@
         <name>IPM_Finance_Member__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Gate Keeping Model --></label>
+        <name>IPM_GKM__c</name>
+    </fields>
+    <fields>
         <label><!-- Geography --></label>
         <name>IPM_Geography__c</name>
     </fields>

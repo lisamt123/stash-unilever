@@ -39,7 +39,9 @@ private class IPM_CountryHandler_Test {
          IPM_TestFactory_Helper.getProjectMasterData();
          
          projectList = IPM_TestFactory_Helper.projectSetUp(3,platformUser);
-         
+         for(integer i=0;i<projectList.size();i++){
+             projectList[i].EcoDesign_Sync_Status__c = 'Ready';
+         }
          System.runAs(platformUser)
          {
            insert projectList;
@@ -68,11 +70,11 @@ private class IPM_CountryHandler_Test {
     static void initializeData(){
     
         Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
-        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
+        User globalUser = [Select Id,Name,LastName from User where LastName='PLATFORM_USER' limit 1];  
         IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser});
         System.runAs(globalUser)
         {
-        List<IPM_Project__c> projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,EcoDesign_Sync_Status__c,(Select Id from Project_Documents__r),
+        List<IPM_Project__c> projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Project_Name__c,IPM_Complexity__c,EcoDesign_Sync_Status__c,(Select Id from Project_Documents__r),
                                                     (Select Id from IPM_Financials_Consolidated__r ),
                                                     (Select Id,Name,IPM_Task_Complexity__c,IPM_Project__c from Tasks__r),
                                                     (Select Id,Name from IPM_Milestones__r)
@@ -80,7 +82,27 @@ private class IPM_CountryHandler_Test {
         
         geographyDetailList = [SELECT id,Name FROM MDO_Geography__c WHERE Name IN: countryNameList];
         system.assertEquals(geographyDetailList.size(),2,'Geography does not exist in the country');
+        List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectDetailList,new List<User>{globalUser,globalUser,globalUser});
+        insert regionalRolloutList;
+        regionalRolloutList[0].IPM_Regional_PL__c=globalUser.Id;
+        regionalRolloutList[0].Target_Launch_Date__c=null;
+        regionalRolloutList[0].IPM_Project__c=projectDetailList[0].Id;
+        update regionalRolloutList;
         
+        Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
+        for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
+        {
+            List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+            if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
+            {
+                projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
+            }
+            projectRolloutList.add(projectRollout);
+            projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
+        }
+        
+        // Create local Rollouts for Created regional Rollouts.
+        List<IPM_Project_Rollout__c> localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>());  
         //create country test data
         for(integer i=0 ;i<10 ;i++){
             IPM_Country__c insertCountry = IPM_TestFactory_Helper.createIPMCountry(false);
@@ -90,6 +112,7 @@ private class IPM_CountryHandler_Test {
             }
             insertCountry.IPM_Local_Project__c = projectDetailList[2].Id;
             insertCountry.MDO_Geography__c=geographyDetailList[0].id;
+            insertCountry.Local_Rollout__c = localRolloutList[0].Local_Project__c;
             insertCountry.isActive__c = true;
             countryTest.add(insertCountry);
         }

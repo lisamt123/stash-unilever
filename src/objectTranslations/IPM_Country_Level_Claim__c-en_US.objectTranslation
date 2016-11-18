@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Country Level Claim</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Country Level Claims</value>
+    </caseValues>
+    <fields>
+        <label><!-- Country Name --></label>
+        <name>Country_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Claim --></label>
+        <name>IPM_Claim__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Country --></label>
+        <name>IPM_Country__c</name>
+        <relationshipLabel><!-- Country Level Claims --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Project Claim --></label>
+        <name>IPM_Project_Claim__c</name>
+        <relationshipLabel><!-- Country Level Claims --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

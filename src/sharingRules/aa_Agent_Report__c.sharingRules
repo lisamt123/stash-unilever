@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Share_Published_Reports</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Share Publish reports with all Internal users</description>
+        <label>Published Report Share</label>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+        <criteriaItems>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Published (Public)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Competitor Report,Unilever Agent Published Report</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>CI_Manager_Africa_Queue</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CI Manager Africa Queue</label>
+        <sharedTo>
+            <group>CI_Manager_Default</group>
+        </sharedTo>
+        <sharedFrom>
+            <queue>CI_Manager_Africa_Queue</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CI_Manager_Europe_Queue</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CI Manager Europe Queue</label>
+        <sharedTo>
+            <group>CI_Manager_Default</group>
+        </sharedTo>
+        <sharedFrom>
+            <queue>CI_Manager_Europe_Queue</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CI_Manager_Latin_America_sharing_rule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CI Manager Latin America sharing rule</label>
+        <sharedTo>
+            <group>CI_Manager_Default</group>
+        </sharedTo>
+        <sharedFrom>
+            <queue>CI_Manager_Latin_America_Queue</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CI_Manager_NametRub_sharing_rule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CI Manager NametRub sharing rule</label>
+        <sharedTo>
+            <group>CI_Manager_Default</group>
+        </sharedTo>
+        <sharedFrom>
+            <queue>CI_Manager_NametRub_Queue</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CI_Manager_North_America_sharing_rule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CI Manager North America sharing rule</label>
+        <sharedTo>
+            <group>CI_Manager_Default</group>
+        </sharedTo>
+        <sharedFrom>
+            <queue>CI_Manager_North_America_Queue</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CI_Manager_North_Asia_sharing_rule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CI Manager North Asia sharing rule</label>
+        <sharedTo>
+            <group>CI_Manager_Default</group>
+        </sharedTo>
+        <sharedFrom>
+            <queue>CI_Manager_North_Asia_Queue</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CI_Manager_SEAA_sharing_rule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CI Manager SEAA sharing rule</label>
+        <sharedTo>
+            <group>CI_Manager_Default</group>
+        </sharedTo>
+        <sharedFrom>
+            <queue>CI_Manager_SEAA_Queue</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CI_Manager_South_Asia_sharing_rule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CI Manager South Asia sharing rule</label>
+        <sharedTo>
+            <group>CI_Manager_Default</group>
+        </sharedTo>
+        <sharedFrom>
+            <queue>CI_Manager_South_Asia_Queue</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

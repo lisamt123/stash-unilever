@@ -865,8 +865,4 @@
         <label>Nouvelle résolution</label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>Correspondance rejetée</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

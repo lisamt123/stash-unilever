@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM SourcingUnit</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM SourcingUnit</value>
+    </caseValues>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Deodorants &amp; Fragrances</masterLabel>
+            <translation><!-- Deodorants &amp; Fragrances --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hair Care</masterLabel>
+            <translation><!-- Hair Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oral Care</masterLabel>
+            <translation><!-- Oral Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Care</masterLabel>
+            <translation><!-- Skin Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Cleansing</masterLabel>
+            <translation><!-- Skin Cleansing --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Source Unit Name --></label>
+        <name>Source_Unit_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+    </fields>
+    <layouts>
+        <layout>IPM SourcingUnit Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

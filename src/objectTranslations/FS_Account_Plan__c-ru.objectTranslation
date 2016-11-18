@@ -207,14 +207,6 @@
         </sections>
     </layouts>
     <nameFieldLabel>Планирование</nameFieldLabel>
-    <quickActions>
-        <label>Новая цель по дистрибутору</label>
-        <name>New_Distributor_Objective</name>
-    </quickActions>
-    <quickActions>
-        <label>Новая цель по оператору</label>
-        <name>New_Operator_Objective</name>
-    </quickActions>
     <recordTypes>
         <label>Дистрибутор</label>
         <name>Distributor</name>

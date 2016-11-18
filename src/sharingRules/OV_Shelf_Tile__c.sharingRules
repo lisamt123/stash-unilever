@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>OneView_Shelf_Tile_Read</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>OneView: Read access to Shelf Object</description>
+        <label>OneView Shelf Tile Read</label>
+        <sharedTo>
+            <group>One_View_Consumer</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>One_View_Consumer</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>One_View_Edit_Local_Admin</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Local Admin can update the Shelf Tiles to link with One View Reports object</description>
+        <label>One View Edit Local Admin</label>
+        <sharedTo>
+            <group>One_View_Local_Admin</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>One_View_Global_Admin</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Shelf_Tile_Edit</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shelf Tile Edit</description>
+        <label>Shelf Tile Edit</label>
+        <sharedTo>
+            <group>One_View_Global_Admin</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>One_View_Global_Admin</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

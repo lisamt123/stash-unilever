@@ -375,10 +375,6 @@
             <label><!-- MABE Calculation / SKU --></label>
             <section>MABE Calculation / SKU</section>
         </sections>
-        <sections>
-            <label><!-- TPR Calculation --></label>
-            <section>TPR Calculation</section>
-        </sections>
     </layouts>
     <validationRules>
         <errorMessage><!-- Distributor TMI is required --></errorMessage>

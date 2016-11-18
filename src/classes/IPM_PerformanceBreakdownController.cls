@@ -61,7 +61,7 @@ public with sharing class IPM_PerformanceBreakdownController {
         if(paramMap != null && paramMap.containsKey(IPM_ConstantUtils.SF_ID)) {
             projectId =  paramMap.get(IPM_ConstantUtils.SF_ID);
             list<IPM_Project__c>projectDetails=new list<IPM_Project__c>();
-            projectDetails=[Select id, Name,IPM_Project_Name__c From IPM_Project__c Where id =:projectId Limit 1];
+            projectDetails=[Select id, Name,IPM_Project_Name__c,Source_Rollout_External_Id__c From IPM_Project__c Where id =:projectId Limit 1];
             if(!projectDetails.isEmpty()){
                 project =projectDetails[0]; 
                 loadMarketPerformanceBreakDown();
@@ -75,7 +75,7 @@ public with sharing class IPM_PerformanceBreakdownController {
     ***************************************************************************************/
     public void loadMarketPerformanceBreakDown() { 
         Set<String> financialYearExternalIdSet = new Set<String>();
-        Map<String,IPM_Financial_Year__c> financialYearMap = IPM_Utils.getRelatedY1InnovationYear(new Set<String>{project.Name});
+        Map<String,IPM_Financial_Year__c> financialYearMap = IPM_Utils.getRelatedY1InnovationYear(new Set<String>{project.Source_Rollout_External_Id__c});
         for(IPM_Financial_Year__c financialYear : financialYearMap.values()) {
             financialYearExternalIdSet.add(financialYear.Id);
         }

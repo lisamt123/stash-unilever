@@ -404,14 +404,6 @@
             <section>Fields</section>
         </sections>
     </layouts>
-    <quickActions>
-        <label><!-- Approve --></label>
-        <name>Approve</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- Reject --></label>
-        <name>Reject</name>
-    </quickActions>
     <recordTypes>
         <label><!-- Ariba --></label>
         <name>Ariba</name>

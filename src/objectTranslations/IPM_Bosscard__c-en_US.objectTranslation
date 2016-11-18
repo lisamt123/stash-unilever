@@ -95,6 +95,26 @@
         <name>IPM_Brand__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Category Group --></label>
+        <name>IPM_Category_Group__c</name>
+        <picklistValues>
+            <masterLabel>Food</masterLabel>
+            <translation><!-- Food --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Home Care</masterLabel>
+            <translation><!-- Home Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal Care</masterLabel>
+            <translation><!-- Personal Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refreshment</masterLabel>
+            <translation><!-- Refreshment --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- IPM Category Icon --></label>
         <name>IPM_Category_Icon__c</name>
     </fields>

@@ -864,9 +864,4 @@
         <label>Nuevo Fulfilment</label>
         <name>New_Fulfilment</name>
     </webLinks>
-    <workflowTasks>
-        <description>La correspondencia al consumidor ha sido rechazada por el equipo de chequeo de calidad necesita modifcaciones antes de ser enviado. Por favor, siga el link al registro y modifique según lo requerido. Gracias</description>
-        <name>CEC_Rejected_correspondence</name>
-        <subject>Correspondencia rechazada</subject>
-    </workflowTasks>
 </CustomObjectTranslation>

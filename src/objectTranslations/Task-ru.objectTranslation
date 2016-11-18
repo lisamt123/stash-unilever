@@ -230,22 +230,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <quickActions>
-        <label><!-- Defer --></label>
-        <name>Defer</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- EditDescription --></label>
-        <name>EditDescription</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- UpdatePriority --></label>
-        <name>UpdatePriority</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- UpdateStatus --></label>
-        <name>UpdateStatus</name>
-    </quickActions>
     <recordTypes>
         <label>FS Задание</label>
         <name>FS_Task</name>

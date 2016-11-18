@@ -1439,18 +1439,6 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
-    <quickActions>
-        <label><!-- Create Risk --></label>
-        <name>Create_Risk</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- New Opportunity --></label>
-        <name>New_Opportunity</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- Create New Opportunity --></label>
-        <name>New_Russia_Opportunity</name>
-    </quickActions>
     <recordTypes>
         <label><!-- Distributor Objective --></label>
         <name>Distributor_Objective</name>

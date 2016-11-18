@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>CR</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CR</label>
+        <sharedTo>
+            <group>CAP_VDM_Group</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>CAP_SMT_Group</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

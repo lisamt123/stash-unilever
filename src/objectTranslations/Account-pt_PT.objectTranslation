@@ -4214,22 +4214,6 @@ At least 3 out of 4 = 5 --></help>
             <section>Additional Demandware Information</section>
         </sections>
     </layouts>
-    <quickActions>
-        <label><!-- New Visit --></label>
-        <name>ICB_NewVisit</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- New Dist Account Plan --></label>
-        <name>New_Dist_Account_Plan</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- New Op Account Plan --></label>
-        <name>New_Op_Account_Plan</name>
-    </quickActions>
-    <quickActions>
-        <label><!-- Add Expertise --></label>
-        <name>Pitch_Add_Expertise</name>
-    </quickActions>
     <recordTypes>
         <label><!-- Agency --></label>
         <name>Agency</name>
