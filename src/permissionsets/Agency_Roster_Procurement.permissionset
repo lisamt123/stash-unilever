@@ -4,5 +4,10 @@
         <application>Agency_Roster_Management</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <fieldPermissions>
+                <editable>true</editable>
+                <field>Account.Procurement_Contact__c</field>
+                <readable>true</readable>
+    </fieldPermissions>
     <label>Agency Roster - Procurement</label>
 </PermissionSet>
