@@ -120,9 +120,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <img class="img-responsive center-block" src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/Unilever.png')}" height="220" width="220" alt=""/>
+                    <img class="img-responsive center-block" src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/Unilever.png')}" height="220" width="220" alt="Unilever"/>
                     <div class="intro-text">
-                        <span class="name"><font size="5">Pallet Quality Non-Conformance</font></span>
+                        <span class="name"><h3 style="margin-top:0px">Pallet Quality Non-Conformance</h3></span>
                         <hr class="star-primary"/>
                     </div>
                 </div>
@@ -131,42 +131,42 @@
             <div class="col-sm-1 portfolio-item"></div>
                 <div class="col-sm-2 portfolio-item">
                     <a href="./PQN_SingleEntryScreen_VF" >
-                       <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/sform.png')}" class="img-responsive" alt=""/>
+                       <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/sform.png')}" class="img-responsive" alt="Single Entry"/>
                     </a>
                     <div class="text-center">
-                        <span class="name"><font size="3">Single Entry</font></span>
+                        <span class="name">Single Entry</span>
                     </div>
                 </div>
                 <div class="col-sm-2 portfolio-item">
                     <a href="./PQN_MultiEditScreen_VF">
-                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/mform.png')}" class="img-responsive" alt=""/>
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/mform.png')}" class="img-responsive" alt="Multiple Entry"/>
                     </a>
                     <div class="text-center">
-                        <span class="name"><font size="3">Multiple Entry</font></span>
+                        <span class="name">Multiple Entry</span>
                     </div>
                 </div>
                 <div class="col-sm-2 portfolio-item">
                     <a href="./PQN_TargetEntryScreen_VF">
-                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/target.png')}" class="img-responsive" alt=""/>
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/target.png')}" class="img-responsive" alt="Target"/>
                     </a>
                     <div class="text-center">
-                        <span class="name"><font size="3">Target</font></span>
+                        <span class="name">Target</span>
                     </div>
                 </div>
                 <div class="col-sm-2 portfolio-item">
                     <a href="./PQN_DC_Volumes_Edit_VF">
-                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/dcvolume.png')}" class="img-responsive" alt=""/>
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/dcvolume.png')}" class="img-responsive" alt="DC Volumes"/>
                     </a>
                     <div class="text-center">
-                        <span class="name"><font size="3">DC Volumes</font></span>
+                        <span class="name">DC Volumes</span>
                     </div>
                 </div>
                 <div class="col-sm-2 portfolio-item">
                     <a href="./PQN_List_View">
-                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/reports.png')}" class="img-responsive" alt=""/>
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/reports.png')}" class="img-responsive" alt="Reports"/>
                     </a>
                     <div class="text-center">
-                        <span class="name"><font size="3">Reports</font></span>
+                        <span class="name">Reports</span>
                     </div>
                 </div>
                 

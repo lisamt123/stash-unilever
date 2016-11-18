@@ -327,16 +327,8 @@
                 o+=String.fromCharCode.apply(null, new Uint8Array(data.slice(l*w)));
                 return o;
             }
-            
-            function get_radio_value( radioName ) {
-                var radios = document.getElementsByName( radioName );
-                for( var i = 0; i < radios.length; i++ ) {
-                    if( radios[i].checked || radios.length === 1 ) {
-                        return radios[i].value;
-                    }
-                }
-            }
-            
+         </script>    
+          <script>  
             function to_json(workbook) {
                 var result = {};
                 workbook.SheetNames.forEach(function(sheetName) {
@@ -355,14 +347,14 @@
                     }
                     var roa = X.utils.sheet_to_row_object_array(workbook.Sheets[sheetName],b);
                     console.log(roa);
-                    if(roa.length > 0){
-                        
+                    if(roa.length > 0){                        
                         result[sheetName] = roa;
                     }
                 });
                 return result;
             }
-            
+            </script>
+            <script>
             function to_csv(workbook) {
                 var result = [];
                 workbook.SheetNames.forEach(function(sheetName) {
@@ -375,7 +367,8 @@
                 });
                 return result.join("\n");
             }
-            
+            </script>
+            <script>
             function to_formulae(workbook) {
                 var result = [];
                 workbook.SheetNames.forEach(function(sheetName) {
@@ -388,9 +381,9 @@
                 });
                 return result.join("\n");
             }
-            
+            </script>
+            <script>
             function process_wb(wb) {
-            //console.log(wb);
                 var output = "";
                 switch("json") {
                     case "json":
@@ -401,28 +394,21 @@
                         break;
                     default:
                     output = to_csv(wb);
-                }
-                
-                 
+                }                 
                 if(out.innerText === undefined) out.textContent = output;
-                  else out.innerText = output;
-                
+                  else out.innerText = output;                
                 if(typeof console !== 'undefined') console.log("output", new Date());
             }
-            
+            </script>
+            <script>
             function initiateInsertion(){
-              
-              //  alert(document.getElementById('out').innerText);
-              passStringToUploadDataTosObject(document.getElementById('out').innerText);
-            
+              passStringToUploadDataTosObject(document.getElementById('out').innerText);            
             }
             function saveexceldata(){
                 saveexceldatainapex();
-            }
-     
+            }     
             var xlf = document.getElementById('xlf');
-            function handleFile(e) {
-           
+            function handleFile(e) {           
                 var files = e.target.files;
                 var f = files[0];
                 {
@@ -438,32 +424,10 @@
                     reader.readAsArrayBuffer(f);
                 }
                 return false;
-            }
-            
-            if(xlf.addEventListener) xlf.addEventListener('change', handleFile, false);
-            
-                   
-    
+            }            
+            if(xlf.addEventListener) xlf.addEventListener('change', handleFile, false);    
             </script>
-            <script>
-                      //var tableToExcel = (function() {
-                     
-                         /*var uri = 'data:application/vnd.ms-excel;base64,'
-                        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
-                        , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
-                        , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
-                        return function(table, name) {
-                        if (!table.nodeType) table = document.getElementById(table)
-                        var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
-                        //window.location.href = uri + base64(format(template, ctx))
-                        var ref= uri + base64(format(template, ctx));
-                        var save = document.createElement('a');
-                        save.href = ref;
-                        save.target = '_blank';
-                        save.download = 'test.xls';
-                        
-                        }*/
-                  // })()
+            <script>                      
                 function tableToExcel(file_Name){
                        var a = document.createElement('a');
                         //getting data from our div that contains the HTML table
@@ -480,8 +444,7 @@
                         a.download = fileName+'_error.xls';
                         //triggering the function
                         a.click();
-                   }
-                   
+                   }                  
                   </script>
             </div>
             </div>
