@@ -6701,7 +6701,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <columns>ACCOUNT.PHONE1</columns>
         <columns>PC_EMAIL</columns>
         <columns>PC_ADDRESS2_COUNTRY</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Team</filterScope>
         <filters>
             <field>PC_ADDRESS2_COUNTRY</field>
             <operation>equals</operation>
