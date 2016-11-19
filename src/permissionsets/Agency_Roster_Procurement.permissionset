@@ -6,7 +6,7 @@
     </applicationVisibilities>
     <applicationVisibilities>
         <application>Agency_Roster_Management</application>
-        <visible>false</visible>
+        <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>Agent_App</application>
