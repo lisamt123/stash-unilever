@@ -140,6 +140,17 @@
         <template>IPM_Emails/IPM_Notify_Leads_TLD_is_changed</template>
     </alerts>
     <alerts>
+        <fullName>IPM_Notify_the_Local_Project_leader_when_Non_Key_local_project_created</fullName>
+        <description>IPM Notify the Local Project leader when Non Key local project created</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_Notify_Local_Leader_when_Non_key_local_project_created</template>
+    </alerts>
+    <alerts>
         <fullName>IPM_Notify_the_Local_Project_leader_when_local_project_created</fullName>
         <description>IPM Notify the Local Project leader when local project created</description>
         <protected>false</protected>
@@ -271,6 +282,17 @@
         </recipients>
         <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_send_email_when_current_project_is_stopped_in_ideas_phase</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_BBPL_When_Global_PL_initiates_Archival</fullName>
+        <description>Notify BBPL When Global PL initiates Archival</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_to_BBPL_when_Global_PL_initiates_Archival</template>
     </alerts>
     <alerts>
         <fullName>Notify_BBPL_When_Regional_PL_initiates_Archival</fullName>
@@ -521,7 +543,7 @@
             <name>IPM_Send_Failure_Phase_Change_Notification</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>ISPICKVAL(IPM_Project_Job_Status__c,&apos;Failed&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -616,7 +638,7 @@
             <name>IPM_Notify_Project_Leader_for_FL_TLD_confirmation</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>IPM Send Email to Project Leader Once Finance Leader acknowledge  TLD change on Financial page</description>
         <formula>AND(ISCHANGED( MisAligned_Confirmed_By_Finance_Leader__c),  MisAligned_Confirmed_By_Finance_Leader__c)</formula>
         <triggerType>onAllChanges</triggerType>
@@ -696,7 +718,7 @@
             <name>IPM_Notify_Finance_Leader_the_TLD_changed</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Notification to Finance Leader for TLD change in Local Rollout Project</description>
         <formula>AND( ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),  ISPICKVAL(IPM_Project_Type__c, &apos;Rollout&apos;), OR(ISPICKVAL(IPM_Phase__c, &apos;Feasibility&apos;), ISPICKVAL(IPM_Phase__c, &apos;Capability&apos;), ISPICKVAL(IPM_Phase__c, &apos;Market Ready&apos;), ISPICKVAL(IPM_Phase__c, &apos;Market Deployment&apos;)), ISCHANGED( IPM_Target_Launch_Dates__c ) )</formula>
         <triggerType>onAllChanges</triggerType>
@@ -722,7 +744,7 @@
             <name>IPM_Send_Success_Phase_Change_Notification</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND(ISPICKVAL(IPM_ProjectJobType__c,&apos;Phase Change&apos;),ISPICKVAL(IPM_Project_Job_Status__c,&apos;Completed&apos;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

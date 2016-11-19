@@ -1615,6 +1615,10 @@
         <name>Ship_to_Trade_Milestone_Due_Date__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Source Rollout External Id --></label>
+        <name>Source_Rollout_External_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Success Timestamp EcoDesign --></label>
         <name>Success_Timestamp_EcoDesign__c</name>
     </fields>

@@ -29,7 +29,7 @@
             <name>IPM_Notify_Finance_Leader_about_TLD_change</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>IPM_EmailOut_Notification__c.To_Address__c</field>
             <operation>notEqual</operation>
@@ -54,7 +54,7 @@
             <name>IPM_Notify_Project_Leader_for_FL_TLD_confirmation_for_Original_Project</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>IPM_EmailOut_Notification__c.To_Address__c</field>
             <operation>notEqual</operation>
@@ -65,6 +65,10 @@
         </criteriaItems>
         <criteriaItems>
             <field>IPM_EmailOut_Notification__c.Project_Name__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>IPM_EmailOut_Notification__c.Confirmed_By__c</field>
             <operation>notEqual</operation>
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>

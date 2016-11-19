@@ -61,6 +61,16 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Copy_ValueMarketShare_Local_To_Global</fullName>
+        <field>Value_Market_Share_Global__c</field>
+        <formula>Value_Market_Share_Local__c</formula>
+        <name>Copy ValueMarketShare Local To Global</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Copy_ValueMarketShare_Local_To_Regional</fullName>
         <field>Value_Market_Share_Regional__c</field>
         <formula>Value_Market_Share_Local__c</formula>
@@ -877,6 +887,17 @@
         <active>true</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Global_to_Regional__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy ValueMarketShare Local To Global</fullName>
+        <actions>
+            <name>Copy_ValueMarketShare_Local_To_Global</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
+        <formula>Copy_Local_to_Global__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

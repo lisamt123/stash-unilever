@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
+        <fullName>Copy_IRR_Global_From_Local</fullName>
+        <field>IRR_Global__c</field>
+        <formula>IRR_Local__c</formula>
+        <name>Copy IRR Global From Local</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Copy_IRR_Local_From_Global</fullName>
         <field>IRR_Local__c</field>
         <formula>IRR_Global__c</formula>
@@ -766,6 +776,17 @@
         <active>true</active>
         <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
         <formula>Copy_Global_to_Regional__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy Financial IRR Local To Global</fullName>
+        <actions>
+            <name>Copy_IRR_Global_From_Local</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
+        <formula>Copy_Local_to_Global__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

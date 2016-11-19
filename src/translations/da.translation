@@ -9549,6 +9549,14 @@
                 <name>Platform</name>
             </columns>
             <columns>
+                <label><!-- Product Design Lock - Completed On Date --></label>
+                <name>Product Design Lock - Completed On Date</name>
+            </columns>
+            <columns>
+                <label><!-- Product Design Lock - Due Date --></label>
+                <name>Product Design Lock - Due Date</name>
+            </columns>
+            <columns>
                 <label><!-- Project Description --></label>
                 <name>Project Description</name>
             </columns>
@@ -9591,10 +9599,6 @@
             <columns>
                 <label><!-- Strategic Intent --></label>
                 <name>Strategic Intent</name>
-            </columns>
-            <columns>
-                <label><!-- Sub-Category --></label>
-                <name>Sub-Category</name>
             </columns>
             <columns>
                 <label><!-- Target Launch Month (BB) --></label>

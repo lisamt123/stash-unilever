@@ -9,6 +9,10 @@
         <value>IPM EmailOut Notifications</value>
     </caseValues>
     <fields>
+        <label><!-- Confirmed By --></label>
+        <name>Confirmed_By__c</name>
+    </fields>
+    <fields>
         <label><!-- MCO/Country Name --></label>
         <name>MCO_Country_Name__c</name>
     </fields>
