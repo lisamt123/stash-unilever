@@ -440,15 +440,10 @@
     </fields>
     <label>Product Category</label>
     <listViews>
-        <fullName>ANZ</fullName>
+        <fullName>Thailand_products_1</fullName>
         <columns>NAME</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>L3_Product_Category__c</field>
-            <operation>equals</operation>
-            <value>AU</value>
-        </filters>
-        <label>ANZ</label>
+        <label>Thailand Legacy Data</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_ANZ</role>

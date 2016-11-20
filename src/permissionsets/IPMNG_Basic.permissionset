@@ -55634,7 +55634,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>IPM_RolloutPlansAddManage</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>IPM_RolloutPlansRegional</apexPage>
