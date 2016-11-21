@@ -83,9 +83,9 @@ alert('ssss');
 function callFunCop(){
    
     
-    var lossname = document.getElementById('j_id0:frm1:j_id22:j_id23:v1').value;
-    var subfam = document.getElementById('j_id0:frm1:j_id22:j_id23:v2').value;
-    var lossDesc = document.getElementById('j_id0:frm1:j_id22:j_id23:v3').value;
+    var lossname = document.getElementById('j_id0:frm1:ccomp:j_id23:v1').value;
+    var subfam = document.getElementById('j_id0:frm1:ccomp:j_id23:v2').value;
+    var lossDesc = document.getElementById('j_id0:frm1:ccomp:j_id23:v3').value;
     copyfn(lossname,subfam,lossDesc);
 }
 </script> 
@@ -100,6 +100,12 @@ showpan(ptCode);
 
 }
 </script>
+<script>
+function executeThisOnLoad(){
+
+document.getElementById('j_id0:frm1:ccomp:j_id23:check').value = false;
+}
+</script>
     
     
     
@@ -109,8 +115,8 @@ showpan(ptCode);
                 
                 <!-- Logic Here-->
              
- <body style="margin-top: 8%;">                 
-    <apex:form id="frm1">
+ <body style="margin-top: 8%;" >                 
+    <apex:form id="frm1" >
     <!--<apex:actionFunction name="updatetable" action="{!updateLossTree}" rerender="resetor" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')"/>   -->
     <div class="container-fluid">
     <div>
@@ -121,8 +127,9 @@ showpan(ptCode);
         <div class="form-group">
           <label class="col-lg-2" >Report Type  </label>
           <div class="col-lg-4">
-          <apex:inputField value="{!lossTree.Loss_Type__c}" id="lossT" styleclass="form-control"/>
-                        
+          <apex:inputField value="{!lossTree.Loss_Type__c}" id="lossT" styleclass="form-control">
+          <apex:actionSupport event="onchange" action="{!refreshFullPage}"  rerender="frm1,massComp,pan2" oncomplete="executeThisOnLoad();return false;"/>
+           </apex:inputField>             
           </div>
         </div>
         <div class="clearfix" style="height: 10px;clear: both;"></div>
@@ -173,7 +180,7 @@ showpan(ptCode);
           </div>
       </div>
         <div class="clearfix" style="height: 10px;clear: both;"></div>
-        <apex:commandButton styleclass="buttonstyle" value="Submit" action="{!fetchLossTree}" reRender="frm" oncomplete="refreshdata();" status="status" disabled="{!if(listPlantCodes.size>1,false,true)}">
+        <apex:commandButton styleclass="buttonstyle" value="Submit" action="{!fetchLossTree}" reRender="frm,ccomp" oncomplete="refreshdata();" status="status" disabled="{!if(listPlantCodes.size>1,false,true)}">
              <apex:actionStatus id="status">
             <apex:facet name="start">
             <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.75; z-index: 1000; background-color: black;">
@@ -186,6 +193,8 @@ showpan(ptCode);
         </apex:actionStatus>
         </apex:commandButton>
         
+        
+        <apex:actionFunction name="updateComponent" reRender="ccomp"/>
     </div>
     </div>
           
@@ -201,47 +210,10 @@ showpan(ptCode);
            <div class = "panel-heading">Loss Tree Details</div>   
             <div class="panel-body">
             
-            
-            <!--<div align="center">
-            <apex:outputpanel rendered="{!if( lossTree.Loss_Type__c='Dispatch Compliance' || lossTree.Loss_Type__c='Output Reliability',true,false)}" id="pan1">
-            Enable Mass Update?
-            <apex:inputcheckbox value="{!showMassFeature}">
-            <apex:actionSupport event="onchange" action="{!showPanelmassUpdate}" reRender="resetor,panmass,pan1,ds"/>
-            </apex:inputcheckbox>
-            <apex:outputpanel rendered="{!showfeature}" id="panmass">
-            <table  class="display table" width="50px" id="tb">
-             <thead>
-                <tr style="background-color:#0080ff">
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th class="col-md-2">Loss Level 1</th>
-                    <th class="col-md-2">Loss Level 2</th>
-                    <th class="col-md-2">Loss Level 3</th>  
-                    <th>Reset</th>
-                </tr>
-             </thead>
-             <tbody >
-                <tr >
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><apex:selectList value="{!selectedbox1}" size="1" style="height:30px,width:30px" id="v1" onchange="changes1(this);"><apex:selectOptions value="{!selectbox1all}"/></apex:selectList></td>
-                    <td><apex:selectList value="{!selectedbox2}" size="1" style="height:30px,width:30px" id="v2" onchange="changes2(this);"><apex:selectOptions value="{!selectbox2all}"/></apex:selectList></td>
-                    <td><apex:selectList value="{!selectedbox3}" size="1" style="height:30px,width:30px" id="v3" onchange="changes3(this);"><apex:selectOptions value="{!selectbox3all}"/></apex:selectList></td>
-                    <td><apex:commandButton value="Reset" onclick="resetpickVal();" style="height:25px" image="{!$Resource.WWP_ResetImage}" rerender="resetor,resetm,panmass,ds,pan1,v1,v2,v3,tb"/></td>
-                    </tr>
-             </tbody>   
-            </table>
-            <apex:commandbutton value="Copy above values to selected losslevels" styleclass="buttonstyle" onclick="callFunCop();return false" rerender="resetor,resetm,ds,pan1,v1,v2,v3,tb" id="btns"/> 
-           </apex:outputpanel>
-           </apex:outputpanel>
-           </div>-->
-           <apex:outputpanel rendered="{!if( lossTree.Loss_Type__c='Dispatch Compliance' || lossTree.Loss_Type__c='Output Reliability',true,false)}" id="pan1">
            <div align="center">
-               <c:WWP_Losstree_Copy_Component selectType="{!lossTree.Loss_Type__c}"/>
+
+               <c:WWP_Losstree_Copy_Component rendered="{!if( lossTree.Loss_Type__c='Dispatch Compliance' || lossTree.Loss_Type__c='Output Reliability',true,false)}"   selectType="{!lossTree.Loss_Type__c}" id="ccomp" />
           </div>
-           </apex:outputpanel> 
            <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c='Output Reliability',true,false)}"  >
              <div class="table-responsive" >
                     <table id="myTable1" class="display table" width="100%" >
@@ -272,7 +244,7 @@ showpan(ptCode);
                             <apex:repeat value="{!listLossTreeW}" var="w" id="resetor">
                                 <tr style="background-color:{!if(w.wlt.createddate+7<=now(),'#ff9999','')};">
                                     
-                                    <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId"  />  
+                                    <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId"  disabled="{!w.checkdissable}"/>  
                                     </td>
                                     <td>{!w.wlt.SKU__c}</td>
                                     <td>{!w.wlt.SKU_Description__c}</td>
@@ -398,7 +370,7 @@ showpan(ptCode);
                         <tbody> 
                             <apex:repeat value="{!listLossTreeW}" var="w" id="ds">
                                 <tr style="background-color:{!if(w.wlt.createddate+7<=now(),'#ff9999','')};">
-                                    <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId2" />  </td>
+                                    <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId2" disabled="{!w.checkdissable}"/>  </td>
                                     <td>{!w.wlt.SKU__c}</td>
                                     <td>{!w.wlt.SKU_Description__c}</td>
                                     <td>{!w.wlt.Plant_Code__c}</td>
@@ -461,7 +433,7 @@ showpan(ptCode);
            <apex:actionFunction action="{!resetline}" rerender="or1,or2,or3,mrp1,mrp2,dc1,dc2,dc3,rem,rem1,rem2" name="resetvalues" status="dcstatus">
            <apex:param name="resetite" value="" />                   
            </apex:actionFunction>
-            <apex:actionFunction action="{!copyline}" rerender="frm1,pan1" name="copyfn" status="dcstatus" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')">
+            <apex:actionFunction action="{!copyline}" rerender="frm1,pan2" name="copyfn" status="dcstatus" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')">
             <apex:param name="losssecondParam1" value="" />
            <apex:param name="losssecondParam2" value="" />
             <apex:param name="losssecondParam3" value="" />
@@ -487,10 +459,12 @@ showpan(ptCode);
                
   <script type="text/javascript">
        function selectAllCheckboxes(obj,receivedInputID){
+       
             var inputCheckBox = document.getElementsByTagName("input");                  
             for(var i=0; i<inputCheckBox.length; i++){          
-                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                    
-                    inputCheckBox[i].checked = obj.checked;
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){ 
+                     if(!inputCheckBox[i].disabled){                                  
+                    inputCheckBox[i].checked = obj.checked;}
                 }
             }
         }
@@ -572,6 +546,8 @@ j$('#myTable1').on( 'page.dt', function () {
 
 <script>
 function refreshdata(){
+
+
 var losstype = j$('[id$="lossT"]').val();
     if(losstype == 'MRP Compliance'){
     j$('[id$="myTable"]').dataTable({
@@ -589,6 +565,7 @@ var losstype = j$('[id$="lossT"]').val();
        "columnDefs": [ { "orderable": false, "targets": [0,9,10,11,12,13]}  ],"bStateSave": true,"scrollY": 300, "scrollX":300,"bSearchable":false,
         "bLengthChange": true });}
         }
+        
 </script>
     
 

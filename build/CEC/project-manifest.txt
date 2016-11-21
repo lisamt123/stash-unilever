@@ -1,7 +1,7 @@
 src
 src/applications
-src/customPermissions
 src/classes
+src/customPermissions
 src/email
 src/layouts
 src/objects
@@ -34,7 +34,7 @@ src/classes/cec_TestEmailMessageHelper.cls
 src/classes/cec_TestEmailMessageHelper.cls-meta.xml
 src/customPermissions/CEC_Disable_Case_Trigger.customPermission
 src/email/CEC_Unilever
-src/email/CEC_Unilever/CEC_Unilever-meta.xml
+src/email/CEC_Unilever-meta.xml
 src/email/CEC_Unilever/CEC_TH_Exception_Notification_Email.email
 src/email/CEC_Unilever/CEC_TH_Exception_Notification_Email.email-meta.xml
 src/layouts/Case-Case Feed Layout.layout
@@ -46,7 +46,6 @@ src/objects/CEC_Exception_Log__c.object
 src/objects/cec_Org_Settings__c.object
 src/objects/TH1__Draft__c.object
 src/permissionsets/CEC_Business_Admin.permissionset
-src/permissionsets/CEC_Brand_Ambassador.permissionset
 src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_Exception_Handling.permissionset
 src/permissionsets/CEC_User.permissionset
