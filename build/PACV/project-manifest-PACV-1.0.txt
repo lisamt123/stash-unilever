@@ -1,4 +1,6 @@
 src/classes
+src/classes/PACV_RiskAssessmentHandler_CC.cls
+src/classes/PACV_RiskAssessmentHandler_CC.cls-meta.xml
 src/classes/PACV_ShowPopUp_CC.cls
 src/classes/PACV_ShowPopUp_CC.cls-meta.xml
 src/classes/PACVRiskAssesmentRecords_CC.cls
@@ -20,6 +22,8 @@ src/pages/PACVRiskAssesmentView.page
 src/pages/PACVRiskAssesmentView.page-meta.xml
 src/pages/PACVRiskAssessmentView.page
 src/pages/PACVRiskAssessmentView.page-meta.xml
+src/pages/PACV_RiskAssessment_Questionnaire.page
+src/pages/PACV_RiskAssessment_Questionnaire.page-meta.xml
 src/triggers
 src/triggers/PACV_Questionnaire_StatusUpdate.trigger
 src/triggers/PACV_Questionnaire_StatusUpdate.trigger-meta.xml
@@ -38,3 +42,8 @@ src/groups/PACV_BPSecurityGroup.group
 src/groups/PACV_PMGroup.group
 src/groups/PACV_R_DGroup.group
 src/groups/PACV_ReportManagementGroup.group
+src/labels
+src/labels/PACV.labels
+src/staticresources
+src/staticresources/PACVStaticResource.resource
+src/staticresources/PACVStaticResource.resource-meta.xml
