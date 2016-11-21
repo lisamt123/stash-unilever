@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This Template is used to notify Agency users after Cat Finance submits Unilever target base fees</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>Agency_Fees_Letterhead</letterhead>
+    <name>AF_Notification_Agency_HTML</name>
+    <style>freeForm</style>
+    <subject>Brand &quot;{!AF_Brand_Estimate__c.Brand__c}&quot; available for completion of Base Fee inputs</subject>
+    <textOnly>Dear Agency User
+
+Brand &quot;{!AF_Brand_Estimate__c.Brand__c}&quot; is available for completion of Base Fee inputs in connection with the &quot;{!AF_Brand_Estimate__c.AF_Basefee_Estimate_Initial_Quarter__c} {!AF_Brand_Estimate__c.AF_Fiscal_Year__c}&quot; Purchase Order.
+
+Please log into the Agency Fees application using the link below to submit your full year estimates.
+
+{!AF_Brand_Estimate__c.AF_Community_Link__c}
+
+From &quot;{!AF_Brand_Estimate__c.Brand__c}&quot; Finance Team</textOnly>
+    <type>html</type>
+</EmailTemplate>
