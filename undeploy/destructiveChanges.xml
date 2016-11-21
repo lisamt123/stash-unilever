@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
-    <types>
-	<members>Sustainable_Living_Lab</members>
-	<name>CustomApplication</name>
-</types>
-<types>
-	<members>ISLL_Read_Only</members>
-	<members>ISLL_Brand_Marketing_User</members>
-	<members>ISLL_Moderator</members>
-	<members>isll_CMS_Admin</members>
-	<name>PermissionSet</name>
-</types>
 
 <types>
-	<members>ISLL External Event Member</members>
-	<name>Profile</name>
+	<members>Brand_USLP_Progress__c</members>
+	
+	<members>CMS_Article_Link__c</members>
+	
+	<members>CMS_ContentToCarousel__c</members>
+	<members>CMS_Page_Article__c</members>
+	<members>Carousel__c</members>
+	<members>Chatter_History__c</members>
+	
+	<members>Event_Member__c</members>
+	<members>My_Library__c</members>
+	<members>isll_Event_Visit__c</members>
+     <members>ISLL_Custom_Settings__c</members>
+	<members>isllBrainResultsSettings__c</members>
+	
+	<name>CustomObject</name>
 </types>
-
 <types>
-	<members>ISLL_Lab_Authors</members>
-	<members>ISLL_Lab_Viewers</members>
-	<name>Group</name>
-</types>
-	    <version>37.0</version>
+        <members>isllBrainResultsSettings__c-en_US</members>
+		<members>isll_Event_Visit__c-en_US</members>
+		<members>ISLL_Custom_Settings__c-en_US</members>
+        <name>CustomObjectTranslation</name>
+    </types>
+	
+	<types>
+        <members>isll</members>
+        <name>CustomLabels</name>
+    </types>
+<types>
+ <members>isll_Event_Visit__c-Event Unique Visit Layout</members>
+        <name>Layout</name>
+    </types>
+
+<version>37.0</version>
+
 </Package>
