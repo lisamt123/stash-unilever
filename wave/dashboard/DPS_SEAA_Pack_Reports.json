@@ -2638,6 +2638,10 @@
                         [
                             "Customer",
                             "{{ column(Customer_13.selection,[\"Customer\"]).asObject()}}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{ column(Product_market_52.selection, [\"Product_market\"]).asObject() }}"
                         ]
                     ]
                 },
@@ -2796,8 +2800,8 @@
                             "{{ column(Product_category_31.selection, [\"Product_category\"]).asObject() }}"
                         ],
                         [
-                            "SKU",
-                            "{{ column(SKU_68.selection, [\"SKU\"]).asObject() }}"
+                            "Product_market",
+                            "{{ column(Product_market_52.selection, [\"Product_market\"]).asObject() }}"
                         ]
                     ]
                 },
@@ -3090,7 +3094,7 @@
                             "{{ column(Subchannel_26.selection, [\"Subchannel\"]).asObject() }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ column(Store_type_65.selection, [\"Store_type\"]).asObject() }}"
                         ],
                         [
@@ -3197,7 +3201,7 @@
                             "Diff"
                         ]
                     ],
-                    "pigql": "q = load \"PACK_COMPLIANCE\"; q = filter q by {{row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Date_of_audit_Year','Date_of_audit_Month','Date_of_audit_Day')\") }}; q = filter q by {{ column(Country_18.selection, [\"Country\"]).asEquality(\"Country\")}}; q = filter q by {{ column(City_21.selection,[\"City\"]).asEquality(\"City\") }};  q = filter q by {{ column(Commune_62.selection, [\"Commune\"]).asEquality(\"Commune\") }}; q = filter q by {{column(Customer_type_27.selection, [\"Customer_type\"]).asEquality(\"Customer_type\") }}; q = filter q by {{ column(Trade_Format_24.selection, [\"Trade_Format\"]).asEquality(\"Trade_Format\") }}; q = filter q by {{ column(X4P_5P_6P_47.selection, [\"X4P_5P_6P\"]).asEquality(\"X4P_5P_6P\") }}; q = filter q by {{ column(Top_Customer_70.selection, [\"Top_Customer\"]).asEquality(\"Top_Customer\") }}; q = filter q by {{ column(Customer_29.selection, [\"Customer\"]).asEquality(\"Customer\") }}; q = filter q by {{ column(Local_Outlet_Name_67.selection, [\"Local_Outlet_Name\"]).asEquality(\"Local_Outlet_Name\") }}; q = filter q by {{ column(Channel_25.selection, [\"Channel\"]).asEquality(\"Channel\") }}; q = filter q by {{ column(Subchannel_26.selection, [\"Subchannel\"]).asEquality(\"Subchannel\") }}; q = filter q by {{ column(Store_type_65.selection, [\"Store_type\"]).asEquality(\"Store_type\") }}; q = filter q by {{ column(Sales_region_63.selection, [\"Sales_region\"]).asEquality(\"Sales_region\") }}; q = filter q by {{ column(Sales_area_23.selection, [\"Sales_area\"]).asEquality(\"Sales_area\") }}; q = filter q by {{ column(Sales_territory_22.selection, [\"Sales_territory\"]).asEquality(\"Sales_territory\") }}; q = filter q by {{ column(Field_Execution_Manager_71.selection, [\"Field_Execution_Manager\"]).asEquality(\"Field_Execution_Manager\") }}; q = filter q by {{ column(Store_Operations_Manager_72.selection, [\"Store_Operations_Manager\"]).asEquality(\"Store_Operations_Manager\") }}; q = filter q by {{ column(Field_Sales_Manager_73.selection, [\"Field_Sales_Manager\"]).asEquality(\"Field_Sales_Manager\") }}; q = filter q by {{ column(Product_division_30.selection, [\"Product_division\"]).asEquality(\"Product_division\") }}; q = filter q by {{ column(Product_category_9.selection, [\"Product_category\"]).asEquality(\"Product_category\") }}; q = filter q by {{ column(Customer_13.selection, [\"Customer\"]).asEquality(\"Customer\") }}; q = filter q by {{column(Product_category_31.selection, [\"Product_category\"]).asEquality(\"Product_category\") }}; q = filter q by {{ column(Country_39.selection, [\"Country\"]).asEquality(\"Country\") }}; q = filter q by {{ column(X4P_5P_6P_48.selection, [\"X4P_5P_6P\"]).asEquality(\"X4P_5P_6P\") }}; q = filter q by {{ column(Region_51.selection, [\"Region\"]).asEquality(\"Region\") }}; q = filter q by {{ column(Channel_12.selection, [\"Channel\"]).asEquality(\"Channel\") }}; q = filter q by {{ column(Product_category_9.selection, [\"Product_category\"]).asEquality(\"Product_category\") }}; q = filter q by {{ column(Customer_13.selection, [\"Customer\"]).asEquality(\"Customer\")}}; q = filter q by {{ column(Country_3.selection, [\"Country\"]).asEquality(\"Country\") }}; q = filter q by {{ column(X4P_5P_6P_46.selection, [\"X4P_5P_6P\"]).asEquality(\"X4P_5P_6P\")}}; q = filter q by {{ column(Region_50.selection, [\"Region\"]).asEquality(\"Region\") }}; q = filter q by {{ column(Channel_11.selection, [\"Channel\"]).asEquality(\"Channel\") }}; q = filter q by {{ column(Product_category_10.selection, [\"Product_category\"]).asEquality(\"Product_category\")}}; q = filter q by {{ column(Customer_14.selection, [\"Customer\"]).asEquality(\"Customer\")}}; diff = group q by all; diff = foreach diff generate avg('NPD_Compliance') as 'Percent_Diff', (case when avg('NPD_Compliance')  < 0.5 then \"#EE0A50\" when avg('NPD_Compliance')  < 0.7 then \"#F8CE00\" else \"#0FD178\" end) as 'color';",
+                    "pigql": "q = load \"PACK_COMPLIANCE\"; q = filter q by {{row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Date_of_audit_Year','Date_of_audit_Month','Date_of_audit_Day')\") }}; q = filter q by {{ column(Country_18.selection, [\"Country\"]).asEquality(\"Country\")}}; q = filter q by {{ column(City_21.selection,[\"City\"]).asEquality(\"City\") }};  q = filter q by {{ column(Commune_62.selection, [\"Commune\"]).asEquality(\"Commune\") }}; q = filter q by {{column(Customer_type_27.selection, [\"Customer_type\"]).asEquality(\"Customer_type\") }}; q = filter q by {{ column(Trade_Format_24.selection, [\"Trade_Format\"]).asEquality(\"Trade_Format\") }}; q = filter q by {{ column(X4P_5P_6P_47.selection, [\"X4P_5P_6P\"]).asEquality(\"X4P_5P_6P\") }}; q = filter q by {{ column(Top_Customer_70.selection, [\"Top_Customer\"]).asEquality(\"Top_Customer\") }}; q = filter q by {{ column(Customer_29.selection, [\"Customer\"]).asEquality(\"Customer\") }}; q = filter q by {{ column(Local_Outlet_Name_67.selection, [\"Local_Outlet_Name\"]).asEquality(\"Local_Outlet_Name\") }}; q = filter q by {{ column(Channel_25.selection, [\"Channel\"]).asEquality(\"Channel\") }}; q = filter q by {{ column(Subchannel_26.selection, [\"Subchannel\"]).asEquality(\"Subchannel\") }}; q = filter q by {{ column(Store_type_65.selection, [\"Store_type\"]).asEquality(\"Store_type\") }}; q = filter q by {{ column(Sales_region_63.selection, [\"Sales_region\"]).asEquality(\"Sales_region\") }}; q = filter q by {{ column(Sales_area_23.selection, [\"Sales_area\"]).asEquality(\"Sales_area\") }}; q = filter q by {{ column(Sales_territory_22.selection, [\"Sales_territory\"]).asEquality(\"Sales_territory\") }}; q = filter q by {{ column(Field_Execution_Manager_71.selection, [\"Field_Execution_Manager\"]).asEquality(\"Field_Execution_Manager\") }}; q = filter q by {{ column(Store_Operations_Manager_72.selection, [\"Store_Operations_Manager\"]).asEquality(\"Store_Operations_Manager\") }}; q = filter q by {{ column(Field_Sales_Manager_73.selection, [\"Field_Sales_Manager\"]).asEquality(\"Field_Sales_Manager\") }}; q = filter q by {{ column(Product_division_30.selection, [\"Product_division\"]).asEquality(\"Product_division\") }}; q = filter q by {{ column(Product_category_9.selection, [\"Product_category\"]).asEquality(\"Product_category\") }}; q = filter q by {{ column(Customer_13.selection, [\"Customer\"]).asEquality(\"Customer\") }}; q = filter q by {{column(Product_category_31.selection, [\"Product_category\"]).asEquality(\"Product_category\") }}; q = filter q by {{ column(Country_39.selection, [\"Country\"]).asEquality(\"Country\") }}; q = filter q by {{ column(X4P_5P_6P_48.selection, [\"X4P_5P_6P\"]).asEquality(\"X4P_5P_6P\") }}; q = filter q by {{ column(Region_51.selection, [\"Sales_region\"]).asEquality(\"Sales_region\") }}; q = filter q by {{ column(Channel_12.selection, [\"Channel\"]).asEquality(\"Channel\") }}; q = filter q by {{ column(Product_category_9.selection, [\"Product_category\"]).asEquality(\"Product_category\") }}; q = filter q by {{ column(Customer_13.selection, [\"Customer\"]).asEquality(\"Customer\")}}; q = filter q by {{ column(Country_3.selection, [\"Country\"]).asEquality(\"Country\") }}; q = filter q by {{ column(X4P_5P_6P_46.selection, [\"X4P_5P_6P\"]).asEquality(\"X4P_5P_6P\")}}; q = filter q by {{ column(Region_50.selection, [\"Sales_region\"]).asEquality(\"Sales_region\") }}; q = filter q by {{ column(Channel_11.selection, [\"Channel\"]).asEquality(\"Channel\") }}; q = filter q by {{ column(Product_category_10.selection, [\"Product_category\"]).asEquality(\"Product_category\") }}; q = filter q by {{ column(Customer_14.selection, [\"Customer\"]).asEquality(\"Customer\") }}; q = filter q by {{ column(Product_market_52.selection, [\"Product_market\"]).asEquality(\"Product_market\") }}; diff = group q by all; diff = foreach diff generate avg('NPD_Compliance') as 'Percent_Diff', (case when avg('NPD_Compliance')  < 0.5 then \"#EE0A50\" when avg('NPD_Compliance')  < 0.7 then \"#F8CE00\" else \"#0FD178\" end) as 'color';",
                     "groups": [
                         "color"
                     ]
@@ -3294,6 +3298,10 @@
                         [
                             "Customer",
                             "{{ column(Customer_13.selection,[\"Customer\"]).asObject()}}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{ column(Product_market_52.selection, [\"Product_market\"]).asObject() }}"
                         ]
                     ]
                 },
@@ -3358,6 +3366,10 @@
                         [
                             "Customer",
                             "{{ column(Customer_13.selection,[\"Customer\"]).asObject()}}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{ column(Product_market_52.selection, [\"Product_market\"]).asObject() }}"
                         ]
                     ]
                 },
@@ -3422,6 +3434,10 @@
                         [
                             "Customer",
                             "{{ column(Customer_13.selection,[\"Customer\"]).asObject()}}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{ column(Product_market_52.selection, [\"Product_market\"]).asObject() }}"
                         ]
                     ]
                 },
@@ -3907,6 +3923,10 @@
                         [
                             "Customer",
                             "{{ column(Customer_13.selection,[\"Customer\"]).asObject()}}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{ column(Product_market_52.selection, [\"Product_market\"]).asObject() }}"
                         ]
                     ],
                     "order": [
@@ -4909,7 +4929,7 @@
                             "Diff"
                         ]
                     ],
-                    "pigql": "q = load \"PS_OVERALL_COMPLIANCE_LV\"; q = filter q by {{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Audit_Date_Year','Audit_Date_Month','Audit_Date_Day')\") }} && {{ column(Country_18.selection, [\"Country\"]).asEquality(\"Country\")}}; q = filter q by {{ column(City_21.selection,[\"City\"]).asEquality(\"City\") }};  q = filter q by {{ column(Commune_62.selection, [\"Commune\"]).asEquality(\"Commune\") }}; q = filter q by {{column(Customer_type_27.selection, [\"Customer_type\"]).asEquality(\"Key_Customer_Type\") }}; q = filter q by {{ column(Trade_Format_24.selection, [\"Trade_Format\"]).asEquality(\"Trade_Format\") }}; q = filter q by {{ column(X4P_5P_6P_47.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }}; q = filter q by {{ column(Top_Customer_70.selection, [\"Top_Customer\"]).asEquality(\"Top_Customer\") }}; q = filter q by {{ column(Customer_29.selection, [\"Customer\"]).asEquality(\"Customer\") }}; q = filter q by {{ column(Local_Outlet_Name_67.selection, [\"Local_Outlet_Name\"]).asEquality(\"Outlet_Name\") }}; q = filter q by {{ column(Channel_25.selection, [\"Channel\"]).asEquality(\"Channel\") }}; q = filter q by {{ column(Subchannel_26.selection, [\"Subchannel\"]).asEquality(\"Subchannel\") }}; q = filter q by {{ column(Store_type_65.selection, [\"Store_type\"]).asEquality(\"Store_Type\") }}; q = filter q by {{ column(Sales_region_63.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }}; q = filter q by {{ column(Sales_area_23.selection, [\"Sales_area\"]).asEquality(\"Sales_area\") }}; q = filter q by {{ column(Sales_territory_22.selection, [\"Sales_territory\"]).asEquality(\"Sales_Territory\") }}; q = filter q by {{ column(Field_Execution_Manager_71.selection, [\"Field_Execution_Manager\"]).asEquality(\"Field_Execution_Manager\") }}; q = filter q by {{ column(Store_Operations_Manager_72.selection, [\"Store_Operations_Manager\"]).asEquality(\"Store_Operations_Manager\") }}; q = filter q by {{ column(Field_Sales_Manager_73.selection, [\"Field_Sales_Manager\"]).asEquality(\"Field_Sales_Manager\") }}; q = filter q by {{ column(Product_division_30.selection, [\"Product_division\"]).asEquality(\"Product_Division\") }}; q = filter q by {{ column(Product_category_9.selection, [\"Product_category\"]).asEquality(\"Product_Category\") }}; q = filter q by {{ column(Customer_13.selection, [\"Customer\"]).asEquality(\"Customer\") }}; q = filter q by {{column(Product_category_31.selection, [\"Product_category\"]).asEquality(\"Product_Category\") }}; q = filter q by {{ column(Country_39.selection, [\"Country\"]).asEquality(\"Country\") }}; q = filter q by {{ column(X4P_5P_6P_48.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }}; q = filter q by {{ column(Region_51.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }}; q = filter q by {{ column(Channel_12.selection, [\"Channel\"]).asEquality(\"Channel\") }}; q = filter q by {{ column(Product_category_9.selection, [\"Product_category\"]).asEquality(\"Product_Category\") }}; q = filter q by {{ column(Customer_13.selection, [\"Customer\"]).asEquality(\"Customer\")}}; q = filter q by {{ column(Country_3.selection, [\"Country\"]).asEquality(\"Country\") }}; q = filter q by {{ column(X4P_5P_6P_46.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\")}}; q = filter q by {{ column(Region_50.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }}; q = filter q by {{ column(Channel_11.selection, [\"Channel\"]).asEquality(\"Channel\") }}; q = filter q by {{ column(Product_category_10.selection, [\"Product_category\"]).asEquality(\"Product_Category\")}}; q = filter q by {{ column(Customer_14.selection, [\"Customer\"]).asEquality(\"Customer\")}}; diff = group q by all; diff = foreach diff generate (avg('Pack_Compliance'))-(avg('Pack_Compliance_LV')) as 'Percent_Diff', (case when (avg('Pack_Compliance'))-(avg('Pack_Compliance_LV')) < 0.5 then \"#EE0A50\" when (avg('Pack_Compliance'))-(avg('Pack_Compliance_LV')) < 0.7 then \"#F8CE00\" else \"#0FD178\" end) as 'color';",
+                    "pigql": "q = load \"PS_OVERALL_COMPLIANCE_LV\"; q = filter q by {{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Audit_Date_Year','Audit_Date_Month','Audit_Date_Day')\") }} && {{ column(Country_18.selection, [\"Country\"]).asEquality(\"Country\")}}; q = filter q by {{ column(City_21.selection,[\"City\"]).asEquality(\"City\") }};  q = filter q by {{ column(Commune_62.selection, [\"Commune\"]).asEquality(\"Commune\") }}; q = filter q by {{column(Customer_type_27.selection, [\"Customer_type\"]).asEquality(\"Key_Customer_Type\") }}; q = filter q by {{ column(Trade_Format_24.selection, [\"Trade_Format\"]).asEquality(\"Trade_Format\") }}; q = filter q by {{ column(X4P_5P_6P_47.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }}; q = filter q by {{ column(Top_Customer_70.selection, [\"Top_Customer\"]).asEquality(\"Top_Customer\") }}; q = filter q by {{ column(Customer_29.selection, [\"Customer\"]).asEquality(\"Customer\") }}; q = filter q by {{ column(Local_Outlet_Name_67.selection, [\"Local_Outlet_Name\"]).asEquality(\"Outlet_Name\") }}; q = filter q by {{ column(Channel_25.selection, [\"Channel\"]).asEquality(\"Channel\") }}; q = filter q by {{ column(Subchannel_26.selection, [\"Subchannel\"]).asEquality(\"Subchannel\") }}; q = filter q by {{ column(Store_type_65.selection, [\"Store_type\"]).asEquality(\"Store_Type\") }}; q = filter q by {{ column(Sales_region_63.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }}; q = filter q by {{ column(Sales_area_23.selection, [\"Sales_area\"]).asEquality(\"Sales_area\") }}; q = filter q by {{ column(Sales_territory_22.selection, [\"Sales_territory\"]).asEquality(\"Sales_Territory\") }}; q = filter q by {{ column(Field_Execution_Manager_71.selection, [\"Field_Execution_Manager\"]).asEquality(\"Field_Execution_Manager\") }}; q = filter q by {{ column(Store_Operations_Manager_72.selection, [\"Store_Operations_Manager\"]).asEquality(\"Store_Operations_Manager\") }}; q = filter q by {{ column(Field_Sales_Manager_73.selection, [\"Field_Sales_Manager\"]).asEquality(\"Field_Sales_Manager\") }}; q = filter q by {{ column(Product_division_30.selection, [\"Product_division\"]).asEquality(\"Product_Division\") }}; q = filter q by {{ column(Product_category_9.selection, [\"Product_category\"]).asEquality(\"Product_Category\") }}; q = filter q by {{ column(Customer_13.selection, [\"Customer\"]).asEquality(\"Customer\") }}; q = filter q by {{column(Product_category_31.selection, [\"Product_category\"]).asEquality(\"Product_Category\") }}; q = filter q by {{ column(Country_39.selection, [\"Country\"]).asEquality(\"Country\") }}; q = filter q by {{ column(X4P_5P_6P_48.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }}; q = filter q by {{ column(Region_51.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }}; q = filter q by {{ column(Channel_12.selection, [\"Channel\"]).asEquality(\"Channel\") }}; q = filter q by {{ column(Product_category_9.selection, [\"Product_category\"]).asEquality(\"Product_Category\") }}; q = filter q by {{ column(Customer_13.selection, [\"Customer\"]).asEquality(\"Customer\")}}; q = filter q by {{ column(Country_3.selection, [\"Country\"]).asEquality(\"Country\") }}; q = filter q by {{ column(X4P_5P_6P_46.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\")}}; q = filter q by {{ column(Region_50.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }}; q = filter q by {{ column(Channel_11.selection, [\"Channel\"]).asEquality(\"Channel\") }}; q = filter q by {{ column(Product_category_10.selection, [\"Product_category\"]).asEquality(\"Product_Category\")}}; q = filter q by {{ column(Customer_14.selection, [\"Customer\"]).asEquality(\"Customer\")}}; q = filter q by {{ column(Product_market_52.selection, [\"Product_market\"]).asEquality(\"Product_Market\") }}; diff = group q by all; diff = foreach diff generate (avg('Pack_Compliance'))-(avg('Pack_Compliance_LV')) as 'Percent_Diff', (case when (avg('Pack_Compliance'))-(avg('Pack_Compliance_LV')) < 0.5 then \"#EE0A50\" when (avg('Pack_Compliance'))-(avg('Pack_Compliance_LV')) < 0.7 then \"#F8CE00\" else \"#0FD178\" end) as 'color';",
                     "groups": [
                         "Color"
                     ]
@@ -5434,6 +5454,34 @@
                                 "{{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asObject() }}"
                             ],
                             ">=<="
+                        ],
+                        [
+                            "Country",
+                            "{{ column(Country_39.selection, [\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ column(X4P_5P_6P_48.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ column(Region_51.selection, [\"Sales_region\"]).asObject() }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ column(Channel_12.selection, [\"Channel\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ column(Product_category_9.selection, [\"Product_category\"]).asObject() }}"
+                        ],
+                        [
+                           "Customer",
+                           "{{ column(Customer_13.selection, [\"Customer\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{ column(Product_market_52.selection, [\"Product_market\"]).asObject() }}"
                         ]
                     ]
                 },
@@ -5737,7 +5785,12 @@
                         [
                             "Customer",
                             "{{ column(Customer_13.selection,[\"Customer\"]).asObject()}}"
+                        ],
+                        [
+                            "Product_market",
+                            "{{ column(Product_market_52.selection, [\"Product_market\"]).asObject() }}"
                         ]
+
                     ]
                 },
                 "selectMode": "single",

@@ -3868,11 +3868,9 @@
                         [
                             "Top_Customer",
                             [
-                                [
-                                    "Yes"
-                                ]
+                                "Y"
                             ],
-                            "=="
+                            "in"
                         ],
                         [
                             "Date_of_audit",
@@ -5307,11 +5305,9 @@
                         [
                             "Top_Customer",
                             [
-                                [
-                                    "Yes"
-                                ]
+                                "Y"
                             ],
-                            "=="
+                            "in"
                         ]
                     ],
                     "order": [
@@ -5394,10 +5390,10 @@
             "Date_of_audit_Year_1": {
                 "datasets": [
                     {
-                      "id": "0Fb2C00000011OzSAI",
-                      "label": "PROPOSITION_SCORE",
-                      "name": "PROPOSITION_SCORE",
-                      "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011OzSAI"
+                        "id": "0Fb2C00000011OzSAI",
+                        "label": "PROPOSITION_SCORE",
+                        "name": "PROPOSITION_SCORE",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011OzSAI"
                     }
                 ],
                 "isFacet": false,
