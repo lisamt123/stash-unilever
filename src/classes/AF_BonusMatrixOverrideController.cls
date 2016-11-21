@@ -13,6 +13,7 @@ public with sharing class AF_BonusMatrixOverrideController
         public AF_Bonus_Matrix__c BonusMatrixObj {get;set;}
         public decimal EsLocal{get;set;}
         public decimal TotalBonusValue;
+        Public boolean Final_approved{get;set;}
         public String brandid;
         public String agencyid;
         public String fyear;
@@ -70,6 +71,7 @@ public with sharing class AF_BonusMatrixOverrideController
                 {
                         bonus_summaryid='';
                         IsShowPOTab=false;
+                        Final_approved=false;
                         IsReadonlyPO=false;    
                         TotalBonusValue=0;  
                         totalMatrixbonus=0;  
@@ -110,6 +112,7 @@ public with sharing class AF_BonusMatrixOverrideController
                                 EsLocal=BonusMatrixObj.AF_Bonus_Local__c;
                                 if(BonusMatrixObj.AF_Bonus_Summary__r.AF_Status__c==AF_Constants.BONUS_SUMMARY_READYFORPO){
                                         IsReadyforPO=true;
+                                        Final_approved=true;
                                 }
                                 // AFO Release enhancement to allow super user to edit Matrix when ready for PO
                                 if(BonusMatrixObj.AF_Bonus_Summary__r.AF_Status__c==AF_Constants.BONUS_SUMMARY_READYFORPO && 

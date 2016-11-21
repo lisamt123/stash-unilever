@@ -44,6 +44,10 @@ src/classes/AF_SubResultHandler_Test.cls
 src/classes/AF_SubResultHandler_Test.cls-meta.xml
 src/classes/AF_TestFactory_Helper.cls
 src/classes/AF_TestFactory_Helper.cls-meta.xml
+src/classes/AF_BonusMatrixOverrideController.cls
+src/classes/AF_BonusMatrixOverrideController.cls-meta.xml
+src/classes/AF_BonusMatrixOverrideController_Test.cls
+src/classes/AF_BonusMatrixOverrideController_Test.cls-meta.xml
 src/labels
 src/labels/AF.labels
 src/permissionsets
@@ -61,6 +65,8 @@ src/reportTypes/AF_Bonus_Thresholds_with_Sub_Results.reportType
 src/pages
 src/pages/AF_AgencyHomePage.page
 src/pages/AF_AgencyHomePage.page-meta.xml
+src/pages/AF_BonusEstimate.page
+src/pages/AF_BonusEstimate.page-meta.xml
 src/pages/AF_AnnualBonus.page
 src/pages/AF_AnnualBonus.page-meta.xml
 src/pages/AF_BrandEstimate.page
