@@ -763,6 +763,7 @@ public with sharing class AF_TestFactory_Helper
             bonSum.AF_Agency__c=accList[i-1].Id;
             bonSum.AF_Brand__c=categoryBrandList[i-1].Id;
             bonSum.AF_Fiscal_Year__c=currYear;
+            bonSum.AF_Status__c = 'With Approver';
             BonussummaryList.add(bonSum);
         }
         if(doInsert){
