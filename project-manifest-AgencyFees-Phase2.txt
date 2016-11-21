@@ -48,6 +48,10 @@ src/classes/AF_BonusMatrixOverrideController.cls
 src/classes/AF_BonusMatrixOverrideController.cls-meta.xml
 src/classes/AF_BonusMatrixOverrideController_Test.cls
 src/classes/AF_BonusMatrixOverrideController_Test.cls-meta.xml
+src/classes/AF_Bonus_ResultsHandler.cls
+src/classes/AF_Bonus_ResultsHandler.cls-meta.xml
+src/classes/AF_Bonus_ThresholdHandler.cls
+src/classes/AF_Bonus_ThresholdHandler.cls-meta.xml
 src/labels
 src/labels/AF.labels
 src/permissionsets
