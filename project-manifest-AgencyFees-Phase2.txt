@@ -87,6 +87,7 @@ src/objects/AF_Sub_Result__c.object
 src/objects/AF_AnnualBonus_Qual__c.object
 src/objects/AF_QuarterlyBonus__c.object
 src/email
+src/email/Agency_Fees_Email
 src/email/Agency_Fees_Email-meta.xml
 src/email/Agency_Fees_Email/AF_Email_To_Agency_ReadyForPO.email
 src/email/Agency_Fees_Email/AF_Email_To_Agency_ReadyForPO.email-meta.xml
