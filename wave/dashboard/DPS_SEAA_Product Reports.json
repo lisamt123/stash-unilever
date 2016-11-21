@@ -44,7 +44,7 @@
                                 "colspan": 10,
                                 "column": 1,
                                 "name": "chartdesc_MHSKU",
-                                "row": 88,
+                                "row": 89,
                                 "rowspan": 1,
                                 "widgetStyle": {
                                     "borderEdges": []
@@ -208,7 +208,7 @@
                                 "colspan": 10,
                                 "column": 1,
                                 "name": "chartdesc_COTC",
-                                "row": 97,
+                                "row": 99,
                                 "rowspan": 1,
                                 "widgetStyle": {
                                     "borderEdges": []
@@ -298,7 +298,7 @@
                                 "colspan": 5,
                                 "column": 1,
                                 "name": "header_COTC",
-                                "row": 89,
+                                "row": 90,
                                 "rowspan": 1,
                                 "widgetStyle": {
                                     "borderEdges": []
@@ -698,8 +698,8 @@
                                 "colspan": 10,
                                 "column": 1,
                                 "name": "container_1",
-                                "row": 89,
-                                "rowspan": 9,
+                                "row": 90,
+                                "rowspan": 10,
                                 "widgetStyle": {
                                     "borderEdges": []
                                 }
@@ -729,7 +729,7 @@
                                 "column": 1,
                                 "name": "container_4",
                                 "row": 80,
-                                "rowspan": 9,
+                                "rowspan": 10,
                                 "widgetStyle": {
                                     "borderEdges": []
                                 }
@@ -1285,7 +1285,7 @@
                                 "colspan": 12,
                                 "column": 0,
                                 "name": "container_6",
-                                "row": 98,
+                                "row": 100,
                                 "rowspan": 1,
                                 "widgetStyle": {
                                     "backgroundColor": "rgb(228, 231, 231)",
@@ -1464,7 +1464,7 @@
                                 "colspan": 10,
                                 "column": 1,
                                 "name": "table_3",
-                                "row": 90,
+                                "row": 92,
                                 "rowspan": 7,
                                 "widgetStyle": {
                                     "borderEdges": []
@@ -1474,8 +1474,88 @@
                                 "colspan": 10,
                                 "column": 1,
                                 "name": "table_1",
-                                "row": 81,
+                                "row": 82,
                                 "rowspan": 7,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 1,
+                                "column": 2,
+                                "name": "listselector_25",
+                                "row": 91,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 1,
+                                "column": 5,
+                                "name": "listselector_26",
+                                "row": 91,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 1,
+                                "column": 3,
+                                "name": "listselector_27",
+                                "row": 91,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 1,
+                                "column": 6,
+                                "name": "listselector_28",
+                                "row": 91,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 1,
+                                "column": 2,
+                                "name": "listselector_30",
+                                "row": 81,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 1,
+                                "column": 3,
+                                "name": "listselector_31",
+                                "row": 81,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 1,
+                                "column": 5,
+                                "name": "listselector_32",
+                                "row": 81,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 1,
+                                "column": 6,
+                                "name": "listselector_33",
+                                "row": 81,
+                                "rowspan": 1,
                                 "widgetStyle": {
                                     "borderEdges": []
                                 }
@@ -2933,10 +3013,10 @@
             "X4P_5P_6P_63": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -2964,10 +3044,10 @@
             "Subchannel_29": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -2995,10 +3075,10 @@
             "X4P_5P_6P_64": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3063,10 +3143,10 @@
             "Country_21": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3094,10 +3174,10 @@
             "Product_brand_69": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -3125,10 +3205,10 @@
             "Trade_Format_27": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3156,10 +3236,10 @@
             "Region_72": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3224,10 +3304,10 @@
             "Customer_32": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3255,10 +3335,10 @@
             "KPI_Type_53": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011QWSAY",
+                        "id": "0Fb2C000000GmzxSAC",
                         "label": "SUMMARY_OUTLET_VIEW",
                         "name": "SUMMARY_OUTLET_VIEW",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011QWSAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzxSAC"
                     }
                 ],
                 "isFacet": true,
@@ -3287,10 +3367,10 @@
             "Date_of_audit_Year_D_1": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -3424,13 +3504,43 @@
                     "options": {}
                 }
             },
+            "Date_of_audit_Month_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C000000Gmz9SAC",
+                        "label": "PRODUCT_SCORE",
+                        "name": "PRODUCT_SCORE",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Month"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
             "all_77": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -3499,10 +3609,10 @@
             "Product_category_SKU_2": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -3725,10 +3835,10 @@
             "Product_category_SKU_1": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -3756,7 +3866,7 @@
                             "Value",
                             "C",
                             {
-                                "display": "%Δ"
+                                "display": "%Î”"
                             }
                         ],
                         [
@@ -3764,7 +3874,7 @@
                             "Value",
                             "D",
                             {
-                                "display": "%Δ"
+                                "display": "%Î”"
                             }
                         ]
                     ],
@@ -3784,36 +3894,12 @@
                                 ],
                                 "filters": [
                                     [
-                                        "Date_of_audit",
-                                        [
-                                            [
-                                                [
-                                                    "month",
-                                                    0
-                                                ],
-                                                [
-                                                    "month",
-                                                    0
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
+                                        "Date_of_audit_Month",
+                                        "{{ column(Date_of_audit_Month_1.selection, [\"Date_of_audit_Month\"]).asObject() }}"
                                     ],
                                     [
-                                        "Date_of_audit",
-                                        [
-                                            [
-                                                [
-                                                    "year",
-                                                    0
-                                                ],
-                                                [
-                                                    "year",
-                                                    1
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
+                                        "Date_of_audit_Year",
+                                        "{{ column(Date_of_audit_Year_1.selection, [\"Date_of_audit_Year\"]).asObject() }}"
                                     ],
                                     [
                                         "KPI_Type",
@@ -3946,36 +4032,12 @@
                                 ],
                                 "filters": [
                                     [
-                                        "Date_of_audit",
-                                        [
-                                            [
-                                                [
-                                                    "month",
-                                                    -1
-                                                ],
-                                                [
-                                                    "month",
-                                                    -1
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
+                                        "Date_of_audit_Month",
+                                        "{{ column(Date_of_audit_Month_2.selection, [\"Date_of_audit_Month\"]).asObject() }}"
                                     ],
                                     [
-                                        "Date_of_audit",
-                                        [
-                                            [
-                                                [
-                                                    "year",
-                                                    0
-                                                ],
-                                                [
-                                                    "year",
-                                                    1
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
+                                        "Date_of_audit_Year",
+                                        "{{ column(Date_of_audit_Year_2.selection, [\"Date_of_audit_Year\"]).asObject() }}"
                                     ],
                                     [
                                         "KPI_Type",
@@ -4150,7 +4212,7 @@
                                 ]
                             },
                             "format": "percentage",
-                            "header": "%Δ"
+                            "header": "%Î”"
                         },
                         {
                             "query": {
@@ -4210,7 +4272,7 @@
                             },
                             "format": "percentage",
                             "showBars": true,
-                            "header": "%Δ"
+                            "header": "%Î”"
                         }
                     ],
                     "groups": [
@@ -4229,10 +4291,10 @@
             "compare_mobileCOTC": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -4260,7 +4322,7 @@
                             "Diff",
                             "C",
                             {
-                                "display": "%Δ"
+                                "display": "%Î”"
                             }
                         ],
                         [
@@ -4268,7 +4330,7 @@
                             "Bar",
                             "D",
                             {
-                                "display": "%Δ"
+                                "display": "%Î”"
                             }
                         ]
                     ],
@@ -4327,7 +4389,7 @@
                                 ]
                             },
                             "showBars": false,
-                            "header": "%Δ"
+                            "header": "%Î”"
                         },
                         {
                             "query": {
@@ -4346,7 +4408,7 @@
                                 ]
                             },
                             "showBars": true,
-                            "header": "%Δ"
+                            "header": "%Î”"
                         }
                     ],
                     "groups": [
@@ -4363,13 +4425,101 @@
                     "options": {}
                 }
             },
+            "Date_of_audit_Month_2": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C000000Gmz9SAC",
+                        "label": "PRODUCT_SCORE",
+                        "name": "PRODUCT_SCORE",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Month"
+                    ]
+                },
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Date_of_audit_Month_3": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C000000Gmz9SAC",
+                        "label": "PRODUCT_SCORE",
+                        "name": "PRODUCT_SCORE",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Month"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Date_of_audit_Month_4": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C000000Gmz9SAC",
+                        "label": "PRODUCT_SCORE",
+                        "name": "PRODUCT_SCORE",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Month"
+                    ]
+                },
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
             "Channel_28": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -4397,10 +4547,10 @@
             "Diff_18": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011MUSAY",
+                        "id": "0Fb2C000000GmykSAC",
                         "label": "PS_OVERALL_COMPLIANCE_LV",
                         "name": "PS_OVERALL_COMPLIANCE_LV",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011MUSAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmykSAC"
                     }
                 ],
                 "isFacet": false,
@@ -4425,10 +4575,10 @@
             "Customer_KPI_Type_1": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -4577,10 +4727,10 @@
             "Store_type_49": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -4608,10 +4758,10 @@
             "Customer_7": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -4692,10 +4842,10 @@
             "Country_KPI_Type_1": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -4840,10 +4990,10 @@
             "Product_category_SKU_4": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -5009,7 +5159,7 @@
                                 ]
                             },
                             "format": "percentage",
-                            "header": "%Δ"
+                            "header": "%Î”"
                         },
                         {
                             "query": {
@@ -5046,7 +5196,7 @@
                             },
                             "format": null,
                             "showBars": true,
-                            "header": "%Δ"
+                            "header": "%Î”"
                         }
                     ],
                     "groups": [
@@ -5065,10 +5215,10 @@
             "Product_category_SKU_3": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -5096,7 +5246,7 @@
                             "Value",
                             "C",
                             {
-                                "display": "%Δ",
+                                "display": "%Î”",
                                 "format": "percentage"
                             }
                         ],
@@ -5105,7 +5255,7 @@
                             "Value",
                             "D",
                             {
-                                "display": "%Δ",
+                                "display": "%Î”",
                                 "format": "percentage"
                             }
                         ]
@@ -5236,7 +5386,7 @@
                                 ]
                             },
                             "format": "percentage",
-                            "header": "%Δ"
+                            "header": "%Î”"
                         },
                         {
                             "query": {
@@ -5279,7 +5429,7 @@
                                 ]
                             },
                             "format": "percentage",
-                            "header": "%Δ"
+                            "header": "%Î”"
                         }
                     ],
                     "groups": [
@@ -5298,10 +5448,10 @@
             "Product_category_SKU_6": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -5329,7 +5479,7 @@
                             "Value",
                             "C",
                             {
-                                "display": "%Δ",
+                                "display": "%Î”",
                                 "format": "percentage"
                             }
                         ],
@@ -5338,7 +5488,7 @@
                             "Value",
                             "D",
                             {
-                                "display": "%Δ",
+                                "display": "%Î”",
                                 "format": "percentage"
                             }
                         ]
@@ -5458,7 +5608,7 @@
                                 "formula": "A-B"
                             },
                             "format": "percentage",
-                            "header": "%Δ"
+                            "header": "%Î”"
                         },
                         {
                             "query": {
@@ -5477,7 +5627,7 @@
                             },
                             "format": "percentage",
                             "showBars": true,
-                            "header": "%Δ"
+                            "header": "%Î”"
                         }
                     ],
                     "groups": [
@@ -5496,10 +5646,10 @@
             "Product_market_67": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -5527,10 +5677,10 @@
             "Product_category_SKU_5": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -5558,7 +5708,7 @@
                             "Value",
                             "C",
                             {
-                                "display": "%Δ",
+                                "display": "%Î”",
                                 "format": "percentage"
                             }
                         ],
@@ -5567,7 +5717,7 @@
                             "Value",
                             "D",
                             {
-                                "display": "%Δ",
+                                "display": "%Î”",
                                 "format": "percentage"
                             }
                         ]
@@ -5595,20 +5745,12 @@
                                         "in"
                                     ],
                                     [
-                                        "Date_of_audit",
-                                        [
-                                            [
-                                                [
-                                                    "month",
-                                                    0
-                                                ],
-                                                [
-                                                    "month",
-                                                    0
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
+                                        "Date_of_audit_Month",
+                                        "{{ column(Date_of_audit_Month_3.selection, [\"Date_of_audit_Month\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Date_of_audit_Year",
+                                        "{{ column(Date_of_audit_Year_3.selection, [\"Date_of_audit_Year\"]).asObject() }}"
                                     ],
                                     [
                                         "COC",
@@ -5748,20 +5890,12 @@
                                         "in"
                                     ],
                                     [
-                                        "Date_of_audit",
-                                        [
-                                            [
-                                                [
-                                                    "month",
-                                                    -1
-                                                ],
-                                                [
-                                                    "month",
-                                                    -1
-                                                ]
-                                            ]
-                                        ],
-                                        ">=<="
+                                        "Date_of_audit_Month",
+                                        "{{ column(Date_of_audit_Month_4.selection, [\"Date_of_audit_Month\"]).asObject() }}"
+                                    ],
+                                    [
+                                        "Date_of_audit_Year",
+                                        "{{ column(Date_of_audit_Year_4.selection, [\"Date_of_audit_Year\"]).asObject() }}"
                                     ],
                                     [
                                         "COC",
@@ -5895,7 +6029,7 @@
                                 "formula": "round(A-B,3)"
                             },
                             "format": "percentage",
-                            "header": "%Δ"
+                            "header": "%Î”"
                         },
                         {
                             "query": {
@@ -5914,7 +6048,7 @@
                             },
                             "format": "percentage",
                             "showBars": true,
-                            "header": "%Δ"
+                            "header": "%Î”"
                         }
                     ],
                     "groups": [
@@ -5933,10 +6067,10 @@
             "compare_mobileMHSKU": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -5964,7 +6098,7 @@
                             "Diff",
                             "C",
                             {
-                                "display": "%Δ"
+                                "display": "%Î”"
                             }
                         ],
                         [
@@ -5972,7 +6106,7 @@
                             "Bar",
                             "D",
                             {
-                                "display": "%Δ"
+                                "display": "%Î”"
                             }
                         ]
                     ],
@@ -6031,7 +6165,7 @@
                                 ]
                             },
                             "showBars": false,
-                            "header": "%Δ"
+                            "header": "%Î”"
                         },
                         {
                             "query": {
@@ -6050,7 +6184,7 @@
                                 ]
                             },
                             "showBars": true,
-                            "header": "%Δ"
+                            "header": "%Î”"
                         }
                     ],
                     "groups": [
@@ -6070,10 +6204,10 @@
             "CustomerMobile_KPI_Type_84": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -6109,10 +6243,10 @@
             "Date_of_audit_Year_Date_of_audit_Month_4": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": false,
@@ -6292,10 +6426,10 @@
             "mobile_scoreCountry": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -6346,10 +6480,10 @@
             "SKU_70": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -6374,13 +6508,131 @@
                     "options": {}
                 }
             },
+            "Date_of_audit_Year_1": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C000000Gmz9SAC",
+                        "label": "PRODUCT_SCORE",
+                        "name": "PRODUCT_SCORE",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Year"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Date_of_audit_Year_2": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C000000Gmz9SAC",
+                        "label": "PRODUCT_SCORE",
+                        "name": "PRODUCT_SCORE",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Year"
+                    ]
+                },
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Date_of_audit_Year_3": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C000000Gmz9SAC",
+                        "label": "PRODUCT_SCORE",
+                        "name": "PRODUCT_SCORE",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Year"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
+            "Date_of_audit_Year_4": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C000000Gmz9SAC",
+                        "label": "PRODUCT_SCORE",
+                        "name": "PRODUCT_SCORE",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Year"
+                    ]
+                },
+                "type": "aggregateflex",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "hbar",
+                    "options": {}
+                }
+            },
             "Country_2": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -6445,10 +6697,10 @@
             "KPI_Type_X4P_5P_6P_1": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -6589,10 +6841,10 @@
             "OSA_Compliance_68": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -6620,10 +6872,10 @@
             "Sales_region_KPI_Type_2": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -6764,10 +7016,10 @@
             "Store_Operations_Manager_58": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -6795,10 +7047,10 @@
             "Customer_type_30": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -6826,10 +7078,10 @@
             "Top_Customer_55": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -6857,10 +7109,10 @@
             "Product_category_54": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -6888,10 +7140,10 @@
             "Channel_6": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -6956,10 +7208,10 @@
             "Local_Outlet_Name_51": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -6987,10 +7239,10 @@
             "Channel_KPI_Type_1": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -7130,10 +7382,10 @@
             "Commune_45": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7161,10 +7413,10 @@
             "Date_Year_Date_Month_14": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": false,
@@ -7206,10 +7458,10 @@
             "Field_Execution_Manager_56": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7237,10 +7489,10 @@
             "CustomerMobile_7": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7281,10 +7533,10 @@
             "Product_sector_68": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -7312,10 +7564,10 @@
             "Sales_area_25": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7343,10 +7595,10 @@
             "Sales_region_47": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7374,10 +7626,10 @@
             "Product_division_53": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7405,10 +7657,10 @@
             "Field_Sales_Manager_57": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7436,10 +7688,10 @@
             "Product_category_1": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7503,10 +7755,10 @@
             "Product_category_KPI_1": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011R0SAI",
+                        "id": "0Fb2C000000Gmz9SAC",
                         "label": "PRODUCT_SCORE",
                         "name": "PRODUCT_SCORE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
                     }
                 ],
                 "isFacet": true,
@@ -7646,10 +7898,10 @@
             "City_24": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7677,10 +7929,10 @@
             "Sales_territory_26": {
                 "datasets": [
                     {
-                        "id": "0Fb2C00000011PESAY",
+                        "id": "0Fb2C000000GmzESAS",
                         "label": "PRODUCT_COMPLIANCE",
                         "name": "PRODUCT_COMPLIANCE",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
                     }
                 ],
                 "isFacet": true,
@@ -7716,7 +7968,7 @@
         "widgets": {
             "link_place": {
                 "parameters": {
-                    "destination": "0FK2C000000004NWAQ",
+                    "destination": "0FK2C000000Kyv7WAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -7766,7 +8018,7 @@
             },
             "link_promo": {
                 "parameters": {
-                    "destination": "0FK2C000000004DWAQ",
+                    "destination": "0FK2C000000KyunWAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -7777,7 +8029,7 @@
             },
             "link_pack": {
                 "parameters": {
-                    "destination": "0FK2C000000004SWAQ",
+                    "destination": "0FK2C000000KyuiWAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -8198,22 +8450,24 @@
                 "parameters": {
                     "alignmentX": "center",
                     "alignmentY": "top",
-                    "documentId": "0152C0000008wzH",
+                    "documentId": "0152C00000050Xu",
                     "fit": "fitheight"
                 },
                 "type": "image"
             },
             "chart_3": {
                 "parameters": {
+                    "autoFitMode": "keepLabels",
+                    "showValues": true,
+                    "showMeasureTitle": false,
                     "legend": {
                         "showHeader": false,
                         "show": true,
                         "position": "right-top",
                         "inside": false
                     },
+                    "axisMode": "multi",
                     "visualizationType": "stackhbar",
-                    "step": "Country_KPI_Type_1",
-                    "theme": "wave",
                     "exploreLink": true,
                     "title": {
                         "label": "",
@@ -8225,30 +8479,28 @@
                         "type": "x",
                         "chartsPerLine": 4
                     },
-                    "showValues": true,
-                    "axisMode": "multi",
-                    "autoFitMode": "keepLabels",
-                    "dimensionAxis": {
-                        "showAxis": true,
+                    "measureAxis2": {
                         "showTitle": true,
+                        "showAxis": true,
                         "title": ""
                     },
                     "measureAxis1": {
-                        "showAxis": true,
                         "showTitle": true,
-                        "title": "Score (%)",
                         "referenceLine": {
-                            "value": 0,
-                            "color": "rgb(0, 161, 224)"
-                        }
-                    },
-                    "measureAxis2": {
+                            "color": "rgb(0, 161, 224)",
+                            "value": 0
+                        },
                         "showAxis": true,
-                        "showTitle": true,
-                        "title": "",
-                        "referenceLine": null
+                        "title": "Score (%)"
                     },
-                    "normalize": false
+                    "normalize": false,
+                    "step": "Country_KPI_Type_1",
+                    "theme": "wave",
+                    "dimensionAxis": {
+                        "showTitle": true,
+                        "showAxis": true,
+                        "title": ""
+                    }
                 },
                 "type": "chart"
             },
@@ -8344,7 +8596,7 @@
             },
             "link_price": {
                 "parameters": {
-                    "destination": "0FK2C000000004IWAQ",
+                    "destination": "0FK2C000000Kyv2WAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -8768,7 +9020,7 @@
             },
             "link_proposition": {
                 "parameters": {
-                    "destination": "0FK2C000000004XWAQ",
+                    "destination": "0FK2C000000KyusWAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -8808,14 +9060,14 @@
                 "parameters": {
                     "alignmentX": "center",
                     "alignmentY": "top",
-                    "documentId": "0152C0000008wzM",
+                    "documentId": "0152C00000050YE",
                     "fit": "fitheight"
                 },
                 "type": "image"
             },
             "link_product": {
                 "parameters": {
-                    "destination": "0FK2C000000004SWAQ",
+                    "destination": "0FK2C000000KyuxWAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -9018,6 +9270,18 @@
                 },
                 "type": "text"
             },
+            "listselector_30": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": true,
+                    "measureField": "count",
+                    "step": "Date_of_audit_Month_1",
+                    "title": "Date_of_audit_Month"
+                },
+                "type": "listselector"
+            },
             "chart_com4p5p6p": {
                 "parameters": {
                     "autoFitMode": "keepLabels",
@@ -9146,6 +9410,18 @@
                 },
                 "type": "text"
             },
+            "listselector_28": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": true,
+                    "measureField": "count",
+                    "step": "Date_of_audit_Year_4",
+                    "title": "Date_of_audit_Year"
+                },
+                "type": "listselector"
+            },
             "header_scoreRegion": {
                 "parameters": {
                     "fontSize": 16,
@@ -9200,6 +9476,42 @@
                     "measureField": "count",
                     "step": "Product_division_53",
                     "title": "Product division"
+                },
+                "type": "listselector"
+            },
+            "listselector_27": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": true,
+                    "measureField": "count",
+                    "step": "Date_of_audit_Year_3",
+                    "title": "Date_of_audit_Year"
+                },
+                "type": "listselector"
+            },
+            "listselector_26": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": true,
+                    "measureField": "count",
+                    "step": "Date_of_audit_Month_4",
+                    "title": "Date_of_audit_Month"
+                },
+                "type": "listselector"
+            },
+            "listselector_25": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": true,
+                    "measureField": "count",
+                    "step": "Date_of_audit_Month_3",
+                    "title": "Date_of_audit_Month"
                 },
                 "type": "listselector"
             },
@@ -9260,6 +9572,42 @@
                     "selectModeOverride": "multi",
                     "step": "Field_Sales_Manager_57",
                     "title": "Field Sales Manager"
+                },
+                "type": "listselector"
+            },
+            "listselector_33": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": true,
+                    "measureField": "count",
+                    "step": "Date_of_audit_Year_2",
+                    "title": "Date_of_audit_Year"
+                },
+                "type": "listselector"
+            },
+            "listselector_32": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": true,
+                    "measureField": "count",
+                    "step": "Date_of_audit_Month_2",
+                    "title": "Date_of_audit_Month"
+                },
+                "type": "listselector"
+            },
+            "listselector_31": {
+                "parameters": {
+                    "compact": false,
+                    "expanded": true,
+                    "exploreLink": false,
+                    "instant": true,
+                    "measureField": "count",
+                    "step": "Date_of_audit_Year_1",
+                    "title": "Date_of_audit_Year"
                 },
                 "type": "listselector"
             },
@@ -9469,7 +9817,7 @@
                 "parameters": {
                     "alignmentX": "center",
                     "alignmentY": "center",
-                    "documentId": "0152C0000008wzD",
+                    "documentId": "0152C00000050Xa",
                     "fit": "fitheight"
                 },
                 "type": "image"
@@ -9734,7 +10082,7 @@
                 "parameters": {
                     "alignmentX": "center",
                     "alignmentY": "center",
-                    "documentId": "0152C0000008wzA",
+                    "documentId": "0152C00000050XL",
                     "fit": "fitheight"
                 },
                 "type": "image"
@@ -9811,7 +10159,7 @@
             },
             "link_overall": {
                 "parameters": {
-                    "destination": "0FK2C000000004hWAA",
+                    "destination": "0FK2C000000KyvCWAS",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -10914,7 +11262,7 @@
                 "parameters": {
                     "alignmentX": "center",
                     "alignmentY": "top",
-                    "documentId": "0152C0000008wzL",
+                    "documentId": "0152C00000050Y9",
                     "fit": "fitheight"
                 },
                 "type": "image"
@@ -11615,28 +11963,28 @@
     },
     "datasets": [
         {
-            "id": "0Fb2C00000011MUSAY",
+            "id": "0Fb2C000000GmykSAC",
             "label": "PS_OVERALL_COMPLIANCE_LV",
             "name": "PS_OVERALL_COMPLIANCE_LV",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011MUSAY"
+            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmykSAC"
         },
         {
-            "id": "0Fb2C00000011PESAY",
-            "label": "PRODUCT_COMPLIANCE",
-            "name": "PRODUCT_COMPLIANCE",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011PESAY"
-        },
-        {
-            "id": "0Fb2C00000011QWSAY",
-            "label": "SUMMARY_OUTLET_VIEW",
-            "name": "SUMMARY_OUTLET_VIEW",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011QWSAY"
-        },
-        {
-            "id": "0Fb2C00000011R0SAI",
+            "id": "0Fb2C000000Gmz9SAC",
             "label": "PRODUCT_SCORE",
             "name": "PRODUCT_SCORE",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C00000011R0SAI"
+            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gmz9SAC"
+        },
+        {
+            "id": "0Fb2C000000GmzESAS",
+            "label": "PRODUCT_COMPLIANCE",
+            "name": "PRODUCT_COMPLIANCE",
+            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzESAS"
+        },
+        {
+            "id": "0Fb2C000000GmzxSAC",
+            "label": "SUMMARY_OUTLET_VIEW",
+            "name": "SUMMARY_OUTLET_VIEW",
+            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzxSAC"
         }
     ]
 }
