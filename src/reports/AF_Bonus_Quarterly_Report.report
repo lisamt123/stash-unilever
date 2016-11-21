@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
-        <field>AF_Bonus_Threshold__c$Brand_Name__c</field>
+        <field>AF_Bonus_Threshold__c$Brand_Name__c.Name</field>
     </columns>
     <columns>
         <field>AF_Bonus_Threshold__c$Agency_Name__c</field>
@@ -11,6 +11,9 @@
     </columns>
     <columns>
         <field>AF_Bonus_Threshold__c$Year__c</field>
+    </columns>
+    <columns>
+        <field>AF_Bonus_Threshold__c.Sub_Result__r$AF_Period__c</field>
     </columns>
     <columns>
         <field>AF_Bonus_Threshold__c.Sub_Result__r$AF_Quant__c</field>
@@ -45,13 +48,21 @@
     <columns>
         <field>AF_Bonus_Threshold__c.Sub_Result__r$AF_Comment__c</field>
     </columns>
+    <filter>
+        <criteriaItems>
+            <column>AF_Bonus_Threshold__c.Sub_Result__r$AF_Result_type__c</column>
+            <operator>equals</operator>
+            <value>Quarterly</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Tabular</format>
-    <name>Annual_Bonus_Report</name>
+    <name>AF_Bonus_Quarterly_Report</name>
     <params>
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>Bonus_Thresholds_with_Sub_Results__c</reportType>
+    <reportType>AF_Bonus_Thresholds_with_Sub_Results__c</reportType>
     <scope>user</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>

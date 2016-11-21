@@ -8,7 +8,7 @@
         <outerJoin>false</outerJoin>
         <relationship>Sub_Result__r</relationship>
     </join>
-    <label>Bonus Thresholds with Sub Results</label>
+    <label>AF_Bonus Thresholds with Sub Results</label>
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
