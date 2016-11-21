@@ -60,4 +60,5 @@
         <unique>false</unique>
     </fields>
     <label>AF_AnnualBonus_Qual</label>
+    <Visibility>Protected</Visibility>
 </CustomObject>

@@ -38,4 +38,5 @@
         <unique>false</unique>
     </fields>
     <label>AF_QuarterlyBonus</label>
+    <Visibility>Protected</Visibility>
 </CustomObject>
