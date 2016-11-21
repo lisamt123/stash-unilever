@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
-    <Visibility>Public</Visibility>
+    <visibility>Public</visibility>
     <description>This is used for calculate qualitative annual bonus.</description>
     <enableFeeds>false</enableFeeds>
     <fields>
