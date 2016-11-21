@@ -117,7 +117,7 @@ public with sharing class VPM_MaintainVendorFetchFieldDetails {
     mainJsonObject =mainJsonObject+ '"HouseNumber " :"'+vendorList.get(0).VPM_HouseNumber__c+STR_CONST_COMMA;
   }if(vendorList.get(0).VPM_HouseNumSupplement__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_HouseNumSupplement__c')){
     mainJsonObject =mainJsonObject+ '"HouseNumberSupplement " :"'+vendorList.get(0).VPM_HouseNumSupplement__c+STR_CONST_COMMA;
-  }if(vendorList.get(0).VPM_Regions__r.VPM_Code__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Regions__r.VPM_Code__c')){
+  }if(vendorList.get(0).VPM_Regions__r.VPM_Code__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('vpm_regions__c')){
     mainJsonObject =mainJsonObject+ '"Region" :"'+vendorList.get(0).VPM_Regions__r.VPM_Code__c+STR_CONST_COMMA;
   }if(vendorList.get(0).VPM_Country__c != null && vendorList.get(0).VPM_fieldUpdated__c.containsIgnoreCase('VPM_Country__c')){
     mainJsonObject =mainJsonObject+ '"Country" :"'+VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_Country__c)+STR_CONST_COMMA;

@@ -235,23 +235,23 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           }
           else if(usrRole == 'FRE') { // && QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_FREIGHT)
               reworkBtn=true;
-                renderSAPBtn = true;
+                renderSAPBtn = false;
               //  SubmitRequestBtn = true;
           }
           else if(usrRole ==  'FIN') { //&& QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_FINANCE)
               reworkBtn=true;
-                renderSAPBtn = true;
+                renderSAPBtn = false;
                //SubmitRequestBtn = true;
           }
           else if(usrRole ==  'PRO' && QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_PROCUREMENT)) {
               reworkBtn=true;
-                renderSAPBtn = true;
+                renderSAPBtn = false;
                 submitRequestBtn = true;
           }
            else if(usrRole ==  STR_CONST_FLS ) { //&& QueueSobjectList[0].Queue.Name.containsIgnoreCase(STR_CONST_FLS)
                
               reworkBtn=true;
-              renderSAPBtn = true;
+              renderSAPBtn = false;
                /* Changes for Bug : 277 Point 2 */
               if(String.isNotBlank(venReqStatus) && (venReqStatus.equalsIgnoreCase('FLS Approved'))){
                   reworkBtn=false;
@@ -619,39 +619,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           }
           catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());}
       }
-     
-    // Changes start  :  For Recall Visibility issue 
-    public void AssigneeApproval(string ApprovalName, string recId)
-      {
-          // Get the list of Approval on record 
-         /* for (List<ProcessInstance> pis : [SELECT Id,TargetObjectid, Status,(select id,actorid from Workitems) 
-                    FROM ProcessInstance where TargetObjectId =: recId and status='Pending']) {
-            for (ProcessInstance pi : pis) {
-                for (List<ProcessInstanceWorkitem> wis : pi.Workitems) {
-                    // Get Actor Id & then replace it with Owner 
-                    wis[0].actorid=ApprovalName;
-                    update wis;
-                   }           
-            }
-                    } */
-         
-          System.Debug('Inside funtion');
-            Approval.ProcessWorkItemRequest pwr = new Approval.ProcessWorkItemRequest();
-            List<ProcessInstance> procins = new List<ProcessInstance>([select Id from ProcessInstance where Status = 'Pending' and TargetObjectId = :recId]);
-            // Retrieve the process work instance id associated to the process instance
-            List<ProcessInstanceWorkitem>  workitem = new List<ProcessInstanceWorkitem>([select Id from ProcessInstanceWorkitem where ProcessInstanceId = :procins[0].id]);
-            if ((workitem != null) && (workitem.size() > 0))
-            {
-                pwr.SetComments('Recalling');
-                pwr.setWorkItemId(workitem[0].id);
-                pwr.setAction('Removed');                 
-                // Execute process request
-                //Approval.ProcessResult pr = Approval.process(pwr);
-                Approval.process(pwr);
-            }
-              
-      }
-    /* End of changes  for Recall issue */
+
     
        public void ReworkAction()
        {

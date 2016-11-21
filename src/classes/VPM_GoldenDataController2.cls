@@ -125,17 +125,12 @@ with Sharing public class VPM_GoldenDataController2 {
     public  list<VPM_CommodityApprover__c> lstCommodityApprover {get;set;}
     public VPM_ECCVendorSearchServiceOutput op;
     public string s;
-    
-   
-   // public List<ApprovalFlagWrapper> lst {get;set;}
-    //public List<ApprovalFlagWrapper> display_list {get; set;} 
    
 
     public List<SelectOption> shippingConditionsOptions{get;set;} 
     public  List<SelectOption> paymentTerms{get;set;}
     public string vendorPaymentTerms{get;set;}
-    
-    //public  List<SelectOption> taxJuriCodeOptions{get;set;}
+
     public string taxJuriCodeDefValue{get;set;} 
     
     public  List<SelectOption> industryOptions{get;set;}
@@ -635,28 +630,16 @@ with Sharing public class VPM_GoldenDataController2 {
                     {   myMsg=new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_PaymentmethodErrorMesg);  }              
                 }
                 
-                if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2) && (string.isBlank(industryOptionsDefValue) || industryOptionsDefValue==STR_CONST_NONE)){            
-                    // if(string.isBlank(vendorAccountStatement) || vendorAccountStatement==STR_CONST_NONE)
-                    // {                
+                if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2) && (string.isBlank(industryOptionsDefValue) || industryOptionsDefValue==STR_CONST_NONE)){                           
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_Industry);
-                    // }
                 }
                 
                 if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2) && (string.isBlank(vendorAccountStatement) || vendorAccountStatement==STR_CONST_NONE)){            
-                    // if(string.isBlank(vendorAccountStatement) || vendorAccountStatement==STR_CONST_NONE)
-                    // {                
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_AccountStatement);
-                    // }
                 }
                 if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_SIRIUS|| purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2) && (vendorCashManagementGrp ==STR_CONST_NONE || string.isBlank(vendorCashManagementGrp))) {
                     
-                    // if(vendorCashManagementGrp ==STR_CONST_NONE || string.isBlank(vendorCashManagementGrp)){
-                    
                     myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_CashManagementGroupPageMessage);
-                    //}
-                    //if(string.isBlank(entity.VPM_BankCountryKey__c)){
-                    //myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_BankCountryKeyPageMessage);                
-                    // }                
                 }      
                 if(purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA && entity.VPM_AccountGroup__c.containsIgnoreCase(STR_CONST_ZGS1) && string.isBlank(shippingConditionsDefValue)){
                     myMsg=new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_ShippingConditionMessage);
@@ -664,38 +647,24 @@ with Sharing public class VPM_GoldenDataController2 {
                 
                 if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_SIRIUS ) && (entity.VPM_SortKey__c ==STR_CONST_NONE ||string.isBlank(entity.VPM_SortKey__c))){
                     
-                    // if(entity.VPM_SortKey__c ==STR_CONST_NONE ||string.isBlank(entity.VPM_SortKey__c)){
-                    
-                    
                     myMsg=new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_SortKeyPageMessage);
-                    
-                    //} 
                 }
                 
                 if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_CORDILLERA || purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_U2K2) && (string.isBlank(entity.VPM_OrderCurrency__c)) ){
-                    
-                    //if(string.isBlank(entity.VPM_OrderCurrency__c)){
-                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPMOrderCurrencyPageMessage);
-                    //  }           
+                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPMOrderCurrencyPageMessage);          
                 }         
                  
                 if((purchReqVar.VPM_CompanyCode__r.ecc__c ==STR_CONST_FUSION) && (string.isBlank(entity.VPM_GlobalAuthorisationGroup__c)) ){           
-                    //  if(string.isBlank(entity.VPM_GlobalAuthorisationGroup__c)){
-                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_GlobalAuthorisationGrpPageMessage);
-                    // }           
+              
+                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_GlobalAuthorisationGrpPageMessage);         
                 }
                 // Check for Block & delete 
                 if(purchReqVar.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN) 
                 {                
                     string VendorBlockUnblockDelete= purchReqVar.VPM_VendorBlockUnblockDelete__c== null?'': pr.VPM_VendorBlockUnblockDelete__c;
                     if(((VendorBlockUnblockDelete.contains(STR_CONST_BLOCK)) || (VendorBlockUnblockDelete.contains(STR_CONST_DELETE))) && (purchReqVar.VPM_VendorBlockUnblockDelete__c !=null) && (string.isBlank(purchReqVar.VPM_DeletionBlockFlag__c) ))
-                    {
-                        // if(purchReqVar.VPM_VendorBlockUnblockDelete__c !=null)
-                        // {
-                        // if(string.isBlank(purchReqVar.VPM_DeletionBlockFlag__c)){          
+                    {     
                         myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_BlockDeleteVendorErrorMeesage);
-                        //}
-                        //}
                     }
                 }
              }
@@ -864,11 +833,7 @@ with Sharing public class VPM_GoldenDataController2 {
     {     
         try 
         {
-            
-            //Pagereference pg= null;
-           // ApexPages.Message msg;
-           
-            //system.debug('@@ msg' + msg);
+
             /* Added by Epsita */
             if(purchReqVar.VPM_WebformSentToVendor__c  && (!purchReqVar.VPM_VendorWebformSubmitted__c) && (!purchReqVar.VPM_ShowWarning__c)){
                 new ApexPages.Message(ApexPages.Severity.WARNING,System.label.VPM_Record_Submit_Warning);   
@@ -886,26 +851,13 @@ with Sharing public class VPM_GoldenDataController2 {
             }
             else{
             
-                commonSaveMethod();
-               /*purchReqVar.VPM_PurchasingOrganisation__c = vendorPurchasingOrg;
-               purchReqVar.VPM_CashManagementGroup__c = vendorCashManagementGrp;
-               purchReqVar.VPM_VendorName1__c = VendorName;
-               purchReqVar.VPM_SearchTerm_1__c = searchTerm1; 
-               purchReqVar.VPM_PaymentTerms__c = vendorPaymentTerms;
-               purchReqVar.VPM_TradePartnerType__c  = tradePartnerType; 
-               if(string.isNotBlank(vendorPaymentMethod) && vendorPaymentMethod <> '[]') {
-                    purchReqVar.VPM_PaymentMethod__c = vendorPaymentMethod; 
-               }
-               update purchReqVar;
-               newController.save();
-                System.debug('@@@@@@@  purchReqVar ------' +purchReqVar); */
+               commonSaveMethod();
                approvalCallMethod();   
                pr.VPM_AdvancedFormSubmitter__c = GetAdvancedFormSubmitter();
                msg=ProcurementApproval();
                 if(msg <> null)
                 {
                     ApexPages.addMessage(msg); 
-                   //   GoToErrorMessagePage();
                     return  null;
                 }
                 else
@@ -986,7 +938,7 @@ public void approvalCallMethod()
         {
         pr.VPM_Status__c='FLS Approved';
         pr.VPM_RequestLastWithGroup__c = STR_CONST_FLS;
-           // pr.VPM_RequestGroupTime__c = system.now();
+       
         }
         else if( pr.VPM_RequestFromFLSOrBR__c != null)
         {
@@ -1658,13 +1610,6 @@ if(pr.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)
         return opList[0];
     }
     
-   /* public PageReference GoToErrorMessagePage()
-    {
-        ApexPages.PageReference pr = new ApexPages.PageReference('/apex/VPM_ErrorMessage?id=' +purid);
-        pr.SetRedirect(true);
-        pr.GetParameters().Put('message', '');
-        return pr;
-    } */
       /******************************************************************** 
     
     Created By   : Samrin Shaikh

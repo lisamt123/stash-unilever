@@ -1671,7 +1671,7 @@ public with sharing class VPM_SearchVendor1{
     Return Type  : void
     ***********************************************************************************/
     public void SendWebformMethod() {        
-        if(mdmVendorType =='SendResendWebform')  {
+        if(mdmVendorType.equals(system.label.VPM_Send_ResendWebformRequest))  {
             pageBlockTitle = '';  
             launchScreen = true;
             isBackToDetalPage = true;            
@@ -2170,7 +2170,7 @@ public with sharing class VPM_SearchVendor1{
             if(string.isBlank(termsOfPayment))
             {
             
-             //myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_TermsOfPayment);
+             myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_TermsOfPayment);
             
             }
         }

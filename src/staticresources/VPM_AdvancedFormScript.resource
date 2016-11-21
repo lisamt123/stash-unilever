@@ -60,10 +60,10 @@ $(document).ready(function() {
     }
     function openAttachment(page){
     var self = this;
-        self.window.open('/apex/VPM_AttachmentSectionPopUp','Table','toolbar=yes, scrollbars=no, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70');
+        self.window.open('/apex/VPM_AttachmentSectionPopUp','Table','toolbar=yes, scrollbars=1,resizable=1, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70');
         return false;
     }
     function showAttachments(id){
         var self = this;
-        self.window.open('/apex/VPM_AttachFiles?id='+id,'Table','toolbar=yes, scrollbars=no, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70'); 
+        self.window.open('/apex/VPM_AttachFiles?id='+id,'Table','toolbar=yes, scrollbars=1,resizable=1, toolbar=no, menubar=no, height=500,width=1230, top=70, left=70'); 
     } 

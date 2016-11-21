@@ -32,13 +32,19 @@ public with sharing class VPM_RegionalMaintainVendor {
   {
     List<VPM_ListOfRegionalandGlobalField__c> globalFields = VPM_ListOfRegionalandGlobalField__c.getall().values();
     list<id> vendorRequestCompanyCode = new list<id>();
-    recordType rec =[select id , Name from recordType where Name like '%Create%' AND sobjectType='VPM_PurchasingRequests__c' LIMIT 1];
+    Id devRecordTypeId = Schema.SObjectType.VPM_PurchasingRequests__c.getRecordTypeInfosByName().get('Vendor Request').getRecordTypeId();
+   // recordType rec =[select id , Name from recordType where Name like '%Create%' AND sobjectType='VPM_PurchasingRequests__c' LIMIT 1];
 
     // Loop to get list of all company code id (Bulkify trigger)
-        for (VPM_PurchasingRequests__c vendorRequest : updatedVendorRequest)
+   for (VPM_PurchasingRequests__c vendorRequest : updatedVendorRequest)
     {
+       if(vendorRequest.RecordTypeId == devRecordTypeId)
+       {
         vendorRequestCompanyCode.add(vendorRequest.VPM_CompanyCode__c);
+       }
     }
+    if(!vendorRequestCompanyCode.isEmpty())
+    {
      Map <id,VPM_CompanyCode__c> companyCodeMap =new Map<ID, VPM_CompanyCode__c>([SELECT ECC__c, id from VPM_CompanyCode__c where id =: vendorRequestCompanyCode]);
      for (VPM_PurchasingRequests__c vendorRequest : updatedVendorRequest)
     {
@@ -50,13 +56,16 @@ public with sharing class VPM_RegionalMaintainVendor {
                 system.debug('companyCode.ECC__c '+companyCode.ECC__c);
                 vendorRequest.VPM_ECC__c = companyCode.ECC__c;
             }
+           }
         }
+      }
         //Logic for : Update fieldType Picklist with global or Regional filed update
-       
+    for (VPM_PurchasingRequests__c vendorRequest : updatedVendorRequest)
+    {
          VPM_PurchasingRequests__c OldVendorRequestValue =OldVendorRequestValueList.get(vendorRequest.id);
          if(!VPM_SearchVendor1.CheckFlag)
          {
-          if(vendorRequest.VPM_checkForFieldUpdate__c && rec.id != OldVendorRequestValue.recordTypeId)
+          if(vendorRequest.VPM_checkForFieldUpdate__c )
           {
             
             for (VPM_ListOfRegionalandGlobalField__c fieldList : globalFields)

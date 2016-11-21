@@ -215,7 +215,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Assign Procurement Permission</shortDescription>
-        <value>Assign Procurement Permission</value>
+        <value>Assign Procurement Permission (Add permanent new approval roles)</value>
     </labels>
     <labels>
         <fullName>VPM_AutoGenerationofPurchaseOrderallowed</fullName>
@@ -484,11 +484,32 @@
         <value>Commodity  Approver Records Details</value>
     </labels>
     <labels>
+        <fullName>VPM_CommodityApproverUnsuccessfullMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Custom message when the commodity approver is not replaced for commodity</shortDescription>
+        <value>Approver cannot be replaced for commodity:</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CommodityErrorMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Custom error message for commodity not replaced</shortDescription>
+        <value>since the selected approver is already present for these commodities.</value>
+    </labels>
+    <labels>
         <fullName>VPM_CommodityRecordsDetails</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM Commodity Records Details</shortDescription>
         <value>Commodity Records Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CommoditySuccessFullReplaceMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Custom message when the commodity approver is successful replaced</shortDescription>
+        <value>Approver successfully replaced for commodity:</value>
     </labels>
     <labels>
         <fullName>VPM_Commodity_Code_help_text</fullName>
@@ -964,7 +985,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Has the product or service already been provided?</shortDescription>
-        <value>Has the Product or Service already been provided?</value>
+        <value>Is work already started?</value>
     </labels>
     <labels>
         <fullName>VPM_Language</fullName>
@@ -1251,7 +1272,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM - Used for Procurement Admin Title</shortDescription>
-        <value>Procurement Central Admin</value>
+        <value>Procurement Central Admin - Approver Role Changes</value>
     </labels>
     <labels>
         <fullName>VPM_PurchasingOrganisation</fullName>
@@ -1370,7 +1391,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Remove Procurement Permission</shortDescription>
-        <value>Remove Procurement Permission</value>
+        <value>Remove Procurement Permission (remove permanent existing approval roles)</value>
     </labels>
     <labels>
         <fullName>VPM_Replace</fullName>
@@ -1398,7 +1419,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Replace_Approver</shortDescription>
-        <value>Replace Approver</value>
+        <value>Replace Approver (Replace existing approval roles)</value>
     </labels>
     <labels>
         <fullName>VPM_RequestAbortedAlert</fullName>
@@ -1895,7 +1916,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Temporary Replace Approver</shortDescription>
-        <value>Temporary Replace Approver</value>
+        <value>Temporary Replace Approver (Delegate profile to)</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TermsOfPayment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM- custom valiation error message in case terms of payment is not selected</shortDescription>
+        <value>Terms Of Payment: Please select the value</value>
     </labels>
     <labels>
         <fullName>VPM_TermsOfPaymentReqHelpText</fullName>

@@ -124,26 +124,7 @@ public with sharing class VPM_HttpUtil {
         }
         return stringParams;
     }
-  /*  public static void updateVendorStatus(String venReqId, String reqStatus, String message, String messageMDM) {
-        // Update vendor request record status after send to SAP.
-        // Update MDM Ops user fields on vendor request record.
-        List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c, CreatedBy.Email,VPM_MDMBPMRequestorName__c, VPM_MDMBPMRequestorPhone__c, VPM_MDMBPMRequestorEmail__c, VPM_MDMBPMRequestorDepartment__c, VPM_MDMBPMOriginatoEmail__c,VPM_MDMInsertUpdateStatus__c,VPM_MDMInsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
-        List<User> userList = [Select Name, Phone, Email, Department From User Where id = :UserInfo.getUserId()];
-        if(vendorList != null && vendorList.size() >0) {
-            VPM_PurchasingRequests__c vendor = vendorList.get(0);
-            vendor.VPM_Status__c = reqStatus;
-            vendor.VPM_MDMInsertUpdateStatusMessage__c = message;
-            vendor.VPM_MDMInsertUpdateStatus__c = messageMDM;
-            vendor.VPM_MDMBPMOriginatoEmail__c = vendorList.get(0).CreatedBy.Email;
-            if(userList != null && userList.size() > 0) {
-                vendor.VPM_MDMBPMRequestorName__c = userList.get(0).Name;
-                vendor.VPM_MDMBPMRequestorPhone__c = userList.get(0).Phone;
-                vendor.VPM_MDMBPMRequestorEmail__c = userList.get(0).Email;
-                vendor.VPM_MDMBPMRequestorDepartment__c = userList.get(0).Department;
-            }
-            update vendor;
-        }
-    }*/
+
     
     /******************************************************************** 
     Created By   : Deepak
@@ -197,14 +178,7 @@ public with sharing class VPM_HttpUtil {
              
             }
          }   
-    /*public static Integer generateRandomNumber() {
-        Integer len = 9;
-        String str = string.valueof(Math.abs(Crypto.getRandomLong()));
-        String randomNumber = str.substring(0, len);
-        Integer reqNum = Integer.valueOf(randomNumber);
-        system.debug('-------Random Number------' + reqNum);
-        return reqNum;
-    }*/
+
     /******************************************************************** 
     Created By   : Ajay
     Created Date : 24 June 2016
@@ -311,23 +285,7 @@ public with sharing class VPM_HttpUtil {
             //responseString = 'Vendor Request submitted to SAP.'+msg ;
             responseString = msg;
         } 
-        /*else if(res.getStatusCode() == 500) {
-           updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            //responseString = 'Server Error. Please try after some time.';
-            responseString = msg;
-        } else if(res.getStatusCode() == 504) {
-            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            //responseString = 'Timeout Error. Please try after some time.';
-            responseString = msg;
-        } else if(res.getStatusCode() == 400) {
-            updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            //responseString = 'Please check request data and try again. '+msg;
-            responseString = msg;
-        } else if(res.getStatusCode() == 503) {
-           updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
-            //responseString = 'SAP API not implemented.';
-            responseString = msg;
-        }*/
+
         else if(res.getStatusCode() == 0) {
             
             responseString = 'Some error occured while submitting request to SAP. Please try after some time.' ;

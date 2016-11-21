@@ -38,7 +38,7 @@
                   <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ApprovalWorker__c.Label}"></apex:outputLabel>
                   <apex:outputText value="{!approvalWorkerName}" /> 
               </apex:pageBlockSectionItem>
-              <apex:outputField label="Vendor Code" value="{!VPM_PurchasingRequests__c.VPM_VendorCodeLookup__r.mdm_Code__c}"/>
+              <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VendorCode__c}"/>
               <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_AlreadyAvailableSupplierUse__c}"/>
         
              <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_IsVendorException__c}"  rendered="{!isGBCountry}"/>

@@ -21,7 +21,7 @@ public class VPM_PurchaseRequestsExtensionTest{
        // map<string,string> userRole =new map<string,string>();
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
-    companyCode.ECC__c = Ecc;
+    companyCode.ECC__c = 'Fusion';
     companyCode.VPM_Country__c =country;
     insert companyCode;
     system.assert(companyCode.Id!=null,ErrorMsg);
@@ -33,7 +33,8 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_Comments__c=buyingStuff,
     VPM_VendorPhone__c=phone,
     VPM_DeletionBlockFlag__c='Block',
-    VPM_Status__c ='MDM Ops Review - Unblock');
+    VPM_Status__c ='MDM Ops Review - Unblock',
+    VPM_ApprovalWorkerID__c='Test');
      insert pur;
      
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_DeletionBlockFlag__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
@@ -43,7 +44,8 @@ public class VPM_PurchaseRequestsExtensionTest{
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
       VendorDetail.recId=pur.Id;
         VendorDetail.ManuallyMarkAsCompleteAction();
-        
+        vendorDetail.changeButtonValues();
+        vendorDetail.setPaymentTermsDefaultValues();
         
         
     }
@@ -80,9 +82,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
       vendorDetail.isProcure =true;
       vendorDetail.setPaymentTermsDefaultValues();
-      
-      
-      
+     
       vendorDetail.saveFromUser();
       vendorDetail.saveUserValues();
       vendorDetail.cancelFromUser();
@@ -97,7 +97,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       
   
  }
-   /* static testMethod void callSendToSAPAPITest() {
+    static testMethod void callSendToSAPAPITest() {
    
    string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
    
@@ -123,7 +123,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
-    companyCode.ECC__c = Ecc;
+    companyCode.ECC__c = 'Sirius';
     companyCode.VPM_Country__c =country;
     insert companyCode;
     system.assert(companyCode.Id!=null,ErrorMsg);
@@ -146,6 +146,7 @@ public class VPM_PurchaseRequestsExtensionTest{
   VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
         VendorDetail.vendorReqId= pur.id;
         VendorDetail.callSendToSAPAPI();
+        vendorDetail.setPaymentTermsDefaultValues();
         
         recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id; 
         pur.recordTypeId = recordTypeId;
@@ -168,7 +169,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         
 
     }
-      static testMethod void reworkActionTest1() {
+    /*  static testMethod void reworkActionTest1() {
     
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
@@ -716,6 +717,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       pur.VPM_Status__c = 'FLS Requested Re-Work' ;
       test.startTest();
       update pur;
+      system.assertEquals(pur.VPM_Status__c,'FLS Requested Re-Work');
       vendorDetail.SubmitRequestAction();
       test.stopTest();
       
@@ -752,6 +754,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       pur.VPM_Status__c = 'Finance Requested Re-Work' ;
       test.startTest();
       update pur;
+      system.assertEquals(pur.VPM_Status__c,'Finance Requested Re-Work');
       vendorDetail.SubmitRequestAction();
       test.stopTest();
       
@@ -788,6 +791,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       pur.VPM_Status__c = 'Freight Requested Re-Work' ;
       test.startTest();
       update pur;
+      system.assertEquals(pur.VPM_Status__c,'Freight Requested Re-Work');
       vendorDetail.SubmitRequestAction();
       test.stopTest();
       
@@ -824,6 +828,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       pur.VPM_Status__c = 'Procurement Requested Re-Work' ;
       test.startTest();
       update pur;
+      system.assertEquals(pur.VPM_Status__c,'Procurement Requested Re-Work');
       vendorDetail.SubmitRequestAction();
       test.stopTest();
       
@@ -860,6 +865,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       pur.VPM_Status__c = 'Russian Custom Tax Requested Re-Work' ;
       test.startTest();
       update pur;
+      system.assertEquals(pur.VPM_Status__c,'Russian Custom Tax Requested Re-Work');
       vendorDetail.SubmitRequestAction();
       test.stopTest();
       

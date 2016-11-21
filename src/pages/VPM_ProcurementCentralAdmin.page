@@ -27,18 +27,19 @@
             <apex:actionFunction name="doRemove" action="{!goAssign}" rerender="out"/>
               <apex:pageMessages />
             <apex:pageBlockSection columns="1" rendered="{!MainScreen}" title="{!$Label.VPM_Procurement_Central_Admin}" collapsible="false">
+            <apex:pageBlockSectionItem helpText="{!$Label.VPM_AssignProcurement}">
+                <input type="radio" name="Letters" value="Assign" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> {!$Label.VPM_Assign_Procurement_Permission} <br/>    
+                </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem helpText="{!$Label.VPM_RemoveApprover}">
+              <input type="radio" name="Letters" value="Remove" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> {!$Label.VPM_Remove_Procurement_Permission} <br/>  
+                </apex:pageBlockSectionItem>
             <apex:pageBlockSectionItem helpText="{!$Label.VPM_ReplaceNewApprover}">
               <input type="radio" name="Letters" value="Replace" style="margin-right: 6px;" onclick="changeValue(this,'{!$Component.RadioButtonValue}');"/>{!$Label.VPM_Replace_Approver} <br/>
             </apex:pageBlockSectionItem>
             <apex:pageBlockSectionItem helpText="{!$Label.VPM_TemporaryReplaceNewApprover}">
             <input type="radio" name="Letters" value="Temporary" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> {!$Label.VPM_Temporary_Replace_Approver} <br/>  
               </apex:pageBlockSectionItem>
-              <apex:pageBlockSectionItem helpText="{!$Label.VPM_RemoveApprover}">
-              <input type="radio" name="Letters" value="Remove" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> {!$Label.VPM_Remove_Procurement_Permission} <br/>  
-                </apex:pageBlockSectionItem>
-                <apex:pageBlockSectionItem helpText="{!$Label.VPM_AssignProcurement}">
-                <input type="radio" name="Letters" value="Assign" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> {!$Label.VPM_Assign_Procurement_Permission} <br/>    
-                </apex:pageBlockSectionItem>
+                         
                 <apex:inputHidden value="{!MDMVendor}" id="RadioButtonValue" />
                
                 <apex:pageBlockSectionItem >

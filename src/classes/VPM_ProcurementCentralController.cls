@@ -398,10 +398,10 @@ with sharing public class VPM_ProcurementCentralController{
                              updateCommApprover(json.serialize(commAppList));
                             system.debug('@@ repCommodities' + repCommodities);
                             if(!commodities.isEmpty()){
-                                Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,''+'Approver cannot be replaced for commodity: ' + commodities + ' since the selected approver is already present for these commodities.'));
+                                Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,''+System.label.VPM_CommodityApproverUnsuccessfullMessage + commodities + System.label.VPM_CommodityErrorMessage));
                              }  
                              if(!repCommodities.isEmpty())  {
-                                Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,''+'Approver successfully replaced for commodity: ' + repCommodities));
+                                Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,''+System.label.VPM_CommoditySuccessFullReplaceMessage + repCommodities));
                               }
                      //Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,System.label.VPM_ApproverReplaceSuccess));        
             }
