@@ -1,5 +1,11 @@
 src
 src/classes
+src/classes/AF_AnnualBonus_Test.cls
+src/classes/AF_AnnualBonus_Test.cls-meta.xml
+src/classes/AF_BonusQuarterly_Test.cls
+src/classes/AF_BonusQuarterly_Test.cls-meta.xml
+src/classes/AF_BrandEstimateController2_Test.cls
+src/classes/AF_BrandEstimateController2_Test.cls-meta.xml
 src/classes/AF_Constants.cls
 src/classes/AF_Constants.cls-meta.xml
 src/classes/AF_AgencyHomePageController.cls

@@ -235,6 +235,7 @@ public class AF_BonusQuarterly_Test
                 Brand.Brand__c=AFCategoryBrand[0].id;
                 Brand.AF_Agency__c=acc[0].id;
                 Brand.AF_Fiscal_Year__c=currYear;
+                Brand.AF_Is_Global_Bonus_Threshold_Checked__c=false;
                 Brand.AF_Active__c=true;
                 Brand.AF_Pilot_Model__c=true;
                 BrandEstlist.add(Brand);
@@ -291,6 +292,7 @@ public class AF_BonusQuarterly_Test
                 agency.AF_Adaptation__c=22;
                 agency.AF_Digital__c=22;
                 agency.AF_Traditional__c=22;
+                agency.AF_Brand_Estimate__c=BrandEstlist[0].id;
                 AgencyEsitmatelist.add(agency);
             }
             insert AgencyEsitmatelist;
@@ -347,6 +349,7 @@ public class AF_BonusQuarterly_Test
             ApexPages.currentPage().getParameters().put('Year',currYear);
             AF_BonusQuarterly bonQuart1=new AF_BonusQuarterly();
             bonQuart1.CallBonusQuarterly();
+            bonQuart1.isglobal=false;
             bonQuart1.ConfirmBonus();
             bonQuart1.UpdateBonus();
             bonQuart1.Calculate_Bonus();
@@ -393,6 +396,7 @@ public class AF_BonusQuarterly_Test
                 Brand.Brand__c=AFCategoryBrand[0].id;
                 Brand.AF_Agency__c=acc[0].id;
                 Brand.AF_Fiscal_Year__c=currYear;
+                Brand.AF_Is_Global_Bonus_Threshold_Checked__c=true;
                 Brand.AF_Active__c=true;
                 Brand.AF_Pilot_Model__c=true;
                 BrandEstlist.add(Brand);
@@ -508,6 +512,7 @@ public class AF_BonusQuarterly_Test
             ApexPages.currentPage().getParameters().put('Year',currYear);
             AF_BonusQuarterly bonQuart1=new AF_BonusQuarterly();
             bonQuart1.CallBonusQuarterly();
+            bonQuart1.isglobal=true;
             bonQuart1.ConfirmBonus();
             bonQuart1.UpdateBonus();
             bonQuart1.Calculate_Bonus();

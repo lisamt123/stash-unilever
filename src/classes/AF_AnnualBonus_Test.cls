@@ -539,6 +539,24 @@ public class AF_AnnualBonus_Test
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE and Id IN:AFCategoryBrand LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
             //Insert BrandEstimate
+            List<AF_Brand_Estimate__c> BrandEst1 = AF_TestFactory_Helper.insertAFBrandEstList(1,false);
+            List<AF_Brand_Estimate__c> BrandEstlist1=new List<AF_Brand_Estimate__c>();
+            for(AF_Brand_Estimate__c br :BrandEst1){
+                br.AF_Active__c = true;
+                br.AF_Copied__c= false;
+                br.AF_Locked__c = false; 
+                //br.AF_Pilot_Model__c=true;
+                br.Brand__c=brandQuery[0].id;
+                br.AF_Pilot_Model__c=true;
+                br.AF_Agency__c=acctQuery[0].id;
+                br.AF_Fiscal_Year__c=currYear;
+                br.AF_AgencyUsers1__c=u.Email;
+                BrandEstlist1.add(br);
+            }
+            insert BrandEstlist1;
+            List<AF_Brand_Estimate__c> BrandEstQuery1 =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEst1 LIMIT 1]; 
+            System.assertEquals(BrandEstQuery1[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
+            //Insert BrandEstimate
             List<AF_Brand_Estimate__c> BrandEst = AF_TestFactory_Helper.insertAFBrandEstList(1,true);
             List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEst LIMIT 1]; 
             System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
@@ -648,7 +666,8 @@ public class AF_AnnualBonus_Test
             ApexPages.currentPage().getParameters().put(Agencyid,acc[0].id);
             ApexPages.currentPage().getParameters().put(Year,currYear);
             AF_AnnualBonus annulBonus =new AF_AnnualBonus();
-            annulBonus.UpdateBonus();
+            annulBonus.annualBonusConstructorExt(subResults );
+            annulBonus.updatebonus();
             annulBonus.ConfirmBonus();
             Test.stopTest();
         }
