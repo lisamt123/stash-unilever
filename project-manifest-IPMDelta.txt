@@ -2,7 +2,6 @@
 src
 src/classes
 
-src/classes/IPM_FinancialUtils.cls
-src/classes/IPM_FinancialUtils.cls-meta.xml
-src/classes/IPM_FinancialYearHelper.cls
-src/classes/IPM_FinancialYearHelper.cls-meta.xml
+src/classes/IPM_Coreparameters.cls
+src/classes/IPM_Coreparameters.cls-meta.xml
+
