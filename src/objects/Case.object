@@ -9243,6 +9243,29 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <active>true</active>
         <businessProcess>Default</businessProcess>
         <label>None</label>
+		<picklistValues>
+            <picklist>Brand_Ambassador_Status__c</picklist>
+            <values>
+                <fullName>Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer Preference</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SLA Breach</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Escalated</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Country_Name__c</picklist>
             <values>
@@ -9925,6 +9948,29 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <active>true</active>
         <businessProcess>Default</businessProcess>
         <label>Spam</label>
+		<picklistValues>
+            <picklist>Brand_Ambassador_Status__c</picklist>
+            <values>
+                <fullName>Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer Preference</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SLA Breach</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Escalated</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Claim_Status__c</picklist>
             <values>
