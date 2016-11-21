@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>Finance1_Notification_For_Logged</fullName>
+        <description>Finance1 Notification For Logged</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_Requesthasbeenlogged</template>
+    </alerts>
+    <alerts>
+        <fullName>Finance2_Notification_for_Logged</fullName>
+        <description>Finance2 Notification for Logged</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_Requesthasbeenlogged</template>
+    </alerts>
+    <alerts>
+        <fullName>Notification_For_Logged_Email</fullName>
+        <description>Notification For Logged Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_Requesthasbeenlogged</template>
+    </alerts>
+    <alerts>
+        <fullName>Notification_for_Logged_for_2_Approvals</fullName>
+        <description>Notification for Logged for 2 Approvals</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_Requesthasbeenlogged</template>
+    </alerts>
+    <alerts>
+        <fullName>Russian_Notification_For_Logged</fullName>
+        <description>Russian Notification For Logged</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>VPM_ApprovalEmails/VPM_Requesthasbeenlogged</template>
+    </alerts>
+    <alerts>
         <fullName>VPM_MDMRequestSubmitted</fullName>
         <description>VPM - Used to send Notification to the Business Requestor when the request (Bloc/Delete) is submitted manually</description>
         <protected>false</protected>
@@ -178,6 +233,17 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_AssignRequestToMDMOps</fullName>
+        <description>VPM - Assign request to MDM Ops</description>
+        <field>OwnerId</field>
+        <lookupValue>VPM_MDMOps</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Assign request to MDM Ops</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_AssigntoRussian</fullName>
         <description>VPM - Used to set the Owner as &quot;Russian Queue&quot;</description>
         <field>OwnerId</field>
@@ -188,6 +254,27 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_BankApprovedTime</fullName>
+        <description>VPM - time when the bank Validator approves the request.</description>
+        <field>VPM_BankValidatorApproval__c</field>
+        <formula>NOW()</formula>
+        <name>Bank Approved Time</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_BankReworks</fullName>
+        <description>VPM -used to track no of times bank sends for rework</description>
+        <field>VPM_BankValidatorReworks__c</field>
+        <formula>VPM_BankValidatorReworks__c  + 1</formula>
+        <name>Bank Reworks</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_ChangeAdvanceFormSubmittedtonull</fullName>
@@ -231,12 +318,24 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>VPM_ChangeOwnerToFLSQueue</fullName>
-        <description>VPM - Sets the Owner as FLS Queue on entering approval process.</description>
+        <fullName>VPM_ChangeOwnerIdtoMDMOpsQueue</fullName>
+        <description>VPM - Update  Owner Id field to MDM Ops Queue when the status of request is MDM Ops Review</description>
         <field>OwnerId</field>
-        <lookupValue>VPM_FLS</lookupValue>
+        <lookupValue>VPM_MDMOps</lookupValue>
         <lookupValueType>Queue</lookupValueType>
-        <name>VPM - Change Owner To FLS Queue</name>
+        <name>Change the Owner Id to MDM Ops Queue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangeOwnerToFinanceQueue</fullName>
+        <description>VPM - Sets the Owner to Finance Queue on entering Approval Process</description>
+        <field>OwnerId</field>
+        <lookupValue>VPM_Finance</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Change Owner To Finance Queue</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
@@ -255,6 +354,18 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_ChangeOwnerToMDMOpsQueue</fullName>
+        <description>VPM - Sets the Owner as MDM Ops Queue on entering approval process.</description>
+        <field>OwnerId</field>
+        <lookupValue>VPM_MDMOps</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Change Owner To MDM Ops Queue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_ChangeOwnerToProcurement_Queue</fullName>
         <description>VPM - Sets the Owner as Procurement Queue on entering Approval Process.</description>
         <field>OwnerId</field>
@@ -265,6 +376,17 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ChangeOwnerToRussianCustomTax</fullName>
+        <description>VPM - Change Owner to Russian Custom Tax</description>
+        <field>OwnerId</field>
+        <lookupValue>VPM_RussianCustomTax</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Change Owner to Russian Custom Tax</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_ChangeOwnertoECCQueue</fullName>
@@ -420,6 +542,56 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_Email_of_Webform_Sender</fullName>
+        <description>VPM - Sends email to Vendor with Webform details</description>
+        <field>VPM_EmailOfWebformSender__c</field>
+        <formula>$User.Email</formula>
+        <name>Email of Webform Sender</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_FLSApprovedTime</fullName>
+        <description>VPM- Time when the FLS approves the request.</description>
+        <field>VPM_FLSApproval__c</field>
+        <formula>NOW()</formula>
+        <name>FLS Approved Time</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_FLSReworks</fullName>
+        <description>VPM - used to track no of times FLS sends for rework</description>
+        <field>VPM_FLSReworks__c</field>
+        <formula>VPM_FLSReworks__c  + 1</formula>
+        <name>FLS Reworks</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_FinanceApprovedTime</fullName>
+        <description>VPM- Time when the finance approves the request.</description>
+        <field>VPM_FinanceApproval__c</field>
+        <formula>NOW()</formula>
+        <name>Finance Approved Time</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_FinanceReworks</fullName>
+        <description>VPM - no of times Finance sends to reworl</description>
+        <field>VPM_FinanceReworls__c</field>
+        <formula>VPM_FinanceReworls__c  + 1</formula>
+        <name>Finance Reworks</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_FinanceSubmittedYes</fullName>
         <description>VPM - Sets the Finance Submitted field to &apos;Yes&apos; to confirm Finance have finished their review. Triggers a process builder to handle different updates.</description>
         <field>VPM_FinanceSubmitted__c</field>
@@ -431,6 +603,16 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_FreightApprovedTime</fullName>
+        <description>VPM - Time when the freight approves the request.</description>
+        <field>VPM_FreightApproval__c</field>
+        <formula>NOW()</formula>
+        <name>Freight Approved Time</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_FreightApprovedYes</fullName>
         <description>VPM  - Used as Flag which will denote as &quot;Freight&quot; has Approved the request</description>
         <field>VPM_FreightSubmitted__c</field>
@@ -440,6 +622,37 @@
         <operation>Literal</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_FreightReworks</fullName>
+        <description>VPM - used to track number of timed Freight sends to rework</description>
+        <field>VPM_FreightReworks__c</field>
+        <formula>VPM_FreightReworks__c  + 1</formula>
+        <name>Freight Reworks</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_HoursSpentWithRussian_Custom</fullName>
+        <description>VPM - To calculate total no. of hours request was with Russian Custom tax  queue</description>
+        <field>VPM_HoursSpentWithRussianCustomTax__c</field>
+        <formula>VPM_HoursSpentWithRussianCustomTax__c  + IF(VPM_NoOfDays__c&gt; 0  ,((VPM_NoOfDays__c-1)*24) 
+
++(VALUE(TEXT((VALUE(LEFT(MID ( TEXT (NOW()), 12, 5), FIND(&apos;:&apos;, MID ( TEXT (NOW()), 12, 5))-1)) 
++ 
+VALUE( 
+RIGHT(MID ( TEXT (NOW()), 12, 5), FIND(&apos;:&apos;, MID ( TEXT (NOW()), 12, 5))-1))/60) 
+- 
+(VALUE(LEFT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TEXT (VPM_RequestGroupTime__c), 12, 5))-1)) 
++ 
+VALUE( 
+RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TEXT (VPM_RequestGroupTime__c), 12, 5))-1))/60)) )) ,
+( NOW() - VPM_RequestGroupTime__c) *24 )</formula>
+        <name>Hours Spent With Russian Custom</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_IsInApprovalProcessBlank</fullName>
@@ -538,6 +751,67 @@
         <operation>Literal</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_OwnerIsMDMOps</fullName>
+        <description>VPM - Updates record owner to MDM Ops queue</description>
+        <field>OwnerId</field>
+        <lookupValue>VPM_MDMOps</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Owner is MDM Ops</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_PaymentTerms30DKDefault</fullName>
+        <description>VPM - Sets default value of Payment Terms to 30DK</description>
+        <field>VPM_PaymentTerms__c</field>
+        <literalValue>30DK_Within 30 days Due net (30NET)</literalValue>
+        <name>Payment Terms 30DK Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_PaymentTerms90DKDefault</fullName>
+        <description>VPM - Sets Payment Terms to 90DK</description>
+        <field>VPM_PaymentTerms__c</field>
+        <literalValue>90DK_Within 90 days Due net (90NET)</literalValue>
+        <name>Payment Terms 90DK Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_PaymentTermsP030Default</fullName>
+        <description>VPM - Default payment terms for Sirius, U2K2 and Cordillera if Vendor is an SME</description>
+        <field>VPM_PaymentTerms__c</field>
+        <literalValue>P030_Within 30 days Due net (30NET)</literalValue>
+        <name>Payment Terms P030 Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_PaymentTermsP090Default</fullName>
+        <description>VPM - Sets Payment Terms to P090</description>
+        <field>VPM_PaymentTerms__c</field>
+        <literalValue>P090_Within 90 days Due net (90NET)</literalValue>
+        <name>Payment Terms P090 Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_PaymentTermsS090Default</fullName>
+        <description>VPM - Sets Payment terms to S090</description>
+        <field>VPM_PaymentTerms__c</field>
+        <literalValue>S090_Within 90 days Due net (90NET)</literalValue>
+        <name>Payment Terms S090 Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_ProcurementRejected</fullName>
@@ -672,6 +946,26 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_RussianApprovedTime</fullName>
+        <description>VPM- Time whent he Russian Custom tax approves the request.</description>
+        <field>VPM_RussianCustomsTaxApporval__c</field>
+        <formula>NOW()</formula>
+        <name>Russian Approved Time</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_RussianReworks</fullName>
+        <description>VPM - used to track no of time russian custom tax sends for rework</description>
+        <field>VPM_RussianCustomTaxReworks__c</field>
+        <formula>VPM_RussianCustomTaxReworks__c  + 1</formula>
+        <name>Russian Reworks</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_SetPaymentTermsDefaultNonSME</fullName>
         <field>VPM_PaymentTerms__c</field>
         <name>VPM Set Payment Terms Default non SME</name>
@@ -777,6 +1071,16 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_SubmissiontoFLSTime</fullName>
+        <description>VPM -  Time when the Request is submitted to FLS queue.</description>
+        <field>VPM_SubmissionToFLS__c</field>
+        <formula>NOW()</formula>
+        <name>Submission to FLS Time</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_UpdateOwner</fullName>
         <description>VPM - Update the Vendor Request: Owner To MDM Ops Queue</description>
         <field>OwnerId</field>
@@ -793,6 +1097,26 @@
         <field>VPM_RequestLastWithGroup__c</field>
         <literalValue>Procurement</literalValue>
         <name>VPM - UpdateRequestGroup</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_UpdateSearchTerm1</fullName>
+        <description>VPM - Updates Search Term 1 with the first 10 characters of Vendor Name</description>
+        <field>VPM_SearchTerm_1__c</field>
+        <formula>LEFT(VPM_VendorName1__c,10)</formula>
+        <name>Update Search Term 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_UpdateStatusBPMSubmitFail</fullName>
+        <description>VPM - Update Status when BPM submit fails</description>
+        <field>VPM_Status__c</field>
+        <literalValue>MDM Ops Review - SAP BPM submit Failed</literalValue>
+        <name>Update Status when BPM submit fails</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -817,6 +1141,56 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_UpdateStatusToSubmitted</fullName>
+        <description>VPM - Updates Status with the BPM Record Submitted</description>
+        <field>VPM_Status__c</field>
+        <literalValue>BPM Record Submitted</literalValue>
+        <name>Update Request Status Submitted to BPM</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_Webform_sent_to_Vendor</fullName>
+        <description>VPM - Update the Vendor Request: Webform sent to Vendor To True</description>
+        <field>VPM_WebformSentToVendor__c</field>
+        <literalValue>1</literalValue>
+        <name>Webform sent to Vendor</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Change the Owner Id to MDM Ops Queue</fullName>
+        <actions>
+            <name>VPM_ChangeOwnerIdtoMDMOpsQueue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
+            <operation>contains</operation>
+            <value>MDM Ops</value>
+        </criteriaItems>
+        <description>VPM - Used to update the Owner id to MDM Ops Queues  when the request is under MDM Team for Review</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Default Search Term 1 and 2</fullName>
+        <actions>
+            <name>VPM_UpdateSearchTerm1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
+            <operation>equals</operation>
+            <value>Draft Request</value>
+        </criteriaItems>
+        <description>VPM - takes the value in the &apos;name&apos; field and uses it to default &apos;Search Term 1&apos; and &apos;Search Term 2&apos; in SAP</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
     <rules>
         <fullName>VPM Email to Requestor After Webform Update</fullName>
         <actions>
@@ -858,6 +1232,107 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>VPM Notification Logged Message for 2 level of Approval</fullName>
+        <actions>
+            <name>Notification_for_Logged_for_2_Approvals</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_NumberofApprovalsRequired__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitter__c</field>
+            <operation>equals</operation>
+            <value>Procurement</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_FinanceApprovalRequired__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c</field>
+            <operation>equals</operation>
+            <value>Business Requestor</value>
+        </criteriaItems>
+        <description>Email Notification for logged when 2 level of approvals</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Notification for Logged MDM Ops Review</fullName>
+        <actions>
+            <name>Notification_For_Logged_Email</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>VPM_NextApproverNameMDMOps</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
+            <operation>equals</operation>
+            <value>MDM Ops Review</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitter__c</field>
+            <operation>equals</operation>
+            <value>Business Requestor</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_NumberofApprovalsRequired__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <description>send notification for logged email to the request creator when the status is MDM Ops Review</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Send email to Vendor</fullName>
+        <actions>
+            <name>VPM_SendEmailToVendorEmail</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>VPM_Email_of_Webform_Sender</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>VPM_Set_Email_Flag_to_No</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>VPM_Webform_sent_to_Vendor</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_VendordoesntExistFlag__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </criteriaItems>
+        <description>Sends email to Vendor with Webform details</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Update Salesforce Request Submitted to MDM</fullName>
+        <actions>
+            <name>VPM_UpdateStatusToSubmitted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_MDMInsertUpdateStatus__c</field>
+            <operation>equals</operation>
+            <value>Submitted to BPM</value>
+        </criteriaItems>
+        <description>Update Salesforce status depending on MDM service call</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>VPM Update Salesforce when request fails to submit to BPM</fullName>
         <actions>
             <name>VPM_AssignRequestToMDMOps</name>
@@ -875,6 +1350,31 @@
         </criteriaItems>
         <description>Update status field in salesforce depending on MDM service call</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Update salesforce when request gets rejected at BPM</fullName>
+        <actions>
+            <name>VPM_AssignRequestToMDMOps</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>VPM_UpdateStatusRejected</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_MDMInsertUpdateStatus__c</field>
+            <operation>equals</operation>
+            <value>Approval Rejected in BPM</value>
+        </criteriaItems>
+        <description>Update salesforce record depending on MDM service call</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM_CountryRegionUpdate</fullName>
+        <active>false</active>
+        <formula>ISCHANGED(VPM_Country__c)</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>VPM_ResetValuesOnCreate</fullName>

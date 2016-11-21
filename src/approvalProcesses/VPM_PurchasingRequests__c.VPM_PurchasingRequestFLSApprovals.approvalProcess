@@ -44,10 +44,6 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangelastGroupwithFLS</name>
-            <type>FieldUpdate</type>
-        </action>
-        <action>
             <name>VPM_ChangeReworkStatusNo</name>
             <type>FieldUpdate</type>
         </action>

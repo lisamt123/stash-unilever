@@ -27,19 +27,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>VPM_Approver5__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <approver>
-                <name>VPM_Approver1__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <approver>
-                <name>VPM_Approver8__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <approver>
-                <name>VPM_Approver9__c</name>
+                <name>VPM_Approver6__c</name>
                 <type>relatedUserField</type>
             </approver>
             <approver>
@@ -47,11 +35,7 @@
                 <type>relatedUserField</type>
             </approver>
             <approver>
-                <name>VPM_Approver2__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <approver>
-                <name>VPM_Approver4__c</name>
+                <name>VPM_Approver8__c</name>
                 <type>relatedUserField</type>
             </approver>
             <approver>
@@ -59,17 +43,33 @@
                 <type>relatedUserField</type>
             </approver>
             <approver>
-                <name>VPM_Approver6__c</name>
+                <name>VPM_Approver9__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver5__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver4__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver2__c</name>
                 <type>relatedUserField</type>
             </approver>
             <approver>
                 <name>VPM_Approver7__c</name>
                 <type>relatedUserField</type>
             </approver>
+            <approver>
+                <name>VPM_Approver1__c</name>
+                <type>relatedUserField</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
-        <label>Single Approval Procurement</label>
-        <name>Single_Approval_Procurement</name>
+        <label>Procurement</label>
+        <name>VPM_ProcurementApprovalStep</name>
     </approvalStep>
     <description>VPM - Approval process for Procurement Vendor Requests.</description>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
