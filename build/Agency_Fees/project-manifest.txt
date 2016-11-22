@@ -88,6 +88,7 @@ src/pages/AF_BonusMatrix.page-meta.xml
 src/pages/AF_BonusMatrix_BonusApprover.page
 src/pages/AF_BonusMatrix_BonusApprover.page-meta.xml
 src/objects
+src/objects/AF_Entity__c.object
 src/objects/AF_Brand_Estimate__c.object
 src/objects/AF_Bonus_Summary__c.object
 src/objects/AF_Bonus_Threshold__c.object
