@@ -21,6 +21,30 @@
         <name>Alert_Action_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Brand Ambassador Status --></label>
+        <name>Brand_Ambassador_Status__c</name>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumer Preference</masterLabel>
+            <translation><!-- Consumer Preference --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Escalated</masterLabel>
+            <translation><!-- Escalated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SLA Breach</masterLabel>
+            <translation><!-- SLA Breach --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sent</masterLabel>
+            <translation><!-- Sent --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Brand Reporting --></label>
         <name>Brand_Reporting__c</name>
     </fields>

@@ -13,6 +13,10 @@
         <name>Account_Owner_Active_Flag__c</name>
     </fields>
     <fields>
+        <label><!-- Brand Ambassador Brands --></label>
+        <name>Brand_Ambassador_Brands__c</name>
+    </fields>
+    <fields>
         <label><!-- CSAT Delay --></label>
         <name>CSAT_Delay__c</name>
     </fields>

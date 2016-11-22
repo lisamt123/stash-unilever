@@ -1254,6 +1254,10 @@
         <label><!-- Discipline --></label>
         <name>Discipline__c</name>
         <picklistValues>
+            <masterLabel>Activation</masterLabel>
+            <translation><!-- Activation --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Activations and Promotions</masterLabel>
             <translation><!-- Activations and Promotions --></translation>
         </picklistValues>
@@ -1288,6 +1292,18 @@
         <picklistValues>
             <masterLabel>Design (Creative)</masterLabel>
             <translation><!-- Design (Creative) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Design: Packaging Adaptive</masterLabel>
+            <translation><!-- Design: Packaging Adaptive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Design: Packaging Strategic</masterLabel>
+            <translation><!-- Design: Packaging Strategic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital</masterLabel>
+            <translation><!-- Digital --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Distribution &amp; Mailing Services</masterLabel>
