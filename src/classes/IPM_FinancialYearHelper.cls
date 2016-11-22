@@ -582,8 +582,8 @@ public with sharing class IPM_FinancialYearHelper
             
             if(proj != null){
                 
-                string finTypesToEvaluate = mapProjToFinToEvaluate.get((proj.IPM_ProjectGKM__c.trim()+'_'+proj.IPM_Phase__c.trim().replaceAll('\\s+','_')).toLowerCase());
-                if(finTypesToEvaluate != null && finTypesToEvaluate.contains(IPM_FinancialUtils.getCurrentFinancialType(finyear.IPM_Financial__r.Financial_External_ID__c))){
+                string finTypesToEvaluate = mapProjToFinToEvaluate.get((proj.IPM_ProjectGKM__c.trim()+'_'+proj.IPM_Phase__c.trim().replace(' ','_')).toLowerCase());
+                if(finTypesToEvaluate != null && finTypesToEvaluate.contains((IPM_FinancialUtils.getCurrentFinancialType(finyear.IPM_Financial__r.Financial_External_ID__c)).toLowerCase())){
                     
                     validExtIdtoFinYearMap.put(finyear.External_Id__c, finyear);
                 }
