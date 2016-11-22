@@ -664,9 +664,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		nonKeyAnalytic.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;//need to set the global project value
 		nonKeyAnalytic.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;//need to set the global project value
     	//CR0550
-    	nonKeyAnalytic.IPM_Target_Launch_Month_BD__c = parent.IPM_Target_Launch_Month_BD__c;
-        nonKeyAnalytic.IPM_Target_Launch_Year_BD__c = parent.IPM_Target_Launch_Year_BD__c;
+    	nonKeyAnalytic.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(nonKeyFinancial.Target_Launch_Date__c.month());
+        nonKeyAnalytic.IPM_Target_Launch_Year_BD__c = nonKeyFinancial.Target_Launch_Date__c.year();
     	if(nonKeyFinancial.Gate_Keeping_Model__c==IPM_Utils.GATE_KEEPING_MODEL_3){
+    		//CR0550
     		nonKeyAnalytic.IPM_Parent_Project_Name__c = nonKeyFinancial.Global_External_Id__c;//need to set the global project name
 			nonKeyAnalytic.IPM_Company__c = nonKeyFinancial.IPM_Parent_Company_Card__c;//need to set the global project value
 			
