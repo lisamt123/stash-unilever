@@ -1727,7 +1727,7 @@
         <field>Oblix_User_Permission__c.User_id__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	fieldPermissions>
+	<fieldPermissions>
         <editable>false</editable>
         <field>MDO_Geography__c.IPM_Effective_from__c</field>
         <readable>true</readable>
