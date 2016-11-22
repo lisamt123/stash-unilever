@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[Dear Agency<br><br>Amendments have been made to the "{!AF_Brand_Estimate__c.AF_Basefee_Estimate_Initial_Quarter__c} {!AF_Brand_Estimate__c.AF_Fiscal_Year__c}" Base Fee Estimate for Brand {!AF_Brand_Estimate__c.Brand__c} .<br><br>Please log in to the tool, using the link below, to review changes.<br>{!AF_Brand_Estimate__c.AF_Community_Link__c}<br>]]></td>
+</tr>
+</table>
