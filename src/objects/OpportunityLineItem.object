@@ -236,7 +236,7 @@
     <fields>
         <fullName>FS_DSTMI__c</fullName>
         <externalId>false</externalId>
-        <formula>PricebookEntry.FS_Bracket_1__c *((IF( ISPICKVAL( Distributor__c , &quot;US Direct / CED&quot;) , 0, IF( ISPICKVAL( Distributor__c , &quot;US Sysco&quot;) , 11.6, IF( ISPICKVAL( Distributor__c , &quot;US Foods&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;Reinhart&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;PFG&quot;) , 8.1, IF( ISPICKVAL( Distributor__c , &quot;US GFS&quot;) , 6, IF( ISPICKVAL( Distributor__c , &quot;US OTher&quot;) , 6.3, IF( ISPICKVAL( Distributor__c , &quot;US Only (Food Buy, Aramark, Sodexho, Compass)&quot;) , 6.1, IF( ISPICKVAL( Distributor__c , &quot;CA Sysco&quot;) , 12, IF( ISPICKVAL( Distributor__c , &quot;CA GFS&quot;) , 12.6, IF( ISPICKVAL( Distributor__c , &quot;Colabor&quot;) , 11.1, IF( ISPICKVAL( Distributor__c , &quot;CA Other&quot;) , 6.5, IF( ISPICKVAL( Distributor__c , &quot;CA Direct&quot;) , 0, 0))))))))))))))/100)*0.99</formula>
+        <formula>IF( ISPICKVAL( CurrencyIsoCode , &apos;CAD&apos;), PricebookEntry.FS_Bracket_3__c, PricebookEntry.FS_Bracket_1__c) *((IF( ISPICKVAL( Distributor__c , &quot;US Direct / CED&quot;) , 0, IF( ISPICKVAL( Distributor__c , &quot;US Sysco&quot;) , 11.6, IF( ISPICKVAL( Distributor__c , &quot;US Foods&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;Reinhart&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;PFG&quot;) , 8.1, IF( ISPICKVAL( Distributor__c , &quot;US GFS&quot;) , 6, IF( ISPICKVAL( Distributor__c , &quot;US OTher&quot;) , 6.3, IF( ISPICKVAL( Distributor__c , &quot;US Only (Food Buy, Aramark, Sodexho, Compass)&quot;) , 6.1, IF( ISPICKVAL( Distributor__c , &quot;CA Sysco&quot;) , 12, IF( ISPICKVAL( Distributor__c , &quot;CA GFS&quot;) , 12.6, IF( ISPICKVAL( Distributor__c , &quot;Colabor&quot;) , 11.1, IF( ISPICKVAL( Distributor__c , &quot;CA Other&quot;) , 6.5, IF( ISPICKVAL( Distributor__c , &quot;CA Direct&quot;) , 0, 0))))))))))))))/100)*0.99</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>DS TMI/Cs</label>
         <precision>18</precision>
@@ -247,7 +247,7 @@
     <fields>
         <fullName>FS_DeltaBR1BR3__c</fullName>
         <externalId>false</externalId>
-        <formula>PricebookEntry.FS_Bracket_3__c-PricebookEntry.FS_Bracket_1__c</formula>
+        <formula>IF(ISPICKVAL(CurrencyIsoCode,&quot;CAD&quot;), 0, PricebookEntry.FS_Bracket_3__c-PricebookEntry.FS_Bracket_1__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Delta BR1-BR3</label>
         <precision>18</precision>
@@ -335,9 +335,20 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>FS_NSV_CALCULATION__c</fullName>
+        <description>Calculate the NSV based on CurrencyCode</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Calculate the NSV based on CurrencyCode</inlineHelpText>
+        <label>FS NSV CALCULATION</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>FS_NSV__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( Quantity &lt;&gt;0,  Quantity  *  PricebookEntry.FS_Bracket_1__c * 0.99, 0)</formula>
+        <formula>FS_NSV_CALCULATION__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>NSV</label>
         <precision>18</precision>
