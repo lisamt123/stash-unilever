@@ -66,6 +66,7 @@
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
 	  <runTest>PACV_Questions_AnswerCreation_Test</runTest>
+	  <runTest>PACV_Questionnaire_StatusUpdate_Test</runTest>
     </sf:deploy>
   </target>  
 
