@@ -1,5 +1,5 @@
 src
 src/objects
-src/objects/case.object
+src/objects/Case.object
 
 
