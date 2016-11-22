@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This email template is to let Cat finance users know to enter the Actuals</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Agency_Fees_Letterhead</letterhead>
+    <name>AF_Email_To_CatFinance_ToEnterActuals_HTML</name>
+    <style>freeForm</style>
+    <subject>Agency Fees alignment process for the current financial year.</subject>
+    <textOnly>Dear CategoryFinance,
+
+Bonus Results are required to be entered in the tool for {!Send_Email__c.AF_Quarter__c} Quarter for  {!Send_Email__c.Financial_Year__c} financial year. Please log into the Agency Fees application to enter the bonus results {!Send_Email__c.URL_link_to_Agency_Fees__c}
+
+
+From
+CMCO Finance</textOnly>
+    <type>html</type>
+</EmailTemplate>
