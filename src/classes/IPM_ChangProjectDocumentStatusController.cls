@@ -368,21 +368,27 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
          }
          //for local projects or for local operational projects
          else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL ))
-         {     
-            finExternalID=project.IPM_Project_Name__c;
+         {
+                  
+            finExternalID=project.Source_Rollout_External_Id__c;
         	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalidLocal__c=true AND Financial_External_ID__c=:finExternalID AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
+            
          }
          //for regional operational projects
          else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL )
-         {     
-            finExternalID=project.IPM_Project_Name__c;
+         {
+                  
+            finExternalID=project.Source_Rollout_External_Id__c;
         	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalidRegional__c=true AND Financial_External_ID__c=:finExternalID AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
+            
          }
          //for gloabl operational projects
          else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL )
-         { 
-            finExternalID=project.IPM_Project_Name__c;
+         {
+                  
+            finExternalID=project.Source_Rollout_External_Id__c;
         	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalidGlobal__c=true AND Financial_External_ID__c=:finExternalID AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
+            
          }
        }
     
