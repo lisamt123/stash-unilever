@@ -155,8 +155,6 @@
                                             <div class="homeDivide">{!$Label.IPM_INTERIN_SUPPORT_SOLUTION}</div>
                                             <div class="homeDivide">{!$Label.IPM_OWNER_HOME}</div>
                                         </div>
-                                        <!-- Slider 1 Latest News -->
-                                        <div class="col-sm-12 noPadding"><a tabindex="0" class="moreLink">More>></a><a tabindex="0" class="lessLink">Less</a></div>
                                     </div>
                                 </div>
                                 
@@ -178,9 +176,7 @@
                                             <p class="listItem">{!$Label.IPM_HOME_TILE2_TEXT}</p>
                                             <p class="listItem">{!$Label.IPM_HOME_TILE2_TEXT2}</p>
                                         </div>
-                                        <!-- Slider 2 Latest News -->
-                                        <div class="col-sm-12 noPadding"><a tabindex="0" class="moreLink">More>></a><a tabindex="0" class="lessLink">Less</a></div>
-                                    </div>
+									</div>
                                 </div>   
                             </div>
                         </div>
