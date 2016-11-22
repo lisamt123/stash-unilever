@@ -114,11 +114,7 @@ public with sharing class AF_BonusMatrixOverrideController
                                         IsReadyforPO=true;
                                         Final_approved=true;
                                 }
-                                // AFO Release enhancement to allow super user to edit Matrix when ready for PO
-                                if(BonusMatrixObj.AF_Bonus_Summary__r.AF_Status__c==AF_Constants.BONUS_SUMMARY_READYFORPO && 
-                                LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER){
-                                        IsReadyforPO=false;
-                                }
+                                
                                 // AFO Release enhancement to disallow users to edit Matrix when CF submits for approval
                                 if(BonusMatrixObj.AF_Bonus_Summary__r.AF_Status__c==AF_Constants.BONUS_SUMMARY_WITHBONUSAPPROVER ){
                                         IsReadyforPO=true;

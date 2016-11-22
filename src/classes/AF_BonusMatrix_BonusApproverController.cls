@@ -18,6 +18,8 @@ public with sharing class AF_BonusMatrix_BonusApproverController
      public boolean isError;
      private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
      public List<AF_Sub_Result__c>lstSubresultUpdate;
+     public Boolean popup{get;set;}
+     private List<AF_Comments__c>lstComments;
      
     /*****************************************************
     *  @Description: Contructor method
@@ -32,11 +34,13 @@ public with sharing class AF_BonusMatrix_BonusApproverController
         lstSubresultUpdate = new List<AF_Sub_Result__c>();
         Bonus_SubResult_List = new List<AF_Sub_Result__c>();
         bonusMatrixList = new List<AF_Bonus_Matrix__c>();
+        lstComments = new List<AF_Comments__c>();
         approveBonusRecords = new set<id>();
         rejectBonusRecords = new set<id>();
         checkHeaderA = false;
         checkHeaderR = false;
         isError = false;
+        popup=false;
         
         for(AF_Bonus_Summary__c bonusSummaryObj:
         [SELECT id,Name,AF_Status__c,AF_Agency__c,AF_Agency__r.Name,AF_Brand__c,AF_Brand__r.Name,AF_Fiscal_Year__c,AF_Bonus_Matrix_Value__c,
@@ -133,13 +137,23 @@ public with sharing class AF_BonusMatrix_BonusApproverController
                system.debug('-a-'+approveBonusRecords);
                
             }
-            else if(wr.checkedR){
-                rejectBonusRecords.add(wr.objSummary.id);
-                if(!mapIdToRejectreason.containskey(wr.objSummary.id))
+            else if(wr.checkedR)
+            {
+                if(wr.RejectReason!= Null && wr.RejectReason!= '')
                 {
-                    mapIdToRejectreason.put(wr.objSummary.id,wr.RejectReason);
+                    rejectBonusRecords.add(wr.objSummary.id);
+                    if(!mapIdToRejectreason.containskey(wr.objSummary.id))
+                    {
+                        mapIdToRejectreason.put(wr.objSummary.id,wr.RejectReason);
+                    }
+                    system.debug('-r-'+rejectBonusRecords);
                 }
-                system.debug('-r-'+rejectBonusRecords);
+                else{
+                   
+                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Comments));
+                    
+                    isError = true;
+                }
                 
             }
         }
@@ -176,8 +190,28 @@ public with sharing class AF_BonusMatrix_BonusApproverController
                 setSummaryRecords.add(ids);
                 update objsummary;
                 
+                // To Capture rejection comments to show in comments section on bonus matrix page
+                AF_Comments__c AfC=new AF_Comments__c();
+                AfC.AF_Bonus_Summary__c=ids;
+                AfC.AF_Comments__c=mapIdToRejectreason.get(ids);
+                AfC.AF_Parent_Record_Id__c=String.valueOf(ids).substring(0,15);
+                AfC.AF_Public__c=true;
+                AfC.AF_Parent_Object_Type__c=AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME;
+                lstComments.add(AfC);
+                
             }
-            
+            if(lstComments.size() > 0)
+            {
+                try{
+                    insert lstComments;
+                }
+                catch(Exception e)
+                {
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'RejectBrandWithComments',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                    apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+                }
+            }
+                
             if(!setSummaryRecords.isEmpty())
             {
                 // Query Unique key from BonusSummary 
@@ -235,8 +269,28 @@ public with sharing class AF_BonusMatrix_BonusApproverController
         } 
     }
     
-    
+    /********************************************************************************
+    *  @Description: this method is used to call before submitting for Approval
+    *  @name : SubmitApprovalPopup
+    *  @param : none
+    *  @return: pagereference.
+    **************************************************************************************/ 
+    public pagereference SubmitPopup()
+    {
+        popup=true;
+        return null ;
+    }
    
+    /************************************************************************************************
+    *  @Description: this method is used to close the Approval popup
+    *  @name : closeApprovalPopup
+    *  @param : none
+    *  @return: none.
+    ********************************************************************************************************/
+    public void closePopup()
+    {
+        popup=false;
+    }
     /*****************************************************
     *  @Description: Wrapper class to capture approve and reject rows
     *  @name : BonusMatrixWrapper

@@ -41,6 +41,8 @@ public with sharing class AF_BonusMatrixSummary {
     public List<AF_Sub_Result__c> Bonus_SubResult_List = new List<AF_Sub_Result__c>();
     public String year;
     public integer bonusablefees{get;set;}
+    private List<AF_Comments__c>lstComments;
+     
     /**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_BonusMatrixSummary
@@ -59,6 +61,7 @@ public with sharing class AF_BonusMatrixSummary {
         BonusTarget=0;
         totalquant_qual=0;
         bonusSummaryObj= new AF_Bonus_Summary__c();
+        lstComments = new List<AF_Comments__c>();
         Decimal overallBonus=0;
         qualValue=0;
         quant=0;
@@ -267,6 +270,15 @@ public with sharing class AF_BonusMatrixSummary {
                            lstSubresultUpdate.add(objsub);
                        }
                     }
+                    
+                    // To Capture rejection comments to show in comments section on bonus matrix page
+                    AF_Comments__c AfC=new AF_Comments__c();
+                    AfC.AF_Bonus_Summary__c=bonusSummaryObj.id;
+                    AfC.AF_Comments__c=RejectComment;
+                    AfC.AF_Parent_Record_Id__c=String.valueOf(bonusSummaryObj.id).substring(0,15);
+                    AfC.AF_Public__c=true;
+                    AfC.AF_Parent_Object_Type__c=AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME;
+                    lstComments.add(AfC);
                 }   
             }
             else if(ButtonValue == 'Submit'){
@@ -278,6 +290,7 @@ public with sharing class AF_BonusMatrixSummary {
             try{
             update bonusSummaryObj;
             update lstSubresultUpdate;
+            insert lstComments;
             system.debug('---lstSubresultUpdate--'+lstSubresultUpdate);
             }
              catch(Exception e)
