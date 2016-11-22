@@ -2,6 +2,8 @@
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>Add_Issue</customButtons>
     <customButtons>Social_Response_URL</customButtons>
+    <customButtons>TransferCase</customButtons>
+    <customButtons>Send_SMS</customButtons>
     <customConsoleComponents>
         <subtabComponents>
             <containers>
@@ -25,7 +27,12 @@
                     <label>Case Actions</label>
                     <page>CEC_CaseActions</page>
                 </sidebarComponents>
-                <style>Tabs</style>
+                <sidebarComponents>
+                    <componentType>VisualForcePage</componentType>
+                    <label>Prompts</label>
+                    <page>dgec__DG_WelcomeEmailPromts</page>
+                </sidebarComponents>
+                <style>Accordion</style>
                 <unit>Pixel</unit>
                 <width>500</width>
             </containers>
@@ -34,7 +41,6 @@
     <excludeButtons>Clone</excludeButtons>
     <excludeButtons>CloseCase</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
-    <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <feedLayout>
         <autocollapsePublisher>true</autocollapsePublisher>
@@ -89,6 +95,7 @@
         <rightComponents>
             <componentType>CustomButtons</componentType>
         </rightComponents>
+        <useInlineFiltersInConsole>false</useInlineFiltersInConsole>
     </feedLayout>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -162,7 +169,7 @@
                 <field>Case_Brand__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Country_Name__c</field>
             </layoutItems>
             <layoutItems>
@@ -176,6 +183,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>PII_Data_Check__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>BusinessHoursId</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -195,8 +206,7 @@
                 <field>Description</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
-        <style>TwoColumnsTopToBottom</style>
+        <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -231,6 +241,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Product_Skill__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Used_Product_Previously__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -267,11 +281,52 @@
                 <behavior>Readonly</behavior>
                 <field>Personal_Care__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ACCC_Survey__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Ingestion__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CV_Status__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Social Information</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Social_Media_External_Id__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns/>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>SMS Information</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SMS_Mobile_Number__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SMS_Inbound_Number__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -327,6 +382,14 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>SuppliedName</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Type</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Out_of_Hours__c</field>
             </layoutItems>
             <layoutItems>
@@ -334,26 +397,15 @@
                 <field>Action_Taken__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Edit</behavior>
+                <field>DW_Order_Number__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Original_Description__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Used_Product_Previously__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>DW_Order_Number__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>SuppliedName</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SuppliedEmail</field>
@@ -363,7 +415,8 @@
                 <field>Brand__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Edit</behavior>
+                <field>Brand_Ambassador_Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -393,6 +446,14 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>ClosedDate</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Legacy_Reference__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Transient_External_Id__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -474,11 +535,54 @@
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
+        <customButtons>New_Retrieval_Request</customButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>Appointment_Date__c</fields>
+        <fields>Retrieval_Status__c</fields>
+        <fields>Submitted_Date__c</fields>
+        <relatedList>CEC_Retrieval_Request__c.Case__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedTeamMemberList</relatedList>
+    </relatedLists>
+    <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>OBJECT_ID</fields>
         <fields>URL__c</fields>
         <relatedList>cec_Additional_Case_Information__c.Case__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>smagicinteract__Mobile_Number__c</fields>
+        <fields>smagicinteract__SMS_Text__c</fields>
+        <fields>smagicinteract__Inbound_Number__c</fields>
+        <fields>CREATEDBY_USER</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>smagicinteract__Incoming_SMS__c.smagicinteract__Case__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>sf4twitter__Message__c</fields>
+        <fields>sf4twitter__Twitter_Image__c</fields>
+        <fields>sf4twitter__Author_Real_Name__c</fields>
+        <fields>sf4twitter__Published_Date__c</fields>
+        <fields>sf4twitter__Origin_Icon__c</fields>
+        <fields>sf4twitter__Type__c</fields>
+        <fields>sf4twitter__Contact__c</fields>
+        <fields>sf4twitter__Lead__c</fields>
+        <relatedList>sf4twitter__Twitter_Conversation__c.sf4twitter__Case__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>CREATEDBY_USER</fields>
+        <fields>Note__c</fields>
+        <relatedList>CEC_Claim_Note__c.Case__c</relatedList>
+        <sortField>NAME</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
@@ -559,6 +663,16 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>smagicinteract__Name__c</fields>
+        <fields>NAME</fields>
+        <fields>smagicinteract__SenderId__c</fields>
+        <fields>smagicinteract__PhoneNumber__c</fields>
+        <fields>smagicinteract__SMSText__c</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>smagicinteract__smsMagic__c.Case__c</relatedList>
     </relatedLists>
     <relatedObjects>ContactId</relatedObjects>
     <relatedObjects>AccountId</relatedObjects>

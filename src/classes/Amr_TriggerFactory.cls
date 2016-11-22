@@ -10,7 +10,7 @@ Purpose:  Used to instantiate and execute Trigger Handlers associated with sObje
 History                                                            
 -------                                                            
 VERSION  AUTHOR                      DATE               DETAIL                 Description
-
+1.0 -   Mahesh Sankapal             05/04/2016          Initial Development  
 ***********************************************************************/
 public with sharing class Amr_TriggerFactory
 {
@@ -24,7 +24,7 @@ public with sharing class Amr_TriggerFactory
     public static void createHandler(Schema.sObjectType soType)
     {
         // Get a handler appropriate to the object being processed
-        amr_Interface_Trigger handler = getHandler(soType);
+        Amr_Interface_Trigger handler = getHandler(soType);
         
         // Make sure we have a handler registered, new handlers must be registered in the getHandler method.
         if (handler == null)
@@ -43,6 +43,7 @@ public with sharing class Amr_TriggerFactory
      */ 
     private static void execute(amr_Interface_Trigger handler)
     {
+        //Amr_Job_Details__c so = new Amr_Job_Details__c();
         // Before Trigger
         if (Trigger.isBefore)
         {
@@ -52,25 +53,25 @@ public with sharing class Amr_TriggerFactory
             // Iterate through the records to be deleted passing them to the handler.
             if (Trigger.isDelete)
             {
-                for (SObject so : Trigger.old)
+               // for (SObject so : Trigger.old)
                 {
-                    handler.beforeDelete(so);
+                    handler.beforeDelete();
                 }
             }
             // Iterate through the records to be inserted passing them to the handler.
             else if (Trigger.isInsert)
             {
-                for (SObject so : Trigger.new)
+                //for (SObject so : Trigger.new)
                 {
-                    handler.beforeInsert(so);
+                    handler.beforeInsert();
                 }
             }
             // Iterate through the records to be updated passing them to the handler.
             else if (Trigger.isUpdate)
             {
-                for (SObject so : Trigger.old)
+                //for (SObject so : Trigger.old)
                 {
-                    handler.beforeUpdate(so, Trigger.newMap.get(so.Id));
+                    handler.beforeUpdate();
                 }
             }
         }
@@ -82,25 +83,25 @@ public with sharing class Amr_TriggerFactory
             // Iterate through the records deleted passing them to the handler.
             if (Trigger.isDelete)
             {
-                for (SObject so : Trigger.old)
+                //for (SObject so : Trigger.old)
                 {
-                    handler.afterDelete(so);
+                    handler.afterDelete();
                 }
             }
             // Iterate through the records inserted passing them to the handler.
             else if (Trigger.isInsert)
             {
-                for (SObject so : Trigger.new)
+                //for (SObject so : Trigger.new)
                 {
-                    handler.afterInsert(so);
+                    handler.afterInsert();
                 }
             }
             // Iterate through the records updated passing them to the handler.
             else if (Trigger.isUpdate)
             {
-                for (SObject so : Trigger.old)
+                //for (SObject so : Trigger.old)
                 {
-                    handler.afterUpdate(so, Trigger.newMap.get(so.Id));
+                    handler.afterUpdate();
                 }
             }
         }
@@ -117,7 +118,7 @@ public with sharing class Amr_TriggerFactory
      *
      * Returns:     amr_Interface_Trigger - A trigger handler if one exists or null.
      */
-    private static amr_Interface_Trigger getHandler(Schema.sObjectType soType)
+    private static Amr_Interface_Trigger getHandler(Schema.sObjectType soType)
     {
         if (soType == Amr_Job_Details__c.sObjectType){
             return new Amr_Job_DetailsTrigger_Handler();

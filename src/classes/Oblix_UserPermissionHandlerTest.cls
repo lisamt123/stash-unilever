@@ -1,12 +1,12 @@
 @isTest
 private class Oblix_UserPermissionHandlerTest {
 
-	private static User ul1;
-    private static User ul2;
-    private static User ul3;
-    private static User superuser;
+	//private static User ul1;
+ //   private static User ul2;
+ //   private static User ul3;
+    //private static User superuser;
 
-    private static void initTestUsers(){
+    /*private static void initTestUsers(){
 
         Map<String, User> testUsers = Oblix_TestUtils.createTestUsers();
         ul1 = testUsers.get('UL1');
@@ -17,9 +17,9 @@ private class Oblix_UserPermissionHandlerTest {
         System.assertNotEquals(NULL, ul1, 'expecting ul1 user to exist!');
         System.assertNotEquals(NULL, ul2, 'expecting ul2 user to exist!');
         System.assertNotEquals(NULL, ul3, 'expecting ul3 user to exist!');
-    }
+    }*/
 
-	@isTest static void testabortRelatedApprovals() {
+	/*@isTest static void testabortRelatedApprovals() {
 
 		initTestUsers();
 
@@ -77,7 +77,7 @@ private class Oblix_UserPermissionHandlerTest {
 
 		System.assertEquals(0, workItems.size());
 
-	}
+	}*/
 	
 	@isTest static void testTrigger() {
 
@@ -145,6 +145,8 @@ private class Oblix_UserPermissionHandlerTest {
 		up.CategoryBrand_id__c = cb.Id;
 		up.User_id__c = u.Id;
 		insert up;
+		
+		update up;
 
 		Oblix_UserPermissionHandler handler = new Oblix_UserPermissionHandler();
 

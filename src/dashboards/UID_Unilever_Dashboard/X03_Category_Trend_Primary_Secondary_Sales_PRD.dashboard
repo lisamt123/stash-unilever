@@ -6,7 +6,7 @@
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Distributor User</values>
+            <values>ANANT INTERNATIONAL LIMITED</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
@@ -14,18 +14,82 @@
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
+            <values>BNG TRADING</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>COCOGE</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>D&amp;Q INTERNATIONAL DISTRIBUTORS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>D&amp;Q SAIPAN CO.,LTD</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>ESSOR IMPORT SARL</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>FEDERATED DISTRIBUTORS INCORPORATED</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>GETZ BROS. PHILIPPINES INC.</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>GRAND DRAGON ENTERPRISES</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>ISLAND SUPPLY COMPANY PTE LTD</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>LF ASIA DISTRIBUTION</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
             <values>LISUN IMPORTACAO E EXPORTACAO - RRASIA</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>MIKONOS SARL</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>MORGAN VERNEX</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>MOTIBHAI &amp; COMPANY</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>SOCALAIT</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>SOCALAIT SA</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>YEES COLD STORAGE SEAFOOD LTD</values>
         </dashboardFilterOptions>
         <name>Distributor</name>
     </dashboardFilters>
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>SKIN CLEANSING</values>
+            <values>BAKING COOKING AND SPREADING</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>ORAL CARE</values>
+            <values>COFFEE &amp; SNACKS</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
@@ -33,15 +97,7 @@
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>SKIN CARE</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>HOUSEHOLD CARE</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>SAVOURY</values>
+            <values>DRESSINGS</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
@@ -49,15 +105,35 @@
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
+            <values>HOUSEHOLD CARE</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>ICE CREAM</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
             <values>LAUNDRY</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>TEA AND SOY &amp; FRUIT BEVERAGES</values>
+            <values>ORAL CARE</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>BAKING COOKING AND SPREADING</values>
+            <values>SAVOURY</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>SKIN CARE</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>SKIN CLEANSING</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>TEA AND SOY &amp; FRUIT BEVERAGES</values>
         </dashboardFilterOptions>
         <name>Category</name>
     </dashboardFilters>
@@ -87,7 +163,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>Monthly Primary Sales vs Last Year Value (USD)</header>
+            <header>Monthly Primary Sales vs Last Year Value</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_03_Category_Trend_Primary_Second/Trend_Report_Primary_Sales_M_V_PRD</report>
             <showPercentage>false</showPercentage>
@@ -117,7 +193,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>Monthly Secondary Sales vs Last Year Value (USD)</header>
+            <header>Monthly Secondary Sales vs Last Year Value</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_03_Category_Trend_Primary_Second/Trend_Report_Secondary_Sales_M_V_PRD</report>
             <showPercentage>false</showPercentage>
@@ -207,7 +283,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Quarter__c</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>Quarterly Primary Sales vs Last Year Value (USD)</header>
+            <header>Quarterly Primary Sales vs Last Year Value</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_03_Category_Trend_Primary_Second/Trend_Report_Primary_Sales_Q_V_1_PRD</report>
             <showPercentage>false</showPercentage>
@@ -237,7 +313,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Quarter__c</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>Quarterly Secondary Sales vs Last Year Value (USD)</header>
+            <header>Quarterly Secondary Sales vs Last Year Value</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_03_Category_Trend_Primary_Second/Trend_Report_Secondary_Sales_Q_V_1_PRD</report>
             <showPercentage>false</showPercentage>

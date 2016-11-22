@@ -99,6 +99,24 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VEP_UpdateEndTime</fullName>
+        <field>Visitor_Exit_Date__c</field>
+        <formula>NOW()</formula>
+        <name>VEP_UpdateEndTime</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VEP_UpdateEntryTimeField</fullName>
+        <field>Visitor_Entry_Date__c</field>
+        <formula>NOW()</formula>
+        <name>VEP_UpdateEntryTimeField</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VEP_Update_Status_to_Visit_Complete</fullName>
         <field>Status__c</field>
         <literalValue>Visit Complete</literalValue>
@@ -141,7 +159,7 @@
             <name>VEP_Send_Email_to_Visitor_about_Lodging_Status_EA</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
             <field>Vep_Visitor__c.Lodging_Approval_Status__c</field>
@@ -161,7 +179,7 @@
             <name>VEP_Send_Email_to_Visitor_about_Travel_Status_EA</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
             <field>Vep_Visitor__c.Travel_Approval_Status__c</field>
@@ -178,53 +196,46 @@
     <rules>
         <fullName>VEP Update Status to Visit Complete WF</fullName>
         <actions>
+            <name>VEP_UpdateEndTime</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>VEP_Update_Status_to_Visit_Complete</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>Vep_Visitor__c.Visitor_Entry_Date__c</field>
-            <operation>notEqual</operation>
+            <field>Vep_Visitor__c.Visit_Ended__c</field>
+            <operation>equals</operation>
+            <value>True</value>
         </criteriaItems>
         <criteriaItems>
-            <field>Vep_Visitor__c.Visitor_Exit_Date__c</field>
-            <operation>notEqual</operation>
+            <field>Vep_Visitor__c.In_Visit__c</field>
+            <operation>equals</operation>
+            <value>True</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>VEP Update Status to Visit in Progress WF</fullName>
         <actions>
+            <name>VEP_UpdateEntryTimeField</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>VEP_Update_Status_to_Visit_in_Progress</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>Vep_Visitor__c.Visitor_Entry_Date__c</field>
-            <operation>notEqual</operation>
+            <field>Vep_Visitor__c.In_Visit__c</field>
+            <operation>equals</operation>
+            <value>True</value>
         </criteriaItems>
         <criteriaItems>
-            <field>Vep_Visitor__c.Visitor_Exit_Date__c</field>
+            <field>Vep_Visitor__c.Visit_Ended__c</field>
             <operation>equals</operation>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>VEP_Send Approved Email to Visitor WF</fullName>
-        <actions>
-            <name>VEP_Send_Approved_Email_to_Visitor_Alert</name>
-            <type>Alert</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Vep_Visitor__c.Status__c</field>
-            <operation>equals</operation>
-            <value>Approved</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Vep_Visitor__c.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Request</value>
+            <value>False</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -235,10 +246,15 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
+        <booleanFilter>1 AND 2 AND (3 OR (4 AND 5))</booleanFilter>
         <criteriaItems>
             <field>Vep_Visitor__c.Lodging__c</field>
             <operation>equals</operation>
             <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Vep_Visitor__c.Lodging_Desk_Email__c</field>
+            <operation>notEqual</operation>
         </criteriaItems>
         <criteriaItems>
             <field>Vep_Visitor__c.Status__c</field>
@@ -246,8 +262,14 @@
             <value>Approved</value>
         </criteriaItems>
         <criteriaItems>
-            <field>Vep_Visitor__c.Lodging_Desk_Email__c</field>
-            <operation>notEqual</operation>
+            <field>Vep_Visitor__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Request on Behalf</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Vep_Visitor__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Visit</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -258,10 +280,15 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
+        <booleanFilter>1 AND 2 AND (3 OR (4 AND 5))</booleanFilter>
         <criteriaItems>
             <field>Vep_Visitor__c.Pickup__c</field>
             <operation>equals</operation>
             <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Vep_Visitor__c.Pickup_Desk_Email__c</field>
+            <operation>notEqual</operation>
         </criteriaItems>
         <criteriaItems>
             <field>Vep_Visitor__c.Status__c</field>
@@ -269,8 +296,14 @@
             <value>Approved</value>
         </criteriaItems>
         <criteriaItems>
-            <field>Vep_Visitor__c.Pickup_Desk_Email__c</field>
-            <operation>notEqual</operation>
+            <field>Vep_Visitor__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Request on Behalf</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Vep_Visitor__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Visit</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -281,6 +314,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
+        <booleanFilter>1 AND 2 AND (3 OR (4 AND 5))</booleanFilter>
         <criteriaItems>
             <field>Vep_Visitor__c.Travel__c</field>
             <operation>equals</operation>
@@ -295,6 +329,16 @@
             <operation>equals</operation>
             <value>Approved</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>Vep_Visitor__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Request on Behalf</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Vep_Visitor__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Visit</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -304,6 +348,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
         <criteriaItems>
             <field>Vep_Visitor__c.RecordTypeId</field>
             <operation>equals</operation>
@@ -314,20 +359,11 @@
             <operation>equals</operation>
             <value>Approved</value>
         </criteriaItems>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>VEP_Send Rejected Email to Visitor WF</fullName>
-        <actions>
-            <name>VEP_Send_Rejected_Email_to_visitor_Alert</name>
-            <type>Alert</type>
-        </actions>
-        <active>false</active>
         <criteriaItems>
             <field>Vep_Visitor__c.Status__c</field>
             <operation>equals</operation>
-            <value>Rejected</value>
+            <value>Pending Visit</value>
         </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>

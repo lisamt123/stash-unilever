@@ -13,4 +13,5 @@
     </quickActionLayout>
     <standardLabel>Defer</standardLabel>
     <type>Update</type>
+     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

@@ -8,6 +8,8 @@
     <aura:attribute name="NewsType" type="String"/>
     <aura:attribute name="MailToBody" type="String"/>
     <aura:attribute name="MailSubject" type="String"/>
+        
+    <aura:attribute name="mailSubjectDetail" type="String"/>
     
     <!--add bootstrap style class to give space in the both left and right side of the display pannel-->
     <div class="container">
@@ -17,11 +19,16 @@
                  <div class="loadMoreBar" >    
                      <div class="loadMoreButton" onclick="{!c.getChatterComponent}">Chatter</div> 
                  </div>
-                 <div class="loadMoreBar" >    
+                 <!--<div class="loadMoreBar" >    
                      <a href="{!'mailto:?subject='+v.MailSubject+'&amp;body=' + v.NewsDetail.Name+': '+v.NewsDetail.SharepointURL}" style="color: #344A5F" >
                          <div class="loadMoreButton">Email</div>
                      </a>
-                </div>
+                 </div>-->
+                 <div class="loadMoreBar" >    
+                     <a href="{!'mailto:?subject='+v.MailSubject+'&amp;body=' +v.mailSubjectDetail}" style="color: #344A5F" >
+                         <div class="loadMoreButton" >Email</div>
+                     </a>
+                 </div>
             </div>	
             <div class="smallSpaceing">
                  <div class="loadMoreBar" >    

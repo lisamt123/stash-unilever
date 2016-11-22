@@ -56,7 +56,7 @@ private class BET_CommonServiceTest {
     }
 
     static testMethod void testMethodFive(){
-        BET_Request_Access__c setting = new BET_Request_Access__c(Name = 'Test', Send_Mail_To_Owner__c = true, Email_Address__c='test@test.com', Logo_Url__c='http://test.com/img.jpg');
+        BET_Request_Access__c setting = new BET_Request_Access__c(Name = 'Test', From_Name__c='test@test.com', Send_Mail_To_Owner__c = true, Email_Address__c='test@test.com', Logo_Url__c='http://test.com/img.jpg');
         insert setting;
 
         BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET4' + system.now(), true);

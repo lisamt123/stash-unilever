@@ -13,7 +13,7 @@ VERSION    AUTHOR            DATE            DETAIL
 1.0        Masood Ansari     Feb-2016     INITIAL DEVELOPMENT   
 
 ***********************************************************************/
-public class CEC_AlertHelper {
+public with sharing class CEC_AlertHelper {
     
 /******************************************************************* 
 Purpose: 

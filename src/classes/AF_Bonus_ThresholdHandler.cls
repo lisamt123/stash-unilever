@@ -22,7 +22,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
 *************************************************************************************/
     public void bulkBefore()
     {
-    	/*Method is Blank as this handler doesnot handle any bulkBefore*/
+        /*Method is Blank as this handler doesnot handle any bulkBefore*/
     }
      /***********************************************************************************
 *  @Description: This method is called prior to execution of an AFTER trigger. 
@@ -39,7 +39,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
     }
      /********************************************************************************************
 *  @Description: This method is called iteratively for each record to be inserted during a BEFORE
-* 					trigger. Never execute any SOQL/SOSL etc in this and other iterative methods.
+*                   trigger. Never execute any SOQL/SOSL etc in this and other iterative methods.
 *  @name : beforeInsert
 *  @param : none
 *  @return: boolean.
@@ -48,6 +48,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
     {
         AF_Bonus_Threshold__c bonusThresholdInstance = (AF_Bonus_Threshold__c)so;
         // Af_AfterInsertBonusThresholdShare Trigger Logic Starts
+        
         if(bonusThresholdInstance.AF_Minimum__c==0 && bonusThresholdInstance.AF_Stretching__c==0 && bonusThresholdInstance.AF_Outstanding__c==0 )
         {
             bonusThresholdInstance.addError(ErrorMessage);
@@ -61,6 +62,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
         else if((bonusThresholdInstance.AF_Outstanding__c  <= bonusThresholdInstance.AF_Minimum__c || bonusThresholdInstance.AF_Outstanding__c <= bonusThresholdInstance.AF_Stretching__c )){
             bonusThresholdInstance.addError(ErrorMessage);
         }
+  
         // Af_AfterInsertBonusThresholdShare Trigger Logic Ends
     }
      /********************************************************************************************
@@ -74,6 +76,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
     {
         AF_Bonus_Threshold__c bonusThresholdInstance = (AF_Bonus_Threshold__c)so;
         // Af_AfterInsertBonusThresholdShare Trigger Logic Starts
+        
         if(bonusThresholdInstance.AF_Minimum__c==0 && bonusThresholdInstance.AF_Stretching__c==0 && bonusThresholdInstance.AF_Outstanding__c==0 )
         {
             bonusThresholdInstance.addError(ErrorMessage);
@@ -87,6 +90,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
         else if((bonusThresholdInstance.AF_Outstanding__c  <= bonusThresholdInstance.AF_Minimum__c || bonusThresholdInstance.AF_Outstanding__c <=bonusThresholdInstance.AF_Stretching__c )){
             bonusThresholdInstance.addError(ErrorMessage);
         }
+       
         // Af_AfterInsertBonusThresholdShare Trigger Logic Ends
     }
      /********************************************************************************************
@@ -98,7 +102,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
 *************************************************************************************/
     public void beforeDelete(SObject so)
     {
-    	/*Method is Blank as this handler doesnot handle any beforeDelete*/
+        /*Method is Blank as this handler doesnot handle any beforeDelete*/
     }
    /********************************************************************************************
 *  @Description: This method is called iteratively for each record inserted during an AFTER
@@ -112,13 +116,13 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
     {
         AF_Bonus_Threshold__c bonusThresholdInstance = (AF_Bonus_Threshold__c)so;
         // AF_CreateBonusResultTrigger Logic Starts
-        if(!bonusThresholdInstance.AF_Pilot_Model__c)
-        {
+        //if(!bonusThresholdInstance.AF_Pilot_Model__c) // AFO release enhancement for Exception Model
+        //{
             AF_Bonus_Results__c bonResObj = new AF_Bonus_Results__c();
             bonResObj.RecordTypeId = annualBonusRecordTypeId;
             bonResObj.AF_Bonus_Thresholds__c = bonusThresholdInstance.Id;
             bonusResultObjList.add(bonResObj);
-        }
+        //}
         // AF_CreateBonusResultTrigger Logic Ends  
     }
      /********************************************************************************************
@@ -130,7 +134,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
 *************************************************************************************/
     public void afterUpdate(SObject oldSo, SObject so)
     {
-    	/*Method is Blank as this handler doesnot handle any afterDelete*/
+        /*Method is Blank as this handler doesnot handle any afterDelete*/
     }
     /********************************************************************************************
 *  @Description: This method is derived as a part of trigger factory
@@ -145,7 +149,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
     }
      /*************************************************************************************************
 *  @Description: This method is called once all records have been processed by the trigger. Use this 
-* 				 method to accomplish any final operations such as creation or updates of other records.
+*                method to accomplish any final operations such as creation or updates of other records.
 *  @name : andFinally
 *  @param : none
 *  @return: none.

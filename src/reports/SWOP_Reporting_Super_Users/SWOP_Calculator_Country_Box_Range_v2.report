@@ -82,7 +82,7 @@
         <criteriaItems>
             <column>Oblix_Calculator__c.Financial_Year__c</column>
             <operator>equals</operator>
-            <value>FY2016,FY2017</value>
+            <value>FY2016,FY2017,FY2018</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

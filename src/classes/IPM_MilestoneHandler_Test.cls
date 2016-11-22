@@ -24,9 +24,10 @@ private with sharing class IPM_MilestoneHandler_Test
          // Create an instances of standard Users for Allocation to Project Leaders.
          System.runAs(adminUser)
          {   
-            globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
-            User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
-            User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+
+            globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
+            User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
+            User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
             
             // Update LastNames to match functionalRoles
             globalProjectLeader.lastname = 'GLOBAL_PL';
@@ -57,7 +58,6 @@ private with sharing class IPM_MilestoneHandler_Test
             
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
             insert projectList; 
-            
             System.assert(projectList.size() > 0, 'project successfully not created');
         }
      }
@@ -96,6 +96,7 @@ private with sharing class IPM_MilestoneHandler_Test
         
         System.RunAs(globalProjectLeader)
         {
+            Test.startTest();
             
             List<IPM_Project__c> projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
                                                     (Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Name in:projectNameSet];
@@ -120,7 +121,7 @@ private with sharing class IPM_MilestoneHandler_Test
                 System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(), 'Standard milestones mismatched.');
                 
                 // Project default phase would always be set as IDEAS.
-                System.assertEquals(project.IPM_Phase__c,'Ideas', 'Default phase should be Ideas'); // Phase would be always ideas for Global Project.
+                System.assertEquals(project.IPM_Phase__c,'Ideas'); // Phase would be always ideas for Global Project.
             }
                 
             /******************************** Create Regional Rollouts for Created Global project ****************************************/
@@ -149,7 +150,7 @@ private with sharing class IPM_MilestoneHandler_Test
             
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
             {
-                String geoExternalId = '';
+                String geoExternalId = IPM_ConstantUtils.BLANK;
                 if(localRollout.IPM_Rollout_Project__c.contains('AFR'))
                 {
                     geoExternalId = 'AGO';
@@ -168,12 +169,13 @@ private with sharing class IPM_MilestoneHandler_Test
             insert countryList;
             
             /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
-            Test.startTest();
+            
             
              // Set GateKeeping Model as RCLT and start with Regional Project Creation.
             for(IPM_Project__c project : projectList)
             {
                 project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+                project.IPM_ProjectGKM__c='GKM2';
             }  
             
             update projectList;
@@ -233,7 +235,7 @@ private with sharing class IPM_MilestoneHandler_Test
                 System.assert(regionalProject.IPM_Milestones__r.size()>0, 'Regional Project Milestones successfully not created.');
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,'Feasibility', 'Invalid phase'); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,'Feasibility'); // Phase would be feasibility for Regional Projects.
                 
             }
         }

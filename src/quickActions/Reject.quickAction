@@ -7,4 +7,5 @@
     <page>AA_ReportRejected</page>
     <type>VisualforcePage</type>
     <width>-100</width>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

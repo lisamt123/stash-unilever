@@ -150,6 +150,17 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+	<fields>
+        <fullName>Product_EAN__c</fullName>
+        <description>CEC EAN field is used to capture GTIN(EAN/upc) code of the product</description>
+        <externalId>false</externalId>
+        <formula>Product__r.GTIN_EAN_UPC_Code__c</formula>
+        <label>Product EAN</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>Fulfilment Product</label>
     <nameField>
         <displayFormat>FP-{000000}</displayFormat>

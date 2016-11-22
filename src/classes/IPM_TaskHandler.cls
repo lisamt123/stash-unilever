@@ -83,6 +83,27 @@ public with sharing class IPM_TaskHandler implements ITrigger{
                     IPM_TaskHelper.updateTaskDueDateBasedOnMS(taskWithoutDueDate); // Task list to update based on Milestone Due Date 
                 }
             }
+            
+            if(Trigger.isUpdate)
+            {
+            	if(!taskList.isEmpty())
+            	{
+            		for (IPM_Task__c newTask : taskList) 
+                    { 
+                     if(String.isBlank(newTask.IPM_Type_of_Task__c) || !IPM_ConstantUtils.TEMPLATE_TASKS.equalsIgnoreCase(newTask.IPM_Type_of_Task__c))
+                     {
+                    	if(newTask.IsSystemGenerated__c)
+                    	{
+                    		newTask.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD;
+                    	}
+                    	else
+                    	{
+                    		newTask.IPM_Type_of_Task__c = IPM_ConstantUtils.ADHOC;
+                    	}
+                      }	
+                    }
+            	}
+            }
         }
     }
     /**

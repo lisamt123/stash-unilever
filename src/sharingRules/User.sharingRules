@@ -19,4 +19,23 @@
             <value>Category Finance</value>
         </criteriaItems>
     </sharingCriteriaRules>
+	<sharingCriteriaRules>
+        <fullName>Oblix_Share_Users_with_Agency_Community_users</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>SWOP Share Users with Agency Community users</label>
+        <sharedTo>
+            <group>Oblix_SWOP_Agency</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>IsActive</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>IsActive</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
 </SharingRules>

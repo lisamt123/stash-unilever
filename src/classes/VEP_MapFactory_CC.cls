@@ -101,6 +101,7 @@ public with sharing class VEP_MapFactory_CC{
         }
     }
     public void stateFactoryList(){
+        try{
         if(factname!=null && factname!=''){
             showDetailPage= true;
             showFactoryList= false;
@@ -109,6 +110,13 @@ public with sharing class VEP_MapFactory_CC{
         else{
             showDetailPage= false;
             showFactoryList= true;
+        }
+        }
+        catch(Exception e){
+            showDetailPage= false;
+            showFactoryList= true;
+            ApexPages.Message msg = new Apexpages.Message(ApexPages.Severity.Warning,e.getmessage() );
+            ApexPages.addmessage(msg);
         }
     }
     

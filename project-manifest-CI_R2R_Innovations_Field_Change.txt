@@ -1,0 +1,2 @@
+src
+src/objects/CI_SMS_Weekly_Update__c.object

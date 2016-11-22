@@ -21,6 +21,7 @@ global without sharing class IPM_CommentsListController {
     public integer countOfComments {get;set;}//used to store count of comments
     public IPM_Project_Document_Section__c projDocSec{get; set;}//used to store query result from IPM_Project_Document_Section__c object
     public boolean isMoreThanFive;//boolean variable
+    public boolean isCommentEditable{get;set;}//boolean variable to set comment input text readonly 
     private static final String CLASS_NAME = IPM_CommentsListController.class.getName(); //Class Name for Exception Logging
     private static final string ADD_COMMENT = 'AddComment';
     
@@ -33,11 +34,17 @@ global without sharing class IPM_CommentsListController {
          
     public IPM_CommentsListController (){
         isMoreThanFive=false;// this is used in the IPMCommentsPage VF page to handle UI requirements
+        isCommentEditable = true;
         commentRecord = new FeedItem();
         comments = new List<FeedItem>();
         //To read the project document section Id from the URL
         if(ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID) != null){ 
-            parentID = ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);          
+            parentID = ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);  
+            projDocSec=[SELECT Id,IPM_Project_Document__r.IPM_Project__r.IPM_PrepareForArchival__c , IPM_Project_Document__r.IPM_Project__r.Is_Archieved__c   FROM IPM_Project_Document_Section__c WHERE Id=:parentID];
+            if(projDocSec.IPM_Project_Document__r.IPM_Project__r.IPM_PrepareForArchival__c ||projDocSec.IPM_Project_Document__r.IPM_Project__r.Is_Archieved__c )   
+            { 	
+            	isCommentEditable = false;
+            }     
         	onLoadComments();
         }
         

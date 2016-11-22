@@ -12,7 +12,7 @@
  	},
    
     doInit: function(component, event, helper) {
-       
+       component.set("v.showspinner",true);
         var items=[];
         var aid=component.get("v.EAactivityid");
         var index=component.get("v.index");
@@ -25,7 +25,8 @@
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!== '') {
                  items = response.getReturnValue();
-                         component.set("v.ShowDetailCard",true);
+                  component.set("v.showspinner",false);
+                 component.set("v.ShowDetailCard",true);
                  var ishomepage=component.get("v.pagename");
                  if(ishomepage === 'Myaction')                  
                  {
@@ -107,19 +108,22 @@
         var id=event.getParam("activityId");
         cmp.set("v.EAactivityid",id);
     },
-    commentspage2 :function(component, event, helper) {
-        var activity = component.get("v.activity");
-        var pagename=component.get("v.pagename");
+    commentspage2 :function(cmp, event, helper) {
+        helper.scrollToLocation(cmp, "top"); 
+        var activity = cmp.get("v.activity");
+        var pagename=cmp.get("v.pagename");
         if(pagename ==='swipe'){
             pagename=pagename+'Detailcard';
         }
-        var index=component.get("v.index");
+        var index=cmp.get("v.index");
+        var pageIndex=cmp.get("v.pageIndex");
         var shareEvent=$A.get("e.c:EA_Showshare_Event");
-        shareEvent.setParams({"activity":activity,"pagename":pagename,"index":index});
+        shareEvent.setParams({"activity":activity,"pagename":pagename,"index":index,"activityId":activity.Id,"navigatePageIndex":pageIndex});
         shareEvent.fire();
          
     },
     callfeedback:function(cmp,event,helper){
+        helper.scrollToLocation(cmp, "top");  
         var activity = cmp.get("v.activity");
         var feedbacevent=$A.get("e.c:EA_Feedback_Event");
         var pagename=cmp.get("v.pagename");
@@ -132,13 +136,15 @@
         feedbacevent.fire();
     },
     calltodoactivity:function(cmp,event,helper){
+        helper.scrollToLocation(cmp, "top");
         var pagename=cmp.get("v.pagename");
         if(pagename ==='swipe'){
             pagename=pagename+'Detailcard';
         }
         var activity = cmp.get("v.activity");
+        var pageIndex=cmp.get("v.pageIndex");
         var callactivity=$A.get("e.c:EA_ToDoActivity_Event");
-        callactivity.setParams({"activityId":activity.Id,"pagename":pagename});
+        callactivity.setParams({"activityId":activity.Id,"pagename":pagename,"navigatePageIndex":pageIndex});
         callactivity.fire();
     },
     callShowDetailCard:function(cmp,event,helper){
@@ -160,6 +166,7 @@
     
     gotoPrevious : function(component, event, helper) {
         var pagename=component.get("v.pagename");
+        console.log("while coming--> "+pagename);
         if(pagename ==='Detailcard')
         {
             pagename='MyAction';

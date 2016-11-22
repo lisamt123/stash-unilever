@@ -54,4 +54,5 @@
         <quickActionLayoutColumns/>
     </quickActionLayout>
     <type>Update</type>
+     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

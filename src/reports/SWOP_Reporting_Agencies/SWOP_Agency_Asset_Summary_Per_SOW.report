@@ -38,11 +38,6 @@
         <field>Marketing_SOW__c$Name</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Name</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
     <name>SWOP Agency Asset Summary Per SOW</name>
     <params>
         <name>co</name>

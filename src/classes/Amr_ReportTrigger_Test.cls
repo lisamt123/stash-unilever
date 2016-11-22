@@ -14,14 +14,14 @@ Purpose:
 @isTest
 public with sharing class Amr_ReportTrigger_Test{
     
-    static testMethod void testReportTrigger() {
+    static testMethod void testMethod1() {
          Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
          insert customSetting;
           
-         MDO_Category__c productCategory = new MDO_Category__c(name = 'Soups');
+         MDO_Category__c productCategory = new MDO_Category__c(name = 'Soups', category_type__c = 'Category');
          insert productCategory;
          
-         MDO_Category__c productCategory1 = new MDO_Category__c(name = 'Advanced Toothpaste');
+         MDO_Category__c productCategory1 = new MDO_Category__c(name = 'Advanced Toothpaste', category_type__c = 'Category');
          insert productCategory1;    
          
          Amr_Summary_Plan__c plan = new Amr_Summary_Plan__c(ProductCategory__c = productCategory.id,Year__c = String.valueOf(System.Today().year()));
@@ -68,11 +68,11 @@ public with sharing class Amr_ReportTrigger_Test{
         Amr_Job_DetailsTrigger_Handler handler = new Amr_Job_DetailsTrigger_Handler();
         handler.bulkBefore();
         handler.bulkAfter();
-        sObject s = new Amr_Job_Details__c();
-        handler.beforeInsert(s);
-        handler.beforeUpdate(s,s);
-        handler.beforeDelete(s);
-        handler.afterDelete(s);
+        //sObject s = new Amr_Job_Details__c();
+        handler.beforeInsert();
+        handler.beforeUpdate();
+        handler.beforeDelete();
+        handler.afterDelete();
         handler.andFinally();
         system.assert(jobDetailsObj1!=null);
     }

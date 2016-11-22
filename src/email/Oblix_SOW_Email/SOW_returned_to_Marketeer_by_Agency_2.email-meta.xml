@@ -7,11 +7,10 @@
     <name>SOW returned to Marketeer by Agency</name>
     <style>freeForm</style>
     <subject>SOW : {!Marketing_SOW__c.Name}  returned for further amendments</subject>
-    <textOnly>The following Scope of Work has been returned for revisions by {!Marketing_SOW__c.Oblix_AgencyEstimate__c}
+    <textOnly>The following Scope of Work has been returned for revisions.
 
 SOW Name: {!Marketing_SOW__c.Name}
-Comments: {!ApprovalRequest.Comments}
 
-Click here to view</textOnly>
+Comments: {!ApprovalRequest.Comments}</textOnly>
     <type>html</type>
 </EmailTemplate>

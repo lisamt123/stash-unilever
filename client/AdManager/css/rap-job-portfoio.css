@@ -49,7 +49,7 @@ td.rich-tabhdr-side-cell table {
     height: 100%;
     line-height: 40px;
     width: 50%;
-    box-sizing: border-box;    
+    box-sizing: border-box;
 }
 .vf-reset .vf-surface {
     background: #FFFFFF;
@@ -129,7 +129,7 @@ td.rich-tabhdr-side-cell table {
     display: -webkit-box;
     width: 100%;
 }
-.scrollbar-table-parent table.list thead {    
+.scrollbar-table-parent table.list thead {
     display: inline-flex;
     width: 100%;
     table-layout: fixed !important;
@@ -163,6 +163,6 @@ td.rich-tabhdr-side-cell table {
     height: auto !important;
 }
 .alert-popup tr.headerRow th div {
-	width:120px !important;
-	max-width:120px !important;
+    width: 120px !important;
+    max-width: 120px !important;
 }

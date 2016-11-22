@@ -8,6 +8,7 @@
     <aura:attribute name="ErrorMessage" type="Boolean" default="false"/>
     <aura:attribute name="UserId" type="String"/>
     <aura:attribute name="GAId" type="String"/>
+     <aura:attribute name="showspinner" type="boolean" default="true"/> 
     
         <div class="container">
             <div id="list" class="row">                
@@ -35,6 +36,15 @@
                         </aura:if>
                     </div>
                 </aura:iteration>
+                	<aura:if isTrue="{!v.showspinner}">
+   
+       <div class="slds-spinner_container">
+         <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+            <div class="slds-spinner__dot-a"></div>
+             <div class="slds-spinner__dot-b"></div>
+         </div>
+      </div>
+    </aura:if>
                 <aura:if isTrue="{!v.loadMoreDisplay}">
                     <div class="loadMoreBar" >    
                         <div class="loadMoreButton" onclick="{!c.loadMoreNewsList}">  Load More  </div>

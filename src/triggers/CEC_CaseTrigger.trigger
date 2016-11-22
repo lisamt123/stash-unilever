@@ -18,56 +18,69 @@ VERSION  AUTHOR            DATE              DETAIL                  Description
 1.5 -   Goverdhan S.     10/12/2015       CSC-2850                Update for CSAT functionality
 ****************************************************************************/
 trigger CEC_CaseTrigger on Case (before insert,after insert,before update,after update) { 
-    
-    if(trigger.isAfter && trigger.isInsert){   
-        System.debug('After Insert'); 
-        CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
-        caseHelper.checkCaseDetails(trigger.newMap);
-        caseHelper.updateProductAndReasonCode(trigger.newMap);
-    }
-    
-    if(trigger.isBefore && trigger.isUpdate){
-        System.debug('Before Update'); 
-        CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
-        caseHelper.updateAccountOwner(trigger.new);
-        caseHelper.updateCaseDetailsIfRecordTypeIsSpam(trigger.newMap,trigger.oldMap); 
-        caseHelper.updateProductAndReasonCode(trigger.newMap);
-        caseHelper.updateCountryDetail(trigger.newMap);
-        //caseHelper.insertCountryDetail(trigger.new);
-        caseHelper.updateDayCodeMftrCode(trigger.newMap, trigger.oldMap);
-        // to set flag for survey email workflow
-        caseHelper.setWorkflowFlag(trigger.newMap, trigger.oldMap);    
+    // CSC-5082 Disable the trigger run if the user has custom permission CEC Disable Case Trigger
+    System.debug('***** Entering the trigger');
+    if (!CEC_Util.checkCaseDisableTriggerAccess()) {
+        System.debug('***** Executing the trigger logic');
+        if(trigger.isAfter && trigger.isInsert){   
+            System.debug('After Insert'); 
+            CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
+            caseHelper.checkCaseDetails(trigger.newMap);
+            caseHelper.updateProductAndReasonCode(trigger.newMap);
+        }
         
-        caseHelper.updateRetentionDate(trigger.new ,trigger.oldmap);
-        /* Start -  US-097 Personal data not included in Pulse */
-        caseHelper.updatePIIWarningForUpdate(Trigger.New, Trigger.oldMap);
-        /* End -  US-097 Personal data not included in Pulse */
-    }
-    
-    // Create & Send Safety Alerts for the updated Case Product and Reason codes. 
-    if(trigger.isAfter && trigger.isUpdate){
-        System.debug('After Update'); 
-        CEC_InstantAlertActionHelper actionHelper = new CEC_InstantAlertActionHelper();
-        actionHelper.createAlertEntries(trigger.oldMap, trigger.newMap);
-        CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
-        caseHelper.updateAccountRetentionDetails(trigger.new, trigger.oldMap);
-    }
-    
-    
-    /* Support team change starts
-
--> Changes for incident INC000096161554 - [Information not transmitted in Salesforce]
--> To populate Country Name field when case is created by Contact-us form
-
-*/
-    if(trigger.isBefore && trigger.isInsert){ 
-        System.debug('Before Insert'); 
-        CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
-        caseHelper.insertCountryDetail(trigger.new);
-        caseHelper.updatePIIWarningForInsert(trigger.new);
+        if(trigger.isBefore && trigger.isUpdate){
+            System.debug('Before Update'); 
+            CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
+            CEC_CaseTriggerHelperExtension caseHelperExtn = new CEC_CaseTriggerHelperExtension();
+            caseHelper.updateAccountOwner(trigger.new);
+            caseHelper.updateCaseDetailsIfRecordTypeIsSpam(trigger.newMap,trigger.oldMap); 
+            caseHelper.updateProductAndReasonCode(trigger.newMap);
+            caseHelper.updateCountryDetail(trigger.newMap);
+            caseHelper.updateCaseBrandAndSkillOnUpdate(trigger.newmap, trigger.oldMap);
+            System.debug('Before updateCaseBrandAndSkillOnUpdate'); 
+            //caseHelper.insertCountryDetail(trigger.new);
+            caseHelper.updateDayCodeMftrCode(trigger.newMap, trigger.oldMap);
+            // to set flag for survey email workflow
+            caseHelper.setWorkflowFlag(trigger.newMap, trigger.oldMap);    
+            //to set the store and product information for web email cases
+            caseHelper.updateStoreAndProductInfo(trigger.new, trigger.oldmap);
+            caseHelper.updateRetentionDate(trigger.new ,trigger.oldmap);
+            /* Start -  US-097 Personal data not included in Pulse */
+            caseHelper.updatePIIWarningForUpdate(Trigger.New, Trigger.oldMap);
+            /* End -  US-097 Personal data not included in Pulse */
+            caseHelperExtn.updateCaseOwner(trigger.new, trigger.oldMap);
+        }
         
+        // Create & Send Safety Alerts for the updated Case Product and Reason codes. 
+        if(trigger.isAfter && trigger.isUpdate){
+            System.debug('After Update Create & Send Safety Alerts for the updated Case Product and Reason codes.'); 
+            CEC_InstantAlertActionHelper actionHelper = new CEC_InstantAlertActionHelper();
+            actionHelper.createAlertEntries(trigger.oldMap, trigger.newMap);
+            CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
+            caseHelper.updateAccountRetentionDetails(trigger.new, trigger.oldMap);
+        }
+        
+        
+        /* Support team change starts
+
+
+    -> Changes for incident INC000096161554 - [Information not transmitted in Salesforce]
+    -> To populate Country Name field when case is created by Contact-us form
+
+    */
+        if(trigger.isBefore && trigger.isInsert){ 
+            System.debug('Before Insert'); 
+            CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
+            CEC_CaseTriggerHelperExtension caseHelperExtn = new CEC_CaseTriggerHelperExtension();
+            caseHelper.updateSuppliedEmail(trigger.new);//To update the suppliedEmail for Web Cases
+            caseHelper.insertCountryDetail(trigger.new);
+            caseHelper.updatePIIWarningForInsert(trigger.new);
+            System.debug('$$$$$$$$$$InsertValues' + trigger.new[0].Country_Name__c + ' ' + trigger.new[0].Brand__C);
+            caseHelper.updateCaseBrandAndSkillOnInsert(trigger.new); 
+            caseHelperExtn.updateCaseOwner(trigger.new, null);       
+        }
+        /* Support team change ends*/    
     }
-    
-    /* Support team change ends*/
-    
+
 }

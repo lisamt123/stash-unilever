@@ -1,8 +1,10 @@
-<aura:component >	    
+<aura:component controller="Core_NC_NewsCenterController">	    
     <!--Calling init method to get the default information on page load-->
     <aura:handler name="init" value="{!this}" action="{!c.updateFilterSelection}" />
+    <aura:handler event="c:CORE_NC_FilterTopicEvent" action="{!c.changeFilterTopic}" />
     
     <!--Creating attributes-->
+    <aura:attribute name="newsArticleTopics" type="String[]"/>
     <aura:attribute name="selectedFilter" type="String"/>
     <aura:attribute name="newSelectedFilter" type="String"/>        
     <!--<aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/> -->
@@ -24,17 +26,17 @@
                     </td>
                 </tr>
             </table>             
-            <!--filter menu options--> 
-            <div class="filtePannel">        
-                <div onclick="{!c.showAllActive}" aura:id="showAll">       					Show all topics   		 </div>  
-                <div onclick="{!c.showCategoriesActive}" aura:id="showCategories">          Categories &amp; Brands    </div>
-                <div onclick="{!c.showInnovationActive}" aura:id="showInnovation">          Innovation   			 </div>
-                <div onclick="{!c.showLeadershipActive}" aura:id="showLeadership">          Leadership   			 </div>
-                <div onclick="{!c.showMarketplaceActive}" aura:id="showMarketplace">        Marketplace  			 </div>
-                <div onclick="{!c.showPeopleActive}" aura:id="showPeople">        			Our People   			 </div>
-                <div onclick="{!c.showPerformanceActive}" aura:id="showPerformance">        Performance &amp; Strategy </div>
-                <div onclick="{!c.showSustainableActive}" aura:id="showSustainable">        Sustainable Living    	 </div>
-            </div>
+            <!--filter menu options-->             
+            <div class="filterPannel">
+            	<aura:iteration items="{!v.newsArticleTopics}" var="newsArticleTopic">
+                    <aura:if isTrue="{!newsArticleTopic==v.newSelectedFilter ? true : false}">
+                        <c:CORE_NC_FilterTopic activeTopic="true" topicName="{!newsArticleTopic}"/>
+                        <aura:set attribute="else">
+                            <c:CORE_NC_FilterTopic activeTopic="false" topicName="{!newsArticleTopic}"/>
+                        </aura:set>
+                    </aura:if>
+                </aura:iteration>                
+            </div>                       
         </div>
     </div>
 </aura:component>

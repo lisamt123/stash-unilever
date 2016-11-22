@@ -1,0 +1,85 @@
+ 
+/* Ad Main section CSS */
+
+.container{width:1170px; margin: 0 auto;background: none repeat scroll 0 0 #fff;}
+.jobsportpolio_section {
+    background: none repeat scroll 0 0 #fff;
+    border-radius: 3px;}
+.main-nav{display:inline-flex;width:100%; background: none repeat scroll 0 0 #f6f6f6;}
+.subsection > ul {
+     margin: 0;
+    padding: 2px 0;
+}
+select {font-size: 12px;position: relative;top: 1px;}
+.subsection {
+    float: left;
+       width: 100%;
+}
+
+.subsection ul li {
+    display: inline-block;
+    list-style-type: none;
+	font-size: 12px;
+	padding:0px 0px 0px 6px;}
+.subsection2 ul li {display: inline-block;
+    list-style-type: none;
+	font-size: 12px;}
+	.subsection2 ul li a {
+    color: #000;
+    text-decoration: none;
+}
+.subsection2 > ul {
+     margin: 0;
+    /* padding: 2px 0; */}
+.subsection2{float:right;}
+ .versiontxt a{color:#4573ff !important;} 
+  .showtext a{color:#4573ff !important;} 
+.subsection ul li a{text-decoration: none;color: #000;}
+.left-section {
+    border: 1px solid #d9d9d9;display:inline-flex;width: 99.9%;
+}
+.static-model {
+    padding: 0 0 0 10px;
+	width: 76%;
+}
+.box-width{background:none repeat scroll 0 0 #f2f2f2;width:14%;line-height: 26px;color:#4573ff;}
+.content-area{width:57%;}
+.cta2{width:58%;}
+.ltatext{ width: 35%;background: none repeat scroll 0 0 #f2f2f2;padding: 4px 12px 7px;}
+.footersec span{color:blue;}
+.footersec{margin:0;padding: 0 0 7px 15px;}
+.right_section{  background: none repeat scroll 0 0 #f2f2f2;
+    border: 1px solid #f2f2f2;
+    float: right;
+    margin: 24px 12px 12px;
+   padding: 0px 20px 0px 8px;
+    width: 22%;}
+.middletext{text-align:center;}
+.middletext p{font-size: 11px;padding-top: 15px;}
+.article1 ul li,.article2 ul li{font-size:13px;list-style-type:none;line-height: 27px;}
+.article1 ul,.article2 ul{margin: 5px 0px 0px 0px;padding: 0;}
+	.totalsection{display:inline-flex;}
+	.article2{float:right;}
+	.article1 ul li{font-weight:bold;}
+	.rite1{ position: relative;left: 9px;color:#4573ff;}
+	.rite2{position: relative;left: 17px;}
+	.rite3{position: relative;left: 9px;color:#4573ff;}
+	.static-model h1{color:#000;font-size:24px;}
+	.model2 span{color:#4573ff;}
+	.btmsection{border:1px solid #bfbfbf;width:97%;}
+	.middletext h1{font-size:22px;color:#4573ff;}
+	.rite0{position: relative;right: 6px;
+}
+	li.rite4 {
+    position: relative;
+    left: 20px;
+}
+	.art0{position:relative;left: 7px;}
+	.art1{position:relative;left: 9px;}
+	.art2{position:relative;right: 13px;}
+	.art3{position:relative;left: 21px;}
+	.art4{position:relative;left: 3px;}
+
+	
+	
+	

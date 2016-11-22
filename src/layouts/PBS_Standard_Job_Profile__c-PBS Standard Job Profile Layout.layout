@@ -47,6 +47,16 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>almond__Status__c</fields>
+        <fields>almond__Achievement__c</fields>
+        <fields>almond__Order__c</fields>
+        <fields>almond__Description__c</fields>
+        <fields>CREATEDBY_USER</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>almond__Training_Track__c.PBS_Standard_Job_Profile__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>

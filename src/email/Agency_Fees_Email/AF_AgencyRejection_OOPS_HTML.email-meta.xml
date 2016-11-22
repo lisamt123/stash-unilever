@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notify Agency users when Category Finance reject</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Agency_Fees_Letterhead</letterhead>
+    <name>AF_AgencyRejection_OOPS_HTML</name>
+    <style>freeForm</style>
+    <subject>Brand {!AF_OOPS_Actual__c.AF_Brand__c} Out of Pocket Expense Submission Declined</subject>
+    <textOnly>Dear User
+
+Your &quot;{!AF_OOPS_Actual__c.AF_Quarter__c} {!AF_OOPS_Actual__c.AF_Fiscal_year__c}&quot; Out of Pocket Expense submission for Brand &quot;{!AF_OOPS_Actual__c.AF_Brand__c}&quot; has been declined by Category Finance.
+
+Please log in to the Agency Fees application, using the link below, to review relevant comments.
+{!AF_OOPS_Actual__c.AF_Internal_Link__c}</textOnly>
+    <type>html</type>
+</EmailTemplate>

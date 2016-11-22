@@ -44,7 +44,7 @@ public with sharing class IPM_GateCMI_Consolidated{
     public String gateType{get; set;} //Contains Current Gate Document Type
     public transient List<IPM_Project_Document_Section_Content__c> resList{get; set;} //For result timing 
     public transient List<IPM_Country__c> countryList; //List od Countries
-    
+    public map<String,String> mapCountryNameWithCode {get;set;}
     /************************************************************************************************************************
     *  Description Getting List of Countries in Project
     *  @name getCountries
@@ -54,9 +54,10 @@ public with sharing class IPM_GateCMI_Consolidated{
     */
     public List<selectOption> getCountries() { 
         countryList=new List<IPM_Country__c>();
-        String soql  =  'SELECT Id,Country_Name__c,IPM_Project__c,IPM_Regional_Project__c FROM IPM_Country__c';
+        String soql  =  'SELECT Id,Country_Name__c,Country_Code__c,IPM_Project__c,IPM_Regional_Project__c FROM IPM_Country__c';
         if(gatetype==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE){
-            soql += ' WHERE IPM_Regional_Project__c = \'' + project.IPM_Parent_Project__c + '\'';
+        	String projParentRefOnCountry = project.IPM_ProjectGKM__c == 'GKM3' ?' IPM_Project__c ' : ' IPM_Regional_Project__c ';
+            soql += ' WHERE '+projParentRefOnCountry+' = \'' + project.IPM_Parent_Project__c + '\'';    
         }    
         else{
             soql += ' WHERE IPM_Regional_Project__r.IPM_Parent_Project__c = \'' + projectId + '\'';
@@ -73,7 +74,7 @@ public with sharing class IPM_GateCMI_Consolidated{
         countries = new List<SelectOption>();
         if(countryList != null && !countryList.isEmpty()){
             for(IPM_Country__c tempCountry : countryList){
-                countries.add(new SelectOption(tempCountry.Country_Name__c,tempCountry.Country_Name__c));
+                countries.add(new SelectOption(tempCountry.Country_Name__c,tempCountry.Country_Code__c));
             }
         }
         return countries;
@@ -158,7 +159,7 @@ public with sharing class IPM_GateCMI_Consolidated{
             gateTypes.add(IPM_ConstantUtils.CONTRACT_GATE);
             gateTypes.add(IPM_ConstantUtils.MARKET_READY_GATE);
             
-            project=[SELECT Id,IPM_Parent_Project__c FROM IPM_Project__c WHERE Id=:projectId];
+            project=[SELECT Id,IPM_ProjectGKM__c,IPM_Parent_Project__c FROM IPM_Project__c WHERE Id=:projectId];  
             //Getting Project Document Section
             if(gateType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE){
                 projDocSecList=[SELECT Id,IPM_CMI_Selected_Countries__c,IPM_CMI_Selected_Test_Concepts__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project_Span__c,IPM_Project_Document__r.IPM_GateDocuments__c 
@@ -179,7 +180,7 @@ public with sharing class IPM_GateCMI_Consolidated{
                 if(!String.isBlank(projDocSec.IPM_CMI_Selected_Countries__c)){
                     for(String country:projDocSec.IPM_CMI_Selected_Countries__c.split(IPM_ConstantUtils.SEMICOLON)){
                         for(IPM_Country__c availCountry:countryList){
-                            if(country==availCountry.Country_Name__c){
+                            if(country==availCountry.Country_Code__c){
                                 if(String.isBlank(selectedCountryName)){
                                     selectedCountryName=country+IPM_ConstantUtils.SEMICOLON;
                                 }
@@ -193,8 +194,11 @@ public with sharing class IPM_GateCMI_Consolidated{
                     }
                 }
             }
-
+            mapCountryNameWithCode=new map<String,String>();
             if(!String.isBlank(selectedCountryName)){
+                for(IPM_Country__c c:countryList){
+                    mapCountryNameWithCode.put(c.Country_Code__c,c.Country_Name__c);
+                }    
                 countryNameList=selectedCountryName.split(IPM_ConstantUtils.SEMICOLON);
             }
             

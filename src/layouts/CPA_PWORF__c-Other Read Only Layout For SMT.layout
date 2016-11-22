@@ -589,10 +589,10 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Business_Process_Area_del__c</fields>
         <fields>High_Level_Description_del__c</fields>
-        <fields>OWNER.FIRST_NAME</fields>
-        <fields>OWNER.LAST_NAME</fields>
         <fields>Requirement_Type_del__c</fields>
+        <fields>New_or_changed_requirement_del__c</fields>
         <relatedList>CPA_Requirements_and_Deliverables__c.PWORF_Requirement_Deliverables__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -650,7 +650,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h56000000IxZP</masterLabel>
+        <masterLabel>00h18000000EkLN</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

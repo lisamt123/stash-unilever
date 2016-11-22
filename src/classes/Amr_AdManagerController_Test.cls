@@ -1,16 +1,24 @@
 @isTest
 public class Amr_AdManagerController_Test {
-    
-    static testMethod void adManagerMethod(){
+
+        static testMethod void adManagerMethod(){
+            
         
-        List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
+        //List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
         User u = new User(Alias = 'stan321', Email='standuser321@testorg.com', 
                  EmailEncodingKey='UTF-8', LastName='Testing321', LanguageLocaleKey='en_US', 
                 LocaleSidKey='en_US', ProfileId = p.Id, 
                 TimeZoneSidKey='America/Los_Angeles', UserName='stanuser@org.com');
                 insert u;
-            
+                 Amr_AdManagerController_CC  test1 = new Amr_AdManagerController_CC ();
+            //Amr_AdManagerHelper_CC test2 = new Amr_AdManagerHelper_CC(test1 );
+                Amr_Job_Details__c  abc = new Amr_Job_Details__c (); 
+                Amr_AdManagerHelper_CC test = new Amr_AdManagerHelper_CC ();
+                test.productionActivityTypeValidation (abc);
+             test.amountEntered = 1.000000;
+             test.ToUserEmailId = 'test';
+             test.thresholdValue = 2.000000; 
         Amr_Project_Details__c projDetail = new Amr_Project_Details__c(Name='testProject');
         insert projDetail;    
         
@@ -28,6 +36,7 @@ public class Amr_AdManagerController_Test {
           
         Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Require_Celebrity_Talent__c=Amr_ConstantForAdManager.YES,Lead_Agency_Location_Cluster__c=Amr_ConstantForAdManager.CLUSTER,Lead_Agency_Location_Country__c=Amr_ConstantForAdManager.LOCATION,Project_Location_Country__c=Amr_ConstantForAdManager.TESTCOUNTRY,Budget_Responsibility__c=Amr_ConstantForAdManager.BB,Require_Music__c = Amr_ConstantForAdManager.YES,Execution_Name__c=Amr_ConstantForAdManager.EXECUTION,Production_Activity_Type__c=Amr_ConstantForAdManager.TYPEPROD,Project_Location_Cluster__c=Amr_ConstantForAdManager.CLUSTER,Function_You_Are_Part__c=Amr_ConstantForAdManager.BB,Project_Description__c=Amr_ConstantForAdManager.EXECUTION,Check_With_CMI__c=Amr_ConstantForAdManager.YES,GBVM_Email__c=Amr_ConstantForAdManager.EMAIL,Threshold_Amount__c=12.34,Is_Submitt__c=Amr_ConstantForAdManager.TRUE_VAL,OwnerId=u.Id,Start_Date__c=date.newInstance(2015, 11, 21),End_Date__c=date.newInstance(2016, 11, 21),Project_Details__c= projDetail.Id,Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAIL,Broadcast_Market__c=Amr_ConstantForAdManager.EXECUTION,Name=Amr_ConstantForAdManager.EXECUTION,Project_Leader_Cluster__c=Amr_ConstantForAdManager.CLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRY,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.EXECUTION,Project_Name__c=Amr_ConstantForAdManager.PROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.EXECUTION,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAIL,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAIL,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAIL,Digital_Agency_Name__c=Amr_ConstantForAdManager.EXECUTION,Campaign_Name__c=Amr_ConstantForAdManager.EXECUTION,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00002',Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAIL,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BRODCAST,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.brand_position_id__c,Brand_Final__c=brand.Id,NewOriginalMaster__c=Amr_ConstantForAdManager.FALSE_VAL,LanguageAdaptionMaster__c=Amr_ConstantForAdManager.FALSE_VAL,Create_Additional_Material__c=Amr_ConstantForAdManager.FALSE_VAL,ReworkExistingMaterial__c=Amr_ConstantForAdManager.FALSE_VAL,BuyoutsTalent__c=Amr_ConstantForAdManager.FALSE_VAL,BuyoutsMusic__c=Amr_ConstantForAdManager.FALSE_VAL);
         insert jobDetail;
+        
     
         Amr_Logging_Form_Setting__c setting = new Amr_Logging_Form_Setting__c(Allocation__c='manual',Footer__c='testFooter',Header__c='testHeader',Introduction__c='testIntro');
         insert setting;
@@ -44,14 +53,21 @@ public class Amr_AdManagerController_Test {
         for (Amr_CurrencyConversionRate__c cc: lstcov){
             options.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+'-'+cc.Currency_Unit__c));
         }
-      
-      
-        String Clust ='testClust';
-        String Count='testCount';
+      //For code coverage on helper class
+     
+        //String Clust ='testClust';
+        //String Count='testCount';
         String Id = jobDetail.Id;
-        String AdManagertxt = 'ABC/12345';
+        //String AdManagertxt = 'ABC/12345';
         String emailId= 'pqr12@gmail.com';
         String userId = u.Id;
+        
+        Amr_AdManagerHelper_CC controller1 = new Amr_AdManagerHelper_CC();
+        controller1.adManagerNumberCreation(jobDetail);
+        controller1.adManagerNumberCreation(jobDetail); 
+        controller1.compareThresold(jobDetail,'test','test','test'); 
+        List<SelectOption> listOfBrandValue1 = new List<SelectOption>();
+controller1.createJob('test','test','test','test',jobDetail,'test',listOfBrandValue1); 
         
         Amr_AdManagerController_CC controller = new Amr_AdManagerController_CC();
         controller.currencyRecords =options;
@@ -84,14 +100,16 @@ public class Amr_AdManagerController_Test {
         controller.getSubmitForm();
        // controller.createJob();
         Amr_AdManagerController_CC.insertJobAllocationData(Id,userId,emailId);
-        Amr_AdManagerHelper_CC.InnerJobDetail innerJob = new Amr_AdManagerHelper_CC.InnerJobDetail(Clust,Count,Id,AdManagertxt);
-        PageReference pageRef = Page.Amr_CAPJobportfolio;
-        Test.setCurrentPage(pageRef);
-        PageReference pageRefVal = controller.Redirect();
+        Amr_AdManagerHelper_CC.InnerJobDetail innerJob = new Amr_AdManagerHelper_CC.InnerJobDetail(Amr_ConstantForAdManager.CLUSTER,Amr_ConstantForAdManager.TESTCOUNTRY,Id,jobDetail.AdManagerText__c);
+
+        //PageReference pageRef = Page.Amr_CAPJobportfolio;
+        //Test.setCurrentPage(pageRef);
+        //PageReference pageRefVal = controller.Redirect();
         
         String obj = JSON.serialize(innerJob);
-        //Amr_AdManagerController_CC.automaticJobAllocation(obj);
-      //  controller.compareThresold(jobDetail,category1.id,brandPos.Id,brand.Id);
+        Amr_AdManagerHelper_CC.automaticJobAllocation(obj);
+      //controller.compareThresold(jobDetail,category1.id,brandPos.Id,brand.Id);
+      //controller.compareThresold('', '' , '', '');
         
         Amr_Job_Details__c jobDet = [select Project_Description__c from Amr_Job_Details__c where id = :jobDetail.Id];
         system.assertEquals(jobDet.Project_Description__c, Amr_ConstantForAdManager.EXECUTION);
@@ -99,14 +117,18 @@ public class Amr_AdManagerController_Test {
     
     static testMethod void methodToSubmitForm(){
         
-        List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
+        //List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
         User u = new User(Alias = 'stan321', Email='standuser321@testorg.com', 
             EmailEncodingKey='UTF-8', LastName='Testing321', LanguageLocaleKey='en_US', 
             LocaleSidKey='en_US', ProfileId = p.Id, 
             TimeZoneSidKey='America/Los_Angeles', UserName='stanuser@org.com');
             insert u;
-            
+        
+        boolean okayToSave1, okayToSave2, okayToSave3, okayToSave4, okayToSave5, okayToSave6, okayToSave7, okayToSave8, okayToSave9, okayToSave10, okayToSave11, okayToSave12, okayToSave13, okayToSave14, okayToSave15, okayToSave16, okayToSave17, okayToSave18, okayToSave19, okayToSave20, okayToSave21, okayToSave22, okayToSave23, okayToSave24, okayToSave25, okayToSave26, okayToSave27;
+
+        Amr_AdManagerHelper_CC controller1 = new Amr_AdManagerHelper_CC();
+        
         Amr_Project_Details__c projDetail = new Amr_Project_Details__c(Name='testProject');
         insert projDetail;    
         
@@ -216,9 +238,35 @@ public class Amr_AdManagerController_Test {
     
         Amr_Logging_Form_Setting__c setting = new Amr_Logging_Form_Setting__c(Allocation__c='manual',Footer__c='testFooter',Header__c='testHeader',Introduction__c='testIntro');
         insert setting;
-       
+        
+        okayToSave1= controller1.productionActivityTypeValidation(jobDetail1);
+        okayToSave2= controller1.productionActivityTypeValidation(jobDetail2);
+        okayToSave3= controller1.productionActivityTypeValidation(jobDetail3);
+        okayToSave4= controller1.productionActivityTypeValidation(jobDetail4);
+        okayToSave5= controller1.productionActivityTypeValidation(jobDetail5);
+        okayToSave6= controller1.productionActivityTypeValidation(jobDetail6);
+        okayToSave7= controller1.productionActivityTypeValidation(jobDetail7);
+        okayToSave8= controller1.productionActivityTypeValidation(jobDetail8);
+        okayToSave9= controller1.productionActivityTypeValidation(jobDetail9);
+        okayToSave10= controller1.productionActivityTypeValidation(jobDetail10);
+        okayToSave11= controller1.productionActivityTypeValidation(jobDetail11);
+        okayToSave12= controller1.productionActivityTypeValidation(jobDetail12);
+        okayToSave13= controller1.productionActivityTypeValidation(jobDetail13);
+        okayToSave14= controller1.productionActivityTypeValidation(jobDetail14);
+        okayToSave15= controller1.productionActivityTypeValidation(jobDetail15);
+        okayToSave16= controller1.productionActivityTypeValidation(jobDetail16);
+        okayToSave17= controller1.productionActivityTypeValidation(jobDetail17);
+        okayToSave18= controller1.productionActivityTypeValidation(jobDetail18);
+        okayToSave19= controller1.productionActivityTypeValidation(jobDetail19);
+        okayToSave20= controller1.productionActivityTypeValidation(jobDetail20);
+        okayToSave21= controller1.productionActivityTypeValidation(jobDetail21);
+        okayToSave22= controller1.productionActivityTypeValidation(jobDetail22);
+        okayToSave23= controller1.productionActivityTypeValidation(jobDetail23);
+        okayToSave24= controller1.productionActivityTypeValidation(jobDetail24);
+        okayToSave25= controller1.productionActivityTypeValidation(jobDetail25);
+        okayToSave26= controller1.productionActivityTypeValidation(jobDetail26);
+        okayToSave27= controller1.productionActivityTypeValidation(jobDetail27);     
           
-        system.debug('jobDetail!!'+jobDetail1);
         Amr_AdManagerController_CC controller = new Amr_AdManagerController_CC();
         controller.categoryName = Amr_ConstantForAdManager.NONE;
         controller.brandPosName =Amr_ConstantForAdManager.NONE;
@@ -226,7 +274,7 @@ public class Amr_AdManagerController_Test {
         controller.selectedCountry =Amr_ConstantForAdManager.NONE;
     //    for(Amr_Job_Details__c job:jobList){
         controller.jobDetails=jobList.get(0);
-        PageReference pageRefVal = controller.getSubmitForm();
+       // PageReference pageRefVal = controller.getSubmitForm();
       //  system.assert(jobList!=null);
    // }
         Amr_Job_Details__c jobDet = [select Project_Description__c from Amr_Job_Details__c where id = :jobDetail.Id];
@@ -234,6 +282,5 @@ public class Amr_AdManagerController_Test {
      
   
     }
-
-
+    
 }

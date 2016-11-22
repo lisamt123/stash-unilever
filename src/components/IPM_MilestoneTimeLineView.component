@@ -9,9 +9,9 @@
 <apex:component controller="IPM_List_Milestones">
     <apex:attribute name="pId" type="String" AssignTo="{!projectId}" description="this is the project id"/>
     <apex:outputPanel id="tml">
-    <div id="ipmTimeLine">
-    <a id="pre"><i class="fa fa-angle-left"></i></a>
-    <a id="next"><i class="fa fa-angle-right"></i></a> 
+    <div id="ipmTimeLine" class="ipmTimeLine">
+    <a id="pre" class="pre"><i class="fa fa-angle-left"></i></a>
+    <a id="next" class="next"><i class="fa fa-angle-right"></i></a> 
     <div class="cInner">               
         <ul class="taskProgress">
             <apex:repeat value="{!timelineMilestones}" var="t" >

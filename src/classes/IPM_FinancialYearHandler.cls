@@ -6,7 +6,7 @@
 */
 public with sharing class IPM_FinancialYearHandler implements ITrigger
 {    
-    public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
+    public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>(); 
     
     //@description:Constructor
     public IPM_FinancialYearHandler ()
@@ -46,26 +46,58 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     */
     public void bulkAfter()
     {
-        Set<Id> incomingFinancialYearSet = new Set<Id>();
+       
         Map<String,IPM_Financial_Year__c> upsertconsolidatedFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
 
-        if(Trigger.isUpdate)
+        //Added for CR0010+CR0127
+        if(Trigger.isInsert)
         {
-        	Map<Id,IPM_Financial_Year__c> oldFinancialMap = (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap;
-            IPM_FinancialYearHelper.updateFinancialActionStandard((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
-            IPM_FinancialYearHelper.initialiseFYConsolidation((List<IPM_Financial_Year__c>)Trigger.new,oldFinancialMap,null,upsertconsolidatedFinancialYearMap);
+            IPM_FinancialYearHelper.createMarketPerformance((Map<Id, IPM_Financial_Year__c>)Trigger.newMap);
         }
-        else if(Trigger.isDelete) 
+        else if(Trigger.isUpdate)
         {
-        	if(!deleteFinancialYearMap.isEmpty()) 
-	        {
-	            IPM_FinancialYearHelper.initialiseFYConsolidation(deleteFinancialYearMap.values(),null,deleteFinancialYearMap,upsertconsolidatedFinancialYearMap);
-	        }	
+            Map<Id,IPM_Financial_Year__c> oldFinancialMap = (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap;
+            IPM_FinancialYearHelper.updateFinancialActionStandard((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
+            IPM_FinancialYearHelper.updateGlobalFinancialActionStandards((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
+            IPM_FinancialYearHelper.initialiseFYConsolidation((List<IPM_Financial_Year__c>)Trigger.new,oldFinancialMap,null,upsertconsolidatedFinancialYearMap);
+            
+        }
+        else if(Trigger.isDelete && !deleteFinancialYearMap.isEmpty()) 
+        { 			   			IPM_FinancialYearHelper.initialiseFYConsolidation(deleteFinancialYearMap.values(),null,deleteFinancialYearMap,upsertconsolidatedFinancialYearMap);
         }
         
         if(!upsertconsolidatedFinancialYearMap.isEmpty())
         {
             upsert upsertconsolidatedFinancialYearMap.values() External_Id__c;
+        }
+		
+        //Financials Hard Validations: Get all Financial External ID
+        set<string> setFinExtId = new set<string>();
+        list<IPM_Financial_Year__c> lstFinYr = new list<IPM_Financial_Year__c>();
+        if(Trigger.isInsert){
+            lstFinYr = (list<IPM_Financial_Year__c>)Trigger.New;
+        }
+        else if(Trigger.isUpdate){
+            for(IPM_Financial_Year__c finYr: (list<IPM_Financial_Year__c>)Trigger.New){
+                if(finYr.Turnover_Global__c!=((IPM_Financial_Year__c) Trigger.Oldmap.get(finYr.id)).Turnover_Global__c || finYr.Turnover_Regional__c != ((IPM_Financial_Year__c) Trigger.Oldmap.get(finYr.id)).Turnover_Regional__c || finYr.Turnover_Local__c!=((IPM_Financial_Year__c)  Trigger.Oldmap.get(finYr.id)).Turnover_Local__c){
+                    lstFinYr.add(finYr);    
+                }   
+            }   
+        }
+        else if(Trigger.isDelete){
+            lstFinYr = (list<IPM_Financial_Year__c>)Trigger.Old;    
+        }
+		
+		
+        if(!lstFinYr.isEmpty())
+		{
+            for(IPM_Financial_Year__c finYear: lstFinYr){
+                setFinExtId.add(finYear.Financial_External_ID__c);          
+            }
+			
+			if(!setFinExtId.isEmpty()){
+            IPM_FinancialYearHelper.validateDefaultFinancial(setFinExtId);
+			}
         }
         
     }
@@ -89,8 +121,24 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     public void beforeUpdate(SObject oldSo, SObject so)
     { 
         //This method has been included as the class implements the ITrigger interface
+        
         IPM_Financial_Year__c newFinancialYear = (IPM_Financial_Year__c)so;
-        IPM_Financial_Year__c oldFinancialYear = (IPM_Financial_Year__c)oldSo;
+        
+        String prefix = 'Regional';
+        IF(newFinancialYear.Gate_Keeping_Model__c=='GKM3')
+        {
+        	prefix = 'Global';
+        }
+        	
+    	if(newFinancialYear.get('Volume_'+prefix+'__c') != 0) 
+    	{
+    		newFinancialYear.Volume_Difference_Value__c = 0;
+    		if( ((Decimal)newFinancialYear.get('Volume_'+prefix+'__c') - (Decimal)newFinancialYear.get('Volume_Local__c') / (Decimal)newFinancialYear.get('Volume_'+prefix+'__c') ).abs() > 0.1)
+    		{
+    			newFinancialYear.Volume_Difference_Value__c = ((Decimal)newFinancialYear.get('Volume_'+prefix+'__c') - (Decimal)newFinancialYear.get('Volume_Local__c')).abs();
+    		}
+    	}
+        
     }
     
     /**
@@ -122,11 +170,12 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     * @para:new sobject record
     */
     public void afterUpdate(SObject oldSo, SObject so)
-    { 
+    {
+      
         //This method has been included as the class implements the ITrigger interface
     }
     
-    /**
+    /** 
     * @description:afterDelete
     * This method is called iteratively for each record to be delete during a AFTER
     * trigger.

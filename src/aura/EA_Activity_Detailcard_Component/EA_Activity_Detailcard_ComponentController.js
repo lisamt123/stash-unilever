@@ -1,13 +1,17 @@
 ({
     getData : function(component, event, helper){
+         component.set("v.showspinner",true);
+        
         var action=component.get("c.getActivities");
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!==''){
                 var items=response.getReturnValue();
                 component.set("v.activities", response.getReturnValue());
+                
                 tabstyle=component.find("myaction") ;
                 $A.util.addClass(tabstyle, "active");
+                helper.getBoolean(component);
                 component.set("v.showdownarrow",true); 
                 helper.getAllThemeColor(component);
                 var index=component.get("index");
@@ -16,7 +20,8 @@
                     $('.carousel').slick({'arrows': false});
                     });
                 });
-            }      
+           
+            }   
         });
         $A.enqueueAction(action);
         var action1 = component.get("c.getGAID");
@@ -37,6 +42,11 @@
             }                   
         });
         $A.enqueueAction(action1);
+        setTimeout( "jQuery('.outer_sec').show();",2000 );
+        setTimeout( "jQuery('.outer_sec1').hide();",2000 );
+        setTimeout( "jQuery('.outer_sec2').show();",2000 );
+        component.set("v.showspinner",false);
+         
     },
     showmyactions1 : function(cmp,event,helper){
         cmp.set("v.showswipe",false);
@@ -49,7 +59,10 @@
         helper.showTabActive(cmp,event,'themes');
     },
     applyfilter : function(component, event, helper) {
-        component.set("v.showdownarrow",true);
+        setTimeout( "jQuery('.outer_sec').hide();",2000);
+        $('.outer_sec').hide();
+          component.set("v.showspinner",true);
+         component.set("v.showdownarrow",true);
         component.set("v.showuparrow",false);
         component.set("v.showDetailCard",false);
         var filter=event.getParam("theme");
@@ -61,7 +74,10 @@
             action.setParams({"themeName" : filter});
             action.setCallback(this, function(response) {
                 var state = response.getState();
+                component.set("v.showspinner",false);
+                //setTimeout( "jQuery('.spinner').hide()",1000);
                 if (state === "SUCCESS" && response.getReturnValue()!==''){
+                    
                     var items=response.getReturnValue();
                     component.set("v.activities", response.getReturnValue());
                     var items=response.getReturnValue();
@@ -81,6 +97,7 @@
                 var state = response.getState();
                 if (state === "SUCCESS" && response.getReturnValue()!=='') {
                     var items=response.getReturnValue();
+                    component.set("v.showspinner",false);
                     component.set("v.activities", response.getReturnValue());
                     setTimeout(function() {
                         $A.run(function() {
@@ -104,6 +121,8 @@
         });  
     },
     callFilterComponent :function(cmp,event,helper){
+        var activity=cmp.get("v.activities");
+        activity.splice(0,activity.length);
         var swipe=cmp.get("v.showswipe");
         var filter=cmp.get("v.showfilter");
         if(swipe === true){
@@ -205,9 +224,13 @@
         cmp.set("v.showDetailCard",false);
     },
     showToDoActivityPage : function(component, event, helper) {
+         
         var actId=event.getParam("activityId");
         var page=event.getParam("pagename");
         var index=event.getParam("index");
+        // Page Index for Backbutton
+        var pageIndex=event.getParam("navigatePageIndex");
+        component.set("v.pageIndex",pageIndex);
         component.set("v.index",index);
         component.set("v.pagename",page);
         component.set("v.activityId",actId);
@@ -219,6 +242,7 @@
         component.set("v.showAllthemebutton",false);
         component.set("v.showtodoactpage",true);
         component.set("v.showDetailCard",false);
+        
     },
     
     gotoInvitation : function(component, event, helper) {
@@ -254,9 +278,16 @@
         helper.getactivities1(cmp);
     },
     showShareComp : function(component, event, helper) {
+       
         var actvity=event.getParam("activity");
+        var id=event.getParam("activityId");
         var page=event.getParam("pagename");
         var index=event.getParam("index");
+         // Page Index for Backbutton
+         
+        var pageIndex=event.getParam("navigatePageIndex");
+        component.set("v.pageIndex",pageIndex);
+        component.set("v.selectedactivityId",id); 
         component.set("v.index",index); 
         component.set("v.pagename",page);
         component.set("v.activityForShare",actvity);
@@ -265,11 +296,14 @@
         component.set("v.showswipe",false);
         component.set("v.showtabs",false);
         component.set("v.MyActions",false);
+       
         component.set("v.showAllthemebutton",false);
         component.set("v.showtodoactpage",false);
         component.set("v.showInvitation",false);
         component.set("v.showchatter",true);
         component.set("v.showDetailCard",false);
+         
+         
     },
     
     showPrevious : function(cmp,event,helper){
@@ -277,6 +311,7 @@
         var index=event.getParam("index");
         var pageParamIndex=event.getParam("navigatePageIndex");
         cmp.set("v.pageIndex",pageParamIndex);
+        console.log("pagename-->  "+pagename);
         if(pagename === 'swipe'){
             cmp.set("v.index",index);
             cmp.set("v.showfeedback",false);

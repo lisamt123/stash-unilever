@@ -1,0 +1,59 @@
+<div class="container" ng-repeat ="report in displayData">
+	<form id="theForm" name ="report.myForm" enctype="multipart/form-data" ng-model="unileverForm">
+		<!-- CANCEL BUTTON -->
+		<div class="row" id="mainform">
+			<div class="col-xs-12 cancelButton">
+				<a class="btn btn-default" href="#">Cancel</a>
+			</div>
+		
+	
+	<!-- form element-->
+	
+	
+<div class="col-xs-12 formElements">
+			
+	<p>
+			<label class="titleLabel">Country <i class="fa fa-star"></i></label>
+			<select class="form-control" name="country" ng-model="selectedcountry"  id="countrylist" ng-options="country as country.Name for country in Country">
+			
+			</select>
+    </p>
+
+	<p>
+			<label class="titleLabel">Town</i></label>
+			<input type='text' class="form-control" name="town" id="townList" ng-model="report.town" placeholder="Town" />
+		
+
+		</p>
+	
+				
+				<p>
+					<label class="titleLabel">Competitor Brand</label>
+				<autocomplete   ng-model="competatorBrandModel" attr-placeholder="Type to search competitor Brand" click-activation="true" data="competatorBrandData" on-type="competatorBrand"  sel-Data="selecteddata" brand-flag="'true'"></autocomplete>
+				</p>
+					
+			<p>
+			<label class="titleLabel">Competitor Name</i></label>
+			<select class="form-control" name="compititorVal" ng-model="competitorNameSelected"  id="competitorName" ng-options="competitor as competitor.Name for competitor in competatorNameData">
+			</select>
+			</p>
+				
+				<p>
+			<label class="titleLabel">Category</label>
+			<autocomplete    ng-model="Retailer" attr-placeholder="E.g. Walmart" click-activation="true" data="uniliverRetailerData" on-type="uniliverRetailer" ></autocomplete>
+				</p>
+
+				
+	</div>
+	
+	
+	
+		<button class="btn btn-primary col-xs-12" ng-click="divShowHide()">
+					<b>Submit this Report</b>
+		</button>
+	</div>
+
+	</form>
+</div>
+
+ 

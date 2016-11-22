@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -81,6 +77,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -111,12 +108,11 @@
         <fullName>HLE_Proposed_high_level_plan_timelines__c</fullName>
         <externalId>false</externalId>
         <label>HLE Proposed high level plan&amp;timelines*</label>
-        <length>255</length>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>HLE_Request_ID__c</fullName>
@@ -193,6 +189,7 @@ null)))</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -301,7 +298,7 @@ null)))</formula>
     <fields>
         <fullName>dt_HLE_Date_PWORF_required__c</fullName>
         <externalId>false</externalId>
-        <label>HLE Date PWORF required</label>
+        <label>PWORF required date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -351,7 +348,17 @@ null)))</formula>
     <fields>
         <fullName>eml_HLE_PB_Email__c</fullName>
         <externalId>false</externalId>
-        <label>HLE Email*</label>
+        <label>Vendor Project Manager Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_SMT_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>SMT group email</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -382,6 +389,16 @@ null)))</formula>
         <fullName>eml_Unilever_project_manager_Email__c</fullName>
         <externalId>false</externalId>
         <label>Unilever project manager Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_VDM_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>VDM group email</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -454,6 +471,7 @@ null)))</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -465,7 +483,7 @@ null)))</formula>
         <label>BPE Effort in man-days*</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -474,10 +492,10 @@ null)))</formula>
     <fields>
         <fullName>num_HLE_Estimated_Accenture_charge__c</fullName>
         <externalId>false</externalId>
-        <label>HLE Estimated Accenture charge</label>
+        <label>HLE Estimated Accenture charge*</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -489,7 +507,7 @@ null)))</formula>
         <label>HLE Estimated man-days*</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -533,7 +551,7 @@ null)))</formula>
     <fields>
         <fullName>ph_HLE_PB_Contact_No__c</fullName>
         <externalId>false</externalId>
-        <label>HLE Contact No*</label>
+        <label>Vendor Project Manager Contact No*</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -572,6 +590,7 @@ null)))</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -616,6 +635,7 @@ null)))</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -643,6 +663,7 @@ null)))</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -684,6 +705,7 @@ null)))</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -729,12 +751,11 @@ null)))</formula>
         <fullName>txt_Additional_information__c</fullName>
         <externalId>false</externalId>
         <label>Additional Information</label>
-        <length>255</length>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txt_Assumptions__c</fullName>
@@ -742,12 +763,11 @@ null)))</formula>
         <externalId>false</externalId>
         <inlineHelpText>Any known assumptions</inlineHelpText>
         <label>Assumptions*</label>
-        <length>255</length>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txt_BPE_Accenture_Demand_ID__c</fullName>
@@ -775,10 +795,11 @@ null)))</formula>
         <fullName>txt_BPE_Key_assumptions__c</fullName>
         <externalId>false</externalId>
         <label>BPE Key assumptions*</label>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txt_BPE_Title__c</fullName>
@@ -808,12 +829,11 @@ null)))</formula>
         <externalId>false</externalId>
         <inlineHelpText>Relevant background context information on the project, including purpose, objectives, business benefits.</inlineHelpText>
         <label>Background*</label>
-        <length>255</length>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txt_Dependencies__c</fullName>
@@ -821,12 +841,11 @@ null)))</formula>
         <externalId>false</externalId>
         <inlineHelpText>Any dependencies on other IT or non-IT projects or resources</inlineHelpText>
         <label>Dependencies*</label>
-        <length>255</length>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txt_HLE_Accenture_Area__c</fullName>
@@ -842,13 +861,12 @@ null)))</formula>
     <fields>
         <fullName>txt_HLE_Accenture_estimated_project_char__c</fullName>
         <externalId>false</externalId>
-        <label>HLE Accenture estimated project charge*</label>
-        <length>255</length>
-        <required>false</required>
+        <label>Estimated project charges summary</label>
+        <length>65000</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txt_HLE_Accenture_reference__c</fullName>
@@ -865,10 +883,11 @@ null)))</formula>
         <fullName>txt_HLE_Assumptions_Risks_Qualifying__c</fullName>
         <externalId>false</externalId>
         <label>HLE Assumption/Risks/Qualifying Info*</label>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txt_HLE_Commercial_caveats__c</fullName>
@@ -916,12 +935,11 @@ null)))</formula>
         <fullName>txt_HLE_Scope__c</fullName>
         <externalId>false</externalId>
         <label>HLE Scope*</label>
-        <length>255</length>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txt_HLE_Skill_Resources_Blend_rate__c</fullName>
@@ -938,10 +956,11 @@ null)))</formula>
         <fullName>txt_HLE_Solution_overview_approach__c</fullName>
         <externalId>false</externalId>
         <label>HLE Solution overview/approach*</label>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txt_NA_Notes__c</fullName>
@@ -972,12 +991,11 @@ null)))</formula>
         <externalId>false</externalId>
         <inlineHelpText>Detail regarding scope and scale</inlineHelpText>
         <label>Project Description/Specification*</label>
-        <length>255</length>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txt_Project_type__c</fullName>
@@ -1022,12 +1040,11 @@ null)))</formula>
         <externalId>false</externalId>
         <inlineHelpText>Any known risks and issues</inlineHelpText>
         <label>Risks and Issues*</label>
-        <length>255</length>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txt_SLA1__c</fullName>
@@ -1055,12 +1072,11 @@ null)))</formula>
         <externalId>false</externalId>
         <inlineHelpText>Indicate whether this project may require the provision of additional software or licenses either by Unilever or by Accenture (or both)</inlineHelpText>
         <label>Software/Licensing Requirements*</label>
-        <length>255</length>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txt_Status__c</fullName>
@@ -1176,6 +1192,18 @@ null)))</formula>
     </fields>
     <label>HLE Request</label>
     <listViews>
+        <fullName>All_HLE_Request</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>dt_Planned_start_date__c</columns>
+        <columns>dt_Planned_end_date__c</columns>
+        <columns>txt_Project_type__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>All HLE Request</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>Assigned_TO_SMT</fullName>
         <columns>NAME</columns>
         <columns>pkl_Status__c</columns>
@@ -1206,6 +1234,8 @@ null)))</formula>
         <language>en_US</language>
         <sharedTo>
             <group>CAP_SMT_Group</group>
+            <group>CAP_ULFT_Group</group>
+            <group>CAP_ULPT_Group</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -1224,6 +1254,33 @@ null)))</formula>
         <sharedTo>
             <group>CAP_SMT_Group</group>
             <group>CAP_VDM_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_HLE_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_HLE_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_HLE_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2548,7 +2605,7 @@ p.id = &quot;{!CPA_HLE_Request__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;; 
 //alert(p.pkl_Status__c); 
 try { 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -2594,7 +2651,7 @@ p.id = &quot;{!CPA_HLE_Request__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;; 
 p.Estimate_Type__c = &quot;{!CPA_HLE_Request__c.Estimate_Type__c }&quot;; 
 p.Estimates_Status__c = &quot;{!CPA_HLE_Request__c.Estimates_Status__c }&quot;; 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -2649,7 +2706,7 @@ p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;;
 
 var isValidateFlag = sforce.apex.execute(&quot;CPA_HLERequInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id}); 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -2709,7 +2766,7 @@ p.Estimates_Status__c = &quot;{!CPA_HLE_Request__c.Estimates_Status__c }&quot;;
 p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;; 
 var isValidateFlag = sforce.apex.execute(&quot;CPA_HLERequInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id}); 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 

@@ -1,0 +1,43 @@
+    <labels>
+        <fullName>im_issueCreationDialogue_New</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_New</shortDescription>
+        <value>You must submit this issue before any further action is taken</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_NewTagline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_NewTagline</shortDescription>
+        <value>You may continue adding to and refining this issue if you are the owner. However once submitted you will have limited access to some areas of this issue.</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_Reviewed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_Reviewed</shortDescription>
+        <value>Issue Reviewed</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_ReviewedTagline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_ReviewedTagline</shortDescription>
+        <value>This issue is reviewed by CIMT</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_Submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_Submitted</shortDescription>
+        <value>Issue Submitted</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_SubmittedTagline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_SubmittedTagline</shortDescription>
+        <value>The issue has been submitted by the issue reporter</value>
+    </labels>
+    

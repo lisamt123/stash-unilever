@@ -1,3 +1,19 @@
+/**********************************************************************  
+Name:  Amr_AdManagerHelper_CC Copyright © 2015  Salesforce  
+====================================================== 
+====================================================== 
+Purpose:                                                           
+-------   This is a helper class for AdManager Controller.                                                         
+ ====================================================== 
+ ====================================================== 
+ History                                                             
+ -------                                                             
+ VERSION   AUTHOR                        DATE              DETAIL                    Description    
+ 1.0       Mindtree                  04/02/2016      INITIAL DEVELOPMENT            CSR: 
+ ***********************************************************************/
+
+
+
 public with sharing Class Amr_AdManagerHelper_CC{
 
 
@@ -12,9 +28,16 @@ public with sharing Class Amr_AdManagerHelper_CC{
         admanagerObj = new Amr_AdManagerController_CC(); 
     }
     
+        /*******************************************************************    
+   Purpose:  This method is check the production activity type validation                                      
+   Parameters: Job Detail(Object)
+   Returns: It’s return a Boolean value.
+   ********************************************************************/ 
+   
+   
     public Boolean productionActivityTypeValidation( Amr_Job_Details__c jobDetailsObj){
     
-   			Boolean okayToSaveCheck = true;
+            Boolean okayToSaveCheck = true;
             if(!jobDetailsObj.NewOriginalMaster__c && !jobDetailsObj.LanguageAdaptionMaster__c  && !jobDetailsObj.Create_Additional_Material__c && !jobDetailsObj.ReworkExistingMaterial__c && !jobDetailsObj.BuyoutsTalent__c && !jobDetailsObj.BuyoutsMusic__c ){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Production_activity_types_at_least_one_option_must_be_selected));
                 okayToSaveCheck =false;                
@@ -235,7 +258,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
     
       /*******************************************************************    
    Purpose:  This method is used to insert Job                                 
-   Parameters: 
+   Parameters: Country(String), vategory(String), Brand position(String), Brand(String), Job Detail(Object), project name(String), Brand Value(List<SelectOption>)
    Returns: It’s return Pagereference
    ********************************************************************/ 
         public PageReference createJob(String selectedCountryValue, String categoryNameValue, String brandPosNameValue,  String brandNameFromPageValue,Amr_Job_Details__c jobDetailsObj, String projectNameFromPageValue, List<SelectOption> listOfBrandValue){
@@ -243,14 +266,11 @@ public with sharing Class Amr_AdManagerHelper_CC{
                       
                     Amr_CurrencyConversionRate__c currencyObject =[SELECT Currency_Unit__c,Name FROM Amr_CurrencyConversionRate__c WHERE Currency_Unit_To_Euro__c =:double.valueOf(selectedCountryValue) limit 1];
                     String currencyFinalString = currencyObject.Name+Amr_ConstantForAdManager.DASH+currencyObject.Currency_Unit__c;
-                    List<MDO_BrandPositions__c> MDOBrandPositionslst =[select  brand_position_id__c,product_category_id__c,brand_id__c from MDO_BrandPositions__c where product_category_id__r.name = :categoryNameValue AND brand_position_id__r.name = :brandPosNameValue AND brand_id__r.name = :brandNameFromPageValue];
+
+                    jobDetailsObj.ProductCategory__c = [SELECT Id FROM MDO_Category__c WHERE Name =:categoryNameValue AND status__c = 'Active' LIMIT 1].Id;
+                    jobDetailsObj.Brand_Position__c = [SELECT Id FROM MDO_BrandPosition__c WHERE Name =:brandPosNameValue AND status__c = 'Active' LIMIT 1].Id;
+                    jobDetailsObj.Brand_Final__c = [SELECT Id FROM MDO_Brand__c WHERE Name =:brandNameFromPageValue AND status__c = 'Active' LIMIT 1].Id;
                     
-                    if(MDOBrandPositionslst.size()>0){
-                        MDO_BrandPositions__c MDOobj = MDOBrandPositionslst[0];
-                        jobDetailsObj.ProductCategory__c = MDOobj.product_category_id__c;
-                        jobDetailsObj.Brand_Position__c = MDOobj.brand_position_id__c;
-                        jobDetailsObj.Brand_Final__c = MDOobj.brand_id__c;
-                    }
                     jobDetailsObj.Currency_Conversion_Country_List__c = currencyFinalString;
                                      
                     adManagerNumberCreation(jobDetailsObj);
@@ -289,7 +309,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
         } 
          /*******************************************************************    
    Purpose:  This method is used to trigger Email when amount given is greater than Thresold                                      
-   Parameters: 
+   Parameters:  Job detail object(object), Category(String), Brand position(String), Brand(String)
    Returns: It’s return Nothing
    ********************************************************************/ 
     // For Threshold Reach
@@ -329,7 +349,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
 
     /*******************************************************************    
    Purpose:  This method is used to create Ad Manager Number Denpending on Brand Name Value                                       
-   Parameters: 
+   Parameters: Job Detail Object(Object)
    Returns: It’s return Nothing
    ********************************************************************/ 
 
@@ -367,7 +387,7 @@ public with sharing Class Amr_AdManagerHelper_CC{
     }
      /*******************************************************************    
    Purpose:  This method is used to allocate job to RAP                                         
-   Parameters: 
+   Parameters: Job Object(String)
    Returns: It’s return Nothing
    ********************************************************************/ 
 
@@ -389,17 +409,15 @@ public with sharing Class Amr_AdManagerHelper_CC{
                         emailIds.add(obj.Primary_RAP_Email__c); 
                 }
             }
-            system.debug('emailIds!!'+emailIds);
             List<PermissionSetAssignment> userList =  [SELECT Id,Assignee.Name,Assignee.id,Assignee.Email FROM PermissionSetAssignment where PermissionSet.Name = :Label.Amr_RAP AND Assignee.Email = :emailIds ];
-           system.debug('userList!!'+userList);
             if(userList.size()>0){
-            	if(userinfo.getuserid() != userList[0].Assignee.id){
-	                Amr_Job_Details__Share jobShareObj  = new Amr_Job_Details__Share();
-	                jobShareObj.ParentId = jobDetailsNew.JobId;
-	                jobShareObj.UserOrGroupId = userList[0].Assignee.id;               
-	                jobShareObj.AccessLevel = Amr_ConstantForAdManager.EDIT;
-	                insert jobShareObj;
-            	}
+                if(userinfo.getuserid() != userList[0].Assignee.id){
+                    Amr_Job_Details__Share jobShareObj  = new Amr_Job_Details__Share();
+                    jobShareObj.ParentId = jobDetailsNew.JobId;
+                    jobShareObj.UserOrGroupId = userList[0].Assignee.id;               
+                    jobShareObj.AccessLevel = Amr_ConstantForAdManager.EDIT;
+                    insert jobShareObj;
+                }
                 Amr_AdManagerController_CC.insertJobAllocationData(jobDetailsNew.JobId,userList[0].Assignee.id, userList[0].Assignee.Email);
            }
         }

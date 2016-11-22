@@ -24,7 +24,7 @@ public with sharing virtual class Oblix_SWOPparentController {
             if(NULL == selected_sow){
                 return Oblix_PermissionHandler.hasEditAccess(null);
             } else{
-                return Oblix_PermissionHandler.hasEditAccess(selected_sow.Id);
+                return Oblix_PermissionHandler.hasEditAccess(selected_sow);
             }
         }
     }
@@ -51,7 +51,39 @@ public with sharing virtual class Oblix_SWOPparentController {
 
     public Boolean can_see_financial_fields {
         get{
-            return Oblix_PermissionHandler.canSeeFinancialField(selected_sow.SOW_Status__c, selected_sow.Approved_version__c);
+            if(NULL == selected_sow){
+                return false;
+            } else{
+                return Oblix_PermissionHandler.canSeeFinancialField(selected_sow.SOW_Status__c, selected_sow.Approved_version__c);
+            }
+        }
+    }
+
+    //Identifies NFY campaign that is in the middle of Roll Over process for which only
+    //Projected stages chevron should be editable. Above does not apply if that campaign is cloned.
+    public Boolean is_NFY_campaign_in_the_middle_of_rollover {
+        get {
+            return selected_project.Campaign_PFY__c <> NULL && selected_project.Campaign_PFY__r.Financial_Year__r.SOW_Status__c != Oblix_Utils.SOW_STATUS_FINALISED;
+        }
+    }
+
+    public Boolean can_see_advanced_links_during_rollover {
+        get {
+            return !is_NFY_campaign_in_the_middle_of_rollover || 
+                    (
+                        is_NFY_campaign_in_the_middle_of_rollover && 
+                        (
+                            Oblix_PermissionHandler.isSystemAdmin() || 
+                            Oblix_PermissionHandler.hasSuperUserpermissionSet()
+                        )
+                    ); 
+        }
+    }
+
+    //Only UL users can see warning about SOW going through a rollover if SOW has at least 1 B/Fwd Campaign
+    public Boolean can_see_rollover_warning {
+        get {
+            return !Oblix_PermissionHandler.hasAG1permissionSet() && !Oblix_PermissionHandler.hasAG2permissionSet() && !Oblix_PermissionHandler.hasAG3permissionSet() && !Oblix_PermissionHandler.hasUL3permissionSet();
         }
     }
 
@@ -81,13 +113,13 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @author       Shahin Movahedi
     * @date         2016-01-17
     * @description  depending on the sow Id in scope and the required fields
-    				populate the selected sow in scope - used by sub-classes
+                    populate the selected sow in scope - used by sub-classes
     ********************************************************************************/
     public Marketing_SOW__c getSOW(String sow_id, List<String> fields_to_query, String related_query_string){
 
-    	Marketing_SOW__c sow;
+        Marketing_SOW__c sow;
 
-    	try{
+        try{
 
             if (String.isNotBlank(sow_id) && !fields_to_query.isEmpty()){
 
@@ -104,6 +136,8 @@ public with sharing virtual class Oblix_SWOPparentController {
         }
         catch(Exception ex){
                 return null;
+                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, ex.getMessage()));
+
         }
 
         return sow;
@@ -113,21 +147,21 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @author       Shahin Movahedi
     * @date         2016-01-17
     * @description  depending on the campaign Id in scope and the required fields
-    				populate the selected campaign in scope - used by sub-classes
+                    populate the selected campaign in scope - used by sub-classes
     ********************************************************************************/
     public Oblix_SOW_Projects__c getCampaign(String campaign_id, List<String> fields_to_query, String related_query_string){
 
         Oblix_SOW_Projects__c sow_project;
 
         try{
-        	
-        	if (String.isNotBlank(campaign_id) && !fields_to_query.isEmpty()){
+            
+            if (String.isNotBlank(campaign_id) && !fields_to_query.isEmpty()){
 
                 Id converted_campaign_id = (Id) campaign_id;
-
+               
                 // build SOQL for querying campaign fields
                 String s_query_string = buildSOQLquery(fields_to_query, 'Oblix_SOW_Projects__c', related_query_string, 'Id = ' + '\'' + converted_campaign_id + '\'',null,null );
-                    sow_project = Database.query(s_query_string);
+                sow_project = Database.query(s_query_string);
             }
             else{
                 return null;
@@ -136,6 +170,8 @@ public with sharing virtual class Oblix_SWOPparentController {
         }
         catch(Exception ex){
             return null;
+                            ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, ex.getMessage()));
+
             //ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid Id or you do not have permission to view this record!'));
         }
         return sow_project;
@@ -147,7 +183,7 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @description  retrieves attachments attached to this SOW
     ********************************************************************************/
     public List<Attachment> getSOWAttachments(Id sowId){
-        return [SELECT Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate FROM Attachment WHERE ParentId = :sowId];
+        return [SELECT Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate, Description, OwnerId FROM Attachment WHERE ParentId = :sowId order by CreatedDate DESC];
     }
 
     /*******************************************************************************
@@ -156,12 +192,13 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @description  deletes a single attachment attached to this SOW
     ********************************************************************************/
     public void deleteAttachment(){
+        system.debug('$$$ ' + deleteAttachmentId);
         if(deleteAttachmentId != null){
             try{
                 delete new Attachment(Id = deleteAttachmentId);
                 liso_attachments = getSOWAttachments(selected_sow.Id);
             } catch (DmlException e){
-                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Error deleting attachment: ' + e.getMessage()));
+                ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'You do not have permission to delete this attachment'));
             }
         }
     }
@@ -175,14 +212,23 @@ public with sharing virtual class Oblix_SWOPparentController {
     public virtual PageReference checkUserHasPermissionToSOW(){
 
         if (NULl == selected_sow){
-            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
-            permission_denied_page.setRedirect(true);
-            return permission_denied_page;            
+            return redirectToPermissionDeniedPage();
         }
         else{
             return null;
         }
 
+    }
+
+    /*******************************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-17
+    * @description  Send user to permission denied page
+    ********************************************************************************/
+    public PageReference redirectToPermissionDeniedPage(){
+        Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
+        permission_denied_page.setRedirect(true);
+        return permission_denied_page;   
     }
 
     /*******************************************************************************
@@ -194,9 +240,7 @@ public with sharing virtual class Oblix_SWOPparentController {
     public PageReference checkUserHasPermissionToProject(){
 
         if (NULl == selected_project){
-            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
-            permission_denied_page.setRedirect(true);
-            return permission_denied_page;            
+            return redirectToPermissionDeniedPage();            
         }
         else{
             return null;

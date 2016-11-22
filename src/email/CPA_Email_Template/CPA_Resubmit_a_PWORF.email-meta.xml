@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>CPA Resubmit a PWORF</name>
     <style>none</style>
-    <subject>{!CPA_PWORF__c.auto_PWORF_ID__c} : Resubmitted</subject>
+    <subject>{!CPA_PWORF__c.auto_PWORF_ID__c} : {!CPA_PWORF__c.txta_Title__c} :{!CPA_PWORF__c.pkl_Status__c}</subject>
     <type>custom</type>
 </EmailTemplate>

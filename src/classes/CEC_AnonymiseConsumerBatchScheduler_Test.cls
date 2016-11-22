@@ -13,13 +13,13 @@ VERSION    AUTHOR            DATE            DETAIL
 1.1      Sathish           MAR-2016        Code Refactoring.
 ***********************************************************************/
 @isTest(SeeAllData = false)
-public class CEC_AnonymiseConsumerBatchScheduler_Test {
+public with sharing class CEC_AnonymiseConsumerBatchScheduler_Test {
    
     @testSetup static void setUpTestData() {
         User u = CEC_TestDataFactory.createStandardCECTestUser();
         System.runAs(u) {
             Date d1 = System.today().addDays(-3);
-            String personRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Person Account').getRecordTypeId();
+            //String personRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Person Account').getRecordTypeId();
             
             Account accountObj1 = new Account(Salutation='Mr',FirstName='Peter',LastName='Parker',PersonEmail='abc@abc00DE0000000bbLj.com',Phone='12121212',BillingStreet='St peters',PersonMailingStreet='St peters',ShippingStreet='St peters',Retention_Date__c=d1,Anonymise_check__c=true);
            
@@ -49,10 +49,10 @@ public class CEC_AnonymiseConsumerBatchScheduler_Test {
             List<account> resultAccountList = [ SELECT id,Anonymise_check__c, Date_Anonymized__c, 
                                                 Salutation,FirstName,LastName,PersonEmail,Phone,
                                                 BillingStreet, PersonMailingStreet, ShippingStreet, 
-                                                Retention_Date__c from Account];
+                                                Retention_Date__c from Account limit 10];
             
             for (Account accountObj : resultAccountList) {
-                if (accountObj.Anonymise_check__c == false && accountObj.Date_Anonymized__c == null) {
+                if (!accountObj.Anonymise_check__c && accountObj.Date_Anonymized__c == null) {
                     System.assertNotEquals(accountObj.PersonEmail, null);
                     System.assertNotEquals(accountObj.Salutation, null);
                     System.assertNotEquals(accountObj.FirstName, null);
@@ -63,7 +63,7 @@ public class CEC_AnonymiseConsumerBatchScheduler_Test {
                     System.assertNotEquals(accountObj.ShippingStreet, null);
                     System.assertEquals(accountObj.Retention_Date__c, null);
                     System.assertEquals(accountObj.Anonymise_check__c, false);
-                } else if (accountObj.Anonymise_check__c == false && accountObj.Date_Anonymized__c != null){
+                } else if (!accountObj.Anonymise_check__c && accountObj.Date_Anonymized__c != null){
                     System.assertEquals(accountObj.PersonEmail, null);
                     System.assertEquals(accountObj.Salutation, null);
                     System.assertEquals(accountObj.FirstName, null);
@@ -89,7 +89,17 @@ public class CEC_AnonymiseConsumerBatchScheduler_Test {
             Test.startTest(); 
             CEC_AnonymiseConsumer_BatchScheduler scheduler = new CEC_AnonymiseConsumer_BatchScheduler();
             database.executeBatch(scheduler);            
-            Test.stopTest();            
+            Test.stopTest(); 
+            
+            Account accountObj = [Select Salutation,FirstName,PersonEmail,Phone,PersonOtherPhone,PersonMobilePhone,PersonHomePhone ,BillingStreet ,PersonMailingStreet ,ShippingStreet,Anonymise_check__c FROM Account WHERE Date_Anonymized__c != null Limit 1] ;
+                    System.assertEquals(accountObj.PersonEmail, null);
+                    System.assertEquals(accountObj.Salutation, null);
+                    System.assertEquals(accountObj.Phone, null);
+                    System.assertEquals(accountObj.BillingStreet, null);
+                    System.assertEquals(accountObj.PersonMailingStreet, null);
+                    System.assertEquals(accountObj.ShippingStreet, null);
+                    System.assertEquals(accountObj.Phone, null);                    
+                    System.assertEquals(accountObj.Anonymise_check__c, false);          
         }
     }
     

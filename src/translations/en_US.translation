@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customApplications>
+        <label><!-- Mobile Channel --></label>
+        <name>ICB_Mobile_Channel</name>
+    </customApplications>
+	<customApplications>
         <label><!-- Agency Fees --></label>
         <name>Agency_Fees</name>
     </customApplications>
@@ -9580,6 +9584,178 @@
         <label><!-- User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos; --></label>
         <name>uw_Inoplan_error_nullvalue</name>
     </customLabels>
+	    <customLabels>
+        <label><!-- ICB BALANCE --></label>
+        <name>ICB_BALANCE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB_BALANCE UNIT --></label>
+        <name>ICB_BALANCE_UNIT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB_BUTTON_BACK --></label>
+        <name>ICB_BUTTON_BACK</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB BUTTON CANCEL --></label>
+        <name>ICB_BUTTON_CANCEL</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB BUTTON CLOSE --></label>
+        <name>ICB_BUTTON_CLOSE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB BUTTON CONFIRM --></label>
+        <name>ICB_BUTTON_CONFIRM</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB BUTTON GOLDEN MINUTE --></label>
+        <name>ICB_BUTTON_GOLDEN_MINUTE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB BUTTON OPEN --></label>
+        <name>ICB_BUTTON_OPEN</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB CHECK HASHTAG --></label>
+        <name>ICB_CHECK_HASHTAG</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB CONCLUDED VISIT STATUS --></label>
+        <name>ICB_CONCLUDED_VISIT_STATUS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB CockPitHeader --></label>
+        <name>ICB_CockPitHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB_Distance_Limit --></label>
+        <name>ICB_Distance_Limit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB ENTRY --></label>
+        <name>ICB_ENTRY</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB_ERROR_MESSAGE --></label>
+        <name>ICB_ERROR_MESSAGE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Product Impulse Family --></label>
+        <name>ICB_FAMILY_IMPULSE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB HeaderCloseSale --></label>
+        <name>ICB_HeaderCloseSale</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB INVENTORY HEADER SUB TITLE --></label>
+        <name>ICB_INVENTORY_HEADER_SUB_TITLE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB_INVENTORY_HEADER_SUB_TITLES --></label>
+        <name>ICB_INVENTORY_HEADER_SUB_TITLES</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB INVENTORY NAME --></label>
+        <name>ICB_INVENTORY_NAME</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB PREFIX SOBJECT EVENT --></label>
+        <name>ICB_PREFIX_SOBJECT_EVENT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Header value singular --></label>
+        <name>ICB_PRICELIST_HEADER_SUB_TITLE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Header value Plural --></label>
+        <name>ICB_PRICELIST_HEADER_SUB_TITLES</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Product Description --></label>
+        <name>ICB_PROD_DESCRIPTION</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB PROD PURCHASE VALUE --></label>
+        <name>ICB_PROD_PURCHASE_VALUE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB PROD SALESMAN VALUE --></label>
+        <name>ICB_PROD_SALESMAN_VALUE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sale Value --></label>
+        <name>ICB_PROD_SALE_VALUE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB Price Book Description --></label>
+        <name>ICB_Price_Book_Description</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB Price Book RecordTypeId --></label>
+        <name>ICB_Price_Book_RecordTypeId</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB REC TYPE ICE CREAM VISIT --></label>
+        <name>ICB_REC_TYPE_ICE_CREAM_VISIT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB REC TYPE STANDARD CONTACT --></label>
+        <name>ICB_REC_TYPE_STANDARD_CONTACT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB SOBJECT CONTACT --></label>
+        <name>ICB_SOBJECT_CONTACT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB SOBJECT EVENT --></label>
+        <name>ICB_SOBJECT_EVENT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB STATE RESPONSE SUCCESS --></label>
+        <name>ICB_STATE_RESPONSE_SUCCESS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB TEXT ALERT --></label>
+        <name>ICB_TEXT_ALERT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB TEXT CHECK IN --></label>
+        <name>ICB_TEXT_CHECK_IN</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB TEXT ERROR --></label>
+        <name>ICB_TEXT_ERROR</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB TEXT INFO --></label>
+        <name>ICB_TEXT_INFO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB TEXT SUCCESS --></label>
+        <name>ICB_TEXT_SUCCESS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB TEXT SUCCESS 2 --></label>
+        <name>ICB_TEXT_SUCCESS2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB TEXT WARNING --></label>
+        <name>ICB_TEXT_WARNING</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title of the product --></label>
+        <name>ICB_TITLE_PRODUCT</name>
+    </customLabels>   
+	 <customLabels>
+        <label><!-- ICE Type Operator --></label>
+        <name>ICE_Type_Operator</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB UPDATE INVENTORY --></label>
+        <name>ICB_UPDATE_INVENTORY</name>
+    </customLabels>
     <customPageWebLinks>
         <label><!-- Terms of Use --></label>
         <name>Terms_Of_Use</name>
@@ -9743,6 +9919,22 @@
     <customTabs>
         <label><!-- Issues --></label>
         <name>im_Issues</name>
+    </customTabs>
+	<customTabs>
+        <label><!-- Fechamento --></label>
+        <name>ICB_Close_Sales</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Abertura --></label>
+        <name>ICB_Cockpit</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Estoque --></label>
+        <name>ICB_Inventory</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Lista de Preços --></label>
+        <name>ICB_Price_List</name>
     </customTabs>
     <quickActions>
         <label><!-- Approve --></label>

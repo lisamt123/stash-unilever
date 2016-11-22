@@ -61,7 +61,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Active</label>
-        <trackFeedHistory>true</trackFeedHistory>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -84,7 +84,7 @@
         <externalId>false</externalId>
         <label>Description</label>
         <length>600</length>
-        <trackFeedHistory>true</trackFeedHistory>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
@@ -97,7 +97,7 @@
         <precision>4</precision>
         <required>true</required>
         <scale>0</scale>
-        <trackFeedHistory>true</trackFeedHistory>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -110,7 +110,7 @@
         <precision>2</precision>
         <required>true</required>
         <scale>0</scale>
-        <trackFeedHistory>true</trackFeedHistory>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -123,7 +123,7 @@
         <precision>1</precision>
         <required>false</required>
         <scale>0</scale>
-        <trackFeedHistory>true</trackFeedHistory>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -134,7 +134,7 @@
         <externalId>false</externalId>
         <label>Top Tip</label>
         <length>600</length>
-        <trackFeedHistory>true</trackFeedHistory>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
@@ -144,6 +144,7 @@
     <listViews>
         <fullName>All</fullName>
         <columns>RECORDTYPE</columns>
+        <columns>Rating__c</columns>
         <columns>NAME</columns>
         <columns>Activity_Points__c</columns>
         <columns>Description__c</columns>
@@ -216,36 +217,46 @@
     </listViews>
     <nameField>
         <label>Title</label>
-        <trackFeedHistory>true</trackFeedHistory>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>Everyday Actions</pluralLabel>
-    <recordTypeTrackFeedHistory>true</recordTypeTrackFeedHistory>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Boosting_Wellbeing</fullName>
         <active>true</active>
-        <description>Boosting Wellbeing will be Theme for an Activity.</description>
-        <label>Boosting Wellbeing</label>
+        <description>My Wellbeing will be Theme for an Activity.</description>
+        <label>My Wellbeing</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Bright_Future</fullName>
+        <active>true</active>
+        <label>Bright Future</label>
     </recordTypes>
     <recordTypes>
         <fullName>Building_Inclusion</fullName>
         <active>true</active>
-        <description>Building Inclusion will be Theme for an Activity.</description>
-        <label>Building Inclusion</label>
+        <description>Diversity &amp; Inclusion will be Theme for an Activity.</description>
+        <label>Diversity &amp; Inclusion</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>My_Development</fullName>
+        <active>true</active>
+        <label>My Development</label>
     </recordTypes>
     <recordTypes>
         <fullName>People_Champion</fullName>
         <active>true</active>
-        <description>People Champion will be Theme for an Activity.</description>
-        <label>People Champion</label>
+        <description>Line Manager will be Theme for an Activity.</description>
+        <label>Line Manager</label>
     </recordTypes>
     <recordTypes>
         <fullName>Working_Effectively</fullName>
         <active>true</active>
-        <description>Working Effectively will be Theme for an Activity.</description>
-        <label>Working Effectively</label>
+        <description>Ways of Working will be Theme for an Activity.</description>
+        <label>Ways of Working</label>
     </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>

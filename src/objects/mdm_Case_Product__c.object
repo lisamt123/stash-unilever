@@ -247,6 +247,22 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Product_Name_Other__c</fullName>
+        <description>CEC Product Name &amp; Other field will mention (FS)  for all food products</description>
+        <externalId>false</externalId>
+        <formula>IF( LOWER(Product_Status__c) = &apos;inactive&apos; , 
+IF(ISBLANK(Other__c) &amp;&amp; ISBLANK(Last_Sold_Manufactured__c) , Name &amp; &quot; *DL&quot;, 
+IF(ISBLANK(Other__c), Name &amp; &quot; *DL&quot; &amp; &quot; LS:&quot; &amp; Last_Sold_Manufactured__c , 
+IF(NOT(ISBLANK(Other__c))&amp;&amp; ISBLANK(Last_Sold_Manufactured__c),Name &amp; &quot; (&quot; &amp; Other__c &amp; &quot;)&quot; &amp; &quot; *DL&quot;, 
+Name &amp; &quot; (&quot; &amp; Other__c &amp; &quot;)&quot; &amp; &quot; *DL&quot; &amp; &quot; LS:&quot; &amp; Last_Sold_Manufactured__c ))), 
+IF(ISBLANK(Other__c), Name , Name &amp; &quot; (&quot; &amp; Other__c &amp; &quot;)&quot;))</formula>
+        <label>Product Name &amp; Other</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Product_Status__c</fullName>
         <externalId>false</externalId>
@@ -284,6 +300,7 @@
         <columns>NAME</columns>
         <columns>Brand__c</columns>
         <columns>Consumer_Product_Descriptor_Local_Lang__c</columns>
+        <columns>GTIN_EAN_UPC_Code__c</columns>
         <columns>Global_CPG_Code__c</columns>
         <columns>Form__c</columns>
         <columns>ISO_Country_Code__c</columns>

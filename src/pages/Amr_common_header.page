@@ -1,38 +1,25 @@
 <apex:page controller="Amr_CommonController_CC">    
     <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/common-header.css')}" />
     
-    <style type='text/css'>
-        /*
-        .inactivemask {
-            height: 100%;
-            position: absolute;
-            width: 100%;
-            z-index:9999;
-            background-color:#F8F8F8;
-            opacity:0.5;
-        }
-        */
+    <style type='text/css'>        
         @media all and (-ms-high-contrast: none),(-ms-high-contrast: active) {
             .done-for-today {
                 line-height:20px;
-            }
-            /*.inactivemask {           
-                opacity:0.8 !important;
-                 background:#FFFFFF !important; 
-                 filter:alpha(opacity=0.8) !important;
-            }
-            */
+            }            
         }
+        .lower-container-logo {
+           	display:none;
+         }
+         .lower-container {
+		    height: 20px !important;
+		}
     </style>
     
     <!--[if IE]>
     <style type='text/css'>
         .done-for-today {
             line-height:20px;
-        }
-      //  .inactivemask {           
-        //    opacity:1 !important;
-    //  }
+        }      
     </style>
     <![endif]-->
     
@@ -82,13 +69,7 @@
         .bodyDiv {        
             background-image: url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/pattern-2.png')}");            
         }                  
-        .holder-class label {
-            float: left;
-            margin: 0;
-        }     
-        .holder-class-star {
-            line-height:40px;
-        }
+        
     </style>
     <apex:form >
     <div class="header-container">
@@ -104,7 +85,7 @@
                     Hi {!$User.FirstName} {!$User.LastName}, Welcome to AdManager
                 </div>          
                 <div class="right upper-container-right-logo">
-                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/admanager.png')}" class="height75" alt="header" />
+                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/admanager_90.png')}" alt="header" />
                 </div>
                 <div class="right done-for-today" style="height:16px;">
                     <div class="left">                  
@@ -126,8 +107,8 @@
             <div class="clear">
             </div>
         </div>      
-        <div class="lower-container margin-top20">
-            <div class="left lower-container-logo">                
+        <div class="lower-container margin-top20" style="height:150px;"> 
+            <div class="left lower-container-logo">       
                 <div class="left"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/admanager.png')}" alt="banner" /></div>
                 <div class="left logo-banner-small"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/animatics.png')}" alt="banner" /></div>
                 <div class="left logo-banner-small"><img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/email-templates/music.png')}" alt="banner" /></div>

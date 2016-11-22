@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -222,6 +218,16 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>eml_SMT_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>SMT group email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>eml_Unilever_Budget_Approver_Email__c</fullName>
         <description>Unilever Budget Approver Email</description>
         <externalId>false</externalId>
@@ -237,6 +243,16 @@
         <description>Unilever Content Approver Email</description>
         <externalId>false</externalId>
         <label>Unilever Content Approver Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_VDM_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>VDM group email</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -326,10 +342,6 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Analyse</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Design</fullName>
                 <default>false</default>
             </picklistValues>
@@ -349,8 +361,13 @@
                 <fullName>Other</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Analyze</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -452,6 +469,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -484,6 +502,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -532,6 +551,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -700,6 +720,46 @@
     </fields>
     <label>LOI</label>
     <listViews>
+        <fullName>All_LOI</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All LOI</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_ULFT_Group</group>
+            <group>CAP_ULPT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_LOI</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_LOI</fullName>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_LOI</fullName>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>LOI_Assigned_to_SMT</fullName>
         <columns>NAME</columns>
         <columns>lkp_PWORF__c</columns>
@@ -779,7 +839,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -889,7 +949,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -999,7 +1059,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1108,7 +1168,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1217,7 +1277,7 @@
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
-                <fullName>Analyse</fullName>
+                <fullName>Analyze</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1368,7 +1428,7 @@ var p = new sforce.SObject(&apos;CPA_LOI__c&apos;);
 p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c }&quot;; 
 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;;
 var result = sforce.connection.query(soql);
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name;
@@ -1418,7 +1478,7 @@ alert(&quot;You are not authorized to perform this action.&quot;);
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -1471,7 +1531,7 @@ p.id = &quot;{!CPA_LOI__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c }&quot;;
 p.isValidated__c = &quot;{!CPA_LOI__c.isValidated__c }&quot;;
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;;
 var result = sforce.connection.query(soql);
 var records1 = result.getArray(&apos;records&apos;);
 var permissionSetName = records1[0].PermissionSet.Name;
@@ -1539,7 +1599,7 @@ p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c }&quot;;
 
 
 try { 
-	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 	var result = sforce.connection.query(soql); 
 	var records1 = result.getArray(&apos;records&apos;); 
 	var permissionSetName = records1[0].PermissionSet.Name; 
@@ -1584,7 +1644,7 @@ var p = new sforce.SObject(&apos;CPA_LOI__c&apos;);
 p.id = &quot;{!CPA_LOI__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c}&quot;; 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -1626,7 +1686,7 @@ p.id = &quot;{!CPA_LOI__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c}&quot;;
 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;;
 var result = sforce.connection.query(soql);
 var records1 = result.getArray(&apos;records&apos;);
 var permissionSetName = records1[0].PermissionSet.Name;

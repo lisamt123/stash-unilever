@@ -28,6 +28,9 @@
         <field>Marketing_SOW__c$SOW_Status__c</field>
     </columns>
     <columns>
+        <field>Marketing_SOW__c.Marketing_Projects__r$BET_Required_Yes_No__c</field>
+    </columns>
+    <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Description__c</field>
     </columns>
     <columns>

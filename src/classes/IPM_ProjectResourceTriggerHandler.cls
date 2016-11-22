@@ -152,7 +152,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
         if(!system.isBatch() && !system.isFuture())
         {
             map<id,IPM_Project_Resource__c>oldProjectResourcesmap = new map<id,IPM_Project_Resource__c>();
-            updateGroupMember(oldProjectResources,oldProjectResourcesmap);
+                updateGroupMember(oldProjectResources,oldProjectResourcesmap);
         }
     }
     
@@ -190,7 +190,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     }
   
     //List of all Project records which have been previously synced to EcoDesign
-    prevSyncedProjList = [SELECT Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
+    prevSyncedProjList = [SELECT Id,IPM_ProjectGKM__c,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
                              IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c,Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
     
     projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,OPTION_ALL);
@@ -202,9 +202,9 @@ public with sharing class IPM_ProjectResourceTriggerHandler
             if(IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(prevSyncedProject))
             {
                 //set status as ready only when the rollout is created and countires are there for the project
-            	if(String.isNotBlank(prevSyncedProject.Project_Countries__c)){
-            		prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
-            	}
+                if(String.isNotBlank(prevSyncedProject.Project_Countries__c)){
+                    prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
+                }
             
                 if(projMembersMap != null && !projMembersMap.isEmpty() && projMembersMap.get(prevSyncedProject.id) != null && !projMembersMap.get(prevSyncedProject.id).isEmpty())
                 {
@@ -218,7 +218,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     //Update The List
     if(!toUpdateProjList.isEmpty())
     {
-    	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
         update toUpdateProjList; // Not including try , catch as when the transaction is failed roll back is handled at other class
         IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
       }
@@ -240,7 +240,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
         {
             projIdsSet.add(projResource.IPM_Project__c);
         }
-        prevSyncedProjList = [SELECT Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
+        prevSyncedProjList = [SELECT Id,IPM_ProjectGKM__c,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
                              IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c, Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
     
         projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,OPTION_ALL);
@@ -251,10 +251,10 @@ public with sharing class IPM_ProjectResourceTriggerHandler
             {
                 if(IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(prevSyncedProject))
                 {
-                	//set status as ready only when the rollout is created and countires are there for the project
-                	if(String.isNotBlank(prevSyncedProject.Project_Countries__c)){
-                		prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
-                	}
+                    //set status as ready only when the rollout is created and countires are there for the project
+                    if(String.isNotBlank(prevSyncedProject.Project_Countries__c)){
+                        prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
+                    }
                     
                     if(projMembersMap!=null && !projMembersMap.isEmpty() && projMembersMap.get(prevSyncedProject.id)!=null && !projMembersMap.get(prevSyncedProject.id).isEmpty())
                     {

@@ -45,7 +45,7 @@ public with sharing class FAU_MilestoneHandler
     
     public void bulkAfter()
     {
-    	if(triggerShouldExecute){
+        if(triggerShouldExecute){
             if(Trigger.isInsert) {
                 lMilestoneParticipantsUpdate = FAUMilestoneCls.createMilestoneParticipants(trigger.new);
             }
@@ -63,21 +63,27 @@ public with sharing class FAU_MilestoneHandler
     }
      
 
-    public void beforeDelete(SObject so)
-    {   
+  // This Class is implementing ITrigger, So can't remove this Function
+  
+   public void beforeDelete(SObject so)
+    { 
     }
-    
+     // This Class is implementing ITrigger, So can't remove this Function
+     
     public void afterInsert(SObject so) 
     {
     }
-    
+     // This Class is implementing ITrigger, So can't remove this Function
+     
     public void afterUpdate(SObject oldSo, SObject so)
     {
     }
-    
+     // This Class is implementing ITrigger, So can't remove this Function
+     
     public void afterDelete(SObject so)
-    {
-    }
+   {
+   } 
+
     
     /**
      * andFinally

@@ -86,6 +86,14 @@
                 <behavior>Readonly</behavior>
                 <field>dt_Date_Of_Acceptance__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_Linked_Project__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_Large_Project_Discount__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -123,10 +131,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txta_Other_Request_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>pkl_Business_Area__c</field>
             </layoutItems>
             <layoutItems>
@@ -140,6 +144,20 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Latest_PWO_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Linked_PWOs__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Large_Project_discount_details__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -213,6 +231,10 @@
                 <behavior>Edit</behavior>
                 <field>Stakeholder_Expectations__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Travel_Arrangements__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -226,6 +248,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txta_Acceptance_Criteria__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_Access_to_Unilever_personal_data__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -303,11 +329,10 @@
         <customButtons>New_Requirements_and_Deliverables</customButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
+        <fields>Business_Process_Area_del__c</fields>
         <fields>High_Level_Description_del__c</fields>
         <fields>Requirement_Type_del__c</fields>
         <fields>New_or_changed_requirement_del__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <fields>OBJECT_ID</fields>
         <relatedList>CPA_Requirements_and_Deliverables__c.PWORF_Requirement_Deliverables__c</relatedList>
     </relatedLists>
     <relatedLists>

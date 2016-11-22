@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -155,11 +151,12 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <externalId>false</externalId>
         <inlineHelpText>Please enter details of the main ideas and business reason(s) underpinning the Project Request Form and why it is required by Unilever</inlineHelpText>
         <label>Business Case*</label>
-        <required>false</required>
+        <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>Clarity_Programme_ID__c</fullName>
@@ -189,6 +186,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -218,6 +216,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -240,6 +239,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -261,6 +261,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -340,6 +341,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -362,6 +364,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -407,11 +410,12 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <fullName>In_Scope__c</fullName>
         <externalId>false</externalId>
         <label>In Scope*</label>
-        <required>false</required>
+        <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>Interface_to_the_system_Detail__c</fullName>
@@ -441,6 +445,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -462,6 +467,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -483,6 +489,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -506,6 +513,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -568,6 +576,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -577,22 +586,24 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>Out_of_Scope__c</fullName>
         <externalId>false</externalId>
         <label>Out of Scope*</label>
-        <required>false</required>
+        <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>Overall_purpose_or_function_of_the_proje__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Please enter a description for the overall purpose or funtion of the project</inlineHelpText>
         <label>Overall Purpose/Function of the Project*</label>
-        <required>false</required>
+        <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>PWORF_Count__c</fullName>
@@ -647,11 +658,12 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>Project_Dependencies__c</fullName>
         <externalId>false</externalId>
         <label>Project Dependencies*</label>
-        <required>false</required>
+        <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>Project_Invasive_Nature__c</fullName>
@@ -669,6 +681,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -735,6 +748,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -757,11 +771,12 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <externalId>false</externalId>
         <inlineHelpText>Please describe Unilever’s requirements in respect of this Project as set out in the table where possible. Identify the main deliverable expected and the specific milestone goals that Accenture is required to meet.</inlineHelpText>
         <label>Summary Of Requirements &amp; Deliverables*</label>
-        <required>false</required>
+        <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>TAT__c</fullName>
@@ -911,6 +926,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1216,6 +1232,17 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>eml_SMT_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>SMT group email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>eml_Unilever_Budget_Approver_Email__c</fullName>
         <description>Unilever Budget Approver Email*</description>
         <externalId>false</externalId>
@@ -1260,6 +1287,17 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <externalId>false</externalId>
         <inlineHelpText>Email of project manager</inlineHelpText>
         <label>Unilever Project Manager Email*</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_VDM_group_email__c</fullName>
+        <externalId>false</externalId>
+        <label>VDM group email</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1501,6 +1539,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1569,6 +1608,30 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <type>Phone</type>
     </fields>
     <fields>
+        <fullName>pkl_Access_to_Unilever_personal_data__c</fullName>
+        <description>Supplier resources require access to Unilever personal data?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Supplier resources require access to Unilever personal data?</inlineHelpText>
+        <label>Access to Unilever personal data*</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>pkl_Approval_Comment_Check__c</fullName>
         <externalId>false</externalId>
         <label>Approval Comment Check</label>
@@ -1583,6 +1646,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1603,6 +1667,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1647,6 +1712,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1669,6 +1735,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1690,6 +1757,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1723,6 +1791,55 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Large_Project_Discount__c</fullName>
+        <description>Is this project linked for the purposes of Large Project Discount?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this project linked for the purposes of Large Project Discount?</inlineHelpText>
+        <label>Large Project Discount</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Linked_Project__c</fullName>
+        <description>Please provide details of Projects that are linked to this Project Request</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please provide details of Projects that are linked to this Project Request</inlineHelpText>
+        <label>Linked Project</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1743,6 +1860,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1758,7 +1876,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Analyze</fullName>
+                <fullName>Analyse</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1779,6 +1897,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1805,6 +1924,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1854,6 +1974,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1884,6 +2005,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1918,6 +2040,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1959,6 +2082,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2022,6 +2146,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2044,6 +2169,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2110,6 +2236,34 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <inlineHelpText>Internal PWO ID</inlineHelpText>
         <label>Internal PWO ID</label>
         <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Large_Project_discount_details__c</fullName>
+        <description>Please enter Project name, Clarity Programme ID numbers, PWO numbers etc.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please enter Project name, Clarity Programme ID numbers, PWO numbers etc.</inlineHelpText>
+        <label>Large Project discount details</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Linked_PWOs__c</fullName>
+        <description>Provide details of all linked projects</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Provide details of all linked projects</inlineHelpText>
+        <label>Linked PWOs</label>
+        <length>20</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2316,11 +2470,12 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>txta_Business_critical_milestones__c</fullName>
         <externalId>false</externalId>
         <label>Business Critical Milestones*</label>
-        <required>false</required>
+        <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txta_HLE_Value__c</fullName>
@@ -2361,6 +2516,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2420,13 +2576,13 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <fullName>txta_Project_Description__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Please Write a Para (Maximum 255 Words)….</inlineHelpText>
         <label>Project Description*</label>
-        <required>false</required>
+        <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>txta_Project_Invasive_in_nature__c</fullName>
@@ -2597,6 +2753,35 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <language>en_US</language>
         <sharedTo>
             <group>CAP_SMT_Group</group>
+            <group>CAP_ULFT_Group</group>
+            <group>CAP_ULPT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_PWORF</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_PWORF</fullName>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_PWORF</fullName>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -2976,6 +3161,28 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Large_Project_Discount__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Linked_Project__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Penalty_Applicable__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2989,7 +3196,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <picklistValues>
             <picklist>pkl_Phases_covered_by_the_WAR__c</picklist>
             <values>
-                <fullName>Analyze</fullName>
+                <fullName>Analyse</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3401,6 +3608,17 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Access_to_Unilever_personal_data__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Approval_Comment_Check__c</picklist>
             <values>
                 <fullName>Requested</fullName>
@@ -3503,6 +3721,28 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Large_Project_Discount__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Linked_Project__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Penalty_Applicable__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3516,7 +3756,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <picklistValues>
             <picklist>pkl_Phases_covered_by_the_WAR__c</picklist>
             <values>
-                <fullName>Analyze</fullName>
+                <fullName>Analyse</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4132,7 +4372,7 @@ Is required</description>
         <active>true</active>
         <description>to prevent the cancelled PROWF from been edited.</description>
         <errorConditionFormula>isCancelled_PWORF__c == TRUE</errorConditionFormula>
-        <errorMessage>This PWORF is in cancelled status, can not edit.</errorMessage>
+        <errorMessage>This PWORF is in cancelled status, cannot edit.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Revised_Submission_Date</fullName>
@@ -4187,7 +4427,7 @@ ISPICKVAL( pkl_Status__c , &quot;Resubmitted&quot;)
 )
 ,$Profile.Name = &quot;CPA ULPM&quot;)</errorConditionFormula>
         <errorDisplayField>pkl_Status__c</errorDisplayField>
-        <errorMessage>Can not edit the status of the PWORF</errorMessage>
+        <errorMessage>Cannot edit the status of the PWORF</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Summary_of_requirements_and_deliverables</fullName>
@@ -4312,7 +4552,7 @@ p.pkl_Status__c = &quot;{!CPA_PWORF__c.pkl_Status__c }&quot;;
 p.isValidated__c = &quot;{!CPA_PWORF__c.isValidated__c }&quot;; 
 
 //if(p.isValidated__c == &quot;1&quot;){ 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;;
 var result = sforce.connection.query(soql);
 var records1 = result.getArray(&apos;records&apos;);
 var permissionSetName = records1[0].PermissionSet.Name;
@@ -4377,7 +4617,7 @@ var p = new sforce.SObject(&apos;CPA_PWORF__c&apos;);
 p.id = &quot;{!CPA_PWORF__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_PWORF__c.pkl_Status__c }&quot;; 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -4406,8 +4646,8 @@ else if(permissionSetName == &quot;CPA_ULPM&quot;){
 	if(loiRec != null &amp;&amp; loiRec.length &gt; 0){
 		alert(&quot;PWORF cannot be Withheld as it has LOI in Process.&quot;); 
 	}
-	else if(p.pkl_Status__c == &quot;Save+d&quot;){ 
-	alert(&quot;Record should first be submitted before withholding it.&quot;); 
+	else if(p.pkl_Status__c == &quot;Saved&quot;){ 
+	alert(&quot;PWORF cannot be withheld since it is yet to be submitted.&quot;); 
 	} /*
 	else if(p.pkl_Status__c == &quot;Returned&quot;){ 
 	//window.open(&apos;/apex/CPA_PWORF_Reason_for_Withhold?id=&apos;+&quot;{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
@@ -4453,7 +4693,7 @@ var pwoIdList = new Array();
 var doFlag= true; 
 var errMsg =&quot;&quot;; 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos; and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;;
 var result = sforce.connection.query(soql);
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name;

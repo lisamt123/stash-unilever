@@ -13,7 +13,7 @@ VERSION    AUTHOR            DATE            DETAIL
 1.0        Masood Ansari     Feb-2016     INITIAL DEVELOPMENT   
 
 ***********************************************************************/
-global class CEC_ClearAlertTracker_Batch implements Database.Batchable<sObject>{
+global with sharing class CEC_ClearAlertTracker_Batch implements Database.Batchable<sObject>{
     
     String query;
     CEC_AlertHelper clearAlertHelper;
@@ -32,9 +32,10 @@ global class CEC_ClearAlertTracker_Batch implements Database.Batchable<sObject>{
             System.debug('****Scope'+scope);
             clearAlertHelper.deleteAlertTracker(scope);
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN PROCESSING THE ALERT TRACKER RECORDS IN THE BATCH JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
-            CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Batch Job to process Alert Tracker deletion failed');
-            System.debug(msgBodyStr); 
+            //String msgBodyStr = '*** ERROR IN PROCESSING THE ALERT TRACKER RECORDS IN THE BATCH JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
+            CEC_ExceptionHandling.CreateExceptionLog('Scheduler', 'execute', 'CEC_ClearAlertTracker_Batch', '', e.getStackTraceString());
+            //CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Batch Job to process Alert Tracker deletion failed');
+            //System.debug(msgBodyStr); 
         }        
     }
     

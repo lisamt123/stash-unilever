@@ -16,11 +16,11 @@ VERSION  AUTHOR            DATE            DETAIL               Description
 
 /**
 Test class for the Helper class for Trigger for CEC_FulfilmentTrigger
-*/
+**/
 
 @isTest(SeeAllData=false)
 public class CEC_Test_FulfilmentQualityCheckHelper  {
-    
+    /**
     @testSetup static void setUpTestData() {
         User u = CEC_TestDataFactory.createStandardCECTestUser();
         System.runAs(u) {
@@ -70,9 +70,9 @@ public class CEC_Test_FulfilmentQualityCheckHelper  {
         }
     } 
     
-    /**
+    
 Test method for beforeInsert() method
-*/
+
     public static testMethod void test_beforeInsert(){
         
         User u = CEC_TestDataFactory.getStandardCECTestUser();
@@ -81,10 +81,10 @@ Test method for beforeInsert() method
             
             CEC_FulfilmentQualityCheckHelper qualityCheckHelper = new CEC_FulfilmentQualityCheckHelper();
             qualityCheckHelper.qualityCheck(fulfilmentList);
-            /**/
+            
             
         }
         
-    }
+    }**/
     
 }

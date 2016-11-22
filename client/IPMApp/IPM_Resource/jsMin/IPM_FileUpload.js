@@ -1,0 +1,1 @@
+var jq=jQuery.noConflict();jq(document).ready(function(){var uploadfile=IPMAppFile.fileload;if(uploadfile==="true"){var frame=parent.document.getElementById("ipmModal");jq(frame).find(".close").trigger("click");parent.location.assign(IPMAppFile.projurl+"?Id="+IPMAppFile.projid+"&projDocSecId="+IPMAppFile.docsecid)}});

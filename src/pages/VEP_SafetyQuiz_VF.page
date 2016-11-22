@@ -292,7 +292,9 @@ overflow: auto; */
                           <div class = "panel panel-primary">
                           <div style="padding-left: 15%; padding-right: 15%; padding-top: 3%;">
                               <div class="iframe-container iframe-container-for-wxh-500x350" style="-webkit-overflow-scrolling: touch; overflow: auto;">
-                               <iframe width="854" height="510" src="https://www.dropbox.com/s/er0abz3qe5u1oe6/VTS_01_1.VOB?dl=0" frameborder="0" mozallowfullscreen="true" allowfullscreen="true" webkitallowfullscreen="true" allowTransparency="true"/>
+                              <iframe width="854" height="510" src="{!$label.VEP_SafetyQuiz_Url}" frameborder="0" mozallowfullscreen="true" allowfullscreen="true" webkitallowfullscreen="true" allowTransparency="true"/>
+                              
+                               <!--<iframe width="854" height="510" src="https://www.dropbox.com/s/er0abz3qe5u1oe6/VTS_01_1.VOB?dl=0" frameborder="0" mozallowfullscreen="true" allowfullscreen="true" webkitallowfullscreen="true" allowTransparency="true"/>-->
                                <!-- <apex:flash play="true" loop="true" src="https://www.dropbox.com/s/er0abz3qe5u1oe6/VTS_01_1.VOB?dl=0" height="500" width="100%"  />-->
                               <!-- <apex:iframe src="https://www.dropbox.com/s/er0abz3qe5u1oe6/VTS_01_1.VOB?dl=0&output=embed" scrolling="true" id="theIframe"/>-->
 

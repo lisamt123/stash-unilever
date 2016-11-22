@@ -114,7 +114,7 @@ private class IPM_Gate_RollOuts_Controller_Test{
             List<IPM_Gate_RollOuts_Controller.LocalRolloutWrapper> lstLocalWrapper = new List<IPM_Gate_RollOuts_Controller.LocalRolloutWrapper>();
             IPM_Gate_RollOuts_Controller.LocalRolloutWrapper localRolloutWrapper = new IPM_Gate_RollOuts_Controller.LocalRolloutWrapper(localRolloutList[0],countryList);
             lstLocalWrapper.add(localRolloutWrapper);
-            IPM_Gate_RollOuts_Controller.RegionalRollOutWrapper regionalRolloutWrapper = new IPM_Gate_RollOuts_Controller.RegionalRollOutWrapper(regionalRolloutList[0].Name,lstLocalWrapper); // NO SONAR used to cover the test coverage of constructor  
+            new IPM_Gate_RollOuts_Controller.RegionalRollOutWrapper(regionalRolloutList[0].Name,lstLocalWrapper); // NO SONAR used to cover the test coverage of constructor  
             IPM_Gate_RollOuts_Controller gateController = new IPM_Gate_RollOuts_Controller(); 
             gateController.proId = globalProjectList[0].Id;     
 
@@ -127,8 +127,6 @@ private class IPM_Gate_RollOuts_Controller_Test{
          
 	         Test.startTest();
 	         List<IPM_Project__c> projectList = [Select Id from IPM_Project__c where Name = 'TestComments1'];
-	         IPM_Project__c project = null;
-	         
 	         
 	         IPM_Gate_RollOuts_Controller gateController = new IPM_Gate_RollOuts_Controller();
 	         gateController.proId = projectList[0].Id;
@@ -139,6 +137,64 @@ private class IPM_Gate_RollOuts_Controller_Test{
 	         System.assertEquals(gateController.regionalRollOutWrapperList[0].regionalRollOutName,'TestComments1_AFR', REGIONAL_ROLLOUT_NAME_FAIL);
 	         System.assertEquals(gateController.regionalRollOutWrapperList[1].regionalRollOutName,'TestComments1_LA', REGIONAL_ROLLOUT_NAME_FAIL);
 	         Test.stopTest();
+      
+     } 
+     
+     public static testmethod void testPrepareIPMLocalToCountryWrapperForRegionalOriginal()
+     {
+     		List<IPM_Project__c> regionalProjectList;
+     		countryList= new List<IPM_Country__c>();
+     		iDs = new Set<Id>();
+     		
+     		Test.startTest();
+     		System.debug('platformUser==>'+platformUser);
+     		platformUser = [Select Id, Name from User where LastName = 'PLATFORM_USER' limit 1];
+     		System.debug('platformUser after==>'+platformUser);
+     		System.runAs(platformUser)
+     		{
+         	 		regionalProjectList = IPM_TestFactory_Helper.projectSetUpRegional(5,platformUser);
+         	 		insert regionalProjectList;
+         	 		
+         	 		// Create local Rollouts for Created regional Rollouts.
+            		localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsOriginalList(false,regionalProjectList,new List<User>{platformUser});  
+            		insert localRolloutList;
+            		
+            		for(IPM_Project_Rollout__c localRollout : localRolloutList)
+            		{
+	            			String geoExternalId = '';
+			                if(localRollout.IPM_Rollout_Project__c.contains('AFR'))
+			                {
+			                    geoExternalId = 'AGO';
+			                }
+			                else if(localRollout.IPM_Rollout_Project__c.contains('LA'))
+			                {
+			                    geoExternalId = 'BRA';
+			                }
+	            	
+			            	IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new mdm_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
+	                																IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',
+	                																OwnerId=UserInfo.getUserId());    
+	                
+	                		countryList.add(tempCountry);
+            		}
+            
+            		insert countryList;
+            		
+            		for(IPM_Country__c eachCountry : countryList) {
+             			iDs.add(eachCountry.Id);
+            		}
+            		System.assertEquals(5, [Select count() from IPM_Country__c where id in:iDs],'Countries insertion fails');
+            		
+			         IPM_Gate_RollOuts_Controller gateController = new IPM_Gate_RollOuts_Controller();
+	    		     gateController.proId = regionalProjectList[0].Id;
+	         		gateController.prepareIPMLocalToCountryWrapper();
+	         
+	         		System.assertEquals(gateController.regionalRollOutWrapperList.size(),1, 'Regional Rollouts list wrapper is not constructed properly.');
+	         
+	         		System.assertEquals(gateController.regionalRollOutWrapperList[0].regionalRollOutName,'TestRegionalComments1', REGIONAL_ROLLOUT_NAME_FAIL);
+	         
+     		}
+     		Test.stopTest();
       
      } 
      

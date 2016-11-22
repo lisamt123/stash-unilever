@@ -10,7 +10,7 @@ Purpose: This Class is used to perform operation on before update event of LOI T
 History
 -------
 VERSION     AUTHOR                     DATE            DETAIL Description
-1.0         Shreyas Mangalvedhekar     11/01/2016     INITIAL DEVELOPMENT CSR:
+1.0     Pooja  Kanani   11/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public with sharing class CPA_LOI_TriggerUtil{
     public static boolean isSubmitted=false;
@@ -36,7 +36,10 @@ public with sharing class CPA_LOI_TriggerUtil{
                         req.setComments('Recalling and unlocking request.');
                         req.setAction(CPA_ConstantsForContractingAppClasses.REMOVED);
                         req.setWorkitemId(piwi.Id);
-                        Approval.ProcessResult result =  Approval.process(req);
+                        //Swathi has commented for SonarQ warning_Unused variable
+                        // Approval.ProcessResult result =  Approval.process(req);
+                        //Swathi has commented for SonarQ warning_Unused variable
+                        Approval.process(req);
                         isSubmitted = true;
                     }
                 }
@@ -63,7 +66,9 @@ public with sharing class CPA_LOI_TriggerUtil{
             req.setComments('Submitted for approval. Please approve.');
             req.setObjectId(newLOIList[i].Id);
             // submit the approval request for processing
-            Approval.ProcessResult result = Approval.process(req);
+            //Swathi commented for SonarQube_warning
+            //Approval.ProcessResult result = Approval.process(req);
+            Approval.process(req);
             // display if the reqeust was successful
 
             isSubmitted = true;
@@ -127,7 +132,7 @@ public with sharing class CPA_LOI_TriggerUtil{
         for(CPA_LOI__c objNewLOI : newLOI){
                 setPWORF.add(objNewLOI.lkp_PWORF__c);
             }
-        for(CPA_PWORF__c objPworf : [select id,txta_Title__c,RecordTypeId,mpkl_Project_Phases__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c,txt_Clarity_ID__c,txt_OtherProjectPhases__c from CPA_PWORF__c where ID  IN: setPWORF]){
+        for(CPA_PWORF__c objPworf : [select id,txta_Title__c,RecordTypeId,pkl_Phases_covered_by_the_WAR__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c,txt_Clarity_ID__c,txt_OtherProjectPhases__c from CPA_PWORF__c where ID  IN: setPWORF]){
                 mapPWORF.put(objPworf.Id,objPworf);
             }
             
@@ -158,15 +163,15 @@ public with sharing class CPA_LOI_TriggerUtil{
                 if(objNewLOI.txt_Unilever_Budget_Approver_Name__c == null && objPWORFTemp.txt_Unilever_Budget_Approver_Name__c !=null) 
                     objNewLOI.txt_Unilever_Budget_Approver_Name__c = objPWORFTemp.txt_Unilever_Budget_Approver_Name__c;
                 
-                if(objNewLOI.mpkl_Phases_covered_by_WAR__c == null && objPWORFTemp.mpkl_Project_Phases__c !=null)
-                    objNewLOI.mpkl_Phases_covered_by_WAR__c = objPWORFTemp.mpkl_Project_Phases__c;
+                if(objNewLOI.mpkl_Phases_covered_by_WAR__c == null && objPWORFTemp.pkl_Phases_covered_by_the_WAR__c !=null)
+                    objNewLOI.mpkl_Phases_covered_by_WAR__c = objPWORFTemp.pkl_Phases_covered_by_the_WAR__c;
                 if(objNewLOI.txt_Other_Phases_Covered_by_W_R__c == null && objPWORFTemp.txt_OtherProjectPhases__c !=null)
                     objNewLOI.txt_Other_Phases_Covered_by_W_R__c = objPWORFTemp.txt_OtherProjectPhases__c;
                 //string AllrecordType = CPA_PWORF_Record_type__c.getValues('All').Record_type_id__c;
                 Id AllrecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_ALL_RECORDTYPE).getRecordTypeId();
               
-                if(objPWORFTemp.RecordTypeId == AllrecordType && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.mpkl_Project_Phases__c)) 
-                        objNewLOI.addError('Only ' + objPWORFTemp.mpkl_Project_Phases__c.replaceAll(';', ', ') + ' Project Phases are allow');
+                if(objPWORFTemp.pkl_Phases_covered_by_the_WAR__c != null && objPWORFTemp.RecordTypeId == AllrecordType && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.pkl_Phases_covered_by_the_WAR__c)) 
+                        objNewLOI.addError('Only ' + objPWORFTemp.pkl_Phases_covered_by_the_WAR__c.replaceAll(';', ', ') + ' Project Phases are allow');
             }
         }
     }

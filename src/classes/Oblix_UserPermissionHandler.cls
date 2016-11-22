@@ -35,13 +35,16 @@ public with sharing class Oblix_UserPermissionHandler implements ITrigger{
                     prior execution of the trigger.
     ********************************************************************************/
 	public void bulkAfter(){
-		// get the list of SOWs affected by this change - search by brandCategory key
-		affectedSOWs = Oblix_UserPermissionHandlerLogic.retrieveAffectedSOWs(Trigger.new, Trigger.old);
-		// as this is the after trigger, most up-to-date approvers setting is already stored in Oblix_User_Permission__c
-		Oblix_UserPermissionHandlerLogic.retrieveBrandCategoryApprovers(affectedSOWs, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
-		Oblix_SOWHandlerLogic.deleteAllManualSharing(affectedSOWs);
 
-		brandCatKey_UserPermissions_map = Oblix_SOWHandlerLogic.retrieveUserPermissions(affectedSOWs);
+		if(Trigger.isAfter){
+			// get the list of SOWs affected by this change - search by brandCategory key
+			affectedSOWs = Oblix_UserPermissionHandlerLogic.retrieveAffectedSOWs(Trigger.new, Trigger.old);
+			// as this is the after trigger, most up-to-date approvers setting is already stored in Oblix_User_Permission__c
+			Oblix_UserPermissionHandlerLogic.retrieveBrandCategoryApprovers(affectedSOWs, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
+			Oblix_SOWHandlerLogic.deleteAllManualSharing(affectedSOWs);
+
+			brandCatKey_UserPermissions_map = Oblix_SOWHandlerLogic.retrieveUserPermissions(affectedSOWs);
+		}
 
 	}
 
@@ -77,11 +80,11 @@ public with sharing class Oblix_UserPermissionHandler implements ITrigger{
      */
 	public void andFinally(){
 
-		// update approvers on SOW
-		Oblix_UserPermissionHandlerLogic.updateSOWApprovers(affectedSOWs, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
-
 		// update sharings
 		if(Trigger.isAfter){
+
+			// update approvers on SOW
+			Oblix_UserPermissionHandlerLogic.updateSOWApprovers(affectedSOWs, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
 
 			for(Marketing_SOW__c sow : affectedSOWs){
 

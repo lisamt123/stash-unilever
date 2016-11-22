@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>User</baseObject>
+    <category>other</category>
+    <deployed>true</deployed>
+    <description>Taskray User Usage, this allows to report in a user owning tasks when was the last time that they modified one</description>
+    <join>
+        <outerJoin>true</outerJoin>
+        <relationship>TASKRAY__Project_Task__c$OwnerId</relationship>
+    </join>
+    <label>Taskray User Usage</label>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Id</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TASKRAY__Project__c</field>
+            <table>User.TASKRAY__Project_Task__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Name</field>
+            <table>User.TASKRAY__Project_Task__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>task_by_Pillar_Programs__c</field>
+            <table>User.TASKRAY__Project_Task__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Owner</field>
+            <table>User.TASKRAY__Project_Task__c$OwnerId</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AboutMe</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Name</field>
+            <table>User</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>TaskRay_Last_Use__c</field>
+            <table>User</table>
+        </columns>
+        <masterLabel>Taskray </masterLabel>
+    </sections>
+</ReportType>

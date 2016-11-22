@@ -1,0 +1,85 @@
+   <labels>
+        <fullName>isllBrain_ClearAndFindMore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_ClearAndFindMore</shortDescription>
+        <value>Clear and find more</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_FindMore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_FindMore</shortDescription>
+        <value>Find More</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_First</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_First</shortDescription>
+        <value>First</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Last</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Last</shortDescription>
+        <value>Last</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Loading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Next</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Next_Batch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Next_Batch</shortDescription>
+        <value>Next Batch</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Previous</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Previous</shortDescription>
+        <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Previous_Batch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Previous_Batch</shortDescription>
+        <value>Previous batch</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_StartOver</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_StartOver</shortDescription>
+        <value>Start Over</value>
+    </labels>
+    <labels>
+        <fullName>isll_ChatterGroupMissingForEventMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isll_ChatterGroupMissingForEventMsg</shortDescription>
+        <value>Chatter Group is missed for current event. Please contact moderator to add Group to event.</value>
+    </labels>
+    <labels>
+        <fullName>isll_ContentMissingMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isll_ContentMissingMsg</shortDescription>
+        <value>Edit link is not visible: please add content</value>
+    </labels>
+    

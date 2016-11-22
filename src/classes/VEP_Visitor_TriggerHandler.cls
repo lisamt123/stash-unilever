@@ -23,23 +23,25 @@ public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
         
         if(trigger.isInsert || trigger.isUpdate){
             Map<string,VEP_FactoryVisit__c> mapEmailIds = new Map<string,VEP_FactoryVisit__c>();
+            Map<string,VEP_TravelDesk__c> mapTravelEmailIds = new Map<string,VEP_TravelDesk__c>();
             Id robRecordTypeId = Schema.SObjectType.VEP_Visitor__c.getRecordTypeInfosByName().get('Request on Behalf').getRecordTypeId(); 
-            mapEmailIds = VEP_FactoryVisit__c.getAll();         
+            mapEmailIds = VEP_FactoryVisit__c.getAll();
+            mapTravelEmailIds = VEP_TravelDesk__c.getAll();         
             Map<id, Vep_Visitor__c> oldMap = (Map<Id,Vep_Visitor__c >) Trigger.oldMap;
             for(Vep_Visitor__c  v: (List<Vep_Visitor__c >)Trigger.New){
                 if((trigger.isUpdate && oldMap.get(v.id).status__c!='Approved' && v.status__c=='Approved') || (trigger.isInsert && v.recordtypeId==robRecordTypeId)){
                                  
-                        if(v.travel__c && mapEmailIds.get(v.Factory_to_visit__c)!=null){
-                            v.Travel_Desk_Email__c = mapEmailIds.get(v.Factory_to_visit__c).Travel_Desk_Email__c;
+                        if(v.travel__c && mapTravelEmailIds.containsKey(v.base_location__c) && mapTravelEmailIds.get(v.base_location__c)!=null){
+                            v.Travel_Desk_Email__c = mapTravelEmailIds.get(v.base_location__c).Travel_Desk_Email__c;
                         }
                     
                     
-                        if(v.lodging__c && mapEmailIds.get(v.Factory_to_visit__c)!=null){
+                        if(v.lodging__c && mapEmailIds.containsKey(v.Factory_to_visit__c) && mapEmailIds.get(v.Factory_to_visit__c)!=null){
                             v.Lodging_Desk_Email__c = mapEmailIds.get(v.Factory_to_visit__c).Lodging_Desk_Email__c ;
                         }
                     
                     
-                        if(v.pickup__c && mapEmailIds.get(v.Factory_to_visit__c)!=null){
+                        if(v.pickup__c && mapEmailIds.containsKey(v.Factory_to_visit__c) && mapEmailIds.get(v.Factory_to_visit__c)!=null){
                             v.pickup_Desk_Email__c = mapEmailIds.get(v.Factory_to_visit__c).pickup_Desk_Email__c ;
                         }
                     
@@ -120,46 +122,12 @@ public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
     
     public void afterInsert(SObject so){
         //This method has been included as the class implements the ITrigger interface
-        Id robRecordTypeId2 = Schema.SObjectType.VEP_Visitor__c.getRecordTypeInfosByName().get('Request on Behalf').getRecordTypeId(); 
-        set<string> setemails = new set<string>();
-        List<Vep_Visitor__c> listvisitors = new List<Vep_Visitor__c>();
         
-        for(Vep_Visitor__c  v: (List<Vep_Visitor__c >)Trigger.New){
-            if(robRecordTypeId2 == v.recordtypeid && v.status__c == 'Approved'){
-                if(v.travel_desk_email__c!=null && v.travel__c){
-                    setemails.add(v.travel_desk_email__c);
-                }
-                if(v.lodging_desk_email__c!=null && v.lodging__c){
-                    setemails.add(v.lodging_desk_email__c);
-                } 
-                listvisitors.add(v);    
-            }
-        }
-        if(!setemails.isEmpty()){
-            recordVisibility(setemails,listvisitors);
-        }
     }
     
     public void afterUpdate(SObject oldSo, SObject so){    
         //This method has been included as the class implements the ITrigger interface
-        Map<id, Vep_Visitor__c> oldMap2 = (Map<Id,Vep_Visitor__c >) Trigger.oldMap;
-        set<string> setemails = new set<string>();
-        Id RequestRecordTypeId2 = Schema.SObjectType.VEP_Visitor__c.getRecordTypeInfosByName().get('Request Readonly').getRecordTypeId(); 
-        List<Vep_Visitor__c> listvisitors1 = new List<Vep_Visitor__c>();
-        for(Vep_Visitor__c  v: (List<Vep_Visitor__c >)Trigger.New){
-            if(v.status__c == 'Approved' && oldMap2.get(v.id).status__c != v.status__c && RequestRecordTypeId2 == v.recordtypeid){
-                if(v.travel_desk_email__c!=null && v.travel__c){
-                    setemails.add(v.travel_desk_email__c);
-                }
-                if(v.lodging_desk_email__c!=null && v.lodging__c){
-                    setemails.add(v.lodging_desk_email__c);
-                } 
-                listvisitors1.add(v); 
-            }
-        }
-        if(!setemails.isEmpty()){
-            recordVisibility(setemails,listvisitors1);
-        }       
+          
      
     }
     
@@ -170,41 +138,6 @@ public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
         //Added by Devendra - call method to insert all exception logs got while excecution of trigger
         ExceptionLoggingHelper.insertLogRecordList();
     }   
-    public void recordVisibility(set<string> setemails,List<Vep_Visitor__c> listvisitors){
-        
-        List<User> listusers = new List<User>();
-          listusers = [select id,name,email from user where email in: setemails];
-        
-        Map<string,user> mapuser = new Map<string, user>();
-        if(!listusers.isEmpty()){
-            for(user u :listusers){
-                mapuser.put(u.email,u);
-            }
-           // recordVisibilityExt(mapuser,listVisitors);   
-         List<Vep_Visitor__Share> listvshare1 = new List<Vep_Visitor__Share>();
-        for(Vep_Visitor__c  v: listVisitors){
-                if(v.travel_desk_email__c!=null && v.travel__c && v.person_to_meet__c != mapUser.get(v.travel_desk_email__c).id){
-                    Vep_Visitor__Share vshare1 = new Vep_Visitor__Share();
-                    vshare1.UserOrGroupId = mapUser.get(v.travel_desk_email__c).id;
-                    vshare1.AccessLevel = 'Edit';
-                    vshare1.ParentId = v.id;
-                    vshare1.RowCause =Schema.Vep_Visitor__Share.RowCause.Manual;
-                    listvshare1.add(vshare1);                    
-                }
-                if(v.lodging_desk_email__c!=null && v.lodging__c && v.person_to_meet__c != mapUser.get(v.lodging_desk_email__c).id){
-                    Vep_Visitor__Share vshare2 = new Vep_Visitor__Share();
-                    vshare2.UserOrGroupId = mapUser.get(v.lodging_desk_email__c).id;
-                    vshare2.AccessLevel = 'Edit';
-                    vshare2.ParentId = v.id;
-                    vshare2.RowCause =Schema.Vep_Visitor__Share.RowCause.Manual;
-                    listvshare1.add(vshare2);
-                }
-            }
-            if(!listvshare1.isEmpty()){
-                insert listvshare1;
-            }                          
-        }
-        
-    }
+    
     
 }

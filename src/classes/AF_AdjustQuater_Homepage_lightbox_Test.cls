@@ -169,7 +169,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             wr.Selected=true;
             brandEstimateRecords.add(wr);
             adjHome.QuarterEstimate=brandEstimateRecords;      
-            //adjHome.showPopup();
+            adjHome.showPopup();
             adjHome.queryBrandEstimate();
             adjHome.saveBrandEstimate();
             Test.stopTest();
@@ -214,6 +214,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
                 BrandEst.AF_Fiscal_Year__c=currYear;
                 BrandEst.AF_Pilot_Model__c=false;
                 BrandEst.AF_Status_Base_Fees__c = AF_Constants.CATEGORY_FINANCE;
+                BrandEst.AF_BackupQuarter__c=AF_Constants.QUARTER2;
                 BrandEstimateList2.add(BrandEst);
             }
             insert BrandEstimateList2;
@@ -228,8 +229,9 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             adjHome.displaypopquarter=false;
             brandEstimateRecords.add(wr);
             adjHome.QuarterEstimate=brandEstimateRecords;      
-            //adjHome.showPopup();
+            adjHome.showPopup();
             adjHome.saveBrandEstimate();
+            adjHome.queryBrandEstimate();
             Test.stopTest();
         }
     }

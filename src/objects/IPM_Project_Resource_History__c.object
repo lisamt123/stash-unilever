@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
@@ -52,12 +51,12 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Read</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Change_Date__c</fullName>
+        <description>Date on which the project resource has been updated.</description>
         <externalId>false</externalId>
         <label>Change Date</label>
         <required>false</required>
@@ -67,6 +66,7 @@
     <fields>
         <fullName>Changed_By__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>User who has changed the project resource.</description>
         <externalId>false</externalId>
         <label>Changed By</label>
         <referenceTo>User</referenceTo>
@@ -78,6 +78,7 @@
     <fields>
         <fullName>IPM_Project__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>IPM_Project lookup.</description>
         <externalId>false</externalId>
         <label>IPM Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
@@ -90,6 +91,7 @@
     <fields>
         <fullName>New_User__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>user who has been assigned as new project resource. Its User lookup field.</description>
         <externalId>false</externalId>
         <label>New User</label>
         <referenceTo>User</referenceTo>
@@ -101,6 +103,7 @@
     <fields>
         <fullName>Old_User__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>User who was the old project resource. User lookup field.</description>
         <externalId>false</externalId>
         <label>Old User</label>
         <referenceTo>User</referenceTo>
@@ -111,6 +114,7 @@
     </fields>
     <fields>
         <fullName>Type__c</fullName>
+        <description>Type of operation has been performed. i.e. inserted, updated or deleted.</description>
         <externalId>false</externalId>
         <label>Type</label>
         <picklist>
@@ -133,6 +137,7 @@
     </fields>
     <fields>
         <fullName>User_Role__c</fullName>
+        <description>Role of the project resource.</description>
         <externalId>false</externalId>
         <label>User Role</label>
         <length>255</length>
@@ -148,5 +153,5 @@
     </nameField>
     <pluralLabel>IPM Project Resource History</pluralLabel>
     <searchLayouts/>
-    <sharingModel>Read</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

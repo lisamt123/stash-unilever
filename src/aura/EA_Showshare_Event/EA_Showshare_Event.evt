@@ -2,4 +2,6 @@
     <aura:attribute name="activity" type="Everyday_Activity__c"/>
     <aura:attribute name="pagename" type="string"/>
     <aura:attribute name="index" type="integer"/>
+    <aura:attribute name="activityId" type="string"/>
+    <aura:attribute name="navigatePageIndex" type="integer"/>
 </aura:event>

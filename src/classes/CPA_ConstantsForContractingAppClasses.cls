@@ -10,7 +10,7 @@ Purpose: Provides required constants for all classes developed for Contracting A
 History
 -------
 VERSION     AUTHOR           DATE            DETAIL Description
-1.0         Dinesh Girase    29/01/2016     INITIAL DEVELOPMENT CSR:
+1.0         Dineshsing Girase    29/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public class CPA_ConstantsForContractingAppClasses{
 
@@ -144,6 +144,8 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String PROCESSOFFICEAREAE2E='Process Office Area E2E';
     public static final String OTHERPROJECTPHASES='Other Project Phases';
     public static final String OTHERPROCESSOFFICEAREAE2E='Other-Process Office area E2E';
+    public static final String MANDATORYIFPROCESSOFFICEAREAE2EISOTHER='Required only when Process Office area E2E is Other';
+    
     public static final String ISTHISPROJINVASIVEINNATURE='Is this ‘Project’ Invasive in nature?';
     public static final String NEWORREWORKEDINTREQ='New or ReWorked Integration Requirement';
     public static final String APPPERTESTINGNEEDED='Application Performance Testing Needed';
@@ -280,5 +282,20 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String CONTRACTDELETE = 'Contract can be deleted in Save and Return Status only';
     public static final String COMMERICALDELETE = 'Commercial can be deleted in Save and Return Status only';
     public static final String STANDALONECR = 'Standalone CR';
+    
+    public static final String ESTOFF = 'Est_Off';
+    public static final String ESTON = 'Est_On'; 
+    public static final String EXP = 'Expense_perc';
+     //Swathi added below code on 26/09/2016, to fix new UAT issue
+    public static final String ACCESSTOUNILPERDATA = 'Access to Unilever personal data';
+    public static final String LINKEDPROJECT= 'Linked Project';
+    public static final String LINKEDPWOS= 'Linked PWOs';
+    public static final String LINKEDPWOSMANDATORY = 'Mandatory when  Linked Project is YES';
+    public static final String LARGEPROJECTDISCOUNT = 'Large Project Discount';
+    public static final String LARGEPROJECTDISCOUNTDETAILS= 'Large Project discount details';
+    public static final String LARGEPROJECTDISCOUNTDETAILSMANDATORY = 'Mandatory when  Large Project Discount is YES';
+    
+    
+    
 
 }

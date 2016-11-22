@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>KUN Profile</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>KUN Profiles</value>
+    </caseValues>
+    <fields>
+        <label><!-- Capability Searchable Field --></label>
+        <name>Capability_Searchable_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- Refers to the Business Operations function you are mapped (for example Make or Deliver or Procurement etc) --></help>
+        <label><!-- Capability --></label>
+        <name>Capability__c</name>
+        <picklistValues>
+            <masterLabel>Cash-to-Tax (C2T)</masterLabel>
+            <translation><!-- Cash-to-Tax (C2T) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data-to-Insights (D2I)</masterLabel>
+            <translation><!-- Data-to-Insights (D2I) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deliver</masterLabel>
+            <translation><!-- Deliver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Information &amp; Management (IM)</masterLabel>
+            <translation><!-- Information &amp; Management (IM) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Launch-to-Grow (L2G)</masterLabel>
+            <translation><!-- Launch-to-Grow (L2G) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Make</masterLabel>
+            <translation><!-- Make --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Master Data Management (MDM)</masterLabel>
+            <translation><!-- Master Data Management (MDM) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Order-to-Cash (O2C)</masterLabel>
+            <translation><!-- Order-to-Cash (O2C) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plan-to-Forecast (P2F)</masterLabel>
+            <translation><!-- Plan-to-Forecast (P2F) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Procurement</masterLabel>
+            <translation><!-- Procurement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Purchase-to-Pay (P2P)</masterLabel>
+            <translation><!-- Purchase-to-Pay (P2P) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Record-to-Report (R2R)</masterLabel>
+            <translation><!-- Record-to-Report (R2R) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supply Chain Finance (SCF)</masterLabel>
+            <translation><!-- Supply Chain Finance (SCF) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Cluster Searchable Field --></label>
+        <name>Cluster_Searchable_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- Refers to the grouping of MCOs for business organization purposes such as SEAA, NA, SA, North America. --></help>
+        <label><!-- Cluster --></label>
+        <name>Cluster__c</name>
+        <picklistValues>
+            <masterLabel>Africa</masterLabel>
+            <translation><!-- Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe</masterLabel>
+            <translation><!-- Europe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Latin America</masterLabel>
+            <translation><!-- Latin America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Namet &amp; Rub</masterLabel>
+            <translation><!-- Namet &amp; Rub --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>North America</masterLabel>
+            <translation><!-- North America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>North Asia</masterLabel>
+            <translation><!-- North Asia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEAA</masterLabel>
+            <translation><!-- SEAA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Asia</masterLabel>
+            <translation><!-- South Asia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uapl</masterLabel>
+            <translation><!-- Uapl --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uscc</masterLabel>
+            <translation><!-- Uscc --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Country Name KUN Profile User --></help>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- E2E Process Searchable Field --></label>
+        <name>E2E_Process_Searchable_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- End to End Business Process --></help>
+        <label><!-- E2E Process --></label>
+        <name>E2E_Process__c</name>
+        <picklistValues>
+            <masterLabel>Data-to-Insight (D2I)</masterLabel>
+            <translation><!-- Data-to-Insight (D2I) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Govern-to-Comply (G2C)</masterLabel>
+            <translation><!-- Govern-to-Comply (G2C) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hire-to-Retire (H2R)</masterLabel>
+            <translation><!-- Hire-to-Retire (H2R) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Information &amp; Technology (IT)</masterLabel>
+            <translation><!-- Information &amp; Technology (IT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Information Management (IM)</masterLabel>
+            <translation><!-- Information Management (IM) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Launch-to-Grow (L2G)</masterLabel>
+            <translation><!-- Launch-to-Grow (L2G) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Make-to-Deliver (M2D)</masterLabel>
+            <translation><!-- Make-to-Deliver (M2D) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Master Data Management (MDM)</masterLabel>
+            <translation><!-- Master Data Management (MDM) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Order-to-Cash (O2C)</masterLabel>
+            <translation><!-- Order-to-Cash (O2C) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plan-to-Forecast (P2F)</masterLabel>
+            <translation><!-- Plan-to-Forecast (P2F) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Procurement</masterLabel>
+            <translation><!-- Procurement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Purchase-to-Pay (P2P)</masterLabel>
+            <translation><!-- Purchase-to-Pay (P2P) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Record-to-Report (R2R)</masterLabel>
+            <translation><!-- Record-to-Report (R2R) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supply-to-Finance (SCF)</masterLabel>
+            <translation><!-- Supply-to-Finance (SCF) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Email Address of the KUN Profile --></help>
+        <label><!-- Email Address --></label>
+        <name>Email_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee Type Searchable Field --></label>
+        <name>Employee_Type_Searchable_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- Unilever or 3rd Party Employee --></help>
+        <label><!-- Employee Type --></label>
+        <name>Employee_Type__c</name>
+        <picklistValues>
+            <masterLabel>3rd party</masterLabel>
+            <translation><!-- 3rd party --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever</masterLabel>
+            <translation><!-- Unilever --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Tick if you can read/write/speak English --></help>
+        <label><!-- English speaking? --></label>
+        <name>English_speaking__c</name>
+    </fields>
+    <fields>
+        <label><!-- GPM Process Area --></label>
+        <name>GPM_Process_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- KUN Role Type Searchable Field --></label>
+        <name>KUN_Role_Type_Searchable_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- Are you a participating full time or part time in Key User Network activities --></help>
+        <label><!-- KUN Role Type --></label>
+        <name>KUN_Role_Type__c</name>
+        <picklistValues>
+            <masterLabel>Full Time</masterLabel>
+            <translation><!-- Full Time --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Part time</masterLabel>
+            <translation><!-- Part time --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Line Manager Name --></help>
+        <label><!-- Line Manager --></label>
+        <name>Line_Manager__c</name>
+    </fields>
+    <fields>
+        <help><!-- Describe the details about your local sub process area --></help>
+        <label><!-- Local Process Area --></label>
+        <name>Local_Process_Area__c</name>
+    </fields>
+    <fields>
+        <help><!-- Describe the details about your local sub process area --></help>
+        <label><!-- Local Process- (Details) --></label>
+        <name>Local_Process_Details__c</name>
+    </fields>
+    <fields>
+        <help><!-- Multi Country Organization (MCO) --></help>
+        <label><!-- MCO --></label>
+        <name>MCO__c</name>
+    </fields>
+    <fields>
+        <help><!-- Organization Role of KUN User --></help>
+        <label><!-- Organization Role --></label>
+        <name>Organization_Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- Organization Searchable Field --></label>
+        <name>Organization_Searchable_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- Either you are from Country or Operating Center or ETS Business Ops --></help>
+        <label><!-- Organization --></label>
+        <name>Organization__c</name>
+        <picklistValues>
+            <masterLabel>Business Operations</masterLabel>
+            <translation><!-- Business Operations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country</masterLabel>
+            <translation><!-- Country --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operating Center</masterLabel>
+            <translation><!-- Operating Center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Others</masterLabel>
+            <translation><!-- Others --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Phone Number of the KUN User --></help>
+        <label><!-- Phone Number --></label>
+        <name>Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Position Searchable Field --></label>
+        <name>Position_Searchable_Field__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is your Key User Network Position in your country, such as Process Champions or Key Users --></help>
+        <label><!-- Position --></label>
+        <name>Position__c</name>
+        <picklistValues>
+            <masterLabel>Business Excellence Lead</masterLabel>
+            <translation><!-- Business Excellence Lead --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ETS Capability Director</masterLabel>
+            <translation><!-- ETS Capability Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ETS Capability Lead</masterLabel>
+            <translation><!-- ETS Capability Lead --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ETS Deployment</masterLabel>
+            <translation><!-- ETS Deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Geography IT</masterLabel>
+            <translation><!-- Geography IT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Key User</masterLabel>
+            <translation><!-- Key User --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Champion</masterLabel>
+            <translation><!-- Process Champion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RT Coordinator</masterLabel>
+            <translation><!-- RT Coordinator --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Profile Id --></label>
+        <name>Profile_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Your Work location, such as factory or plant or country head office location (Location name with country information) --></help>
+        <label><!-- Site --></label>
+        <name>Site__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unilever Profile --></label>
+        <name>Unilever_Profile__c</name>
+        <relationshipLabel><!-- KUN Profiles --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>KUN Profile Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Process Information --></label>
+            <section>Process Information</section>
+        </sections>
+    </layouts>
+    <sharingReasons>
+        <label><!-- KUN Self Update --></label>
+        <name>KUN_Self_Update</name>
+    </sharingReasons>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

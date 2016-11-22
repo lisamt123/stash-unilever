@@ -40,7 +40,7 @@ private class IPM_ProjectOverviewCtrl_Test
         
         test.loadData(IPM_Project_Type__c.sobjectType, 'IPM_ProjectType');//
         test.loadData(IPM_BET_Search_Fields__c.sobjectType, 'IPM_BET_Search_Test');//
-        test.loadData(IPM_ProjectMetadata__c.sobjectType, 'IPM_Project_Metadata');//
+    
 
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
@@ -65,6 +65,7 @@ private class IPM_ProjectOverviewCtrl_Test
             orgProjList[1].IPM_Project_Name__c = 'TestPrjOrg';
             orgProjList[1].IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
             orgProjList[1].IPM_Project_Type__c= IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
+            orgProjList[1].IPM_Company_Card__c = IPM_TestFactory_Helper.createGlobalCompanyCard(true).Id; 
             insert  orgProjList;
         }
         System.assertEquals(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL, [Select Id, IPM_Project_Type__c from IPM_Project__c where Id=: orgProjList[0].Id limit 100][0].IPM_Project_Type__c , 'Original project is not created.' );
@@ -328,12 +329,13 @@ private class IPM_ProjectOverviewCtrl_Test
         overCtrl.taskId=tskList[0].Id;
         project.IPM_Fast_Track_Project__c = false;
         update project;
-        System.assertEquals(false , [Select Id, IPM_Fast_Track_Project__c from  IPM_Project__c where Id =: project.Id limit 100][0].IPM_Fast_Track_Project__c , 'Project is failed to update as fast track.' );
-        
+                
         IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
         IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
         overCtrl1.getTasks();
-        System.assertEquals(0, overCtrl1.getTasks().size(), 'Tasks are not getting assigned to logged-in user.');
+        
+        System.assertEquals(false , [Select Id, IPM_Fast_Track_Project__c from  IPM_Project__c where Id =: project.Id limit 100][0].IPM_Fast_Track_Project__c , 'Project is failed to update as fast track.' );
+        
         Test.stopTest();
         }
     }
@@ -613,7 +615,7 @@ private class IPM_ProjectOverviewCtrl_Test
         insert rProjectList;
         List<IPM_Project__c>projectLists=[SELECT id FROM IPM_Project__c LIMIT 20];
         System.assertEquals(20, projectLists.size(), REGIONAL_PROJECTS_NOT_CREATED);
-        
+        Test.startTest();
         //Create local project
         for(Integer i=0 ; i<20 ; i++ ){
             IPM_Project__c lProject = IPM_TestFactory_Helper.createIPMProject(false);
@@ -649,7 +651,7 @@ private class IPM_ProjectOverviewCtrl_Test
         System.assertEquals(1, [Select count() from IPM_Financial_Year__c where id =: testFinancialYear.id limit 100],FINANCIAL_YEAR_NOT_CREATED);
         
         
-        Test.startTest();
+        
         PageReference pRef1 = new PageReference(sPageRefURL+rProjectList[0].ID);
         Test.setCurrentPage(pRef1);
         
@@ -732,7 +734,9 @@ private class IPM_ProjectOverviewCtrl_Test
             testIPMFinancialLocal.Project_Sustainability_Period__c = IPM_ConstantUtils.YEAR_3;
             financialList.add(testIPMFinancialLocal);
         }
+         IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
         insert financialList;
+         IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
         System.assertEquals(20, [Select count() from IPM_Financial__c where Parent_Project__c =: project.id limit 100], FINANCIAL_NOT_CREATED);
         
         PageReference pRef1 = new PageReference(sPageRefURL+rProjectList[0].ID);
@@ -807,6 +811,7 @@ private class IPM_ProjectOverviewCtrl_Test
 
             ipmProj.IPM_BET_Toolkit__c = IPM_ConstantUtils.CREATE_NEW_BET ;
             update ipmProj;
+            Test.StopTest();
             System.assertEquals(IPM_ConstantUtils.CREATE_NEW_BET , [Select Id, IPM_BET_Toolkit__c from IPM_Project__c where Id=: ipmProj.Id limit 100][0].IPM_BET_Toolkit__c, 'New BET toolkit is not successfully linked to the project.');
             
             PageReference pRef2 = new PageReference(sPageRefURL+ipmProj.ID);
@@ -816,7 +821,7 @@ private class IPM_ProjectOverviewCtrl_Test
             
             system.assertEquals(System.label.IPM_NewBETMessage,overCtrl2.betInformationMessage,BET_ERROR_MSG);
             
-            Test.StopTest();
+            
         
         }
         
@@ -1097,8 +1102,8 @@ private class IPM_ProjectOverviewCtrl_Test
 	        
 	        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
 	        IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
-	        System.assert(overCtrl.lstRolloutProjectAlertMessage[0].contains(Label.IPM_Local_Project_Leader_BlankMsg), 'Local Project leader is not blank.');
-	        Test.stopTest();
+	        System.assert(overCtrl.lstRolloutProjectAlertMessage[0].contains('Please provide the name of the MCO Rollout Leader for'), 'Project Leader name not provided');
+		Test.stopTest();
         }
     }  
     
@@ -1167,11 +1172,8 @@ private class IPM_ProjectOverviewCtrl_Test
             Test.startTest();
             PageReference pRef1 = new PageReference(sPageRefURL+globalProject.ID);
             Test.setCurrentPage(pRef1);
-            
-            IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
-            IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
             Test.stopTest();
         
         }
-     }
+    }
 }

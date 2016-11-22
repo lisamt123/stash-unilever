@@ -95,14 +95,15 @@ public with sharing class CPA_Test_Req_Deli_and_Key_Contacts_util {
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/
-    public static CPA_User_Defined_Attribute__c createTest_UDA(CPA_PWORF__c objPWORF){
+   public static CPA_User_Defined_Attribute__c createTest_UDA(CPA_project_work_order__c objPWO){
 
         CPA_User_Defined_Attribute__c uda = new CPA_User_Defined_Attribute__c();
         
         uda.pkl_Attribute_Type__c = 'Cost';
         uda.txt_Value__c = 'test'  ;
-        uda.lkp_PWORF__c = objPWORF.id  ;        
+        uda.lkp_PWO__c = objPWO.id  ;
+		uda.chk_isDocusignedRecord__c =true;       
         return uda;
         
-    }		
+    }			
 }

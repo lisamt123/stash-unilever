@@ -39,16 +39,16 @@ public with sharing class CEC_AlertActionHelperTest {
             insert reasonCodeList;
 
             List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping();
-            CEC_Case_Market_Mapping__c cmmUK;
+            CEC_Case_Market_Mapping__c cmmUK = new CEC_Case_Market_Mapping__c();
             for(CEC_Case_Market_Mapping__c cmm : cmmList) {
-                if (cmm.Market__c == 'United Kingdom') {
+                if (cmm.Market__c == CEC_Constants.UK) {
                     cmmUK = cmm;
                     break;
                 }
             }
 
             List<cec_Alert_Rule__c> noDayCodeAlertRuleList = 
-                                                CEC_TestDataFactory.createAlertRule(1,'Safety','0','5','United Kingdom',
+                                                CEC_TestDataFactory.createAlertRule(1,'Safety','0','5',CEC_Constants.UK,
                                                                     reasonCodeList.get(0).Id,prodCategoryList.get(0).Id,
                                                                     null,false,false,false,1);
             insert noDayCodeAlertRuleList;
@@ -59,7 +59,7 @@ public with sharing class CEC_AlertActionHelperTest {
             masterAlertActionList.addAll(noDayCodeAlertActionList);
 
             List<cec_Alert_Rule__c> dayCodeAlertRuleList = 
-                                                CEC_TestDataFactory.createAlertRule(1,'Safety','0','5','United Kingdom',
+                                                CEC_TestDataFactory.createAlertRule(1,'Safety','0','5',CEC_Constants.UK,
                                                                     reasonCodeList.get(0).Id,prodCategoryList.get(0).Id,
                                                                     null,false,true,false,1);
             insert dayCodeAlertRuleList;
@@ -108,7 +108,7 @@ public with sharing class CEC_AlertActionHelperTest {
             update caseObj;
             
             Case caseToAssert = [SELECT DayCode__c, Case_Market__c FROM Case WHERE DayCode__c ='1234' LIMIT 1];
-            System.assertEquals('United Kingdom', caseToAssert.Case_Market__c);
+            System.assertEquals(CEC_Constants.UK, caseToAssert.Case_Market__c);
 
             mdm_Reason_Code__c reasonObj = [SELECT Id FROM mdm_Reason_Code__c LIMIT 1];            
             caseObj.Reason_Code__c = reasonObj.Id;
@@ -137,7 +137,7 @@ public with sharing class CEC_AlertActionHelperTest {
             update caseObj;
             
             Case caseToAssert = [SELECT DayCode__c, Case_Market__c FROM Case WHERE DayCode__c ='1234'];           
-            System.assertEquals('United Kingdom', caseToAssert.Case_Market__c);
+            System.assertEquals(CEC_Constants.UK, caseToAssert.Case_Market__c);
             
             mdm_Case_Product__c productObj = [SELECT Id FROM mdm_Case_Product__c LIMIT 1];  
             caseObj.CEC_Product__c = productObj.id;
@@ -165,7 +165,7 @@ public with sharing class CEC_AlertActionHelperTest {
             update caseObj;
             
             Case caseToAssert = [SELECT DayCode__c, Case_Market__c FROM Case WHERE DayCode__c ='1234'];           
-            System.assertEquals('United Kingdom', caseToAssert.Case_Market__c);
+            System.assertEquals(CEC_Constants.UK, caseToAssert.Case_Market__c);
             
             mdm_Case_Product__c productObj = [SELECT Id FROM mdm_Case_Product__c LIMIT 1];  
             caseObj.CEC_Product__c = productObj.id;
@@ -175,7 +175,7 @@ public with sharing class CEC_AlertActionHelperTest {
             
             Integer alertTrackerCount = [SELECT Count() FROM cec_Alert_Tracker__c WHERE Alert_Rule_Id__c = :alertRule.Id];
             System.assertEquals(1, alertTrackerCount);
-			
+            
             // Check the Case Action result 1
             cec_Case_Action__c caseActionResult1 = [SELECT Q12__c, Q2__c, Q3__c, Q4__c, Q5__c,Q6__c,
                                                     Q7__c, Q8__c, Q9__c, Q10__c, Q11__c, Survey_Id__c
@@ -202,7 +202,7 @@ public with sharing class CEC_AlertActionHelperTest {
         }
         
     }
-	
+    
     // Test Method for Safety Alert to set Case Product instead of Product Category.
     static testMethod void createAlertsForCaseProduct(){
         User u = CEC_TestDataFactory.getStandardCECTestUser();
@@ -219,10 +219,10 @@ public with sharing class CEC_AlertActionHelperTest {
             update caseObj;
             
             Case caseToAssert = [SELECT DayCode__c, Case_Market__c FROM Case WHERE DayCode__c ='1234'];           
-            System.assertEquals('United Kingdom', caseToAssert.Case_Market__c);
+            System.assertEquals(CEC_Constants.UK, caseToAssert.Case_Market__c);
 
             List<cec_Alert_Rule__c> noDayCodeAlertRuleList = 
-                                                CEC_TestDataFactory.createAlertRule(1,'Safety','0','5','United Kingdom',
+                                                CEC_TestDataFactory.createAlertRule(1,'Safety','0','5',CEC_Constants.UK,
                                                                     reasonObj.Id,null, productObj.Id,
                                                                     false,false,false,1);
             insert noDayCodeAlertRuleList;

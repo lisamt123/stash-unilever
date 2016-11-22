@@ -93,7 +93,7 @@ private class CEC_TestAlertActionBatchScheduler {
             database.executeBatch(scheduler);
             Test.stopTest();
             
-            cec_Alert_Tracker__c finalAlertTracker = [SELECT Trigger_Batch__c FROM cec_Alert_Tracker__c];
+            cec_Alert_Tracker__c finalAlertTracker = [SELECT Trigger_Batch__c FROM cec_Alert_Tracker__c limit 100];
             System.assertEquals(finalAlertTracker.Trigger_Batch__c,false);
 
             // Assert Chatter Alert Action : Check the Group id is populated in Alert Action record
@@ -139,6 +139,11 @@ private class CEC_TestAlertActionBatchScheduler {
             cec_Org_Settings__c custsett = new cec_Org_Settings__c(AlertAction_Time_Scheduler__c = '12;');
             insert custsett;
             CEC_AlertActionBatchScheduler.startScheduler();
+            
+            String cecNameFilter = Label.CEC_AlertActionSchedulerName + '%';
+             List<CronTrigger> cecAsyncJobList = [SELECT Id, CronJobDetail.Id, CronJobDetail.Name, CronJobDetail.JobType FROM CronTrigger WHERE CronJobDetail.Name LIKE :cecNameFilter AND CronJobDetail.JobType = '7' AND (STATE = 'WAITING' OR STATE = 'RUNNING')];
+             System.assert(cecAsyncJobList[0].CronJobDetail.Name.contains('CEC AlertAction Scheduler'));
+             
             // Assert whether the scheduler job is created
             CEC_AlertActionBatchScheduler.stopAllScheduler();
             Test.stopTest();

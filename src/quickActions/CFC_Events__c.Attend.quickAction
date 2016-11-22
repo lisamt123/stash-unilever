@@ -15,4 +15,5 @@
     <targetObject>CFC_Attendee__c</targetObject>
     <targetParentField>Event__c</targetParentField>
     <type>Create</type>
+     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

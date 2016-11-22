@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>CEC Brazil – E-Voucher Details email template is used for CEC Brazil Send E-Voucher Email workflow.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>cec_Blank_Letter</letterhead>
+    <name>Brazil – E-Voucher Details</name>
+    <style>freeForm</style>
+    <subject>Brazil – E-Voucher Details - {!cec_Fulfilment__c.E_Voucher_Number__c}</subject>
+    <type>html</type>
+</EmailTemplate>

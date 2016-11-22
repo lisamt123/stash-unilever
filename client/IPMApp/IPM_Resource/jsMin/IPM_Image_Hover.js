@@ -1,0 +1,1 @@
+function delImage(conId,secId,imgId,channelType){deletImage(conId,secId,imgId,channelType)}function delConceptImage(secConId){deleteImg(secConId)}

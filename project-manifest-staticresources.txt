@@ -1,3 +1,4 @@
+src
 src/staticresources/AF_Bootstrap.resource
 src/staticresources/AF_Bootstrap.resource-meta.xml
 src/staticresources/AF_JavascriptFiles.resource
@@ -46,3 +47,21 @@ src/staticresources/WWP_Jquery1.resource
 src/staticresources/WWP_Jquery1.resource-meta.xml
 src/staticresources/WWP_ResetImage.resource
 src/staticresources/WWP_ResetImage.resource-meta.xml
+src/staticresources/PBSResources.resource
+src/staticresources/PBSResources.resource-meta.xml
+src/staticresources/PCResources.resource
+src/staticresources/PCResources.resource-meta.xml
+src/staticresources/PCstyles.resource
+src/staticresources/PCstyles.resource-meta.xml
+src/staticresources/almond_LMSInitData.resource
+src/staticresources/almond_LMSInitData.resource-meta.xml
+src/staticresources/almond_LMSInitDataWithTracks.resource
+src/staticresources/almond_LMSInitDataWithTracks.resource-meta.xml
+src/staticresources/almond_LMSInitData_es.resource
+src/staticresources/almond_LMSInitData_es.resource-meta.xml
+src/staticresources/almond_app_icons.resource
+src/staticresources/almond_app_icons.resource-meta.xml
+src/staticresources/almond_uilib.resource
+src/staticresources/almond_uilib.resource-meta.xml
+src/staticresources/almond_uilib_mt.resource
+src/staticresources/almond_uilib_mt.resource-meta.xml
