@@ -2033,14 +2033,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PBSWorklevel1</shortDescription>
-        <value>Supply Planner,Demand Planner,Demand & Supply Planner,Repack Planner/Officer,Innovation Planner,Supply/Requirements Planner,Materials Planner,Distribution Planner</value>
+        <value>Supply Planner,Demand Planner,Demand &amp Supply Planner,Repack Planner/Officer,Innovation Planner,Supply/Requirements Planner,Materials Planner,Distribution Planner</value>
     </labels>
 	  <labels>
         <fullName>PBS_Worklevel2</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PBSWorklevel2</shortDescription>
-        <value>Demand Planning Manager,Supply Planning Manager (MSO/MCO),Repack Operations Manager,S&OP Manager,Demand & Supply Planning Manager(MSO/MCO),Site Supply Planning Manager</value>
+        <value>Demand Planning Manager,Supply Planning Manager (MSO/MCO),Repack Operations Manager,S&ampOP Manager,Demand &amp Supply Planning Manager(MSO/MCO),Site Supply Planning Manager</value>
     </labels>
 		  <labels>
         <fullName>PBS_Worklevel3</fullName>
