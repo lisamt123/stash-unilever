@@ -132,6 +132,17 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CEC_Brand_Ambassador_Case_Queue_Assign</fullName>
+        <description>CEC Brand Ambassador Case Queue Assignment - Assign case to &apos;CEC - Brand Ambassador&apos;</description>
+        <field>OwnerId</field>
+        <lookupValue>CEC_Brand_Ambassador</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CEC Brand Ambassador Case Queue Assign</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CEC_Case_Origin_to_Social_Media</fullName>
         <description>CEC: Updates the case origin to social media</description>
         <field>Origin</field>
@@ -224,6 +235,25 @@
         <field>Market__c</field>
         <literalValue>United Kingdom</literalValue>
         <name>CEC UK Market Field Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CEC_Update_Case_Priority_Field</fullName>
+        <description>CEC_Update &apos;Case Priority&apos; info to Null: To Update &apos;Case Priority&apos; information to Null</description>
+        <field>Priority</field>
+        <name>CEC Update Case Priority Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CEC_Update_Case_Status_In_Progress</fullName>
+        <description>CEC Update Case Status into In Progress</description>
+        <field>Status</field>
+        <literalValue>In Progress</literalValue>
+        <name>CEC Update Case Status(In Progress)</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -391,6 +421,21 @@
         </workflowTimeTriggers>
     </rules>
     <rules>
+        <fullName>CEC Brand Ambassador Case Assignment</fullName>
+        <actions>
+            <name>CEC_Brand_Ambassador_Case_Queue_Assign</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CEC_Update_Case_Status_In_Progress</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>CEC Brand Ambassador Case Assignment  - Assignment case For Brand Ambassador and Shut the status to InProgress</description>
+        <formula>AND(CONTAINS(LOWER(Country__r.Brand_Ambassador_Brands__c),LOWER(Brand__c)) , ISPICKVAL( Origin , &apos;Web&apos;),ISPICKVAL(  Type  , &apos;Product Question&apos;)  )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
         <fullName>CEC Close Case Survey</fullName>
         <active>false</active>
         <description>CEC: to send CSAT survey link</description>
@@ -434,6 +479,21 @@
         </criteriaItems>
         <description>CEC: This workflow is used to update the case origin to social media</description>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC Update Case Priority Field</fullName>
+        <actions>
+            <name>CEC_Update_Case_Priority_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Priority</field>
+            <operation>equals</operation>
+            <value>2 - Medium</value>
+        </criteriaItems>
+        <description>CEC Update Email Case Priority Field: To Update &apos;Case Priority&apos; information to Null</description>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>CEC_Email_AutoResponse</fullName>

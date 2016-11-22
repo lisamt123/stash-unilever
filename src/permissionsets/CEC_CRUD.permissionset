@@ -11013,6 +11013,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CEC_Case_Market_Mapping__c.Brand_Ambassador_Brands__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CEC_Case_Market_Mapping__c.CSAT_Delay__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -15854,6 +15859,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.AssetId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Brand_Ambassador_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -2619,6 +2619,22 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
                 <fullName>Research – Continuous</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Activation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Design: Packaging Adaptive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Design: Packaging Strategic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>

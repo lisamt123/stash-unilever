@@ -81,7 +81,7 @@
             <name>IPM_Milestone_Due_Date_in_Past_For_PLE</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <formula>AND(  IPM_Milestone_Due_Date_In_Past__c = true,  NOT(ISPICKVAL( IPM_Phase__c , &apos;Post Launch Evaluation&apos;)),  IPM_Project__r.Is_Archieved__c = false,  ISPICKVAL( IPM_Type_of_Milestone__c , &apos;Standard&apos;),  IPM_Completed__c = false,  CreatedDate  &lt;&gt;  LastModifiedDate,  OR( IPM_Name__c  = &apos;Target Launch Date(Ship to Trade)&apos; ,      IPM_Name__c  = &apos;Ship To Trade (Target Launch Date)&apos; ) )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -91,7 +91,7 @@
             <name>IPM_Milestone_Due_Date_in_the_past</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <formula>AND(  IPM_Milestone_Due_Date_In_Past__c = true,  NOT(ISPICKVAL( IPM_Phase__c , &apos;Post Launch Evaluation&apos;)),  IPM_Project__r.Is_Archieved__c = false,  ISPICKVAL( IPM_Type_of_Milestone__c , &apos;Standard&apos;),  IPM_Completed__c = false,  CreatedDate  &lt;&gt;  LastModifiedDate,  AND( IPM_Name__c  &lt;&gt; &apos;Target Launch Date(Ship to Trade)&apos; ,      IPM_Name__c  &lt;&gt; &apos;Ship To Trade (Target Launch Date)&apos; ) )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
