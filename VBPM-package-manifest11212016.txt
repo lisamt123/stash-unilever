@@ -41,7 +41,7 @@
 /src/flows/VPM_AssignFLSQueueApprover-2.flow
 /src/flows/VPM_AssignFLSWithCountries-1.flow
 /src/flows/VPM_RequestTimewithGroup-43.flow
-/src/flows/VPM_VendorRequestStages-69.flow
+/src/flows/VPM_VendorRequestStages-71.flow
 /src/letterhead/VPM_BlankLetter.letter
 /src/queues/VPM_CordilleraBankingDataValidation.queue
 /src/queues/VPM_ECCQueue.queue
