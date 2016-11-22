@@ -190,6 +190,75 @@
         <template>VPM_ApprovalEmails/VPM_SendWebformtoVendor</template>
     </alerts>
     <fieldUpdates>
+        <fullName>UpdateCustomTaxRework</fullName>
+        <description>VPM : Custom tax SLA</description>
+        <field>VPM_StoreHours__c</field>
+        <formula>VPM_StoreHours__c</formula>
+        <name>UpdateCustomTaxRework</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateHourSpendWithProcurment</fullName>
+        <field>VPM_HoursSpentWithProcurement__c</field>
+        <formula>VPM_StoreHours__c</formula>
+        <name>UpdateHourSpendWithProcurment</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateHoursFLS</fullName>
+        <field>VPM_HoursSpentWithFLS__c</field>
+        <formula>VPM_StoreHours__c</formula>
+        <name>UpdateHoursFLS</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateHoursFinance</fullName>
+        <field>VPM_HoursSpentWithFinance__c</field>
+        <formula>VPM_StoreHours__c</formula>
+        <name>UpdateHoursFinance</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateProcurment</fullName>
+        <description>VPM : Update procurment hours</description>
+        <field>VPM_CheckHours__c</field>
+        <literalValue>0</literalValue>
+        <name>UpdateProcurmentHours</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateRequestGroupTime</fullName>
+        <field>VPM_RequestGroupTime__c</field>
+        <formula>NOW()</formula>
+        <name>UpdateRequestGroupTime</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM</fullName>
+        <field>VPM_HoursSpentWithProcurement__c</field>
+        <formula>VPM_StoreHours__c</formula>
+        <name>UpdateHourSpendWithProcurment</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_ApprovalStatusAproval</fullName>
         <description>VPM - Used to Set the status as &quot;Approved&quot; when the request is Approved by the team</description>
         <field>VPM_ApprovalStatus__c</field>
@@ -1081,6 +1150,27 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_UpdateBankDataHours</fullName>
+        <description>VPM : Update Bank Data Hours</description>
+        <field>VPM_HoursSpentWithBankValidator__c</field>
+        <formula>VPM_StoreHours__c</formula>
+        <name>VPM_UpdateBankDataHours</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_UpdateFreightReworkSLA</fullName>
+        <description>VPM : Frieght rework SLA</description>
+        <field>VPM_HoursSpentWithFreight__c</field>
+        <formula>VPM_HoursSpentWithFreight__c</formula>
+        <name>VPM_UpdateFreightReworkSLA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_UpdateOwner</fullName>
         <description>VPM - Update the Vendor Request: Owner To MDM Ops Queue</description>
         <field>OwnerId</field>
@@ -1174,6 +1264,34 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             <value>MDM Ops</value>
         </criteriaItems>
         <description>VPM - Used to update the Owner id to MDM Ops Queues  when the request is under MDM Team for Review</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>UpdateCustomTaxRework</fullName>
+        <actions>
+            <name>UpdateCustomTaxRework</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>UpdateProcurment</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>VPM_UpdateRequestGroup</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Rework__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c</field>
+            <operation>equals</operation>
+            <value>Russian Custom Tax</value>
+        </criteriaItems>
+        <description>VPM :  Custom Tax requested rework</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1371,6 +1489,111 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>VPM_BankDateRequestedRework</fullName>
+        <actions>
+            <name>UpdateProcurment</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>UpdateRequestGroupTime</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>VPM_UpdateBankDataHours</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Rework__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c</field>
+            <operation>equals</operation>
+            <value>Bank Data</value>
+        </criteriaItems>
+        <description>VPM :  Bank data requested rework SLA</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM_CheckGroupChangedToFLS</fullName>
+        <actions>
+            <name>UpdateHoursFLS</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>UpdateProcurment</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>UpdateRequestGroupTime</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c</field>
+            <operation>equals</operation>
+            <value>FLS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Rework__c</field>
+            <operation>notEqual</operation>
+            <value>Yes</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM_CheckGroupChangedToFinance</fullName>
+        <actions>
+            <name>UpdateHoursFinance</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>UpdateProcurment</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>UpdateRequestGroupTime</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c</field>
+            <operation>equals</operation>
+            <value>Finance</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM_CheckGroupChangedToProcurment</fullName>
+        <actions>
+            <name>UpdateProcurment</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>UpdateRequestGroupTime</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>VPM</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c</field>
+            <operation>equals</operation>
+            <value>Procurement</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Rework__c</field>
+            <operation>equals</operation>
+            <value>No</value>
+        </criteriaItems>
+        <description>VPM : Use for SLA for Procurment user</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>VPM_CountryRegionUpdate</fullName>
         <active>false</active>
         <formula>ISCHANGED(VPM_Country__c)</formula>
@@ -1390,5 +1613,33 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <description>Resets certain system values in picklists and fields on create to ensure the request is considered as a new request if it is cloned from a different request</description>
         <formula>True</formula>
         <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM_UpdateFreight</fullName>
+        <actions>
+            <name>UpdateProcurment</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>VPM_UpdateFreightReworkSLA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>VPM_UpdateRequestGroup</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Rework__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c</field>
+            <operation>equals</operation>
+            <value>Freight</value>
+        </criteriaItems>
+        <description>VPM : SLA condition for frieght request rework</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

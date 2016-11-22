@@ -134,7 +134,7 @@ public with sharing class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetails.houseNoSupplement = vendorList.get(0).VPM_HouseNumSupplement__c == null ? '' : vendorList.get(0).VPM_HouseNumSupplement__c;
             VPM_InterfaceFieldDetails.IsNaturalPerson = vendorList.get(0).VPM_IsNaturalPerson__c == null ? true : vendorList.get(0).VPM_IsNaturalPerson__c;
             VPM_InterfaceFieldDetails.IsSupplierAssessmentQuestionnaireQual = vendorList.get(0).VPM_SupplierAssessmentQuestionnaireQual__c == null ? false : VPM_HttpUtil.convertYesNoToBoolean(vendorList.get(0).VPM_SupplierAssessmentQuestionnaireQual__c);
-            VPM_InterfaceFieldDetails.IsSupplierAssessmentQuestionnaireSour = vendorList.get(0).VPM_SupplierPositiveAssuranceSourcing__c == null ? false : VPM_HttpUtil.convertYesNoToBoolean(vendorList.get(0).VPM_SupplierPositiveAssuranceSourcing__c);
+            VPM_InterfaceFieldDetails.IsSupplierAssessmentQuestionnaireSour = vendorList.get(0).VPM_SupplierAssessmentQuestionnaireSour__C == null ? false : VPM_HttpUtil.convertYesNoToBoolean(vendorList.get(0).VPM_SupplierAssessmentQuestionnaireSour__C);
             VPM_InterfaceFieldDetails.poBox = vendorList.get(0).VPM_POBox__c == null ? '' : vendorList.get(0).VPM_POBox__c;
             VPM_InterfaceFieldDetails.poPostalCode = vendorList.get(0).VPM_POBoxPostCode__c == null ? '' : vendorList.get(0).VPM_POBoxPostCode__c;
             VPM_InterfaceFieldDetails.taxNumber = vendorList.get(0).VPM_TaxNumber1__c == null ? '' : vendorList.get(0).VPM_TaxNumber1__c;
@@ -181,32 +181,7 @@ public with sharing class VPM_CreateVendorFetchFieldDetails {
             
             //eccSystem needs to be replaced with four boolean variables for each ecc
             //VPM_InterfaceFieldDetails.eccSystem = vendorList.get(0).VPM_ECC__c==null?'':vendorList.get(0).VPM_ECC__c;
-            /* 
-            VPM_InterfaceFieldDetails.deletionBlockFlag = vendorList.get(0). VPM_DeletionBlockFlag__c==null?'':vendorList.get(0). VPM_DeletionBlockFlag__c;
-            VPM_InterfaceFieldDetails.bankCountryKey = vendorList.get(0).VPM_BankCountryKey__c==null?'':vendorList.get(0).VPM_BankCountryKey__c; 
-            VPM_InterfaceFieldDetails.bankKey = vendorList.get(0).VPM_BankKey__c==null?'':vendorList.get(0).VPM_BankKey__c; 
-            VPM_InterfaceFieldDetails.bankAccountNumber = vendorList.get(0).VPM_BankAccountNumber__c==null?'':vendorList.get(0).VPM_BankAccountNumber__c;
-            VPM_InterfaceFieldDetails.accountHolderName = vendorList.get(0).VPM_AccountHolderName__c==null?'':vendorList.get(0).VPM_AccountHolderName__c; 
-            VPM_InterfaceFieldDetails.bankControlKey = vendorList.get(0).VPM_BankControlKey__c==null?'':vendorList.get(0).VPM_BankControlKey__c;
-            VPM_InterfaceFieldDetails.iBAN = vendorList.get(0).VPM_IBAN__c==null?'':vendorList.get(0).VPM_IBAN__c;
-            VPM_InterfaceFieldDetails.partnerBankType = vendorList.get(0).VPM_PartnerBankType__c==null?'':vendorList.get(0).VPM_PartnerBankType__c;
-            VPM_InterfaceFieldDetails.referenceSpecificationsBankDetail = vendorList.get(0).VPM_ReferenceSpecificationsBankDetail__c==null?'':vendorList.get(0).VPM_ReferenceSpecificationsBankDetail__c;
-            VPM_InterfaceFieldDetails.collectionAuthorization = vendorList.get(0).VPM_CollectionAuthorization__c==null?'':vendorList.get(0).VPM_CollectionAuthorization__c;
-            VPM_InterfaceFieldDetails.bankName = vendorList.get(0).VPM_BankName__c==null?'':vendorList.get(0).VPM_BankName__c;
-            VPM_InterfaceFieldDetails.swiftKey = vendorList.get(0).VPM_SwiftKey__c==null?'':vendorList.get(0).VPM_SwiftKey__c;
-            VPM_InterfaceFieldDetails.iSRNumber = vendorList.get(0).VPM_ISRNumber__c==null?'':vendorList.get(0).VPM_ISRNumber__c;
-            VPM_InterfaceFieldDetails.bankNumber = vendorList.get(0).VPM_BankNumber__c==null?'':vendorList.get(0).VPM_BankNumber__c;
-            VPM_InterfaceFieldDetails.reconciliationAccount = vendorList.get(0).VPM_ReconciliationAccount__c==null?'':vendorList.get(0).VPM_ReconciliationAccount__c;
-            VPM_InterfaceFieldDetails.paymentMethod = vendorList.get(0).VPM_PaymentMethod__c==null?'':vendorList.get(0).VPM_PaymentMethod__c;
-            VPM_InterfaceFieldDetails.gRbasedIV = vendorList.get(0).VPM_GRbasedIV__c==null?'':vendorList.get(0).VPM_GRbasedIV__c;
-            VPM_InterfaceFieldDetails.paymentBlock = vendorList.get(0).VPM_PaymentBlock__c==null?'':vendorList.get(0).VPM_PaymentBlock__c;
-            VPM_InterfaceFieldDetails.alternativePayee = vendorList.get(0).VPM_AlternativePayee__c==null?'':vendorList.get(0).VPM_AlternativePayee__c;
-            VPM_InterfaceFieldDetails.purchasingOrganisation = vendorList.get(0).VPM_PurchasingOrganisation__c==null?'':vendorList.get(0).VPM_PurchasingOrganisation__c;
-            VPM_InterfaceFieldDetails.sRVBasedVendorID = vendorList.get(0).VPM_SRVBasedVendorID__c==null?'':vendorList.get(0).VPM_SRVBasedVendorID__c;
-            VPM_InterfaceFieldDetails.toleranceGroup = vendorList.get(0).VPM_ToleranceGroup__c==null?'':vendorList.get(0).VPM_ToleranceGroup__c;
-            VPM_InterfaceFieldDetails.paymentTerms = vendorList.get(0).VPM_PaymentTerms__c==null?'':vendorList.get(0).VPM_PaymentTerms__c;
-            VPM_InterfaceFieldDetails.automaticPurchaseOrderGeneration = vendorList.get(0).VPM_AutoGenerationPOAllowed__c==null?'':vendorList.get(0).VPM_AutoGenerationPOAllowed__c;
-            */
+           
             VPM_InterfaceFieldDetailsJSON = JSON.serialize(VPM_InterfaceFieldDetails);
         }
         return VPM_InterfaceFieldDetailsJSON;

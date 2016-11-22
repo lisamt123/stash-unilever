@@ -678,8 +678,7 @@ public with sharing class VPM_SearchVendor1{
           launchScreen =false;
           renderBackBtn = true;
           financialScreen = false;
-          generalVendorDetails = true;          
-          isInternationalVersionCollapsed();          
+          generalVendorDetails = true;                
           pageBlockTitle = System.label.VPM_General_Vendor_Details;       
           system.debug('@@@@@@@@Vendor Type '+vendorQuery1.VPM_Commodity__r.VPM_VendorType__c);
           system.debug('@@@@@@@@Vendor Type '+vendorQuery1.VPM_VendorType__c);
@@ -2029,7 +2028,7 @@ public with sharing class VPM_SearchVendor1{
              ||string.isNotBlank(vendorDetails.VPM_HouseNumberInt__c) || string.isNotBlank(vendorDetails.VPM_SearchTerm1Int__c) 
              ||string.isNotBlank(vendorDetails.VPM_PostCodeInt__c) || string.isNotBlank(vendorDetails.VPM_CityInt__c)
              || string.isNotBlank(vendorDetails.VPM_CountryInt__c)) {                 
-                    //isInternationalVersionCollapsed = false;
+                    isInternationalVersionCollapsed = false;
                     if(string.isBlank(vendorIntVersion)){
                       myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, system.label.VPM_International1);
                 }

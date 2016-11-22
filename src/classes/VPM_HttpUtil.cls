@@ -17,9 +17,7 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 3.0 -    Deepak    3rd Oct 2016      Callouts                  Regional and Global Extend Service callout.
 ************************************************************************************************************/
 public with sharing class VPM_HttpUtil {
-    /*
-	  wrapper class for response message
-	*/
+    
     class CreateVendorResponse {
         public String Status {get; set;}
         public String RequestID {get; set;}
