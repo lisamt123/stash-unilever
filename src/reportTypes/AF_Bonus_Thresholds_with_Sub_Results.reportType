@@ -8,7 +8,7 @@
         <outerJoin>false</outerJoin>
         <relationship>Sub_Result__r</relationship>
     </join>
-    <label>Bonus Thresholds with Sub Results</label>
+    <label>AF_Bonus Thresholds with Sub Results</label>
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
@@ -253,6 +253,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Unilever Entity</displayNameOverride>
             <field>AF_country__c</field>
             <table>AF_Bonus_Threshold__c.Sub_Result__r</table>
         </columns>
@@ -391,6 +392,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>AF_Traditional__c</field>
+            <table>AF_Bonus_Threshold__c.Sub_Result__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AF_Bonus_Target__c</field>
             <table>AF_Bonus_Threshold__c.Sub_Result__r</table>
         </columns>
         <columns>
