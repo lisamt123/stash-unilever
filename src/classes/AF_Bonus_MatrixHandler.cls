@@ -21,7 +21,7 @@ public without sharing class AF_Bonus_MatrixHandler implements iTrigger
 *************************************************************************************/
     public void bulkBefore()
     {
-    	/*Method is Blank as this handler doesnot handle any bulkBefore*/
+      /*Method is Blank as this handler doesnot handle any bulkBefore*/
     }
     /***********************************************************************************
 *  @Description: This method is derived as a part of trigger factory
@@ -32,7 +32,7 @@ public without sharing class AF_Bonus_MatrixHandler implements iTrigger
 *************************************************************************************/   
     public void bulkAfter()
     {
-    	/*Method is Blank as this handler doesnot handle any beforeAfter*/
+      /*Method is Blank as this handler doesnot handle any beforeAfter*/
     }
     /********************************************************************************************
 *  @Description: This method is called iteratively for each record to be inserted during a BEFORE
@@ -77,7 +77,7 @@ public without sharing class AF_Bonus_MatrixHandler implements iTrigger
 *************************************************************************************/
     public void beforeDelete(SObject so)
     {
-    	/*Method is Blank as this handler doesnot handle any beforeDelete*/
+      /*Method is Blank as this handler doesnot handle any beforeDelete*/
     }
     /********************************************************************************************
 *  @Description: This method is derived as a part of trigger factory
@@ -88,7 +88,7 @@ public without sharing class AF_Bonus_MatrixHandler implements iTrigger
 *************************************************************************************/
     public void afterInsert(SObject so)
     {
-    	/*Method is Blank as this handler doesnot handle any afterInsert*/
+      /*Method is Blank as this handler doesnot handle any afterInsert*/
     }
     /********************************************************************************************
 *  @Description: This derived as a part of trigger factory
@@ -99,7 +99,7 @@ public without sharing class AF_Bonus_MatrixHandler implements iTrigger
 *************************************************************************************/
     public void afterUpdate(SObject oldSo, SObject so)
     {
-    	/*Method is Blank as this handler doesnot handle any afterUpdate*/
+      /*Method is Blank as this handler doesnot handle any afterUpdate*/
     }
     /********************************************************************************************
 *  @Description: this derived as a part of trigger factory
@@ -110,7 +110,7 @@ public without sharing class AF_Bonus_MatrixHandler implements iTrigger
 *************************************************************************************/
     public void afterDelete(SObject so)
     {
-    	/*Method is Blank as this handler doesnot handle any afterDelete*/
+      /*Method is Blank as this handler doesnot handle any afterDelete*/
     }
     /**********************************************************************************************************
 *  @Description: This method is called once all records have been processed by the trigger. Use this 
