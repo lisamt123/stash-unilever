@@ -2223,6 +2223,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CEC_ExceptionHandling</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CEC_FufilmentProductInlineController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -17194,6 +17198,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.Brand_Ambassador_Brands__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.CSAT_Delay__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -17435,6 +17444,36 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CEC_Enclosure_Inventory__c.End_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Exception_Log__c.Error_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Exception_Log__c.Reference_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Exception_Log__c.Source_Component_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Exception_Log__c.Source_Method_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Exception_Log__c.Source_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Exception_Log__c.User__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22715,6 +22754,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.AssetId</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Brand_Ambassador_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -54560,6 +54604,9 @@
         <layout>CEC_Enclosure_Inventory__c-Enclosure Inventory Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CEC_Exception_Log__c-Exception Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CEC_Factory_Details__c-Factory Details Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -57298,6 +57345,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>CEC_Enclosure_Inventory__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>CEC_Exception_Log__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -64491,6 +64547,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>CEC_Enclosure_Inventory__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>CEC_Exception_Log__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>

@@ -2619,6 +2619,22 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
                 <fullName>Research – Continuous</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Activation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Design: Packaging Adaptive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Design: Packaging Strategic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -7077,6 +7093,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <value>Account.Pitch_Agency</value>
         </filters>
         <label>Pitch Agencies</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>Pitch_Users</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Pitch_Experts</fullName>
@@ -7090,16 +7110,16 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <value>PersonAccount.Pitch_Expert</value>
         </filters>
         <label>Pitch Experts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>Pitch_Users</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Primary_Account_View</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
         <columns>PARENT_NAME</columns>
-        <columns>UID_Region__c</columns>
-        <columns>UID_Branch__c</columns>
-        <columns>UID_Geography__c</columns>
-        <columns>UID_Segment__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>ACCOUNT.RECORDTYPE</field>
@@ -7108,6 +7128,9 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>Primary Account View</label>
         <language>en_US</language>
+        <sharedTo>
+            <group>UID_Users</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Recently_Created_Records</fullName>
@@ -7201,10 +7224,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <columns>ACCOUNT.NAME</columns>
         <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
         <columns>PARENT_NAME</columns>
-        <columns>UID_Region__c</columns>
-        <columns>UID_Branch__c</columns>
-        <columns>UID_Geography__c</columns>
-        <columns>UID_Segment__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>ACCOUNT.RECORDTYPE</field>
@@ -7213,6 +7232,9 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>Secondary Account View</label>
         <language>en_US</language>
+        <sharedTo>
+            <group>UID_Users</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Temporary_Accounts_Administrator</fullName>

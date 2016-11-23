@@ -83,6 +83,10 @@
         <name>Mulesoft_User_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Notification Email Id --></label>
+        <name>Notification_Email_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- PII Account Address Check --></label>
         <name>PII_Account_Address_Check__c</name>
     </fields>
