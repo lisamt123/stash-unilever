@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+<VPM xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
         <fullName>Account_Group</fullName>
         <language>en_US</language>
@@ -2240,4 +2240,4 @@
         <shortDescription>Vendor SME Status</shortDescription>
         <value>Vendor SME Status</value>
     </labels>
-</CustomLabels>
+</VPM>
