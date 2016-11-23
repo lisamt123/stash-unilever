@@ -22,8 +22,6 @@ src/classes/VPM_ECCMaintainExtendHelper.cls
 src/classes/VPM_ECCMaintainExtendHelper.cls-meta.xml
 src/classes/VPM_ECCVendorSearchServiceOutput.cls
 src/classes/VPM_ECCVendorSearchServiceOutput.cls-meta.xml
-src/classes/VPM_ECCWebserviceHelper.cls
-src/classes/VPM_ECCWebserviceHelper.cls-meta.xml
 src/classes/VPM_FetchVendorDetailsHttpMock.cls
 src/classes/VPM_FetchVendorDetailsHttpMock.cls-meta.xml
 src/classes/VPM_FetchVendorDetailsHttpMockCodeMatch.cls
@@ -3928,6 +3926,11 @@ src/queues/VPM_FusionBankingDataValidation.queue
 src/queues/VPM_MDMOps.queue
 src/queues/VPM_Procurement.queue
 src/queues/VPM_RussianCustomTax.queue
+src/queues/VPM_CordilleraBankingDataValidation.queue
+src/queues/VPM_ECCQueue.queue
+src/queues/VPM_FusionBankingDataValidation.queue
+src/queues/VPM_SiriusBankingDataValidation.queue
+src/queues/VPM_U2K2BankingDataValidation.queue
 src/quickActions
 src/quickActions/VPM_PurchasingRequests__c.VPM_AbortRequest.quickAction
 src/quickActions/VPM_PurchasingRequests__c.VPM_UpdateProcurementFields.quickAction
@@ -4025,12 +4028,6 @@ src/flows/VPM_RequestTimewithGroup-44.flow
 src/flows/VPM_VendorRequestStages-71.flow
 src/letterhead
 src/letterhead/VPM_BlankLetter.letter
-src/queues
-src/queues/VPM_CordilleraBankingDataValidation.queue
-src/queues/VPM_ECCQueue.queue
-src/queues/VPM_FusionBankingDataValidation.queue
-src/queues/VPM_SiriusBankingDataValidation.queue
-src/queues/VPM_U2K2BankingDataValidation.queue
 src/workflows
 src/workflows/VPM_CommodityApprover__c.workflow
 src/workflows/VPM_CommodityCode__c.workflow

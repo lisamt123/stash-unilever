@@ -7,8 +7,11 @@ public class VPM_ProcurementCentralController_Test {
     public static final string STR_CONST_EMAIL = 'standarduser@testorg.com';
     public static final string STR_CONST_EMAILNAME = 'testpermissionsetuser@testorg.com';
     public static final string STR_CONST_USERS = 'standt1';
+     public static final string STR_CONST_USERS2 = 'standt2';
     public static final string STR_CONST_EMAILS =  'standarduser@testorg1.com';
+        public static final string STR_CONST_EMAILS2 =  'standarduser@testorg2.com';
     public static final string STR_CONST_EMAILNAMES = 'testpermissionsetuser@testorg1.com';
+      public static final string STR_CONST_EMAILNAMES2 = 'testpermissionsetuser@testorg2.com';
 
 
     static testMethod void TestApproverReplace(){
@@ -47,11 +50,14 @@ public class VPM_ProcurementCentralController_Test {
         
         User Approver1 = VPM_TestDataFactory.CreateUser(STR_CONST_USER ,STR_CONST_EMAIL ,STR_CONST_EMAILNAME ,VPM_NOACCESS );
         insert Approver1;
+        
+        User Approver3 = VPM_TestDataFactory.CreateUser(STR_CONST_USERS2,STR_CONST_EMAILS2 , STR_CONST_EMAILNAMES2 ,VPM_NOACCESS );
+        insert Approver3;
 
          User Approver2 = VPM_TestDataFactory.CreateUser(STR_CONST_USERS,STR_CONST_EMAILS , STR_CONST_EMAILNAMES ,VPM_NOACCESS );
         insert Approver2;
                        
-        VPM_CommodityApprover__c com = VPM_TestDataFactory.CreateCommodityApprover(Approver1.id, Approver2.id, VPM_COUNTRYNAME);
+        VPM_CommodityApprover__c com = VPM_TestDataFactory.CreateCommodityApprover(Approver1.id, Approver3.id, VPM_COUNTRYNAME);
         insert com;
         com =[select VPM_Approver1__c,VPM_TempApproverDate1__c,VPM_Approver2__c,VPM_CommodityClass__c,VPM_Country__c, id, VPM_ConfiguredApprovers__c from VPM_CommodityApprover__c where id=: com.id];
         

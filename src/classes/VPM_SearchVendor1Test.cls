@@ -5,6 +5,8 @@ public class VPM_SearchVendor1Test{
     public static final string vendorCode = '5001010';  
     public static final string eccU2k2 = 'U2K2';
     public static final string eccFusion = 'Fusion';
+    public static final string eccCORDILLERA = 'Cordillera';
+    
     static void customSettingData(string regionVar) {
         VPM_RegionSpecificFields__c region = new VPM_RegionSpecificFields__c();
         List<VPM_RegionSpecificFields__c> regionList = new List<VPM_RegionSpecificFields__c>();
@@ -162,6 +164,7 @@ public class VPM_SearchVendor1Test{
         pur.VPM_ClerksInternet__c = '';
         pur.VPM_Country__c = vpmCountry;
         pur.VPM_Industry__c = '9001_Oils';
+        pur.VPM_IsVendorSME__c = 'Yes';
         insert pur;
         insert commodityCode;
         pur.VPM_Commodity__c = commodityCode.id;
@@ -169,7 +172,136 @@ public class VPM_SearchVendor1Test{
         return pur;    
     }
     
+    static  VPM_PurchasingRequests__c TestDataCordillera(){    
+        customSettingData(eccFusion);    
+        VPM_Region__c reg = new VPM_Region__c();
+        reg.VPM_Code__c = '13';
+        reg.Name = vpmCompanyCountry; 
+        reg.VPM_Country__c = vpmCountry;
+        insert reg;
+        
+        List<mdm_Vendors__c> vendorList = new List<mdm_Vendors__c>();
+        mdm_Vendors__c vendor = new mdm_Vendors__c();
+        vendor.mdm_Code__c = vendorCode;
+        vendor.mdm_City__c = 'Andorra';
+        vendor.mdm_Country__c ='DZ_Algeria';
+        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_Street__c = 'Test Street';
+        vendor.mdm_Postcode__c = '54132';
+        vendor.mdm_Country__c = vpmCompanyCountry;
+        vendor.mdm_ID__c = '1234';
+        vendor.mdm_vCodeFusion__c= vendorCode;
+        vendor.mdm_vCodeCordillera__c=vendorCode;
+        vendor.mdm_vCodeSirius__c=vendorCode;
+        vendor.mdm_vCodeU2K2__c=vendorCode;
+        vendorList.add(vendor);
+        insert vendorList;
+        system.debug('@@vendorList' + vendorList);
+        system.assert(vendor.Id!=null,'Error');
+       
+       VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+        companyCode.VPM_CompanyCode__c = 'H';
+        companyCode.ECC__c = eccCORDILLERA;
+        companyCode.VPM_Country__c = vpmCompanyCountry;
+        insert companyCode;
+        system.assert(companyCode.Id!=null,'Error');
+        
+        VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
+        commodityCode.Name = 'Customer allowances';
+        commodityCode.VPM_CommodityFamily__c = 'Out of Scope Procurement';
+        commodityCode.VPM_VendorType__c = 'MBS_Marketing Business Services_G001';
+        commodityCode.VPM_AuthorisationGroup__c = 'MBS--Other_MBS--Other';
+        commodityCode.VPM_CommodityClass__c = 'Payment';
+        commodityCode.VPM_CommodityCode__c = '6902 - 80141629';
+        commodityCode.VPM_Region__c  = eccCORDILLERA;
+            
+        VPM_PurchasingOrganisation__c purcOrg = new VPM_PurchasingOrganisation__c();
+        purcOrg.Name = 'ULAB_ARIBA Pur.Orgn';
+        purcOrg.VPM_Country__c = vpmCompanyCountry;
+        purcOrg.VPM_POSystem__c = 'Ariba';    
+        insert purcOrg;    
+            
+        VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
+        pur.VPM_ECC__c = eccCORDILLERA;
+        pur.VPM_VendorName1__c ='Test Sirius';
+        pur.VPM_Status__c = 'Draft Request';
+        pur.VPM_VendorCodeLookup__c = vendorList[0].id;
+        //pur.recordTypeId=recordTypeId;
+        
+        pur.VPM_CompanyCode__c=companyCode.Id;
+        pur.VPM_PurchasingOrg__c = purcOrg.Id; 
+        //pur.VPM_CompanyCode__r.VPM_CompanyCode__c='PH01';
+        //pur.VPM_CompanyCode__r.ECC__c='Sirius';
+        pur.VPM_Street1__c='Test Street';
+        pur.VPM_CountryRequestingVendor__c = vpmCompanyCountry;
+        pur.VPM_VendorPhone__c='1234567895';
+        pur.VPM_Commodity__c=commodityCode.id;
+        pur.VPM_ZIPPostcode__c ='54132';
+        pur.VPM_GlobalAuthorisationGroup__c = 'MBS_Marketing Business Services_G001';
+        pur.VPM_PaymentTerms__c = '';
+        pur.VPM_OrderingEmailAddress__c = '';
+        pur.VPM_VendorType__c = 'MBS--Other_MBS--Other';
+        pur.VPM_ClerksInternet__c = '';
+        pur.VPM_Country__c = vpmCountry;
+        pur.VPM_Industry__c = '9001_Oils';
+        pur.VPM_IsVendorSME__c = 'Yes';
+        insert pur;
+        insert commodityCode;
+        pur.VPM_Commodity__c = commodityCode.id;
+        update pur; 
+        return pur;    
+    }
     
+    static testMethod void VPM_SearchVendorCordillera(){
+            
+        VPM_PurchasingRequests__c purId = TestDataCordillera();
+        string recordTypeId = [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
+        purId.recordTypeId = recordTypeId;
+        update purId;
+        VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purId.id];
+        system.assertEquals(purch.VPM_ECC__c, 'Cordillera');
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        
+        VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
+        searchVendor.getVendorDetailList();     
+        
+        searchVendor.zipPostcode = '';
+        searchVendor.getVendorDetailList();  
+        
+        searchVendor.street1 = '';
+        searchVendor.getVendorDetailList();  
+        
+        searchVendor.zipPostcode = '';
+        searchVendor.street1 = '';
+        searchVendor.getVendorDetailList();  
+        
+        searchVendor.mdmVendorType = '';
+        searchVendor.VendorSelected();    
+        
+        searchVendor.mdmVendorType = 'notlisted';  
+        searchVendor.VendorSelected();
+        searchVendor.newMethod();
+        searchVendor.vendorNameChange(); 
+        searchVendor.SendWebformMethod();  
+        searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.SEARCH_VENDOR);
+		searchVendor.SaveMethod();
+
+		searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.VENDOR_LIST);
+		searchVendor.SaveMethod();
+		Test.startTest();
+		searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.REQUEST_TYPE);
+		searchVendor.SaveMethod(); 
+        searchVendor.GoldenDataSave();  
+        searchVendor.GoldenDataSave2();          
+        searchVendor.SaveAndExit();    
+        searchVendor.VendorNotFound = true;    
+        searchVendor.isInternationalVersionCollapsed();
+        searchVendor.getButtonVisibleSaveMenu();
+        searchVendor.getButtonVisibleSaveExit();
+        searchVendor.backToDetailPage();
+        Test.stopTest();    
+        //searchVendor.getExitButtonVisible();    
+    }
     
     static testMethod void VPM_SearchVendor2(){
             

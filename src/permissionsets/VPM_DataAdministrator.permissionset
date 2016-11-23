@@ -45,10 +45,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>VPM_ECCWebserviceHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>VPM_FetchVendorDetailsHttpMock</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -693,22 +689,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ArabicVersion__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_AuthorisationGroupFormula__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_Authorization__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_AutoEvalGRSetmtDel__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1008,11 +994,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ContactPerson__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_CorporateGrp__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1088,32 +1069,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_DefaultPartner__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_DeletionBlockFlag__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Deletion_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_DepartmentDescription__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_DepartmentNumber__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Department__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1228,11 +1189,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Email__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_EqualisationTax__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1288,16 +1244,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Extension2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Extension3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_ExtensionPhone__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1334,16 +1280,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_FaxExtension__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FaxNumber2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FaxNumber3__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1434,16 +1370,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_FreightSubmitted__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_FunctionDescription__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Function__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1773,11 +1699,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Local2Version__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_Location__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1849,16 +1770,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_Minority_Diversity_vendor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_MobilePhone2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_MobilePhone3__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1998,17 +1909,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PartnerFunctionName__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_PartnerFunction__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PartnerFunctions__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2238,11 +2139,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Region__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_RegionalFieldChanged__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2338,17 +2234,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_RussianVersion__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_SAPBPMRequestID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_SAPECCComments__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2698,16 +2584,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Telephone2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_Telephone3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_Telephone__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2794,11 +2670,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_TypeofVendor__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_UkrainianVersion__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

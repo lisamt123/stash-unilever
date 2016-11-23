@@ -169,7 +169,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         
 
     }
-    /*  static testMethod void reworkActionTest1() {
+      static testMethod void reworkActionTest1() {
     
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
@@ -870,7 +870,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       test.stopTest();
       
       
-    }*/
+    }
     
      
 }

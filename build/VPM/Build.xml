@@ -60,7 +60,6 @@
             <runTest>VPM_CreateVendorServiceHelper_Test</runTest>
 			<runTest>VPM_ECCMaintainExtendHelper</runTest>
             <runTest>VPM_ECCVendorSearchServiceOutput</runTest>
-			<runTest>VPM_ECCWebserviceHelper</runTest>
 			<runTest>VPM_FetchVendorDetailsHttpMock</runTest>
 			<runTest>VPM_FetchVendorDetailsHttpMockCodeMatch</runTest>
 			<runTest>VPM_FetchVendorsDetails</runTest>
