@@ -69,6 +69,7 @@ public class PQN_UploadNCData {
     public void parseJSONString() {
     String jsonStr = myString;
     forInsert = new List<PQN_Pallet_Quality_Non_Conformance__c>();
+    try{
     JSONParser parser = JSON.createParser(jsonStr);
     while (parser.nextToken() != null) {
         if (parser.getCurrentToken() == JSONToken.START_ARRAY) {
@@ -94,6 +95,10 @@ public class PQN_UploadNCData {
                 }
             }
         }
+        }
+        catch(Exception e){
+            message = 'Please upload the file with correct data';
+        }
       //  upsert forInsert;
     } 
     
@@ -114,8 +119,8 @@ public class PQN_UploadNCData {
         PQN_Pallet_Quality_Non_Conformance__c cann = new PQN_Pallet_Quality_Non_Conformance__c();
         cann.Supplier__c = resp.SupplierName;
         cann.Reporting_DC__c = resp.Depot;
-        cann.Product_Name__c = resp.ProductCode;
-        cann.Losses__c = resp.RejectCode;
+        cann.SKU__c = resp.ProductCode;
+        cann.Non_compliance_reason_code__c = integer.valueof(resp.RejectCode);
         cann.Number_of_Pallets_Per_SKU_Non_Compliant__c= resp.NumberPalletsAffected;
         cann.Date_Pallet_Received__c = system.today();
        
@@ -155,30 +160,37 @@ public class PQN_UploadNCData {
     
     forInsert = new List<PQN_Pallet_Quality_Non_Conformance__c>();
     try{
+    boolean looph = true;
     PQN_HelibronnJSON2Apex response = PQN_HelibronnJSON2Apex.parse(jsonStr);
+    
     for(PQN_HelibronnJSON2Apex.DataCollection resp: response.DataCollection){
-        
+        if(looph){
         PQN_Pallet_Quality_Non_Conformance__c cann = new PQN_Pallet_Quality_Non_Conformance__c();
         cann.Delivery_Note_Number__c= resp.DN;
+        cann.Supplier__c= resp.SourceFactory;
         cann.Product_Name__c = resp.ProductName;
         cann.Reporting_DC__c= resp.ReportingDC;
         cann.SKU__c= resp.ProductNumberSKU;
-        cann.Losses__c= resp.LossCode;
+        cann.Non_compliance_reason_code__c = integer.valueof(resp.LossCode);
         cann.Description__c= resp.AdditionalInfo;        
         cann.Product_Group__c = resp.ProductGroup;
         cann.Number_of_Pallets_Per_SKU_Non_Compliant__c= resp.NumberPalletsAffected;        
         cann.Date_Pallet_Received__c = system.today();
+        if(cann!=null){
         forInsert.add(cann);
         
         PQN_tabledata cannwrap = new PQN_tabledata(cann);
         forInsertWrapper.add(cannwrap);
+        }
         
         if(forInsertWrapper.size() == 1000){
             forInsertWrapper.clear();
+            looph = false;
             message = exceptionmsg;
-            break;
+           // break;
         }
         
+    }
     }
     }
     catch(Exception e){
@@ -191,32 +203,34 @@ public class PQN_UploadNCData {
     
     
     public void savedata(){
-    system.debug('wwwwwwwwwwwwwwww'+forInsert);
-    system.debug('wwwwwwwwwwwwwwww'+forInsertWrapper);
+   
     forinsertSuccess = new List<PQN_Pallet_Quality_Non_Conformance__c>();
     forinsertErrors= new List<PQN_Pallet_Quality_Non_Conformance__c>();
     List<PQN_tabledata> forinsertErrorsWrap = new List<PQN_tabledata>();
     //forinsertduplicate.addAll(forInsert);
     List<integer> setsucessindex = new List<integer>();
     List<integer> seterrorindex = new list<integer>();
+       /* for(PQN_tabledata p: forinsertwrapper){
+            forinsert.add(p.pqn);    
+        }*/
         if(!forInsert.isEmpty()){
             try{               
                 size = forInsert.size();
                 //status = true;                
                 Database.SaveResult[] SR = Database.insert(forInsert, false);
                 for(Integer i=0;i<SR.size();i++){
-                    system.debug('iiiiiiiiiiii'+i);
+                    
                     if (sr[i].isSuccess()) {
                         setsucessindex.add(i);
                        // forinsert.remove(i);    
                     }
                     else{//only look at failures, or NOT Successes
                     seterrorindex.add(i);
-                      system.debug(SR[i].getErrors());
+                     
                       for(Database.Error err : SR[i].getErrors()){                     
                           forinsertwrapper[i].errormessage = err.getMessage();
                       }
-                     // system.debug(forInsert[i]); //instead of debug, you could have an email processor something else that looks at that record and the error message
+                    
                     }
                 }
                 for(integer i=0; i<setsucessindex.size(); i++){
@@ -240,19 +254,7 @@ public class PQN_UploadNCData {
                     showallsuccessmsg = true;
                 }
                 
-                /*for (Database.SaveResult sr : excelList) {
-                    if (sr.isSuccess()) {        
-                        System.debug('Successfully inserted account. Account ID: ' + sr.getId());
-                    }
-                    else {  
-                        system.debug('rrrrrrrrrr'+sr);                   
-                        for(Database.Error err : sr.getErrors()) {
-                                            
-                        System.debug(err.getStatusCode() + ': ' + err.getMessage());
-                        System.debug('Account fields that affected this error: ' + err.getFields());
-                        }
-                    }
-                }*/
+                
                 }catch(Exception e){
                     status = false;
                     message = e.getmessage();

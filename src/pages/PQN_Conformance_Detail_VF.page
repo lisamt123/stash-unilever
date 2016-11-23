@@ -4,7 +4,7 @@
         <c:PQN_Navigation navigationName="single_entry"/>
         <div id="page-wrapper">
             <div class="container-fluid">
-                <apex:detail relatedList="false" inlineEdit="false" />
+                <apex:detail relatedList="true" inlineEdit="false" />
             </div>
             <!-- /.container-fluid -->
         </div>

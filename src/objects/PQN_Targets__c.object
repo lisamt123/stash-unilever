@@ -182,9 +182,11 @@
     <label>Targets</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>Month__c</columns>
-        <columns>Target__c</columns>
+        <columns>NAME</columns>
         <columns>Year__c</columns>
+        <columns>Region_Geography__c</columns>
+        <columns>Target_Reduction__c</columns>
+        <columns>CREATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>

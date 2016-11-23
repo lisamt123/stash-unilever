@@ -1,15 +1,15 @@
 public class PQN_TestLibraryUtil {
     
-    /*public static Supplier__c createSupplier()
+    public static Supplier__c createSupplier()
     {
         Supplier__c s = new Supplier__c (Name='Test Account Name',
         Supplier_Number__c='2312',
         Supplier_Type__c='DC');
         return s ;
-    }*/
+    }
  
     
-    public static PQN_Pallet_Quality_Non_Conformance__c createPQN_Pallet_Quality_Non_Conformance(Id supplyid){
+    public static PQN_Pallet_Quality_Non_Conformance__c createPQN_Pallet_Quality_Non_Conformance(ID id){
         PQN_Pallet_Quality_Non_Conformance__c PQN = new PQN_Pallet_Quality_Non_Conformance__c( Region__c='london',
     Reporting_DC__c='fsdf',
     MCO__c='erwer',
@@ -23,7 +23,7 @@ public class PQN_TestLibraryUtil {
     Non_compliance_reason_code__c=12
     
         );
-        return PQN ;
+        return  PQN;
     }
     
     

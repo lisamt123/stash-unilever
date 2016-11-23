@@ -8,7 +8,7 @@ private class PQN_UploadNCDatatest {
        PQN_UploadNCData t=new PQN_UploadNCData();
         
        t.selectedfile='unilever';
-       t.mystring = '{"Sheet1" :[ { "Cluster__c" : "testd"}]}';  
+       t.mystring = '{"DataCollection" :[ { "Cluster__c" : "testd"}]}';  
        t.parseData();
        t.selectedfile='cannock';
        t.parseData();

@@ -173,12 +173,15 @@
                     <li class="{!If(navigationName=='target' ,'active','')}">
                         <a href="./PQN_TargetEntryScreen_VF"><i class="fa fa-fw fa-bullseye"></i> Target</a>
                     </li>
+                    <li class="{!If(navigationName=='multiple_target' ,'active','')}">
+                        <a href="./PQN_MultiTargets_VF"><i class="fa fa-fw fa-bullseye"></i> Multiple Target</a>
+                    </li>
                     <li class="{!If(navigationName=='dc_volumes' ,'active','')}">
                         <a href="./PQN_DC_Volumes_Edit_VF"><i class="fa fa-fw fa-flask"></i> DC Volumes</a>
                     </li>
                     
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="" style="{!If(navigationName=='reports' ,'color: #fff;
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="" style="{!If(navigationName=='Archive' ,'color: #fff;
     background-color: #004976;','')}" aria-expanded="true"><i class="fa fa-fw fa-th-list"></i> Archive<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse in" aria-expanded="true">
                             <li class="{!If(navigationName=='pqnView' ,'active','')}">

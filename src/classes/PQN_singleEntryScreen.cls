@@ -8,10 +8,11 @@ public with sharing class PQN_singleEntryScreen{
         pqnId = Apexpages.currentpage().getparameters().get('id');
         if(pqnId!=null){
             pqn = [select id,Reporting_DC__c,Region__c,DC_Country__c,MCO__c,Cluster__c,Sub_Cluster__c,Delivery_Note_Number__c,Description__c,
-                    Product_Name__c,Product_Group__c,Product_Category__c,SKU__c,Supplier_type__c,Non_compliance_reason_code__c,
+                    Product_Name__c,Product_Group__c,Product_Category__c,SKU__c,Supplier_type__c,Supplier__c,Supplier_Number__c,Non_compliance_reason_code__c,
                     Number_of_Pallets_Per_SKU_Non_Compliant__c,Date_Pallet_Received__c,Comments__c,Days_Left_Before_Freeze__c 
                     from PQN_Pallet_Quality_Non_Conformance__c where id=: pqnId];    
         }
+        
     }
     
     public void validate(){
@@ -32,6 +33,9 @@ public with sharing class PQN_singleEntryScreen{
                            immediate=false;
                        }
                    }else{
+                       pqn.Product_Category__c = '';
+                       pqn.Product_Name__c = '' ;
+                       pqn.Product_Group__c = '';
                        ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR,'No Product Found.');
                        ApexPages.addMessage(myMsg);
                    }
@@ -50,7 +54,15 @@ public with sharing class PQN_singleEntryScreen{
     public pagereference savePQN(){
         try{
             if(pqn!=null){
-                upsert pqn;
+                String clone = apexpages.currentpage().getparameters().get('clone');
+                if (clone == '1'){
+                    PQN_Pallet_Quality_Non_Conformance__c pqn1 = new PQN_Pallet_Quality_Non_Conformance__c();
+                    pqn1 = pqn;
+                    pqn1.Id = null;
+                    Insert pqn1;
+                }else{
+                    upsert pqn;
+                }
                 //PageReference redirectPage = new PageReference('/'+pqn.id);
                 PageReference redirectPage = page.PQN_Conformance_Detail_VF;
                 redirectPage.setRedirect(true);

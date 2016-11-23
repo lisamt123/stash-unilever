@@ -47,7 +47,7 @@
         }
         
         footer .row {
-            position: absolute;
+            position: fixed;
             right: 0;
             bottom: 0;
             left: 0;
@@ -128,7 +128,6 @@
                 </div>
             </div>
             <div class="row">
-            <div class="col-sm-1 portfolio-item"></div>
                 <div class="col-sm-2 portfolio-item">
                     <a href="./PQN_SingleEntryScreen_VF" >
                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/sform.png')}" class="img-responsive" alt="Single Entry"/>
@@ -153,6 +152,16 @@
                         <span class="name">Target</span>
                     </div>
                 </div>
+                
+                <div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_MultiTargets_VF">
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/target.png')}" class="img-responsive" alt="Target"/>
+                    </a>
+                    <div class="text-center">
+                        <span class="name">Multi Target</span>
+                    </div>
+                </div>
+                
                 <div class="col-sm-2 portfolio-item">
                     <a href="./PQN_DC_Volumes_Edit_VF">
                         <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/dcvolume.png')}" class="img-responsive" alt="DC Volumes"/>

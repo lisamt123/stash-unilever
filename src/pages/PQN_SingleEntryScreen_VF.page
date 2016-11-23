@@ -4,22 +4,52 @@
     
     <script>
         j$ = jQuery.noConflict();
-        j$(document).ready( function () {
-            $("input.SKU_Name").after('<button type="button" class="btn btn-default" onclick="doValidate();"><i class="fa fa-search"></i></button>');
+        j$(document).ready( function (){
+            $("input.SKU_Name").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="openProducts();"><i class="fa fa-search"></i></button>');
+            $("input.Supplier_Name").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="openSuppliers();"><i class="fa fa-search"></i></button>');
         });
-        function appendSearch() {
-            $("input.SKU_Name").after('<button type="button" class="btn btn-default" onclick="doValidate();"><i class="fa fa-search"></i></button>');
-            
+        function appendSearch(){
+            $("input.SKU_Name").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="openProducts();"><i class="fa fa-search"></i></button>');
+            $("input.Supplier_Name").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="openSuppliers();"><i class="fa fa-search"></i></button>');
+
         }
     </script>
-    <script>
-        function doValidate() {
-           // alert("tes");
-            var SKU_Name = document.getElementsByClassName('SKU_Name')[0].value;
-            console.log(SKU_Name);
-            Validate(SKU_Name);
+   <script>
+    var newWin=null;
+    function openSuppliers() {
+
+        var url="/apex/PQN_Supplier_Popup?Supplier_Name=" + $("input.Supplier_Name").attr("id") + "&Supplier_No=" + $("input.Supplier_No").attr("id") + "&Supplier_Type=" + $("input.Supplier_Type").attr("id") + "&search_Name=" + $("input.Supplier_Name").val() + "&object_Name=supplier";
+        newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+        if (window.focus) 
+        {
+            newWin.focus();
         }
-        </script>
+            
+        return false;
+    }
+    
+    function openProducts(){
+
+        var url="/apex/PQN_Supplier_Popup?Product_Name=" + $("input.Product_Name").attr("id") + "&Product_No=" + $("input.SKU_Name").attr("id") + "&Product_Group=" + $("input.Product_Group").attr("id") + "&Product_Category=" + $("input.Product_Category").attr("id") + "&search_Name=" + $("input.SKU_Name").val() + "&object_Name=product";
+        newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+        if (window.focus) 
+        {
+            newWin.focus();
+        }
+            
+        return false;
+    }
+                  
+    function closeSupplierPopup(){
+       if (null!=newWin)
+       {
+          newWin.close();
+       }  
+    }
+    
+    </script>
+
+        
     <style>
     input[type="text"],select,textarea {
         //display: block;
@@ -47,16 +77,16 @@
 <div id="page-wrapper">
     <div class="container-fluid">
     <apex:form id="frm">
-            <apex:actionFunction name="Validate" action="{!validate}" reRender="frm" immediate="{!immediate}" oncomplete="appendSearch()">
+            <!--<apex:actionFunction name="Validate" action="{!validate}" reRender="frm" immediate="{!immediate}" oncomplete="appendSearch()">
                 <apex:param name="skuName" value=""/>
-            </apex:actionFunction>
+            </apex:actionFunction>-->
             
 <!--        <apex:sectionHeader title="Pallet Quality Non Conformance" />  -->
 <!--        <apex:pageMessages ></apex:pageMessages> -->
         <apex:pageBlock title="Pallet Quality Non Conformance Edit" mode="edit" id="PBId1">
         <apex:pageblockbuttons >
             <apex:commandButton value="Save" action="{!savePQN}"/>
-            <input type="button" value="Validate" onclick="doValidate();" class="btn"/>
+            <!--<input type="button" value="Validate" onclick="doValidate();" class="btn"/>-->
             <!--<button type="button" onclick="doValidate();" class="btn">Validate</button>
             <apex:commandButton value="Cancel" action="{!cancelPQN}" immediate="true"/>-->   
         </apex:pageblockbuttons>
@@ -83,14 +113,15 @@
             <apex:outputField value="{!pqn.Product_Group__c}"/>            
             <apex:outputField value="{!pqn.Product_Category__c}"/>-->
             
-            <apex:inputField value="{!pqn.Product_Name__c}" onfocus="this.blur()" />
-            <apex:inputField value="{!pqn.Product_Group__c}" onfocus="this.blur()"/>
-            <apex:inputField value="{!pqn.Product_Category__c}" onfocus="this.blur()"/>
+            <apex:inputField value="{!pqn.Product_Name__c}" onfocus="this.blur()" id="Product_NameId" styleClass="Product_Name"/>
+            <apex:inputField value="{!pqn.Product_Group__c}" onfocus="this.blur()" id="Product_GroupId" styleClass="Product_Group"/>
+            <apex:inputField value="{!pqn.Product_Category__c}" onfocus="this.blur()" id="Product_CategoryId" styleClass="Product_Category"/>
             
             
-            <apex:inputField value="{!pqn.Supplier_Number__c}" required="true"/>
-            <apex:inputField value="{!pqn.Supplier__c}" onfocus="this.blur()"/>
-            <apex:inputField value="{!pqn.Supplier_type__c}" onfocus="this.blur()"/>
+            
+            <apex:inputField value="{!pqn.Supplier__c}" id="Supplier_NameId" styleClass="Supplier_Name" required="true"/>
+            <apex:inputField value="{!pqn.Supplier_Number__c}" styleClass="Supplier_No" id="Supplier_NoId" onfocus="this.blur()"/>
+            <apex:inputField value="{!pqn.Supplier_type__c}" styleClass="Supplier_Type" id="Supplier_TypeId" onfocus="this.blur()"/>
             <apex:inputField value="{!pqn.Non_compliance_reason_code__c}" required="true"/>            
             <apex:inputField value="{!pqn.Number_of_Pallets_Per_SKU_Non_Compliant__c}" required="true"/>
             <apex:inputField value="{!pqn.Date_Pallet_Received__c}" required="true"/>  
