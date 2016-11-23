@@ -186,13 +186,13 @@ public with sharing class VPM_SearchVendor1{
         recId = controller.getRecord().Id; 
         vendorDetails = (VPM_PurchasingRequests__c)controller.getRecord();
         try {
-           vendorQuery1   = [select Id,VPM_DetailsOfPlannedActivitiesSour2__c ,VPM_SupAudDetailsOfPlannedActivities__c ,VPM_PROATControlProof__c,VPM_VendorCode__c,VPM_ConfirmationControl__c,VPM_IndicatorForWithholdingTaxType__c,VPM_InstructionKeyDataExchange__c,VPM_Industry__c, VPM_StandardCommMethod__c,VPM_IsMDMPISaved__c,VPM_PaymentMethodWeb__c,VPM_SSIStatus__c, VPM_TermsOfPayment__c, VPM_ReasonForExemption__c, VPM_ToleranceGroup__c, VPM_City__c,VPM_DeletionBlockFlag__c,VPM_Incoterms2__c,VPM_VendordoesntExistFlag__c, VPM_TradePartnerType__c, VPM_CheckDoubleInvoices__c,VPM_VendorContactDetail__c,VPM_ReconciliationAccount__c,VPM_BankCountryKey__c, VPM_Comments__c, VPM_VendorName1__c, VPM_VendorPhone__c,
+           vendorQuery1   = [select Id,VPM_DetailsOfPlannedActivitiesSour2__c ,VPM_SupAudDetailsOfPlannedActivities__c ,VPM_PROATControlProof__c,VPM_VendorCode__c,VPM_ConfirmationControl__c,VPM_IndicatorForWithholdingTaxType__c,VPM_InstructionKeyDataExchange__c,VPM_Industry__c, VPM_StandardCommMethod__c,VPM_IsMDMPISaved__c,VPM_PaymentMethodWeb__c,VPM_SSIStatus__c, VPM_TermsOfPayment__c, VPM_ReasonForExemption__c, VPM_ToleranceGroup__c, VPM_City__c,VPM_Incoterms2__c,VPM_VendordoesntExistFlag__c, VPM_TradePartnerType__c, VPM_CheckDoubleInvoices__c,VPM_VendorContactDetail__c,VPM_ReconciliationAccount__c,VPM_BankCountryKey__c, VPM_Comments__c, VPM_VendorName1__c, VPM_VendorPhone__c,
                             VPM_GeneralVendorDetailsChanged__c,VPM_BankDetailsChanged__c,VPM_FinancialFieldsChanged__c,VPM_PaymentTermsAndPurchasingDataChanged__c,VPM_RegionalFieldsChanged__c,VPM_VendorName2__c,VPM_IsMaintain2__c,VPM_Name3__c,VPM_Name4__c,VPM_TaxNumber1__c,VPM_TaxNumber2__c,VPM_TaxNumber3__c,VPM_TaxNumber4__c,VPM_VATRegistrationNumber__c, VPM_RecipientType__c, VPM_RegStGrp__c,
                             VPM_ECC__c, VPM_ExtensionType__c,VPM_PaymentTerms__c,VPM_Status__c,VPM_VendorCodeLookup__c, VPM_VendorCodeLookup__r.mdm_ecc__c, VPM_VendorCodeLookup__r.mdm_Code__c,VPM_Commodity__r.Name,VPM_Commodity__r.VPM_CommodityCode__c,VPM_Commodity__r.VPM_CSBVendor__c,
                             VPM_CompanyCode__r.ECC__c,VPM_Commodity__c,VPM_Commodity__r.VPM_VendorType__c,VPM_VendorType__c, VPM_Commodity__r.VPM_AuthorisationGroup__c,VPM_GlobalAuthorisationGroup__c, VPM_Street1__c, VPM_Country__c, VPM_ZIPPostcode__c, VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c,
                             VPM_VendorCodeLookup__r.mdm_vCodeFusion__c,VPM_VendorCodeLookup__r.mdm_vCodeSirius__c, VPM_PurchasingOrg__c,VPM_PurchasingOrg__r.Name, VPM_IsVendorSME__c,VPM_Fieldtype__c,
                             recordTypeId,VPM_CompanyCode__r.VPM_CompanyCode__c,VPM_CashManagementGroup__c,VPM_Language__c,VPM_AccountStatement__c,VPM_PaymentBlock__c,VPM_GroupingKey__c,VPM_SchemaGroupVendor__c,VPM_Incoterms1__c,VPM_PaymentMethod__c,
-                            VPM_VendorSubType__c, VPM_Regions__c,VPM_SearchTerm_1__c,VPM_ClerksInternet__c,VPM_OrderingEmailAddress__c,VPM_OrderCurrency__c,VPM_Authorization__c,VPM_TaxJurisdictionCode__c,VPM_InternationalVersion__c,VPM_StandardNumber__c,VPM_VATCountry__c,VPM_VATRegistrationNumber2__c,VPM_SortKey__c,VPM_SRVBasedVendorID__c,VPM_IsLock__c,createdbyid,VPM_PurchasingOrganisation__c,VPM_AuthorisationGroupFormula__c, VPM_VendorBlockUnblockDelete__c,
+                            VPM_VendorSubType__c, VPM_Regions__c,VPM_SearchTerm_1__c,VPM_ClerksInternet__c,VPM_OrderingEmailAddress__c,VPM_OrderCurrency__c,VPM_Authorization__c,VPM_TaxJurisdictionCode__c,VPM_InternationalVersion__c,VPM_StandardNumber__c,VPM_VATCountry__c,VPM_VATRegistrationNumber2__c,VPM_SortKey__c,VPM_SRVBasedVendorID__c,VPM_IsLock__c,createdbyid,VPM_AuthorisationGroupFormula__c, VPM_VendorBlockUnblockDelete__c,
                             VPM_PaymentTermsKeyCreditMemos__c,VPM_SupplierFinancialStabilityCheck__c,VPM_DetailsTypeCheck__c,VPM_ReasonNoFinancialCheck__c,VPM_SupplierAchillesRegistration__c,VPM_AchillesRegistrationCode__c,VPM_AchillesExceptionDetails__c,VPM_SupplierPositiveAssuranceQuality__c,VPM_SupPosAssExcepDetailsQual__c,VPM_SupplierAssessmentQuestionnaireQual__c,VPM_DetailsOfPlannedActivitiesSour__c,VPM_SupplierAuditQuality__c,VPM_DetailsOfPlannedActivitiesQual__c,
                             VPM_CheckForFieldUpdate__c,VPM_SupplierPositiveAssuranceSourcing__c,VPM_SupPosAssExcepDetailsSour__c,VPM_SupplierAssessmentQuestionnaireSour__c,VPM_SupplierAuditSourcing__c,VPM_OrderOptimRest__c,VPM_AccountingClerk__c,VPM_HouseNumber__c,
                             VPM_Interestcalculationindicator__c,VPM_SocialInsuranceCodeSoc__c,VPM_GlobalFieldChanged__c,VPM_RegionalFieldChanged__c,VPM_ShippingConditions__c, VPM_CompanyCode__r.VPM_Country__c,VPM_CompanyCode__r.VPM_CountryCode__c
@@ -326,9 +326,9 @@ public with sharing class VPM_SearchVendor1{
             // assigning the picklist values based on company code ECC associated to vendor request.
             mapCustomSettingRegionpicklistValues();            
             this.opt=new list<string>();
-            if(opt.size()>0) {
+            /*if(opt.size()>0) {
                 vendorQuery1.VPM_DeletionBlockFlag__c = opt[0];
-            }
+            }*/
             street1 = vendorQuery1.VPM_Street1__c;
             vendorName = vendorQuery1.VPM_VendorName1__c;
             if(string.isBlank(searchTerm1))
@@ -336,7 +336,7 @@ public with sharing class VPM_SearchVendor1{
             zipPostcode = vendorQuery1.VPM_ZIPPostcode__c;
             countryName = vendorQuery1.VPM_Country__c;
             countryNameList = VPM_RecordTypeHelper.getCountries();
-        	vendorDetails.VPM_Telephone__c = vendorQuery1.VPM_VendorPhone__c;  
+            vendorDetails.VPM_Telephone__c = vendorQuery1.VPM_VendorPhone__c;  
             launchScreen = false;
             requestType = VPM_RecordTypeHelper.getLaunchScreenVariable('',vendorQuery1.RecordTypeId);                    
             initialReordType = requestType;
@@ -1096,7 +1096,7 @@ public with sharing class VPM_SearchVendor1{
                 system.debug('@@termsOFPayment' + termsOFPayment);
                 
                 vendorDetails.VPM_ABCIndicator__c = op.PurchasingData[0].ABCIndicator; 
-                vendorDetails.VPM_AutoEvalGRSetmtDel__c = op.PurchasingData[0].AutoEvalGRSetmtDel <> null?op.PurchasingData[0].AutoEvalGRSetmtDel:false;
+                //vendorDetails.VPM_AutoEvalGRSetmtDel__c = op.PurchasingData[0].AutoEvalGRSetmtDel <> null?op.PurchasingData[0].AutoEvalGRSetmtDel:false;
                 vendorDetails.VPM_AutoEvalGRSetmtRet__c = op.PurchasingData[0].AutoEvalGRSetmtRet <> null?op.PurchasingData[0].AutoEvalGRSetmtRet:false;
                 vendorDetails.VPM_AutomaticPurchaseOrderGeneration__c = op.PurchasingData[0].AutoGenerationPOAllowed <> null?op.PurchasingData[0].AutoGenerationPOAllowed:false;
                 vendorDetails.VPM_DocIndexActive__c = op.PurchasingData[0].DocIndexActive<>null?op.PurchasingData[0].DocIndexActive:false;
@@ -1121,7 +1121,7 @@ public with sharing class VPM_SearchVendor1{
                 vendorDetails.VPM_PlannedDeliveryTime__c = decimal.valueOF(op.PurchasingData[0].PlannedDeliveryTime);                
                 
                 if(op.PurchasingData[0].Functions <> null && op.PurchasingData[0].Functions.size() > 0) {
-                    vendorDetails.VPM_DefaultPartner__c = (op.PurchasingData[0].Functions[0].DefaultPartner <> null) ? op.PurchasingData[0].Functions[0].DefaultPartner :  false;
+                   // vendorDetails.VPM_DefaultPartner__c = (op.PurchasingData[0].Functions[0].DefaultPartner <> null) ? op.PurchasingData[0].Functions[0].DefaultPartner :  false;
                     vendorDetails.VPM_PartnerFunction__c = op.PurchasingData[0].Functions[0].PartnerFunction;
                 }
                 
@@ -1138,7 +1138,7 @@ public with sharing class VPM_SearchVendor1{
             
             
             vendorDetails.VPM_ArabiaOldNumber__c = op.ArabiaOldNumber;
-            vendorDetails.VPM_ArabicVersion__c = op.ArabicVersion;
+            //vendorDetails.VPM_ArabicVersion__c = op.ArabicVersion;
             
             
             vendorDetails.VPM_BlockFunction__c = op.BlockFunction;        
@@ -1159,15 +1159,15 @@ public with sharing class VPM_SearchVendor1{
             if(string.isNotBlank(op.DateOfBirth)) {
                 vendorDetails.VPM_DateOfBirth__c = date.valueOF(op.DateOfBirth);   
             }
-            vendorDetails.VPM_Department__c = op.Department;
-            vendorDetails.VPM_DepartmentDescription__c = op.DepartmentDescription;
+            //vendorDetails.VPM_Department__c = op.Department;
+            //vendorDetails.VPM_DepartmentDescription__c = op.DepartmentDescription;
             vendorDetails.VPM_DepartmentNumber__c = op.DepartmentNumber;
             vendorDetails.VPM_Description__c = op.Description;
             vendorDetails.VPM_DataLine__c = op.Dataline;
             vendorDetails.VPM_DMEIndicator__c = op.DMEIndicator;
             vendorDetails.VPM_ECC__c = op.ECC;
             vendorDetails.VPM_ECCNo__c = op.ECCNo;
-            vendorDetails.VPM_Email__c = op.Email;
+            //vendorDetails.VPM_Email__c = op.Email;
             vendorDetails.VPM_Email2__c = op.Email2;
             vendorDetails.VPM_Email3__c = op.Email3;
             vendorDetails.VPM_EqualisationTax__c = op.EqualisationTax <> null?op.EqualisationTax:false;
@@ -1175,23 +1175,23 @@ public with sharing class VPM_SearchVendor1{
             vendorDetails.VPM_ExciseDivision__c = op.ExciseDivision;
             vendorDetails.VPM_ExciseRange__c = op.ExciseRange;
             vendorDetails.VPM_ExciseRegNo__c = op.ExciseRegNo;
-            vendorDetails.VPM_Extension2__c = op.Extension2;
-            vendorDetails.VPM_Extension3__c = op.Extension3;
+            //vendorDetails.VPM_Extension2__c = op.Extension2;
+            //vendorDetails.VPM_Extension3__c = op.Extension3;
             vendorDetails.VPM_ExtensionPhone__c = op.ExtensionPhone;
             
             vendorDetails.VPM_Fax__c = op.Fax;
             vendorDetails.VPM_FaxExtension__c = op.FaxExtension;
-            vendorDetails.VPM_FaxNumber2__c = op.FaxNumber2;
-            vendorDetails.VPM_FaxNumber3__c = op.FaxNumber3;
+            //vendorDetails.VPM_FaxNumber2__c = op.FaxNumber2;
+            //vendorDetails.VPM_FaxNumber3__c = op.FaxNumber3;
             vendorDetails.VPM_FiscalAddress__c = op.FiscalAddress;
-            vendorDetails.VPM_Function__c = op.Function;
+            //vendorDetails.VPM_Function__c = op.Function;
             
             vendorDetails.VPM_TaxSplit__c = op.TaxSplit <>null ?op.TaxSplit:false;
             
             vendorDetails.VPM_TeleBox__c = op.TeleBox;
             //vendorDetails.VPM_Telephone__c = op.Telephone; commented as per new line items issue.
-            vendorDetails.VPM_Telephone2__c = op.Telephone2;
-            vendorDetails.VPM_Telephone3__c = op.Telephone3;
+            //vendorDetails.VPM_Telephone2__c = op.Telephone2;
+            //vendorDetails.VPM_Telephone3__c = op.Telephone3;
             vendorDetails.VPM_TextToInput__c = op.TextToInput;
             vendorDetails.VPM_ThaiOldVendorNumber__c = op.ThaiOldNumber;
             vendorQuery1.VPM_Title__c = op.Title;        
@@ -1212,14 +1212,14 @@ public with sharing class VPM_SearchVendor1{
             vendorDetails.VPM_SubsequentSettlementIndex__c = (op.SubsequentSettlementIndex <>  null) ? op.SubsequentSettlementIndex : false;
             vendorDetails.VPM_TaxBase__c = op.TaxBase;
             vendorTradePartnerType = string.isNotBlank(op.TradePartnerType) ? op.TradePartnerType :vendorTradePartnerType;
-            if(opt.size() > 0) {
+            /*if(opt.size() > 0) {
                 opt[0] = vendorQuery1.VPM_DeletionBlockFlag__c;
-            }
+            }*/
             vendorDetails.VPM_TrainStation__c = op.TrainStation;
             vendorDetails.VPM_TransportZone__c = op.TransportZone;
             vendorDetails.VPM_TurkeyOldNumber__c = op.TurkeyOldNumber;
             vendorQuery1.VPM_VendorType__c = string.isNotBlank(op.TypeVendor) ? op.TypeVendor : vendorQuery1.VPM_VendorType__c;        
-            vendorDetails.VPM_UkrainianVersion__c = op.UkrainianVersion;
+            //vendorDetails.VPM_UkrainianVersion__c = op.UkrainianVersion;
             vendorQuery1.VPM_VATRegistrationNumber2__c = op.VATRegistrationNumber2;            
             if(op.VendorSubRange <> null && op.VendorSubRange.size() > 0) {
                 vendorDetails.VPM_VendorSubRange__c = op.VendorSubRange[0].SubRange;
@@ -1239,18 +1239,18 @@ public with sharing class VPM_SearchVendor1{
             vendorDetails.VPM_IsraelOldNumber__c = op.IsraelOldNumber;
             vendorDetails.VPM_ISRNumber__c = op.ISRNumber;
             vendorLanguage = string.isNotBlank(op.Language) ? op.Language : vendorLanguage;
-            vendorDetails.VPM_Local2Version__c= op.Local2Version;
+           // vendorDetails.VPM_Local2Version__c= op.Local2Version;
             if(string.isNotBlank(op.LastKeyDate)){
                 vendorDetails.VPM_LastKeyDate__c = date.valueOF(op.LastKeyDate);
             }
             vendorDetails.VPM_LanguageKeyCOCode__c = op.LanguageKeyCOCode;
             vendorDetails.VPM_SalesPurchTax__c = op.SalesPurchTax <>null?op.SalesPurchTax:false;
-            vendorDetails.VPM_SAPECCComments__c = op.SAPComments;
+            //vendorDetails.VPM_SAPECCComments__c = op.SAPComments;
             vendorDetails.VPM_SCAC__c = op.SCAC;
             zipPostcode = string.isNotBlank(op.PostCode) ? op.PostCode:zipPostcode; 
             vendorDetails.VPM_POBoxPostCode__c = op.PostCode2; 
             regStGrpDefValue = op.RegStGrp;            
-            vendorDetails.VPM_RussianVersion__c = op.RussianVersion;
+            //vendorDetails.VPM_RussianVersion__c = op.RussianVersion;
             vendorDetails.VPM_WithholdingTaxIdentificationNumber__c = op.WithholdingTaxIdentificationNumber;
             vendorDetails.VPM_QMSystemTo__c = string.isNotBlank(op.QMSystemTo) ? date.valueOF(op.QMSystemTo) : null;        
             
@@ -1260,8 +1260,8 @@ public with sharing class VPM_SearchVendor1{
             vendorDetails.VPM_PostalCode2__c = op.PostalCode2;
             vendorDetails.VPM_MinorityIndicators__c = op.MinorityIndicators;
             vendorDetails.VPM_MobilePhone__c = op.MobilePhone;
-            vendorDetails.VPM_MobilePhone2__c = op.MobilePhone2;
-            vendorDetails.VPM_MobilePhone3__c = op.MobilePhone3;    
+            //vendorDetails.VPM_MobilePhone2__c = op.MobilePhone2;
+            //vendorDetails.VPM_MobilePhone3__c = op.MobilePhone3;    
             vendorDetails.VPM_LLDCode__c = op.LLDCode;
             vendorDetails.VPM_LSTno__c = op.LSTno;
             
@@ -1293,9 +1293,9 @@ public with sharing class VPM_SearchVendor1{
                 vendorDetails.VPM_ChangedBy__c = op.CIN.ChangedBy;
             }
             
-            vendorDetails.VPM_FunctionDescription__c = op.FunctionDescription;
-            vendorDetails.VPM_PartnerFunctionName__c = op.PartnerFunctionName;
-            vendorDetails.VPM_PartnerFunctions__c = op.PartnerFunctions;
+            //vendorDetails.VPM_FunctionDescription__c = op.FunctionDescription;
+            //vendorDetails.VPM_PartnerFunctionName__c = op.PartnerFunctionName;
+            //vendorDetails.VPM_PartnerFunctions__c = op.PartnerFunctions;
             vendorDetails.VPM_PartnerName__c = op.PartnerName;
             vendorDetails.VPM_PartnerNumber__c = op.PartnerNumber; 
             vendorQuery1.VPM_OrderingEmailAddress__c = null;
@@ -1465,7 +1465,7 @@ public with sharing class VPM_SearchVendor1{
             update vendorQuery1;
             
             system.debug('@@ options  --------'+ opt  );
-            if(opt.size() > 0){
+            /*if(opt.size() > 0){
                 if(opt.size()<2) {
                     vendorDetails.VPM_DeletionBlockFlag__c= opt[0];
                 }else{
@@ -1475,7 +1475,7 @@ public with sharing class VPM_SearchVendor1{
                         vendorDetails.VPM_DeletionBlockFlag__c = VPM_RecordTypeHelper.STATUS_MDM_REV_BLOCK_DEL;
                     }
                 }              
-            }  
+            }  */
             vendorDetails.RecordTypeId = VPM_RecordTypeHelper.getRecordTypeNameById(requestType);
             vendorDetails.VPM_PaymentTerms__c = vendorQuery1.VPM_PaymentTerms__c;
             system.debug('@@mdmVendorType' + mdmVendorType);            
