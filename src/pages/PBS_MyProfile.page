@@ -25,7 +25,7 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<apex:page controller="PBS_MyProfileController_CC" docType="html-5.0" sidebar="false" showHeader="true" standardStylesheets="false">
+<apex:page controller="PBS_MyProfileController_CC" docType="html-5.0" sidebar="false" showHeader="true" standardStylesheets="false" id="IdPage">
 
     <apex:composition template="PBS_Header_Template"/>
     <div class="row bodyRow group">
@@ -84,19 +84,23 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                     <div class="form-group">
                         <label for="workLevel" class="col-sm-2 control-label">Work Level</label>
                         <div class="col-sm-6">
-                            <select id="workLevel" class="form-control">
+                          
+                           <select id="workLevel" class="form-control" onchange="worklevelfun(this.value);" >
                                 <apex:repeat value="{!workLevelOptions}" var="wlObj">
-                                    <apex:outputPanel layout="none" rendered="{!profile.Work_Level__c == wlObj}">
-                                        <option value="{!wlObj}" selected="selected">{!wlObj}</option>
-                                    </apex:outputPanel>
-                                    <apex:outputPanel layout="none" rendered="{!profile.Work_Level__c != wlObj}">
+                                      <apex:outputPanel layout="none" rendered="{!profile.Work_Level__c== wlObj}">
                                         <option value="{!wlObj}">{!wlObj}</option>
-                                    </apex:outputPanel>
+                                       </apex:outputPanel> 
+                                        <apex:outputPanel layout="none" rendered="{!profile.Work_Level__c!= wlObj}">
+                                        <option value="{!wlObj}">{!wlObj}</option>
+                                       </apex:outputPanel> 
+                                     
                                 </apex:repeat>
-                            </select>
-                        </div>
-                    </div>
+                          </select>
+                       </div>
+                  </div>
+                    
                     <div class="form-group">
+                      <apex:outputPanel id="JobProfileSelection">
                         <label for="jobProfile" class="col-sm-2 control-label">Job Profile</label>
                         <div class="col-sm-6">
                             <select id="jobProfile" class="form-control">
@@ -104,7 +108,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                                     <apex:outputPanel layout="none" rendered="{!profile.user_role__c == jbObj.Id}">
                                         <option value="{!jbObj.Id}" selected="selected">{!jbObj.Name}</option>
                                     </apex:outputPanel>
-                                    <apex:outputPanel layout="none" rendered="{!profile.user_role__c != jbObj.Id}">
+                                    <apex:outputPanel id="jobPr" layout="none" rendered="{!profile.user_role__c != jbObj.Id}" >
                                         <option value="{!jbObj.Id}">{!jbObj.Name}</option>
                                     </apex:outputPanel>
                                 </apex:repeat>
@@ -113,6 +117,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                         <div class="col-sm-2" style="font-size: 11px; min-height: 35px; display: flex; justify-content: center; align-content: center; flex-direction: column;">
                             <a href="http://apps.unilever.com/global/SCW/app/Pages/index.html" class="">Unsure Who You Are?</a>
                         </div>
+                        </apex:outputPanel>
                     </div>
                     <div class="form-group">
                         <label for="category" class="col-sm-2 control-label">Category</label>
@@ -130,7 +135,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="jobProfile" class="col-sm-2 control-label">Buddy Name</label>
+                        <label for="jobProfile" class="col-sm-2 control-label">Training Mentor</label>
                         <div class="col-sm-6">
                             <input type="text" value="{!profile.buddy__c}" class="form-control" name="buddyName" id="buddyName" data-toggle="tooltip" title="Please enter your buddy name" />
                         </div>
@@ -144,7 +149,19 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
             </div>
 
             <script type="text/javascript">
-                function showModal(){$jk(".modal-backdrop").appendTo("#lms-template-wrapper"),$jk("#myModal").modal("show")}function hideModal(){$jk("#myModal").modal("hide")}var $jk=jQuery.noConflict(),availableOptions={};$jk(document).ready(function(){$jk('[data-toggle="tooltip"]').tooltip(),$jk(".save-btn").on("click",function(){showModal();var o=$jk("#geography").val(),a=$jk("#workLevel").val(),e=$jk("#jobProfile").val(),c=$jk("#category ").val(),l=$jk("#buddyName").val();PBS_MyProfileController_CC.storeUserProfile(o,a,e,c,l,function(o,a){o!==!0||(window.parent.postMessage({itemId:"home"},"*"),window.location="{!$Page.PC_ContainerPage}"),hideModal()})})});
+                function showModal(){$jk(".modal-backdrop").appendTo("#lms-template-wrapper"),$jk("#myModal").modal("show")}
+                function hideModal(){$jk("#myModal").modal("hide")}
+                var $jk=jQuery.noConflict(),availableOptions={};
+                $jk(document).ready(function(){$jk('[data-toggle="tooltip"]').tooltip(),$jk(".save-btn").on("click",function(){showModal();
+                    var o=$jk("#geography").val(),a=$jk("#workLevel").val(),e=$jk("#jobProfile").val(),c=$jk("#category ").val(),l=$jk("#buddyName").val();PBS_MyProfileController_CC.storeUserProfile(o,a,e,c,l,function(o,a){o!==!0||(window.parent.postMessage({itemId:"home"},"*"),window.location="{!$Page.PC_ContainerPage}"),hideModal()})})});
+            </script>
+            <script type="text/javascript">         
+                function worklevelfun(parameter) {
+                  
+                  jQuery('[id$=cityId]').val(parameter); 
+                                 
+                   workleveAf(parameter); 
+                }
             </script>
 
         </apex:define>
@@ -168,7 +185,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         <apex:define name="body">
 
             <apex:form id="theForm">
-
+                <apex:inputHidden value="{!workLevel}" id="cityId"/> 
+                <apex:actionfunction name="workleveAf" action="{!jobprofileSelection}"  rerender="JobProfileSelection"/>
+                    
                 <apex:actionStatus id="status">
                     <apex:facet name="start">
                         <c:PBS_LMSStatus statusComponentId="{!$Component.status}"/>
@@ -189,6 +208,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                       
                     </div>
                 </div>
+                <div>
+                        <apex:commandButton />
+                    </div>
 
             </apex:form>
 
@@ -209,4 +231,5 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         </apex:define>
 
     </apex:composition>
+ 
 </apex:page>
