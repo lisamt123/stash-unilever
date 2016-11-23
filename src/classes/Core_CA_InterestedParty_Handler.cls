@@ -35,6 +35,11 @@ public class Core_CA_InterestedParty_Handler{
     public static String strTextValue = 'Yes' ;
     public static String strTrueTemp = 'true' ;
     public static String strTextpstTemp ='TextPost';
+    public static String strCopyTemp ='COPY';
+    public static String strRewoTemp ='REWO';
+    public static String strReworkTemp ='Rework';
+    public static String strApprvedTemp ='Approved';
+    public static String strRejectedTemp ='Rejected';
     
     public void handleBeforeInsert(List<Core_Approver_Details__c > approverList){
         /* -- SONAR Issue explanation -- 
@@ -78,7 +83,6 @@ public class Core_CA_InterestedParty_Handler{
       So multiple If else condition inside for loop to create chatter notification and multiple SOQL, DML are written thats leading to the Npath Complexity.  
     */
     public void handleAfterInsert(List<Core_Approver_Details__c > approverList){
-        String strCopyTemp ='COPY';
         try{
         Set<Core_Approval_Header__Share> setShareHeader = new Set<Core_Approval_Header__Share>();
         Set<EntitySubscription> setEntitySubHeader=new Set<EntitySubscription>();
@@ -105,7 +109,7 @@ public class Core_CA_InterestedParty_Handler{
         //map of <Header id and List<Interested party> >
         Map<Id,List<Core_Approver_Details__c>> mapApprover = new Map<Id,List<Core_Approver_Details__c>>();
         
-        List<Core_Approver_Details__c> lstApprover = [SELECT Id,Approval_Header__c , Role__c,Interested_Party__c,Action__c,Is_Active__c,Status__c,Source_System__c FROM Core_Approver_Details__c where Approval_Header__c in:approverHeaderids];
+        List<Core_Approver_Details__c> lstApprover = [SELECT Id,Approval_Header__c , Role__c,Interested_Party__c,Action__c,Is_Active__c,Status__c,Rank__c,Source_System__c FROM Core_Approver_Details__c where Approval_Header__c in:approverHeaderids];
         
         for(Core_Approver_Details__c approver: lstApprover){
             if(!mapApprover.containsKey(approver.Approval_Header__c))
@@ -113,6 +117,28 @@ public class Core_CA_InterestedParty_Handler{
             mapApprover.get(approver.Approval_Header__c).add(approver);
         }
         
+        //making clm user with same role inActive when any action is taken
+        
+        List<Core_Approver_Details__c> lstApp = new List<Core_Approver_Details__c>();
+        Decimal rank;
+        
+        for(Core_Approver_Details__c appr: lstApprover){
+            if((appr.Source_System__c =='CLM') && ((appr.Status__c == strApprvedTemp) || (appr.Status__c == strRejectedTemp) || (appr.Action__c == 'APPR') || (appr.Action__c == 'REJC')) && (appr.Is_Active__c))
+            {
+                rank = appr.Rank__c;
+                }
+                
+        }
+        
+        for(Core_Approver_Details__c app: lstApprover){
+            if(app.Rank__c == rank)
+            {
+                
+                lstApp.add(new Core_Approver_Details__c(id=app.Id, Is_Active__c = False));
+                
+                }
+                
+        }
         
         /* Start of Apex Header record Entity Subscription code */
         for(Core_Approver_Details__c approverRec : approverList){           
@@ -188,7 +214,7 @@ public class Core_CA_InterestedParty_Handler{
             
             
             //Check whether Interested Party is not null and dont have sharing permission for current record.
-            if(approverRec.Interested_Party__c != null && (approverRec.Role__c == strAppTemp || (approverRec.Role__c == strEndTemp && approverRec.Source_System__c == strClarityTemp))  && !(userId.contains(approverRec.Interested_Party__c)) ){ 
+            if(approverRec.Interested_Party__c != null && (approverRec.Role__c == strAppTemp || (approverRec.Role__c == strEndTemp && approverRec.Source_System__c == strClarityTemp) || (approverRec.Source_System__c == strClmTemp))  && !(userId.contains(approverRec.Interested_Party__c)) ){ 
                 userorGroupIds.add(approverRec.Interested_Party__c);
                 system.debug('Apex sharing'+approverRec.Interested_Party__c);
             }    
@@ -313,6 +339,11 @@ public class Core_CA_InterestedParty_Handler{
         }  
         
         
+        if(!lstApp.isempty()) 
+        {
+            
+            Database.Update(lstApp);
+            }
         //insert the feed item regarding GTES and Ariba notification record.
         if(!lstFeedItem.isEmpty())
         Database.insert(lstFeedItem);
@@ -336,11 +367,7 @@ public class Core_CA_InterestedParty_Handler{
     }
     
     public void handleAfterUpdate(Map<id,Core_Approver_Details__c> approverNew , Map<id,Core_Approver_Details__c> approverOld){
-        String strCopyTemp ='COPY';
-        String strRewoTemp ='REWO';
-        String strReworkTemp ='Rework';
-        String strApprvedTemp ='Approved';
-        String strRejectedTemp ='Rejected';
+        
         try{        
         List<feeditem> lstFeedItem=new List<feeditem>();
         
@@ -412,11 +439,32 @@ public class Core_CA_InterestedParty_Handler{
         }
         //****EntitySubscription Follow End
         
-        
-        
         String baseUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         Map<Id,List<Core_Approver_Details__c>> mapApprover = new Map<Id,List<Core_Approver_Details__c>>();
-        List<Core_Approver_Details__c> lstApprover = [SELECT Id,Approval_Header__c , Role__c,Interested_Party__c,Action__c,Is_Active__c,Interested_Party_Details__c,Status__c,Source_System__c  FROM Core_Approver_Details__c where Approval_Header__c in :approverHeaderids];
+        List<Core_Approver_Details__c> lstApprover = [SELECT Id,Approval_Header__c , Role__c,Interested_Party__c,Action__c,Is_Active__c,Interested_Party_Details__c,Status__c,Source_System__c,Rank__c  FROM Core_Approver_Details__c where Approval_Header__c in :approverHeaderids];
+        
+        //making clm user with same role inActive when any action is taken
+        
+        List<Core_Approver_Details__c> lstApp = new List<Core_Approver_Details__c>();
+        Decimal rank;
+        
+        for(Core_Approver_Details__c appr: lstApprover){
+            if((appr.Source_System__c =='CLM') && ((appr.Status__c == strApprvedTemp) || (appr.Status__c == strRejectedTemp) || (appr.Action__c == 'APPR') || (appr.Action__c == 'REJC')) && (appr.Is_Active__c))
+            {
+                rank = appr.Rank__c;
+                }
+                
+        }
+        
+        for(Core_Approver_Details__c app: lstApprover){
+            if(app.Rank__c == rank)
+            {
+                
+                lstApp.add(new Core_Approver_Details__c(id=app.Id, Is_Active__c = False));
+                
+                }
+                
+        }
         
         for(Core_Approver_Details__c id : lstApprover){
             approverIPids.add(id.Interested_Party__c);
@@ -448,15 +496,20 @@ public class Core_CA_InterestedParty_Handler{
                 Boolean bolMultipleRecInvoice=false;
                 Boolean bolMultipleRecClm=false;
                 
-                for(Core_Approver_Details__c  appRec : mapApprover.get(approverRec.Approval_Header__c)){                       
+                for(Core_Approver_Details__c  appRec : mapApprover.get(approverRec.Approval_Header__c)){        
+                
                     if(appRec.Source_System__c== strAribaTemp && approverRec.Interested_Party__c==appRec.Interested_Party__c && appRec.Is_Active__c && approverRec.Id!=appRec.Id && appRec.Role__c== strAppTemp){
                         if((appRec.Action__c==''||appRec.Action__c==' '||appRec.Action__c==null)&&(appRec.Status__c==''||appRec.Status__c==' '||appRec.Status__c==null)) bolMultipleRec=true;
                     }        
                     if(appRec.Source_System__c==strGtesTemp && approverRec.Interested_Party__c==appRec.Interested_Party__c && ((appRec.Action__c==''||appRec.Action__c==' '||appRec.Action__c==null)&&(appRec.Status__c==''||appRec.Status__c==' '||appRec.Status__c==null)) && approverRec.Id!=appRec.Id && appRec.Role__c==strAppTemp) bolMultipleRecGTES=true; 
                     if(appRec.Source_System__c==strClarityTemp && approverRec.Interested_Party__c==appRec.Interested_Party__c && ((appRec.Action__c==''||appRec.Action__c==' '||appRec.Action__c==null)&&(appRec.Status__c==''||appRec.Status__c==' '||appRec.Status__c==null)) && approverRec.Id!=appRec.Id && (appRec.Role__c==strAppTemp || appRec.Role__c==strEndTemp)) bolMultipleRecClarity=true; 
                     if(appRec.Source_System__c==strInvoiceTemp && approverRec.Interested_Party__c==appRec.Interested_Party__c && ((appRec.Action__c==''||appRec.Action__c==' '||appRec.Action__c==null)&&(appRec.Status__c==''||appRec.Status__c==' '||appRec.Status__c==null)) && approverRec.Id!=appRec.Id && appRec.Role__c==strAppTemp) bolMultipleRecInvoice=true;
-                    if(appRec.Source_System__c== strClmTemp && approverRec.Interested_Party__c==appRec.Interested_Party__c && appRec.Is_Active__c && approverRec.Id!=appRec.Id){
-                        if((appRec.Action__c==''||appRec.Action__c==' '||appRec.Action__c==null)&&(appRec.Status__c==''||appRec.Status__c==' '||appRec.Status__c==null)) bolMultipleRecClm=true;
+                    if(appRec.Source_System__c== strClmTemp && approverRec.Interested_Party__c==appRec.Interested_Party__c && appRec.Is_Active__c && approverRec.Id!=appRec.Id ){
+                        
+                        if((appRec.Action__c==''||appRec.Action__c==' '||appRec.Action__c==null)&&(appRec.Status__c==''||appRec.Status__c==' '||appRec.Status__c==null)) 
+                        {   
+                        bolMultipleRecClm=true;
+                        }
                     }    
                 } 
                 List<EntitySubscription> lstEntitySubQuery=new List<EntitySubscription>();
@@ -478,17 +531,19 @@ public class Core_CA_InterestedParty_Handler{
                     ((newApprover.Action__c !=oldApprover.Action__c && (approverRec.Action__c == strApprTemp||approverRec.Action__c == strRejcTemp)) ||
                     (newApprover.Status__c !=oldApprover.Status__c && (approverRec.Status__c==strApprvedTemp ||approverRec.Status__c=='Return to AP'))))
                     ||
-                    (approverRec.Source_System__c==strClmTemp && !bolMultipleRecClm &&
-                    (( newApprover.Action__c !=oldApprover.Action__c && (approverRec.Action__c==strApprTemp||approverRec.Action__c==strRejcTemp)) ||
-                    (newApprover.Status__c !=oldApprover.Status__c && (approverRec.Status__c==strApprvedTemp||approverRec.Status__c==strRejectedTemp))
-                    ))
+                    (approverRec.Source_System__c==strClmTemp && !bolMultipleRecClm && !approverRec.Is_Active__c)
                     ){
+                    
                        lstEntitySubQuery=[SELECT Id,ParentId,SubscriberId FROM EntitySubscription WHERE SubscriberId = :approverRec.Interested_Party__c AND ParentId = :approverRec.Approval_Header__c];
+                       
+                     //  System.debug('@@##' + lstEntitySubQuery);
+                       
                     } 
                 //}
                 // lstEntitySubQuery=[SELECT Id,ParentId,SubscriberId FROM EntitySubscription WHERE SubscriberId = :approverRec.Interested_Party__c AND ParentId = :approverRec.Approval_Header__c];
                 //}
                 if(!lstEntitySubQuery.isempty()) lstEntitySubDelete.add(lstEntitySubQuery[0]);
+                
              //}
             
             //****EntitySubscription Unfollow End
@@ -506,7 +561,7 @@ public class Core_CA_InterestedParty_Handler{
             
             //Check whether Interested Party is not null and dont have sharing permission for current record.
             if((newApprover.Interested_Party__c != oldApprover.Interested_Party__c || newApprover.Role__c != oldApprover.Role__c) && approverRec.Interested_Party__c != null && !(userId.contains(approverRec.Interested_Party__c)) &&
-               (approverRec.Role__c == strAppTemp || (approverRec.Source_System__c == strClarityTemp && approverRec.Role__c == strEndTemp))) 
+               (approverRec.Role__c == strAppTemp || (approverRec.Source_System__c == strClarityTemp && approverRec.Role__c == strEndTemp) || (approverRec.Source_System__c == strClmTemp))) 
                 userorGroupIds.add(approverRec.Interested_Party__c);
             
             for(Id id : userorGroupIds ){
@@ -678,6 +733,7 @@ public class Core_CA_InterestedParty_Handler{
             /*End of Clm notification after update code */
             
         }
+        
         //insert the list of feed item record.
         if(!lstFeedItem.isempty()) Database.insert(lstFeedItem);
         
@@ -690,9 +746,20 @@ public class Core_CA_InterestedParty_Handler{
         //delete entity subscription record
         if(!lstEntitySubDelete.isempty()) Database.delete(lstEntitySubDelete);
         
+        if(!lstApp.isempty()) 
+        {
+            
+            Database.Update(lstApp);
+            }   
+        
+        
         //Update the Ip status
         if(!setIpStatus.isempty()) Database.update(setIpStatus);
+        
+                
         }
+        
+        
         catch (Exception ex) {
           while (ex.getCause() != null)
           ex = ex.getCause();
