@@ -7,8 +7,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>VPM_ApprovalEmails/VPM_Requesthasbeencompleted</template>
     </alerts>
     <alerts>
@@ -18,8 +17,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>VPM_ApprovalEmails/VPM_Requesthasbeenlogged</template>
     </alerts>
     <alerts>
@@ -29,8 +27,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestHasBeenAborted</template>
     </alerts>
     <alerts>
@@ -40,8 +37,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestApprovalPendingNotification</template>
     </alerts>
     <alerts>
@@ -51,8 +47,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestRejectNotification</template>
     </alerts>
     <alerts>
@@ -62,8 +57,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestrequestingforRework</template>
     </alerts>
     <alerts>
@@ -73,8 +67,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestReviewNotification</template>
     </alerts>
     <alerts>
@@ -84,8 +77,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>VPM_ApprovalEmails/VPM_RequesthasbeenloggedMDM</template>
     </alerts>
     <alerts>
@@ -95,8 +87,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestrequestingforRework</template>
     </alerts>
     <alerts>
@@ -107,8 +98,7 @@
             <field>VPM_EmailOfWebformSender__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>VPM_ApprovalEmails/VPM_EmailForRequestorAfterWebformUpdate</template>
     </alerts>
     <alerts>
@@ -119,8 +109,7 @@
             <field>VPM_EmailOfWebformSender__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>VPM_ApprovalEmails/VPM_EmailForRequestorBeforeWebformUpdate</template>
     </alerts>
     <alerts>
@@ -130,8 +119,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>supplier.information@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>VPM_ApprovalEmails/VPM_SendWebformtoVendor</template>
     </alerts>
     <fieldUpdates>
