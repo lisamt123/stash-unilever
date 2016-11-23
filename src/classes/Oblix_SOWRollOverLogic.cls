@@ -1506,45 +1506,30 @@ public with sharing class Oblix_SOWRollOverLogic {
             Map<Id, Oblix_Project_Assets__c> map_assets_to_delete = new Map<Id, Oblix_Project_Assets__c>();
             Map<Id, Oblix_Project_Assets__c> map_assets_to_update = new Map<Id,Oblix_Project_Assets__c>();
             List<Oblix_Project_Assets__c> list_assets_to_clone = new List<Oblix_Project_Assets__c>();
-            List<Oblix_Project_Assets__c> list_NFY_assets_to_update = new List<Oblix_Project_Assets__c>();
-            
-            
+            //List<Oblix_Project_Assets__c> list_NFY_assets_to_update = new List<Oblix_Project_Assets__c>();
+
             // this map is used to copy over values from original to cloned assets
             Map<String, Schema.SObjectField> map_name_and_field = Oblix_Utils.fetchAllFieldsForObject(ASSET_OBJECT);
             
             //added by suresh - starts
-            Set<String> set_asset_mdm_ID = new Set<String>();
-            Map<String,String> map_mdm_id_to_asset_id = new Map<String,String>();
-            for (Oblix_Project_Assets__c asset: map_original_ids_to_original.values()){
+            /* for (Oblix_Project_Assets__c asset: map_original_ids_to_original.values()){
                   // Added by Suresh
-                set_asset_mdm_ID.add(asset.mdm_id__c);
-                map_mdm_id_to_asset_id.put(asset.mdm_id__c,asset.id);
-                /*If(Set_Cloned_MDM_IDs.contains(asset.mdm_id__c)){
+                If(Set_Cloned_MDM_IDs.contains(asset.mdm_id__c)){
                    Oblix_Project_Assets__c temp =  map_NFY_Assets_with_MDMIds.get(asset.mdm_id__c);  
                    temp.Asset_PFY__c = asset.Id;
                    list_NFY_assets_to_update.add(temp);
                    map_original_ids_to_cloned.put(asset.Id,temp);
-                }*/
-
-            }
-            boolean asset_set_changed = set_asset_mdm_ID.retainAll(Set_Cloned_MDM_IDs);
-            if(asset_set_changed){
-                for(String mdm_id : set_asset_mdm_ID){
-                    Oblix_Project_Assets__c temp =  map_NFY_Assets_with_MDMIds.get(mdm_id);  
-                    temp.Asset_PFY__c = map_mdm_id_to_asset_id.get(mdm_id);
-                    list_NFY_assets_to_update.add(temp);
-                    map_original_ids_to_cloned.put(map_mdm_id_to_asset_id.get(mdm_id),temp);
                 }
-            }
-            
-            
-            if(!list_NFY_assets_to_update.isEmpty()){
-                update list_NFY_assets_to_update;
-            }
-            
-            
-             //added by suresh - ends
 
+             }
+            update list_NFY_assets_to_update;*/
+             //added by suresh - ends
+            Map<Id, Oblix_Project_Assets__c> map_original_ids_to_cloned_temp = new Map<Id, Oblix_Project_Assets__c>();
+            map_original_ids_to_cloned_temp = samplemethod(map_original_ids_to_original,Set_Cloned_MDM_IDs,map_NFY_Assets_with_MDMIds,map_original_ids_to_cloned);
+            map_original_ids_to_cloned = new Map<Id, Oblix_Project_Assets__c>();
+            map_original_ids_to_cloned = map_original_ids_to_cloned_temp.clone();
+            
+            
             for (Oblix_Project_Assets__c asset: map_original_ids_to_original.values()){
                 result_msg += '\n\n\n **** asset.mdm_id: ' + asset.mdm_id__c 
                     + ' - asset.quantity: ' + asset.Quantity__c + ' - asset: ' + JSON.serialize(asset);
@@ -1642,6 +1627,38 @@ public with sharing class Oblix_SOWRollOverLogic {
 
 
     }
+    
+    public static Map<Id, Oblix_Project_Assets__c> samplemethod(Map<Id, Oblix_Project_Assets__c> map_original_ids_to_original, Set<String> Set_Cloned_MDM_IDs, Map<String, Oblix_Project_Assets__c> map_NFY_Assets_with_MDMIds,Map<Id, Oblix_Project_Assets__c> map_original_ids_to_cloned){
+
+              Map<Id, Oblix_Project_Assets__c> map_original_ids_to_original_temp = new Map<Id,Oblix_Project_Assets__c>();
+              Set<String> Set_Cloned_MDM_IDs_temp = new Set<String>();
+              Map<String, Oblix_Project_Assets__c> map_NFY_Assets_with_MDMIds_temp = new Map<String,Oblix_Project_Assets__c>();
+              Map<Id, Oblix_Project_Assets__c> map_original_ids_to_cloned_temp = new Map<Id,Oblix_Project_Assets__c>();
+              List<Oblix_Project_Assets__c> list_NFY_assets_to_update = new List<Oblix_Project_Assets__c>();
+
+              map_original_ids_to_original_temp = map_original_ids_to_original.clone();
+              Set_Cloned_MDM_IDs_temp.addAll(Set_Cloned_MDM_IDs);
+              map_NFY_Assets_with_MDMIds_temp = map_NFY_Assets_with_MDMIds.clone();
+              map_original_ids_to_cloned_temp = map_original_ids_to_cloned.clone();
+
+                for (Oblix_Project_Assets__c asset: map_original_ids_to_original_temp.values()){
+
+                  If(Set_Cloned_MDM_IDs_temp.contains(asset.mdm_id__c)){
+                    Oblix_Project_Assets__c temp =  map_NFY_Assets_with_MDMIds_temp.get(asset.mdm_id__c);  
+                    temp.Asset_PFY__c = asset.Id;
+                    list_NFY_assets_to_update.add(temp);
+                    map_original_ids_to_cloned_temp.put(asset.Id,temp);
+                  }
+
+              }
+
+              if(!list_NFY_assets_to_update.isEmpty()){
+                update list_NFY_assets_to_update;
+              }
+
+              return map_original_ids_to_cloned_temp;
+
+      }
 
 
     private Static String buildNewNonCampaignKey(Marketing_Basics__c non_camp_to_adjust){
