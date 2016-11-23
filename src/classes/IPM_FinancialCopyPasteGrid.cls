@@ -559,6 +559,8 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                                if(SelectedCountry== options.get(i).getValue()){
                                                submittedList.add(options.get(i).getLabel());
                                                showdata = true;
+                                               lastSubmittedBCLbl = options.get(i).getLabel();
+                                               lastSubmittedBCId = options.get(i).getValue();
                                                options.remove(i); 
                                     }
                      }

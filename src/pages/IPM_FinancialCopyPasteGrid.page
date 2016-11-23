@@ -111,7 +111,7 @@
 <script> 
     var IPMAppFin = {BI: '{!BI}', projectId:'{!projectId}',wmessage:'{!$Label.IPM_Unsaved_Alert}',projectType: '{!projectType}' ,Sustainability:'{!Sustainability}',IPM_CopyPastevolumevalid: '{!$Label.IPM_CopyPastevolumevalid}', FinancialGrid_MSG3:'{!$Label.IPM_FinancialGrid_MSG3}', FinancialGrid_MSG4:'{!$Label.IPM_FinancialGrid_MSG4}', IPM_AandP: '{!$Label.IPM_AandP}', IPM_AdvertisingCP: '{!$Label.IPM_AdvertisingCP}',IPM_ITOCalValidation:'{!$Label.IPM_ITOCalValidation}',IPM_GMCP:'{!$Label.IPM_GMCP}',IPM_GrossProfitCP:'{!$Label.IPM_GrossProfitCP}',IPM_ITOValidation: '{!$Label.IPM_ITOValidation}',IPM_PBOPCP: '{!$Label.IPM_PBOPCP}', IPM_PBOCP: '{!$Label.IPM_PBOCP}', IPM_TurnOverCP: '{!$Label.IPM_TurnOverCP}', GetFinancialYearRA:'{!$RemoteAction.IPM_FinancialCopyPasteGrid.GetFinancialYear}', span:'{!span}', UploadBusinessCase:'{!URLFOR($Page.IPM_UploadBusinessCase)}'};
 </script>
-<script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}"></script> 
+
 <script src="{!URLFOR($Resource.IPM_FinancialGrid, 'NewGridDemo/handsontable.full.min.js')}"></script>
 <script src="{!URLFOR($Resource.IPM_FinancialGrid, 'NewGridDemo/ruleJS/dist/full/ruleJS.all.full.js')}"></script>
 <script src="{!URLFOR($Resource.IPM_FinancialGrid, 'NewGridDemo/handsontable.formula.js')}"></script> 
