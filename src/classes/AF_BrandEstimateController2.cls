@@ -59,19 +59,13 @@ global with sharing class AF_BrandEstimateController2
   public Boolean NoBonusCheck{get;set;}
   public Boolean ReadyforPO{get;set;}
   public Boolean hideDeleteLink{get;set;}
-<<<<<<< HEAD
-=======
   public boolean AF_ExceptionalCountry;
->>>>>>> develop
   set<String> BIds = new set<String>();
   private static string AF_BrandEstiamte_Controller2=AF_BrandEstimateController2.class.getName();
   Boolean isDig_Trad;
   list<AF_Bonus_Threshold__c> bonusInsertList;
   Integer counter;
-<<<<<<< HEAD
-=======
   public boolean Exceptionaltarget;
->>>>>>> develop
   /*************************************************************************************
 *  @Description: this method is used to query and display BrandEstimate Traditional figure
 *  @name : TraditionalDisplay
@@ -190,15 +184,10 @@ global with sharing class AF_BrandEstimateController2
            countryIDMapName.put(country.id,country.AF_Country__c);
        }
       disableNobonusTab = False; 
-<<<<<<< HEAD
-      isGlobalModel = False;
-      isCountryModel = False;
-=======
       Exceptionaltarget=false;
       isGlobalModel = False;
       isCountryModel = False;
       AF_ExceptionalCountry=false;
->>>>>>> develop
       posDelete =0;
       BonusThresholds = new list<wrapbonus>();
       R_Traditional=false;
@@ -223,11 +212,7 @@ global with sharing class AF_BrandEstimateController2
       if(ApexPages.currentPage().getParameters().get('Id') != null)
       {
         ParentId = ApexPages.currentPage().getParameters().get('Id');               
-<<<<<<< HEAD
-        BrandEstimateObj = [SELECT ID,AF_iscountrymode__c,AF_Is_Global_Bonus_Threshold_Checked__c, AF_Disable_Contrycheckbox__c,AF_Disable_Exceptionaltargets__c,AF_Disable_Globalcheckbox__c,AF_Agency__c,AF_Pilot_Model__c,AF_No_Bonus__c,AF_Status_Base_Fees__c,Brand__c,AF_Total__c,AF_Traditional__c,AF_Digital__c,AF_Locked__c,AF_Adaptive__c, AF_Fiscal_Year__c ,Name,AF_Basefee_Estimate_Initial_Quarter__c From AF_Brand_Estimate__c WHERE Id =:ParentId LIMIT 1];
-=======
         BrandEstimateObj = [SELECT ID,AF_iscountrymode__c,AF_Is_Global_Bonus_Threshold_Checked__c, AF_Disable_Contrycheckbox__c,AF_Disable_Exceptionaltargets__c,AF_Disable_Globalcheckbox__c,AF_Agency__c,AF_Pilot_Model__c,AF_No_Bonus__c,AF_Status_Base_Fees__c,Brand__c,AF_Total__c,AF_Traditional__c,AF_Digital__c,AF_Locked__c,AF_Adaptive__c, AF_Fiscal_Year__c ,Name,AF_Basefee_Estimate_Initial_Quarter__c,AF_ExceptionalCountry__c From AF_Brand_Estimate__c WHERE Id =:ParentId LIMIT 1];
->>>>>>> develop
         if(BrandEstimateObj != null)
         {  
               //Added By SaiRam
@@ -261,11 +246,7 @@ global with sharing class AF_BrandEstimateController2
           CalculateTotal();
           isCountryModel = BrandEstimateObj.AF_iscountrymode__c;
           isGlobalModel = BrandEstimateObj.AF_Is_Global_Bonus_Threshold_Checked__c;
-<<<<<<< HEAD
-          
-=======
           AF_ExceptionalCountry=BrandEstimateObj.AF_ExceptionalCountry__c;
->>>>>>> develop
           ispilotModel=BrandEstimateObj.AF_Pilot_Model__c;
           NoBonusCheck=BrandEstimateObj.AF_No_Bonus__c;
           if(BrandEstimateObj.AF_Status_Base_Fees__c == AF_Constants.BASE_FEES_READYFORPO){
@@ -658,17 +639,11 @@ global with sharing class AF_BrandEstimateController2
               
               //BrandEstimateObj.AF_No_Bonus__c = true;
           }
-<<<<<<< HEAD
-          
-          
-
-=======
           If(ispilotModel && bonus_latestlist.size()>0 && !Exceptionaltarget){
               AF_ExceptionalCountry=true;
               BrandEstimateObj.AF_ExceptionalCountry__c=true ;
               //BrandEstimateObj.AF_No_Bonus__c = true;
           }       
->>>>>>> develop
            update BrandEstimateObj;
           //AF_Disable_Contrycheckbox__c,AF_Disable_Exceptionaltargets__c,AF_Disable_Globalcheckbox__c
           
@@ -1090,30 +1065,18 @@ global with sharing class AF_BrandEstimateController2
          
            if(countryIDMap.get(bonus_thresolds.bonusthresholds.AF_Country__c) == 'Global'){
                globaladded = True;
-<<<<<<< HEAD
-           
-           }  else if(countryIDMap.get(bonus_thresolds.bonusthresholds.AF_Country__c) != 'Global' && bonus_thresolds.bonusthresholds.AF_country__c != Null){
-               countryadded = True;
-=======
                Exceptionaltarget=true;
            }  else if(countryIDMap.get(bonus_thresolds.bonusthresholds.AF_Country__c) != 'Global' && bonus_thresolds.bonusthresholds.AF_country__c != Null){
                countryadded = True;
                Exceptionaltarget=false;
->>>>>>> develop
            } 
            
           
        
        }
-<<<<<<< HEAD
-       
-       if(countryadded && globaladded){
-           check = true;
-=======
        if(countryadded && globaladded){
            check = true;
            Exceptionaltarget=true;
->>>>>>> develop
              Apexpages.addmessage(new apexpages.message(apexpages.severity.ERROR, 'Please Add Either Country or Global'));
    
        }

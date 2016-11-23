@@ -1457,7 +1457,6 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>AR StepEleven</shortDescription>
         <value>Rate Card</value>
-<<<<<<< HEAD
     </labels>
     <labels>
         <fullName>AR_StepFive</fullName>
@@ -1512,62 +1511,6 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <fullName>AR_StepThree</fullName>
         <language>en_US</language>
         <protected>false</protected>
-=======
-    </labels>
-    <labels>
-        <fullName>AR_StepFive</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>AR StepFive</shortDescription>
-        <value>Geography</value>
-    </labels>
-    <labels>
-        <fullName>AR_StepFour</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>AR StepFour</shortDescription>
-        <value>Business Breakdown</value>
-    </labels>
-    <labels>
-        <fullName>AR_StepNine</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>AR StepNine</shortDescription>
-        <value>Experience</value>
-    </labels>
-    <labels>
-        <fullName>AR_StepOne</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>AR StepOne</shortDescription>
-        <value>Supplier Code</value>
-    </labels>
-    <labels>
-        <fullName>AR_StepSeven</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>AR StepSeven</shortDescription>
-        <value>Supplier Info</value>
-    </labels>
-    <labels>
-        <fullName>AR_StepSix</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>AR StepSix</shortDescription>
-        <value>Insurance</value>
-    </labels>
-    <labels>
-        <fullName>AR_StepTen</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>AR StepTen</shortDescription>
-        <value>Agency Profile</value>
-    </labels>
-    <labels>
-        <fullName>AR_StepThree</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
->>>>>>> develop
         <shortDescription>AR StepThree</shortDescription>
         <value>Financials</value>
     </labels>

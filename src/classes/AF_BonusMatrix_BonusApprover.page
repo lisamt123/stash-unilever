@@ -71,32 +71,6 @@
 
    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'ChatterLink.js')}"></script>
    
-<<<<<<< HEAD
-<<<<<<< HEAD
-   <div class="container">
-       <apex:form id="frm">
-            <apex:pagemessages />
-            <html>
-                <apex:outputPanel id="mainSecId">
-                    <!-- Main Header Section -->
-                    
-                    <div class="row">
-                       <div class="col-lg-12 charttable1 HeaderImg_Bar">
-                          <apex:image url="{!$Resource.header_new}"/>
-                       </div>
-                    </div>
-                    
-                    <!-- This panel will be loaded in case of Internal Users -->
-                    <apex:outputPanel >
-                    
-                       <div class="row">
-                          <div class="col-lg-12 charttable1" >
-                             <table class="Product_Tiles_Container" width="100%">
-                                <tr>
-                                   <td >
-=======
-=======
->>>>>>> e4eed49c332121384631aa4df722fba0ed9aa929
   
        <apex:form id="frm" styleClass="AF_RaisenewPO_Homepage_lightbox">
        <apex:pageBlock id="pb1">
@@ -110,26 +84,10 @@
                     
                     <!-- This panel will be loaded in case of Internal Users -->
                     
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> e4eed49c332121384631aa4df722fba0ed9aa929
                                       <apex:outputPanel >
                                       <apex:outputlabel style="font-size:14px;color:red" value="No records found" rendered="{!If(lstBonusMatrixWrapper.size == 0,true,false)}"/>
                                       <apex:outputlabel style="font-size:14px;color:red" value="{!$Label.AF_BonusApprover}" rendered="{!If(lstBonusMatrixWrapper.size > 0,true,false)}"/>
                                       </apex:outputPanel>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                      <apex:outputPanel rendered="{!If(lstBonusMatrixWrapper.size > 0,true,false)}">
-                                      
-                                      <apex:outputlabel style="font-size:14px;" value="Please select individual or all brands to approve/reject their annual bonus"/>
-                                      <br/>
-                                      <apex:pageBlock >
-                                       
-                                            <apex:pageBlockTable value="{!lstBonusMatrixWrapper}" var="cc" id="pbtable" columns="4" style="font-size:15px;" width="100%" >
-=======
-=======
->>>>>>> e4eed49c332121384631aa4df722fba0ed9aa929
                                       <apex:outputPanel rendered="{!If(lstBonusMatrixWrapper.size > 0,true,false)}" layout="block" styleClass="tableCont">
                                       
                                       <apex:outputlabel styleClass="titleDescription" value="Please select individual or all brands to approve/reject their annual bonus"/>
@@ -137,10 +95,6 @@
                                       
                                        
                                             <apex:pageBlockTable value="{!lstBonusMatrixWrapper}" var="cc" id="pbtable" columns="4" rowClasses="even,odd">
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> e4eed49c332121384631aa4df722fba0ed9aa929
                                                 <apex:column >
                                                     <apex:facet name="header" >Bonus Matrix
                                                     </apex:facet>
@@ -183,38 +137,6 @@
                                             <apex:actionFunction name="callCheckAllBoxesApprove" action="{!checkAllApprove}" reRender="subA"/>
                                             <apex:actionFunction name="callCheckAllBoxesReject" action="{!checkAllReject}" reRender="subR,txt"/>
                                         
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                        
-                                        <apex:pageblockbuttons location="bottom">
-                                            <apex:commandbutton value="Continue" action="{!saveApprovals}" onClick="if (!confirmApproveReject()) return false;" reRender="frm" />
-                                            <!--<apex:commandbutton value="Save" action="{!saveApprovals}" />
-                                            <apex:commandbutton value="Cancel" action="{!cancel}" /> -->
-                                        </apex:pageblockbuttons>
-                                        
-                                      </apex:pageBlock>
-                                        
-                                    </apex:outputPanel>
-                                   </td>
-                                </tr>
-                             </table>
-                          </div>
-                       </div>
-                    </apex:outputPanel>
-                    <!-- End of code for Internal Users -->
-                    <!-- End of code for Internal Users -->
-                 </apex:outputPanel>
-                 
-                 
-                 <!-- for footer image -->
-                 <div class="row margin10">
-                    <div class="col-lg-12 charttable1">
-                       <apex:image url="{!$Resource.header_new}" styleClass="footerBackgroundImg"/>
-                    </div>
-                 </div>
-=======
-=======
->>>>>>> e4eed49c332121384631aa4df722fba0ed9aa929
                                     </apex:outputPanel>
                          <!-- <apex:commandbutton value="Continue" action="{!saveApprovals}" onClick="if (!confirmApproveReject()) return false;" styleClass="continue_btn" reRender="frm,pb1" /> -->
                           
@@ -245,10 +167,6 @@
                  
                  
                  
-<<<<<<< HEAD
->>>>>>> develop
-=======
->>>>>>> e4eed49c332121384631aa4df722fba0ed9aa929
                  
                  <!-- Bootstrap bootstrap modal window Start 
                  <div class="model_container">
@@ -272,15 +190,7 @@
                  </div>
                  Bootstrap bootstrap modal window End--> 
                  
-<<<<<<< HEAD
-<<<<<<< HEAD
-              </html>       
-=======
                
->>>>>>> develop
-=======
-               
->>>>>>> e4eed49c332121384631aa4df722fba0ed9aa929
           
           <!--
           <apex:actionStatus id="statusSaveTrip" stopText="">
@@ -301,20 +211,9 @@
              </apex:facet>
           </apex:actionStatus>
           -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-       </apex:form>
-   </div>
-=======
         </apex:pageBlock>    
        </apex:form>
   
->>>>>>> develop
-=======
-        </apex:pageBlock>    
-       </apex:form>
-  
->>>>>>> e4eed49c332121384631aa4df722fba0ed9aa929
    
    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AgencyHomepage.js')}"></script>
   

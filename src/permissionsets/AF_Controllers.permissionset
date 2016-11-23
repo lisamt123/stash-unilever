@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-<<<<<<< HEAD
-    <label>Controller Platform</label>
-=======
     <classAccesses>
         <apexClass>AF_AdjustQuater_Homepage_lightbox</apexClass>
         <enabled>true</enabled>
@@ -4595,7 +4592,6 @@
         <recordType>AF_Entity__c.AF_Unilever_Entity</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
->>>>>>> develop
     <userLicense>Salesforce Platform</userLicense>
     <userPermissions>
         <enabled>true</enabled>
