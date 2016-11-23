@@ -9,9 +9,12 @@
     /*
         we are using (SeeAllData=true ) because we are testing custom setting.
     */
-@isTest(SeeAllData=true)
+@isTest
 public class Core_CA_ApprovalsController_Test{
     
+    @TestVisible static String strSystemAdministrator = 'System Administrator';
+    @TestVisible static String strHeaderTemp = 'Header';
+    @TestVisible static String strUtf = 'UTF-8';
     @TestVisible static String strAriba= 'Ariba';
     @TestVisible static String strApp= 'APP';
     @TestVisible static String strPost= 'POST';
@@ -24,6 +27,22 @@ public class Core_CA_ApprovalsController_Test{
     @TestVisible static String strClosingTags= '}}';
     @TestVisible static String strClarity = 'Clarity';
     @TestVisible static String strInvoice = 'Invoice'; 
+    
+     @testSetup static void setup() {
+         List<CORE_CA_ApprovalReporting__c> lstCustSet = new List<CORE_CA_ApprovalReporting__c>();
+        profile p=[select id from profile where name=:strSystemAdministrator]; 
+        System.assert(p != null);
+       
+        User obj_user1 = new User(username='Core_CA_customSettingUser@admintest.com',IsActive=true,Alias='user1',timezonesidkey='America/Los_Angeles',
+                                 ProfileId=p.id,Email='Core_CA_customSettingUser@admintest.com',FederationIdentifier='feed13', FirstName=strHeaderTemp,
+                                 LastName='user1',emailencodingkey=strUtf,languagelocalekey='en_US',localesidkey='bg_BG');
+        insert obj_user1;
+        
+        lstCustSet.add( new CORE_CA_ApprovalReporting__c( Name='GA_ID',Text_Value__c='UA-80672912-2'));
+        
+        if(!lstCustSet.isEmpty())
+           insert lstCustSet;     
+    }
     
     public static testMethod void TestgetApprovalHomeScreenData(){    
         System.assert(Core_CA_ApprovalsController.getApprovalHomeScreenData()!= null);
