@@ -71,38 +71,30 @@
 
    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'ChatterLink.js')}"></script>
    
-   <div class="container">
-       <apex:form id="frm">
-            <apex:pagemessages />
-            <html>
-                <apex:outputPanel id="mainSecId">
-                    <!-- Main Header Section -->
+  
+       <apex:form id="frm" styleClass="AF_RaisenewPO_Homepage_lightbox">
+       <apex:pageBlock id="pb1">
+         <apex:pagemessages id="msg"/>   
                     
                     <div class="row">
-                       <div class="col-lg-12 charttable1 HeaderImg_Bar">
-                          <apex:image url="{!$Resource.header_new}"/>
-                       </div>
+                        <div class="col-lg-12 charttable1">
+                           <apex:image url="{!$Resource.header_new}" styleClass="headimg" />
+                        </div>
                     </div>
                     
                     <!-- This panel will be loaded in case of Internal Users -->
-                    <apex:outputPanel >
                     
-                       <div class="row">
-                          <div class="col-lg-12 charttable1" >
-                             <table class="Product_Tiles_Container" width="100%">
-                                <tr>
-                                   <td >
                                       <apex:outputPanel >
                                       <apex:outputlabel style="font-size:14px;color:red" value="No records found" rendered="{!If(lstBonusMatrixWrapper.size == 0,true,false)}"/>
                                       <apex:outputlabel style="font-size:14px;color:red" value="{!$Label.AF_BonusApprover}" rendered="{!If(lstBonusMatrixWrapper.size > 0,true,false)}"/>
                                       </apex:outputPanel>
-                                      <apex:outputPanel rendered="{!If(lstBonusMatrixWrapper.size > 0,true,false)}">
+                                      <apex:outputPanel rendered="{!If(lstBonusMatrixWrapper.size > 0,true,false)}" layout="block" styleClass="tableCont">
                                       
-                                      <apex:outputlabel style="font-size:14px;" value="Please select individual or all brands to approve/reject their annual bonus"/>
+                                      <apex:outputlabel styleClass="titleDescription" value="Please select individual or all brands to approve/reject their annual bonus"/>
                                       <br/>
-                                      <apex:pageBlock >
+                                      
                                        
-                                            <apex:pageBlockTable value="{!lstBonusMatrixWrapper}" var="cc" id="pbtable" columns="4" style="font-size:15px;" width="100%" >
+                                            <apex:pageBlockTable value="{!lstBonusMatrixWrapper}" var="cc" id="pbtable" columns="4" rowClasses="even,odd">
                                                 <apex:column >
                                                     <apex:facet name="header" >Bonus Matrix
                                                     </apex:facet>
@@ -145,33 +137,36 @@
                                             <apex:actionFunction name="callCheckAllBoxesApprove" action="{!checkAllApprove}" reRender="subA"/>
                                             <apex:actionFunction name="callCheckAllBoxesReject" action="{!checkAllReject}" reRender="subR,txt"/>
                                         
-                                        
-                                        <apex:pageblockbuttons location="bottom">
-                                            <apex:commandbutton value="Continue" action="{!saveApprovals}" onClick="if (!confirmApproveReject()) return false;" reRender="frm" />
-                                            <!--<apex:commandbutton value="Save" action="{!saveApprovals}" />
-                                            <apex:commandbutton value="Cancel" action="{!cancel}" /> -->
-                                        </apex:pageblockbuttons>
-                                        
-                                      </apex:pageBlock>
-                                        
                                     </apex:outputPanel>
-                                   </td>
-                                </tr>
-                             </table>
-                          </div>
-                       </div>
-                    </apex:outputPanel>
+                         <!-- <apex:commandbutton value="Continue" action="{!saveApprovals}" onClick="if (!confirmApproveReject()) return false;" styleClass="continue_btn" reRender="frm,pb1" /> -->
+                          
+                            <apex:commandButton value="Continue" styleClass="continue_btn" rerender="Approvepopup" action="{!SubmitPopup}" 
+                            rendered="{!If(lstBonusMatrixWrapper.size > 0,true,false)}"/>
+                                         
+                                          
+                                          
+                           <apex:outputPanel id="Approvepopup">
+                           
+                              <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!popup}"/>
+                              <apex:outputPanel styleClass="customPopup_SubitforApproval" layout="block" rendered="{!popup}">
+                                 <div class="approval_floatR">
+                                    <apex:commandButton value="X" action="{!closePopup}" rerender="Approvepopup" styleClass="approval_closeButton1"/> 
+                                 </div>
+                                 <div class="approval_margin20PX">
+                                    <h2>
+                                       <apex:outputLabel value="{!$Label.AF_Approve_Reject_BonusMatrix}" styleClass="approval_fontS16PX"/>
+                                    </h2>
+                                    <br/><br/>
+                                    <apex:commandButton style="margin-left: 215px !important;" value="Confirm" action="{!saveApprovals}" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup,frm,pb1,msg" />
+                                 </div>
+                              </apex:outputPanel>
+                            </apex:outputPanel>
                     <!-- End of code for Internal Users -->
-                    <!-- End of code for Internal Users -->
-                 </apex:outputPanel>
+                   
+                
                  
                  
-                 <!-- for footer image -->
-                 <div class="row margin10">
-                    <div class="col-lg-12 charttable1">
-                       <apex:image url="{!$Resource.header_new}" styleClass="footerBackgroundImg"/>
-                    </div>
-                 </div>
+                 
                  
                  <!-- Bootstrap bootstrap modal window Start 
                  <div class="model_container">
@@ -195,7 +190,7 @@
                  </div>
                  Bootstrap bootstrap modal window End--> 
                  
-              </html>       
+               
           
           <!--
           <apex:actionStatus id="statusSaveTrip" stopText="">
@@ -216,8 +211,9 @@
              </apex:facet>
           </apex:actionStatus>
           -->
+        </apex:pageBlock>    
        </apex:form>
-   </div>
+  
    
    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AgencyHomepage.js')}"></script>
   
