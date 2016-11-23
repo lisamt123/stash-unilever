@@ -135,6 +135,10 @@
                 <fullName>Controller</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Approver</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Regional Category Finance</fullName>
                 <default>false</default>
