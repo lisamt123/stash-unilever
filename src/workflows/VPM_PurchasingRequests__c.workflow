@@ -1069,65 +1069,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>VPM Notification Logged Message for 2 level of Approval</fullName>
-        <actions>
-            <name>Notification_for_Logged_for_2_Approvals</name>
-            <type>Alert</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_NumberofApprovalsRequired__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitter__c</field>
-            <operation>equals</operation>
-            <value>Procurement</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_FinanceApprovalRequired__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c</field>
-            <operation>equals</operation>
-            <value>Business Requestor</value>
-        </criteriaItems>
-        <description>Email Notification for logged when 2 level of approvals</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>VPM Notification for Logged MDM Ops Review</fullName>
-        <actions>
-            <name>Notification_For_Logged_Email</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>VPM_NextApproverNameMDMOps</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
-            <operation>equals</operation>
-            <value>MDM Ops Review</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitter__c</field>
-            <operation>equals</operation>
-            <value>Business Requestor</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_NumberofApprovalsRequired__c</field>
-            <operation>notEqual</operation>
-            <value>0</value>
-        </criteriaItems>
-        <description>send notification for logged email to the request creator when the status is MDM Ops Review</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>VPM Send email to Vendor</fullName>
         <actions>
             <name>VPM_SendEmailToVendorEmail</name>
@@ -1152,21 +1093,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             <value>Yes</value>
         </criteriaItems>
         <description>Sends email to Vendor with Webform details</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>VPM Update Salesforce Request Submitted to MDM</fullName>
-        <actions>
-            <name>VPM_UpdateStatusToSubmitted</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_MDMInsertUpdateStatus__c</field>
-            <operation>equals</operation>
-            <value>Submitted to BPM</value>
-        </criteriaItems>
-        <description>Update Salesforce status depending on MDM service call</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
