@@ -106,7 +106,6 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public string selectedBrand{get;set;}
     public Boolean isBusinessPartnerBool{get;set;}
     public Boolean isCentralTeamBool{get;set;}
-    public Boolean constructorFlg;
     /****************************************************************************
     @Description : Initialization of the constructor
     *****************************************************************************/
@@ -149,7 +148,6 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         isBusinessPartnerBool = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
         isCentralTeamBool = custPermission.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
         brandOptionsList = new List<Selectoption>();
-        constructorFlg = false;
         
         if(project!=null)
         {
@@ -431,14 +429,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     	brandOptionsList.clear();
     	if(!projectMetadata.IPM_MultiBrandPosApplicable__c)
         {
-        	if(!brandOptionsList.isEmpty() && constructorFlg)
-        	{	
-            	return brandOptionsList;
-        	}
-        	else if(brandOptionsList.isEmpty())
-        	{
-        		brandOptionsList.add(new Selectoption(IPM_ConstantUtils.BLANK ,system.label.IPM_SelectBrandPosition));
-        	}
+			brandOptionsList.add(new Selectoption(IPM_ConstantUtils.BLANK ,system.label.IPM_SelectBrandPosition));
         }
 
         try
