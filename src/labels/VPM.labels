@@ -353,7 +353,7 @@
 	<language>en_US</language>
 	<protected>false</protected>
 	<shortDescription>VPM Certificate Name</shortDescription>
-	<value>VendorBPM_Client_Test</value>
+	<value>vendorbpm_client_test</value>
 </labels>
 <labels>
 	<fullName>VPM_Certificate_Number_Tax_Exemption</fullName>
