@@ -4280,6 +4280,19 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_ContactPersonSurname__c</fullName>
+        <description>VPM - This field is used to store the value of DELContact Person-Surname.</description>
+        <externalId>false</externalId>
+        <label>DELContact Person-Surname</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_CorporateGrp__c</fullName>
         <description>VPM - This field is used to store the value of Corporate Group.</description>
         <externalId>false</externalId>
@@ -7371,6 +7384,19 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <externalId>false</externalId>
         <label>Dunning Level</label>
         <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ECCNo__c</fullName>
+        <description>VPM - This field is used to store the value of DELECC No.</description>
+        <externalId>false</externalId>
+        <label>DELECC No.</label>
+        <length>40</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
