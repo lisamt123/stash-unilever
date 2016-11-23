@@ -84,6 +84,7 @@
 			<runTest>VPM_SearchVendor1Test</runTest>
 			<runTest>VPM_TestDataFactory</runTest>
 			<runTest>VPM_VendorDetailsServicesHelper</runTest>
+			<runTest>VPM_CheckRecursive</runTest>
         </sf:deploy>
     </target>
 </project>
