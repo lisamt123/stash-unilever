@@ -741,7 +741,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		                                                                                  IPM_CPP_Local__c,
 		                                                                                  Global_External_Id__c,
 		                                                                                  IPM_Parent_Company_Card__c,
-		                                                                                  Gate_Keeping_Model__c 
+		                                                                                  Gate_Keeping_Model__c,Target_Launch_Date__c  
 		                                                                          FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
         
             for(IPM_Financial__c fi:projectFinancialList){
@@ -988,7 +988,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                             IPM_Project_Rollout__c,IPM_Project_Rollout__r.Id,
                                                                                             IPM_Project_Rollout__r.Name,Regional_Project__c,
                                                                                             Regional_Project__r.id,IPM_CPP_Regional__c,
-                                                                                            IPM_CPP_Local__c,Year_1_iTO_Global__c,Year_1_iTO_Regional__c,Global_External_Id__c,IPM_Parent_Company_Card__c,Gate_Keeping_Model__c  
+                                                                                            IPM_CPP_Local__c,Year_1_iTO_Global__c,Year_1_iTO_Regional__c,Global_External_Id__c,IPM_Parent_Company_Card__c,Gate_Keeping_Model__c,Target_Launch_Date__c   
                                                                                             FROM IPM_Financial__c 
                                                                                             WHERE IPM_Project_Rollout__c IN: regionalRolloutset OR Regional_Project__c IN: regionalRolloutset  Limit 50000]);
                                                 

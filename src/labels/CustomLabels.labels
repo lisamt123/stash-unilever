@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
 <labels>
         <fullName>IPM_A_SEPERATE_COUNTRY</fullName>
         <language>en_US</language>
@@ -53,7 +55,6 @@
         <value>If any country within your MCO has no associated Sourcing Unit or a product has no approved Sourcing Unit please contact the Supply Chain Leader of your Global Project.</value>
     </labels>
 
-
 <labels>
         <fullName>IPM_SELECT_SUSTAINABILITY_HELP</fullName>
         <language>en_US</language>
@@ -79,6 +80,7 @@ If you make no selection now the Sustainability Period will default to 3 years o
 	<shortDescription>Product &amp; Sourcing Plan</shortDescription>
 	<value>Product &amp; Sourcing Plan</value>
 </labels>
+
 <labels>
 	<fullName>IPM_Product_Sourcing_Plan_Global_Scope</fullName>
 	<language>en_US</language>
@@ -233,41 +235,34 @@ If you make no selection now the Sustainability Period will default to 3 years o
 	<shortDescription>IPM gTO Percent</shortDescription>
 	<value>% of gTO cannot be more than 100% or less than 0%</value>
 </labels>
-	
-	<labels>
+
+<labels>
         <fullName>IPM_Align_AllMCO_TLD</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Align TLD of all MCO&apos;s</shortDescription>
         <value>Do you wish to align ALL MCOs to this MCO&apos;s new TLD?</value>
-	</labels>
-	<labels>
-	        <fullName>IPM_PDL_Not_Approved</fullName>
-	        <language>en_US</language>
-	        <protected>false</protected>
-	        <shortDescription>PDL Not Approved</shortDescription>
-	        <value>Sorry! this cannot be approved yet. See below for details</value>
-	</labels>
-	<labels>
-	        <fullName>IPM_Product_Design_Lock_Document</fullName>
-	        <language>en_US</language>
-	        <protected>false</protected>
-	        <shortDescription>Product Design Lock Document</shortDescription>
-	        <value>Product Design Lock Document:</value>
-	    </labels>
-	<labels>
+</labels>
+<labels>
+        <fullName>IPM_PDL_Not_Approved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PDL Not Approved</shortDescription>
+        <value>Sorry! this cannot be approved yet. See below for details</value>
+</labels>
+<labels>
+        <fullName>IPM_Product_Design_Lock_Document</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Design Lock Document</shortDescription>
+        <value>Product Design Lock Document:</value>
+    </labels>
+<labels>
         <fullName>IPM_Fill_PDL_Document</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Fill PDL Document</shortDescription>
         <value>First get your Product Design Lock Document confirmed at GCLT</value>
-    </labels>
-    <labels>
-        <fullName>IPM_ADD_SELECTED_MEMBERS</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_ADD_SELECTED_MEMBERS</shortDescription>
-        <value>Add Selected Members</value>
     </labels>
     <labels>
         <fullName>IPM_Select_This_MCO_Members</fullName>
@@ -346,6 +341,7 @@ If you make no selection now the Sustainability Period will default to 3 years o
 	        <shortDescription>IPM_PDL_Validation_Msg2</shortDescription>
 	        <value>Please complete the following sections</value>
 	</labels>
+
 	<labels>
 	        <fullName>Accept_from_Global</fullName>
 	        <language>en_US</language>
@@ -360,21 +356,29 @@ If you make no selection now the Sustainability Period will default to 3 years o
 	        <shortDescription>IPM TLD VR Misaligned At Global</shortDescription>
 	        <value>Target Launch Date for {0} is misaligned: Value at Global = {1} value at Local = {2}.</value>
 	</labels>
-        <labels>
-	        <fullName>IPM_Current_PDL_Document_Status</fullName>
-	        <language>en_US</language>
-	        <protected>false</protected>
-	        <shortDescription>Current PDL Document Status</shortDescription>
-	        <value>Current PDL Document Status</value>
-   	</labels>
-	<labels>
-	        <fullName>IPM_Product_Design_Lock</fullName>
-	        <language>en_US</language>
-	        <protected>false</protected>
-	        <shortDescription>Product Design Lock</shortDescription>
-	        <value>Product Design Lock</value>
-	</labels>
-	<labels>
+    <labels>
+	<fullName>IPM_Input_Dont_Use_Char</fullName>
+	<categories>IPM_ProjectSearchPage</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM_Input_Dont_Use_Char</shortDescription>
+	<value>Please do not use the character &apos;%&apos;. It will not be considered.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Current_PDL_Document_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Current PDL Document Status</shortDescription>
+        <value>Current PDL Document Status</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Product_Design_Lock</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Design Lock</shortDescription>
+        <value>Product Design Lock</value>
+    </labels>
+    <labels>
 		<fullName>IPM_PDL_Due_Date_Before_Contract</fullName>
 		<categories>Milestone</categories>
 		<language>en_US</language>
@@ -406,91 +410,6 @@ If you make no selection now the Sustainability Period will default to 3 years o
 		<shortDescription>IPM_Charter_Due_Date_Before_PDL</shortDescription>
 		<value>The Charter Gate due date must be on or before both Product Design Lock and Contract Gate due date.</value>
 	</labels>
-   <labels>
-	<fullName>IPM_Input_Dont_Use_Char</fullName>
-	<categories>IPM_ProjectSearchPage</categories>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>IPM_Input_Dont_Use_Char</shortDescription>
-	<value>Please do not use the character &apos;%&apos;. It will not be considered.</value>
-    </labels>
-   <labels>
-        <fullName>IPM_Download_All_AttachmentsBttnName</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Download All Attachments</shortDescription>
-        <value>Download All</value>
-    </labels> 
-    <labels>
-        <fullName>IPM_NoAttachment_ForDownload_Msg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Message when no summary attachments are available for download</shortDescription>
-        <value>No Summary Attachments to download</value>
-    </labels>
-    <labels>
-        <fullName>IPM_Assumption_GM</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM Assumption GM%</shortDescription>
-        <value>GM%</value>
-    </labels>
-    <labels>
-        <fullName>IPM_FunctionalInput_minChar</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Functional input</shortDescription>
-        <value>There is no minimum or maximum character count on this text box</value>
-    </labels>
-	<labels>
-        <fullName>IPM_Platform</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Platform</shortDescription>
-        <value>Platform</value>
-    </labels>
-    <labels>
-        <fullName>IPM_Platform_Title</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Platform Field Title</shortDescription>
-        <value>Optional - please liaise with your IPM Business Partner to determine whether this parameter needs to be filled in</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableAdvertisingPromotions</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableAdvertisingPromotions</shortDescription>
-        <value>BMI</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableGDgTO</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableGDgTO</shortDescription>
-        <value>gTO</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableGDiTO</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableGDiTO</shortDescription>
-        <value>iTO</value>
-    </labels>
-    <labels>
-	<fullName>IPM_Brand_Not_Found</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Brand Not Found</shortDescription>
-	<value>No matching brand (yet), please contact your IPM BP</value>
-    </labels>
-    <labels>
-	<fullName>IPM_Rollout_Brand</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Brand</shortDescription>
-	<value>Brand</value>
-    </labels>
     <labels>
         <fullName>IPM_ShowEntity</fullName>
         <language>en_US</language>
@@ -510,9 +429,8 @@ If you make no selection now the Sustainability Period will default to 3 years o
         <protected>false</protected>
         <shortDescription>IPM Bosscard Shared Chatter</shortDescription>
         <value>BOSSCARD Shared Via Chatter</value>
-    </labels>
-	
-	 <labels>
+    </labels>	
+    <labels>
         <fullName>IPM_000</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -666,7 +584,13 @@ If you make no selection now the Sustainability Period will default to 3 years o
         <shortDescription>IPM_ADD_ROLLOUT</shortDescription>
         <value>Add/Manage Rollouts</value>
     </labels>
-    
+    <labels>
+        <fullName>IPM_ADD_SELECTED_MEMBERS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ADD_SELECTED_MEMBERS</shortDescription>
+        <value>Add Selected Members</value>
+    </labels>
     <labels>
         <fullName>IPM_ADD_TASK</fullName>
         <language>en_US</language>
@@ -1157,7 +1081,13 @@ If you make no selection now the Sustainability Period will default to 3 years o
         <shortDescription>IPM Assumption Countries</shortDescription>
         <value>Countries with unique assumptions</value>
     </labels>
-    
+    <labels>
+        <fullName>IPM_Assumption_GM</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Assumption GM%</shortDescription>
+        <value>GM%</value>
+    </labels>
     <labels>
         <fullName>IPM_Assumption_Market_Size</fullName>
         <language>en_US</language>
@@ -3881,7 +3811,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_EcoDesign_Take_Me_To_EcoDesign_Url</shortDescription>
-        <value>http://ecodesign.unilever.com/Project/GetIPMProject</value>
+        <value>http://ecodesign-q.unilever.com/Project/GetIPMProject</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Waste</fullName>
@@ -5776,7 +5706,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_Milestone_Desc</shortDescription>
-        <value>Below key milestones required by your category. Please add a due date for each milestone.&lt;br/&gt;
+        <value>Below are the key milestones required by your category. Please add a due date for each milestone.&lt;br/&gt;
 For either option it is possible to add/remove sections and To-do&apos;s later. You may also add mini-milestones.</value>
     </labels>
     <labels>
@@ -9411,8 +9341,8 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM WATCH FOR UPDATES TO</shortDescription>
- 		<value>In-system help text</value>
-     </labels>
+        <value>In-system help text</value>
+    </labels>
     <labels>
         <fullName>IPM_WEIGHTAGE</fullName>
         <language>en_US</language>
@@ -9707,8 +9637,20 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>ipmFinTableASInnovationValueShare</shortDescription>
         <value>Innovation Value Share</value>
     </labels>
-    
-    
+    <labels>
+        <fullName>ipmFinTableAdvertisingPromotions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableAdvertisingPromotions</shortDescription>
+        <value>BMI</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableGDgTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGDgTO</shortDescription>
+        <value>gTO</value>
+    </labels>
     <labels>
         <fullName>ipmFinTableGDiAP</fullName>
         <language>en_US</language>
@@ -9716,7 +9658,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>ipmFinTableGDiAP</shortDescription>
         <value>iBMI</value>
     </labels>
-    
+    <labels>
+        <fullName>ipmFinTableGDiTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGDiTO</shortDescription>
+        <value>iTO</value>
+    </labels>
     <labels>
         <fullName>ipmFinTableGMofTO</fullName>
         <language>en_US</language>
@@ -9983,7 +9931,8 @@ If you discover that stopping this Project was a mistake you can undo this actio
 
 If you take no further action after 72 hours from now this Project {0} will be stopped. Please note Stopped Projects cannot be reactivated.</value>
     </labels>
-	<labels>
+
+<labels>
         <fullName>IPM_NoOfMonths_ForReactivation</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10166,10 +10115,49 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>IPM_SVF_Please check your MCO financials</shortDescription>
         <value>Please check your MCO financials</value>
     </labels>
-	
-	
-    
+	<labels>
+		<fullName>IPM_Brand_Not_Found</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>Brand Not Found</shortDescription>
+		<value>No matching brand (yet), please contact your IPM BP</value>
+    </labels>
+	 <labels>
+        <fullName>IPM_Platform</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Platform</shortDescription>
+        <value>Platform</value>
+    </labels>
     <labels>
+        <fullName>IPM_Platform_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Platform Field Title</shortDescription>
+        <value>Optional - please liaise with your IPM Business Partner to determine whether this parameter needs to be filled in</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Rollout_Brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Brand</shortDescription>
+        <value>Brand</value>
+    </labels>
+	<labels>
+        <fullName>IPM_FunctionalInput_minChar</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Functional input</shortDescription>
+        <value>There is no minimum or maximum character count on this text box</value>
+    </labels>
+    <labels>
+        <fullName>IPM_NoAttachment_ForDownload_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Message when no summary attachments are available for download</shortDescription>
+        <value>No Summary Attachments to download</value>
+    </labels>
+	<labels>
         <fullName>IPM_Team_Members_Report</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10404,5 +10392,5 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>IPM Sourced Into Help Text</shortDescription>
         <value>The countries available in this list are populated by the Product / Country Mapping column. If a required country is not present please work with the Project Marketer to have the countries mapped to the Product.</value>
     </labels>
+</CustomLabels>
 
-	
