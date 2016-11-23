@@ -296,4 +296,8 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
       }
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> develop

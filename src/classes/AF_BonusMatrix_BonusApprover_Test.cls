@@ -83,7 +83,11 @@ public class AF_BonusMatrix_BonusApprover_Test
             // Create instance for wrapper class
             AF_BonusMatrix_BonusApproverController.BonusMatrixWrapper objWrapper = new AF_BonusMatrix_BonusApproverController.BonusMatrixWrapper(objSum);
             AF_BonusMatrix_BonusApproverController obj_AF_BonusMatrix_BonusApprover= new AF_BonusMatrix_BonusApproverController();
+<<<<<<< HEAD
             
+=======
+            string cmco='With CMCO';
+>>>>>>> develop
             //Make record selection false
             obj_AF_BonusMatrix_BonusApprover.checkAllApprove();
             obj_AF_BonusMatrix_BonusApprover.checkAllReject();
@@ -103,7 +107,11 @@ public class AF_BonusMatrix_BonusApprover_Test
             obj_AF_BonusMatrix_BonusApprover.checkAllReject();
             obj_AF_BonusMatrix_BonusApprover.saveApprovals();
             String StatusApprove = [Select Id,AF_Status__c,AF_Agency__c from AF_Bonus_Summary__c where Id IN:AFBonusSummary LIMIT 1].AF_Status__c;
+<<<<<<< HEAD
             system.assertequals('With CMCO',StatusApprove);
+=======
+            system.assertequals(cmco,StatusApprove);
+>>>>>>> develop
             
             // Select records for rejection
             obj_AF_BonusMatrix_BonusApprover.checkHeaderA = false;
@@ -112,7 +120,11 @@ public class AF_BonusMatrix_BonusApprover_Test
             obj_AF_BonusMatrix_BonusApprover.checkAllReject();
             obj_AF_BonusMatrix_BonusApprover.saveApprovals();
             String StatusReject = [Select Id,AF_Status__c,AF_Agency__c from AF_Bonus_Summary__c where Id IN:AFBonusSummary LIMIT 1].AF_Status__c;
+<<<<<<< HEAD
             system.assertequals('W/Cat Finance',StatusReject);
+=======
+            system.assertequals(cmco,StatusReject);
+>>>>>>> develop
         
         }    
         Test.stopTest();

@@ -327,7 +327,11 @@
                        <apex:outputLabel value="{!$Label.AF_Bonus_Submit}" styleClass="approval_fontS16PX"/>
                     </h2>
                     <br/><br/>
+<<<<<<< HEAD
                     <apex:commandButton style="margin-left: 215px !important;" value="Confirm" action="{!SubmitforStatus}" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup"  oncomplete="displaymessage();" />
+=======
+                    <apex:commandButton style="margin-left: 215px !important;" value="Confirm" action="{!SubmitforStatus}" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup,pgm1"  oncomplete="displaymessage();" />
+>>>>>>> develop
                  </div>
               </apex:outputPanel>
             </apex:outputPanel>
