@@ -77,3 +77,5 @@ src/tabs/PQN_Pallet_Quality_Non_Conformance__c.tab
 src/tabs/PQN_Targets__c.tab
 src/tabs/Pallet_Quality_Non_Conformance_VF.tab
 src/applications/Pallet_Quality_Non_Conformance.app
+src/tabs/PQN_Supplier__c.tab
+src/objects/PQN_Supplier__c.object
