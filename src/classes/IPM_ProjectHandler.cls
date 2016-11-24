@@ -250,10 +250,12 @@ public with sharing class IPM_ProjectHandler implements ITrigger
            for(IPM_Project__c incomingProject :(List<IPM_Project__c>)Trigger.New)
            {
                 IPM_Project__c oldProject = null;
-                
+                if(Trigger.isUpdate){
+                    oldProject = ( (Map<Id,IPM_Project__c>)Trigger.OldMap).get(incomingProject.Id);
+                }
                 if(!IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED)
                 {
-                    if(incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && incomingProject.IPM_Temporary_Phase__c !=null 
+                    if((Trigger.isUpdate && incomingProject.IPM_Project_Job_Status__c!=oldProject.IPM_Project_Job_Status__c) && incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && incomingProject.IPM_Temporary_Phase__c !=null 
                     && incomingProject.IPM_Project_Name__c != null && incomingProject.IPM_Project_Name__c != IPM_ConstantUtils.MASTER_PROJECT_NAME)
                     {   
                         phaseChangeProjects.add(incomingProject.Id);
@@ -263,8 +265,6 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 
                 if(Trigger.isUpdate)
                 {
-                    
-                    oldProject = ( (Map<Id,IPM_Project__c>)Trigger.OldMap).get(incomingProject.Id);
                     
                     //Notify the project is created
                     if(String.IsBlank(oldProject.IPM_Project_Name__c) && String.IsNotBlank(incomingProject.IPM_Project_Name__c))
