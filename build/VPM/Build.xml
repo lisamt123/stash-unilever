@@ -51,34 +51,26 @@
             <runTest>TestDataFactory</runTest>
             <runTest>UserTestUtil</runTest>
             <runTest>UserTrigger_Test</runTest>
-            <runTest>VPM_ApprovalSubmit</runTest>
 			<runTest>VPM_CreateVendorFetchFieldDetails</runTest>
             <runTest>VPM_CreateVendorFieldDetailsWrapper</runTest>
 			<runTest>VPM_CreateVendorServiceExceptionMock</runTest>
 			<runTest>VPM_CreateVendorServiceHelper</runTest>
             <runTest>VPM_CreateVendorServiceHelper_Test</runTest>
-			<runTest>VPM_ECCMaintainExtendHelper</runTest>
 			<runTest>VPM_FetchVendorDetailsHttpMock</runTest>
 			<runTest>VPM_FetchVendorDetailsHttpMockCodeMatch</runTest>
 			<runTest>VPM_FetchVendorsDetails</runTest>
             <runTest>VPM_FetchVendorsDetails_Test</runTest>
-			<runTest>VPM_GoldenDataController2</runTest>
 			<runTest>VPM_HttpUtil</runTest>
 			<runTest>VPM_maintainGlobalVendorCalloutMock</runTest>
-			<runTest>VPM_MaintainGlobalVendorServiceHelper</runTest>
-			<runTest>VPM_MaintainGlobalVendorService_Test</runTest>
 			<runTest>VPM_MaintainVendorFetchFieldDetails</runTest>
 			<runTest>VPM_PicklistHelper</runTest>
 			<runTest>VPM_ProcurementCentralController</runTest>
 			<runTest>VPM_ProcurementCentralController_Test</runTest>
-			<runTest>VPM_PurchaseRequestsControllerExtension</runTest>
 			<runTest>VPM_RecordTypeHelper</runTest>
-			<runTest>VPM_RegionalMaintainVendor</runTest>
 			<runTest>VPM_SearchVendor1</runTest>
 			<runTest>VPM_SearchVendor1Test</runTest>
 			<runTest>VPM_TestDataFactory</runTest>
 			<runTest>VPM_VendorDetailsServicesHelper</runTest>
-			<runTest>VPM_CheckRecursive</runTest>
         </sf:deploy>
     </target>
 </project>
