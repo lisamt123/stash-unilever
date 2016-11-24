@@ -236,7 +236,7 @@
     <fields>
         <fullName>FS_DSTMI__c</fullName>
         <externalId>false</externalId>
-        <formula>PricebookEntry.FS_Bracket_1__c *((IF( ISPICKVAL( Distributor__c , &quot;US Direct / CED&quot;) , 0, IF( ISPICKVAL( Distributor__c , &quot;US Sysco&quot;) , 11.6, IF( ISPICKVAL( Distributor__c , &quot;US Foods&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;Reinhart&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;PFG&quot;) , 8.1, IF( ISPICKVAL( Distributor__c , &quot;US GFS&quot;) , 6, IF( ISPICKVAL( Distributor__c , &quot;US OTher&quot;) , 6.3, IF( ISPICKVAL( Distributor__c , &quot;US Only (Food Buy, Aramark, Sodexho, Compass)&quot;) , 6.1, IF( ISPICKVAL( Distributor__c , &quot;CA Sysco&quot;) , 12, IF( ISPICKVAL( Distributor__c , &quot;CA GFS&quot;) , 12.6, IF( ISPICKVAL( Distributor__c , &quot;Colabor&quot;) , 11.1, IF( ISPICKVAL( Distributor__c , &quot;CA Other&quot;) , 6.5, IF( ISPICKVAL( Distributor__c , &quot;CA Direct&quot;) , 0, 0))))))))))))))/100)*0.99</formula>
+        <formula>IF( ISPICKVAL( CurrencyIsoCode , &apos;CAD&apos;), PricebookEntry.FS_Bracket_3__c, PricebookEntry.FS_Bracket_1__c) *((IF( ISPICKVAL( Distributor__c , &quot;US Direct / CED&quot;) , 0, IF( ISPICKVAL( Distributor__c , &quot;US Sysco&quot;) , 11.6, IF( ISPICKVAL( Distributor__c , &quot;US Foods&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;Reinhart&quot;) , 9.1, IF( ISPICKVAL( Distributor__c , &quot;PFG&quot;) , 8.1, IF( ISPICKVAL( Distributor__c , &quot;US GFS&quot;) , 6, IF( ISPICKVAL( Distributor__c , &quot;US OTher&quot;) , 6.3, IF( ISPICKVAL( Distributor__c , &quot;US Only (Food Buy, Aramark, Sodexho, Compass)&quot;) , 6.1, IF( ISPICKVAL( Distributor__c , &quot;CA Sysco&quot;) , 12, IF( ISPICKVAL( Distributor__c , &quot;CA GFS&quot;) , 12.6, IF( ISPICKVAL( Distributor__c , &quot;Colabor&quot;) , 11.1, IF( ISPICKVAL( Distributor__c , &quot;CA Other&quot;) , 6.5, IF( ISPICKVAL( Distributor__c , &quot;CA Direct&quot;) , 0, 0))))))))))))))/100)*0.99</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>DS TMI/Cs</label>
         <precision>18</precision>
@@ -247,7 +247,7 @@
     <fields>
         <fullName>FS_DeltaBR1BR3__c</fullName>
         <externalId>false</externalId>
-        <formula>PricebookEntry.FS_Bracket_3__c-PricebookEntry.FS_Bracket_1__c</formula>
+        <formula>IF(ISPICKVAL(CurrencyIsoCode,&quot;CAD&quot;), 0, PricebookEntry.FS_Bracket_3__c-PricebookEntry.FS_Bracket_1__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Delta BR1-BR3</label>
         <precision>18</precision>
@@ -335,9 +335,20 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>FS_NSV_CALCULATION__c</fullName>
+        <description>Calculate the NSV based on CurrencyCode</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Calculate the NSV based on CurrencyCode</inlineHelpText>
+        <label>FS NSV CALCULATION</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>FS_NSV__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( Quantity &lt;&gt;0,  Quantity  *  PricebookEntry.FS_Bracket_1__c * 0.99, 0)</formula>
+        <formula>FS_NSV_CALCULATION__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>NSV</label>
         <precision>18</precision>
@@ -493,6 +504,17 @@
         <required>false</required>
         <scale>2</scale>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_casesPiece__c</fullName>
+        <description>Cases/Piece value taken from Opportunity level.</description>
+        <externalId>false</externalId>
+        <formula>TEXT( Opportunity.FS_casesPiece__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cases/Piece</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FS_gmWhenTPREqualsZero__c</fullName>
@@ -822,6 +844,13 @@
         <fullName>UnitPrice</fullName>
     </fields>
     <validationRules>
+        <fullName>FS_Distributor_TMI_Req</fullName>
+        <active>true</active>
+        <description>Distributor__c field is required for FS NA</description>
+        <errorConditionFormula>AND($Profile.Name = &quot;Unilever Food Solution - NA&quot; , ISPICKVAL( Distributor__c,&apos;&apos;))</errorConditionFormula>
+        <errorMessage>Distributor TMI is required</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>FS_Inactive_Products</fullName>
         <active>true</active>
         <description>Check if inactive product is selected</description>
@@ -866,5 +895,26 @@ OR(ISPICKVAL(Opportunity.StageName, &quot;Closed Won&quot;),ISPICKVAL(Opportunit
         <description>The Opportunity Margin Market Code must match the Product Margin Market Code</description>
         <errorConditionFormula>FSNAMarginMarketCodeHelper__c  &lt;&gt;  TEXT(Opportunity.FSNA_Margin_Market_Code__c)</errorConditionFormula>
         <errorMessage>Opportunity Product Margin Market Code must match the Opportunity Margin Market Code</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Record_Locked_Validation</fullName>
+        <active>true</active>
+        <description>Validation for read only opportunity</description>
+        <errorConditionFormula>IF($Permission.FS_Admin, 
+   false, 
+   IF( Opportunity.RecordType.DeveloperName = &apos;FS_OpportunityTPRReadOnly&apos; 
+      &amp;&amp; ( ISCHANGED(Quantity)
+      || ISCHANGED( UnitPrice )
+      || ISCHANGED ( FS_tprPercent__c) 
+      || ISCHANGED( FS_valueNecessaryWithVAT__c ) 
+      || ISCHANGED( FS_DistributorMarkup__c )
+      || ISCHANGED(  FS_Sample__c )
+      || ISCHANGED(  FS_TPRCalculationFlag__c ) 
+          ),
+      true,
+      false
+     )
+)</errorConditionFormula>
+        <errorMessage>Opportunity is already locked for update.</errorMessage>
     </validationRules>
 </CustomObject>

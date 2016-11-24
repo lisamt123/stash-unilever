@@ -23,8 +23,6 @@ src/classes/CI_R2R_SME_GetHistory.cls-meta.xml
 src/dashboards/CI_R2R_Dashboard-meta.xml
 src/dashboards/CI_R2R_Dashboard/CI_R2R_Dashboard.dashboard
 src/dashboards/CI_R2R_Dashboard/CI_R2R_SME_Dashboard.dashboard
-src/flows/CI_R2R_Update_Scope_of_SME_Weekly_Update-19.flow
-src/flows/CI_R2R_Update_RAG_and_Closure_Date_to_Master_Object-1.flow
 src/layouts/CI_R2R_Budget__c-R2R Budget Layout.layout
 src/layouts/CI_R2R_Innovation__c-R2R Innovation Layout.layout
 src/layouts/CI_R2R_Milestones__c-CI_R2R Milestones Layout.layout
@@ -116,9 +114,3 @@ src/workflows/CI_R2R_Innovation__c.workflow
 src/workflows/CI_SMS_Weekly_Update__c.workflow
 src/profiles/Unilever - Force MultiApp Standard.profile
 src/customPermissions/CI_R2R_Admin.customPermission
-src/permissionsets/CI_R2R_Admin_Community.permissionset
-src/permissionsets/CI_R2R_KUN_user_Community.permissionset
-src/permissionsets/CI_R2R_SME_End_User_Community.permissionset
-src/permissionsets/GEL_Exception_Raiser_Community.permissionset
-src/permissionsets/GEL_Process_Owner_Community.permissionset
-src/permissionsets/GEL_Admin_Community.permissionset

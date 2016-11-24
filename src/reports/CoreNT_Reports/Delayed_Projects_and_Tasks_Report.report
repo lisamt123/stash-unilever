@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CORE_NT_Task__c$ProjectId__c</field>
+    </columns>
+    <columns>
+        <field>CORE_NT_Task__c$Project_Milestone__c</field>
+    </columns>
+    <columns>
+        <field>CORE_NT_Task__c$Name</field>
+    </columns>
+    <columns>
+        <field>CORE_NT_Task__c$Critical__c</field>
+    </columns>
+    <columns>
+        <field>CORE_NT_Task__c$Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>CORE_NT_Task__c$Due_Date__c</field>
+    </columns>
+    <columns>
+        <field>CORE_NT_Task__c$Assigned_To__c</field>
+    </columns>
+    <columns>
+        <field>CORE_NT_Task__c$Days_Late_Formula__c</field>
+    </columns>
+    <description>Delayed Projects and Tasks Report</description>
+    <filter>
+        <criteriaItems>
+            <column>CORE_NT_Task__c$Days_Late_Formula__c</column>
+            <operator>greaterThan</operator>
+            <value>0</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Delayed Projects and Tasks</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Core_Tasks_Report_Type__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>CORE_NT_Task__c$Days_Late_Formula__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CORE_NT_Task__c$Due_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

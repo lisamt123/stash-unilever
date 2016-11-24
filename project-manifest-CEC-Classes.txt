@@ -1,3 +1,5 @@
 src
-src/sharingRules
-src/sharingRules/mdm_Reason_Code__c.sharingRules
+src/objects
+src/objects/Case.object
+
+

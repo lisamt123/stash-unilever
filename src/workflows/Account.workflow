@@ -302,6 +302,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>FS_Update_Sales_Org</fullName>
+        <description>If US, 0002, If CA, 0003</description>
+        <field>Sales_ORG__c</field>
+        <formula>IF(OR(ShippingCountry=&quot;CA&quot;,ShippingCountry = &quot;Canada&quot;),&quot;0003&quot;,&quot;0002&quot;)</formula>
+        <name>FS Update Sales Org</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>NAFS_Account_status_Update_to_Temporary</fullName>
         <description>Account status update to Temporary if type is operator</description>
         <field>Status__c</field>
@@ -571,6 +581,17 @@
         <active>true</active>
         <description>This is use to populate default value of On/Off Invoice from the custom settings</description>
         <formula>ISCHANGED(FS_Distributor_Type__c) &amp;&amp; ISBLANK(Parent.Name)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>FS Sales Org</fullName>
+        <actions>
+            <name>FS_Update_Sales_Org</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>If Shipping Country = &quot;CA&quot; or &quot;Canada&quot;  then  Sales Org=0003  else Sales Org=0002.</description>
+        <formula>AND( OR(ShippingCountry = &quot;CA&quot;, ShippingCountry = &quot;Canada&quot;,ShippingCountry &lt;&gt; null), RecordType.DeveloperName =&quot;Operators&quot; ,$Profile.Name=&quot;Unilever Food Solution - NA&quot; )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

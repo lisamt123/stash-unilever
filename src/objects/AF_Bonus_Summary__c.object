@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>It Will represent a Unilever Bonus Fee estimate for a particular brand, fiscal year and agency combination.</description>
@@ -53,7 +52,6 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -133,6 +131,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_Community_Link__c</fullName>
+        <description>Used for inserting instance URL in email notifications.</description>
+        <externalId>false</externalId>
+        <formula>$Setup.AF_Links__c.AF_Community_Link__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AF Community Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Fiscal_Year_Difference__c</fullName>
         <description>Stores difference between fical year and today&apos;s year</description>
         <externalId>false</externalId>
@@ -153,6 +164,19 @@
         <externalId>false</externalId>
         <label>Fiscal Year</label>
         <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Internal_Link__c</fullName>
+        <description>Used for inserting instance URL in email notifications.</description>
+        <externalId>false</externalId>
+        <formula>$Setup.AF_Links__c.AF_Internal_link__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AF Internal Link</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -182,6 +206,37 @@
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>AF_RejectReason__c</fullName>
+        <externalId>false</externalId>
+        <label>RejectReason</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>AF_StatusFromApprover__c</fullName>
+        <description>Approval status based on Bonus Approver</description>
+        <externalId>false</externalId>
+        <label>StatusFromApprover</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>AF_Status__c</fullName>
         <description>Tracks status of the Bonus Summary. Used in approval Process</description>
         <externalId>false</externalId>
@@ -195,9 +250,18 @@
                 <fullName>Ready For PO</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>With Approver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>With CMCO</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>

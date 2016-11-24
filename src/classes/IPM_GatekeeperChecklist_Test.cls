@@ -46,6 +46,8 @@ private class IPM_GatekeeperChecklist_Test
         System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card insertion fails'); // Positive Test
         
         IPM_TestFactory_Helper.getProjectMasterData();
+        IPM_TestFactory_Helper.shareMasterProject(new List<User>{stdUserForAGateKeeper});
+        
         List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForAGateKeeper);
         System.runAs(stdUserForAGateKeeper) {
             insert projectList;
@@ -65,9 +67,11 @@ private class IPM_GatekeeperChecklist_Test
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
        globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
         system.runAs(globalUser){
+       
             List<IPM_Project__c> projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
             (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID,IPM_Project__c from IPM_Questionnaires__r)
-            from IPM_Project__c where Name in:projectNameSet];
+            from IPM_Project__c where Name in:projectNameSet LIMIT 1];
+            
             project=projectListObj[0];
             List<IPM_Project__c> projlList=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
             System.assertEquals(projlList[0].id,project.id, 'Project insertion fails');//positive test
@@ -79,6 +83,8 @@ private class IPM_GatekeeperChecklist_Test
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];
             system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id, 'Project Document insertion fails'); // Positive Test;
+            ApexPages.currentPage().getParameters().put('id',project.id);
+            ApexPages.currentPage().getParameters().put('gateType','Charter');
             ipmGK=new IPM_GatekeeperChecklist();
             
         }
@@ -96,7 +102,7 @@ private class IPM_GatekeeperChecklist_Test
             questionnaire.IPM_Section_Sequence_Number__c=projectDocSecListObj[0].IPM_Section_Sequence__c;
             
           }
-         
+          quesList[0].IPM_GK_Answers_Multiselect__c = '';
           update quesList; 
           
           system.assertEquals([Select IPM_RQS_Gate_Type__c from IPM_Questionnaire__c where Id=: quesList[0].Id].IPM_RQS_Gate_Type__c, quesList[0].IPM_RQS_Gate_Type__c, 'Failed to update questionnaire record.'); 
@@ -165,7 +171,7 @@ private class IPM_GatekeeperChecklist_Test
                   projDocList = projectObj.Project_Documents__r;
                   quesList=projectObj.IPM_Questionnaires__r;
               
-                  System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);// Positive Test;
+   
                 }
         
                  ipmGK=new IPM_GatekeeperChecklist();  

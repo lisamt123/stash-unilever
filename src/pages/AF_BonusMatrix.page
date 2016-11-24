@@ -75,6 +75,18 @@
         function displaymessage(){
         if({!bonusableFee} >0){
             if({!remainingAllowances}==0){
+             //alert('Bonus Matrix is locked successfully');
+             location.reload();
+            }
+           else{
+            alert('Bonus unallocated value should be zero,Please check and confirm');
+           }
+          }
+        }
+        
+        function displaymessageFinal(){
+        if({!bonusableFee} >0){
+            if({!remainingAllowances}==0){
              alert('Bonus Matrix is locked successfully');
              location.reload();
             }
@@ -83,6 +95,18 @@
            }
           }
         }
+        
+        function confirmAction() 
+        {
+            return confirm('Are you sure you want to proceed?');
+        } 
+        
+        // Redirect on rejection
+        function redirect()
+        {
+            location.reload();   
+        }
+  
         </script>
     <!-- Optionally add helpers - button, thumbnail and/or media -->
     <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
@@ -134,7 +158,7 @@
         });
     </script>
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functionBonusMatrix.js')}"></script>
-     
+    
 </head>
 <div class="AF_BonusMatrix">
 <!---Header Summary section -->
@@ -188,7 +212,7 @@
                                            </div>
                                        <div class="bonusableFeeValue">
                                               <apex:outputText value="{0,number,###,###,###}">
-                                              €<apex:param value="{!bonusableFee}"/>
+                                              €<apex:param value="{!bonusablefees}"/>
                                               </apex:outputText>
                                            </div>
                                     </div> 
@@ -252,14 +276,116 @@
                                      <td > 
                                        <apex:pagemessages id="pgm1"/>
                                         <apex:outputPanel rendered="{!isCatFinance}">
-                                          <apex:commandButton value="Submit" action="{!SubmitforStatus}" rerender="pgm1" styleClass="submit_btn_screen1_bonus" oncomplete="displaymessage();" rendered="{!!IsReadyForPO}"/>
+                                          <apex:commandButton value="Submit" rerender="pgm1,Approvepopup" action="{!SubmitApprovalPopup}" styleClass="submit_btn_screen1_bonus" 
+                                          rendered="{! IF(AND(IsReadyForPO==false,IsWithCatfin==true),true,false)}" />
+                                        </apex:outputPanel>
+                                            
+                                      </td>
+                                      
+                                      <!-- Bonus approver to approve/reject bonus matrix -->
+                                      <td > 
+                                       <apex:pagemessages id="pgm2"/>
+                                        <apex:outputPanel rendered="{!isBonusApprover}">
+                                          <apex:commandButton value="Approve" action="{!ApprovePopup}" rerender="pgm2,popup" styleClass="submit_btn_screen1_bonus" rendered="{! IF(AND(IsReadyForPO==false,IsWithBonusApprover==true),true,false)}">
+                                          <apex:param name="Param1" value="Approve" assignTo="{!ButtonValue}"/>
+                                          </apex:commandbutton>
                                         </apex:outputPanel>
                                       </td>
+                                      <td > 
+                                       <apex:pagemessages id="pgm3"/>
+                                        <apex:outputPanel rendered="{!isBonusApprover}">
+                                          <apex:commandButton value="Reject" action="{!RejectPopup}" rerender="pgm3,popuprejcomm" styleClass="submit_btn_screen1_bonus" rendered="{! IF(AND(IsReadyForPO==false,IsWithBonusApprover==true),true,false)}">
+                                          <apex:param name="Param2" value="Reject" assignTo="{!ButtonValue}"/>
+                                          </apex:commandbutton>
+                                        </apex:outputPanel>
+                                      </td>
+                                      <!-- Bonus approver to approve/reject bonus matrix -->
+                                      
+                                      <td > 
+                                       <apex:pagemessages id="pgm4"/>
+                                        <apex:outputPanel rendered="{!isCMCO}">
+                                          <apex:commandButton value="Submit" action="{!ApproveRejectStatus}" rerender="pgm4" styleClass="submit_btn_screen1_bonus" oncomplete="displaymessageFinal();" rendered="{! IF(AND(IsReadyForPO==false,IsWithCMCO==true),true,false)}">
+                                          <apex:param name="Param3" value="Submit" assignTo="{!ButtonValue}"/>
+                                          </apex:commandbutton>
+                                        </apex:outputPanel>
+                                      </td>
+                                      
                                       <td class="printImgIcon">
                                               <apex:image url="{!$Resource.print_icon}" width="40px" height="40px"  title="Please click to Print " onclick="window.print();" /> 
                                       </td>
                                   </tr>
         </table>
+            <!-- Popup block-->
+            <apex:outputPanel id="Approvepopup">
+              <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!Approvalpopup}"/>
+              <apex:outputPanel styleClass="customPopup_SubitforApproval" layout="block" rendered="{!Approvalpopup}">
+                 <div class="approval_floatR">
+                    <apex:commandButton value="X" action="{!closeApprovalPopup}" rerender="Approvepopup" styleClass="approval_closeButton1"/> 
+                 </div>
+                 <div class="approval_margin20PX">
+                    <h2>
+                       <apex:outputLabel value="{!$Label.AF_Bonus_Submit}" styleClass="approval_fontS16PX"/>
+                    </h2>
+                    <br/><br/>
+                    <apex:commandButton style="margin-left: 215px !important;" value="Confirm" action="{!SubmitforStatus}" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup,pgm1"  oncomplete="displaymessage();" />
+                 </div>
+              </apex:outputPanel>
+            </apex:outputPanel>
+           
+           
+             <apex:outputPanel id="popup">
+              <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!displayPopUp}"/>
+              <apex:outputPanel styleClass="customPopup_ApproveRecord" layout="block" rendered="{!displayPopUp}">
+                 <div class="approval_floatR">
+                    <apex:commandButton value="X" action="{!closePopup}" rerender="popup" styleClass="approval_closeButton2"/>
+                 </div>
+                 <div class="approval_margin20PX">
+                    <h2>
+                        <apex:outputLabel value="{!$Label.AF_OOPS_Approval}" styleClass="approval_fontS16PX"/>
+                    </h2>
+                    <br/><br/>
+                    <apex:commandButton value="Confirm" action="{!ApproveRejectStatus}" styleClass="continue_btn_ApproveRecord approval_wid70P" rerender="popup" oncomplete="displaymessage();"/>
+                 </div>
+              </apex:outputPanel>
+            </apex:outputPanel>
+            
+            
+        <apex:outputPanel id="popuprejcomm">
+          <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!displayPopupRejComment}"/>
+          <apex:outputPanel styleClass="customPopup_RejectComment" layout="block" rendered="{!displayPopupRejComment}">
+             <apex:Pagemessages id="pmg1"/>
+             <div class="approval_floatR">
+                <apex:commandButton value="X" action="{!closePopupRejComment}" rerender="popuprejcomm"  styleClass="approval_closeButton3"/>
+             </div>
+             <div class="approval_margin20PX">
+                <Table border="0" align="left" cellspacing="1">
+                   <tr>
+                      <td colspan="2">
+                         <apex:outputLabel value="{!$Label.AF_OOPS_RejectWithComments}" styleClass="approval_fontColorP approval_fontS17PX"/>
+                         <br/>
+                      </td>
+                   </tr>
+                   <tr>
+                      <td class="approval_ReqImg">
+                         <apex:image id="isRequired" value="{!$Resource.AF_isRequired}" width="4" height="130"/>
+                      </td>
+                      <td colspan="2" valign="top" class="approval_TxtAreaCell">
+                         <apex:inputTextarea value="{!RejectComment}"  rows="5" styleClass="approval_TxtArea"/>
+                      </td>
+                   </tr>
+                   <tr>
+                      <td align="right" colspan="2">
+                         <apex:commandButton value="Confirm" action="{!ApproveRejectStatus}" oncomplete="redirect();" rerender="popuprejcomm,pmg1" styleClass="continue_btn approval_wid70P" />
+                      </td>
+                   </tr>
+                </table>
+                <br/><br/>
+             </div>
+          </apex:outputPanel>
+        </apex:outputPanel>
+        <!-- Popupblock -->
+                                            
+        
     </div>
 </div>
   <div class="row">
@@ -328,6 +454,8 @@
     </div>
     <c:AF_CommentsListComp ParentRecordValue="{!bonusSummaryId}" ParentObjectTypeDesc="AF_Bonus_Summary__c"  IsViewAllValue="false"  /><br/>
     <c:AF_DocumentListComp ParentRecordValue="{!bonusSummaryId}"/> 
+   
+    <c:AF_FieldHistoryComp ParentRecordValue="{!bonusSummaryId}" IsViewAllValue="false"  ParentObjectName="AF_Bonus_Summary__c"/>
     </div></div></div>
      </apex:form>
 <!-- Bootstrap modal window Start -->    

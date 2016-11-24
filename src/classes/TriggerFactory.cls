@@ -198,6 +198,9 @@ public with sharing class TriggerFactory
 		if (soType == IPM_Project_Document_Section__c.sObjectType){
             return new IPM_ProjectDocumentSectionHandler();
         }
+        if (soType == IPM_SourcingUnit__c.sObjectType){
+            return new IPM_SourcingUnitHandler();
+        }
 		if (soType == Core_Approval_Details__c.sObjectType){
             return new Core_CA_LineItem_Handler();
         }

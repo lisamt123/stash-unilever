@@ -246,7 +246,14 @@ private class IPM_BosscardController_Test{
             sic.bosscard.IPM_BosscardName__c=null;
             sic.selectedCompany=null;
             sic.save();
-             
+            sic.bosscard.IPM_BosscardName__c='TestWithBoss';
+            sic.selectedCompany=compCard.id;
+            sic.validBossName_Booln = FALSE;
+            sic.validBossCat = TRUE;
+            sic.isUniqueBosscard = TRUE;
+            sic.validBossComp = TRUE;
+            sic.save();
+
         }
         //read only user
         system.runAs(u){
@@ -444,6 +451,12 @@ private class IPM_BosscardController_Test{
             sic.saveMsg=true;
             sic.hideSaveMsg();//save message should be false
             System.assertEquals(sic.saveMsg,false,'Show the Bosscard Save Message');//positive test
+            sic.REType = IPM_ConstantUtils.COMPANY_CARD_REGIONAL;
+            sic.getBrandPos();
+            sic.searchprojectpahse();
+            sic.REType = IPM_ConstantUtils.CC_RECORD_TYPE_LOCAL;
+            sic.getBrandPos();
+            sic.getCategory();
         }
         Test.stopTest(); 
         

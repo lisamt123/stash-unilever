@@ -55,7 +55,7 @@
                 <!-- <button class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal" data-target="#cancelCampaign">Clone Campaign</button>&nbsp;&nbsp;|&nbsp;&nbsp; -->
                 <apex:outputLink value="/apex/Oblix_CampaignCreate?sowId={!selected_sow.Id}">New Campaign</apex:outputLink>
             </apex:outputPanel>
-            <apex:outputPanel rendered="{!inProgress}">
+            <apex:outputPanel rendered="{!can_see_sync_in_progress}">
                 <br/>
                 <br/>
                 <apex:outputText style="color:red;font-weight: bold;" value="Sync in progress, this campaign is read only." />
@@ -115,7 +115,7 @@
                                         <p class="cancel_campaign_modal_note"><strong>The % to be paid at cancellation is automatically set to the planned to be delivered stages.</strong>
                                         </p>
                                         <div class="chevron_width_control">
-
+                                            
                                             <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3" projectedStageLabel="Stages planned to be delivered:" showTotalPercentage="true" />
 
                                         </div>
@@ -164,7 +164,7 @@
                             </div>
                             <div class="row" style="padding-top:20px;">
                                 <div class="col-lg-12 chevron_width_control">
-
+                                    
                                     <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_completed" rerenderIds="calculatedFeePanel" displayMode="4" completedStageLabel="Before cancelling this campaign please select the stages where work commenced" showTotalPercentage="false" />
 
                                 </div>
@@ -262,7 +262,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-11 col-lg-offset-1">
-
+                                        
                                         <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="campaign_stage_component_adjust_fee" displayMode="3" projectedStageLabel="Please indicate which stages will now be delivered given the adjusted fee:" showTotalPercentage="false" />
 
                                     </div>
@@ -323,6 +323,7 @@
                                 Campaign Cancelled.
                             </p>
                         </apex:outputText>
+                        
                         <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component" displayMode="2" />
 
                     </div>
@@ -518,8 +519,14 @@
                             </tr>
                         </table>
                     </div>
-
-                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component_bottom" displayMode="4" showTotalPercentage="false" reRenderIds="cancel_campaign_campaign_stage_component_completed,cancel_campaign_campaign_stage_component_projected" />
+                    
+                   <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component_bottom" displayMode="4" showTotalPercentage="false" reRenderIds="cancel_campaign_campaign_stage_component_completed,cancel_campaign_campaign_stage_component_projected" disableallcheckboxes="{!syncinprogres}" /> 
+              <!--     <apex:outputPanel rendered="{!inProgress}">
+                  <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component_bottom_1" displayMode="2" />
+            </apex:outputPanel>
+<apex:outputPanel rendered="{!!inProgress}">
+                  <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component_bottom" displayMode="4" showTotalPercentage="false" reRenderIds="cancel_campaign_campaign_stage_component_completed,cancel_campaign_campaign_stage_component_projected" />
+            </apex:outputPanel> -->
                     
                 </div>
                 <div class="oblix_chart oblix_donut_chart">
@@ -737,3 +744,4 @@
         </apex:define>
     </apex:composition>
 </apex:page>
+                                      
