@@ -8,8 +8,8 @@ src/reportTypes
 src/workflows
 src/classes/CEC_CaseTriggerHelper.cls
 src/classes/CEC_CaseTriggerHelper.cls-meta.xml
-src/classes/CEC_CaseTriggerHelperTest.cls
-src/classes/CEC_CaseTriggerHelperTest.cls-meta.xml
+src/classes/CEC_CaseTriggerHelperExtTest.cls
+src/classes/CEC_CaseTriggerHelperExtTest.cls-meta.xml
 src/layouts/CEC_Case_Market_Mapping__c-Case Market Mapping Layout.layout
 src/objects/Case.object
 src/objects/CEC_Case_Market_Mapping__c.object
