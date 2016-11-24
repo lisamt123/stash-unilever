@@ -85,7 +85,7 @@ public with sharing class IPM_FinancialActionStandards {
             getFieldSuffix();
             getFinancials();
             getActionStandards();
-            getFinancialActionStandards();
+        
             
         } catch (Exception ex) {
             if(ApexPages.currentPage() != null){  
@@ -361,7 +361,7 @@ public with sharing class IPM_FinancialActionStandards {
     public void getFinancialActionStandards()
     {
         string projId = project.Id;
-	IPM_Financial_Action_Standards__c finActionStandard = new IPM_Financial_Action_Standards__c();
+        
         string global_STR = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
         string query_Str = 'SELECT IPM_Financial_Action_Standard_Name__c,IPM_Financial_Year_Y1_Gross__c,IPM_Financial_Year_Y1_Incremental__c,IPM_GM_Action_Standards_Charter__c,IPM_Project_Span__c,';
         query_Str += 'IPM_gTO_Action_Standard_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_IRR_Action_Standard_Charter__c,Name,';
@@ -378,10 +378,14 @@ public with sharing class IPM_FinancialActionStandards {
         {
             finActionStandardsList=new List<IPM_Financial_Action_Standards__c>();
             finActionStandardsList = database.query(query_Str);
-	    if(!finActionStandardsList.isEmpty())
-	    {
-            	finActionStandard= finActionStandardsList[0]; 
-	    }
         }
+		if(!finActionStandardsList.isEmpty())
+		{
+			finActionStandard= finActionStandardsList[0];
+		}
+		else
+		{
+			finActionStandard = new IPM_Financial_Action_Standards__c();	
+		}
     }
 }
