@@ -65,7 +65,6 @@ src/pages/PQN_Targets_List_View.page
 src/pages/PQN_Targets_List_View.page-meta.xml
 src/permissionsets/PQN_Admin_User.permissionset
 src/permissionsets/PQN_DC_User.permissionset
-src/profiles/PQN Internal User.profile
 src/staticresources/PQN_Bootstrap_Admin.resource
 src/staticresources/PQN_Bootstrap_Admin.resource-meta.xml
 src/staticresources/PQN_Bootstrap.resource
