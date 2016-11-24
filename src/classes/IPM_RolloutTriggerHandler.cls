@@ -314,7 +314,7 @@ public with sharing class IPM_RolloutTriggerHandler
         if(!setRegionalProjectNames.isEmpty()) 
         { 
             List<IPM_Project__c> lstRegionalProjects = [SELECT Id,IPM_Project_Name__c,IPM_Target_Launch_Dates__c,Sustainability_Period__c,IPM_Phase__c,IPM_ProjectGKM__c,
-                                                       (SELECT Id,IPM_Rollout_Project__c,isActive__c,Added_At_Stage__c,KeyMCO__c,Regional_Project__c,IPM_Project__c,IPM_Regional_Original_Project__c,IPM_Regional_Rollout_Status__c,IPM_Status__c,Target_Launch_Date__c,Calculated_Sustainability_Period__c,Regional_Rollout__c,Regional_Rollout_External_Id__c,Regional_Rollout__r.IPM_Project__c,Regional_Project__r.IPM_Parent_Project__c,IPM_Project_GKM__c
+                                                       (SELECT Id,IPM_Rollout_Project__c,isActive__c,Added_At_Stage__c,KeyMCO__c,Regional_Project__c,IPM_Project__c,IPM_Regional_Original_Project__c,IPM_Regional_Rollout_Status__c,IPM_Status__c,Target_Launch_Date__c,Calculated_Sustainability_Period__c,Regional_Rollout__c,Regional_Rollout_External_Id__c,Regional_Rollout__r.IPM_Project__c,Regional_Project__r.IPM_Parent_Project__c,IPM_Project_GKM__c,IPM_CharterFinancial__c 
                                                         FROM Regional_Project_Rollout__r),
                                                        (SELECT Id,isActive__c,Added_At_Stage__c,Financial_External_Id__c,IPM_Key_Financial__c,Target_Launch_Date__c FROM IPM_Financials_Regional__r) FROM IPM_Project__c
                                                        WHERE IPM_Project_Name__c IN: setRegionalProjectNames Limit 50000];
