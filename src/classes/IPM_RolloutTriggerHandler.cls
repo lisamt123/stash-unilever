@@ -301,8 +301,8 @@ public with sharing class IPM_RolloutTriggerHandler
             }
         }
         
-        List<IPM_Project_Rollout__c> lstProjRegRollouts = [SELECT Id, IPM_Rollout_Project__c,IPM_Project__c,IPM_Regional_Rollout_Status__c,IPM_Project__r.IPM_Phase__c,isActive__c,IPM_Status__c,Added_At_Stage__c,Regional_Project__c,Regional_Project__r.IPM_Phase__c,Target_Launch_Date__c,Calculated_Sustainability_Period__c,Regional_Rollout__c,IPM_Regional_Original_Project__c,Regional_Rollout_External_Id__c,IPM_Project_GKM__c,
-                                                            (SELECT Id,IPM_Regional_Rollout_Status__c,IPM_Status__c,IPM_Rollout_Project__c,isActive__c,IPM_Project__c,Added_At_Stage__c,KeyMCO__c,Regional_Project__c,Target_Launch_Date__c,Regional_Rollout__c,IPM_Regional_Original_Project__c,Calculated_Sustainability_Period__c,Regional_Rollout_External_Id__c,Regional_Rollout__r.IPM_Project__c,Regional_Project__r.IPM_Parent_Project__c,IPM_Project_GKM__c FROM Local_Rollouts__r), 
+        List<IPM_Project_Rollout__c> lstProjRegRollouts = [SELECT Id, IPM_Rollout_Project__c,IPM_Project__c,IPM_Regional_Rollout_Status__c,IPM_Project__r.IPM_Phase__c,isActive__c,IPM_Status__c,Added_At_Stage__c,Regional_Project__c,Regional_Project__r.IPM_Phase__c,Target_Launch_Date__c,Calculated_Sustainability_Period__c,Regional_Rollout__c,IPM_Regional_Original_Project__c,Regional_Rollout_External_Id__c,IPM_Project_GKM__c,IPM_CharterFinancial__c,
+                                                            (SELECT Id,IPM_Regional_Rollout_Status__c,IPM_Status__c,IPM_Rollout_Project__c,isActive__c,IPM_Project__c,Added_At_Stage__c,KeyMCO__c,Regional_Project__c,Target_Launch_Date__c,Regional_Rollout__c,IPM_Regional_Original_Project__c,Calculated_Sustainability_Period__c,Regional_Rollout_External_Id__c,Regional_Rollout__r.IPM_Project__c,Regional_Project__r.IPM_Parent_Project__c,IPM_Project_GKM__c,IPM_CharterFinancial__c FROM Local_Rollouts__r), 
                                                             (SELECT Id,isActive__c,Added_At_Stage__c,Financial_External_Id__c,IPM_Key_Financial__c,Target_Launch_Date__c FROM IPM_Financials__r) FROM IPM_Project_Rollout__c   
                                                             WHERE IPM_Rollout_Project__c IN: setRegionalRolloutNames Limit 50000];
                                                                                                   
@@ -556,7 +556,10 @@ public with sharing class IPM_RolloutTriggerHandler
             	oldProjectRollout = oldRolloutsMap.get(localRollout.Id);
             }
             
-            if(!localRollout.KeyMCO__c && localRollout.isActive__c)
+            
+            if(localRollout.isActive__c && 
+               ((!localRollout.KeyMCO__c) || 
+                (localRollout.IPM_CharterFinancial__c != null &&  nonKeyFinancial != null && nonKeyFinancial.Id == localRollout.IPM_CharterFinancial__c ) ))
             {
                 nonkeyActiveRolloutExists = true; 
             }
