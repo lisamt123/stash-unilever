@@ -80,7 +80,7 @@ public class VPM_RegionalMaintainVendorTest{
               //purReq.VPM_ECC__c = 'U2K2';
         
          update companyCode;
-          VPM_CheckRecursive.run = true;
+          //VPM_CheckRecursive.run = true;
         update purreq;
        
          test.startTest();
