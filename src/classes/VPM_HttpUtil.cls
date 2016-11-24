@@ -88,8 +88,11 @@ public with sharing class VPM_HttpUtil {
                 req.setBody(requestBodyJson);
             }
             req.setTimeout(120000);
-            //req.setClientCertificateName(certName);
-            //req.setCompressed(true);
+			if(!test.isRunningTest()){
+				req.setClientCertificateName(certName);
+				req.setCompressed(true);
+			}
+            
             system.debug('before callout time='+system.now());
             res = h.send(req);
             system.debug('after callout time='+system.now());
