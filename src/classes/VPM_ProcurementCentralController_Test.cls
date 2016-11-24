@@ -2,14 +2,14 @@
 public class VPM_ProcurementCentralController_Test {
     /*Constant Values*/
     public static final string  VPM_COUNTRYNAME='Algeria';
-    public static final string VPM_NOACCESS = 'System Administrator';
+    public static final string VPM_NOACCESS = System.Label.VPM_Profile;
     public static final string STR_CONST_USER = 'standt';
     public static final string STR_CONST_EMAIL = 'standarduser24571@testorg.com';
     public static final string STR_CONST_EMAILNAME = 'testpermissionsetuser3552@testorg.com';
     public static final string STR_CONST_USERS = 'standt1';
      public static final string STR_CONST_USERS2 = 'standt2';
     public static final string STR_CONST_EMAILS =  'standarduser12@testorg1.com';
-        public static final string STR_CONST_EMAILS2 =  'standarduser234@testorg2.com';
+   public static final string STR_CONST_EMAILS2 =  'standarduser234@testorg2.com';
     public static final string STR_CONST_EMAILNAMES = 'testpermissionsetuser1345@testorg1.com';
       public static final string STR_CONST_EMAILNAMES2 = 'testpermissionsetuser2456@testorg2.com';
 
