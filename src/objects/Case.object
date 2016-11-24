@@ -4103,7 +4103,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_Geen_gegevens_consument</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND 4 and 5</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 and 5 and 6</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.SUBJECT</columns>
@@ -4127,18 +4127,22 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.CREATED_DATE_DATE_ONLY</field>
             <operation>greaterThan</operation>
-            <value>10/1/2016 12:00 AM</value>
+            <value>8/1/2016 12:00 AM</value>
         </filters>
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
             <value>Phone</value>
         </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>ipire</value>
+        </filters>
         <label>CEC Benelux Geen gegevens consument</label>
         <language>nl_NL</language>
         <sharedTo>
             <role>CEC_Manager_Benelux</role>
-            <role>CEC_User_Benelux</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -4251,6 +4255,27 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <sharedTo>
             <role>CEC_Manager_Benelux</role>
             <role>CEC_User_Benelux</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Benelux_Product_retail</fullName>
+        <booleanFilter>1</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Product_Code__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>ipire</value>
+        </filters>
+        <label>CEC Benelux Product retail</label>
+        <language>nl_NL</language>
+        <sharedTo>
+            <role>CEC_Manager_Benelux</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -6453,6 +6478,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -6472,8 +6498,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
             <field>CASES.SUBJECT</field>
@@ -8453,7 +8479,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>contains</operation>
-            <value>Nuevo,En progreso,Escalado,Esperando información del consumidor</value>
+            <value>Nuevo,En progreso,Escalado,Esperando información del consumidor,Reabierto</value>
         </filters>
         <filters>
             <field>Country_Name__c</field>
@@ -9078,7 +9104,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,In Progress,Escalated,Awaiting Information from Consumer</value>
+            <value>New,In Progress,Escalated,Awaiting Information from Consumer,Reopened</value>
         </filters>
         <label>Mis casos a trabajar</label>
         <language>es_MX</language>

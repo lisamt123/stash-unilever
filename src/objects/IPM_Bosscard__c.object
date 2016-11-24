@@ -9416,7 +9416,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <listViews>
         <fullName>IPM_a7I0L000000Gyxk_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000Gyxk</label>
+        <label>IPM_DARWIN_N&amp;R</label>
         <queue>IPM_a7I0L000000Gyxk</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -13961,7 +13961,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <listViews>
         <fullName>IPM_a7I0L000000H1r6_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7I0L000000H1r6</label>
+        <label>IPM_OBLK MIDI</label>
         <queue>IPM_a7I0L000000H1r6</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -14215,6 +14215,78 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <filterScope>Queue</filterScope>
         <label>IPM_BEEGEES_NA</label>
         <queue>IPM_a7I0L000000H2Mo</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H2Mt_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_AUGUSTE</label>
+        <queue>IPM_a7I0L000000H2Mt</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H2My_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PORTO EUROPA_EU</label>
+        <queue>IPM_a7I0L000000H2My</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H2N3_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MURANOAUARD</label>
+        <queue>IPM_a7I0L000000H2N3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H2ND_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_RAINBOW_EU</label>
+        <queue>IPM_a7I0L000000H2ND</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H2NN_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SOCIAL MISSION_AFR</label>
+        <queue>IPM_a7I0L000000H2NN</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H2NS_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MB CHAMPAGN EU_EU</label>
+        <queue>IPM_a7I0L000000H2NS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H2NX_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_HUMMINGBIRD1W3_EU</label>
+        <queue>IPM_a7I0L000000H2NX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H2Nh_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ASOS VIETNAM</label>
+        <queue>IPM_a7I0L000000H2Nh</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
