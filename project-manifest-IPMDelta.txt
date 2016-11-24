@@ -1,10 +1,5 @@
 src
 src/classes
-src/classes/IPM_FinancialActionStandards.cls
-src/classes/IPM_FinancialActionStandards.cls-meta.xml
-src/classes/IPM_ProjectHandler.cls
-src/classes/IPM_ProjectHandler.cls-meta.xml
-src/classes/IPM_ProjectSetUpController.cls
-src/classes/IPM_ProjectSetUpController.cls-meta.xml
 src/classes/IPM_RolloutTriggerHandler.cls
 src/classes/IPM_RolloutTriggerHandler.cls-meta.xml
+
