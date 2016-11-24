@@ -890,6 +890,37 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
         <type>Lookup</type>
     </fields>
 	<fields>
+        <fullName>Current_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( DATEVALUE(Now()) &gt;=
+DATE ( YEAR (DATEVALUE(Now())),3,1)
++
+(
+14-
+CASE( MOD(DATE ( YEAR (DATEVALUE(Now())),3,1) - DATE (1900,1,7),7) ,
+0,7,MOD(DATE ( YEAR (DATEVALUE(Now())),3,1) - DATE (1900,1,7),7))
+)
+&amp;&amp;
+DATEVALUE(Now()) &lt;
+DATE ( YEAR (DATEVALUE(Now())),11,1)
++
+(
+7-
+CASE( MOD(DATE ( YEAR (DATEVALUE(Now())),11,1) - DATE (1900,1,7),7) ,
+0,7,MOD(DATE ( YEAR (DATEVALUE(Now())),11,1) - DATE (1900,1,7),7))
+),
+LEFT ( TEXT (Now()+  Country__r.TimeZone_Difference_GMT__c /24 ), 16),
+LEFT ( TEXT (Now()+ Country__r.TimeZone_Difference_GMT__c /24), 16)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Current Date Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
         <fullName>CSAT_Survey_Id__c</fullName>
         <externalId>false</externalId>
         <formula>Country__r.CSAT_Survey_Id__c</formula>

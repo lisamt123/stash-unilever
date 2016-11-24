@@ -381,6 +381,11 @@
         <field>CEC_Case_Market_Mapping__c.Textile_Factory_Email_Template__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.TimeZone_Difference_GMT__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	 <fieldPermissions>
         <editable>false</editable>
         <field>CEC_Enclosure_Inventory__c.End_Date__c</field>
@@ -584,6 +589,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Current_Date_Time__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
