@@ -2,7 +2,7 @@
 public class VPM_ProcurementCentralController_Test {
     /*Constant Values*/
     public static final string  VPM_COUNTRYNAME='Algeria';
-    public static final string VPM_NOACCESS = 'System Administrator';
+    public static final string VPM_NOACCESS = System.Label.VPM_Profile;
     public static final string STR_CONST_USER = 'standt';
     public static final string STR_CONST_EMAIL = 'standarduser24571@testorg.com';
     public static final string STR_CONST_EMAILNAME = 'testpermissionsetuser3552@testorg.com';

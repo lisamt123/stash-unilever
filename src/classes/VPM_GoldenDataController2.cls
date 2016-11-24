@@ -719,6 +719,7 @@ with Sharing public class VPM_GoldenDataController2 {
             msg = checkValidations();
             if(msg <> null)
             {
+                system.debug('msg '+msg);
                 ApexPages.addMessage(msg);}
             else{
                 system.debug('@@ Coming here');

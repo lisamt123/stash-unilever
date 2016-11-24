@@ -17,6 +17,9 @@ public class VPM_SearchVendor1Test{
         region.PICKLIST_VALUES__C = '0001_Industry 0001';
         regionList.add(region);
         insert regionList;
+        
+        VendorRequest__c latamContries = new VendorRequest__c();
+        latamContries.VPM_CountryName__c = 'AR_Argentina,BO_Bolivia,CL_Chile,CO_Colombia,CR_Costa Rica,DO_Dominican Rep.,EC_Ecuador,GT_Guatemala';
     }    
 
     static  VPM_PurchasingRequests__c TestDataU2K2(){    
@@ -85,6 +88,7 @@ public class VPM_SearchVendor1Test{
         pur.VPM_Country__c = vpmCountry;
         pur.VPM_ExtensionType__c = VPM_RecordTypeHelper.REGIONAL_REQUEST;
         pur.VPM_Industry__c = '9001_Oils';
+        pur.VPM_SupplierAchillesRegistration__c = '';
         insert pur;
         insert commodityCode;
         pur.VPM_Commodity__c = commodityCode.id;
@@ -438,6 +442,21 @@ public class VPM_SearchVendor1Test{
 		VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1 (vendorDetail);		
 	}*/
 
+    static testMethod void negativeScenarioMethod() {
+        VPM_PurchasingRequests__c purId = TestDataU2K2();
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1 (vendorDetail);
+        
+        VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purId.id];
+        system.assertEquals(purch.VPM_ECC__c, 'U2K2');
+        Test.startTest();
+        searchVendor.vendorName = '';
+        searchVendor.SaveMethod();
+        searchVendor.vendorName = 'BA';
+        searchVendor.SaveMethod();
+        Test.stopTest();
+    }
+    
     static testMethod void processRequestType(){
         
         VPM_PurchasingRequests__c purId = TestDataU2K2();
@@ -456,7 +475,7 @@ public class VPM_SearchVendor1Test{
     
         // For ReviewRequestBrief
         searchVendor.mdmVendorType = System.label.VPM_EnterGeneralVendorDetails;
-        searchVendor.processRequestType();
+        searchVendor.processRequestType();        
     
         // For ReviewRequestBrief
         searchVendor.mdmVendorType = System.label.VPM_RequestVendortoBlock_Delete;

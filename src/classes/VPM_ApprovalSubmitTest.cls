@@ -4,7 +4,7 @@ public with sharing  class VPM_ApprovalSubmitTest {
     
      public static User insertUser()
     {
-        Profile p = [SELECT Id FROM Profile WHERE Name=:System.Label.VPM_Profile];
+        Profile p = [SELECT Id FROM Profile WHERE Name='VPM - No Access'];
         
         User u = new User(LastName = 'Testing', 
                           Username = 'vpmtestuser@test00DE0000000bbLj.org', 

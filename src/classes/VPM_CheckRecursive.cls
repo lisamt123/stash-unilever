@@ -1,5 +1,5 @@
 public Class VPM_CheckRecursive{
-    private static boolean run = true;
+    public static boolean run = true;
     public static boolean runOnce(){
     if(run){
      run=false;

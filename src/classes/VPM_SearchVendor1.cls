@@ -326,9 +326,9 @@ public with sharing class VPM_SearchVendor1{
             // assigning the picklist values based on company code ECC associated to vendor request.
             mapCustomSettingRegionpicklistValues();            
             this.opt=new list<string>();
-            /*if(opt.size()>0) {
+            if(opt.size()>0) {
                 vendorQuery1.VPM_DeletionBlockFlag__c = opt[0];
-            }*/
+            }
             street1 = vendorQuery1.VPM_Street1__c;
             vendorName = vendorQuery1.VPM_VendorName1__c;
             if(string.isBlank(searchTerm1))
@@ -1122,7 +1122,7 @@ public with sharing class VPM_SearchVendor1{
                 
                 if(op.PurchasingData[0].Functions <> null && op.PurchasingData[0].Functions.size() > 0) {
                    // vendorDetails.VPM_DefaultPartner__c = (op.PurchasingData[0].Functions[0].DefaultPartner <> null) ? op.PurchasingData[0].Functions[0].DefaultPartner :  false;
-                    vendorDetails.VPM_PartnerFunction__c = op.PurchasingData[0].Functions[0].PartnerFunction;
+                    //vendorDetails.VPM_PartnerFunction__c = op.PurchasingData[0].Functions[0].PartnerFunction;
                 }
                 
             }
@@ -1212,9 +1212,9 @@ public with sharing class VPM_SearchVendor1{
             vendorDetails.VPM_SubsequentSettlementIndex__c = (op.SubsequentSettlementIndex <>  null) ? op.SubsequentSettlementIndex : false;
             vendorDetails.VPM_TaxBase__c = op.TaxBase;
             vendorTradePartnerType = string.isNotBlank(op.TradePartnerType) ? op.TradePartnerType :vendorTradePartnerType;
-            /*if(opt.size() > 0) {
+            if(opt.size() > 0) {
                 opt[0] = vendorQuery1.VPM_DeletionBlockFlag__c;
-            }*/
+            }
             vendorDetails.VPM_TrainStation__c = op.TrainStation;
             vendorDetails.VPM_TransportZone__c = op.TransportZone;
             vendorDetails.VPM_TurkeyOldNumber__c = op.TurkeyOldNumber;
@@ -1463,9 +1463,9 @@ public with sharing class VPM_SearchVendor1{
                 vendorQuery1.VPM_IsMDMPISaved__c = true; 
             }            
             update vendorQuery1;
-            
+            VPM_CheckRecursive.run = true;
             system.debug('@@ options  --------'+ opt  );
-            /*if(opt.size() > 0){
+            if(opt.size() > 0){
                 if(opt.size()<2) {
                     vendorDetails.VPM_DeletionBlockFlag__c= opt[0];
                 }else{
@@ -1475,11 +1475,12 @@ public with sharing class VPM_SearchVendor1{
                         vendorDetails.VPM_DeletionBlockFlag__c = VPM_RecordTypeHelper.STATUS_MDM_REV_BLOCK_DEL;
                     }
                 }              
-            }  */
+            }  
             vendorDetails.RecordTypeId = VPM_RecordTypeHelper.getRecordTypeNameById(requestType);
             vendorDetails.VPM_PaymentTerms__c = vendorQuery1.VPM_PaymentTerms__c;
             system.debug('@@mdmVendorType' + mdmVendorType);            
-            update vendorDetails;             
+            update vendorDetails; 
+            VPM_CheckRecursive.run = true;            
             vendorReq.save();            
             paymentMethodWebserviceValues = vendorQuery1.VPM_PaymentMethodWeb__c;  
             system.debug('### VPM_SearchVendor1.checkFlag '+VPM_SearchVendor1.CheckFlag  ); 
@@ -1631,7 +1632,7 @@ public with sharing class VPM_SearchVendor1{
                     VPM_SearchVendor1.CheckFlag  = false;                   
                 }
                 system.debug('### VPM_SearchVendor1.checkFlag '+VPM_SearchVendor1.CheckFlag  ); 
-                update vendorQuery1;
+                //update vendorQuery1;
                 vendorDetails.VPM_Telephone__c = vendorQuery1.VPM_VendorPhone__c;               
                 
                 if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN_2)) {

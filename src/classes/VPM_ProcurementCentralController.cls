@@ -290,7 +290,7 @@ with sharing public class VPM_ProcurementCentralController{
              }
         }
         if(newUser != null)
-        {
+        {    
            GroupMember gm = new GroupMember();
             gm.UserOrGroupId = newUser;
             gm.GroupId = gr.Id;
