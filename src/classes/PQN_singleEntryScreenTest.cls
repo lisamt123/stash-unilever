@@ -3,7 +3,7 @@ private class PQN_singleEntryScreenTest{
     private static testMethod void testPQN_singleEntryScreen(){
     Test.startTest();
         
-        Supplier__c s=PQN_TestLibraryUtil.createSupplier();
+        PQN_Supplier__c s=PQN_TestLibraryUtil.createSupplier();
         insert s;
         
         PQN_Pallet_Quality_Non_Conformance__c pqn=PQN_TestLibraryUtil.createPQN_Pallet_Quality_Non_Conformance(s.id);

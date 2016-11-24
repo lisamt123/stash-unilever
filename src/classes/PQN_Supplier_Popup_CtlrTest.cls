@@ -2,7 +2,8 @@
 private class PQN_Supplier_Popup_CtlrTest{
     private static testMethod void testPQN_Supplier_popup_M1(){
      Test.startTest();
-         Supplier__c s=new Supplier__c();
+     
+         PQN_Supplier__c s=new PQN_Supplier__c();
           s.Supplier_Number__c='123';
           s.Supplier_Type__c ='test';
          
@@ -19,7 +20,7 @@ private class PQN_Supplier_Popup_CtlrTest{
          PQN_Supplier_Popup_Ctlr sup2=new PQN_Supplier_Popup_Ctlr();
          sup2.objectName='supplier';
          sup2.runQuery();
-         
+        
         //PQN_Supplier_Popup_Ctlr sup3=new PQN_Supplier_Popup_Ctlr();
         //sup3.objectName='product';
        // sup3.objectName='supplier';

@@ -1,8 +1,8 @@
 public class PQN_TestLibraryUtil {
     
-    public static Supplier__c createSupplier()
+    public static PQN_Supplier__c createSupplier()
     {
-        Supplier__c s = new Supplier__c (Name='Test Account Name',
+        PQN_Supplier__c s = new PQN_Supplier__c(Name='Test Account Name',
         Supplier_Number__c='2312',
         Supplier_Type__c='DC');
         return s ;
@@ -25,5 +25,5 @@ public class PQN_TestLibraryUtil {
         return  PQN;
     }
     
-    
+   
 }

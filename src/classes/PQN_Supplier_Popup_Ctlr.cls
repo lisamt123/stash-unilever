@@ -1,6 +1,6 @@
 public with sharing class PQN_Supplier_Popup_Ctlr {
     public String query {get; set;}
-    public List<Supplier__c> xSuppliers{get; set;}
+    public List<PQN_Supplier__c> xSuppliers{get; set;}
     public List<PQN_Pallet_Quality_Non_Conformance__c > xProducts{get; set;}
     public String objectName {get; set;}
     
@@ -15,7 +15,7 @@ public with sharing class PQN_Supplier_Popup_Ctlr {
 
         }
         if(objectName=='supplier'){
-            xSuppliers= [Select Id,Name,Supplier_Number__c,Supplier_Type__c from Supplier__c where Name Like :tempInput ];
+            xSuppliers= [Select Id,Name,Supplier_Number__c,Supplier_Type__c from PQN_Supplier__c where Name Like :tempInput ];
         }
         
 
@@ -29,7 +29,7 @@ public with sharing class PQN_Supplier_Popup_Ctlr {
     
         }
         if(objectName=='supplier'){
-            xSuppliers= [Select Id,Name,Supplier_Number__c,Supplier_Type__c from Supplier__c where Name Like :tempInput ];
+            xSuppliers= [Select Id,Name,Supplier_Number__c,Supplier_Type__c from PQN_Supplier__c where Name Like :tempInput ];
         }
         PageReference pageRef = new PageReference('/apex/PQN_Supplier_Popup'); 
         return PageRef;
