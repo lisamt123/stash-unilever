@@ -331,64 +331,49 @@
           <script>  
             function to_json(workbook) {
                 var result = {};
-                //workbook.SheetNames.forEach(function(sheetName) {
-                    var sheetName='Data Collection';
+                var sheetName='Data Collection';
                     if (typeof(workbook.Sheets[sheetName]) == "undefined"){
-                    
                         $("#alert_dangerId").show();
                         $("#alert_dangerId").html('<strong>Sheet Name</strong> must be Data Collection. Please open your sheet and check sheet name in file.');
                         
                     }else{
-                    
                         var a = workbook.Sheets[sheetName]["!ref"];
                         a=a.split(":");
                         var b={};
                         var selectedFile = document.getElementsByClassName('selectedFile')[0].value;
-                        
-                        if(selectedFile =="Cannock"){
-                            b['range'] = "B9:"+a[1];
-    
-                        }
-                        if(selectedFile =="Unilever"){
-                            b['range'] = "A1:"+a[1];
-                        }
-                        if(selectedFile =="Heilbronn"){
-                            b['range'] = "B9:"+a[1];
-                        }
+                        if(selectedFile =="Cannock"){ b['range'] = "B9:"+a[1]; }
+                        if(selectedFile =="Unilever"){ b['range'] = "A1:"+a[1]; }
+                        if(selectedFile =="Heilbronn"){ b['range'] = "B9:"+a[1]; }
                         var roa = X.utils.sheet_to_row_object_array(workbook.Sheets[sheetName],b);
                         var roaHeader = X.utils.sheet_Header_json(workbook.Sheets[sheetName],b);
                         console.log(roaHeader);
-                        
-                        if(roaHeader.length>0){
-                            
-                            if(selectedFile =="Unilever"){
-                               var UnileverHeader= ["Cluster__c", "Non_compliance_reason_code__c", "Description__c", "Delivery_Note_Number__c", "DC_Country__c", "Supplier_type__c", "SKU__c", "Reporting_DC__c", "Date_Pallet_Received__c"];
-                               checkValidFile(UnileverHeader, roaHeader);
-                            }
-                            if(selectedFile =="Cannock"){
-                                var CannockHeader= ["Month", "Supplier Name", "Depot","Product Code","Reject Code","Number Pallets Affected"];
-                                checkValidFile(CannockHeader, roaHeader);
-                                
-                            }
-                            if(selectedFile =="Heilbronn"){
-                                var HeilbronnHeader= ["DN#", "Month", "Source Factory", "Source DC (if applicable)", "Reporting DC", "Product Group (Category)", "Product Number (SKU)", "Lot Code", "Product Name", "LOSS CODE #", "Loss Level 1", "Loss Level 2","Loss Level 3","Loss Level 4","Additional Information","Number Pallets affected"];
-                                checkValidFile(HeilbronnHeader, roaHeader);
-                            }
-                            
-                        }else{
-                            $("#alert_dangerId").show();
-                            $("#alert_dangerId").html('<strong>Selected file</strong> is not valid. Please refresh page and upload valid file.');
-                        }
-                        
-                        
-                        
-                        if(roa.length > 0){
-                            result[sheetName] = roa;
-                        }
-                    
+                        checkHeader(roaHeader);
+                        if(roa.length > 0){ result[sheetName] = roa; }
                     }
-               // });
                 return result;
+            }
+            </script>
+            <script>
+            function checkHeader(roaHeader){
+                if(roaHeader.length>0){
+                            
+                    if(selectedFile =="Unilever"){
+                       var UnileverHeader= ["Cluster__c", "Non_compliance_reason_code__c", "Description__c", "Delivery_Note_Number__c", "DC_Country__c", "Supplier_type__c", "SKU__c", "Reporting_DC__c", "Date_Pallet_Received__c"];
+                       checkValidFile(UnileverHeader, roaHeader);
+                    }
+                    if(selectedFile =="Cannock"){
+                        var CannockHeader= ["Month", "Supplier Name", "Depot","Product Code","Reject Code","Number Pallets Affected"];
+                        checkValidFile(CannockHeader, roaHeader);
+                    }
+                    if(selectedFile =="Heilbronn"){
+                        var HeilbronnHeader= ["DN#", "Month", "Source Factory", "Source DC (if applicable)", "Reporting DC", "Product Group (Category)", "Product Number (SKU)", "Lot Code", "Product Name", "LOSS CODE #", "Loss Level 1", "Loss Level 2","Loss Level 3","Loss Level 4","Additional Information","Number Pallets affected"];
+                        checkValidFile(HeilbronnHeader, roaHeader);
+                    }
+                    
+                }else{
+                    $("#alert_dangerId").show();
+                    $("#alert_dangerId").html('<strong>Selected file</strong> is not valid. Please refresh page and upload valid file.');
+                }
             }
             </script>
             
@@ -404,12 +389,9 @@
                             if(arrayHeader[i]==FirstRecord[k].trim()){
                                 j++;
                                 break;
-                            }
-                        
-                        }
-                                                
-                    }
-                    
+                            }                        
+                        }                                                
+                    }                    
                     if(arrayHeader.length==j){
                         $("#alert_dangerId").removeAttr("class");
                         $("#alert_dangerId").attr("class","alert alert-success");
@@ -417,16 +399,11 @@
                         $("#alert_dangerId").html('<strong>Selected file</strong> is valid. Please import file.');
                         return "valid";
                         
-                    }
-                    
+                    }                    
                     $("#alert_dangerId").show();
                     $("#alert_dangerId").html('<strong>Selected file</strong> is not valid. Please refresh page and upload valid file.');
-                    
                     return "Invalid";
                 }
-
-
-            
             </script>
             
             <script>
@@ -476,35 +453,28 @@
             }
             </script>
             <script>
-            function initiateInsertion(){
-              passStringToUploadDataTosObject(document.getElementById('out').innerText);            
-            }
-            function saveexceldata(){
-                saveexceldatainapex();
-            }     
+            function initiateInsertion(){ passStringToUploadDataTosObject(document.getElementById('out').innerText); }
+            function saveexceldata(){ saveexceldatainapex(); }     
             var xlf = document.getElementById('xlf');
             function handleFile(e) {           
                 var files = e.target.files;
                 var f = files[0];
                 var fileExt = f.name.split(/[\s.]+/);
                 if(fileExt[fileExt.length-1] == "xlsx" || fileExt[fileExt.length-1] == "xls"){
-
-                    {
-                        var reader = new FileReader();
-                        var name = f.name;
-                        fileName = name
-                        reader.onload = function(e) {
-                            var data = e.target.result;
-                                var arr = fixdata(data);
-                                var wb =  X.read(btoa(arr), {type: 'base64'});
-                                process_wb(wb);
-                        };
-                        reader.readAsArrayBuffer(f);
-                    }
+                    var reader = new FileReader();
+                    var name = f.name;
+                    fileName = name
+                    reader.onload = function(e) {
+                        var data = e.target.result;
+                            var arr = fixdata(data);
+                            var wb =  X.read(btoa(arr), {type: 'base64'});
+                            process_wb(wb);
+                    };
+                    reader.readAsArrayBuffer(f);
+                    
                 }else{
                     $("#alert_dangerId").show();
                     $("#alert_dangerId").html('<strong>File format</strong> is not valid. Please upload xls or xlsx file.');
-                    
                 }
                 return false;
             }            

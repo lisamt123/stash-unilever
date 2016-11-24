@@ -17,39 +17,30 @@
    <script>
     var newWin=null;
     function openSuppliers() {
-
         var url="/apex/PQN_Supplier_Popup?Supplier_Name=" + $("input.Supplier_Name").attr("id") + "&Supplier_No=" + $("input.Supplier_No").attr("id") + "&Supplier_Type=" + $("input.Supplier_Type").attr("id") + "&search_Name=" + $("input.Supplier_Name").val() + "&object_Name=supplier";
         newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
         if (window.focus) 
         {
             newWin.focus();
-        }
-            
+        }            
         return false;
     }
-    
     function openProducts(){
-
         var url="/apex/PQN_Supplier_Popup?Product_Name=" + $("input.Product_Name").attr("id") + "&Product_No=" + $("input.SKU_Name").attr("id") + "&Product_Group=" + $("input.Product_Group").attr("id") + "&Product_Category=" + $("input.Product_Category").attr("id") + "&search_Name=" + $("input.SKU_Name").val() + "&object_Name=product";
         newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
         if (window.focus) 
         {
             newWin.focus();
-        }
-            
+        }            
         return false;
-    }
-                  
+    }          
     function closeSupplierPopup(){
        if (null!=newWin)
        {
           newWin.close();
        }  
     }
-    
     </script>
-
-        
     <style>
     input[type="text"],select,textarea {
         //display: block;

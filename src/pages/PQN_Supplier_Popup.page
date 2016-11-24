@@ -85,7 +85,7 @@
   <apex:form id="form" >  
         
      <div style="width 100%">
-        <apex:pageBlock title="Suppliers" id="block">
+        <apex:pageBlock title="{!objectName}" id="block">
              <apex:pageBlockSection columns="3" id="section">
               Enter search text and click Go
               <apex:inputText value="{!query}" id="query"/>
