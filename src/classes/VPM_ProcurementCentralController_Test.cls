@@ -2,16 +2,16 @@
 public class VPM_ProcurementCentralController_Test {
     /*Constant Values*/
     public static final string  VPM_COUNTRYNAME='Algeria';
-    public static final string VPM_NOACCESS = 'VPM - No Access';
+    public static final string VPM_NOACCESS = 'System Administrator';
     public static final string STR_CONST_USER = 'standt';
-    public static final string STR_CONST_EMAIL = 'standarduser@testorg.com';
-    public static final string STR_CONST_EMAILNAME = 'testpermissionsetuser@testorg.com';
+    public static final string STR_CONST_EMAIL = 'standarduser24571@testorg.com';
+    public static final string STR_CONST_EMAILNAME = 'testpermissionsetuser3552@testorg.com';
     public static final string STR_CONST_USERS = 'standt1';
      public static final string STR_CONST_USERS2 = 'standt2';
-    public static final string STR_CONST_EMAILS =  'standarduser@testorg1.com';
-        public static final string STR_CONST_EMAILS2 =  'standarduser@testorg2.com';
-    public static final string STR_CONST_EMAILNAMES = 'testpermissionsetuser@testorg1.com';
-      public static final string STR_CONST_EMAILNAMES2 = 'testpermissionsetuser@testorg2.com';
+    public static final string STR_CONST_EMAILS =  'standarduser12@testorg1.com';
+        public static final string STR_CONST_EMAILS2 =  'standarduser234@testorg2.com';
+    public static final string STR_CONST_EMAILNAMES = 'testpermissionsetuser1345@testorg1.com';
+      public static final string STR_CONST_EMAILNAMES2 = 'testpermissionsetuser2456@testorg2.com';
 
 
     static testMethod void TestApproverReplace(){
@@ -169,6 +169,55 @@ public class VPM_ProcurementCentralController_Test {
         controller.com.VPM_Approver1__c = Approver1.id;
         controller.goAssign();
             controller.com.VPM_Approver2__c = Approver2.id;
+        controller.goAssign();
+        controller.GoBack();
+        system.assertEquals(comlist2.setFlag,true);
+        system.assertequals(comlist2.setFlag,true);
+            
+        }
+
+        test.stopTest();    
+    }
+    
+    static testMethod void TestRemoveApprover1(){
+               Test.startTest();
+        
+        User Approver1 = VPM_TestDataFactory.CreateUser(STR_CONST_USER ,STR_CONST_EMAIL ,STR_CONST_EMAILNAME,VPM_NOACCESS );
+        insert Approver1;
+
+         User Approver2 = VPM_TestDataFactory.CreateUser(STR_CONST_USERS,STR_CONST_EMAILS ,STR_CONST_EMAILNAMES ,VPM_NOACCESS );
+        insert Approver2;
+                       
+        VPM_CommodityApprover__c com = VPM_TestDataFactory.CreateCommodityApprover(Approver1.id, null,VPM_COUNTRYNAME);
+        insert com;
+        com =[select VPM_Approver1__c,VPM_TempApproverDate1__c,VPM_Approver2__c,VPM_CommodityClass__c,VPM_Country__c, id, VPM_ConfiguredApprovers__c from VPM_CommodityApprover__c where id=: com.id];
+        
+        System.runAs(Approver2){
+        VPM_ProcurementCentralController controller = new VPM_ProcurementCentralController();
+        controller.MDMVendor  ='Assign';
+        com.VPM_TempApproverDate1__c =Date.Today();
+        controller.com  =com;
+            
+        VPM_ProcurementCentralController.CommApproverList  comlist1 = new VPM_ProcurementCentralController.CommApproverList();
+        VPM_ProcurementCentralController.CommApproverList  comlist2 = new VPM_ProcurementCentralController.CommApproverList();
+        comlist1.checkFlag =true;
+        comlist1.setFlag =false;
+        comlist1.comApp =com;
+        controller.commApprover  = new List<VPM_ProcurementCentralController.CommApproverList>();
+        controller.commApprover.add(comlist1);
+         comlist2.checkFlag =true;
+        comlist2.setFlag =true;
+         comlist2.comApp =com;
+        //controller.commApprover.add(comlist2);
+         
+        
+        controller.Go();
+        controller.ChangeApprover(); 
+        //controller.com.VPM_Approver2__c = null;
+       // controller.goAssign();
+       // controller.com.VPM_Approver1__c = Approver1.id;
+        //controller.goAssign();
+        controller.com.VPM_Approver2__c = Approver2.id;
         controller.goAssign();
         controller.GoBack();
         system.assertEquals(comlist2.setFlag,true);
