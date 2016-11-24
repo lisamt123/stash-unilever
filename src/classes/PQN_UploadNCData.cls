@@ -120,7 +120,9 @@ public class PQN_UploadNCData {
         cann.Supplier__c = resp.SupplierName;
         cann.Reporting_DC__c = resp.Depot;
         cann.SKU__c = resp.ProductCode;
-        cann.Non_compliance_reason_code__c = integer.valueof(resp.RejectCode);
+        if(resp.RejectCode!=null){
+            cann.Non_compliance_reason_code__c = integer.valueof(resp.RejectCode);
+        }
         cann.Number_of_Pallets_Per_SKU_Non_Compliant__c= resp.NumberPalletsAffected;
         cann.Date_Pallet_Received__c = system.today();
        
@@ -171,7 +173,9 @@ public class PQN_UploadNCData {
         cann.Product_Name__c = resp.ProductName;
         cann.Reporting_DC__c= resp.ReportingDC;
         cann.SKU__c= resp.ProductNumberSKU;
-        cann.Non_compliance_reason_code__c = integer.valueof(resp.LossCode);
+        if(resp.LossCode!=null){
+            cann.Non_compliance_reason_code__c = integer.valueof(resp.LossCode);
+        }
         cann.Description__c= resp.AdditionalInfo;        
         cann.Product_Group__c = resp.ProductGroup;
         cann.Number_of_Pallets_Per_SKU_Non_Compliant__c= resp.NumberPalletsAffected;        
