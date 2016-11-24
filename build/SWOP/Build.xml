@@ -71,6 +71,7 @@
 	  <runTest>Oblix_SOWMainDetailController_Test</runTest>
 	  <runTest>Oblix_SowMainController_Test</runTest>
 	  <runTest>Oblix_SOWCreateController_Test</runTest>
+	  <runTest>Oblix_PermissionHandler_Test</runTest>
     </sf:deploy>
   </target>  
 
