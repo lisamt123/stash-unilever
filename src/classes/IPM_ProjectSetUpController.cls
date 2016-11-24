@@ -456,8 +456,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 		if( project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_GLOBAL))
         {
         	Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and (product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' or product_category_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\') ';
-            	Query_STR+=' LIMIT 30000';
-            	userBrandPos=database.query(Query_STR);    
+            	Query_STR+=' LIMIT 50000';   
         }
         else
         {
@@ -473,14 +472,13 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 	        		List<String>uniqueCountryList=project.IPM_Region_Shr__c.split(IPM_ConstantUtils.SEMICOLON);
 	        		Query_STR+=' and geo_id__r.Name IN:uniqueCountryList '; 
 	    		}
-	    		Query_STR+=' LIMIT 50000';
-	    		userBrandPos=database.query(Query_STR);
+	    		Query_STR+=' LIMIT 50000';	    		
 	        }
 		} 
                 
-                if(userBrandPos !=null && !userBrandPos.isEmpty())
+                if(Query_STR !=null)
                 {
-                    for(MDO_BrandPositions__c u:userBrandPos)
+                    for(MDO_BrandPositions__c u:Database.query(Query_STR))
                     {
                         if(!brandPositionSet.Contains(u.brand_position_id__r.Name))
                         {
