@@ -147,14 +147,14 @@ with Sharing public class VPM_GoldenDataController2 {
     VendorRequest__c obj = VendorRequest__c.getInstance('Countries');
     public string latam;
     
-    string NewCashManagementGroup {get; set;} 
-    string OldCashManagementGroup {get; set;} 
-    string NewSortKey {get; set;} 
-    string OldSortKey {get; set;} 
-    string NewPaymentTerms {get; set;} 
-    string OldPaymentTerms {get; set;} 
-    string OldPaymentMethod{get;set;}
-    string NewPaymentMethod{get;set;}               
+   public string NewCashManagementGroup {get; set;} 
+   public string OldCashManagementGroup {get; set;} 
+   public string NewSortKey {get; set;} 
+   public string OldSortKey {get; set;} 
+   public string NewPaymentTerms {get; set;} 
+   public string OldPaymentTerms {get; set;} 
+   public string OldPaymentMethod{get;set;}
+   public string NewPaymentMethod{get;set;}               
     
     ApexPages.StandardController newController;
 

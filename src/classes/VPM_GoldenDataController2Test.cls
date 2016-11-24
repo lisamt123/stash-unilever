@@ -520,9 +520,17 @@ static VPM_PurchasingRequests__c TestCordillera(){
          VPM_PurchasingRequests__c purId = TestFusion();
          ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+        
          goldenData.newMethod();
          goldenData.newMethod1();
-    
+        purId.VPM_WebformSentToVendor__c=true;
+        purId.VPM_VendorWebformSubmitted__c=false;
+        purId.VPM_RequestFromFLSOrBR__c='FLS';
+        update purId;
+        goldenData.approvalCallMethod();
+        purId.VPM_RequestFromFLSOrBR__c='Business Requestor';
+     update purId;
+         goldenData.approvalCallMethod();
     }
     
     static testMethod void VPM_GoldenDataControllerCordillera(){
@@ -530,8 +538,22 @@ static VPM_PurchasingRequests__c TestCordillera(){
          VPM_PurchasingRequests__c purId = TestCordillera();
          ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+        	goldenData.vendorType=false;
+        	goldenData.authorisationGrp=false;
+          goldenData.NewCashManagementGroup ='';
+    	goldenData.OldCashManagementGroup  =''; 
+  		goldenData.NewSortKey  =''; 
+    	goldenData.OldSortKey  ='';
+    	goldenData.NewPaymentTerms  ='';
+    	goldenData.OldPaymentTerms ='';
+   		goldenData.OldPaymentMethod ='';
+    	goldenData.NewPaymentMethod ='';  
+
+            
          goldenData.newMethod();
          goldenData.newMethod1();
+        goldenData.saveRecordRegional();
+        goldenData.backToGlobalScreen();
     
     }
     
@@ -579,6 +601,11 @@ static VPM_PurchasingRequests__c TestCordillera(){
       	
          update purId;
          goldenData.approvalCallMethod();
+      goldenData.ErrorMessage(System.Label.VPM_BlockDeleteVendorErrorMeesage);
+     purId.VPM_ProcurementApprovalRequired__c=true;
+      update purId;
+      goldenData.ProcurementApproval();
+    //  goldenData.saveAndBackToLaunchScreen();
          
     
     }    
@@ -705,6 +732,11 @@ static VPM_PurchasingRequests__c TestCordillera(){
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
         goldenData.newMethod();
+        purId.VPM_PaymentMethod__c='[A_ACH, G_DB Supplier Financing, C_Check]';
+        
+          
+         update purId;
+         goldenData.approvalCallMethod();
     
     
     }

@@ -3,8 +3,8 @@ public class VPM_RegionalMaintainVendorTest{
  public static final String ECCRegion=  'U2K2,Sirius,Fusion'; 
  public static final String FieldType=  'Regional'; 
  public static final String VendorCode=  '5001010'; 
-  //public static final String successStatusMDM = 'ECC Insert / Update Succeeded'; 
-  public static final String successStatusMDM = null;
+  public static final String successStatusMDM = 'ECC Insert / Update Succeeded'; 
+  //public static final String successStatusMDM = null; 
   public static final String successStatusMsg = 'mdm insert/update succeeded'; 
  @isTest static void updateAndCheckFieldUpdateTest() {
     VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
@@ -14,10 +14,11 @@ public class VPM_RegionalMaintainVendorTest{
      
      test.startTest();
      update purReq;
-     test.stopTest(); 
+      
      VPM_PurchasingRequests__c purReq1 = [SELECT Id, Name,VPM_FieldType__c,VPM_fieldUpdated__c from VPM_PurchasingRequests__c where id  =: purReq.Id];
      system.debug('hfdfd'+purReq1.VPM_fieldUpdated__c);
-     system.assertEquals(purReq1.VPM_FieldType__c,null);
+     system.assertEquals(purReq1.VPM_FieldType__c,'Global');
+     test.stopTest();
  
  }
  
@@ -33,10 +34,11 @@ public class VPM_RegionalMaintainVendorTest{
         update purreq;
         test.startTest();
         Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(200));
-       // VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(purReq.Id);
-        test.stopTest(); 
+       
+         test.stopTest();
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
         system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM ); 
+        
  }
     
     
@@ -51,14 +53,17 @@ public class VPM_RegionalMaintainVendorTest{
      purReq.RecordTypeId = VendorReordType.id;
          VPM_CompanyCode__c companyCode =[select ECC__c, id from VPM_CompanyCode__c where Name = 'Company Code 2' limit 1];
          companyCode.ECC__c ='Sirius';
+         //purReq.VPM_ECC__c = 'Sirius';
+        
          update companyCode;
         update purreq;
-        test.startTest();
+         test.startTest();
         Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(200));
-       // VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(purReq.Id);
+       
         test.stopTest(); 
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
         system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM ); 
+        
  }
     
          @isTest static void InsertVendorTestU2K2(){
@@ -72,14 +77,19 @@ public class VPM_RegionalMaintainVendorTest{
      purReq.RecordTypeId = VendorReordType.id;
          VPM_CompanyCode__c companyCode =[select ECC__c, id from VPM_CompanyCode__c where Name = 'Company Code 2' limit 1];
          companyCode.ECC__c ='U2K2';
+              //purReq.VPM_ECC__c = 'U2K2';
+        
          update companyCode;
+          VPM_CheckRecursive.run = true;
         update purreq;
-        test.startTest();
+       
+         test.startTest();
         Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(200));
-       // VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(purReq.Id);
-        test.stopTest(); 
+       
+        test.stopTest();
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
         system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM ); 
+         
  }
     
     
@@ -98,10 +108,11 @@ public class VPM_RegionalMaintainVendorTest{
         update purreq;
         test.startTest();
         Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(200));
-       // VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(purReq.Id);
         test.stopTest(); 
+        
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
         system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM ); 
+        
  }
     
     
@@ -121,6 +132,7 @@ public class VPM_RegionalMaintainVendorTest{
         test.stopTest(); 
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
         system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM ); 
+        
  }
 
 

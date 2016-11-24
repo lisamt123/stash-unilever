@@ -32,13 +32,13 @@ public with sharing class VPM_RegionalMaintainVendor {
   {
     List<VPM_ListOfRegionalandGlobalField__c> globalFields = VPM_ListOfRegionalandGlobalField__c.getall().values();
     list<id> vendorRequestCompanyCode = new list<id>();
-    Id devRecordTypeId = Schema.SObjectType.VPM_PurchasingRequests__c.getRecordTypeInfosByName().get('Vendor Request').getRecordTypeId();
+    //Id devRecordTypeId = Schema.SObjectType.VPM_PurchasingRequests__c.getRecordTypeInfosByName().get('Vendor Request').getRecordTypeId();
    // recordType rec =[select id , Name from recordType where Name like '%Create%' AND sobjectType='VPM_PurchasingRequests__c' LIMIT 1];
 
     // Loop to get list of all company code id (Bulkify trigger)
    for (VPM_PurchasingRequests__c vendorRequest : updatedVendorRequest)
     {
-       if(vendorRequest.RecordTypeId == devRecordTypeId)
+       //if(vendorRequest.RecordTypeId == devRecordTypeId)
        {
         vendorRequestCompanyCode.add(vendorRequest.VPM_CompanyCode__c);
        }

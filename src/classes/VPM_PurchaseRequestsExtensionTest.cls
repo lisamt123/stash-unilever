@@ -61,12 +61,12 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
     companyCode.ECC__c = Ecc;
-    companyCode.VPM_Country__c =country;
+    companyCode.VPM_Country__c ='United Kingdom';
     insert companyCode;
     system.assert(companyCode.Id!=null,ErrorMsg);
     
     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
-    VPM_CountryRequestingVendor__c=country,
+    VPM_CountryRequestingVendor__c='United Kingdom',
     VPM_CompanyCode__c=companyCode.id,
     VPM_WhatAreYouBuying__c=buyingStuff,
     VPM_Comments__c=buyingStuff,
@@ -614,7 +614,7 @@ public class VPM_PurchaseRequestsExtensionTest{
    
     
     static testMethod void changeButtonValues(){
-        Profile p = [SELECT Id FROM Profile WHERE Name=:System.Label.VPM_Profile];
+        Profile p = [SELECT Id FROM Profile WHERE Name='VPM - No Access'];
      User u = new User(Alias = 'standt', Email='standarduser@testorg.com',
                           EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
                           LocaleSidKey='en_US', ProfileId = p.Id,
@@ -681,6 +681,33 @@ public class VPM_PurchaseRequestsExtensionTest{
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
        VendorDetail.EnableManuallyMarkAsCompleteBtn();
+        VendorDetail.isApprover1=true;
+         VendorDetail.isApprover2=true;
+         VendorDetail.isApprover3=true;
+         VendorDetail.isApprover4=true;
+         VendorDetail.isApprover5=true;
+         VendorDetail.isApprover6=true;
+         VendorDetail.isApprover7=true;
+         VendorDetail.isApprover8=true;
+         VendorDetail.isApprover9=true;
+         VendorDetail.isApprover10=true;
+         VendorDetail.internationalVersion='';
+         VendorDetail.exceptionType='';
+         VendorDetail.isVenderSME='';
+         VendorDetail.commodityApproverId='';
+         VendorDetail.showManuallyMarkAsComplete=true;
+             VendorDetail.isCordillera=false;
+             VendorDetail.renderSAPBtn=false;
+             VendorDetail.manuallyMarkAsCompleteBtn=false;
+             VendorDetail.reworkBtn=false;
+             VendorDetail.AlertMsg='';
+             VendorDetail.isDisplay=false;
+         VendorDetail.commodityApproverId='';
+         VendorDetail.manuallyMarkAsCompleteFlag=false;
+         
+             
+         
+         
     }
     
     static testMethod void checkForBusinessReqUserTest(){
