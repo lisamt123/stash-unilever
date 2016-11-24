@@ -3,8 +3,8 @@ public class VPM_RegionalMaintainVendorTest{
  public static final String ECCRegion=  'U2K2,Sirius,Fusion'; 
  public static final String FieldType=  'Regional'; 
  public static final String VendorCode=  '5001010'; 
-  public static final String successStatusMDM = 'ECC Insert / Update Succeeded'; 
-  //public static final String successStatusMDM = null; 
+  //public static final String successStatusMDM = 'ECC Insert / Update Succeeded'; 
+  public static final String successStatusMDM = null; 
   public static final String successStatusMsg = 'mdm insert/update succeeded'; 
  @isTest static void updateAndCheckFieldUpdateTest() {
     VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
