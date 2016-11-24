@@ -27,10 +27,10 @@
 	<value>Account Statement: Please select the value</value>
 </labels>
 <labels>
-	<fullName>VPM_NoAccessProfile</fullName>
+	<fullName>VPM_Profile</fullName>
 	<language>en_US</language>
 	<protected>false</protected>
-	<shortDescription>VPM_NoAccessProfile</shortDescription>
+	<shortDescription>VPM_Profile</shortDescription>
 	<value>System Administrator</value>
 </labels>
 <labels>
