@@ -88,11 +88,11 @@ public with sharing class VPM_HttpUtil {
                 req.setBody(requestBodyJson);
             }
             req.setTimeout(120000);
-            if(!test.isRunningTest())
-            {
+            //if(!test.isRunningTest())
+            //{
             req.setClientCertificateName(certName);
             req.setCompressed(true);
-            }
+            //}
             
             system.debug('before callout time='+system.now());
             res = h.send(req);
@@ -111,11 +111,11 @@ public with sharing class VPM_HttpUtil {
         req.setEndpoint(url);
         req.setMethod(requestType);
         req.setTimeout(120000);
-         if(!test.isRunningTest())
-            {
+         //if(!test.isRunningTest())
+         //   {
             req.setClientCertificateName(certName);
             req.setCompressed(true);
-            }
+         //   }
         //req.setCompressed(true);
         system.debug('before callout time='+system.now());
         res = h.send(req);
