@@ -35,70 +35,13 @@ public with sharing class VPM_PicklistHelper {
     public static final string CONF_CONTROL = 'Confirmation Control';
     
 		
-    /*public static list<SelectOption> getPicklistValues(SObject obj, String fld){
-        
-        Map<string,list<SelectOption>> defaultValueAndOptionMap = new Map<string,list<SelectOption>>();
-        list<SelectOption> options = new list<SelectOption>();
-        // Get the object type of the SObject.
-        Schema.sObjectType objType = obj.getSObjectType(); 
-        // Describe the SObject using its object type.
-        Schema.DescribeSObjectResult objDescribe = objType.getDescribe();       
-        // Get a map of fields for the SObject
-        map<String, Schema.SObjectField> fieldMap = objDescribe.fields.getMap(); 
-        // Get the list of picklist values for this field.
-        list<Schema.PicklistEntry> values =
-            fieldMap.get(fld).getDescribe().getPickListValues();
-        // Add these values to the selectoption list.
-        options.add(new SelectOption('','--None--'));
-        for (Schema.PicklistEntry a : values)
-        {            
-            options.add(new SelectOption(a.getLabel(), a.getValue()));
-        }
-        return options;
-    }
-    
-    public static string getPicklistDefaultValue(list<SelectOption> options, string defaultVal) {
-        string defaultValue = defaultVal;
-        for(SelectOption s : options) {
-            system.debug('@@ss' + s.getValue());
-            List<string> s2 = s.getValue().split('_');
-            if(s2 <> null && s2.size() > 0 && s2[0].equalsIgnoreCase(defaultVal)) {
-                defaultValue = s.getValue();
-                system.debug('@@' + defaultValue);
-            }
-        }
-		system.debug('@@' + defaultValue);	        
-        return defaultValue;
-    } 
-    
-    public static List<SelectOption>  getRegionSpecificCustomSettingvalues(string ecc, string pickListName){
-            Map<String, VPM_RegionSpecificFields__c> settingMap = new Map<String, VPM_RegionSpecificFields__c>();
-            Map<String, VPM_RegionSpecificFields__c> VPM_RegionSpecificMap = VPM_RegionSpecificFields__c.getAll();
-            List<String> settingList = new List<String>();
-            List<SelectOption> options = new List<SelectOption>();
-            options.add(new SelectOption('','--None--'));
-            
-            for(VPM_RegionSpecificFields__c region : VPM_RegionSpecificMap.values()) {
-                if(region.Region__c == ecc && region.Picklist_Name__c == pickListName){
-                    
-                    settingMap.put(region.Picklist_Values__c,region);
-                }
-            }
-            if(settingMap <> null && settingMap.size() > 0) {
-                // sorting based on values 
-                settingList.addAll(settingMap.keySet());
-                settingList.sort();
-                system.debug('@@ settingList' + settingList);
-                if(settingList <> null && settingList.size() > 0) {         
-                    for (String stateName : settingList) {
-                        VPM_RegionSpecificFields__c state = settingMap.get(stateName);                        
-                        options.add(new SelectOption(state.Picklist_Values__c, state.Picklist_Values__c));
-                    }
-                    system.debug('@@ Options' + options);
-                }
-            }
-            return options;
-        } */
+    /********************************************************************  
+    Created By   : Piyush Mathur
+    Created Date : 05th June 2016
+    Last Modify  : 06th June 2016
+    Description  : This method assing picklist values from custom setting.
+    Return Type  : List of Options
+    ********************************************************************/
     
     public static List<SelectOption> getRegionSpecificCustomSettingvalues(string ecc, string pickListName, string defaultValue){
             Map<String, VPM_RegionSpecificFields__c> settingMap = new Map<String, VPM_RegionSpecificFields__c>();

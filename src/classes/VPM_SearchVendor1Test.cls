@@ -19,7 +19,9 @@ public class VPM_SearchVendor1Test{
         insert regionList;
         
         VendorRequest__c latamContries = new VendorRequest__c();
+        latamContries.name = 'Countries';
         latamContries.VPM_CountryName__c = 'AR_Argentina,BO_Bolivia,CL_Chile,CO_Colombia,CR_Costa Rica,DO_Dominican Rep.,EC_Ecuador,GT_Guatemala';
+        insert latamContries;
     }    
 
     static  VPM_PurchasingRequests__c TestDataU2K2(){    
@@ -443,16 +445,72 @@ public class VPM_SearchVendor1Test{
 	}*/
 
     static testMethod void negativeScenarioMethod() {
-        VPM_PurchasingRequests__c purId = TestDataU2K2();
-        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        VPM_PurchasingRequests__c purd = TestDataU2K2();
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purd);
         VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1 (vendorDetail);
         
-        VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purId.id];
+        VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purd.id];
         system.assertEquals(purch.VPM_ECC__c, 'U2K2');
         Test.startTest();
+        searchVendor.showSearchVendor = true;
         searchVendor.vendorName = '';
         searchVendor.SaveMethod();
         searchVendor.vendorName = 'BA';
+        searchVendor.SaveMethod();
+        purd.VPM_SupplierAchillesRegistration__c = '';
+        purd.VPM_BankCountryKey__c = '';  
+        purd.VPM_VendorType__c = ''; 
+        purd.VPM_PaymentMethod__c = null;
+        update purd;
+        searchVendor.showSearchVendor = false;
+        searchVendor.piVendorCreation = true;
+        searchVendor.SaveMethod();
+        
+		searchVendor.showSearchVendor = false;
+        searchVendor.piVendorCreation = false;
+		searchVendor.generalVendorDetails = true;
+		searchVendor.countryName = '';      
+        searchVendor.street1 = '';    
+        searchVendor.SaveMethod();
+        searchVendor.showSearchVendor = false;
+        searchVendor.piVendorCreation = false;
+		searchVendor.generalVendorDetails = false;
+        searchVendor.paymentTermScreen = true; 
+        searchVendor.vendorPaymentTerms = '';
+        searchVendor.SaveMethod();
+        searchVendor.showSearchVendor = false;
+        searchVendor.piVendorCreation = false;
+		searchVendor.generalVendorDetails = false;
+        searchVendor.paymentTermScreen = false; 
+        searchVendor.bankDetailsScreen = true;
+        searchVendor.SaveMethod();
+        searchVendor.showSearchVendor = false;
+        searchVendor.piVendorCreation = false;
+		searchVendor.generalVendorDetails = false;
+        searchVendor.paymentTermScreen = false; 
+        searchVendor.bankDetailsScreen = false;
+        searchVendor.goldendata2Screen2 = true;
+        searchVendor.vendorTradePartnerType = '';
+        searchVendor.SaveMethod();
+        searchVendor.showSearchVendor = false;
+        searchVendor.piVendorCreation = false;
+		searchVendor.generalVendorDetails = false;
+        searchVendor.paymentTermScreen = false; 
+        searchVendor.bankDetailsScreen = false;
+        searchVendor.goldendata2Screen2 = false;  
+        searchVendor.financialScreen = true; 
+        searchVendor.vendorCashmgmntgroup = '';
+        searchVendor.vendorPaymentMethod = '';
+        searchVendor.SaveMethod();
+        searchVendor.showSearchVendor = false;
+        searchVendor.piVendorCreation = false;
+		searchVendor.generalVendorDetails = false;
+        searchVendor.paymentTermScreen = false; 
+        searchVendor.bankDetailsScreen = false;
+        searchVendor.goldendata2Screen2 = false;  
+        searchVendor.financialScreen = false; 
+        searchVendor.regionalSpecificScreenSirius = true; 
+        searchVendor.termsOfPayment = '';
         searchVendor.SaveMethod();
         Test.stopTest();
     }
@@ -497,7 +555,7 @@ public class VPM_SearchVendor1Test{
         searchVendor.mdmVendorType = System.label.VPM_EditFinanciallySensitiveFields;
         searchVendor.processRequestType();
         
-        searchVendor.mdmVendorType = System.label.VPM_EnterRegionalSpecificFields;
+        searchVendor.mdmVendorType = System.label.VPM_EnterRegionalSpecificFields; 
         searchVendor.processRequestType();
          
         searchVendor.mdmVendorType = system.label.VPM_SubmitVendorRequestforApproval;

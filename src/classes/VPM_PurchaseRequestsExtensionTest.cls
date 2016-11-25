@@ -46,8 +46,13 @@ public class VPM_PurchaseRequestsExtensionTest{
         VendorDetail.ManuallyMarkAsCompleteAction();
         vendorDetail.changeButtonValues();
         vendorDetail.setPaymentTermsDefaultValues();
-        
-        
+        vendorDetail.approvalWorker='';
+        vendorDetail.approvalWorkerID='';
+        vendorDetail.vendorDefaultPaymentTerm='';
+        pur1.VPM_Status__c ='MDM Ops Review - block';
+        UPDATE pur1;
+         VendorDetail.ManuallyMarkAsCompleteAction();
+       
     }
     
     
@@ -169,8 +174,51 @@ public class VPM_PurchaseRequestsExtensionTest{
         
 
     }
+    
+    public static User insertUser()
+    {
+        Profile p = [SELECT Id FROM Profile WHERE Name= : System.Label.VPM_Profile];
+        //Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
+        //UserRole r = [SELECT Id,name FROM UserRole WHERE Name = 'CEC Global Head'];
+        //System.debug('Role' + r.name);
+        User u = new User(LastName = 'Testing', 
+                          Username = 'cectestuser@test00DE0000000bbLj.org', 
+                          Email = 'testuser@test.com', 
+                          Alias = 'utest', 
+                          TimeZoneSidKey = 'Europe/London', 
+                          LocaleSidKey = 'en_GB', 
+                          EmailEncodingKey = 'UTF-8', 
+                          ProfileId = p.Id, 
+                          LanguageLocaleKey = 'en_US',
+                          UserPermissionsKnowledgeUser = true);  
+        
+        insert u;
+        List<PermissionSet> pslist = [SELECT Id FROM PermissionSet WHERE Name IN ('VPM_FLS','VPM_Business_Requestor')];
+        List<PermissionSetAssignment> psalist = new List<PermissionSetAssignment>();
+        for(PermissionSet ps:pslist)
+        {
+            PermissionSetAssignment psa = new PermissionSetAssignment();
+            psa.AssigneeId = u.Id;
+            psa.PermissionSetId = ps.Id;
+            
+            psalist.add(psa);
+            
+        }
+        
+        insert psalist;
+
+        
+        return u;
+        
+    }
+    
+    
       static testMethod void reworkActionTest1() {
     
+            User u = insertUser();
+        
+        System.runAs(u)
+        {
     VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
     companyCode.ECC__c = Ecc;
@@ -197,7 +245,7 @@ public class VPM_PurchaseRequestsExtensionTest{
          update pur;
          VendorDetail.ReworkAction();
          test.stopTest();
-        
+        } 
      }
 
      static testMethod void reworkActionTest2() {
@@ -265,6 +313,9 @@ public class VPM_PurchaseRequestsExtensionTest{
           update pur;
           VendorDetail.ReworkAction();
           test.stopTest();
+         pur.VPM_status__c='FLS Rejected';
+         update pur; 
+         
         
      }
 
@@ -712,7 +763,8 @@ public class VPM_PurchaseRequestsExtensionTest{
     
     static testMethod void checkForBusinessReqUserTest(){
     
-        VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser();
+        
+        VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser();	
     }
     
     static testMethod void SubmitRequestActionTest1()
@@ -733,7 +785,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_VendorPhone__c=phone,
     VPM_FLSInCountryReqVen__c=FLSInCountryReqVen,
     VPM_AdvancedFormSubmitted__c = 'No',
-    VPM_Status__c ='Draft Request');
+    VPM_Status__c ='FLS Requested Re-Work');
      insert pur;
      
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);

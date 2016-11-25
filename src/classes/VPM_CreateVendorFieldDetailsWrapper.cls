@@ -32,7 +32,7 @@ public class VPM_CreateVendorFieldDetailsWrapper {
     public string Name3 {get; set;}
     public string Name4 {get; set;}
     public string SearchTerm1 {get; set;}
-    public string Street1 {get; set;}
+    public string Street {get; set;}
     //public string CityPostCode {get; set;}
     public string City {get; set;}
     public string Country {get; set;}    
@@ -73,7 +73,7 @@ public class VPM_CreateVendorFieldDetailsWrapper {
     public string Comments {get; set;}
     public string DetailsOfFinancialCheck {get; set;}
     public string District {get; set;}
-    public string HouseNoSupplement {get; set;}
+    public string HouseNumberSupplement{get; set;}
     public boolean IsNaturalPerson {get; set;}
     public string SupplierAssessmentQuestionnaireQual {get; set;}
     public string SupplierAssessmentQuestionnaireSour {get; set;}

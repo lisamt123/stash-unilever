@@ -3,8 +3,8 @@ public class VPM_RegionalMaintainVendorTest{
  public static final String ECCRegion=  'U2K2,Sirius,Fusion'; 
  public static final String FieldType=  'Regional'; 
  public static final String VendorCode=  '5001010'; 
-  //public static final String successStatusMDM = 'ECC Insert / Update Succeeded'; 
-  public static final String successStatusMDM = null; 
+  public static final String successStatusMDM = 'ECC Insert / Update Succeeded'; 
+ // public static final String successStatusMDM = null; 
   public static final String successStatusMsg = 'mdm insert/update succeeded'; 
  @isTest static void updateAndCheckFieldUpdateTest() {
     VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
@@ -17,7 +17,7 @@ public class VPM_RegionalMaintainVendorTest{
       
      VPM_PurchasingRequests__c purReq1 = [SELECT Id, Name,VPM_FieldType__c,VPM_fieldUpdated__c from VPM_PurchasingRequests__c where id  =: purReq.Id];
      system.debug('hfdfd'+purReq1.VPM_fieldUpdated__c);
-     system.assertEquals(purReq1.VPM_FieldType__c,null);
+     system.assertEquals(purReq1.VPM_FieldType__c,'Global');
      test.stopTest();
  
  }
@@ -80,7 +80,7 @@ public class VPM_RegionalMaintainVendorTest{
               //purReq.VPM_ECC__c = 'U2K2';
         
          update companyCode;
-          //VPM_CheckRecursive.run = true;
+         // VPM_CheckRecursive.run = true;
         update purreq;
        
          test.startTest();
@@ -162,7 +162,7 @@ public class VPM_RegionalMaintainVendorTest{
         pur.VPM_Country__c='BE_Belgium';
         pur.VPM_VendorPhone__c='1234567895';
         pur.VPM_Comments__c='test';
-        pur.VPM_fieldUpdated__c='VPM_LastInterestRun__c,VPM_LastKeyDate__c,VPM_TaxNumber1__c,VPM_ActualQMSystem__c,VPM_LSTno__c,VPM_OrderAcknowledgmentRequirement__c,VPM_PaymentMethod__c,VPM_QMSystemTo__c,VPM_ReasonForExemption__c';
+        pur.VPM_fieldUpdated__c='VPM_LastInterestRun__c,VPM_ReconciliationAccount__c ,VPM_LastKeyDate__c,VPM_TaxNumber1__c,VPM_ActualQMSystem__c,VPM_LSTno__c,VPM_OrderAcknowledgmentRequirement__c,VPM_PaymentMethod__c,VPM_QMSystemTo__c,VPM_ReasonForExemption__c';
         pur.VPM_CompanyCode__c = compCode.Id;
         pur.VPM_VendorCodeLookup__c = vendor.id;
         pur.VPM_ECC__c ='Sirius';

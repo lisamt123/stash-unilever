@@ -19,7 +19,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public List<CompanyCodeFields> CompanyData ;
     public List<PurchasingOrgFields> PurchasingData;
     public CINFields CIN;
-    public String AccountNumberAlternativePayee;
+   // public String AccountNumberAlternativePayee;
     public String message;
     public string statusCode;
     public boolean companyCodeMatch;
@@ -96,7 +96,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String ConfirmationControl;
     public String ContactPerson;
     public String ContactPersonSurname;
-    public String CorporateGrp;
+    public String CorporateGroup;
     public String CorrespondentBank;
     public String Country;
     public String CreditInfoNumber;
@@ -135,7 +135,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String Extension2;
     public String Extension3;
     public String ExtensionPhone; 
-    //public String Extension1;
+    //public String ExtensionPhone;
     public String ExternalMFG;
     public String Fax;
     public String FaxExtension;
@@ -166,7 +166,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String IndonesiaOldVendorNumber;
     public String Industry;
     public String IndustryType;
-    public string InstructionKey;
+    //public string InstructionKey;
     public String InstructionKeyDataExchange;
     public String InterestCalculationIndicator;
     public String InterestFrequency;
@@ -334,7 +334,7 @@ global class VPM_ECCVendorSearchServiceOutput {
         public String PurchasingOrganisation;  
         public String ShippingConditions;  
         public String RoundingProfile;
-        public string UnitOfMeasure; 
+        public string UnitOfMeasureGroup; 
         public String ABCIndicator;
         public String OrderCurrency;
         public String SalesPerson;

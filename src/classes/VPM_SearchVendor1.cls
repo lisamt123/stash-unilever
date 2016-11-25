@@ -1059,7 +1059,7 @@ public with sharing class VPM_SearchVendor1{
                 vendorDetails.VPM_ThirdPartyAddress2__c = op.CompanyData[0].ThirdPartyAddress2;
                 vendorDetails.VPM_ThirdPartyAddress3__c = op.CompanyData[0].ThirdPartyAddress3;  
                 //vendorDetails.VPM_PaymentTermsKeyCreditMemos__c =  op.CompanyData[0].PaymentTermsCreditMemoKey;
-                paymentTermsCreditMemos = op.CompanyData[0].PaymentTermsCreditMemoKey;
+                //paymentTermsCreditMemos = op.CompanyData[0].PaymentTermsCreditMemoKey;
                 vendorDetails.VPM_ThirdPartyAddress4__c = op.CompanyData[0].ThirdPartyAddress4;  
                 vendorDetails.VPM_FreeText1__c = op.CompanyData[0].FreeText1;
                 vendorDetails.VPM_FreeText2__c = op.CompanyData[0].FreeText2;  
@@ -1082,7 +1082,7 @@ public with sharing class VPM_SearchVendor1{
             if(op.PurchasingData <> null && op.PurchasingData.size() > 0) {
                 vendorDetails.VPM_SMSIndicator__c = (op.PurchasingData[0].SMSIndicator <> null ? op.PurchasingData[0].SMSIndicator : false);
                 vendorDetails.VPM_AccntWithVendor__c = op.PurchasingData[0].AccountWithVendor; 
-                vendorDetails.VPM_UnitOfMeasureGrp__c = op.PurchasingData[0].UnitOfMeasure;
+                vendorDetails.VPM_UnitOfMeasureGrp__c = op.PurchasingData[0].UnitOfMeasureGroup;
                 vendorDetails.VPM_RoundingProfile__c = op.PurchasingData[0].RoundingProfile;
                 vendorDetails.VPM_RelevantForPriceDet__c = op.PurchasingData[0].RelevantForPriceDet;
                 //vendorDetails.VPM_ShippingConditions__c = op.PurchasingData[0].ShippingConditions;
@@ -1127,8 +1127,8 @@ public with sharing class VPM_SearchVendor1{
                 
             }
             vendorDetails.VPM_TaxNumAtResponsibleTaxAuthority__c = op.TaxNumberResponsibleAuthority;
-            vendorDetails.VPM_AccNumOfAlternativePayee__c = op.AccountNumberAlternativePayee; 
-            //vendorDetails.VPM_AccountClerkTelephoneNumber__c = op.AccountClerkTelephoneNumber;
+            vendorDetails.VPM_AccNumOfAlternativePayee__c = op.AlternativePayeeAccountNumber; 
+            
             vendorDetails.VPM_AccountGroup__c = op.AccountGroup;
             vendorDetails.VPM_AccountingNote__c = op.AccountingNote;
             vendorDetails.VPM_AccountingText__c = op.AccountingText;
@@ -1233,7 +1233,7 @@ public with sharing class VPM_SearchVendor1{
             vendorDetails.VPM_IndividualSpec__c = op.IndividualSpec;
             vendorDetails.VPM_IndonesiaOldVendorNumber__c = op.IndonesiaOldNumber;
             vendorDetails.VPM_IndustryType__c = op.IndustryType;
-            instKeyDataExchangeDefValue = op.InstructionKey;
+            instKeyDataExchangeDefValue = op.InstructionKeyDataExchange;
             vendorIntVersion = string.isNotBlank(op.InternationalVersion)? op.InternationalVersion: vendorIntVersion;
             
             vendorDetails.VPM_IsraelOldNumber__c = op.IsraelOldNumber;
@@ -1314,7 +1314,7 @@ public with sharing class VPM_SearchVendor1{
             vendorDetails.VPM_AccountGroup__c = op.AccountGroup;
         }
         vendorDetails.VPM_TaxNumAtResponsibleTaxAuthority__c = op.TaxNumberResponsibleAuthority;
-        vendorDetails.VPM_CorporateGrp__c = op.CorporateGrp;
+        vendorDetails.VPM_CorporateGrp__c = op.CorporateGroup;
         vendorDetails.VPM_Customer__c = op.Customer;
         //vendorDetails.VPM_VendorName1__c = op.VendorName1; 
         vendorName = string.isNotBlank(op.VendorName1) ? op.VendorName1 : vendorName;
@@ -1808,7 +1808,7 @@ public with sharing class VPM_SearchVendor1{
                }else if(vendorQuery1.VPM_SupplierAuditSourcing__c.contains(VPM_RecordTypeHelper.NO) && string.isBlank(vendorQuery1.VPM_DetailsOfPlannedActivitiesSour2__c)) {
                    myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.label.VPM_DetailsOfPlannedActivitiesError);
                }
-        }
+        }  
         
         if(generalVendorDetails && isInternationalVersionRendered) {
             if(string.isNotBlank(vendorDetails.VPM_VendorName1Int__c) || string.isNotBlank(vendorDetails.VPM_VendorName2Int__c)

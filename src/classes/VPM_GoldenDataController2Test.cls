@@ -31,7 +31,17 @@ public class VPM_GoldenDataController2Test{
 	public static final string STR_TEST_DATA_SIRIUS='Test Sirius';
    // public PageReference pg {get;set;}
 
-	 
+	static void customSettingData(string regionVar) {
+        VPM_RegionSpecificFields__c region = new VPM_RegionSpecificFields__c();
+        List<VPM_RegionSpecificFields__c> regionList = new List<VPM_RegionSpecificFields__c>();
+        region.Region__c = regionVar;
+        region.name = '1';
+        region.Picklist_API__c ='VPM_Industry__c';
+        region.Picklist_Name__c ='Industry';
+        region.PICKLIST_VALUES__C = '0001_Industry 0001';
+        regionList.add(region);
+        insert regionList;
+    }   
     
     static VPM_PurchasingRequests__c TestData(){
     
@@ -41,9 +51,10 @@ public class VPM_GoldenDataController2Test{
     
         VendorRequest__c obj = new VendorRequest__c();
         obj.Name=COUNTRIES;
-        obj.VPM_CountryName__c=VPM_COUNTRYNAME;
+        obj.VPM_CountryName__c= 'AR_Argentina,BO_Bolivia,CL_Chile,CO_Colombia,CR_Costa Rica,DO_Dominican Rep.,EC_Ecuador,GT_Guatemala';
         insert obj;
-    
+    	
+        customSettingData(STR_CONST_SIRIUS);        
     
         mdm_Vendors__c vendor = new mdm_Vendors__c();
         vendor.mdm_Code__c = MDM_CODE;
@@ -92,13 +103,14 @@ public class VPM_GoldenDataController2Test{
         pur.VPM_ZIPPostcode__c =STR_ZIPCODE;
         pur.VPM_DeletionBlockFlag__c = 'MDM Ops Review - Unblock';
         pur.VPM_GlobalAuthorisationGroup__c='Authorization';
+        pur.VPM_Industry__c = '9001_Oils';    
         insert pur;
         
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
         VPM_PurchasingRequests__c pur1 = [select id,VPM_Commodity__c,VPM_CountryRequestingVendor__c,VPM_Status__c,VPM_GlobalAuthorisationGroup__c from VPM_PurchasingRequests__c where id=:pur.Id];
         system.assertEquals(pur.Id,pur1.Id);
-        system.assertEquals(obj.VPM_CountryName__c,pur.VPM_Country__c );
+        //system.assertEquals(obj.VPM_CountryName__c,pur.VPM_Country__c );
         return pur;
         }
         catch(exception ex){
@@ -120,6 +132,8 @@ public class VPM_GoldenDataController2Test{
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
         obj.Name=COUNTRIES;
         insert obj;
+        
+        customSettingData(STR_CONST_U2K2);       
     
         mdm_Vendors__c vendor = new mdm_Vendors__c();
         vendor.mdm_Code__c = MDM_CODE;
@@ -166,8 +180,10 @@ public class VPM_GoldenDataController2Test{
         //pur.VPM_Commodity__c=commodityCode.id;
         pur.VPM_ZIPPostcode__c =STR_ZIPCODE;
         pur.VPM_GlobalAuthorisationGroup__c='Authorization';
+        pur.VPM_Industry__c = '9001_Oils';
         insert pur;
         pur.VPM_Commodity__c=commodityCode.id;
+        pur.VPM_CashManagementGroup__c = 'V1000_Vendor RM_Vendors: RM & Packaging';
         update pur;
         VPM_PurchasingRequests__c pur1 = [select id,VPM_Commodity__c,VPM_CountryRequestingVendor__c,VPM_Status__c,VPM_GlobalAuthorisationGroup__c from VPM_PurchasingRequests__c where id=:pur.Id];
         system.assertEquals(pur.Id,pur1.Id);
@@ -183,15 +199,15 @@ public class VPM_GoldenDataController2Test{
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
     VendorRequest__c obj = new VendorRequest__c();
-        obj.VPM_CountryName__c=VPM_COUNTRYNAME;
+        obj.VPM_CountryName__c= STR_CONST_FUSION;
         obj.Name=COUNTRIES;
         insert obj;
- 
-    
+ 		
+    	customSettingData(STR_CONST_FUSION); 
         mdm_Vendors__c vendor = new mdm_Vendors__c();
         vendor.mdm_Code__c = MDM_CODE;
         vendor.mdm_City__c = MDM_CITY;
-        vendor.mdm_Country__c ='India';
+        vendor.mdm_Country__c ='India';     
         vendor.mdm_Name1__c ='Test Fusion';
         vendor.mdm_ID__c = MDM_ID;
         insert vendor;
@@ -233,6 +249,7 @@ public class VPM_GoldenDataController2Test{
         //pur.VPM_Commodity__c=commodityCode.id;
         pur.VPM_ZIPPostcode__c =STR_ZIPCODE;
         pur.VPM_GlobalAuthorisationGroup__c='Authorization';
+        pur.VPM_Industry__c = '9001_Oils';
         insert pur;
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
@@ -254,7 +271,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         obj.Name=COUNTRIES;
         insert obj;
     
- 
+ 		customSettingData(STR_CONST_CORDILLERA); 
     
         mdm_Vendors__c vendor = new mdm_Vendors__c();
         vendor.mdm_Code__c = MDM_CODE;
@@ -301,6 +318,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         //pur.VPM_Commodity__c=commodityCode.id;
         pur.VPM_ZIPPostcode__c =STR_ZIPCODE;
         pur.VPM_GlobalAuthorisationGroup__c='Authorization';
+    	pur.VPM_Industry__c = '9001_Oils';
         insert pur;
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
@@ -383,6 +401,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
        
         pur.VPM_VendorType__c =FREIGHTVENDOR;
         pur.VPM_Country__c =VPM_COUNTRYNAME;
+        pur.VPM_Industry__c = '9001_Oils'; 
         //pur.VPM_Commodity_Family__c = 'Out of Scope';
         insert pur;
         pur.VPM_Commodity__c=commodityCode.id;
@@ -460,7 +479,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         //pur.VPM_DeletionBlockFlag__c ='delete';
      //  pur.VPM_Company_Code_Value__c = '2611';
         pur.VPM_ProvidedUnblockUndelete__c= TRUE;
-        
+        pur.VPM_Industry__c = '9001_Oils';
         pur.VPM_Country__c =VPM_COUNTRYNAME;
         pur.VPM_VendorType__c =FREIGHTVENDOR;
         //pur.VPM_Commodity_Family__c =commodityCode.VPM_CommodityFamily__c;
@@ -482,10 +501,15 @@ static VPM_PurchasingRequests__c TestCordillera(){
          VPM_PurchasingRequests__c purId = TestData();
          ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+        PageReference pageRef = Page.VPM_GoldenData1;
+        Test.setCurrentPage(pageRef);
+        Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200,'Maintain'));
         goldenData.commodityCodeVar = null;
         goldenData.paymentMethodDefaultValue = null;
          goldenData.newMethod();
-         goldenData.newMethod1();
+         goldenData.newMethod1();        
+        goldenData.saveAndBackToLaunchScreen();
+        
     
     }
     
@@ -509,10 +533,17 @@ static VPM_PurchasingRequests__c TestCordillera(){
              string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
          	purId.recordTypeId =recordTypeId;
             purId.VPM_VendorBlockUnblockDelete__c ='Block';
+            goldenData.vendorName = '';
+            goldenData.taxJuriCodeDefValue = 'taxJuriCodeDefValue111111111';
+            goldenData.vendorPaymentMethod = '[one,one,one,one,one,one,one,one,one,one,one]';
             goldenData.checkValidations();
-            
+            goldenData.saveAndBackToLaunchScreen();
+            goldenData.recordTypeId = 'Extend';
+			goldenData.backToGlobalScreen();
+            purId.VPM_ExtensionType__c ='';             
+            update purId;
+            goldenData.backToGlobalScreen();
 
-            
             
       //   goldenData.saveAndBackToLaunchScreen();
     	// purId.VPM_ProcurementApprovalRequired__c=true;
@@ -687,7 +718,8 @@ static VPM_PurchasingRequests__c TestCordillera(){
              
          update purId;
     	goldenData.saveRecord();
-        
+        goldenData.vendorName = '';
+		goldenData.checkValidations();         
     
     
     }

@@ -582,7 +582,7 @@ with Sharing public class VPM_GoldenDataController2 {
     
        
         s=Apexpages.currentPage().getUrl();
-        system.debug('S'+ s);
+        system.debug('@@S'+ s);
         system.debug('@@ Check Validations Called');
         system.debug('@@ entity' + entity);
         recordTypeId = VPM_RecordTypeHelper.getLaunchScreenVariable('',purchReqVar.RecordTypeId);
