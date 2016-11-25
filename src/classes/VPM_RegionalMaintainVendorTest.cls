@@ -38,7 +38,8 @@ public class VPM_RegionalMaintainVendorTest{
        
          test.stopTest();
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
-        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,successStatusMDM ); 
+		VPM_PurchasingRequests__c result = [SELECT Id,VPM_ECC_InsertUpdateStatus__c FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
+        system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,result.VPM_ECC_InsertUpdateStatus__c ); 
         
  }
     
