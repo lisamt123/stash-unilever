@@ -227,6 +227,8 @@ public class IPM_FinancialController_Test {
              system.assert(globalOriginal!=null, 'Global original project not created');
              system.assertEquals(globalOriginal.name, 'TestComments1', INVALID_PROJECT_NAME);
              
+             IPM_TestFactory_Helper.createIPMProjectResource(globalOriginal.id, true);
+             
              //Finance record for global project which is NON consolidate             
              IPM_Financial__c globFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
              Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='TestComments1_LA_BR'];
@@ -262,7 +264,12 @@ public class IPM_FinancialController_Test {
              List<IPM_Project_Rollout__c> regionalRolloutList = [SELECT Id, Target_Launch_Date__c FROM IPM_Project_Rollout__c WHERE IPM_Project__c =: globalOriginal.id ]; 
              regionalRolloutList[0].Target_Launch_Date__c = System.today().addMonths(1);
              update regionalRolloutList; 
-             
+            
+             IPM_Project_Rollout__c projectRollout = [SELECT Id, Target_Launch_Date__c,IPM_Rollout_Project__c,MCO_Name__c FROM IPM_Project_Rollout__c WHERE IPM_Project__c =: globalOriginal.id limit 1];
+             map<Id, IPM_Project_Rollout__c> ProjectIdRollout =  new Map<Id,IPM_Project_Rollout__c>();
+             ProjectIdRollout.put(globalOriginal.id,projectRollout);
+             IPM_RolloutPlanTLDSync rolloutSync = new IPM_RolloutPlanTLDSync();
+             rolloutSync.notifyProjectFinanceAboutFinanceLeaderConfirmation(ProjectIdRollout);
        }
 
         
