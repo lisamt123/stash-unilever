@@ -9819,6 +9819,11 @@ Run Reports</description>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Procurement_Contact__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Profession__c</field>
         <readable>false</readable>
     </fieldPermissions>
