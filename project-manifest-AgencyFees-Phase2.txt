@@ -1,5 +1,13 @@
 src
 src/classes
+src/classes/AF_middlebonusmatrix.cls
+src/classes/AF_middlebonusmatrix.cls-meta.xml
+src/classes/TriggerFactory.cls
+src/classes/TriggerFactory.cls-meta.xml
+src/classes/AF_Bonus_SummaryHandler.cls
+src/classes/AF_Bonus_SummaryHandler.cls-meta.xml
+src/classes/AF_UpdateBonusSummaryCatApproverValues.cls
+src/classes/AF_UpdateBonusSummaryCatApproverValues.cls-meta.xml
 src/classes/AF_ApprovalProcessForBrandEstController.cls
 src/classes/AF_ApprovalProcessForBrandEstController.cls-meta.xml
 src/classes/AF_AnnualBonus_Test.cls
@@ -113,4 +121,8 @@ src/email/Agency_Fees_Email/AF_Email_To_CF_ReadyForPO.email
 src/email/Agency_Fees_Email/AF_Email_To_CF_ReadyForPO.email-meta.xml
 src/workflows
 src/workflows/AF_isBonusLinkForAgency__c.workflow
+src/workflows/AF_Bonus_Summary__c.workflow
+src/triggers
+src/triggers/AF_Bonus_SummaryTrigger.trigger
+src/triggers/AF_Bonus_SummaryTrigger.trigger-meta.xml
 src

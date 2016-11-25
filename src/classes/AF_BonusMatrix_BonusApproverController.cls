@@ -15,7 +15,7 @@ public with sharing class AF_BonusMatrix_BonusApproverController
      public set<id> rejectBonusRecords;
      public boolean checkHeaderA {get;set;}
      public boolean checkHeaderR {get;set;}
-     public boolean isError;
+     public boolean isError{get;set;}
      private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
      public List<AF_Sub_Result__c>lstSubresultUpdate;
      public Boolean popup{get;set;}
@@ -130,6 +130,7 @@ public with sharing class AF_BonusMatrix_BonusApproverController
                  ApexPages.addMessage(myMsg);
                  isError = true;
                  
+                 
             }
             else if(wr.checkedA)
             {
@@ -153,6 +154,7 @@ public with sharing class AF_BonusMatrix_BonusApproverController
                     ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Comments));
                     
                     isError = true;
+                    
                 }
                 
             }
@@ -259,7 +261,7 @@ public with sharing class AF_BonusMatrix_BonusApproverController
         // Error when the user checks both approve and reject checkbox
         if(!isError) 
         {
-            PageReference AgencyFeePage = new PageReference('https://unilever--cogdeployt--c.cs42.visual.force.com/apex/AF_AgencyHomePage?sfdc.tabName=01rE00000001wh9');
+            PageReference AgencyFeePage = new PageReference('/apex/AF_AgencyHomePage?sfdc.tabName=01rE00000001wh9');
             AgencyFeePage.setRedirect(true);
             return AgencyFeePage;
         }
@@ -310,7 +312,7 @@ public with sharing class AF_BonusMatrix_BonusApproverController
           checkedA = false;
           checkedR = false;
           RejectReason = '';
-       }
+        }
     }
     
 }

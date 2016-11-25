@@ -12,6 +12,20 @@
         <shortDescription>AF_Approve/Reject BonusMatrix</shortDescription>
         <value>You are about to either approve/reject these records. Do you wish to proceed?</value>
     </labels>
+    <labels>
+        <fullName>AF_Approve_Reject_BonusMatrix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Approve/Reject BonusMatrix</shortDescription>
+        <value>You are about to either approve/reject these records. Do you wish to proceed?</value>
+    </labels>
+    <labels>
+        <fullName>AF_Bonus_Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Bonus_Submit</shortDescription>
+        <value>You are about to submit this record for approval. Do you wish to proceed?</value>
+    </labels>
 	<labels>
         <fullName>AF_Adapation</fullName>
         <language>en_US</language>
