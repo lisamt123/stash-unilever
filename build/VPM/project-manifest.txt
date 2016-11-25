@@ -3668,7 +3668,7 @@ src/layouts/VPM_VendorRequestDefaultValues__mdt-Vendor Request Default Values La
 src/objects
 src/objects/mdm_Vendors__c.object
 src/objects/User.object
-src/objects/VendorRequest__c.object
+src/objects/VPM_LatamCountries__c.object
 src/objects/VPM_CommodityApprover__c.object
 src/objects/VPM_CommodityCode__c.object
 src/objects/VPM_CompanyCode__c.object
