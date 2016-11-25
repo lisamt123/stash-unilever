@@ -205,7 +205,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 //MDM Geography . //change-2
                 for (String field : Schema.SObjectType.MDO_Geography__c.fields.getMap().KeySet())
                 {
-                    if (field != IPM_ConstantUtils.SF_ID)
+                    if (!field.equalsIgnoreCase(IPM_ConstantUtils.SF_ID))
                     {
                         queryString+= field + ', ';
                     }
@@ -276,7 +276,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         //MDM Geography  MDO
         For (String field : Schema.SObjectType.MDO_Geography__c.fields.getMap().KeySet())
         { //change-3
-            if (field != IPM_ConstantUtils.SF_ID)
+            if (!field.equalsIgnoreCase(IPM_ConstantUtils.SF_ID))
             {
                 queryString+= field + ', ';
             }
@@ -323,7 +323,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             //IPM Country
             for (String field : Schema.SObjectType.IPM_Country__c.fields.getMap().KeySet())
             {
-                if (field != IPM_ConstantUtils.SF_ID)
+                if (!field.equalsIgnoreCase(IPM_ConstantUtils.SF_ID))
                 {
                     queryString+= field + ', ';
                 }
