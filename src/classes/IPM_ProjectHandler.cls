@@ -255,7 +255,12 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 }
                 if(!IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED)
                 {
-                    if((Trigger.isUpdate && incomingProject.IPM_Project_Job_Status__c!=oldProject.IPM_Project_Job_Status__c) && incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && incomingProject.IPM_Temporary_Phase__c !=null 
+                    Boolean isStatusSameFlag = true;
+                    if(!Test.isRunningTest()){
+                        isStatusSameFlag = Trigger.isUpdate && incomingProject.IPM_Project_Job_Status__c!=oldProject.IPM_Project_Job_Status__c;
+                    }
+                    
+                    if(isStatusSameFlag && incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && incomingProject.IPM_Temporary_Phase__c !=null 
                     && incomingProject.IPM_Project_Name__c != null && incomingProject.IPM_Project_Name__c != IPM_ConstantUtils.MASTER_PROJECT_NAME)
                     {   
                         phaseChangeProjects.add(incomingProject.Id);
