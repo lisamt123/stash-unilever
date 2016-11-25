@@ -49,7 +49,7 @@ public class VPM_GoldenDataController2Test{
         {
        string  recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
-        VendorRequest__c obj = new VendorRequest__c();
+        VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
         obj.Name=COUNTRIES;
         obj.VPM_CountryName__c= 'AR_Argentina,BO_Bolivia,CL_Chile,CO_Colombia,CR_Costa Rica,DO_Dominican Rep.,EC_Ecuador,GT_Guatemala';
         insert obj;
@@ -128,7 +128,7 @@ public class VPM_GoldenDataController2Test{
     
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
-    VendorRequest__c obj = new VendorRequest__c();
+    	VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
         obj.Name=COUNTRIES;
         insert obj;
@@ -198,10 +198,11 @@ public class VPM_GoldenDataController2Test{
     
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
-    VendorRequest__c obj = new VendorRequest__c();
+    	VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
         obj.VPM_CountryName__c= STR_CONST_FUSION;
         obj.Name=COUNTRIES;
-        insert obj;
+        insert obj; 
+        
  		
     	customSettingData(STR_CONST_FUSION); 
         mdm_Vendors__c vendor = new mdm_Vendors__c();
@@ -266,10 +267,10 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
-       VendorRequest__c obj = new VendorRequest__c();
+       VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
         obj.Name=COUNTRIES;
-        insert obj;
+        insert obj; 
     
  		customSettingData(STR_CONST_CORDILLERA); 
     
@@ -335,7 +336,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
-    VendorRequest__c obj = new VendorRequest__c();
+    	VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
         obj.Name=COUNTRIES;
         insert obj;
@@ -419,10 +420,10 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
       string   recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
     
-    VendorRequest__c obj = new VendorRequest__c();
+    	VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
         obj.Name=COUNTRIES;
-        insert obj;
+        insert obj; 
     
         mdm_Vendors__c vendor = new mdm_Vendors__c();
         vendor.mdm_Code__c = MDM_CODE;
@@ -504,6 +505,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         PageReference pageRef = Page.VPM_GoldenData1;
         Test.setCurrentPage(pageRef);
         Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200,'Maintain'));
+        goldenData.approvalCallMethod();
         goldenData.commodityCodeVar = null;
         goldenData.paymentMethodDefaultValue = null;
          goldenData.newMethod();
@@ -785,7 +787,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
   } */
     
       static testMethod void approvalMaintain1UnBlock(){
-    
+    	
        // PageReference pg =null;
         ApexPages.currentPage().getParameters().put('isMaintain2','isMaintain2');
         
@@ -877,7 +879,12 @@ static testMethod void VPM_ApprovalMethodFreight12(){
     
     string    recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
     
- 
+ 		VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
+        obj.Name=COUNTRIES;
+        obj.VPM_CountryName__c= 'AR_Argentina,BO_Bolivia,CL_Chile,CO_Colombia,CR_Costa Rica,DO_Dominican Rep.,EC_Ecuador,GT_Guatemala';
+        insert obj; 
+    	
+        customSettingData(STR_CONST_U2K2);     
     
  //customSettingData('U2K2');    
         VPM_Region__c reg = new VPM_Region__c();

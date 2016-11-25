@@ -18,7 +18,7 @@ public class VPM_SearchVendor1Test{
         regionList.add(region);
         insert regionList;
         
-        VendorRequest__c latamContries = new VendorRequest__c();
+        VPM_LatamCountries__c latamContries = new VPM_LatamCountries__c();
         latamContries.name = 'Countries';
         latamContries.VPM_CountryName__c = 'AR_Argentina,BO_Bolivia,CL_Chile,CO_Colombia,CR_Costa Rica,DO_Dominican Rep.,EC_Ecuador,GT_Guatemala';
         insert latamContries;

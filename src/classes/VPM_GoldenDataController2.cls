@@ -144,7 +144,7 @@ with Sharing public class VPM_GoldenDataController2 {
     
     public List<string> paymentMethodDefaultValue{get;set;}
     
-    VendorRequest__c obj = VendorRequest__c.getInstance('Countries');
+    VPM_LatamCountries__c  obj = VPM_LatamCountries__c.getInstance('Countries');
     public string latam;
     
    public string NewCashManagementGroup {get; set;} 
@@ -359,8 +359,8 @@ with Sharing public class VPM_GoldenDataController2 {
         }
             
         //modified for IAPR-605
-         system.debug('@@ LATAm Countries:' + obj);
-         latam = obj.VPM_CountryName__c;
+      system.debug('@@ LATAm Countries:' + obj);
+        latam = obj.VPM_CountryName__c;
         
         system.debug('@@ LATAm Countries:' + latam);
         IF(purchReqVar.VPM_Country__c == VENDOR_COUNTRY)

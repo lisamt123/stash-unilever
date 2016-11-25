@@ -149,4 +149,19 @@ public with sharing  class VPM_ApprovalSubmitTest {
        VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         
     }
+    
+  /*  static testMethod void VPM_ApprovalMethodProcurement(){
+        
+         VPM_PurchasingRequests__c purId = TestDataFreightApprovalMethod();
+       //  ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+         purId.VPM_VendorType__c  = 'FRGT_Freight Vendor_G001';
+         purid.VPM_GlobalAuthorisationGroup__c='Freight_Freight';
+
+         List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(purId);
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+        
+    } */
 }

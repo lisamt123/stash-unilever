@@ -2387,19 +2387,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_BankValidationApproverComments__c</fullName>
-        <description>VPM - Used to capture the Bank Validation Approver comments during Approve/Reject action</description>
-        <externalId>false</externalId>
-        <label>Bank Validation Approver Comments</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_BankValidatorApproval__c</fullName>
         <description>VPM- Time when the bank Validator approves the request.</description>
         <externalId>false</externalId>
@@ -7783,19 +7770,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <type>DateTime</type>
     </fields>
     <fields>
-        <fullName>VPM_FLSApproverComments__c</fullName>
-        <description>VPM - Used to capture the FLS Approver comments during Approve/Reject action</description>
-        <externalId>false</externalId>
-        <label>FLS Approver Comments</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_FLSInCountryReqVen__c</fullName>
         <defaultValue>false</defaultValue>
         <description>VPM - This field is used to store the value whether the country is a FLS or Non FLS country.</description>
@@ -7895,19 +7869,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
-    </fields>
-    <fields>
-        <fullName>VPM_FinanceApproverComments__c</fullName>
-        <description>VPM - Used to capture the Finance Approver Comments during Approve/Reject action</description>
-        <externalId>false</externalId>
-        <label>Finance Approver Comments</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_FinanceReworls__c</fullName>
@@ -8043,19 +8004,6 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
-    </fields>
-    <fields>
-        <fullName>VPM_FreightApproverComments__c</fullName>
-        <description>VPM - Used to capture the Russian Custom Tax Approver comments during Approve/Reject action</description>
-        <externalId>false</externalId>
-        <label>Freight Approver Comments</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_FreightReworks__c</fullName>
@@ -13894,19 +13842,6 @@ VPM_Approver10__c = $User.Id))
         <type>DateTime</type>
     </fields>
     <fields>
-        <fullName>VPM_ProcurementApproverComments__c</fullName>
-        <description>VPM - Used to capture the  Procurement Approval comments during Approve /Reject action</description>
-        <externalId>false</externalId>
-        <label>Procurement Approver Comments</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_ProcurementReworks__c</fullName>
         <defaultValue>0</defaultValue>
         <description>VPM - No of time procurement sends for rework.</description>
@@ -16450,19 +16385,6 @@ VPM_Approver10__c = $User.Id))
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>VPM_RussianCustomTaxApproverComments__c</fullName>
-        <description>VPM - Used to capture the Russian Custom Tax Approver comments during Approve/Reject action</description>
-        <externalId>false</externalId>
-        <label>Russian Custom Tax Approver Comments</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_RussianCustomTaxReworks__c</fullName>
         <defaultValue>0</defaultValue>
         <description>VPM - Number of time russian custom tax requests rework.</description>
@@ -16507,7 +16429,6 @@ VPM_Approver10__c = $User.Id))
         <label>SAP BPM RequestID</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-		<startingNumber>5000000</startingNumber>
         <type>AutoNumber</type>
     </fields>
     <fields>
@@ -106767,13 +106688,13 @@ ISBLANK(VPM_VendorPhone__c)
         <fullName>VPM_VendorPhoneOnlyNumeric</fullName>
         <active>true</active>
         <description>VPM - Validate to check only  Numeric character allowed</description>
-        <errorConditionFormula>NOT(ISBLANK(VPM_VendorPhone__c))
-&amp;&amp;
-IF(LEN(VPM_VendorPhone__c)==11 ,  NOT(REGEX(VPM_VendorPhone__c, &quot;0[1-9]{1}[0-9]{9}&quot;)) , 
- IF(BEGINS(VPM_VendorPhone__c, &quot;0&quot;), NOT(REGEX(VPM_VendorPhone__c, &quot;[0-9]{1}[1-9]{2}[0-9]{3}[0-9]{4}&quot;)), NOT(REGEX(VPM_VendorPhone__c, &quot;[1-9]{1}[0-9]{2}[0-9]{3}[0-9]{4}&quot;)))  
-)
-&amp;&amp;
- $User.FirstName &lt;&gt; &quot;Clicktools&quot;</errorConditionFormula>
+        <errorConditionFormula>NOT(ISBLANK(VPM_VendorPhone__c)) 
+&amp;&amp; 
+(LEFT(VPM_VendorPhone__c, 1) = &quot;+&quot; 
+|| 
+LEFT(VPM_VendorPhone__c, 2) = &quot;00&quot;) 
+&amp;&amp; 
+$User.LastName &lt;&gt; &quot;Clicktools&quot;</errorConditionFormula>
         <errorMessage>Phone Number must not start with 00 or include an international dialling code, e.g. +22</errorMessage>
     </validationRules>
     <webLinks>
