@@ -52,12 +52,13 @@
         List<VPM_PurchasingRequests__c> pur1 = [SELECT Id,VPM_MDMInsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
         system.assertEquals(pur1[0].VPM_MDMInsertUpdateStatus__c,failStatusMDM);
     }
-    @isTest static void testCallout400() {
+      
+    @isTest static void testCallout00() {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
         string vendorId = pur.get(0).id;
         //VPM_CreateVendorServiceHelper.CreateVendorResponse resp = new VPM_CreateVendorServiceHelper.CreateVendorResponse();
         test.startTest();
-        Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(400));
+        Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(0));
         VPM_CreateVendorServiceHelper.createVendor(vendorId);
         test.stopTest();
         List<VPM_PurchasingRequests__c> pur1 = [SELECT Id,VPM_MDMInsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];

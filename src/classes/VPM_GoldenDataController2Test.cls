@@ -63,7 +63,7 @@ public class VPM_GoldenDataController2Test{
         vendor.mdm_Name1__c =MDM_NAME;
         vendor.mdm_ID__c = MDM_ID;
         insert vendor;
-        system.assert(vendor.Id!=null,STR_ERROR);
+        system.assert(vendor.Id!=null,STR_ERROR);  
         
         VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
         companyCode.VPM_CompanyCode__c = '4707';
@@ -863,10 +863,13 @@ static testMethod void VPM_ApprovalMethodFreight12(){
          purId.VPM_VendorType__c  = STR_VENDORTYPEMSB;
          purId.VPM_GlobalAuthorisationGroup__c='SCS-CAPEX';
     purId.VPM_PaymentMethod__c='[3_ACC - HSBC At Par Cheque, 4_CCC - UTI At Par Cheque]';
-         //purId.
+         purId.VPM_VATRegistrationNumber__c='1133442';
+   purId.VPM_ReconciliationAccount__c='sddddd';
+    purid.VPM_BankAccountNumber__c='105067483';
        
          
           update purId;
+    goldenData.commonSaveMethod();
           VPM_PurchasingRequests__c pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_CheckDoubleInvoices__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,VPM_Commodity_Family__c from VPM_PurchasingRequests__c  where id =: purId.id limit 1];
           system.assertEquals(purId.VPM_VendorType__c ,pur1.VPM_VendorType__c );
           system.assertEquals(purId.VPM_GlobalAuthorisationGroup__c,pur1.VPM_GlobalAuthorisationGroup__c);

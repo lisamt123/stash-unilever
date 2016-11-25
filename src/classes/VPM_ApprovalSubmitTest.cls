@@ -150,18 +150,176 @@ public with sharing  class VPM_ApprovalSubmitTest {
         
     }
     
-  /*  static testMethod void VPM_ApprovalMethodProcurement(){
+        static VPM_PurchasingRequests__c TestDataRussainApprovalMethod(){
+    
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
         
-         VPM_PurchasingRequests__c purId = TestDataFreightApprovalMethod();
+        mdm_Vendors__c vendor = new mdm_Vendors__c();
+        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_City__c = 'Andorra';
+        vendor.mdm_Country__c ='DZ_Algeria';
+        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_ID__c = '1234';
+        insert vendor;
+        system.assert(vendor.Id!=null,'Error');
+        
+        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.ECC__c = 'U2K2';
+        companyCode.VPM_Country__c ='Algeria';
+        insert companyCode;
+        system.assert(companyCode.Id!=null,'Error');
+        
+         VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
+        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
+        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
+        commodityCode.Name='Ad-hoc Market Research - Qualitative';
+        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
+        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_Region__c='U2K2';
+          
+        insert commodityCode;
+        system.assert(commodityCode.Id!=null,'Error');
+        
+        VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
+        pur.VPM_ECC__c = 'U2K2';
+       // pur.VPM_ProvidedBankDetails__c = TRUE;
+        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_Status__c = 'Draft Request';
+        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_VendorCodeLookup__c =vendor.Id;
+        pur.recordTypeId=recordTypeId;
+        pur.VPM_CompanyCode__c=companyCode.Id;
+        pur.VPM_City__c='Test Street';
+        pur.VPM_Street1__c='Test Street';
+        pur.VPM_CountryRequestingVendor__c='Algeria';
+        pur.VPM_VendorPhone__c='1234567895';
+        //pur.VPM_Commodity__c=commodityCode.id;
+        pur.VPM_ZIPPostcode__c ='54132';
+        //pur.VPM_GlobalAuthorisationGroup__c='SCS-CAPEX AFR ASIA SEAA_VMBA CAPEX AAR';
+        pur.VPM_AdvancedFormSubmitted__c ='Yes';
+         pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
+         pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+		 pur.VPM_RussianTaxApprovalRequired__c=true;
+      
+      		pur.VPM_Rework__c='No';
+         pur.VPM_AdvancedFormSubmitted__c='Yes';
+      	 pur.VPM_RussiaSubmitted__c='No';
+         pur.VPM_IsInApprovalProcess__c='';
+
+        insert pur;
+        
+        system.assert(pur.Id!=null,'Error');
+        pur.VPM_Commodity__c=commodityCode.id;
+        update pur;
+       VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
+               VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
+               VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
+               VPM_Commodity_Family__c,VPM_CRVT__c ,VPM_FreightSubmitted__c,VPM_FreightApprovalRequired__c,VPM_IsInApprovalProcess__c from VPM_PurchasingRequests__c  where id =: pur.id limit 1];
+       system.assertEquals(pur.VPM_Commodity__c,pur1.VPM_Commodity__c);
+        return pur1;    
+    }
+    
+  static testMethod void VPM_ApprovalMethodRussian(){
+        
+         VPM_PurchasingRequests__c purId = TestDataRussainApprovalMethod();
        //  ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-         purId.VPM_VendorType__c  = 'FRGT_Freight Vendor_G001';
-         purid.VPM_GlobalAuthorisationGroup__c='Freight_Freight';
-
+         purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
+         purid.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+	
          List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
        purcReqlst.add(purId);
        // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
        VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         
-    } */
+    }
+    
+    static VPM_PurchasingRequests__c TestDataBankApprovalMethod(){
+    
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+        
+        mdm_Vendors__c vendor = new mdm_Vendors__c();
+        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_City__c = 'Andorra';
+        vendor.mdm_Country__c ='DZ_Algeria';
+        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_ID__c = '1234';
+        insert vendor;
+        system.assert(vendor.Id!=null,'Error');
+        
+        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.ECC__c = 'U2K2';
+        companyCode.VPM_Country__c ='Algeria';
+        insert companyCode;
+        system.assert(companyCode.Id!=null,'Error');
+        
+         VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
+        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
+        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
+        commodityCode.Name='Ad-hoc Market Research - Qualitative';
+        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
+        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_Region__c='U2K2';
+          
+        insert commodityCode;
+        system.assert(commodityCode.Id!=null,'Error');
+        
+        VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
+        pur.VPM_ECC__c = 'U2K2';
+       // pur.VPM_ProvidedBankDetails__c = TRUE;
+        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_Status__c = 'Draft Request';
+        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_VendorCodeLookup__c =vendor.Id;
+        pur.recordTypeId=recordTypeId;
+        pur.VPM_CompanyCode__c=companyCode.Id;
+        pur.VPM_City__c='Test Street';
+        pur.VPM_Street1__c='Test Street';
+        pur.VPM_CountryRequestingVendor__c='Algeria';
+        pur.VPM_VendorPhone__c='1234567895';
+        //pur.VPM_Commodity__c=commodityCode.id;
+        pur.VPM_ZIPPostcode__c ='54132';
+        //pur.VPM_GlobalAuthorisationGroup__c='SCS-CAPEX AFR ASIA SEAA_VMBA CAPEX AAR';
+        pur.VPM_AdvancedFormSubmitted__c ='Yes';
+         pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
+         pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+		 pur.VPM_BankDataValidationRequired__c=true;
+      pur.VPM_FinanceApprovalRequired__c=true;
+      		pur.VPM_Rework__c='No';
+         pur.VPM_AdvancedFormSubmitted__c='Yes';
+      	 pur.VPM_BankDataValidationSubmitted__c='No';
+         pur.VPM_IsInApprovalProcess__c='';
+
+        insert pur;
+        
+        system.assert(pur.Id!=null,'Error');
+        pur.VPM_Commodity__c=commodityCode.id;
+        update pur;
+       VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
+               VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
+               VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
+               VPM_Commodity_Family__c,VPM_CRVT__c ,VPM_FreightSubmitted__c,VPM_FreightApprovalRequired__c,VPM_IsInApprovalProcess__c from VPM_PurchasingRequests__c  where id =: pur.id limit 1];
+       system.assertEquals(pur.VPM_Commodity__c,pur1.VPM_Commodity__c);
+        return pur1;    
+    }
+    
+     static testMethod void VPM_ApprovalMethodBank(){
+        
+         VPM_PurchasingRequests__c purId = TestDataBankApprovalMethod();
+       //  ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+         purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
+         purid.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+	
+         List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(purId);
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+        
+    }
+    
 }

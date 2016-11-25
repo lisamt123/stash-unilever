@@ -5,7 +5,7 @@ public class VPM_SearchVendor1Test{
     public static final string vendorCode = '5001010';  
     public static final string eccU2k2 = 'U2K2';
     public static final string eccFusion = 'Fusion';
-    public static final string eccCORDILLERA = 'Cordillera';
+    public static final string eccCORDILLERA = 'Cordillera'; 
     
     static void customSettingData(string regionVar) {
         VPM_RegionSpecificFields__c region = new VPM_RegionSpecificFields__c();
@@ -101,7 +101,7 @@ public class VPM_SearchVendor1Test{
     static  VPM_PurchasingRequests__c TestDataFusion(){    
         customSettingData(eccFusion);    
         VPM_Region__c reg = new VPM_Region__c();
-        reg.VPM_Code__c = '13';
+        reg.VPM_Code__c = '05';
         reg.Name = vpmCompanyCountry; 
         reg.VPM_Country__c = vpmCountry;
         insert reg;
@@ -309,7 +309,7 @@ public class VPM_SearchVendor1Test{
         //searchVendor.getExitButtonVisible();    
     }
     
-    static testMethod void VPM_SearchVendor2(){
+    static testMethod void VPM_SearchVendorU2K2Create(){
             
         VPM_PurchasingRequests__c purId = TestDataU2K2();
         string recordTypeId = [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
@@ -360,7 +360,7 @@ public class VPM_SearchVendor1Test{
         //searchVendor.getExitButtonVisible();    
     }
     
-    static testMethod void VPM_SearchVendor1(){        
+    static testMethod void VPM_SearchVendorU2k2Extend(){        
     	VPM_PurchasingRequests__c purId = TestDataU2K2();
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Extend)'].Id; 
         purId.recordTypeId=recordTypeId;
@@ -400,7 +400,85 @@ public class VPM_SearchVendor1Test{
         //searchVendor.getExitButtonVisible();    
 	}
     
-    static testMethod void VPM_SearchVendor3(){        
+    static testMethod void VPM_SearchVendorFusionExtend(){        
+    	VPM_PurchasingRequests__c purId = TestDataFusion();
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Extend)'].Id; 
+        purId.recordTypeId=recordTypeId;
+        update purId;
+        VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purId.id];
+        system.assertEquals(purch.VPM_ECC__c, 'Fusion');
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        
+        VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
+        searchVendor.intCalcIndicatorDefValues = '01';
+        searchVendor.getVendorDetailList();        
+        searchVendor.mdmVendorType = '';
+        searchVendor.VendorSelected();    
+        
+        searchVendor.mdmVendorType = '0122222 \\#; 0050502921 \\#; U2K2';
+        searchVendor.VendorSelected(); 
+        Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200,'Maintain'));
+        //searchVendor.requestType ='Maintain';  
+        Test.startTest();
+        searchVendor.VendorSelected(); 
+        //VPM_ECCVendorSearchServiceOutput op = new VPM_ECCVendorSearchServiceOutput();
+        //op = searchVendor.FetchVendorDeatilSAPService(string.valueOf(vendor.mdm_vCodeSirius__c));           
+        Test.stopTest();    
+    
+        searchVendor.newMethod();
+        searchVendor.vendorNameChange(); 
+        searchVendor.SendWebformMethod();  
+        searchVendor.backBtnAction();  
+        searchVendor.GoldenDataSave();  
+        searchVendor.GoldenDataSave2();          
+        searchVendor.SaveAndExit();   
+        searchVendor.SaveMethod();
+        searchVendor.VendorNotFound = true;    
+        searchVendor.isInternationalVersionCollapsed();
+        searchVendor.getButtonVisibleSaveMenu();
+        searchVendor.getButtonVisibleSaveExit();
+        //searchVendor.getExitButtonVisible();    
+	}
+    
+    static testMethod void VPM_SearchVendorFusionCreate(){        
+    	VPM_PurchasingRequests__c purId = TestDataFusion();
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
+        purId.recordTypeId=recordTypeId;
+        update purId;
+        VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purId.id];
+        system.assertEquals(purch.VPM_ECC__c, 'Fusion');
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        
+        VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
+        searchVendor.getVendorDetailList();        
+                
+        searchVendor.mdmVendorType = '0122222 \\#; 0050502921 \\#; U2K2';
+        searchVendor.VendorSelected(); 
+        Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200, 'Extend'));
+        //searchVendor.requestType ='Maintain';  
+        Test.startTest();
+        searchVendor.VendorSelected(); 
+        //VPM_ECCVendorSearchServiceOutput op = new VPM_ECCVendorSearchServiceOutput();
+        //op = searchVendor.FetchVendorDeatilSAPService(string.valueOf(vendor.mdm_vCodeSirius__c));           
+        Test.stopTest();    
+    
+        searchVendor.newMethod();
+        searchVendor.vendorNameChange(); 
+        searchVendor.SendWebformMethod();  
+        searchVendor.backBtnAction();  
+        searchVendor.GoldenDataSave();  
+        searchVendor.GoldenDataSave2();  
+		searchVendor.SaveMethod();        
+        searchVendor.SaveAndExit();    
+        searchVendor.VendorNotFound = false;    
+        searchVendor.isInternationalVersionCollapsed();
+        searchVendor.getButtonVisibleSaveMenu();
+        searchVendor.getButtonVisibleSaveExit();
+        //searchVendor.getExitButtonVisible();    
+	}
+    
+    
+    static testMethod void VPM_SearchVendorFusionMaintain(){        
     	VPM_PurchasingRequests__c purId = TestDataFusion();
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id; 
         purId.recordTypeId=recordTypeId;

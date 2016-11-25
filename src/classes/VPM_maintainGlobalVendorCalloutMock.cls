@@ -17,8 +17,9 @@ public class VPM_maintainGlobalVendorCalloutMock implements HttpCalloutMock {
         } else if(returnedStatusCode == 300 || returnedStatusCode == 500 || returnedStatusCode == 504
         || returnedStatusCode == 400 || returnedStatusCode == 503) {
        
-        jsonServiceResponse='{\"SAP_Messages\":[{\"status\":\"Failure\",\"bpmID\":\"12345678\"}]}';
-        res.setStatusCode(returnedStatusCode );
+       // jsonServiceResponse='{\"SAP_Messages\":[{\"status\":\"Failure\",\"bpmID\":\"12345678\"}]}';
+         jsonServiceResponse='{\"status\":\"Failure\",\"bpmID\":\"12345678\"}';
+            res.setStatusCode(returnedStatusCode );
         res.setBody(jsonServiceResponse);
         } else {
             jsonServiceResponse='{\"SAP_Messages\":[{\"status\":\"Failure\",\"bpmID\":\"12345678\"}]}';

@@ -26,7 +26,7 @@ global with sharing class VPM_MaintainGlobalVendorServiceHelper {
         public String Message {get;set;}
         public String MessageV1 {get;set;}
         public String MessageNo {get;set;}
-        public String Field {get;set;}
+
         public String Type {get;set;}
         public String ID {get;set;}
         

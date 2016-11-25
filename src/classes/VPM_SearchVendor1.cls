@@ -1844,7 +1844,7 @@ public with sharing class VPM_SearchVendor1{
                 myMsg= new ApexPages.Message(ApexPages.Severity.ERROR,System.Label.VPM_IndustryLengthError);
             }
            //modified by vaishali Nagar for IAPR-605
-           VPM_LatamCountries__c obj = VPM_LatamCountries__c.getInstance('Countries');   
+           VPM_LatamCountries__c obj = VPM_LatamCountries__c.getInstance('Countries');    
            system.debug('@@ LATAm Countries:' + obj);
            latam = obj.VPM_CountryName__c;
            system.debug('Vendor country' + countryName);
