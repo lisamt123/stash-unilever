@@ -6,7 +6,7 @@ public class VPM_MaintainGlobalVendorService_Test {
     public static final String VendorCode = '5001010';// MDM status
     public static final String TestData= 'Test';// MDM status
     public static final String TaxDataNumber= '2345';// MDM status
-     @isTest static void testCallout()
+     static testMethod void testCallout()
       {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
         string vendorId = pur.get(0).id;
@@ -17,7 +17,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         pur = [SELECT Id,VPM_MDMInsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
        system.assertEquals(pur[0].VPM_MDMInsertUpdateStatus__c, successStatusMDM);
     }
-         @isTest static void GlobalExceptionTest()
+         static testMethod  void GlobalExceptionTest()
       {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
         string vendorId = pur.get(0).id;
@@ -28,7 +28,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         pur = [SELECT Id,VPM_MDMInsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
        system.assert(true);
     }
-         @isTest static void GlobalAndManintainTest() {
+         static testMethod void GlobalAndManintainTest() {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id,VPM_Fieldtype__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
         pur[0].VPM_Fieldtype__c =FieldTypeChanged;
              update pur;
@@ -41,7 +41,7 @@ public class VPM_MaintainGlobalVendorService_Test {
        system.assertEquals(pur[0].VPM_MDMInsertUpdateStatus__c, successStatusMDM);
       
     }
-             @isTest static void GlobalAndManintainTest400() {
+             static testMethod void GlobalAndManintainTest400() {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id,VPM_Fieldtype__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
         pur[0].VPM_Fieldtype__c =FieldTypeChanged;
              update pur;
@@ -78,7 +78,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         pur = [SELECT Id,VPM_MDMInsertUpdateStatus__c,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
        system.assertEquals(pur[0].VPM_MDMInsertUpdateStatus__c, failStatusMDM);
     }
-    @isTest static void testCallout500() {
+    static testMethod void testCallout500() {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
         string vendorId = pur.get(0).id;
         test.startTest();
@@ -88,7 +88,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         pur = [SELECT Id,VPM_MDMInsertUpdateStatus__c,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
        system.assertEquals(pur[0].VPM_MDMInsertUpdateStatus__c, failStatusMDM);
     }
-    @isTest static void testCallout504() {
+    static testMethod void testCallout504() {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
         string vendorId = pur.get(0).id;
         test.startTest();
@@ -99,7 +99,7 @@ public class VPM_MaintainGlobalVendorService_Test {
        system.assertEquals(pur[0].VPM_MDMInsertUpdateStatus__c, failStatusMDM);
     }
     
-        @isTest static void MaintainRegionTest200() {
+        static testMethod void MaintainRegionTest200() {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
         string vendorId = pur.get(0).id;
        // VPM_CreateVendorServiceHelper.CreateVendorResponse resp = new VPM_CreateVendorServiceHelper.CreateVendorResponse();
@@ -110,7 +110,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         pur = [SELECT Id,VPM_MDMInsertUpdateStatus__c,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
        system.assertEquals(pur[0].VPM_ECC_InsertUpdateStatus__c, 'ECC Insert / Update Succeeded');
     }
-            @isTest static void MaintainRegionTest400() {
+            static testMethod void MaintainRegionTest400() {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
         string vendorId = pur.get(0).id;
        // VPM_CreateVendorServiceHelper.CreateVendorResponse resp = new VPM_CreateVendorServiceHelper.CreateVendorResponse();
@@ -121,7 +121,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         pur = [SELECT Id,VPM_MDMInsertUpdateStatus__c,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
        system.assertEquals(pur[0].VPM_ECC_InsertUpdateStatus__c, 'Failed to Submit to ECC');
     }
-    @testSetup static void setup() {
+    static testMethod void setup() {
         VPM_CompanyCode__c compCode = new VPM_CompanyCode__c(Name = 'Company Code 2', Company_Name__c = 'Unilever', VPM_CompanyCode__c = 'UN',VPM_Country__c ='Belgium',ECC__c ='U2K2');
         insert compCode;
         mdm_Vendors__c vendor = new mdm_Vendors__c();

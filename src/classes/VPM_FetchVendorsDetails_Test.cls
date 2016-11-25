@@ -1,6 +1,6 @@
 @isTest
 public class VPM_FetchVendorsDetails_Test {
-  @isTest static void getVendorDetailsTest() {
+  static testMethod void getVendorDetailsTest() {
       List<VPM_FetchVendorsDetails.InputVariables> inputCriteria = new List<VPM_FetchVendorsDetails.InputVariables>();
         VPM_FetchVendorsDetails.InputVariables crit = new VPM_FetchVendorsDetails.InputVariables();
         crit.vendorCodeInput='9987534';
@@ -27,7 +27,7 @@ public class VPM_FetchVendorsDetails_Test {
       system.assertEquals(crit.ecc,'Cordillera');
   }
     
-    @isTest static void getVendorDetailsTestVendorFound() {
+    static testMethod void getVendorDetailsTestVendorFound() {
       List<VPM_FetchVendorsDetails.InputVariables> inputCriteria = new List<VPM_FetchVendorsDetails.InputVariables>();
         VPM_FetchVendorsDetails.InputVariables crit = new VPM_FetchVendorsDetails.InputVariables();
         crit.vendorCodeInput='343';

@@ -3,10 +3,11 @@ public class VPM_RegionalMaintainVendorTest{
  public static final String ECCRegion=  'U2K2,Sirius,Fusion'; 
  public static final String FieldType=  'Regional'; 
  public static final String VendorCode=  '5001010'; 
-  //public static final String successStatusMDM = 'ECC Insert / Update Succeeded'; 
-  public static final String successStatusMDM = null; 
+  public static final String successStatusMDM = 'ECC Insert / Update Succeeded'; 
+ // public static final String successStatusMDM = null; 
   public static final String successStatusMsg = 'mdm insert/update succeeded'; 
- @isTest static void updateAndCheckFieldUpdateTest() {
+    
+ static testMethod void updateAndCheckFieldUpdateTest() {
     VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
      purReq.VPM_Comments__c = 'test comment';
      purReq.VPM_TaxNumber1__c  = '53627282';
@@ -17,12 +18,12 @@ public class VPM_RegionalMaintainVendorTest{
       
      VPM_PurchasingRequests__c purReq1 = [SELECT Id, Name,VPM_FieldType__c,VPM_fieldUpdated__c from VPM_PurchasingRequests__c where id  =: purReq.Id];
      system.debug('hfdfd'+purReq1.VPM_fieldUpdated__c);
-     system.assertEquals(purReq1.VPM_FieldType__c,null);
+     system.assertEquals(purReq1.VPM_FieldType__c,'Global');
      test.stopTest();
  
  }
  
- @isTest static void InsertVendorTestFusion(){
+ static testMethod void InsertVendorTestFusion(){
         //String successStatusMDM = 'ECC Insert / Update Succeeded';
        VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
         purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
@@ -42,7 +43,7 @@ public class VPM_RegionalMaintainVendorTest{
  }
     
     
-     @isTest static void InsertVendorTestSirius(){
+    static testMethod void InsertVendorTestSirius(){
         //String successStatusMDMSirius = 'ECC Insert / Update Succeeded';
        VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
         purReq.VPM_MDMInsertUpdateStatus__c = successStatusMsg ;
@@ -66,7 +67,7 @@ public class VPM_RegionalMaintainVendorTest{
         
  }
     
-         @isTest static void InsertVendorTestU2K2(){
+      static testMethod void InsertVendorTestU2K2(){
         //String successStatusMDMU2K2 = 'ECC Insert / Update Succeeded';
        VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
         purReq.VPM_MDMInsertUpdateStatus__c = successStatusMsg ;
@@ -93,7 +94,7 @@ public class VPM_RegionalMaintainVendorTest{
  }
     
     
-             @isTest static void InsertVendorTestCordillera(){
+      static testMethod void InsertVendorTestCordillera(){
         //String successStatusMDMCordillera = 'ECC Insert / Update Succeeded';
        VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
         purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
@@ -116,7 +117,7 @@ public class VPM_RegionalMaintainVendorTest{
  }
     
     
-     @isTest static void InsertVendorTest(){
+    static testMethod void InsertVendorTest(){
         //String successStatusMDM = 'ECC Insert / Update Succeeded';
        VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
         purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
