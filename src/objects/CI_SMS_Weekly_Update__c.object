@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -78,16 +82,17 @@
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
         <label>Description</label>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>7</visibleLines>
     </fields>
     <fields>
         <fullName>Funnel_Ref__c</fullName>
         <externalId>false</externalId>
         <formula>HYPERLINK(&quot;/&quot;&amp;Id ,
-IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
+IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project2__c,
 (&quot;Manual-&quot;  + Name) )
 ,&apos;_self&apos; )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

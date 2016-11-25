@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Agency_Fees_Letterhead</letterhead>
+    <name>OOPS Actual Submitted_HTML</name>
+    <style>freeForm</style>
+    <subject>OOPS Actuals Submitted - {!AF_OOPS_Actual__c.Name}</subject>
+    <textOnly>Dear User
+A submission has been made by {!AF_OOPS_Actual__c.AF_Agency__c} for {!AF_OOPS_Actual__c.Name} OOPs Back-up for {!AF_OOPS_Actual__c.AF_Brand__c}. Please log in to the tool, using the link below, to review the submission.
+
+{!AF_OOPS_Actual__c.AF_Internal_Link__c}</textOnly>
+    <type>html</type>
+</EmailTemplate>

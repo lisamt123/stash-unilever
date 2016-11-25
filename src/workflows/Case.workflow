@@ -121,6 +121,17 @@
         <senderType>CurrentUser</senderType>
         <template>CEC_Unilever/cec_Default_Auto_Response</template>
     </alerts>
+	<fieldUpdates>
+        <fullName>CEC_Brand_Ambassador_Case_Queue_Assign</fullName>
+        <description>CEC Brand Ambassador Case Queue Assignment - Assign case to &apos;CEC - Brand Ambassador&apos;</description>
+        <field>OwnerId</field>
+        <lookupValue>CEC_Brand_Ambassador</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CEC Brand Ambassador Case Queue Assign</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>CEC_Benelux_Market_Field_Update</fullName>
         <description>CEC: Set the Market field to the market value</description>
@@ -226,6 +237,34 @@
         <name>CEC UK Market Field Update</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+	<fieldUpdates>
+        <fullName>CEC_Update_Case_Priority_Field</fullName>
+        <description>CEC_Update &apos;Case Priority&apos; info to Null: To Update &apos;Case Priority&apos; information to Null</description>
+        <field>Priority</field>
+        <name>CEC Update Case Priority Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+	<fieldUpdates>
+        <fullName>CEC_Update_Case_Status_In_Progress</fullName>
+        <description>CEC Update Case Status into In Progress</description>
+        <field>Status</field>
+        <literalValue>In Progress</literalValue>
+        <name>CEC Update Case Status(In Progress)</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+	<fieldUpdates>
+        <fullName>CEC_Update_SMS_Mobile_Number</fullName>
+        <field>SMS_Mobile_Number__c</field>
+        <formula>Account.Mobile_Phone_No_Special_Char__c</formula>
+        <name>CEC Update SMS Mobile Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -389,6 +428,21 @@
             <timeLength>7</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
+    </rules>
+	<rules>
+        <fullName>CEC Brand Ambassador Case Assignment</fullName>
+        <actions>
+            <name>CEC_Brand_Ambassador_Case_Queue_Assign</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CEC_Update_Case_Status_In_Progress</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>CEC Brand Ambassador Case Assignment  - Assignment case For Brand Ambassador and Shut the status to InProgress</description>
+        <formula>AND(CONTAINS(LOWER(Country__r.Brand_Ambassador_Brands__c),LOWER(Brand__c)) , ISPICKVAL( Origin , &apos;Web&apos;),ISPICKVAL(  Type  , &apos;Product Question&apos;)  )</formula>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>CEC Close Case Survey</fullName>
@@ -561,6 +615,39 @@
             <value>UK &amp; Ireland</value>
         </criteriaItems>
         <description>Auto Response Email on Case Creation for UK &amp; Ireland for Case Origin Web</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+	<rules>
+        <fullName>CEC Update Case Priority Field</fullName>
+        <actions>
+            <name>CEC_Update_Case_Priority_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Priority</field>
+            <operation>equals</operation>
+            <value>2 - Medium</value>
+        </criteriaItems>
+        <description>CEC Update Email Case Priority Field: To Update &apos;Case Priority&apos; information to Null</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+	<rules>
+        <fullName>CEC Update SMS Mobile From Account</fullName>
+        <actions>
+            <name>CEC_Update_SMS_Mobile_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.SMS_Mobile_Number__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.PersonMobilePhone</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Whenever account information gets populated on the case or updated on the case then we need to update &apos;SMS Mobile Number&apos; field only if this field is not populated with any value.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

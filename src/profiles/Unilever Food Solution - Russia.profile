@@ -45435,7 +45435,7 @@
         <recordType>Account.Standard</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Feed Based Distributor</layout>
+        <layout>Account-Feed Based Distributor Russia</layout>
         <recordType>Account.Distributor</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -46860,6 +46860,10 @@
         <recordType>Opportunity.FS_OpportunityTPR</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Opportunity-Opportunity with TPR Calculation Layout ReadOnly</layout>
+        <recordType>Opportunity.FS_OpportunityTPRReadOnly</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -47061,7 +47065,7 @@
         <layout>PricebookEntry-Price Book Entry Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Product2-Food Solutions Product</layout>
+        <layout>Product2-Food Solutions Product Russia</layout>
         <recordType>Product2.FS_Product</recordType>
     </layoutAssignments>
     <layoutAssignments>

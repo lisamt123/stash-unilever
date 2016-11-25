@@ -341,9 +341,11 @@ public with sharing class AF_AgencyEstimateController
 				}
 				if(AgencyEstimate.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c!=null){
 					brandEstQuarter = AgencyEstimate.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c;
-					if(!brandEstQuarter.contains(AF_Constants.QUARTER4)){
+					 //Commented as user requested po override tab for all quarters
+					/*if(!brandEstQuarter.contains(AF_Constants.QUARTER4)){
 						POOverrideDisplay = true;
-					}
+					}*/
+					POOverrideDisplay = true;
 				}
 				if(AgencyEstimate.AF_isLocked__c == null || !AgencyEstimate.AF_isLocked__c)IsLocked = true;else{IsLocked = false;}
 				CalculateTotal();

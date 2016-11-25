@@ -302,6 +302,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>FS_Update_Sales_Org</fullName>
+        <description>If US, 0002, If CA, 0003</description>
+        <field>Sales_ORG__c</field>
+        <formula>IF(OR(ShippingCountry=&quot;CA&quot;,ShippingCountry = &quot;Canada&quot;),&quot;0003&quot;,&quot;0002&quot;)</formula>
+        <name>FS Update Sales Org</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>NAFS_Account_status_Update_to_Temporary</fullName>
         <description>Account status update to Temporary if type is operator</description>
         <field>Status__c</field>
@@ -356,6 +366,16 @@
         <field>FS_supplyCost__c</field>
         <formula>Parent.FS_supplyCost__c</formula>
         <name>Supply Cost Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Account_Number</fullName>
+        <description>Update the account Number from the External Id.</description>
+        <field>AccountNumber</field>
+        <formula>External_Id__c</formula>
+        <name>Update Account Number</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -496,6 +516,17 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>FS Account Number Distributor</fullName>
+        <actions>
+            <name>Update_Account_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update the account number field from the External Id for Distributor accounts created in Salesforce.com</description>
+        <formula>AND( RecordType.DeveloperName =&quot;Distributor&quot;, $Profile.Name =&quot;Unilever Food Solution - Russia&quot;,  ISPICKVAL(CurrencyIsoCode, &apos;RUB&apos;)  )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
         <fullName>FS Account Status to Temporary</fullName>
         <actions>
             <name>NAFS_Account_status_Update_to_Temporary</name>
@@ -550,6 +581,17 @@
         <active>true</active>
         <description>This is use to populate default value of On/Off Invoice from the custom settings</description>
         <formula>ISCHANGED(FS_Distributor_Type__c) &amp;&amp; ISBLANK(Parent.Name)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>FS Sales Org</fullName>
+        <actions>
+            <name>FS_Update_Sales_Org</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>If Shipping Country = &quot;CA&quot; or &quot;Canada&quot;  then  Sales Org=0003  else Sales Org=0002.</description>
+        <formula>AND( OR(ShippingCountry = &quot;CA&quot;, ShippingCountry = &quot;Canada&quot;,ShippingCountry &lt;&gt; null), RecordType.DeveloperName =&quot;Operators&quot; ,$Profile.Name=&quot;Unilever Food Solution - NA&quot; )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

@@ -1239,6 +1239,22 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>Distributor Program</label>
         <picklist>
             <picklistValues>
+                <fullName>LMA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LMP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed End Distributor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No Program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>TBD</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1325,6 +1341,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>FS_AmountOfVisitors__c</fullName>
         <description>For amount of visitors</description>
         <externalId>false</externalId>
+        <inlineHelpText>Количество чеков в день</inlineHelpText>
         <label>Amount Of Visitors</label>
         <precision>18</precision>
         <required>false</required>
@@ -2059,27 +2076,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>CHERKASSY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CHERNIGOV</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CHERNOVTSY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>CHITA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>DNEPROPETROVSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>DONETSK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2510,6 +2507,16 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <controllingFieldValues>Стрит-фуд</controllingFieldValues>
                 <controllingFieldValues>Фаст-фуд</controllingFieldValues>
             </picklistValues>
+            <picklistValues>
+                <fullName>Others</fullName>
+                <default>false</default>
+                <controllingFieldValues>Другое</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Metro</fullName>
+                <default>false</default>
+                <controllingFieldValues>Метро</controllingFieldValues>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -2654,6 +2661,14 @@ At least 3 out of 4 = 5</inlineHelpText>
             </picklistValues>
             <picklistValues>
                 <fullName>Фри-фло, рестораны самообслуживания</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Другое</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Метро</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -3207,7 +3222,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     </fields>
     <fields>
         <fullName>Mobile_Phone_No_Special_Char__c</fullName>
-        <externalId>false</externalId>
+        <externalId>true</externalId>
         <label>Mobile Phone No Special Char</label>
         <length>30</length>
         <required>false</required>
@@ -3543,6 +3558,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>TextArea</type>
     </fields>
     <fields>
+            <fullName>Procurement_Contact__c</fullName>
+            <deleteConstraint>SetNull</deleteConstraint>
+            <description>Procurement Contact</description>
+            <externalId>false</externalId>
+            <label>Procurement Contact</label>
+            <referenceTo>User</referenceTo>
+            <relationshipName>Accounts2</relationshipName>
+            <required>false</required>
+            <trackFeedHistory>false</trackFeedHistory>
+            <trackHistory>false</trackHistory>
+            <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Profession__c</fullName>
         <description>TO : Profession</description>
         <externalId>false</externalId>
@@ -3628,7 +3656,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <externalId>false</externalId>
         <label>NFS Region</label>
         <picklist>
-            <controllingField>Zone__c</controllingField>
             <picklistValues>
                 <fullName>10007 Custom</fullName>
                 <default>false</default>
@@ -3688,117 +3715,94 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <picklistValues>
                 <fullName>55000 West Zone Leader</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55005 Non-Comm Region 3</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55015 Midwest</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55020 North central</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55030 South Central</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55035 Mountain</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55040 West</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>55045 West Client delivery</fullName>
                 <default>false</default>
-                <controllingFieldValues>55 West</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>56005 Non-Comm Region 1</fullName>
                 <default>false</default>
-                <controllingFieldValues>56 OCS</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>56010 Military</fullName>
                 <default>false</default>
-                <controllingFieldValues>56 OCS</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>56015 Buying Groups</fullName>
                 <default>false</default>
-                <controllingFieldValues>56 OCS</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>56020 Corporate Accounts</fullName>
                 <default>false</default>
-                <controllingFieldValues>56 OCS</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>56025 OCS</fullName>
                 <default>false</default>
-                <controllingFieldValues>56 OCS</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59000 South CDM</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59005 East CDM</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59010 Redistribution - CA</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59015 Southeast</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59020 Canada CDM</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59025 Club Stores - CA</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59040 South</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>59045 Canada Zone Leader</fullName>
                 <default>false</default>
-                <controllingFieldValues>59 East</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>82100 Disposal</fullName>
                 <default>false</default>
-                <controllingFieldValues>82 Disposal/Exited</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>82200 Exited</fullName>
                 <default>false</default>
-                <controllingFieldValues>82 Disposal/Exited</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>89010 Canada West</fullName>
@@ -3832,6 +3836,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Requester_Comment__c</fullName>
+        <description>Explain a person is requesting the creation of this account.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Explain a person is requesting the creation of this account. This text is sent with the email notification to the manager and the administrator</inlineHelpText>
+        <label>Requester Comment</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Responsible_Unilever_Employee__c</fullName>
@@ -5270,6 +5287,76 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>All Distributor Accounts</label>
         <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>UFS_Russia</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_NA_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Zone__c</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>All NA Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_NA_Distributor_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ICB_Type__pc</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS2_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Zone__c</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Distributor</value>
+        </filters>
+        <label>All NA Distributor Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_NA_Operator_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ICB_Type__pc</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS2_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Zone__c</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Operators</value>
+        </filters>
+        <label>All NA Operator Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>All_Operator_Accounts</fullName>
@@ -5293,6 +5380,9 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>All Operator Accounts</label>
         <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>UFS_Russia</roleAndSubordinatesInternal>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>ICB_TodasContas</fullName>
@@ -5333,6 +5423,76 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>My Distributor Accounts</label>
         <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>UFS_Russia</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_NA_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>Zone__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <label>My NA Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_NA_Distributor_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ICB_Type__pc</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS2_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Zone__c</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Distributor</value>
+        </filters>
+        <label>My NA Distributor Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_NA_Operator_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ICB_Type__pc</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS2_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Zone__c</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Operators</value>
+        </filters>
+        <label>My NA Operator Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>My_Operator_Accounts</fullName>
@@ -5357,6 +5517,9 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>My Operator Accounts</label>
         <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>UFS_Russia</roleAndSubordinatesInternal>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>NewThisWeek</fullName>
@@ -9468,8 +9631,20 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>DistributorProgram__c</picklist>
             <values>
-                <fullName>TBD</fullName>
+                <fullName>Closed End Distributor</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>LMA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Program</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -9709,27 +9884,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>CHERKASSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNIGOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNOVTSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CHITA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DNEPROPETROVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DONETSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9951,7 +10106,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Metro</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10029,6 +10192,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Другое</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Кейтеринг</fullName>
                 <default>false</default>
             </values>
@@ -10042,6 +10209,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Метро</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12305,27 +12476,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>CHERKASSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNIGOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNOVTSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CHITA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DNEPROPETROVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DONETSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12683,7 +12834,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Metro</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12761,6 +12920,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Другое</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Кейтеринг</fullName>
                 <default>false</default>
             </values>
@@ -12774,6 +12937,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Метро</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15121,27 +15288,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>CHERKASSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNIGOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNOVTSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CHITA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DNEPROPETROVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DONETSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15499,7 +15646,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Metro</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Offices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15577,6 +15732,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Другое</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Кейтеринг</fullName>
                 <default>false</default>
             </values>
@@ -15590,6 +15749,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Кулинария на точке продаж</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Метро</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -21631,7 +21794,8 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <description>To restrict the changes on account name for Russia sales rep users.</description>
         <errorConditionFormula>AND( 
 NOT(ISNEW()),OR(RecordType.Name=&apos;Operator Russia&apos;, RecordType.Name=&apos;Operator&apos;),
-OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilever Food Solution - Russia&apos; 
+OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilever Food Solution - Russia&apos; ,
+!($Permission.FS_Admin) 
 )</errorConditionFormula>
         <errorMessage>Don&apos;t Update the Account Name / Account Currency .</errorMessage>
     </validationRules>

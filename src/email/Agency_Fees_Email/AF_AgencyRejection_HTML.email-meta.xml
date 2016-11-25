@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This Template is used to notify the Agency Users that the base fees figures are rejected by the approver</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Agency_Fees_Letterhead</letterhead>
+    <name>AF_AgencyRejection_HTML</name>
+    <style>freeForm</style>
+    <subject>Action Required: Review Amendments to Base Fee Estimates for Brand {!AF_Brand_Estimate__c.Brand__c}</subject>
+    <textOnly>Dear Agency
+
+Amendments have been made to the &quot;{!AF_Brand_Estimate__c.AF_Basefee_Estimate_Initial_Quarter__c} {!AF_Brand_Estimate__c.AF_Fiscal_Year__c}&quot;  Base Fee Estimate for Brand {!AF_Brand_Estimate__c.Brand__c} .
+
+Please log in to the tool, using the link below, to review changes.
+{!AF_Brand_Estimate__c.AF_Community_Link__c}</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -46,10 +46,6 @@
                 <field>FS_Top_Client__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>CustomerLegalName__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_RTM__c</field>
             </layoutItems>
@@ -68,6 +64,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Global_Unique_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Requester_Comment__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -107,6 +107,14 @@
                 <behavior>Edit</behavior>
                 <field>RecordTypeId</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>External_Id__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>CustomerLegalName__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -128,10 +136,6 @@
                 <behavior>Edit</behavior>
                 <field>FS_RussianZone__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Phone</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -140,11 +144,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Website</field>
+                <field>Phone</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Fax</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Website</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -201,10 +209,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>FS_ABCSegmentation__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_PotentialValueSize__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
