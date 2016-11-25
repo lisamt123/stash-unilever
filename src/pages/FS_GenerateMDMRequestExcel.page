@@ -140,7 +140,7 @@
                                      <td/>
                                      <td/>
                                      <td/>
-                                     <td> {!defaultCSValue.FS_SalesManagerName__c}{!defaultCSValue.FS_SalesManagerPosition__c} </td>
+                                     <td> {!defaultCSValue.FS_SalesManagerName__c} {!defaultCSValue.FS_SalesManagerPosition__c} </td>
                                 </tr>
                                 <tr>
                                      <td/>

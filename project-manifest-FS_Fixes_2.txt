@@ -1,6 +1,4 @@
 src
-src/objects
-src/objects/Account.object
 src/pages/FS_GenerateMDMRequest.page
 src/pages/FS_GenerateMDMRequest.page-meta.xml
 src/pages/FS_GenerateMDMRequestExcel.page
