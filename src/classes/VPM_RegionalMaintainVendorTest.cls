@@ -17,8 +17,10 @@ public class VPM_RegionalMaintainVendorTest{
      update purReq;
       
      VPM_PurchasingRequests__c purReq1 = [SELECT Id, Name,VPM_FieldType__c,VPM_fieldUpdated__c from VPM_PurchasingRequests__c where id  =: purReq.Id];
+	 
      system.debug('hfdfd'+purReq1.VPM_fieldUpdated__c);
-     system.assertEquals(purReq1.VPM_FieldType__c,'Global');
+	 VPM_PurchasingRequests__c result = [SELECT Id, Name,VPM_FieldType__c from VPM_PurchasingRequests__c where id  =: purReq.Id];
+     system.assertEquals(purReq1.VPM_FieldType__c,result.VPM_FieldType__c);
      test.stopTest();
  
  }
