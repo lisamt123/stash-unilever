@@ -60,6 +60,9 @@
 			<runTest>VPM_PurchaseRequestsExtensionTest</runTest>
 			<runTest>VPM_RegionalMaintainVendorTest</runTest>
 			<runTest>VPM_SearchVendor1Test</runTest>
+			<runTest>VPM_FetchVendorDetailsHttpMock</runTest>
+			<runTest>VPM_FetchVendorDetailsHttpMockCodeMatch</runTest>
+			<runTest>VPM_maintainGlobalVendorCalloutMock</runTest>
         </sf:deploy>
     </target>
 </project>
