@@ -1309,10 +1309,6 @@
         <label><!-- Discipline --></label>
         <name>Discipline__c</name>
         <picklistValues>
-            <masterLabel>Activation</masterLabel>
-            <translation><!-- Activation --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Activations and Promotions</masterLabel>
             <translation><!-- Activations and Promotions --></translation>
         </picklistValues>
@@ -1347,18 +1343,6 @@
         <picklistValues>
             <masterLabel>Design (Creative)</masterLabel>
             <translation><!-- Design (Creative) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Design: Packaging Adaptive</masterLabel>
-            <translation><!-- Design: Packaging Adaptive --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Design: Packaging Strategic</masterLabel>
-            <translation><!-- Design: Packaging Strategic --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Digital</masterLabel>
-            <translation><!-- Digital --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Distribution &amp; Mailing Services</masterLabel>
@@ -2788,6 +2772,11 @@ At least 3 out of 4 = 5 --></help>
         <name>Previous_Names__c</name>
     </fields>
     <fields>
+        <label><!-- Procurement Contact --></label>
+        <name>Procurement_Contact__c</name>
+        <relationshipLabel><!-- Accounts (Procurement Contact) --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Profession --></label>
         <name>Profession__c</name>
     </fields>
@@ -4079,6 +4068,13 @@ At least 3 out of 4 = 5 --></help>
             <translation><!-- 88 Retail Foodservice --></translation>
         </picklistValues>
     </fields>
+    <layouts>
+        <layout>Agency Layout</layout>
+        <sections>
+            <label><!-- Procurement Team --></label>
+            <section>Procurement Team</section>
+        </sections>
+    </layouts>
     <layouts>
         <layout>Feed Based Distributor</layout>
         <sections>

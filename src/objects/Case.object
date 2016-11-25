@@ -4283,6 +4283,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.EMAIL</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -8389,81 +8390,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>Casos_BackOffice_EMAIL_Brazil1</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>L1_Product_Category__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>Case_Brand__c</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>In Progress,New,Pending with Courier</value>
-        </filters>
-        <filters>
-            <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>Email,Email Brazil,Web</value>
-        </filters>
-        <label>Casos BackOffice EMAIL Brazil FOODS</label>
-        <language>pt_BR</language>
-        <queue>CEC_Brazil_Queue</queue>
-        <sharedTo>
-            <role>CEC_Manager_Brazil</role>
-            <role>CEC_User_Brazil</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Casos_BackOffice_EMAIL_Brazil_HPC</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>L1_Product_Category__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>Case_Brand__c</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>In Progress,New,Pending with Courier</value>
-        </filters>
-        <filters>
-            <field>CASES.ORIGIN</field>
-            <operation>equals</operation>
-            <value>Email,Email Brazil,Web</value>
-        </filters>
-        <filters>
-            <field>CASES.NAME</field>
-            <operation>contains</operation>
-            <value>seda,clear,dove,rexona,lux,axe,lifebuoy,vasenol,trim,suave,tigi,tresemme</value>
-        </filters>
-        <filters>
-            <field>CASES.NAME</field>
-            <operation>contains</operation>
-            <value>vim,fofo,cif,ala,omo,brilhante,comfort,surf,sun</value>
-        </filters>
-        <filters>
-            <field>CASES.NAME</field>
-            <operation>contains</operation>
-            <value>closeup,close-up,close up,dimension,regenerate,baby</value>
-        </filters>
-        <label>Casos BackOffice EMAIL Brazil HPC</label>
-        <language>pt_BR</language>
-        <queue>CEC_Brazil_Queue</queue>
-        <sharedTo>
-            <role>CEC_Manager_Brazil</role>
-            <role>CEC_User_Brazil</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>Casos_Nuevo_En_Progreso</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -8629,7 +8555,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Charlyn</value>
+            <value>Marni.S</value>
         </filters>
         <label>DACH Vacation Queue 3</label>
         <language>en_US</language>

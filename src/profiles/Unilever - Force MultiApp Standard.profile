@@ -12608,6 +12608,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Procurement_Contact__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Profession__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -61932,9 +61937,5 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewPublicDashboards</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewPublicReports</name>
     </userPermissions>
 </Profile>
