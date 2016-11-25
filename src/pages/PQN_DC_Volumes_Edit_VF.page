@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <apex:form id="frm">   
                     <apex:pageMessages id="renderErrorMsg"/>         
-                    <apex:pageBlock title="Pallet Quality Non Conformance Edit" mode="edit" id="PBId1">
+                    <apex:pageBlock title="DC Volumes Edit" mode="edit" id="PBId1">
                         <apex:pageblockbuttons >
                         <apex:commandButton value="Save" action="{!saveDCV}"/> 
                         <apex:commandButton value="Cancel" action="{!cancelDCV}" immediate="true"/>  
