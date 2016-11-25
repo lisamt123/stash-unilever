@@ -3,13 +3,13 @@ Name:  CEC_CaseTriggerHelperExtenTest
 Copyright ? 2016  Unilever
 ======================================================================
 ======================================================================
-Purpose:  Test class for CEC_CaseTriggerHelperExtension                                
+Purpose:  Test class for CEC_CaseTriggerHelperExtTest                                
 ======================================================================
 ======================================================================
 History                                                            
 -------                                                            
 VERSION  AUTHOR       DATE             DETAIL                  Description
-1.0 -    Mahesh       01/08/2016       INITIAL DEVELOPMENT      Test class for CEC_CaseTriggerHelperExtension
+1.0 -    Mahesh       01/08/2016       INITIAL DEVELOPMENT      Test class for CEC_CaseTriggerHelperExtTest
 ****************************************************************************/
 @isTest
 public class CEC_CaseTriggerHelperExtTest {
@@ -65,6 +65,11 @@ public class CEC_CaseTriggerHelperExtTest {
             
                 CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
                                                     WHERE Market__c = :country LIMIT 1];
+             
+                 List<BusinessHours> bhs=[select id from BusinessHours where IsDefault=true];
+                 cmmUK.Business_Hours__c = bhs[0].id;
+                 update cmmUK;
+                                          
                 cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand ,Inbound_Email__c=inboundEmailMrkt,Skill__c=skills);
                 insert cbm;
                 
@@ -211,7 +216,7 @@ public class CEC_CaseTriggerHelperExtTest {
              
                     System.assertEquals(inboundPhoneMrkt, [SELECT Transient_External_Id__c FROM Case WHERE Id =:cases[0].Id].Transient_External_Id__c);
                     System.assertEquals(cbm.Id, [SELECT Case_Brand_Mapping__c FROM Case WHERE Id =:cases[0].Id].Case_Brand_Mapping__c);  
-             		System.assertEquals([SELECT AccountId FROM Case WHERE Id=:cases[0].Id].AccountId, accts[0].Id);  
+                    System.assertEquals([SELECT AccountId FROM Case WHERE Id=:cases[0].Id].AccountId, accts[0].Id);  
              
              Test.stopTest();
              
@@ -223,8 +228,8 @@ public class CEC_CaseTriggerHelperExtTest {
         
         User u = [SELECT Id,Market__c FROM User WHERE email ='cectestuser@test00DE0000000bbLj.org' Limit 1];
          System.runAs(u) {
-            	
-             	cec_Org_Settings__c.getOrgDefaults();
+                
+                cec_Org_Settings__c.getOrgDefaults();
                 CEC_Case_Market_Mapping__c cmmUK = [SELECT Id,Market__c FROM CEC_Case_Market_Mapping__c 
                                                     WHERE Market__c = :country LIMIT 1];
                 cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand ,Inbound_Email__c=inboundPhoneMrkt,Skill__c=skills);
@@ -233,13 +238,13 @@ public class CEC_CaseTriggerHelperExtTest {
                Id recTypeId =[Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
              
                List<Account> accounts = CEC_TestDataFactory.createTestAccounts(1,'Smith','smith@gmail.com','23 Cathedral Road','3452','London','United Kingdom','Frequent');
-            	
-             	for(Account acct : accounts ){
+                
+                for(Account acct : accounts ){
                     acct.PersonMobilePhone = '9839239823';
                     acct.RecordTypeId = recTypeId;
-            	}
+                }
             
-            	insert accounts;
+                insert accounts;
              
                 List<Account> accts = [SELECT Id,PersonContactId,Owner.Market__c,Mobile_Phone_No_Special_Char__c,SMS_Search_Mobile_Number__c  FROM Account limit 10];
              
@@ -266,7 +271,7 @@ public class CEC_CaseTriggerHelperExtTest {
              
                     System.assertEquals(inboundPhoneMrkt, [SELECT Transient_External_Id__c FROM Case WHERE Id =:cases[0].Id].Transient_External_Id__c);
                     System.assertEquals(cbm.Id, [SELECT Case_Brand_Mapping__c FROM Case WHERE Id =:cases[0].Id].Case_Brand_Mapping__c);  
-             		System.assertNotEquals(cases[0].AccountId, accts[0].Id);           
+                    System.assertNotEquals(cases[0].AccountId, accts[0].Id);           
              Test.stopTest();
              
          }

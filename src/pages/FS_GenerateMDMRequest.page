@@ -124,24 +124,20 @@
         <br/>
         <br/>                        
         <div class="leftalign stylefont">{!defaultCSValue.FS_CaptionText__c}</div>
-		<c:FSMDMRequestComponent type="footer" >
-	          <div class="leftalign stylefont ">{!defaultCSValue.FS_ApprovedByText__c}</div>
-	          <div class="rightfloat positionIndention center stylefont " >{!defaultCSValue.FS_SalesManagerPosition__c}</div>
-	          <div class="rightfloat specialIndention center stylefont " >{!defaultCSValue.FS_SalesManagerName__c}</div>
-	          <br/>
-	          <div class="rightfloat positionIndention center stylefont " >{!defaultCSValue.FS_PositionText__c}</div>
-	          <div class="rightfloat specialIndention center stylefont " >{!defaultCSValue.FS_NameText__c}</div>    
-	          <div class="rightfloat specialIndention center stylefont " >{!defaultCSValue.FS_SignatureText__c}</div>
-	          <br/>
-	          <br/>
-	          <br/>
-	          <br/>
-	          <div class="rightfloat positionIndention center stylefont ">{!defaultCSValue.FS_FinanceManagerPosition__c}</div>
-	          <div class="rightfloat specialIndention center stylefont " >{!defaultCSValue.FS_FinanceManagerName__c}</div>
-	          <br/>
-	          <div class="rightfloat positionIndention center stylefont " >{!defaultCSValue.FS_PositionText__c}</div>
-	          <div class="rightfloat specialIndention center stylefont ">{!defaultCSValue.FS_NameText__c}</div>    
-	          <div class="rightfloat specialIndention center stylefont ">{!defaultCSValue.FS_SignatureText__c}</div> 
-	 	</c:FSMDMRequestComponent>
-	</apex:form>
+        <c:FSMDMRequestComponent type="footer" >
+              <div class="leftalign stylefont ">{!defaultCSValue.FS_ApprovedByText__c}</div>
+              <div class="rightfloat positionIndention center stylefont ">{!defaultCSValue.FS_SalesManagerName__c} {!defaultCSValue.FS_SalesManagerPosition__c}</div>
+              <br/>
+              <br/>
+              <div class="rightfloat center stylefont positionIndention" >{!defaultCSValue.FS_NameText__c}</div>    
+              <div class="rightfloat specialIndention center stylefont " >{!defaultCSValue.FS_SignatureText__c}</div>
+              <br/>
+              <br/>
+              <div class="rightfloat positionIndention center stylefont ">{!defaultCSValue.FS_FinanceManagerName__c} {!defaultCSValue.FS_FinanceManagerPosition__c}</div>
+              <br/>
+              <br/>
+              <div class="rightfloat center stylefont positionIndention">{!defaultCSValue.FS_NameText__c}</div>    
+              <div class="rightfloat specialIndention center stylefont ">{!defaultCSValue.FS_SignatureText__c}</div> 
+        </c:FSMDMRequestComponent>
+    </apex:form>
 </apex:page>

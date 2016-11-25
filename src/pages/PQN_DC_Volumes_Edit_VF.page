@@ -1,0 +1,25 @@
+<apex:page standardController="PQN_DC_Volumes__c" extensions="PQN_DC_Voulmes" showheader="false" tabStyle="PQN_DC_Volumes__c">
+    <body>
+        <div id="wrapper">
+            <c:PQN_Navigation navigationName="dc_volumes"/>
+            <div id="page-wrapper">
+            <div class="container-fluid">
+                <apex:form id="frm">   
+                    <apex:pageMessages id="renderErrorMsg"/>         
+                    <apex:pageBlock title="Pallet Quality Non Conformance Edit" mode="edit" id="PBId1">
+                        <apex:pageblockbuttons >
+                        <apex:commandButton value="Save" action="{!saveDCV}"/> 
+                        <apex:commandButton value="Cancel" action="{!cancelDCV}" immediate="true"/>  
+                        </apex:pageblockbuttons>                        
+                        <apex:pageBlockSection title="Reporting Distribution Centre" columns="2" collapsible="false" >
+                            <apex:inputField value="{!dcv.Total_Pallets_received_by_DC__c}"/>
+                            <apex:inputField value="{!dcv.Total_Pallets_Checked_By_DC__c}"/>                                          
+                        </apex:pageBlockSection>        
+                    </apex:pageBlock>
+                </apex:form>
+            </div>       
+            </div>
+        <!-- /#page-wrapper -->
+        </div>
+    </body>
+</apex:page>
