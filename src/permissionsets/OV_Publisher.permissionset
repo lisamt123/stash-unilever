@@ -8972,6 +8972,11 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Procurement_Contact__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Profession__c</field>
         <readable>false</readable>
     </fieldPermissions>
