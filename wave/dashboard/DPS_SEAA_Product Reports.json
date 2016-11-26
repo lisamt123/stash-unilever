@@ -106,7 +106,7 @@
                                 "colspan": 3,
                                 "column": 9,
                                 "name": "dimfilter_prodBrand",
-                                "row": 9,
+                                "row": 10,
                                 "rowspan": 1,
                                 "widgetStyle": {
                                     "backgroundColor": "#FFFFFF",
@@ -384,7 +384,7 @@
                                 "colspan": 3,
                                 "column": 9,
                                 "name": "dimfilter_prodSector",
-                                "row": 10,
+                                "row": 9,
                                 "rowspan": 1,
                                 "widgetStyle": {
                                     "backgroundColor": "#FFFFFF",
@@ -1556,6 +1556,30 @@
                                 "name": "listselector_33",
                                 "row": 81,
                                 "rowspan": 1,
+                                "widgetStyle": {
+                                    "borderEdges": []
+                                }
+                            },
+                            {
+                                "colspan": 1,
+                                "column": 11,
+                                "name": "link_4",
+                                "row": 30,
+                                "rowspan": 1,
+                                "widgetStyle": {
+                                    "backgroundColor": "#FFFFFF",
+                                    "borderColor": "#E6ECF2",
+                                    "borderEdges": [],
+                                    "borderRadius": 0,
+                                    "borderWidth": 1
+                                }
+                            },
+                            {
+                                "colspan": 3,
+                                "column": 8,
+                                "name": "text_84",
+                                "row": 30,
+                                "rowspan": 2,
                                 "widgetStyle": {
                                     "borderEdges": []
                                 }
@@ -3129,6 +3153,18 @@
                         [
                             "Product_Market",
                             "{{ column(Product_market_67.selection, [\"Product_Market\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(Product_sector_68.selection, [\"Product_sector\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(Product_brand_69.selection, [\"Product_brand\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(SKU_70.selection, [\"SKU\"]).asObject() }}"
                         ]
                     ]
                 },
@@ -3191,11 +3227,93 @@
                     ],
                     "groups": [
                         "Product_brand"
+                    ],
+                    "filters": [
+                        [
+                            "Country",
+                            "{{ column(Country_21.selection, [\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "City",
+                            "{{ column(City_24.selection, [\"City\"]).asObject() }}"
+                        ],
+                        [
+                            "Commune",
+                            "{{ column(Commune_45.selection, [\"Commune\"]).asObject() }}"
+                        ],
+                        [
+                            "Customer_Type",
+                            "{{ column(Customer_type_30.selection, [\"Customer_Type\"]).asObject() }}"
+                        ],
+                        [
+                            "Trade_Format",
+                            "{{ column(Trade_Format_27.selection, [\"Trade_Format\"]).asObject() }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ column(X4P_5P_6P_63.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                        ],
+                        [
+                            "Top_Customer",
+                            "{{ column(Top_Customer_55.selection, [\"Top_Customer\"]).asObject() }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ column(Customer_32.selection, [\"Customer\"]).asObject() }}"
+                        ],
+                        [
+                            "Local_Outlet_Name",
+                            "{{ column(Local_Outlet_Name_51.selection, [\"Local_Outlet_Name\"]).asObject() }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ column(Channel_28.selection, [\"Channel\"]).asObject() }}"
+                        ],
+                        [
+                            "Subchannel",
+                            "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
+                        ],
+                        [
+                            "Store_type",
+                            "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ column(Sales_region_47.selection, [\"Sales_region\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_area",
+                            "{{ column(Sales_area_25.selection, [\"Sales_area\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_territory",
+                            "{{ column(Sales_territory_26.selection, [\"Sales_territory\"]).asObject() }}"
+                        ],
+                        [
+                            "Field_Execution_Manager",
+                            "{{ column(Field_Execution_Manager_56.selection, [\"Field_Execution_Manager\"]).asObject() }}"
+                        ],
+                        [
+                            "Store_Operations_Manager",
+                            "{{ column(Store_Operations_Manager_58.selection, [\"Store_Operations_Manager\"]).asObject() }}"
+                        ],
+                        [
+                            "Field_Sales_Manager",
+                            "{{ column(Field_Sales_Manager_57.selection, [\"Field_Sales_Manager\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Division",
+                            "{{ column(Product_division_53.selection, [\"Product_Division\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ column(Product_category_54.selection, [\"Product_Category\"]).asObject() }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
                 "start": [],
-                "type": "aggregate",
+                "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
@@ -3290,6 +3408,18 @@
                         [
                             "Product_Market",
                             "{{ column(Product_market_67.selection, [\"Product_Market\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(Product_sector_68.selection, [\"Product_sector\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(Product_brand_69.selection, [\"Product_brand\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(SKU_70.selection, [\"SKU\"]).asObject() }}"
                         ]
                     ]
                 },
@@ -3866,7 +3996,7 @@
                             "Value",
                             "C",
                             {
-                                "display": "%Î”"
+                                "display": "%Δ"
                             }
                         ],
                         [
@@ -3874,7 +4004,7 @@
                             "Value",
                             "D",
                             {
-                                "display": "%Î”"
+                                "display": "%Δ"
                             }
                         ]
                     ],
@@ -4212,7 +4342,7 @@
                                 ]
                             },
                             "format": "percentage",
-                            "header": "%Î”"
+                            "header": "%Δ"
                         },
                         {
                             "query": {
@@ -4272,7 +4402,7 @@
                             },
                             "format": "percentage",
                             "showBars": true,
-                            "header": "%Î”"
+                            "header": "%Δ"
                         }
                     ],
                     "groups": [
@@ -4562,7 +4692,7 @@
                             "Diff"
                         ]
                     ],
-                    "pigql": "q = load \"PS_OVERALL_COMPLIANCE_LV\"; q = filter q by {{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Audit_Date_Year','Audit_Date_Month','Audit_Date_Day')\") }} && {{ column(Country_21.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(City_24.selection, [\"City\"]).asEquality(\"City\") }} && {{ column(Commune_45.selection, [\"Commune\"]).asEquality(\"Commune\") }} && {{ column(Customer_type_30.selection, [\"Customer_Type\"]).asEquality(\"Key_Customer_Type\") }} && {{ column(Trade_Format_27.selection, [\"Trade_Format\"]).asEquality(\"Trade_Format\") }} && {{ column(X4P_5P_6P_63.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Top_Customer_55.selection, [\"Top_Customer\"]).asEquality(\"Top_Customer\") }} && {{ column(Customer_32.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(Local_Outlet_Name_51.selection, [\"Local_Outlet_Name\"]).asEquality(\"Outlet_Name\") }} && {{ column(Channel_28.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Subchannel_29.selection, [\"Subchannel\"]).asEquality(\"Subchannel\") }} && {{ column(Store_type_49.selection, [\"Store_type\"]).asEquality(\"Store_Type\") }} && {{ column(Sales_region_47.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Sales_area_25.selection, [\"Sales_area\"]).asEquality(\"Sales_area\") }} && {{ column(Sales_territory_26.selection, [\"Sales_territory\"]).asEquality(\"Sales_Territory\") }} && {{ column(Field_Execution_Manager_56.selection, [\"Field_Execution_Manager\"]).asEquality(\"Field_Execution_Manager\") }} && {{ column(Store_Operations_Manager_58.selection, [\"Store_Operations_Manager\"]).asEquality(\"Store_Operations_Manager\") }} && {{ column(Field_Sales_Manager_57.selection, [\"Field_Sales_Manager\"]).asEquality(\"Field_Sales_Manager\") }} && {{ column(Product_division_53.selection, [\"Product_Division\"]).asEquality(\"Product_Division\") }} && {{ column(Product_category_54.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }} && {{ column(Country_2.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(X4P_5P_6P_64.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Region_72.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Channel_6.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Product_category_1.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }} && {{ column(Customer_7.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(Country_KPI_Type_1.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(KPI_Type_X4P_5P_6P_1.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Sales_region_KPI_Type_2.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Channel_KPI_Type_1.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Product_category_KPI_1.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }} && {{ column(Customer_KPI_Type_1.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(Product_market_67.selection, [\"Product_Market\"]).asEquality(\"Product_Market\") }}; diff = group q by all; diff = foreach diff generate (avg('Product_Compliance'))-(avg('Product_Compliance_LV')) as 'Percent_Diff', (case when (avg('Product_Compliance'))-(avg('Product_Compliance_LV')) < 0.5 then \"#EE0A50\" when (avg('Product_Compliance'))-(avg('Product_Compliance_LV')) < 0.7 then \"#F8CE00\" else \"#0FD178\" end) as 'color';;"
+                    "pigql": "q = load \"PS_OVERALL_COMPLIANCE_LV\"; q_A = filter q by {{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Audit_Date_Year','Audit_Date_Month','Audit_Date_Day')\") }} && {{ column(Country_21.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(City_24.selection, [\"City\"]).asEquality(\"City\") }} && {{ column(Commune_45.selection, [\"Commune\"]).asEquality(\"Commune\") }} && {{ column(Customer_type_30.selection, [\"Customer_Type\"]).asEquality(\"Key_Customer_Type\") }} && {{ column(Trade_Format_27.selection, [\"Trade_Format\"]).asEquality(\"Trade_Format\") }} && {{ column(X4P_5P_6P_63.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Top_Customer_55.selection, [\"Top_Customer\"]).asEquality(\"Top_Customer\") }} && {{ column(Customer_32.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(Local_Outlet_Name_51.selection, [\"Local_Outlet_Name\"]).asEquality(\"Outlet_Name\") }} && {{ column(Channel_28.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Subchannel_29.selection, [\"Subchannel\"]).asEquality(\"Subchannel\") }} && {{ column(Store_type_49.selection, [\"Store_type\"]).asEquality(\"Store_Type\") }} && {{ column(Sales_region_47.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Sales_area_25.selection, [\"Sales_area\"]).asEquality(\"Sales_area\") }} && {{ column(Sales_territory_26.selection, [\"Sales_territory\"]).asEquality(\"Sales_Territory\") }} && {{ column(Field_Execution_Manager_56.selection, [\"Field_Execution_Manager\"]).asEquality(\"Field_Execution_Manager\") }} && {{ column(Store_Operations_Manager_58.selection, [\"Store_Operations_Manager\"]).asEquality(\"Store_Operations_Manager\") }} && {{ column(Field_Sales_Manager_57.selection, [\"Field_Sales_Manager\"]).asEquality(\"Field_Sales_Manager\") }} && {{ column(Product_division_53.selection, [\"Product_Division\"]).asEquality(\"Product_Division\") }} && {{ column(Product_category_54.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }} && {{ column(Country_2.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(X4P_5P_6P_64.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Region_72.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Channel_6.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Product_category_1.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }} && {{ column(Customer_7.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(Country_KPI_Type_1.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(KPI_Type_X4P_5P_6P_1.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Sales_region_KPI_Type_2.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Channel_KPI_Type_1.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Product_category_KPI_1.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }} && {{ column(Customer_KPI_Type_1.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(Product_market_67.selection, [\"Product_Market\"]).asEquality(\"Product_Market\") }} && 'Product_Compliance' >= 0; q_B = filter q by {{ row(Date_Year_Date_Month_14.selection, [0], [\"min\",\"max\"]).asDateRange(\"date('Audit_Date_Year','Audit_Date_Month','Audit_Date_Day')\") }} && {{ column(Country_21.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(City_24.selection, [\"City\"]).asEquality(\"City\") }} && {{ column(Commune_45.selection, [\"Commune\"]).asEquality(\"Commune\") }} && {{ column(Customer_type_30.selection, [\"Customer_Type\"]).asEquality(\"Key_Customer_Type\") }} && {{ column(Trade_Format_27.selection, [\"Trade_Format\"]).asEquality(\"Trade_Format\") }} && {{ column(X4P_5P_6P_63.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Top_Customer_55.selection, [\"Top_Customer\"]).asEquality(\"Top_Customer\") }} && {{ column(Customer_32.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(Local_Outlet_Name_51.selection, [\"Local_Outlet_Name\"]).asEquality(\"Outlet_Name\") }} && {{ column(Channel_28.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Subchannel_29.selection, [\"Subchannel\"]).asEquality(\"Subchannel\") }} && {{ column(Store_type_49.selection, [\"Store_type\"]).asEquality(\"Store_Type\") }} && {{ column(Sales_region_47.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Sales_area_25.selection, [\"Sales_area\"]).asEquality(\"Sales_area\") }} && {{ column(Sales_territory_26.selection, [\"Sales_territory\"]).asEquality(\"Sales_Territory\") }} && {{ column(Field_Execution_Manager_56.selection, [\"Field_Execution_Manager\"]).asEquality(\"Field_Execution_Manager\") }} && {{ column(Store_Operations_Manager_58.selection, [\"Store_Operations_Manager\"]).asEquality(\"Store_Operations_Manager\") }} && {{ column(Field_Sales_Manager_57.selection, [\"Field_Sales_Manager\"]).asEquality(\"Field_Sales_Manager\") }} && {{ column(Product_division_53.selection, [\"Product_Division\"]).asEquality(\"Product_Division\") }} && {{ column(Product_category_54.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }} && {{ column(Country_2.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(X4P_5P_6P_64.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Region_72.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Channel_6.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Product_category_1.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }} && {{ column(Customer_7.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(Country_KPI_Type_1.selection, [\"Country\"]).asEquality(\"Country\") }} && {{ column(KPI_Type_X4P_5P_6P_1.selection, [\"X4P_5P_6P\"]).asEquality(\"PS_Standard\") }} && {{ column(Sales_region_KPI_Type_2.selection, [\"Sales_region\"]).asEquality(\"Sales_Region\") }} && {{ column(Channel_KPI_Type_1.selection, [\"Channel\"]).asEquality(\"Channel\") }} && {{ column(Product_category_KPI_1.selection, [\"Product_Category\"]).asEquality(\"Product_Category\") }} && {{ column(Customer_KPI_Type_1.selection, [\"Customer\"]).asEquality(\"Customer\") }} && {{ column(Product_market_67.selection, [\"Product_Market\"]).asEquality(\"Product_Market\") }} && 'Product_Compliance_LV' >= 0; diff = group q_A by all full, q_B by all; diff = foreach diff generate (avg(q_A.'Product_Compliance'))- coalesce(avg(q_B.'Product_Compliance_LV'),0) as 'Percent_Diff', (case when (avg(q_A.'Product_Compliance'))-coalesce(avg(q_B.'Product_Compliance_LV'),0) < 0.5 then \"#EE0A50\" when (avg(q_A.'Product_Compliance'))- coalesce(avg(q_B.'Product_Compliance_LV'),0) < 0.7 then \"#F8CE00\" else \"#0FD178\" end) as 'color';"
                 },
                 "selectMode": "single",
                 "type": "aggregateflex",
@@ -4820,6 +4950,18 @@
                         [
                             "Product_Market",
                             "{{ column(Product_market_67.selection, [\"Product_Market\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(Product_sector_68.selection, [\"Product_sector\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(Product_brand_69.selection, [\"Product_brand\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(SKU_70.selection, [\"SKU\"]).asObject() }}"
                         ]
                     ],
                     "order": [
@@ -5663,11 +5805,93 @@
                     ],
                     "groups": [
                         "Product_Market"
+                    ],
+                    "filters": [
+                        [
+                            "Country",
+                            "{{ column(Country_21.selection, [\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "City",
+                            "{{ column(City_24.selection, [\"City\"]).asObject() }}"
+                        ],
+                        [
+                            "Commune",
+                            "{{ column(Commune_45.selection, [\"Commune\"]).asObject() }}"
+                        ],
+                        [
+                            "Customer_Type",
+                            "{{ column(Customer_type_30.selection, [\"Customer_Type\"]).asObject() }}"
+                        ],
+                        [
+                            "Trade_Format",
+                            "{{ column(Trade_Format_27.selection, [\"Trade_Format\"]).asObject() }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ column(X4P_5P_6P_63.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                        ],
+                        [
+                            "Top_Customer",
+                            "{{ column(Top_Customer_55.selection, [\"Top_Customer\"]).asObject() }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ column(Customer_32.selection, [\"Customer\"]).asObject() }}"
+                        ],
+                        [
+                            "Local_Outlet_Name",
+                            "{{ column(Local_Outlet_Name_51.selection, [\"Local_Outlet_Name\"]).asObject() }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ column(Channel_28.selection, [\"Channel\"]).asObject() }}"
+                        ],
+                        [
+                            "Subchannel",
+                            "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
+                        ],
+                        [
+                            "Store_type",
+                            "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ column(Sales_region_47.selection, [\"Sales_region\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_area",
+                            "{{ column(Sales_area_25.selection, [\"Sales_area\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_territory",
+                            "{{ column(Sales_territory_26.selection, [\"Sales_territory\"]).asObject() }}"
+                        ],
+                        [
+                            "Field_Execution_Manager",
+                            "{{ column(Field_Execution_Manager_56.selection, [\"Field_Execution_Manager\"]).asObject() }}"
+                        ],
+                        [
+                            "Store_Operations_Manager",
+                            "{{ column(Store_Operations_Manager_58.selection, [\"Store_Operations_Manager\"]).asObject() }}"
+                        ],
+                        [
+                            "Field_Sales_Manager",
+                            "{{ column(Field_Sales_Manager_57.selection, [\"Field_Sales_Manager\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Division",
+                            "{{ column(Product_division_53.selection, [\"Product_Division\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ column(Product_category_54.selection, [\"Product_Category\"]).asObject() }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
                 "start": [],
-                "type": "aggregate",
+                "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
@@ -5708,7 +5932,7 @@
                             "Value",
                             "C",
                             {
-                                "display": "%Î”",
+                                "display": "%Δ",
                                 "format": "percentage"
                             }
                         ],
@@ -5717,7 +5941,7 @@
                             "Value",
                             "D",
                             {
-                                "display": "%Î”",
+                                "display": "%Δ",
                                 "format": "percentage"
                             }
                         ]
@@ -6029,7 +6253,7 @@
                                 "formula": "round(A-B,3)"
                             },
                             "format": "percentage",
-                            "header": "%Î”"
+                            "header": "%Δ"
                         },
                         {
                             "query": {
@@ -6048,7 +6272,7 @@
                             },
                             "format": "percentage",
                             "showBars": true,
-                            "header": "%Î”"
+                            "header": "%Δ"
                         }
                     ],
                     "groups": [
@@ -6098,7 +6322,7 @@
                             "Diff",
                             "C",
                             {
-                                "display": "%Î”"
+                                "display": "%Δ"
                             }
                         ],
                         [
@@ -6106,7 +6330,7 @@
                             "Bar",
                             "D",
                             {
-                                "display": "%Î”"
+                                "display": "%Δ"
                             }
                         ]
                     ],
@@ -6165,7 +6389,7 @@
                                 ]
                             },
                             "showBars": false,
-                            "header": "%Î”"
+                            "header": "%Δ"
                         },
                         {
                             "query": {
@@ -6366,6 +6590,22 @@
                             "{{ column(Product_category_54.selection, [\"Product_Category\"]).asObject() }}"
                         ],
                         [
+                            "Product_Market",
+                            "{{ column(Product_market_67.selection, [\"Product_Market\"]).asObject() }}"
+                        ],
+                        [
+                          "Product_Market",
+                          "{{ column(Product_sector_68.selection, [\"Product_sector\"]).asObject() }}"
+                        ],
+                        [
+                          "Product_Market",
+                          "{{ column(Product_brand_69.selection, [\"Product_brand\"]).asObject() }}"
+                        ],
+                        [
+                          "Product_Market",
+                          "{{ column(SKU_70.selection, [\"SKU\"]).asObject() }}"
+                        ],
+                        [
                             "Product_Category",
                             "{{ column(Product_category_1.selection,[\"Product_Category\"]).asObject() }}"
                         ],
@@ -6497,11 +6737,93 @@
                     ],
                     "groups": [
                         "SKU"
+                    ],
+                    "filters": [
+                        [
+                            "Country",
+                            "{{ column(Country_21.selection, [\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "City",
+                            "{{ column(City_24.selection, [\"City\"]).asObject() }}"
+                        ],
+                        [
+                            "Commune",
+                            "{{ column(Commune_45.selection, [\"Commune\"]).asObject() }}"
+                        ],
+                        [
+                            "Customer_Type",
+                            "{{ column(Customer_type_30.selection, [\"Customer_Type\"]).asObject() }}"
+                        ],
+                        [
+                            "Trade_Format",
+                            "{{ column(Trade_Format_27.selection, [\"Trade_Format\"]).asObject() }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ column(X4P_5P_6P_63.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                        ],
+                        [
+                            "Top_Customer",
+                            "{{ column(Top_Customer_55.selection, [\"Top_Customer\"]).asObject() }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ column(Customer_32.selection, [\"Customer\"]).asObject() }}"
+                        ],
+                        [
+                            "Local_Outlet_Name",
+                            "{{ column(Local_Outlet_Name_51.selection, [\"Local_Outlet_Name\"]).asObject() }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ column(Channel_28.selection, [\"Channel\"]).asObject() }}"
+                        ],
+                        [
+                            "Subchannel",
+                            "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
+                        ],
+                        [
+                            "Store_type",
+                            "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ column(Sales_region_47.selection, [\"Sales_region\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_area",
+                            "{{ column(Sales_area_25.selection, [\"Sales_area\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_territory",
+                            "{{ column(Sales_territory_26.selection, [\"Sales_territory\"]).asObject() }}"
+                        ],
+                        [
+                            "Field_Execution_Manager",
+                            "{{ column(Field_Execution_Manager_56.selection, [\"Field_Execution_Manager\"]).asObject() }}"
+                        ],
+                        [
+                            "Store_Operations_Manager",
+                            "{{ column(Store_Operations_Manager_58.selection, [\"Store_Operations_Manager\"]).asObject() }}"
+                        ],
+                        [
+                            "Field_Sales_Manager",
+                            "{{ column(Field_Sales_Manager_57.selection, [\"Field_Sales_Manager\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Division",
+                            "{{ column(Product_division_53.selection, [\"Product_Division\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ column(Product_category_54.selection, [\"Product_Category\"]).asObject() }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
                 "start": [],
-                "type": "aggregate",
+                "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
@@ -6683,6 +7005,18 @@
                         [
                             "Product_Market",
                             "{{ column(Product_market_67.selection, [\"Product_Market\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(Product_sector_68.selection, [\"Product_sector\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(Product_brand_69.selection, [\"Product_brand\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(SKU_70.selection, [\"SKU\"]).asObject() }}"
                         ]
                     ]
                 },
@@ -6835,6 +7169,43 @@
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "stackhbar",
+                    "options": {}
+                }
+            },
+            "lens_3": {
+                "datasets": [
+                    {
+                        "id": "0Fb2C000000GmzxSAC",
+                        "label": "SUMMARY_OUTLET_VIEW",
+                        "name": "SUMMARY_OUTLET_VIEW",
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmzxSAC"
+                    }
+                ],
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "values": [
+                        "Customer_Name",
+                        "Country_Id",
+                        "Month_Year_Number",
+                        "Redline_Perfect_Indicator",
+                        "Promo_Perfect_Indicator",
+                        "Business_Mandate_Perfect_Indicator",
+                        "Ever_Billed_Perfect_Indicator",
+                        "Product_Perfect_Store_Indicator",
+                        "Core_Of_Core_sku_Indicator",
+                        "New_Prod_Dev_Perfect_Indicator",
+                        "Pack_Perfect_Indicator",
+                        "Perfect_Store_Indicator",
+                        "Price_Perfect_Indicator",
+                        "Priority_Promo_Perfect_Indicator",
+                        "Width_Pack_Perfect_Indicator"
+                    ]
+                },
+                "type": "grain",
+                "useGlobal": true,
+                "visualizationParameters": {
+                    "visualizationType": "valuestable",
                     "options": {}
                 }
             },
@@ -7194,6 +7565,18 @@
                         [
                             "Product_Market",
                             "{{ column(Product_market_67.selection, [\"Product_Market\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(Product_sector_68.selection, [\"Product_sector\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(Product_brand_69.selection, [\"Product_brand\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(SKU_70.selection, [\"SKU\"]).asObject() }}"
                         ]
                     ]
                 },
@@ -7550,11 +7933,93 @@
                     ],
                     "groups": [
                         "Product_sector"
+                    ],
+                    "filters": [
+                        [
+                            "Country",
+                            "{{ column(Country_21.selection, [\"Country\"]).asObject() }}"
+                        ],
+                        [
+                            "City",
+                            "{{ column(City_24.selection, [\"City\"]).asObject() }}"
+                        ],
+                        [
+                            "Commune",
+                            "{{ column(Commune_45.selection, [\"Commune\"]).asObject() }}"
+                        ],
+                        [
+                            "Customer_Type",
+                            "{{ column(Customer_type_30.selection, [\"Customer_Type\"]).asObject() }}"
+                        ],
+                        [
+                            "Trade_Format",
+                            "{{ column(Trade_Format_27.selection, [\"Trade_Format\"]).asObject() }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ column(X4P_5P_6P_63.selection, [\"X4P_5P_6P\"]).asObject() }}"
+                        ],
+                        [
+                            "Top_Customer",
+                            "{{ column(Top_Customer_55.selection, [\"Top_Customer\"]).asObject() }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ column(Customer_32.selection, [\"Customer\"]).asObject() }}"
+                        ],
+                        [
+                            "Local_Outlet_Name",
+                            "{{ column(Local_Outlet_Name_51.selection, [\"Local_Outlet_Name\"]).asObject() }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ column(Channel_28.selection, [\"Channel\"]).asObject() }}"
+                        ],
+                        [
+                            "Subchannel",
+                            "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
+                        ],
+                        [
+                            "Store_type",
+                            "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_region",
+                            "{{ column(Sales_region_47.selection, [\"Sales_region\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_area",
+                            "{{ column(Sales_area_25.selection, [\"Sales_area\"]).asObject() }}"
+                        ],
+                        [
+                            "Sales_territory",
+                            "{{ column(Sales_territory_26.selection, [\"Sales_territory\"]).asObject() }}"
+                        ],
+                        [
+                            "Field_Execution_Manager",
+                            "{{ column(Field_Execution_Manager_56.selection, [\"Field_Execution_Manager\"]).asObject() }}"
+                        ],
+                        [
+                            "Store_Operations_Manager",
+                            "{{ column(Store_Operations_Manager_58.selection, [\"Store_Operations_Manager\"]).asObject() }}"
+                        ],
+                        [
+                            "Field_Sales_Manager",
+                            "{{ column(Field_Sales_Manager_57.selection, [\"Field_Sales_Manager\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Division",
+                            "{{ column(Product_division_53.selection, [\"Product_Division\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Category",
+                            "{{ column(Product_category_54.selection, [\"Product_Category\"]).asObject() }}"
+                        ]
                     ]
                 },
                 "selectMode": "multi",
                 "start": [],
-                "type": "aggregate",
+                "type": "aggregateflex",
                 "useGlobal": true,
                 "visualizationParameters": {
                     "visualizationType": "hbar",
@@ -7741,6 +8206,18 @@
                         [
                             "Product_Market",
                             "{{ column(Product_market_67.selection, [\"Product_Market\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(Product_sector_68.selection, [\"Product_sector\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(Product_brand_69.selection, [\"Product_brand\"]).asObject() }}"
+                        ],
+                        [
+                            "Product_Market",
+                            "{{ column(SKU_70.selection, [\"SKU\"]).asObject() }}"
                         ]
                     ]
                 },
@@ -7968,7 +8445,7 @@
         "widgets": {
             "link_place": {
                 "parameters": {
-                    "destination": "0FK2C000000Kyv7WAC",
+                    "destination": "0FK2C000000KyuiWAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -8029,7 +8506,7 @@
             },
             "link_pack": {
                 "parameters": {
-                    "destination": "0FK2C000000KyuiWAC",
+                    "destination": "0FK2C000000Kyv7WAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -8083,7 +8560,7 @@
             },
             "chart_6": {
                 "parameters": {
-                    "autoFitMode": "fit",
+                    "autoFitMode": "keepLabels",
                     "showValues": true,
                     "legend": {
                         "showHeader": false,
@@ -8241,7 +8718,7 @@
             },
             "chart_7": {
                 "parameters": {
-                    "autoFitMode": "fit",
+                    "autoFitMode": "keepLabels",
                     "showValues": true,
                     "legend": {
                         "showHeader": false,
@@ -8553,6 +9030,15 @@
                 "parameters": {
                     "fontSize": 20,
                     "text": "COC Availability",
+                    "textAlignment": "left",
+                    "textColor": "#091A3E"
+                },
+                "type": "text"
+            },
+            "text_84": {
+                "parameters": {
+                    "fontSize": 14,
+                    "text": "This chart displays the IQ KPIs for Product which will represent the KPIs required for 4P Stores.\n",
                     "textAlignment": "left",
                     "textColor": "#091A3E"
                 },
@@ -9278,7 +9764,7 @@
                     "instant": true,
                     "measureField": "count",
                     "step": "Date_of_audit_Month_1",
-                    "title": "Date_of_audit_Month"
+                    "title": "Current Month"
                 },
                 "type": "listselector"
             },
@@ -9418,7 +9904,7 @@
                     "instant": true,
                     "measureField": "count",
                     "step": "Date_of_audit_Year_4",
-                    "title": "Date_of_audit_Year"
+                    "title": "Previous Year"
                 },
                 "type": "listselector"
             },
@@ -9487,7 +9973,7 @@
                     "instant": true,
                     "measureField": "count",
                     "step": "Date_of_audit_Year_3",
-                    "title": "Date_of_audit_Year"
+                    "title": "Current Year"
                 },
                 "type": "listselector"
             },
@@ -9499,7 +9985,7 @@
                     "instant": true,
                     "measureField": "count",
                     "step": "Date_of_audit_Month_4",
-                    "title": "Date_of_audit_Month"
+                    "title": "Previous Month"
                 },
                 "type": "listselector"
             },
@@ -9511,7 +9997,7 @@
                     "instant": true,
                     "measureField": "count",
                     "step": "Date_of_audit_Month_3",
-                    "title": "Date_of_audit_Month"
+                    "title": "Current Month"
                 },
                 "type": "listselector"
             },
@@ -9583,7 +10069,7 @@
                     "instant": true,
                     "measureField": "count",
                     "step": "Date_of_audit_Year_2",
-                    "title": "Date_of_audit_Year"
+                    "title": "Previous Year"
                 },
                 "type": "listselector"
             },
@@ -9595,7 +10081,7 @@
                     "instant": true,
                     "measureField": "count",
                     "step": "Date_of_audit_Month_2",
-                    "title": "Date_of_audit_Month"
+                    "title": "Previous Month"
                 },
                 "type": "listselector"
             },
@@ -9607,7 +10093,7 @@
                     "instant": true,
                     "measureField": "count",
                     "step": "Date_of_audit_Year_1",
-                    "title": "Date_of_audit_Year"
+                    "title": "Current Year"
                 },
                 "type": "listselector"
             },
@@ -10194,6 +10680,17 @@
                     "text": "Proposition",
                     "textColor": "#091A3E",
                     "destination": null
+                },
+                "type": "link"
+            },
+            "link_4": {
+                "parameters": {
+                    "destination": "lens_3",
+                    "destinationType": "explore",
+                    "fontSize": 12,
+                    "includeState": true,
+                    "text": "🔎 4P Report",
+                    "textColor": "#091A3E"
                 },
                 "type": "link"
             },
