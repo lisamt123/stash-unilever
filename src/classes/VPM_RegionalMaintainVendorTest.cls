@@ -22,7 +22,7 @@ public class VPM_RegionalMaintainVendorTest{
 	 VPM_PurchasingRequests__c result = [SELECT Id, Name,VPM_FieldType__c from VPM_PurchasingRequests__c where id  =: purReq.Id];
      system.assertEquals(purReq1.VPM_FieldType__c,result.VPM_FieldType__c);
 	 system.assertEquals(purReq1.VPM_FieldType__c,null);
-	  VPM_PurchasingRequests__c purReq2 = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
+	  VPM_PurchasingRequests__c purReq2 = [SELECT Id, VPM_FieldType__c FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
     system.assertEquals(purReq2.VPM_FieldType__c,result.VPM_FieldType__c);
      test.stopTest();
  
