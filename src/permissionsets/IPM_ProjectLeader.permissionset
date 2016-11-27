@@ -8321,12 +8321,7 @@
 		<editable>false</editable>
 		<field>IPM_Task__c.IPM_Due_Date1_isNull__c</field>
 		<readable>true</readable>
-	</fieldPermissions>
-	<fieldPermissions>
-		<editable>false</editable>
-		<field>IPM_Task__c.Task_ExternalID__c</field>
-		<readable>true</readable>
-	</fieldPermissions>
+	</fieldPermissions>	
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>IPM_User_Profile__c.IPM_Is_RoleorFunction_Blank__c</field>
