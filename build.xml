@@ -486,7 +486,7 @@
 		<runTest>IPM_ChangProjectDocStatusCntrlGKM3_Test</runTest>
 		<runTest>IPM_CoreParameters_Test</runTest>
 		<runTest>IPM_FinGateController_Test</runTest>
-		<runTest>IPM_FinancialActionStandards</runTest>
+		<runTest>IPM_FinancialActionStandards_Test</runTest>
 		<runTest>IPM_FinancialControllerGKM3_Test</runTest>
 		<runTest>IPM_FinancialControllerRegional_Test</runTest>
 		<runTest>IPM_FinancialControllerSoftVldtns_Test</runTest>
