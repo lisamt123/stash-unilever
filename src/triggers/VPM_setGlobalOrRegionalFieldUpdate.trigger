@@ -5,7 +5,7 @@
 
 trigger VPM_SetGlobalOrRegionalFieldUpdate on VPM_PurchasingRequests__c (before update) {
 
-   //if(trigger.isUpdate && VPM_CheckRecursive.runOnce())
+   if(trigger.isUpdate && VPM_CheckRecursive.runOnce())
    {
   
    //trigger.New[0].VPM_StoreText__c = String.ValueOf(trigger.New[0].VPM_NoOfDays__c);

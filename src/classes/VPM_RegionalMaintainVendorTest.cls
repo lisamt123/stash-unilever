@@ -8,7 +8,8 @@ public class VPM_RegionalMaintainVendorTest{
   public static final String successStatusMsg = 'mdm insert/update succeeded'; 
     
  static testMethod void updateAndCheckFieldUpdateTest() {
-    VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
+    //VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
+         VPM_PurchasingRequests__c purReq = setup();
      purReq.VPM_Comments__c = 'test comment';
      purReq.VPM_TaxNumber1__c  = '53627282';
      purReq.VPM_checkForFieldUpdate__c = true;
@@ -17,21 +18,23 @@ public class VPM_RegionalMaintainVendorTest{
      update purReq;
       
      VPM_PurchasingRequests__c purReq1 = [SELECT Id, Name,VPM_FieldType__c,VPM_fieldUpdated__c from VPM_PurchasingRequests__c where id  =: purReq.Id];
-	 
+     
      system.debug('hfdfd'+purReq1.VPM_fieldUpdated__c);
-	 VPM_PurchasingRequests__c result = [SELECT Id, Name,VPM_FieldType__c from VPM_PurchasingRequests__c where id  =: purReq.Id];
+     VPM_PurchasingRequests__c result = [SELECT Id, Name,VPM_FieldType__c from VPM_PurchasingRequests__c where id  =: purReq.Id];
+
      system.assertEquals(purReq1.VPM_FieldType__c,result.VPM_FieldType__c);
-	 system.assertEquals(purReq1.VPM_FieldType__c,null);
-	  VPM_PurchasingRequests__c purReq2 = [SELECT Id, VPM_FieldType__c FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
-    system.assertEquals(purReq2.VPM_FieldType__c,result.VPM_FieldType__c);
+
+      
+
      test.stopTest();
  
  }
  
  static testMethod void InsertVendorTestFusion(){
         //String successStatusMDM = 'ECC Insert / Update Succeeded';
-       VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
-        purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
+      //VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
+     VPM_PurchasingRequests__c purReq = setup();
+      purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
         purReq.VPM_VendorCode__c=VendorCode;
      purReq.VPM_companyCodeMatch__c = false;
      purReq.VPM_purchasingOrgMatch__c = false;
@@ -43,7 +46,7 @@ public class VPM_RegionalMaintainVendorTest{
        
          test.stopTest();
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
-		VPM_PurchasingRequests__c result = [SELECT Id,VPM_ECC_InsertUpdateStatus__c FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
+        VPM_PurchasingRequests__c result = [SELECT Id,VPM_ECC_InsertUpdateStatus__c FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
         system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,result.VPM_ECC_InsertUpdateStatus__c ); 
         
  }
@@ -51,8 +54,9 @@ public class VPM_RegionalMaintainVendorTest{
     
     static testMethod void InsertVendorTestSirius(){
         //String successStatusMDMSirius = 'ECC Insert / Update Succeeded';
-       VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
-        purReq.VPM_MDMInsertUpdateStatus__c = successStatusMsg ;
+       //VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
+     VPM_PurchasingRequests__c purReq = setup();
+      purReq.VPM_MDMInsertUpdateStatus__c = successStatusMsg ;
         purReq.VPM_VendorCode__c=VendorCode;
      purReq.VPM_companyCodeMatch__c = false;
      purReq.VPM_purchasingOrgMatch__c = false;
@@ -69,15 +73,16 @@ public class VPM_RegionalMaintainVendorTest{
        
         test.stopTest(); 
         VPM_PurchasingRequests__c pur1 = [SELECT Id,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
-		VPM_PurchasingRequests__c result = [SELECT Id,VPM_ECC_InsertUpdateStatus__c FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
+        VPM_PurchasingRequests__c result = [SELECT Id,VPM_ECC_InsertUpdateStatus__c FROM VPM_PurchasingRequests__c WHERE Id=:purReq.Id  LIMIT 1];
         system.assertEquals(pur1.VPM_ECC_InsertUpdateStatus__c,result.VPM_ECC_InsertUpdateStatus__c ); 
         
  }
     
       static testMethod void InsertVendorTestU2K2(){
         //String successStatusMDMU2K2 = 'ECC Insert / Update Succeeded';
-       VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
-        purReq.VPM_MDMInsertUpdateStatus__c = successStatusMsg ;
+       //VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
+     VPM_PurchasingRequests__c purReq = setup();
+      purReq.VPM_MDMInsertUpdateStatus__c = successStatusMsg ;
         purReq.VPM_VendorCode__c=VendorCode;
      purReq.VPM_companyCodeMatch__c = false;
      purReq.VPM_purchasingOrgMatch__c = false;
@@ -104,8 +109,9 @@ public class VPM_RegionalMaintainVendorTest{
     
       static testMethod void InsertVendorTestCordillera(){
         //String successStatusMDMCordillera = 'ECC Insert / Update Succeeded';
-       VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
-        purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
+      //VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
+     VPM_PurchasingRequests__c purReq = setup();
+      purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
         purReq.VPM_VendorCode__c=VendorCode;
      purReq.VPM_companyCodeMatch__c = false;
      purReq.VPM_purchasingOrgMatch__c = false;
@@ -128,8 +134,9 @@ public class VPM_RegionalMaintainVendorTest{
     
     static testMethod void InsertVendorTest(){
         //String successStatusMDM = 'ECC Insert / Update Succeeded';
-       VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_VendorCode__c,VPM_companyCodeMatch__c,VPM_purchasingOrgMatch__c,VPM_MDMInsertUpdateStatus__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
-        purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
+       //VPM_PurchasingRequests__c purReq = [SELECT Id, Name,VPM_Comments__c,VPM_TaxNumber1__c,VPM_PaymentMethod__c ,VPM_checkForFieldUpdate__c  FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1]; 
+     VPM_PurchasingRequests__c purReq = setup();
+      purReq.VPM_MDMInsertUpdateStatus__c =successStatusMsg ;
         purReq.VPM_VendorCode__c=VendorCode;
      purReq.VPM_companyCodeMatch__c = false;
      purReq.VPM_purchasingOrgMatch__c = false;
@@ -147,7 +154,7 @@ public class VPM_RegionalMaintainVendorTest{
  }
 
 
- @testSetup static void setup() {
+      static VPM_PurchasingRequests__c setup() {
         String vCode = '5001010'; 
         VPM_CompanyCode__c compCode = new VPM_CompanyCode__c(Name = 'Company Code 2', Company_Name__c = 'Unilever', VPM_CompanyCode__c = 'UN',VPM_Country__c ='Belgium',ECC__c ='Fusion');
         insert compCode;
@@ -302,6 +309,7 @@ public class VPM_RegionalMaintainVendorTest{
   
         
         insert globalFieldsList ;
+        return pur;
         
     }
 
