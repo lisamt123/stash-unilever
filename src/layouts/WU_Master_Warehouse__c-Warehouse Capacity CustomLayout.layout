@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -34,10 +35,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>WU_Warehouse_Secondary_POC_Email__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -118,15 +115,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>WU_ZipCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>WU_Network__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>WU_Cross_Category_Network__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>WU_ZipCode__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -235,12 +232,8 @@
                 <field>WU_FromDate__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>WU_Utilization_Type__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
-                <field>RecordTypeId</field>
+                <field>WU_Utilization_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -251,6 +244,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>WU_Current_Utilization__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Current_Utilization__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

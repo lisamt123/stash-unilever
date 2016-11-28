@@ -24,10 +24,15 @@ trigger WU_SetWarehousePOC on WU_Master_Warehouse__c(After Insert,Before Insert,
            
         }
         System.debug('Again *****tets*******'+WU_warehousUtility.isTrggerExecuted);
-        if(Trigger.isUpdate && Trigger.isAfter) //!WU_warehousUtility.isTrggerExecuted
-        {
-            //if(!WU_UpdateMasterWarehouseHandler.isUpdateFromChild)
-            //{
+        if(Trigger.isUpdate && Trigger.isAfter) //
+        {                       
+           if(!WU_warehousUtility.isTrggerExecuted)
+            {
+                WU_CreateCapacityDetails duplicateCheck = new WU_CreateCapacityDetails();
+                duplicateCheck.checkInsertRecordOrDisplayError(trigger.new, trigger.newMap,trigger.oldMap); 
+                WU_warehousUtility.isTrggerExecuted = TRUE;
+            }
+                
                 WU_SetWarehousePOCHandler.wareHouseShare(trigger.new);
                 System.debug('Again ************');
                 List<WU_Master_Warehouse__c> sendMail=new List<WU_Master_Warehouse__c>();
@@ -75,10 +80,15 @@ trigger WU_SetWarehousePOC on WU_Master_Warehouse__c(After Insert,Before Insert,
                     //WU_SetWarehousePOCHandler.sendEmailSecPOC(trigger.new);
                     WU_SetWarehousePOCHandler.sendApprovalEmailSecPOC(trigger.new);
                     System.debug('Prateek Jhanwar');
-                }  
-                WU_CreateCapacityDetails duplicateCheck = new WU_CreateCapacityDetails();
+                } 
+            /*if(!WU_warehousUtility.isTrggerExecuted)
+            {
+             WU_CreateCapacityDetails duplicateCheck = new WU_CreateCapacityDetails();
                 duplicateCheck.checkInsertRecordOrDisplayError(trigger.new, trigger.newMap,trigger.oldMap); 
                 WU_warehousUtility.isTrggerExecuted = TRUE;
-            //}
+            }*/
+            
+                
+               
          }
    }

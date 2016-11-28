@@ -3,7 +3,7 @@
 *@Description :     To test WU_WarehouseSearchController Class.
 *************************************************************/
     
-@isTest 
+    @isTest 
 private class WU_SetWareHousePOCHandlerTest {
     static testMethod void onBeforeTest() {
 
@@ -12,7 +12,10 @@ private class WU_SetWareHousePOCHandlerTest {
       
             // fetching master warehouse details
        WU_Master_Warehouse__c  masterWareHouse = getMasterWareHouseDetails();
+        WU_Master_Warehouse__c  masterWareHouse1 = getMasterWareHouseDetailsApproved();
        masterWareHouseList.add(masterWareHouse);
+         masterWareHouseList.add(masterWareHouse1);
+        
                
             test.startTest();
         
@@ -25,6 +28,7 @@ private class WU_SetWareHousePOCHandlerTest {
            update masterWareHouseList;
            WU_SetWarehousePOCHandler.sendEmailSecPOC(masterWareHouseList);
            WU_SetWarehousePOCHandler.sendRejectionEmailSecPOC(masterWareHouseList);
+           WU_SetWarehousePOCHandler.sendApprovalEmailSecPOC(masterWareHouseList);
            //masterWarehouseMap.put(masterWareHouse.Id,masterWareHouse);
            //WU_SetWarehousePOCHandler.onBeforeInsert(masterWareHouseList,masterWarehouseMap);
             Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
@@ -42,12 +46,13 @@ private class WU_SetWareHousePOCHandlerTest {
         
         
       private static WU_Master_Warehouse__c getMasterWareHouseDetails(){
-   WU_Master_Warehouse__c masterWarehouseItem = new WU_Master_Warehouse__c (WU_SAPCode_s__c='test',
-   WU_Procurement_Manager__c='00522000000djt0',
+   WU_Master_Warehouse__c masterWarehouseItem = new WU_Master_Warehouse__c (WU_SAPCode_s__c='test12',
+   WU_Procurement_Manager__c=id.valueOf('00522000000djt0'),
    WU_WarehouseManager_Email__c='test@xyza.com',
    WU_WarehousePOC_Email__c='tserst1231@xze.com',
    WU_Committed_Max_PalletStorage__c= 100.0,
    WU_Current_Utilization__c = 10,
+    WU_Active_WH__c='Yes',                                                                        
    WU_Previous_Month__c=9.0,
    WU_Approval_Status__c='Rejected',                                                                     
     WU_Current_Pallet_Utilization__c= 10.0,
@@ -61,7 +66,29 @@ private class WU_SetWareHousePOCHandlerTest {
                                                                            
    return masterWarehouseItem ;
 }
+     private static WU_Master_Warehouse__c getMasterWareHouseDetailsApproved(){
+   WU_Master_Warehouse__c masterWarehouseItem = new WU_Master_Warehouse__c (WU_SAPCode_s__c='test',
+   WU_Procurement_Manager__c=Id.valueOf('00522000000djt0'),
+   WU_WarehouseManager_Email__c='test@xyza.com',
+   WU_WarehousePOC_Email__c='tserst1231@xze.com',
+   WU_Committed_Max_PalletStorage__c= 100.0,
+   WU_Current_Utilization__c = 10,
+    WU_Active_WH__c='Yes',                                                                        
+   WU_Previous_Month__c=9.0,
+   WU_Approval_Status__c='Approved',                                                                     
+    WU_Current_Pallet_Utilization__c= 10.0,
+    WU_ToDate__c= System.Today(),
+    WU_FromDate__c=System.Today(),
+    WU_Utilization_Type__c='Daily',
+    Submitted_by__c='Prateek',                                                                                                                                                                                                                                                                                                                                                  
+    WU_Warehouse_Secondary_POC_Email__c='Test@cxyz.com',
+     WU_Prior_CommittedPalletStorage__c= 90.0,
+      WU_LocationName__c='Udaipur');                                                                    
+                                                                           
+   return masterWarehouseItem ;
+    
 
    
         
+}
 }

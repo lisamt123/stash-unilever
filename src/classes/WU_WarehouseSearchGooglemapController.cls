@@ -3,9 +3,7 @@
 *@Date :            November 2016
 *@Description :     controller class for VF Page WarehouseGoogleMaps
 *************************************************************/
-public with sharing class WU_WarehouseSearchGooglemapController {
-
-    
+public with sharing class WU_WarehouseSearchGooglemapController {    
 
     public string emailLoggedUser1;
     public String loggedInUser;
@@ -19,6 +17,7 @@ public with sharing class WU_WarehouseSearchGooglemapController {
     public string sMCO{get;set;}
     public string sCountry{get;set;}
     public string sCity{get;set;}
+    public string sBuildingContractType {get;set;}
     public Integer listsize{get;set;}
     // the soql without the order and limit
     private String soql {get;set;}
@@ -41,7 +40,7 @@ public with sharing class WU_WarehouseSearchGooglemapController {
        soql='SELECT Id,Name,Owner.Name,WU_Procurement_Manager__r.Name,WU_Average_Current_Utilization__c,WU_Average_Pallet_Utilization_Week__c,WU_Average_Pallet_Utilization_Month__c,WU_Total_Current_Month_Utilisation__c,WU_AverageUtilization__c,WU_CityName__c,WU_Committed_Max_PalletStorage__c,'+
             'WU_Country__c,WU_Average_Pallet_Utilization_Count__c,WU_Current_Utilization__c,WU_FromDate__c,WU_MCO__c,WU_Network__c,WU_Prior_CommittedPalletStorage__c,'+
             'WU_Region__c,WU_SAPCode_s__c,WU_SAPName_s__c,WU_ToDate__c,WU_Total_Utilization__c,WU_WarehousePOC_Email__c,'+
-            'WU_Warehouse_Capacity__c FROM WU_Master_Warehouse__c where name!=null LIMIT 10000';
+            'WU_Warehouse_Capacity__c,WU_Building_ContractType__c FROM WU_Master_Warehouse__c where name!=null LIMIT 10000';
  
         try{
             lstWarehouses = new ApexPages.StandardSetController(Database.getQueryLocator(soql));
@@ -72,7 +71,7 @@ public with sharing class WU_WarehouseSearchGooglemapController {
          soql='SELECT Id,Name,Owner.Name,WU_Procurement_Manager__r.Name,WU_Average_Current_Utilization__c,WU_Average_Pallet_Utilization_Week__c,WU_Average_Pallet_Utilization_Month__c,WU_Total_Current_Month_Utilisation__c,WU_AverageUtilization__c,WU_CityName__c,WU_Committed_Max_PalletStorage__c,'+
             'WU_Country__c,WU_Average_Pallet_Utilization_Count__c,WU_Current_Utilization__c,WU_FromDate__c,WU_MCO__c,WU_Network__c,WU_Prior_CommittedPalletStorage__c,'+
             'WU_Region__c,WU_SAPCode_s__c,WU_SAPName_s__c,WU_ToDate__c,WU_Total_Utilization__c,WU_WarehousePOC_Email__c,'+
-            'WU_Warehouse_Capacity__c FROM WU_Master_Warehouse__c where name!=null';
+            'WU_Warehouse_Capacity__c,WU_Building_ContractType__c FROM WU_Master_Warehouse__c where name!=null';
         if(warehouseCapacity!=null){
             sRegion=warehouseCapacity.WU_Region__c;
             sCategory=warehouseCapacity.WU_Network__c;
@@ -80,6 +79,7 @@ public with sharing class WU_WarehouseSearchGooglemapController {
             sCountry=warehouseCapacity.WU_Country__c;
             sCity=warehouseCapacity.WU_CityName__c;
             sSAP=warehouseCapacity.WU_SAPCode_s__c;
+            sBuildingContractType=warehouseCapacity.WU_Building_ContractType__c ;
           }
         system.debug('@@@warehouseCapacity --->'+warehouseCapacity + '-' + sSAP+ '-' + sRegion+ '-' + sMCO +'-'+ sCategory+'-' + sCountry+ '-' + sCity );
        
@@ -99,6 +99,10 @@ public with sharing class WU_WarehouseSearchGooglemapController {
             soql += ' and WU_Network__c='+': sCategory';
         }
         
+         if(!String.isEmpty(sBuildingContractType)){
+            soql += ' and WU_Building_ContractType__c='+':sBuildingContractType';
+        }
+        
         if(!String.isEmpty(sCountry)){
             soql += ' and WU_Country__c='+':sCountry'; 
         }
@@ -106,6 +110,8 @@ public with sharing class WU_WarehouseSearchGooglemapController {
         if(!String.isEmpty(sCity)){
             soql += ' and WU_CityName__c='+':sCity';
         }
+        
+       
                 
         system.debug('@@@soql --->'+soql );
  
