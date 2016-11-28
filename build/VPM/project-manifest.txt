@@ -12,8 +12,6 @@ src/classes/VPM_CreateVendorFetchFieldDetails.cls
 src/classes/VPM_CreateVendorFetchFieldDetails.cls-meta.xml
 src/classes/VPM_CreateVendorFieldDetailsWrapper.cls
 src/classes/VPM_CreateVendorFieldDetailsWrapper.cls-meta.xml
-src/classes/VPM_CreateVendorServiceExceptionMock.cls
-src/classes/VPM_CreateVendorServiceExceptionMock.cls-meta.xml
 src/classes/VPM_CreateVendorServiceHelper.cls
 src/classes/VPM_CreateVendorServiceHelper.cls-meta.xml
 src/classes/VPM_CreateVendorServiceHelper_Test.cls
@@ -3984,8 +3982,6 @@ src/tabs/VPM_VendorRequestProcurementApprovals.tab
 src/triggers
 src/triggers/VPM_SetGlobalOrRegionalFieldUpdate.trigger
 src/triggers/VPM_SetGlobalOrRegionalFieldUpdate.trigger-meta.xml
-src/triggers/VPM_UpdateECCField.trigger
-src/triggers/VPM_UpdateECCField.trigger-meta.xml
 src
 src/approvalProcesses
 src/approvalProcesses/VPM_PurchasingRequests__c.VPM_BankValidation.approvalProcess
