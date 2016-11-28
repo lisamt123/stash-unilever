@@ -14,7 +14,7 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 2.0 -    Samrin      04 Oct 2016      Temp Remove permission from oldUser and add permission to newUser.
 3.0 -    Vaishali    09 Oct 2016      Remove permission from oldUser and add permission to newUser.
 ****************************************************************************/
-with sharing public class VPM_ProcurementCentralController{
+without sharing public class VPM_ProcurementCentralController{
     final static string  STR_CONST_PROCENTRALADMIN = 'VPM_Procurement';
     final static Integer STR_CONST_TOTALNOSOFAPPROVALPOSSILBE = 10;
     final static string  STR_CONST_FIELDNAME ='VPM_Approver';
