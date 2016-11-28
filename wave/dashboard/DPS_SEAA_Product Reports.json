@@ -5853,7 +5853,7 @@
                         ],
                         [
                             "Store_type",
-                            "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
+                            "{{ column(Store_type_49.selection, [\"Store_Type\"]).asObject() }}"
                         ],
                         [
                             "Sales_region",
