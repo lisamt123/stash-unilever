@@ -37,6 +37,10 @@
             <name>Approved</name>
             <type>FieldUpdate</type>
         </action>
+        <action>
+            <name>WU_Approval_Notification</name>
+            <type>Alert</type>
+        </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>

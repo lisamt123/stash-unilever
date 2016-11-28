@@ -8,7 +8,8 @@ Warehouse Name : {!WU_Master_Warehouse__c.WU_LocationName__c}
 
 Submitted by : {!WU_Master_Warehouse__c.Submitted_by__c}
 
-Prior Committed/Max Pallet Utilization : {!WU_Master_Warehouse__c.WU_Prior_CommittedPalletStorage__c} 
+Prior CommittedPalletStorage
+ {!WU_Master_Warehouse__c.WU_Prior_CommittedPalletStorage__c} 
 
 
 

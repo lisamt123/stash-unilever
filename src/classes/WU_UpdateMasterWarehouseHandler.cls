@@ -106,7 +106,7 @@ public with sharing class WU_UpdateMasterWarehouseHandler{
     }
     
      public static void onBeforeUpdate(list<WU_Warehouse_Capacity_Detail__c> lstWareHouseCapacity) {
-        
+        system.debug('lstWareHouseCapacityEntry method-->'+lstWareHouseCapacity);
         set<string> setMasterWareHouseId = new set<string>();
         Map<string,List<WU_Warehouse_Capacity_Detail__c>> mapWUWarehouseCapacityDetail = new Map<string,List<WU_Warehouse_Capacity_Detail__c>>();
         
@@ -142,13 +142,16 @@ public with sharing class WU_UpdateMasterWarehouseHandler{
                     }
                     
                     system.debug('====check type===========');
+                    system.debug('====objWCDExisting.WU_Utilization_Start_Date__c==========='+objWCDExisting.WU_Utilization_Start_Date__c);
                     if(objWCDExisting.WU_Utilization_Start_Date__c.Month() == objWUWarehouseCapacityDetail.WU_Utilization_Start_Date__c.Month() &&
                        objWCDExisting.WU_Utilization_End_Date__c.year() == objWUWarehouseCapacityDetail.WU_Utilization_End_Date__c.year() &&
                        objWCDExisting.Id != objWUWarehouseCapacityDetail.Id){
                             UtilizationType = objWCDExisting.WU_Utilization_Type__c;
                             isUtilizationTypeFound = TRUE;
                     }
+                    system.debug('====objWCDExisting.WU_Utilization_Start_Date__c for loop end===========');
                 }
+                
                 
                 if(isUtilizationTypeFound && objWUWarehouseCapacityDetail.WU_Utilization_Type__c != UtilizationType){
                     objWUWarehouseCapacityDetail.addError(Label.WU_utilizationTypeCannotChange);
