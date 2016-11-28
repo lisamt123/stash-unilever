@@ -16,7 +16,10 @@
         var CreatedBy="{!VPM_PurchasingRequests__c.CreatedById}"; 
         var rework ="{!VPM_PurchasingRequests__c.VPM_Rework__c}";
         var localhost = document.domain;
-        
+        function PageReload(){
+		  window.top.location='https://'+localhost+'/'+purId;
+		  return false;
+		}
     </script>
        <apex:pageBlock tabStyle="VPM_PurchasingRequests__c">
 

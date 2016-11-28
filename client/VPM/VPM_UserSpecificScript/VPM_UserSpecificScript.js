@@ -23,10 +23,6 @@
     function openAdvanceform(){
         window.top.location='https://'+localhost+'/apex/VPM_AdvancedForm_V1?id='+purId;
     }
-    function ReloadPage(){
-      window.top.location='https://'+localhost+'/'+purId;
-      return false;
-    }
     
     function redirectToListView(customId)
     {

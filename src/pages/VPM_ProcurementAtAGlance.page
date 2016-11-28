@@ -13,6 +13,10 @@
     <script>
       var localhost = document.domain;
       var purId ='{!VPM_PurchasingRequests__c.id}';
+	  function PageReload(){
+		  window.top.location='https://'+localhost+'/'+purId;
+		  return false;
+		}
     </script>
        <apex:pageBlock tabStyle="VPM_PurchasingRequests__c">
     <apex:form id="pageForm">
