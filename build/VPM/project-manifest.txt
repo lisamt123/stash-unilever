@@ -4,8 +4,6 @@ src/applications/VPM_PurchasingRequests.app
 src/classes
 src/classes/VPM_ApprovalSubmit.cls
 src/classes/VPM_ApprovalSubmit.cls-meta.xml
-src/classes/VPM_ApprovalSubmitTest.cls
-src/classes/VPM_ApprovalSubmitTest.cls-meta.xml
 src/classes/VPM_CheckRecursive.cls
 src/classes/VPM_CheckRecursive.cls-meta.xml
 src/classes/VPM_CreateVendorFetchFieldDetails.cls
@@ -58,8 +56,6 @@ src/classes/VPM_RecordTypeHelper.cls
 src/classes/VPM_RecordTypeHelper.cls-meta.xml
 src/classes/VPM_RegionalMaintainVendor.cls
 src/classes/VPM_RegionalMaintainVendor.cls-meta.xml
-src/classes/VPM_RegionalMaintainVendorTest.cls
-src/classes/VPM_RegionalMaintainVendorTest.cls-meta.xml
 src/classes/VPM_SearchVendor1.cls
 src/classes/VPM_SearchVendor1.cls-meta.xml
 src/classes/VPM_SearchVendor1Test.cls
