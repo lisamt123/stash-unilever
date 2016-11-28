@@ -115,6 +115,51 @@ public class VPM_PurchaseRequestsExtensionTest{
       
   
  }
+
+ public static mdm_Vendors__c setMDMData()
+ {
+    List<mdm_Vendors__c> vendorList = new List<mdm_Vendors__c>();
+    mdm_Vendors__c vendor = new mdm_Vendors__c();
+    vendor.mdm_Code__c = code;
+    vendor.mdm_City__c = 'Andorra';
+    vendor.mdm_Country__c ='DZ_Algeria';
+    vendor.mdm_Name1__c ='Test Sirius';
+    vendor.mdm_Street__c = 'Test Street';
+    vendor.mdm_Postcode__c = '54132';
+    vendor.mdm_Country__c = 'India';
+    vendor.mdm_ID__c = '1234';
+    vendor.mdm_vCodeFusion__c=code;
+    vendor.mdm_vCodeCordillera__c=code;
+    vendor.mdm_vCodeSirius__c=code;
+    vendor.mdm_vCodeU2K2__c=code;
+    vendorList.add(vendor);
+    insert vendorList;
+    return vendor ;
+ }
+
+  public static VPM_CompanyCode__c setCompanyCode()
+ {
+    VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    companyCode.VPM_CompanyCode__c = Company;
+    companyCode.ECC__c = 'Sirius';
+    companyCode.VPM_Country__c =country;
+    insert companyCode;
+    return companyCode;
+ }
+
+   public static  VPM_PurchasingRequests__c setVendorRequest(string companyCodeId, string vendorListId)
+ {
+     VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c(
+    VPM_CountryRequestingVendor__c=country,
+    VPM_CompanyCode__c=companyCodeId,
+    VPM_WhatAreYouBuying__c=buyingStuff,
+    VPM_Comments__c=buyingStuff,
+    VPM_VendorCodeLookup__c = vendorListId,
+    //recordTypeId=recordTypeId,
+    VPM_VendorPhone__c=phone);
+     insert pur;
+     return pur;
+ }
     static testMethod void callSendToSAPAPITest() {
    
    string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
@@ -164,31 +209,49 @@ public class VPM_PurchaseRequestsExtensionTest{
   VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
         VendorDetail.vendorReqId= pur.id;
         vendorDetail.isGBCountry = true;
+        test.startTest();
+        Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(200));
         VendorDetail.callSendToSAPAPI();
+          test.stopTest();
         
-        vendorDetail.setPaymentTermsDefaultValues();
         
-        recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id; 
+
+    }
+
+    static testMethod void callSendToSAPAPIMaintainTest() {
+      mdm_Vendors__c vendor = setMDMData();
+      VPM_CompanyCode__c companyCode = setCompanyCode();
+      VPM_PurchasingRequests__c pur = setVendorRequest(companyCode.id, vendor.id);
+      string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id; 
         pur.recordTypeId = recordTypeId;
        // pur.VPM_Fieldtype__c ='Regional';
         pur.VPM_PaymentTerms__c ='02D_Within 2 days Due net (2NET)';
         pur.VPM_fieldUpdated__c ='VPM_PaymentTerms__c';
         update pur;
-             // ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-  //VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+         ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+  VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
         VendorDetail.vendorReqId= pur.id;
+        test.startTest();
+        Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(200));
         VendorDetail.callSendToSAPAPI();
-        
-                recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Extend)'].Id; 
+          test.stopTest();
+      }
+
+    static testMethod void callSendToSAPAPIExtendTest() {
+      mdm_Vendors__c vendor = setMDMData();
+      VPM_CompanyCode__c companyCode = setCompanyCode();
+       VPM_PurchasingRequests__c pur = setVendorRequest(companyCode.id, vendor.id);
+      string  recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Extend)'].Id; 
         pur.recordTypeId = recordTypeId;
         update pur;
-              //ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
-  //VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+         ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
+  VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
         VendorDetail.vendorReqId= pur.id;
+        test.startTest();
+        Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(200));
         VendorDetail.callSendToSAPAPI();
-        
-
-    }
+          test.stopTest();
+      }
     
     public static User insertUser()
     {
@@ -782,7 +845,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     static testMethod void checkForBusinessReqUserTest(){
     
         
-        VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser();	
+        VPM_PurchaseRequestsControllerExtension.checkForBusinessReqUser();  
     }
     
     static testMethod void SubmitRequestActionTest1()
@@ -1065,11 +1128,11 @@ public class VPM_PurchaseRequestsExtensionTest{
         pur.VPM_AdvancedFormSubmitted__c ='Yes';
          pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
-		 pur.VPM_BankDataValidationRequired__c=true;
+     pur.VPM_BankDataValidationRequired__c=true;
       pur.VPM_FinanceApprovalRequired__c=true;
-      		pur.VPM_Rework__c='No';
+          pur.VPM_Rework__c='No';
          pur.VPM_AdvancedFormSubmitted__c='Yes';
-      	 pur.VPM_BankDataValidationSubmitted__c='No';
+         pur.VPM_BankDataValidationSubmitted__c='No';
          pur.VPM_IsInApprovalProcess__c='';
 
         insert pur;
@@ -1092,7 +1155,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          purid.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
-	
+  
          List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
        purcReqlst.add(purId);
        // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
@@ -1268,11 +1331,11 @@ public class VPM_PurchaseRequestsExtensionTest{
         pur.VPM_AdvancedFormSubmitted__c ='Yes';
          pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
-		 pur.VPM_RussianTaxApprovalRequired__c=true;
+     pur.VPM_RussianTaxApprovalRequired__c=true;
       
-      		pur.VPM_Rework__c='No';
+          pur.VPM_Rework__c='No';
          pur.VPM_AdvancedFormSubmitted__c='Yes';
-      	 pur.VPM_RussiaSubmitted__c='No';
+         pur.VPM_RussiaSubmitted__c='No';
          pur.VPM_IsInApprovalProcess__c='';
 
         insert pur;
@@ -1295,7 +1358,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          purid.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
-	
+  
          List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
        purcReqlst.add(purId);
        // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
