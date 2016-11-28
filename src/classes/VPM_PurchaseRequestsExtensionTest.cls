@@ -902,6 +902,13 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_Status__c ='',
     VPM_Rework__c =reworkStat );
      insert pur;
+        
+        Group grp = new Group(Name='Queue',Type='Queue');
+        insert grp;
+        
+        QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');
+        System.runAs(new User(Id = UserInfo.getUserId()))
+        {insert mappingObject;}
      
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
