@@ -376,7 +376,7 @@ public class VPM_SearchVendor1Test{
         searchVendor.VendorSelected();    
         
         searchVendor.mdmVendorType = '0122222 \\#; 0050502921 \\#; U2K2';
-        searchVendor.VendorSelected(); 
+        //searchVendor.VendorSelected(); 
         Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200,'Maintain'));
         //searchVendor.requestType ='Maintain';  
         Test.startTest();
@@ -416,7 +416,7 @@ public class VPM_SearchVendor1Test{
         searchVendor.VendorSelected();    
         
         searchVendor.mdmVendorType = '0122222 \\#; 0050502921 \\#; U2K2';
-        searchVendor.VendorSelected(); 
+        //searchVendor.VendorSelected(); 
         Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200,'Maintain'));
         //searchVendor.requestType ='Maintain';  
         Test.startTest();
@@ -453,7 +453,7 @@ public class VPM_SearchVendor1Test{
         searchVendor.getVendorDetailList();        
                 
         searchVendor.mdmVendorType = '0122222 \\#; 0050502921 \\#; U2K2';
-        searchVendor.VendorSelected(); 
+        //searchVendor.VendorSelected(); 
         Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200, 'Extend'));
         //searchVendor.requestType ='Maintain';  
         Test.startTest();
@@ -491,7 +491,7 @@ public class VPM_SearchVendor1Test{
         searchVendor.getVendorDetailList();        
                 
         searchVendor.mdmVendorType = '0122222 \\#; 0050502921 \\#; U2K2';
-        searchVendor.VendorSelected(); 
+        //searchVendor.VendorSelected(); 
         Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200, 'Extend'));
         //searchVendor.requestType ='Maintain';  
         Test.startTest();
@@ -530,6 +530,7 @@ public class VPM_SearchVendor1Test{
         VPM_PurchasingRequests__c purch = [Select Id, VPM_ECC__c From VPM_PurchasingRequests__c where id = : purd.id];
         system.assertEquals(purch.VPM_ECC__c, 'U2K2');
         Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200, 'Extend'));
         searchVendor.showSearchVendor = true;
         searchVendor.vendorName = '';
         searchVendor.SaveMethod();
@@ -603,6 +604,7 @@ public class VPM_SearchVendor1Test{
         system.assertEquals(purch.VPM_ECC__c, 'U2K2');
         
         Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200, 'Extend'));
         searchVendor.mdmVendorType = '';
         searchVendor.processRequestType();
         
