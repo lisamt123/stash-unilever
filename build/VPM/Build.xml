@@ -63,6 +63,7 @@
 			<runTest>VPM_FetchVendorDetailsHttpMock</runTest>
 			<runTest>VPM_FetchVendorDetailsHttpMockCodeMatch</runTest>
 			<runTest>VPM_maintainGlobalVendorCalloutMock</runTest>
+			<runTest>VPM_TestDataFactory</runTest>
         </sf:deploy>
     </target>
 </project>
