@@ -9,10 +9,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>VPM_ApprovalSubmitTest</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>VPM_CheckRecursive</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -107,10 +103,6 @@
     <classAccesses>
         <apexClass>VPM_RegionalMaintainVendor</apexClass>
         <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>VPM_RegionalMaintainVendorTest</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_SearchVendor1</apexClass>
