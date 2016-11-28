@@ -1,0 +1,14 @@
+<apex:page standardController="PQN_Pallet_Quality_Non_Conformance__c" showHeader="false">
+<body>
+    <div id="wrapper">
+        <c:PQN_Navigation navigationName="single_entry"/>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <apex:detail relatedList="true" inlineEdit="false" />
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+</body>
+</apex:page>

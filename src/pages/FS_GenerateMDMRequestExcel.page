@@ -140,8 +140,7 @@
                                      <td/>
                                      <td/>
                                      <td/>
-                                     <td> {!defaultCSValue.FS_SalesManagerName__c} </td>
-                                     <td> {!defaultCSValue.FS_SalesManagerPosition__c} </td>
+                                     <td> {!defaultCSValue.FS_SalesManagerName__c} {!defaultCSValue.FS_SalesManagerPosition__c} </td>
                                 </tr>
                                 <tr>
                                      <td/>
@@ -152,7 +151,6 @@
                                      <td/>
                                      <td> {!defaultCSValue.FS_SignatureText__c} </td>
                                      <td> {!defaultCSValue.FS_NameText__c} </td>
-                                     <td> {!defaultCSValue.FS_PositionText__c} </td>
                                 </tr>
                                 <tr>
                                      <td/>
@@ -162,8 +160,7 @@
                                      <td/>
                                      <td/>
                                      <td/>
-                                     <td> {!defaultCSValue.FS_FinanceManagerName__c} </td>
-                                     <td> {!defaultCSValue.FS_FinanceManagerPosition__c} </td>
+                                     <td> {!defaultCSValue.FS_FinanceManagerName__c} {!defaultCSValue.FS_FinanceManagerPosition__c} </td>
                                 </tr>
                                 <tr>
                                      <td/>
@@ -174,7 +171,6 @@
                                      <td/>
                                      <td> {!defaultCSValue.FS_SignatureText__c} </td>
                                      <td> {!defaultCSValue.FS_NameText__c} </td>
-                                     <td> {!defaultCSValue.FS_PositionText__c} </td>
                                 </tr>
                              </table>
                         </apex:form>
