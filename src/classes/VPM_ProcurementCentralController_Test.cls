@@ -72,8 +72,23 @@ public class VPM_ProcurementCentralController_Test {
         system.assertEquals(controller.oldUser,com.VPM_Approver1__c);
         system.assertEquals(controller.newUser,com.VPM_Approver2__c);
         controller.Go();
-        controller.ChangeApprover(); 
+        controller.ChangeApprover();
+            
+             com.VPM_TempApproverDate1__c =Date.today().addDays(-1);
+            controller.com  =com;
+        controller.oldUser=com.VPM_Approver1__c;
+        controller.newUser=com.VPM_Approver2__c;
+ 
+        controller.Go();
+        controller.ChangeApprover();
         
+                com.VPM_TempApproverDate1__c =Date.Today();
+            controller.com  =com;
+        controller.oldUser=null;
+        controller.newUser=null;
+
+        controller.Go();
+        controller.ChangeApprover();
         controller.GoBack();
             
         }
@@ -110,6 +125,59 @@ public class VPM_ProcurementCentralController_Test {
         controller.ChangeApprover(); 
         
         controller.GoBack();
+            
+        }
+
+        test.stopTest();    
+    }
+    
+        static testMethod void testAssignNewAppoverNull(){
+        Test.startTest();
+        
+        User Approver1 = VPM_TestDataFactory.CreateUser(STR_CONST_USER ,STR_CONST_EMAIL ,STR_CONST_EMAILNAME ,VPM_NOACCESS );
+        insert Approver1;
+
+         User Approver2 = VPM_TestDataFactory.CreateUser(STR_CONST_USERS,STR_CONST_EMAILS ,STR_CONST_EMAILNAMES ,VPM_NOACCESS );
+        insert Approver2;
+        
+        myGroup(Approver2.Id);
+                       
+        VPM_CommodityApprover__c com = VPM_TestDataFactory.CreateCommodityApprover(Approver1.id, Approver2.id,VPM_COUNTRYNAME);
+        insert com;
+        com =[select VPM_Approver1__c,VPM_TempApproverDate1__c,VPM_Approver2__c,VPM_CommodityClass__c,VPM_Country__c, id, VPM_ConfiguredApprovers__c from VPM_CommodityApprover__c where id=: com.id];
+        
+        System.runAs(Approver2){
+        VPM_ProcurementCentralController controller = new VPM_ProcurementCentralController();
+        controller.MDMVendor  ='Assign';
+        com.VPM_TempApproverDate1__c =Date.Today();
+        controller.com  =com;
+            
+        VPM_ProcurementCentralController.CommApproverList  comlist1 = new VPM_ProcurementCentralController.CommApproverList();
+        VPM_ProcurementCentralController.CommApproverList  comlist2 = new VPM_ProcurementCentralController.CommApproverList();
+        comlist1.checkFlag =true;
+        comlist1.setFlag =false;
+        comlist1.comApp =com;
+        controller.commApprover  = new List<VPM_ProcurementCentralController.CommApproverList>();
+        controller.commApprover.add(comlist1);
+         comlist2.checkFlag =true;
+        comlist2.setFlag =true;
+         comlist2.comApp =com;
+        controller.commApprover.add(comlist2);
+        
+        controller.Go();
+        //controller.ChangeApprover(); 
+        controller.goAssign();
+        controller.com.VPM_Country__c =null;
+        controller.com.VPM_Approver2__c =null;
+        controller.goAssign();
+                    controller.com.VPM_Country__c =null;
+        controller.com.VPM_Approver2__c =Approver2.id;
+        controller.goAssign();
+        controller.com.VPM_Country__c = VPM_COUNTRYNAME;
+        controller.goAssign();
+        controller.GoBack();
+        system.assertEquals(comlist1.checkFlag,true);
+        system.assertEquals(comlist1.setFlag,false);
             
         }
 

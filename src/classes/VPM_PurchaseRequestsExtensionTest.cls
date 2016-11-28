@@ -45,6 +45,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       VendorDetail.recId=pur.Id;
         VendorDetail.ManuallyMarkAsCompleteAction();
         vendorDetail.changeButtonValues();
+        vendorDetail.isGBCountry = true;
         vendorDetail.setPaymentTermsDefaultValues();
         vendorDetail.approvalWorker='';
         vendorDetail.approvalWorkerID='';
@@ -86,6 +87,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
       vendorDetail.isProcure =true;
+      vendorDetail.isGBCountry = true;
       vendorDetail.setPaymentTermsDefaultValues();
      
       vendorDetail.saveFromUser();
@@ -150,7 +152,9 @@ public class VPM_PurchaseRequestsExtensionTest{
               ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
   VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
         VendorDetail.vendorReqId= pur.id;
+        vendorDetail.isGBCountry = true;
         VendorDetail.callSendToSAPAPI();
+        
         vendorDetail.setPaymentTermsDefaultValues();
         
         recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id; 
