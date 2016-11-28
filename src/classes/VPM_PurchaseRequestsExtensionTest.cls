@@ -14,7 +14,14 @@ public class VPM_PurchaseRequestsExtensionTest{
  static string reworkStat = 'Yes';
  static boolean FLSInCountryReqVen = true;
  
- 
+    static void grpmethod() {
+        Group grp = new Group(Name='Queue',Type='Queue');
+        insert grp;
+        
+        QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');
+        System.runAs(new User(Id = UserInfo.getUserId()))
+        {insert mappingObject;}
+    }
  
   static testMethod void ManuallyMarkAsCompleteActionTest()
     {
@@ -36,7 +43,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_Status__c ='MDM Ops Review - Unblock',
     VPM_ApprovalWorkerID__c='Test');
      insert pur;
-     
+     grpmethod();
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_DeletionBlockFlag__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
        
        system.assertEquals(pur.Id,pur1.Id);
@@ -84,6 +91,7 @@ public class VPM_PurchaseRequestsExtensionTest{
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_IsVendorSME__c,VPM_PaymentTermsIfNoneSelected__c,VPM_Country__c,VPM_Comments__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c from VPM_PurchasingRequests__c where id=:pur.Id ];
        
        system.assertEquals(pur.Id,pur1.Id);
+     grpmethod();
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
       vendorDetail.isProcure =true;
@@ -147,7 +155,7 @@ public class VPM_PurchaseRequestsExtensionTest{
         pur.recordTypeId = recordTypeId;
         update pur;
          VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_Comments__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_VendorCodeLookup__c,recordTypeId from VPM_PurchasingRequests__c where id=:pur.Id ];
-       
+       grpmethod();
        system.assertEquals(pur.Id,pur1.Id);
               ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
   VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -268,6 +276,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_VendorPhone__c=phone,
     VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
+    grpmethod();     
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
        
        system.assertEquals(pur.Id,pur1.Id);
@@ -302,7 +311,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       
+       grpmethod();
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -340,7 +349,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       
+       grpmethod();
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -375,7 +384,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       
+       grpmethod();
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -409,7 +418,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       
+       grpmethod();
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -444,7 +453,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       
+       grpmethod();
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -478,7 +487,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       
+       grpmethod();
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -512,7 +521,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       
+       grpmethod();
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -546,7 +555,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       
+       grpmethod();
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -580,7 +589,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       
+       grpmethod();
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -614,7 +623,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       
+       grpmethod();
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -649,7 +658,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_RequestFromFLSOrBR__c =bussReq);
     insert pur;
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
-       
+       grpmethod();
        system.assertEquals(pur.Id,pur1.Id);
           ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
          VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -696,6 +705,7 @@ public class VPM_PurchaseRequestsExtensionTest{
      insert pur;
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+        grpmethod();
        VendorDetail.changeButtonValues();
        VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,OwnerId,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_ApprovalWorkerID__c,VPM_ApprovalWorker__c ,VPM_VendorPhone__c,VPM_Status__c  from VPM_PurchasingRequests__c where id=:pur.Id ];
        
@@ -735,6 +745,7 @@ public class VPM_PurchaseRequestsExtensionTest{
      insert pur;
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+         grpmethod();
        VendorDetail.EnableManuallyMarkAsCompleteBtn();
         VendorDetail.isApprover1=true;
          VendorDetail.isApprover2=true;
@@ -794,7 +805,8 @@ public class VPM_PurchaseRequestsExtensionTest{
      
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-      vendorDetail.SubmitRequestAction();
+      grpmethod();
+        vendorDetail.SubmitRequestAction();
       
       pur.VPM_Rework__c = reworkStat;
       pur.VPM_Status__c = 'FLS Requested Re-Work' ;
@@ -831,6 +843,7 @@ public class VPM_PurchaseRequestsExtensionTest{
      
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
+        grpmethod();
       vendorDetail.SubmitRequestAction();
       
       
@@ -865,7 +878,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_Status__c ='Russian Custom Tax Requested Re-Work',
     VPM_Rework__c =reworkStat );
      insert pur;
-     
+     grpmethod();
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
       vendorDetail.SubmitRequestAction();
@@ -946,7 +959,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_Status__c ='',
     VPM_Rework__c =reworkStat );
      insert pur;
-     
+     grpmethod();
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
       vendorDetail.SubmitRequestAction();

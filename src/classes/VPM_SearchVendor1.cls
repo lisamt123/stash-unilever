@@ -1120,10 +1120,10 @@ public with sharing class VPM_SearchVendor1{
                 orderOPtimRestDefValue = op.PurchasingData[0].OrderOptimRest; 
                 vendorDetails.VPM_PlannedDeliveryTime__c = decimal.valueOF(op.PurchasingData[0].PlannedDeliveryTime);                
                 
-                if(op.PurchasingData[0].Functions <> null && op.PurchasingData[0].Functions.size() > 0) {
+                //if(op.PurchasingData[0].Functions <> null && op.PurchasingData[0].Functions.size() > 0) {
                    // vendorDetails.VPM_DefaultPartner__c = (op.PurchasingData[0].Functions[0].DefaultPartner <> null) ? op.PurchasingData[0].Functions[0].DefaultPartner :  false;
                     //vendorDetails.VPM_PartnerFunction__c = op.PurchasingData[0].Functions[0].PartnerFunction;
-                }
+                //}
                 
             }
             vendorDetails.VPM_TaxNumAtResponsibleTaxAuthority__c = op.TaxNumberResponsibleAuthority;
