@@ -91,7 +91,7 @@ public class VPM_PurchaseRequestsExtensionTest{
      VPM_PurchasingRequests__c pur1 = [select VPM_CountryRequestingVendor__c,VPM_IsVendorSME__c,VPM_PaymentTermsIfNoneSelected__c,VPM_Country__c,VPM_Comments__c,VPM_CompanyCode__c,VPM_WhatAreYouBuying__c,VPM_VendorPhone__c from VPM_PurchasingRequests__c where id=:pur.Id ];
        
        system.assertEquals(pur.Id,pur1.Id);
-     grpmethod();
+     
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
       vendorDetail.isProcure =true;
@@ -745,7 +745,7 @@ public class VPM_PurchaseRequestsExtensionTest{
      insert pur;
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-         grpmethod();
+         
        VendorDetail.EnableManuallyMarkAsCompleteBtn();
         VendorDetail.isApprover1=true;
          VendorDetail.isApprover2=true;
@@ -784,8 +784,14 @@ public class VPM_PurchaseRequestsExtensionTest{
     
     static testMethod void SubmitRequestActionTest1()
     {
+        Group grp = new Group(Name='Queue',Type='Queue');
+        insert grp;
+        
+        QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');
+        System.runAs(new User(Id = UserInfo.getUserId()))
+        {insert mappingObject;}
     
-       VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+    VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
     companyCode.ECC__c = Ecc;
     companyCode.VPM_Country__c =country;
@@ -800,13 +806,13 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_VendorPhone__c=phone,
     VPM_FLSInCountryReqVen__c=FLSInCountryReqVen,
     VPM_AdvancedFormSubmitted__c = 'No',
-    VPM_Status__c ='FLS Requested Re-Work');
+    VPM_Status__c ='FLS Requested Re-Work',
+    OwnerId = grp.Id);
      insert pur;
      
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-      grpmethod();
-        vendorDetail.SubmitRequestAction();
+      vendorDetail.SubmitRequestAction();
       
       pur.VPM_Rework__c = reworkStat;
       pur.VPM_Status__c = 'FLS Requested Re-Work' ;
@@ -822,7 +828,15 @@ public class VPM_PurchaseRequestsExtensionTest{
      static testMethod void SubmitRequestActionTest2()
     {
     
-       VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+        Group grp = new Group(Name='Queue',Type='Queue');
+        insert grp;
+        
+        QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');
+        System.runAs(new User(Id = UserInfo.getUserId()))
+        {insert mappingObject;}
+        
+    
+    VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
     companyCode.ECC__c = Ecc;
     companyCode.VPM_Country__c =country;
@@ -838,12 +852,12 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_FLSInCountryReqVen__c=FLSInCountryReqVen,
     VPM_AdvancedFormSubmitted__c = 'No',
     VPM_Status__c ='Procurement Requested Re-Work',
-    VPM_Rework__c =reworkStat );
+    VPM_Rework__c =reworkStat,
+    OwnerId = grp.Id);
      insert pur;
      
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
-        grpmethod();
       vendorDetail.SubmitRequestAction();
       
       
@@ -859,6 +873,12 @@ public class VPM_PurchaseRequestsExtensionTest{
     
      static testMethod void SubmitRequestActionTest3()
     {
+        Group grp = new Group(Name='Queue',Type='Queue');
+        insert grp;
+        
+        QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');
+        System.runAs(new User(Id = UserInfo.getUserId()))
+        {insert mappingObject;}
     
        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
@@ -876,9 +896,10 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_FLSInCountryReqVen__c=FLSInCountryReqVen,
     VPM_AdvancedFormSubmitted__c = 'No',
     VPM_Status__c ='Russian Custom Tax Requested Re-Work',
-    VPM_Rework__c =reworkStat );
+    VPM_Rework__c =reworkStat ,
+    OwnerId = grp.Id);
      insert pur;
-     grpmethod();
+     
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
       vendorDetail.SubmitRequestAction();
@@ -897,6 +918,13 @@ public class VPM_PurchaseRequestsExtensionTest{
     static testMethod void SubmitRequestActionTest4()
     {
     
+     Group grp = new Group(Name='Queue',Type='Queue');
+        insert grp;
+        
+        QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');
+        System.runAs(new User(Id = UserInfo.getUserId()))
+        {insert mappingObject;}   
+        
        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
     companyCode.ECC__c = Ecc;
@@ -913,15 +941,11 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_FLSInCountryReqVen__c=FLSInCountryReqVen,
     VPM_AdvancedFormSubmitted__c = 'No',
     VPM_Status__c ='',
-    VPM_Rework__c =reworkStat );
+    VPM_Rework__c = reworkStat,
+    OwnerId = grp.Id);
      insert pur;
         
-        Group grp = new Group(Name='Queue',Type='Queue');
-        insert grp;
         
-        QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');
-        System.runAs(new User(Id = UserInfo.getUserId()))
-        {insert mappingObject;}
      
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
@@ -940,6 +964,12 @@ public class VPM_PurchaseRequestsExtensionTest{
     
     static testMethod void SubmitRequestActionTest5()
     {
+         Group grp = new Group(Name='Queue',Type='Queue');
+        insert grp;
+        
+        QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');
+        System.runAs(new User(Id = UserInfo.getUserId()))
+        {insert mappingObject;}   
     
        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
     companyCode.VPM_CompanyCode__c = Company;
@@ -957,9 +987,10 @@ public class VPM_PurchaseRequestsExtensionTest{
     VPM_FLSInCountryReqVen__c=FLSInCountryReqVen,
     VPM_AdvancedFormSubmitted__c = 'No',
     VPM_Status__c ='',
-    VPM_Rework__c =reworkStat );
+    VPM_Rework__c =reworkStat ,
+        OwnerId = grp.Id);
      insert pur;
-     grpmethod();
+     
       ApexPages.StandardController VendorDetailPage = new ApexPages.StandardController(pur);
       VPM_PurchaseRequestsControllerExtension VendorDetail = new VPM_PurchaseRequestsControllerExtension(VendorDetailPage);
       vendorDetail.SubmitRequestAction();
