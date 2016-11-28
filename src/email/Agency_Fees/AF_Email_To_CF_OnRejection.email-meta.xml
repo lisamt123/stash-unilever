@@ -7,5 +7,16 @@
     <name>AF_Email_To_CF_OnRejection</name>
     <style>freeForm</style>
     <subject>AgencyFee BonusMatrix Rejected</subject>
+    <textOnly>Dear Category Finance,
+ 
+Annual bonus for {!AF_Bonus_Summary__c.Brand_Name__c} has been rejected by {!AF_Bonus_Summary__c.LastModifiedBy}
+Rejection reason : {!AF_Bonus_Summary__c.AF_RejectReason__c}
+
+Please log into the Agency Fees Application using the link below to revise and re-submit for approval.
+{!AF_Bonus_Summary__c.AF_Internal_Link__c}
+
+
+From,
+Bonus Approver</textOnly>
     <type>html</type>
 </EmailTemplate>

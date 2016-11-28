@@ -7,5 +7,12 @@
     <name>AF_Email_To_Agency_ReadyForPO</name>
     <style>freeForm</style>
     <subject>PO Available</subject>
+    <textOnly>Dear Agency,
+
+Annual Bonus for {!AF_Bonus_Summary__c.Brand_Name__c} is now ready for a Purchase Order to be issued.
+{!AF_Bonus_Summary__c.AF_Community_Link__c}
+
+From,
+CMCO Finance</textOnly>
     <type>html</type>
 </EmailTemplate>

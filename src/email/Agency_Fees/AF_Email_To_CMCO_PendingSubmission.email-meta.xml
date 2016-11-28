@@ -7,5 +7,15 @@
     <name>AF_Email_To_CMCO_PendingSubmission</name>
     <style>freeForm</style>
     <subject>AgencyFee BonusMatrix Pending Submission</subject>
+    <textOnly>Dear CMCO,
+ 
+Annual Bonus for {!AF_Bonus_Summary__c.Brand_Name__c} has been approved by {!AF_Bonus_Summary__c.LastModifiedBy}
+You can now share the annual bonus with the agency.
+
+{!AF_Bonus_Summary__c.AF_Internal_Link__c}
+
+
+From,
+Bonus Approver</textOnly>
     <type>html</type>
 </EmailTemplate>
