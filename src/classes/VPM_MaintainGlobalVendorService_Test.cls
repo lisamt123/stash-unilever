@@ -12,6 +12,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
         string vendorId = pur.get(0).id;
         test.startTest();
+        VPM_MaintainGlobalVendorServiceHelper.fakeMethod();  
         Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(200));
         VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorId);
         test.stopTest();
@@ -101,6 +102,19 @@ public class VPM_MaintainGlobalVendorService_Test {
         string vendorId = pur.get(0).id;
         test.startTest();
         Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(504));
+        VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorId);
+        test.stopTest();
+        pur = [SELECT Id,VPM_MDMInsertUpdateStatus__c,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
+       system.assertEquals(pur[0].VPM_MDMInsertUpdateStatus__c, failStatusMDM);
+    }
+        static testMethod void testCallout504exception() {
+        setup();
+        List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
+        pur[0].VPM_WhatAreYouBuying__c='test"test';
+        update pur;
+        string vendorId = pur.get(0).id;
+        test.startTest();
+        Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(505));
         VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorId);
         test.stopTest();
         pur = [SELECT Id,VPM_MDMInsertUpdateStatus__c,VPM_ECC_InsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
@@ -196,4 +210,6 @@ public class VPM_MaintainGlobalVendorService_Test {
         
         insert pur;
     }
+    
+    
 }
