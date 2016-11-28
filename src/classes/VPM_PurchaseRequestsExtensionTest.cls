@@ -784,7 +784,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     
     static testMethod void SubmitRequestActionTest1()
     {
-        Group grp = new Group(Name='Queue',Type='Queue');
+        Group grp = new Group(Name='Procurement',Type='Queue');
         insert grp;
         
         QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');
@@ -829,7 +829,7 @@ public class VPM_PurchaseRequestsExtensionTest{
      static testMethod void SubmitRequestActionTest2()
     {
     
-        Group grp = new Group(Name='Queue',Type='Queue');
+        Group grp = new Group(Name='Procurement',Type='Queue');
         insert grp;
         
         QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');
@@ -875,7 +875,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     
      static testMethod void SubmitRequestActionTest3()
     {
-        Group grp = new Group(Name='Queue',Type='Queue');
+        Group grp = new Group(Name='Procurement',Type='Queue');
         insert grp;
         
         QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');
@@ -921,7 +921,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     static testMethod void SubmitRequestActionTest4()
     {
     
-     Group grp = new Group(Name='Queue',Type='Queue');
+     Group grp = new Group(Name='Procurement',Type='Queue');
         insert grp;
         
         QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');
@@ -960,7 +960,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       pur.OwnerId = grp.Id;  
       update pur;
       system.assertEquals(pur.VPM_Status__c,'Procurement Requested Re-Work');
-      vendorDetail.SubmitRequestAction();
+      //vendorDetail.SubmitRequestAction();
       test.stopTest();
       
       
@@ -968,7 +968,7 @@ public class VPM_PurchaseRequestsExtensionTest{
     
     static testMethod void SubmitRequestActionTest5()
     {
-         Group grp = new Group(Name='Queue',Type='Queue');
+         Group grp = new Group(Name='Procurement',Type='Queue');
         insert grp;
         
         QueueSobject mappingObject = new QueueSobject(QueueId = grp.Id, SobjectType = 'VPM_PurchasingRequests__c');

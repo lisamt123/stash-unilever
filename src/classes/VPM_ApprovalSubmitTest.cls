@@ -124,7 +124,7 @@ public with sharing  class VPM_ApprovalSubmitTest {
          List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
        purcReqlst.add(purId);
         VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
-      // VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
     
     } */
     
