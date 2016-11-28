@@ -127,8 +127,8 @@ public with sharing class AF_BonusMatrixSummary {
         }
         //Query all Results related to Bonus Thresholds
         for(AF_Bonus_Results__c bonusResultObj :[SELECT AF_Total_Bonus_Value__c,AF_Total_Remuneration__c,
-        AF_Bonus_Value_Bm__c,AF_Bonusable_Fees__c,AF_Total_bonus_fees__c,AF_Qual_BonusValue__c,
-        AF_Total_Bonus__c,AF_Quant_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Total_Bonus_Sub__c
+        AF_Bonus_Value_Bm__c,AF_Bonusable_Fees__c,AF_Total_bonus_fees__c,
+        AF_Total_Bonus__c,AF_Quant_Bonus_Value__c,AF_Qual_Bonus_Value__c
         FROM AF_Bonus_Results__c 
         WHERE AF_Bonus_Thresholds__c IN:ids AND recordType.Name=:AF_Constants.ANNUAL_BONUS_REC_TYPE]){
             if(bonusResultObj.AF_Total_Bonus_Value__c==null)
@@ -137,9 +137,7 @@ public with sharing class AF_BonusMatrixSummary {
             BonusTarget1=BonusTarget1+(bonusResultObj.AF_Total_Bonus_Value__c);
             if(bonusResultObj.AF_Qual_Bonus_Value__c==null)
             bonusResultObj.AF_Qual_Bonus_Value__c=0;
-            system.debug('AF_Total_Bonus_Value__c Null'+bonusResultObj.AF_Total_Bonus_Value__c);
-            qualValue+=bonusResultObj.AF_Qual_BonusValue__c;
-            system.debug('AF_Total_Bonus_Value__c Null'+bonusResultObj.AF_Total_Bonus_Value__c);
+            qualValue+=bonusResultObj.AF_Qual_Bonus_Value__c;
             if(bonusResultObj.AF_Quant_Bonus_Value__c==null)
             bonusResultObj.AF_Quant_Bonus_Value__c=0;
             quant+=bonusResultObj.AF_Quant_Bonus_Value__c;
