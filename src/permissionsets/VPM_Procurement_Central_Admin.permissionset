@@ -8,6 +8,10 @@
         <apexClass>VPM_ApprovalSubmit</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+		<classAccesses>
+        <apexClass>VPM_ApprovalSubmitTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>VPM_CreateVendorFetchFieldDetails</apexClass>
         <enabled>false</enabled>
@@ -98,6 +102,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_RegionalMaintainVendor</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>VPM_RegionalMaintainVendorTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
