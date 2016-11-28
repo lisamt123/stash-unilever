@@ -1,3 +1,4 @@
+
 .date1, .date2{width:42%;}
 .iTORange1, .iTORange2{width:26%;}
 .leftSideBar ul.docFilter li {margin-left:0; display:block; background:#F0F7DF; color:#253b78; border-bottom:1px solid #c0d3bf; padding:7px;}
@@ -79,8 +80,8 @@
 .checkboxLabel{color:#3B516D;}
 .checkboxLabeltree {padding: 0 0 0 0 ;margin-top: -2px;color: #3b516d;font-size: 0.95em;display:inline;font-weight:normal ;}
 .leftSideBar ul.docFilter .subCheck{margin-left: -7px ;margin-right: -7px ;padding-left: 18px ;}
-.ipmCheckbox label.disabled:after{border-color: #adadad ;color: #adadad ;}
-.ipmCheckbox label.disabled{background:#f0f0f0 ; border-color:#d4d4d4 ;}
+.ipmCheckbox input[type=checkbox] + label.disabled:after{border-color: #adadad ;color: #adadad ;}
+.ipmCheckbox input[type=checkbox] + label.disabled{background:#f0f0f0 ; border-color:#d4d4d4 ;}
 .showallbutton{font-family:Arial;font-size:1em;font-weight:bold;color:#007DBB;border-right:1px solid #ddd;padding:5px 10px;}
 .paginationDiv input.btnDisabled, .paginationDiv input.btn{background: none ; border:none ;}
 .paginationLink{margin-left:3px ;margin-right:3px ;}
