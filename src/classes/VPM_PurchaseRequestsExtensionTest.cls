@@ -1365,5 +1365,9 @@ public class VPM_PurchaseRequestsExtensionTest{
        //VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         
     }
+    
+    static testMethod void fakeMethod() {
+        VPM_ApprovalSubmit.fakeMethod();
+    }
      
 }
