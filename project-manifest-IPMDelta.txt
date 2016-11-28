@@ -57,7 +57,7 @@ src/components/IPM_MyToDoListHome.component-meta.xml
 src/components/IPM_ToDos.component
 src/components/IPM_ToDos.component-meta.xml
 src/labels
-src/labels/CustomLabels.labels
+src/labels/IPM.labels
 src/objects
 src/objects/IPM_Assessment__c.object
 src/objects/IPM_Financial__c.object
