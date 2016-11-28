@@ -191,7 +191,7 @@
                                            <div class="bonusTargetCont">
                                                  <apex:outputlabel value="Bonus Target"/></div>
                                                  <div class="bonusTargetValue">
-                                                â¬
+                                                
                                                  <apex:outputText value="{0,number,###,###,###}">
                                                      <apex:param value="{!BonusTarget}"/>
                                                  </apex:outputText>    
@@ -202,7 +202,7 @@
                                                           <apex:outputlabel value="Bonus Unallocated" /></div>
                                                   <div class="bonusUnallocatedValue">
                                                      <apex:outputText value="{0,number,###,###,###}">
-                                                          â¬<apex:param value="{!remainingAllowances}"/>
+                                                          <apex:param value="{!remainingAllowances}"/>
                                                           </apex:outputText> 
                                                     </div>
                                       </div>    
@@ -212,7 +212,7 @@
                                            </div>
                                        <div class="bonusableFeeValue">
                                               <apex:outputText value="{0,number,###,###,###}">
-                                              â¬<apex:param value="{!bonusablefees}"/>
+                                              <apex:param value="{!bonusablefees}"/>
                                               </apex:outputText>
                                            </div>
                                     </div> 
@@ -222,7 +222,7 @@
                                    <div class="overallBonusPercentChatLable"> {!$Label.AF_OverAll_Bonus}</div >
                                    <canvas id="mycrosscanvas" height="100" width="100" class="overallBonusPercentChatDonut"></canvas>
                                      <span class="overallBonusPercentChatDonutLableValue">   <apex:outputText styleclass="overallText" value="{0,number,###,###,###}">
-                                             â¬<apex:param value="{!totalquant_qual}"/>
+                                             <apex:param value="{!totalquant_qual}"/>
                                               </apex:outputText>     
                                      </span>
                              </div>
@@ -232,7 +232,7 @@
                                    <canvas id="mycrosscanvasQuant" height="100" width="100" class="quantitativeBonusDonut"></canvas>
                                  <span class="quantitativeBonusValue"> 
                                     <apex:outputText styleclass="quantText" value="{0,number,###,###,###}">
-                                       â¬<apex:param value="{!quant}"/>
+                                       <apex:param value="{!quant}"/>
                                     </apex:outputText>   
                                  </span>  
                              </div>
@@ -241,7 +241,7 @@
                                    <canvas id="mycrosscanvasQual" height="100" width="100" class="qualitativeBonusDonut"></canvas>
                                   <span class="qualitativeBonusValue"> 
                                     <apex:outputText styleclass="qualText" value="{0,number,###,###,###}">
-                                      â¬<apex:param value="{!qualValue}"/>
+                                      <apex:param value="{!qualValue}"/>
                                   </apex:outputText>    
                                   </span>  
                              </div>
