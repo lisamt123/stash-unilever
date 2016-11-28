@@ -960,7 +960,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       pur.OwnerId = grp.Id;  
       update pur;
       system.assertEquals(pur.VPM_Status__c,'Procurement Requested Re-Work');
-      //vendorDetail.SubmitRequestAction();
+      vendorDetail.SubmitRequestAction();
       test.stopTest();
       
       

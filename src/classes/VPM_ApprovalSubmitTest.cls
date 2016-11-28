@@ -92,7 +92,7 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_VendorType__c  = 'FRGT_Freight Vendor_G001';
          pur.VPM_GlobalAuthorisationGroup__c='Freight_Freight';
         pur.VPM_IsInApprovalProcess__c='';
-        pur.VPM_FreightApprovalRequired__c=true;
+        pur.VPM_FreightApprovalRequired__c=false;
         pur.VPM_FreightSubmitted__c='No';
         pur.VPM_AdvancedFormSubmitted__c='Yes';
         pur.VPM_Rework__c='No';
@@ -143,10 +143,12 @@ public with sharing  class VPM_ApprovalSubmitTest {
         // update purId;
         //system.debug('purId '+purId+'    '+purId.VPM_Commodity_Family__c);
        // goldenData.approvalCallMethod();
+       purId.VPM_FreightApprovalRequired__c=true;
          List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
        purcReqlst.add(purId);
+       
        // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
-       //VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         
     }
     
@@ -201,11 +203,11 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_AdvancedFormSubmitted__c ='Yes';
          pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
-		 pur.VPM_RussianTaxApprovalRequired__c=true;
+         pur.VPM_RussianTaxApprovalRequired__c=false;
       
-      		pur.VPM_Rework__c='No';
+            pur.VPM_Rework__c='No';
          pur.VPM_AdvancedFormSubmitted__c='Yes';
-      	 pur.VPM_RussiaSubmitted__c='No';
+         pur.VPM_RussiaSubmitted__c='No';
          pur.VPM_IsInApprovalProcess__c='';
 
         insert pur;
@@ -228,11 +230,11 @@ public with sharing  class VPM_ApprovalSubmitTest {
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          purid.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
-	
+         purId.VPM_RussianTaxApprovalRequired__c=true;
          List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
        purcReqlst.add(purId);
        // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
-       //VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         
     }
     
@@ -287,11 +289,11 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_AdvancedFormSubmitted__c ='Yes';
          pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
-		 pur.VPM_BankDataValidationRequired__c=true;
+         pur.VPM_BankDataValidationRequired__c=false;
       pur.VPM_FinanceApprovalRequired__c=true;
-      		pur.VPM_Rework__c='No';
+            pur.VPM_Rework__c='No';
          pur.VPM_AdvancedFormSubmitted__c='Yes';
-      	 pur.VPM_BankDataValidationSubmitted__c='No';
+         pur.VPM_BankDataValidationSubmitted__c='No';
          pur.VPM_IsInApprovalProcess__c='';
 
         insert pur;
@@ -314,11 +316,11 @@ public with sharing  class VPM_ApprovalSubmitTest {
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          purid.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
-	
+    purId.VPM_BankDataValidationRequired__c=true;
          List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
        purcReqlst.add(purId);
        // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
-       //VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         
     }
     
