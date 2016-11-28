@@ -817,6 +817,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       pur.VPM_Rework__c = reworkStat;
       pur.VPM_Status__c = 'FLS Requested Re-Work' ;
       test.startTest();
+      pur.OwnerId = grp.Id;    
       update pur;
       system.assertEquals(pur.VPM_Status__c,'FLS Requested Re-Work');
       vendorDetail.SubmitRequestAction();
@@ -863,6 +864,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       
       pur.VPM_Status__c = 'Finance Requested Re-Work' ;
       test.startTest();
+      pur.OwnerId = grp.Id;    
       update pur;
       system.assertEquals(pur.VPM_Status__c,'Finance Requested Re-Work');
       vendorDetail.SubmitRequestAction();
@@ -907,6 +909,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       
       pur.VPM_Status__c = 'Freight Requested Re-Work' ;
       test.startTest();
+        pur.OwnerId = grp.Id;  
       update pur;
       system.assertEquals(pur.VPM_Status__c,'Freight Requested Re-Work');
       vendorDetail.SubmitRequestAction();
@@ -954,6 +957,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       
       pur.VPM_Status__c = 'Procurement Requested Re-Work' ;
       test.startTest();
+      pur.OwnerId = grp.Id;  
       update pur;
       system.assertEquals(pur.VPM_Status__c,'Procurement Requested Re-Work');
       vendorDetail.SubmitRequestAction();
@@ -998,6 +1002,7 @@ public class VPM_PurchaseRequestsExtensionTest{
       
       pur.VPM_Status__c = 'Russian Custom Tax Requested Re-Work' ;
       test.startTest();
+      pur.OwnerId = grp.Id;  
       update pur;
       system.assertEquals(pur.VPM_Status__c,'Russian Custom Tax Requested Re-Work');
       vendorDetail.SubmitRequestAction();
