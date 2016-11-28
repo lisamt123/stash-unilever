@@ -94,11 +94,6 @@
             alert('Bonus unallocated value should be zero,Please check and confirm');
            }
           }
-        }
-        
-        function confirmAction() 
-        {
-            return confirm('Are you sure you want to proceed?');
         } 
         
         // Redirect on rejection
@@ -106,7 +101,14 @@
         {
             location.reload();   
         }
-  
+        function redirectSubmit()
+        {
+            alert('Record submitted');
+            if(isRedirect){
+                alert('Record submitted successfully');
+                location.reload();   
+            }
+        }
         </script>
     <!-- Optionally add helpers - button, thumbnail and/or media -->
     <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
@@ -331,7 +333,7 @@
                        <apex:outputLabel value="{!$Label.AF_Bonus_Submit}" styleClass="approval_fontS16PX"/>
                     </h2>
                     <br/><br/>
-                    <apex:commandButton style="margin-left: 215px !important;" value="Confirm" action="{!SubmitforStatus}" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup,pgm1"  />
+                    <apex:commandButton style="margin-left: 215px !important;" value="Confirm" action="{!SubmitforStatus}" oncomplete="redirectSubmit();" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup,pgm1" />
                  </div>
               </apex:outputPanel>
             </apex:outputPanel>
