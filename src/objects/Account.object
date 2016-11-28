@@ -2076,27 +2076,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>CHERKASSY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CHERNIGOV</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CHERNOVTSY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>CHITA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>DNEPROPETROVSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>DONETSK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -3576,6 +3556,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>TextArea</type>
+    </fields>
+    <fields>
+            <fullName>Procurement_Contact__c</fullName>
+            <deleteConstraint>SetNull</deleteConstraint>
+            <description>Procurement Contact</description>
+            <externalId>false</externalId>
+            <label>Procurement Contact</label>
+            <referenceTo>User</referenceTo>
+            <relationshipName>Accounts2</relationshipName>
+            <required>false</required>
+            <trackFeedHistory>false</trackFeedHistory>
+            <trackHistory>false</trackHistory>
+            <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Profession__c</fullName>
@@ -9891,27 +9884,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>CHERKASSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNIGOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNOVTSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CHITA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DNEPROPETROVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DONETSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -12503,27 +12476,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>CHERKASSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNIGOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNOVTSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CHITA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DNEPROPETROVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DONETSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15335,27 +15288,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>CHERKASSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNIGOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNOVTSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CHITA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DNEPROPETROVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DONETSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -21861,7 +21794,8 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <description>To restrict the changes on account name for Russia sales rep users.</description>
         <errorConditionFormula>AND( 
 NOT(ISNEW()),OR(RecordType.Name=&apos;Operator Russia&apos;, RecordType.Name=&apos;Operator&apos;),
-OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilever Food Solution - Russia&apos; 
+OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilever Food Solution - Russia&apos; ,
+!($Permission.FS_Admin) 
 )</errorConditionFormula>
         <errorMessage>Don&apos;t Update the Account Name / Account Currency .</errorMessage>
     </validationRules>

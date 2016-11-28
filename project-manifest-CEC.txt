@@ -8,6 +8,7 @@ src/objects
 src/permissionsets
 src/queues
 src/tabs
+src/reportTypes
 src/workflows
 src/applications/CEC_Admin.app
 src/classes/CEC_AlertActionBatchScheduler.cls
@@ -16,6 +17,8 @@ src/classes/CEC_AnonymiseConsumer_BatchScheduler.cls
 src/classes/CEC_AnonymiseConsumer_BatchScheduler.cls-meta.xml
 src/classes/CEC_CaseTriggerHelper.cls
 src/classes/CEC_CaseTriggerHelper.cls-meta.xml
+src/classes/CEC_CaseTriggerHelperExtTest.cls
+src/classes/CEC_CaseTriggerHelperExtTest.cls-meta.xml
 src/classes/CEC_ChatSurveyBatchScheduler.cls
 src/classes/CEC_ChatSurveyBatchScheduler.cls-meta.xml
 src/classes/CEC_ClearAlertTrackerItem_BatchScheduler.cls
@@ -52,6 +55,11 @@ src/permissionsets/CEC_User.permissionset
 src/permissionsets/CEC_Disable_All_Trigger.permissionset
 src/queues/CEC_Brand_Ambassador.queue
 src/tabs/CEC_Exception_Log__c.tab
+src/reportTypes/CEC_Live_Chat.reportType
 src/workflows/Case.workflow
 src/workflows/TH1__Draft__c.workflow
 src/workflows/EmailMessage.workflow
+
+
+
+
