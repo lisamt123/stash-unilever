@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email alert to CF when BonusSummary is Ready for PO</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Agency_Fees_Letterhead</letterhead>
+    <name>AF_Email_To_CF_ReadyForPO</name>
+    <style>freeForm</style>
+    <subject>PO Available</subject>
+    <textOnly>Dear Category Finance,
+ 
+Annual Bonus for {!AF_Bonus_Summary__c.Brand_Name__c} has been approved by {!AF_Bonus_Summary__c.LastModifiedBy} and is now ready for a Purchase Order to be issued to the agency.
+Please log into the Agency Fees Application and run your Purchase Order Report. This will include essential details required for raising your Purchase order in Ariba.
+
+{!AF_Bonus_Summary__c.AF_Internal_Link__c}
+
+From,
+CMCO Finance</textOnly>
+    <type>html</type>
+</EmailTemplate>
