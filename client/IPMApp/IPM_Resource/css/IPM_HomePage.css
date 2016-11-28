@@ -63,12 +63,12 @@
 	}
 	.sliderContent p {
 	    margin: 0;
-		font-size: 16px;
+		font-size: 14px;
 	}
 	.sliderContent {
-	    font-size: 16px;
+	    font-size: 14px;
 	    color: #333;
-	    height: 120px;
+	    height: 180px;
 	    text-overflow: ellipsis;
 	    overflow: hidden;
 	}
