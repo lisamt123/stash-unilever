@@ -1,0 +1,1869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>VPM- Used to store the default values for Order Currency to be applied based on Purch org and Vendor Country</description>
+    <fields>
+        <fullName>VPM_OrderCurrency__c</fullName>
+        <description>VPM - Used to store the order currency values</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Order Currency</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ADP_Andoran peseta</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AED_United Arab Emirates Dirham</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AFA_Afghani</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ALL_Albanian Lek</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AMD_Armenian Dram</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ANG_West Indian Guilder</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AON_Angolan New Kwanza</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AOR_Angolan Kwanza Reajustado</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ARS_Argentine Peso</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ATS_Austrian Schilling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AUD_Australian Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AWG_Aruban Guilder</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AZM_Azerbaijan Manat</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AZN_Azerbaijani New Manat</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BAM_Bosnia and Herzegovina Convertible Mark</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BBD_Barbados Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BDT_Bangladesh Taka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BEF_Belgian Franc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BGN_Bulgarian Lev</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BHD_Bahrain Dinar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BIF_Burundi Franc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BMD_Bermudan Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BND_Brunei Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BOB_Boliviano</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BRL_Brazilian Real</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BSD_Bahaman Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BTN_Bhutan Ngultrum</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BWP_Botswana Pula</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BYB_Belorussian Ruble</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BZD_Belize Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAD_Canadian Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CDF_Congolese Franc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CFP_French Franc (Pacific Islands)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CHF_Swiss Franc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CLP_Chilean Peso</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CNY_Chinese Renminbi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>COP_Colombian Peso</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRC_Costa Rica Colon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CSD_Serbian Dinars</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CUP_Cuban Peso</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CVE_Cape Verde Escudo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CYP_Cyprus Pound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CZK_Czech Krona</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DEM_German Mark</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DEM3_(Internal) German Mark (3 dec.places)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DJF_Djibouti Franc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DKK_Danish Krone</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DOP_Dominican Peso</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DZD_Algerian Dinar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ECS_Ecuadorian Sucre</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EEK_Estonian Krone</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EGP_Egyptian Pound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ERN_Eritrean Nafka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ESP_Spanish Peseta</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ETB_Ethiopian Birr</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EUC_Euro europeo Constante</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EUM_Euro europeo Constante</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EUR_European Euro</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EURZ_European Euro -PA Delete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FIM_Finnish markka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FJD_Fiji Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FKP_Falkland Pound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FRF_French Franc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GBP_British Pound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GEL_Georgian Lari</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GHC_Ghanian Cedi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GHS_Ghanian Cedi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIP_Gibraltar Pound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GMD_Gambian Dalasi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GNF_Guinean Franc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GRD_Greek Drachma</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GTQ_Guatemalan Quetzal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GWP_Guinea Peso</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GYD_Guyana Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HKD_Hong Kong Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HNL_Honduran Lempira</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HRK_Croatian Kuna</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HTG_Haitian Gourde</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HUF_Hungarian Forint</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IDR_Indonesian Rupiah</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IEP_Irish Punt</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ILS_Israeli Scheckel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>INR_Indian Rupee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IQD_Iraqui Dinar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IRR_Iranian Rial</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ISK_Iceland Krona</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ITL_Italian Lira</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>JMD_Jamaican Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>JOD_Jordanian Dinar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>JPY_Japanese Yen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KES_Kenyan Shilling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KGS_Kyrgyzstan Som</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KHR_Cambodian Riel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KMF_Comoros Franc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KPW_North Korean Won</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KRW_South Korean Won</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KWD_Kuwaiti Dinar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KYD_Cayman Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KZT_Kazakstanian Tenge</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LAK_Laotian Kip</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LBP_Lebanese Pound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LKR_Sri Lankan Rupee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LRD_Liberian Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LSL_Lesotho Loti</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LTL_Lithuanian Lita</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LUF_Luxembourg Franc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LVL_Latvian Lat</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LYD_Libyan Dinar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MAD_Moroccan Dirham</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MDL_Moldavian Leu</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MGF_Madagascan Franc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MKD_Macedonian Denar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MMK_Myanmar Kyat</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MNT_Mongolian Tugrik</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MOP_Macao Pataca</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MRO_Mauritanian Ouguiya</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MTL_Maltese Lira</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MUR_Mauritian Rupee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MVR_Maldive Rufiyaa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MWK_Malawi Kwacha</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MXN_Mexican Pesos</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MYR_Malaysian Ringgit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MZM_Mozambique Metical</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MZN_Mozambican Metical</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NAD_Namibian Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NGN_Nigerian Naira</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NIO_Nicaraguan Cordoba Oro</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NLG_Dutch Guilder</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NOK_Norwegian Krone</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NPR_Nepalese Rupee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NZD_New Zealand Dollars</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OMR_Omani Rial</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PAB_Panamanian Balboa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PEN_Peruvian New Sol</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PGK_Papua New Guinea Kina</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PHP_Philippine Peso</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PKR_Pakistani Rupee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PLN_Polish Zloty (new)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PTE_Portuguese Escudo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PYG_Paraguayan Guarani</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QAR_Qatar Rial</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RMB_Chinese Yuan Renminbi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ROL_Romanian Leu</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RON_New Romanian Leu</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RSD_Serbian Dinar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RUB_Russian Ruble</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RWF_Rwandan Franc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SAR_Saudi Riyal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SBD_Solomon Islands Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCR_Seychelles Rupee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SDP_Sudanese Pound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SEK_Swedish Krona</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SGD_Singapore Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SHP_St.Helena Pound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SIT_Slovenian Tolar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SKK_Slovakian Krona</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SLL_Sierra Leone Leone</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SOS_Somalian Shilling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SRG_Surinam Guilder</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>STD_Sao Tome / Principe Dobra</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SVC_El Salvador Colon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SYP_Syrian Pound</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SZL_Swaziland Lilangeni</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>THB_Thailand Baht</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TJR_Tajikistani Ruble</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TMM_Turkmenistani Manat</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TND_Tunisian Dinar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TOP_Tongan Pa&apos;anga</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TPE_Timor Escudo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TRL_Turkish Lira</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TRY_Turkish Lira</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TTD_Trinidad and Tobago Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TWD_New Taiwan Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TZS_Tanzanian Shilling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UAH_Ukraine Hryvnia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UFV_Peso boliviano</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UGX_Ugandan Shilling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US1_Dolares Petroleros</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US2_Dolares SITME</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>USD_United States Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>USDN_(Internal) United States Dollar (5 Dec.)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>USM_Dolar Mediun Americano</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UYU_Uruguayan Peso (new)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UZS_Uzbekistan Som</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VEB_Venezuelan Bolivar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VEF_Fuerte (Parallel)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VND_Vietnamese Dong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VUV_Vanuatu Vatu</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WST_Samoan Tala</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XAF_Gabon CFA Franc BEAC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XCD_East Carribean Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XDS_St. Christopher Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XEU_European Currency Unit (E.C.U.)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XOF_Benin CFA Franc BCEAO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XPF_CFP Franc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YER_Yemeni Ryal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YUM_New Yugoslavian Dinar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZAR_South African Rand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZMK_Zambian Kwacha</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZRN_Zaire</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZWD_Zimbabwean Dollar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZZZ_SK Euro Conversion Currency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorCountry__c</fullName>
+        <description>VPM- Used to store the country values.</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Vendor Country</label>
+        <picklist>
+            <picklistValues>
+                <fullName>AD_Andorra</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AE_Utd.Arab Emir (UAE)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AF_Afghanistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AG_Antigua/Barbuda</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AI_Anguilla</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AL_Albania</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AM_Armenia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AN_Dutch Antilles</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AO_Angola</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AQ_Antarctica</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AR_Argentina</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AS_Samoa, American</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AT_Austria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AU_Australia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AW_Aruba</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AZ_Azerbaijan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BA_Bosnia-Herz.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BB_Barbados</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BD_Bangladesh</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BE_Belgium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BF_Burkina-Faso</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BG_Bulgaria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BH_Bahrain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BI_Burundi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BJ_Benin</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BM_Bermuda</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BN_Brunei Dar-es-S (Brunei Daruss)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BO_Bolivia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BQ_Bon+Statia+Saba</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BR_Brazil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BS_Bahamas</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BT_Bhutan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BV_Bouvet Island</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BW_Botswana</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BY_Belarus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BZ_Belize</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CA_Canada</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CC_Coconut Islands (Cocos Islands)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CD_Congo (Dem. Rep. Congo)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CF_Central Afr.Rep (CAR)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CG_Congo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CH_Switzerland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CI_Cote d&apos;Ivoire (Ivory Coast)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CK_Cook Islands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CL_Chile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CM_Cameroon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CN_China</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CO_Colombia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CR_Costa Rica</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CS_Serbia/Monten.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CU_Cuba</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CV_Cape Verde</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CW_Curaçao</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CX_Christmas Islnd</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CY_Cyprus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CZ_Czech Republic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DE_Germany</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DJ_Djibouti</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DK_Denmark</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DM_Dominica</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DO_Dominican Rep.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DZ_Algeria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EC_Ecuador</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EE_Estonia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EF_Estonia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EG_Egypt</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EH_Western Sahara</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ER_Eritrea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ES_Spain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ET_Ethiopia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FI_Finland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FJ_Fiji</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FK_Falkland Islnds</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FM_Micronesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FO_Faroe Islands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FR_France</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GA_Gabon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GB_United Kingdom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GD_Grenada</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GE_Georgia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GF_French Guayana</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GG_Guernsey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GH_Ghana</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GI_Gibraltar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GL_Greenland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GM_Gambia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GN_Guinea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GP_Guadeloupe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GQ_Equatorial Guin</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GR_Greece</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GS_S. Sandwich Ins</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GT_Guatemala</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GU_Guam</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GW_Guinea-Bissau</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GY_Guyana</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HK_Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HM_Heard/McDon.Isl</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HN_Honduras</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HR_Croatia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HT_Haiti</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HU_Hungary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ID_Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IE_Ireland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IL_Israel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IM_Isle of Man</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IN_India</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IO_Brit.Ind.Oc.Ter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IQ_Iraq</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IR_Iran</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IS_Iceland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT_Italy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>JE_Jersey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>JM_Jamaica</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>JO_Jordan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>JP_Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KE_Kenya</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KG_Kyrgyzstan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KH_Cambodia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KI_Kiribati</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KM_Comoros</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KN_St Kitts&amp;Nevis</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KP_North Korea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KR_South Korea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KW_Kuwait</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KY_Cayman Islands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KZ_Kazakhstan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LA_Laos</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LB_Lebanon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LC_St. Lucia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LI_Liechtenstein</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LK_Sri Lanka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LR_Liberia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LS_Lesotho</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LT_Lithuania</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LU_Luxembourg</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LV_Latvia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LY_Libya</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MA_Morocco</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MB_Myanmar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MC_Monaco</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MD_Moldova (Moldavia)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ME _Montenegro</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MG_Madagascar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MH_Marshall Islnds</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MK_Macedonia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ML_Mali</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MM_Myanmar (Burma)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MN_Mongolia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MO_Macau</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MP_N.Mariana Islnd</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MQ_Martinique</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MR_Mauretania</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MS_Montserrat</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MT_Malta</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MU_Mauritius</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MV_Maldives</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MW_Malawi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MX_Mexico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MY_Malaysia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MZ_Mozambique</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NA_Namibia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NC_New Caledonia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NE_Niger</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NF_Norfolk Islands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NG_Nigeria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NI_Nicaragua</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NL_Netherlands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NO_Norway</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NP_Nepal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NR_Nauru</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NU _Niue Islands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NZ_New Zealand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OM_Oman</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PA_Panama</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PE_Peru</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PF_French Polynesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PG_Papua New Guinea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PH_Philippines</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PK_Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PL_Poland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PM_St.Pier,Miquel.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PN_Pitcairn Islnds</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PR_Puerto Rico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PS_Palestine</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PT_Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PW_Palau</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PY_Paraguay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QA_Qatar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RE_Reunion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RO_Romania</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RS _Serbia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RU_Russian Fed.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RW_Rwanda</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SA_Saudi Arabia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SB_Solomon Islands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SC_Seychelles</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SD_Sudan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SE_Sweden</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SG_Singapore</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SH_St. Helena</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SI_Slovenia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SJ_Svalbard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SK_Slovakia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SL_Sierra Leone</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SM_San Marino</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SN_Senegal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SO_Somalia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SR_Suriname</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SS _South Sudan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ST_S.Tome,Principe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SV_El Salvador</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SX_St Maarten</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SY_Syria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SZ_Swaziland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>STL_stateless</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TC _Turks &amp; Caicos (Turksh Caicosin)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TD_Chad</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TF_French S.Territ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TG_Togo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TH_Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TJ_Tajikistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TK_Tokelau Islands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TL_East Timor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TM_Turkmenistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TN_Tunisia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TO_Tonga</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TP_East Timor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TR_Turkey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TT_Trinidad,Tobago</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TV_Tuvalu</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TW_Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TZ_Tanzania</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UA_Ukraine</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UG_Uganda</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UM _Minor Outl.Isl.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US_USA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UY_Uruguay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UZ_Uzbekistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VA_Vatican City</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VC_St. Vincent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VE_Venezuela</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VG_Brit.Virgin Is.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VI_Amer.Virgin Is.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VN_Vietnam</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VU_Vanuatu</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WF_Wallis,Futuna</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WS_Western Samoa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XK_Kosovo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XM_Mayotte</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YD_South Yemen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YE_Yemen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YT_Mayotte</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YU_Serbia &amp;Mtnegro (Yugosalvia)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZA_South Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZM_Zambia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZR_Zaire</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZW_Zimbabwe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <type>Picklist</type>
+    </fields>
+    <label>Order Currency Default Values</label>
+    <pluralLabel>Order Currency Default Values</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>
