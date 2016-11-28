@@ -501,3 +501,4 @@ table.ipmTable.table.table-bordered.ecoDesignCountry tbody td div.inputField.cel
 .risktabhead .noBold{float:none;}
 .riskTablecolor .bggray{text-align:center;}
 .riskMainHead.projectRiskLbl{padding: 8px 8px;}
+.brandPrimaryBrd table.outerNoSidebar{table-layout:fixed;}

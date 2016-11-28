@@ -92,13 +92,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public boolean isTDLAcceptNBC_Confirm{get;set;}
     public string tldAcceptedBCConfirmed{get;set;}
     public string globalbusinessImpactStr  {get; set;}
-    public IPM_Financial__c fin {get; set;}
+    public static IPM_Financial__c fin {get; set;}
     public IPM_Financial__c finRegional{get;set;}// for Financial Regional Business Impact
     public IPM_Financial__c finLocal{get;set;}// for Financial Local Business Impact
     public boolean isFinancialInvalid{get;set;}
     
-    public String redValidationCellsString = IPM_ConstantUtils.BLANK;
-    public String yellowValidationCellsString = IPM_ConstantUtils.BLANK ;
+    public static String redValidationCellsString = IPM_ConstantUtils.BLANK;
+    public static String yellowValidationCellsString = IPM_ConstantUtils.BLANK ;
     public String currentFinancialType;
     public Boolean isFinacialConsolidated;
     public Set<IPM_Financial__c> financialsToUpdateSet= new  Set<IPM_Financial__c>();
@@ -385,8 +385,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         exRate=1;
         showNonKeyBusinessCaseChangedAlert = false;  //initiating the variable to false
         
-        redValidationCellsString = IPM_ConstantUtils.BLANK;
-        yellowValidationCellsString = IPM_ConstantUtils.BLANK ;
         currentFinancialType = IPM_ConstantUtils.BLANK;
         isFinacialConsolidated = false;
         isCAPEXInvalid = false;
@@ -584,7 +582,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                (Select Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c FROM IPM_Project_Rollout__r 
                                                    WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND KeyMCO__c = FALSE AND Regional_Rollout_External_Id__c= :financialExtID AND isActive__c = true),
                                                (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c  FROM Regional_Project_Rollout__r 
-                                                   WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND Regional_Rollout_External_Id__c = :financialExtID AND isActive__c = true)           
+                                                   WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND KeyMCO__c = FALSE AND Regional_Rollout_External_Id__c = :financialExtID AND isActive__c = true)           
                                             FROM IPM_Project__c WHERE Id =:Project.Id];
                     } 
                 } 
@@ -838,6 +836,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                         // This is so that the key Financial Flags are displayed for charter tab in GKM3 projects
                         // This tab is visbile for Global projects only in GKM3 projects
                         showKeyFinancial = true; 
+                        globalCharter = true;
                         getGlobalTopDownWrappers();
                     }
                     else if (currentTab == IPM_ConstantUtils.TAB_ROLLUP_NAME)
@@ -1437,7 +1436,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
       
         queryString+= 'Id FROM IPM_Financial_Years__r ORDER BY Name)';
-        queryString+= 'FROM IPM_Financial__c WHERE Id =: currentFinancialId FOR UPDATE'; //Added For Update to obtain exclusive access to the record
+        queryString+= 'FROM IPM_Financial__c WHERE Id =: currentFinancialId '; //Added For Update to obtain exclusive access to the record
         
         List<IPM_Financial__c> LstCurrentFinancial = new List<IPM_Financial__c>();
         LstCurrentFinancial = Database.query(queryString);
@@ -1957,10 +1956,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               
               softValidate(currentFinancial);
               
-              //set the isFinancialInvalid__c flag on the financial (as true or false). If the new value is different from the old one then update the financial record
-              //method checkIsFinancialInvalid sets the flag appropriately
-              checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
-            
+	      //the invalid flags are set from the IPM_FinancialYearHelper
+
               financialsToUpdateSet.clear();
               //logic to calculate the consolidated financials validation cells value
               if(!currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)  &&  (projectType!= null && !projectType.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) )){
@@ -3606,9 +3603,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * These validation give the list of Red and Yellow erroneous cells (comma seperated string)
     * This string is then used to populate the erroneous cell names in the consolidated financials on creation/page load of financials
     ************************************************************************************************************************/
-    public void setConsolidatedFinancialValidationCells(){
-        try{
-            String queryString = 'SELECT ';
+    public void setConsolidatedFinancialValidationCells()
+    {
+        try
+        {
+        	if(project.IPM_SourceProjectType__c != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+        	{
+        		String queryString = 'SELECT ';
 
             
             //fetch all the financials from the current project
@@ -3689,7 +3690,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
                 
                 initializeFinancials();
-
+        	}
         }
         
         
@@ -3871,8 +3872,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         if(lstRolloutWrappers!= null && !lstRolloutWrappers.isEmpty()){
             for(RolloutWrapper rollWrapper : lstRolloutWrappers ){
-                for(IPM_Financial__c fin : rollWrapper.lstFinancials){
-                    financialExtIdsForCurrentTab.add(fin.Financial_External_ID__c);
+                for(IPM_Financial__c finance : rollWrapper.lstFinancials){
+                    financialExtIdsForCurrentTab.add(finance.Financial_External_ID__c);
                 }
             }
             
