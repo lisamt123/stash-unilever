@@ -36,6 +36,96 @@
             <value>Agency Fee</value>
         </criteriaItems>
     </sharingCriteriaRules>
+	   <sharingCriteriaRules>
+        <fullName>Sharing_rule_for_SoCo_Sys_Admin_AR01</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sharing rule for SoCo Sys Admin_AR01</label>
+        <sharedTo>
+            <group>SoCo_Admin_AR01</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>AR01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sharing_rule_for_SoCo_Sys_Admin_CL01</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sharing rule for SoCo Sys Admin_CL01</label>
+        <sharedTo>
+            <group>SoCo_Admin_AR01</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>CL01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sharing_rule_for_SoCo_Sys_Admin_CL03</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sharing rule for SoCo Sys Admin_CL03</label>
+        <sharedTo>
+            <group>SoCo_Admin_CL03</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>CL03</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sharing_rules_for_Ireland_SO</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sharing rules for Ireland SO</label>
+        <sharedTo>
+            <group>Ireland_SO</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>Ireland SO</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sharing_rules_for_UK_SO</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sharing rules for UK SO</label>
+        <sharedTo>
+            <group>UK_SO</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>UK SO</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
     <sharingOwnerRules>
         <fullName>Market_Equals_ANZ_Manager</fullName>
         <accessLevel>Edit</accessLevel>
