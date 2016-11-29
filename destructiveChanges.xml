@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>CEC_North_America_Creative_Solutions</members>
+        <members>CEC_North_America_Helpdesk_Queue</members>
+        <members>CEC_North_America_Supervisor_Queue</members>
+        <name>Queue</name>
+    </types>
+    <version>37.0</version>
+</Package>
