@@ -133,7 +133,7 @@
             <name>Update_IPM_Bosscard_Name</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>IPM_Bosscard__c.IPM_BosscardName__c</field>
             <operation>notEqual</operation>
@@ -142,7 +142,7 @@
     </rules>
     <rules>
         <fullName>IPM Notify Auto-Deletion of Bosscard after 175 days of Inactivity</fullName>
-        <active>false</active>
+        <active>true</active>
         <formula>NOT( ISNULL ( LastModifiedDate ))  &amp;&amp;  ISBLANK(Used_By_Workflow_175_days__c) &amp;&amp;   ISPICKVAL(IPM_Bosscard_Status__c  , &apos;In Progress&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
@@ -161,7 +161,7 @@
     </rules>
     <rules>
         <fullName>IPM Notify Auto-Deletion of Bosscard after 30 days of Inactivity</fullName>
-        <active>false</active>
+        <active>true</active>
         <formula>ISPICKVAL(IPM_Bosscard_Status__c  , &apos;In Progress&apos;) &amp;&amp; ( Used_By_Workflow_30_days__c  = &apos;Date Changed&apos; ||  Used_By_Workflow_30_days__c = &apos;&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>

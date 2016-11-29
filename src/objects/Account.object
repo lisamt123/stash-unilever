@@ -6760,25 +6760,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>All_NA_Accounts</fullName>
-        <columns>ACCOUNT.NAME</columns>
-        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
-        <columns>ACCOUNT.TYPE</columns>
-        <columns>ACCOUNT.ADDRESS2_CITY</columns>
-        <columns>ACCOUNT.ADDRESS1_STATE</columns>
-        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
-        <columns>Zone__c</columns>
-        <columns>Region__c</columns>
-        <columns>Territory__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <label>All NA Accounts</label>
-        <language>en_US</language>
-        <sharedTo>
-            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>All_NA_Distributor_Accounts</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
@@ -7243,6 +7224,28 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>Temporary Accounts Administrator</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ZA_Legacy_Accounts</fullName>
+        <columns>PC_TITLE</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>PC_EMAIL</columns>
+        <columns>Unilever_Opt_In__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Legacy_Reference__c</field>
+            <operation>startsWith</operation>
+            <value>ZA_PA_</value>
+        </filters>
+        <label>ZA Legacy Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_South_Africa</role>
+            <role>CEC_User_South_Africa</role>
+        </sharedTo>
     </listViews>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
