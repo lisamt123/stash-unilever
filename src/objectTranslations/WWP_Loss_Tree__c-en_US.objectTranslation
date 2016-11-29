@@ -25,6 +25,22 @@
         <name>DC_Loss_Value__c</name>
     </fields>
     <fields>
+        <label><!-- DC% --></label>
+        <name>DC__c</name>
+    </fields>
+    <fields>
+        <label><!-- GR Date --></label>
+        <name>GR_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- GR QTY --></label>
+        <name>GR_QTY__c</name>
+    </fields>
+    <fields>
+        <label><!-- InsertedDate --></label>
+        <name>InsertedDate__c</name>
+    </fields>
+    <fields>
         <label><!-- Loss Description --></label>
         <name>Loss_Description__c</name>
         <picklistValues>
@@ -541,8 +557,44 @@
         <name>MRP_Loss_Value__c</name>
     </fields>
     <fields>
+        <label><!-- Material Group --></label>
+        <name>Material_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Type --></label>
+        <name>Material_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material --></label>
+        <name>Material__c</name>
+    </fields>
+    <fields>
         <label><!-- OR Loss Value --></label>
         <name>OR_Loss_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- %OR --></label>
+        <name>OR__c</name>
+    </fields>
+    <fields>
+        <label><!-- OVERALL SUPPLIER OTIF COMPLIANCE --></label>
+        <name>OVERALL_SUPPLIER_OTIF_COMPLIANCE__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Delivery Date as per Current PO --></label>
+        <name>PO_Delivery_Date_as_per_Current_PO__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Line Item Number --></label>
+        <name>PO_Line_Item_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO QTY --></label>
+        <name>PO_QTY__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Schedule Line Item Number --></label>
+        <name>PO_Schedule_Line_Item_Number__c</name>
     </fields>
     <fields>
         <label><!-- PO --></label>
@@ -581,6 +633,14 @@
         <name>RegionId__c</name>
     </fields>
     <fields>
+        <label><!-- Remarks --></label>
+        <name>Remarks__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resource Line --></label>
+        <name>Resource_Line__c</name>
+    </fields>
+    <fields>
         <label><!-- SKU Description --></label>
         <name>SKU_Description__c</name>
     </fields>
@@ -593,8 +653,20 @@
         <name>STO_SO__c</name>
     </fields>
     <fields>
+        <label><!-- SUPPLIER OTIF QTY COMPLIANCE --></label>
+        <name>SUPPLIER_OTIF_QTY_COMPLIANCE__c</name>
+    </fields>
+    <fields>
+        <label><!-- SUPPLIER OTIF TIME COMPLIANCE --></label>
+        <name>SUPPLIER_OTIF_TIME_COMPLIANCE__c</name>
+    </fields>
+    <fields>
         <label><!-- Week --></label>
         <name>Week__c</name>
+    </fields>
+    <fields>
+        <label><!-- material Description --></label>
+        <name>material_Description__c</name>
     </fields>
     <layouts>
         <layout>Loss Tree Layout</layout>

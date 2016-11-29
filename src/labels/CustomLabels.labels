@@ -26090,6 +26090,13 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>Please select atleast one record</value>
     </labels>
     <labels>
+        <fullName>WWp_selectedrecord_disabled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WWp_selectedrecord_disabled</shortDescription>
+        <value>Select records are above target and disabled</value>
+    </labels>
+    <labels>
         <fullName>WinAtPOS_AssetGroupName_help_text</fullName>
         <language>en_US</language>
         <protected>false</protected>

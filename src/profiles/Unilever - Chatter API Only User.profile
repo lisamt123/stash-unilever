@@ -7163,6 +7163,18 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>WWP_Losstree_Copy_Component_Ctrl</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WWP_Losstree_Copy_Component_Ctrl_test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WWP_Losstree_EXt</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>WinAtPOSHomeController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -47313,6 +47325,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>WWP_Loss_Tree__c.DC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.GR_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.GR_QTY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.InsertedDate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>WWP_Loss_Tree__c.Loss_Description__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -47353,7 +47385,52 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Material_Group__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Material_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Material__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>WWP_Loss_Tree__c.OR_Loss_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.OR__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.OVERALL_SUPPLIER_OTIF_COMPLIANCE__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.PO_Delivery_Date_as_per_Current_PO__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.PO_Line_Item_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.PO_QTY__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.PO_Schedule_Line_Item_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -47393,6 +47470,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Remarks__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.Resource_Line__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>WWP_Loss_Tree__c.SKU_Description__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -47408,7 +47495,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>WWP_Loss_Tree__c.SUPPLIER_OTIF_QTY_COMPLIANCE__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.SUPPLIER_OTIF_TIME_COMPLIANCE__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>WWP_Loss_Tree__c.Week__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WWP_Loss_Tree__c.material_Description__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -60911,6 +61013,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>WWP_Loss_Tree__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>WWP_Master_Table__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>

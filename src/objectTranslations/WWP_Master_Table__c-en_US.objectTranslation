@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>WWP Master Table</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>WWP Master Table</value>
+    </caseValues>
+    <fields>
+        <label><!-- OR Tolerance % --></label>
+        <name>OR_Tolerance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Plant Code --></label>
+        <name>Plant_Code__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
