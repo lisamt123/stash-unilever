@@ -169,6 +169,11 @@ src/customMetadata/VPM_CountriesWithFLS.Venezuela.md
 src/customMetadata/VPM_CountriesWithFLS.Vietnam.md
 src/customMetadata/VPM_CountriesWithFLS.Zambia.md
 src/customMetadata/VPM_CountriesWithFLS.Zimbabwe.md
+src/customMetadata/VPM_ExternalService.VPM_CreateVendorBPM.md
+src/customMetadata/VPM_ExternalService.VPM_ECCVendorSearch.md
+src/customMetadata/VPM_ExternalService.VPM_ECCVendorSearch.md
+src/customMetadata/VPM_ExternalService.VPM_ECCVendorSearchOld.md
+src/customMetadata/VPM_ExternalService.VPM_MaintainExtendGlobalVendorBPM.md
 src/customMetadata/VPM_OrderCurrencyDefaultValues.AD_Andorra.md
 src/customMetadata/VPM_OrderCurrencyDefaultValues.AE_UtdArabEmirUAE.md
 src/customMetadata/VPM_OrderCurrencyDefaultValues.AF_Afghanistan.md
