@@ -12,7 +12,7 @@ public class VPM_MaintainGlobalVendorService_Test {
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
         string vendorId = pur.get(0).id;
         test.startTest();
-        VPM_MaintainGlobalVendorServiceHelper.fakeMethod();  
+        //VPM_MaintainGlobalVendorServiceHelper.fakeMethod();  
         Test.setMock(HttpCalloutMock.class, new VPM_maintainGlobalVendorCalloutMock(200));
         VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorId);
         test.stopTest();
@@ -135,6 +135,15 @@ public class VPM_MaintainGlobalVendorService_Test {
     }
             static testMethod void MaintainRegionTest400() {
                 setup();
+                VPM_MaintainGlobalVendorServiceHelper.errorMsgWrapper erMsg = new VPM_MaintainGlobalVendorServiceHelper.errorMsgWrapper();
+                erMsg.MessageV1 = 'Test';
+                erMsg.MessageNo = '123';
+                erMsg.Type= 'W';
+                erMsg.ID = '43672errorId';
+                VPM_MaintainGlobalVendorServiceHelper.MaintainGlobalVendorResponse responseMaintain = new VPM_MaintainGlobalVendorServiceHelper.MaintainGlobalVendorResponse();
+                responseMaintain.bpmId='01678';
+                responseMaintain.statusCode = '200';
+                
         List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test1234' LIMIT 1];
         string vendorId = pur.get(0).id;
        // VPM_CreateVendorServiceHelper.CreateVendorResponse resp = new VPM_CreateVendorServiceHelper.CreateVendorResponse();
