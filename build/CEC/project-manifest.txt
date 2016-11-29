@@ -6,7 +6,6 @@ src/package.xml
 src/permissionsets
 src/reportTypes
 src/workflows
-src/assignmentRules
 src/classes/CEC_CaseTriggerHelper.cls
 src/classes/CEC_CaseTriggerHelper.cls-meta.xml
 src/classes/CEC_CaseTriggerHelperExtTest.cls
@@ -19,5 +18,5 @@ src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_User.permissionset
 src/reportTypes/CEC_Live_Chat.reportType
 src/workflows/Case.workflow
-src/assignmentRules/Case.assignmentRules
+
 
