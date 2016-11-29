@@ -10,7 +10,7 @@ src/classes/WU_WarehouseSearchGooglemapController_TC.cls
 src/classes/WU_WarehouseSearchGooglemapController.cls-meta.xml
 src/classes/WU_WarehouseSearchGooglemapController.cls
 src/classes/WU_SetWareHousePOCHandlerTest.cls
-src/classes/WU_SetWarehousePOCHandler.cls-meta.xml
+src/classes/WU_SetWareHousePOCHandlerTest.cls-meta.xml
 src/classes/WU_UpdateMasterWarehouseHandler.cls-meta.xml
 src/classes/WU_UpdateMasterWarehouseHandler.cls
 src/triggers
@@ -21,12 +21,9 @@ src/pages/WU_MultiCreateMultiEdit.page
 src/pages/WU_MultiCreateMultiEdit.page-meta.xml
 src/pages/WU_WarehouseSearchPage.page
 src/pages/WU_WarehouseSearchPage.page-meta.xml
-src/pages/WU_MapView.page-meta.xml
-src/pages/WU_MapView.page-meta
 src/pages/WarehouseGoogleMaps.page-meta.xml
 src/pages/WarehouseGoogleMaps.page
 src/objects
-src/objects/User.object
 src/objects/WU_Master_Warehouse__c.object
 src/objects/WU_Warehouse_Capacity_Detail__c.object
 src/layouts
@@ -38,8 +35,8 @@ src/permissionsets/WU_Warehouse_Excellence_Operations.permissionset
 src/permissionsets/WU_Warehouse_Admin.permissionset
 src/email
 src/email/Warehouse_Utilization
-src/email/Warehouse_Utilization/Warehouse_Committed_Capacity.email
-src/email/Warehouse_Utilization/Warehouse_Committed_Capacity.email-meta.xml
+src/email/Warehouse_Utilization/WU_Warehouse_Committed_Capacity.email
+src/email/Warehouse_Utilization/WU_Warehouse_Committed_Capacity.email-meta.xml
 src/email/Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC.email
 src/email/Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC.email-meta.xml
 src/email/Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC_Rejection.email-meta.xml
@@ -50,12 +47,13 @@ src/email/Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC_for_Approval
 src/emailwarehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC_for_Approval_Secondary_POC.email
 src/emailwarehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC_for_Approval_Primary_POC.email-meta.xml
 src/emailwarehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC_for_Approval_Primary_POC.email
-src/emailwarehouse_Utilization/Capacity_Verification_Required.email-meta.xml
-src/emailwarehouse_Utilization/Capacity_Verification_Required.email
+src/email/Warehouse_Utilization-meta.xml
 src/approvalProcesses
 src/approvalProcesses/WU_Master_Warehouse__c.WU_Committed_Pallet_Capacity_Changed.approvalProcess
-src/workflows
-src/workflows/WU_Master_Warehouse__c.workflow
+src/labels
+src/labels/WU.labels
+src/tabs/WU_Warehouse_Maps.tab
+
 
 
 

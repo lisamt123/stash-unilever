@@ -11,7 +11,7 @@ Description:
 Date: 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 */ -->
-<apex:page standardController="WU_Master_Warehouse__c"  extensions="WU_WarehouseSearchGooglemapController" tabStyle="Warehouse_Maps__tab" action="{!getWarehouseList}">
+<apex:page standardController="WU_Master_Warehouse__c"  extensions="WU_WarehouseSearchGooglemapController" tabStyle="WU_Warehouse_Maps__tab" action="{!getWarehouseList}">
 <apex:form >
 <apex:pageblock >
 

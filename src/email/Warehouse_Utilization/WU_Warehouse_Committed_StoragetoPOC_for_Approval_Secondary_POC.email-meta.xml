@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Warehouse_Committed_StoragetoPOC_for_Approval_Secondary_POC</name>
     <style>none</style>
-    <subject>Warehouse Committed Pallet Utilization Changed for Warehouse  : {!WU_Master_Warehouse__c.WU_LocationName__c} - No Action Required</subject>
+    <subject>Committed Pallet Utilization Changed for Warehouse  : {!WU_Master_Warehouse__c.WU_LocationName__c} - APPROVED by Procurement Manager.</subject>
     <type>text</type>
 </EmailTemplate>
