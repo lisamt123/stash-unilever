@@ -567,17 +567,17 @@ public class AF_BrandEstimateRemote_Test
             brandlist.add(AFUnileverEntitylist[0].AF_Country__c);
             List<AF_Bonus_Results__c> BonusResultQuery = [SELECT ID,AF_Bonus_Thresholds__c FROM AF_Bonus_Results__c WHERE RecordTypeId=:AF_TestFactory_Helper.AF_BONUS_RESULTS_RECTYPE AND ID IN:BonusResultList LIMIT 1];
             System.assertEquals(BonusResultQuery[0].AF_Bonus_Thresholds__c,BonusThreshold[0].id, AF_TestFactory_Helper.BONUSRESULT_RECORD);
-            AF_BrandEstimateRemote.getAgencyEstimateRecords(acc[0].Id,BrandEstlist[0].Id);
+            //AF_BrandEstimateRemote.getAgencyEstimateRecords(acc[0].Id,BrandEstlist[0].Id);
             AF_BrandEstimateRemote.getAgencyEntitiesFromName(agencyNames,acc[0].id);
             AF_BrandEstimateRemote.getAgencyEntitiesFromName(agencyNames,OopsactualList[0].id);
             AF_BrandEstimateRemote.addAgencyEntityToEstimates(BrandEstlist[0].Id,AF_Constants.SOBJECT_BRANDESTIMATE_APINAME,rows,acc[0].Id);
             AF_BrandEstimateRemote.addAgencyEntityToEstimates(AFBonusSummary[0].Id,AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME,rows,acc[0].Id);
-            AF_BrandEstimateRemote.addUnileverEntityToEstimates(BrandEstlist[0].Id,AF_Constants.SOBJECT_BRANDESTIMATE_APINAME,cols,acc[0].Id);
-            AF_BrandEstimateRemote.addUnileverEntityToEstimates(BonusResultList[0].Id,bonus_Result,cols,acc[0].Id); 
-            AF_BrandEstimateRemote.addSingleULAGEntity(BrandEstlist[0].Id,AF_Constants.SOBJECT_BRANDESTIMATE_APINAME, AFUnileverEntity[0].Name, AFEntity[0].Name, acc[0].Id);
-            AF_BrandEstimateRemote.archiveAgencyEntityToEstimates(BrandEstlist[0].Id,AF_Constants.SOBJECT_BRANDESTIMATE_APINAME,AFUnileverEntity[0].Name);
-            //AF_BrandEstimateRemote.archiveAgencyEntityToEstimates(OopsactualList[0].id,AF_Constants.SOBJECT_OOPSACTUAL_APINAME,AFUnileverEntity[0].Name);
-            //AF_BrandEstimateRemote.archiveUnileverEntityToEstimates(OopsactualList[0].Id,AF_Constants.SOBJECT_OOPSACTUAL_APINAME,AFEntity[0].Name,acc[0].Id);
+            //AF_BrandEstimateRemote.addUnileverEntityToEstimates(BrandEstlist[0].Id,AF_Constants.SOBJECT_BRANDESTIMATE_APINAME,cols,acc[0].Id);
+            //AF_BrandEstimateRemote.addUnileverEntityToEstimates(BonusResultList[0].Id,bonus_Result,cols,acc[0].Id); 
+            //AF_BrandEstimateRemote.addSingleULAGEntity(BrandEstlist[0].Id,AF_Constants.SOBJECT_BRANDESTIMATE_APINAME, AFUnileverEntity[0].Name, AFEntity[0].Name, acc[0].Id);
+            //AF_BrandEstimateRemote.archiveAgencyEntityToEstimates(BrandEstlist[0].Id,AF_Constants.SOBJECT_BRANDESTIMATE_APINAME,AFUnileverEntity[0].Name);
+            AF_BrandEstimateRemote.archiveAgencyEntityToEstimates(OopsactualList[0].id,AF_Constants.SOBJECT_OOPSACTUAL_APINAME,AFUnileverEntity[0].Name);
+            AF_BrandEstimateRemote.archiveUnileverEntityToEstimates(OopsactualList[0].Id,AF_Constants.SOBJECT_OOPSACTUAL_APINAME,AFEntity[0].Name,acc[0].Id);
             AF_BrandEstimateRemote.buildOopsEstimate(AFEntity[0].id,AFUnileverEntity[0].id,OopsactualList[0].id);
             AF_BrandEstimateRemote.archiveOopsEstimatesPerUnileverEntity(AFUnileverEntity[0].Name,OopsactualList[0].id);
              Test.stopTest();  
@@ -585,7 +585,7 @@ public class AF_BrandEstimateRemote_Test
     }
         /***********************************************************************************
 *  @Description: this method will the test data
-*  @name : brandEstimateRemote3
+*  @name : brandEstimateRemote4
 *  @param : none.
 *  @return: none.
 *************************************************************************************/
@@ -710,7 +710,7 @@ public class AF_BrandEstimateRemote_Test
             brandlist.add(AFUnileverEntitylist[0].AF_Country__c);
             List<AF_Bonus_Results__c> BonusResultQuery = [SELECT ID,AF_Bonus_Thresholds__c FROM AF_Bonus_Results__c WHERE RecordTypeId=:AF_TestFactory_Helper.AF_BONUS_RESULTS_RECTYPE AND ID IN:BonusResultList LIMIT 1];
             System.assertEquals(BonusResultQuery[0].AF_Bonus_Thresholds__c,BonusThreshold[0].id, AF_TestFactory_Helper.BONUSRESULT_RECORD);
-            AF_BrandEstimateRemote.getAgencyEstimateRecords(acc[0].Id,BrandEstlist[0].Id);
+            //AF_BrandEstimateRemote.getAgencyEstimateRecords(acc[0].Id,BrandEstlist[0].Id);
             AF_BrandEstimateRemote.getAgencyEntitiesFromName(agencyNames,acc[0].id);
             AF_BrandEstimateRemote.getAgencyEntitiesFromName(agencyNames,OopsactualList[0].id);
             //AF_BrandEstimateRemote.addAgencyEntityToEstimates(BrandEstlist[0].Id,AF_Constants.SOBJECT_BRANDESTIMATE_APINAME,rows,acc[0].Id);
@@ -719,10 +719,10 @@ public class AF_BrandEstimateRemote_Test
             AF_BrandEstimateRemote.addUnileverEntityToEstimates(BonusResultList[0].Id,bonus_Result,cols,acc[0].Id); 
             AF_BrandEstimateRemote.addSingleULAGEntity(BrandEstlist[0].Id,AF_Constants.SOBJECT_BRANDESTIMATE_APINAME, AFUnileverEntity[0].Name, AFEntity[0].Name, acc[0].Id);
             AF_BrandEstimateRemote.archiveAgencyEntityToEstimates(BrandEstlist[0].Id,AF_Constants.SOBJECT_BRANDESTIMATE_APINAME,AFUnileverEntity[0].Name);
-            AF_BrandEstimateRemote.archiveAgencyEntityToEstimates(OopsactualList[0].id,AF_Constants.SOBJECT_OOPSACTUAL_APINAME,AFUnileverEntity[0].Name);
-            AF_BrandEstimateRemote.archiveUnileverEntityToEstimates(OopsactualList[0].Id,AF_Constants.SOBJECT_OOPSACTUAL_APINAME,AFEntity[0].Name,acc[0].Id);
-            AF_BrandEstimateRemote.buildOopsEstimate(AFEntity[0].id,AFUnileverEntity[0].id,OopsactualList[0].id);
-            AF_BrandEstimateRemote.archiveOopsEstimatesPerUnileverEntity(AFUnileverEntity[0].Name,OopsactualList[0].id);
+            //AF_BrandEstimateRemote.archiveAgencyEntityToEstimates(OopsactualList[0].id,AF_Constants.SOBJECT_OOPSACTUAL_APINAME,AFUnileverEntity[0].Name);
+            //AF_BrandEstimateRemote.archiveUnileverEntityToEstimates(OopsactualList[0].Id,AF_Constants.SOBJECT_OOPSACTUAL_APINAME,AFEntity[0].Name,acc[0].Id);
+            //AF_BrandEstimateRemote.buildOopsEstimate(AFEntity[0].id,AFUnileverEntity[0].id,OopsactualList[0].id);
+            //AF_BrandEstimateRemote.archiveOopsEstimatesPerUnileverEntity(AFUnileverEntity[0].Name,OopsactualList[0].id);
              Test.stopTest();  
         }
     }
