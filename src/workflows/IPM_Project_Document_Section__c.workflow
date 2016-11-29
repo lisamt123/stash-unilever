@@ -139,7 +139,7 @@
             <name>IPM_Notify_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <formula>IPM_Notify_Team__c=true</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
