@@ -431,6 +431,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         analyticObj.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
         analyticObj.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
         analyticObj.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;
+      	analyticObj.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
+         if(pr.Target_LaunchYear__c != null){
+             analyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;
+         }
        analyticObj = setrolloutdetailsGKM3(pr,analyticObj,parent);     
        if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
        		analyticObj.IPM_Project_Span__c =IPM_Utils.Regional;
@@ -659,8 +663,11 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		nonKeyAnalytic.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;//need to set the global project value
 		nonKeyAnalytic.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;//need to set the global project value
 		nonKeyAnalytic.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;//need to set the global project value
-    	
+    	//CR0550
+    	nonKeyAnalytic.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(nonKeyFinancial.Target_Launch_Date__c.month());
+        nonKeyAnalytic.IPM_Target_Launch_Year_BD__c = nonKeyFinancial.Target_Launch_Date__c.year();
     	if(nonKeyFinancial.Gate_Keeping_Model__c==IPM_Utils.GATE_KEEPING_MODEL_3){
+    		//CR0550
     		nonKeyAnalytic.IPM_Parent_Project_Name__c = nonKeyFinancial.Global_External_Id__c;//need to set the global project name
 			nonKeyAnalytic.IPM_Company__c = nonKeyFinancial.IPM_Parent_Company_Card__c;//need to set the global project value
 			
@@ -734,7 +741,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		                                                                                  IPM_CPP_Local__c,
 		                                                                                  Global_External_Id__c,
 		                                                                                  IPM_Parent_Company_Card__c,
-		                                                                                  Gate_Keeping_Model__c 
+		                                                                                  Gate_Keeping_Model__c,Target_Launch_Date__c  
 		                                                                          FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
         
             for(IPM_Financial__c fi:projectFinancialList){
@@ -981,7 +988,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                             IPM_Project_Rollout__c,IPM_Project_Rollout__r.Id,
                                                                                             IPM_Project_Rollout__r.Name,Regional_Project__c,
                                                                                             Regional_Project__r.id,IPM_CPP_Regional__c,
-                                                                                            IPM_CPP_Local__c,Year_1_iTO_Global__c,Year_1_iTO_Regional__c,Global_External_Id__c,IPM_Parent_Company_Card__c,Gate_Keeping_Model__c  
+                                                                                            IPM_CPP_Local__c,Year_1_iTO_Global__c,Year_1_iTO_Regional__c,Global_External_Id__c,IPM_Parent_Company_Card__c,Gate_Keeping_Model__c,Target_Launch_Date__c   
                                                                                             FROM IPM_Financial__c 
                                                                                             WHERE IPM_Project_Rollout__c IN: regionalRolloutset OR Regional_Project__c IN: regionalRolloutset  Limit 50000]);
                                                 
@@ -1376,10 +1383,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         	 analyticObj.IPM_Expected_Market_Ready_Approval_Date__c = parent.IPM_Expected_Market_Ready_Approval_Date__c;
              analyticObj.IPM_Expected_Market_Deployment_App_Date__c = parent.IPM_Expected_Market_Deployment_App_Date__c;
                   
-             analyticObj.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
-        	 if(pr.Target_LaunchYear__c != null){
-             analyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(pr.Target_LaunchYear__c) ;
-        	 }
         	 
         	 analyticObj.IPM_Business_Impact_BD__c=parent.IPM_Business_Impact_BD__c;
         	 analyticObj.IPM_BET_First_Release_Due_Date__c = parent.IPM_BET_First_Release_Due_Date__c;

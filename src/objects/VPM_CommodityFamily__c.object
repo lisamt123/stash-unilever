@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>VPM - This field used to store commodity family for commodities based on Region</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Picklist_Name__c</fullName>
+        <description>VPM - Commodity family name in commodity object for saving all values related to commodity based on Region</description>
+        <externalId>false</externalId>
+        <label>Picklist Name</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Picklist_Values__c</fullName>
+        <description>VPM - Commodity family Values in commodity object for displaying all values related to commodity based on Region</description>
+        <externalId>false</externalId>
+        <label>Picklist Values</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Record_Type_Label__c</fullName>
+        <description>VPM - Name of values which are stored in commodity family field for commodity object based on region</description>
+        <externalId>false</externalId>
+        <label>Record Type Label</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Record_Type_Name__c</fullName>
+        <description>VPM - API Name of values which are stored in commodity family field for commodity object based on region</description>
+        <externalId>false</externalId>
+        <label>Record Type Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>VPM Commodity Family</label>
+    <visibility>Public</visibility>
+</CustomObject>
