@@ -4960,6 +4960,20 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <value>To-do&apos;s</value>
     </labels>
     <labels>
+        <fullName>IPM_HOME_TILE2_TEXT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_HOME_TILE2_TEXT</shortDescription>
+        <value>A comprehensive SharePoint Portal (go to the Portal)</value>
+    </labels>
+    <labels>
+        <fullName>IPM_HOME_TILE2_TEXT2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_HOME_TILE2_TEXT2</shortDescription>
+        <value>Chatter Support group (Ask IPM)</value>
+    </labels>
+    <labels>
         <fullName>IPM_Household_Care</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -5048,7 +5062,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM INTERIN SUPPORT SOLUTION</shortDescription>
-        <value>The IPM Navigator system is now live for all HHC and FabCon Users! Before you start using the system, please take a few minutes to have a look at a short introduction to IPM Navigator by HHC SVP Madhu Rao and IPM Director Rudi Hafkamp.</value>
+        <value>IPM Navigator guides our project teams through the process of innovation and manages the information required by our gatekeepers to make the right decisions quickly.</value>
     </labels>
     <labels>
         <fullName>IPM_INTROSCAPE</fullName>
@@ -6394,6 +6408,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>You have decided to manage the To-do&apos;s and activities of the project outside the navigator. Please check the checkbox again if you wish to manage To-do&apos;s and activities via IPM.</value>
     </labels>
     <labels>
+        <fullName>IPM_OWNER_HOME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_OWNER_HOME</shortDescription>
+        <value>Rudi Hafkamp Global IPM Director</value>
+    </labels>
+    <labels>
         <fullName>IPM_Payback_Years</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -6553,7 +6574,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PDL_FOR_PC</shortDescription>
-        <value>This is the start of the next chapter for innovation in Unilever and the IPM team look forward to receiving your feedback. You can get this straight to us by simply pressing the “Ask IPM” button which you’ll also to the right of this panel.</value>
+        <value>How-to videos on our U-view channel</value>
     </labels>
     <labels>
         <fullName>IPM_PERCENTAGE</fullName>
@@ -8710,7 +8731,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM TECHNICAL ISSUE</shortDescription>
-        <value>Simpler-Faster-Easier</value>
+        <value>To find the answers to your questions quickly we have provided : -</value>
     </labels>
     <labels>
         <fullName>IPM_TEMP_IS_BEING_GENERATED</fullName>
@@ -9390,14 +9411,21 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM WATCH FOR UPDATES TO</shortDescription>
-        <value>The IPM Navigator homepage also contains some useful quick links as well as the frequently asked questions document (FAQ).</value>
-    </labels>
+ 		<value>In-system help text</value>
+     </labels>
     <labels>
         <fullName>IPM_WEIGHTAGE</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_WEIGHTAGE</shortDescription>
         <value>Weightage</value>
+    </labels>
+    <labels>
+        <fullName>IPM_WELCOME_TEXT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_WELCOME_TEXT</shortDescription>
+        <value>Welcome to IPM Navigator!</value>
     </labels>
     <labels>
         <fullName>IPM_WELCOME_TO_IDEA_PHASE</fullName>
@@ -9773,6 +9801,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Postponed Past Date Validation</shortDescription>
         <value>You cannot postpone a milestone&apos;s due date to a date earlier than its predecessor&apos;s due date. You can modify your milestone due dates below.</value>
+    </labels>
+     <labels>
+        <fullName>IPM_MISSION_STATEMENT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_MISSION_STATEMENT</shortDescription>
+        <value>Innovation is at the heart of Unilever’s growth plans.</value>
     </labels>
     <labels>
         <fullName>IPM_Export_Milestones</fullName>

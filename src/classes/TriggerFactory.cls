@@ -243,6 +243,12 @@ public with sharing class TriggerFactory
         {
             return new AF_SubResultHandler();
         }
+        // For AFO release enhancement bonus matrix approval
+        if (soType == AF_Bonus_Summary__c.sObjectType)
+        {
+            return new AF_Bonus_SummaryHandler();
+        }
+
         if (soType == AF_Bonus_Matrix__c.sObjectType)
         {
             return new AF_Bonus_MatrixHandler();
@@ -251,6 +257,11 @@ public with sharing class TriggerFactory
         {
             return new AF_PO_ReportHandler();
         }
+        
+        
+        // Agencies Trigger Handlers ends
+        
+       
         return null;
     }
 

@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Object that holds Commodity details. Collapsed view of Commodity including Family and Class per Commodity, separated via Record Types (Class) and dependent picklist (Family) .</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>VPM_AuthorisationGroup__c</fullName>
+        <description>VPM.  This field stores the picklist values  for authorissation group.</description>
+        <externalId>false</externalId>
+        <label>Authorisation Group</label>
+        <picklist>
+            <controllingField>VPM_VendorType__c</controllingField>
+            <picklistValues>
+                <fullName>3PM--3Pm America&apos;s_VMBA 3PM America</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3PM--3PM Europe_VMBA 3PM Europe</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3PM--3PM NAMCA, TUII, South Africa &amp; RUB_VMBA 3PM NAMCA South Afr RUB</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3PM--3PM South &amp; North Asia &amp; SEAA_VMBA 3PM Asia SEAA</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chemicals--Fragrances &amp; Flavours_VMBA Fragrances Flavors</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chemicals--Functional Chemicals_VMBA Functional Chemicals</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chemicals--Inorganics_VMBA Inorganics</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chemicals--Oleochemicals_VMBA Oleochemicals</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chemicals--Petrochemicals_VMBA Petrochemicals</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chemicals--Speciality Chemicals_VMBA Speciality Chemicals</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Commodities--Liquid Oils_VMBA Liquid Oils</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Commodities--Risk - Food Soft Commoditie_VMBA Food Soft Commodities</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Commodities--Risk - Oils &amp; Fats_VMBA Risk Oils and Fats</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Commodities--Risk - Petro Based_VMBA Petro Based</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Commodities--Soft Commodities_VMBA Soft Commodities</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Commodities--Tropical Oils_VMBA Tropical Oils</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Employee_Employee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Freight_Freight</fullName>
+                <default>false</default>
+                <controllingFieldValues>FRGT_Freight Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ingredients--Ingredients 1_VMBA Ingredients 1</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ingredients--Ingredients 2_VMBA Ingredients 2</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ingredients--Ingredients 3_VMBA Ingredients 3</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Intercompany_VMBA Intercompany</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Intercompany Transfer_VMBA Intercompany Transfer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--HR_VMBA HR TRAVEL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Innovation &amp; Professional Services_VMBA Outsourcing Professional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--IT_VMBA IT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Lakme Lever Ltd_VMBA Lakme Lever Ltd</fullName>
+                <default>false</default>
+                <controllingFieldValues>MBS_Marketing Business Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Marketing Materials_VMBA MRKTNG MATERIALS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Marketing Services_VMBA MARKTNG SRVCS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Other_MBS--Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Workplace &amp; Travel_VMBA workplace</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Bottles_VMBA Bottles</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Closures, Assemblies and Valv_VMBA CLSR Assemblies Valves</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Customer Packaging_VMBA CUST PACKAGING</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Decoration_VMBA Decoration</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Feedstock_VMBA Feedstock</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Flexibles_VMBA Flexibles</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Folding Cartons, Aseptic, IC_VMBA Fldng crtns Stick tea</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Metal &amp; Glass_VMBA Metal Glass</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Tea Packaging_VMBA Tea Packaging</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Tubs &amp; Lids, In-mould Labels_VMBA TL IN Mould Label Tubes</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rice Exports_VMBA Rice Exports</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Russian Custom Tax_VMBA Russian Tax</fullName>
+                <default>false</default>
+                <controllingFieldValues>RCT_Russian Customs Tax Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-CAPEX AFR ASIA SEAA_VMBA CAPEX AAR</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-CAPEX EU AM LATAM_VMBA CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics Africa_VMBA Logistics Africa</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics AM_VMBA Logistics AM</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics EU</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics EU_VMBA Logistics EU</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics NA (North Asia)_VMBA Logistics NA</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics NAME_VMBA Logistics NAME</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics RUB_VMBA Logistics RUB</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics SA (South Asia)_VMBA Logistics SA</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics – SEAA_VMBA Logistics SEAA</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics TUII_VMBA Logistics TUII</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-UNICA_VMBA UNICA</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCS_Supply Chain Services_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tea--Tea_VMBA Tea</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UOI--UOI_VMBA UOI--UOI</fullName>
+                <default>false</default>
+                <controllingFieldValues>PI_Production Item Vendor_G001</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_CSBVendor__c</fullName>
+        <description>VPM.  If the Commodity with Commodity Code 6902 - 80141629 is selected against a Vendor, this Vendor must be a CSB Vendor. System field used to help define Default Values</description>
+        <externalId>false</externalId>
+        <formula>IF( VPM_CommodityCode__c = &quot;6902 - 80141629&quot;,TRUE,FALSE)</formula>
+        <label>CSB Vendor?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_CommodityClass__c</fullName>
+        <description>VPM.  The Commodity record type is the Commodity Class. To make Commodity Class searchable in lookup dialogues, the value of Record type name is written via WFR in to this field.</description>
+        <externalId>false</externalId>
+        <label>Commodity Class</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_CommodityCode__c</fullName>
+        <description>VPM. Field to hold Commodity Code details</description>
+        <externalId>true</externalId>
+        <label>Commodity Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_CommodityFamily__c</fullName>
+        <description>VPM. Field to hold Commodity Family</description>
+        <externalId>false</externalId>
+        <label>Commodity Family</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Workplace Materials &amp; Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Equipment &amp; MRO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Non - Ariba</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT &amp; Telecom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Out of Scope Procurement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Travel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Professional Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Innovation Sourcing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Media (Placement)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing Agencies and Media</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Research</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing Promotional and Sales Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Logistics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_CommodityRegionUnique__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>VPM.  Stores the concatenated value of Commodity Name plus Region to ensure duplicates are not created</description>
+        <externalId>false</externalId>
+        <label>Commodity Region (Unique)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Region__c</fullName>
+        <description>VPM.  Stores the ECC value relevant to the Commodity</description>
+        <externalId>false</externalId>
+        <globalPicklist>VPM_ECC</globalPicklist>
+        <label>Region</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorType__c</fullName>
+        <description>VPM.  To hold Vendor type detials</description>
+        <externalId>false</externalId>
+        <label>Vendor Type</label>
+        <picklist>
+            <controllingField>VPM_Region__c</controllingField>
+            <picklistValues>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
+                <controllingFieldValues>Cordillera</controllingFieldValues>
+                <controllingFieldValues>Fusion</controllingFieldValues>
+                <controllingFieldValues>Sirius</controllingFieldValues>
+                <controllingFieldValues>U2K2</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+                <controllingFieldValues>Cordillera</controllingFieldValues>
+                <controllingFieldValues>Fusion</controllingFieldValues>
+                <controllingFieldValues>Sirius</controllingFieldValues>
+                <controllingFieldValues>U2K2</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+                <controllingFieldValues>Cordillera</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+                <controllingFieldValues>U2K2</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS_Marketing Business Services_G001</fullName>
+                <default>false</default>
+                <controllingFieldValues>Cordillera</controllingFieldValues>
+                <controllingFieldValues>Fusion</controllingFieldValues>
+                <controllingFieldValues>Sirius</controllingFieldValues>
+                <controllingFieldValues>U2K2</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>Commodity</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>VPM_CommodityCode__c</columns>
+        <columns>VPM_CommodityFamily__c</columns>
+        <columns>VPM_VendorType__c</columns>
+        <columns>VPM_CSBVendor__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Commodity Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Commodities</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>VPM_CommodityCode__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>VPM_VendorType__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>VPM_CommodityClass__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>VPM_CommodityFamily__c</lookupDialogsAdditionalFields>
+        <lookupFilterFields>VPM_CommodityClass__c</lookupFilterFields>
+        <lookupFilterFields>VPM_CommodityFamily__c</lookupFilterFields>
+        <lookupFilterFields>NAME</lookupFilterFields>
+        <lookupPhoneDialogsAdditionalFields>VPM_CommodityCode__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>VPM_VendorType__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>VPM_CommodityClass__c</searchFilterFields>
+        <searchFilterFields>VPM_CommodityFamily__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

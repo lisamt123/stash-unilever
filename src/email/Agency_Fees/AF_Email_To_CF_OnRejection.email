@@ -1,0 +1,11 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="Arial, sans-serif" size="2" style="color: rgb(0, 0, 0);"><span style="color: rgb(33, 33, 33);">Dear Category Finance,</span></font><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2"><b><span style="color:#1F497D">&nbsp;</span></b><span style="color:#212121"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal"><font face="Arial, sans-serif" size="2"><font style="color: rgb(0, 0, 0);"><span style="color: rgb(33, 33, 33);">Annual bonus for&nbsp;</span></font><font color="#212121">{!AF_Bonus_Summary__c.Brand_Name__c}</font><span style="color: rgb(33, 33, 33);">&nbsp;has been rejected by&nbsp;</span><font color="#212121" style="color: rgb(0, 0, 0);">{!AF_Bonus_Summary__c.LastModifiedBy}</font></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2"><span style="color: rgb(33, 33, 33);">Rejection reason :&nbsp;</span><font color="#212121">{!AF_Bonus_Summary__c.AF_RejectReason__c}</font></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font color="#212121" face="Arial, sans-serif" size="2"><br>Please log into the Agency Fees Application using the link below
+to revise and re-submit for approval.</font></p><div style="color: rgb(0, 0, 0);"><span style="font-family: Arial, sans-serif; font-size: small;">{!AF_Bonus_Summary__c.AF_Internal_Link__c}</span><font face="Arial, sans-serif" size="2"><br><br><br><span style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">From,</span><br><font><span style="background-color: rgb(255, 255, 255);">Bonus Approver</span></font></font></div>]]></td>
+</tr>
+</table>
