@@ -158,8 +158,6 @@ with Sharing public class VPM_GoldenDataController2 {
     
     ApexPages.StandardController newController;
 
-    public VPM_GoldenDataController2() {}
-    
     public VPM_GoldenDataController2(ApexPages.StandardController controller) 
     {
      userlang = [select LanguageLocaleKey from User where Id=:UserInfo.getUserId()].LanguageLocaleKey;
@@ -783,7 +781,6 @@ with Sharing public class VPM_GoldenDataController2 {
                              msg=ProcurementApproval();
                             if(msg <> null)
                             {
-                                system.debug('msg '+msg);
                                 ApexPages.addMessage(msg); 
                             //   GoToErrorMessagePage();
                                 return  null;

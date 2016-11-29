@@ -32,14 +32,8 @@ global class VPM_FetchVendorDetailsHttpMock implements HttpCalloutMock {
         } 
         else if(returnedStatusCode == 300 || returnedStatusCode == 500 || returnedStatusCode == 504
         || returnedStatusCode == 400 || returnedStatusCode == 503) {
-        if(returnedStatusCode == 400 )
-        {
         jsonServiceResponse='{\"status\":\"Failure\",\"bpmID\":\"12345678\"}';
-        }
-        else
-        {
-        jsonServiceResponse = '{ \"StatusCode\": \"5001310\", \"message\": \"Group MBS--Other does not exist.\" }';
-        }
+        //jsonServiceResponse = '{ \"RequestID\": \"5001310\", \"Status\": \"Group MBS--Other does not exist.\" }';
         res.setStatusCode(returnedStatusCode );
         res.setBody(jsonServiceResponse);
         } 
@@ -48,12 +42,7 @@ global class VPM_FetchVendorDetailsHttpMock implements HttpCalloutMock {
         //jsonServiceResponse = '{ \"RequestID\": \"5001310\", \"Status\": \"Group MBS--Other does not exist.\" }';
         res.setStatusCode(returnedStatusCode );
         res.setBody(jsonServiceResponse);
-        }else if(returnedStatusCode == 123) {
-        jsonServiceResponse=null;
-        res.setStatusCode(returnedStatusCode );
-        res.setBody(jsonServiceResponse);
-        }else
-        {
+        }else {
         jsonServiceResponse='{\"status\":\"Failure\",\"bpmID\":\"12345678\"}';
         res.setStatusCode(returnedStatusCode );
         res.setBody(jsonServiceResponse);

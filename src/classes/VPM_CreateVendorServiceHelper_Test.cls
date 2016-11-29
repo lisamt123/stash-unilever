@@ -101,17 +101,6 @@
         List<VPM_PurchasingRequests__c> pur1 = [SELECT Id,VPM_MDMInsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
         system.assertEquals(pur1[0].VPM_MDMInsertUpdateStatus__c,failStatusMDM);
     }
-        static testMethod void testCalloutnull() {
-        List<VPM_PurchasingRequests__c> pur = [SELECT Id, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
-        string vendorId = pur.get(0).id;
-        //VPM_CreateVendorServiceHelper.CreateVendorResponse resp = new VPM_CreateVendorServiceHelper.CreateVendorResponse();
-        test.startTest();
-        Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(123));
-        VPM_CreateVendorServiceHelper.createVendor(vendorId);
-        test.stopTest();
-        List<VPM_PurchasingRequests__c> pur1 = [SELECT Id,VPM_MDMInsertUpdateStatus__c, Name FROM VPM_PurchasingRequests__c WHERE VPM_VendorName1__c = 'test123' LIMIT 1];
-        system.assertEquals(pur1[0].VPM_MDMInsertUpdateStatus__c,failStatusMDM);
-    }
     @testSetup static void setup() {
         VPM_CompanyCode__c compCode = new VPM_CompanyCode__c(Name = 'Company Code 1', Company_Name__c = 'Unilever', VPM_CompanyCode__c = 'UN',VPM_Country__c ='Belgium');
         insert compCode;

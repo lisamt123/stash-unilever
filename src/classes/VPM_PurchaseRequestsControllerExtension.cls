@@ -108,7 +108,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
       ApexPages.StandardSetController GstdControllerSet; 
     
         public VPM_PurchaseRequestsControllerExtension (ApexPages.StandardSetController stdSet) {
-        //try{
+        try{
           GstdControllerSet =stdSet;
           recId = stdSet.getRecord().Id; 
           commodityApproverId = UserInfo.getUserId();
@@ -124,8 +124,8 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           isRussian = false;
           isFreight = false;
           this.checkUser() ;
-        //}
-        //catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());}
+        }
+        catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());}
     }
       public VPM_PurchaseRequestsControllerExtension (ApexPages.StandardController stdController) {
           try{

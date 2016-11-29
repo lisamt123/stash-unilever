@@ -48,8 +48,7 @@ global class VPM_CreateVendorServiceHelper {
         reqBodyJson = clas.VPM_ConvertVendorFieldDetailsToJSON(vendorId);
         System.debug('------json body of request is-----'+reqBodyJson);
         do {
-            try 
-            {
+            try {
                 numTimes++;
                 res = VPM_HttpUtil.sendRequest('POST',reqBodyJson,'VPM_CreateVendorBPM');
                 System.debug('------whole response string----'+ res.toString());
@@ -109,7 +108,7 @@ global class VPM_CreateVendorServiceHelper {
                 responseString = ex.getMessage();
                 VPM_HttpUtil.updateVendorMDMStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
             }
-        } while ((res.getStatusCode() == 504 || res.getStatusCode() == 0) && numTimes <=4 && !Test.isRunningTest());
+        } while ((res.getStatusCode() == 504 || res.getStatusCode() == 0) && numTimes <=4);
         VPM_HttpUtil.sendEmail('deepak.moudekar@capgemini.com','Global Create Response from service',responseString + '\n' + '--response body--' + res.getBody() + '\n' + '--response code--'+ res.getStatusCode() + '\n' + reqBodyJson + '\n' + vendorId);
         return responseString;
     }
