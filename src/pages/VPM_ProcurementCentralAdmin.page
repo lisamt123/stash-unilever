@@ -129,7 +129,7 @@
                     </apex:column>
                     <apex:column headerValue="{!$Label.VPM_CommodityApprover}">
                     <apex:outputLink value="/{!com1.comApp}" target="_blank">{!com1.comApp.VPM_CommodityClass__c}</apex:outputLink>
-                    </apex:column> 
+                    </apex:column>
                     <apex:column headerValue="{!$Label.VPM_TotalNumberApprover}">
                     <apex:outputText value="{!com1.comApp.VPM_ConfiguredApprovers__c}" ></apex:outputText>
                     </apex:column>
@@ -199,7 +199,7 @@
                     </apex:column>
                     <apex:column headerValue="{!$Label.VPM_CommodityApprover}">
                     <apex:outputLink value="/{!com1.comApp}" target="_blank">{!com1.comApp.VPM_CommodityClass__c}</apex:outputLink>
-                    </apex:column> 
+                    </apex:column>
                     <apex:column headerValue="{!$Label.VPM_TotalNumberApprover}">
                     <apex:outputText value="{!com1.comApp.VPM_ConfiguredApprovers__c}" ></apex:outputText>
                     </apex:column>
