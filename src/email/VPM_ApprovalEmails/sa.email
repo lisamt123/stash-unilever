@@ -1,0 +1,10 @@
+<messaging:emailTemplate subject="fgfg" recipientType="User" relatedToType="VPM_PurchasingRequests__c">
+<messaging:plainTextEmailBody >
+<apex:outputText value="The formatted Account CreatedDate is:
+         {0,date,yyyy.MM.dd G 'at' HH:mm:ss z}">
+       <apex:param value="{!relatedTo.createddate}" />
+   </apex:outputText>
+
+
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>
