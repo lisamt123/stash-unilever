@@ -42,7 +42,7 @@
                 }
                 component.set("v.LastComment",LastComment[0]);
                 component.set("v.approvalHistoryCount",approvalHistoryCount);
-                if(component.get("v.ApprovalDetail")[0].ApproverStatus == 'Approved' || component.get("v.ApprovalDetail")[0].ApproverStatus == 'Rejected'){
+                if(component.get("v.ApprovalDetail")[0].ApproverStatus == 'Approved' || component.get("v.ApprovalDetail")[0].ApproverStatus == 'Rejected' || component.get("v.ApprovalDetail")[0].ApproverAction == 'APPR' || component.get("v.ApprovalDetail")[0].ApproverAction == 'REJC'){
                 	component.set("v.showApprove",false); 
                     component.set("v.showReject",false);
                 }
@@ -56,10 +56,7 @@
     NavigateToFeed : function(component, event, helper) { 
         component.set("v.spinnercompClm",false);
         $A.util.addClass(component.find('item2'), 'tab-default-2__item');
-        $A.util.removeClass(component.find('item1'), 'tab-default-2__item');
-    if(component.get("v.isDesktop") != 'Lightning Experience'){
-            helper.scrollToLocation(component, "top");
-    } 
+        $A.util.removeClass(component.find('item1'), 'tab-default-2__item');                
     component.set("v.isFeed",true);
     component.set("v.isDetail",false);
 },
@@ -71,22 +68,6 @@
     } 
     component.set("v.isFeed",false);
     component.set("v.isDetail",true);
-},
-    goToLineItemDetail : function(component, event, helper) {
-        component.set("v.spinnercompClm",true);
-        if(component.get("v.isDesktop") != 'Lightning Experience'){
-            helper.scrollToLocation(component, "top");
-        }
-        var approvalDetailList =[];
-        
-        var approvalDetail = component.get("v.Detail");
-        for(var i=0; i<approvalDetail.length; i++)
-        {            
-            approvalDetailList.push(approvalDetail[i]);             
-        }
-        component.set("v.spinnercompClm",true);
-        var selectEvent = $A.get("e.c:CORE_CA_SubDetailEvent");
-        selectEvent.setParams({ "compName": "ClmLineItemDetail","subDivision":"CLM","lineItemId":approvalDetailList,"ApprovalDetail":component.get("v.ApprovalDetail"),"sourcePage":component.get("v.sourcePage"),"filterValue": component.get("v.filterValue")}).fire();
 },
     goToHomePage : function(component, event, helper) {       
         component.set("v.showspinner",true);

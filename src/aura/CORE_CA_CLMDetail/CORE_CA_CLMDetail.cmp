@@ -5,7 +5,9 @@
   Requirement/Description: CLM Detail Section of approval app. 
 -->
 <aura:component controller="Core_CA_ApprovalsController">
-    <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,/resource/Lightning_designing_style/assets/fonts/" scripts="/resource/CORE_CA_ApprovalsLightning/jquery/jquery.js" afterScriptsLoaded="{!c.doInit}"/>
+  <!--  <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,/resource/Lightning_designing_style/assets/fonts/" scripts="/resource/CORE_CA_ApprovalsLightning/jquery/jquery.js" afterScriptsLoaded="{!c.doInit}"/> -->
+    
+    <ltng:require styles="{!join(',', $Resource.CORE_CA_ApprovalsLightning, $Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css')}" scripts="{!$Resource.CORE_CA_ApprovalsLightning + '/jquery/jquery.js'}"  afterScriptsLoaded="{!c.doInit}"/>
     <aura:attribute name="ApprovalDetail" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
     <aura:attribute name="RequestId" type="String"/>
     <aura:attribute name="ApproverId" type="String"/>
@@ -30,6 +32,7 @@
     <aura:attribute name="showspinner" type="boolean"/>
     <aura:attribute name="showReject" type="Boolean" default="true"/>
     <aura:attribute name="lineItemCount" type="String"/>
+    <aura:attribute name="number" type="String"/>
     <style>      
         .homePageHeader{
         background:#4F6A92;
@@ -37,8 +40,8 @@
         padding-top: 2px;
         }
         .headerBarIconStyle{
-        width: 40px;
-        margin-top: -9px;
+    	width: 80px;
+    	margin-left: 13px;
         }
         .backIconStyle{
         width: 40px;
@@ -188,16 +191,19 @@
     </div>
     <!-- Detail Header-->    
     <div class="homePageHeader">
-        <div class="defaultLeftSpace" style="text-align:center;">
+        <div class="defaultLeftSpace">
             <br/>
-            <img src="/resource/CORE_CA_ApprovalsLightning/images/Approvals_Logo.svg" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
+            <img src="/resource/CORE_CA_ApprovalsLightning/images/CLM_Logo.png" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
             <br/>
             <div class="slds-text-heading--medium slds-truncate clarity-header">
                 <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
                     {!detailData.RequestName}
                     <br/>
                     <div class="preparedBy-currency">
-                        <span class="slds-text-heading--small preparedby">{!detailData.CompanyName}</span>&nbsp;&nbsp;&nbsp; <span class="slds-text-heading--small currency">{!detailData.Currencies}&nbsp; {!detailData.ProjectBug}</span>  
+                        <div class="slds-text-heading--small preparedby">{!detailData.CompanyName}</div>
+                        <div class="slds-text-heading--small currency">
+                                    <aura:if isTrue="{!(detailData.NetAmount != null)}">   <span class="slds-text-body--regular DetailData"> {!detailData.Currencies}</span> </aura:if><span><ui:outputNumber class="number slds-text-body--regular DetailData" value="{!detailData.NetAmount}"/></span>
+                        </div>  
                     </div>
                 </aura:iteration>                
             </div>
@@ -230,8 +236,8 @@
                     <ul class="slds-tabs--default__nav pending-header" role="tablist">
                         <li class="slds-tabs--default__item  pending" title="Item Two"
                             role="presentation" onclick="{!c.NavigateToDetail}"><a class="tab-default-2__item slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item" aura:id="item1">{!$Label.c.CORE_LBL_DETAILS}</a></li>
-                           <li class="slds-tabs--default__item closed " title="Item Three"
-                            role="presentation" onclick="{!c.NavigateToFeed}"><a class="slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item" aura:id="item2">{!$Label.c.CORE_LBL_FEED}</a></li> 
+                        <li class="slds-tabs--default__item closed " title="Item Three"
+                            role="presentation" ><a class="slds-tabs--default__link closed-text" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item" aura:id="item2">{!$Label.c.CORE_LBL_FEED}</a></li> 
                     </ul>
                 </div> 
             </div>
@@ -242,7 +248,7 @@
                     <div class="content">
                         <div class="ProjectInformationSection">
                             <div class="slds-section__title sectionTitle" id="invDetails" onclick="{!c.showHide}">
-                                Summary
+                                {!$Label.c.CORE_CLMLBL_Summary}
                                 <div style="display:block;" class="up" id="invDetails2">
                                     <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
                                 </div>
@@ -253,55 +259,55 @@
                             <hr></hr>
                             <div class="DetailSectionTable" id="invDetails1">
                                 <div>
-                                    <div class="slds-text-heading--small DetailHeading">Procurement Portfolio</div>
+                                    <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_CLMLBL_Procurement_Portfolio_Team}</div>
                                 </div>
                                 <div>
                                     <div class="slds-text-body--regular DetailData">{!detailData.InvoiceType}</div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-heading--small DetailHeading">Contract Owner</div>
+                                    <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_CLMLBL_Contract_Owner}</div>
                                 </div>
                                 <div>
                                     <div class="slds-text-body--regular DetailData">{!detailData.CompanyName}</div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-heading--small DetailHeading">Contract ID</div>
+                                    <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_CLMLBL_Contract_ID}</div>
                                 </div>
                                 <div>
                                     <div class="slds-text-body--regular DetailData">{!detailData.RequestName}</div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-heading--small DetailHeading">Supplier</div>
+                                    <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_CLMLBL_Supplier}</div>
                                 </div>
                                 <div>
                                     <div class="slds-text-body--regular DetailData">{!detailData.CompanyCode }</div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-heading--small DetailHeading ">Name</div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_CLMLBL_Contract_Document_Name}</div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-body--regular DetailData">{!detailData.PreparedBy}</div>
+                                    <div class="slds-text-body--regular DetailData">{!detailData.RequestedBy}</div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-heading--small DetailHeading ">Value</div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_CLMLBL_Value}</div>
+                                </div>
+                                <div class="number-class">
+                                    <aura:if isTrue="{!(detailData.NetAmount != null)}">   <span class="slds-text-body--regular DetailData"> {!detailData.Currencies}</span> </aura:if><span><ui:outputNumber class="number number-detail slds-text-body--regular DetailData" value="{!detailData.NetAmount}"/></span>
                                 </div>
                                 <div>
-                                    <div class="slds-text-body--regular DetailData">{!detailData.NetAmount}</div>
-                                </div>
-                                <div>
-                                    <div class="slds-text-heading--small DetailHeading ">Effective Date </div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_CLMLBL_Effective_Date}</div>
                                 </div>
                                 <div>
                                     <div class="slds-text-body--regular DetailData">{!detailData.DelegationStart}</div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-heading--small DetailHeading ">Expiration Date</div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_CLMLBL_Expiration_Date}</div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-body--regular DetailData">{!detailData.DelegationEnd}</div>
+                                    <div class="slds-text-body--regular DetailData">{!(detailData.DelegationEnd)}</div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-heading--small DetailHeading ">Contract Description</div>
+                                    <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_CLMLBL_Contract_Description}</div>
                                 </div>
                                 <div>
                                     <div class="slds-text-body--regular DetailData">{!detailData.Comments}</div>
@@ -314,19 +320,10 @@
                         <c:ChatterPublisherCmp subjectId="{!detailData.RequestId}" feedType="Record"/>  
                         <c:ChatterFeedCmp subjectId="{!detailData.RequestId}" feedType="Record"/>
                         
+                                       
+                    
                         <div class="ApprovalHistorySection">
-                            <div class="slds-section__title textHighlight" id="LineItem" onclick="{!c.showHide}"> {!$Label.c.CORE_LBL_INV_LINE_ITEMS}
-                                <div style="display:block;" class="up" id="LineItem2">
-                                    <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
-                                </div>
-                                <div style="display:none;" class="up" id="LineItem3">
-                                    <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png"  id="down"/>
-                                </div>
-                            </div><hr></hr>
-                            <div id="LineItem1">Please view line items in the Contract Document.</div>
-                        </div>
-                        <div class="ApprovalHistorySection">
-                            <div class="slds-section__title sectionTitle" id="ApprovalHistory" onclick="{!c.showHide}"> Approval History
+                            <div class="slds-section__title sectionTitle" id="ApprovalHistory" onclick="{!c.showHide}">{!$Label.c.CORE_CLMLBL_Approval_History}
                                 <div style="display:block;" class="up" id="ApprovalHistory2">
                                     <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
                                 </div>
@@ -339,15 +336,9 @@
                                     <div>
                                         <div class="slds-text-body--regular slds-truncate" style="float:left;width:45%;">{!appHistoryData.ApproverName}&nbsp;</div>
                                         <br/>
-                                        <div class="slds-text-body--small">{!appHistoryData.ApprovedDate}</div>
-                                        
-                                        <div class="slds-text-body--regular text1">
-                                            <aura:if isTrue="{!appHistoryData.ApproverAction == 'Approved'}">
-                                                <div class="approved"> {!appHistoryData.ApproverAction} </div>
-                                            </aura:if>
-                                            <aura:if isTrue="{!appHistoryData.ApproverAction == 'Rejected'}">
-                                                <div class="rejected"> {!appHistoryData.ApproverAction} </div>
-                                            </aura:if>
+                                        <div class="slds-text-body--small new-class">{!appHistoryData.ApprovedDate}</div>
+                                        <div class="slds-text-body--regular text1 comment">
+                                          {!appHistoryData.Comment}
                                         </div>
                                         <hr></hr>
                                     </div>
@@ -357,7 +348,13 @@
                         </div>
                     </div>
                 </aura:if>                      
-                
+                <!-- Feed Tab in feed tab-->
+                    <aura:if isTrue="{!v.isFeed}">
+                        
+                        <div class="hiddenClass"> {!detailData.RequestId} </div>
+                        <c:ChatterPublisherCmp subjectId="{!detailData.RequestId}" feedType="Record"/>  
+                        <c:ChatterFeedCmp subjectId="{!detailData.RequestId}" feedType="Record"/> 
+                    </aura:if> 
                 <!--Action Bar-->
                 <div style="position:fixed; bottom:0;">
                     <div class="action_bar">

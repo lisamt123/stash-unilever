@@ -14,9 +14,16 @@
             }); 
             action.setCallback(this, function(response) {
                 var state = response.getState();
-                if (state === "SUCCESS") {
+            //    alert(response.getReturnValue());
+                
+                if (response.getReturnValue()) {
                     component.set("v.success_toast",true);
                 }
+                else
+                {
+                    component.set("v.faliure_toast",true);
+                }
+                
             });
             $A.enqueueAction(action);
 	},

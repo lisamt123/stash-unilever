@@ -104,7 +104,7 @@ global with sharing class Core_CA_MyApprovalData {
             for(Core_Approver_Details__c approver : lstApproverDetail){
                 setHeaderIds.add(approver.Approval_Header__c);
             }
-            Map<Id,Core_Approval_Header__c> mapHeaderRecord = new Map<Id,Core_Approval_Header__c>([Select Description__c,Total_amount__c,Title_Summary__c,Currency__c,External_System_Id__c,External_Created_Date__c,Requested_For_Details__c,Requested_by_details__c, TF_Currency__c,TF_Currency1__c,TF_Currency2__c,TF_Currency3__c,Name,Attachment__c,Category__c,Urgency__c,Ariba_Company_Code__c  FROM Core_Approval_Header__c where Id in:setHeaderIds]);    
+            Map<Id,Core_Approval_Header__c> mapHeaderRecord = new Map<Id,Core_Approval_Header__c>([Select Description__c,Total_amount__c,Title_Summary__c,Currency__c,External_System_Id__c,External_Created_Date__c,Requested_For_Details__c,Requested_by_details__c, TF_Currency__c,TF_Currency1__c,TF_Currency2__c,TF_Currency3__c,Name,Attachment__c,Category__c,Urgency__c,Net_Amount__c,Ariba_Company_Code__c  FROM Core_Approval_Header__c where Id in:setHeaderIds]);    
             for(Core_Approver_Details__c penddingExpense : lstApproverDetail){
                  objExpensedata = new Core_CA_WrapperUtility.ExpenseData();
                  
@@ -183,7 +183,7 @@ global with sharing class Core_CA_MyApprovalData {
                      objExpensedata.ExpenseType = strSystemClm; 
                          objExpensedata.ExpenseName = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Category__c;
                      objExpensedata.RequestedBy = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Ariba_Company_Code__c;
-                     objExpensedata.ProjectBug = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Urgency__c;                         
+                     objExpensedata.Amount = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Net_Amount__c;                         
                  }
                  lstExpenseData.add(objExpensedata);         
              } 
@@ -229,7 +229,7 @@ global with sharing class Core_CA_MyApprovalData {
                                                               OR (Source_System__c=:strSystemGtes    AND Role__c = 'APP' AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Rejected' AND (Approval_Header__c not in :recalledExpenseID))
                                                               OR (Source_System__c=:'Clarity' AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Rejected' AND Status__c!='Rework'AND (Role__c = 'APP' OR Role__c = 'END')) 
                                                               OR (Source_System__c=:strSystemInvoice AND Action__c = 'ACTV' AND Status__c !='Approved' AND Status__c!='Return to AP' AND Status__c!='Query with Vendor' AND  Role__c = 'APP')
-                                                              OR(Is_Active__c=: true and Source_System__c=: strSystemClm AND Role__c = 'APP' AND Action__c = 'ACTV' AND Action__c != 'APPR' AND Action__c != 'REJC' AND Status__c !='Approved' AND Status__c!='Rejected' ))  
+                                                              OR(Is_Active__c=: true and Source_System__c=: strSystemClm AND Action__c = 'ACTV' AND Action__c != 'APPR' AND Action__c != 'REJC' AND Status__c !='Approved' AND Status__c!='Rejected' ))  
                                                               ORDER BY TF_CreatedDate__c DESC];  
                                                               
                 lstQueryWithVendor=[SELECT Approval_Header__c,CreatedDate,Action__c,Header_ExternalId__c,Source_System__c,Status__c,TF_Header_Status__c,TF_Requestor_Name__c FROM Core_Approver_Details__c where Interested_Party__c=:UserInfo.getUserId() 

@@ -5,6 +5,9 @@
     
     onSubmit : function(component, event, helper) { 
         component.set("v.isRequired",false);
+        var btn = event.getSource();
+		btn.set("v.disabled",true);//Disable the button
+        
         var approvalDetail = component.get("v.ApprovalDetail");
         var RequestType = approvalDetail.RequestType; 
         var action= component.get("v.actionTaken"); 
@@ -29,7 +32,10 @@
                 document.getElementById("textarea-input-02").style.borderColor="red";
                 component.set("v.isRequired",true); 
            }
-            
+            else if(comment== '' && (RequestType == 'CLM' && action == 'Reject')){
+                document.getElementById("textarea-input-02").style.borderColor="red";
+                component.set("v.isRequired",true); 
+           }
             else{
                  helper.SubmitMethod(component, event,comment,approvalDetail);                                              
             }                                               
@@ -60,6 +66,7 @@
         else{ 	
             component.set("v.comment_mand",true);                
         }*/
+        
     },
     
     onCancel : function(component, event, helper) { 

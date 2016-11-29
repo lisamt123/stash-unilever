@@ -49,17 +49,18 @@
 }
 .THIS .clarity-header{
     clear: both;
-    text-align: center;
+    margin-left: 121px;
     color: white;
-    padding-top: 10px;
-    padding-bottom: 7px;
     width: 100%;
+    margin-top: -90px;
+   
 }
 .THIS .preparedby{
     margin-top: 7px;
 }
 .THIS .currency{
     margin-top: 7px;
+
 }
 .THIS hr{
     margin: 0.5rem 0;
@@ -84,13 +85,12 @@
 .THIS .DetailHeading{
     font-size: 0.9rem;
     color: #4F6A92;
-    width: 50%;
+    width: 65%;
     vertical-align: bottom;
 }
 .THIS .DetailData{
     padding-top: 0px;
     padding-bottom: 8px;
-    width: 50%;
     vertical-align: top;
     min-height: 30px;
 }
@@ -124,9 +124,6 @@
     width:150px;
     min-height: 20px;
 }
-.THIS .preparedBy-currency{
-    text-align: center;
-}
 .THIS .msg-text{
     margin: 8px 0;
 }
@@ -146,11 +143,45 @@
     color: red;
 }
 .THIS .text1{
-    position: absolute;
-    right: 0px;
-    margin-top: -39px;
-    margin-right: 22px;
+	float: right;
+    width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    margin-top: -36px;
+        white-space: pre-wrap;
 }
 .THIS li.slds-feed__item.cChatterFeedElement{
     width: 102%;
+}
+.THIS .new-class{
+    min-height: 18px;
+}
+.THIS .number{
+	border: none;
+    padding: 0px 5px;
+    font-size: .8125rem;
+    width: 91%;
+    margin-top: -8px;
+    background: transparent;
+    color: white;
+    border: none;
+}
+.THIS .number:focus{
+    background: transparent;
+    color: white;
+    border: none;
+}
+.THIS .number-class{
+    margin-bottom:10px;
+}
+.THIS .number-detail{
+    color:#16325c;
+    margin-top:-6px;
+}
+.THIS .number-detail:focus{
+    color:#16325c;
 }

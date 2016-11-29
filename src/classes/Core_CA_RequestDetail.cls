@@ -179,8 +179,14 @@ global with sharing class Core_CA_RequestDetail{
                 if(objApprovalHeader.Source_System__c == strSystemClm)
                 {
                     objRequestDetailResponseAribaGTES.RequestType =  strSystemClm;
+                    if(objApprovalHeader.Ledger_Extract__c !=null)
+                    {
                     objRequestDetailResponseAribaGTES.DelegationStart = objApprovalHeader.Ledger_Extract__c.format('MMM dd,yyyy'); 
+                    }
+                    if(objApprovalHeader.Expected_Completion__c !=null)
+                    {
                     objRequestDetailResponseAribaGTES.DelegationEnd = objApprovalHeader.Expected_Completion__c.format('MMM dd,yyyy');
+                    }
                     }
                 objRequestDetailResponseAribaGTES.InvoiceType = objApprovalHeader.Category__c;
 
@@ -404,7 +410,7 @@ global with sharing class Core_CA_RequestDetail{
                lstApproverDetails =[SELECT CA_Action__c,Interested_Party_Details__c,Status__c,Ariba_Role__c,Action__c,Source_System__c,TF_CreatedDate__c,Comments__c  FROM Core_Approver_Details__c WHERE Approval_Header__c =: HeaderId ORDER BY TF_CreatedDate__c DESC ];
            /* Clm App : retrive approval detail starts */
            if(sourceSystem ==  strSystemClm)
-               lstApproverDetails =[SELECT CA_Action__c,Interested_Party_Details__c,Status__c,Ariba_Role__c,Action__c,Source_System__c,Comments__c,Action_Date__c  FROM Core_Approver_Details__c WHERE Approval_Header__c =: HeaderId AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Status__c ='Approved' OR Status__c='Rejected') ORDER BY LastModifiedDate DESC ];
+               lstApproverDetails =[SELECT CA_Action__c,Interested_Party_Details__c,Status__c,Ariba_Role__c,Action__c,Source_System__c,Comments__c,Action_Date__c  FROM Core_Approver_Details__c WHERE Approval_Header__c =: HeaderId AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Status__c ='Approved' OR Status__c='Rejected') ORDER BY Action_Date__c DESC ];
            /* Clm App : retrive approval detail ends */
        }
        catch(Exception ex){
