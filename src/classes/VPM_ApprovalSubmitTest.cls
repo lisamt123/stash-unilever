@@ -98,10 +98,20 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_Rework__c='No';
         
         insert pur;
+        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         
         system.assert(pur.Id!=null,'Error');
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
+       // List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       //purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
        VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
                VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
                VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
@@ -136,7 +146,7 @@ public with sharing  class VPM_ApprovalSubmitTest {
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = 'FRGT_Freight Vendor_G001';
          purid.VPM_GlobalAuthorisationGroup__c='Freight_Freight';        
-       	purId.VPM_FreightApprovalRequired__c=true;
+        purId.VPM_FreightApprovalRequired__c=true;
         
         
        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
@@ -199,7 +209,7 @@ public with sharing  class VPM_ApprovalSubmitTest {
          pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
          pur.VPM_RussianTaxApprovalRequired__c=false;
-      	
+        
          pur.VPM_Rework__c='No';
          pur.VPM_AdvancedFormSubmitted__c='Yes';
          pur.VPM_RussiaSubmitted__c='No';
@@ -207,9 +217,20 @@ public with sharing  class VPM_ApprovalSubmitTest {
 
         insert pur;
         
+        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+        
         system.assert(pur.Id!=null,'Error');
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
+       // List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       //purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
        VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
                VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
                VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
@@ -288,10 +309,20 @@ public with sharing  class VPM_ApprovalSubmitTest {
          pur.VPM_IsInApprovalProcess__c='';
 
         insert pur;
+        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         
         system.assert(pur.Id!=null,'Error');
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
+       // List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       //purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
        VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
                VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
                VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
@@ -307,7 +338,7 @@ public with sharing  class VPM_ApprovalSubmitTest {
         // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
          purid.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
-    	purId.VPM_BankDataValidationRequired__c=true;
+        purId.VPM_BankDataValidationRequired__c=true;
          List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
        purcReqlst.add(purId);
        // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
@@ -368,6 +399,11 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_FinanceApprovalRequired__c=true;        
 
         insert pur;
+        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         
         system.assert(pur.Id!=null,'Error');
         pur.VPM_Rework__c='No';
@@ -377,6 +413,11 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_IsInApprovalProcess__c='';
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
+       // List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       //purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
        VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
                VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
                VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
@@ -445,7 +486,11 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_FinanceApprovalRequired__c=true;        
 
         insert pur;
-        
+        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         system.assert(pur.Id!=null,'Error');
         pur.VPM_Rework__c='No';
         pur.VPM_AdvancedFormSubmitted__c='Yes';
@@ -454,6 +499,11 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_IsInApprovalProcess__c='';
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
+      //  List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       //purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
        VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
                VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
                VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
@@ -468,7 +518,7 @@ public with sharing  class VPM_ApprovalSubmitTest {
         purcReqlst.add(purId);
         VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
     }
-	
+    
     static VPM_PurchasingRequests__c TestDataPositive3(){
     
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
@@ -522,6 +572,11 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_FinanceApprovalRequired__c=true;        
 
         insert pur;
+        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         
         system.assert(pur.Id!=null,'Error');
         pur.VPM_Rework__c='No';
@@ -533,6 +588,11 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_IsInApprovalProcess__c='';
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
+        //List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       //purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
        VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
                VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
                VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
@@ -601,7 +661,11 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_FinanceApprovalRequired__c=true;        
 
         insert pur;
-        
+        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         system.assert(pur.Id!=null,'Error');
         pur.VPM_Rework__c='No';
         pur.VPM_AdvancedFormSubmitted__c='Yes';
@@ -611,6 +675,11 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_IsInApprovalProcess__c='';
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
+      //  List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       //purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
        VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
                VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
                VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
@@ -675,11 +744,21 @@ public with sharing  class VPM_ApprovalSubmitTest {
         pur.VPM_BusinessRequestorSubmitted__c = ''; 
         
         insert pur;
+        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
         
         system.assert(pur.Id!=null,'Error');
         
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
+      //  List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+    //   purcReqlst.add(pur);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
        VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
                VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
                VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
