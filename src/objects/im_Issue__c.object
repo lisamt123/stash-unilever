@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -62,12 +58,12 @@
         <fullName>Activist_Action_To_Date__c</fullName>
         <externalId>false</externalId>
         <label>Activist Action To Date</label>
-        <length>800</length>
+        <length>131000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <visibleLines>8</visibleLines>
     </fields>
     <fields>
         <fullName>Backup_Contact__c</fullName>
@@ -86,267 +82,276 @@
         <fullName>Brand_Category__c</fullName>
         <externalId>false</externalId>
         <label>Brand Category</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Foods</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Refreshment</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Personal Care</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Home Care</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Corporate</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Foods</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Refreshment</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Personal Care</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Home Care</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Corporate</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Brand_s_Affected__c</fullName>
         <externalId>false</externalId>
         <label>Brand(s) Affected</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Axe</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Baby</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ben &amp; Jerry&apos;s</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bertolli</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Carte D&apos;Or</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cif</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Clear</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Close up</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Comfort</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cornetto</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Dirt is Good</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Domestos</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Dove</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Fair &amp; Lovely</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Family Goodness</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Family Health</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Fruttare</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Healthy Heart</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Heart</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hellmann&apos;s World</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Knorr World</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lifebuoy</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lipton International</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Living Hygiene</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lux</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Magnum</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Nexxus</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Paddlepop</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ponds</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Radiant</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Rexona</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Simple</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Snuggle</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>St Ives</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sun</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sunlight</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sunsilk</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Surf</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TiGi</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Toni &amp; Guy</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Top Performance</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TRESemme</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Vaseline</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Zendium</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Axe</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Baby</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ben &amp; Jerry&apos;s</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bertolli</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Carte D&apos;Or</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cif</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Clear</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Close up</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Comfort</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cornetto</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Dirt is Good</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Domestos</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Dove</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Fair &amp; Lovely</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Family Goodness</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Family Health</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Fruttare</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Healthy Heart</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Heart</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Hellmann&apos;s World</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Knorr World</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Lifebuoy</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Lipton International</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Living Hygiene</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Lux</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Magnum</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Nexxus</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Paddlepop</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ponds</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Radiant</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Rexona</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Simple</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Snuggle</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>St Ives</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sun</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sunlight</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sunsilk</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Surf</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>TiGi</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Toni &amp; Guy</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Top Performance</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>TRESemme</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Vaseline</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Zendium</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Cluster__c</fullName>
         <externalId>false</externalId>
         <label>Cluster</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Africa</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Europe</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Latin America</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NAMET &amp; RUB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>North America</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>North Asia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SEAA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>South Asia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Africa</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Europe</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Latin America</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>NAMET &amp; RUB</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>North America</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>North Asia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>SEAA</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>South Asia</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
         <visibleLines>6</visibleLines>
     </fields>
     <fields>
@@ -366,453 +371,456 @@
         <fullName>Country__c</fullName>
         <externalId>false</externalId>
         <label>Country</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Algeria</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Argentina</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Australia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Austria</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bahrain</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bangladesh</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Belarus</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Belgium</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bolivia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bosnia and Herzegovina</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Brazil</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bulgaria</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Burkina Faso</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cambodia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cameroon</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Canada</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Chile</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>China</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Colombia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Congo Democratic Republic</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Costa Rica</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Côte d&apos;Ivoire</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Croatia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cuba</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cyprus</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Czech Republic</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Denmark</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Dominican Republic</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ecuador</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Egypt</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>El Salvador</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Estonia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Finland</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>France</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Germany</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ghana</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Greece</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Guatemala</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Honduras</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hong Kong</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hungary</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>India</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Indonesia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Iran</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ireland</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Israel</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Italy</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Japan</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Jordan</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Kazakhstan</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Kenya</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Korea</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Kuwait</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lao</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Latvia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lebanon</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lithuania</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Malawi</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Malaysia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mali</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mexico</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Morocco</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mozambique</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Myanmar</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Netherlands</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>New Zealand</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Nicaragua</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Niger</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Nigeria</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Norway</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Oman</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Pakistan</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Palestinian Territory</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Panama</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Paraguay</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Peru</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Philippines</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Poland</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Portugal</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Qatar</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Romania</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Russian Federation</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Saudi Arabia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Serbia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Singapore</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Slovakia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Slovenia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>South Africa</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Spain</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sri Lanka</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sweden</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Switzerland</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Taiwan</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tanzania</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Thailand</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Togo</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Trinidad and Tobago</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tunisia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Turkey</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Uganda</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ukraine</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>United Arab Emirates</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>United Kingdom</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>United States</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Uruguay</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Venezuela</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Viet Nam</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Yemen</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Zambia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Zimbabwe</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Algeria</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Argentina</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Australia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Austria</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bahrain</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bangladesh</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Belarus</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Belgium</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bolivia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bosnia and Herzegovina</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Brazil</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bulgaria</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Burkina Faso</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cambodia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cameroon</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Canada</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Chile</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>China</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Colombia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Congo Democratic Republic</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Costa Rica</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Côte d&apos;Ivoire</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Croatia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cuba</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cyprus</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Czech Republic</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Denmark</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Dominican Republic</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ecuador</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Egypt</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>El Salvador</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Estonia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Finland</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>France</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Germany</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ghana</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Greece</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Guatemala</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Honduras</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Hong Kong</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Hungary</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>India</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Indonesia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Iran</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ireland</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Israel</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Italy</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Japan</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Jordan</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Kazakhstan</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Kenya</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Korea</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Kuwait</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Lao</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Latvia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Lebanon</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Lithuania</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Malawi</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Malaysia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Mali</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Mexico</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Morocco</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Mozambique</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Myanmar</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Netherlands</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>New Zealand</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Nicaragua</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Niger</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Nigeria</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Norway</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Oman</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pakistan</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Palestinian Territory</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Panama</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Paraguay</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Peru</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Philippines</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Poland</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Portugal</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Qatar</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Romania</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Russian Federation</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Saudi Arabia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Serbia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Singapore</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Slovakia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Slovenia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>South Africa</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Spain</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sri Lanka</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sweden</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Switzerland</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Taiwan</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Tanzania</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Thailand</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Togo</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Trinidad and Tobago</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Tunisia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Turkey</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Uganda</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ukraine</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>United Arab Emirates</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>United Kingdom</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>United States</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Uruguay</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Venezuela</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Viet Nam</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Yemen</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Zambia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Zimbabwe</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Date_Raised__c</fullName>
@@ -860,64 +868,97 @@
         <fullName>Global_Priority_Order__c</fullName>
         <externalId>false</externalId>
         <label>Global Priority Order</label>
-        <picklist>
-            <controllingField>Global_Priority__c</controllingField>
-            <picklistValues>
-                <fullName>1</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>3</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>4</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>5</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>6</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>7</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>8</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>9</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>10</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <controllingField>Global_Priority__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>1</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>2</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>3</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>4</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>5</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>6</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>7</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>8</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>9</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>10</valueName>
+            </valueSettings>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Global_Priority__c</fullName>
@@ -955,6 +996,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Is_local_media_statement_available__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Please confirm by ticking this box if a local media statement is available</inlineHelpText>
+        <label>Is local media statement available?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Issue_Description__c</fullName>
         <externalId>false</externalId>
         <label>Issue Description</label>
@@ -982,262 +1034,344 @@
         <fullName>Issue_Severity__c</fullName>
         <externalId>false</externalId>
         <label>Issue Severity</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Crisis</fullName>
-                <color>#000000</color>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Red</fullName>
-                <color>#FF0000</color>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Yellow</fullName>
-                <color>#FFCC33</color>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Green</fullName>
-                <color>#33CC00</color>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Closed</fullName>
-                <color>#3333FF</color>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Crisis</fullName>
+                    <color>#000000</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Red</fullName>
+                    <color>#FF0000</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Yellow</fullName>
+                    <color>#FFCC33</color>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Green</fullName>
+                    <color>#33CC00</color>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <color>#3333FF</color>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Issue_Severity_on_submission__c</fullName>
         <externalId>false</externalId>
         <label>Issue Severity on submission</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Crisis</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Red</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Yellow</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Green</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Closed</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Crisis</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Red</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Yellow</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Green</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Issue_Source__c</fullName>
         <externalId>false</externalId>
         <label>Issue Source</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Media</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NGO/KOFs</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Legislation/Regulatory</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Media</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>NGO/KOFs</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Legislation/Regulatory</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Issue_Status__c</fullName>
         <externalId>false</externalId>
         <label>Issue Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>New</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Submitted</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Reviewed</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Reviewed</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Issue_Subject_Group__c</fullName>
         <externalId>false</externalId>
         <label>Issue Subject Group</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Sustainability</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Obesity &amp; Health</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Acting responsibly</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Consumer safety</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Innovation</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Diet &amp; Health – Food Taxes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Diet &amp; Health – Labelling</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Diet &amp; Health – Marketing to children</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Diet &amp; Health – Sugar, Salt, Fat</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Diet &amp; Health – Other</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Human &amp; Labour Rights</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Packaging &amp; Waste</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Product Quality / Incidents</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Responsible Marketing – Skin lightening</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Responsible Marketing – Other</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Science &amp; Innovation – Animal Testing</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Science &amp; Innovation – GMO</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Science &amp; Innovation – Other</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sustainable sourcing – Animal Welfare</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sustainable sourcing – Deforestation</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sustainable sourcing – Palm Oil</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sustainable sourcing – Other</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Tax Transparency</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Trust in Ingredients – Foods &amp; Refreshments</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Trust in Ingredients – HPC</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Issue_Subject__c</fullName>
         <externalId>false</externalId>
         <label>Issue Subject</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Animal Testing</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bio Plastics</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Biofuels</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bisphenol A (Packaging Contaminants)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Brand Protection (Anti-Counterfeiting and Infringing Grey Prevention)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Farm Animal Welfare including Cloning</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Genetically Modified Crops &amp; Biotechnology</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Labour Rights</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Nanotechnology</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Nutrient Profiles</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Nutrition Labelling</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Stem Cells</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sustainable Sourcing / Food Security</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tax and Transparency</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Volatile Organic Compounds</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>3MCPD and Glycidol esters</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Confidence in Chemicals</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Discriminatory Food Taxes</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Food Commodity Prices</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Greenhouse gas emissions in consumer use</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Harmonized approach to Food Safety Management</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Marketing and Advertising to Children</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Packaging Contaminants</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Packaging Recycling and extended producer responsibility (EPR) for packaging waste</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Palm Oil</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Animal Testing</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bio Plastics</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Biofuels</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bisphenol A (Packaging Contaminants)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Brand Protection (Anti-Counterfeiting and Infringing Grey Prevention)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Farm Animal Welfare including Cloning</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Genetically Modified Crops &amp; Biotechnology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Labour Rights</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Nanotechnology</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Nutrient Profiles</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Nutrition Labelling</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Stem Cells</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sustainable Sourcing / Food Security</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Tax and Transparency</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Volatile Organic Compounds</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3MCPD and Glycidol esters</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Confidence in Chemicals</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Discriminatory Food Taxes</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Food Commodity Prices</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Greenhouse gas emissions in consumer use</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Harmonized approach to Food Safety Management</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Marketing and Advertising to Children</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Packaging Contaminants</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Packaging Recycling and extended producer responsibility (EPR) for packaging waste</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Palm Oil</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Issue_Team_in_Place__c</fullName>
@@ -1253,21 +1387,20 @@
         <fullName>Issue_Type__c</fullName>
         <externalId>false</externalId>
         <label>Issue Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>New Created</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Global and R&amp;D</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New Created</fullName>
+                    <default>true</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>KOF_Position_statement__c</fullName>
@@ -1307,41 +1440,47 @@
         <fullName>Lead_Function__c</fullName>
         <externalId>false</externalId>
         <label>Lead Function</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Picklist - Functions TBD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Picklist - Functions TBD</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Level_of_NGO_activity__c</fullName>
         <externalId>false</externalId>
         <label>Level of NGO activity</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Hot</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Warm</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cool</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Hot</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Warm</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cool</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Level_of_control__c</fullName>
@@ -1349,33 +1488,36 @@
         <externalId>false</externalId>
         <inlineHelpText>Level of control over issue (1-5 Scale)</inlineHelpText>
         <label>Level of control</label>
-        <picklist>
-            <picklistValues>
-                <fullName>1</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>3</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>4</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>5</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Link_to_R_D_Issues__c</fullName>
@@ -1435,161 +1577,164 @@
         <fullName>MCO__c</fullName>
         <externalId>false</externalId>
         <label>MCO</label>
-        <picklist>
-            <picklistValues>
-                <fullName>ANZ</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Bangladesh</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Benelux</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Brazil</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CEE</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>China</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>DACH</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>East and Southern Africa</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>France</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Greece</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hong Kong,Korea &amp; Taiwan</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>India</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Indonesia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Italy</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Japan</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Malaysia &amp; Singapore</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mexico &amp; Greater Carribean</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Middle Americas</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NAME</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Nigeria</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Nordic</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>North America</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Pakistan</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Philippines</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Portugal</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>RUB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>South Africa</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Southern Cone</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Spain</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sri Lanka</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Thailand,Cambodia &amp; Laos</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TUI&amp;I</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>UK &amp; Ireland</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>UMDCA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Viet Nam</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>West Africa</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ANZ</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Bangladesh</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Benelux</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Brazil</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>CEE</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>China</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>DACH</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>East and Southern Africa</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>France</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Greece</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Hong Kong,Korea &amp; Taiwan</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>India</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Indonesia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Italy</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Japan</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Malaysia &amp; Singapore</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Mexico &amp; Greater Carribean</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Middle Americas</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>NA</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>NAME</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Nigeria</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Nordic</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>North America</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pakistan</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Philippines</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Portugal</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>RUB</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>South Africa</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Southern Cone</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Spain</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sri Lanka</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Thailand,Cambodia &amp; Laos</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>TUI&amp;I</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>UK &amp; Ireland</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>UMDCA</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Viet Nam</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>West Africa</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
         <visibleLines>6</visibleLines>
     </fields>
     <fields>
@@ -1663,12 +1808,12 @@ CASE( Issue_Severity_on_submission__c ,
         <fullName>Protagonist__c</fullName>
         <externalId>false</externalId>
         <label>Protagonist</label>
-        <length>800</length>
+        <length>131000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <visibleLines>8</visibleLines>
     </fields>
     <fields>
         <fullName>R_D_Issue__c</fullName>
@@ -1785,10 +1930,34 @@ CASE( Issue_Severity_on_submission__c ,
         <type>Url</type>
     </fields>
     <fields>
+        <fullName>Report_Issue_To_Email_2__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>With ‘submitting’ the issue, it will automatically be sent to the Core Issue Management Team (CIMT). In the case you want to inform anyone else, please add their email address in the available field here. NOTE it must be a Unilever @unilever.com address.</inlineHelpText>
+        <label>Add additional recipient 2</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Report_Issue_To_Email_3__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>With ‘submitting’ the issue, it will automatically be sent to the Core Issue Management Team (CIMT). In the case you want to inform anyone else, please add their email address in the available field here. NOTE it must be a Unilever @unilever.com address.</inlineHelpText>
+        <label>Add additional recipient 3</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Report_Issue_To_Email__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>This issue will automatically be sent to the CIMT and CIPG do you want to inform anyone else? If so please add their email address here - Note: Must be a Unilever (@unilever) email address</inlineHelpText>
-        <label>Report Issue To (Email)</label>
+        <inlineHelpText>With ‘submitting’ the issue, it will automatically be sent to the Core Issue Management Team (CIMT). In the case you want to inform anyone else, please add their email address in the available field here. NOTE it must be a Unilever @unilever.com address.</inlineHelpText>
+        <label>Add additional recipient 1</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1830,93 +1999,132 @@ CASE( Severity_Movement__c,
         <fullName>Severity_Movement__c</fullName>
         <externalId>false</externalId>
         <label>Severity Movement</label>
-        <picklist>
-            <picklistValues>
-                <fullName>New</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Up</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Down</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Up</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Down</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>SocialMediaType__c</fullName>
         <externalId>false</externalId>
         <label>Social Media Type</label>
-        <picklist>
-            <controllingField>On_Social_Media__c</controllingField>
-            <picklistValues>
-                <fullName>Bebo</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Facebook</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Google+</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hyves</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>LinkedIn</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MySpace</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Pintrest</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tumblr</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Twitter</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>WeBo</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Youtube</fullName>
-                <controllingFieldValues>checked</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
+        <valueSet>
+            <controllingField>On_Social_Media__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Bebo</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Facebook</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Google+</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Hyves</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>LinkedIn</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>MySpace</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Pintrest</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Tumblr</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Twitter</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>WeBo</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Youtube</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>Bebo</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>Facebook</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>Google+</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>Hyves</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>LinkedIn</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>MySpace</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>Pintrest</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>Tumblr</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>Twitter</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>WeBo</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>checked</controllingFieldValue>
+                <valueName>Youtube</valueName>
+            </valueSettings>
+        </valueSet>
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
@@ -1929,6 +2137,29 @@ CASE( Severity_Movement__c,
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Social_media_local_monitoring_available__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Please confirm by ticking this box if local social monitoring is in place</inlineHelpText>
+        <label>Local social media monitoring in place?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Social_media_local_monitoring_formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF((  Social_media_local_monitoring_available__c = True), &apos;Yes&apos;, &apos;No&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Social media local monitoring formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Submitted__c</fullName>
@@ -1944,23 +2175,23 @@ CASE( Severity_Movement__c,
         <fullName>Unilever_Readiness_To_Response__c</fullName>
         <externalId>false</externalId>
         <label>Unilever Readiness To Response</label>
-        <length>800</length>
+        <length>131000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <visibleLines>8</visibleLines>
     </fields>
     <fields>
         <fullName>Unilever_Risk_Opportunity__c</fullName>
         <externalId>false</externalId>
         <label>Unilever Risk/Opportunity</label>
-        <length>800</length>
+        <length>131000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <visibleLines>8</visibleLines>
     </fields>
     <fields>
         <fullName>Unilever_position_in_social_media__c</fullName>
@@ -1988,12 +2219,38 @@ CASE( Severity_Movement__c,
         <fullName>Way_Forward__c</fullName>
         <externalId>false</externalId>
         <label>Way Forward</label>
-        <length>800</length>
+        <length>131000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <visibleLines>8</visibleLines>
+    </fields>
+    <fields>
+        <fullName>im_Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY() - Date_Raised__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Issue Age(In Days)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>local_media_statement_available_formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(( Is_local_media_statement_available__c = True), &apos;Yes&apos;, &apos;No&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>local media statement available formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>severity_RAG__c</fullName>
@@ -2017,42 +2274,33 @@ CASE(Issue_Severity__c ,
     <label>Issue</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>im_Age__c</columns>
         <columns>NAME</columns>
-        <columns>Issue_Type__c</columns>
         <columns>Date_Raised__c</columns>
-        <columns>Issue_Status__c</columns>
+        <columns>Country__c</columns>
+        <columns>Brand_Category__c</columns>
         <columns>severity_RAG__c</columns>
         <columns>Original_Flag__c</columns>
         <columns>LAST_UPDATE</columns>
+        <columns>Issue_Status__c</columns>
         <filterScope>Everything</filterScope>
         <label>All Issues</label>
-    </listViews>
-    <listViews>
-        <fullName>Global_Issues</fullName>
-        <columns>NAME</columns>
-        <columns>Global_Priority_reporting__c</columns>
-        <columns>Issue_Status__c</columns>
-        <columns>severity_RAG__c</columns>
-        <columns>LAST_UPDATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Issue_Type__c</field>
-            <operation>equals</operation>
-            <value>Global and R&amp;D</value>
-        </filters>
-        <label>Global &amp; R&amp;D Issues</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>My_Issues</fullName>
+        <columns>im_Age__c</columns>
         <columns>NAME</columns>
-        <columns>Issue_Type__c</columns>
         <columns>Date_Raised__c</columns>
-        <columns>Issue_Status__c</columns>
+        <columns>Country__c</columns>
+        <columns>Brand_Category__c</columns>
         <columns>severity_RAG__c</columns>
         <columns>Original_Flag__c</columns>
         <columns>LAST_UPDATE</columns>
+        <columns>Issue_Status__c</columns>
         <filterScope>Mine</filterScope>
         <label>My Issues</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Issue Name</label>
@@ -2866,23 +3114,87 @@ CASE(Issue_Severity__c ,
         <picklistValues>
             <picklist>Issue_Subject_Group__c</picklist>
             <values>
-                <fullName>Acting responsibly</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Food Taxes</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Consumer safety</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Labelling</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Innovation</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Marketing to children</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Obesity %26 Health</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Other</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sustainability</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Sugar%2C Salt%2C Fat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human %26 Labour Rights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging %26 Waste</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality %2F Incidents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Skin lightening</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Animal Testing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 GMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Animal Welfare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Deforestation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Palm Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Transparency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 Foods %26 Refreshments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 HPC</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2991,10 +3303,6 @@ CASE(Issue_Severity__c ,
         </picklistValues>
         <picklistValues>
             <picklist>Issue_Type__c</picklist>
-            <values>
-                <fullName>Global and R%26D</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>New Created</fullName>
                 <default>true</default>
@@ -4065,23 +4373,87 @@ CASE(Issue_Severity__c ,
         <picklistValues>
             <picklist>Issue_Subject_Group__c</picklist>
             <values>
-                <fullName>Acting responsibly</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Food Taxes</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Consumer safety</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Labelling</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Innovation</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Marketing to children</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Obesity %26 Health</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Other</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sustainability</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Sugar%2C Salt%2C Fat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human %26 Labour Rights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging %26 Waste</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality %2F Incidents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Skin lightening</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Animal Testing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 GMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Animal Welfare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Deforestation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Palm Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Transparency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 Foods %26 Refreshments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 HPC</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4186,13 +4558,6 @@ CASE(Issue_Severity__c ,
             <values>
                 <fullName>Volatile Organic Compounds</fullName>
                 <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Issue_Type__c</picklist>
-            <values>
-                <fullName>Global and R%26D</fullName>
-                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -5253,23 +5618,87 @@ CASE(Issue_Severity__c ,
         <picklistValues>
             <picklist>Issue_Subject_Group__c</picklist>
             <values>
-                <fullName>Acting responsibly</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Food Taxes</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Consumer safety</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Labelling</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Innovation</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Marketing to children</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Obesity %26 Health</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Other</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sustainability</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Sugar%2C Salt%2C Fat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human %26 Labour Rights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging %26 Waste</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality %2F Incidents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Skin lightening</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Animal Testing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 GMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Animal Welfare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Deforestation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Palm Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Transparency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 Foods %26 Refreshments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 HPC</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5378,10 +5807,6 @@ CASE(Issue_Severity__c ,
         </picklistValues>
         <picklistValues>
             <picklist>Issue_Type__c</picklist>
-            <values>
-                <fullName>Global and R%26D</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>New Created</fullName>
                 <default>true</default>
@@ -6445,23 +6870,87 @@ CASE(Issue_Severity__c ,
         <picklistValues>
             <picklist>Issue_Subject_Group__c</picklist>
             <values>
-                <fullName>Acting responsibly</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Food Taxes</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Consumer safety</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Labelling</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Innovation</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Marketing to children</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Obesity %26 Health</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Other</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sustainability</fullName>
+                <fullName>Diet %26 Health %E2%80%93 Sugar%2C Salt%2C Fat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human %26 Labour Rights</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging %26 Waste</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Quality %2F Incidents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Responsible Marketing %E2%80%93 Skin lightening</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Animal Testing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 GMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Innovation %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Animal Welfare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Deforestation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainable sourcing %E2%80%93 Palm Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax Transparency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 Foods %26 Refreshments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trust in Ingredients %E2%80%93 HPC</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6570,10 +7059,6 @@ CASE(Issue_Severity__c ,
         </picklistValues>
         <picklistValues>
             <picklist>Issue_Type__c</picklist>
-            <values>
-                <fullName>Global and R%26D</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>New Created</fullName>
                 <default>true</default>
@@ -6856,13 +7341,18 @@ CASE(Issue_Severity__c ,
         <lookupDialogsAdditionalFields>RECORDTYPE</lookupDialogsAdditionalFields>
         <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>Issue_Type__c</searchFilterFields>
-        <searchFilterFields>CREATEDBY_USER</searchFilterFields>
-        <searchFilterFields>CREATED_DATE</searchFilterFields>
         <searchFilterFields>severity_RAG__c</searchFilterFields>
-        <searchResultsAdditionalFields>Issue_Type__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+        <searchFilterFields>Cluster__c</searchFilterFields>
+        <searchFilterFields>Country__c</searchFilterFields>
+        <searchFilterFields>Brand_Category__c</searchFilterFields>
+        <searchFilterFields>Issue_Subject_Group__c</searchFilterFields>
+        <searchResultsAdditionalFields>Date_Raised__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Country__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Brand_Category__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>severity_RAG__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Original_Flag__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Issue_Status__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <startsWith>Vowel</startsWith>
@@ -6885,6 +7375,18 @@ CASE(Issue_Severity__c ,
         <fullName>Submitted_To_Unilever_Person</fullName>
         <active>true</active>
         <errorConditionFormula>AND(RIGHT(Report_Issue_To_Email__c, 13) &lt;&gt; &quot;@unilever.com&quot;,  Report_Issue_To_Email__c  &lt;&gt; &quot;&quot;)</errorConditionFormula>
+        <errorMessage>You can only submit to a Unilever colleague with a &apos;@Unilever.com&apos; email address</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Submitted_To_Unilever_Person2</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(RIGHT(Report_Issue_To_Email_2__c, 13) &lt;&gt; &quot;@unilever.com&quot;,  Report_Issue_To_Email_2__c &lt;&gt; &quot;&quot;)</errorConditionFormula>
+        <errorMessage>You can only submit to a Unilever colleague with a &apos;@Unilever.com&apos; email address</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Submitted_To_Unilever_Person3</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(RIGHT(Report_Issue_To_Email_3__c, 13) &lt;&gt; &quot;@unilever.com&quot;,  	Report_Issue_To_Email_3__c &lt;&gt; &quot;&quot;)</errorConditionFormula>
         <errorMessage>You can only submit to a Unilever colleague with a &apos;@Unilever.com&apos; email address</errorMessage>
     </validationRules>
     <webLinks>
