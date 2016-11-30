@@ -7677,12 +7677,13 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <description>VPM - This field is used to store the value of Exemption Rate allowed to the the vendor.</description>
         <externalId>false</externalId>
         <label>Exemption Rate</label>
-        <length>6</length>
+        <precision>6</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
