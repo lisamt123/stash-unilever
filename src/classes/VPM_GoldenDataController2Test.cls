@@ -6,32 +6,32 @@ public class VPM_GoldenDataController2Test{
     public static final string  MDM_CODE='5001010';
     public static final string  MDM_COUNTRY='Andorra';
     public static final string  MDM_CITY='Andorra';
-	 public static final string  MDM_NAME ='Test U2K2';
+     public static final string  MDM_NAME ='Test U2K2';
     public static final string  ALGERIA='Algeria';
-	Public static final string STR_CONST_CORDILLERA ='Cordillera';
+    Public static final string STR_CONST_CORDILLERA ='Cordillera';
     Public static final string STR_CONST_FUSION='Fusion';
     Public static final string STR_CONST_U2K2 ='U2K2';
     Public static final string STR_CONST_SIRIUS ='Sirius';
-	Public static final string FREIGHTVENDOR='FRGT_Freight Vendor_G001';
-	public static final string  MDM_ID='1234';
-	public static final string  STR_ERROR='Error';
-	public static final string STR_COMMODITYCLASS ='Ad-hoc Research';
-	public static final string STR_VENDORNAME='Test User';
-	Public static final string STR_COMMCLASS='Market Research';
-	 public static final String STR_CONST_DRAFT= 'Draft Request';
-	 public static final string STR_STREET1='Test Street';
-	 public static final string STR_VENDORPHONENO='1234567895';
-	 public static final string STR_ZIPCODE='54132';
-	 public static final string STR_COMPANYCODE='2236';
-	 Public static final string STR_VENDORTYPEMSB ='MBS_Marketing Business Services_G001';
-	 Public static final string STR_AUTHGRPMARKETINGSERVICES='MBS--Marketing Services';
-	 public static final string STR_COMPANYCODENAME='Ad-hoc Market Research - Qualitative';
-	 public static final string STR_COMCODE='5702 - UN01580115';
+    Public static final string FREIGHTVENDOR='FRGT_Freight Vendor_G001';
+    public static final string  MDM_ID='1234';
+    public static final string  STR_ERROR='Error';
+    public static final string STR_COMMODITYCLASS ='Ad-hoc Research';
+    public static final string STR_VENDORNAME='Test User';
+    Public static final string STR_COMMCLASS='Market Research';
+     public static final String STR_CONST_DRAFT= 'Draft Request';
+     public static final string STR_STREET1='Test Street';
+     public static final string STR_VENDORPHONENO='1234567895';
+     public static final string STR_ZIPCODE='54132';
+     public static final string STR_COMPANYCODE='2236';
+     Public static final string STR_VENDORTYPEMSB ='MBS_Marketing Business Services_G001';
+     Public static final string STR_AUTHGRPMARKETINGSERVICES='MBS--Marketing Services';
+     public static final string STR_COMPANYCODENAME='Ad-hoc Market Research - Qualitative';
+     public static final string STR_COMCODE='5702 - UN01580115';
     public static final string STR_BRAZIL='Brazil';
-	public static final string STR_TEST_DATA_SIRIUS='Test Sirius';
+    public static final string STR_TEST_DATA_SIRIUS='Test Sirius';
    // public PageReference pg {get;set;}
 
-	static void customSettingData(string regionVar) {
+    static void customSettingData(string regionVar) {
         VPM_RegionSpecificFields__c region = new VPM_RegionSpecificFields__c();
         List<VPM_RegionSpecificFields__c> regionList = new List<VPM_RegionSpecificFields__c>();
         region.Region__c = regionVar;
@@ -53,7 +53,7 @@ public class VPM_GoldenDataController2Test{
         obj.Name=COUNTRIES;
         obj.VPM_CountryName__c= 'AR_Argentina,BO_Bolivia,CL_Chile,CO_Colombia,CR_Costa Rica,DO_Dominican Rep.,EC_Ecuador,GT_Guatemala';
         insert obj;
-    	
+        
         customSettingData(STR_CONST_SIRIUS);        
     
         mdm_Vendors__c vendor = new mdm_Vendors__c();
@@ -128,7 +128,7 @@ public class VPM_GoldenDataController2Test{
     
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
-    	VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
+        VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
         obj.Name=COUNTRIES;
         insert obj;
@@ -198,13 +198,13 @@ public class VPM_GoldenDataController2Test{
     
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
-    	VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
+        VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
         obj.VPM_CountryName__c= STR_CONST_FUSION;
         obj.Name=COUNTRIES;
         insert obj; 
         
- 		
-    	customSettingData(STR_CONST_FUSION); 
+        
+        customSettingData(STR_CONST_FUSION); 
         mdm_Vendors__c vendor = new mdm_Vendors__c();
         vendor.mdm_Code__c = MDM_CODE;
         vendor.mdm_City__c = MDM_CITY;
@@ -272,7 +272,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         obj.Name=COUNTRIES;
         insert obj; 
     
- 		customSettingData(STR_CONST_CORDILLERA); 
+        customSettingData(STR_CONST_CORDILLERA); 
     
         mdm_Vendors__c vendor = new mdm_Vendors__c();
         vendor.mdm_Code__c = MDM_CODE;
@@ -319,7 +319,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         //pur.VPM_Commodity__c=commodityCode.id;
         pur.VPM_ZIPPostcode__c =STR_ZIPCODE;
         pur.VPM_GlobalAuthorisationGroup__c='Authorization';
-    	pur.VPM_Industry__c = '9001_Oils';
+        pur.VPM_Industry__c = '9001_Oils';
         insert pur;
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
@@ -336,7 +336,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
     
-    	VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
+        VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
         obj.Name=COUNTRIES;
         insert obj;
@@ -420,7 +420,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
       string   recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
     
-    	VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
+        VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
         obj.VPM_CountryName__c=VPM_COUNTRYNAME;
         obj.Name=COUNTRIES;
         insert obj; 
@@ -441,7 +441,11 @@ static VPM_PurchasingRequests__c TestCordillera(){
         insert companyCode;
         system.assert(companyCode.Id!=null,STR_ERROR);
         
-       
+        VPM_PurchasingOrganisation__c purcOrg = new VPM_PurchasingOrganisation__c();
+        purcOrg.Name = 'ULAB_ARIBA Pur.Orgn';
+        purcOrg.VPM_Country__c = ALGERIA;
+        purcOrg.VPM_POSystem__c = 'Ariba';    
+        insert purcOrg;  
       
         
          VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
@@ -485,6 +489,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         pur.VPM_VendorType__c =FREIGHTVENDOR;
         //pur.VPM_Commodity_Family__c =commodityCode.VPM_CommodityFamily__c;
         //pur.VPM_Commodity__c=commodityCode.id;
+        pur.VPM_PurchasingOrg__c = purcOrg.Id; 
         insert pur;
         pur.VPM_Commodity__c=commodityCode.id;
         update pur;
@@ -515,17 +520,55 @@ static VPM_PurchasingRequests__c TestCordillera(){
     
     }
     
+    static testMethod void VPM_PositiveScenario() {
+        VPM_PurchasingRequests__c purId = TestU2K2();
+        PageReference pageRef = Page.VPM_GoldenData1;
+        Test.setCurrentPage(pageRef);
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+        goldenData.recordTypeId = 'Create';
+        goldenData.backToGlobalScreen();
+        goldenData.recordTypeId = 'Maintain';
+        purId.VPM_FieldType__c = null;   
+        goldenData.backToGlobalScreen();
+        goldenData.recordTypeId = 'Maintain';
+        purId.VPM_FieldType__c = 'Global';   
+        update purId;
+        goldenData.backToGlobalScreen();
+        goldenData.recordTypeId = 'Extend';
+        purId.VPM_ExtensionType__c = 'Regional';   
+        purId.VPM_FieldType__c = null;   
+        update purId;
+        goldenData.backToGlobalScreen();
+        goldenData.backToFlow();
+
+    }
+    
+    static testMethod void VPM_PositiveScenario1() {
+        VPM_PurchasingRequests__c purId = TestU2K2();
+        PageReference pageRef = Page.VPM_GoldenData1;
+        Test.setCurrentPage(pageRef);
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+        goldenData.recordTypeId = 'Extend';
+        purId.VPM_ExtensionType__c = 'Regional';   
+        purId.VPM_FieldType__c = null;   
+        update purId;
+        goldenData.backToGlobalScreen();
+        goldenData.backToFlow();
+    }
+    
         static testMethod void VPM_GoldenDataControllerU2K2(){
         
          VPM_PurchasingRequests__c purId = TestU2K2();
             PageReference pageRef = Page.VPM_GoldenData1;
-			Test.setCurrentPage(pageRef);
+            Test.setCurrentPage(pageRef);
          ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
          goldenData.newMethod();
          goldenData.newMethod1();
            purId.VPM_TradePartnerType__c='';
-       		 update purid; 
+             update purid; 
             goldenData.checkValidations();
           //  purid.VPM_CompanyCode__r.ecc__c='U2K2';
             purid.VPM_AccountStatement__c='';
@@ -533,7 +576,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
             
             goldenData.checkValidations();
              string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
-         	purId.recordTypeId =recordTypeId;
+            purId.recordTypeId =recordTypeId;
             purId.VPM_VendorBlockUnblockDelete__c ='Block';
             goldenData.vendorName = '';
             goldenData.taxJuriCodeDefValue = 'taxJuriCodeDefValue111111111';
@@ -541,14 +584,14 @@ static VPM_PurchasingRequests__c TestCordillera(){
             goldenData.checkValidations();
             goldenData.saveAndBackToLaunchScreen();
             goldenData.recordTypeId = 'Extend';
-			goldenData.backToGlobalScreen();
+            goldenData.backToGlobalScreen();
             purId.VPM_ExtensionType__c ='';             
             update purId;
             goldenData.backToGlobalScreen();
 
             
       //   goldenData.saveAndBackToLaunchScreen();
-    	// purId.VPM_ProcurementApprovalRequired__c=true;
+        // purId.VPM_ProcurementApprovalRequired__c=true;
         // update purid; 
            // goldenData.ProcurementApproval();
     }
@@ -584,16 +627,16 @@ static VPM_PurchasingRequests__c TestCordillera(){
          VPM_PurchasingRequests__c purId = TestCordillera();
          ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
          VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
-        	goldenData.vendorType=false;
-        	goldenData.authorisationGrp=false;
+            goldenData.vendorType=false;
+            goldenData.authorisationGrp=false;
           goldenData.NewCashManagementGroup ='';
-    	goldenData.OldCashManagementGroup  =''; 
-  		goldenData.NewSortKey  =''; 
-    	goldenData.OldSortKey  ='';
-    	goldenData.NewPaymentTerms  ='';
-    	goldenData.OldPaymentTerms ='';
-   		goldenData.OldPaymentMethod ='';
-    	goldenData.NewPaymentMethod ='';  
+        goldenData.OldCashManagementGroup  =''; 
+        goldenData.NewSortKey  =''; 
+        goldenData.OldSortKey  ='';
+        goldenData.NewPaymentTerms  ='';
+        goldenData.OldPaymentTerms ='';
+        goldenData.OldPaymentMethod ='';
+        goldenData.NewPaymentMethod ='';  
 
             
          goldenData.newMethod();
@@ -665,8 +708,8 @@ static VPM_PurchasingRequests__c TestCordillera(){
          
         string  recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
          purId.recordTypeId =recordTypeId;
-      	 purId.VPM_PaymentTerms__c='90DK_Within 90 days Due net (90NET)';
-      	
+         purId.VPM_PaymentTerms__c='90DK_Within 90 days Due net (90NET)';
+        
          update purId;
          goldenData.approvalCallMethod();
       goldenData.ErrorMessage(System.Label.VPM_BlockDeleteVendorErrorMeesage);
@@ -691,6 +734,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
         
           
          update purId;
+         Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200));
          goldenData.approvalCallMethod();
          
     
@@ -719,9 +763,9 @@ static VPM_PurchasingRequests__c TestCordillera(){
          purId.VPM_ExtensionType__c ='Global';
              
          update purId;
-    	goldenData.saveRecord();
+        goldenData.saveRecord();
         goldenData.vendorName = '';
-		goldenData.checkValidations();         
+        goldenData.checkValidations();         
     
     
     }
@@ -787,7 +831,7 @@ static VPM_PurchasingRequests__c TestCordillera(){
   } */
     
       static testMethod void approvalMaintain1UnBlock(){
-    	
+        
        // PageReference pg =null;
         ApexPages.currentPage().getParameters().put('isMaintain2','isMaintain2');
         
@@ -850,7 +894,35 @@ static VPM_PurchasingRequests__c TestCordillera(){
          purId.VPM_ExtensionType__c ='Global';
              
          update purId;
-    	goldenData.saveRecord();
+        goldenData.saveRecord();
+    
+    }
+    
+         static testMethod void newMethod2(){
+    
+       // PageReference pg=null;
+        VPM_PurchasingRequests__c purId = TestDataApprovalMethod();
+         purId.VPM_TaxJurisdictionCode__c ='9900_Dummy';
+         purId.VPM_FinanceApprovalRequired__c =false;
+         purId.VPM_ProcurementApprovalRequired__c =false;
+         purId.VPM_FreightApprovalRequired__c = false;
+         purId.VPM_RussianTaxApprovalRequired__c = true;
+         
+         update purId;
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+         
+           
+        VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+        goldenData.newMethod1();
+            Test.setCurrentPageReference(new PageReference('apex/VPM_GoldenData1'));
+        ApexPages.Message msg =null;
+          
+         msg=  goldenData.checkValidations(); 
+         System.debug('Msg @@@@@@'+ msg);
+         purId.VPM_ExtensionType__c ='Global';
+             
+         update purId;
+        goldenData.saveRecord();
     
     }
     
@@ -869,6 +941,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
        
          
           update purId;
+    Test.setMock(HttpCalloutMock.class, new VPM_FetchVendorDetailsHttpMock(200));
     goldenData.commonSaveMethod();
           VPM_PurchasingRequests__c pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_CheckDoubleInvoices__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,VPM_Commodity_Family__c from VPM_PurchasingRequests__c  where id =: purId.id limit 1];
           system.assertEquals(purId.VPM_VendorType__c ,pur1.VPM_VendorType__c );
@@ -882,11 +955,11 @@ static testMethod void VPM_ApprovalMethodFreight12(){
     
     string    recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id;
     
- 		VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
+        VPM_LatamCountries__c obj = new VPM_LatamCountries__c();
         obj.Name=COUNTRIES;
         obj.VPM_CountryName__c= 'AR_Argentina,BO_Bolivia,CL_Chile,CO_Colombia,CR_Costa Rica,DO_Dominican Rep.,EC_Ecuador,GT_Guatemala';
         insert obj; 
-    	
+        
         customSettingData(STR_CONST_U2K2);     
     
  //customSettingData('U2K2');    
@@ -1009,6 +1082,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         VPM_PurchasingOrganisation__c org =new VPM_PurchasingOrganisation__c();
         org.VPM_CompanyCode__c=companyCode.id;
         org.Name='PurchasingOrg';
+        org.VPM_Country__c = ALGERIA;
         insert org;
         system.assert(org.Id!=null,STR_ERROR);
         
@@ -1023,6 +1097,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
          
         //pur.VPM_VendorCodeLookup__r.mdm_Code__c=vendor.mdm_Code__c;
         pur.VPM_CompanyCode__c=companyCode.Id;
+        pur.VPM_PurchasingOrg__c = org.Id; 
         //pur.VPM_CompanyCode__r.VPM_CompanyCode__c='PH01';
         //pur.VPM_CompanyCode__r.ECC__c=STR_CONST_SIRIUS;
         pur.VPM_Street1__c=STR_STREET1;
@@ -1068,7 +1143,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
     
     static testMethod void SaveRecord1(){
     
-  		//PageReference pg =null;
+        //PageReference pg =null;
         // PageReference pg=null;
         VPM_PurchasingRequests__c purId = TestDataApprovalMethod();
          string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and DeveloperName ='VPM_VendorReqExtend'].Id; 
@@ -1089,7 +1164,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
          purId.VPM_ExtensionType__c ='Global';
              
          update purId;
-    	goldenData.saveRecord();
+        goldenData.saveRecord();
         
         
         
@@ -1098,12 +1173,14 @@ static testMethod void VPM_ApprovalMethodFreight12(){
    static testMethod void errorMessage(){
     //   PageReference pg =null;
       
-       	VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
+        VPM_PurchasingRequests__c purId = TestDataApprovalMethodcreate();
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
         purId.recordTypeId=recordTypeId;
         update purId;
-       
+        
         ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+       VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+       system.assertEquals(VPM_GoldenDataController2.STR_CONST_MBS,'MBS');  
       //  VPM_SearchVendor1 searchVendorConst = new VPM_SearchVendor1 ();
        // VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1(vendorDetail);
      //   searchVendor.intCalcIndicatorDefValues = '01';
@@ -1113,7 +1190,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         //searchVendor.requestType ='Maintain';  
         //Test.startTest();
        // searchVendor.VendorSelected(); 
-        VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+        
        // pg=goldenData.ErrorMessage();
        purId.VPM_VendorName1__c='TEST VENDOR';
        goldenData.commonSaveMethod();
@@ -1121,5 +1198,580 @@ static testMethod void VPM_ApprovalMethodFreight12(){
 
    } 
    
-  
+    // newly added - 
+    static VPM_PurchasingRequests__c TestDataFreightApprovalMethod(){
+    
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+        
+        mdm_Vendors__c vendor = new mdm_Vendors__c();
+        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_City__c = 'Andorra';
+        vendor.mdm_Country__c ='DZ_Algeria';
+        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_ID__c = '1234';
+        insert vendor;
+        system.assert(vendor.Id!=null,'Error');
+        
+        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.ECC__c = 'U2K2';
+        companyCode.VPM_Country__c ='Algeria';
+        insert companyCode;
+        system.assert(companyCode.Id!=null,'Error');
+        
+         VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
+        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
+        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
+        commodityCode.Name='Ad-hoc Market Research - Qualitative';
+        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
+        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_Region__c='U2K2';
+          
+        insert commodityCode;
+        system.assert(commodityCode.Id!=null,'Error');
+        
+        VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
+        pur.VPM_ECC__c = 'U2K2';
+       // pur.VPM_ProvidedBankDetails__c = TRUE;
+        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_Status__c = 'Draft Request';
+        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_VendorCodeLookup__c =vendor.Id;
+        pur.recordTypeId=recordTypeId;
+        pur.VPM_CompanyCode__c=companyCode.Id;
+        pur.VPM_City__c='Test Street';
+        pur.VPM_Street1__c='Test Street';
+        pur.VPM_CountryRequestingVendor__c='Algeria';
+        pur.VPM_VendorPhone__c='1234567895';
+        //pur.VPM_Commodity__c=commodityCode.id;
+        pur.VPM_ZIPPostcode__c ='54132';
+        pur.VPM_GlobalAuthorisationGroup__c='SCS-CAPEX AFR ASIA SEAA_VMBA CAPEX AAR';
+        
+        //pur.VPM_PaymentTerms__c ='Payment Terms';
+       // pur.VPM_BankCountryKey__c ='Bank Country Key';
+       // pur.VPM_ReconciliationAccount__c ='Recouncil';
+       // pur.VPM_DeletionBlockFlag__c='Undelete';
+       // pur.VPM_DeletionBlockFlag__c ='delete';
+         pur.VPM_Incoterms1__c='UN _Not Free';
+       
+        pur.VPM_VendorType__c  = 'FRGT_Freight Vendor_G001';
+         pur.VPM_GlobalAuthorisationGroup__c='Freight_Freight';
+        pur.VPM_IsInApprovalProcess__c='';
+        pur.VPM_FreightApprovalRequired__c=false;
+        pur.VPM_FreightSubmitted__c='No';
+        pur.VPM_AdvancedFormSubmitted__c='Yes';
+        pur.VPM_Rework__c='No';
+        
+        insert pur;
+        
+        system.assert(pur.Id!=null,'Error');
+        pur.VPM_Commodity__c=commodityCode.id;
+        update pur;
+       VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
+               VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
+               VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
+               VPM_Commodity_Family__c,VPM_CRVT__c ,VPM_FreightSubmitted__c,VPM_FreightApprovalRequired__c,VPM_IsInApprovalProcess__c from VPM_PurchasingRequests__c  where id =: pur.id limit 1];
+       system.assertEquals(pur.VPM_Commodity__c,pur1.VPM_Commodity__c);
+        return pur1;    
+    }
+    
+ 
+    static testMethod void VPM_ApprovalMethodFreight_1(){
+        
+         VPM_PurchasingRequests__c purId = TestDataFreightApprovalMethod();
+       //  ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+         purId.VPM_VendorType__c  = 'FRGT_Freight Vendor_G001';
+         purid.VPM_GlobalAuthorisationGroup__c='Freight_Freight';        
+       	purId.VPM_FreightApprovalRequired__c=true;
+        
+        
+       List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(purId);
+       
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+        
+    }
+    
+        static VPM_PurchasingRequests__c TestDataRussainApprovalMethod(){
+    
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+        
+        mdm_Vendors__c vendor = new mdm_Vendors__c();
+        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_City__c = 'Andorra';
+        vendor.mdm_Country__c ='DZ_Algeria';
+        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_ID__c = '1234';
+        insert vendor;
+        system.assert(vendor.Id!=null,'Error');
+        
+        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.ECC__c = 'U2K2';
+        companyCode.VPM_Country__c ='Algeria';
+        insert companyCode;
+        system.assert(companyCode.Id!=null,'Error');
+        
+         VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
+        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
+        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
+        commodityCode.Name='Ad-hoc Market Research - Qualitative';
+        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
+        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_Region__c='U2K2';
+          
+        insert commodityCode;
+        system.assert(commodityCode.Id!=null,'Error');
+        
+        VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
+        pur.VPM_ECC__c = 'U2K2';
+       // pur.VPM_ProvidedBankDetails__c = TRUE;
+        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_Status__c = 'Draft Request';
+        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_VendorCodeLookup__c =vendor.Id;
+        pur.recordTypeId=recordTypeId;
+        pur.VPM_CompanyCode__c=companyCode.Id;
+        pur.VPM_City__c='Test Street';
+        pur.VPM_Street1__c='Test Street';
+        pur.VPM_CountryRequestingVendor__c='Algeria';
+        pur.VPM_VendorPhone__c='1234567895';
+        //pur.VPM_Commodity__c=commodityCode.id;
+        pur.VPM_ZIPPostcode__c ='54132';
+        //pur.VPM_GlobalAuthorisationGroup__c='SCS-CAPEX AFR ASIA SEAA_VMBA CAPEX AAR';
+        pur.VPM_AdvancedFormSubmitted__c ='Yes';
+         pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
+         pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+         pur.VPM_RussianTaxApprovalRequired__c=false;
+      	
+         pur.VPM_Rework__c='No';
+         pur.VPM_AdvancedFormSubmitted__c='Yes';
+         pur.VPM_RussiaSubmitted__c='No';
+         pur.VPM_IsInApprovalProcess__c='';
+
+        insert pur;
+        
+        system.assert(pur.Id!=null,'Error');
+        pur.VPM_Commodity__c=commodityCode.id;
+        update pur;
+       VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
+               VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
+               VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
+               VPM_Commodity_Family__c,VPM_CRVT__c ,VPM_FreightSubmitted__c,VPM_FreightApprovalRequired__c,VPM_IsInApprovalProcess__c from VPM_PurchasingRequests__c  where id =: pur.id limit 1];
+       system.assertEquals(pur.VPM_Commodity__c,pur1.VPM_Commodity__c);
+        return pur1;    
+    }
+    
+  static testMethod void VPM_ApprovalMethodRussian_1(){
+        
+         VPM_PurchasingRequests__c purId = TestDataRussainApprovalMethod();
+       
+         List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(purId);
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+        
+    }
+    
+    static VPM_PurchasingRequests__c TestDataBankApprovalMethod(){
+    
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+        
+        mdm_Vendors__c vendor = new mdm_Vendors__c();
+        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_City__c = 'Andorra';
+        vendor.mdm_Country__c ='DZ_Algeria';
+        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_ID__c = '1234';
+        insert vendor;
+        system.assert(vendor.Id!=null,'Error');
+        
+        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.ECC__c = 'U2K2';
+        companyCode.VPM_Country__c ='Algeria';
+        insert companyCode;
+        system.assert(companyCode.Id!=null,'Error');
+        
+         VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
+        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
+        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
+        commodityCode.Name='Ad-hoc Market Research - Qualitative';
+        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
+        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_Region__c='U2K2';
+          
+        insert commodityCode;
+        system.assert(commodityCode.Id!=null,'Error');
+        
+        VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
+        pur.VPM_ECC__c = 'U2K2';
+       // pur.VPM_ProvidedBankDetails__c = TRUE;
+        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_Status__c = 'Draft Request';
+        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_VendorCodeLookup__c =vendor.Id;
+        pur.recordTypeId=recordTypeId;
+        pur.VPM_CompanyCode__c=companyCode.Id;
+        pur.VPM_City__c='Test Street';
+        pur.VPM_Street1__c='Test Street';
+        pur.VPM_CountryRequestingVendor__c='Algeria';
+        pur.VPM_VendorPhone__c='1234567895';
+        //pur.VPM_Commodity__c=commodityCode.id;
+        pur.VPM_ZIPPostcode__c ='54132';
+        //pur.VPM_GlobalAuthorisationGroup__c='SCS-CAPEX AFR ASIA SEAA_VMBA CAPEX AAR';
+        pur.VPM_AdvancedFormSubmitted__c ='Yes';
+         pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
+         pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+         pur.VPM_BankDataValidationRequired__c=false;
+      pur.VPM_FinanceApprovalRequired__c=true;
+            pur.VPM_Rework__c='No';
+         pur.VPM_AdvancedFormSubmitted__c='Yes';
+         pur.VPM_BankDataValidationSubmitted__c='No';
+         pur.VPM_IsInApprovalProcess__c='';
+
+        insert pur;
+        
+        system.assert(pur.Id!=null,'Error');
+        pur.VPM_Commodity__c=commodityCode.id;
+        update pur;
+       VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
+               VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
+               VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
+               VPM_Commodity_Family__c,VPM_CRVT__c ,VPM_FreightSubmitted__c,VPM_FreightApprovalRequired__c,VPM_IsInApprovalProcess__c from VPM_PurchasingRequests__c  where id =: pur.id limit 1];
+       system.assertEquals(pur.VPM_Commodity__c,pur1.VPM_Commodity__c);
+        return pur1;    
+    }
+    
+     static testMethod void VPM_ApprovalMethodBank(){
+        
+         VPM_PurchasingRequests__c purId = TestDataBankApprovalMethod();
+       //  ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        // VPM_GoldenDataController2 goldenData = new VPM_GoldenDataController2(vendorDetail);
+         purId.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
+         purid.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+    	purId.VPM_BankDataValidationRequired__c=true;
+         List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+       purcReqlst.add(purId);
+       // VPM_ApprovalSubmit newApproval = new VPM_ApprovalSubmit();
+       VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+        
+    }
+    
+    static VPM_PurchasingRequests__c TestDataPositive1(){
+    
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+        
+        mdm_Vendors__c vendor = new mdm_Vendors__c();
+        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_City__c = 'Andorra';
+        vendor.mdm_Country__c ='DZ_Algeria';
+        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_ID__c = '1234';
+        insert vendor;
+        system.assert(vendor.Id!=null,'Error');
+        
+        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.ECC__c = 'U2K2';
+        companyCode.VPM_Country__c ='Algeria';
+        insert companyCode;
+        system.assert(companyCode.Id!=null,'Error');
+        
+         VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
+        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
+        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
+        commodityCode.Name='Ad-hoc Market Research - Qualitative';
+        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
+        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_Region__c='U2K2';
+          
+        insert commodityCode;
+        system.assert(commodityCode.Id!=null,'Error');
+        
+        VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
+        pur.VPM_ECC__c = 'U2K2';
+       // pur.VPM_ProvidedBankDetails__c = TRUE;
+        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_Status__c = 'Draft Request';
+        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_VendorCodeLookup__c =vendor.Id;
+        pur.recordTypeId=recordTypeId;
+        pur.VPM_CompanyCode__c=companyCode.Id;
+        pur.VPM_City__c='Test Street';
+        pur.VPM_Street1__c='Test Street';
+        pur.VPM_CountryRequestingVendor__c='Algeria';
+        pur.VPM_VendorPhone__c='1234567895';
+        pur.VPM_ZIPPostcode__c ='54132';
+        pur.VPM_AdvancedFormSubmitted__c ='Yes';
+        pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
+        pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+        pur.VPM_BankDataValidationRequired__c=false;
+        pur.VPM_FinanceApprovalRequired__c=true;        
+
+        insert pur;
+        
+        system.assert(pur.Id!=null,'Error');
+        pur.VPM_Rework__c='No';
+        pur.VPM_AdvancedFormSubmitted__c='Yes';
+        pur.VPM_ProcurementApprovalRequired__c = true;
+        pur.VPM_ProcurementSubmitted__c = 'No';
+        pur.VPM_IsInApprovalProcess__c='';
+        pur.VPM_Commodity__c=commodityCode.id;
+        update pur;
+       VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
+               VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
+               VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
+               VPM_Commodity_Family__c,VPM_CRVT__c ,VPM_FreightSubmitted__c,VPM_FreightApprovalRequired__c,VPM_IsInApprovalProcess__c from VPM_PurchasingRequests__c  where id =: pur.id limit 1];
+       system.assertEquals(pur.VPM_Commodity__c,pur1.VPM_Commodity__c);
+        return pur1;    
+    }
+    
+    static testMethod void positiveMethod1() {        
+        VPM_PurchasingRequests__c purId = TestDataPositive1();
+        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+        purcReqlst.add(purId);
+        VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+    }
+    
+    static VPM_PurchasingRequests__c TestDataPositive2(){
+    
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+        
+        mdm_Vendors__c vendor = new mdm_Vendors__c();
+        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_City__c = 'Andorra';
+        vendor.mdm_Country__c ='DZ_Algeria';
+        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_ID__c = '1234';
+        insert vendor;
+        system.assert(vendor.Id!=null,'Error');
+        
+        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.ECC__c = 'U2K2';
+        companyCode.VPM_Country__c ='Algeria';
+        insert companyCode;
+        system.assert(companyCode.Id!=null,'Error');
+        
+         VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
+        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
+        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
+        commodityCode.Name='Ad-hoc Market Research - Qualitative';
+        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
+        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_Region__c='U2K2';
+          
+        insert commodityCode;
+        system.assert(commodityCode.Id!=null,'Error');
+        
+        VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
+        pur.VPM_ECC__c = 'U2K2';
+       // pur.VPM_ProvidedBankDetails__c = TRUE;
+        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_Status__c = 'Draft Request';
+        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_VendorCodeLookup__c =vendor.Id;
+        pur.recordTypeId=recordTypeId;
+        pur.VPM_CompanyCode__c=companyCode.Id;
+        pur.VPM_City__c='Test Street';
+        pur.VPM_Street1__c='Test Street';
+        pur.VPM_CountryRequestingVendor__c='Algeria';
+        pur.VPM_VendorPhone__c='1234567895';
+        pur.VPM_ZIPPostcode__c ='54132';
+        pur.VPM_AdvancedFormSubmitted__c ='Yes';
+        pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
+        pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+        pur.VPM_BankDataValidationRequired__c=false;
+        pur.VPM_FinanceApprovalRequired__c=true;        
+
+        insert pur;
+        
+        system.assert(pur.Id!=null,'Error');
+        pur.VPM_Rework__c='No';
+        pur.VPM_AdvancedFormSubmitted__c='Yes';
+        pur.VPM_FreightApprovalRequired__c = true;
+        pur.VPM_FreightSubmitted__c = 'No';
+        pur.VPM_IsInApprovalProcess__c='';
+        pur.VPM_Commodity__c=commodityCode.id;
+        update pur;
+       VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
+               VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
+               VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
+               VPM_Commodity_Family__c,VPM_CRVT__c ,VPM_FreightSubmitted__c,VPM_FreightApprovalRequired__c,VPM_IsInApprovalProcess__c from VPM_PurchasingRequests__c  where id =: pur.id limit 1];
+       system.assertEquals(pur.VPM_Commodity__c,pur1.VPM_Commodity__c);
+        return pur1;    
+    }
+    
+    static testMethod void positiveMethod2() {        
+        VPM_PurchasingRequests__c purId = TestDataPositive2(); 
+        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+        purcReqlst.add(purId);
+        VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+    }
+	
+    static VPM_PurchasingRequests__c TestDataPositive3(){
+    
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+        
+        mdm_Vendors__c vendor = new mdm_Vendors__c();
+        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_City__c = 'Andorra';
+        vendor.mdm_Country__c ='DZ_Algeria';
+        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_ID__c = '1234';
+        insert vendor;
+        system.assert(vendor.Id!=null,'Error');
+        
+        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.ECC__c = 'U2K2';
+        companyCode.VPM_Country__c ='Algeria';
+        insert companyCode;
+        system.assert(companyCode.Id!=null,'Error');
+        
+         VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
+        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
+        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
+        commodityCode.Name='Ad-hoc Market Research - Qualitative';
+        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
+        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_Region__c='U2K2';
+          
+        insert commodityCode;
+        system.assert(commodityCode.Id!=null,'Error');
+        
+        VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
+        pur.VPM_ECC__c = 'U2K2';
+       // pur.VPM_ProvidedBankDetails__c = TRUE;
+        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_Status__c = 'Draft Request';
+        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_VendorCodeLookup__c =vendor.Id;
+        pur.recordTypeId=recordTypeId;
+        pur.VPM_CompanyCode__c=companyCode.Id;
+        pur.VPM_City__c='Test Street';
+        pur.VPM_Street1__c='Test Street';
+        pur.VPM_CountryRequestingVendor__c='Algeria';
+        pur.VPM_VendorPhone__c='1234567895';
+        pur.VPM_ZIPPostcode__c ='54132';
+        pur.VPM_AdvancedFormSubmitted__c ='Yes';
+        pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
+        pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+        pur.VPM_BankDataValidationRequired__c=false;
+        pur.VPM_FinanceApprovalRequired__c=true;        
+
+        insert pur;
+        
+        system.assert(pur.Id!=null,'Error');
+        pur.VPM_Rework__c='No';
+        pur.VPM_AdvancedFormSubmitted__c='Yes';
+        pur.VPM_FinanceApprovalRequired__c = true;
+        pur.VPM_RussianTaxApprovalRequired__c = true;
+        pur.VPM_BankDataValidationRequired__c = true;
+        pur.VPM_BankDataValidationSubmitted__c = 'No';
+        pur.VPM_IsInApprovalProcess__c='';
+        pur.VPM_Commodity__c=commodityCode.id;
+        update pur;
+       VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
+               VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
+               VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
+               VPM_Commodity_Family__c,VPM_CRVT__c ,VPM_FreightSubmitted__c,VPM_FreightApprovalRequired__c,VPM_IsInApprovalProcess__c from VPM_PurchasingRequests__c  where id =: pur.id limit 1];
+       system.assertEquals(pur.VPM_Commodity__c,pur1.VPM_Commodity__c);
+        return pur1;    
+    }
+    
+    static testMethod void positiveMethod3() {        
+        VPM_PurchasingRequests__c purId = TestDataPositive3(); 
+        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+        purcReqlst.add(purId);
+        VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+    }
+    
+    static VPM_PurchasingRequests__c TestDataPositive4(){
+    
+        string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id;
+        
+        mdm_Vendors__c vendor = new mdm_Vendors__c();
+        vendor.mdm_Code__c = '5001010';
+        vendor.mdm_City__c = 'Andorra';
+        vendor.mdm_Country__c ='DZ_Algeria';
+        vendor.mdm_Name1__c ='Test Sirius';
+        vendor.mdm_ID__c = '1234';
+        insert vendor;
+        system.assert(vendor.Id!=null,'Error');
+        
+        VPM_CompanyCode__c companyCode = new VPM_CompanyCode__c();
+        companyCode.VPM_CompanyCode__c = 'PH01';
+        companyCode.ECC__c = 'U2K2';
+        companyCode.VPM_Country__c ='Algeria';
+        insert companyCode;
+        system.assert(companyCode.Id!=null,'Error');
+        
+         VPM_CommodityCode__c commodityCode=new VPM_CommodityCode__c();
+        commodityCode.VPM_VendorType__c ='MBS_Marketing Business Services_G001';
+        commodityCode.VPM_AuthorisationGroup__c ='MBS--Marketing Services';
+        commodityCode.VPM_CommodityClass__c = 'Ad-hoc Research'; 
+        commodityCode.Name='Ad-hoc Market Research - Qualitative';
+        commodityCode.VPM_CommodityCode__c='5702 - UN01580115';
+        commodityCode.VPM_CommodityClass__c='Market Research';
+        commodityCode.VPM_Region__c='U2K2';
+          
+        insert commodityCode;
+        system.assert(commodityCode.Id!=null,'Error');
+        
+        VPM_PurchasingRequests__c pur = new VPM_PurchasingRequests__c();
+        pur.VPM_ECC__c = 'U2K2';
+       // pur.VPM_ProvidedBankDetails__c = TRUE;
+        pur.VPM_VendorName1__c ='Test User2';
+        pur.VPM_Status__c = 'Draft Request';
+        pur.VPM_AccountGroup__c ='ZGS1';
+        pur.VPM_VendorCodeLookup__c =vendor.Id;
+        pur.recordTypeId=recordTypeId;
+        pur.VPM_CompanyCode__c=companyCode.Id;
+        pur.VPM_City__c='Test Street';
+        pur.VPM_Street1__c='Test Street';
+        pur.VPM_CountryRequestingVendor__c='Algeria';
+        pur.VPM_VendorPhone__c='1234567895';
+        pur.VPM_ZIPPostcode__c ='54132';
+        pur.VPM_AdvancedFormSubmitted__c ='Yes';
+        pur.VPM_VendorType__c  = 'RCT_Russian Customs Tax Vendor_G001';
+        pur.VPM_GlobalAuthorisationGroup__c='3PM--3PM South & North Asia & SEAA_VMBA 3PM Asia SEAA';
+        pur.VPM_BankDataValidationRequired__c=false;
+        pur.VPM_FinanceApprovalRequired__c=true;        
+
+        insert pur;
+        
+        system.assert(pur.Id!=null,'Error');
+        pur.VPM_Rework__c='No';
+        pur.VPM_AdvancedFormSubmitted__c='Yes';
+        pur.VPM_FinanceApprovalRequired__c = true;
+        pur.VPM_RussianTaxApprovalRequired__c = true;
+        pur.VPM_RussiaSubmitted__c = 'No';
+        pur.VPM_IsInApprovalProcess__c='';
+        pur.VPM_Commodity__c=commodityCode.id;
+        update pur;
+       VPM_PurchasingRequests__c  pur1 = [select VPM_Commodity__c,VPM_VendorType__c,VPM_Country__c,VPM_AccountGroup__c,VPM_ReconciliationAccount__c ,VPM_DeletionBlockFlag__c,
+               VPM_BankCountryKey__c ,VPM_PaymentTerms__c ,VPM_AdvancedFormSubmitted__c ,VPM_GlobalAuthorisationGroup__c,VPM_ZIPPostcode__c ,VPM_VendorPhone__c, 
+               VPM_CountryRequestingVendor__c,VPM_Street1__c,VPM_CompanyCode__c,recordTypeId,VPM_VendorCodeLookup__c ,VPM_Status__c ,VPM_ECC__c ,VPM_VendorName1__c ,
+               VPM_Commodity_Family__c,VPM_CRVT__c ,VPM_FreightSubmitted__c,VPM_FreightApprovalRequired__c,VPM_IsInApprovalProcess__c from VPM_PurchasingRequests__c  where id =: pur.id limit 1];
+       system.assertEquals(pur.VPM_Commodity__c,pur1.VPM_Commodity__c);
+        return pur1;    
+    }
+    
+    static testMethod void positiveMethod4() {        
+        VPM_PurchasingRequests__c purId = TestDataPositive4(); 
+        List<VPM_PurchasingRequests__c> purcReqlst = new List<VPM_PurchasingRequests__c>();
+        purcReqlst.add(purId);
+        VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
+    }
+ 	 
 }
