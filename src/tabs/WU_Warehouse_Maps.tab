@@ -3,5 +3,5 @@
     <label>Warehouse Maps</label>
     <mobileReady>false</mobileReady>
     <motif>Custom70: Handsaw</motif>
-    <page>WarehouseGoogleMaps</page>
+    <page>WU_WarehouseGoogleMaps</page>
 </CustomTab>
