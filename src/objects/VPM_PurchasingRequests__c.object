@@ -7677,13 +7677,12 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <description>VPM - This field is used to store the value of Exemption Rate allowed to the the vendor.</description>
         <externalId>false</externalId>
         <label>Exemption Rate</label>
-        <precision>6</precision>
+        <length>6</length>
         <required>false</required>
-        <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -16429,7 +16428,6 @@ VPM_Approver10__c = $User.Id))
         <label>SAP BPM RequestID</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-		<startingNumber>5000000</startingNumber>
         <type>AutoNumber</type>
     </fields>
     <fields>
