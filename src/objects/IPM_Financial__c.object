@@ -2409,7 +2409,7 @@ IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
         <fullName>Red_Validation_Cells_Global__c</fullName>
         <externalId>false</externalId>
         <label>Red Validation Cells Global</label>
-        <length>32768</length>
+        <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2431,7 +2431,7 @@ IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
         <fullName>Red_Validation_Cells_Regional__c</fullName>
         <externalId>false</externalId>
         <label>Red Validation Cells Regional</label>
-        <length>32768</length>
+        <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3172,7 +3172,7 @@ IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
         <fullName>Yellow_Validation_Cells_Global__c</fullName>
         <externalId>false</externalId>
         <label>Yellow Validation Cells Global</label>
-        <length>32768</length>
+        <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3194,7 +3194,7 @@ IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
         <fullName>Yellow_Validation_Cells_Regional__c</fullName>
         <externalId>false</externalId>
         <label>Yellow Validation Cells Regional</label>
-        <length>32768</length>
+        <length>131072</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

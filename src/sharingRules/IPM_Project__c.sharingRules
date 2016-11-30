@@ -10,7 +10,7 @@
         <criteriaItems>
             <field>IPM_Category_Text__c</field>
             <operation>equals</operation>
-            <value>Dressing</value>
+            <value>Dressings</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>

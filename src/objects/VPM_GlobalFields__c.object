@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>VPM - This store all fields which are Global based on ECC</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>VPM_Fieldtype__c</fullName>
+        <description>VPM - This field store value which specifies whether field is Global Or regional based on ECC</description>
+        <externalId>false</externalId>
+        <label>VPM_Fieldtype</label>
+        <length>50</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_apiName__c</fullName>
+        <description>VPM - This field stores API name of all Global fields</description>
+        <externalId>false</externalId>
+        <label>VPM_apiName</label>
+        <length>50</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_fieldValue__c</fullName>
+        <description>VPM - This field store all Global fields</description>
+        <externalId>false</externalId>
+        <label>VPM_fieldValue</label>
+        <length>50</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>VPM_GlobalFields</label>
+    <visibility>Public</visibility>
+</CustomObject>

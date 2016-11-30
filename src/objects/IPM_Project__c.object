@@ -1119,7 +1119,7 @@ IF(IPM_Category_Text__c = &apos;Deodorants &amp; Fragrances&apos; || IPM_Categor
 IMAGE(&apos;/resource/IPM_Resource/images/category_deo.png&apos;,&apos;DEO&apos;,21,21), 
 IF(IPM_Category_Text__c = &apos;Dressings&apos; || IPM_Category_Text__c = &apos;DRESSINGS&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_dressings.png&apos;,&apos;DRESSINGS&apos;,21,21), 
-IF(IPM_Category_Text__c = &apos;Hair&apos; || IPM_Category_Text__c = &apos;HAIR&apos;, 
+IF(IPM_Category_Text__c = &apos;Hair Care&apos; || IPM_Category_Text__c = &apos;HAIR CARE&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_hair.png&apos;,&apos;HAIR&apos;,21,21), 
 IF(IPM_Category_Text__c = &apos;Home Care&apos; || IPM_Category_Text__c = &apos;HOME CARE&apos; , 
 IMAGE(&apos;/resource/IPM_Resource/images/category_homecare.png&apos;,&apos;HOMECARE&apos;,21,21), 

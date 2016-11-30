@@ -167,6 +167,8 @@ public class AF_Constants
     public static final String AF_BRAND_DELIM='--Brand--';
     public static final String AF_Agency_DELIM='--Agency--';
     public static final String AF_COUNTRY_DELIM='--Country--';
+    Public static final string AF_Digital_Delim='::D';
+    Public static final string AF_Adaption_Delim='::A';
     /*Page Reference*/
     public static final String CLOSE_REFRESH='/apex/AF_CloseAndRefresh?IsError=true';
     public static final String ADD_COMMENT='/apex/AF_AddComment?Id=';
