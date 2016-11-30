@@ -109,24 +109,6 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
-        <fullName>Sharing_rules_for_UK_SO</fullName>
-        <accessLevel>Read</accessLevel>
-        <accountSettings>
-            <caseAccessLevel>None</caseAccessLevel>
-            <contactAccessLevel>Read</contactAccessLevel>
-            <opportunityAccessLevel>None</opportunityAccessLevel>
-        </accountSettings>
-        <label>Sharing rules for UK SO</label>
-        <sharedTo>
-            <group>UK_SO</group>
-        </sharedTo>
-        <criteriaItems>
-            <field>UL_Sales_Organization__c</field>
-            <operation>equals</operation>
-            <value>UK SO</value>
-        </criteriaItems>
-    </sharingCriteriaRules>
-    <sharingCriteriaRules>
         <fullName>UL_Sharing_rules_for_Argentina_SO</fullName>
         <accessLevel>Read</accessLevel>
         <accountSettings>
@@ -179,9 +161,25 @@
             <operation>equals</operation>
             <value>CL03</value>
         </criteriaItems>
+    </sharingCriteriaRules>    
+    <sharingCriteriaRules>
+        <fullName>Sharing_rules_for_UK_SO</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sharing rules for UK SO</label>
+        <sharedTo>
+            <group>UK_SO</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>UK SO</value>
+        </criteriaItems>
     </sharingCriteriaRules>
-</SharingRules>
-    
     <sharingOwnerRules>
         <fullName>Market_Equals_ANZ_Manager</fullName>
         <accessLevel>Edit</accessLevel>
