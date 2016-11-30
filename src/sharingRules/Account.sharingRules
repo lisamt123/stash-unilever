@@ -126,6 +126,62 @@
             <value>UK SO</value>
         </criteriaItems>
     </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Sharing_rules_for_Argentina_SO</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sharing rules for Argentina SO</label>
+        <sharedTo>
+            <group>Argentina_SO</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>AR01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Sharing_rules_for_Chile_HPF_SO</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sharing rules for Chile HPF SO</label>
+        <sharedTo>
+            <group>Chile_HPF_SO</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>CL01</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>UL_Sharing_rules_for_Chile_Ice_Cream_SO</fullName>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>None</opportunityAccessLevel>
+        </accountSettings>
+        <label>Sharing rules for Chile Ice Cream SO</label>
+        <sharedTo>
+            <group>Chile_Ice_Cream_SO</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>UL_Sales_Organization__c</field>
+            <operation>equals</operation>
+            <value>CL03</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>
+    
     <sharingOwnerRules>
         <fullName>Market_Equals_ANZ_Manager</fullName>
         <accessLevel>Edit</accessLevel>
