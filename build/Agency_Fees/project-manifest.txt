@@ -2,6 +2,8 @@ src
 src/classes
 src/classes/AF_middlebonusmatrix.cls
 src/classes/AF_middlebonusmatrix.cls-meta.xml
+src/classes/AF_BrandEstimateRemote_Test.cls
+src/classes/AF_BrandEstimateRemote_Test.cls-meta.xml
 src/classes/TriggerFactory.cls
 src/classes/TriggerFactory.cls-meta.xml
 src/classes/AF_Bonus_SummaryHandler.cls
@@ -126,3 +128,4 @@ src/triggers
 src/triggers/AF_Bonus_SummaryTrigger.trigger
 src/triggers/AF_Bonus_SummaryTrigger.trigger-meta.xml
 src
+    

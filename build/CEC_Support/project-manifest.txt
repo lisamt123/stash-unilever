@@ -1,9 +1,3 @@
 src
-src/pages
-src/staticresources
-src/pages/CEC_PreChatFormDutch.page
-src/pages/CEC_PreChatFormDutch.page-meta.xml
-src/staticresources/CEC_ChatOfflineConimexNetherlandsDutch.resource
-src/staticresources/CEC_ChatOfflineConimexNetherlandsDutch.resource-meta.xml
-src/staticresources/CEC_ChatOnlineConimexNetherlandsDutch.resource
-src/staticresources/CEC_ChatOnlineConimexNetherlandsDutch.resource-meta.xml
+src/assignmentRules
+src/assignmentRules/Case.assignmentRules

@@ -588,7 +588,7 @@
             </criteriaItems>
         </ruleEntry>
         <ruleEntry>
-            <assignedTo>CEC_North_America_Creative_Solutions</assignedTo>
+            <assignedTo>CEC_North_America_Queue</assignedTo>
             <assignedToType>Queue</assignedToType>
             <criteriaItems>
                 <field>Case.Origin</field>
