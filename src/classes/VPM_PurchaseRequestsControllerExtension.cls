@@ -108,7 +108,7 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
       ApexPages.StandardSetController GstdControllerSet; 
     
         public VPM_PurchaseRequestsControllerExtension (ApexPages.StandardSetController stdSet) {
-        try{
+        //try{
           GstdControllerSet =stdSet;
           recId = stdSet.getRecord().Id; 
           commodityApproverId = UserInfo.getUserId();
@@ -124,8 +124,8 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
           isRussian = false;
           isFreight = false;
           this.checkUser() ;
-        }
-        catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());}
+        //}
+        //catch(exception ex){system.debug(STR_CONST_EXCEPTIONDEBUGMSG +  ex.getstacktracestring());}
     }
       public VPM_PurchaseRequestsControllerExtension (ApexPages.StandardController stdController) {
           try{
@@ -942,7 +942,8 @@ global with sharing class  VPM_PurchaseRequestsControllerExtension {
                        // callJSfunc='<script> Alert(); </script>';
                         VendorDetailList[0].VPM_BusinessRequestorSubmitted__c=STR_CONST_YES; 
                         VendorDetailList[0].VPM_Rework__c='No'; 
-                        VendorDetailList[0].VPM_RequestLastWithGroup__c='Business Requestor'; 
+                        VendorDetailList[0].VPM_RequestLastWithGroup__c=STR_CONST_BUSREQ; 
+                      	VendorDetailList[0].VPM_RequestFromFLSOrBR__c=STR_CONST_BUSREQ;
                         update VendorDetailList;
                         callJavaScriptAlert='<script> PageReload(); </script>';
                  }
