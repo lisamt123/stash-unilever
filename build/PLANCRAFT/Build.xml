@@ -58,6 +58,13 @@
       <runTest>PBS_MyProfileController_test</runTest>
 	  <runTest>PBS_AccessController_Test</runTest>
 	  <runTest>PBS_QuizViewer_Test</runTest>
+	  <runTest>PBS_TrainingTrackDetailCtrl_Test</runTest>
+	  <runTest>PBS_TrainingTracksController_Test</runTest>
+	  
+	  
+  
+ 
+
 	  
 	  
       
