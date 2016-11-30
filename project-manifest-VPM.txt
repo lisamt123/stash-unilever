@@ -6592,7 +6592,7 @@ src/groups/VPM_Procurement.group
 src/groups/VPM_RussianCustomTax.group
 src/groups/VPM_VendorRequestReports.group
 src/labels
-src/labels/CustomLabels.labels
+src/labels/VPM.labels
 src/layouts
 src/layouts/mdm_Vendors__c-Vendor Layout.layout
 src/layouts/VPM_CommodityApprover__c-Commodity Approver Layout.layout
