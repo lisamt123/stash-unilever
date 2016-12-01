@@ -95,7 +95,7 @@ private class PBS_TrainingTracksController_Test{
 
             System.runAs(lmsUsers.get(0)){
                 PBS_TrainingTracksController_CC cont = new PBS_TrainingTracksController_CC();
-                System.assertEquals(4,cont.tTracks.size());
+                System.assertEquals(0,cont.tTracks.size());
             }
 
         Test.stopTest();

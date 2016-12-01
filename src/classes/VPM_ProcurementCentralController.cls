@@ -317,7 +317,7 @@ without sharing public class VPM_ProcurementCentralController{
         List<VPM_CommodityApprover__c> commAppList = new List<VPM_CommodityApprover__c>();
         if(oldUser != null){
             commAppList = [SELECT id, VPM_Approver1__c , VPM_Approver2__c,VPM_Approver3__c,VPM_Approver4__c,VPM_Approver5__c,
-                                   VPM_Approver6__c,VPM_Approver7__c,VPM_ConfiguredApprovers__c,VPM_Approver8__c,VPM_Approver9__c,
+                                   VPM_Approver6__c,VPM_Approver7__c,VPM_ConfiguredApprovers__c, VPM_Approver8__c,VPM_Approver9__c,
                                    VPM_Approver10__c,VPM_CommodityClass__c 
                            FROM VPM_CommodityApprover__c 
                            WHERE VPM_Approver1__c =: oldUser OR VPM_Approver2__c =: oldUser OR VPM_Approver3__c =: oldUser OR VPM_Approver4__c =: oldUser
@@ -423,7 +423,7 @@ without sharing public class VPM_ProcurementCentralController{
          List<VPM_CommodityApprover__c> commAppList =new List<VPM_CommodityApprover__c>();
          if(oldUser==null)
          {
-             commAppList = [SELECT id, VPM_ConfiguredApprovers__c, VPM_Approver1__c ,VPM_Approver1__r.Name , VPM_Approver2__c,VPM_Approver2__r.Name,VPM_Approver3__c,VPM_Approver3__r.Name,VPM_Approver4__r.Name,VPM_Approver4__c,VPM_Approver5__c,VPM_Approver5__r.Name,
+             commAppList = [SELECT id, VPM_ConfiguredApprovers__c,VPM_Code__c,VPM_Country__c, VPM_Approver1__c ,VPM_Approver1__r.Name , VPM_Approver2__c,VPM_Approver2__r.Name,VPM_Approver3__c,VPM_Approver3__r.Name,VPM_Approver4__r.Name,VPM_Approver4__c,VPM_Approver5__c,VPM_Approver5__r.Name,
                                    VPM_Approver6__c,VPM_Approver6__r.Name,VPM_Approver7__c,VPM_Approver7__r.Name,VPM_Approver8__c,VPM_Approver8__r.Name,VPM_Approver9__c,VPM_Approver9__r.Name,VPM_Approver10__c,VPM_Approver10__r.Name,VPM_CommodityClass__c 
                             FROM VPM_CommodityApprover__c 
                             WHERE  VPM_Country__c =: country AND (VPM_Approver1__c !=: newUser AND VPM_Approver2__c !=: newUser 
@@ -434,7 +434,7 @@ without sharing public class VPM_ProcurementCentralController{
                                                    
          }else
          {
-            commAppList = [SELECT id, VPM_ConfiguredApprovers__c, VPM_Approver1__c ,VPM_Approver1__r.Name , VPM_Approver2__c,VPM_Approver2__r.Name,VPM_Approver3__c,VPM_Approver3__r.Name,VPM_Approver4__r.Name,VPM_Approver4__c,VPM_Approver5__c,VPM_Approver5__r.Name,
+            commAppList = [SELECT id, VPM_ConfiguredApprovers__c,VPM_Code__c,VPM_Country__c, VPM_Approver1__c ,VPM_Approver1__r.Name , VPM_Approver2__c,VPM_Approver2__r.Name,VPM_Approver3__c,VPM_Approver3__r.Name,VPM_Approver4__r.Name,VPM_Approver4__c,VPM_Approver5__c,VPM_Approver5__r.Name,
                                    VPM_Approver6__c,VPM_Approver6__r.Name,VPM_Approver7__c,VPM_Approver7__r.Name,VPM_Approver8__c,VPM_Approver8__r.Name,VPM_Approver9__c,VPM_Approver9__r.Name,VPM_Approver10__c,VPM_Approver10__r.Name,VPM_CommodityClass__c 
                            FROM VPM_CommodityApprover__c 
                            WHERE  VPM_Approver1__c =: oldUser OR VPM_Approver2__c =: oldUser OR VPM_Approver3__c =: oldUser OR VPM_Approver4__c =: oldUser
