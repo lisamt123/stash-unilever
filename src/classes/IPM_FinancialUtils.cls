@@ -83,7 +83,7 @@ public with sharing class IPM_FinancialUtils
     
     
     
-    * @description  Used for Updating volume Information from Fiancial to Financial Records.
+    /* @description  Used for Updating volume Information from Fiancial to Financial Records.
                      
     * @param financialDetail        Financial Record
     * @param newVolumeType          changed Volume Type
