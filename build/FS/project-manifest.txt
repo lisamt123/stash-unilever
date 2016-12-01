@@ -1,7 +1,9 @@
 src
-src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
-src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
-src/permissionsets/FS_Sales_Rep.permissionset
-src/permissionsets/FS_NA_Non_DDM.permissionset
-src/profiles/Unilever Food Solution - NA.profile
+src/permissionsets
+src/permissionsets/FS_Admin.permissionset
+src/objects
 src/objects/OpportunityLineItem.object
+src/layouts
+src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
+src/workflows
+src/workflows/OpportunityLineItem.workflow

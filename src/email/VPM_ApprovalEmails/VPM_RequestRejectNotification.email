@@ -11,7 +11,7 @@ request has been rejected, if required a new request has to be opened.<o:p></o:p
      &quot;Times New Roman&quot;">Date Rejected: {!Today()}<o:p></o:p></span></li>
  <li class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
      &quot;Times New Roman&quot;">Comments:&nbsp;{!ApprovalRequest.Comments}<o:p></o:p></span></li>
- <li class="MsoNormal"><font face="Arial, sans-serif"><span style="font-size: 12pt;">ECC&nbsp;Vendor Code: </span>{!VPM_PurchasingRequests__c.VPM_EmailCompanyCode__c}</font></li>
+ <li class="MsoNormal"><font face="Arial, sans-serif" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size: 12pt;">ECC&nbsp;Vendor Code:&nbsp;</span></font><font face="Arial, sans-serif">{!VPM_PurchasingRequests__c.VPM_VendorCode__c}</font></li>
  <li class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
      &quot;Times New Roman&quot;">Vendor Name:{!VPM_PurchasingRequests__c.VPM_VendorName1__c}</span><span style="font-size:9.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
      &quot;Times New Roman&quot;"><o:p></o:p></span></li><li class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;">Country:&nbsp;</span><font face="Arial, sans-serif">{!VPM_PurchasingRequests__c.VPM_Country__c}</font></li>
