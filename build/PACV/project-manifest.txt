@@ -42,6 +42,7 @@ src/staticresources/PACVStaticResource.resource
 src/staticresources/PACVStaticResource.resource-meta.xml
 src/layouts
 src/layouts/PACV_Answers__c-PACV Answer Layout.layout
+src/layouts/PACV_Case_Study__c-Case Study Layout.layout
 src/layouts/PACV_Questions__c-PACV Question Layout.layout
 src/layouts/PACV_Responses__c-PACV Response Layout.layout
 src/layouts/PACV_Risk_Assessment__c-PACV Risk Assessment Layout.layout
