@@ -3,10 +3,19 @@
 *@Description :     To test WU_WarehouseSearchController Class.
 *************************************************************/
     
-    @isTest 
+    @isTest(SeeAlldata=false)
 private class WU_SetWareHousePOCHandlerTest {
     static testMethod void onBeforeTest() {
-
+        test.startTest();
+        // test.startTest();
+        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
+          User u = new User(Alias = 'standt', Email='standarduser@testorg.com', 
+            EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US', 
+            LocaleSidKey='en_US', ProfileId = p.Id, 
+            TimeZoneSidKey='America/Los_Angeles', UserName='test@dummy1.com');
+          insert u;
+           System.runAs(u)
+           {
        list<WU_Master_Warehouse__c>masterWareHouseList = new list<WU_Master_Warehouse__c>();
        map<Id,WU_Master_Warehouse__c>masterWarehouseMap = new map<Id,WU_Master_Warehouse__c>();
       
@@ -16,10 +25,6 @@ private class WU_SetWareHousePOCHandlerTest {
        masterWareHouseList.add(masterWareHouse);
          masterWareHouseList.add(masterWareHouse1);
         
-               
-            test.startTest();
-        
-           
            insert masterWareHouseList; 
             for(WU_Master_Warehouse__c wmw:masterWareHouseList){
             wmw.WU_WarehousePOC_Email__c='tserst123@xze.com';
@@ -31,17 +36,12 @@ private class WU_SetWareHousePOCHandlerTest {
            WU_SetWarehousePOCHandler.sendApprovalEmailSecPOC(masterWareHouseList);
            //masterWarehouseMap.put(masterWareHouse.Id,masterWareHouse);
            //WU_SetWarehousePOCHandler.onBeforeInsert(masterWareHouseList,masterWarehouseMap);
-            Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
-          User u = new User(Alias = 'standt', Email='standarduser@testorg.com', 
-            EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US', 
-            LocaleSidKey='en_US', ProfileId = p.Id, 
-            TimeZoneSidKey='America/Los_Angeles', UserName='test@dummy1.com');
-          insert u;
-       test.stopTest();
+           
        system.debug('masterWareHouseList-->'+masterWareHouseList);
         
         
-           
+    
+           }  
     }
         
         
@@ -91,4 +91,5 @@ private class WU_SetWareHousePOCHandlerTest {
    
         
 }
+    
 }
