@@ -567,6 +567,11 @@ public class IPM_FinancialControllerGKM3_Test {
                  ipmFinCon.getRenderMapGlobal();
                  
                  System.assertEquals(ipmFinCon.getRenderMapGlobal(),true,'Map not Rendered on global');
+                 
+                 List<IPM_Financial_Year__c> listFinYr = [select id from IPM_Financial_Year__c where Financial_External_Id__c =: globFin.Financial_External_Id__c ];
+                 delete listFinYr; 
+                 
+                 delete globFin; 
               
               Test.stopTest();
                 
