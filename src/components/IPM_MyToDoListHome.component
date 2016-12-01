@@ -98,20 +98,20 @@
                                         <apex:commandButton status="oTasksStatus" reRender="overduePanel,overduePagination,overduePanel"
                                             value="<<" action="{!setCon.first}"
                                             disabled="{!!setCon.hasPrevious}" title="First Page"
-                                            styleClass="proMytodoArrows {!If(hasPrevious,'proMytodoActive','proMytodoNotActive')}" />
+                                            styleClass="proMytodoArrows {!If(setCon.hasPrevious,'proMytodoActive','proMytodoNotActive')}" />
                                         <apex:commandButton status="oTasksStatus" reRender="overduePanel,overduePagination,overduePanel"
                                             value="<" action="{!setCon.previous}"
                                             disabled="{!!setCon.hasPrevious}" title="Previous Page"
-                                            styleClass="proMytodoArrows {!If(hasPrevious,'proMytodoActive','proMytodoNotActive')}" />
+                                            styleClass="proMytodoArrows {!If(setCon.hasPrevious,'proMytodoActive','proMytodoNotActive')}" />
                                         <span class="paginationLink proMytodoPagination"> Page {!setCon.pageNumber} of {!totalpages}</span>
                                         <apex:commandButton status="oTasksStatus" reRender="overduePanel,overduePagination,overduePanel"
                                             value=">" action="{!setCon.next}"
                                             disabled="{!!setCon.hasNext}" title="Next Page"
-                                            styleClass="proMytodoArrows {!If(hasNext,'proMytodoActive','proMytodoNotActive')}" />
+                                            styleClass="proMytodoArrows {!If(setCon.hasNext,'proMytodoActive','proMytodoNotActive')}" />
                                         <apex:commandButton status="oTasksStatus" reRender="overduePanel,overduePagination,overduePanel"
                                             value=">>" action="{!setCon.last}"
                                             disabled="{!!setCon.hasNext}" title="Last Page"
-                                            styleClass="proMytodoArrows {!If(hasNext,'proMytodoActive','proMytodoNotActive')}" />
+                                            styleClass="proMytodoArrows {!If(setCon.hasNext,'proMytodoActive','proMytodoNotActive')}" />
                                         <apex:outputPanel styleClass="pgFetch">
                                             <apex:actionStatus id="oTasksStatus" startText="Fetching..."
                                                 stopText="" />

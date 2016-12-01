@@ -4650,4 +4650,4 @@
         <enabled>true</enabled>
         <name>ViewPublicDashboards</name>
     </userPermissions>
-</PermissionSet>
+</PermissionSet> 

@@ -6,6 +6,26 @@
         <ccEmails>bhaskar.reddy2@cognizant.com</ccEmails>
         <description>AF_Email_To_Agency_ReadyForPO</description>
         <protected>false</protected>
+        <recipients>
+            <field>AF_AgencyUser1__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUser2__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUser3__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUser4__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUser5__c</field>
+            <type>email</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>Agency_Fees/AF_Email_To_Agency_ReadyForPO</template>
     </alerts>
@@ -15,6 +35,10 @@
         <ccEmails>bhaskar.reddy2@cognizant.com</ccEmails>
         <description>AF_Email_To_BonusApprover_PendingApproval</description>
         <protected>false</protected>
+        <recipients>
+            <field>AF_Approver1__c</field>
+            <type>userLookup</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>Agency_Fees/AF_Email_To_BonusApprover_PendingApproval</template>
     </alerts>
@@ -24,6 +48,46 @@
         <ccEmails>bhaskar.reddy2@cognizant.com</ccEmails>
         <description>AF_Email_To_CF_OnRejection</description>
         <protected>false</protected>
+        <recipients>
+            <field>AF_Cat_Finance_10__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_1__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_2__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_3__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_4__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_5__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_6__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_7__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_8__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_9__c</field>
+            <type>userLookup</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>Agency_Fees/AF_Email_To_CF_OnRejection</template>
     </alerts>
@@ -33,6 +97,46 @@
         <ccEmails>bhaskar.reddy2@cognizant.com</ccEmails>
         <description>AF_Email_To_CF_ReadyForPO</description>
         <protected>false</protected>
+        <recipients>
+            <field>AF_Cat_Finance_10__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_1__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_2__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_3__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_4__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_5__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_6__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_7__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_8__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_Cat_Finance_9__c</field>
+            <type>userLookup</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>Agency_Fees/AF_Email_To_CF_ReadyForPO</template>
     </alerts>
@@ -42,6 +146,26 @@
         <ccEmails>bhaskar.reddy2@cognizant.com</ccEmails>
         <description>AF_Email_To_CMCO_PendingSubmission</description>
         <protected>false</protected>
+        <recipients>
+            <field>AF_CMCO1__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_CMCO2__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_CMCO3__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_CMCO4__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>AF_CMCO5__c</field>
+            <type>userLookup</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>Agency_Fees/AF_Email_To_CMCO_PendingSubmission</template>
     </alerts>

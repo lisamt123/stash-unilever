@@ -38,7 +38,7 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
     
      // created by Nag for R001.001.001
     public string workLevel{get;set;}
-    
+    public PBS_Profile__c Profilenew;
     public List<PBS_Standard_Job_Profile__c> JobProfileOptions;
     public List<AchievementTypeWrapper> getAchievementTypes(){
         List<AchievementTypeWrapper> results = new List<AchievementTypeWrapper>();
@@ -52,9 +52,20 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
         }
         return results;
     }
-
+    public List<string> workleveloptionsnew= new list<string>();
     public PBS_MyProfileController_CC(){
-        worklevel='Guest';
+    
+     
+        workleveloptionsnew=PBS_ProfileService.getPicklistOptions('PBS_Profile__c', 'Work_Level__c', false);
+        Profilenew= new PBS_Profile__c();
+        Profilenew=PBS_ProfileService.getCurrentUserProfile();
+        for(string s: workleveloptionsnew){
+                if(s==Profilenew.Work_Level__c ){
+                    worklevel=Profilenew.Work_Level__c;
+                }
+                
+        }
+        
         totalAchievements = 0;
         profileUserId = ApexPages.currentPage().getParameters().get('id');
         String chatterPageUserId = ApexPages.currentPage().getParameters().get('sfdc.userId');
@@ -228,8 +239,9 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
 
     public List<String> getWorkLevelOptions()
      {
-        
+       
         return PBS_ProfileService.getPicklistOptions('PBS_Profile__c', 'Work_Level__c', false);
+        
     }
    
     
@@ -239,7 +251,7 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
     }
 
     public List<PBS_Standard_Job_Profile__c> getJobProfileOptions()
-    {        
+    {   
         List<PBS_Standard_Job_Profile__c> jobprofileOptionsnew = new List<PBS_Standard_Job_Profile__c>(); 
         system.debug('@@@Worklevel'+worklevel);
         for(PBS_Standard_Job_Profile__c psp: [SELECT Id, Name  FROM PBS_Standard_Job_Profile__c  ORDER BY Name limit:integer.valueof(System.Label.PBS_soqllimit)]){
@@ -278,22 +290,23 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
     }
 
     @RemoteAction
-    global static boolean storeUserProfile(String geography, String WorkLevel, Id UserRoleId, String category, String Buddy)
+    global static boolean storeUserProfile(String geography, String WorkLevelnew, Id UserRoleId, String category, String Buddy)
     {
         PBS_Profile__c profile = PBS_ProfileService.getCurrentUserProfile();
         profile.Geography__c   = geography;
-        profile.Work_Level__c  = WorkLevel;
+        profile.Work_Level__c  = WorkLevelnew;
         profile.User_Role__c   = UserRoleId;
         profile.Category__c    = category;
         profile.Buddy__c       = Buddy;
         //To update Userinfo
-        updateUserDetails(profile.Geography__c,profile.Work_Level__c,profile.User_Role__c,profile.Category__c);
         upsert profile;
+        updateUserDetails(profile.Geography__c,profile.Work_Level__c,profile.User_Role__c,profile.Category__c);
+        
         return true;
     }
     
     //Used to Update UserInfo
-    global static boolean updateUserDetails(String geography, String WorkLevel, id UserRoleId, String category)
+    global static boolean updateUserDetails(String geography, String WorkLevelnew, id UserRoleId, String category)
     {
     
     List<User> userList = [
@@ -305,15 +318,17 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
                 User.Id = :UserInfo.getUserId()
             LIMIT 1
         ];
-        List<PBS_Standard_Job_Profile__c> userRoleList = [SELECT Name FROM PBS_Standard_Job_Profile__c WHERE id=:UserRoleId];
+        //List<PBS_Standard_Job_Profile__c> userRoleList = [SELECT Name FROM PBS_Standard_Job_Profile__c WHERE id=:UserRoleId];
+        PBS_Standard_Job_Profile__c userRoleList = [SELECT Name FROM PBS_Standard_Job_Profile__c WHERE id=:UserRoleId];
         for(User user: userList){
         user.Geography__c   = geography;
-        user.Work_Level__c  = WorkLevel;
-        for(PBS_Standard_Job_Profile__c userRole : userRoleList ){
-        user.User_Role__c   = userRole.Name;
-        } 
+        user.Work_Level__c  = WorkLevelnew;
+       // for(PBS_Standard_Job_Profile__c userRole : userRoleList ){
+        user.User_Role__c  =userRoleList.Name; //= userRole.Name;
+        //} 
         user.PC_Category__c = category;
         }
+        
         update userList;
         return true;
     }
