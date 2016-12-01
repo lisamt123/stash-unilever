@@ -14,6 +14,14 @@ private class WU_SetWareHousePOCHandlerTest {
             LocaleSidKey='en_US', ProfileId = p.Id, 
             TimeZoneSidKey='America/Los_Angeles', UserName='test@dummy1.com');
           insert u;
+        
+        PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'WU_Warehouse_Admin'];
+       
+        // Assign the above inserted user for the above Permission Set.
+        PermissionSetAssignment psa = new PermissionSetAssignment();
+        psa.AssigneeId = u.Id;
+        psa.PermissionSetId = ps.Id;
+        insert psa;
            System.runAs(u)
            {
        list<WU_Master_Warehouse__c>masterWareHouseList = new list<WU_Master_Warehouse__c>();

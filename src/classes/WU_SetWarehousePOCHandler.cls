@@ -8,7 +8,7 @@ public without sharing class WU_SetWarehousePOCHandler
     public static Boolean isInserted = false;
     private static Map<string, User> userMap=new Map<string, User>();
     
-    private WU_SetWarehousePOCHandler() {}
+    @Testvisible private WU_SetWarehousePOCHandler() {}
     public static void onBeforeInsert(List<WU_Master_Warehouse__c> InsertedItems, Map<Id, WU_Master_Warehouse__c> itemMap) {
     
         isInserted = false;
