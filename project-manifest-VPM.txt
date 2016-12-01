@@ -1112,6 +1112,12 @@ src/customMetadata/VPM_PaymentMethods.IT_910.md
 src/customMetadata/VPM_PaymentMethods.IT_911.md
 src/customMetadata/VPM_PaymentMethods.IT_912.md
 src/customMetadata/VPM_PaymentMethods.IT_913.md
+src/customMetadata/VPM_PaymentMethods.JP_1389.md
+src/customMetadata/VPM_PaymentMethods.JP_1390.md
+src/customMetadata/VPM_PaymentMethods.JP_1391.md
+src/customMetadata/VPM_PaymentMethods.JP_1392.md
+src/customMetadata/VPM_PaymentMethods.JP_1393.md
+src/customMetadata/VPM_PaymentMethods.JP_1394.md
 src/customMetadata/VPM_PaymentMethods.JP_264.md
 src/customMetadata/VPM_PaymentMethods.JP_265.md
 src/customMetadata/VPM_PaymentMethods.JP_266.md
@@ -1120,6 +1126,12 @@ src/customMetadata/VPM_PaymentMethods.JP_268.md
 src/customMetadata/VPM_PaymentMethods.JP_269.md
 src/customMetadata/VPM_PaymentMethods.JP_270.md
 src/customMetadata/VPM_PaymentMethods.JP_271.md
+src/customMetadata/VPM_PaymentMethods.JP_914.md
+src/customMetadata/VPM_PaymentMethods.JP_915.md
+src/customMetadata/VPM_PaymentMethods.JP_916.md
+src/customMetadata/VPM_PaymentMethods.JP_917.md
+src/customMetadata/VPM_PaymentMethods.JP_918.md
+src/customMetadata/VPM_PaymentMethods.JP_919.md
 src/customMetadata/VPM_PaymentMethods.KE_272.md
 src/customMetadata/VPM_PaymentMethods.KE_273.md
 src/customMetadata/VPM_PaymentMethods.KE_274.md
@@ -7185,8 +7197,7 @@ src/flows/VPM_AssignFinanceQueueApprover-6.flow
 src/flows/VPM_AssignFLSQueueApprover-2.flow
 src/flows/VPM_AssignFLSWithCountries-1.flow
 src/flows/VPM_RequestTimewithGroup-44.flow
-src/flows/VPM_VendorRequestStages-74.flow
-src/flows/VPM_TemporaryReplaceProcurementAdmin-1.flow
+src/flows/VPM_VendorRequestStages-73.flow
 src/letterhead
 src/letterhead/VPM_BlankLetter.letter
 src/queues
