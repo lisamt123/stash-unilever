@@ -1,5 +1,9 @@
 src
 src/permissionsets
 src/permissionsets/FS_Admin.permissionset
+src/objects
 src/objects/OpportunityLineItem.object
+src/layouts
 src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
+src/workflows
+src/workflows/OpportunityLineItem.workflow
