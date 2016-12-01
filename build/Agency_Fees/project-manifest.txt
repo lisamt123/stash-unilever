@@ -1,5 +1,11 @@
 src
 src/classes
+src/classes/AF_BonusMatrixOverrideController.cls
+src/classes/AF_BonusMatrixOverrideController.cls-meta.xml
+src/classes/AF_Constants_Test.cls
+src/classes/AF_Constants_Test.cls-meta.xml
+src/classes/AF_AgencyHomePageController_Test.cls
+src/classes/AF_AgencyHomePageController_Test.cls-meta.xml
 src/classes/AF_middlebonusmatrix.cls
 src/classes/AF_middlebonusmatrix.cls-meta.xml
 src/classes/AF_BrandEstimateRemote_Test.cls
