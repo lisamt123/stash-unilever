@@ -250,7 +250,7 @@ public with sharing class IPM_FinancialYearHelper
                 financialYearQuery += ' '+financialYearFieldAPI+',';
             }
         }
-        financialYearQuery += 'Id,Name,IPM_Financial__r.Financial_External_ID__c,IPM_Financial__r.RecordTypeId FROM IPM_Financial_Year__c';
+        financialYearQuery += 'Id,Name,IPM_Financial__r.Financial_External_ID__c,IPM_Financial__r.RecordTypeId,';
         financialYearQuery += ' IPM_Financial__r.IPM_Project_Rollout__c,IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c,IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__c,IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c,';
         financialYearQuery += ' IPM_Financial__r.Regional_Project__c,IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c,IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__c,IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c';
         financialYearQuery += ' FROM IPM_Financial_Year__c'; 
