@@ -8,6 +8,7 @@ public with sharing class IPM_FunnelController
         get {
             return IPM_Utils.getProjectFullInfo(ApexPages.currentPage().getParameters().get('Id'));
         }
+		set;
     }
     public Integer currentProjectPhaseSeq{get; set;}
     
