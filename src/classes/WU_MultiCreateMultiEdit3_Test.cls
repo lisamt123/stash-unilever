@@ -20,6 +20,7 @@ public class WU_MultiCreateMultiEdit3_Test{
     *@Description : to Intialize(insert, update) the data for warehouse capacity
     ***************************************************************************/
     static testMethod void positiveScenarios(){ 
+        
         assignPermissionSet();
         system.runAs(WU_TestFactory_Helper.ur){
             createData();

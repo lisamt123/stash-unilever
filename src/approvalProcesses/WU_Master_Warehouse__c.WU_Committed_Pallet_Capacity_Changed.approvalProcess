@@ -27,7 +27,7 @@
         <name>Step_1</name>
     </approvalStep>
     <description>when criteria will satisfy :WU_Committed_Max_PalletStorage__c &lt;&gt; WU_Prior_CommittedPalletStorage__c</description>
-    <emailTemplate>Warehouse_Utilization/Warehouse_Committed_Capacity</emailTemplate>
+    <emailTemplate>Warehouse_Utilization/WU_Warehouse_Committed_Capacity</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <formula>WU_Committed_Max_PalletStorage__c  &lt;&gt;  WU_Prior_CommittedPalletStorage__c</formula>
@@ -36,6 +36,10 @@
         <action>
             <name>Approved</name>
             <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>WU_Approval_Notification</name>
+            <type>Alert</type>
         </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
