@@ -3,7 +3,7 @@
 *@Description :     To test WU_WarehouseSearchController Class.
 *************************************************************/
     
-    @isTest 
+    @isTest(SeeAlldata=false)
 private class WU_SetWareHousePOCHandlerTest {
     static testMethod void onBeforeTest() {
         test.startTest();
