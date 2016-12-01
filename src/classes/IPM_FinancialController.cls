@@ -115,15 +115,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     String[] currencies = new String[]{};
     public decimal decMultFactor = 1;
     public decimal exRate{get;set;}
-    map<string,decimal> mapCurrency;   
+    map<string,decimal> mapCurrency;
     
     //for soft/hard calculation on page laod
-    public Set<Id> allFinIdSet = new Set<Id>();
-    public Set<Id> allConsoldtdFinsToProcess = new Set<Id>();
-    
+    public Set<Id> allFinIdSet = new Set<Id>(); 
     public List<Id> unprocessedFinIds{get;set;} 
     public Integer finCounter{get;set;}
-    public static final Integer BATCH_SIZE = 15;
+    public static final Integer BATCH_SIZE = 20;
 
 	/**************************************************************************
     Name:getLocalCurrencyViewButtonVisibility()
@@ -393,6 +391,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         exRate=1;
         showNonKeyBusinessCaseChangedAlert = false;  //initiating the variable to false
         
+        redValidationCellsString = IPM_ConstantUtils.BLANK;
+        yellowValidationCellsString = IPM_ConstantUtils.BLANK ;
         currentFinancialType = IPM_ConstantUtils.BLANK;
         isFinacialConsolidated = false;
         isCAPEXInvalid = false;
@@ -3663,8 +3663,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 //Query to fecth all the Consolidated financials for the project
                 String consolidatedFinQuery = 'Select Id,Financial_External_ID__c,Red_Validation_Cells_Global__c,Red_Validation_Cells_Regional__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Global__c,Yellow_Validation_Cells_Regional__c,Yellow_Validation_Cells_Local__c from IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.Source_Rollout_External_Id__c+'\\_%CONSOLIDATED\' AND RecordType.name = \'Consolidated\' Limit 1000';
                 
-                String existingRedCells = IPM_ConstantUtils.BLANK;;
-                String existingYellowCells = IPM_ConstantUtils.BLANK;;
+                String existingRedCells = IPM_ConstantUtils.BLANK;
+                String existingYellowCells = IPM_ConstantUtils.BLANK;
                   
                 for(IPM_Financial__c currentFin: Database.query(consolidatedFinQuery)){
                     
