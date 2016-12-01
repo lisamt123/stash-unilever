@@ -8,7 +8,7 @@
         <apexClass>VPM_ApprovalSubmit</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-	<classAccesses>
+    <classAccesses>
         <apexClass>VPM_ApprovalSubmitTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -108,7 +108,7 @@
         <apexClass>VPM_RegionalMaintainVendor</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-	<classAccesses>
+    <classAccesses>
         <apexClass>VPM_RegionalMaintainVendorTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -186,6 +186,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_CommodityApprover__c.VPM_Approver9__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>VPM_CommodityApprover__c.VPM_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

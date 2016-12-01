@@ -1,7 +1,9 @@
 src
-src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
-src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
-src/permissionsets/FS_Sales_Rep.permissionset
-src/permissionsets/FS_NA_Non_DDM.permissionset
-src/profiles/Unilever Food Solution - NA.profile
-src/objects/OpportunityLineItem.object
+src/objects
+src/objects/Account.object
+src/pages/FS_GenerateMDMRequest.page
+src/pages/FS_GenerateMDMRequest.page-meta.xml
+src/pages/FS_GenerateMDMRequestExcel.page
+src/pages/FS_GenerateMDMRequestExcel.page-meta.xml
+src/permissionsets
+src/permissionsets/FS_RussiaSalesRep.permissionset
