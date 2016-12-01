@@ -44,15 +44,13 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 deleteFinancialIDSet.add(deleteFinancial.Id);
             }
             
-            String deletefinancialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial__c',false,null,false);
-            String deletefinancialWhereClause = ' WHERE Id in :deleteFinancialIDSet LIMIT 50000';
-            deletefinancialQuery = deletefinancialQuery + deletefinancialWhereClause;
+            String deletefinancialQuery = IPM_FinancialHelper.getFinancialQuery();
+        	deletefinancialQuery = deletefinancialQuery + ' WHERE Id in :deleteFinancialIDSet LIMIT 50000';
             
             deleteFinancialMap = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>) database.query(deletefinancialQuery));
             
             String deletefinancialYearQuery = IPM_FinancialYearHelper.getFinancialYearQuery();
-            String deletefinancialYearWhereClause = ' where IPM_Financial__c in :deleteFinancialIDSet LIMIT 50000';
-            deletefinancialYearQuery = deletefinancialYearQuery + deletefinancialYearWhereClause;
+	   		deletefinancialYearQuery = deletefinancialYearQuery + ' where IPM_Financial__c in :deleteFinancialIDSet LIMIT 50000 ';
             
             deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>( (List<IPM_Financial_Year__c>) database.query(deletefinancialYearQuery));
         }  
@@ -69,8 +67,6 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     public void bulkAfter()
     {
         Map<String,IPM_Financial_Year__c> upsertFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
-        Map<String,IPM_Financial__c> upsertConsolidatedFinancialMap = new Map<String,IPM_Financial__c>(); 
-        List<IPM_Financial__c> consolidationChangedFinancialList = new List<IPM_Financial__c>();
         List<IPM_Financial__c> misalignedFinancials = new List<IPM_Financial__c>();
         
         if(Trigger.isInsert || Trigger.isUpdate)
@@ -87,14 +83,17 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 
                 finIdsforProjY3iToSync.addAll(Trigger.newMap.keySet());    
                 misAlignedFinancials.addAll(IPM_FinancialHelper.updateManualMisalignment(newFinancialList));  
+            	if(!upsertFinancialYearMap.isEmpty())
+            	{
+            		upsert upsertFinancialYearMap.values() External_ID__c;
+            	}
             }   
                 
             if(Trigger.isUpdate) 
             {   
                	List<IPM_Financial__c> eligibleForMisalignment = new List<IPM_Financial__c>();
                	
-                  processFinancials(newFinancialList,upsertFinancialYearMap,upsertConsolidatedFinancialMap,consolidationChangedFinancialList);
-
+              	processFinancials(newFinancialList,upsertFinancialYearMap);
                 
                 for(IPM_Financial__c financial : (List<IPM_Financial__c>)Trigger.new)
                 {
@@ -109,6 +108,12 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                     }
                 }
                 misAlignedFinancials.addAll(IPM_FinancialHelper.updateManualMisalignment(eligibleForMisalignment));
+            	//Insert new Financial Years to Consolidated Financials.
+            	if(!upsertFinancialYearMap.isEmpty())
+            	{
+	            	upsert upsertFinancialYearMap.values() External_ID__c;
+            	}
+	            IPM_FinancialHelper.initializeConsolidation((List<IPM_Financial__c>)Trigger.new,(Map<Id,IPM_Financial__c>)Trigger.OldMap,null);
             }
 
 	    // Manual Misalignment - Set the manualMisalignment field to true if there is any misalignment between the financials at Global/Regional and Local level
@@ -118,31 +123,22 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 update misAlignedFinancials;
                 IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
             }
-                //Insert new Financial Years to Consolidated Financials.
-                upsert upsertFinancialYearMap.values() External_ID__c;
+            
+              
         }
         else
         {
-            Map<String,IPM_Financial_Year__c> upsertconsolidatedFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
-            IPM_FinancialYearHelper.initialiseFYConsolidation(deleteFinancialYearMap.values(),null,deleteFinancialYearMap,upsertconsolidatedFinancialYearMap);
             
-                upsert upsertconsolidatedFinancialYearMap.values() External_Id__c; 
+            IPM_FinancialYearHelper.initialiseFYConsolidation(null,null,deleteFinancialYearMap); 
             
             deleteFinancialYearMap.clear(); 
             
-            IPM_FinancialHelper.initializeConsolidation(deleteFinancialMap.values(),null,deleteFinancialMap,upsertConsolidatedFinancialMap,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE);
+            IPM_FinancialHelper.initializeConsolidation(null,null,deleteFinancialMap);
             deleteFinancialMap.clear();
             finIdsforProjY3iToSync.addAll(Trigger.OldMap.keySet());
 
         }
         
-        // Remove references for Id for upsert.
-        for(IPM_Financial__c financial : upsertConsolidatedFinancialMap.values())
-        {
-            financial.id = null;
-            IPM_FinancialHelper.processLastSaved(financial);
-        }
-        upsert upsertConsolidatedFinancialMap.values() Financial_External_ID__c;
         
         
     }
@@ -407,7 +403,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     * @param3   :       upsert Consolidated Map
     * @param4   :       changed financial List
     */
-    private void processFinancials(List<IPM_Financial__c> newFinancialList, Map<String,IPM_Financial_Year__c> upsertFinancialYearMap,Map<String,IPM_Financial__c> upsertConsolidatedFinancialMap,List<IPM_Financial__c> consolidationChangedFinancialList)
+    private void processFinancials(List<IPM_Financial__c> newFinancialList, Map<String,IPM_Financial_Year__c> upsertFinancialYearMap)
 	{
 		
 			Map<Id,IPM_Financial__c> targetLaunchChangedDateMap = new Map<Id,IPM_Financial__c>();
@@ -434,7 +430,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 			Map<Id,IPM_Financial__c> copyOverChangedFinancialMap = new Map<Id,IPM_Financial__c>();
 			Map<Id,IPM_Financial__c> activeChangedFinancialMap = new Map<Id,IPM_Financial__c>();
 			Map<Id,IPM_Financial__C> additionalFieldChangedFinancialMap = new Map<Id,IPM_Financial__c>();
-			Set<String> changedFinancialFieldSet = new Set<String>();
+            
 			Map<Id,Set<String>> financialToApprovalChangeFieldMap = new Map<Id,Set<String>>();
 			Map<Id,Set<String>> financialTocopyOverChangedFieldMap = new Map<Id,Set<String>>(); 
 			Map<Id,Set<String>> financialToactiveChangedFieldMap = new Map<Id,Set<String>>();
@@ -459,15 +455,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 				additionalFieldChange(financial, oldFinancial, additionalFieldChangedFinancialMap, changedFinancialSet, financialToaddtChangedFieldMap);
 				// Active Field Changes
 				activeFieldChange(financial, oldFinancial, activeChangedFinancialMap, changedFinancialSet, financialToactiveChangedFieldMap);
-				// Consolidation Field change
-				Set<String> changedFieldSet = IPM_FinancialUtils.isConsolidationChanged(financial.recordTypeId,financial,oldFinancial,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE,'Financial_External_ID__c'); 
-				if(!changedFieldSet.isEmpty())
-				{
-					changedFinancialFieldSet.addAll(changedFieldSet);
-					consolidationChangedFinancialList.add(financial);   
-					changedFinancialSet.add(financial.Id);
+            
+        
 				}
-			}
+             
 			if(!changedFinancialSet.isEmpty())
 			{     
 				// Get the list of financials which are eligible for Processing.
@@ -488,7 +479,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 					IPM_FinancialHelper.copyOverFinancialFields(additionalFieldChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToaddtChangedFieldMap);
 					// Update Copy Over values to Financial Years
 					IPM_FinancialHelper.copyOverFinancialFields(copyOverChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialTocopyOverChangedFieldMap);
-					IPM_FinancialHelper.initializeConsolidation(consolidationChangedFinancialList,oldFinancialMap,financialDetailMap,upsertConsolidatedFinancialMap,changedFinancialFieldSet);
+                
 			}
 		}
 }

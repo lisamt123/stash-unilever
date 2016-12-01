@@ -68,103 +68,21 @@ public with sharing class IPM_FinancialUtils
         return changedFinancialFields;
     }
     
-    /*****************************************************************************************************************************
-    * @description  Used for Creating a mapping between Consolidated and related Records which gets consolidated. Works for both Financial and Financial Years.
-                     
-    * @param sObjectName                            Sobject Name
-    * @param externalId                             Financial External Id field.
-    * @param incontextfinancial                     Changed/deleted/inserted Financial record
-    * @param consolidatedFinancialMap               Map containing processed list of Consolidated Records  
-    * @param consolidatedToRelatedFinancialMap      Map containing relationship between consolidated and related record for financial and Financial Years.
-    * @param mappingField                           Used for getting Rollout Prefix
-    * @param incomingRecordType                     incoming SObject record Type.
-    */
     
-    public static void prepareConsolidatedToRelatedFinancials(String sObjectName,String externalId, sObject incontextfinancial,Map<String,sObject> consolidatedFinancialMap,Map<String,Map<Id,sObject>> consolidatedToRelatedFinancialMap,String mappingField,String incomingRecordType)
-    {
-    	if(incontextfinancial.get(mappingField) != null)  
-    	{
-	        if(incomingRecordType == CONSOLIDATED_FINANCIAL_RECORDTYPE)
-	        {
-	            consolidatedFinancialMap.put((String)incontextfinancial.get(externalId),incontextfinancial); 
-	        }
-	        else
-	        {
-	            Map<Id,sObject> relatedFinancialsMap = new Map<Id,sObject>();
-	            String rolloutName = (String)incontextfinancial.get(mappingField);
+                     
+    
     		
-	            // Get ConsolidatedKey 
-	            String consolidatedfinKey = getUniqueFinancialKey(sObjectName,rolloutName,incontextfinancial);        
-	            if(consolidatedToRelatedFinancialMap.containsKey(consolidatedfinKey))
-	            {
-	                relatedFinancialsMap = consolidatedToRelatedFinancialMap.get(consolidatedfinKey); 
-	            }
-	            relatedFinancialsMap.put(incontextfinancial.Id,incontextfinancial);
-	            consolidatedToRelatedFinancialMap.put(consolidatedfinKey,relatedFinancialsMap);
-	        }
-    	}
-    }
     
     
-    /*****************************************************************************************************************************
-    * @description  Does the actual Consolidation based on relationship between consolidated and associated related records.
                      
-    * @param sObjectName                    Sobject Name
-    * @param externalId                     Financial External Id field.
-    * @param consolidatedUniqueKey          Consolidated Financial Record Unique Key.
-    * @param consolidatefinancial           Consolidated Financial Record  
-    * @param relatedFinancialMap            Map containing relationship between consolidated and related record for financial and Financial Years.
-    * @param upsertConsolidatedFinancial    Map for Storing target Financial Consolidation.
-    * @param fieldsToConsolidate            Set of fields to consolidate
-    */
     
-    public static void processConsolidation(String sObjectName,String externalId, String consolidatedUniqueKey,sobject consolidatefinancial,Map<Id,sObject> relatedFinancialMap,Map<String,sObject> upsertConsolidatedFinancial,Set<String> fieldsToConsolidate)
-    {
-        // Get External Id for Consolidated Financial Year
-        for(String consolidatefieldAPI : fieldsToConsolidate)
-        {
-            consolidatefinancial.put(consolidatefieldAPI,0);
-        }
             
-        for(sObject relatedFinancial : relatedFinancialMap.values()) 
-        {		 
-            for(String consolidatefieldAPI : fieldsToConsolidate)
-            {
-            	if(relatedFinancial.get(consolidatefieldAPI)!=null)
-            	{
-            		Decimal consolidatedValue = (Decimal)consolidatefinancial.get(consolidatefieldAPI) + (Decimal)relatedFinancial.get(consolidatefieldAPI);
-                    consolidatefinancial.put(consolidatefieldAPI,consolidatedValue);	
-            	}
-            }  
-		}
-		upsertConsolidatedFinancial.put(consolidatedUniqueKey,consolidatefinancial);
-        System.debug(LoggingLevel.ERROR,'upsertConsolidatedFinancial-->>'+upsertConsolidatedFinancial);
-    }
     
     
-    /*****************************************************************************************************************************
-    * @description  Forms the unique Key for Consolidated Record External Id.
                      
-    * @param sObjectName        Sobject Name
-    * @param rolloutName        Associated Rollout Name
-    * @param relatedFinancial   Financial Record 
-    */
-    
-    private static String getUniqueFinancialKey(String sObjectName,String rolloutName ,sObject relatedFinancial)
-    {
-        if(sObjectName == 'IPM_Financial_Year__c')
-        {
-            return (rolloutName + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE + '_' + relatedFinancial.get('Name') + '_' + relatedFinancial.get('Year_Type__c') + '_' + relatedFinancial.get('PL_Type__c'));
-        }
-        else if(sObjectName == 'IPM_Financial__c')
-        {
-            return rolloutName + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
-        }
-        return null; 
-    }
     
     
-    /*****************************************************************************************************************************
+    
     * @description  Used for Updating volume Information from Fiancial to Financial Records.
                      
     * @param financialDetail        Financial Record
@@ -277,5 +195,230 @@ public with sharing class IPM_FinancialUtils
         return projKeyToFinToEvaluateMap;
     }
     
+    /*************************************************************************************************************
+    * This method is used for consolidating Financial data at Regional Level. It works based on Regional rollout Project Name to perform Grouping and 
+    * updates the Consolidated Financials.
+    * Parameter : regionalProjectNames Target Regional Rollout/Project Names
+    *************************************************************************************************************/
+    public static void processRegionalConsolidationFinancial(Set<String> regionalProjectNames)
+    {
+        List<IPM_financial__c> upsertRegionalConsolidationList = new List<IPM_financial__c>();
+        Map<String,String> FieldAPIToAlaisMap = new Map<String,String>();    
+        String AggregateSELECTString = 'SELECT IPM_Project_Rollout__r.IPM_Rollout_Project__c rolloutName ,Regional_Project__r.IPM_Project_Name__c regionalProjectName,';
+        for(String changedField : IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE) 
+        {
+            FieldAPIToAlaisMap.put(changedField,changedField.removeEnd(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)); 
+            AggregateSELECTString += 'SUM('+changedField+') '+changedField.removeEnd(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) + ',';
+        }
+        AggregateSELECTString = AggregateSELECTString.removeEnd(IPM_ConstantUtils.COMMA);
+        AggregateSELECTString += ' FROM IPM_Financial__c ';
+        String AggregateWHEREString = ' WHERE isActive__c = true AND RecordType.Name = \'Default\' AND ( IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalProjectNames OR Regional_Project__r.IPM_Project_Name__c in :regionalProjectNames) ';
+        String AggregateGROUPString = ' GROUP BY  IPM_Project_Rollout__r.IPM_Rollout_Project__c,Regional_Project__r.IPM_Project_Name__c';
+        String AggregateLIMITString = ' LIMIT 50000';
+        String finalAggregateQuery = AggregateSELECTString + AggregateWHEREString + AggregateGROUPString + AggregateLIMITString;
+        System.debug('finalAggregateQuery-->>'+finalAggregateQuery);
+        for(AggregateResult financialAggr :database.Query(finalAggregateQuery))
+        {
+            //Get consolidated Financials for Regional Projects/Rollouts
+            String rolloutName = IPM_ConstantUtils.BLANK;  
+            if(financialAggr.get('rolloutName') !=null &&  String.isNotBlank((String)financialAggr.get('rolloutName'))) 
+            {
+                rolloutName = (String)financialAggr.get('rolloutName');
+            }
+            else if(financialAggr.get('regionalProjectName') !=null &&  String.isNotBlank((String)financialAggr.get('regionalProjectName')))
+            {
+                rolloutName = (String)financialAggr.get('regionalProjectName');
+            }
+            // Prepare the Consolidated Financial External ID 
+            String financialExternalID =  rolloutName + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+            IPM_Financial__c consolidatedFinancialObj = new IPM_Financial__c(Financial_External_ID__c = financialExternalID); 
+            for(String FieldAPIName : FieldAPIToAlaisMap.keySet())
+            {
+                String alais = FieldAPIToAlaisMap.get(FieldAPIName);
+                Decimal consolidatedValue = (Decimal)financialAggr.get(alais); 
+                consolidatedFinancialObj.put(FieldAPIName,consolidatedValue);
+            }
+            upsertRegionalConsolidationList.add(consolidatedFinancialObj);
+        }
+        if(!upsertRegionalConsolidationList.isEmpty())
+        {
+            System.debug('upsertRegionalConsolidationList-->>'+upsertRegionalConsolidationList);
+            IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
+            upsert upsertRegionalConsolidationList Financial_External_ID__c;
+            IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
+        }
+    }
+    /*************************************************************************************************************
+    * This method is used for consolidating Financial data at Global Level. It works based on Global Project Name to perform Grouping and 
+    * updates the Consolidated Financials.
+    * Parameter : globalProjectNames Target Global Project Names
+    *************************************************************************************************************/
+    public static void processGlobalConsolidationFinancial(Set<String> globalProjectNames)
+    {
+        List<IPM_financial__c> upsertGlobalConsolidationList = new List<IPM_financial__c>();
+        Map<String,String> FieldAPIToAlaisMap = new Map<String,String>();   
+        String AggregateSELECTString = 'SELECT IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c globalProjectName1 ,Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c globalProjectName2,';
+        for(String changedField : IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE) 
+        {
+            FieldAPIToAlaisMap.put(changedField,changedField.removeEnd(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)); 
+            AggregateSELECTString += 'SUM('+changedField+') '+changedField.removeEnd(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) + ',';
+        }
+        AggregateSELECTString = AggregateSELECTString.removeEnd(IPM_ConstantUtils.COMMA);
+        AggregateSELECTString += ' FROM IPM_Financial__c ';
+        String AggregateWHEREString = ' WHERE isActive__c = true AND RecordType.Name = \'Default\' AND (IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c in :globalProjectNames OR Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c in :globalProjectNames) ';
+        String AggregateGROUPString = ' GROUP BY  IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c,Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c';
+        String AggregateLIMITString = ' LIMIT 50000';
+        String finalAggregateQuery = AggregateSELECTString + AggregateWHEREString + AggregateGROUPString + AggregateLIMITString;
+        System.debug('finalAggregateQuery-->>'+finalAggregateQuery);
+        for(AggregateResult financialAggr :database.Query(finalAggregateQuery))
+        {
+            //Get consolidated Financials for Regional Projects/Rollouts
+            String globalProjectName = IPM_ConstantUtils.BLANK;  
+            if(financialAggr.get('globalProjectName1') !=null &&  String.isNotBlank((String)financialAggr.get('globalProjectName1')))
+            {
+                globalProjectName = (String)financialAggr.get('globalProjectName1');
+            }
+            else if(financialAggr.get('globalProjectName2') !=null &&  String.isNotBlank((String)financialAggr.get('globalProjectName2')))
+            {
+            	globalProjectName = (String)financialAggr.get('globalProjectName2');
+            }
+            // Prepare the Consolidated Financial External ID 
+            String financialExternalID =  globalProjectName + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+            IPM_Financial__c consolidatedFinancialObj = new IPM_Financial__c(Financial_External_ID__c = financialExternalID); 
+            for(String FieldAPIName : FieldAPIToAlaisMap.keySet())
+            {
+                String alais = FieldAPIToAlaisMap.get(FieldAPIName);
+                Decimal consolidatedValue = (Decimal)financialAggr.get(alais); 
+                consolidatedFinancialObj.put(FieldAPIName,consolidatedValue);
+            }
+            upsertGlobalConsolidationList.add(consolidatedFinancialObj);
+        }
+        if(!upsertGlobalConsolidationList.isEmpty())
+        {
+            System.debug('upsertGlobalConsolidationList-->>'+upsertGlobalConsolidationList);
+            IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
+            upsert upsertGlobalConsolidationList Financial_External_ID__c;
+            IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false; 
+        }
+    }
+    /*************************************************************************************************************
+    * This method is used for consolidating Financial Year data at Regional Level. It works based on Regional Rollouts/Project Name to perform Grouping and 
+    * updates the Consolidated Financials Years. It identifies the External Id based on Combination of Global Project + Consolidated Literal + Name +Year Type+ Year PL  
+    * Parameter : regionalProjectNames Target Regional Rollout/Project Names
+    *************************************************************************************************************/
     
+    public static void processRegionalConsolidationFY(Set<String> regionalProjectNames) 
+    {
+    	List<IPM_financial_Year__c> upsertRegionalConsolidationFYList = new List<IPM_financial_Year__c>();
+    	Map<String,String> FieldAPIToAlaisMap = new Map<String,String>();	 
+     	String AggregateSELECTString = 'SELECT Name,Year_Type__c,PL_Type__c,IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c rolloutName ,IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c regionalProjectName,';
+     	for(String changedField : IPM_FinancialYearHelper.FIELDS_TO_CONSOLIDATE) 
+     	{
+     		FieldAPIToAlaisMap.put(changedField,changedField.removeEnd(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)); 
+     		AggregateSELECTString += 'SUM('+changedField+') '+changedField.removeEnd(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) + ',';
+     	}
+     	AggregateSELECTString = AggregateSELECTString.removeEnd(IPM_ConstantUtils.COMMA);
+     	AggregateSELECTString += ' FROM IPM_Financial_Year__c ';
+     	String AggregateWHEREString = ' WHERE IPM_Financial__r.isActive__c = true AND IPM_Financial__r.RecordType.Name = \'Default\' AND ( IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalProjectNames OR IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c in :regionalProjectNames )';
+     	String AggregateGROUPString = ' GROUP BY  IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c,IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c,Name,Year_Type__c,PL_Type__c';
+     	String AggregateLIMITString = ' LIMIT 50000';
+     	String finalAggregateQuery = AggregateSELECTString + AggregateWHEREString + AggregateGROUPString + AggregateLIMITString;
+     	System.debug('finalAggregateQuery-->>'+finalAggregateQuery);
+     	for(AggregateResult financialAggr :database.Query(finalAggregateQuery))
+     	{
+     		//Get consolidated Financials for Regional Projects/Rollouts
+			String financialYearName = (String)financialAggr.get('Name');
+			String financialYearType = (String)financialAggr.get('Year_Type__c');
+			String financialYearPLType = (String)financialAggr.get('PL_Type__c');
+			String rolloutName = IPM_ConstantUtils.BLANK;  
+			if(financialAggr.get('rolloutName') !=null &&  String.isNotBlank((String)financialAggr.get('rolloutName')))
+			{
+				rolloutName = (String)financialAggr.get('rolloutName');
+			}
+			else if(financialAggr.get('regionalProjectName') !=null &&  String.isNotBlank((String)financialAggr.get('regionalProjectName')))
+			{
+				rolloutName = (String)financialAggr.get('regionalProjectName');
+			}
+			// Prepare the Consolidated Financial External ID 
+			String FYConsolidatedExternalID = rolloutName + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE + '_' + financialYearName + '_' + financialYearType + '_' +financialYearPLType;
+			String financialExternalID =  rolloutName + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+			IPM_Financial__c financialObj = new IPM_Financial__c(Financial_External_ID__c = financialExternalID); 
+			IPM_financial_Year__c consolidatedFinancialYearObj = new  IPM_financial_Year__c(External_Id__c = FYConsolidatedExternalID);
+			consolidatedFinancialYearObj.IPM_Financial__r = financialObj;
+     		for(String FieldAPIName : FieldAPIToAlaisMap.keySet())
+     		{
+     			String alais = FieldAPIToAlaisMap.get(FieldAPIName);
+     			Decimal consolidatedValue = (Decimal)financialAggr.get(alais); 
+     			consolidatedFinancialYearObj.put(FieldAPIName,consolidatedValue);
+     		}
+     		upsertRegionalConsolidationFYList.add(consolidatedFinancialYearObj);
+     	}
+     	if(!upsertRegionalConsolidationFYList.isEmpty())
+     	{
+     		System.debug('upsertRegionalConsolidationFYList-->>'+upsertRegionalConsolidationFYList);
+     		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = true;
+     		upsert upsertRegionalConsolidationFYList External_Id__c;
+     		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = false;
+     	}
+    }
+    
+    /*************************************************************************************************************
+    * This method is used for consolidating Financial Year data at Global Level. It works based on Global Project Name to perform Grouping and 
+    * updates the Consolidated Financials Years. It identifies the External Id based on Combination of Global Project + Consolidated Literal  
+    * Parameter : globalProjectNames Target Global Project Names
+    *************************************************************************************************************/
+    public static void processGlobalConsolidationFY(Set<String> globalProjectNames)
+    {
+    	List<IPM_financial_Year__c> upsertGlobalConsolidationFYList = new List<IPM_financial_Year__c>();
+    	Map<String,String> FieldAPIToAlaisMap = new Map<String,String>();	 
+     	String AggregateSELECTString = 'SELECT Name,Year_Type__c,PL_Type__c,IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c globalProjectName1,IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c globalProjectName2,';
+     	for(String changedField : IPM_FinancialYearHelper.FIELDS_TO_CONSOLIDATE) 
+     	{
+     		FieldAPIToAlaisMap.put(changedField,changedField.removeEnd(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)); 
+     		AggregateSELECTString += 'SUM('+changedField+') '+changedField.removeEnd(IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) + ',';
+     	}
+     	AggregateSELECTString = AggregateSELECTString.removeEnd(IPM_ConstantUtils.COMMA);
+     	AggregateSELECTString += ' FROM IPM_Financial_Year__c '; 
+     	String AggregateWHEREString = ' WHERE IPM_Financial__r.isActive__c = true AND IPM_Financial__r.RecordType.Name = \'Default\' AND (IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c in :globalProjectNames OR IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c in :globalProjectNames) ';
+     	String AggregateGROUPString = ' GROUP BY  IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c,IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c,Name,Year_Type__c,PL_Type__c';
+     	String AggregateLIMITString = ' LIMIT 50000';
+     	String finalAggregateQuery = AggregateSELECTString + AggregateWHEREString + AggregateGROUPString + AggregateLIMITString;
+     	System.debug('finalAggregateQuery-->>'+finalAggregateQuery);
+     	for(AggregateResult financialAggr :database.Query(finalAggregateQuery))
+     	{
+     		//Get consolidated Financials for Regional Projects/Rollouts
+			String financialYearName = (String)financialAggr.get('Name');
+			String financialYearType = (String)financialAggr.get('Year_Type__c');
+			String financialYearPLType = (String)financialAggr.get('PL_Type__c');
+			String globalProjectName = IPM_ConstantUtils.BLANK;  
+			if(financialAggr.get('globalProjectName1') !=null &&  String.isNotBlank((String)financialAggr.get('globalProjectName1')))
+			{
+				globalProjectName = (String)financialAggr.get('globalProjectName1');
+			}
+			else if(financialAggr.get('globalProjectName2') !=null &&  String.isNotBlank((String)financialAggr.get('globalProjectName2')))
+			{
+				globalProjectName = (String)financialAggr.get('globalProjectName2');
+			}
+			// Prepare the Consolidated Financial External ID 
+			String FYConsolidatedExternalID = globalProjectName + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE + '_' + financialYearName + '_' + financialYearType + '_' +financialYearPLType;
+			String financialExternalID =  globalProjectName + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+			IPM_Financial__c financialObj = new IPM_Financial__c(Financial_External_ID__c = financialExternalID); 
+			IPM_financial_Year__c consolidatedFinancialYearObj = new  IPM_financial_Year__c(External_Id__c = FYConsolidatedExternalID);
+			consolidatedFinancialYearObj.IPM_Financial__r = financialObj;
+     		for(String FieldAPIName : FieldAPIToAlaisMap.keySet())
+     		{
+     			String alais = FieldAPIToAlaisMap.get(FieldAPIName);
+     			Decimal consolidatedValue = (Decimal)financialAggr.get(alais); 
+     			consolidatedFinancialYearObj.put(FieldAPIName,consolidatedValue);
+     		}
+     		upsertGlobalConsolidationFYList.add(consolidatedFinancialYearObj);
+     	}
+     	if(!upsertGlobalConsolidationFYList.isEmpty())
+     	{
+     		System.debug('upsertGlobalConsolidationFYList-->>'+upsertGlobalConsolidationFYList);
+     		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = true;
+     		upsert upsertGlobalConsolidationFYList External_Id__c;
+     		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = false;
+     	}
+    }
 }

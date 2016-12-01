@@ -324,61 +324,82 @@ public with sharing class IPM_FinancialHelper
         return financialYear;
     }
     
-    /************************************************************************************************************************* 
+/************************************************************************************************************************* 
     * @description                  Starts the Consolidation Logic starting with comparing the fields which count against 
     								consolidation whether any of those fields changed. Creating a Map which contains 
     								Consolidated Record to associated Financial Record Mapping Invoking the Consolidation logic.
-            
     * @param1 consolidationChangedFinancialList      Changed Financials in trigger Context 
     * @param2 oldFinancialMap                        Trigger.old financial Map         
     * @param3 financialDetailMap                     Contains Financial Records retrieved from DB for incoming Financials.               
-    * @param4 upsertConsolidatedFinancialMap         Target Upsert Consolidated Map
-    * @param5 fieldsToConsolidate                    Fields for which Condolidation Matters
     ***************************************************************************************************************************/
+            
     
-    public static void initializeConsolidation(List<IPM_Financial__c> consolidationChangedFinancialList,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial__c> upsertConsolidatedFinancialMap,Set<String> fieldsToConsolidate) 
+    public static void initializeConsolidation(List<IPM_Financial__c> newFinancialList, Map<Id, IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap)
     {
-        if(consolidationChangedFinancialList.isEmpty()){
-            return;
-        }
         
-        Map<String,Map<Id,sObject>> consolidatedToRelatedFinancialMap = new Map<String,Map<Id,sObject>>();
-        Map<String,sObject> consolidatedFinancialMap = new Map<String,sObject>();
+    	List<IPM_Financial__c> consolidationChangedFinancialList = new List<IPM_Financial__c>(); 
         
-        Set<String> globalProjectIdSet = new Set<String>();
-        Set<String> regionalProjectIdSet = new Set<String>();
+    	Set<String> regionalRolloutProjectNames = new Set<String>();
+        Set<String> globalProjectNames = new Set<String>();
         
-        for(IPM_Financial__c financial : consolidationChangedFinancialList){
-            if(financialDetailMap.containsKey(financial.Id)){
-                IPM_Financial__c newfinancial = financialDetailMap.get(financial.Id);
+    	if(newFinancialList!=null && !newFinancialList.isEmpty())
+        {
+        	for(IPM_Financial__c newfinancial : newFinancialList) 
+            {
+	            IPM_Financial__c oldFinancial = null;
+	            if(oldFinancialMap !=null && oldFinancialMap.containsKey(newfinancial.Id))
                 
-                if(!String.isBlank(newfinancial.Global_External_Id__c)){
-                    globalProjectIdSet.add(newfinancial.Global_External_Id__c);
+                {
+	                oldFinancial = oldFinancialMap.get(newfinancial.Id);
                 }
                     
-                if(!String.isBlank(newfinancial.Regional_External_Id__c)){
-                    regionalProjectIdSet.add(newfinancial.Regional_External_Id__c);
+	            Set<String> changedFieldSet = IPM_FinancialUtils.isConsolidationChanged(newfinancial.recordTypeId,newfinancial,oldFinancial,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE,'Financial_External_ID__c'); 
+	            System.debug('changedFieldSet-->>'+changedFieldSet);
+	            if(!changedFieldSet.isEmpty())
+                {
+	                consolidationChangedFinancialList.add(newfinancial);
                 }
             }  
+        	if(!consolidationChangedFinancialList.isEmpty())
+	        {
+				String financialQuery = getFinancialQuery();
+	        	financialQuery = financialQuery + ' WHERE Id in :consolidationChangedFinancialList LIMIT 50000';
+	        	System.debug('financialQuery-->>'+financialQuery);
+				financialDetailMap = new Map<Id,IPM_Financial__c>((List<IPM_Financial__c>)database.query(financialQuery));
+				System.debug('financialDetailMap-->>'+financialDetailMap);		
         }
-    
-        // Get the complete list of Financial Years from the prepared List of Regional and Global Project.
-        String financialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial__c',true,new Set<String>{'IPM_Financial_Year__c'},false);
-        String financialWhereClause = ' WHERE isActive__c = true AND (Global_External_Id__c in :globalProjectIdSet OR Regional_External_Id__c in :regionalProjectIdSet)';
-        financialQuery = financialQuery + financialWhereClause;
-        Map<Id,IPM_Financial__c> completeFinancialMap = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>) database.query(financialQuery));    
+    	}
+		
                  
-        for(IPM_Financial__c financial : completeFinancialMap.values()){          
-            IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials('IPM_Financial__c','Financial_External_ID__c',financial,consolidatedFinancialMap,consolidatedToRelatedFinancialMap,'Global_External_Id__c',financial.recordTypeId);
-            IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials('IPM_Financial__c','Financial_External_ID__c',financial,consolidatedFinancialMap,consolidatedToRelatedFinancialMap,'Regional_External_Id__c',financial.recordTypeId);
+		if(financialDetailMap!=null && !financialDetailMap.isEmpty())
+        {          
+    		for(IPM_Financial__c financial : financialDetailMap.values())
+	        { 
+	            // Check if Financials are associated with Regional Rollouts 
+	            if(financial.IPM_Project_Rollout__c !=null) 
+	            {
+	                regionalRolloutProjectNames.add(financial.IPM_Project_Rollout__r.IPM_Rollout_Project__c);
         }
         
-        for(String consolidatedFinancialKey : consolidatedFinancialMap.KeySet()){
-            sObject consolidatedFinancial = consolidatedFinancialMap.get(consolidatedFinancialKey);
+	            // Check if Financials are associated with Regional Projects.
+	            if(financial.Regional_Project__c !=null)
+        		{
+	                regionalRolloutProjectNames.add(financial.Regional_Project__r.IPM_Project_Name__c);
+	            }
+	            if(financial.IPM_Project_Rollout__r.IPM_Project__c !=null)
+	            {
+	            	globalProjectNames.add(financial.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c);
+	            }
+	            if(financial.Regional_Project__r.IPM_Parent_Project__c !=null)
+	            {
+	            	globalProjectNames.add(financial.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c);
+	            }
+	        }
             
-            if(consolidatedToRelatedFinancialMap.containsKey(consolidatedFinancialKey)){ 
-                Map<Id,sObject> relatedDefaultFinancials = consolidatedToRelatedFinancialMap.get(consolidatedFinancialKey);    
-                IPM_FinancialUtils.processConsolidation('IPM_Financial__c','Financial_External_ID__c',consolidatedFinancialKey,consolidatedFinancial,relatedDefaultFinancials,upsertConsolidatedFinancialMap,fieldsToConsolidate);    
+	    	if(!regionalRolloutProjectNames.isEmpty())
+            { 
+	            IPM_FinancialUtils.processRegionalConsolidationFinancial(regionalRolloutProjectNames);
+	            IPM_FinancialUtils.processGlobalConsolidationFinancial(globalProjectNames); 
             }
         }
     }
@@ -699,7 +720,7 @@ public with sharing class IPM_FinancialHelper
             }
         }
         
-        if(projectIdset != null && projectIdset.size() >0)
+        if(projectIdset != null && !projectIdset.isEmpty())
         {
             projectMap = new Map<Id,IPM_Project__c>([Select id, ownerid,IPM_Category_Text__c,IPM_ProjectGKM__c from IPM_Project__c where id IN:projectIdset]); 
         }
@@ -1045,5 +1066,30 @@ public with sharing class IPM_FinancialHelper
                 consoltdFinNameToValidCalendarYearsMap.put(globalConsoltdKey,new Set<String>(newFinYearNames));
         	}
         }
+    }
+    /**********************************************************************************************************************************
+    * @description                  This method queries for all the financial year record required for consolidation and updating the  
+    *                               the document section.
+    * @param newFinancial       	New Financial record
+    * @return                       NONE
+    ***********************************************************************************************************************************/
+    public static String getFinancialQuery()
+    {
+        Map<String,Schema.SObjectField> financialYearFieldMap = Schema.SObjectType.IPM_Financial__c.fields.getMap();
+        String financialYearQuery = ' SELECT ';        
+        for(String financialYearFieldAPI  : financialYearFieldMap.keySet())
+        {
+            Schema.DescribeFieldResult fieldDescribe = financialYearFieldMap.get(financialYearFieldAPI).getDescribe();
+            if(fieldDescribe.isCustom()  && financialYearFieldAPI != 'Id')
+            {
+                financialYearQuery += ' '+financialYearFieldAPI+',';
+            }
+        }
+        financialYearQuery += ' Id,Name,RecordTypeId,';
+        financialYearQuery += ' IPM_Project_Rollout__r.IPM_Rollout_Project__c,IPM_Project_Rollout__r.IPM_Project__c,IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c,';
+        financialYearQuery += ' Regional_Project__r.IPM_Project_Name__c,Regional_Project__r.IPM_Parent_Project__c,Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c';
+        financialYearQuery += ' FROM IPM_Financial__c'; 
+        System.debug('financialYearQuery-->>'+financialYearQuery);
+        return financialYearQuery;
     }
 }

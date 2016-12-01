@@ -47,7 +47,6 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     public void bulkAfter()
     {
        
-        Map<String,IPM_Financial_Year__c> upsertconsolidatedFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
 
         //Added for CR0010+CR0127
         if(Trigger.isInsert)
@@ -63,12 +62,9 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
             
         }
         else if(Trigger.isDelete && !deleteFinancialYearMap.isEmpty()) 
-        { 			   			IPM_FinancialYearHelper.initialiseFYConsolidation(deleteFinancialYearMap.values(),null,deleteFinancialYearMap,upsertconsolidatedFinancialYearMap);
-        }
         
-        if(!upsertconsolidatedFinancialYearMap.isEmpty())
         {
-            upsert upsertconsolidatedFinancialYearMap.values() External_Id__c;
+			IPM_FinancialYearHelper.initialiseFYConsolidation(null,null,deleteFinancialYearMap);
         }
 		
         //Financials Hard Validations: Get all Financial External ID
