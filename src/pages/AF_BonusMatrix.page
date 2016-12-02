@@ -101,15 +101,18 @@
         {
             location.reload();   
         }
-        function redirectSubmit()
-        {
-            alert('Record submitted');
-            if(isRedirect){
-                alert('Record submitted successfully');
-                location.reload();   
-            }
-        }
+        
         </script>
+        <apex:outputpanel id="panel1">
+            <script>
+               function redirectSubmit()
+                {
+                    if({!isRedirect}){
+                        location.reload();   
+                    }
+                }
+            </script>
+        </apex:outputpanel>
     <!-- Optionally add helpers - button, thumbnail and/or media -->
     <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
@@ -320,42 +323,43 @@
                                       </td>
                                   </tr>
         </table>
-            <!-- Popup block-->
-            <apex:outputPanel id="Approvepopup">
-              <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!Approvalpopup}"/>
-              <apex:outputPanel styleClass="customPopup_SubitforApproval" layout="block" rendered="{!Approvalpopup}">
-              
-                 <div class="approval_floatR">
-                    <apex:commandButton value="X" action="{!closeApprovalPopup}" rerender="Approvepopup" styleClass="approval_closeButton1"/> 
-                 </div>
-                 <div class="approval_margin20PX">
-                    <h2>
-                       <apex:outputLabel value="{!$Label.AF_Bonus_Submit}" styleClass="approval_fontS16PX"/>
-                    </h2>
-                    <br/><br/>
-                    <apex:commandButton style="margin-left: 215px !important;" value="Confirm" action="{!SubmitforStatus}" oncomplete="redirectSubmit();" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup,pgm1" />
-                 </div>
-              </apex:outputPanel>
-            </apex:outputPanel>
+        <!-- Popup Submit-->
+        <apex:outputPanel id="Approvepopup">
+          <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!Approvalpopup}"/>
+          <apex:outputPanel styleClass="customPopup_SubitforApproval" layout="block" rendered="{!Approvalpopup}">
+          
+             <div class="approval_floatR">
+                <apex:commandButton value="X" action="{!closeApprovalPopup}" rerender="Approvepopup" styleClass="approval_closeButton1"/> 
+             </div>
+             <div class="approval_margin20PX">
+                <h2>
+                   <apex:outputLabel value="{!$Label.AF_Bonus_Submit}" styleClass="approval_fontS16PX"/>
+                </h2>
+                <br/><br/>
+                <apex:commandButton style="margin-left: 215px !important;" value="Confirm" action="{!SubmitforStatus}" 
+                oncomplete="redirectSubmit();" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup,pgm1,panel1"/>
+             </div>
+          </apex:outputPanel>
+        </apex:outputPanel>
            
-           
-             <apex:outputPanel id="popup">
-              <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!displayPopUp}"/>
-              <apex:outputPanel styleClass="customPopup_ApproveRecord" layout="block" rendered="{!displayPopUp}">
-                 <div class="approval_floatR">
-                    <apex:commandButton value="X" action="{!closePopup}" rerender="popup" styleClass="approval_closeButton2"/>
-                 </div>
-                 <div class="approval_margin20PX">
-                    <h2>
-                        <apex:outputLabel value="{!$Label.AF_OOPS_Approval}" styleClass="approval_fontS16PX"/>
-                    </h2>
-                    <br/><br/>
-                    <apex:commandButton value="Confirm" action="{!ApproveRejectStatus}" styleClass="continue_btn_ApproveRecord approval_wid70P" rerender="popup" oncomplete="displaymessage();"/>
-                 </div>
-              </apex:outputPanel>
-            </apex:outputPanel>
+        <!-- Popup Approve--> 
+        <apex:outputPanel id="popup">
+          <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!displayPopUp}"/>
+          <apex:outputPanel styleClass="customPopup_ApproveRecord" layout="block" rendered="{!displayPopUp}">
+             <div class="approval_floatR">
+                <apex:commandButton value="X" action="{!closePopup}" rerender="popup" styleClass="approval_closeButton2"/>
+             </div>
+             <div class="approval_margin20PX">
+                <h2>
+                    <apex:outputLabel value="{!$Label.AF_OOPS_Approval}" styleClass="approval_fontS16PX"/>
+                </h2>
+                <br/><br/>
+                <apex:commandButton value="Confirm" action="{!ApproveRejectStatus}" styleClass="continue_btn_ApproveRecord approval_wid70P" rerender="popup" oncomplete="displaymessage();"/>
+             </div>
+          </apex:outputPanel>
+        </apex:outputPanel>
             
-            
+        <!-- Popup Reject-->    
         <apex:outputPanel id="popuprejcomm">
           <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!displayPopupRejComment}"/>
           <apex:outputPanel styleClass="customPopup_RejectComment" layout="block" rendered="{!displayPopupRejComment}">
