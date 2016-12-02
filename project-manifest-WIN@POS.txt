@@ -1,3 +1,0 @@
-src
-src/labels
-src/labels/WinatPOS.labels

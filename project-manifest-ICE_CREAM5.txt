@@ -1,3 +1,0 @@
-src/permissionsets
-src/permissionsets/ICB_Mobile_Channel_Console_PCL.permissionset
-src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset

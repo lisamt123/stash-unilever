@@ -1,4 +1,0 @@
-src
-src/classes
-src/classes/uw_FinishEnableExternalUserBatchJob.cls
-src/classes/uw_FinishEnableExternalUserBatchJob.cls-meta.xml

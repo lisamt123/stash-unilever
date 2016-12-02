@@ -1,2 +1,0 @@
-src/permissionsets
-src/permissionsets/ICB_Mobile_Channel_Backoffice_Salesforce.permissionset

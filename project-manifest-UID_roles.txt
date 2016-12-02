@@ -1,5 +1,0 @@
-src
-src/roles
-src/roles/UI_DMS_CD_OPS_Seeding.role
-src/roles/UI_DMS_BDM_Seeding.role
-src/roles/UI_DMS_BDD_Seeding.role

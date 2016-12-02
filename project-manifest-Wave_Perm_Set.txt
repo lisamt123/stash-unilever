@@ -1,4 +1,0 @@
-src
-src/permissionsets
-src/permissionsets/Admin_Analytics_Pilot_Admin.permissionset
-src/permissionsets/Admin_Analytics_Pilot_User.permissionset
