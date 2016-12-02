@@ -3,9 +3,9 @@ src/applications
 src/applications/Issue_Briefing_Centre.app
 src/email
 src/email/Issue_Management/Issue_Reviewed.email
-src/email/Issue_Management/Issue_Reviewed.email-meta
+src/email/Issue_Management/Issue_Reviewed.email-meta.xml
 src/email/Issue_Management/New_Issue_submitted.email
-src/email/Issue_Management/New_Issue_submitted.email-meta
+src/email/Issue_Management/New_Issue_submitted.email-meta.xml
 src/classes
 src/classes/im_IssueTriggerHandler.cls
 src/classes/im_IssueTriggerHandler.cls-meta.xml
