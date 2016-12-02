@@ -69,25 +69,23 @@ private class PBS_TrainingTrackDetailCtrl_Test{
 
             System.runAs(lmsUsers.get(0)){
                 PBS_TrainingTrackDetailCtrl_CC cont = new PBS_TrainingTrackDetailCtrl_CC();
-                System.assert(cont.track == null);
+                System.assert(cont.track != null);
             }
              System.runAs(adminUsers.get(0)){
                 PBS_TrainingTrackDetailCtrl_CC cont = new PBS_TrainingTrackDetailCtrl_CC();
-                System.assert(cont.track == null);
+                System.assert(cont.track != null);
             }
         	// Added below lines to cover pbs_training_track_item_cc
         	System.runAs(adminUsers.get(0)){
                 PBS_TrainingTrackDetailCtrl_CC cont = new PBS_TrainingTrackDetailCtrl_CC();
-                List<PBS_TrainingTrackLevel_CC> trackLevels= new List<PBS_TrainingTrackLevel_CC>();
-                trackLevels = cont.trackLevels;
-                if(trackLevels!=null && !trackLevels.isEmpty()){
+                List<PBS_TrainingTrackLevel_CC> trackLevels = cont.trackLevels;
                 for(PBS_TrainingTrackLevel_CC tlevel : trackLevels){
                     List<PBS_TrainingTrackItem_CC> trackItemslist = tlevel.trackItems;
                     for(PBS_TrainingTrackItem_CC titem :trackItemslist){
                         System.assert(titem.getItemURL()==null);
                     }
                 }
-                } 
+                
             }
 
         Test.stopTest();

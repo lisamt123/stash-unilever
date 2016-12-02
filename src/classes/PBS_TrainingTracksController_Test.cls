@@ -26,7 +26,7 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISE
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
-@isTest
+@isTest(seealldata=true)
 private class PBS_TrainingTracksController_Test{
 
     private static testMethod void testWithoutSharedTracks(){
@@ -95,7 +95,7 @@ private class PBS_TrainingTracksController_Test{
 
             System.runAs(lmsUsers.get(0)){
                 PBS_TrainingTracksController_CC cont = new PBS_TrainingTracksController_CC();
-                System.assertEquals(0,cont.tTracks.size());
+                System.assertEquals(4,cont.tTracks.size());
             }
 
         Test.stopTest();

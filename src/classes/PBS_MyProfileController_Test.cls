@@ -255,8 +255,11 @@ private class PBS_MyProfileController_Test {
             PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
             System.assert(cont.getCategoryOptions().size()>=0);
                 System.assert(cont.getGeographyOptions().size()>=0);
+                cont.workLevel='Level 1';
                 System.assert(cont.getJobProfileOptions().size()>=0);
                 System.assert(cont.getWorkLevelOptions().size()>=0);
+                cont.jobprofileSelection();
+                //PBS_MyProfileController_Cc.updateUserDetails('test'  ,'test',null,'test');
         }
         Test.stopTest();
     }
