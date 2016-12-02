@@ -46,6 +46,7 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <compactLayouts>
         <fullName>Ariba_Compact_Layout</fullName>
@@ -70,6 +71,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -723,8 +725,13 @@
                 <fullName>Invoice</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>CLM</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -777,6 +784,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1233,6 +1241,77 @@
             </values>
             <values>
                 <fullName>Remedy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fully Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partially Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Withdrawn</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+	<recordTypes>
+        <fullName>CLM</fullName>
+        <active>true</active>
+        <label>CLM</label>
+        <picklistValues>
+            <picklist>Source_System__c</picklist>
+            <values>
+                <fullName>Ariba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedy</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>CLM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
