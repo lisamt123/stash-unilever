@@ -1782,28 +1782,8 @@ Customer Delivers Directly = 5 --></help>
             <translation><!-- CHEREPOVETS --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>CHERKASSY</masterLabel>
-            <translation><!-- CHERKASSY --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>CHERNIGOV</masterLabel>
-            <translation><!-- CHERNIGOV --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>CHERNOVTSY</masterLabel>
-            <translation><!-- CHERNOVTSY --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>CHITA</masterLabel>
             <translation><!-- CHITA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>DNEPROPETROVSK</masterLabel>
-            <translation><!-- DNEPROPETROVSK --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>DONETSK</masterLabel>
-            <translation><!-- DONETSK --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>EKATERINBURG</masterLabel>

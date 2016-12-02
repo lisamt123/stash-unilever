@@ -186,6 +186,10 @@
         <name>IPM_Is_Water_Metric_Relevant__c</name>
     </fields>
     <fields>
+        <label><!-- Brand --></label>
+        <name>IPM_LocalRolloutBrand__c</name>
+    </fields>
+    <fields>
         <label><!-- New SKU (Greenhouse) --></label>
         <name>IPM_New_SKU_Greenhouse__c</name>
     </fields>

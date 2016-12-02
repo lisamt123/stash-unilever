@@ -25,6 +25,8 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
      public Boolean showdata{get;set;} // used to render the List of MCO on Page.
      public Boolean isEditable{get;set;}//for security
      global String projectType{get;set;}// project type 
+     public string lastSubmittedBCLbl{get;set;} //last submitted BC for update
+     public Id lastSubmittedBCID{get;set;} //last submitted BC ID
      
      //Constructor.
     /**********************************************************************
@@ -557,6 +559,8 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                                if(SelectedCountry== options.get(i).getValue()){
                                                submittedList.add(options.get(i).getLabel());
                                                showdata = true;
+                                               lastSubmittedBCLbl = options.get(i).getLabel();
+                                               lastSubmittedBCId = options.get(i).getValue();
                                                options.remove(i); 
                                     }
                      }
@@ -566,6 +570,39 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
               flag = true;
            }
         return null;
+    }
+    
+    /***************************************************************************************************************
+    *  @Description: this method is called on action function reset. It resets the option list  back to its previous state
+    *  @name : ResetOnError
+    *  @param : none.
+    *  @return: Pagereference.
+     ***************************************************************************************************************/
+    public PageReference ResetOnError(){
+    	
+    	//reset the select business case as the one which was previously selected previously 
+    	ListCountries = lastSubmittedBCId;
+    	
+    	//set the fiest element of the list as the one which was previously selected previously 
+    	List<SelectOption> optionsRemaining = new List<SelectOption>();
+    	optionsRemaining.addAll(options);
+    	options.clear();
+    	options.add(new SelectOption(lastSubmittedBCId,lastSubmittedBCLbl));
+    	options.addAll(optionsRemaining);
+    	
+    	SelectedCountry = lastSubmittedBCId;
+    	List<String> lstUpdated = new List<String>();
+    	for(string sBC : submittedList){
+    		if(sBC !=  lastSubmittedBCLbl){
+    			lstUpdated.add(sBC);
+    		}
+    	}
+    	submittedList.clear();
+    	
+    	//update the submittedList
+    	submittedList.addAll(lstUpdated);
+    	flag = false;
+    	return null;
     }
     
  

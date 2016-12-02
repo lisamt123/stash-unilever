@@ -3471,27 +3471,7 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>CHERKASSY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CHERNIGOV</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CHERNOVTSY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>CHITA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>DNEPROPETROVSK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>DONETSK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -6757,6 +6737,25 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Japan</role>
             <role>CEC_User_Japan</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_NA_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>ACCOUNT.ADDRESS2_CITY</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.ADDRESS2_COUNTRY</columns>
+        <columns>Zone__c</columns>
+        <columns>Region__c</columns>
+        <columns>Territory__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>All NA Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>North_America</roleAndSubordinatesInternal>
         </sharedTo>
     </listViews>
     <listViews>
@@ -11402,27 +11401,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>CHERKASSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNIGOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNOVTSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CHITA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DNEPROPETROVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DONETSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -14014,27 +13993,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>CHERKASSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNIGOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNOVTSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CHITA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DNEPROPETROVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DONETSK</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -16846,27 +16805,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>CHERKASSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNIGOV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CHERNOVTSY</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CHITA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DNEPROPETROVSK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DONETSK</fullName>
                 <default>false</default>
             </values>
             <values>

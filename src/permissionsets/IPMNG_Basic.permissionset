@@ -15769,6 +15769,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Assessment__c.IPM_LocalRolloutBrand__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Assessment__c.IPM_New_SKU_Greenhouse__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -20608,7 +20613,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.IPM_Last_Modified_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -20658,7 +20663,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.IPM_No_Rollout_Disabled__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -20728,7 +20733,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.IPM_PreviouslyStoppedBy__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -20828,7 +20833,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.IPM_Project_To_Be_Stopped_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
