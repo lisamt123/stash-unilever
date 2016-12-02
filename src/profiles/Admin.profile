@@ -28939,6 +28939,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Assessment__c.IPM_LocalRolloutBrand__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Assessment__c.IPM_New_SKU_Greenhouse__c</field>
         <readable>true</readable>
@@ -61213,6 +61218,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>CEC_PreChatForm</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>CEC_PreChatFormDutch</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>

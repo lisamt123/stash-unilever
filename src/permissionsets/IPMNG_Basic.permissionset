@@ -4782,7 +4782,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_RolloutPlansTableControllerGKM3_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_RolloutPlansTableController_Test</apexClass>
@@ -28880,6 +28880,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Assessment__c.IPM_LocalRolloutBrand__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Assessment__c.IPM_New_SKU_Greenhouse__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -34124,7 +34129,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.IPM_Last_Modified_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -34174,7 +34179,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.IPM_No_Rollout_Disabled__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -34244,7 +34249,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.IPM_PreviouslyStoppedBy__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -34344,7 +34349,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.IPM_Project_To_Be_Stopped_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -34959,17 +34964,17 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_SourcingUnit__c.Category__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_SourcingUnit__c.Source_Unit_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_SourcingUnit__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -55089,6 +55094,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>CEC_PreChatForm</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>CEC_PreChatFormDutch</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>

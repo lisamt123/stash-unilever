@@ -1549,47 +1549,6 @@ public with sharing class IPM_ProjectHelper
             
                     
                                 
-
-            if(!projectToCountryMap.isEmpty())
-            {
-                for(Id projectId : projectToCountryMap.keySet())
-                {
-                    IPM_Project__c oldProject = null;
-                    Map<String,IPM_Country__c> countriesMap = projectToCountryMap.get(projectId);
-                    
-                    if(oldProjectMap!=null && oldProjectMap.containsKey(projectId))
-                    {
-                        oldProject = oldProjectMap.get(projectId);     
-                        
-                        if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS))
-                        {
-                            for(IPM_Country__c country : countriesMap.values())
-                            {
-                               country.IPM_CharterApproved__c = true;
-                               
-                               country.Local_Rollout_Charter__c = country.local_Rollout__c;
-                               
-                               if(updateProjectRollout.containsKey(country.local_Rollout__c)) 
-                               {
-                                    IPM_Project_Rollout__c rollout  = updateProjectRollout.get(country.local_Rollout__c); 
-                                    if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE && country.IPM_FinancialAtCharter__c==null )
-                                    {
-                                        country.IPM_FinancialAtCharter__r = new IPM_Financial__c(Financial_External_ID__c =  IPM_Utils.getFinancialExternalId(rollout));
-                                    }
-                               }
-                               updateProjectCountry.put(country.Id,country);
-                            }       
-                        }
-                    }        
-                }
-                // Null check of country map
-                if(!updateProjectCountry.isEmpty())
-                { 
-                    IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true;
-                        update updateProjectCountry.values();   
-                    IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = false;
-                }
-            }
             // prepartion of Project Rollout map data which are to be updated
             if(!projectToRolloutMap.isEmpty())
             {
@@ -1597,16 +1556,41 @@ public with sharing class IPM_ProjectHelper
                 {
                     IPM_Project__c oldProject = null;
                     Map<Id,IPM_Project_Rollout__c> rolloutsMap = projectToRolloutMap.get(projectId);
+                    
                     if(oldProjectMap!=null && oldProjectMap.containsKey(projectId))
                     {
                         oldProject = oldProjectMap.get(projectId);
                         IPM_Project__c newProject = projectPhaseChange.get(projectId);
                         if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS))
                         {
+                        	if(projectToCountryMap.containsKey(projectId))
+                        	{
+                        		Map<String,IPM_Country__c> countriesMap = projectToCountryMap.get(projectId);
+                        		
+			                	for(IPM_Country__c country : countriesMap.values())
+	                            {
+	                               country.IPM_CharterApproved__c = true;
+	                               
+	                               
+	                               if(rolloutsMap.containsKey(country.local_Rollout__c)) 
+	                               {
+	                                    IPM_Project_Rollout__c rollout  = rolloutsMap.get(country.local_Rollout__c); 
+	                                    country.Local_Rollout_Charter__c = rollout.id;
+	                                    if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE && country.IPM_FinancialAtCharter__c==null )
+	                                    {
+	                                        country.IPM_FinancialAtCharter__r = new IPM_Financial__c(Financial_External_ID__c =  IPM_Utils.getFinancialExternalId(rollout));
+	                                    }
+	                               }
+	
+	                               updateProjectCountry.put(country.Id,country);
+	                            }                 			
+                        	}
+  
                             for(IPM_Project_Rollout__c rollout : rolloutsMap.values())
                             {
                                 // Update Rollouts with Charter References. Set Charter Approved as true
                                 rollout.IPM_CharterApproved__c = true;
+                                
                                 if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
                                 { 
                                     if(rollout.IPM_CharterFinancial__c == null)
@@ -1630,6 +1614,15 @@ public with sharing class IPM_ProjectHelper
                     update updateProjectRollout.values();
                     IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
                 }
+                
+                // Null check of country map
+	            if(!updateProjectCountry.isEmpty())
+	            { 
+	                IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true;
+	                update updateProjectCountry.values();   
+	                IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = false;
+	            }
+            
             }
         }
     }

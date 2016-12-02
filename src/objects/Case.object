@@ -5384,7 +5384,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CEC_Reason_Code__c</columns>
         <columns>OWNER_NAME</columns>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.STATUS</field>
             <operation>contains</operation>
@@ -8108,6 +8108,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <columns>OWNER_NAME</columns>
         <columns>CASES.LAST_UPDATE</columns>
+        <columns>CASES.CLOSED_DATE</columns>
+        <columns>HistoricCreatedDate__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Legacy_Reference__c</field>

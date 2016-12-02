@@ -16404,6 +16404,20 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <value>The focus of this section is on confirming we have the resources needed to develop a proposed Charter.1. Indicate the concept test for Charter and associated costs (CIP).2. Identify any resource gaps (budget or human resources) and suggest how to close the gap.</value>
     </labels>
     <labels>
+        <fullName>IPM_HOME_TILE2_TEXT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_HOME_TILE2_TEXT</shortDescription>
+        <value>A comprehensive SharePoint Portal (go to the Portal)</value>
+    </labels>
+    <labels>
+        <fullName>IPM_HOME_TILE2_TEXT2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_HOME_TILE2_TEXT2</shortDescription>
+        <value>Chatter Support group (Ask IPM)</value>
+    </labels>
+    <labels>
         <fullName>IPM_HREF_STR</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -16513,7 +16527,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM INTERIN SUPPORT SOLUTION</shortDescription>
-        <value>The IPM Navigator system is now live for all HHC and FabCon Users! Before you start using the system, please take a few minutes to have a look at a short introduction to IPM Navigator by HHC SVP Madhu Rao and IPM Director Rudi Hafkamp.</value>
+        <value>IPM Navigator guides our project teams through the process of innovation and manages the information required by our gatekeepers to make the right decisions quickly.</value>
     </labels>
     <labels>
         <fullName>IPM_INTROSCAPE</fullName>
@@ -17144,6 +17158,13 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <protected>false</protected>
         <shortDescription>IPM_MILESTON_AND_TO_DOs</shortDescription>
         <value>Milestones and To-do&apos;s</value>
+    </labels>
+    <labels>
+        <fullName>IPM_MISSION_STATEMENT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_MISSION_STATEMENT</shortDescription>
+        <value>Innovation is at the heart of Unilever’s growth plans.</value>
     </labels>
     <labels>
         <fullName>IPM_MOVE_TO</fullName>
@@ -18038,6 +18059,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>You are about to refresh the Financial Business Case from the Local Project Leader. Please make sure you subtract the gTO and iTO numbers from the Non-Key Business Case in Financials to avoid double counting. Are you sure you want to continue?</value>
     </labels>
     <labels>
+        <fullName>IPM_OWNER_HOME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_OWNER_HOME</shortDescription>
+        <value>Rudi Hafkamp Global IPM Director</value>
+    </labels>
+    <labels>
         <fullName>IPM_OneUniliverCluster</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -18192,7 +18220,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PDL_FOR_PC</shortDescription>
-        <value>This is the start of the next chapter for innovation in Unilever and the IPM team look forward to receiving your feedback. You can get this straight to us by simply pressing the “Ask IPM” button which you’ll also to the right of this panel.</value>
+        <value>How-to videos on our U-view channel</value>
     </labels>
     <labels>
         <fullName>IPM_PDL_Not_Approved</fullName>
@@ -20760,7 +20788,7 @@ If you discover that stopping this project was a mistake you can undo this actio
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM TECHNICAL ISSUE</shortDescription>
-        <value>Simpler-Faster-Easier</value>
+        <value>To find the answers to your questions quickly we have provided : -</value>
     </labels>
     <labels>
         <fullName>IPM_TEMP_IS_BEING_GENERATED</fullName>
@@ -21509,7 +21537,7 @@ If you discover that stopping this project was a mistake you can undo this actio
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM WATCH FOR UPDATES TO</shortDescription>
-        <value>The IPM Navigator homepage also contains some useful quick links as well as the frequently asked questions document (FAQ).</value>
+        <value>In-system help text</value>
     </labels>
     <labels>
         <fullName>IPM_WEIGHTAGE</fullName>
@@ -21524,6 +21552,13 @@ If you discover that stopping this project was a mistake you can undo this actio
         <protected>false</protected>
         <shortDescription>IPM_WEIGHTED</shortDescription>
         <value>Weighted</value>
+    </labels>
+    <labels>
+        <fullName>IPM_WELCOME_TEXT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_WELCOME_TEXT</shortDescription>
+        <value>Welcome to IPM Navigator!</value>
     </labels>
     <labels>
         <fullName>IPM_WELCOME_TO_IDEA_PHASE</fullName>
