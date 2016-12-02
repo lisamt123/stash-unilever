@@ -4,9 +4,11 @@
   Date: 03 June 2016
   Requirement/Description: Closed tab of home Page of approval app. 
 -->
-<aura:component controller="Core_CA_ApprovalsController" implements="flexipage:availableForAllPageTypes,force:appHostable">
+<aura:component controller="Core_CA_ApprovalsController" implements="flexipage:availableForAllPageTypes,force:appHostable" access="global">
 
-    <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,resource/Lightning_designing_style/assets/fonts/" scripts="/resource/CORE_CA_ApprovalsLightning/jquery/jquery.js"   afterScriptsLoaded="{!c.doInit}"/>
+  <!--  <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,resource/Lightning_designing_style/assets/fonts/" scripts="/resource/CORE_CA_ApprovalsLightning/jquery/jquery.js"   afterScriptsLoaded="{!c.doInit}"/> -->
+    
+    <ltng:require styles="{!join(',', $Resource.CORE_CA_ApprovalsLightning, $Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css')}" scripts="{!$Resource.CORE_CA_ApprovalsLightning + '/jquery/jquery.js'}"  afterScriptsLoaded="{!c.doInit}"/>
     
     <aura:attribute name="ApprovalData" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
     <aura:attribute name="ApprovalDataCount" type="boolean" />
@@ -145,6 +147,11 @@
                             <li class="slds-dropdown__item" >
                                 <a href="" role="menuitem">
                                     <span style="width:100%;" class="slds-truncate filterSelected" aura:id="all" ><ui:button label="{!$Label.c.CORE_LBL_SHOW_ALL}" buttonTitle="Show All" press="{!c.doInit}"/></span>
+                                </a>
+                            </li>
+                            <li class="slds-dropdown__item">
+                                <a href="" role="menuitem">
+                                    <span style="width:100%;" class="slds-truncate" aura:id="contracts"><ui:button label="Show Contracts" buttonTitle="Show Only Contracts" press="{!c.doInit}"/></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item">

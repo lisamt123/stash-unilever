@@ -1845,5 +1845,7 @@ static testMethod void VPM_ApprovalMethodFreight12(){
         purcReqlst.add(pur);
         VPM_ApprovalSubmit.SubmitApproval(purcReqlst);
     }
+    
+    
  	 
 }

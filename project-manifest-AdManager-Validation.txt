@@ -1,0 +1,12 @@
+src
+src/objects
+src/objects/Amr_Multi_Brand_Positioning__c.object
+src/objects/Amr_Multi_Brand_Positions__c.object
+src/objects/Amr_Multi_Brand__c.object
+src/objects/Amr_Multi_Category__c.object
+src
+src/permissionsets
+src/permissionsets/AdManager.permissionset
+src/permissionsets/CAP.permissionset
+src/permissionsets/RAP.permissionset
+
