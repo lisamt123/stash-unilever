@@ -1,0 +1,17 @@
+Dear {!WU_Master_Warehouse__c.OwnerFullName} ,
+
+Please be informed of the Change in Committed Pallet Utilization  is approved by the Procurement Manager.
+
+Warehouse ID: {!WU_Master_Warehouse__c.WU_SAPCode_s__c} 
+
+Warehouse Name : {!WU_Master_Warehouse__c.WU_LocationName__c} 
+
+Submitted by : {!WU_Master_Warehouse__c.Submitted_by__c}
+
+Committed/Max Pallet Utilization:{!WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c} 
+ 
+This is an auto generated email from Global WH-Visibility tool. Please do not reply to this email.
+
+
+ Thanks, 
+Unilever Warehouse Administrator.
