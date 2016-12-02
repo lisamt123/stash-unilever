@@ -2,6 +2,12 @@ src
 src/applications
 src/applications/Issue_Briefing_Centre.app
 src/email
+src/email/Workflow_Emails
+src/email/Workflow_Emails-meta.xml
+src/email/Workflow_Emails/Issue_Reviewed.email
+src/email/Workflow_Emails/Issue_Reviewed.email-meta.xml
+src/email/Workflow_Emails/New_Issue_submitted.email
+src/email/Workflow_Emails/New_Issue_submitted.email-meta.xml
 src/email/Issue_Management
 src/email/Issue_Management-meta.xml
 src/email/Issue_Management/Issue_Reviewed.email
