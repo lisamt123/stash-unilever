@@ -1,0 +1,310 @@
+<apex:page controller="Engagement_preview_CC" showHeader="false">
+<apex:form >
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=no"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <apex:stylesheet value="{!URLFOR($Resource.favicon)}"/>
+    <title>Engagement App</title>
+
+   <!-- Bootstrap core CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/dist/css/bootstrap.min.css')}"/>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/assets/css/ie10-viewport-bug-workaround.css')}"/>
+
+    <!-- Custom styles for this template -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/style.css')}"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/css/main.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/css/normalize.css')}"/>       
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/css/demo.css')}"/>
+        <!-- Pushy CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/css/pushy.css')}"/>
+    <script type="text/javascript" src="{!URLFOR($Resource.Engagement, 'Engagement/assets/js/ie-emulation-modes-warning.js')}"></script>
+  </head>
+  
+  <body>
+  <div class="site-overlay"></div>
+    <div class="container" id="container">
+    <div class="jumbotron">
+    <apex:repeat value="{!questions}" var="q">
+    <div class="box">
+    <p><apex:outputText value="{!q.Question__c}"></apex:outputText></p>
+    <div  class="anscont">
+      
+    <apex:outputPanel id="panel1" rendered="{!q.Rating__c==9}">
+     <div class="checkbox excelent">
+    <div class="questext col-md-10">
+    <p style="font-weight:bold; font-size:18px"><apex:outputText value="{!q.Answer__c}" style="color:Black"></apex:outputText></p>
+    </div>
+    </div>
+    </apex:outputPanel>
+
+     <apex:outputPanel id="panel2" rendered="{!q.Rating__c==7}">
+     <div class="checkbox good">
+    <div class="questext col-md-10">
+    <p style="font-weight:bold; font-size:18px"><apex:outputText value="{!q.Answer__c}" style="color:black"></apex:outputText></p>
+    </div>
+    </div>
+    </apex:outputPanel>
+    
+     <apex:outputPanel id="panel3" rendered="{!q.Rating__c==5}">
+     <div class="checkbox moderate">
+    <div class="questext col-md-10">
+    <p style="font-weight:bold; font-size:18px"><apex:outputText value="{!q.Answer__c}" style="color:black"></apex:outputText></p>
+    </div>
+    </div>
+    </apex:outputPanel>
+    
+     <apex:outputPanel id="panel4" rendered="{!q.Rating__c==3}">
+     <div class="checkbox poor">
+    <div class="questext col-md-10">
+    <p style="font-weight:bold; font-size:18px"><apex:outputText value="{!q.Answer__c}" style="color:black"></apex:outputText></p>
+    </div>
+    </div>
+    </apex:outputPanel>
+    
+     <apex:outputPanel id="panel5" rendered="{!q.Rating__c==1}">
+     <div class="checkbox verypoor">
+    <div class="questext col-md-10">
+    <p style="font-weight:bold; font-size:18px"><apex:outputText value="{!q.Answer__c}" style="color:black"></apex:outputText></p>
+    </div>
+    </div>
+    </apex:outputPanel>
+    
+    <div class="changebtn">
+     <apex:commandButton action="/apex/Engagement_question_Edit_vf?qId={!q.Question_Id__c}" value="Change" styleclass="btn btn-lg btn-primary"></apex:commandButton>
+    </div>
+    </div>
+    </div>
+    </apex:repeat>
+    </div>
+    <div  class="changesub">
+    <apex:commandButton styleClass="btn btn-lg btn-primary"  value="Submit" action="{!Submit}"/>   
+    </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+ 
+   <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{!URLFOR($Resource.Engagement, 'Engagement/assets/js/vendor/jquery.min.js')}" ><\/script>')</script>
+     <script type="text/javascript" src="{!URLFOR($Resource.Engagement, 'Engagement/dist/js/bootstrap.min.js')}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript" src="{!URLFOR($Resource.Engagement, 'Engagement/assets/js/ie10-viewport-bug-workaround.js')}"></script>
+   <script>
+   (function ($) {
+    var pushy = $('.pushy'), //menu css class
+        body = $('body'),
+        container = $('#container'), //container css class
+        push = $('.push'), //css class to add pushy capability
+        pushyLeft = 'pushy-left', //css class for left menu position
+        pushyOpenLeft = 'pushy-open-left', //css class when menu is open (left position)
+        pushyOpenRight = 'pushy-open-right', //css class when menu is open (right position)
+        siteOverlay = $('.site-overlay'), //site overlay
+        menuBtn = $('.menu-btn, .pushy-link'), //css classes to toggle the menu
+        menuSpeed = 200, //jQuery fallback menu speed
+        menuWidth = pushy.width() + 'px', //jQuery fallback menu width
+        submenuClass = '.pushy-submenu',
+        submenuOpenClass = 'pushy-submenu-open',
+        submenuClosedClass = 'pushy-submenu-closed',
+        submenu = $(submenuClass);
+
+    function togglePushy(){
+        //add class to body based on menu position
+        if( pushy.hasClass(pushyLeft) ){
+            body.toggleClass(pushyOpenLeft);
+        }else{
+            body.toggleClass(pushyOpenRight);
+        }
+    }
+
+    function openPushyFallback(){       
+
+        //animate menu position based on CSS class
+        if( pushy.hasClass(pushyLeft) ){
+            body.addClass(pushyOpenLeft);
+            pushy.animate({left: "0px"}, menuSpeed);
+            container.animate({left: menuWidth}, menuSpeed);
+            //css class to add pushy capability
+            push.animate({left: menuWidth}, menuSpeed);
+        }else{
+            body.addClass(pushyOpenRight);
+            pushy.animate({right: '0px'}, menuSpeed);
+            container.animate({right: menuWidth}, menuSpeed);
+            push.animate({right: menuWidth}, menuSpeed);
+        }
+
+    }
+
+    function closePushyFallback(){
+
+        //animate menu position based on CSS class
+        if( pushy.hasClass(pushyLeft) ){
+            body.removeClass(pushyOpenLeft);
+            pushy.animate({left: "-" + menuWidth}, menuSpeed);
+            container.animate({left: "0px"}, menuSpeed);
+            //css class to add pushy capability
+            push.animate({left: "0px"}, menuSpeed);
+        }else{
+            body.removeClass(pushyOpenRight);
+            pushy.animate({right: "-" + menuWidth}, menuSpeed);
+            container.animate({right: "0px"}, menuSpeed);
+            push.animate({right: "0px"}, menuSpeed);
+        }
+
+    }
+
+    function toggleSubmenu(){
+        //hide submenu by default
+        $(submenuClass).addClass(submenuClosedClass);
+
+        $(submenuClass).on('click', function(){
+            var selected = $(this);
+
+            if( selected.hasClass(submenuClosedClass) ) {
+                //hide opened submenus
+                $(submenuClass).addClass(submenuClosedClass).removeClass(submenuOpenClass);
+                //show submenu
+                selected.removeClass(submenuClosedClass).addClass(submenuOpenClass);
+            }else{
+                //hide submenu
+                selected.addClass(submenuClosedClass).removeClass(submenuOpenClass);
+            }
+        });
+    }
+    
+    function toggleSubmenuFallback(){
+        //hide submenu by default
+        $(submenuClass).addClass(submenuClosedClass);
+        
+        submenu.children('a').on('click', function(event){
+            event.preventDefault();
+            $(this).toggleClass(submenuOpenClass)
+                   .next('.pushy-submenu ul').slideToggle(200)
+                   .end().parent(submenuClass)
+                   .siblings(submenuClass).children('a')
+                   .removeClass(submenuOpenClass)
+                   .next('.pushy-submenu ul').slideUp(200);
+        });
+    }
+
+    //checks if 3d transforms are supported removing the modernizr dependency
+    var cssTransforms3d = (function csstransforms3d(){
+        var el = document.createElement('p'),
+        supported = false,
+        transforms = {
+            'webkitTransform':'-webkit-transform',
+            'OTransform':'-o-transform',
+            'msTransform':'-ms-transform',
+            'MozTransform':'-moz-transform',
+            'transform':'transform'
+        };
+
+        // Add it to the body to get the computed style
+        document.body.insertBefore(el, null);
+
+        for(var t in transforms){
+            if( el.style[t] !== undefined ){
+                el.style[t] = 'translate3d(1px,1px,1px)';
+                supported = window.getComputedStyle(el).getPropertyValue(transforms[t]);
+            }
+        }
+
+        document.body.removeChild(el);
+
+        return (supported !== undefined && supported.length > 0 && supported !== "none");
+    })();
+
+    if(cssTransforms3d){
+        //make menu visible
+        pushy.css({'visibility': 'visible'});
+
+        //toggle submenu
+        toggleSubmenu();
+
+        //toggle menu
+        menuBtn.on('click', function(){
+            togglePushy();
+        });
+        //close menu when clicking site overlay
+        siteOverlay.on('click', function(){
+            togglePushy();
+        });
+    }else{
+        //add css class to body
+        body.addClass('no-csstransforms3d');
+
+        //hide menu by default
+        if( pushy.hasClass(pushyLeft) ){
+            pushy.css({left: "-" + menuWidth});
+        }else{
+            pushy.css({right: "-" + menuWidth});
+        }
+
+        //make menu visible
+        pushy.css({'visibility': 'visible'}); 
+        //fixes IE scrollbar issue
+        container.css({"overflow-x": "hidden"});
+
+        //keep track of menu state (open/close)
+        var opened = false;
+
+        //toggle submenu
+        toggleSubmenuFallback();
+
+        //toggle menu
+        menuBtn.on('click', function(){
+            if (opened) {
+                closePushyFallback();
+                opened = false;
+            } else {
+                openPushyFallback();
+                opened = true;
+            }
+        });
+
+        //close menu when clicking site overlay
+        siteOverlay.on('click', function(){
+            if (opened) {
+                closePushyFallback();
+                opened = false;
+            } else {
+                openPushyFallback();
+                opened = true;
+            }
+        });
+    }
+}(jQuery));
+
+// Mutation object
+var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+
+// Defining observer 
+var observer = new MutationObserver(function(mutations) { 
+    // If the myListClass was removed from the list - re-assign it
+    if(!jQuery('#dependentlist select').first().hasClass('form-control')){
+        jQuery('#dependentlist select').first().addClass('form-control');
+    }
+});
+
+// A target object fot the observer
+var myNode = document.querySelector('#dependentlist'); 
+
+// Assigning observer to the dependent picklist
+observer.observe(myNode, {
+    childList: true,
+    subtree: true,
+    attributes: true
+});
+</script>  
+   </body>
+</html>
+
+</apex:form>
+</apex:page>
