@@ -1,0 +1,14 @@
+src/classes
+src/classes/im_IssueTriggerHandler.cls
+src/classes/im_IssueTriggerHandler.cls-meta.xml
+src/classes/im_IssueTriggerHandlerTest.cls
+src/classes/im_IssueTriggerHandlerTest.cls-meta.xml
+src/objects
+src/objects/im_Issue__c.object
+src/permissionsets
+src/permissionsets/KOFI_APP_admin.permissionset
+src/permissionsets/KOFI_CIMT.permissionset
+src/permissionsets/KOFI_std.permissionset
+src/permissionsets/KOFI_IM_Only.permissionset
+src/workflows
+src/workflows/im_Issue__c.workflow

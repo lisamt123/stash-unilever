@@ -27,12 +27,22 @@ public with sharing class im_IssueTriggerHandler {
 						{
 							newMap.get(issue.Id).Issue_Status__c.addError('You cannot edit the Issue Status once the issue has been reviewed.');
 						}
-						
+                        // Allow the owner of the issue to edit the Severity once the status is Reviewed or Submitted 
+  					   if (oldMap.get(issue.Id).OwnerId != UserInfo.getUserId() )
+ 					   {
+
 						// Error change on severity
 						if (oldMap.get(issue.Id).Issue_Severity__c != newMap.get(issue.Id).Issue_Severity__c)
 						{
-							newMap.get(issue.Id).Issue_Severity__c.addError('You cannot edit the Issue Severity once the issue has been reviewed.');
+							newMap.get(issue.Id).Issue_Severity__c.addError('Only the owner can edit the Issue Severity once the issue has been reviewed.');
 						}
+
+					    }
+						/*// Error change on severity
+						if (oldMap.get(issue.Id).Issue_Severity__c != newMap.get(issue.Id).Issue_Severity__c)
+						{
+							newMap.get(issue.Id).Issue_Severity__c.addError('You cannot edit the Issue Severity once the issue has been reviewed.');
+						}*/
 						
 					}
 					
