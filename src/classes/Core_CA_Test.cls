@@ -21,12 +21,16 @@ public class Core_CA_Test {
    @TestVisible static String strUtf = 'UTF-8';
    @TestVisible static String strHeaderTemp = 'Header';
    @TestVisible static String strGtesTemp = 'GTES';
+   @TestVisible static String strCLMTemp = 'CLM';
+   @TestVisible static String strClarityTemp = 'Clarity';
+   @TestVisible static String strInvoiceTemp = 'Invoice';
    @TestVisible static String strSubmTemp = 'SUBM';
    @TestVisible static String strAppTemp = 'APP';
    @TestVisible static String strRejcTemp =  'REJC';
    @TestVisible static String strAribaTemp = 'Ariba'; 
    @TestVisible static String strRoleTemp = 'EMP';
    @TestVisible static String strStatusTemp = 'Submitted';
+   @TestVisible static String strActvTemp ='ACTV';
    
    @testSetup static void setup() {
         List<CORE_Chatter_Approval__c> lstCustSet = new List<CORE_Chatter_Approval__c>();
@@ -60,6 +64,12 @@ public class Core_CA_Test {
         lstCustSet.add( new CORE_Chatter_Approval__c(Name='Ariba', Text_Value__c= obj_user1.Id,ReminderAlertDays__c=0));
         lstCustSet.add( new CORE_Chatter_Approval__c(Name='GTES', Text_Value__c= obj_user1.Id,ReminderAlertDays__c=0));
         lstCustSet.add( new CORE_Chatter_Approval__c(Name='Clarity', Text_Value__c= obj_user1.Id,ReminderAlertDays__c=0));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='CLM_Notification', Text_Value__c='Yes'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='CLM_ApproverAdded', Text_Value__c='Dear XXX, CLM Approval YYY requires your immediate Approval.'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='CLM', Text_Value__c=obj_user1.Id,ReminderAlertDays__c=0));
+        
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='Ariba-InvalidPR', Text_Value__c='Action taken by YYY is not considered as XXX is no longer valid due to ZZZ.'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='Ariba-InvalidPR-Reason', Text_Value__c='Action taken by YYY is not considered as XXX is no longer valid. Please login to Ariba to review the errors.'));
         
         if(!lstCustSet.isEmpty())
            insert lstCustSet;     
@@ -105,7 +115,7 @@ public class Core_CA_Test {
        Core_Approval_Details__c lineObj=new Core_Approval_Details__c(name='Line Details',Approval_Header__c=objHeader.Id,Source_System__c = strGtesTemp);
        insert lineObj;
        System.assert(lineObj!= null);
-       
+      /* temp comment 
        //Test data for Header Object(Update).
         objHeader.Ledger_Extract__c= Datetime.now();
         Update objHeader;
@@ -135,7 +145,7 @@ public class Core_CA_Test {
        
        
        Test.stoptest();
-       
+      */
    }  
    
    @isTest 
@@ -147,11 +157,12 @@ public class Core_CA_Test {
                                  ProfileId=p.id,Email='Core_CA_testHeaderUser11@admintest.com',FederationIdentifier='feed4', FirstName=strHeaderTemp,
                                  LastName='user4',emailencodingkey=strUtf,languagelocalekey='nl_NL',localesidkey='ca_ES');
        insert obj_user1;
-       
+       /*
        User obj_user2 = new User (username='Core_CA_testHeaderUser21@admintest.com',IsActive=true,Alias='user5',timezonesidkey='Pacific/Pitcairn' ,
                                  ProfileId=p.id,Email='Core_CA_testHeaderUser21@admintest.com',FederationIdentifier='feed5', FirstName=strHeaderTemp,
                                  LastName='user5',emailencodingkey=strUtf,languagelocalekey='ar',localesidkey='zh_CN');
        insert obj_user2;
+       */
        
        //Test data for Header object(insert).
        Core_Approval_Header__c objHeader = new Core_Approval_Header__c( Name = 'testHeader2', Source_System__c = strGtesTemp, Status__c= 'Approver Added',Manager__c = obj_user1.Id ,
@@ -159,53 +170,84 @@ public class Core_CA_Test {
        insert objHeader;
        System.assert(objHeader != null);
        
-       Core_Approval_Header__c objHeader1 = new Core_Approval_Header__c( Name = 'testHeader3', Source_System__c = strGtesTemp, Status__c= 'Approver Added',Manager__c = obj_user1.Id ,
-                                           Requested_By__c= obj_user1.Id,Requested_For__c = obj_user1.Id, Reminder_Alert_Days__c=0,Fully_Approved__c=true);
-       insert objHeader1;
-       System.assert(objHeader1 != null);
-       Test.starttest();
+        
+      /*
        //Approver Added with (Role__c 'APP')
        Core_Approver_Details__c  objApprover4 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id,Source_System__c = strGtesTemp,     
-                                                Role__c = strAppTemp,Action__c = 'ACTV',Approval_Header__c =  objHeader.Id);
+                                                Role__c = strAppTemp,Action__c = strActvTemp,Status__c= '',Approval_Header__c =  objHeader.Id);
        insert objApprover4;
+      */
        
-       //Fully Approved with (Action 'CANC' and Role 'EMP')
-       Core_Approver_Details__c  objApprover5 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id,Source_System__c = strGtesTemp,     
-                                                Role__c = strRoleTemp,Action__c = 'CANC',Approval_Header__c =  objHeader.Id);
-       insert objApprover5;
-       
+        Test.starttest();
        //Rejected with (Action strRejcTemp and Role 'APP')
        Core_Approver_Details__c  objApprover6 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id,Source_System__c = strGtesTemp,     
-                                                Role__c = strAppTemp,Action__c = strRejcTemp,Approval_Header__c =  objHeader.Id);
+                                                Role__c = strRoleTemp,Action__c = 'CANC',Approval_Header__c =  objHeader.Id);
        insert objApprover6;
        
-       //Fully Approved ( Role 'SYS' and Action 'APPR' )
-       /*objApprover3.Action__c='APPR';
-       objApprover3.Role__c='SYS';
-       update objApprover3;*/
-       
-       objApprover6.Interested_Party__c=obj_user2.Id;
-       objApprover6.Action__c='ACTV';
+     objApprover6.Action__c=strSubmTemp;
+       objApprover6.Role__c= strRoleTemp;
        update objApprover6;
-            
-       objApprover5.Role__c='EMP';
-       objApprover5.Action__c=strSubmTemp;
-       update objApprover5;
-       
-       //Rejected (Role 'APP' and Action strRejcTemp )
-       objApprover4.Action__c=strRejcTemp;
-       objApprover4.Role__c= strAppTemp;
-       update objApprover4;
-       
        
        objHeader.Fully_Approved__c=true;
        update objHeader;
        
+     
+       Test.stoptest();
+       
+   }
+   
+   @isTest 
+  static void testMethodForHeaderAndApproverHandlerAriba1(){
+              
+       //Test User
+       profile p=[select id from profile where name=:strSystemAdministrator]; 
+       User obj_user1 = new User (username='Core_CA_testHeaderUser13@admintest.com',IsActive=true,Alias='user6',timezonesidkey='America/Anchorage' ,
+                                 ProfileId=p.id,Email='Core_CA_testHeaderUser13@admintest.com',FederationIdentifier='feed6', FirstName=strHeaderTemp,
+                                 LastName='user6',emailencodingkey=strUtf,languagelocalekey='hu',localesidkey='zh_SG');
+       insert obj_user1;
+       
+       
+       
+       //Submitted notification when Requested For <> Requested by(after insert)
+       Core_Approval_Header__c objHeader1 = new Core_Approval_Header__c( Name = 'testHeader5', Source_System__c =  strAribaTemp, Status__c= strStatusTemp,Manager__c = obj_user1.Id ,
+                                           Requested_By__c= obj_user1.Id,Reminder_Alert_Days__c=0);
+       insert objHeader1;
+       System.assert(objHeader1 != null);
+       /* test comment
+       //Submitted notification when Requested For <> Requested by(after update)
+       objHeader1.Status__c='Withdrawn';
+       update objHeader1;
+       objHeader1.Status__c=strStatusTemp;
+       update objHeader1;
+       */
+       
+       Test.starttest();
+       
+       Core_Approver_Details__c  objApproverResub2 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id ,Source_System__c =  strAribaTemp,Approval_Header__c =  objHeader1.Id,Action__c=strRejcTemp);
+       insert objApproverResub2;
+       System.assert(objApproverResub2 != null);
+       //Denied to resubmit
+       objApproverResub2.Action__c='';
+       update objApproverResub2;
+       
+       
+       //Approver added notification(after insert)
+       Core_Approver_Details__c  objApprover1 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id,Source_System__c =  strAribaTemp,     
+                                                Role__c = strAppTemp,Is_Active__c=true,Approval_Header__c =  objHeader1.Id);
+       insert objApprover1;
+       //Approver deleted notification
+       delete objApprover1;
+       /*
+       //Approver approved notifiaction(after insert)
+       Core_Approver_Details__c  objApprover2 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id,Source_System__c =  strAribaTemp,     
+                                                Role__c = strAppTemp,Is_Active__c=true,Action__c='APPR',Approval_Header__c =  objHeader1.Id);
+       insert objApprover2;
+       */
        Test.stoptest();
    }
    
-  @isTest 
-  static void testMethodForHeaderAndApproverHandlerAriba1(){
+    @isTest 
+  static void testMethodForHeaderAndApproverHandlerAriba3(){
               
        //Test User
        profile p=[select id from profile where name=:strSystemAdministrator]; 
@@ -238,45 +280,17 @@ public class Core_CA_Test {
        insert lineObj;
        System.assert(lineObj!= null);
        
-       //Submitted notification when Requested For <> Requested by(after insert)
-       Core_Approval_Header__c objHeader1 = new Core_Approval_Header__c( Name = 'testHeader5', Source_System__c =  strAribaTemp, Status__c= strStatusTemp,Manager__c = obj_user1.Id ,
-                                           Requested_By__c= obj_user1.Id,Requested_For__c = obj_user2.Id, Reminder_Alert_Days__c=0);
-       insert objHeader1;
-       System.assert(objHeader1 != null);
-       //Submitted notification when Requested For <> Requested by(after update)
-       objHeader1.Status__c='Withdrawn';
-       update objHeader1;
-       objHeader1.Status__c=strStatusTemp;
-       update objHeader1;
        
-       Test.starttest();
-       Core_Approver_Details__c  objApproveResub1 = new Core_Approver_Details__c (Role__c = strAppTemp,Is_Active__c=true,Interested_Party__c = obj_user1.Id ,Source_System__c =  strAribaTemp,Approval_Header__c =  objHeader.Id,Action__c=strRejcTemp);
+       Core_Approver_Details__c  objApproveResub1 = new Core_Approver_Details__c (Role__c = strAppTemp,Is_Active__c=true,Interested_Party__c = obj_user1.Id ,Source_System__c =  strAribaTemp,Approval_Header__c =  objHeader.Id,Action__c=strRejcTemp,Rank__c = 1);
        insert objApproveResub1;
        System.assert(objApproveResub1 != null);
        //Denied to resubmit
        objApproveResub1.Action__c='';
        update objApproveResub1;
        
-       Core_Approver_Details__c  objApproverResub2 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id ,Source_System__c =  strAribaTemp,Approval_Header__c =  objHeader1.Id,Action__c=strRejcTemp);
-       insert objApproverResub2;
-       System.assert(objApproverResub2 != null);
-       //Denied to resubmit
-       objApproverResub2.Action__c='';
-       update objApproverResub2;
        
-       //Approver added notification(after insert)
-       Core_Approver_Details__c  objApprover1 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id,Source_System__c =  strAribaTemp,     
-                                                Role__c = strAppTemp,Is_Active__c=true,Approval_Header__c =  objHeader1.Id);
-       insert objApprover1;
        
-       //Approver deleted notification
-       delete objApprover1;
-       
-       //Approver approved notifiaction(after insert)
-       Core_Approver_Details__c  objApprover2 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id,Source_System__c =  strAribaTemp,     
-                                                Role__c = strAppTemp,Is_Active__c=true,Action__c='APPR',Approval_Header__c =  objHeader1.Id);
-       insert objApprover2;
-       
+       Test.starttest();
        objHeader.Invalid_PR__c = true; 
        update objHeader;
 
@@ -288,84 +302,232 @@ public class Core_CA_Test {
        update objHeader;
        Test.stoptest();
    }
-   
-   @isTest 
-   static void testMethodForHeaderAndApproverHandlerAriba2(){
+   /*
+    @isTest 
+   static void testMethodForHeaderAndApproverHandlerCLM1(){   
        
-        //Test User
+       
+       //Test User
        profile p=[select id from profile where name=:strSystemAdministrator]; 
-       User obj_user1 = new User (username='Core_CA_testHeaderUser14@admintest.com',IsActive=true,Alias='user8',timezonesidkey='Australia/Lord_Howe' ,
-                                 ProfileId=p.id,Email='Core_CA_testHeaderUser14@admintest.com',FederationIdentifier='feed8', FirstName=strHeaderTemp,
-                                 LastName='user8',emailencodingkey=strUtf,languagelocalekey='vi',localesidkey='da_DK');
+       System.assert(p != null);
+       
+       User obj_user1 = new User (username='Core_CA_testHeaderUser1@admintest.com',IsActive=true,Alias='user1',timezonesidkey='America/Los_Angeles',
+                                 ProfileId=p.id,Email='Core_CA_testHeaderUser1@admintest.com',FederationIdentifier='feed1', FirstName=strHeaderTemp,
+                                 LastName='user1',emailencodingkey=strUtf,languagelocalekey='en_US',localesidkey='bg_BG');
        insert obj_user1;
        
-       User obj_user2 = new User (username='Core_CA_testHeaderUser24@admintest.com',IsActive=true,Alias='user9',timezonesidkey='Pacific/Kiritimati' ,
-                                 ProfileId=p.id,Email='Core_CA_testHeaderUser24@admintest.com',FederationIdentifier='feed9', FirstName=strHeaderTemp,
-                                 LastName='user9',emailencodingkey=strUtf,languagelocalekey='uk',localesidkey='nl_BE');
-       insert obj_user2;
-       
-       //Header with Requested For == Requested by.
-       Core_Approval_Header__c objHeader = new Core_Approval_Header__c( Name = 'testHeader6', Source_System__c =  strAribaTemp,Manager__c = obj_user1.Id ,Status__c='Fully Approved',
-                                           Requested_By__c= obj_user1.Id,Requested_For__c = obj_user1.Id, Reminder_Alert_Days__c=0);
+     
+       //Test data for Header object(insert).
+       Core_Approval_Header__c objHeader = new Core_Approval_Header__c( Name = 'testHeader1', Source_System__c = strCLMTemp, Status__c= 'Approver Added',Manager__c = obj_user1.Id ,
+                                           Requested_By__c= obj_user1.Id,Requested_For__c = obj_user1.Id, Reminder_Alert_Days__c=0,Fully_Approved__c=false);
        insert objHeader;
        System.assert(objHeader != null);
+       
+       
+      Test.starttest();
+       //Test Data for Interested party object(insert).
+       Core_Approver_Details__c  objApprover = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id ,Source_System__c = strCLMTemp,Approval_Header__c =  objHeader.Id, Action__c = '');
+       insert objApprover;
+       System.assert(objApprover != null); 
+     
+     objApprover.Interested_Party__c =obj_user1.Id;
+     objApprover.Action__c = strActvTemp;
+       Update objApprover;
+     Test.stoptest();
+     
+   }  
+   */
+   @isTest 
+   static void testMethodForHeaderAndApproverHandlerCLM2(){   
+       
+       
+       //Test User
+       profile p=[select id from profile where name=:strSystemAdministrator]; 
+       System.assert(p != null);
+       
+       User obj_user1 = new User (username='Core_CA_testHeaderUser1@admintest.com',IsActive=true,Alias='user1',timezonesidkey='America/Los_Angeles',
+                                 ProfileId=p.id,Email='Core_CA_testHeaderUser1@admintest.com',FederationIdentifier='feed1', FirstName=strHeaderTemp,
+                                 LastName='user1',emailencodingkey=strUtf,languagelocalekey='en_US',localesidkey='bg_BG');
+       insert obj_user1;
+       
+       User obj_user2 = new User (username='Core_CA_testHeaderUser2@admintest.com',IsActive=true,Alias='user2',timezonesidkey='America/Panama' ,
+                                 ProfileId=p.id,Email='Core_CA_testHeaderUser2@admintest.com',FederationIdentifier='feed2', FirstName=strHeaderTemp,
+                                 LastName='user2',emailencodingkey=strUtf,languagelocalekey='ko',localesidkey='my_MM');
+       insert obj_user2;
+       
+       user obj_user3 = new User (username='Core_CA_testHeaderUser3@admintest.com',IsActive=true,Alias='user3',timezonesidkey='America/Caracas' ,
+                                 ProfileId=p.id,Email='Core_CA_testHeaderUser3@admintest.com',FederationIdentifier='feed3', FirstName=strHeaderTemp,
+                                 LastName='user3',emailencodingkey=strUtf,languagelocalekey='ru',localesidkey='bs_BA');
+       insert obj_user3;
+          
+       //Test data for Header object(insert).
+       Core_Approval_Header__c objHeader = new Core_Approval_Header__c( Name = 'testHeader1', Source_System__c = strCLMTemp, Status__c= 'Approver Added',Manager__c = obj_user1.Id ,
+                                           Requested_By__c= obj_user1.Id,Requested_For__c = obj_user1.Id, Reminder_Alert_Days__c=0,Fully_Approved__c=false);
+       insert objHeader;
+       System.assert(objHeader != null);
+       
        Test.starttest();
-       //Header with Requested For <> Requested by.
-       Core_Approval_Header__c objHeader1 = new Core_Approval_Header__c( Name = 'testHeader7', Source_System__c =  strAribaTemp, Status__c= strStatusTemp,Manager__c = obj_user1.Id ,
-                                           Requested_By__c= obj_user1.Id,Requested_For__c = obj_user2.Id, Reminder_Alert_Days__c=0);
-       insert objHeader1;
-       System.assert(objHeader1 != null);
+       //Test Data for Interested party object(insert).
+       Core_Approver_Details__c  objApprover = new Core_Approver_Details__c (Interested_Party__c = obj_user3.Id ,Source_System__c = strCLMTemp,Approval_Header__c =  objHeader.Id, Action__c = strActvTemp);
+       insert objApprover;
+       System.assert(objApprover != null); 
+     
+     
+     
+     Test.stoptest();
+      /* temp comment 
+       //Test data for Header Object(Update).
+        objHeader.Ledger_Extract__c= Datetime.now();
+        Update objHeader;
        
-       //Header with Requested For <> Requested by.
-       Core_Approval_Header__c objHeader2 = new Core_Approval_Header__c( Name = 'testHeader8', Source_System__c =  strAribaTemp,Manager__c = obj_user1.Id ,Status__c=strStatusTemp,
-                                           Requested_By__c= obj_user1.Id,Requested_For__c = obj_user2.Id, Reminder_Alert_Days__c=0);
-       insert objHeader2;
-       System.assert(objHeader2 != null);
+       //Test Data for Interested party object(Update).       
+       objApprover.Interested_Party__c =obj_user1.Id;
+       Update objApprover;
+       Test.starttest();
+       //Expense Claim Submitted(Action 'SUBM' and Role 'EMP')
+       Core_Approver_Details__c  objApprover1 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id,Source_System__c = strGtesTemp,     
+                                                Role__c = strRoleTemp,Action__c = strSubmTemp,Approval_Header__c =  objHeader.Id);
+       insert objApprover1;
        
-       //Interested party test data
-       Core_Approver_Details__c  objApprover = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id ,Source_System__c =  strAribaTemp,Approval_Header__c =  objHeader1.Id,Is_Active__c=false,Role__c=strAppTemp);
+       //Expense Claim Submitted with(Action 'SUBM' and Role 'SUB')
+       Core_Approver_Details__c  objApprover2 = new Core_Approver_Details__c (Interested_Party__c = obj_user3.Id,Source_System__c = strGtesTemp,     
+                                                Role__c = 'SUB',Action__c = strSubmTemp,Approval_Header__c =  objHeader.Id);
+       insert objApprover2;
+       
+       //Expense Claim Submitted with(Action 'SUBM' and Role 'SUB')
+       Core_Approver_Details__c  objApprover3 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id,Source_System__c = strGtesTemp,     
+                                                Role__c = 'SUB',Action__c = strSubmTemp,Approval_Header__c =  objHeader.Id);
+       insert objApprover3;
+       
+       
+       
+       //delete objApprover6;
+       
+       
+       Test.stoptest();
+      */
+   }  
+   
+   @isTest 
+   static void testMethodForHeaderAndApproverHandlerClarity1(){   
+       
+       
+       //Test User
+       profile p=[select id from profile where name=:strSystemAdministrator]; 
+       System.assert(p != null);
+       
+       User obj_user1 = new User (username='Core_CA_testHeaderUser1@admintest.com',IsActive=true,Alias='user1',timezonesidkey='America/Los_Angeles',
+                                 ProfileId=p.id,Email='Core_CA_testHeaderUser1@admintest.com',FederationIdentifier='feed1', FirstName=strHeaderTemp,
+                                 LastName='user1',emailencodingkey=strUtf,languagelocalekey='en_US',localesidkey='bg_BG');
+       insert obj_user1;
+       
+       User obj_user2 = new User (username='Core_CA_testHeaderUser2@admintest.com',IsActive=true,Alias='user2',timezonesidkey='America/Panama' ,
+                                 ProfileId=p.id,Email='Core_CA_testHeaderUser2@admintest.com',FederationIdentifier='feed2', FirstName=strHeaderTemp,
+                                 LastName='user2',emailencodingkey=strUtf,languagelocalekey='ko',localesidkey='my_MM');
+       insert obj_user2;
+       
+       user obj_user3 = new User (username='Core_CA_testHeaderUser3@admintest.com',IsActive=true,Alias='user3',timezonesidkey='America/Caracas' ,
+                                 ProfileId=p.id,Email='Core_CA_testHeaderUser3@admintest.com',FederationIdentifier='feed3', FirstName=strHeaderTemp,
+                                 LastName='user3',emailencodingkey=strUtf,languagelocalekey='ru',localesidkey='bs_BA');
+       insert obj_user3;
+          
+       //Test data for Header object(insert).
+       Core_Approval_Header__c objHeader = new Core_Approval_Header__c( Name = 'testHeader1', Source_System__c = strClarityTemp, Status__c= 'Approver Added',Manager__c = obj_user1.Id ,
+                                           Requested_By__c= obj_user1.Id,Requested_For__c = obj_user1.Id, Reminder_Alert_Days__c=0,Fully_Approved__c=false);
+       insert objHeader;
+       System.assert(objHeader != null);
+       
+       
+       //Test Data for Interested party object(insert).
+       Core_Approver_Details__c  objApprover = new Core_Approver_Details__c (Interested_Party__c = obj_user3.Id ,Source_System__c = strClarityTemp,Approval_Header__c =  objHeader.Id, Action__c = '',Role__c = strAppTemp);
        insert objApprover;
        System.assert(objApprover != null);
        
-       objHeader.Status__c=strStatusTemp;
-       update objHeader;
+       Test.starttest();
+       //Test data for Header Object(Update).
+        objHeader.Ledger_Extract__c= Datetime.now();
+        Update objHeader;
        
-       //Notification sent when approver is added. 
-       objApprover.Is_Active__c=true;
-       update objApprover;
-      
-       //Notification sent when the approver approved.      
-       objApprover.Action__c='APPR';
-       update objApprover;
+       //Test Data for Interested party object(Update).       
+       objApprover.Interested_Party__c =obj_user1.Id;
+     objApprover.Action__c =strActvTemp;
+       Update objApprover;
+       //Expense Claim Submitted(Action 'SUBM' and Role 'EMP')
+       Core_Approver_Details__c  objApprover1 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id,Source_System__c = strClarityTemp,     
+                                                Role__c = strAppTemp,Action__c = strActvTemp,Approval_Header__c =  objHeader.Id);
+       insert objApprover1;
        
-       //fully approved notificaton.    
-       objHeader.Status__c='Fully Approved';
-       update objHeader;
-      
-       //Header data with status as denied     
-       Core_Approval_Header__c objHeader3 = new Core_Approval_Header__c( Name = 'testHeader9', Source_System__c =  strAribaTemp, Status__c= 'Denied',Manager__c = obj_user1.Id ,
-                                           Requested_By__c= obj_user1.Id,Requested_For__c = obj_user2.Id, Reminder_Alert_Days__c=0);
-       insert objHeader3;
        
-       //Approver denied notification
-       Core_Approver_Details__c  objApprover3 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id,Source_System__c =  strAribaTemp,    
-                                                Role__c = strAppTemp,Is_Active__c=true,Action__c=strRejcTemp,Approval_Header__c =  objHeader3.Id);
-       insert objApprover3;
+       //delete objApprover6;
        
-       //Denied to resubmit
-       objHeader3.Status__c=strStatusTemp;
-       update objHeader3;
-       objApprover3.Action__c='';
-       update objApprover3;
-       
-       objHeader3.Status__c='Denied';
-       update objHeader3;
-       objApprover3.Action__c=strRejcTemp;
-       update objApprover3;
        
        Test.stoptest();
-   }
+   }  
    
+   @isTest 
+   static void testMethodForHeaderAndApproverHandlerInvoice1(){   
+       
+       
+       //Test User
+       profile p=[select id from profile where name=:strSystemAdministrator]; 
+       System.assert(p != null);
+       
+       User obj_user1 = new User (username='Core_CA_testHeaderUser1@admintest.com',IsActive=true,Alias='user1',timezonesidkey='America/Los_Angeles',
+                                 ProfileId=p.id,Email='Core_CA_testHeaderUser1@admintest.com',FederationIdentifier='feed1', FirstName=strHeaderTemp,
+                                 LastName='user1',emailencodingkey=strUtf,languagelocalekey='en_US',localesidkey='bg_BG');
+       insert obj_user1;
+       
+       User obj_user2 = new User (username='Core_CA_testHeaderUser2@admintest.com',IsActive=true,Alias='user2',timezonesidkey='America/Panama' ,
+                                 ProfileId=p.id,Email='Core_CA_testHeaderUser2@admintest.com',FederationIdentifier='feed2', FirstName=strHeaderTemp,
+                                 LastName='user2',emailencodingkey=strUtf,languagelocalekey='ko',localesidkey='my_MM');
+       insert obj_user2;
+       
+       user obj_user3 = new User (username='Core_CA_testHeaderUser3@admintest.com',IsActive=true,Alias='user3',timezonesidkey='America/Caracas' ,
+                                 ProfileId=p.id,Email='Core_CA_testHeaderUser3@admintest.com',FederationIdentifier='feed3', FirstName=strHeaderTemp,
+                                 LastName='user3',emailencodingkey=strUtf,languagelocalekey='ru',localesidkey='bs_BA');
+       insert obj_user3;
+          
+       //Test data for Header object(insert).
+       Core_Approval_Header__c objHeader = new Core_Approval_Header__c( Name = 'testHeader1', Source_System__c = strInvoiceTemp, Status__c= 'Approver Added',Manager__c = obj_user1.Id , Category__c = 'INV', Ariba_Company_Code__c = 'abc',
+                                           Requested_By__c= obj_user1.Id,Requested_For__c = obj_user1.Id, Reminder_Alert_Days__c=0,Fully_Approved__c=false);
+       insert objHeader;
+       System.assert(objHeader != null);
+       
+       
+       //Test Data for Interested party object(insert).
+       Core_Approver_Details__c  objApprover = new Core_Approver_Details__c (Interested_Party__c = obj_user3.Id ,Source_System__c = strInvoiceTemp,Approval_Header__c =  objHeader.Id,
+                                               Role__c = strAppTemp,Action__c = '');
+       insert objApprover;
+       System.assert(objApprover != null);
+     
+     Core_Approver_Details__c  objApprover2 = new Core_Approver_Details__c (Interested_Party__c = obj_user3.Id ,Source_System__c = strInvoiceTemp,Approval_Header__c =  objHeader.Id,
+                                               Role__c = strAppTemp,Action__c = strActvTemp);
+       insert objApprover2;
+       System.assert(objApprover2 != null);
+       
+       Core_Approval_Details__c lineObj=new Core_Approval_Details__c(name='Line Details',Approval_Header__c=objHeader.Id,Source_System__c = strInvoiceTemp);
+       insert lineObj;
+       System.assert(lineObj!= null);
+     
+      Test.starttest();
+    
+  
+       //Test data for Header Object(Update).
+        objHeader.Ledger_Extract__c= Datetime.now();
+        Update objHeader;
+       
+       //Test Data for Interested party object(Update).       
+       objApprover.Interested_Party__c =obj_user1.Id;
+     objApprover.Action__c=strActvTemp;
+       Update objApprover;
+       //Expense Claim Submitted(Action 'SUBM' and Role 'EMP')
+       Core_Approver_Details__c  objApprover1 = new Core_Approver_Details__c (Interested_Party__c = obj_user1.Id,Source_System__c = strInvoiceTemp,     
+                                                Role__c = strAppTemp,Action__c=strRejcTemp,Approval_Header__c =  objHeader.Id);
+       insert objApprover1;
+       
+       
+       Test.stoptest();
+   }  
       
    //Test method to cover both Request and Approval details
    @isTest 

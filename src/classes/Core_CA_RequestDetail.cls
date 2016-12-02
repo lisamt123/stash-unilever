@@ -15,9 +15,12 @@ global with sharing class Core_CA_RequestDetail{
     * @return Core_CA_WrapperUtility.RequestDetailResponseAribaGTES wrapper
     */  
     
-     public static String strInvoiceSystem=  'Invoice'; 
-     public static String strMessage=  'Exception occured: Core_CA_MyApprovalData : getPreTripDetails method ';
-    
+     public static String strInvoiceSystem =  'Invoice'; 
+     public static String strMessage =  'Exception occured: Core_CA_MyApprovalData : getPreTripDetails method ';
+     public static String strSystemClm =  'CLM'; 
+     public static String strApproved = 'Approved';
+     public static String strRejected = 'Rejected';
+     
     global static Core_CA_WrapperUtility.RequestDetailResponseAribaGTES getRequestDetail(Core_CA_ApplicationWrapper appWrapperObj) {
        Core_CA_WrapperUtility.RequestDetailResponseAribaGTES objRequestDetailResponseAribaGTES = new Core_CA_WrapperUtility.RequestDetailResponseAribaGTES(); 
        try{
@@ -167,10 +170,25 @@ global with sharing class Core_CA_RequestDetail{
            /* Clarity App : Data binding Ends*/
            
            /* Invoice App : Data binding starts*/
-          else if(objApprovalHeader.Source_System__c == strInvoiceSystem){
-                objRequestDetailResponseAribaGTES.RequestType =  strInvoiceSystem;
+          else if(objApprovalHeader.Source_System__c == strInvoiceSystem || objApprovalHeader.Source_System__c == strSystemClm){
+                if(objApprovalHeader.Source_System__c == strInvoiceSystem)
+                {
+                    objRequestDetailResponseAribaGTES.RequestType =  strInvoiceSystem;
+                    objRequestDetailResponseAribaGTES.Cop = objApprovalHeader.Invalid_PR_Reason__c;
+                    }
+                if(objApprovalHeader.Source_System__c == strSystemClm)
+                {
+                    objRequestDetailResponseAribaGTES.RequestType =  strSystemClm;
+                    if(objApprovalHeader.Ledger_Extract__c !=null)
+                    {
+                    objRequestDetailResponseAribaGTES.DelegationStart = objApprovalHeader.Ledger_Extract__c.format('MMM dd,yyyy'); 
+                    }
+                    if(objApprovalHeader.Expected_Completion__c !=null)
+                    {
+                    objRequestDetailResponseAribaGTES.DelegationEnd = objApprovalHeader.Expected_Completion__c.format('MMM dd,yyyy');
+                    }
+                    }
                 objRequestDetailResponseAribaGTES.InvoiceType = objApprovalHeader.Category__c;
-                objRequestDetailResponseAribaGTES.Cop = objApprovalHeader.Invalid_PR_Reason__c;
 
 
 
@@ -185,7 +203,7 @@ global with sharing class Core_CA_RequestDetail{
                 objRequestDetailResponseAribaGTES.CompanyCode = objApprovalHeader.Impact__c;
                 objRequestDetailResponseAribaGTES.ProjectBug = objApprovalHeader.Urgency__c;
                 objRequestDetailResponseAribaGTES.RequestedByLang = objApprovalHeader.Requested_For_Language__c;
-
+                objRequestDetailResponseAribaGTES.Comments= objApprovalHeader.Comment__c;
                 
 
 
@@ -244,12 +262,12 @@ global with sharing class Core_CA_RequestDetail{
                objlineItem.LineItemId = lineitem.Id;
                objlineItem.Amount= lineitem.Amount__c;
                objlineItem.Currencies = lineitem.Currency__c;
-               if(lineitem.Source_System__c == 'Ariba' || lineitem.Source_System__c == strInvoiceSystem ){
+               if(lineitem.Source_System__c == 'Ariba' || lineitem.Source_System__c == strInvoiceSystem){
                 objlineItem.ItemName= lineitem.Description__c;}
                if(lineitem.Source_System__c == strInvoiceSystem )
                     objlineItem.NetAmount = lineitem.Charge_To__c;     
                else if(lineitem.Source_System__c == 'GTES'){ 
-               objlineItem.ItemName= lineitem.Name;}              
+               objlineItem.ItemName= lineitem.Name;} 
                lstLineItems.add(objlineItem);
            }
         }  
@@ -264,6 +282,7 @@ global with sharing class Core_CA_RequestDetail{
     * @param Core_Approval_Header__c Id  
     * @return Core_CA_WrapperUtility.ApprovalHistory wrapper
     */
+    
     private static List<Core_CA_WrapperUtility.ApprovalHistory> processApprovalHistory(string HeaderId,string sourceSystem){
        List<Core_CA_WrapperUtility.ApprovalHistory> lstApprovalHistory = new List<Core_CA_WrapperUtility.ApprovalHistory>();
        try{
@@ -284,10 +303,20 @@ global with sharing class Core_CA_RequestDetail{
                    objApprovalHistory.ApprovedDate = Approver.TF_CreatedDate__c.format('dd MMM yyyy') ;
                    objApprovalHistory.Comment = Approver.Comments__c;    
                } 
-               if(Approver.CA_Action__c == 'Approved')
+               //mapping for CLM
+               if(Approver.Source_System__c == strSystemClm ){
+               if(Approver.Action_Date__c!= null)
+                   objApprovalHistory.ApprovedDate = Approver.Action_Date__c.format('dd MMM yyyy, HH:mm:ss') ;
+                   objApprovalHistory.Comment = Approver.Comments__c;    
+                  /* if((Approver.CA_Action__c == strApproved || Approver.Status__c == strApproved) && (Approver.Status__c != strRejected))
+                    objApprovalHistory.ApproverAction = strApproved;
+               else if((Approver.CA_Action__c == 'Returned' || Approver.Status__c == strRejected) && (Approver.Status__c != strApproved))
+                    objApprovalHistory.ApproverAction =  strRejected; */
+               } 
+               if(Approver.CA_Action__c == strApproved)
                     objApprovalHistory.ApproverAction = Approver.CA_Action__c;
                else if(Approver.CA_Action__c == 'Returned') 
-                    objApprovalHistory.ApproverAction = 'Rejected';
+                    objApprovalHistory.ApproverAction = strRejected;
                else if(Approver.CA_Action__c == 'Rework')   
                     objApprovalHistory.ApproverAction = Approver.CA_Action__c; 
                   
@@ -334,7 +363,7 @@ global with sharing class Core_CA_RequestDetail{
                                 PreTrip_Id__c,PreTrip_Location_Details__c,PreTrip_Passenger_Info__c,Purpose__c,Invalid_PR__c,Ariba_Company_Code__c,Title_Summary__c,Impact__c,
                                 External_Created_Date__c,Reason__c,Requested_By_Details__c,Requested_For_Details__c,Status__c,Total_amount__c,Source_System__c,Delegatee__c,Amount_to_Employee__c,
                                 Amount_Paid_Card__c,Amount_to_Card__c,Other_Amount__c,Reminder_Alert_Days__c,Invalid_PR_Reason__c,Requested_By_Language__c,Category__c,Amount_to_Company__c,
-                                Requested_For_Language__c,Attachment__c,Policy_Exception__c,Total_Budget__c,Priority__c,Requestor_Employee_No__c,Urgency__c,All_years__c,Approval_Type__c FROM Core_Approval_Header__c WHERE Id =: HeaderId ];
+           Requested_For_Language__c,Attachment__c,Policy_Exception__c,Total_Budget__c,Priority__c,Requestor_Employee_No__c,Urgency__c,All_years__c,Approval_Type__c,Ledger_Extract__c,Expected_Completion__c FROM Core_Approval_Header__c WHERE Id =: HeaderId ];
        }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException(strMessage, ex);
@@ -351,7 +380,7 @@ global with sharing class Core_CA_RequestDetail{
    private static List<Core_Approval_Details__c> getApprovalDetails(string HeaderId){
        List<Core_Approval_Details__c> lstApprovalDetails = null;
        try{
-           lstApprovalDetails =[SELECT Amount__c,Name,Id,Currency__c,Description__c,Charge_To__c,Source_System__c,Line_Item_Number__c,Air_Fare_Details__c,Allowance_Details__c,Attachment__c,Attendees_Details__c
+           lstApprovalDetails =[SELECT Amount__c,Name,Id,Currency__c,Description__c,Charge_To__c,Source_System__c,Line_Item_Number__c,Air_Fare_Details__c,Allowance_Details__c,Attachment__c,Attendees_Details__c,City__c,Expense_Id__c,Expense_Country__c,Expense_Code__c, Parent_Id__c
                                 FROM Core_Approval_Details__c WHERE Approval_Header__c =: HeaderId ORDER BY Line_Item_Number__c ASC];
        }
        catch(Exception ex){
@@ -379,7 +408,10 @@ global with sharing class Core_CA_RequestDetail{
            /* Clarity App : retrive approval detail ends */
            if(sourceSystem ==  strInvoiceSystem)
                lstApproverDetails =[SELECT CA_Action__c,Interested_Party_Details__c,Status__c,Ariba_Role__c,Action__c,Source_System__c,TF_CreatedDate__c,Comments__c  FROM Core_Approver_Details__c WHERE Approval_Header__c =: HeaderId ORDER BY TF_CreatedDate__c DESC ];
-           /* Clarity App : retrive approval detail ends */
+           /* Clm App : retrive approval detail starts */
+           if(sourceSystem ==  strSystemClm)
+               lstApproverDetails =[SELECT CA_Action__c,Interested_Party_Details__c,Status__c,Ariba_Role__c,Action__c,Source_System__c,Comments__c,Action_Date__c  FROM Core_Approver_Details__c WHERE Approval_Header__c =: HeaderId AND (Action__c = 'APPR' OR Action__c = 'REJC' OR Status__c ='Approved' OR Status__c='Rejected') ORDER BY Action_Date__c DESC ];
+           /* Clm App : retrive approval detail ends */
        }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException(strMessage, ex);
