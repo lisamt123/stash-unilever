@@ -1,5 +1,5 @@
 {
-    "label": "SEAA Place Reports",
+    "label": "SEAA Place Reports - New",
     "state": {
         "gridLayouts": [
             {
@@ -10021,9 +10021,10 @@
             "Date_Year_Date_Month_1": {
                 "datasets": [
                     {
+                        "id": "0Fb2C000000Gn5HSAS",
+                        "label": "PLACE_DATES",
                         "name": "PLACE_DATES",
-                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gn5HSAS",
-                        "id": "0Fb2C000000Gn5HSAS"
+                        "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gn5HSAS"
                     }
                 ],
                 "isFacet": false,
@@ -10037,8 +10038,8 @@
                     ],
                     "groups": [
                         [
-                            "Date_of_audit_Year",
-                            "Date_of_audit_Month"
+                            "Audit_Date_Year",
+                            "Audit_Date_Month"
                         ]
                     ]
                 },
@@ -14258,9 +14259,10 @@
             "url": "/services/data/v38.0/wave/datasets/0Fb2C000000GmznSAC"
         },
         {
+            "id": "0Fb2C000000Gn5HSAS",
+            "label": "PLACE_DATES",
             "name": "PLACE_DATES",
-            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gn5HSAS",
-            "id": "0Fb2C000000Gn5HSAS"
+            "url": "/services/data/v38.0/wave/datasets/0Fb2C000000Gn5HSAS"
         }
     ]
 }
