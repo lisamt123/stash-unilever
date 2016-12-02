@@ -339,8 +339,10 @@ public with sharing class IPM_FinancialHelper
         
     	List<IPM_Financial__c> consolidationChangedFinancialList = new List<IPM_Financial__c>(); 
         
-    	Set<String> regionalRolloutProjectNames = new Set<String>();
-        Set<String> globalProjectNames = new Set<String>();
+    	Set<String> regionalProjectNames = new Set<String>();
+    	Set<String> regionalRolloutNames = new Set<String>();
+        Set<String> globalProjectNamesRollout = new Set<String>();
+        Set<String> globalProjectNamesProject = new Set<String>();
         
     	if(newFinancialList!=null && !newFinancialList.isEmpty())
         {
@@ -378,28 +380,27 @@ public with sharing class IPM_FinancialHelper
 	            // Check if Financials are associated with Regional Rollouts 
 	            if(financial.IPM_Project_Rollout__c !=null) 
 	            {
-	                regionalRolloutProjectNames.add(financial.IPM_Project_Rollout__r.IPM_Rollout_Project__c);
+	                regionalRolloutNames.add(financial.IPM_Project_Rollout__r.IPM_Rollout_Project__c);
         }
         
-	            // Check if Financials are associated with Regional Projects.
-	            if(financial.Regional_Project__c !=null)
+	            else if(financial.Regional_Project__c !=null)// Check if Financials are associated with Regional Projects.
         		{
-	                regionalRolloutProjectNames.add(financial.Regional_Project__r.IPM_Project_Name__c);
+	                regionalProjectNames.add(financial.Regional_Project__r.IPM_Project_Name__c);
 	            }
 	            if(financial.IPM_Project_Rollout__r.IPM_Project__c !=null)
 	            {
-	            	globalProjectNames.add(financial.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c);
+	            	globalProjectNamesRollout.add(financial.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c);
 	            }
-	            if(financial.Regional_Project__r.IPM_Parent_Project__c !=null)
+	            else if(financial.Regional_Project__r.IPM_Parent_Project__c !=null)
 	            {
-	            	globalProjectNames.add(financial.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c);
+	            	globalProjectNamesProject.add(financial.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c);
 	            }
 	        }
             
-	    	if(!regionalRolloutProjectNames.isEmpty())
+	    	if(!regionalRolloutNames.isEmpty() || !regionalProjectNames.isEmpty())
             { 
-	            IPM_FinancialUtils.processRegionalConsolidationFinancial(regionalRolloutProjectNames);
-	            IPM_FinancialUtils.processGlobalConsolidationFinancial(globalProjectNames); 
+	            IPM_FinancialUtils.processRegionalConsolidationFinancial(regionalProjectNames,regionalRolloutNames);
+	            IPM_FinancialUtils.processGlobalConsolidationFinancial(globalProjectNamesProject,globalProjectNamesRollout); 
             }
         }
     }
