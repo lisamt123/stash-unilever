@@ -3639,7 +3639,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
         
             queryString+= ' Id FROM IPM_Financial_Years__r ORDER BY Name)';
-            queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.Source_Rollout_External_Id__c+'\\_%\' AND RecordType.Name = \'Default\' AND ID IN :finIdsToProcess Limit 1000'; //Added For Update to obtain exclusive access to the record
+            queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.Source_Rollout_External_Id__c+'\\_%\' AND RecordType.Name = \'Default\' AND ID IN :finIdsToProcess AND isActive__c = true Limit 1000'; //Added For Update to obtain exclusive access to the record
         
             Map<String,String> finExtIdRedCellsMap= new Map<String,String>();
             Map<String,String> finExtIdYellowCellsMap= new Map<String,String>();
@@ -3661,7 +3661,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 Map<Id,IPM_Financial__c> toUpdateFinancialsMap = new Map<Id,IPM_Financial__c>();
                 
                 //Query to fecth all the Consolidated financials for the project
-                String consolidatedFinQuery = 'Select Id,Financial_External_ID__c,Red_Validation_Cells_Global__c,Red_Validation_Cells_Regional__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Global__c,Yellow_Validation_Cells_Regional__c,Yellow_Validation_Cells_Local__c from IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.Source_Rollout_External_Id__c+'\\_%CONSOLIDATED\' AND RecordType.name = \'Consolidated\' Limit 1000';
+                String consolidatedFinQuery = 'Select Id,Financial_External_ID__c,Red_Validation_Cells_Global__c,Red_Validation_Cells_Regional__c,Red_Validation_Cells_Local__c,Yellow_Validation_Cells_Global__c,Yellow_Validation_Cells_Regional__c,Yellow_Validation_Cells_Local__c from IPM_Financial__c WHERE Financial_External_ID__c  Like \''+project.Source_Rollout_External_Id__c+'\\_%CONSOLIDATED\' AND RecordType.name = \'Consolidated\' AND isActive__c = true Limit 1000';
                 
                 String existingRedCells = IPM_ConstantUtils.BLANK;
                 String existingYellowCells = IPM_ConstantUtils.BLANK;
