@@ -20862,6 +20862,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Assessment__c.IPM_LocalRolloutBrand__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Assessment__c.IPM_New_SKU_Greenhouse__c</field>
         <readable>true</readable>
@@ -20959,7 +20964,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Bosscard__c.IPM_BosscardName_isNull__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -20982,9 +20987,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Bosscard__c.IPM_Bosscard_Owner__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21364,17 +21369,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Country__c.IPM_Brand_Null_or_Brand_Not_Matched__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Country__c.IPM_Brand_Position__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Country__c.IPM_Brand_and_BrandPos_Matched__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -21577,9 +21582,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Exchange_Rate__c.Currency_Code__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -21692,9 +21697,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Financial_Year__c.Copy_Local_to_Global__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -21854,7 +21859,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial_Year__c.Name_isY0__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -22282,9 +22287,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Financial__c.Copy_Local_to_Global__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -22309,7 +22314,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial__c.Financial_External_ID_Check_If_NONKEY__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -22489,7 +22494,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial__c.IPM_Parent_Company_Card__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -22627,9 +22632,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Financial__c.IsKeyFinancialAtCapability__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -22679,7 +22684,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial__c.Local_Project_isNull__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -23077,9 +23082,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Financial__c.Yellow_Validation_Cells__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -23419,7 +23424,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Milestone__c.IPM_Due_Date_isNull__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -23524,7 +23529,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Milestone__c.IPM_Planned_Date_isNull__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -23607,9 +23612,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Milestone__c.SystemSetDueDate__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -23734,7 +23739,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Document_Section_Content__c.IPM_CMI_Country_isNull__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -24114,7 +24119,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_Measure_isNull__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -24324,7 +24329,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Document_Section__c.Gate_With_Sequence__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -24467,9 +24472,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project_Document_Section__c.IPM_Parent_Section_isNull__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -24869,12 +24874,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Rollout__c.IPM_Brand_Position__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project_Rollout__c.IPM_Brand__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -25274,7 +25279,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.BET_isNull__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -25287,14 +25292,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.CharterRiskIdentified__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.ContractRiskIdentified__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -25629,7 +25634,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.IPM_EligibleForReactivation__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -25809,7 +25814,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.IPM_Parent_BI__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -25837,9 +25842,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.IPM_Postponed_Comments__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -25924,7 +25929,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.IPM_Project_Name_isNull__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -26027,9 +26032,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.IPM_Stop_Child_Project__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -26047,9 +26052,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IPM_Project__c.IPM_Stopped_At_Span__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -26514,7 +26519,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Section__c.IPM_Is_Parent_Exist__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -26594,7 +26599,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Task__c.IPM_Due_Date1_isNull__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -26784,7 +26789,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_User_Profile__c.IPM_Is_RoleorFunction_Blank__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -26804,7 +26809,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_User_Profile__c.IPM_Region_isNull__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -26824,7 +26829,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_User_Profile__c.IPM_User_Role_Function_isNull__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

@@ -12,6 +12,9 @@
         <sobjectType>Macro</sobjectType>
     </queueSobject>
     <queueSobject>
+        <sobjectType>QuickText</sobjectType>
+    </queueSobject>
+    <queueSobject>
         <sobjectType>cec_Alert_Rule__c</sobjectType>
     </queueSobject>
     <queueSobject>
