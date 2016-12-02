@@ -40,7 +40,7 @@
         <fields>Role__c</fields>
         <fields>Status__c</fields>
         <includeSessionId>false</includeSessionId>
-        <integrationUser>clarity.system@unilever.com</integrationUser>
+        <integrationUser>clarity.system@unilever.com.prod</integrationUser>
         <name>Core CA IP Clarity OutboundMessage</name>
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>
@@ -104,7 +104,7 @@
 	<fields>Interested_Party_Email__c</fields>
 	<fields>Status__c</fields>
 	<includeSessionId>false</includeSessionId>
-	<integrationUser>clarity.system@unilever.com</integrationUser>
+	<integrationUser>clarity.system@unilever.com.prod</integrationUser>
 	<name>Core CA IP CLM OutboundMessage</name>
 	<protected>false</protected>
 	<useDeadLetterQueue>false</useDeadLetterQueue>
