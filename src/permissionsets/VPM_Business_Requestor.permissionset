@@ -3035,6 +3035,10 @@
         <apexPage>VPM_AttachmentSectionPopUp</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+	<pageAccesses>
+        <apexPage>VPM_AttachFiles</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_CordilleraGoldenData</apexPage>
         <enabled>true</enabled>
