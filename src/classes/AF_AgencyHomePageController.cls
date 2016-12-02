@@ -281,6 +281,7 @@ public with sharing class AF_AgencyHomePageController {
 *  @return: List of AF_Brand_Estimate__c.
 ***********************************************************************************************************/
     public list<AF_Brand_Estimate__c> getbrandEstimateDetailList() {
+        totalAgencyFee = 0;
         list<AF_Brand_Estimate__c> brandEstimateObjList = new list<AF_Brand_Estimate__c>();
         bonusDate = false;
         bonusDateQ2 = false;
@@ -314,10 +315,13 @@ public with sharing class AF_AgencyHomePageController {
 *  @name : getOOPDataList
 *  @param : list<AF_Brand_Estimate__c>
 *  @return: none.
-***********************************************************************************************************/    
-    public void getOOPDataList(list<AF_Brand_Estimate__c> brandEstimateObjList){
-    totalUnileverFee=0;
-    for(AF_Brand_Estimate__c brandEstObj :brandEstimateObjList){
+***********************************************************************************************************/  
+  public void getOOPDataList(list<AF_Brand_Estimate__c> brandEstimateObjList){
+  totalUnileverFee=0;
+  agencySetId.clear();
+  uniqueBrandEstMap.clear();
+  brandEstMap.clear();
+  for(AF_Brand_Estimate__c brandEstObj :brandEstimateObjList){
             string unq=string.valueOf(brandEstObj.Brand__c).substring(0,15)+'::'+string.valueOf(brandEstObj.AF_Agency__c).substring(0,15)+'::'+brandEstObj.AF_Fiscal_Year__c;
             if(!uniqueBrandEstMap.containsKey(unq)){
                 uniqueBrandEstMap.put(unq,brandEstObj);

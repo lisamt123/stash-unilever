@@ -8,7 +8,7 @@ public without sharing class WU_SetWarehousePOCHandler
     public static Boolean isInserted = false;
     private static Map<string, User> userMap=new Map<string, User>();
     
-    private WU_SetWarehousePOCHandler() {}
+    @Testvisible private WU_SetWarehousePOCHandler() {}
     public static void onBeforeInsert(List<WU_Master_Warehouse__c> InsertedItems, Map<Id, WU_Master_Warehouse__c> itemMap) {
     
         isInserted = false;
@@ -280,15 +280,20 @@ public without sharing class WU_SetWarehousePOCHandler
     public static void sendEmailSecPOC(List<WU_Master_Warehouse__c> wareHouseSecPocList)
     {
         set<string>emailSet = new set<string>();
+        
         if(!wareHouseSecPocList.isEmpty()){
                 
             for(WU_Master_Warehouse__c masterWH : wareHouseSecPocList)
             {
+         
+                                               
                 if(masterWH.WU_Warehouse_Secondary_POC_Email__c != Null && masterWH.WU_Committed_Max_PalletStorage__c <> masterWH.WU_Prior_CommittedPalletStorage__c)
                 {
+                    
                     emailSet = retriveSetString(masterWH.WU_Warehouse_Secondary_POC_Email__c,emailSet);                             
                 }
             }
+            
             
             sendMessage(wareHouseSecPocList,emailSet);
         }
@@ -308,6 +313,8 @@ public without sharing class WU_SetWarehousePOCHandler
             usersMap.put(usr.Email,usr.Id);
         }
         List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
+        
+        OrgWideEmailAddress orgEmail = [select id, DisplayName, Address from OrgWideEmailAddress where DisplayName ='WH Visibility'];
           
           EmailTemplate warehouseTemplateId = [select Id, DeveloperName, Subject, HtmlValue, Body from EmailTemplate where DeveloperName=: 'WU_Warehouse_Committed_StoragetoPOC'];
           System.debug(warehouseTemplateId +'warehouseTemplateId ************');
@@ -333,15 +340,20 @@ public without sharing class WU_SetWarehousePOCHandler
                 else
                 subject = subject.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
             
-                
+              
                 String plainBody = warehouseTemplateId.Body;
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.OwnerFullName}', 'User(s)');
                 if(whLst.WU_SAPCode_s__c!=null)
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_SAPCode_s__c}', whLst.WU_SAPCode_s__c);
                 if(whLst.Submitted_by__c!=null)
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.Submitted_by__c}', whLst.Submitted_by__c);
+                else
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.Submitted_by__c}', '');
+                
                 if(whLst.WU_LocationName__c!=null)
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', whLst.WU_LocationName__c);
+                else
+               plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
                 if(whLst.WU_Prior_CommittedPalletStorage__c!=null)
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_Prior_CommittedPalletStorage__c}', String.valueOf(whLst.WU_Prior_CommittedPalletStorage__c));
                 if(whLst.WU_Committed_Max_PalletStorage__c!=null)
@@ -349,9 +361,10 @@ public without sharing class WU_SetWarehousePOCHandler
     
                 mail.setSubject(subject);
     mail.setPlainTextBody(plainBody);
-
+        
+              mail.setOrgWideEmailAddressId(orgEmail.Id);
               mail.setToAddresses(sendTo); 
-                         
+                 mail.setOrgWideEmailAddressId(orgEmail.id);         
               mail.setTargetObjectId(UserInfo.getUserId());
               mail.setTreatTargetObjectAsRecipient(false);
               mail.setTemplateid(warehouseTemplateId.ID);
@@ -371,12 +384,13 @@ public without sharing class WU_SetWarehousePOCHandler
                 
             for(WU_Master_Warehouse__c masterWH : wareHouseSecPocList)
             {
-                System.debug(+'**************Rejection************');
+                System.debug(+'**************Rejection************'+masterWH );
                 if(masterWH.WU_Warehouse_Secondary_POC_Email__c != Null && !string.isblank(masterWH.WU_Approval_Status__c) &&  masterWH.WU_Approval_Status__c.equalsIgnoreCase('Rejected'))
                 {
                     emailSet = retriveSetString(masterWH.WU_Warehouse_Secondary_POC_Email__c,emailSet);                             
                 }
             }
+            
             
             sendRejectionMessage(wareHouseSecPocList,emailSet);
         }
@@ -393,7 +407,8 @@ public without sharing class WU_SetWarehousePOCHandler
           EmailTemplate warehouseTemplateId = [select Id, DeveloperName, Subject, HtmlValue, Body from EmailTemplate where DeveloperName=: 'WU_Warehouse_Committed_StoragetoPOC_Rejection'];
           System.debug(warehouseTemplateId +'warehouseTemplateId ************');
           
-          
+          OrgWideEmailAddress  orgEmail = [SELECT Id, DisplayName, Address FROM OrgWideEmailAddress where DisplayName ='WH Visibility'];
+             
           
           for (WU_Master_Warehouse__c whLst : wareHouseSecPocList1) {
             if (whLst.WU_Warehouse_Secondary_POC_Email__c != null && !string.isblank(whLst.WU_Approval_Status__c) && whLst.WU_Approval_Status__c.equalsIgnoreCase('Rejected')) {
@@ -414,7 +429,7 @@ public without sharing class WU_SetWarehousePOCHandler
                 else
                 subject = subject.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
             
-                
+          
                 String plainBody = warehouseTemplateId.Body;
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.OwnerFullName}', 'User(s)');
                
@@ -424,14 +439,19 @@ public without sharing class WU_SetWarehousePOCHandler
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.Submitted_by__c}', whLst.Submitted_by__c);
                 if(whLst.WU_LocationName__c!=null)
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', whLst.WU_LocationName__c);
-                if(whLst.WU_Prior_CommittedPalletStorage__c!=null)
-                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_Prior_CommittedPalletStorage__c}', String.valueOf(whLst.WU_Prior_CommittedPalletStorage__c));
+                else
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
                 
-                mail.setSubject(subject);
-    mail.setPlainTextBody(plainBody);
-
+                if(whLst.WU_Committed_Max_PalletStorage__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c}', String.valueOf(whLst.WU_Committed_Max_PalletStorage__c));
+                
+                        mail.setSubject(subject);
+                       mail.setPlainTextBody(plainBody);
+                        mail.setOrgWideEmailAddressId(orgEmail.id);
+               
               mail.setToAddresses(sendTo); 
-                         
+              mail.setOrgWideEmailAddressId(orgEmail.id);
+              
               mail.setTargetObjectId(UserInfo.getUserId());
               mail.setTreatTargetObjectAsRecipient(false);
               mail.setTemplateid(warehouseTemplateId.ID);
@@ -444,5 +464,95 @@ public without sharing class WU_SetWarehousePOCHandler
       Messaging.sendEmail(mails);
         
     }
+     public static void sendApprovalEmailSecPOC(List<WU_Master_Warehouse__c> wareHouseSecPocList)
+    {
+        set<string>emailSet = new set<string>();
+        if(!wareHouseSecPocList.isEmpty()){
+                
+            for(WU_Master_Warehouse__c masterWH : wareHouseSecPocList)
+            {
+                System.debug(+'**************Approved************'+masterWH );
+                if(masterWH.WU_Warehouse_Secondary_POC_Email__c != Null && !string.isblank(masterWH.WU_Approval_Status__c) &&  masterWH.WU_Approval_Status__c.equalsIgnoreCase('Approved'))
+                {
+                    emailSet = retriveSetString(masterWH.WU_Warehouse_Secondary_POC_Email__c,emailSet);                             
+                }
+            }
+            
+            
+            sendApprovalMessage(wareHouseSecPocList,emailSet);
+        }
+    }
+    private static void sendApprovalMessage(List<WU_Master_Warehouse__c> wareHouseSecPocList1,set<string>emailSet){
+        Map<string,Id> usersMap=new Map<string,Id>();
+        for(User usr:[SELECT Id,Email FROM User WHERE Email In:emailSet]){
+            usersMap.put(usr.Email,usr.Id);
+        }
+        List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
+        
+          
+          EmailTemplate warehouseTemplateId = [select Id, DeveloperName, Subject, HtmlValue, Body from EmailTemplate where DeveloperName=: 'WU_Warehouse_Committed_StoragetoPOC_for_Approval_Secondary_POC'];
+          System.debug(warehouseTemplateId +'warehouseTemplateId ************');
+          
+         OrgWideEmailAddress  orgEmail = [SELECT Id, DisplayName, Address FROM OrgWideEmailAddress where DisplayName ='WH Visibility'];
+             
+          
+          for (WU_Master_Warehouse__c whLst : wareHouseSecPocList1) {
+            if (whLst.WU_Warehouse_Secondary_POC_Email__c != null && !string.isblank(whLst.WU_Approval_Status__c) && whLst.WU_Approval_Status__c.equalsIgnoreCase('Approved')) {
+              List<String> sendTo = new List<String>();
+              // Step 1: Create a new Email
+              Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+            
+              // Step 2: Set list of people who should get the email
+              //
+              for(String emailId:whLst.WU_Warehouse_Secondary_POC_Email__c.split(',')){
+                  sendTo.add(emailId);
+              }
+              // process the merge fields
+                 String subject = warehouseTemplateId.Subject;
+                System.debug(whLst+'**************');
+                if(whLst.WU_LocationName__c!=null)
+                subject = subject.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', whLst.WU_LocationName__c);
+                else
+                subject = subject.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
+            
+              
+                String plainBody = warehouseTemplateId.Body;
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.OwnerFullName}', 'User(s)');
+                if(whLst.WU_SAPCode_s__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_SAPCode_s__c}', whLst.WU_SAPCode_s__c);
+                if(whLst.Submitted_by__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.Submitted_by__c}', whLst.Submitted_by__c);
+                else
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.Submitted_by__c}', '');
+                
+                if(whLst.WU_LocationName__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', whLst.WU_LocationName__c);
+                else
+               plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
+                //if(whLst.WU_Prior_CommittedPalletStorage__c!=null)
+                //plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_Prior_CommittedPalletStorage__c}', String.valueOf(whLst.WU_Prior_CommittedPalletStorage__c));
+                if(whLst.WU_Committed_Max_PalletStorage__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c}', String.valueOf(whLst.WU_Committed_Max_PalletStorage__c));
+    
+                mail.setSubject(subject);
+                mail.setPlainTextBody(plainBody);
+
+              mail.setToAddresses(sendTo); 
+               mail.setOrgWideEmailAddressId(orgEmail.Id);          
+              mail.setTargetObjectId(UserInfo.getUserId());
+              mail.setTreatTargetObjectAsRecipient(false);
+              mail.setTemplateid(warehouseTemplateId.ID);
+              mail.saveAsActivity = false;
+              mail.setOrgWideEmailAddressId(orgEmail.id); 
+              mails.add(mail);
+            }
+          }
+      // Step 6: Send all emails in the master list
+      System.debug(mails+'**************mails************');
+      Messaging.sendEmail(mails);
+        
+    }
+    
+    
     
  }
