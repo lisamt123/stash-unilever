@@ -42,7 +42,7 @@
 
 
   <target name="validate">
-    <echo level="info">Communication Planner Change Request Deployment</echo>
+    <echo level="info">CIMT Change Request Deployment</echo>
     <sf:deploy username="${sf.username}"
       password="${sf.password}"
       serverurl="${sf.serverurl}"
