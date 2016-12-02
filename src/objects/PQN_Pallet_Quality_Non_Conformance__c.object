@@ -16,9 +16,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
-        <content>PQN_List_View</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
@@ -65,7 +63,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Cluster__c</fullName>
         <description>Cluster to be Auto-populated based upon DC master data</description>
@@ -187,7 +185,7 @@
         <externalId>false</externalId>
         <inlineHelpText>Loss Level 4</inlineHelpText>
         <label>Non-compliance reason code</label>
-        <precision>2</precision>
+        <precision>3</precision>
         <required>false</required>
         <scale>0</scale>
         <trackHistory>true</trackHistory>
@@ -387,7 +385,7 @@
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
     <validationRules>
         <fullName>PQN_Validation_ON_Date_Pallet_Received</fullName>
         <active>true</active>
@@ -406,7 +404,7 @@
     </validationRules>
     <validationRules>
         <fullName>PQN_Validation_ON_Supplier_Name</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>This validation rule, will ensure that Supplier Number and Supplier Type are having the correct values.</description>
         <errorConditionFormula>AND( ISBLANK( Supplier_Number__c  ) , ISBLANK( Supplier_type__c  )  )</errorConditionFormula>
         <errorDisplayField>Supplier__c</errorDisplayField>

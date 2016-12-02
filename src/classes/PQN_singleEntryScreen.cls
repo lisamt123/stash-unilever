@@ -1,5 +1,6 @@
 public with sharing class PQN_singleEntryScreen{
     public PQN_Pallet_Quality_Non_Conformance__c pqn{get; set;}
+    public PQN_Supplier__c sup{get;set;}
     public boolean immediate{get; set;}
     Id pqnId;
     public PQN_singleEntryScreen(ApexPages.StandardController controller){
@@ -20,8 +21,10 @@ public with sharing class PQN_singleEntryScreen{
         try{
                
                String skuName =Apexpages.currentPage().getParameters().get('skuName');
+               String suppName =Apexpages.currentPage().getParameters().get('suppName');
+               String losName =Apexpages.currentPage().getParameters().get('losName');
                
-               system.debug(skuName +'********');
+               system.debug(losName+'********');
                if(skuName.length()>0){
                    List<PQN_Pallet_Quality_Non_Conformance__c > xPQNCList= [select id,Product_Category__c,Product_Name__c,Product_Group__c,SKU__c from PQN_Pallet_Quality_Non_Conformance__c where SKU__c=:skuName Limit 1];
                    if(xPQNCList.size()>0){
@@ -44,6 +47,28 @@ public with sharing class PQN_singleEntryScreen{
                    ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR,'SKU is null.');
                    ApexPages.addMessage(myMsg);
                }
+              List<PQN_Supplier__c> PQNList_Sup= new List<PQN_Supplier__c>();
+              system.debug('sssssssssss'+pqn.Supplier__c);
+               PQNList_Sup= [select id,Name from PQN_Supplier__c where Name=:suppName ];
+                if(PQNList_Sup.isempty()){               
+                   ApexPages.Message myMsg1 = new ApexPages.Message(ApexPages.Severity.ERROR,'Supplier is not found.');
+                   ApexPages.addMessage(myMsg1);
+                   
+                }
+                
+                Map<string,PQN_Pallet_Loss_Tree__c> lossCodes = PQN_Pallet_Loss_Tree__c.getAll();
+                set<integer> setlosscodes = new set<integer>();
+                for(PQN_Pallet_Loss_Tree__c p: lossCodes.values()){
+                    setlosscodes.add(integer.valueof(p.Loss_Code__c)); 
+                    system.debug(setlosscodes);   
+                }
+                if (!setlosscodes.contains(integer.valueof(losName)))
+                {
+                   ApexPages.Message myMsg1 = new ApexPages.Message(ApexPages.Severity.ERROR,'LossCode is not found.');
+                   ApexPages.addMessage(myMsg1);
+                }
+                
+                   
        }
         catch(Exception e){
             
@@ -52,8 +77,14 @@ public with sharing class PQN_singleEntryScreen{
     }
     
     public pagereference savePQN(){
+           
+     
+        
         try{
             if(pqn!=null){
+            
+               
+   
                 String clone = apexpages.currentpage().getparameters().get('clone');
                 if (clone == '1'){
                     PQN_Pallet_Quality_Non_Conformance__c pqn1 = new PQN_Pallet_Quality_Non_Conformance__c();
@@ -63,6 +94,9 @@ public with sharing class PQN_singleEntryScreen{
                 }else{
                     upsert pqn;
                 }
+                
+                
+                
                 //PageReference redirectPage = new PageReference('/'+pqn.id);
                 PageReference redirectPage = page.PQN_Conformance_Detail_VF;
                 redirectPage.setRedirect(true);

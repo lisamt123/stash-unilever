@@ -38,7 +38,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_Supplier_Popup_Ctlr</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>PQN_Supplier_Popup_CtlrTest</apexClass>
@@ -162,9 +162,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PQN_Pallet_Quality_Non_Conformance__c.Supplier_Number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -233,7 +233,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>PQN_Pallet_Quality_Non_Conformance__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -291,7 +291,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_Supplier_Popup</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>PQN_TargetEntryScreen_VF</apexPage>
