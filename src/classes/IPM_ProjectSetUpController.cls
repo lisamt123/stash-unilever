@@ -106,6 +106,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public string selectedBrand{get;set;}
     public Boolean isBusinessPartnerBool{get;set;}
     public Boolean isCentralTeamBool{get;set;}
+    public String  preSelectCategory{get;set;}//to check if category selection is changed from the UI
     /****************************************************************************
     @Description : Initialization of the constructor
     *****************************************************************************/
@@ -426,6 +427,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     //NPath Complexity-Based on the Business Logic all brand positions needs to be fetched for various conditions
     public List<SelectOption> getBrandPos()
     {
+        if( project.IPM_Category_Text__c== preSelectCategory)
+        {
+		return brandOptionsList;
+	}
     	brandOptionsList.clear();
     	if(!projectMetadata.IPM_MultiBrandPosApplicable__c)
         {
@@ -436,6 +441,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         {
             if(!String.isBlank(project.IPM_Category_Text__c))
             {
+                preSelectCategory = project.IPM_Category_Text__c;
                 fetchBrandPos(brandOptionsList);
             }
         }
@@ -457,6 +463,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         {
         	Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and (product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' or product_category_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\') ';
             	Query_STR+=' LIMIT 50000';   
+            	userBrandPos=database.query(Query_STR);    
         }
         else
         {
@@ -473,12 +480,13 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 	        		Query_STR+=' and geo_id__r.Name IN:uniqueCountryList '; 
 	    		}
 	    		Query_STR+=' LIMIT 50000';	    		
+	    		userBrandPos=database.query(Query_STR);
 	        }
 		} 
                 
-                if(Query_STR !=null)
+                if(userBrandPos !=null && !userBrandPos.isEmpty())
                 {
-                    for(MDO_BrandPositions__c u:Database.query(Query_STR))
+                    for(MDO_BrandPositions__c u:userBrandPos)
                     {
                         if(!brandPositionSet.Contains(u.brand_position_id__r.Name))
                         {
