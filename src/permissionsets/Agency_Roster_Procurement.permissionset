@@ -793,6 +793,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>APIPollerClass</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>APISettingsController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AR_AgencyDetail</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -4717,6 +4725,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>KeyOrientationController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>LexInputFieldCompCtrl</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -6461,6 +6473,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>TestSchedulableClass</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TriggerDispatcherBase</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -8042,6 +8058,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>APISettings</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>AR_Accessibility</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -9151,6 +9171,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>InMaintenance</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>KeyOrientations</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>

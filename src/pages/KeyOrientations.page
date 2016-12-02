@@ -1,0 +1,49 @@
+<apex:page Controller="KeyOrientationController" >
+
+ 
+<apex:pageBlock title="Key Rotation History">   
+   <apex:pageBlockButtons location="top" >
+   <apex:outputPanel id="myButtons">
+   <apex:form >
+        <apex:commandButton action="{!Beginning}" title="Beginning" value="<<" disabled="{!disablePrevious}" reRender="myPanel,myButtons"/>
+        <apex:commandButton action="{!Previous}" title="Previous" value="<" disabled="{!disablePrevious}" reRender="myPanel,myButtons"/>        
+        <apex:commandButton action="{!Next}" title="Next" value=">" disabled="{!disableNext}" reRender="myPanel,myButtons"/>
+        <apex:commandButton action="{!End}" title="End" value=">>" disabled="{!disableNext}" reRender="myPanel,myButtons"/>        
+   </apex:form>
+   </apex:outputPanel>
+   </apex:pageBlockButtons>
+   
+   <apex:pageBlockSection title="Total Records: {!total_size}" collapsible="false" id="records">
+   <apex:form >
+   <apex:selectlist value="{!SelectedItem}" size="1">
+       <apex:selectOptions value="{!options}" />
+       <apex:actionSupport event="onchange" reRender="myPanel,myButtons,records" action="{!getHistory}"/>
+   </apex:selectlist>
+   </apex:form>
+   </apex:pageBlockSection>
+  
+   <apex:pageBlockSection columns="1">
+ 
+   <apex:outputPanel id="myPanel">
+   <apex:pageMessages id="theMessages" />
+   <apex:pageBlockTable value="{!details}" var="key_item" >
+         <apex:column headerValue="S.No">
+            <apex:outputField value="{!key_item.Name}"/>
+        </apex:column>
+        <apex:column headerValue="Response_code">
+            <apex:outputField value="{!key_item.Response_Code__c}"/>
+        </apex:column>
+        <apex:column headerValue="Timestamp">
+            <apex:outputField value="{!key_item.Timestamp__c}"/>
+        </apex:column>
+        <apex:column headerValue="Last Modified date">
+            <apex:outputField value="{!key_item.LastModifiedDate}"/>
+        </apex:column>
+        <apex:facet name="footer">Showing Page # {!pageNumber} of {!totalPages}</apex:facet>
+   </apex:pageBlockTable>
+   </apex:outputPanel>
+   </apex:pageBlockSection>
+ 
+</apex:pageBlock>
+ 
+</apex:page>

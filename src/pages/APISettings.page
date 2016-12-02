@@ -1,0 +1,30 @@
+<Apex:page controller="APISettingsController">
+<apex:form >
+<apex:pageblock id="theblock">
+  <apex:pageMessages />
+    <apex:pageBlockButtons >
+      <apex:commandButton value="Save" action="{!save}" reRender="theblock"/>
+    </apex:pageBlockButtons>
+    <apex:pageBlockSection columns="1">
+      <apex:pageBlockSectionItem >
+         Endpoint URL : <apex:inputtext value="{!sEndPointUrl}" style="width: 500px;"/>
+      </apex:pageBlockSectionItem>
+      <apex:pageBlockSectionItem >
+         UserName : <apex:inputtext value="{!sUserName}"/>
+      </apex:pageBlockSectionItem>
+      <apex:pageBlockSectionItem >
+         Password :<apex:inputtext value="{!sPassword}"/>
+      </apex:pageBlockSectionItem>
+      <apex:pageBlockSectionItem >
+         Purge Time (in hours) : <apex:inputtext value="{!sPurgetime}" />
+      </apex:pageBlockSectionItem>
+      <apex:pageBlockSectionItem >
+        Select Admin Users : 
+        <apex:selectCheckboxes value="{!chkUserList}" layout="pageDirection">  
+           <apex:selectOptions value="{!list}"/><br/>  
+        </apex:selectCheckboxes>
+      </apex:pageBlockSectionItem>
+    </apex:pageBlockSection>
+</apex:pageblock>
+</apex:form>
+</apex:page>
