@@ -212,7 +212,7 @@ public with sharing class IPM_FinancialUtils
         }
         AggregateSELECTString = AggregateSELECTString.removeEnd(IPM_ConstantUtils.COMMA);
         AggregateSELECTString += ' FROM IPM_Financial__c ';
-        String AggregateWHEREString = ' WHERE isActive__c = true AND RecordType.Name = \'Default\' AND ( IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalProjectNames OR Regional_Project__r.IPM_Project_Name__c in :regionalProjectNames) ';
+        String AggregateWHEREString = ' WHERE isActive__c = true AND RecordType.Name = \'Default\' AND ( IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalRolloutNames OR Regional_Project__r.IPM_Project_Name__c in :regionalProjectNames) ';
         String AggregateGROUPString = ' GROUP BY  IPM_Project_Rollout__r.IPM_Rollout_Project__c,Regional_Project__r.IPM_Project_Name__c';
         String AggregateLIMITString = ' LIMIT 50000';
         String finalAggregateQuery = AggregateSELECTString + AggregateWHEREString + AggregateGROUPString + AggregateLIMITString;
@@ -265,7 +265,7 @@ public with sharing class IPM_FinancialUtils
         }
         AggregateSELECTString = AggregateSELECTString.removeEnd(IPM_ConstantUtils.COMMA);
         AggregateSELECTString += ' FROM IPM_Financial__c ';
-        String AggregateWHEREString = ' WHERE isActive__c = true AND RecordType.Name = \'Default\' AND (IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c in :globalProjectNames OR Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c in :globalProjectNames) ';
+        String AggregateWHEREString = ' WHERE isActive__c = true AND RecordType.Name = \'Default\' AND (IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c in :globalProjectNamesRollout OR Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c in :globalProjectNamesProject) ';
         String AggregateGROUPString = ' GROUP BY  IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c,Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c';
         String AggregateLIMITString = ' LIMIT 50000';
         String finalAggregateQuery = AggregateSELECTString + AggregateWHEREString + AggregateGROUPString + AggregateLIMITString;
@@ -319,7 +319,7 @@ public with sharing class IPM_FinancialUtils
      	}
      	AggregateSELECTString = AggregateSELECTString.removeEnd(IPM_ConstantUtils.COMMA);
      	AggregateSELECTString += ' FROM IPM_Financial_Year__c ';
-     	String AggregateWHEREString = ' WHERE IPM_Financial__r.isActive__c = true AND IPM_Financial__r.RecordType.Name = \'Default\' AND ( IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalProjectNames OR IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c in :regionalProjectNames )';
+     	String AggregateWHEREString = ' WHERE IPM_Financial__r.isActive__c = true AND IPM_Financial__r.RecordType.Name = \'Default\' AND ( IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalRolloutNames OR IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c in :regionalProjectNames )';
      	String AggregateGROUPString = ' GROUP BY  IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c,IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c,Name,Year_Type__c,PL_Type__c';
      	String AggregateLIMITString = ' LIMIT 50000';
      	String finalAggregateQuery = AggregateSELECTString + AggregateWHEREString + AggregateGROUPString + AggregateLIMITString;
@@ -379,7 +379,7 @@ public with sharing class IPM_FinancialUtils
      	}
      	AggregateSELECTString = AggregateSELECTString.removeEnd(IPM_ConstantUtils.COMMA);
      	AggregateSELECTString += ' FROM IPM_Financial_Year__c '; 
-     	String AggregateWHEREString = ' WHERE IPM_Financial__r.isActive__c = true AND IPM_Financial__r.RecordType.Name = \'Default\' AND (IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c in :globalProjectNames OR IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c in :globalProjectNames) ';
+     	String AggregateWHEREString = ' WHERE IPM_Financial__r.isActive__c = true AND IPM_Financial__r.RecordType.Name = \'Default\' AND (IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c in :globalProjectNamesRollout OR IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c in :globalProjectNamesProject) ';
      	String AggregateGROUPString = ' GROUP BY  IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c,IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c,Name,Year_Type__c,PL_Type__c';
      	String AggregateLIMITString = ' LIMIT 50000';
      	String finalAggregateQuery = AggregateSELECTString + AggregateWHEREString + AggregateGROUPString + AggregateLIMITString;
