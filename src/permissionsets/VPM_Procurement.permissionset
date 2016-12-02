@@ -985,11 +985,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ContactPersonSurname__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_CorporateGrp__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1890,11 +1885,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PartnerFunction__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_PartnerName__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2061,11 +2051,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>VPM_PurchasingRequests__c.VPM_PurchasingOrg__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PurchasingOrganisation__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3005,6 +2990,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>VPM_AttachFiles</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>VPM_AttachmentSectionPopUp</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -3567,6 +3556,10 @@
     <userPermissions>
         <enabled>false</enabled>
         <name>ManageRoles</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>ManageSandboxes</name>
     </userPermissions>
     <userPermissions>
         <enabled>false</enabled>

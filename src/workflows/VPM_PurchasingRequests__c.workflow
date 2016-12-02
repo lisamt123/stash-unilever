@@ -1082,10 +1082,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
     </rules>
     <rules>
         <fullName>VPM Notification Logged Message for 2 level of Approval</fullName>
-        <actions>
-            <name>Notification_for_Logged_for_2_Approvals</name>
-            <type>Alert</type>
-        </actions>
         <active>false</active>
         <criteriaItems>
             <field>VPM_PurchasingRequests__c.VPM_NumberofApprovalsRequired__c</field>
@@ -1112,10 +1108,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
     </rules>
     <rules>
         <fullName>VPM Notification for Logged MDM Ops Review</fullName>
-        <actions>
-            <name>Notification_For_Logged_Email</name>
-            <type>Alert</type>
-        </actions>
         <actions>
             <name>VPM_NextApproverNameMDMOps</name>
             <type>FieldUpdate</type>
@@ -1164,21 +1156,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             <value>Yes</value>
         </criteriaItems>
         <description>Sends email to Vendor with Webform details</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>VPM Update Salesforce Request Submitted to MDM</fullName>
-        <actions>
-            <name>VPM_UpdateStatusToSubmitted</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_MDMInsertUpdateStatus__c</field>
-            <operation>equals</operation>
-            <value>Submitted to BPM</value>
-        </criteriaItems>
-        <description>Update Salesforce status depending on MDM service call</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
