@@ -80,13 +80,13 @@
         <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c!='Local' && OR(project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability',project.IPM_Phase__c!='Ideas',project.IPM_Phase__c!='Market Ready'))}" > 
             <c:IPM_NavMenu activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projType="{!project.IPM_Project_Type__c}"
                             projPhase="{!project.IPM_Phase__c}" projID="{!project.Id}" bosscardStatus="{!project.IPM_Bosscard_Status__c}" 
-                            bosscardId="{!project.IPM_Bosscard__c}" gkm="{!project.IPM_GateKeeping_Model__c}"/>
+                            bosscardId="{!project.IPM_Bosscard__c}" gkm="{!project.IPM_GateKeeping_Model__c}" gkm3Proj="{!project.IPM_ProjectGKM__c}"/>
         </apex:OutputPanel>
 <!-- Below rendered is used to call below component -->
         <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c='Local' && OR(project.IPM_Phase__c='PLE',project.IPM_Phase__c='Market Ready',project.IPM_Phase__c='Market Deployment', project.IPM_Project_Type__c = 'Operational'))}" > 
                         <c:IPM_NavMenu activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projType="{!project.IPM_Project_Type__c}"
                             projPhase="{!project.IPM_Phase__c}" projID="{!project.Id}" bosscardStatus="{!project.IPM_Bosscard_Status__c}" 
-                            bosscardId="{!project.IPM_Bosscard__c}" gkm="{!project.IPM_GateKeeping_Model__c}"/>
+                            bosscardId="{!project.IPM_Bosscard__c}" gkm="{!project.IPM_GateKeeping_Model__c}" gkm3Proj="{!project.IPM_ProjectGKM__c}" />
     
         </apex:OutputPanel>
     </apex:outputPanel>

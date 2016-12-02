@@ -74,7 +74,7 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
         //Retrieve assignment id
         String aid = Apexpages.currentPage().getParameters().get(AID_1);
         //Retrieve quiz id
-        String qid = Apexpages.currentPage().getParameters().get('qid');
+        //String qid = Apexpages.currentPage().getParameters().get('qid');
         //Retrieve preview mode flag
         if(String.isNotBlank(Apexpages.currentPage().getParameters().get('pMode'))){
             isPreviewMode = true;
@@ -244,7 +244,7 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
             saveResponses(true);
 
             List<PBS_Question_Line__c> orderedQuestionLines = wsops.getQuizOrderedQuestionLines(quiz.Id,questionLine.Id,questionLine.Order__c);
-
+            PageReference ref = Page.PBS_QuizViewer;
             //Fetch next question lines and define the next page
             for (PBS_Question_Line__c ql : orderedQuestionLines) {
 
@@ -254,7 +254,7 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
                 }
 
                 questionLine = ql;
-                PageReference ref = Page.PBS_QuizViewer;
+                
                 return ref;
 
             }

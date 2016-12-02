@@ -481,7 +481,7 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-      <runTest>ExceptionLoggingHelper_Test</runTest>
+                <runTest>ExceptionLoggingHelper_Test</runTest>
       <runTest>IPM_AddManageSection_Test</runTest>
       <runTest>IPM_Approverlist_Test</runTest>
       <runTest>IPM_AssesmentHandler_Helper_Test</runTest>

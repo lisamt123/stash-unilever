@@ -132,7 +132,7 @@ public with sharing class cec_EmailMessageHelper{
         // Send the email to the configured mail if there is missing CaseBrandMapping.
         if (emailNotificationContent != '') {
             String finalContent = Label.CEC_CBM_NotificationBodyHeader + emailNotificationContent + Label.CEC_CBM_NotificationBodyFooter;
-            CEC_Util.sendNotificationEmail(finalContent, Label.CEC_CBM_NotificationSubject);
+           CEC_ExceptionHandling.CreateExceptionLog('Controller', 'emailMessage', 'cec_EmailMessageHelper', '', finalContent );
         }
         update casesToUpdate;    
     }

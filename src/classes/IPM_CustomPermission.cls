@@ -60,5 +60,28 @@ public with sharing class IPM_CustomPermission {
             } 
         }
     }
+	
+	public boolean isPermissionSetAssinged(string sPermissionSetName) {
+        Map<Id, String> customPermissionNamesById = new Map<Id, String>();
+        boolean bIsCentralTeam = false;
+            List<CustomPermission> customPermissions = 
+                [SELECT Id, DeveloperName FROM CustomPermission Where DeveloperName =: sPermissionSetName];
+            for(CustomPermission customPermission : customPermissions) {
+                customPermissionNamesById.put(customPermission.Id, customPermission.DeveloperName);
+            }
 
+            // Query to determine which of these custome settings are assigned to this user
+            List<SetupEntityAccess> setupEntities = 
+                [SELECT SetupEntityId
+                    FROM SetupEntityAccess
+                    WHERE SetupEntityId in :customPermissionNamesById.keySet() AND
+                          ParentId
+                            IN (SELECT PermissionSetId 
+                                FROM PermissionSetAssignment
+                                WHERE AssigneeId = :UserInfo.getUserId()) LIMIT 10];  
+            if(!setupEntities.isEmpty()) {
+               bIsCentralTeam = true;
+            }
+            return bIsCentralTeam;
+    }
 }

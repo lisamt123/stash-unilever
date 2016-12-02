@@ -20,6 +20,9 @@
             <sourceValues>
                 <sourceValue>Need More Info</sourceValue>
             </sourceValues>
+            <sourceValues>
+                <sourceValue>In Progress</sourceValue>
+            </sourceValues>
             <value>In Progress</value>
         </values>
         <values>
@@ -43,10 +46,10 @@
         <chartType>VerticalColumnStacked</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>BucketField_95081983</groupingColumn>
+        <groupingColumn>SAM_Request__c.fml_SAM_demand_manager__c</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_TOP</location>
-        <secondaryGroupingColumn>SAM_Request__c.txt_CC_SAM_Demand_Manager__c</secondaryGroupingColumn>
+        <secondaryGroupingColumn>BucketField_95081983</secondaryGroupingColumn>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
@@ -65,6 +68,11 @@
             <operator>equals</operator>
             <value>Query</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>SAM_Request__c.pkl_Status__c</column>
+            <operator>notEqual</operator>
+            <value>Saved</value>
+        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Matrix</format>
@@ -75,10 +83,10 @@
     </groupingsAcross>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>SAM_Request__c.txt_CC_SAM_Demand_Manager__c</field>
+        <field>SAM_Request__c.fml_SAM_demand_manager__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>SAM Query</name>
+    <name>SAM Demand: Query Request</name>
     <params>
         <name>co</name>
         <value>1</value>

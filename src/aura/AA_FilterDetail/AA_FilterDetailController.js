@@ -150,7 +150,9 @@
         var competitorName='';
         var category='';
         var topic='';
-        var selectEvent = $A.get("e.c:AA_FilterEvent");
+        //var selectEvent = $A.get("e.c:AA_FilterEvent");
+        // winter 17' critical update issue
+        var selectEvent =  component.getEvent("FilterEventName");
         if(reportType === 'All'){
             selectEvent.setParams({
                 "filterType":"FilteredReports",
@@ -227,7 +229,9 @@
            || navigator.userAgent.match(/Windows Phone/i)){
             helper.scrollToLocation(component, "top");
         }
-        var selectEvent = $A.get("e.c:AA_FilterEvent");
+        //var selectEvent = $A.get("e.c:AA_FilterEvent");
+        // winter 17' critical update issue
+        var selectEvent =  component.getEvent("FilterEventName");
         selectEvent.setParams({"filterType":component.get("v.filterType"),"limitRecords": component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"applyFilter":'false',"sortType":component.get("v.sortType"),"countryId":component.get("v.countryId"),"clusterId":component.get("v.clusterId")}).fire(); 
     },
 })

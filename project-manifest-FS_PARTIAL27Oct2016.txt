@@ -1,0 +1,26 @@
+src
+src/objects/Account.object
+src/layouts/Account-Feed Based Distributor Russia.layout
+src/layouts/Account-Operator Russia Read Only.layout
+src/layouts/Account-Operators Russia.layout
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
+src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation.layout
+src/permissionsets/FS_Integration_User.permissionset
+src/permissionsets/FS_RU_Corporate.permissionset
+src/permissionsets/FS_RU_Finance.permissionset
+src/permissionsets/FS_RU_SCP.permissionset
+src/permissionsets/FS_RussiaSalesRep.permissionset
+src/email/FS_Email_Templates/FS_Email_to_opportunity_owner_when_Deal_approval_exactly_60_days.email
+src/email/FS_Email_Templates/FS_Email_to_opportunity_owner_when_Deal_approval_exactly_60_days.email-meta.xml
+src/email/FS_Email_Templates/FS_Opportunity_approval_request_email_template.email
+src/email/FS_Email_Templates/FS_Opportunity_approval_request_email_template.email-meta.xml
+src/email/FS_Email_Templates/FS_Stage_after_3_days_on_closed_date.email
+src/email/FS_Email_Templates/FS_Stage_after_3_days_on_closed_date.email-meta.xml
+src/email/FS_Email_Templates/FS_Stage_before_7_days_of_Oppty_Closed.email
+src/email/FS_Email_Templates/FS_Stage_before_7_days_of_Oppty_Closed.email-meta.xml
+src/email/FS_Email_Templates/FS_TPR_Opportunity_Approval_Action_Email_Template.email
+src/email/FS_Email_Templates/FS_TPR_Opportunity_Approval_Action_Email_Template.email-meta.xml
+src/email/FS_Email_Templates/FS_TPR_Opportunity_approval_request_email_template.email
+src/email/FS_Email_Templates/FS_TPR_Opportunity_approval_request_email_template.email-meta.xml
+src/email/FS_Email_Templates/FS_TPR_Opportunity_Rejection_Action_Email_Template.email
+src/email/FS_Email_Templates/FS_TPR_Opportunity_Rejection_Action_Email_Template.email-meta.xml

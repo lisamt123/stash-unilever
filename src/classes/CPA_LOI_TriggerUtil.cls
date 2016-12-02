@@ -36,7 +36,10 @@ public with sharing class CPA_LOI_TriggerUtil{
                         req.setComments('Recalling and unlocking request.');
                         req.setAction(CPA_ConstantsForContractingAppClasses.REMOVED);
                         req.setWorkitemId(piwi.Id);
-                        Approval.ProcessResult result =  Approval.process(req);
+                        //Swathi has commented for SonarQ warning_Unused variable
+                        // Approval.ProcessResult result =  Approval.process(req);
+                        //Swathi has commented for SonarQ warning_Unused variable
+                        Approval.process(req);
                         isSubmitted = true;
                     }
                 }
@@ -63,7 +66,9 @@ public with sharing class CPA_LOI_TriggerUtil{
             req.setComments('Submitted for approval. Please approve.');
             req.setObjectId(newLOIList[i].Id);
             // submit the approval request for processing
-            Approval.ProcessResult result = Approval.process(req);
+            //Swathi commented for SonarQube_warning
+            //Approval.ProcessResult result = Approval.process(req);
+            Approval.process(req);
             // display if the reqeust was successful
 
             isSubmitted = true;

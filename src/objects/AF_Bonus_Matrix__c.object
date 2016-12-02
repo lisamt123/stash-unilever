@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Will represent an Agencies annual bonus results on an entity level</description>
@@ -53,7 +52,6 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>false</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -102,9 +100,9 @@
         <description>AgencyFee#GLOBAL#To Store agency exchange rate.</description>
         <externalId>false</externalId>
         <label>Agency Exchange Rate</label>
-        <precision>12</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -149,6 +147,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_Bonus_Currency__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(AF_Cross_Border__c=true,AF_Ready_For_PO_Entry_Currency__c,AF_MatrixCodeTemp__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AF_Bonus_Currency</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Bonus_Estimate_Local__c</fullName>
         <description>The actual value of the Bonus converted to local currency</description>
         <externalId>false</externalId>
@@ -180,12 +190,26 @@
         <externalId>false</externalId>
         <formula>if( text(AF_Status__c) =&quot;Ready for PO&quot; &amp;&amp; not(isnull(AF_Ready_For_PO_Exchange_Rate__c)),
  AF_Bonus_Estimate_Local__c ,
- AF_Value__c  * AF_Agency_Exchange_Rate__c)</formula>
+ AF_Value__c * AF_Agency_Exchange_Rate__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Bonus Local Value</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Bonus_Local__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_Value__c*AF_Agency_ExchangeRateTemp__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Bonus Local</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -222,6 +246,19 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
+        <fullName>AF_Bonus_Value_USD__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(AF_Cross_Border__c=true,AF_Bonus_Local__c/AF_Agency_Spot_Rate__c,AF_Value__c*AF_Agency_ExchangeRateTemp__c)</formula>
+        <label>AF_Bonus Value USD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_BonusableFee__c</fullName>
         <description>Bonusable fee from Base Fee Estimate. Traditionl, Digital or Both</description>
         <externalId>false</externalId>
@@ -255,6 +292,30 @@
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Cross_Border__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_Agency_Entity__r.Name!= AF_Unilever_Entity__r.Name=true</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AF_Cross_Border</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AF_Exchange_Rate__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(AF_Cross_Border__c=true,(AF_Agency_Spot_Rate__c),(AF_Agency_ExchangeRateTemp__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AF_Exchange_Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -482,8 +543,17 @@
                 <fullName>Ready for PO</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>With Approver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>With CMCO</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -548,9 +618,7 @@
         <fullName>AF_Value_Calc__c</fullName>
         <description>Formula to calculate the Bonus Value</description>
         <externalId>false</externalId>
-        <formula>IF( AF_Total_Country_Row_BF__c  &gt; 0  &amp;&amp; AF_BonusableFee__c &gt; 0,(AF_BonusableFee__c/AF_Total_Country_Row_BF__c  ) *  
-if( AF_Bonus_Results__r.AF_IsPilotModel__c , AF_Bonus_Results__r.AF_Total_Remuneration__c ,AF_Bonus_Results__r.AF_Total_Bonus_Value__c)
-, 0)</formula>
+        <formula>IF( AF_Total_Country_Row_BF__c  &gt; 0  &amp;&amp; AF_BonusableFee__c &gt; 0,(AF_BonusableFee__c/AF_Total_Country_Row_BF__c  ) *  AF_Bonus_Results__r.AF_Total_Bonus_Value__c,0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Value Calc</label>
         <precision>18</precision>
@@ -619,6 +687,17 @@ if( AF_Bonus_Results__r.AF_IsPilotModel__c , AF_Bonus_Results__r.AF_Total_Remune
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AF_overall__c</fullName>
+        <externalId>false</externalId>
+        <label>AF_overall%</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>Agency_Entity_Name__c</fullName>
@@ -721,8 +800,13 @@ if( AF_Bonus_Results__r.AF_IsPilotModel__c , AF_Bonus_Results__r.AF_Total_Remune
     <label>Bonus Matrix</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>AF_Bonus_Summary__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>OBJECT_ID</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Bonus Matrix Name</label>

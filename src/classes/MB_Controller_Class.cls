@@ -469,7 +469,7 @@ if(res.size()>1){
       {
        if(Total_iPass.Local_Net_Amount__c !=null)
        {
-          wrapperList.iPassTotalAmount +=Total_iPass.Local_Net_Amount__c;
+          wrapperList.iPassTotalAmount +=(Total_iPass.Local_Net_Amount__c).setScale(2);
           System.debug('test##'+Total_iPass.Local_Net_Amount__c);
        }
        if(Total_iPass.Data_Consumed_In_MB__c!=null)

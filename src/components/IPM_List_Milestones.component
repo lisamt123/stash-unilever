@@ -21,7 +21,11 @@
             <div class="row ipmMileRow" >
                 <div class="pull-left heading3 blue ipmPanelHeading nobrdrMstone">{!$Label.IPM_MILESTONE}</div>
                 <div class="pull-left blue heading3 padTop ipmPanelCount">{!milestoneCnt}</div>
-                
+            </div>
+            <div class="row ipmMileRow" >
+                 <div class="milestoneDescContainer pull-left">
+                    <span class="mstoneDesc"><apex:outputText value="{!$Label.IPM_Milestone_Desc}" escape="false"/></span>
+                </div>
                 <div class="addmilelink pull-right noPadright">
                     <apex:outputpanel rendered="{!NOT(isBDuser)}">
                     <div class="col-xs-5 toggleContainer SecButtonSet">

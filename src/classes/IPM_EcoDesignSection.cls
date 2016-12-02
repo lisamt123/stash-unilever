@@ -77,7 +77,7 @@ public with sharing class IPM_EcoDesignSection {
         noRolloutSubmittedYet = false;
         firstSyncToEcoDesign = false;
         if(String.isNotBlank(projId)) {
-            project = [Select id, IPM_Project_Type__c,IPM_GateKeepingModel__c,First_Sync_To_EcoDesign__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,Success_Timestamp_EcoDesign__c,IPM_CompanyCardText__c,IPM_Category_Group__c,IPM_Category_Text__c  From IPM_Project__c Where id =:projId Limit 1];
+            project = [Select id, IPM_Project_Type__c,IPM_ProjectGKM__c,IPM_GateKeepingModel__c,First_Sync_To_EcoDesign__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,Success_Timestamp_EcoDesign__c,IPM_CompanyCardText__c,IPM_Category_Group__c,IPM_Category_Text__c  From IPM_Project__c Where id =:projId Limit 1];
             countriesList = [Select IPM_Project__c, Country_Name__c, IS_EI_Country__c,CreatedDate,
                            IPM_Regional_Proj_Association_Timestamp__c,IPM_Local_Project_Association_Timestamp__c
                            From IPM_Country__c 
@@ -204,15 +204,7 @@ public with sharing class IPM_EcoDesignSection {
     }
     
     public void checkTakeMeEcoDesginButtonVisible() {
-        if(project.First_Sync_To_EcoDesign__c && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL 
-            && project.IPMProject_Span__c == IPM_ConstantUtils.SpanGlobal  && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS &&  
-            (project.IPM_GateKeepingModel__c == GKM1 || project.IPM_GateKeepingModel__c == GKM2)) {
-                firstSyncToEcoDesign = true;    
-        }
-        else if(project.IPM_Project_Type__c == ROLLOUT) {
-            firstSyncToEcoDesign = true;
-        }
-        else if(project.First_Sync_To_EcoDesign__c && project.IPM_GateKeepingModel__c == GKM4) {
+        if(project.First_Sync_To_EcoDesign__c && !projectType.IPM_Dont_Sync_Proj_To_EcoDesign__c) {
                 firstSyncToEcoDesign = true;    
         }
     }
