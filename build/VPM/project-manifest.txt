@@ -6867,6 +6867,8 @@ src/objects/VPM_VendorRequestDefaultValues__mdt.object
 src/pages
 src/pages/VPM_AdvancedForm_V1.page
 src/pages/VPM_AdvancedForm_V1.page-meta.xml
+src/pages/VPM_AttachFiles.page
+src/pages/VPM_AttachFiles.page-meta.xml
 src/pages/VPM_AttachmentSectionPopUp.page
 src/pages/VPM_AttachmentSectionPopUp.page-meta.xml
 src/pages/VPM_CordilleraGoldenData.page
