@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-    <labels>
+	<labels>
         <fullName>CORE_CLMLBL_Approval_History</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -77,4 +75,3 @@
         <shortDescription>CORE_CLMLBL_Value</shortDescription>
         <value>Value</value>
     </labels>
-</CustomLabels>
