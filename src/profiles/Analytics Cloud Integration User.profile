@@ -11054,6 +11054,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.Business_Hours__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.CSAT_Delay__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11160,6 +11165,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.Textile_Factory_Email_Template__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.TimeZone_Difference_GMT__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -15999,6 +16009,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.Case_Market_Business_Hour__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.Case_Market_Mapping_Country_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -16080,6 +16095,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Current_Date_Time__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -31185,6 +31205,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.FS_MarketTarget__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.FS_NSV_CALCULATION__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
