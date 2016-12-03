@@ -152,6 +152,11 @@
         <name>FS_MarketTarget__c</name>
     </fields>
     <fields>
+        <help><!-- Calculate the NSV based on CurrencyCode --></help>
+        <label><!-- FS NSV CALCULATION --></label>
+        <name>FS_NSV_CALCULATION__c</name>
+    </fields>
+    <fields>
         <label><!-- NSV --></label>
         <name>FS_NSV__c</name>
     </fields>

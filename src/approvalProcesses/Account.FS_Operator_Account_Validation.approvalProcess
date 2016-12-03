@@ -91,6 +91,10 @@
                 <type>user</type>
             </approver>
             <approver>
+                <name>cheryle.reid@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
                 <name>christiana.gilbert@unilever.com</name>
                 <type>user</type>
             </approver>

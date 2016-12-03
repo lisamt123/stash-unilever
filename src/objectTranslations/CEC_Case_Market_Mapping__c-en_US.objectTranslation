@@ -17,6 +17,11 @@
         <name>Brand_Ambassador_Brands__c</name>
     </fields>
     <fields>
+        <label><!-- Business Hours --></label>
+        <name>Business_Hours__c</name>
+        <relationshipLabel><!-- Case Market Mappings --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- CSAT Delay --></label>
         <name>CSAT_Delay__c</name>
     </fields>
@@ -219,6 +224,14 @@
         <help><!-- Enter Developer name of the email template. Developer Name doesn&apos;t contain spaces --></help>
         <label><!-- Textile Factory Email Template --></label>
         <name>Textile_Factory_Email_Template__c</name>
+    </fields>
+    <fields>
+        <help><!-- If time zone is GMT+5.30 then enter 5.50
+else if GMT-7 then enter -7
+else if GMT+13.45 then enter 13.75
+esle if GMT-9.30 then enter -9.50 --></help>
+        <label><!-- TimeZone Difference GMT --></label>
+        <name>TimeZone_Difference_GMT__c</name>
     </fields>
     <layouts>
         <layout>Case Market Mapping Layout</layout>

@@ -139,6 +139,10 @@
         <name>Case_ISO_Country_Code__c</name>
     </fields>
     <fields>
+        <label><!-- Case Market Business Hour --></label>
+        <name>Case_Market_Business_Hour__c</name>
+    </fields>
+    <fields>
         <label><!-- Case Market Mapping Country Id --></label>
         <name>Case_Market_Mapping_Country_Id__c</name>
     </fields>
@@ -442,6 +446,10 @@
         <label>Kraj</label>
         <name>Country__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Current Date Time --></label>
+        <name>Current_Date_Time__c</name>
     </fields>
     <fields>
         <label><!-- DW Order Number --></label>
