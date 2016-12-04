@@ -19044,6 +19044,42 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000H4x6_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H4x6</label>
+        <queue>IPM_a7I0L000000H4x6</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H4xG_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ASOS CHINA</label>
+        <queue>IPM_a7I0L000000H4xG</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H4xf1_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_EMPRESS 1 H_NA</label>
+        <queue>IPM_a7I0L000000H4xf1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H4xz1_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H4xz</label>
+        <queue>IPM_a7I0L000000H4xz1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>
