@@ -26,6 +26,7 @@ private class PQN_singleEntryScreenTest{
         ApexPages.StandardController sc1 = new ApexPages.StandardController(pqn);
         PQN_singleEntryScreen testPQN1 = new PQN_singleEntryScreen(sc1);
         testPQN1.validate();
+        
         testPQN1.savePQN();
         testPQN1.cancelPQN();
         

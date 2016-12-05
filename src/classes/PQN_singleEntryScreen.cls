@@ -1,5 +1,6 @@
 public with sharing class PQN_singleEntryScreen{
     public PQN_Pallet_Quality_Non_Conformance__c pqn{get; set;}
+    public PQN_Supplier__c sup{get;set;}
     public boolean immediate{get; set;}
     Id pqnId;
     public PQN_singleEntryScreen(ApexPages.StandardController controller){
@@ -17,11 +18,15 @@ public with sharing class PQN_singleEntryScreen{
     
     public void validate(){
     
-        try{
-               
-               String skuName =Apexpages.currentPage().getParameters().get('skuName');
-               
-               system.debug(skuName +'********');
+        String skuName =Apexpages.currentPage().getParameters().get('skuName');
+       String suppName =Apexpages.currentPage().getParameters().get('suppName');
+       String losName =Apexpages.currentPage().getParameters().get('losName');
+       validateIte(skuName,suppName,losName);
+        //return null;
+    }
+    public void validateIte(String skuName,String suppName,String losName){
+        try{               
+               system.debug(losName+'********');
                if(skuName.length()>0){
                    List<PQN_Pallet_Quality_Non_Conformance__c > xPQNCList= [select id,Product_Category__c,Product_Name__c,Product_Group__c,SKU__c from PQN_Pallet_Quality_Non_Conformance__c where SKU__c=:skuName Limit 1];
                    if(xPQNCList.size()>0){
@@ -44,16 +49,51 @@ public with sharing class PQN_singleEntryScreen{
                    ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR,'SKU is null.');
                    ApexPages.addMessage(myMsg);
                }
+              List<PQN_Supplier__c> PQNList_Sup= new List<PQN_Supplier__c>();
+              system.debug('sssssssssss'+pqn.Supplier__c);
+               PQNList_Sup= [select id,Name,Supplier_type__c,Supplier_Number__c  from PQN_Supplier__c where Name=:suppName limit 1];
+                if(PQNList_Sup.isempty()){               
+                   ApexPages.Message myMsg1 = new ApexPages.Message(ApexPages.Severity.ERROR,'Supplier is not found.');
+                   ApexPages.addMessage(myMsg1);                   
+                }
+                else{
+                    pqn.Supplier_Number__c = integer.valueof(PQNList_Sup[0].Supplier_Number__c);
+                    pqn.Supplier_type__c = PQNList_Sup[0].Supplier_type__c;
+                }
+                
+                Map<string,PQN_Pallet_Loss_Tree__c> lossCodes = PQN_Pallet_Loss_Tree__c.getAll();
+                Map<integer,PQN_Pallet_Loss_Tree__c> maplosses = new Map<integer,PQN_Pallet_Loss_Tree__c>();
+                set<integer> setlosscodes = new set<integer>();
+                for(PQN_Pallet_Loss_Tree__c p: lossCodes.values()){
+                    setlosscodes.add(integer.valueof(p.Loss_Code__c)); 
+                    system.debug(setlosscodes);   
+                    maplosses.put(integer.valueof(p.Loss_Code__c),p);
+                }
+                if (!setlosscodes.contains(integer.valueof(losName)))
+                {
+                   ApexPages.Message myMsg1 = new ApexPages.Message(ApexPages.Severity.ERROR,'LossCode is not found.');
+                   ApexPages.addMessage(myMsg1);
+                }
+                if(losName!=null && maplosses.containskey(integer.valueof(losName))){
+                pqn.loss_level_3__c = maplosses.get(integer.valueof(losName)).Loss_L3__c;
+                pqn.loss_level_4__c = maplosses.get(integer.valueof(losName)).Loss_L4__c;
+                }
+                
+                   
        }
         catch(Exception e){
             
         }
-        //return null;
     }
-    
     public pagereference savePQN(){
+           
+     validateIte(pqn.SKU__c,pqn.Supplier__c,string.valueof(pqn.Non_compliance_reason_code__c));
+        
         try{
             if(pqn!=null){
+            
+               
+   
                 String clone = apexpages.currentpage().getparameters().get('clone');
                 if (clone == '1'){
                     PQN_Pallet_Quality_Non_Conformance__c pqn1 = new PQN_Pallet_Quality_Non_Conformance__c();
@@ -63,6 +103,9 @@ public with sharing class PQN_singleEntryScreen{
                 }else{
                     upsert pqn;
                 }
+                
+                
+                
                 //PageReference redirectPage = new PageReference('/'+pqn.id);
                 PageReference redirectPage = page.PQN_Conformance_Detail_VF;
                 redirectPage.setRedirect(true);
