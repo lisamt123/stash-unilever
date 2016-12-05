@@ -26,7 +26,7 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISE
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
-@isTest(seealldata=true)
+@istest
 private class PBS_TrainingTracksController_Test{
 
     private static testMethod void testWithoutSharedTracks(){
