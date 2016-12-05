@@ -36,7 +36,6 @@ private class PBS_LearningAssignmentApproveExt_Test {
     List<User> lmsUsers = PBS_UtilClass_Test.createUsers(2,'Standard User');
 
     createTestDataForApproval(adminUsers,lmsUsers);
-
     List<PBS_Learning_Assignment__c> learningAssignments = [select id,approved__c from PBS_Learning_Assignment__c limit:integer.valueof(System.Label.PBS_soqllimit)];
 
     Test.startTest();
@@ -130,7 +129,7 @@ private class PBS_LearningAssignmentApproveExt_Test {
     PBS_Learning_Assignment__c la = learningAssignments.get(0);
     System.assertEquals('Not Started',la.Progress__c);
     la.Progress__c = 'In Review';
-    update la;
+   // update la;
 
     //Run sharing logic
     PBS_LMSService_CC.WithoutSharingOps wsops = new PBS_LMSService_CC.WithoutSharingOps();
