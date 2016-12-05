@@ -1627,8 +1627,11 @@ public with sharing class VPM_SearchVendor1{
                 system.debug('### requestType '+requestType );
                 if((!requestType.equals(VPM_RecordTypeHelper.CREATE))&&(vendorQuery1.VPM_GlobalAuthorisationGroup__c.equalsIgnoreCase(commodityAuthorizationGrp) || vendorQuery1.VPM_TradePartnerType__c.equalsIgnoreCase(commodityVendorType) || vendorQuery1.VPM_VendorType__c.equalsIgnoreCase(commodityVendorType))) {
                     VPM_SearchVendor1.CheckFlag  = true;
-                }else { 
-                    VPM_SearchVendor1.CheckFlag  = false;                   
+                }else {
+                VPM_PurchasingRequests__c purreqField =[select Id,VPM_FieldType__c from VPM_PurchasingRequests__c where id = : recId]; 
+                   purreqField.VPM_FieldType__c = 'Global';
+                   update purreqField;
+                    VPM_SearchVendor1.CheckFlag  = true;                   
                 }
                  system.debug('vendorQuery1 '+vendorQuery1);
                 system.debug('### VPM_SearchVendor1.checkFlag '+VPM_SearchVendor1.CheckFlag  ); 
