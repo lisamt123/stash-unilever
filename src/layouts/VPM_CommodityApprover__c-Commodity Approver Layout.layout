@@ -12,6 +12,10 @@
                 <behavior>Required</behavior>
                 <field>VPM_CommodityClass__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_Code__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -1,0 +1,32 @@
+src
+src/applications
+src/applications/Issue_Briefing_Centre.app
+src/email
+src/email/Issue_Management
+src/email/Issue_Management-meta.xml
+src/email/Issue_Management/Issue_Reviewed.email
+src/email/Issue_Management/Issue_Reviewed.email-meta.xml
+src/email/Issue_Management/New_Issue_submitted.email
+src/email/Issue_Management/New_Issue_submitted.email-meta.xml
+src/classes
+src/classes/im_IssueTriggerHandler.cls
+src/classes/im_IssueTriggerHandler.cls-meta.xml
+src/classes/im_IssueTriggerHandlerTest.cls
+src/classes/im_IssueTriggerHandlerTest.cls-meta.xml
+src/objects
+src/objects/im_Issue__c.object
+src/permissionsets
+src/permissionsets/KOFI_APP_admin.permissionset
+src/permissionsets/KOFI_CIMT.permissionset
+src/permissionsets/KOFI_std.permissionset
+src/permissionsets/KOFI_IM_Only.permissionset
+src/workflows
+src/workflows/im_Issue__c.workflow
+src/dashboards
+src/dashboards/Issues_Management_Dashboards
+src/dashboards/Issues_Management_Dashboards-meta.xml
+src/dashboards/Issues_Management_Dashboards/IM_Home_Dashboard.dashboard
+src/layouts
+src/layouts/im_Issue__c-CIMT Layout.layout
+src/layouts/im_Issue__c-Issue Creation.layout
+src/layouts/im_Issue__c-Reviewed Issue.layout

@@ -82,7 +82,7 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>RecordTypeId</field>
             </layoutItems>
             <layoutItems>
@@ -314,20 +314,6 @@
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>FS_Objective_Start_Date__c</fields>
-        <fields>FS_Completion_Date__c</fields>
-        <fields>FS_Objective_Type__c</fields>
-        <fields>BSP__c</fields>
-        <fields>FS_Estimated_Timing__c</fields>
-        <fields>FS_NSV__c</fields>
-        <fields>FS_Status__c</fields>
-        <fields>FS_Dollars__c</fields>
-        <fields>FS_Volume__c</fields>
-        <relatedList>FS_Defined_Objective__c.FS_Customer__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>TASK.WHAT_NAME</fields>
@@ -354,9 +340,6 @@
         <fields>CONTACT.EMAIL</fields>
         <fields>CONTACT.PHONE1</fields>
         <relatedList>RelatedContactList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedAccountContactRoleList</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedAccountSalesTeam</relatedList>
@@ -391,23 +374,6 @@
         <fields>External_ID__c</fields>
         <fields>Type__c</fields>
         <relatedList>Account_Relationship__c.Secondary_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>CAMPAIGN.NAME</fields>
-        <fields>CAMPAIGN.STATUS</fields>
-        <fields>CAMPAIGN.START_DATE</fields>
-        <relatedList>Campaign.FS_Customer__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>Product2</fields>
-        <fields>Quantity</fields>
-        <fields>UnitPrice</fields>
-        <fields>ServiceDate</fields>
-        <fields>ListPrice</fields>
-        <fields>Discount</fields>
-        <fields>Description</fields>
-        <fields>HasSchedule</fields>
-        <relatedList>OpportunityLineItem.ProdDistributor__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

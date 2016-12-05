@@ -1,6 +1,11 @@
 src
-src/classes
-src/classes/Amr_AdManagerHelper_CC.cls
-src/classes/Amr_AdManagerHelper_CC.cls-meta.xml
-src/classes/Amr_AdManagerController_Test.cls
-src/classes/Amr_AdManagerController_Test.cls-meta.xml
+src/objects
+src/objects/Amr_Multi_Brand_Positioning__c.object
+src/objects/Amr_Multi_Brand_Positions__c.object
+src/objects/Amr_Multi_Brand__c.object
+src/objects/Amr_Multi_Category__c.object
+src
+src/permissionsets
+src/permissionsets/AdManager.permissionset
+src/permissionsets/CAP.permissionset
+src/permissionsets/RAP.permissionset

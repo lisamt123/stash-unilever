@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Warehouse Committed StoragetoPOC for Rejection</name>
     <style>none</style>
-    <subject>Notification : Warehouse Committed Pallet Utilization Changed for Warehouse  : {!WU_Master_Warehouse__c.WU_LocationName__c} - Rejected by Procurement Manager</subject>
+    <subject>Notification :  Committed Pallet Utilization Changed for Warehouse  : {!WU_Master_Warehouse__c.WU_LocationName__c} - REJECTED by Procurement Manager</subject>
     <type>text</type>
 </EmailTemplate>

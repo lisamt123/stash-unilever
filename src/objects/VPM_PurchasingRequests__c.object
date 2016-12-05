@@ -4267,19 +4267,6 @@ Enter the Country to see a list of all available Company Codes, or search using 
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>VPM_ContactPersonSurname__c</fullName>
-        <description>VPM - This field is used to store the value of DELContact Person-Surname.</description>
-        <externalId>false</externalId>
-        <label>DELContact Person-Surname</label>
-        <length>200</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_CorporateGrp__c</fullName>
         <description>VPM - This field is used to store the value of Corporate Group.</description>
         <externalId>false</externalId>
@@ -7382,7 +7369,7 @@ DATEVALUE(NOW())-DATEVALUE(CreatedDate))</formula>
         <fullName>VPM_ECCNo__c</fullName>
         <description>VPM - This field is used to store the value of DELECC No.</description>
         <externalId>false</externalId>
-        <label>DELECC No.</label>
+        <label>ECC No.</label>
         <length>40</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -12166,19 +12153,6 @@ VPM_Approver10__c = $User.Id))
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_PartnerFunction__c</fullName>
-        <description>VPM - This field is used to store the value of DELPartner Function.</description>
-        <externalId>false</externalId>
-        <label>DELPartner Function</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>VPM_PartnerName__c</fullName>
         <description>VPM - This field is used to store the Partner Name.</description>
         <externalId>false</externalId>
@@ -15085,24 +15059,6 @@ VPM_Approver10__c = $User.Id))
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>VPM_PurchasingOrganisation__c</fullName>
-        <description>VPM - Specifies the Purchasing Organization.</description>
-        <externalId>false</externalId>
-        <label>DELPurchasing Organisation</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Purchasing Organisation</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>VPM_QMSystemTo__c</fullName>
         <description>VPM - This field is used to store the value of QM System To.</description>
         <externalId>false</externalId>
@@ -16429,6 +16385,7 @@ VPM_Approver10__c = $User.Id))
         <label>SAP BPM RequestID</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
+		<startingNumber>5000000</startingNumber>
         <type>AutoNumber</type>
     </fields>
     <fields>
@@ -42602,13 +42559,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_PurchasingOrganisation__c</picklist>
-            <values>
-                <fullName>Purchasing Organisation</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_ReasonForExemption__c</picklist>
             <values>
                 <fullName>01_Outside the scheme</fullName>
@@ -61146,13 +61096,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>W02_HRDWR WATER UNT-PI</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_PurchasingOrganisation__c</picklist>
-            <values>
-                <fullName>Purchasing Organisation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -79698,13 +79641,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_PurchasingOrganisation__c</picklist>
-            <values>
-                <fullName>Purchasing Organisation</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>VPM_ReasonForExemption__c</picklist>
             <values>
                 <fullName>01_Outside the scheme</fullName>
@@ -98242,13 +98178,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             </values>
             <values>
                 <fullName>W02_HRDWR WATER UNT-PI</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_PurchasingOrganisation__c</picklist>
-            <values>
-                <fullName>Purchasing Organisation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

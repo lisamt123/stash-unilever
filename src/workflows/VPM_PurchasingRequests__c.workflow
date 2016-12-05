@@ -7,7 +7,8 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_Requesthasbeencompleted</template>
     </alerts>
     <alerts>
@@ -17,7 +18,8 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_Requesthasbeenlogged</template>
     </alerts>
     <alerts>
@@ -27,7 +29,8 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestHasBeenAborted</template>
     </alerts>
     <alerts>
@@ -37,7 +40,8 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestApprovalPendingNotification</template>
     </alerts>
     <alerts>
@@ -47,7 +51,8 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestRejectNotification</template>
     </alerts>
     <alerts>
@@ -57,7 +62,8 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestrequestingforRework</template>
     </alerts>
     <alerts>
@@ -67,7 +73,8 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestReviewNotification</template>
     </alerts>
     <alerts>
@@ -77,7 +84,8 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_RequesthasbeenloggedMDM</template>
     </alerts>
     <alerts>
@@ -87,7 +95,8 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_RequestrequestingforRework</template>
     </alerts>
     <alerts>
@@ -98,7 +107,8 @@
             <field>VPM_EmailOfWebformSender__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_EmailForRequestorAfterWebformUpdate</template>
     </alerts>
     <alerts>
@@ -109,7 +119,8 @@
             <field>VPM_EmailOfWebformSender__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_EmailForRequestorBeforeWebformUpdate</template>
     </alerts>
     <alerts>
@@ -119,7 +130,8 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>supplier.information@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>VPM_ApprovalEmails/VPM_SendWebformtoVendor</template>
     </alerts>
     <fieldUpdates>
@@ -1066,6 +1078,57 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
             <value>Yes</value>
         </criteriaItems>
         <description>Send Email to Requestor if web form updated before request has been sent for approval</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Notification Logged Message for 2 level of Approval</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_NumberofApprovalsRequired__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitter__c</field>
+            <operation>equals</operation>
+            <value>Procurement</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_FinanceApprovalRequired__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c</field>
+            <operation>equals</operation>
+            <value>Business Requestor</value>
+        </criteriaItems>
+        <description>Email Notification for logged when 2 level of approvals</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Notification for Logged MDM Ops Review</fullName>
+        <actions>
+            <name>VPM_NextApproverNameMDMOps</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
+            <operation>equals</operation>
+            <value>MDM Ops Review</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitter__c</field>
+            <operation>equals</operation>
+            <value>Business Requestor</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_NumberofApprovalsRequired__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <description>send notification for logged email to the request creator when the status is MDM Ops Review</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

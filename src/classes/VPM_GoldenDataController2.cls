@@ -158,6 +158,8 @@ with Sharing public class VPM_GoldenDataController2 {
     
     ApexPages.StandardController newController;
 
+    public VPM_GoldenDataController2() {}
+    
     public VPM_GoldenDataController2(ApexPages.StandardController controller) 
     {
      userlang = [select LanguageLocaleKey from User where Id=:UserInfo.getUserId()].LanguageLocaleKey;
@@ -181,7 +183,7 @@ with Sharing public class VPM_GoldenDataController2 {
                        VPM_PaymentBlock__c,VPM_DeletionBlockFlag__c,VPM_AccountGroup__c,// 20 Oct VPM_TaxJurisdictionCode__c,
                        VPM_GlobalAuthorisationGroup__c,RecordType.DeveloperName,VPM_CountryRequestingVendor__c,
                        VPM_Commodity__r.VPM_CommodityFamily__c,VPM_IsChangedVAT__c,VPM_Company_Code_Value__c,
-                       VPM_CashManagementGroup__c, VPM_PurchasingOrganisation__c,VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,
+                       VPM_CashManagementGroup__c,VPM_VendorCodeLookup__r.mdm_vCodeCordillera__c,
                        VPM_VendorCodeLookup__r.mdm_vCodeFusion__c,VPM_VendorCodeLookup__r.mdm_vCodeSirius__c,VPM_PaymentMethodWeb__c,
                        VPM_VendorCodeLookup__r.mdm_vCodeU2K2__c,VPM_Spend__c,VPM_Commodity__r.VPM_CommodityClass__c,
                        VPM_Incoterms1__c,VPM_CompanyCode__r.ecc__c,VPM_SortKey__c,VPM_VendorBlockUnblockDelete__c
@@ -226,7 +228,7 @@ with Sharing public class VPM_GoldenDataController2 {
              vendorCashManagementGrp = purchReqVar.VPM_CashManagementGroup__c;}
         system.debug('@@ vendorCashManagementGrp' + vendorCashManagementGrp);
         //purchasingOrg = getPurchasingOrgItems();
-        vendorPurchasingOrg = purchReqVar.VPM_PurchasingOrganisation__c;
+        //vendorPurchasingOrg = purchReqVar.VPM_PurchasingOrganisation__c;
         tradepartnerType=purchReqVar.VPM_TradePartnerType__c;
         vendorPaymentTerms = purchReqVar.VPM_PaymentTerms__c;
          vendorAccountStatement=purchReqVar.VPM_AccountStatement__c;
@@ -382,7 +384,7 @@ with Sharing public class VPM_GoldenDataController2 {
         { isrequiredtaxJurCode = false; }
         */
         vendorCashManagementGrp = purchReqVar.VPM_CashManagementGroup__c;
-        vendorPurchasingOrg = purchReqVar.VPM_PurchasingOrganisation__c;
+        //vendorPurchasingOrg = purchReqVar.VPM_PurchasingOrganisation__c;
         //vendorPaymentTerms = purchReqVar.VPM_PaymentTerms__c;
         // Service call for Apporval Method  for Maintain record Type 
         if(purchReqVar.RecordType.DeveloperName == STR_CONST_RECORDTYPEMAINTAIN)   
@@ -683,7 +685,7 @@ with Sharing public class VPM_GoldenDataController2 {
     Return Type  : PageReference
     ********************************************************************/   
   public void commonSaveMethod() {
-        purchReqVar.VPM_PurchasingOrganisation__c = vendorPurchasingOrg;
+        //purchReqVar.VPM_PurchasingOrganisation__c = vendorPurchasingOrg;
         purchReqVar.VPM_CashManagementGroup__c = vendorCashManagementGrp;
         if(string.isNotBlank(vendorPaymentMethod) && vendorPaymentMethod <> '[]') 
         { purchReqVar.VPM_PaymentMethod__c = vendorPaymentMethod; }
@@ -781,6 +783,7 @@ with Sharing public class VPM_GoldenDataController2 {
                              msg=ProcurementApproval();
                             if(msg <> null)
                             {
+                                system.debug('msg '+msg);
                                 ApexPages.addMessage(msg); 
                             //   GoToErrorMessagePage();
                                 return  null;
@@ -943,7 +946,7 @@ public void approvalCallMethod()
         }
         else if( pr.VPM_RequestFromFLSOrBR__c != null)
         {
-         	pr.VPM_Status__c='';
+            pr.VPM_Status__c='';
             pr.VPM_RequestLastWithGroup__c = STR_CONST_BR;
             pr.VPM_RequestGroupTime__c = system.now();
         }
