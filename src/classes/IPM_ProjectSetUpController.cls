@@ -106,6 +106,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public string selectedBrand{get;set;}
     public Boolean isBusinessPartnerBool{get;set;}
     public Boolean isCentralTeamBool{get;set;}
+    public String  preSelectCategory{get;set;}//to check if category selection is changed from the UI
     /****************************************************************************
     @Description : Initialization of the constructor
     *****************************************************************************/
@@ -426,6 +427,11 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     //NPath Complexity-Based on the Business Logic all brand positions needs to be fetched for various conditions
     public List<SelectOption> getBrandPos()
     {
+        if( project.IPM_Category_Text__c== preSelectCategory && brandOptionsList!=NULL && !brandOptionsList.isEmpty())
+        {
+			return brandOptionsList;
+	    }
+	
     	brandOptionsList.clear();
     	if(!projectMetadata.IPM_MultiBrandPosApplicable__c)
         {
@@ -436,6 +442,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         {
             if(!String.isBlank(project.IPM_Category_Text__c))
             {
+                preSelectCategory = project.IPM_Category_Text__c;
                 fetchBrandPos(brandOptionsList);
             }
         }
