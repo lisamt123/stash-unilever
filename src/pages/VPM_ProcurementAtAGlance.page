@@ -1,0 +1,112 @@
+<apex:page standardController="VPM_PurchasingRequests__c"  extensions="VPM_PurchaseRequestsControllerExtension" standardStylesheets="true" sidebar="false" language="{!userlang}" action="{!setPaymentTermsDefaultValues}">
+<apex:stylesheet value="{!URLFOR($Resource.vpmadvancedformcss)}" />
+<apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
+<apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.4.js')}"/>
+<apex:includeScript value="{!$Resource.VPM_ProcurementAtAGlanceScript}"/>
+<chatter:feedWithFollowers entityid="{!VPM_PurchasingRequests__c.Id}" id="ChatterBlock"  />
+
+    <style>
+        [id*="commonECC"]:hover,[disabled]{
+            cursor : not-allowed;
+        }
+    </style>
+    <script>
+      var localhost = document.domain;
+      var purId ='{!VPM_PurchasingRequests__c.id}';
+    </script>
+       <apex:pageBlock tabStyle="VPM_PurchasingRequests__c">
+    <apex:form id="pageForm">
+      <div align="center">
+            
+            <apex:commandButton action="{!saveFromUser}" value="Save" id="saveButton" />
+           
+            <apex:commandButton action="{!cancelFromUser}" value="Cancel" id="cancelButton" oncomplete="PageReload()"/>
+             
+            <apex:outputText value="{!callJavaScriptAlert}" escape="false"></apex:outputText>
+            <apex:actionRegion >
+             <apex:commandButton rendered="{!isProcure}" id="btnIamWorking" action="{!saveUserValues}" value="{!buttonValue}" reRender="pageForm"/>
+            </apex:actionRegion>
+               
+      </div>
+      <apex:pagemessages id="pageMessages1"/><br/> 
+      <div id='resultMsg'></div>
+      <br/>
+      
+      <apex:pageblock id="block1">
+          <apex:pageBlockSection rendered="{!isProcure}"  title="Procurement at Glance">
+              <apex:pageBlockSectionItem labelStyle="width: 300px" dataStyle="width: 200px" >
+                  <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ApprovalWorker__c.Label}"></apex:outputLabel>
+                  <apex:outputText value="{!approvalWorkerName}" /> 
+              </apex:pageBlockSectionItem>
+              <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VendorCode__c}"/>
+              <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_AlreadyAvailableSupplierUse__c}"/>
+        
+             <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_IsVendorException__c}"  rendered="{!isGBCountry}"/>
+             <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_City__c}"/>
+             <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_SMEComment__c}" rendered="{!isGBCountry}"/>
+             <apex:inputField id="exceptionType" value="{!VPM_PurchasingRequests__c.VPM_ExceptionType__c}" rendered="{!isGBCountry}"/>
+             <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_VendorClassification__c}"/>
+             
+              
+              <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTermsIfNoneSelected__c}"/>
+              
+             
+             <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_Minority_Diversity_vendor__c}" rendered="{!isCordillera}"/>
+             <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_E_Invoicing_Agreed__c}"/>
+             <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_Bypass__c}"/>
+             <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_AdoptScanDate__c}"/>
+             
+              <apex:pageBlockSectionItem rendered="{!isGBCountry}">
+              <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_IsVendorSME__c.Label}"/>  
+                 <apex:outputPanel >
+                        
+                          <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_IsVendorSME__c}" rendered="{!isGBCountry}">   
+                          
+                               <apex:actionSupport event="onchange" action="{!setPaymentTermsDefaultValues}" rerender="paymentterms"/>
+                       
+                  </apex:inputField>
+               
+              </apex:outputPanel>  
+             </apex:pageBlockSectionItem> 
+             
+                 <apex:pageBlockSectionItem >
+                     <apex:outputLabel for="pt" value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}"/>  
+                     
+                          <apex:outputpanel layout="block" id="paymentterms" styleClass="requiredInput">
+                              <apex:outputpanel layout="block" styleClass="requiredBlock"/>                   
+                          <apex:selectList id="pt" value="{!vendorPaymentTerms}"  multiselect="false" size="1" >
+                              <apex:selectOptions value="{!paymentTerms}"/>                            
+                          </apex:selectList>
+                      </apex:outputPanel>
+                 </apex:pageBlockSectionItem>
+             
+              <!-- <apex:pageBlock id="paymentterms" mode="maindetail">
+                  <apex:pageBlockSection columns="3"> 
+                     <apex:pageBlockSectionItem labelStyle="width: 300px" dataStyle="width: 200px" > 
+                      <apex:outputLabel for="pt" value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}"/>    
+                      </apex:pageBlockSectionItem> 
+                      
+                  <apex:pageBlockSectionItem > 
+                      <apex:outputPanel layout="block" styleClass="requiredInput">
+                          <apex:outputpanel layout="block" styleClass="requiredBlock"/>                  
+                          <apex:selectList id="pt" value="{!vendorPaymentTerms}"  multiselect="false" size="1" required="true">
+                              <apex:selectOptions value="{!paymentTerms}"/>                            
+                          </apex:selectList>
+                      </apex:outputPanel>
+                      </apex:pageBlockSectionItem>
+                  </apex:pageBlockSection>
+                  </apex:pageBlock>-->
+         </apex:pageBlockSection>
+          
+         <apex:pageBlockSection id="section1" collapsible="true" title="System Fields">
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_CompanyCode__r.ECC__c}" id="commonECC" style=""/>
+          </apex:pageBlockSection>
+          
+         <script> 
+             twistSection(document.getElementById('{!$Component.block1.section1}').getElementsbyTagName('img')[0]) 
+         </script>  
+         
+          </apex:pageblock>      
+            </apex:form>
+    </apex:pageBlock> 
+ </apex:page>

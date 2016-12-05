@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <compactLayouts>
         <fullName>Ariba_Approver_Compact_Layout</fullName>
@@ -68,6 +69,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -132,6 +134,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -426,6 +429,7 @@ NULL))))))))))))</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -450,6 +454,7 @@ NULL))))))))))))</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -493,8 +498,13 @@ NULL))))))))))))</formula>
                 <fullName>Invoice</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>CLM</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -527,6 +537,7 @@ NULL))))))))))))</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1240,6 +1251,174 @@ NULL))))))))))))</formula>
             </values>
             <values>
                 <fullName>Remedy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query With Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Return to AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rework</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+	<recordTypes>
+        <fullName>CLM</fullName>
+        <active>true</active>
+        <label>CLM</label>
+        <picklistValues>
+            <picklist>Action__c</picklist>
+            <values>
+                <fullName>ACTV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>APPR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CANC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>COPY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DRFT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PAPP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PREP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QUER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REJC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REWO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUBM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__c</picklist>
+            <values>
+                <fullName>APP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DAT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>END</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PRE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PRP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SFO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Send_to_Source_System__c</picklist>
+            <values>
+                <fullName>Done</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Source_System__c</picklist>
+            <values>
+                <fullName>Ariba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedy</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>CLM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

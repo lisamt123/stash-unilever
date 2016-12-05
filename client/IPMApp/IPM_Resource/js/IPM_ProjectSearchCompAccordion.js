@@ -8,6 +8,14 @@
 function rerenderAccordion(){
         /*accordion All checkbox Checked Geography*/
         jq('.geographyFilters input:checkbox').attr('checked', 'checked');
+        jq('.ipmCheckbox input[type=checkbox]').each(function(){
+            if(jq(this).attr('data-html') === 'disabled')
+            {
+                jq(this).attr("disabled", true);
+                jq(this).prop("checked",false)
+                jq(this).next().removeClass('selected');
+            }
+        });
         /*blockquote tag to ul tag Geography*/
         jq('blockquote').each(function() { jq(this).replaceWith("<ul>"+jq(this).html()+"</ul>") });
         jq( "div.projectContainer.gfirstLevel ul" ).addClass( "docFilter accordionFilters clusterListUl" );
