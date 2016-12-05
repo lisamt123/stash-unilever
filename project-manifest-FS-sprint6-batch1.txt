@@ -12,6 +12,7 @@ src/classes/FS_ContactExtend_CX.cls-meta.xml
 src/labels/FS.labels
 src/layouts/Account-Feed Based Distributor Russia.layout
 src/layouts/Account-Operators Russia.layout
+src/layouts/Account-Operator Russia Read Only.layout
 src/layouts/Account-Feed Based Distributor.layout
 src/layouts/Opportunity-Opportunity with TPR Calculation Layout ReadOnly.layout
 src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
