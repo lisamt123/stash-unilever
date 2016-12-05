@@ -561,6 +561,16 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>FS_listPriceCasePiece__c</fullName>
+        <description>Displays and Stores the List Price depending if Opportunity is in Case or Piece</description>
+        <externalId>false</externalId>
+        <label>List Price (Case/Piece)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>FS_necessaryTPR__c</fullName>
         <defaultValue>0</defaultValue>
         <description>Necessary Temporary Price Reduction. Calculated when User gives his own price Value (w/ VAT) for the Product</description>
@@ -621,6 +631,17 @@
         <description>Temporary Price Reduction</description>
         <externalId>false</externalId>
         <label>TPR</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_totalListPrice__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_listPriceCasePiece__c  *  Quantity</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total List Price</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
