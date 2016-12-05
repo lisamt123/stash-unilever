@@ -194,6 +194,11 @@ global with sharing class Core_CA_WrapperUtility {
         public String InvoiceType; 
         @AuraEnabled
         public String CompanyCode;
+        //Clm wrapper data 
+        @AuraEnabled     
+        public String DelegationStart; 
+        @AuraEnabled
+        public String DelegationEnd;
     } 
     
     global class ExpenseDetailsDataRequest{
@@ -215,6 +220,16 @@ global with sharing class Core_CA_WrapperUtility {
         public string Currencies;
         @AuraEnabled
         public string NetAmount;
+        @AuraEnabled
+        public String city;         
+        @AuraEnabled
+        public Decimal expId;           
+        @AuraEnabled
+        public Decimal LineItemNumber;       
+        @AuraEnabled
+        public string expCountry;       
+        @AuraEnabled
+        public string expCode;      
     }
     
     public class ApprovalHistory{
