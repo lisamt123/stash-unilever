@@ -33,7 +33,7 @@
         1
       ],
       "NPD_Percentage": [
-        "#,##.0%",
+        "###.0%",
         100
       ],
       "NPD_Hurdle_Rate_Percentage": [
@@ -45,7 +45,7 @@
         100
       ],
       "Diff": [
-        "#,##.0%",
+        "###.0%",
         100
       ],
       "Percent": [
@@ -72,8 +72,7 @@
   },
   "organizations": [],
   "hide_dimensions": [
-    "SKU",
-    "Record_Id"
+    "SKU"
   ],
   "colors": {},
   "labels": {
@@ -91,7 +90,6 @@
       "Pack_Compliance_Target": "Pack Compliance Target",
       "Pack Compliance": "Pack Compliance"
     },
-    "measure_filters": {},
     "keys": {},
     "dimensions": {
       "Customer_type": "Customer type",
@@ -530,6 +528,11 @@
     },
     {
       "recordDisplayFields": [],
+      "field": "Record_Id",
+      "sfdcActions": []
+    },
+    {
+      "recordDisplayFields": [],
       "linkTemplateEnabled": true,
       "field": "Field_Execution_Manager_ID",
       "sfdcActionsEnabled": true,
@@ -568,11 +571,6 @@
       "linkTemplateEnabled": true,
       "field": "Sales_Region_ID",
       "sfdcActionsEnabled": true,
-      "sfdcActions": []
-    },
-    {
-      "recordDisplayFields": [],
-      "field": "Record_Id",
       "sfdcActions": []
     }
   ]
