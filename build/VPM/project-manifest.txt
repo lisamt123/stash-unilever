@@ -6867,6 +6867,8 @@ src/objects/VPM_VendorRequestDefaultValues__mdt.object
 src/pages
 src/pages/VPM_AdvancedForm_V1.page
 src/pages/VPM_AdvancedForm_V1.page-meta.xml
+src/pages/VPM_AttachFiles.page
+src/pages/VPM_AttachFiles.page-meta.xml
 src/pages/VPM_AttachmentSectionPopUp.page
 src/pages/VPM_AttachmentSectionPopUp.page-meta.xml
 src/pages/VPM_CordilleraGoldenData.page
@@ -7197,7 +7199,7 @@ src/flows/VPM_AssignFinanceQueueApprover-6.flow
 src/flows/VPM_AssignFLSQueueApprover-2.flow
 src/flows/VPM_AssignFLSWithCountries-1.flow
 src/flows/VPM_RequestTimewithGroup-44.flow
-src/flows/VPM_VendorRequestStages-73.flow
+src/flows/VPM_VendorRequestStages-78.flow
 src/letterhead
 src/letterhead/VPM_BlankLetter.letter
 src/queues
