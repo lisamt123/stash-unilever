@@ -33,7 +33,14 @@ src/permissionsets/FS_RussiaSalesRep.permissionset
 src/profiles/Unilever Food Solution - Russia.profile
 src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
 src/workflows/Account.workflow
-
+src/roles/UFS_Admin.role
+src/roles/Cash_Carry_Business_Development_Manager.role
+src/roles/Distributor_Account_Executive_DAE.role
+src/roles/Field_Sales_Rep_NCM.role
+src/roles/Field_Sales_Rep_NDM.role
+src/roles/National_Chains_Manager.role
+src/roles/National_Development_Manager.role
+src/roles/UFS_Admin.role
 
 
 

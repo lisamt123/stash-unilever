@@ -147,13 +147,6 @@
         <value>Position</value>
     </labels>    
     <labels>
-        <fullName>FS_DecisionMakerHeader</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>FS Decision Maker Header</shortDescription>
-        <value>Decision Maker</value>
-    </labels>
-    <labels>
         <fullName>FS_ContactInformationSection</fullName>
         <language>en_US</language>
         <protected>false</protected>
