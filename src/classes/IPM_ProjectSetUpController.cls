@@ -427,7 +427,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     //NPath Complexity-Based on the Business Logic all brand positions needs to be fetched for various conditions
     public List<SelectOption> getBrandPos()
     {
-        if( project.IPM_Category_Text__c== preSelectCategory)
+        if( project.IPM_Category_Text__c== preSelectCategory && brandOptionsList!=NULL && !brandOptionsList.isEmpty())
         {
 		return brandOptionsList;
 	}
