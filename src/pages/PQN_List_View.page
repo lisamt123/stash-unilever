@@ -6,7 +6,7 @@
 </style>
 <body>
     <div id="wrapper">
-        <c:PQN_Navigation navigationName="Archive"/>
+        <c:PQN_Navigation navigationName="Archive" subNavName="pqnView"/>
         <div id="page-wrapper">
             <div class="container-fluid">
                 <apex:ListViews type="PQN_Pallet_Quality_Non_Conformance__c" id="test"/>

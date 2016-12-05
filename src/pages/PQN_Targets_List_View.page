@@ -6,7 +6,7 @@
 </style>
 <body>
     <div id="wrapper">
-        <c:PQN_Navigation navigationName="Archive"/>
+        <c:PQN_Navigation navigationName="Archive" subNavName="targetView"/>
         <div id="page-wrapper">
             <div class="container-fluid">
                <apex:ListViews type="PQN_Targets__c" />
