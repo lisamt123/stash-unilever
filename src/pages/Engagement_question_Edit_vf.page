@@ -177,34 +177,18 @@
     function showdet(){  
     var value1 = '';
     value2='';
-    if (document.getElementById('rad1').checked) {
-    value1 = document.getElementById('rad1').value;
-    value2 = 9;
-    }
-    if (document.getElementById('rad2').checked) {
-    value1 = document.getElementById('rad2').value;
-    value2 = 7;
-    }
-    if (document.getElementById('rad3').checked) {
-    value1 = document.getElementById('rad3').value;
-    value2 = 5;
-    }
-    if (document.getElementById('rad4').checked) {
-    value1 = document.getElementById('rad4').value;
-    value2 = 3;
-    }
-    if (document.getElementById('rad5').checked) {
-    value1 = document.getElementById('rad5').value;
-    value2 = 1;
-    }   
+    if (document.getElementById('rad1').checked) { value1 = document.getElementById('rad1').value; value2 = 9; }
+    if (document.getElementById('rad2').checked) { value1 = document.getElementById('rad2').value; value2 = 7; }
+    if (document.getElementById('rad3').checked) { value1 = document.getElementById('rad3').value; value2 = 5; }
+    if (document.getElementById('rad4').checked) { value1 = document.getElementById('rad4').value; value2 = 3; }
+    if (document.getElementById('rad5').checked) { value1 = document.getElementById('rad5').value; value2 = 1; }   
     if(value1!=''){
     jQuery('[id$=myHiddenField]').val(value1);
     passStringToController();
     jQuery('[id$=myHiddenField1]').val(value2);
     passStringToController1();
     document.getElementById('opaque').style.display='block';
-    var popUp = document.getElementById('spinner');
-    }
+    var popUp = document.getElementById('spinner');    }
     document.getElementById('opaque').style.display='block';
     var popUp = document.getElementById('spinner');
     }
@@ -212,11 +196,11 @@
     
     <div class="xtra">
     <div class="form-group">
-    <font for="exampleTextarea" color="white" size="3">Comment</font>
+      <apex:outputText value="Comment" style="color:white;font-size:16px"></apex:outputText>
     <apex:inputTextarea styleClass="form-control" value="{!comment}" rows="3" id="exampleTextarea"></apex:inputTextarea>
     </div>
     <div style="text-align:center" align="center"> 
-      <font color="white" size="3">Upload pics if any</font>
+      <apex:outputText value="Upload pics if any" style="color:white;font-size:16px"></apex:outputText>
    </div>   
    <br/>          
     <div align="center" style="width:100%;padding-left:100px;">
@@ -304,7 +288,7 @@
         submenuClosedClass = 'pushy-submenu-closed',
         submenu = $(submenuClass);
 
-    function togglePushy(){
+   <!-- function togglePushy(){
         //add class to body based on menu position
         if( pushy.hasClass(pushyLeft) ){
             body.toggleClass(pushyOpenLeft);
@@ -469,28 +453,7 @@
             }
         });
     }
-}(jQuery));
-
-// Mutation object
-var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
-
-// Defining observer 
-var observer = new MutationObserver(function(mutations) { 
-    // If the myListClass was removed from the list - re-assign it
-    if(!jQuery('#dependentlist select').first().hasClass('form-control')){
-        jQuery('#dependentlist select').first().addClass('form-control');
-    }
-});
-
-// A target object fot the observer
-var myNode = document.querySelector('#dependentlist'); 
-
-// Assigning observer to the dependent picklist
-observer.observe(myNode, {
-    childList: true,
-    subtree: true,
-    attributes: true
-});
+}(jQuery));-->
    </script>
     </body>
 </html>

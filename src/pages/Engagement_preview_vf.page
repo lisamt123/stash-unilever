@@ -115,7 +115,7 @@
         submenuClosedClass = 'pushy-submenu-closed',
         submenu = $(submenuClass);
 
-    function togglePushy(){
+    <!--function togglePushy(){
         //add class to body based on menu position
         if( pushy.hasClass(pushyLeft) ){
             body.toggleClass(pushyOpenLeft);
@@ -280,28 +280,8 @@
             }
         });
     }
-}(jQuery));
+}(jQuery));-->
 
-// Mutation object
-var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
-
-// Defining observer 
-var observer = new MutationObserver(function(mutations) { 
-    // If the myListClass was removed from the list - re-assign it
-    if(!jQuery('#dependentlist select').first().hasClass('form-control')){
-        jQuery('#dependentlist select').first().addClass('form-control');
-    }
-});
-
-// A target object fot the observer
-var myNode = document.querySelector('#dependentlist'); 
-
-// Assigning observer to the dependent picklist
-observer.observe(myNode, {
-    childList: true,
-    subtree: true,
-    attributes: true
-});
 </script>  
    </body>
 </html>

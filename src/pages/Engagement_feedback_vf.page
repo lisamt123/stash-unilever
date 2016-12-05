@@ -90,7 +90,7 @@
         submenuClosedClass = 'pushy-submenu-closed',
         submenu = $(submenuClass);
 
-    function togglePushy(){
+    <!--function togglePushy(){
         //add class to body based on menu position
         if( pushy.hasClass(pushyLeft) ){
             body.toggleClass(pushyOpenLeft);
@@ -255,7 +255,7 @@
             }
         });
     }
-}(jQuery));
+}(jQuery));-->
    </script>
    </body>
 </html>

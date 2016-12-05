@@ -92,7 +92,9 @@
         submenuOpenClass = 'pushy-submenu-open',
         submenuClosedClass = 'pushy-submenu-closed',
         submenu = $(submenuClass);
+    </script>
 
+    <!--<script>
     function togglePushy(){
         //add class to body based on menu position
         if( pushy.hasClass(pushyLeft) ){
@@ -101,7 +103,9 @@
             body.toggleClass(pushyOpenRight);
         }
     }
+    </script>
 
+    <script>
     function openPushyFallback(){       
 
         //animate menu position based on CSS class
@@ -119,7 +123,9 @@
         }
 
     }
-
+     </script>
+     
+    <script>
     function closePushyFallback(){
 
         //animate menu position based on CSS class
@@ -137,7 +143,9 @@
         }
 
     }
-
+    </script>
+    
+    <script>
     function toggleSubmenu(){
         //hide submenu by default
         $(submenuClass).addClass(submenuClosedClass);
@@ -156,8 +164,9 @@
             }
         });
     }
+    </script>
     
-    function toggleSubmenuFallback(){
+   <!-- function toggleSubmenuFallback(){
         //hide submenu by default
         $(submenuClass).addClass(submenuClosedClass);
         
@@ -258,8 +267,9 @@
             }
         });
     }
-}(jQuery));
+}(jQuery));-->
 
+<script>
 // Mutation object
 var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
 
@@ -280,7 +290,6 @@ observer.observe(myNode, {
     subtree: true,
     attributes: true
 });
-
 </script>
    
  </body>

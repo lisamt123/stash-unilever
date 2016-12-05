@@ -185,60 +185,39 @@
     <script>
     function showdet(){     
     var value1 = '';
-     var value2 = '';
-    if (document.getElementById('rad1').checked) {
-    value1 = "{!ans.Answer1__c}";
-    value2 = 9;
-    }
-    if (document.getElementById('rad2').checked) {
-    value1 = "{!ans.Answer2__c}";
-    value2 = 7;
-    }
-    if (document.getElementById('rad3').checked) {
-    value1 = "{!ans.Answer3__c}";
-    value2 = 5;
-    }
-    if (document.getElementById('rad4').checked) {
-    value1 = "{!ans.Answer4__c}";
-    value2 = 3;
-    }
-    if (document.getElementById('rad5').checked) {
-    value1 = "{!ans.Answer5__c}";
-    value2 = 1;
-    }
+    var value2 = '';
+    if (document.getElementById('rad1').checked) { value1 = "{!ans.Answer1__c}";value2 = 9;   }
+    if (document.getElementById('rad2').checked) { value1 = "{!ans.Answer2__c}";value2 = 7;   }
+    if (document.getElementById('rad3').checked) { value1 = "{!ans.Answer3__c}";value2 = 5;   }
+    if (document.getElementById('rad4').checked) { value1 = "{!ans.Answer4__c}";value2 = 3;   }
+    if (document.getElementById('rad5').checked) { value1 = "{!ans.Answer5__c}";value2 = 1;   }
     if(value1==''){
     document.getElementById('opaque').style.display='block';
-       var popUp = document.getElementById('spinner');
-      
+       var popUp = document.getElementById('spinner');    
        popUp.style.display = 'block';
-    return null;
-    }
-    else
-    {
+    return null;    }
+    else   {
     jQuery('[id$=myHiddenField]').val(value1);
     passStringToController();
     jQuery('[id$=myHiddenField1]').val(value2);
-    passStringToController1();
-    }
-     document.getElementById('opaque').style.display='block';
-       var popUp = document.getElementById('spinner');
-      
-       popUp.style.display = 'block';
-    }
+    passStringToController1();   }
+    document.getElementById('opaque').style.display='block';
+       var popUp = document.getElementById('spinner');     
+       popUp.style.display = 'block';    }
     </script>
     </apex:repeat>
     
     
     <div class="xtra">
     <div class="form-group">
-    <font for="exampleTextarea" color="white" size="3">Comment</font>
+    <apex:outputText value="Comment" style="color:white;font-size:16px"></apex:outputText>
     <apex:inputTextarea styleClass="form-control" rows="3" value="{!comment}"/>
   </div>
    
   <div style="text-align:center" align="center"> 
- <font color="white" size="3">Upload pics if any</font>
-   </div>  
-   <div align="center"> 
+  <apex:outputText value="Upload pics if any" style="color:white;font-size:16px"></apex:outputText>
+  </div>  
+  <div align="center"> 
   <apex:inputfile id="filecount" value="{!file}" tabindex="-1"/>   
    <apex:inputfile id="upload1" value="{!file2}" tabindex="-1"/>
    <apex:inputfile id="upload2" value="{!file3}" tabindex="-1"/>
@@ -282,7 +261,8 @@
   });
   $('.progress-bar').css('width', valeur+'%').attr('aria-valuenow', valeur);    
 });
-    </script>
+   </script>
+    
    <script>
    (function ($) {
     var pushy = $('.pushy'), //menu css class
@@ -301,7 +281,7 @@
         submenuClosedClass = 'pushy-submenu-closed',
         submenu = $(submenuClass);
 
-    function togglePushy(){
+    <!--function togglePushy(){
         //add class to body based on menu position
         if( pushy.hasClass(pushyLeft) ){
             body.toggleClass(pushyOpenLeft);
@@ -466,9 +446,9 @@
             }
         });
     }
-}(jQuery));
+}(jQuery));-->
    </script>
-    </body>
+  </body>
 </html>
 </apex:form>
 </apex:page>
