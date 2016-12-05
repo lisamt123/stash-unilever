@@ -13,6 +13,7 @@ public class Core_CA_LineItem_Handler implements ITrigger{
     List<RecordType> aribaRecordType  = [SELECT Id FROM RecordType where Name ='Ariba' AND SobjectType = 'Core_Approval_Details__c'];
     List<RecordType> gtesRecordType   = [SELECT Id FROM RecordType where Name ='GTES' AND SobjectType = 'Core_Approval_Details__c'];
     List<RecordType> invoiceRecordType =[SELECT Id FROM RecordType where Name ='Invoice' AND SobjectType = 'Core_Approval_Details__c'];
+    List<RecordType> clmRecordType    =[SELECT Id FROM RecordType where Name ='CLM' AND SobjectType = 'Core_Approval_Details__c'];
 
     public void beforeInsert(SObject so){    
         // Cast the SObject to an Account
@@ -37,7 +38,11 @@ public class Core_CA_LineItem_Handler implements ITrigger{
            else if(a.Source_System__c == 'Invoice'){
                a.Name = a.Expense_Type__c;
                a.RecordTypeId = invoiceRecordType[0].Id;
-           }    
+           } 
+           else if(a.Source_System__c == 'CLM'){
+               a.Name = a.Expense_Type__c;
+               a.RecordTypeId = clmRecordType[0].Id;
+           } 
     }
     public void bulkBefore(){ System.debug('Inside bulkBefore');}
     public void bulkAfter(){ System.debug('Inside bulkBefore');}

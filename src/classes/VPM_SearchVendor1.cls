@@ -167,7 +167,6 @@ public with sharing class VPM_SearchVendor1{
     public string vendorSchemaGroupVendor{get;set;}
     public string vendorIncoterms1{get;set;}
     public string latam;
-    public string callCollapsefunc{get;set;}
     
     // default constructor
     public VPM_SearchVendor1() {}
@@ -2040,22 +2039,7 @@ public with sharing class VPM_SearchVendor1{
     
     /********************************************************************
     */
-    public void isInternationalVersionCollapsed(){
-           //Added by Epsita to collapse International version
-       if(generalVendorDetails && isInternationalVersionRendered) {
-            if(string.isBlank(vendorDetails.VPM_VendorName1Int__c) && string.isBlank(vendorDetails.VPM_VendorName2Int__c)
-             && string.isBlank(vendorDetails.VPM_VendorName3Int__c) && string.isBlank(vendorDetails.VPM_VendorName4Int__c)
-             && string.isBlank(vendorDetails.VPM_Street1Int__c) && string.isBlank(vendorDetails.VPM_Street2Int__c)
-             && string.isBlank(vendorDetails.VPM_Street3Int__c) && string.isBlank(vendorDetails.VPM_Street4Int__c)
-             && string.isBlank(vendorDetails.VPM_HouseNumberInt__c) && string.isBlank(vendorDetails.VPM_SearchTerm1Int__c) 
-             && string.isBlank(vendorDetails.VPM_PostCodeInt__c) && string.isBlank(vendorDetails.VPM_CityInt__c)
-             && string.isBlank(vendorDetails.VPM_CountryInt__c)) { 
-                    if(string.isBlank(vendorIntVersion)){
-                        callCollapsefunc = '<script> collapseSection(); </script>';
-                    }
-             }
-       }   
-    }
+  
     
     /******************************************************************** 
     Created By   : Piyush Mathur

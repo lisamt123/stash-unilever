@@ -290,18 +290,18 @@ public class VPM_SearchVendor1Test{
         searchVendor.vendorNameChange(); 
         searchVendor.SendWebformMethod();  
         searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.SEARCH_VENDOR);
-		searchVendor.SaveMethod();
+        searchVendor.SaveMethod();
 
-		searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.VENDOR_LIST);
-		searchVendor.SaveMethod();
-		Test.startTest();
-		searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.REQUEST_TYPE);
-		searchVendor.SaveMethod(); 
+        searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.VENDOR_LIST);
+        searchVendor.SaveMethod();
+        Test.startTest();
+        searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.REQUEST_TYPE);
+        searchVendor.SaveMethod(); 
         searchVendor.GoldenDataSave();  
         searchVendor.GoldenDataSave2();          
         searchVendor.SaveAndExit();    
         searchVendor.VendorNotFound = true;    
-        searchVendor.isInternationalVersionCollapsed();
+        //searchVendor.isInternationalVersionCollapsed();
         searchVendor.getButtonVisibleSaveMenu();
         searchVendor.getButtonVisibleSaveExit();
         searchVendor.backToDetailPage();
@@ -341,18 +341,18 @@ public class VPM_SearchVendor1Test{
         searchVendor.vendorNameChange(); 
         searchVendor.SendWebformMethod();  
         searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.SEARCH_VENDOR);
-		searchVendor.SaveMethod();
+        searchVendor.SaveMethod();
 
-		searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.VENDOR_LIST);
-		searchVendor.SaveMethod();
-		Test.startTest();
-		searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.REQUEST_TYPE);
-		searchVendor.SaveMethod(); 
+        searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.VENDOR_LIST);
+        searchVendor.SaveMethod();
+        Test.startTest();
+        searchVendor.ScreenVisited.add(VPM_RecordTypeHelper.REQUEST_TYPE);
+        searchVendor.SaveMethod(); 
         searchVendor.GoldenDataSave();  
         searchVendor.GoldenDataSave2();          
         searchVendor.SaveAndExit();    
         searchVendor.VendorNotFound = true;    
-        searchVendor.isInternationalVersionCollapsed();
+        //searchVendor.isInternationalVersionCollapsed();
         searchVendor.getButtonVisibleSaveMenu();
         searchVendor.getButtonVisibleSaveExit();
         searchVendor.backToDetailPage();
@@ -361,7 +361,7 @@ public class VPM_SearchVendor1Test{
     }
     
     static testMethod void VPM_SearchVendorU2k2Extend(){        
-    	VPM_PurchasingRequests__c purId = TestDataU2K2();
+        VPM_PurchasingRequests__c purId = TestDataU2K2();
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Extend)'].Id; 
         purId.recordTypeId=recordTypeId;
         update purId;
@@ -394,14 +394,14 @@ public class VPM_SearchVendor1Test{
         searchVendor.SaveAndExit();   
         searchVendor.SaveMethod();
         searchVendor.VendorNotFound = true;    
-        searchVendor.isInternationalVersionCollapsed();
+        //searchVendor.isInternationalVersionCollapsed();
         searchVendor.getButtonVisibleSaveMenu();
         searchVendor.getButtonVisibleSaveExit();
         //searchVendor.getExitButtonVisible();    
-	}
+    }
     
     static testMethod void VPM_SearchVendorFusionExtend(){        
-    	VPM_PurchasingRequests__c purId = TestDataFusion();
+        VPM_PurchasingRequests__c purId = TestDataFusion();
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Extend)'].Id; 
         purId.recordTypeId=recordTypeId;
         update purId;
@@ -434,14 +434,14 @@ public class VPM_SearchVendor1Test{
         searchVendor.SaveAndExit();   
         searchVendor.SaveMethod();
         searchVendor.VendorNotFound = true;    
-        searchVendor.isInternationalVersionCollapsed();
+        //searchVendor.isInternationalVersionCollapsed();
         searchVendor.getButtonVisibleSaveMenu();
         searchVendor.getButtonVisibleSaveExit();
         //searchVendor.getExitButtonVisible();    
-	}
+    }
     
     static testMethod void VPM_SearchVendorFusionCreate(){        
-    	VPM_PurchasingRequests__c purId = TestDataFusion();
+        VPM_PurchasingRequests__c purId = TestDataFusion();
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Create)'].Id; 
         purId.recordTypeId=recordTypeId;
         update purId;
@@ -468,18 +468,18 @@ public class VPM_SearchVendor1Test{
         searchVendor.backBtnAction();  
         searchVendor.GoldenDataSave();  
         searchVendor.GoldenDataSave2();  
-		searchVendor.SaveMethod();        
+        searchVendor.SaveMethod();        
         searchVendor.SaveAndExit();    
         searchVendor.VendorNotFound = false;    
-        searchVendor.isInternationalVersionCollapsed();
+        //searchVendor.isInternationalVersionCollapsed();
         searchVendor.getButtonVisibleSaveMenu();
         searchVendor.getButtonVisibleSaveExit();
         //searchVendor.getExitButtonVisible();    
-	}
+    }
     
     
     static testMethod void VPM_SearchVendorFusionMaintain(){        
-    	VPM_PurchasingRequests__c purId = TestDataFusion();
+        VPM_PurchasingRequests__c purId = TestDataFusion();
         string recordTypeId= [Select Id From RecordType Where SobjectType = 'VPM_PurchasingRequests__c' and Name = 'Vendor Request (Maintain)'].Id; 
         purId.recordTypeId=recordTypeId;
         update purId;
@@ -506,21 +506,21 @@ public class VPM_SearchVendor1Test{
         searchVendor.backBtnAction();  
         searchVendor.GoldenDataSave();  
         searchVendor.GoldenDataSave2();  
-		searchVendor.SaveMethod();        
+        searchVendor.SaveMethod();        
         searchVendor.SaveAndExit();    
         searchVendor.VendorNotFound = false;    
-        searchVendor.isInternationalVersionCollapsed();
+        //searchVendor.isInternationalVersionCollapsed();
         searchVendor.getButtonVisibleSaveMenu();
         searchVendor.getButtonVisibleSaveExit();
         //searchVendor.getExitButtonVisible();    
-	}
+    }
     
     /*static void backBtnActionData(){     
-		pageReference pg = null;
-		VPM_PurchasingRequests__c purId = TestDataU2K2();
-		ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
-		VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1 (vendorDetail);		
-	}*/
+        pageReference pg = null;
+        VPM_PurchasingRequests__c purId = TestDataU2K2();
+        ApexPages.StandardController vendorDetail = new ApexPages.StandardController(purId);
+        VPM_SearchVendor1 searchVendor = new VPM_SearchVendor1 (vendorDetail);      
+    }*/
 
     static testMethod void negativeScenarioMethod() {
         VPM_PurchasingRequests__c purd = TestDataU2K2();
@@ -545,27 +545,27 @@ public class VPM_SearchVendor1Test{
         searchVendor.piVendorCreation = true;
         searchVendor.SaveMethod();
         
-		searchVendor.showSearchVendor = false;
+        searchVendor.showSearchVendor = false;
         searchVendor.piVendorCreation = false;
-		searchVendor.generalVendorDetails = true;
-		searchVendor.countryName = '';      
+        searchVendor.generalVendorDetails = true;
+        searchVendor.countryName = '';      
         searchVendor.street1 = '';    
         searchVendor.SaveMethod();
         searchVendor.showSearchVendor = false;
         searchVendor.piVendorCreation = false;
-		searchVendor.generalVendorDetails = false;
+        searchVendor.generalVendorDetails = false;
         searchVendor.paymentTermScreen = true; 
         searchVendor.vendorPaymentTerms = '';
         searchVendor.SaveMethod();
         searchVendor.showSearchVendor = false;
         searchVendor.piVendorCreation = false;
-		searchVendor.generalVendorDetails = false;
+        searchVendor.generalVendorDetails = false;
         searchVendor.paymentTermScreen = false; 
         searchVendor.bankDetailsScreen = true;
         searchVendor.SaveMethod();
         searchVendor.showSearchVendor = false;
         searchVendor.piVendorCreation = false;
-		searchVendor.generalVendorDetails = false;
+        searchVendor.generalVendorDetails = false;
         searchVendor.paymentTermScreen = false; 
         searchVendor.bankDetailsScreen = false;
         searchVendor.goldendata2Screen2 = true;
@@ -573,7 +573,7 @@ public class VPM_SearchVendor1Test{
         searchVendor.SaveMethod();
         searchVendor.showSearchVendor = false;
         searchVendor.piVendorCreation = false;
-		searchVendor.generalVendorDetails = false;
+        searchVendor.generalVendorDetails = false;
         searchVendor.paymentTermScreen = false; 
         searchVendor.bankDetailsScreen = false;
         searchVendor.goldendata2Screen2 = false;  
@@ -583,7 +583,7 @@ public class VPM_SearchVendor1Test{
         searchVendor.SaveMethod();
         searchVendor.showSearchVendor = false;
         searchVendor.piVendorCreation = false;
-		searchVendor.generalVendorDetails = false;
+        searchVendor.generalVendorDetails = false;
         searchVendor.paymentTermScreen = false; 
         searchVendor.bankDetailsScreen = false;
         searchVendor.goldendata2Screen2 = false;  
@@ -654,5 +654,5 @@ public class VPM_SearchVendor1Test{
         searchVendor.mdmVendorType = system.label.VPM_Send_ResendWebformRequest;
         searchVendor.processRequestType();
         Test.stopTest();
-	}
+    }
 }
