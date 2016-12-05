@@ -250,14 +250,15 @@ private class PBS_MyProfileController_Test {
         System.runAs(lmsUsers.get(0)){ 
             PBS_Standard_Job_Profile__c psp= new PBS_Standard_Job_Profile__c();
             psp.name='Guest';
-            psp.Work_Level__c='Level 1';
+            psp.Work_Level__c='Guest';
             insert psp;
+            
             PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
-            System.assert(cont.getCategoryOptions().size()>=0);
-                System.assert(cont.getGeographyOptions().size()>=0);
-                cont.workLevel='Level 1';
-                System.assert(cont.getJobProfileOptions().size()>=0);
-                System.assert(cont.getWorkLevelOptions().size()>=0);
+            System.assert(cont.getCategoryOptions().size()>0);
+                System.assert(cont.getGeographyOptions().size()>0);
+                //cont.workLevel='Level 1';
+                System.assert(cont.getJobProfileOptions().size()>0);
+                System.assert(cont.getWorkLevelOptions().size()>0);
                 cont.jobprofileSelection();
                 //PBS_MyProfileController_Cc.updateUserDetails('test'  ,'test',null,'test');
         }
