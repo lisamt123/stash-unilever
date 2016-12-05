@@ -17263,7 +17263,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event.FS_Account__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -36649,7 +36649,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.FS_Account__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

@@ -241,6 +241,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>FS_Status_Update_New</fullName>
+        <description>This field Update is used to update Status from Temporary to New after LM and Admin aproved</description>
+        <field>Status__c</field>
+        <literalValue>New</literalValue>
+        <name>Status Update New</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>FS_UpdateAccountNumber</fullName>
         <field>AccountNumber</field>
         <formula>FS_Customer_Number__c</formula>
