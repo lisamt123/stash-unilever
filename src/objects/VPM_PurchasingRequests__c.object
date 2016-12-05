@@ -16385,7 +16385,6 @@ VPM_Approver10__c = $User.Id))
         <label>SAP BPM RequestID</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-		<startingNumber>5000000</startingNumber>
         <type>AutoNumber</type>
     </fields>
     <fields>
