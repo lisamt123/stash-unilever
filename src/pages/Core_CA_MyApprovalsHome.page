@@ -78,7 +78,7 @@
                             <span class="Subtext3">{{'MSG_NO_PENDING_REQUEST_APPROVAL' | translate}}</span>
                         </div>
                         <table ng-if='pendingApprovalList.length>0' class="homePageApprovalsListTable">
-                            <tr ng-repeat="pendingapprovalData in pendingApprovalList| filter:{ExpenseType: filterSelectedForPendingExp} | limitTo: listLimitCount_pending" ng-click='gotoApprovalDetailPage(pendingapprovalData)' class="homePageApprovalsListTableData">
+                            <tr ng-repeat="pendingapprovalData in pendingApprovalList| filter:{ExpenseType: filterSelectedForPendingExp} | filter:{ExpenseType: '!'+'CLM'} | limitTo: listLimitCount_pending" ng-click='gotoApprovalDetailPage(pendingapprovalData)' class="homePageApprovalsListTableData">
                                 <td class="defaultLeftSpace">
                                     <div class="Subtext1">{{pendingapprovalData.ExpenseID}}</div>
                                     <div class="textLinkExpenceNameTruncate">
@@ -125,7 +125,7 @@
                             <span class="Subtext3">{{'MSG_NO_CLOSED_REQUEST_APPROVAL' | translate}}</span>
                         </div>
                         <table ng-if='closedApprovalList.length>0' class="homePageApprovalsListTable" >
-                            <tr ng-repeat="closedapprovalData in closedApprovalList | filter:{ExpenseType: filterSelectedForClosedExp} | limitTo: listLimitCount_closed" ng-click='gotoApprovalDetailPage(closedapprovalData)' class="homePageApprovalsListTableData">
+                            <tr ng-repeat="closedapprovalData in closedApprovalList | filter:{ExpenseType: filterSelectedForClosedExp} | filter:{ExpenseType: '!'+'CLM'} | limitTo: listLimitCount_closed" ng-click='gotoApprovalDetailPage(closedapprovalData)' class="homePageApprovalsListTableData">
                                 <td class="defaultLeftSpace" >
                                     <div class="Subtext1">{{closedapprovalData.ExpenseID}}</div>
                                     <div class="textLinkExpenceNameTruncate">

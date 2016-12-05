@@ -6,7 +6,7 @@
     </applicationVisibilities>
     <classAccesses>
         <apexClass>VPM_ApprovalSubmit</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_ApprovalSubmitTest</apexClass>
@@ -14,7 +14,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_CheckRecursive</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_CreateVendorFetchFieldDetails</apexClass>
@@ -30,7 +30,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_CreateVendorServiceHelper_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_ECCMaintainExtendHelper</apexClass>
@@ -46,7 +46,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_FetchVendorDetailsHttpMockCodeMatch</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_FetchVendorsDetails</apexClass>
@@ -54,7 +54,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_FetchVendorsDetails_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_GoldenDataController2</apexClass>
@@ -126,11 +126,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_VendorDetailsServicesHelper</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>VPM_maintainGlobalVendorCalloutMock</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <description>Vendor Process Management: standard user (No License Type)</description>
     <fieldPermissions>
@@ -981,11 +981,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_ConfirmationControl__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_ContactPersonSurname__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1890,11 +1885,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PartnerFunction__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_PartnerName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2061,11 +2051,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>VPM_PurchasingRequests__c.VPM_PurchasingOrg__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>VPM_PurchasingRequests__c.VPM_PurchasingOrganisation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3032,6 +3017,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>VPM_AttachFiles</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>VPM_AttachmentSectionPopUp</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -3041,7 +3030,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_ErrorMessage</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>VPM_FusionGoldenData</apexPage>
