@@ -1366,8 +1366,15 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
              Integer value =   CountryBusinessmeasureBonusablefee.get(str);
              if(value > CountryAgencyTotalMap.get(str)){
                  Integer diff = value - CountryAgencyTotalMap.get(str);
-                if(tempcount == 0){ excep = 'exceeded by ' + string.valueof(diff);}
-                else { excep = ', exceeded by ' + string.valueof(diff);}
+                if(tempcount == 0){ excep = 'Target exceeded by ' + string.valueof(diff);}
+                else { excep = ', Target exceeded by ' + string.valueof(diff);}
+                 bonusablefeesexecption.put(str,excep);
+            
+             }
+             if(value < CountryAgencyTotalMap.get(str)){
+                 Integer diff =CountryAgencyTotalMap.get(str)-value;
+                if(tempcount == 0){ excep = 'Target missing by ' + string.valueof(diff);}
+                else { excep = ', Target missing by ' + string.valueof(diff);}
                  bonusablefeesexecption.put(str,excep);
             
              }
@@ -1415,7 +1422,7 @@ public map<String,Integer> CountryAgencyTotalMap = new Map<String,Integer>();
             String validationErrorMsg = Label.AF_Quant_Fields;
             apexpages.addmessage(new apexpages.message(apexpages.severity.Error,validationErrorMsg));
         }else if(bonusablefeesexecption.size()>0){
-             string validateerror = 'Bonusable fees';
+             string validateerror = 'Manual adjustment to Bonusable fees must reconcile back to Base Fee Matrix.';
              for(string str: bonusablefeesexecption.keyset()){
                  validateerror = validateerror + bonusablefeesexecption.get(str) + ' for country ' + str;
              }
