@@ -106,7 +106,7 @@
                             </apex:outputPanel>
                         </apex:column>
                         
-                        <apex:column headerValue="Year" >
+                       <apex:column headerValue="Year" >
                             <apex:inputField value="{!nc.target.Year__c}" required="true"/>
                         </apex:column>
                         <apex:column headerValue="Region" >
@@ -125,7 +125,7 @@
                        
                        <apex:pageBlock title="Inserted Data" rendered="{!if(listSuccessTargetWrapper!=null && listSuccessTargetWrapper.size>0,true,false) && (!showsuccesslink)}">
                         <apex:pageBlockTable value="{!listSuccessTargetWrapper}" var="nc" >                        
-                            <apex:column headerValue="Year" >
+                           <apex:column headerValue="Year" >
                                 <apex:outputField value="{!nc.target.Year__c}"/>
                             </apex:column>
                             <apex:column headerValue="Region" >
