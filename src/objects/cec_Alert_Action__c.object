@@ -259,6 +259,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Korea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Latvia</fullName>
                 <default>false</default>
             </picklistValues>
@@ -360,6 +364,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Switzerland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Taiwan</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

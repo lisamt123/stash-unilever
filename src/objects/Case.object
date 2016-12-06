@@ -660,7 +660,7 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
         <fullName>ContactPhone</fullName>
         <trackTrending>false</trackTrending>
     </fields>
-    <fields>
+   <fields>
         <fullName>Country_Name__c</fullName>
         <description>CEC:To store case - case market mappping- country Name</description>
         <externalId>false</externalId>
@@ -779,6 +779,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Korea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Latvia</fullName>
                 <default>false</default>
             </picklistValues>
@@ -852,6 +856,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
             </picklistValues>
             <picklistValues>
                 <fullName>Switzerland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Taiwan</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1997,6 +2005,11 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Careline.bd@unilever.com</fullName>
                 <default>false</default>
                 <controllingFieldValues>Bangladesh</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CEC.Korea@unilever.com</fullName>
+                <default>false</default>
+                <controllingFieldValues>Korea</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>cec.philippines@unilever.com</fullName>
@@ -9309,7 +9322,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
+         <picklistValues>
             <picklist>Country_Name__c</picklist>
             <values>
                 <fullName>Argentina</fullName>
@@ -9421,6 +9434,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9621,8 +9638,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
+         <picklistValues>
             <picklist>Override_From_Address__c</picklist>
+            <values>
+                <fullName>CEC%2EKorea%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Careline%2Ebd%40unilever%2Ecom</fullName>
                 <default>false</default>
@@ -10080,7 +10101,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
+         <picklistValues>
             <picklist>Country_Name__c</picklist>
             <values>
                 <fullName>Argentina</fullName>
@@ -10195,6 +10216,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Korea</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Latvia</fullName>
                 <default>false</default>
             </values>
@@ -10268,6 +10293,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10416,10 +10445,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Ragu%2Eus%40mizkan%2Ecom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unilever%2ECEC%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
