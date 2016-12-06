@@ -45,7 +45,6 @@
     transition: 200ms all ease;
     background:#005063;
     border-bottom: 3px solid rgba(0,0,0,.2);  
-    background-image:url('{!URLFOR($Resource.engageupload)}');
     color: #fff;
     font-size: 20px;
     text-align: center;
