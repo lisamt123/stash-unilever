@@ -21,8 +21,8 @@ src/classes/PBS_TrainingTrackDetailCtrl_Test.cls
 src/classes/PBS_TrainingTrackDetailCtrl_Test.cls-meta.xml
 src/classes/PBS_TrainingTracksController_Test.cls
 src/classes/PBS_TrainingTracksController_Test.cls-meta.xml
-src/classes/PBS_MyProfileController_test.cls
-src/classes/PBS_MyProfileController_test.cls-meta.xml
+src/classes/PBS_MyProfileController_Test.cls
+src/classes/PBS_MyProfileController_Test.cls-meta.xml
 src/classes/PBS_AccessController_Test.cls
 src/classes/PBS_AccessController_Test.cls-meta.xml
 src/classes/PBS_QuizViewer_Test.cls
