@@ -19107,6 +19107,24 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000H5M7_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ARNIS Y3</label>
+        <queue>IPM_a7I0L000000H5M7</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H5MM_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_BRUCE</label>
+        <queue>IPM_a7I0L000000H5MM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>

@@ -4175,7 +4175,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_Geen_gegevens_consument</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND 4 and 5 and 6</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 and 5</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.SUBJECT</columns>
@@ -4199,17 +4199,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.CREATED_DATE_DATE_ONLY</field>
             <operation>greaterThan</operation>
-            <value>8/1/2016 12:00 AM</value>
+            <value>11/1/2016 12:00 AM</value>
         </filters>
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
             <value>Phone</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>ipire</value>
         </filters>
         <label>CEC Benelux Geen gegevens consument</label>
         <language>nl_NL</language>
@@ -4672,7 +4667,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,In Progress,Review Needed,On Hold</value>
+            <value>New,In Progress,Review Needed,On Hold,Reopened</value>
         </filters>
         <filters>
             <field>CORE.USERS.FIRST_NAME</field>
@@ -4699,7 +4694,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,In Progress,Review Needed,On Hold</value>
+            <value>New,In Progress,Review Needed,On Hold,Reopened</value>
         </filters>
         <filters>
             <field>CORE.USERS.FIRST_NAME</field>
@@ -4825,7 +4820,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,In Progress,Review Needed,On Hold</value>
+            <value>New,In Progress,Review Needed,On Hold,Reopened</value>
         </filters>
         <filters>
             <field>CORE.USERS.FIRST_NAME</field>
@@ -4900,7 +4895,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,In Progress,Review Needed,On Hold</value>
+            <value>New,In Progress,Review Needed,On Hold,Reopened</value>
         </filters>
         <filters>
             <field>CORE.USERS.FIRST_NAME</field>
@@ -4927,7 +4922,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,In Progress,Review Needed,On Hold</value>
+            <value>New,In Progress,Review Needed,On Hold,Reopened</value>
         </filters>
         <filters>
             <field>CORE.USERS.FIRST_NAME</field>
@@ -5052,7 +5047,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,In Progress,Review Needed,On Hold</value>
+            <value>New,In Progress,Review Needed,On Hold,Reopened</value>
         </filters>
         <filters>
             <field>CORE.USERS.FIRST_NAME</field>
@@ -8686,7 +8681,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>SarahE</value>
+            <value>fmott</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
@@ -8726,7 +8721,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Charlyn</value>
+            <value>Rebe</value>
         </filters>
         <label>DACH Vacation Queue 3</label>
         <language>en_US</language>
