@@ -1,0 +1,422 @@
+body {
+
+}
+.logo {
+	text-align: center;
+	margin-bottom: 60px;
+}
+
+.navbar-static-top {
+
+  margin-bottom: 19px;
+  background: #70ad47;
+  border-color: #70ad47;
+
+}
+
+.nav-expander img {
+    width: 37px;
+    height: 37px;
+}
+.jumbotron {
+    //background-color: #fff;
+    padding-top: 0px; 
+    padding-bottom: 0px; 
+	background-color:none;
+	background-color: none;
+}
+.container .jumbotron, .container-fluid .jumbotron {
+    padding-right: 0;
+    padding-left: 0;
+	background: none;
+}
+.jumbotron p {
+    line-height: 25px;
+}
+
+.jumbotron p.name{
+    color: #70ad47;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+   // margin-top: 10px;
+}
+.para{
+    background-color: #70ad47;
+    color: #fff;
+    text-align: center;
+    line-height: 25px;
+    padding: 10px 12px;
+    text-transform: uppercase;
+}
+.jumbotron p.para1{
+    background-color: #70ad47;
+    color: #fff;
+    font-size: 17px;
+    line-height: 20px;
+    text-align: center;
+    padding: 10px 12px;
+
+}
+.jumbotron img{
+    width: 200px;
+    height: 90px;
+}
+.btn-group-lg>.btn, .btn-lg , .btn-primary{
+     background-color: #70ad47;
+    border-color: #70ad47;
+    border-radius: 0;
+
+}
+.jumbotron p.butn{
+    text-align: center;
+    margin:0 auto;
+    font-size: 16px;
+}
+.jumbotron.index1 p.butn a , .jumbotron.slide5 p.butn a {
+    width:80%;
+}
+.jumbotron p.butn a{
+    text-transform: uppercase;
+    padding: 15px 35px;
+  }
+
+/* Index1.html css below */
+
+
+
+
+.jumbotron p.butn span+span a{
+    background: #fbd301;
+    border: 1px solid #fbd301;
+}
+.jumbotron p.butn span+span.index1 a{
+    background: #70ad47;
+    border: 1px solid #70ad47;
+}
+.jumbotron p.butnindex1
+{
+margin-bottom: 20px;
+}
+.pushy-open-left {
+height:0px;
+}
+.social {
+    background:#70ad47;
+    width: 100%;
+    padding: 0;
+    height: 65px;
+    margin-bottom: 0px;
+}
+.social ul {
+    margin: 0;
+    padding: 0;
+}
+.social ul li{
+    list-style-type: none;
+    display: inline-block;
+    width: 10%;
+    margin-right: 20px;
+    text-align: center;
+}
+.social ul a{
+   /* vertical-align: middle;
+    background: #fff;
+    border-radius: 56%;
+    padding: 20px 20px;*/
+}
+.social ul li:last-child
+{
+    margin-right: 0px;
+}
+
+
+/*form.html css*/
+
+.form-control {
+    width: 65%;
+    margin: 20px 0px;
+    background: #fff;
+    border: 0px;
+    box-shadow: none;
+	border-radius: 0;
+}
+.btn-primary:hover {
+color: #000;
+background-color: #fff;
+border-color: #fff;
+}
+.form-signin label{
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 17px;
+	color: #fff;
+}
+.form-signin .sr-only {
+    position: relative;
+    overflow: none;
+    height: auto;
+    width: 35%;
+    float: left;
+    text-shadow: none;
+}
+.social.frm p{
+        text-align: center;
+    color: #70ad47;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.sub {
+     text-align: center;
+    color: #fff;;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 65%;
+    margin: 0 auto;
+
+}
+
+/*Slide5 CSS*/
+
+.jumbotron p.butnindex1 a {
+    text-transform: capitalize;
+    padding: 7px 10px;
+    font-size: 16px;
+}
+
+
+.socialInside {
+    padding-top: 0px;
+    text-align: center;
+    width: 96%;
+    margin: 0 2%;
+    overflow-x: scroll;
+}
+.socialInside ul{
+   width: 160%;
+} 
+
+.socialInside ul li a img{
+   width:40px;
+   height:40px;
+}
+.social li p {
+    font-size: 11px;
+    text-align: center;
+    color: #fff;
+    margin: 4px;
+    line-height: 12px;
+}
+
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover,
+ .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover
+ {
+	color: #000;
+	background-color: #fff;
+	border-color: #fff;
+ }
+ .btn-group-lg>.btn, .btn-lg, .btn-primary {
+	 background-color: #fff;
+     border-color: #fff;
+	 color: #000;
+	 margin-top: 65px;
+
+ }
+.form-group.uploadpic {
+	width: 65%;
+	margin: 0 auto;
+}
+.xtra {
+	/* width: 60%;
+	margin: 0 auto; */
+}
+p.question {
+	color: #fff;
+	    clear: both;
+}
+.xtra .form-group  .btn.upload {
+	background: url(upload.png);
+	width: 75px;
+	height: 75px;
+	background-size: 75px 75px;
+}
+.excelent .questext , .good .questext , .moderate .questext , .poor .questext , .verypoor .questext {
+	background: rgb(20, 173, 20);
+	border-radius: 3px;
+	width: 94%;
+	float: left;
+	margin-bottom: 20px;
+}
+.good .questext{
+	background: rgb(134, 190, 63);
+	border-radius: 3px;
+}
+.moderate .questext{
+	background:rgb(245, 245, 6);
+	border-radius: 3px;
+}
+.poor .questext{
+	background: rgb(245, 197, 6);
+	border-radius: 3px;
+}
+.verypoor .questext{
+	background: rgb(247, 14, 14);
+	border-radius: 3px;
+}
+.excelent ,
+.good ,
+.moderate  ,
+.poor ,
+.verypoor {
+	padding-left: 7px;
+	    clear: both;
+}
+.excelent .questext p ,
+.good .questext p ,
+.moderate .questext p ,
+.poor .questext p ,
+.verypoor .questext p {
+	margin-top: 7px;
+	margin-bottom: 7px;
+	padding-left: 5px;
+} 
+.xtra .form-group{
+	width: 65%;
+	margin: 0 auto; 
+ }
+.xtra .form-group label  {
+	 text-align: center;
+  }
+.xtra .form-group.uploadpic{
+	width: 40%;
+	margin: 0 auto;
+}
+.xtra .form-group .form-control {
+	margin: 10px auto 30px;
+	width: 100%;
+}
+
+.xtra .subbtn{
+	margin: 0 auto !important;
+    width: 20%;
+}
+.xtra .form-group.uploadpic .btn-primary.btn{
+	margin-top: 20px;
+}
+p.feedback {
+	color: rgb(147, 249, 147);
+	text-transform: uppercase;
+}
+
+.feed {
+	color:#fff;
+	font-size:14px;
+	text-align: center;
+	}
+.feed  p{
+	font-size: 20px;
+	}
+.feed .btn-group-lg>.btn, .feed .btn-lg {
+	padding: 3px 16px;
+}
+.box {
+	clear: both;
+	position: relative;
+	padding-bottom: 70px;
+}
+.box p{
+	color: #fff;
+   font-size: 16px;
+   font-weight: normal;
+   margin: 10px 0;
+}
+/* .anscont {
+	width: 80%;
+	float: left;
+	margin-right: 2%;
+}
+.changebtn {
+	float: left;
+	display: inline;
+	vertical-align: top;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 15%;
+}
+.changesub .btn{
+	text-align: center;
+}*/
+.anscont p {
+	width: 78%;
+	float: left;
+	margin-right: 20px;
+	font-weight: bold;
+}
+.anscont .changebtn {
+	width: 8%;
+	float: right;
+	margin-left: 20px;
+}
+.anscont .btn {
+	float: right;
+	padding:3px 9px;
+	margin-top: 5px; 
+	font-size: 15px;
+}
+.changesub {
+	text-align: center;
+}
+.changesub .btn {
+	padding: 7px 23px;
+	}
+body.thankyou {
+	background: none;
+	}
+
+#thankyou {
+	background: cadetblue url(Thank-You.png) no-repeat center center;
+	position: absolute;
+	top: -60px;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-size: 300px;
+}
+.overla .feed {
+	position: relative;
+}
+.overla .modal {
+	position: absolute;
+}
+.overla  .modal p{ color:#000;}
+.modal-content  {
+	background-color: #CACACA;
+}
+.quescheckbox {
+	width: 0px;
+	float: left;
+	margin-right: 20px;
+	margin-top: 9px;
+}
+.thankyou button.sub {
+	top: 50%;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 70px auto;
+	width: 245px;
+}
+
+@media screen and (max-width: 568px) and (min-width: 320px) {
+	.quescheckbox {
+    width: 2px;
+	}
+	.excelent .questext, .good .questext, .moderate .questext, .poor .questext, .verypoor .questext {
+        width: 92%;
+	
+}
+
+}

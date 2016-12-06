@@ -1,0 +1,94 @@
+<apex:page controller="Engagement_rating_cc" showHeader="false">
+<apex:form >
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>  
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=no"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags --> 
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Engagement App</title>
+ 
+  <!-- Bootstrap core CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/dist/css/bootstrap.min.css')}"/>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/assets/css/ie10-viewport-bug-workaround.css')}"/>
+
+    <!-- Custom styles for this template -->
+   <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/style.css')}"/>
+   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"/>
+   <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/css/main.css')}"/>
+   <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/css/normalize.css')}"/>
+   <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/css/demo.css')}"/>
+        <!-- Pushy CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.Engagement, 'Engagement/EngagementApp/css/pushy.css')}"/>
+    <script type="text/javascript" src="{!URLFOR($Resource.Engagement, 'Engagement/assets/js/ie-emulation-modes-warning.js')}"></script>
+  </head>
+
+  <body>
+  <div class="site-overlay"></div>
+    <div class="container" id="container">
+    <apex:repeat value="{!rLists}" var="r">
+    <apex:repeat value="{!avg}" var="x">
+    <div class="jumbotron" style="background-color:#bdbdbd;margin: auto;height:125px;text-align:center">
+    <p>You have rated {!r.Location__c} {!r.Location_Name__c} an average score of {!r.Rating__c}%</p>
+    </div>
+
+    <div class="jumbotron overla">  
+    <div class="feed">
+    <p>Do You Want to see the past score of this site?</p>
+    <div class="overlay" style="margin: auto;height:100px;text-align:center;overflow-y:hidden">
+  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal">Yes</button>
+
+  <div class="modal fade" id="myModal" role="dialog" style="overflow:hidden">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>The average rating of {!r.Location__c} {!r.Location_Name__c} for all past feedback is {!x}%</p>         
+         <button type="button" data-dismiss="modal">OK</button>
+        </div>
+        </div>     
+    </div>
+  </div>
+</div>
+    <div style="text-align:center">
+    <apex:commandButton value="No , Return to HomePage" styleClass="btn btn-lg btn-primary" action="{!gohome}"/>
+    </div>
+    </div>
+     </div>
+     </apex:repeat>
+     </apex:repeat>
+    </div>
+ 
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+ 
+   <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{!URLFOR($Resource.Engagement, 'Engagement/assets/js/vendor/jquery.min.js')}" ><\/script>')</script>
+     <script type="text/javascript" src="{!URLFOR($Resource.Engagement, 'Engagement/dist/js/bootstrap.min.js')}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript" src="{!URLFOR($Resource.Engagement, 'Engagement/assets/js/ie10-viewport-bug-workaround.js')}"></script>
+   <script>
+   (function ($) {
+    var pushy = $('.pushy'), //menu css class
+        body = $('body'),
+        container = $('#container'), //container css class
+        push = $('.push'), //css class to add pushy capability
+        pushyLeft = 'pushy-left', //css class for left menu position
+        pushyOpenLeft = 'pushy-open-left', //css class when menu is open (left position)
+        pushyOpenRight = 'pushy-open-right', //css class when menu is open (right position)
+        siteOverlay = $('.site-overlay'), //site overlay
+        menuBtn = $('.menu-btn, .pushy-link'), //css classes to toggle the menu
+        menuSpeed = 200, //jQuery fallback menu speed
+        menuWidth = pushy.width() + 'px', //jQuery fallback menu width
+        submenuClass = '.pushy-submenu',
+        submenuOpenClass = 'pushy-submenu-open',
+        submenuClosedClass = 'pushy-submenu-closed',
+        submenu = $(submenuClass);
+   </script>
+    </body>
+</html>
+</apex:form>
+</apex:page>
