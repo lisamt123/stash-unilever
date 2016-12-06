@@ -228,18 +228,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Digital Build</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
 	                    <fullName>Digital Creative &amp; Strategic</fullName>
 	                    <default>false</default>
 	                </picklistValues>
-	                <picklistValues>
-	                    <fullName>Digital Design</fullName>
-	                    <default>false</default>
-	                </picklistValues>
-	                <picklistValues>
+	               <picklistValues>
 	                    <fullName>Digital Mobile, Games &amp; Apps</fullName>
 	                    <default>false</default>
 	                </picklistValues>
@@ -6411,13 +6403,29 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Behaviour Design</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Digital Build</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Digital Design</fullName>
-                <default>false</default>
+             <values>
+	                    <fullName>Digital %E2%80%93 Other</fullName>
+	                    <default>false</default>
+	                </values>
+	                <values>
+	                    <fullName>Digital Creative %26 Strategic</fullName>
+	                    <default>false</default>
+	                </values>
+	                <values>
+	                    <fullName>Digital Mobile%2C Games %26 Apps</fullName>
+	                    <default>false</default>
+	                </values>
+	                <values>
+	                    <fullName>Digital Search</fullName>
+	                    <default>false</default>
+	                </values>
+	                <values>
+	                    <fullName>Digital Social</fullName>
+	                    <default>false</default>
+	                </values>
+	                <values>
+	                    <fullName>Digital Web %26 Microsites</fullName>
+	                    <default>false</default>
             </values>
             <values>
                 <fullName>Environment%2FSet Design</fullName>
