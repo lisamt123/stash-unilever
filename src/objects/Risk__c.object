@@ -84,7 +84,7 @@
     <fields>
         <fullName>Amount__c</fullName>
         <externalId>false</externalId>
-        <label>Amount</label>
+        <label>Cumulative Total NSV Risk</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -128,6 +128,200 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FSNA_Margin_Market_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Margin Market Code</label>
+        <picklist>
+            <picklistValues>
+                <fullName>6I DRESSINGS-CONDIMENTS-DIPS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6K SAUCES-GRAVIES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8Z RETAIL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>93 MAYONNAISE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D1 SOUPS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E1 BASES-BOUILLIONS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>F1 SPREADS AND TOPPING</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FOH ACCELERATION</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>G1 TEA-BEVERAGES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>H1 FLAVOUR DELIVERY SYS-SEASONING</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>K1 MEALS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>N1 CRYSTAL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Q1 MISCELLANEOUS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X1 US LCB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X2 SPECIALTY TEA CANADA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X3 SPECIALTY TEA US</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X4 US SDJ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z1 BOH MAYO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z2 CAN LCB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z3 CAN SDJ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z5 FOH MAYO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z6 HOT TEA CANADA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z7 HOT TEA US</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z8 ICED TEA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Z9 Knorr Ultimate Low/Reduced Sodium*</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FSNA_Margin_Market_Target__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+ISPICKVAL(CurrencyIsoCode,&quot;USD&quot;), 
+CASE( 
+FSNA_Margin_Market_Code__c, 
+&quot;6I DRESSINGS-CONDIMENTS-DIPS&quot;,0.265, 
+&quot;6K SAUCES-GRAVIES&quot;,0.385, 
+&quot;93 MAYONNAISE&quot;,0.338, 
+&quot;Z5 FOH MAYO&quot;,0.32, 
+&quot;Z1 BOH MAYO&quot;,0.251, 
+&quot;D1 SOUPS&quot;,0.33, 
+&quot;X4 US SDJ&quot;,0.22, 
+&quot;Z3 CAN SDJ&quot;,0.29, 
+&quot;E1 BASES-BOUILLIONS&quot;,0.295, 
+&quot;Z9 Knorr Ultimate Low/Reduced Sodium*&quot;,0.23, 
+&quot;X1 US LCB&quot;,0.22, 
+&quot;Z2 CAN LCB&quot;,0.339, 
+&quot;F1 SPREADS AND TOPPING&quot;,0.2, 
+&quot;G1 TEA-BEVERAGES&quot;,0.3, 
+&quot;X2 SPECIALTY TEA CANADA&quot;,0.404640144481131, 
+&quot;Z6 HOT TEA CANADA&quot;,0.308416596202267, 
+&quot;X3 SPECIALTY TEA US&quot;,0.238929580293853, 
+&quot;Z7 HOT TEA US&quot;,0.229022571071625, 
+&quot;Z8 ICED TEA&quot;,0.342713952331212, 
+&quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,0.668, 
+&quot;K1 MEALS&quot;,0.35, 
+&quot;N1 CRYSTAL&quot;,0, 
+&quot;8Z RETAIL&quot;,0.45, 
+&quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,0.668, 
+&quot;FOH ACCELERATION&quot;,0.15, 
+&quot;Q1 MISCELLANEOUS&quot;,0.595, 
+0), 
+IF( 
+ISPICKVAL(CurrencyIsoCode,&quot;CAD&quot;), 
+CASE(FSNA_Margin_Market_Code__c, 
+&quot;6I DRESSINGS-CONDIMENTS-DIPS&quot;,0.265, 
+&quot;6K SAUCES-GRAVIES&quot;,0.385, 
+&quot;93 MAYONNAISE&quot;,0.338, 
+&quot;Z5 FOH MAYO&quot;,0.3, 
+&quot;Z1 BOH MAYO&quot;,0.237976924226836, 
+&quot;D1 SOUPS&quot;,0.33, 
+&quot;X4 US SDJ&quot;,0.22, 
+&quot;Z3 CAN SDJ&quot;,0.258215324788885, 
+&quot;E1 BASES-BOUILLIONS&quot;,0.240715650567646, 
+&quot;Z9 Knorr Ultimate Low/Reduced Sodium*&quot;,0.23, 
+&quot;X1 US LCB&quot;,0.22, 
+&quot;Z2 CAN LCB&quot;,0.339, 
+&quot;F1 SPREADS AND TOPPING&quot;,0.2, 
+&quot;G1 TEA-BEVERAGES&quot;,0.3, 
+&quot;X2 SPECIALTY TEA CANADA&quot;,0.404640144481131, 
+&quot;Z6 HOT TEA CANADA&quot;,0.25, 
+&quot;X3 SPECIALTY TEA US&quot;,0.238929580293853, 
+&quot;Z7 HOT TEA US&quot;,0.229022571071625, 
+&quot;Z8 ICED TEA&quot;,0.3, 
+&quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,0.668, 
+&quot;K1 MEALS&quot;,0.35, 
+&quot;N1 CRYSTAL&quot;,0, 
+&quot;8Z RETAIL&quot;,0.45, 
+&quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,0.668, 
+&quot;FOH ACCELERATION&quot;,0.15, 
+&quot;Q1 MISCELLANEOUS&quot;,0.595, 
+0), 
+0) 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Margin Market Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_No_of_Products__c</fullName>
+        <externalId>false</externalId>
+        <label>No of Products</label>
+        <summaryForeignKey>Product_at_Risk__c.Risk__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>FS_Sub_Sector__c</fullName>
@@ -228,4 +422,11 @@
     <pluralLabel>Risks</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>FSNA_Product_Required</fullName>
+        <active>true</active>
+        <description>Food Solution: Product is required if the profitability is more than 75%</description>
+        <errorConditionFormula>IF( OR( ISPICKVAL( Probability__c , &apos;75%&apos;) , ISPICKVAL(Probability__c , &apos;100%&apos;) )&amp;&amp;  ( FS_No_of_Products__c == 0)  , TRUE , FALSE)</errorConditionFormula>
+        <errorMessage>Product is required if the profitability is greater the 75%</errorMessage>
+    </validationRules>
 </CustomObject>

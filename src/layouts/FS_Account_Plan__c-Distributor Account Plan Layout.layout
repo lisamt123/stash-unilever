@@ -20,18 +20,6 @@
                 <field>CurrencyIsoCode</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_PlanDollars__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_PlanPercent__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_of_Units__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>FS_No_of_Objectives__c</field>
             </layoutItems>
@@ -42,6 +30,14 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>FS_Completed__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_Incremental_Cases__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_Incremental_NSV__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -58,7 +54,7 @@
                 <field>FS_End_Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>FS_Status__c</field>
             </layoutItems>
         </layoutColumns>
@@ -162,17 +158,15 @@
     </quickActionList>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
-        <fields>BSP__c</fields>
         <fields>NAME</fields>
-        <fields>RECORDTYPE</fields>
+        <fields>BSP__c</fields>
         <fields>FS_Objective_Description__c</fields>
-        <fields>FS_Tension__c</fields>
+        <fields>FS_IncrementalCases__c</fields>
+        <fields>FS_Volume__c</fields>
         <fields>FS_Objective_Start_Date__c</fields>
         <fields>FS_Completion_Date__c</fields>
         <fields>FS_Status__c</fields>
         <relatedList>FS_Defined_Objective__c.FS_Account_Plan__c</relatedList>
-        <sortField>BSP__c</sortField>
-        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>CreatedDate</fields>
@@ -206,7 +200,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h8A000000Em1N</masterLabel>
+        <masterLabel>00hV0000000O2s9</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
