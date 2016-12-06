@@ -47,7 +47,7 @@
         }
         
         footer .row {
-            position: fixed;
+            //position: absolute;
             right: 0;
             bottom: 0;
             left: 0;
@@ -194,6 +194,17 @@
                         <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/submarine.png')}" class="img-responsive" alt=""/>
                     </a>
                 </div>-->
+            </div>
+            
+            <div class="row" style="margin-top: 30px;">
+             <div class="col-sm-2 portfolio-item">
+                    <a href="./PQN_PalletLossTreeData">
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/Archive.png')}" class="img-responsive" alt="Loss Tree Data"/>
+                    </a>
+                    <div class="text-center">
+                        <span class="name">Loss Tree Data</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
