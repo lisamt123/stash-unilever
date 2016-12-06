@@ -49,12 +49,6 @@ src/pages/Engagement_question_vf.page-meta.xml
 src/pages/Engagement_rating_vf.page 
 src/pages/Engagement_rating_vf.page-meta.xml 
 src/permissionsets/Engagement_App_User.permissionset
-src/staticresources/Engagement.resource
-src/staticresources/Engagement.resource-meta.xml
-src/staticresources/Engagementbackground.resource
-src/staticresources/Engagementbackground.resource-meta.xml
-src/staticresources/engagementpic.resource
-src/staticresources/engagementpic.resource-meta.xml
 src/tabs/Engagement_Answers__c.tab
 src/tabs/Engagement_Home.tab
 src/tabs/Engagement_Locations__c.tab
@@ -62,3 +56,9 @@ src/tabs/Engagement_Question__c.tab
 src/tabs/Engagement_Rating__c.tab
 src/tabs/Engagement_RS_Names__c.tab
 src/tabs/Engagement_User_Detail__c.tab
+src/staticresources/Engagement.resource
+src/staticresources/Engagement.resource-meta.xml
+src/staticresources/Engagementbackground.resource
+src/staticresources/Engagementbackground.resource-meta.xml
+src/staticresources/engagementpic.resource
+src/staticresources/engagementpic.resource-meta.xml
