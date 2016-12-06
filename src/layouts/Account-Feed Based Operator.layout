@@ -213,7 +213,7 @@
                 <field>FS_RTM__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Required</behavior>
                 <field>Segment__c</field>
             </layoutItems>
             <layoutItems>

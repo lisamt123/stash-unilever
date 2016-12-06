@@ -44,19 +44,6 @@ src/roles/Field_Sales_Rep_NDM.role
 src/roles/National_Chains_Manager.role
 src/roles/National_Development_Manager.role
 src/roles/UFS_Admin.role
-src/classes/FS_MonthlyPlanner.cls
-src/classes/FS_MonthlyPlanner.cls-meta.xml
-src/classes/FS_MonthlyPlanningRussia_CX.cls
-src/classes/FS_MonthlyPlanningRussia_CX.cls-meta.xml
-src/classes/FS_MonthlyPlanningRussia_CX_Test.cls
-src/classes/FS_MonthlyPlanningRussia_CX_Test.cls-meta.xml
-src/pages/FS_MonthlyPlanningRussiaDetail.page
-src/pages/FS_MonthlyPlanningRussiaDetail.page-meta.xml
-src/pages/FS_MonthlyPlanningRussiaReport.page
-src/pages/FS_MonthlyPlanningRussiaReport.page-meta.xml
-
-
-
 
 
 

@@ -183,7 +183,7 @@ Is the customer growing?</inlineHelpText>
         <fullName>AgreementDate__c</fullName>
         <description>Created for Opportunity Forecasting and it is required before moving to stage=&apos;05-Won&apos;.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Required before moving to stage &apos;05-Won&apos;.</inlineHelpText>
+        <inlineHelpText>Expected date of customer commitment.</inlineHelpText>
         <label>Agreement Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -229,6 +229,7 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>ContractStartDate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Expected date of first shipment (agreement in force).</inlineHelpText>
         <label>Contract Start Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -281,6 +282,7 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>FSNA_BMI__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Brand Marketing Rewards</inlineHelpText>
         <label>BMI</label>
         <precision>18</precision>
         <required>false</required>
@@ -294,6 +296,7 @@ Is the customer growing?</inlineHelpText>
         <fullName>FSNA_Distributor_TMI__c</fullName>
         <description>Roll-up of the Product Level Distributor TMI</description>
         <externalId>false</externalId>
+        <inlineHelpText>Expected Distributor Earnings from opportunity.</inlineHelpText>
         <label>NA Distributor TMI</label>
         <summarizedField>OpportunityLineItem.Copy_of_DIST_TMI__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
@@ -310,6 +313,7 @@ Is the customer growing?</inlineHelpText>
 Total_Opp_COGS__c) /(Amount - 
 (FS_TotalRate__c+FSNA_Distributor_TMI__c+FS_TotalHQRate__c+FS_LumpSum__c))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Average Gross Margin % for all products within opportunity.</inlineHelpText>
         <label>Gross Margin</label>
         <precision>18</precision>
         <required>false</required>
@@ -321,6 +325,7 @@ Total_Opp_COGS__c) /(Amount -
     <fields>
         <fullName>FSNA_Margin_Market_Code__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Respective Product groupings.</inlineHelpText>
         <label>Margin Market Code</label>
         <picklist>
             <picklistValues>
@@ -622,7 +627,7 @@ CASE(FSNA_Margin_Market_Code__c,
 0),
 0)
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Expected average profitability for opportunities within respective market.</inlineHelpText>
         <label>Margin Market Target</label>
         <precision>18</precision>
         <required>false</required>
@@ -634,6 +639,7 @@ CASE(FSNA_Margin_Market_Code__c,
     <fields>
         <fullName>FSNA_TMI__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>$ Value of Operator discounts from opportunity.</inlineHelpText>
         <label>Operator TMI</label>
         <precision>18</precision>
         <required>false</required>
@@ -648,6 +654,7 @@ CASE(FSNA_Margin_Market_Code__c,
         <externalId>false</externalId>
         <formula>FSNA_BMI__c  +  FS_TotalHQRate__c +  FS_TotalRate__c +  FSNA_Distributor_TMI__c+FS_LumpSum__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total TMI invested in opportunity (Sum of Distributor and Operator)</inlineHelpText>
         <label>Total Spend</label>
         <precision>18</precision>
         <required>false</required>
@@ -719,6 +726,7 @@ CASE(FSNA_Margin_Market_Code__c,
     <fields>
         <fullName>FS_DistributorTMI__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Distributor expected to supply products to operator. Used for determining distributor TMI.</inlineHelpText>
         <label>Distributor TMI</label>
         <picklist>
             <picklistValues>
@@ -888,7 +896,7 @@ DealApproved__c=true,
 IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 20, 20),
 IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Green when fully approved and pricing ready for customer review.</inlineHelpText>
         <label>Approval Indicator</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -899,7 +907,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     <fields>
         <fullName>FS_LumpSum__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Lump Sum TMI (Not A&amp;P)</inlineHelpText>
+        <inlineHelpText>Incentive funds paid directly to Operator, not tied Branding Activation Activities.</inlineHelpText>
         <label>Lump Sum TMI</label>
         <precision>18</precision>
         <required>false</required>
@@ -924,7 +932,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <fullName>FS_MSCS__c</fullName>
         <externalId>false</externalId>
         <formula>IF(FS_TotalNumberOfCases__c&gt;0, FS_LumpSum__c / FS_TotalNumberOfCases__c, null)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Allocation (Rate / Case) to product of Lump sum payments.</inlineHelpText>
         <label>MS/CS</label>
         <precision>18</precision>
         <required>false</required>
@@ -990,6 +998,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     <fields>
         <fullName>FS_Rate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Rebate Discount provided on individual product.</inlineHelpText>
         <label>Rate</label>
         <precision>18</precision>
         <required>false</required>
@@ -1096,7 +1105,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <fullName>FS_TotalDiscount__c</fullName>
         <externalId>false</externalId>
         <formula>FS_MSCS__c  + FS_TotalHQRate__c  +  FS_TotalRate__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total discount offered to operator.</inlineHelpText>
         <label>Total Discount</label>
         <precision>18</precision>
         <required>false</required>
@@ -1150,6 +1159,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     <fields>
         <fullName>FS_TotalHQRate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Total discount offered paid directly to HQ or Corporate Accounts.</inlineHelpText>
         <label>Total HQ Rate</label>
         <summarizedField>OpportunityLineItem.FSNA_TotalHQRate__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
@@ -1161,6 +1171,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     <fields>
         <fullName>FS_TotalNumberOfCases__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Total case count for opportunity.</inlineHelpText>
         <label>Total Quantity</label>
         <summarizedField>OpportunityLineItem.Quantity</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
@@ -1172,6 +1183,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     <fields>
         <fullName>FS_TotalRate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Total rebate discount offered to operator.</inlineHelpText>
         <label>Total Rate</label>
         <summarizedField>OpportunityLineItem.FSNA_TotalDeviatedRate__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
@@ -1285,7 +1297,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
         <fullName>FS_Type_from_Objective__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT( Defined_Objective__r.FS_Objective_Type__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Opportunity Type as linked to Objective.</inlineHelpText>
         <label>Type from Objective</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1647,7 +1659,7 @@ FSNA_Gross_Margin__c &gt;= FSNA_Margin_Market_Target__c,
 IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 20, 20), 
 IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20) 
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Green is opportunity exceeds targeted opportunity margin.</inlineHelpText>
         <label>Margin Indicator</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -2418,6 +2430,7 @@ Enter competitor pricing if available</inlineHelpText>
         <fullName>Total_Opp_COGS__c</fullName>
         <description>Roll-up of Product Level COGS</description>
         <externalId>false</externalId>
+        <inlineHelpText>Total Cost of Product, production and supply chain related costs.</inlineHelpText>
         <label>Total Opportunity COGS</label>
         <summarizedField>OpportunityLineItem.FS_Copy_of_Total_COGS__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
