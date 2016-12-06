@@ -64,9 +64,7 @@
       <runTest>TriggerFactoryTest</runTest>
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
-      <runTest>UserTrigger_Test</runTest>	  
-	  <runTest>PBS_TrainingTrackDetailCtrl_Test</runTest>
-	  <runTest>PBS_TrainingTracksController_Test</runTest>
+      <runTest>UserTrigger_Test</runTest>
 	  <runTest>PBS_AccessController_Test</runTest>
 	  <runTest>PBS_AchievementAssignmentsWorkCom_Test</runTest>
 	  <runTest>PBS_AchievementData_Test</runTest>
