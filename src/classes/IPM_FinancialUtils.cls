@@ -347,7 +347,7 @@ public with sharing class IPM_FinancialUtils
         }
         if(!upsertGlobalConsolidationMap.isEmpty())
         {
-            System.debug('upsertGlobalConsolidationList-->>'+upsertGlobalConsolidationList);
+            
             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
             IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = true;
             upsert upsertGlobalConsolidationMap.values() Financial_External_ID__c;
