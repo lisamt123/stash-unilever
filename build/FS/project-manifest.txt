@@ -63,3 +63,13 @@ src/permissionsets/FS_AFM.permissionset
 src/permissionsets/FS_Marketing.permissionset
 src/permissionsets/FS_Sales_Rep.permissionset
 src/permissionsets/FS_SCP_And_Corp.permissionset
+src/classes/FS_MonthlyPlanner.cls
+src/classes/FS_MonthlyPlanner.cls-meta.xml
+src/classes/FS_MonthlyPlanningRussia_CX.cls
+src/classes/FS_MonthlyPlanningRussia_CX.cls-meta.xml
+src/classes/FS_MonthlyPlanningRussia_CX_Test.cls
+src/classes/FS_MonthlyPlanningRussia_CX_Test.cls-meta.xml
+src/pages/FS_MonthlyPlanningRussiaDetail.page
+src/pages/FS_MonthlyPlanningRussiaDetail.page-meta.xml
+src/pages/FS_MonthlyPlanningRussiaReport.page
+src/pages/FS_MonthlyPlanningRussiaReport.page-meta.xml

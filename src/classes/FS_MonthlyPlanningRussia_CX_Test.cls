@@ -49,7 +49,13 @@ Public Class FS_MonthlyPlanningRussia_CX_Test
             varMonthlyPlanningRussia.dateName=Date.newInstance(2016,09,22);
             varMonthlyPlanningRussia.refreshPage();
             varMonthlyPlanningRussia.getlistMonthlyPlanner();
+             varMonthlyPlanningRussia.getlistMonthlyPlanner1();
+            varMonthlyPlanningRussia.FS_Monthly_Planning_Russia_CX();
            System.assert(varMonthlyPlanningRussia.dateName <> null);
+            FS_MonthlyPlanner varFS_MonthlyPlanner=new FS_MonthlyPlanner();
+            varFS_MonthlyPlanner.Total='Total';
+            varFS_MonthlyPlanner.workingDays=44;
+            varFS_MonthlyPlanner.target=55.5;
         }
         
     }  
