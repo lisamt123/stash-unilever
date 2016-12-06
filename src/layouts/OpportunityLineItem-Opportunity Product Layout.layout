@@ -64,7 +64,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Copy_of_DIST_TMI__c</field>
+                <field>FS_NSV_CALCULATION__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

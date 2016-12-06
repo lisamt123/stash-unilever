@@ -32,7 +32,7 @@ public with sharing class WU_UpdateMasterWarehouseHandler{
                                      WU_ToDate__c,
                                      WU_Utilization_Type__c,
                                      WU_Latest_Committed_Pallet__c,
-                                     (Select id,WU_Utilization_End_Date__c,WU_Utilization_Start_Date__c,WU_Committed_Max_PalletStorage__c,WU_Current_Pallet_Utilization__c,WU_Utilization_Type__c,Is_In_Current_Month__c FROM Warehouse_Capacity_Utilizaion__r ORDER BY WU_Utilization_Start_Date__c DESC)
+                                     (Select id,WU_Utilization_End_Date__c,WU_Utilization_Start_Date__c,WU_Committed_Max_PalletStorage__c,WU_Current_Pallet_Utilization__c,WU_Utilization_Type__c,Is_In_Current_Month__c,WU_Current_Pallet_Utilization_Week__c FROM Warehouse_Capacity_Utilizaion__r ORDER BY WU_Utilization_Start_Date__c DESC)
                                      FROM WU_Master_Warehouse__c
                                      WHERE Id IN :setMasterWarehouseIds];
         }
@@ -63,6 +63,7 @@ public with sharing class WU_UpdateMasterWarehouseHandler{
                 master.WU_ToDate__c = currentMonthCapacityList[0].WU_Utilization_End_Date__c;
                 master.WU_Utilization_Type__c = currentMonthCapacityList[0].WU_Utilization_Type__c;
                 master.WU_Latest_Committed_Pallet__c = currentMonthCapacityList[0].WU_Committed_Max_PalletStorage__c;
+                master.Current_Utilization__c=currentMonthCapacityList[0].WU_Current_Pallet_Utilization_Week__c;
                 masterWarehouseListToUpdate.add(master);
             }
             else if(!pastOrFutureMonthCapacityList.isEmpty())
@@ -72,6 +73,7 @@ public with sharing class WU_UpdateMasterWarehouseHandler{
                 master.WU_ToDate__c = pastOrFutureMonthCapacityList[0].WU_Utilization_End_Date__c;
                 master.WU_Utilization_Type__c = pastOrFutureMonthCapacityList[0].WU_Utilization_Type__c;
                 master.WU_Latest_Committed_Pallet__c = pastOrFutureMonthCapacityList[0].WU_Committed_Max_PalletStorage__c;
+                master.Current_Utilization__c=currentMonthCapacityList[0].WU_Current_Pallet_Utilization_Week__c;
                 masterWarehouseListToUpdate.add(master);
             }
             
@@ -106,7 +108,7 @@ public with sharing class WU_UpdateMasterWarehouseHandler{
     }
     
      public static void onBeforeUpdate(list<WU_Warehouse_Capacity_Detail__c> lstWareHouseCapacity) {
-        
+        system.debug('lstWareHouseCapacityEntry method-->'+lstWareHouseCapacity);
         set<string> setMasterWareHouseId = new set<string>();
         Map<string,List<WU_Warehouse_Capacity_Detail__c>> mapWUWarehouseCapacityDetail = new Map<string,List<WU_Warehouse_Capacity_Detail__c>>();
         
@@ -142,13 +144,17 @@ public with sharing class WU_UpdateMasterWarehouseHandler{
                     }
                     
                     system.debug('====check type===========');
+                    system.debug('====objWCDExisting.WU_Utilization_Start_Date__c==========='+objWCDExisting.WU_Utilization_Start_Date__c);
+                    
                     if(objWCDExisting.WU_Utilization_Start_Date__c.Month() == objWUWarehouseCapacityDetail.WU_Utilization_Start_Date__c.Month() &&
                        objWCDExisting.WU_Utilization_End_Date__c.year() == objWUWarehouseCapacityDetail.WU_Utilization_End_Date__c.year() &&
                        objWCDExisting.Id != objWUWarehouseCapacityDetail.Id){
                             UtilizationType = objWCDExisting.WU_Utilization_Type__c;
                             isUtilizationTypeFound = TRUE;
                     }
+                    system.debug('====objWCDExisting.WU_Utilization_Start_Date__c for loop end===========');
                 }
+                
                 
                 if(isUtilizationTypeFound && objWUWarehouseCapacityDetail.WU_Utilization_Type__c != UtilizationType){
                     objWUWarehouseCapacityDetail.addError(Label.WU_utilizationTypeCannotChange);

@@ -1161,7 +1161,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     <fields>
         <fullName>FS_TotalNumberOfCases__c</fullName>
         <externalId>false</externalId>
-        <label>Total Number of Cases</label>
+        <label>Total Quantity</label>
         <summarizedField>OpportunityLineItem.Quantity</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
@@ -1292,6 +1292,18 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_amountCasePiece__c</fullName>
+        <description>Roll-up Summary for the Total List Price for all Opportunity Products under Opportunity object</description>
+        <externalId>false</externalId>
+        <label>Amount (Case/Piece)</label>
+        <summarizedField>OpportunityLineItem.FS_totalListPrice__c</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>FS_casesPiece__c</fullName>

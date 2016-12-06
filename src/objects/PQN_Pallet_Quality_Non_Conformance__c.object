@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <content>PQN_SingleEntryScreen_VF</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>PQN_SingleEntryScreen_VF</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>PQN_SingleEntryScreen_VF</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>PQN_Conformance_Detail_VF</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Cluster__c</fullName>
+        <description>Cluster to be Auto-populated based upon DC master data</description>
+        <externalId>false</externalId>
+        <label>Cluster</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <description>Offer of corrects based on standard English</description>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>DC_Country__c</fullName>
+        <description>Auto-populated based upon DC master data</description>
+        <externalId>false</externalId>
+        <label>DC Country</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_Pallet_Received__c</fullName>
+        <description>Date on which the pallet was recieved</description>
+        <externalId>false</externalId>
+        <label>Date Pallet Received</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_Data_Entry_Per_Pallet__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY()</formula>
+        <label>Date of Data Entry Per Pallet</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Days_Left_Before_Freeze__c</fullName>
+        <description>no of days left before user can submit before ed of month</description>
+        <externalId>false</externalId>
+        <label>Days Left Before Freeze</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Delivery_Note_Number__c</fullName>
+        <description>The delivery number of the pallet recieved</description>
+        <externalId>false</externalId>
+        <label>Delivery Note Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Loss_Level_4__c</fullName>
+        <externalId>false</externalId>
+        <label>Loss Level 4</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Loss_level_3__c</fullName>
+        <externalId>false</externalId>
+        <label>Loss level 3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Losses__c</fullName>
+        <description>Losses in the Pallet NC</description>
+        <externalId>false</externalId>
+        <label>Losses</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MCO__c</fullName>
+        <description>MCO to be Auto-populated based upon DC master data</description>
+        <externalId>false</externalId>
+        <label>MCO</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Non_compliance_reason_code__c</fullName>
+        <description>Manually keyed/ Copied in/ drop-down box based upon Pallet or Customer Loss tree.Code within product and Customer loss tree L4. Errorred if outside of valid range</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Loss Level 4</inlineHelpText>
+        <label>Non-compliance reason code</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Pallets_Per_SKU_Non_Compliant__c</fullName>
+        <description>Number of pallets per SKU that are non-compliant.</description>
+        <externalId>false</externalId>
+        <label>Number of Pallets Per SKU Non-Compliant</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Category__c</fullName>
+        <description>Product Category is auto-populated based upon SKU master data</description>
+        <externalId>false</externalId>
+        <label>Product Category</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Group__c</fullName>
+        <description>Product Group to be auto populated based upon SKU master data</description>
+        <externalId>false</externalId>
+        <label>Product Group</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Name__c</fullName>
+        <description>Product Name is auto-populated Based upon SKU master data</description>
+        <externalId>false</externalId>
+        <label>Product Name</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <description>Auto-populated Based upon DC master data</description>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reporting_DC__c</fullName>
+        <description>Auto-populated based upon user if a single DC user, Copied in, drop-down box populated with DCs based upon user</description>
+        <externalId>false</externalId>
+        <label>Reporting DC</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SKU__c</fullName>
+        <description>Manually keyed/ Copied in. Validated against SKU master data. Show error if not correctly entered.</description>
+        <externalId>false</externalId>
+        <label>SKU</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sub_Cluster__c</fullName>
+        <description>Sub-cluster to be Auto-populated based upon DC master data</description>
+        <externalId>false</externalId>
+        <label>Sub-Cluster</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Supplier_Number__c</fullName>
+        <description>supplier number for a supplier</description>
+        <externalId>false</externalId>
+        <label>Supplier Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Supplier__c</fullName>
+        <description>Auto-populated based upon SKU if a single supplier per SKU, Copied in, drop-down box populated with suppliers based upon SKU</description>
+        <externalId>false</externalId>
+        <label>Supplier Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Supplier_type__c</fullName>
+        <description>Auto populated based upon supplier Master data</description>
+        <externalId>false</externalId>
+        <label>Supplier type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Pallet Quality Non Conformance</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Date_of_Data_Entry_Per_Pallet__c</columns>
+        <columns>Date_Pallet_Received__c</columns>
+        <columns>DC_Country__c</columns>
+        <columns>Reporting_DC__c</columns>
+        <columns>Supplier__c</columns>
+        <columns>SKU__c</columns>
+        <columns>Losses__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>PQN</fullName>
+        <columns>NAME</columns>
+        <columns>Date_Pallet_Received__c</columns>
+        <columns>Delivery_Note_Number__c</columns>
+        <columns>Non_compliance_reason_code__c</columns>
+        <columns>Number_of_Pallets_Per_SKU_Non_Compliant__c</columns>
+        <columns>Product_Category__c</columns>
+        <columns>Product_Group__c</columns>
+        <columns>Product_Name__c</columns>
+        <columns>Reporting_DC__c</columns>
+        <columns>SKU__c</columns>
+        <columns>Supplier__c</columns>
+        <columns>Supplier_type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>Mounika Reddy</value>
+        </filters>
+        <label>PQN</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>{0}</displayFormat>
+        <label>Sequence</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Pallet Quality Non Conformance</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Date_Pallet_Received__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Reporting_DC__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>DC_Country__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Region__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Cluster__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Sub_Cluster__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>MCO__c</customTabListAdditionalFields>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>PQN_Validation_ON_Date_Pallet_Received</fullName>
+        <active>true</active>
+        <description>This validation rule, will ensure that user will not enter a future date (Greater than today) for Date Pallet Received.</description>
+        <errorConditionFormula>Date_Pallet_Received__c &gt;  TODAY()</errorConditionFormula>
+        <errorDisplayField>Date_Pallet_Received__c</errorDisplayField>
+        <errorMessage>Date Pallet Received should not be greater than today&apos;s date</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PQN_Validation_ON_SKU</fullName>
+        <active>true</active>
+        <description>This validation rule, will ensure that Product Name, Product Group and Product Category are having the correct values.</description>
+        <errorConditionFormula>NOT (REGEX( SKU__c , &quot;[0-9]+&quot;))</errorConditionFormula>
+        <errorDisplayField>SKU__c</errorDisplayField>
+        <errorMessage>SKU entered should contain only numbers.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PQN_Validation_ON_Supplier_Name</fullName>
+        <active>false</active>
+        <description>This validation rule, will ensure that Supplier Number and Supplier Type are having the correct values.</description>
+        <errorConditionFormula>AND( ISBLANK( Supplier_Number__c  ) , ISBLANK( Supplier_type__c  )  )</errorConditionFormula>
+        <errorDisplayField>Supplier__c</errorDisplayField>
+        <errorMessage>Supplier Name entered is not valid.</errorMessage>
+    </validationRules>
+</CustomObject>

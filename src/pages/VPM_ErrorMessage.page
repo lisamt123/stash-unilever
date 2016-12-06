@@ -1,0 +1,18 @@
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true"
+           sidebar="false" extensions="VPM_GoldenDataController2" language="{!userlang}" >
+         
+
+           
+    <apex:form >
+        <apex:pageBlock title="Error Message">
+            
+           <apex:pagemessage id="pageMessages12"  summary="{!$CurrentPage.parameters.message}" severity="error" strength="3"/>  
+            
+            <apex:pageBlockButtons > 
+            <apex:commandButton action="{!backToFlow}" value="{!$Label.VPM_Back}" reRender="hiddenBlock,pageMessages12" status="actStatusId"  immediate="true" />
+
+        </apex:pageBlockButtons>
+            </apex:pageBlock> 
+   </apex:form>
+  
+</apex:page>

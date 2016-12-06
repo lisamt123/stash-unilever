@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>It Will represent a Unilever base fee estimate for a particular brand and agency combination.</description>
@@ -53,7 +52,6 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -317,6 +315,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -366,6 +365,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -863,6 +863,33 @@ if(AF_Cat_Finance_Approver_5__r.FirstName !=&quot;Unilever&quot;, &quot; &quot; 
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_Disable_Contrycheckbox__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>AF_Disable_Contrycheckbox</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AF_Disable_Exceptionaltargets__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>AF_Disable_Exceptionaltargets</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AF_Disable_Globalcheckbox__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>AF_Disable_Globalcheckbox</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>AF_Dont_Show_on_Report__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -882,6 +909,15 @@ if(AF_Cat_Finance_Approver_5__r.FirstName !=&quot;Unilever&quot;, &quot; &quot; 
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>AF_ExceptionalCountry__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>AF_ExceptionalCountry</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>AF_Fiscal_Year_Difference__c</fullName>
@@ -930,9 +966,19 @@ if(AF_Cat_Finance_Approver_5__r.FirstName !=&quot;Unilever&quot;, &quot; &quot; 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>AF_Globalcheck_Disable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>AF_Globalcheck_Disable</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>AF_Include_in_OOPS_Adaptation__c</fullName>
@@ -975,6 +1021,15 @@ if(AF_Cat_Finance_Approver_5__r.FirstName !=&quot;Unilever&quot;, &quot; &quot; 
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Is_Global_Bonus_Threshold_Checked__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>AF_Is_Global_Bonus_Threshold_Checked</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>AF_Locked__c</fullName>
@@ -1022,6 +1077,7 @@ if(AF_Cat_Finance_Approver_5__r.FirstName !=&quot;Unilever&quot;, &quot; &quot; 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1264,6 +1320,7 @@ if(AF_Cat_Finance_Approver_5__r.FirstName !=&quot;Unilever&quot;, &quot; &quot; 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1303,8 +1360,13 @@ if(AF_Cat_Finance_Approver_5__r.FirstName !=&quot;Unilever&quot;, &quot; &quot; 
                 <fullName>With Controller Review</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>With Bonus Approver</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1341,6 +1403,7 @@ if(AF_Cat_Finance_Approver_5__r.FirstName !=&quot;Unilever&quot;, &quot; &quot; 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1365,6 +1428,7 @@ if(AF_Cat_Finance_Approver_5__r.FirstName !=&quot;Unilever&quot;, &quot; &quot; 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1393,6 +1457,7 @@ if(AF_Cat_Finance_Approver_5__r.FirstName !=&quot;Unilever&quot;, &quot; &quot; 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1516,6 +1581,15 @@ if(AF_Cat_Finance_Approver_5__r.FirstName !=&quot;Unilever&quot;, &quot; &quot; 
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>AF_iscountrymode__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>AF_iscountrymode</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Agency_Base_Fee__c</fullName>
         <defaultValue>0</defaultValue>
         <description>It is used for displaying Agency fees data in Brand Estimate on Agency Home Page. It should not be used either  for storing value or in Standard pagelayout.</description>
@@ -1577,6 +1651,7 @@ if(AF_Cat_Finance_Approver_5__r.FirstName !=&quot;Unilever&quot;, &quot; &quot; 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -1932,6 +2007,10 @@ if( AF_Cat_Finance_Approver_5__c =$Setup.DummyUser__c.User_id__c,0,1)</formula>
             </values>
             <values>
                 <fullName>With Agency %28Draft%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>With Bonus Approver</fullName>
                 <default>false</default>
             </values>
             <values>

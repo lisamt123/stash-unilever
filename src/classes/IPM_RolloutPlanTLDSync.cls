@@ -39,6 +39,10 @@ public with sharing class IPM_RolloutPlanTLDSync {
         for(Id RolloutId: globalProjIdRollout.keySet()){
             IPM_EmailOut_Notification__c emailOutNotification = new IPM_EmailOut_Notification__c();    
             Id projectID = globalProjIdRollout.get(RolloutId).IPM_Project__c;
+            if(projectID == null)
+            {
+            	projectID = globalProjIdRollout.get(RolloutId).Regional_Project__c;
+            }
             String emailAdd = '';
             if(projIdFinanceLeaderMap.containsKey(projectID)){
             	emailAdd = projIdFinanceLeaderMap.get(projectID).IPM_User__r.Email;

@@ -1,0 +1,3 @@
+src
+src/assignmentRules
+src/assignmentRules/Case.assignmentRules

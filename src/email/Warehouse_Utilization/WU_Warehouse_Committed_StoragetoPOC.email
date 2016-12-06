@@ -10,9 +10,9 @@ Submitted by : {!WU_Master_Warehouse__c.Submitted_by__c}
 
 Prior Committed/Max Pallet Utilization : {!WU_Master_Warehouse__c.WU_Prior_CommittedPalletStorage__c} 
 
-Updated Committed/Max Pallet Utilization :{!WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c} 
+ Committed/Max Pallet Utilization :{!WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c} 
 
- 
+ This is an auto generated email from Global WH-Visibility tool. Please do not reply to this email.
 
 Thanks, 
 Unilever Warehouse Administrator.
