@@ -8,6 +8,9 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
 {    
     public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>(); 
     
+    public static final Set<String> FY_COPYFIELDS = new Set<String>{
+    	'Advertising_Promotions_','Gross_Profit_','Profit_Before_Overheads_','Turnover_','Volume_Unit_','Volume_Tons_','Volume_','Value_Market_Share_'
+	};
     //@description:Constructor
     public IPM_FinancialYearHandler ()
     {
@@ -69,31 +72,34 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
 		
         //Financials Hard Validations: Get all Financial External ID
         set<string> setFinExtId = new set<string>();
-        list<IPM_Financial_Year__c> lstFinYr = new list<IPM_Financial_Year__c>();
-        if(Trigger.isInsert){
-            lstFinYr = (list<IPM_Financial_Year__c>)Trigger.New;
-        }
-        else if(Trigger.isUpdate){
+        if(Trigger.isInsert)
+        {
             for(IPM_Financial_Year__c finYr: (list<IPM_Financial_Year__c>)Trigger.New){
+            	setFinExtId.add(finYr.Financial_External_ID__c);	
+        }
+        }
+        else if(Trigger.isUpdate && !IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED)
+        {
+            for(IPM_Financial_Year__c finYr: (list<IPM_Financial_Year__c>)Trigger.New)
+            {
                 if(finYr.Turnover_Global__c!=((IPM_Financial_Year__c) Trigger.Oldmap.get(finYr.id)).Turnover_Global__c || finYr.Turnover_Regional__c != ((IPM_Financial_Year__c) Trigger.Oldmap.get(finYr.id)).Turnover_Regional__c || finYr.Turnover_Local__c!=((IPM_Financial_Year__c)  Trigger.Oldmap.get(finYr.id)).Turnover_Local__c){
-                    lstFinYr.add(finYr);    
+                    setFinExtId.add(finYr.Financial_External_ID__c);  
                 }   
             }   
         }
-        else if(Trigger.isDelete){
-            lstFinYr = (list<IPM_Financial_Year__c>)Trigger.Old;    
-        }
+        else if(Trigger.isDelete)
+        {
+        	for(IPM_Financial_Year__c finYr: (list<IPM_Financial_Year__c>)Trigger.Old)
 		
 		
-        if(!lstFinYr.isEmpty())
 		{
-            for(IPM_Financial_Year__c finYear: lstFinYr){
-                setFinExtId.add(finYear.Financial_External_ID__c);          
+            	setFinExtId.add(finYr.Financial_External_ID__c);
             }
+        }
 			
-			if(!setFinExtId.isEmpty()){
+        if(!setFinExtId.isEmpty())
+		{
             IPM_FinancialYearHelper.validateDefaultFinancial(setFinExtId);
-			}
         }
         
     }

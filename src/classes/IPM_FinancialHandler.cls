@@ -11,6 +11,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     private static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
     private static final String DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId(); //Recordtype Id for Default on IPM_Financial__c object
     
+    public static final Set<String> F_COPYOVERFIELDS = new Set<String>{'BIC_','CAPEX_','NPV_','Payback_','Volume_Unit_','IRR_'};
+    public static final Set<String> F_SNAPSHOTFIELDS = new Set<String>{'BIC_','CAPEX_','GM_Y1_bps_vs_DNDS_','IPM_Business_Impact_','NPV_','PBO_Y1_bps_vs_DNDS_','Payback_','Volume_Unit_','Year_3_iTO_','IRR_'};
     private static Map<Id,IPM_Financial__c> deleteFinancialMap = new Map<Id,IPM_Financial__c>();
     private static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
     
@@ -372,6 +374,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         // If record Type is not Consolidated and Financial CopyOver has not been initiated for this Financial in same context
         if(newFinancial.RecordtypeID != CONSOLIDATED_FINANCIAL_RECORDTYPE && !finCopyOverAlreadyInitiatedSet.contains(newfinancial.Id))
         {
+        	String sourceCopy,targetCopy,targetSnapshot = IPM_ConstantUtils.BLANK;
+        	String sourceSnapShot = newfinancial.IPM_Financial_Postfix__c;
             if(newfinancial.Regional_Project__c !=null &&  oldfinancial.Regional_Project__c != newfinancial.Regional_Project__c )
             {
                 newfinancial.Copy_Global_to_Regional__c = true;    
@@ -392,7 +396,69 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 finCopyOverAlreadyInitiatedSet.add(newfinancial.Id);
             }
             
+			if(newfinancial.Copy_Global_to_Regional__c)
+			{
+				sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+            	targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;	
+			}
+			else if(newfinancial.Copy_Regional_to_Local__c)
+			{
+				sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+            	targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+			}
+			else if(newfinancial.Copy_Global_to_Local__c)
+			{
+				sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+            	targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;	
+			}
+			else if(newfinancial.Copy_Local_to_Global__c)
+			{
+			sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+            	targetCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;	
+			}
+			else if(newfinancial.Copy_Local_to_Regional__c)
+			{
+				sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+            	targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;	
+			}
+			if(String.isNotBLank(targetCopy))
+			{
+            	for(String FieldPrefix : F_COPYOVERFIELDS)
+	    		{
+	    			newFinancial.put(FieldPrefix+targetCopy+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,newfinancial.get(FieldPrefix+sourceCopy+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX));
+	    		} 
+			}
+            if(!oldfinancial.Charter_Approved__c && newfinancial.Charter_Approved__c)
+            {
+            	targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CHARTER;
+            }
+            else if(!oldfinancial.Contract_Approved__c && newfinancial.Contract_Approved__c)
+            {
+            	targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CONTRACT;
+            }
+         	else if(!oldfinancial.MR_Approved__c && newfinancial.MR_Approved__c)
+            {
+            	targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_READY;
+            }
+         	else if(!oldfinancial.MD_Approved__c && newfinancial.MD_Approved__c)
+            {
+            	targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_DEPLOYMENT;
+            }
             
+            if(String.isNotBlank(targetSnapshot))
+            {
+            	for(String FieldPrefix : F_SNAPSHOTFIELDS)
+            	{
+            		String sourcePrefix= FieldPrefix;
+            		String targetPrefix  = FieldPrefix;
+            		if(FieldPrefix == 'IPM_Business_Impact_')
+            		{
+            			sourcePrefix = 'Business_Impact_';
+            		}
+            		newFinancial.put(targetPrefix+targetSnapshot+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,newFinancial.get(sourcePrefix+sourceSnapShot+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX));	 
+            	}
+				newFinancial.put(targetSnapshot+'_Locked'+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,true);
+            }
         }
     }
     

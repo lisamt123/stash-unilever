@@ -52,6 +52,7 @@ public with sharing class IPM_FinancialUtils
 		                if(newfinancialsObject.get(fieldAPI) != oldfinancialsObject.get(fieldAPI))
 		                {
 		                    changedFinancialFields.add(fieldAPI);
+		                    break;
 		                }
 		            }
 	        	}
@@ -202,7 +203,7 @@ public with sharing class IPM_FinancialUtils
     *************************************************************************************************************/
     public static void processRegionalConsolidationFinancial(Set<String> regionalProjectNames,Set<String> regionalRolloutNames)
     {
-        List<IPM_financial__c> upsertRegionalConsolidationList = new List<IPM_financial__c>();
+        Map<String,IPM_financial__c> upsertRegionalConsolidationMap = new Map<String,IPM_financial__c>();
         Map<String,String> FieldAPIToAlaisMap = new Map<String,String>();    
         String AggregateSELECTString = 'SELECT IPM_Project_Rollout__r.IPM_Rollout_Project__c rolloutName ,Regional_Project__r.IPM_Project_Name__c regionalProjectName,';
         for(String changedField : IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE) 
@@ -212,7 +213,20 @@ public with sharing class IPM_FinancialUtils
         }
         AggregateSELECTString = AggregateSELECTString.removeEnd(IPM_ConstantUtils.COMMA);
         AggregateSELECTString += ' FROM IPM_Financial__c ';
-        String AggregateWHEREString = ' WHERE isActive__c = true AND RecordType.Name = \'Default\' AND ( IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalRolloutNames OR Regional_Project__r.IPM_Project_Name__c in :regionalProjectNames) ';
+        
+        String AggregateWHEREString = ' WHERE isActive__c = true AND RecordType.Name = \'Default\' AND ';
+        if(!regionalRolloutNames.isEmpty() && !regionalProjectNames.isEmpty())
+        {
+        	AggregateWHEREString = AggregateWHEREString + ' ( IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalRolloutNames OR Regional_Project__r.IPM_Project_Name__c in :regionalProjectNames) '; 
+        }
+        else if(!regionalRolloutNames.isEmpty() && regionalProjectNames.isEmpty())
+        {
+        	AggregateWHEREString = AggregateWHEREString + ' IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalRolloutNames ';
+        }
+        else if(!regionalProjectNames.isEmpty() && regionalRolloutNames.isEmpty() )
+        {
+        	AggregateWHEREString = AggregateWHEREString + ' IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalProjectNames ';
+        }
         String AggregateGROUPString = ' GROUP BY  IPM_Project_Rollout__r.IPM_Rollout_Project__c,Regional_Project__r.IPM_Project_Name__c';
         String AggregateLIMITString = ' LIMIT 50000';
         String finalAggregateQuery = AggregateSELECTString + AggregateWHEREString + AggregateGROUPString + AggregateLIMITString;
@@ -232,19 +246,33 @@ public with sharing class IPM_FinancialUtils
             // Prepare the Consolidated Financial External ID 
             String financialExternalID =  rolloutName + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
             IPM_Financial__c consolidatedFinancialObj = new IPM_Financial__c(Financial_External_ID__c = financialExternalID); 
+            if(upsertRegionalConsolidationMap.containsKey(financialExternalID))
+            {
+            	consolidatedFinancialObj = upsertRegionalConsolidationMap.get(financialExternalID);
+            } 
             for(String FieldAPIName : FieldAPIToAlaisMap.keySet())
             {
                 String alais = FieldAPIToAlaisMap.get(FieldAPIName);
-                Decimal consolidatedValue = (Decimal)financialAggr.get(alais); 
+                Decimal consolidatedValue = 0;
+                if(consolidatedFinancialObj.get(FieldAPIName) != null)
+                {
+                	consolidatedValue = (decimal)consolidatedFinancialObj.get(FieldAPIName) + (Decimal)financialAggr.get(alais);
+                }
+                else
+                {
+                	consolidatedValue = (Decimal)financialAggr.get(alais);
+                } 
                 consolidatedFinancialObj.put(FieldAPIName,consolidatedValue);
             }
-            upsertRegionalConsolidationList.add(consolidatedFinancialObj);
+            upsertRegionalConsolidationMap.put(financialExternalID,consolidatedFinancialObj);
         }
-        if(!upsertRegionalConsolidationList.isEmpty())
+        if(!upsertRegionalConsolidationMap.isEmpty())
         {
             System.debug('upsertRegionalConsolidationList-->>'+upsertRegionalConsolidationList);
             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
-            upsert upsertRegionalConsolidationList Financial_External_ID__c;
+            IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = true;
+            upsert upsertRegionalConsolidationMap.values() Financial_External_ID__c;
+            IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = false;
             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
         }
     }
@@ -255,7 +283,7 @@ public with sharing class IPM_FinancialUtils
     *************************************************************************************************************/
     public static void processGlobalConsolidationFinancial(Set<String> globalProjectNamesProject,Set<String> globalProjectNamesRollout)
     {
-        List<IPM_financial__c> upsertGlobalConsolidationList = new List<IPM_financial__c>();
+        Map<String,IPM_financial__c> upsertGlobalConsolidationMap = new Map<String,IPM_financial__c>();
         Map<String,String> FieldAPIToAlaisMap = new Map<String,String>();   
         String AggregateSELECTString = 'SELECT IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c globalProjectName1 ,Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c globalProjectName2,';
         for(String changedField : IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE) 
@@ -265,7 +293,20 @@ public with sharing class IPM_FinancialUtils
         }
         AggregateSELECTString = AggregateSELECTString.removeEnd(IPM_ConstantUtils.COMMA);
         AggregateSELECTString += ' FROM IPM_Financial__c ';
-        String AggregateWHEREString = ' WHERE isActive__c = true AND RecordType.Name = \'Default\' AND (IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c in :globalProjectNamesRollout OR Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c in :globalProjectNamesProject) ';
+        
+        String AggregateWHEREString = ' WHERE isActive__c = true AND RecordType.Name = \'Default\' AND ';
+        if(!globalProjectNamesRollout.isEmpty() && !globalProjectNamesProject.isEmpty())
+        {
+        	AggregateWHEREString = AggregateWHEREString + ' (IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c in :globalProjectNamesRollout OR Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c in :globalProjectNamesProject) ';
+        }
+        else if(!globalProjectNamesRollout.isEmpty() && globalProjectNamesProject.isEmpty())
+        {
+        	AggregateWHEREString = AggregateWHEREString + ' IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c in :globalProjectNamesRollout ';
+        }
+        else if(!globalProjectNamesProject.isEmpty() && globalProjectNamesRollout.isEmpty())
+        {
+        	 AggregateWHEREString = AggregateWHEREString + ' Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c in :globalProjectNamesProject ';
+        }
         String AggregateGROUPString = ' GROUP BY  IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c,Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c';
         String AggregateLIMITString = ' LIMIT 50000';
         String finalAggregateQuery = AggregateSELECTString + AggregateWHEREString + AggregateGROUPString + AggregateLIMITString;
@@ -285,19 +326,33 @@ public with sharing class IPM_FinancialUtils
             // Prepare the Consolidated Financial External ID 
             String financialExternalID =  globalProjectName + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
             IPM_Financial__c consolidatedFinancialObj = new IPM_Financial__c(Financial_External_ID__c = financialExternalID); 
+            if(upsertGlobalConsolidationMap.containsKey(financialExternalID))
+            {
+            	consolidatedFinancialObj = upsertGlobalConsolidationMap.get(financialExternalID);
+            } 
             for(String FieldAPIName : FieldAPIToAlaisMap.keySet())
             {
                 String alais = FieldAPIToAlaisMap.get(FieldAPIName);
-                Decimal consolidatedValue = (Decimal)financialAggr.get(alais); 
+                Decimal consolidatedValue = 0;
+                if(consolidatedFinancialObj.get(FieldAPIName) !=null)
+                {
+                	consolidatedValue = (decimal)consolidatedFinancialObj.get(FieldAPIName) + (Decimal)financialAggr.get(alais);	
+                }
+                else
+                {
+                	consolidatedValue = (Decimal)financialAggr.get(alais);
+                }
                 consolidatedFinancialObj.put(FieldAPIName,consolidatedValue);
             }
-            upsertGlobalConsolidationList.add(consolidatedFinancialObj);
+            upsertGlobalConsolidationMap.put(financialExternalID,consolidatedFinancialObj);
         }
-        if(!upsertGlobalConsolidationList.isEmpty())
+        if(!upsertGlobalConsolidationMap.isEmpty())
         {
             System.debug('upsertGlobalConsolidationList-->>'+upsertGlobalConsolidationList);
             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
-            upsert upsertGlobalConsolidationList Financial_External_ID__c;
+            IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = true;
+            upsert upsertGlobalConsolidationMap.values() Financial_External_ID__c;
+            IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = false;
             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false; 
         }
     }
@@ -309,7 +364,7 @@ public with sharing class IPM_FinancialUtils
     
     public static void processRegionalConsolidationFY(Set<String> regionalProjectNames,Set<String> regionalRolloutNames) 
     {
-    	List<IPM_financial_Year__c> upsertRegionalConsolidationFYList = new List<IPM_financial_Year__c>();
+    	Map<String,IPM_financial_Year__c> upsertRegionalConsolidationFYMap = new Map<String,IPM_financial_Year__c>();
     	Map<String,String> FieldAPIToAlaisMap = new Map<String,String>();	 
      	String AggregateSELECTString = 'SELECT Name,Year_Type__c,PL_Type__c,IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c rolloutName ,IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c regionalProjectName,';
      	for(String changedField : IPM_FinancialYearHelper.FIELDS_TO_CONSOLIDATE) 
@@ -319,7 +374,20 @@ public with sharing class IPM_FinancialUtils
      	}
      	AggregateSELECTString = AggregateSELECTString.removeEnd(IPM_ConstantUtils.COMMA);
      	AggregateSELECTString += ' FROM IPM_Financial_Year__c ';
-     	String AggregateWHEREString = ' WHERE IPM_Financial__r.isActive__c = true AND IPM_Financial__r.RecordType.Name = \'Default\' AND ( IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalRolloutNames OR IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c in :regionalProjectNames )';
+     	
+     	String AggregateWHEREString = ' WHERE IPM_Financial__r.isActive__c = true AND IPM_Financial__r.RecordType.Name = \'Default\' AND ';
+		if(!regionalProjectNames.isEmpty() && !regionalRolloutNames.isEmpty())
+		{
+			AggregateWHEREString = AggregateWHEREString + ' (IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalRolloutNames OR IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c in :regionalProjectNames) ';
+		} 
+		else if(!regionalRolloutNames.isEmpty() && regionalProjectNames.isEmpty())
+		{
+			AggregateWHEREString = AggregateWHEREString + ' IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c in :regionalRolloutNames ';
+		}	
+		else if(!regionalProjectNames.isEmpty() && regionalRolloutNames.isEmpty())
+		{
+			AggregateWHEREString = AggregateWHEREString + ' IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c in :regionalProjectNames ';
+		}
      	String AggregateGROUPString = ' GROUP BY  IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c,IPM_Financial__r.Regional_Project__r.IPM_Project_Name__c,Name,Year_Type__c,PL_Type__c';
      	String AggregateLIMITString = ' LIMIT 50000';
      	String finalAggregateQuery = AggregateSELECTString + AggregateWHEREString + AggregateGROUPString + AggregateLIMITString;
@@ -344,21 +412,34 @@ public with sharing class IPM_FinancialUtils
 			String financialExternalID =  rolloutName + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
 			IPM_Financial__c financialObj = new IPM_Financial__c(Financial_External_ID__c = financialExternalID); 
 			IPM_financial_Year__c consolidatedFinancialYearObj = new  IPM_financial_Year__c(External_Id__c = FYConsolidatedExternalID);
+			if(upsertRegionalConsolidationFYMap.containsKey(FYConsolidatedExternalID))
+			{
+				consolidatedFinancialYearObj = upsertRegionalConsolidationFYMap.get(FYConsolidatedExternalID);
+			}
 			consolidatedFinancialYearObj.IPM_Financial__r = financialObj;
      		for(String FieldAPIName : FieldAPIToAlaisMap.keySet())
      		{
      			String alais = FieldAPIToAlaisMap.get(FieldAPIName);
-     			Decimal consolidatedValue = (Decimal)financialAggr.get(alais); 
+     			Decimal consolidatedValue = 0;
+     			if(consolidatedFinancialYearObj.get(FieldAPIName) !=null)
+     			{
+     				consolidatedValue = (decimal)consolidatedFinancialYearObj.get(FieldAPIName) + (Decimal)financialAggr.get(alais);		
+     			}
+     			else
+     			{
+     				consolidatedValue = (Decimal)financialAggr.get(alais);
+     			}
      			consolidatedFinancialYearObj.put(FieldAPIName,consolidatedValue);
      		}
-     		upsertRegionalConsolidationFYList.add(consolidatedFinancialYearObj);
+     		upsertRegionalConsolidationFYMap.put(FYConsolidatedExternalID,consolidatedFinancialYearObj);
      	}
-     	if(!upsertRegionalConsolidationFYList.isEmpty())
+     	if(!upsertRegionalConsolidationFYMap.isEmpty())
      	{
-     		System.debug('upsertRegionalConsolidationFYList-->>'+upsertRegionalConsolidationFYList);
+     		IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
      		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = true;
-     		upsert upsertRegionalConsolidationFYList External_Id__c;
+     		upsert upsertRegionalConsolidationFYMap.values() External_Id__c;
      		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = false;
+     		IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
      	}
     }
     
@@ -369,7 +450,7 @@ public with sharing class IPM_FinancialUtils
     *************************************************************************************************************/
     public static void processGlobalConsolidationFY(Set<String> globalProjectNamesProject,Set<String> globalProjectNamesRollout)
     {
-    	List<IPM_financial_Year__c> upsertGlobalConsolidationFYList = new List<IPM_financial_Year__c>();
+    	Map<String,IPM_financial_Year__c> upsertGlobalConsolidationFYMap = new Map<String,IPM_financial_Year__c>();
     	Map<String,String> FieldAPIToAlaisMap = new Map<String,String>();	 
      	String AggregateSELECTString = 'SELECT Name,Year_Type__c,PL_Type__c,IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c globalProjectName1,IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c globalProjectName2,';
      	for(String changedField : IPM_FinancialYearHelper.FIELDS_TO_CONSOLIDATE) 
@@ -379,7 +460,20 @@ public with sharing class IPM_FinancialUtils
      	}
      	AggregateSELECTString = AggregateSELECTString.removeEnd(IPM_ConstantUtils.COMMA);
      	AggregateSELECTString += ' FROM IPM_Financial_Year__c '; 
-     	String AggregateWHEREString = ' WHERE IPM_Financial__r.isActive__c = true AND IPM_Financial__r.RecordType.Name = \'Default\' AND (IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c in :globalProjectNamesRollout OR IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c in :globalProjectNamesProject) ';
+     	
+     	String AggregateWHEREString = ' WHERE IPM_Financial__r.isActive__c = true AND IPM_Financial__r.RecordType.Name = \'Default\' AND ';
+     	if(!globalProjectNamesRollout.isEmpty() && !globalProjectNamesProject.isEmpty())
+		{
+			AggregateWHEREString = AggregateWHEREString + ' (IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c in :globalProjectNamesRollout OR IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c in :globalProjectNamesProject) '; 	
+		} 
+		else if(!globalProjectNamesRollout.isEmpty() && globalProjectNamesProject.isEmpty())
+		{
+			AggregateWHEREString = AggregateWHEREString + ' IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c in :globalProjectNamesRollout ';
+		}	
+		else if(!globalProjectNamesProject.isEmpty() && globalProjectNamesRollout.isEmpty())
+		{
+			AggregateWHEREString = AggregateWHEREString + ' IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c in :globalProjectNamesProject ';
+		}
      	String AggregateGROUPString = ' GROUP BY  IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c,IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c,Name,Year_Type__c,PL_Type__c';
      	String AggregateLIMITString = ' LIMIT 50000';
      	String finalAggregateQuery = AggregateSELECTString + AggregateWHEREString + AggregateGROUPString + AggregateLIMITString;
@@ -404,21 +498,35 @@ public with sharing class IPM_FinancialUtils
 			String financialExternalID =  globalProjectName + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
 			IPM_Financial__c financialObj = new IPM_Financial__c(Financial_External_ID__c = financialExternalID); 
 			IPM_financial_Year__c consolidatedFinancialYearObj = new  IPM_financial_Year__c(External_Id__c = FYConsolidatedExternalID);
+			if(upsertGlobalConsolidationFYMap.containsKey(FYConsolidatedExternalID))
+			{
+				consolidatedFinancialYearObj = upsertGlobalConsolidationFYMap.get(FYConsolidatedExternalID);
+			}
 			consolidatedFinancialYearObj.IPM_Financial__r = financialObj;
      		for(String FieldAPIName : FieldAPIToAlaisMap.keySet())
      		{
      			String alais = FieldAPIToAlaisMap.get(FieldAPIName);
-     			Decimal consolidatedValue = (Decimal)financialAggr.get(alais); 
+     			Decimal consolidatedValue = 0;
+     			if(consolidatedFinancialYearObj.get(FieldAPIName) !=null)
+     			{
+     				consolidatedValue = (decimal)consolidatedFinancialYearObj.get(FieldAPIName) + (Decimal)financialAggr.get(alais);
+     			}
+     			else
+     			{
+     				consolidatedValue = (Decimal)financialAggr.get(alais);
+     			}
      			consolidatedFinancialYearObj.put(FieldAPIName,consolidatedValue);
      		}
-     		upsertGlobalConsolidationFYList.add(consolidatedFinancialYearObj);
+     		upsertGlobalConsolidationFYMap.put(FYConsolidatedExternalID,consolidatedFinancialYearObj);
      	}
-     	if(!upsertGlobalConsolidationFYList.isEmpty())
+     	if(!upsertGlobalConsolidationFYMap.isEmpty())
      	{
-     		System.debug('upsertGlobalConsolidationFYList-->>'+upsertGlobalConsolidationFYList);
+
+     		IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
      		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = true;
-     		upsert upsertGlobalConsolidationFYList External_Id__c;
+     		upsert upsertGlobalConsolidationFYMap.values() External_Id__c;
      		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = false;
+     		IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
      	}
     }
 }

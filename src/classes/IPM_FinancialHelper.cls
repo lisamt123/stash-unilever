@@ -23,10 +23,6 @@ public with sharing class IPM_FinancialHelper
             'Charter_Approved__c','Contract_Approved__c','MR_Approved__c','MD_Approved__c' 
         };
     
-    public static final Set<String> COPYOVER_FIELDSET = new Set<String>   
-        {
-            'Copy_Global_to_Regional__c','Copy_Global_to_Local__c','Copy_Regional_to_Local__c','Copy_Local_to_Regional__c','Copy_Local_to_Global__c'
-        };
     
     
     public static final Set<String> FIELDS_TO_CONSOLIDATE = new Set<String>{   
@@ -38,6 +34,16 @@ public with sharing class IPM_FinancialHelper
             'Volume_Unit_Global__c','Volume_Unit_Local__c','Volume_Unit_Regional__c'
         };
     
+    public static final Set<String> FY_COPYFIELDS = new Set<String>{
+    	'Advertising_Promotions_','Gross_Profit_','Profit_Before_Overheads_','Turnover_','Volume_Unit_','Volume_Tons_','Volume_','Value_Market_Share_'
+	};
+     public static final Set<String> FY_SNAPSHOTFIELDS = new Set<String>{
+    	'Advertising_Promotions_','Gross_Profit_','Profit_Before_Overheads_','Turnover_','Volume_Tons_','Volume_','Value_Market_Share_','AP_of_TO_','GM_of_TO_','PBO_of_TO_','Value_Market_Share_'
+	};
+    public static final Set<String> COPYOVER_FIELDSET = new Set<String>   
+        {
+            'Copy_Global_to_Regional__c','Copy_Global_to_Local__c','Copy_Regional_to_Local__c','Copy_Local_to_Regional__c','Copy_Local_to_Global__c'
+        };
     public static final String ACTIVE_FIELD = 'isActive__c';  
     
     public static final Set<String> ADDITIONAL_FIELDS = new Set<String> { 'IPM_Financial_Postfix__c'};
@@ -70,7 +76,8 @@ public with sharing class IPM_FinancialHelper
         List<IPM_Financial__c> consolidatedFinLst = [Select Id ,recordtypeId,Financial_External_ID__c,Target_Launch_Date__c ,Project_Sustainability_Period__c,Global_External_Id__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.IPM_Rollout_Project__c,Regional_Project__c , Regional_Project__r.IPM_Project_Name__c, Parent_Project__c , Parent_Project__r.IPM_Project_Name__c, ( Select Id,Name from IPM_Financial_Years__r where Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR AND  (NOT Name like '%Y%') order by Name) from IPM_Financial__c 
                                           where Financial_External_ID__c Like : consoltdExtIdPatternSet Limit 1000 ];
           
-        for(IPM_Financial__c fin : consolidatedFinLst){
+        for(IPM_Financial__c fin : consolidatedFinLst)
+        {
             Set<String> finYrNameSet =  new Set<String>();
             for(IPM_Financial_Year__c finYear : fin.IPM_Financial_Years__r){
             	finYrNameSet.add(finYear.Name);	
@@ -159,11 +166,9 @@ public with sharing class IPM_FinancialHelper
     	List<IPM_Financial_Year__c> finYearsToDelete = new List<IPM_Financial_Year__c>();
     	
     	for(IPM_Financial__c consltdfin: consolidatedFinList){
-            System.debug('consltdfin.Financial_External_ID__c ==>'+consltdfin.Financial_External_ID__c);
             if( !consoltdFinNameToValidCalendarYearsMap.isEmpty() && consoltdFinNameToValidCalendarYearsMap.containsKey(consltdfin.Financial_External_ID__c)){
                 for(IPM_Financial_Year__c finYear :consltdfin.IPM_Financial_Years__r){
                     if(!consoltdFinNameToValidCalendarYearsMap.get(consltdfin.Financial_External_ID__c).contains(finYear.Name)){
-                        System.debug('finYear to be deleted ==>'+finYear);
                         finYearsToDelete.add(finYear);
                     }
                 } 
@@ -356,7 +361,6 @@ public with sharing class IPM_FinancialHelper
                 }
                     
 	            Set<String> changedFieldSet = IPM_FinancialUtils.isConsolidationChanged(newfinancial.recordTypeId,newfinancial,oldFinancial,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE,'Financial_External_ID__c'); 
-	            System.debug('changedFieldSet-->>'+changedFieldSet);
 	            if(!changedFieldSet.isEmpty())
                 {
 	                consolidationChangedFinancialList.add(newfinancial);
@@ -366,9 +370,8 @@ public with sharing class IPM_FinancialHelper
 	        {
 				String financialQuery = getFinancialQuery();
 	        	financialQuery = financialQuery + ' WHERE Id in :consolidationChangedFinancialList LIMIT 50000';
-	        	System.debug('financialQuery-->>'+financialQuery);
 				financialDetailMap = new Map<Id,IPM_Financial__c>((List<IPM_Financial__c>)database.query(financialQuery));
-				System.debug('financialDetailMap-->>'+financialDetailMap);		
+			
         }
     	}
 		
@@ -784,9 +787,68 @@ public with sharing class IPM_FinancialHelper
             {
                 for(String fieldAPI : financialToChangedFeilds.get(financialID))
                 {
+                	String sourceSnapShot = changedFinancialDetail.IPM_Financial_Postfix__c;
+                	String sourceCopy,targetCopy = IPM_ConstantUtils.BLANK;
+		        	String targetSnapshot = IPM_ConstantUtils.BLANK;
+		        	if(fieldAPI == 'Copy_Global_to_Regional__c')
+		        	{
+		        		sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+		        		targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;	
+		        	}
+		        	else if(fieldAPI == 'Copy_Regional_to_Local__c')
+		        	{
+		        		sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+		        		targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+		        	}
+		        	else if(fieldAPI == 'Copy_Global_to_Local__c')
+		        	{
+		        		sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+		        		targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+		        	}
+		        	else if(fieldAPI == 'Copy_Local_to_Regional__c')
+		        	{
+		        		sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+		        		targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+		        	}
+		        	else if(fieldAPI == 'Copy_Local_to_Global__c')
+		        	{
+		        		sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+		        		targetCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+		        	}
+		            if(fieldAPI == 'Charter_Approved__c')
+		        	{
+		        		targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CHARTER;
+		        	}
+		        	else if(fieldAPI == 'Contract_Approved__c')
+		        	{
+		        		targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CONTRACT;
+		        	}
+		        	else if(fieldAPI == 'MR_Approved__c')
+		        	{
+		        		targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_READY;
+		        	}
+		        	else if(fieldAPI == 'MD_Approved__c')
+		        	{
+		        		targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_DEPLOYMENT;
+		        	}
                     for(IPM_Financial_Year__c financialYear : changedFinancialDetail.IPM_Financial_Years__r)
                     {
                         financialYear.put(fieldAPI,changedFinancialDetail.get(fieldAPI));
+                        if(!String.isBLank(sourceCopy))
+						{
+							for(String FieldPrefix : FY_COPYFIELDS)
+				    		{
+				    			financialYear.put(FieldPrefix+targetCopy+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,financialYear.get(FieldPrefix+sourceCopy+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX));
+				    		}
+						}
+						if(String.isNotBLank(targetSnapshot))
+						{
+				    		for(String FieldPrefix : FY_SNAPSHOTFIELDS)
+				    		{
+				    			financialYear.put(FieldPrefix+targetSnapshot+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,financialYear.get(FieldPrefix+sourceSnapShot+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX));
+				    		}
+				    		financialYear.put(targetSnapshot+'_Locked'+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,true);
+						}
                         upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
                     }
                 }
@@ -940,7 +1002,8 @@ public with sharing class IPM_FinancialHelper
 	   List<IPM_Financial__c> newFinList=new List<IPM_Financial__c>();
 	   Set<Id> projectIdSet=new Set<Id>();
 	   List<IPM_Financial_Action_Standards__c> updateFinActionStdsList=new List<IPM_Financial_Action_Standards__c>();
-	   for(IPM_Financial__c newFin:mapNewFinancials.values()){
+	   for(IPM_Financial__c newFin:mapNewFinancials.values())
+	   {
 	   	if(newFin.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && newFin.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && (String.isNotBlank(newFin.Global_External_Id__c) || String.isNotBlank(newFin.Regional_External_Id__c))  && !newFin.Charter_Approved__c)
         {   
         	newFinList.add(newFin);
@@ -948,19 +1011,26 @@ public with sharing class IPM_FinancialHelper
         }         
         	   
         }
-        for(IPM_Financial_Action_Standards__c finActionStds:[SELECT Id,IPM_Financial_Year_Y1_Gross__c,IPM_Financial_Year_Y1_Gross__r.Regional_External_Id__c,IPM_Project__c,IPM_Project_Span__c,IPM_Financial_Action_Standard_Name__c,IPM_NPV_Action_Standard_Charter__c,IPM_IRR_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c FROM IPM_Financial_Action_Standards__c WHERE IPM_Project__c In:projectIdSet]){
-        	for(IPM_Financial__c fin:newFinList){
-        		if(finActionStds.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && finActionStds.IPM_Project__c==fin.Parent_Project__c && String.isBlank(fin.Regional_External_Id__c)){
+        if(!projectIdSet.isEmpty())
+        {
+        	for(IPM_Financial_Action_Standards__c finActionStds:[SELECT Id,IPM_Financial_Year_Y1_Gross__c,IPM_Financial_Year_Y1_Gross__r.Regional_External_Id__c,IPM_Project__c,IPM_Project_Span__c,IPM_Financial_Action_Standard_Name__c,IPM_NPV_Action_Standard_Charter__c,IPM_IRR_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c FROM IPM_Financial_Action_Standards__c WHERE IPM_Project__c In:projectIdSet])
+        	{
+	        	for(IPM_Financial__c fin:newFinList)
+	        	{
+	        		if(finActionStds.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && finActionStds.IPM_Project__c==fin.Parent_Project__c && String.isBlank(fin.Regional_External_Id__c))
+	        		{
         			finActionStds.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Global__c;
         			finActionStds.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Global__c;
         			finActionStds.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Global__c;
         			updateFinActionStdsList.add(finActionStds);
         		}
-        		else if(finActionStds.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && finActionStds.IPM_Project__c==fin.Parent_Project__c && String.isNotBlank(fin.Regional_External_Id__c) && finActionStds.IPM_Financial_Year_Y1_Gross__r.Regional_External_Id__c==fin.Regional_External_Id__c){
+	        		else if(finActionStds.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && finActionStds.IPM_Project__c==fin.Parent_Project__c && String.isNotBlank(fin.Regional_External_Id__c) && finActionStds.IPM_Financial_Year_Y1_Gross__r.Regional_External_Id__c==fin.Regional_External_Id__c)
+	        		{
         			finActionStds.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Global__c;
         			finActionStds.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Global__c;
         			finActionStds.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Global__c;
         			updateFinActionStdsList.add(finActionStds);
+	        		}
         		}
         	}
         }
@@ -1018,6 +1088,8 @@ public with sharing class IPM_FinancialHelper
             Boolean tempMisalignment   = TotalDiffrence > 0 ? true : false;
             if(financial.MisalignmentManual__c != tempMisalignment){
                 financial.MisalignmentManual__c = tempMisalignment;
+                financial.MisalignmentDateTime__c = System.now();
+                financial.Misaligned_Date__c = System.today();
                 updatedFinancials.add(financial);
             }
         }
@@ -1090,7 +1162,6 @@ public with sharing class IPM_FinancialHelper
         financialYearQuery += ' IPM_Project_Rollout__r.IPM_Rollout_Project__c,IPM_Project_Rollout__r.IPM_Project__c,IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c,';
         financialYearQuery += ' Regional_Project__r.IPM_Project_Name__c,Regional_Project__r.IPM_Parent_Project__c,Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c';
         financialYearQuery += ' FROM IPM_Financial__c'; 
-        System.debug('financialYearQuery-->>'+financialYearQuery);
         return financialYearQuery;
     }
 }
