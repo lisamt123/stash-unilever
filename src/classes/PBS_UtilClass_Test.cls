@@ -101,9 +101,10 @@ public class PBS_UtilClass_Test {
             oUser.ProfileId = oProfile.Id;
             oUser.LanguageLocaleKey = EN_US;
             oUser.IsActive = true;
-			oUser.Work_Level__c='Guest';
-            oUser.User_Role__c='Guest';
-            oUser.Geography__c='Guest';
+            oUser.Work_Level__c='Guest';
+            oUser.User_Role__c='Guest';
+            oUser.Geography__c='Guest';
+
             lResults.add(oUser);
         }
 
