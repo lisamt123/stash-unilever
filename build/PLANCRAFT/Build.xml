@@ -133,7 +133,8 @@
 	  <runTest>PBS_WikiFeedbackViewController_Test</runTest>
 	  <runTest>PBS_LearningAssignmentApproveExt_Test</runTest>	
 	  <runTest>PBS_TaskViewerController_Test</runTest>  
-	  
+	  <runTest>PBS_TrainingTrackDetailCtrl_Test</runTest>
+	  <runTest>PBS_TrainingTracksController_Test</runTest>
     </sf:deploy>
   </target>  
 

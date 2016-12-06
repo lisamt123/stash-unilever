@@ -27,3 +27,7 @@ src/classes/PBS_LearningAssignmentApproveExt_Test.cls
 src/classes/PBS_LearningAssignmentApproveExt_Test.cls-meta.xml
 src/classes/PBS_TaskViewerController_Test.cls
 src/classes/PBS_TaskViewerController_Test.cls-meta.xml
+src/classes/PBS_TrainingTrackDetailCtrl_Test.cls
+src/classes/PBS_TrainingTrackDetailCtrl_Test.cls-meta.xml
+src/classes/PBS_TrainingTracksController_Test.cls
+src/classes/PBS_TrainingTracksController_Test.cls-meta.xml
