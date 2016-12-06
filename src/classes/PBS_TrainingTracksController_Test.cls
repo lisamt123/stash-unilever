@@ -1,4 +1,4 @@
-*
+/*
 Copyright (c) 2014, salesforce.com, Inc.
 All rights reserved.
 
