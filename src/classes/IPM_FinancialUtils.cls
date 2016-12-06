@@ -268,7 +268,6 @@ public with sharing class IPM_FinancialUtils
         }
         if(!upsertRegionalConsolidationMap.isEmpty())
         {
-            System.debug('upsertRegionalConsolidationList-->>'+upsertRegionalConsolidationList);
             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
             IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = true;
             upsert upsertRegionalConsolidationMap.values() Financial_External_ID__c;
