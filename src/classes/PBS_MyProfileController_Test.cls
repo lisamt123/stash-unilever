@@ -68,7 +68,6 @@ private class PBS_MyProfileController_Test {
             System.runAs(lmsUsers.get(0)){
                  PBS_Standard_Job_Profile__c psp= new PBS_Standard_Job_Profile__c();
             psp.name='Guest';
-            psp.Work_Level__c='Level 1';
             insert psp;
                 PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
                 System.assert(cont.oManager != null);
@@ -136,7 +135,6 @@ private class PBS_MyProfileController_Test {
             System.runAs(lmsUsers.get(0)){
                      PBS_Standard_Job_Profile__c psp= new PBS_Standard_Job_Profile__c();
             psp.name='Guest';
-            psp.Work_Level__c='Level 1';
             insert psp;
                 PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
                 System.assertEquals(1,cont.lcategories.size());
@@ -213,7 +211,6 @@ private class PBS_MyProfileController_Test {
             System.runAs(lmsUsers.get(0)){
                  PBS_Standard_Job_Profile__c psp= new PBS_Standard_Job_Profile__c();
                     psp.name='Guest';
-                    psp.Work_Level__c='Level 1';
                     insert psp;
                 PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
                 System.assertEquals(1,cont.lcategories.size());
@@ -250,7 +247,6 @@ private class PBS_MyProfileController_Test {
         System.runAs(lmsUsers.get(0)){ 
             PBS_Standard_Job_Profile__c psp= new PBS_Standard_Job_Profile__c();
             psp.name='Guest';
-            psp.Work_Level__c='Guest';
             insert psp;
             
             PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
