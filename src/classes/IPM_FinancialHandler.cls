@@ -115,7 +115,26 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             	{
 	            	upsert upsertFinancialYearMap.values() External_ID__c;
             	}
-	            IPM_FinancialHelper.initializeConsolidation((List<IPM_Financial__c>)Trigger.new,(Map<Id,IPM_Financial__c>)Trigger.OldMap,null);
+	            Map<String,IPM_financial__c> consolidatedFinancialMap = IPM_FinancialHelper.initializeConsolidation((List<IPM_Financial__c>)Trigger.new,(Map<Id,IPM_Financial__c>)Trigger.OldMap,null);
+	            Map<Id,IPM_Financial__c> financialActionStandardMap = new Map<Id,IPM_Financial__c>();
+	            if(!consolidatedFinancialMap.isEmpty())
+	            {
+	            	Set<Id> consolidatedFinancialIdSet = new Set<Id>();
+		           	for(IPM_financial__c fin : consolidatedFinancialMap.values())
+		           	{
+		           		consolidatedFinancialIdSet.add(fin.Id); 
+		           	} 
+		           	String financialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial__c',false,null,false);  
+		            String financialWhereClause = ' WHERE Id in :consolidatedFinancialIdSet LIMIT 50000';
+		            financialQuery = financialQuery + financialWhereClause;
+	            	financialActionStandardMap = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>)database.Query(financialQuery));
+	            }
+	            else
+	            {
+	            	financialActionStandardMap = (Map<Id,IPM_Financial__c>)Trigger.NewMap;
+	            }
+           		IPM_FinancialHelper.updateFinancialActionStandard(financialActionStandardMap);  
+				IPM_FinancialHelper.updateGlobalFinancialActionStandards(financialActionStandardMap);  
             }
 
 	    // Manual Misalignment - Set the manualMisalignment field to true if there is any misalignment between the financials at Global/Regional and Local level
@@ -374,6 +393,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         // If record Type is not Consolidated and Financial CopyOver has not been initiated for this Financial in same context
         if(newFinancial.RecordtypeID != CONSOLIDATED_FINANCIAL_RECORDTYPE && !finCopyOverAlreadyInitiatedSet.contains(newfinancial.Id))
         {
+        	List<IPM_FinancialCopyOverMapping__c> resultantMapping = new list<IPM_FinancialCopyOverMapping__c>();
         	String sourceCopy,targetCopy,targetSnapshot = IPM_ConstantUtils.BLANK;
         	String sourceSnapShot = newfinancial.IPM_Financial_Postfix__c;
             if(newfinancial.Regional_Project__c !=null &&  oldfinancial.Regional_Project__c != newfinancial.Regional_Project__c )
@@ -502,8 +522,6 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 			Map<Id,Set<String>> financialToactiveChangedFieldMap = new Map<Id,Set<String>>();
 			Map<Id,Set<String>> financialToaddtChangedFieldMap = new Map<Id,Set<String>>();
 			// Check for Financial Action Standard Update For Sections 
-			IPM_FinancialHelper.updateFinancialActionStandard((Map<Id,IPM_Financial__c>) Trigger.newMap);  
-			IPM_FinancialHelper.updateGlobalFinancialActionStandards((Map<Id,IPM_Financial__c>) Trigger.newMap);   
 			for(IPM_Financial__c financial : newFinancialList)
 			{
 				IPM_Financial__c oldFinancial = null;

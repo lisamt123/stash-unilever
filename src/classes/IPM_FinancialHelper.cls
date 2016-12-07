@@ -339,10 +339,11 @@ public with sharing class IPM_FinancialHelper
     ***************************************************************************************************************************/
             
     
-    public static void initializeConsolidation(List<IPM_Financial__c> newFinancialList, Map<Id, IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap)
+    public static Map<String,IPM_Financial__c> initializeConsolidation(List<IPM_Financial__c> newFinancialList, Map<Id, IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap)
     {
         
     	List<IPM_Financial__c> consolidationChangedFinancialList = new List<IPM_Financial__c>(); 
+        Map<String,IPM_Financial__c> consolidatedFinancialMap = new Map<String,IPM_Financial__c>();
         
     	Set<String> regionalProjectNames = new Set<String>();
     	Set<String> regionalRolloutNames = new Set<String>();
@@ -402,10 +403,14 @@ public with sharing class IPM_FinancialHelper
             
 	    	if(!regionalRolloutNames.isEmpty() || !regionalProjectNames.isEmpty())
             { 
-	            IPM_FinancialUtils.processRegionalConsolidationFinancial(regionalProjectNames,regionalRolloutNames);
-	            IPM_FinancialUtils.processGlobalConsolidationFinancial(globalProjectNamesProject,globalProjectNamesRollout); 
+	            consolidatedFinancialMap.putAll(IPM_FinancialUtils.processRegionalConsolidationFinancial(regionalProjectNames,regionalRolloutNames)); 
+            }
+            if(!globalProjectNamesRollout.isEmpty() || !globalProjectNamesProject.isEmpty())
+            {
+            	consolidatedFinancialMap.putAll(IPM_FinancialUtils.processGlobalConsolidationFinancial(globalProjectNamesProject,globalProjectNamesRollout));
             }
         }
+        return consolidatedFinancialMap;
     }
     
     /***********************************************************************************************************
@@ -553,7 +558,8 @@ public with sharing class IPM_FinancialHelper
                 {
                 	projectIds.add(newFin.Regional_Project__c);
                 }
-                else{
+                else
+                {
                 	projectIds.add(newFin.Parent_Project__c);
                 }
             }            

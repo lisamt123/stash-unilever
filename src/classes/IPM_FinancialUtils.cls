@@ -201,7 +201,7 @@ public with sharing class IPM_FinancialUtils
     * updates the Consolidated Financials.
     * Parameter : regionalProjectNames Target Regional Rollout/Project Names
     *************************************************************************************************************/
-    public static void processRegionalConsolidationFinancial(Set<String> regionalProjectNames,Set<String> regionalRolloutNames)
+    public static Map<String,IPM_financial__c>  processRegionalConsolidationFinancial(Set<String> regionalProjectNames,Set<String> regionalRolloutNames)
     {
         Map<String,IPM_financial__c> upsertRegionalConsolidationMap = new Map<String,IPM_financial__c>();
         Map<String,String> FieldAPIToAlaisMap = new Map<String,String>();    
@@ -274,13 +274,14 @@ public with sharing class IPM_FinancialUtils
             IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = false;
             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
         }
+        return upsertRegionalConsolidationMap;
     }
     /*************************************************************************************************************
     * This method is used for consolidating Financial data at Global Level. It works based on Global Project Name to perform Grouping and 
     * updates the Consolidated Financials.
     * Parameter : globalProjectNames Target Global Project Names
     *************************************************************************************************************/
-    public static void processGlobalConsolidationFinancial(Set<String> globalProjectNamesProject,Set<String> globalProjectNamesRollout)
+    public static Map<String,IPM_financial__c>  processGlobalConsolidationFinancial(Set<String> globalProjectNamesProject,Set<String> globalProjectNamesRollout)
     {
         Map<String,IPM_financial__c> upsertGlobalConsolidationMap = new Map<String,IPM_financial__c>();
         Map<String,String> FieldAPIToAlaisMap = new Map<String,String>();   
@@ -354,6 +355,7 @@ public with sharing class IPM_FinancialUtils
             IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = false;
             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false; 
         }
+        return upsertGlobalConsolidationMap;
     }
     /*************************************************************************************************************
     * This method is used for consolidating Financial Year data at Regional Level. It works based on Regional Rollouts/Project Name to perform Grouping and 
@@ -361,7 +363,7 @@ public with sharing class IPM_FinancialUtils
     * Parameter : regionalProjectNames Target Regional Rollout/Project Names
     *************************************************************************************************************/
     
-    public static void processRegionalConsolidationFY(Set<String> regionalProjectNames,Set<String> regionalRolloutNames) 
+    public static Map<String,IPM_financial_Year__c> processRegionalConsolidationFY(Set<String> regionalProjectNames,Set<String> regionalRolloutNames) 
     {
     	Map<String,IPM_financial_Year__c> upsertRegionalConsolidationFYMap = new Map<String,IPM_financial_Year__c>();
     	Map<String,String> FieldAPIToAlaisMap = new Map<String,String>();	 
@@ -440,6 +442,7 @@ public with sharing class IPM_FinancialUtils
      		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = false;
      		IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
      	}
+     	return upsertRegionalConsolidationFYMap;
     }
     
     /*************************************************************************************************************
@@ -447,7 +450,7 @@ public with sharing class IPM_FinancialUtils
     * updates the Consolidated Financials Years. It identifies the External Id based on Combination of Global Project + Consolidated Literal  
     * Parameter : globalProjectNames Target Global Project Names
     *************************************************************************************************************/
-    public static void processGlobalConsolidationFY(Set<String> globalProjectNamesProject,Set<String> globalProjectNamesRollout)
+    public static Map<String,IPM_financial_Year__c>  processGlobalConsolidationFY(Set<String> globalProjectNamesProject,Set<String> globalProjectNamesRollout)
     {
     	Map<String,IPM_financial_Year__c> upsertGlobalConsolidationFYMap = new Map<String,IPM_financial_Year__c>();
     	Map<String,String> FieldAPIToAlaisMap = new Map<String,String>();	 
@@ -527,5 +530,6 @@ public with sharing class IPM_FinancialUtils
      		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION = false;
      		IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
      	}
+     	return upsertGlobalConsolidationFYMap;
     }
 }

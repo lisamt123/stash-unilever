@@ -42,9 +42,10 @@ public with sharing class IPM_FinancialYearHelper
     * @param financialYearDetailMap	    Queried List of Financial Records from DB 		
     * @return                           NONE
     *********************************************************************************************************************/
-    public static void initialiseFYConsolidation(List<IPM_Financial_Year__c> newFinancialYearList, Map<Id, IPM_Financial_Year__c> oldFinancialYearMap,Map<Id,IPM_Financial_Year__c> financialYearDetailMap)
+    public static Map<String,IPM_Financial_Year__c> initialiseFYConsolidation(List<IPM_Financial_Year__c> newFinancialYearList, Map<Id, IPM_Financial_Year__c> oldFinancialYearMap,Map<Id,IPM_Financial_Year__c> financialYearDetailMap)
     {
     	List<IPM_Financial_Year__c> consolidationChangedFinancialYearList = new List<IPM_Financial_Year__c>();
+    	Map<String,IPM_Financial_Year__c> consolidatedFinancialFYMap = new Map<String,IPM_Financial_Year__c>();
     	Set<String> regionalRolloutNames = new Set<String>();
     	Set<String> regionalProjectNames = new Set<String>();
         Set<String> globalProjectNamesRollout = new Set<String>();
@@ -114,11 +115,15 @@ public with sharing class IPM_FinancialYearHelper
                          
             if(!regionalProjectNames.isEmpty() || !regionalRolloutNames.isEmpty())
                 {
-				IPM_FinancialUtils.processRegionalConsolidationFY(regionalProjectNames,regionalRolloutNames);
-				IPM_FinancialUtils.processGlobalConsolidationFY(globalProjectNamesProject,globalProjectNamesRollout);
+				consolidatedFinancialFYMap.putall(IPM_FinancialUtils.processRegionalConsolidationFY(regionalProjectNames,regionalRolloutNames));
                     }
             
+            if(!globalProjectNamesRollout.isEmpty() || !globalProjectNamesProject.isEmpty())
+            {
+            	consolidatedFinancialFYMap.putAll(IPM_FinancialUtils.processGlobalConsolidationFY(globalProjectNamesProject,globalProjectNamesRollout));
+            }
         }
+        return consolidatedFinancialFYMap; 
     }
     
     /**********************************************************************************************************************************

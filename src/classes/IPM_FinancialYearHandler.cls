@@ -58,10 +58,27 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         }
         else if(Trigger.isUpdate)
         {
+        	Map<Id,IPM_Financial_Year__c> financialActionStandardMap = new Map<Id,IPM_Financial_Year__c>();
             Map<Id,IPM_Financial_Year__c> oldFinancialMap = (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap;
-            IPM_FinancialYearHelper.updateFinancialActionStandard((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
-            IPM_FinancialYearHelper.updateGlobalFinancialActionStandards((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
-            IPM_FinancialYearHelper.initialiseFYConsolidation((List<IPM_Financial_Year__c>)Trigger.new,oldFinancialMap,null);
+            Map<String,IPM_financial_Year__c> consolidatedFinancialFYMap = IPM_FinancialYearHelper.initialiseFYConsolidation((List<IPM_Financial_Year__c>)Trigger.new,oldFinancialMap,null);
+            if(!consolidatedFinancialFYMap.isEmpty())
+            {
+            	Set<Id> consolidatedFinancialFYIds = new Set<Id>();
+            	for(IPM_financial_Year__c finFY : consolidatedFinancialFYMap.values())
+	            {
+	            	consolidatedFinancialFYIds.add(finFY.Id); 
+	            }
+	            String financialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial_Year__c',false,null,false);
+	            String financialWhereClause = ' WHERE Id in :consolidatedFinancialFYIds LIMIT 50000';
+	            financialQuery = financialQuery + financialWhereClause;	
+	        	financialActionStandardMap = new Map<Id,IPM_Financial_Year__c>( (List<IPM_Financial_Year__c> )database.Query(financialQuery));
+            }
+            else
+            {
+            	financialActionStandardMap = (Map<Id,IPM_Financial_Year__c>)Trigger.NewMap;
+            }
+            IPM_FinancialYearHelper.updateFinancialActionStandard(financialActionStandardMap);
+            IPM_FinancialYearHelper.updateGlobalFinancialActionStandards(financialActionStandardMap);
             
         }
         else if(Trigger.isDelete && !deleteFinancialYearMap.isEmpty()) 
