@@ -103,7 +103,7 @@
                 <fullName>Agency</fullName>
                 <default>false</default>
             </picklistValues>
-			 <picklistValues>
+			<picklistValues>
                 <fullName>Approver</fullName>
                 <default>false</default>
             </picklistValues>
