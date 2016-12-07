@@ -1,13 +1,5 @@
 src
 src/classes
-src/classes/IPM_FinancialHandler.cls
-src/classes/IPM_FinancialHandler.cls-meta.xml
 
-src/classes/IPM_FinancialHelper.cls
-src/classes/IPM_FinancialHelper.cls-meta.xml
-src/classes/IPM_FinancialUtils.cls
-src/classes/IPM_FinancialUtils.cls-meta.xml
-src/classes/IPM_FinancialYearHandler.cls
-src/classes/IPM_FinancialYearHandler.cls-meta.xml
 src/classes/IPM_FinancialYearHelper.cls
 src/classes/IPM_FinancialYearHelper.cls-meta.xml
