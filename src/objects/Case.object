@@ -4145,7 +4145,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Benelux_Backlog</fullName>
+        <fullName>CEC_Benelux_Chat</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -4153,23 +4153,16 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <columns>Country_Name__c</columns>
-        <columns>Language__c</columns>
-        <columns>Brand__c</columns>
-        <filterScope>Queue</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
-            <field>CASES.CLOSED</field>
+            <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>0</value>
+            <value>Chat</value>
         </filters>
-        <label>CEC Benelux queue</label>
-        <language>en_US</language>
-        <queue>CEC_Benelux_Queue</queue>
+        <label>CEC Benelux Chat</label>
+        <language>nl_NL</language>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_Benelux</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_Manager_HGS_Europe</role>
             <role>CEC_User_Benelux</role>
         </sharedTo>
     </listViews>
@@ -4199,7 +4192,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.CREATED_DATE_DATE_ONLY</field>
             <operation>greaterThan</operation>
-            <value>11/1/2016 12:00 AM</value>
+            <value>12/1/2016 12:00 AM</value>
         </filters>
         <filters>
             <field>CASES.ORIGIN</field>
@@ -4294,7 +4287,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_On_hold</fullName>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 and 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
@@ -4317,6 +4310,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>svan,n van,nnira,msteen</value>
         </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notEqual</operation>
+            <value>#Amnesty</value>
+        </filters>
         <label>CEC Benelux On hold</label>
         <language>en_US</language>
         <sharedTo>
@@ -4326,15 +4324,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_Recall</fullName>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <booleanFilter>1 AND 2 and 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -4347,9 +4344,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>On Hold</value>
         </filters>
         <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>svan</value>
+            <field>CASES.SUBJECT</field>
+            <operation>contains</operation>
+            <value>recall</value>
         </filters>
         <label>CEC Benelux Recall</label>
         <language>en_US</language>
@@ -4415,7 +4412,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_queue</fullName>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 and 5</booleanFilter>
         <columns>CASES.ORIGIN</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.CASE_NUMBER</columns>
@@ -4438,6 +4435,16 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>First_Response_Date__c</field>
             <operation>equals</operation>
         </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>Benelux</value>
+        </filters>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>notEqual</operation>
+            <value>Phone</value>
+        </filters>
         <label>CEC Benelux WH Uitgedeeld</label>
         <language>nl_NL</language>
         <sharedTo>
@@ -4447,7 +4454,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_queue_In_afwachting1</fullName>
-        <booleanFilter>1 AND (2 OR  3)</booleanFilter>
+        <booleanFilter>1 AND (2 OR  3) and 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.LAST_UPDATE</columns>
         <columns>NAME</columns>
@@ -4470,6 +4477,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CASES.STATUS</field>
             <operation>equals</operation>
             <value>Awaiting Knowledge Response,Awaiting Information from Consumer</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notContain</operation>
+            <value>recall</value>
         </filters>
         <label>CEC Benelux In afwachting</label>
         <language>en_US</language>
@@ -6245,28 +6257,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_North_America_Creative_Solutions_Case</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
-        <label>CEC North America Creative Solutions</label>
-        <language>en_US</language>
-        <queue>CEC_North_America_Creative_Solutions</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_North_America_Food_Solutions</fullName>
         <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
@@ -6335,29 +6325,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC North America  Frequent Caller Queue</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Helpdesk_Queue_Case</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CASES.LAST_UPDATE</columns>
-        <filterScope>Queue</filterScope>
-        <label>CEC North America Helpdesk Queue</label>
-        <language>en_US</language>
-        <queue>CEC_North_America_Helpdesk_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
@@ -6857,28 +6824,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC North America Social Media Follow Up</label>
         <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_North_America</role>
-            <role>CEC_User_North_America</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Supervisor_Queue_Case</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>Country__c</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CREATEDBY_USER.ALIAS</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
-        <label>CEC North America Supervisor Queue</label>
-        <language>en_US</language>
-        <queue>CEC_North_America_Supervisor_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>

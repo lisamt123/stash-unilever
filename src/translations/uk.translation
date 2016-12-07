@@ -9071,6 +9071,25 @@
             <translation><!-- Venezuela --></translation>
         </picklistValues>
     </globalPicklists>
+    <globalPicklists>
+        <name>VPM_ECC</name>
+        <picklistValues>
+            <masterLabel>Cordillera</masterLabel>
+            <translation><!-- Cordillera --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fusion</masterLabel>
+            <translation><!-- Fusion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sirius</masterLabel>
+            <translation><!-- Sirius --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U2K2</masterLabel>
+            <translation><!-- U2K2 --></translation>
+        </picklistValues>
+    </globalPicklists>
     <quickActions>
         <label><!-- Approve --></label>
         <name>Approve</name>
