@@ -393,7 +393,6 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         // If record Type is not Consolidated and Financial CopyOver has not been initiated for this Financial in same context
         if(newFinancial.RecordtypeID != CONSOLIDATED_FINANCIAL_RECORDTYPE && !finCopyOverAlreadyInitiatedSet.contains(newfinancial.Id))
         {
-        	List<IPM_FinancialCopyOverMapping__c> resultantMapping = new list<IPM_FinancialCopyOverMapping__c>();
         	String sourceCopy,targetCopy,targetSnapshot = IPM_ConstantUtils.BLANK;
         	String sourceSnapShot = newfinancial.IPM_Financial_Postfix__c;
             if(newfinancial.Regional_Project__c !=null &&  oldfinancial.Regional_Project__c != newfinancial.Regional_Project__c )
