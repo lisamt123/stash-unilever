@@ -2947,9 +2947,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 update project;
                 setMisalignedValue();
             } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
-                localRolloutProject.MisAligned_Confirmed_By_Finance_Leader__c = true;
+                mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c = true;
                 showMisalignedConfirmbtn = true;  
-                update localRolloutProject;
+                update mcoCountryRolloutPlan; 
                 setMisalignedValue();
             } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL || project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
                 mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c =true;  
