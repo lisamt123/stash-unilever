@@ -220,15 +220,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Family</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>FS_Focus__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_Thrust__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -247,10 +239,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Category__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SubCategory__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -375,9 +363,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <relatedLists>
-        <relatedList>RelatedStandardPriceList</relatedList>
-    </relatedLists>
     <relatedLists>
         <relatedList>RelatedPricebookEntryList</relatedList>
     </relatedLists>
