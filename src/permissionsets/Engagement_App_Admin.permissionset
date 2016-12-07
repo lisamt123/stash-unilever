@@ -187,7 +187,7 @@
         <field>Engagement_User_Detail__c.Username__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <label>Engagement App User</label>
+    <label>Engagement App Admin</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
