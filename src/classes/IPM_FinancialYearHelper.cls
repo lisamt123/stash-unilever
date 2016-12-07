@@ -524,10 +524,9 @@ public with sharing class IPM_FinancialYearHelper
     		
     		//Update Financials
             list<IPM_Financial__c> lstInvalidFinance = new list<IPM_Financial__c>();
-            if(!setAllFinacials.isEmpty() && !setInvalidFin.isEmpty() ){
+        if(!setAllFinacials.isEmpty()){
                 for(string finExtId :setAllFinacials){
                     
-                    if(setInvalidFin.contains(finExtId)){
                     	isChanged = false; // flag to indicate if the new financial is to be added to the list of financials to be updated
                     
 	                    IPM_Financial__c newFin = new IPM_Financial__c( Financial_External_ID__c = finExtId);
@@ -566,7 +565,6 @@ public with sharing class IPM_FinancialYearHelper
 	                    }
                     }
                 }   
-            }
             
             return lstInvalidFinance;
     }
