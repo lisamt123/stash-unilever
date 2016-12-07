@@ -1829,6 +1829,10 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <fullName>Email Japan</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Email Korea</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Email Middle Americas</fullName>
                 <default>false</default>
