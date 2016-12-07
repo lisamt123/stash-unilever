@@ -10406,5 +10406,19 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>IPM Sourced Into Help Text</shortDescription>
         <value>The countries available in this list are populated by the Product / Country Mapping column. If a required country is not present please work with the Project Marketer to have the countries mapped to the Product.</value>
     </labels>
+    <labels>
+        <fullName>IPM_Fin_CopyPaste_ErrorMsg_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Fin_CopyPaste_ErrorMsg_Header</shortDescription>
+        <value>Unable to save business case</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Fin_CopyPaste_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Fin_CopyPaste_Error_Message</shortDescription>
+        <value>There was some problem saving the business case. Please try saving the business case again</value>
+    </labels>
 </CustomLabels>
 
