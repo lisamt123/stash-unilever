@@ -127,7 +127,8 @@ public without sharing class BET_Team_MemberHandlerCls {
             bets.add(m.Bet__c);
         }
 
-        for(EntitySubscription es : [select SubscriberId,ParentId from EntitySubscription where ParentId in:bets]){
+  List <EntitySubscription> esp=[select SubscriberId,ParentId from EntitySubscription where ParentId in:bets];
+        for(EntitySubscription es :esp ){
             if(betMembersSubscrMap.keySet().contains(es.ParentId)){
                 betMembersSubscrMap.get(es.ParentId).add(es.SubscriberId);
             } else {
