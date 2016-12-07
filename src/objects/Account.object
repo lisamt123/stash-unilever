@@ -14715,14 +14715,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cruise Travel Leisure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Education Healthcare BusInd</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>GPO</fullName>
                 <default>false</default>
             </values>

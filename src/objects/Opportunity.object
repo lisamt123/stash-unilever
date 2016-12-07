@@ -1171,7 +1171,7 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
     <fields>
         <fullName>FS_TotalNumberOfCases__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Total case count for opportunity.</inlineHelpText>
+        <inlineHelpText>Total quantity count for opportunity.</inlineHelpText>
         <label>Total Quantity</label>
         <summarizedField>OpportunityLineItem.Quantity</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
