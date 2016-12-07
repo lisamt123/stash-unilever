@@ -4,7 +4,8 @@
         <apex:outputLabel >Please select date : </apex:outputLabel>        
         <apex:inputtext value="{!dateName}" required="True" size="10" id="demo" onfocus="DatePicker.pickDate(false,this,false);"/>   
         <br/><br/>
-        <apex:commandButton value="Generate Report" action="{!refreshPage}"/>  
+       <apex:commandButton value="Generate Report" action="{!refreshPage}"/>
+      
         </apex:pageBlock>      
     </apex:form>  
 </apex:page>
