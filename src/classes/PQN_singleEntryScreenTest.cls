@@ -26,6 +26,7 @@ private class PQN_singleEntryScreenTest{
         ApexPages.StandardController sc1 = new ApexPages.StandardController(pqn);
         PQN_singleEntryScreen testPQN1 = new PQN_singleEntryScreen(sc1);
         testPQN1.validate();
+        
         testPQN1.savePQN();
         testPQN1.cancelPQN();
         
@@ -38,12 +39,18 @@ private class PQN_singleEntryScreenTest{
         ApexPages.StandardController sc3 = new ApexPages.StandardController(pqn);
         PQN_singleEntryScreen testPQN3 = new PQN_singleEntryScreen(sc3);
         testPQN3.validate();
+        testPQN3.validateIte('592423','','112'); 
         
         Apexpages.currentPage().getParameters().put('skuname','2#2' );
         ApexPages.StandardController sc4 = new ApexPages.StandardController(pqn);
         PQN_singleEntryScreen testPQN4 = new PQN_singleEntryScreen(sc4);
         testPQN4.validate();
-                  
+       // testPQN4.pqn.supplier__c='Test Account Name'; 
+        testPQN4.validateIte('153489','Test Account Name','116'); 
+        testPQN4.validateIte('','',''); 
+        
+               
+               
     Test.stopTest();
     }
     }

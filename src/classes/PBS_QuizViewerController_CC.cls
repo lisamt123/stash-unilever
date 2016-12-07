@@ -300,9 +300,10 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
         if(PBS_LMSUtils_CC.getPackageNamespace() != null){
             namespace = PBS_LMSUtils_CC.getPackageNamespace();
         }
-        if(networkName != null){
+        if(networkName != null){ 
             ret = new PageReference('/'+networkName+'/apex/'+namespace+'QuizResults');
         }
+           
         ret.setRedirect( true );
         ret.getParameters().put(AID_1,Apexpages.currentPage().getParameters().get(AID_1) );
 
@@ -331,8 +332,10 @@ public with sharing class PBS_QuizViewerController_CC extends PBS_LMSBaseControl
             }
 
             if(missingAnswer){
-              throw new QuizException(System.Label.ALMS_Quiz_Missing_Answers);
+                throw new QuizException(System.Label.ALMS_Quiz_Missing_Answers); 
             }
+
+            
         }
 
         //Update responses

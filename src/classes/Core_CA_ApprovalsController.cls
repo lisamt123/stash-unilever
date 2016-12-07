@@ -69,7 +69,7 @@ public class Core_CA_ApprovalsController {
     
     @AuraEnabled
     public static Boolean updateApprovalAction (String action,String comment,String isVisibletoSupplier,String ApproverId) {
-        Boolean success= true;          
+          
         Core_CA_WrapperUtility.MyApprovalPostRequest wrapperPostReq = new Core_CA_WrapperUtility.MyApprovalPostRequest();
         wrapperPostReq.UpdateFunctionType = action;
         wrapperPostReq.CommentDesc = comment;
@@ -79,8 +79,10 @@ public class Core_CA_ApprovalsController {
         Core_CA_ApplicationWrapper appWrapperObj = new Core_CA_ApplicationWrapper();
         appWrapperObj.MyApprovalPostRequest = wrapperPostReq ;
         
-        Core_CA_WrapperUtility.MyApprovalPostResponse objResponse = Core_CA_ApproveRejectAction.postApproveRejectAction(appWrapperObj);
-        return success; 
+        Boolean objResponse = Core_CA_ApproveRejectAction.UpdateApproveRejectAction(appWrapperObj);
+      //  System.debug('@#$' + objResponse.statusCode+'  ' + objResponse.UpdatedBy);
+        
+         return objResponse;
     }
     
     @AuraEnabled

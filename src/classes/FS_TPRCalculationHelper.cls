@@ -2,7 +2,8 @@
 Purpose: Helper Class used to calculate TPR.
 History :
 VERSION AUTHOR         DATE         DETAIL Description
-1.0     Accenture    12/Jul/2016     Draft                     
+1.0     Accenture    12/Jul/2016     Draft   
+2.0		Accentrue	 18/Nov/2016	 FS-1427 (CR-41)
 ***********************************************************************/
 
 /** Helper Class for TPR Calculation:
@@ -31,7 +32,8 @@ public with sharing class FS_TPRCalculationHelper {
                                                                             FS_onInvoice__c,
                                                                             FS_selfCollection__c, 
                                                                             FS_prePaid__c, 
-                                                                            FS_distributor__c
+                                                                            FS_distributor__c,
+                                                                        	FS_amountCasePiece__c
                                                                         FROM Opportunity
                                                                         WHERE Id IN : opportunityIdList]);
                 
@@ -93,6 +95,8 @@ public with sharing class FS_TPRCalculationHelper {
                      oppProd.FS_additionalDiscount__c = opportunityMap.get(oppProd.opportunityID).FS_onInvoice__c;
                     
 
+                    //Calculate List Price (Case/Piece)
+                    oppProd.FS_listPriceCasePiece__c = FS_TPRUtil.calculateListPriceCasePiece(oppProd, opportunityMap, priceBookEntryMap, product2Map);
                     
                     //Calculate Temporary Discount
                     

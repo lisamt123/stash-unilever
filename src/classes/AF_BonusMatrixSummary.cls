@@ -42,7 +42,8 @@ public with sharing class AF_BonusMatrixSummary {
     public String year;
     public integer bonusablefees{get;set;}
     private List<AF_Comments__c>lstComments;
-     
+    public User userObj; 
+    public Boolean isRedirect{get;set;}
     /**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_BonusMatrixSummary
@@ -54,6 +55,7 @@ public with sharing class AF_BonusMatrixSummary {
         IsReadyForPO=false;
         Approvalpopup=false;
         displayPopUp = false;
+        isRedirect= false;
         displayPopupRejComment = false;
         IsWithBonusApprover = false;
         IsWithCatfin = false;
@@ -77,7 +79,7 @@ public with sharing class AF_BonusMatrixSummary {
         isCMCO = false;
         isAgencyFlag=false;
         ButtonValue = '';
-        User userObj = new User();
+        userObj = new User();
         userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
         if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE){
             isCatFinance=true;
@@ -190,20 +192,45 @@ public with sharing class AF_BonusMatrixSummary {
     public pagereference SubmitforStatus(){
         string Submit_for_status='SubmitforStatus';
         List<AF_Bonus_Matrix__c> bonusMatrixList = new List<AF_Bonus_Matrix__c>();
+        pagereference pageRef;
+        Boolean hasError=false;
+        isRedirect=false;
+        
+        /** To disallow Cat finance to submit for approval when annual bonus is not entered **/
+        Bonus_SubResult_List = [SELECT AF_Qual_Per__c,AF_Bonus_Target__c,AF_Comment__c,AF_Quant__c,AF_Status__c,AF_Total_Bonus__c,AF_Qual__c,AF_Country__r.AF_Country__c,AF_Country__r.name,Bonus_Measure__c,AF_Locked__c,AF_country__c,AF_Bonus_Threshold__c,AF_Bonus_Threshold__r.Brand_Name__c,AF_Bonus_Threshold__r.Agency_Name__c,AF_Bonus_Threshold__r.Year__c,AF_Digital__c,AF_Traditional__c,AF_Adaptation__c,AF_Minimum__c,AF_Stretching__c,AF_Outstanding__c,
+        AF_Unique_Thresholds__c,AF_Quant_Bonus_Value__c,AF_Total_Bonus_Value__c,AF_Bonusable_Fees__c,AF_Quant_Bonus__c from AF_Sub_Result__c 
+        where AF_Bonus_Threshold__r.Brand_Name__c=:BrandId and AF_Bonus_Threshold__r.Agency_Name__c=:AgencyId and AF_Bonus_Threshold__r.Year__c=:year AND
+        AF_Period__c=:null];
+        
+        if(Bonus_SubResult_List.size() > 0)
+        {
+            for(AF_Sub_Result__c objsub :Bonus_SubResult_List)
+            {
+               if(objsub.AF_Locked__c  == false && userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE)
+               {
+                    apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Annual_Bonus));
+                    hasError=true;
+               }
+            }
+        }
+        /** To disallow Cat finance to submit for approval when annual bonus is not entered**/
+
+        
         if(bonusablefees==0){
             apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Annual_Bonus));
         }
-        else if(remainingAllowances==0){
+        else if(remainingAllowances==0 && !hasError)
+        {
             bonusSummaryObj.AF_Status__c=AF_Constants.BONUS_SUMMARY_WITHBONUSAPPROVER;
             try{
             update bonusSummaryObj;
-            IsWithBonusApprover=true;
+            
             }
-             catch(Exception e)
-                {
-                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,Submit_for_status,e.getMessage(),e.getTypeName(),e.getStackTraceString());
-                    apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
-                }
+            catch(Exception e)
+            {
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,Submit_for_status,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+            }
             for(AF_Bonus_Matrix__c BM:bonusSummaryObj.Bonus_Matrix__r){
                 BM.AF_Status__c = AF_Constants.BONUS_SUMMARY_WITHBONUSAPPROVER;
                 bonusMatrixList.add(BM);
@@ -220,6 +247,9 @@ public with sharing class AF_BonusMatrixSummary {
                 }
             }
             IsWithBonusApprover=true;
+            IsWithCatfin = false;
+            isRedirect=true;
+            
         }
         Approvalpopup=false;
         return null;

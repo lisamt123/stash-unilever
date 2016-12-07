@@ -8,7 +8,7 @@ public with sharing class PQN_NewTargetExtension{
         targets = new PQN_Targets__c();
         targetId = Apexpages.currentpage().getparameters().get('id');
         if(targetId!=null){
-            targets = [select id,Region_Geography__c,Target_Reduction__c,Notes__c, Year__c
+           targets = [select id,Region_Geography__c,Target_Reduction__c,Notes__c, Year__c
                     from PQN_Targets__c where id=: targetId];    
         }
     }
