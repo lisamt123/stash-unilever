@@ -236,7 +236,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         rolloutFinancialmap = new map<id,list<IPM_Financial__c>> ();
         try{
             list<IPM_Financial__c> projRolloutFinList = new list<IPM_Financial__c>([SELECT  id,name,Display_Name__c,Financial_External_ID__c,Business_Impact_Global__c,Business_Impact_Regional__c,Business_Impact_Local__c,Parent_Project__r.Name,Regional_Project__r.id, 
-                                                                                            Local_Project__r.id,Parent_Project__r.id,Regional_Project__r.Name,Local_Project__r.Name,IPM_Auto_Aligned_Fin_TLD__c,IPM_Project_Rollout__r.id,Global_External_Id__c,IPM_Parent_Company_Card__c 
+                                                                                            Local_Project__r.id,Parent_Project__r.id,Regional_Project__r.Name,Local_Project__r.Name,IPM_Auto_Aligned_Fin_TLD__c,IPM_Project_Rollout__r.id,Global_External_Id__c,IPM_Parent_Company_Card__c,Target_Launch_Date__c 
 
                                                                                             FROM IPM_Financial__c 
                                                                                             WHERE IPM_Project_Rollout__c IN: regionalRolloutset OR Regional_Project__c IN: regionalRolloutset  Limit 50000]);
@@ -353,8 +353,8 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         nonKeyAnalytic.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
         nonKeyAnalytic.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
         nonKeyAnalytic.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;              
-        nonKeyAnalytic.IPM_Target_Launch_Month_BD__c = parent.IPM_Target_Launch_Month_BD__c;
-        nonKeyAnalytic.IPM_Target_Launch_Year_BD__c = parent.IPM_Target_Launch_Year_BD__c;
+        nonKeyAnalytic.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(nonKeyFinancial.Target_Launch_Date__c.month());
+        nonKeyAnalytic.IPM_Target_Launch_Year_BD__c = nonKeyFinancial.Target_Launch_Date__c.year();
         if(parent.IPM_GKM__c==IPM_Utils.GATE_KEEPING_MODEL_3)
         {
         
@@ -1142,7 +1142,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                                                                                           Parent_Project__r.IPM_Project_Type__c,
                                                                                           Regional_Project__r.IPM_Project_Type__c,
                                                                                           Local_Project__r.IPM_Project_Type__c,
-                                                                                          Global_External_Id__c,IPM_Parent_Company_Card__c
+                                                                                          Global_External_Id__c,IPM_Parent_Company_Card__c,Target_Launch_Date__c
                                                                                                                                                                             
                                                                                   FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
         
