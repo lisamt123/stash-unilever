@@ -1053,7 +1053,7 @@ public with sharing class IPM_FinancialHelper
     {
     		List<Id> projIdsforY3iToSync = new  List<Id>();
     		
-    		for(IPM_Financial__c  ipmFinRec: [Select Id ,Local_Project__c,Regional_Project__c,Parent_Project__c from  IPM_Financial__c where Id IN: financialIds])
+    		for(IPM_Financial__c  ipmFinRec: [Select Id ,Global_Project_Id__c,Local_Project__c,Regional_Project__c,Parent_Project__c from  IPM_Financial__c where Id IN: financialIds])
     		{
                if(ipmFinRec.Local_Project__c!=null)
                {
@@ -1068,6 +1068,10 @@ public with sharing class IPM_FinancialHelper
                if(ipmFinRec.Parent_Project__c!=null)  
                {
                		projIdsforY3iToSync.add(ipmFinRec.Parent_Project__c);  
+               }
+			   if(ipmFinRec.Global_Project_Id__c !=null)  
+               {
+                	projIdsforY3iToSync.add(ipmFinRec.Global_Project_Id__c); 
                }
             } 
             
