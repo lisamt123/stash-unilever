@@ -162,12 +162,13 @@ public class AF_AnnualBonus_Test
             for(AF_Sub_Result__c sr : subResults)
             {
                 sr.AF_Digital__c = true;
-                sr.AF_Traditional__c = false;
+                sr.AF_Traditional__c = true;
+                sr.AF_Adaptation__c = true;
                 sr.AF_Quant__c = 12;
                 sr.AF_Minimum__c = 1;
                 sr.AF_Outstanding__c = 3;
                 sr.AF_Stretching__c = 2;
-                sr.Bonus_Measure__c =bonusMeasure;
+                sr.Bonus_Measure__c ='Business Measure';
                 subResultlist.add(sr);
             }
             insert subResultlist;
@@ -184,6 +185,55 @@ public class AF_AnnualBonus_Test
             AF_AnnualBonus annulBonus=new AF_AnnualBonus();
             annulBonus.UpdateBonus();
             annulBonus.ConfirmBonus();
+            annulBonus.annualBonusConstructorExt(subResultlist);
+            annulBonus.annualBonusDigitalTradExt(subResultlist);
+            annulBonus.annualBonusTotalTradDigitalCalc();
+            
+            List<AF_Sub_Result__c> subResultlist1= new  List<AF_Sub_Result__c>();
+            for(AF_Sub_Result__c sr : subResultlist)
+            {
+                sr.AF_Digital__c = true;
+                sr.AF_Traditional__c = false;
+                sr.AF_Adaptation__c = false;
+                sr.AF_Quant_Bonus_Value__c=250;
+                sr.AF_Qual_Bonus_value__c=300;
+                sr.AF_Total_Bonus_Value__c=550;
+                sr.AF_Bonusable_Fees__c=25000;
+                sr.AF_Quant_Bonus__c=1400;
+                subResultlist1.add(sr);
+            }
+            update subResultlist1;
+            
+            annulBonus.annualBonusConstructorExt(subResultlist1);
+            annulBonus.annualBonusDigitalTradExt(subResultlist1);
+            annulBonus.annualBonusTotalTradDigitalCalc();
+            annulBonus.annualBonusQuantQualExt(subResultlist1);
+            
+            List<AF_Sub_Result__c> subResultlist2= new  List<AF_Sub_Result__c>();
+            for(AF_Sub_Result__c sr : subResultlist)
+            {
+                sr.AF_Digital__c = false;
+                sr.AF_Traditional__c = true;
+                sr.AF_Adaptation__c = false;
+                subResultlist2.add(sr);
+            }
+            update subResultlist2;
+            annulBonus.annualBonusConstructorExt(subResultlist2);
+            annulBonus.annualBonusDigitalTradExt(subResultlist2);
+            annulBonus.annualBonusTotalTradDigitalCalc();
+            
+            List<AF_Sub_Result__c> subResultlist3= new  List<AF_Sub_Result__c>();
+            for(AF_Sub_Result__c sr : subResultlist)
+            {
+                sr.AF_Digital__c = false;
+                sr.AF_Traditional__c = false;
+                sr.AF_Adaptation__c = true;
+                subResultlist3.add(sr);
+            }
+            update subResultlist3;
+            annulBonus.annualBonusConstructorExt(subResultlist3);
+            annulBonus.annualBonusDigitalTradExt(subResultlist3);
+            annulBonus.annualBonusTotalTradDigitalCalc();
             Test.stopTest();
         }
     }
@@ -327,8 +377,9 @@ public class AF_AnnualBonus_Test
             List<AF_Sub_Result__c> subResultlist =new List<AF_Sub_Result__c>();
             for(AF_Sub_Result__c sr : subResults)
             {
-                sr.AF_Digital__c = true;
-                sr.AF_Traditional__c = false;
+                sr.AF_Digital__c = false;
+                sr.AF_Traditional__c = true;
+                sr.AF_Adaptation__c = false;
                 sr.AF_Quant__c = 12;
                 sr.AF_Qual__c=1;
                 sr.AF_Minimum__c = 1;
@@ -502,14 +553,28 @@ public class AF_AnnualBonus_Test
             //insert sub Results.
             List<AF_Sub_Result__c> subResults = AF_TestFactory_Helper.insertSubResult(1,true);
             system.assert(true,subResults!=null);
+            List<AF_Sub_Result__c> subResultlist= new  List<AF_Sub_Result__c>();
+            for(AF_Sub_Result__c sr : subResults)
+            {
+                sr.AF_Digital__c = true;
+                sr.AF_Traditional__c = false;
+                sr.AF_Adaptation__c = false;
+                sr.Bonus_Measure__c ='Business Measure';
+                subResultlist.add(sr);
+            }
+            update subResultlist;
+            
             List<AF_Bonus_Results__c> BonusResultQuery = [SELECT ID,AF_Bonus_Thresholds__c FROM AF_Bonus_Results__c WHERE RecordTypeId=:AF_TestFactory_Helper.AF_BONUS_RESULTS_RECTYPE LIMIT 1];
             System.assertEquals(BonusResultQuery[0].AF_Bonus_Thresholds__c,BonusThreshold[0].id, AF_TestFactory_Helper.BONUSRESULT_RECORD);
             ApexPages.currentPage().getParameters().put(Brandid,AFCategoryBrand[0].id);
             ApexPages.currentPage().getParameters().put(Agencyid,acc[0].id);
             ApexPages.currentPage().getParameters().put(Year,currYear);
             AF_AnnualBonus annulBonus1=new AF_AnnualBonus();
+            annulBonus1.annualBonusConstructorExt(subResultlist);
+            annulBonus1.annualBonusDigitalTradExt(subResultlist);
             annulBonus1.annualBonusTotalTradDigitalCalc();
             annulBonus1.annualBonusTradDigitalCalc();
+            
             Test.stopTest();
         }
     }
@@ -656,7 +721,20 @@ public class AF_AnnualBonus_Test
             System.assertEquals(BonusThresholdQuery[0].Agency_Name__c,acc[0].id, AF_TestFactory_Helper.BONUSTHERSHOLD_RECORD);
             //insert sub Results.
             List<AF_Sub_Result__c> subResults = AF_TestFactory_Helper.insertSubResult(1,true);
+            
+            
             System.assert(subResults!=null, AF_TestFactory_Helper.SUBRESULT_RECORD);
+            List<AF_Sub_Result__c> subResultlist= new  List<AF_Sub_Result__c>();
+            for(AF_Sub_Result__c sr : subResults)
+            {
+                sr.AF_Digital__c = false;
+                sr.AF_Traditional__c = true;
+                sr.AF_Adaptation__c = false;
+                sr.Bonus_Measure__c ='Business Measure';
+                subResultlist.add(sr);
+            }
+            update subResultlist;
+            
             //Insert Bonus Results.
             List<AF_Bonus_Results__c> BonusResultList = AF_TestFactory_Helper.insertBonusResults(1,true);
             System.assert(BonusResultList[0].id!=null, AF_TestFactory_Helper.SUBRESULT_RECORD);
@@ -666,9 +744,28 @@ public class AF_AnnualBonus_Test
             ApexPages.currentPage().getParameters().put(Agencyid,acc[0].id);
             ApexPages.currentPage().getParameters().put(Year,currYear);
             AF_AnnualBonus annulBonus =new AF_AnnualBonus();
-            annulBonus.annualBonusConstructorExt(subResults );
+            annulBonus.isTraditional =true;
+            annulBonus.isDigital=true;
+            annulBonus.pilotMode=true;
+            annulBonus.bonusTradDigitalFee=0.0;
+            annulBonus.annualBonusConstructorExt(subResultlist);
+            annulBonus.annualBonusDigitalTradExt(subResultlist);
             annulBonus.updatebonus();
             annulBonus.ConfirmBonus();
+            annulBonus.annualBonusTotalTradDigitalCalc();
+            
+            List<AF_Sub_Result__c> subResultlist1= new  List<AF_Sub_Result__c>();
+            for(AF_Sub_Result__c sr : subResultlist)
+            {
+                sr.AF_Digital__c = false;
+                sr.AF_Traditional__c = false;
+                sr.AF_Adaptation__c = true;
+                subResultlist1.add(sr);
+            }
+            update subResultlist1;
+            AF_AnnualBonus annulBonus1 =new AF_AnnualBonus();
+            annulBonus1.annualBonusConstructorExt(subResultlist1);
+            annulBonus1.annualBonusDigitalTradExt(subResultlist1);
             Test.stopTest();
         }
     }
