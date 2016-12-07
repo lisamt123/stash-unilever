@@ -32,11 +32,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_New_System_Existing__c</field>
+                <field>pkl_SID_Details_SAP__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>pkl_SID_Details_SAP__c</field>
+                <field>txt_New_System_Existing__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -45,20 +45,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>txt_System_Type_Others_SAP__c</field>
-            </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_Interfacing_Details__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_Backend_Database__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -82,14 +68,16 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Readonly</behavior>
+                <field>txt_Interfacing_Details__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>txt_Interfacing_Application_Details__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txt_Backend_Database__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

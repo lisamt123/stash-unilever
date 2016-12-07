@@ -1,0 +1,1414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Выбранная цель</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Выбранные цели</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Выбранная цель</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Выбранные цели</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Выбранная цель</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Выбранные цели</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Выбранная цель</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Выбранные цели</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>false</plural>
+        <value>Выбранная цель</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Instrumental</caseType>
+        <plural>true</plural>
+        <value>Выбранные цели</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>false</plural>
+        <value>Выбранная цель</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Prepositional</caseType>
+        <plural>true</plural>
+        <value>Выбранные цели</value>
+    </caseValues>
+    <fields>
+        <label><!-- BSP --></label>
+        <name>BSP__c</name>
+        <picklistValues>
+            <masterLabel>BSP 1</masterLabel>
+            <translation><!-- BSP 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BSP 2</masterLabel>
+            <translation><!-- BSP 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BSP 3</masterLabel>
+            <translation><!-- BSP 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BSP 4</masterLabel>
+            <translation><!-- BSP 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BSP 5</masterLabel>
+            <translation><!-- BSP 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Отображает текст из плана возможностей</help>
+        <label>План клиента</label>
+        <name>FS_Account_Plan_Statement_del__c</name>
+    </fields>
+    <fields>
+        <label>Прогноз</label>
+        <name>FS_Account_Plan__c</name>
+        <relationshipLabel>Выбранные цели</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Согласовано</label>
+        <name>FS_Approved__c</name>
+    </fields>
+    <fields>
+        <label>Дата выполнения</label>
+        <name>FS_Completion_Date__c</name>
+    </fields>
+    <fields>
+        <label>Покупатель</label>
+        <name>FS_Customer__c</name>
+        <relationshipLabel>Выбранные цели</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Описание</label>
+        <name>FS_Description__c</name>
+    </fields>
+    <fields>
+        <label>Доллары</label>
+        <name>FS_Dollars__c</name>
+    </fields>
+    <fields>
+        <label>Предполагаемое время</label>
+        <name>FS_Estimated_Timing__c</name>
+    </fields>
+    <fields>
+        <label><!-- NSV --></label>
+        <name>FS_NSV__c</name>
+    </fields>
+    <fields>
+        <label>Номер Возможности</label>
+        <name>FS_No_of_Opportunities__c</name>
+    </fields>
+    <fields>
+        <label>Описание цели</label>
+        <name>FS_Objective_Description__c</name>
+    </fields>
+    <fields>
+        <label>Дата начала цели</label>
+        <name>FS_Objective_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label>Тип цели</label>
+        <name>FS_Objective_Type__c</name>
+        <picklistValues>
+            <masterLabel>Grow</masterLabel>
+            <translation><!-- Grow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retain / Differentiate</masterLabel>
+            <translation><!-- Retain / Differentiate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risk</masterLabel>
+            <translation>Риск</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Win</masterLabel>
+            <translation>Выиграть</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Округленная сумма Возможностей, не закрытых для данного клиента</help>
+        <label>Сумма Возможности</label>
+        <name>FS_Opportunity_Amount__c</name>
+    </fields>
+    <fields>
+        <help>Описание</help>
+        <label>Другая причина</label>
+        <name>FS_Other_Reason__c</name>
+    </fields>
+    <fields>
+        <label>Вероятность</label>
+        <name>FS_Probability__c</name>
+    </fields>
+    <fields>
+        <label>Категория риска</label>
+        <name>FS_Risk_Category__c</name>
+        <picklistValues>
+            <masterLabel>Market Penetration</masterLabel>
+            <translation>Проникновение в рынок</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pricing</masterLabel>
+            <translation>Цены</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategy</masterLabel>
+            <translation>Стратегия</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Статус</label>
+        <name>FS_Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation>Активный</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approval Requested</masterLabel>
+            <translation><!-- Approval Requested --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation>Выполнено</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning</masterLabel>
+            <translation><!-- Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Подсектор</label>
+        <name>FS_Sub_Sector__c</name>
+        <picklistValues>
+            <masterLabel>11 MAIZENA BINDERS</masterLabel>
+            <translation><!-- 11 MAIZENA BINDERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12 KNORR BLENDED SEASONINGS</masterLabel>
+            <translation><!-- 12 KNORR BLENDED SEASONINGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>13 KNORR COOK-IN SAUCE/MEALMAKER</masterLabel>
+            <translation><!-- 13 KNORR COOK-IN SAUCE/MEALMAKER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>14 LIZANO COOK-IN SAUCE/MEALMAKER</masterLabel>
+            <translation><!-- 14 LIZANO COOK-IN SAUCE/MEALMAKER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15 KNORR SIDE DISH/COMPLETE MEAL</masterLabel>
+            <translation><!-- 15 KNORR SIDE DISH/COMPLETE MEAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2J RETAIL</masterLabel>
+            <translation><!-- 2J RETAIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2K 1 2 TEA</masterLabel>
+            <translation><!-- 2K 1 2 TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2S CFS LIQUID BASES</masterLabel>
+            <translation><!-- 2S CFS LIQUID BASES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2U UFS LIQUID BASES</masterLabel>
+            <translation><!-- 2U UFS LIQUID BASES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3C ICBINB - PORTIONS</masterLabel>
+            <translation><!-- 3C ICBINB - PORTIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3D COUNTRY CROCK - BULK</masterLabel>
+            <translation><!-- 3D COUNTRY CROCK - BULK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3E INDUSTRIAL POURABLES</masterLabel>
+            <translation><!-- 3E INDUSTRIAL POURABLES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3F LIQID-WHIPPED</masterLabel>
+            <translation><!-- 3F LIQID-WHIPPED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3G FDSOL PASTA-PIZZA SAUCE</masterLabel>
+            <translation><!-- 3G FDSOL PASTA-PIZZA SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3H INDUSTRIAL BASES-BOUILLIONS</masterLabel>
+            <translation><!-- 3H INDUSTRIAL BASES-BOUILLIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3I INDUSTRIAL CONDIMENTS</masterLabel>
+            <translation><!-- 3I INDUSTRIAL CONDIMENTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3J INDUSTRIAL DRY SAUCES-GRAVIES</masterLabel>
+            <translation><!-- 3J INDUSTRIAL DRY SAUCES-GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3K INDUSTRIAL RED SAUCE</masterLabel>
+            <translation><!-- 3K INDUSTRIAL RED SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3L INDUSTRIAL SPICE BLENDS</masterLabel>
+            <translation><!-- 3L INDUSTRIAL SPICE BLENDS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3M INDUSTRIAL WET SAUCES-GRAVIES</masterLabel>
+            <translation><!-- 3M INDUSTRIAL WET SAUCES-GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3N OPERATOR BASES-BOUILLIONS</masterLabel>
+            <translation><!-- 3N OPERATOR BASES-BOUILLIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3O OPERATOR CONDIMENTS</masterLabel>
+            <translation><!-- 3O OPERATOR CONDIMENTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3P OPERATOR DRY SAUCES &amp; GRAVIES</masterLabel>
+            <translation><!-- 3P OPERATOR DRY SAUCES &amp; GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3R OPERATOR MAYONNAISE</masterLabel>
+            <translation><!-- 3R OPERATOR MAYONNAISE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3S OPERATOR PIZZA SAUCE</masterLabel>
+            <translation><!-- 3S OPERATOR PIZZA SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3T OPERATOR POURABLES</masterLabel>
+            <translation><!-- 3T OPERATOR POURABLES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3U OPERATOR SPICE BLENDS</masterLabel>
+            <translation><!-- 3U OPERATOR SPICE BLENDS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3V OPERATOR WET S&amp;G</masterLabel>
+            <translation><!-- 3V OPERATOR WET S&amp;G --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3X OPERATOR BULK MST</masterLabel>
+            <translation><!-- 3X OPERATOR BULK MST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3Y OPERATOR MST PORTIONS</masterLabel>
+            <translation><!-- 3Y OPERATOR MST PORTIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4P ICBINB - BULK</masterLabel>
+            <translation><!-- 4P ICBINB - BULK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4S SLIMFAST</masterLabel>
+            <translation><!-- 4S SLIMFAST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4Z SLIMFAST 1</masterLabel>
+            <translation><!-- 4Z SLIMFAST 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5A FDSOL MISCELLANEOUS</masterLabel>
+            <translation><!-- 5A FDSOL MISCELLANEOUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5B FDSOL MISCELLANEOUS</masterLabel>
+            <translation><!-- 5B FDSOL MISCELLANEOUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5C BW DRESSING CO-PACK FS</masterLabel>
+            <translation><!-- 5C BW DRESSING CO-PACK FS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5D FDSOL MISCELLANEOUS</masterLabel>
+            <translation><!-- 5D FDSOL MISCELLANEOUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5E IFS OPERATOR SPICE BLENDS</masterLabel>
+            <translation><!-- 5E IFS OPERATOR SPICE BLENDS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5F OPERATOR PASTA SAUCE</masterLabel>
+            <translation><!-- 5F OPERATOR PASTA SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5G RETAIL</masterLabel>
+            <translation><!-- 5G RETAIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5H LIPTON SPECIALTY TEA</masterLabel>
+            <translation><!-- 5H LIPTON SPECIALTY TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5I LIPTON BULK CRYSTALS</masterLabel>
+            <translation><!-- 5I LIPTON BULK CRYSTALS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5K OPERATOR SAUCES MISC</masterLabel>
+            <translation><!-- 5K OPERATOR SAUCES MISC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5N MISCELLANEOUS MERCHANDISING</masterLabel>
+            <translation><!-- 5N MISCELLANEOUS MERCHANDISING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5O MISCELLANEOUS CUP A SOUP</masterLabel>
+            <translation><!-- 5O MISCELLANEOUS CUP A SOUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5R DISCONTINUED WET SAUCES &amp; GRAV</masterLabel>
+            <translation><!-- 5R DISCONTINUED WET SAUCES &amp; GRAV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5T SKIPPY INNOVATION</masterLabel>
+            <translation><!-- 5T SKIPPY INNOVATION --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5U DISCONTINUED OPERATOR BAKERY</masterLabel>
+            <translation><!-- 5U DISCONTINUED OPERATOR BAKERY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5Y SHELF STABLE SOUPS</masterLabel>
+            <translation><!-- 5Y SHELF STABLE SOUPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5Z PROMISE BULK</masterLabel>
+            <translation><!-- 5Z PROMISE BULK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6A PROMISE PORTIONS</masterLabel>
+            <translation><!-- 6A PROMISE PORTIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>95 BRANDED FROZEN SOUP</masterLabel>
+            <translation><!-- 95 BRANDED FROZEN SOUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>96 KNORR DRY SAUCES &amp; GRAVIES</masterLabel>
+            <translation><!-- 96 KNORR DRY SAUCES &amp; GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commodities</masterLabel>
+            <translation><!-- Commodities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment Order</masterLabel>
+            <translation><!-- Equipment Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mexicasa Order</masterLabel>
+            <translation><!-- Mexicasa Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POS Order</masterLabel>
+            <translation><!-- POS Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Samples Order</masterLabel>
+            <translation><!-- Samples Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Soupbar Order</masterLabel>
+            <translation><!-- Soupbar Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System Category</masterLabel>
+            <translation><!-- System Category --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T0 HOT SINGLE SERVE TEA</masterLabel>
+            <translation><!-- T0 HOT SINGLE SERVE TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 COUNTRY CROCK PORTION PACKS</masterLabel>
+            <translation><!-- T2 COUNTRY CROCK PORTION PACKS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 FDSOL MST BULK</masterLabel>
+            <translation><!-- T3 FDSOL MST BULK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 COMMODITIES</masterLabel>
+            <translation><!-- T4 COMMODITIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 FDSOL MST PORTION</masterLabel>
+            <translation><!-- T5 FDSOL MST PORTION --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T6 ICED TEA BAGS</masterLabel>
+            <translation><!-- T6 ICED TEA BAGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T7 PURE LEAF TEA</masterLabel>
+            <translation><!-- T7 PURE LEAF TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T8 HOT TEA BAGS</masterLabel>
+            <translation><!-- T8 HOT TEA BAGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TA ICED BULK &amp; INSTANT TEA</masterLabel>
+            <translation><!-- TA ICED BULK &amp; INSTANT TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TB TEABAR</masterLabel>
+            <translation><!-- TB TEABAR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TC LBIT</masterLabel>
+            <translation><!-- TC LBIT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TE OPERATOR PASTA SAUCE 2</masterLabel>
+            <translation><!-- TE OPERATOR PASTA SAUCE 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TF BRANDED PASTA SAUCE</masterLabel>
+            <translation><!-- TF BRANDED PASTA SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TG OPERATOR PIZZA SAUCE 1</masterLabel>
+            <translation><!-- TG OPERATOR PIZZA SAUCE 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TH BRANDED PIZZA SAUCE</masterLabel>
+            <translation><!-- TH BRANDED PIZZA SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TI WISHBONE SALAD DRESSING</masterLabel>
+            <translation><!-- TI WISHBONE SALAD DRESSING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TJ WISHBONE MAYO</masterLabel>
+            <translation><!-- TJ WISHBONE MAYO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TK SPICE BLENDS</masterLabel>
+            <translation><!-- TK SPICE BLENDS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TL SEASONING MIX</masterLabel>
+            <translation><!-- TL SEASONING MIX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TM LAWRYS LIQUID SAUCE</masterLabel>
+            <translation><!-- TM LAWRYS LIQUID SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TN LAWRYS SALAD DRESSING MIX</masterLabel>
+            <translation><!-- TN LAWRYS SALAD DRESSING MIX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TO LAWRYS GRAVIES</masterLabel>
+            <translation><!-- TO LAWRYS GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TP REGULAR DRY SOUPS</masterLabel>
+            <translation><!-- TP REGULAR DRY SOUPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TQ LIPTON CUP A SOUP</masterLabel>
+            <translation><!-- TQ LIPTON CUP A SOUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TR KNORR SOUPWORKS</masterLabel>
+            <translation><!-- TR KNORR SOUPWORKS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TS DICED TOMATOES</masterLabel>
+            <translation><!-- TS DICED TOMATOES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TT FROZEN NOVELTIES</masterLabel>
+            <translation><!-- TT FROZEN NOVELTIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TV LEGOUT PREMIUM BASES</masterLabel>
+            <translation><!-- TV LEGOUT PREMIUM BASES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TW KNORR SHELF STABLE BASES</masterLabel>
+            <translation><!-- TW KNORR SHELF STABLE BASES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TX OPERATOR BASES</masterLabel>
+            <translation><!-- TX OPERATOR BASES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TY FDSOL BASES</masterLabel>
+            <translation><!-- TY FDSOL BASES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TZ LEGOUT ECONOMY BASES</masterLabel>
+            <translation><!-- TZ LEGOUT ECONOMY BASES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U0 KNORR DRY SOUP</masterLabel>
+            <translation><!-- U0 KNORR DRY SOUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U1 KNORR PREMIUM BASES</masterLabel>
+            <translation><!-- U1 KNORR PREMIUM BASES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U2 LEGOUT OTHER BASES</masterLabel>
+            <translation><!-- U2 LEGOUT OTHER BASES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U3 INDUSTRIAL BASES</masterLabel>
+            <translation><!-- U3 INDUSTRIAL BASES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U4 CARB OPTIONS FROZEN SOUPS</masterLabel>
+            <translation><!-- U4 CARB OPTIONS FROZEN SOUPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U6 FROZEN SAUCES</masterLabel>
+            <translation><!-- U6 FROZEN SAUCES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U8 LEGOUT CANNED SOUP</masterLabel>
+            <translation><!-- U8 LEGOUT CANNED SOUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U9 LEGOUT CANNED ENTREES</masterLabel>
+            <translation><!-- U9 LEGOUT CANNED ENTREES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UA KNORR KETTLE CREATIONS</masterLabel>
+            <translation><!-- UA KNORR KETTLE CREATIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UB OPERATOR CANNED SOUP</masterLabel>
+            <translation><!-- UB OPERATOR CANNED SOUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UD BRANDED FROZEN ENTREES</masterLabel>
+            <translation><!-- UD BRANDED FROZEN ENTREES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UE LEGOUT DRY SAUCES &amp; GRAVIES</masterLabel>
+            <translation><!-- UE LEGOUT DRY SAUCES &amp; GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UG OPERATOR DRY SAUCES &amp; GRAVIES</masterLabel>
+            <translation><!-- UG OPERATOR DRY SAUCES &amp; GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UH LEGOUT DESSERTS</masterLabel>
+            <translation><!-- UH LEGOUT DESSERTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UI HLM-BF REFRIG POURABLE</masterLabel>
+            <translation><!-- UI HLM-BF REFRIG POURABLE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UJ OPERATOR FROZEN SAUCES</masterLabel>
+            <translation><!-- UJ OPERATOR FROZEN SAUCES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UK RTU SAUCES</masterLabel>
+            <translation><!-- UK RTU SAUCES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UL KNORR DESSERTS</masterLabel>
+            <translation><!-- UL KNORR DESSERTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UN LEGOUT CANNED RELISH</masterLabel>
+            <translation><!-- UN LEGOUT CANNED RELISH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UP OPERATOR MAYONNAISE 1</masterLabel>
+            <translation><!-- UP OPERATOR MAYONNAISE 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UQ INDUSTRIAL MAYONNAISE</masterLabel>
+            <translation><!-- UQ INDUSTRIAL MAYONNAISE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UR HLM-BF MAYONNAISE</masterLabel>
+            <translation><!-- UR HLM-BF MAYONNAISE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US MAZOLA</masterLabel>
+            <translation><!-- US MAZOLA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UU ARGO</masterLabel>
+            <translation><!-- UU ARGO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UV BRANDED CONDIMENTS</masterLabel>
+            <translation><!-- UV BRANDED CONDIMENTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UX CERELOSE</masterLabel>
+            <translation><!-- UX CERELOSE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UY THOMAS MUFFINS</masterLabel>
+            <translation><!-- UY THOMAS MUFFINS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UZ LEGOUT CANNED SAUCES &amp; GRAVIES</masterLabel>
+            <translation><!-- UZ LEGOUT CANNED SAUCES &amp; GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unknown</masterLabel>
+            <translation><!-- Unknown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V0 OPERATOR FROZEN ENTREE</masterLabel>
+            <translation><!-- V0 OPERATOR FROZEN ENTREE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V1 OPERATOR FROZEN SOUP</masterLabel>
+            <translation><!-- V1 OPERATOR FROZEN SOUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V2 FDSOL FROZEN ENTREE</masterLabel>
+            <translation><!-- V2 FDSOL FROZEN ENTREE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V3 FDSOL FROZEN SOUP</masterLabel>
+            <translation><!-- V3 FDSOL FROZEN SOUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V4 HLM-BF POURABLE DRESSING</masterLabel>
+            <translation><!-- V4 HLM-BF POURABLE DRESSING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V5 BOBOLI</masterLabel>
+            <translation><!-- V5 BOBOLI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V6 HLM-BF SPREADABLE DRESSING</masterLabel>
+            <translation><!-- V6 HLM-BF SPREADABLE DRESSING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V7 OPERATOR POURABLE DRESSING</masterLabel>
+            <translation><!-- V7 OPERATOR POURABLE DRESSING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V8 FDSOL POURABLE DRESSING</masterLabel>
+            <translation><!-- V8 FDSOL POURABLE DRESSING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V9 SKIPPY</masterLabel>
+            <translation><!-- V9 SKIPPY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VC CARB OPTIONS POURABLE DRESSING</masterLabel>
+            <translation><!-- VC CARB OPTIONS POURABLE DRESSING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VK KNORR BLENDED SEASONINGS</masterLabel>
+            <translation><!-- VK KNORR BLENDED SEASONINGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VN KNORR FROZEN SOUP</masterLabel>
+            <translation><!-- VN KNORR FROZEN SOUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VO LIPTON PREMIUM DRY SOUP MIX</masterLabel>
+            <translation><!-- VO LIPTON PREMIUM DRY SOUP MIX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VP FDSOL PRM DRY SP</masterLabel>
+            <translation><!-- VP FDSOL PRM DRY SP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VQ KNORR REGULAR DRY SOUP</masterLabel>
+            <translation><!-- VQ KNORR REGULAR DRY SOUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VR FDSOL DRY BASES-BOUILLIONS</masterLabel>
+            <translation><!-- VR FDSOL DRY BASES-BOUILLIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VS KNORR DRY BASES-BOUILLIONS</masterLabel>
+            <translation><!-- VS KNORR DRY BASES-BOUILLIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VT LIPTON DRY BASES-BOUILLIONS</masterLabel>
+            <translation><!-- VT LIPTON DRY BASES-BOUILLIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VU OPERATOR DRY SAUCES-GRAVIES</masterLabel>
+            <translation><!-- VU OPERATOR DRY SAUCES-GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VV KNORR WET BASES-BOUILLIONS</masterLabel>
+            <translation><!-- VV KNORR WET BASES-BOUILLIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VW KNORR RTS FROZEN ENTREE</masterLabel>
+            <translation><!-- VW KNORR RTS FROZEN ENTREE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VX OPERATOR RTS FROZEN ENTREE</masterLabel>
+            <translation><!-- VX OPERATOR RTS FROZEN ENTREE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VY LIPTON SIDE DISHES</masterLabel>
+            <translation><!-- VY LIPTON SIDE DISHES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VZ OPERATOR SIDE DISHES</masterLabel>
+            <translation><!-- VZ OPERATOR SIDE DISHES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W0 MEXICASA SALSA</masterLabel>
+            <translation><!-- W0 MEXICASA SALSA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W1 MEXICASA NACHOS</masterLabel>
+            <translation><!-- W1 MEXICASA NACHOS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W2 MEXICASA CHEESE SAUCE</masterLabel>
+            <translation><!-- W2 MEXICASA CHEESE SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W3 OPERATOR CHEESE SAUCE</masterLabel>
+            <translation><!-- W3 OPERATOR CHEESE SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W4 MEXICASA OTHER MEXICAN</masterLabel>
+            <translation><!-- W4 MEXICASA OTHER MEXICAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W5 MEXICASA WRAPS &amp; TORTILLAS</masterLabel>
+            <translation><!-- W5 MEXICASA WRAPS &amp; TORTILLAS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W6 HELLMANNS MAYONNAISE</masterLabel>
+            <translation><!-- W6 HELLMANNS MAYONNAISE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W7 OPERATOR MAYONNAISE 2</masterLabel>
+            <translation><!-- W7 OPERATOR MAYONNAISE 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W8 HELLMANNS POURABLE DRESSINGS</masterLabel>
+            <translation><!-- W8 HELLMANNS POURABLE DRESSINGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W9 FDSOL POURABLE DRESSINGS</masterLabel>
+            <translation><!-- W9 FDSOL POURABLE DRESSINGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WA HELLMANNS CONDIMENTS</masterLabel>
+            <translation><!-- WA HELLMANNS CONDIMENTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WB FDSOL SPREADABLE DRESSING</masterLabel>
+            <translation><!-- WB FDSOL SPREADABLE DRESSING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WC HELLMANNS SPREADABLE DRESSING</masterLabel>
+            <translation><!-- WC HELLMANNS SPREADABLE DRESSING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WD OPERATOR SPREADABLE DRESSING</masterLabel>
+            <translation><!-- WD OPERATOR SPREADABLE DRESSING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WE BECEL PORTION PACKS</masterLabel>
+            <translation><!-- WE BECEL PORTION PACKS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WF COUNTRY CROCK PORTION PACKS</masterLabel>
+            <translation><!-- WF COUNTRY CROCK PORTION PACKS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WG FDSOL PORTION PACKS</masterLabel>
+            <translation><!-- WG FDSOL PORTION PACKS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WH FDSOL FS BULK MARGARINE</masterLabel>
+            <translation><!-- WH FDSOL FS BULK MARGARINE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WI BECEL PREMIUM BULK</masterLabel>
+            <translation><!-- WI BECEL PREMIUM BULK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WJ SKIPPY 1</masterLabel>
+            <translation><!-- WJ SKIPPY 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WK BECEL POPCORN TOPPING-POPPING</masterLabel>
+            <translation><!-- WK BECEL POPCORN TOPPING-POPPING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WL PREMIUM ROLLINS</masterLabel>
+            <translation><!-- WL PREMIUM ROLLINS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WM OPERATOR PREMIUM ROLLINS</masterLabel>
+            <translation><!-- WM OPERATOR PREMIUM ROLLINS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WN BECEL BAKING MARGARINE</masterLabel>
+            <translation><!-- WN BECEL BAKING MARGARINE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WO BAKING MARGARINE</masterLabel>
+            <translation><!-- WO BAKING MARGARINE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WP ICINGS</masterLabel>
+            <translation><!-- WP ICINGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WQ INDUSTRIAL OIL</masterLabel>
+            <translation><!-- WQ INDUSTRIAL OIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WR SHORTENINGS-OIL</masterLabel>
+            <translation><!-- WR SHORTENINGS-OIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WS FDSOL HOT TEA BAGS</masterLabel>
+            <translation><!-- WS FDSOL HOT TEA BAGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WT RED ROSE HOT TEA BAGS</masterLabel>
+            <translation><!-- WT RED ROSE HOT TEA BAGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WV FDSOL OTHER BEVERAGE</masterLabel>
+            <translation><!-- WV FDSOL OTHER BEVERAGE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WW MISCELLANEOUS</masterLabel>
+            <translation><!-- WW MISCELLANEOUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WX LIPTON CRYSTALS</masterLabel>
+            <translation><!-- WX LIPTON CRYSTALS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X2 INDUSTRIAL OIL 2</masterLabel>
+            <translation><!-- X2 INDUSTRIAL OIL 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X3 SHORTENINGS-OIL 2</masterLabel>
+            <translation><!-- X3 SHORTENINGS-OIL 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X4 FDSOL SHORTENINGS-OIL</masterLabel>
+            <translation><!-- X4 FDSOL SHORTENINGS-OIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X5 SHORTENINGS-OIL 1</masterLabel>
+            <translation><!-- X5 SHORTENINGS-OIL 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X6 FDSOL MISCELLANEOUS</masterLabel>
+            <translation><!-- X6 FDSOL MISCELLANEOUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X7 MISCELLANEOUS</masterLabel>
+            <translation><!-- X7 MISCELLANEOUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X8 FDSOL MISCELLANEOUS 2</masterLabel>
+            <translation><!-- X8 FDSOL MISCELLANEOUS 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X9 FDSOL MISCELLANEOUS 5</masterLabel>
+            <translation><!-- X9 FDSOL MISCELLANEOUS 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XA LIPTON ICED TEA CRYSTALS</masterLabel>
+            <translation><!-- XA LIPTON ICED TEA CRYSTALS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XB LIPTON LITE CRYSTALS</masterLabel>
+            <translation><!-- XB LIPTON LITE CRYSTALS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XC LIPTON REGULAR CRYSTALS</masterLabel>
+            <translation><!-- XC LIPTON REGULAR CRYSTALS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XD LIPTON RETAIL CRYSTALS</masterLabel>
+            <translation><!-- XD LIPTON RETAIL CRYSTALS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XE FDSOL RTS FROZEN SAUCE</masterLabel>
+            <translation><!-- XE FDSOL RTS FROZEN SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XF LIPTON REGULAR DRY SOUP</masterLabel>
+            <translation><!-- XF LIPTON REGULAR DRY SOUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XG BOVRIL DRY BASES-BOUILLIONS</masterLabel>
+            <translation><!-- XG BOVRIL DRY BASES-BOUILLIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XH OXO DRY BASES-BOUILLIONS</masterLabel>
+            <translation><!-- XH OXO DRY BASES-BOUILLIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XI FDSOL WET RTU SAUCES-GRAVIES</masterLabel>
+            <translation><!-- XI FDSOL WET RTU SAUCES-GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XJ BOVRIL WET BASES-BOUILLIONS</masterLabel>
+            <translation><!-- XJ BOVRIL WET BASES-BOUILLIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XK FDSOL MAYONNAISE</masterLabel>
+            <translation><!-- XK FDSOL MAYONNAISE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XL SALADA HOT TEA BAGS</masterLabel>
+            <translation><!-- XL SALADA HOT TEA BAGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XM WISHBONE DRY DRESSINGS</masterLabel>
+            <translation><!-- XM WISHBONE DRY DRESSINGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XN FDSOL FROZEN SOUP</masterLabel>
+            <translation><!-- XN FDSOL FROZEN SOUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XO LIPTON SPECIALTY HOT TEA</masterLabel>
+            <translation><!-- XO LIPTON SPECIALTY HOT TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XP LIPTON YELLOW LABEL TEA</masterLabel>
+            <translation><!-- XP LIPTON YELLOW LABEL TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XQ SHELF STABLE SOUPS</masterLabel>
+            <translation><!-- XQ SHELF STABLE SOUPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XR FLAKES</masterLabel>
+            <translation><!-- XR FLAKES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XS FDSOL DRY SAUCES-GRAVIES</masterLabel>
+            <translation><!-- XS FDSOL DRY SAUCES-GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XT SPICE BLENDS 1</masterLabel>
+            <translation><!-- XT SPICE BLENDS 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XU INTERNATIONAL SEASONINGS</masterLabel>
+            <translation><!-- XU INTERNATIONAL SEASONINGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XV KNORR DRY SAUCES-GRAVIES</masterLabel>
+            <translation><!-- XV KNORR DRY SAUCES-GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XW LIPTON DRY SAUCES-GRAVIES</masterLabel>
+            <translation><!-- XW LIPTON DRY SAUCES-GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XY OPER WET RTU SAUCES-GRAVIES</masterLabel>
+            <translation><!-- XY OPER WET RTU SAUCES-GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XZ RAGU RTU RED SAUCE</masterLabel>
+            <translation><!-- XZ RAGU RTU RED SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Y0 KNORR RTS FROZEN SAUCE</masterLabel>
+            <translation><!-- Y0 KNORR RTS FROZEN SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Y1 OPERATOR RTS FROZEN SAUCE</masterLabel>
+            <translation><!-- Y1 OPERATOR RTS FROZEN SAUCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Y2 FDSOL BLENDED SEASONINGS</masterLabel>
+            <translation><!-- Y2 FDSOL BLENDED SEASONINGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Y3 LAWRYS BLENDED SEASONINGS</masterLabel>
+            <translation><!-- Y3 LAWRYS BLENDED SEASONINGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Y7 KNORR WET RTU SAUCES-GRAVIES</masterLabel>
+            <translation><!-- Y7 KNORR WET RTU SAUCES-GRAVIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YP LIPTON ICED TEA</masterLabel>
+            <translation><!-- YP LIPTON ICED TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YS OPERATOR PREMIUM DRY SOUP MIX</masterLabel>
+            <translation><!-- YS OPERATOR PREMIUM DRY SOUP MIX --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Подтип</label>
+        <name>FS_Sub_Type__c</name>
+        <picklistValues>
+            <masterLabel>Consumer insights</masterLabel>
+            <translation><!-- Consumer insights --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Culinary</masterLabel>
+            <translation><!-- Culinary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer&apos;s Events</masterLabel>
+            <translation><!-- Customer&apos;s Events --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital</masterLabel>
+            <translation><!-- Digital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USLP</masterLabel>
+            <translation><!-- USLP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Уровень риска</label>
+        <name>FS_Tension__c</name>
+        <picklistValues>
+            <masterLabel>Drive Check Average</masterLabel>
+            <translation><!-- Drive Check Average --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Drive Traffic</masterLabel>
+            <translation><!-- Drive Traffic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gross Margin</masterLabel>
+            <translation><!-- Gross Margin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Improve Product Quality</masterLabel>
+            <translation><!-- Improve Product Quality --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Improve Profitability</masterLabel>
+            <translation><!-- Improve Profitability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kitchen Efficiency</masterLabel>
+            <translation><!-- Kitchen Efficiency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manage Labor</masterLabel>
+            <translation><!-- Manage Labor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Menu Development</masterLabel>
+            <translation><!-- Menu Development --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Relationship</masterLabel>
+            <translation><!-- Relationship --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Volume</masterLabel>
+            <translation><!-- Volume --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Объем</label>
+        <name>FS_Volume__c</name>
+    </fields>
+    <fields>
+        <label>Индикатор статуса</label>
+        <name>Status_Indication__c</name>
+    </fields>
+    <fields>
+        <label>Тестовое поле</label>
+        <name>Test_Field__c</name>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation><!-- 11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation><!-- 12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345</masterLabel>
+            <translation><!-- 123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>13</masterLabel>
+            <translation><!-- 13 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>14</masterLabel>
+            <translation><!-- 14 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15</masterLabel>
+            <translation><!-- 15 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>16</masterLabel>
+            <translation><!-- 16 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>17</masterLabel>
+            <translation><!-- 17 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>18</masterLabel>
+            <translation><!-- 18 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>19</masterLabel>
+            <translation><!-- 19 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20</masterLabel>
+            <translation><!-- 20 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>21</masterLabel>
+            <translation><!-- 21 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>22</masterLabel>
+            <translation><!-- 22 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>23</masterLabel>
+            <translation><!-- 23 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>24</masterLabel>
+            <translation><!-- 24 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25</masterLabel>
+            <translation><!-- 25 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>26</masterLabel>
+            <translation><!-- 26 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>27</masterLabel>
+            <translation><!-- 27 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>28</masterLabel>
+            <translation><!-- 28 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>29</masterLabel>
+            <translation><!-- 29 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>30</masterLabel>
+            <translation><!-- 30 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>31</masterLabel>
+            <translation><!-- 31 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32</masterLabel>
+            <translation><!-- 32 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33</masterLabel>
+            <translation><!-- 33 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34</masterLabel>
+            <translation><!-- 34 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>35</masterLabel>
+            <translation><!-- 35 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36</masterLabel>
+            <translation><!-- 36 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>37</masterLabel>
+            <translation><!-- 37 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38</masterLabel>
+            <translation><!-- 38 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>39</masterLabel>
+            <translation><!-- 39 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>40</masterLabel>
+            <translation><!-- 40 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>41</masterLabel>
+            <translation><!-- 41 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>42</masterLabel>
+            <translation><!-- 42 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>43</masterLabel>
+            <translation><!-- 43 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>44</masterLabel>
+            <translation><!-- 44 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>45</masterLabel>
+            <translation><!-- 45 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>46</masterLabel>
+            <translation><!-- 46 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>47</masterLabel>
+            <translation><!-- 47 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>48</masterLabel>
+            <translation><!-- 48 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>49</masterLabel>
+            <translation><!-- 49 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50</masterLabel>
+            <translation><!-- 50 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <gender>Neuter</gender>
+    <nameFieldLabel>Выбранная цель</nameFieldLabel>
+    <recordTypes>
+        <label>Цель дистрибутора</label>
+        <name>Distributor_Objective</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Цель оператора</label>
+        <name>Operator_Objective</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage>Создайте Возможность перед отправлением на согласование</errorMessage>
+        <name>ChecknoodOpportunities</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Completion date can not be before objective start date --></errorMessage>
+        <name>FS_End_Date_Before_Start_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please submit master account plan record to get this defined objective approved. --></errorMessage>
+        <name>FS_Objective_Approval_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Если в Подтипе выбрано &quot;Другое&quot;, введите объяснение в поле &quot;Другая причина&quot;</errorMessage>
+        <name>If_Sub_Type_is_Other_Need_Reason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Отправьте данную Цель на согласование перед тем как отметить её &quot;Выполнено&quot;</errorMessage>
+        <name>Objective_Completion_Based_on_Approval</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Вы не можете вносить изменения в Выбранную цель после согласования</errorMessage>
+        <name>Restrict_approved_Defined_Objective</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Test_Distibute --></label>
+        <name>Test_Distibute</name>
+    </webLinks>
+</CustomObjectTranslation>

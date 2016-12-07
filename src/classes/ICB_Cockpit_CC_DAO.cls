@@ -16,14 +16,12 @@ public with sharing class ICB_Cockpit_CC_DAO
     private static final String CONST_STAGE_CLOSED;
     private static final String CONST_STAGE_PENDING;
     private static final String CONST_STAGE_AVAILABLE;
-    private static final String CONST_FAMILY_IMPULSE;
     
     Static
     {
         CONST_STAGE_CLOSED = 'Closed';
         CONST_STAGE_PENDING = 'Pending';
         CONST_STAGE_AVAILABLE = 'Available';
-        CONST_FAMILY_IMPULSE = 'Impulse';
     }
     
     /*******************************************************************
@@ -35,7 +33,7 @@ public with sharing class ICB_Cockpit_CC_DAO
     public static List<Opportunity> returnListOppClosed(Map<Id,Contact> mapContact)
     {
         System.debug('Entering <returnListOppClosed>');
-        List<Opportunity> oppList = [SELECT 	id,
+        List<Opportunity> oppList = [ SELECT 	id,
                                                 Name,
                                                 CreatedDate,
                                                 StageName,
@@ -45,12 +43,11 @@ public with sharing class ICB_Cockpit_CC_DAO
                                                 Amount,
                                                 ICB_OLD_QUANTITY_RETURNED__c,
                                                 ICB_Total_Sold_Price__c,
-                                     			ICB_Sales_Locale__c,
-                                     			ICB_Sales_Locale_List__c
-                                    FROM Opportunity 
-                                    WHERE ICB_Contact__c =: mapContact.keySet() 
-                                    AND (StageName = :CONST_STAGE_PENDING OR StageName = :CONST_STAGE_AVAILABLE OR StageName = :CONST_STAGE_CLOSED)
-                                    ORDER BY CreatedDate DESC];
+                                           		ICB_Sales_Locale__c
+                                      FROM Opportunity 
+                                      WHERE ICB_Contact__c =: mapContact.keySet() 
+                                      AND (StageName = :CONST_STAGE_PENDING OR StageName = :CONST_STAGE_AVAILABLE OR StageName = :CONST_STAGE_CLOSED)
+                                      ORDER BY CreatedDate DESC];
         System.debug('Exiting <returnListOppClosed>: ' + JSON.serializePretty(oppList));
         return oppList;
     }
@@ -63,7 +60,7 @@ public with sharing class ICB_Cockpit_CC_DAO
     public static List<Opportunity> returnListOppOpen(Map<Id,Contact> mapContact)
     {
         System.debug('Entering <returnListOppOpen>');
-        List<Opportunity> oppList = [SELECT 	id,
+        List<Opportunity> oppList = [ SELECT 	id,
                                                 Name,
                                                 StageName,
                                                 OwnerId,
@@ -72,11 +69,10 @@ public with sharing class ICB_Cockpit_CC_DAO
                                      			ICB_Contact__r.ICB_Type__c,
                                                 ICB_OLD_QUANTITY_RETURNED__c,
                                                 ICB_Total_Sold_Price__c,
-                                     			ICB_Sales_Locale__c,
-                                     			ICB_Sales_Locale_List__c
-                                    FROM Opportunity 
-                                    WHERE ICB_Contact__c =: mapContact.keySet()
-                                    AND (StageName = :CONST_STAGE_PENDING OR StageName = :CONST_STAGE_AVAILABLE)];
+                                     			ICB_Sales_Locale__c
+                                      FROM Opportunity 
+                                      WHERE ICB_Contact__c =: mapContact.keySet()
+                                      AND (StageName = :CONST_STAGE_PENDING OR StageName = :CONST_STAGE_AVAILABLE)];
         System.debug('Exiting <returnListOppOpen>: ' + JSON.serializePretty(oppList));
         return oppList;
     }
@@ -148,7 +144,7 @@ public with sharing class ICB_Cockpit_CC_DAO
                                                                     ICB_Quantity_Unit__c 
                                                             FROM ICB_Inventory_Line_Item__c 
                                                             WHERE ICB_Inventory__r.Name =: accountName 
-                                                            AND ICB_Product__r.Family =: CONST_FAMILY_IMPULSE AND ICB_Product__r.isActive = true ORDER BY ICB_Product__r.Name];
+                                                            AND ICB_Product__r.isActive = true ORDER BY ICB_Product__r.Name];
         System.debug('Exiting <getInventoriesIventoryLineItem>: ' + JSON.serializePretty(inventoryList));
         return inventoryList;
     }
@@ -169,7 +165,7 @@ public with sharing class ICB_Cockpit_CC_DAO
                                                            ICB_ITEMS_RETURNED__c,
                                                            PriceBookEntry.Name,
                                                            Quantity,
-                                                 		   Product2Id,
+                                                           Product2Id,
                                                            PriceBookEntryId 
                                                    FROM OpportunityLineItem 
                                                    WHERE PriceBookEntryId =: mapPriceBook.keySet() 

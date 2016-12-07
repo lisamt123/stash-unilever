@@ -1,3 +1,4 @@
+
 /****************************************************************************
 @Description : To meet requirements  REQ00003
 @Created Date: March 2015
@@ -69,7 +70,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public boolean updateApproach{get;set;}// is user update project approach
     public string isFromEditPage{get;set;}// For UI usage
     public boolean isProjectNameBlank{get;set;}//is no duplicate name
-    public boolean isTLDFieldEditable{get;set;}// To make TLD field readonly #REQ02427          
+    public boolean isTLDFieldEditable{get;set;}// To make TLD field readonly #REQ02427
+    public List<Selectoption> brandOptionsList; 
     //*@Description: To show preselected BET in the unlinking modal  
     public String projbetlink {
     get{
@@ -102,6 +104,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public Boolean isBrandEditable{get;set;}
     public Boolean isBrandVisible{get;set;}
     public string selectedBrand{get;set;}
+    public Boolean isBusinessPartnerBool{get;set;}
+    public Boolean isCentralTeamBool{get;set;}
     /****************************************************************************
     @Description : Initialization of the constructor
     *****************************************************************************/
@@ -140,6 +144,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         companyCardToRecordType = new Map<Id,String>();
         projectTypeList = new List<IPM_Project_Metadata__mdt>();
         isRollout =  IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+        IPM_CustomPermission custPermission = new IPM_CustomPermission();
+        isBusinessPartnerBool = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+        isCentralTeamBool = custPermission.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
+        brandOptionsList = new List<Selectoption>();
         
         if(project!=null)
         {
@@ -208,8 +216,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
        if(project.IPM_EligibleForReactivation__c && project.IPM_Stopped_Date_Time__c > dateToCompare)
        {
    	      //security for central team and BP users
-          IPM_CustomPermission custPermission = new IPM_CustomPermission();
-          reactivateProject = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+          reactivateProject = isBusinessPartnerBool;
        }
        if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(project.IPM_Project_Type__c))
         {   
@@ -419,10 +426,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     //NPath Complexity-Based on the Business Logic all brand positions needs to be fetched for various conditions
     public List<SelectOption> getBrandPos()
     {
-    	List<Selectoption> brandOptionsList = new List<Selectoption>();   
-        if(!projectMetadata.IPM_MultiBrandPosApplicable__c)
+    	brandOptionsList.clear();
+    	if(!projectMetadata.IPM_MultiBrandPosApplicable__c)
         {
-           brandOptionsList.add(new Selectoption(IPM_ConstantUtils.BLANK ,system.label.IPM_SelectBrandPosition));
+			brandOptionsList.add(new Selectoption(IPM_ConstantUtils.BLANK ,system.label.IPM_SelectBrandPosition));
         }
 
         try
@@ -448,9 +455,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     	String Query_STR = IPM_ConstantUtils.BLANK;
 		if( project.IPM_CompanyCardText__c.contains(IPM_ConstantUtils.COMPANY_CARD_GLOBAL))
         {
-				Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and (product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' or product_category_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\') ';
-            	Query_STR+=' LIMIT 50000';
-            	userBrandPos=database.query(Query_STR);    
+        	Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and (product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\' or product_category_id__r.name=\''+ string.escapeSingleQuotes(project.IPM_Category_Text__c) +'\') ';
+            	Query_STR+=' LIMIT 50000';   
         }
         else
         {
@@ -466,14 +472,13 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 	        		List<String>uniqueCountryList=project.IPM_Region_Shr__c.split(IPM_ConstantUtils.SEMICOLON);
 	        		Query_STR+=' and geo_id__r.Name IN:uniqueCountryList '; 
 	    		}
-	    		Query_STR+=' LIMIT 50000';
-	    		userBrandPos=database.query(Query_STR);
+	    		Query_STR+=' LIMIT 50000';	    		
 	        }
 		} 
                 
-                if(userBrandPos !=null && !userBrandPos.isEmpty())
+                if(Query_STR !=null)
                 {
-                    for(MDO_BrandPositions__c u:userBrandPos)
+                    for(MDO_BrandPositions__c u:Database.query(Query_STR))
                     {
                         if(!brandPositionSet.Contains(u.brand_position_id__r.Name))
                         {
@@ -745,6 +750,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 project.IPM_Complexity__c =  projectMetadata.IPM_DefaultComplexity__c;
                 project.IPM_Child_Complexity__c = projectMetadata.IPM_DefaultComplexity__c; 
                 project.IPM_ProjectGKM__c =  projectMetadata.MasterLabel;
+                
+                if(projectMetadata.MasterLabel == IPM_ConstantUtils.GKM_3){
+                	project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GKM_3;
+                }
                                 
         }
         
@@ -1008,11 +1017,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             }
             
             //security for central team and BP users
-            IPM_CustomPermission cpr = new IPM_CustomPermission();
             boolean isCentralTeam=false;
             boolean isBPUser=false;
-            isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
-            isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+            isCentralTeam = isCentralTeamBool;
+            isBPUser=isBusinessPartnerBool;
             if(isCentralTeam || isBPUser){
                 isEditable=true;
             }   
@@ -1040,11 +1048,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             checkUserList(loggedInUser);
             
             //security for central team and BP users
-                IPM_CustomPermission cpr = new IPM_CustomPermission();
                 boolean isCentralTeam=false;
                 boolean isBPUser=false;
-                isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
-                isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+                isCentralTeam = isCentralTeamBool;
+                isBPUser=isBusinessPartnerBool;
                 if(isCentralTeam || isBPUser){
                     isMilestoneEditable=true;
                     isTaskeditable=true;

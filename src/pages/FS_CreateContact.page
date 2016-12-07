@@ -1,0 +1,43 @@
+<apex:page Controller="FS_CreateContact_CC" tabStyle="Contact">
+<script>
+function isNumberKey(evt)
+       {
+       
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+         
+           if (charCode != 46 && (charCode == 8 || charCode >31)
+            && ((charCode == 40) || (charCode == 8) || (charCode == 41)  || (charCode == 45) || (charCode > 47 && charCode < 58) || (charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 122)))
+             return true;
+          
+          return false;
+       }
+</script>
+
+    <apex:pageMessages ></apex:pageMessages>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!createContact}" value="{!SAVETEXT}"/>
+            </apex:pageBlockButtons> 
+            <apex:pageBlockSection title="{!$Label.FS_ContactInformationSection}"  columns="1" >
+                <apex:outputText Value="{!$User.FirstName} {!$User.LastName}" label="{!$Label.FS_Owner}" />
+                <apex:inputfield value="{!varContactDetail.FirstName}" />
+                <apex:inputfield value="{!varContactDetail.LastName}" label="{!$Label.FS_LastName}" />
+                <apex:inputfield value="{!varContactDetail.Accountid}" required="{!TRUETEXT}" />
+                <apex:inputfield value="{!varContactDetail.Phone}"  label="{!$Label.FS_Mobile}" onkeypress="return isNumberKey(event);" >
+                </apex:inputfield>
+                <apex:inputText value="{!workPhoneNumber}" label="{!$Label.FS_Work}" onkeypress="return isNumberKey(event);"> 
+                </apex:inputText>
+                <apex:inputText value="{!personalPhoneNumber}" label="{!$Label.FS_Personal}" onkeypress="return isNumberKey(event);">
+                </apex:inputText>
+                <apex:inputfield value="{!varContactDetail.Email}" />
+                <apex:inputfield value="{!varContactDetail.FS_Position__c}" required="{!TRUETEXT}" />
+                <apex:inputfield value="{!varContactDetail.FS_Decision_Maker__c}"/>
+                
+            </apex:pageBlockSection>
+            <apex:pageBlocksection title="{!$Label.FS_AdditionalInformationSection}" columns="1">
+                <apex:inputfield value="{!varContactDetail.MailingStreet}"  label="{!$Label.FS_Comment}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form> 
+</apex:page>

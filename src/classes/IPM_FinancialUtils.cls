@@ -181,18 +181,100 @@ public with sharing class IPM_FinancialUtils
 	    {
 	        financialYear.put(volumeTypeAPIName,newVolumeType); 
 	        // If the Volume Type is changed to Tons, we need to make Units as 0
-	        if(newVolumeType != null && newVolumeType.equalsIgnoreCase(IPM_ConstantUtils.TOTALTONS))
-	        {
-	            String impactedStatAPI = IPM_ConstantUtils.FIELD_LITERAL_VOLUME + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX;
-	            financialYear.put(impactedStatAPI,0);
-	        }
-	        else
-	        {
-	            String impactedStatAPI = IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX;
-	            financialYear.put(impactedStatAPI,0);
-	        }               
 	        upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
 	    }
+    }
+    
+    /*****************************************************************************************************************************
+    * @description  Used for Rendering Countries checkbox on Top Down Tab.
+    */
+    
+    
+    public static boolean showCountryCheckboxes(String Project_GKM,String IPM_Phase){
+    	
+    	if(Project_GKM == 'GKM3')
+    	{
+    		return True;
+    	}
+    	else if(IPM_Phase == 'Ideas')
+    	{
+    		return True;
+    	}
+    	else return False; 
+    }
+    
+    /*****************************************************************************************************************************
+    * @description  Used for enable or disable Countries checkbox on Top Down Tab.
+    */
+    
+    public static boolean isCheckboxToBeDisabled(String Project_GKM,String IPM_Phase, String finType){
+    	
+    	if(Project_GKM == 'GKM3')
+    	{
+
+    		if(IPM_Phase == 'Feasibility' || IPM_Phase == 'Capability')	{
+    			if(finType.equalsIgnoreCase(IPM_ConstantUtils.Nonkey)){
+    				return false;
+    			}
+    			else {
+    				return true;
+    				}
+    		}
+    		// @description: Used to enable countries checkboxes editable for GKM3 Idea phase.
+    		else if(IPM_Phase == 'Ideas'){
+    			return false;
+    		}
+    		return true;
+    	}
+    	else if(IPM_Phase != 'Ideas')
+    	{
+    		return true;
+    	}
+    	else return false; 
+    }
+    
+    
+    /**************************************************************************************************************
+    * This method return of the type of the currently opened fianncial (CONSOLIDATED,KEY,NONKEY)
+    * Parameter : IPM_Financial__c currentFinancial i.e. the currently opened financial
+    **************************************************************************************************************/
+    public static string getCurrentFinancialType(String finExtId){
+        
+        string currentFinancialType = 'KEY';
+        
+        if(!string.isBlank(finExtId)){
+             If(finExtId.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+                currentFinancialType = IPM_ConstantUtils.CONSOLIDATED;
+            }
+            else if(finExtId.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)){
+                currentFinancialType = 'NONKEY';
+            }
+            
+        }
+        
+        return currentFinancialType;
+    }
+    
+    
+    /*************************************************************************************************************
+    * This method fetches the type of Financials to be evaluated for soft validations (KEY, NONkey or Consolidated)
+    * These informations are stored in IPM_Project_GKM_To_Phase_Matrix__mdt metdata type
+    * based on the project values the corresponding financial types are determined for soft validationa and then used for determining the eligibilty of financialSoft validations
+    * Parameter : IPM_Project__c the current project
+    * Return : IPM_Project_GKM_To_Phase_Matrix__mdt 
+    *************************************************************************************************************/
+    public static Map<String,String> getProjGKMToPhaseMatrixElement(){
+        
+        String queryString = IPM_Utils.prepareSOQLQuery('IPM_Project_GKM_To_Phase_Matrix__mdt',false, null, false);
+        queryString = queryString + ' Limit 100';
+        
+        Map<String,String> projKeyToFinToEvaluateMap = new Map<String,String>();
+        
+        for(IPM_Project_GKM_To_Phase_Matrix__mdt GKMPhaseMapEle : (List<IPM_Project_GKM_To_Phase_Matrix__mdt>) Database.query(queryString)){
+        	projKeyToFinToEvaluateMap.put(GKMPhaseMapEle.DeveloperName.trim().toLowerCase(),GKMPhaseMapEle.Financial_Type_To_Validate__c.trim().toLowerCase());
+        }
+        
+        return projKeyToFinToEvaluateMap;
     }
     
     

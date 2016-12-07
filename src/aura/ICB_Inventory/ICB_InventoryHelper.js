@@ -2,21 +2,17 @@
     incrementValueOpen : function(component,event){
         console.log('Entering Helper <incrementValueOpen>');
         var inventory = component.get("v.inventory");
-        var contact = component.get("v.contact");
         if(inventory.quantity  < (inventory.invetoryItem.ICB_Quantity_Unit__c + inventory.quantityMin)){
             //if(inventory.quantity < (inventory.invetoryItem.ICB_Quantity_Unit__c + inventory.quantityMin)){
                 inventory.quantity +=1; 
             //}
         }
-        contact.isDisabled = false;
         component.set("v.inventory",inventory); 
-        component.set("v.contact",contact);
         console.log('Exit Helper <incrementValueOpen>');
     },
     decrementValueOpen : function(component,event){
         console.log('Entering Helper <decrementValueOpen>');
         var inventory = component.get("v.inventory");
-        var contact = component.get("v.contact");
         if(inventory.quantity > 0 ){
             if(inventory.quantityMin > 0){
                 if(inventory.quantity > inventory.quantityMin){
@@ -26,12 +22,9 @@
                 inventory.quantity -=1; 
             }
         }
-        contact.isDisabled = false;
         component.set("v.inventory",inventory); 
-        component.set("v.contact",contact);
         console.log('Exit Helper <decrementValueOpen>');
     },
-    
     incrementValueClosed : function(component,event){
         console.log('Entering Helper <incrementValueClosed>');
         var inventory = component.get("v.inventory");
@@ -39,7 +32,6 @@
             inventory.quantity +=1; 
             component.set("v.inventory",inventory); 
         }
-        
         console.log('Exit Helper <incrementValueClosed>');
     },
     decrementValueClosed : function(component,event){
@@ -49,6 +41,7 @@
             inventory.quantity -=1;
             component.set("v.inventory",inventory); 
         }
+        
         console.log('Exit Helper <decrementValueClosed>');
     }
     

@@ -1,33 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Package xmlns="http://soapsforcecom/2006/04/metadata">
-     <types>
-        <members>FourAcres_App</members>
-        <name>CustomTab</name>
-    </types>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-    	<members>FA_Course_Facilitator__c-en_US</members>
-    	<members>FA_Occurence_Member__c-en_US</members>
-    	<members>FA_Member_ChatterGroup__c-en_US</members>
-    	<members>FA_Feedback__c-en_US</members>
-    	<members>FA_Course_ChatterGroup__c-en_US</members>
-        <members>FA_Course_Occurence__c-en_US</members>
-        <name>CustomObjectTranslation</name>
+        <members>CEC_North_America_Creative_Solutions</members>
+        <members>CEC_North_America_Helpdesk_Queue</members>
+        <members>CEC_North_America_Supervisor_Queue</members>
+        <name>Queue</name>
     </types>
-	<types>  
-        <members>Course_Attachment__c</members>
-		<members>FA_Course_ChatterGroup__c</members>
-		<members>FA_Course_Facilitator__c</members>
-		<members>FA_Course_Occurence__c</members>
-		<members>Document__c</members>
-		<members>FA_ErrorLog__c</members>
-		<members>FA_Feedback__c</members>
-		<members>FA_Feedback_Questionnaire__c</members>
-		<members>FA_Member_ChatterGroup__c</members>
-		<members>FA_Occurence_Member__c</members>
-		<members>FA_Pre_Work_Task_Assignment__c</members>
-		<members>FA_Pre_Work_Task__c</members>
-		<members>FA_UserPreference__c</members>
-        <name>CustomObject</name>  
-		</types>  
-	    <version>37.0</version>
+    <version>37.0</version>
 </Package>

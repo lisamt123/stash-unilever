@@ -1,0 +1,155 @@
+    <labels>
+        <fullName>FS_AccountOperatorRecordType</fullName>
+        <categories>FS Custom Labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Operator Record Type</shortDescription>
+        <value>Operator</value>
+    </labels>
+    <labels>
+        <fullName>FS_ClientSecretKey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS_ClientSecretKey</shortDescription>
+        <value>d51b83761ff54783B4C600143A323E1A</value>
+    </labels>
+    <labels>
+        <fullName>FS_PIIClientId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS_PIIClientId</shortDescription>
+        <value>7bc7af29041645fe80aa5d16e71876e5</value>
+    </labels>
+    <labels>
+        <fullName>FS_UrlId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS_UrlId</shortDescription>
+        <value>https://pii.eu.cloudhub.io/api/siteLead</value>
+    </labels>
+    <labels>
+        <fullName>FS_systemAdministrator</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS_systemAdministrator</shortDescription>
+        <value>System Administrator</value>
+    </labels>    
+    <labels>
+        <fullName>FS_AccountName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Account Name</shortDescription>
+        <value>Account Name</value>
+    </labels>
+    <labels>
+        <fullName>FS_Owner</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Owner</shortDescription>
+        <value>Owner</value>
+    </labels>
+    <labels>
+        <fullName>FS_FirstName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS First Name</shortDescription>
+        <value>First Name</value>
+    </labels>    
+    <labels>
+        <fullName>FS_LastName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Last Name</shortDescription>
+        <value>Last Name</value>
+    </labels>    
+    <labels>
+        <fullName>FS_Mobile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Mobile</shortDescription>
+        <value>Mobile</value>
+    </labels>    
+    <labels>
+        <fullName>FS_Work</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Work</shortDescription>
+        <value>Work</value>
+    </labels>    
+    <labels>
+        <fullName>FS_Personal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Personal</shortDescription>
+        <value>Personal</value>
+    </labels>    
+    <labels>
+        <fullName>FS_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Email</shortDescription>
+        <value>Email</value>
+    </labels>    
+    <labels>
+        <fullName>FS_DecisionMakerHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Decision Maker Header</shortDescription>
+        <value>Decision Maker</value>
+    </labels>      
+    <labels>
+        <fullName>FS_Comment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Comment</shortDescription>
+        <value>Comment</value>
+    </labels>    
+    <labels>
+        <fullName>FS_ContactSection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Contact Section</shortDescription>
+        <value>Contacts</value>
+    </labels>    
+    <labels>
+        <fullName>FS_NewContactButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS New Contact Button</shortDescription>
+        <value>New Contact</value>
+    </labels>   
+    <labels>
+        <fullName>FS_ActionHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Action Header</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>FS_AdditionalInformationSection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Additional Information Section</shortDescription>
+        <value>Additional Information</value>
+    </labels>
+    <labels>
+        <fullName>FS_ContactNameHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Contact Name Header</shortDescription>
+        <value>Contact Name</value>
+    </labels>    
+    <labels>
+        <fullName>FS_PositionHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Position Header</shortDescription>
+        <value>Position</value>
+    </labels>    
+    <labels>
+        <fullName>FS_ContactInformationSection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FS Contact Information Section</shortDescription>
+        <value>Contact Information</value>
+    </labels>

@@ -16,9 +16,6 @@ global class uw_FinishEnableExternalUserBatchJob implements Database.Batchable<S
 	global void finish(Database.BatchableContext BC)
 	{
 		// This is the last in the chain of batch jobs - 
-		// Now schedule the initial job again
-		uw_BatchJobHelper helper = new uw_BatchJobHelper();
-		helper.markSendInviteJobAsFinished();
-		helper.scheduleNextSendInviteBatchJob();
+		
     }
 }

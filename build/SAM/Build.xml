@@ -65,14 +65,9 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
-	    <runTest>SAM_InformationController_Test.cls</runTest>
-	   	<runTest>SAM_NewButtonOverrideController_Test.cls</runTest>
-		  <runTest>SAM_NewButtonRequestLineItemContr_Test.cls</runTest>
-		  <runTest>SAM_QLINewButtonOverrideController_Test.cls</runTest>
-		  <runTest>SAM_RequestAgeing_Test.cls</runTest>
-		  <runTest>SAM_RequestAgeUpdate_Test.cls</runTest>
-		  <runTest>SAM_ScheduleBatchProAgeUpdate_Test.cls</runTest>
-		  <runTest>SAM_TriggerUtilMethods_Test.cls</runTest>
+		<runTest>SAM_InformationController_Test</runTest>
+		<runTest>SAM_RequestAgeing_Test</runTest>
+		<runTest>SAM_TriggerUtilMethods_Test</runTest>
     </sf:deploy>
   </target>  
 

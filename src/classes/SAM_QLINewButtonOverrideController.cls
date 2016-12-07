@@ -31,9 +31,9 @@ public SAM_QLINewButtonOverrideController(ApexPages.StandardController controlle
         List<SAM_Quote_Line_Item__c> qli = [select md_Request__r.name,md_Request__r.txt_Request_Type__c, md_Request__c from SAM_Quote_Line_Item__c where id=:retUrl.removeStart('/')];
         system.debug('qli>>>'+qli);
         if(qli != null && qli.size() > 0 ){
-            recordId = qli[0].md_Request__r.name;
-            requestLkId = qli[0].md_Request__c;
-            requestType = qli[0].md_Request__r.txt_Request_Type__c;
+        	recordId = qli[0].md_Request__r.name;
+        	requestLkId = qli[0].md_Request__c;
+        	requestType = qli[0].md_Request__r.txt_Request_Type__c;
         }
     }
 }

@@ -266,14 +266,11 @@ public with sharing Class Amr_AdManagerHelper_CC{
                       
                     Amr_CurrencyConversionRate__c currencyObject =[SELECT Currency_Unit__c,Name FROM Amr_CurrencyConversionRate__c WHERE Currency_Unit_To_Euro__c =:double.valueOf(selectedCountryValue) limit 1];
                     String currencyFinalString = currencyObject.Name+Amr_ConstantForAdManager.DASH+currencyObject.Currency_Unit__c;
-                    List<MDO_BrandPositions__c> MDOBrandPositionslst =[select  brand_position_id__c,product_category_id__c,brand_id__c from MDO_BrandPositions__c where product_category_id__r.name = :categoryNameValue AND brand_position_id__r.name = :brandPosNameValue AND brand_id__r.name = :brandNameFromPageValue];
+
+                    jobDetailsObj.ProductCategory__c = [SELECT Id FROM MDO_Category__c WHERE Name =:categoryNameValue AND status__c = 'Active' LIMIT 1].Id;
+                    jobDetailsObj.Brand_Position__c = [SELECT Id FROM MDO_BrandPosition__c WHERE Name =:brandPosNameValue AND status__c = 'Active' LIMIT 1].Id;
+                    jobDetailsObj.Brand_Final__c = [SELECT Id FROM MDO_Brand__c WHERE Name =:brandNameFromPageValue AND status__c = 'Active' LIMIT 1].Id;
                     
-                    if(MDOBrandPositionslst.size()>0){
-                        MDO_BrandPositions__c MDOobj = MDOBrandPositionslst[0];
-                        jobDetailsObj.ProductCategory__c = MDOobj.product_category_id__c;
-                        jobDetailsObj.Brand_Position__c = MDOobj.brand_position_id__c;
-                        jobDetailsObj.Brand_Final__c = MDOobj.brand_id__c;
-                    }
                     jobDetailsObj.Currency_Conversion_Country_List__c = currencyFinalString;
                                      
                     adManagerNumberCreation(jobDetailsObj);

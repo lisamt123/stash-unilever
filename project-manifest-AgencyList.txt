@@ -1,0 +1,5 @@
+src/objects/Account.object
+src/components/AR_AgencyInformation.component
+src/components/AR_AgencyInformation.component-meta.xml
+src/classes/AR_AgencyPortfolioAndInformation.cls
+src/classes/AR_AgencyPortfolioAndInformation.cls-meta.xml

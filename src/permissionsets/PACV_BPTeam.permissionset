@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>PACV_Questionnaire_StatusUpdate_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PACV_Questions_AnswerCreation_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <description>BP Team Permission</description>
+    <label>PACV_BPTeam</label>
+    <userLicense>Salesforce Platform</userLicense>
+</PermissionSet>

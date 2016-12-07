@@ -130,6 +130,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                             IPM_BETHelper.sendBETAccessRequestonFirstRelease(project.BET__c);   
                         }
                     }
+					
+					//Reinstate GKM Model in case it's getting overridden with null value
+                    if(project.IPM_ProjectGKM__c == null && ((IPM_Project__c) trigger.oldmap.get(project.id)).IPM_ProjectGKM__c!=null){
+                        project.IPM_ProjectGKM__c = ((IPM_Project__c) trigger.oldmap.get(project.id)).IPM_ProjectGKM__c;
+                    }
                 }
             }
         } 
@@ -245,10 +250,17 @@ public with sharing class IPM_ProjectHandler implements ITrigger
            for(IPM_Project__c incomingProject :(List<IPM_Project__c>)Trigger.New)
            {
                 IPM_Project__c oldProject = null;
-                
+                if(Trigger.isUpdate){
+                    oldProject = ( (Map<Id,IPM_Project__c>)Trigger.OldMap).get(incomingProject.Id);
+                }
                 if(!IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED)
                 {
-                    if(incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && incomingProject.IPM_Temporary_Phase__c !=null 
+                    Boolean isStatusSameFlag = true;
+                    if(!Test.isRunningTest()){
+                        isStatusSameFlag = Trigger.isUpdate && incomingProject.IPM_Project_Job_Status__c!=oldProject.IPM_Project_Job_Status__c;
+                    }
+                    
+                    if(isStatusSameFlag && incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && incomingProject.IPM_Temporary_Phase__c !=null 
                     && incomingProject.IPM_Project_Name__c != null && incomingProject.IPM_Project_Name__c != IPM_ConstantUtils.MASTER_PROJECT_NAME)
                     {   
                         phaseChangeProjects.add(incomingProject.Id);
@@ -258,8 +270,6 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 
                 if(Trigger.isUpdate)
                 {
-                    
-                    oldProject = ( (Map<Id,IPM_Project__c>)Trigger.OldMap).get(incomingProject.Id);
                     
                     //Notify the project is created
                     if(String.IsBlank(oldProject.IPM_Project_Name__c) && String.IsNotBlank(incomingProject.IPM_Project_Name__c))
@@ -298,8 +308,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     if(incomingProject.IPM_Phase__c != oldProject.IPM_Phase__c && !String.isBlank(incomingProject.IPM_Phase__c))
                     {
                         projectsWithPhaseChanged.add(incomingProject);
-                    
-                        if(incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_PROCESSING)
+            
+                        if(incomingProject.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_PROCESSING || (incomingProject.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && incomingProject.IPM_Phase__c == IPM_ConstantUtils.MARKET_READY_GATE)  )
                         {
                             if(IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED)
                             {  
@@ -761,7 +771,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
 
               IPM_StopProjectHelper.processUnArchival(unArchievedProjectMap);  
 
-            //call update project name in all objects records
+			  set<id> archivalprojIds = new set<id>();
+              archivalprojIds.addAll(archievedProjectMap.keySet());
+              archivalprojIds.addAll(unArchievedProjectMap.keySet());
+              IPM_MilestoneHelper.rollupMilestoneDuedate(archivalprojIds);
+			//call update project name in all objects records
             if(!updateNewProNameMap.IsEmpty()){
                 IPM_UpdateGlobalProjectName.updateProjectName(updateNewProNameMap,oldprojectnameMap);
                 IPM_ChatterFeedHelper.notifyProjectNameChange(changedNameProjectList);

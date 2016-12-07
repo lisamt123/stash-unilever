@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -69,26 +73,26 @@
         <fullName>Comments__c</fullName>
         <externalId>false</externalId>
         <label>SME Weekly Comments</label>
-        <length>130000</length>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>5</visibleLines>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
         <label>Description</label>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>7</visibleLines>
     </fields>
     <fields>
         <fullName>Funnel_Ref__c</fullName>
         <externalId>false</externalId>
         <formula>HYPERLINK(&quot;/&quot;&amp;Id ,
-IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
+IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project2__c,
 (&quot;Manual-&quot;  + Name) )
 ,&apos;_self&apos; )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -151,6 +155,7 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -216,10 +221,6 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Tax</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Tools</fullName>
                 <default>false</default>
             </picklistValues>
@@ -239,9 +240,14 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
                 <fullName>Indirect Tax</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>SI – External</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -249,9 +255,11 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
     <fields>
         <fullName>RAG_Color__c</fullName>
         <externalId>false</externalId>
-        <formula>IMAGE(CASE(CIR2R_Innovation__r.RAG__c,&quot;Green&quot;, &quot;/img/samples/color_green.gif&quot;, 
+        <formula>IMAGE(CASE( RAG__c ,&quot;Green&quot;, &quot;/img/samples/color_green.gif&quot;, 
 &quot;Amber&quot;, &quot;/img/samples/color_yellow.gif&quot;, 
 &quot;Red&quot;, &quot;/img/samples/color_red.gif&quot;, 
+&quot;NA&quot;, &quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHmrhXnCAeeK606bQNDHNKSt8P-xddQan-FlU3jczon211tAee&quot;, 
+&quot;Null&quot;, &quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHmrhXnCAeeK606bQNDHNKSt8P-xddQan-FlU3jczon211tAee&quot;, 
 &quot;/s.gif&quot;), 
 &quot;status color&quot;,30, 80)</formula>
         <label>RAG Color</label>
@@ -261,7 +269,7 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
         <type>Text</type>
         <unique>false</unique>
     </fields>
-     <fields>
+    <fields>
         <fullName>RAG__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Updates/changes of this field will be reflected in CI_R2R Innovation</inlineHelpText>
@@ -279,11 +287,31 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
                 <fullName>Green</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Null</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SME_Weekly_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>SME Weekly Name</label>
+        <length>12</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Scope__c</fullName>
@@ -450,8 +478,13 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
                 <fullName>Poland</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -481,6 +514,7 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -494,6 +528,18 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Unique_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <externalId>false</externalId>
+        <label>Unique Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <label>CI_SME Weekly Update</label>
     <listViews>
@@ -514,6 +560,338 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
     </nameField>
     <pluralLabel>CI_SME Weekly Update</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>CI_R2R_SME_Read_Only</fullName>
+        <active>true</active>
+        <label>CI R2R SME Read Only</label>
+        <picklistValues>
+            <picklist>Project_Cat__c</picklist>
+            <values>
+                <fullName>APM%2FSCOA%2FReporting updates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business %2F Global Functions initiated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Continuous Improvements</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Controls Embedding %2F enhancement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dependency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EFCR roll out</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Efficiency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Efficiency %28with 3PSP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GPM %26 Exception resolution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local %2F Fiscal projects</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>System Related</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>R2R_SME_Area__c</picklist>
+            <values>
+                <fullName>Account Reconciliation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Continuous Improvement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FX Revaluation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fixed Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GL MDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GPM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indirect Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intercompany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journal Entries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Period-End</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP Roles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCOA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SI %E2%80%93 External</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tools</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RAG__c</picklist>
+            <values>
+                <fullName>Amber</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Null</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Scope__c</picklist>
+            <values>
+                <fullName>AAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All Countries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arabia*ANZ also</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BENELUX %26 DACH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Benelux</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>China</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GCAD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ghana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grater Caribbean</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HK and TW</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India %26 Sri Lanka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India - Branch and HO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latam excluding Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MYSG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico%2C UASCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America and Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P%26H</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PHP%28phillipines%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius Phase I %28CEE%2C NORDICS%2C DACH%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius Phase II %28Benelux%2C France%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius Phase III %28Spain%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Souther cone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UAE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UAPL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Various</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <recordTypes>
         <fullName>CI_SME_with_CI</fullName>
         <active>true</active>
@@ -628,7 +1006,7 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Tax</fullName>
+                <fullName>SI %E2%80%93 External</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -644,6 +1022,14 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
             </values>
             <values>
                 <fullName>Green</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Null</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -755,6 +1141,10 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
             </values>
             <values>
                 <fullName>Middle America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -948,7 +1338,7 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Tax</fullName>
+                <fullName>SI %E2%80%93 External</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -964,6 +1354,14 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
             </values>
             <values>
                 <fullName>Green</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Null</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1075,6 +1473,10 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
             </values>
             <values>
                 <fullName>Middle America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
                 <default>false</default>
             </values>
             <values>

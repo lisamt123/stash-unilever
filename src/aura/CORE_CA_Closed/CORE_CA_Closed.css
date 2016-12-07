@@ -159,7 +159,7 @@
 }
 .THIS .sort-box{
     float: right;
-    margin-right: 198px;
+    margin-right: 192px;
     margin-top: -7%;
 }
 .THIS .requestedBy{
@@ -189,4 +189,7 @@
 }
 .THIS .filterSelected{
     font-weight:bold;
+}
+.THIS .showmore button{
+    padding:5px;
 }

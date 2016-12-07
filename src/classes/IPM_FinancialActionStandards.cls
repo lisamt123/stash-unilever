@@ -10,6 +10,8 @@ public with sharing class IPM_FinancialActionStandards {
     public Id projDocSecId{get; set;}
     public Id conId{get; set;}
     public IPM_Project_Document_Section_Content__c projDocSecCon{get; set;}
+    public List<IPM_Financial_Action_Standards__c> finActionStandardsList{get;set;}  
+    public IPM_Financial_Action_Standards__c finActionStandard{get;set;}
     public Id projectId; //Project Id of te current project
     public ID getprojectId(){ return projectId; }
     public string commentField{get; set;}
@@ -20,6 +22,7 @@ public with sharing class IPM_FinancialActionStandards {
     public void setprojectId (ID p){
         projectId = p;
         showFinancialActionStandards(); 
+        getFinancialActionStandards();
     }
     
     /***********************************************************************************************************************************************************
@@ -75,13 +78,14 @@ public with sharing class IPM_FinancialActionStandards {
     */
     public void showFinancialActionStandards(){
         try{
-            project = [SELECT IPM_Project_Name__c,IPM_Project_Type__c,IPMProject_Span__c, IPM_Phase__c
+            project = [SELECT IPM_Project_Name__c,IPM_ProjectGKM__c,IPM_Project_Type__c,IPMProject_Span__c, IPM_Phase__c,Source_Rollout_External_Id__c
                        FROM IPM_Project__c 
                        WHERE ID =: projectId];
             
             getFieldSuffix();
             getFinancials();
             getActionStandards();
+        
             
         } catch (Exception ex) {
             if(ApexPages.currentPage() != null){  
@@ -130,7 +134,7 @@ public with sharing class IPM_FinancialActionStandards {
             financialExternalId = project.IPM_Project_Name__c;
         }        
         else{
-            financialExternalId = project.IPM_Project_Name__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+             financialExternalId = project.Source_Rollout_External_Id__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
         }
         financial = [SELECT Id, NPV_Global__c, NPV_Regional__c, NPV_Local__c, NPV_Charter__c, NPV_Contract__c, NPV_MR__c, NPV_MD__c, 
                             IRR_Global__c, IRR_Regional__c, IRR_Local__c, IRR_Charter__c, IRR_Contract__c, IRR_MR__c, IRR_MD__c, 
@@ -245,8 +249,8 @@ public with sharing class IPM_FinancialActionStandards {
     }
     
     public void getActionStandards(){
+        if(String.isNotBlank(projDocSecId) && projDocSecCon==null){
         projDocSecCon=new IPM_Project_Document_Section_Content__c();
-        if(String.isNotBlank(projDocSecId)){
             projDocSecCon=[SELECT Id,IPM_GM_Action_Standards_Charter__c,IPM_GM_Action_Standards_Charter_Cmts__c,IPM_gTO_Action_Standard_Charter__c,IPM_gTO_Action_Standard_Charter_Cmts__c,IPM_Section_Name__c,
                                   IPM_Inc_Val_Share_Action_Charter_Cmts__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_Inov_Value_Share_Action_Charter_Cmts__c,
                                   IPM_IRR_Action_Standard_Charter__c,IPM_IRR_Action_Standard_Charter_Cmts__c,IPM_iTo_Action_Standard_Charter__c,IPM_iTo_Action_Standard_Charter_Cmts__c,IPM_NPV_Action_Standard_Charter__c,
@@ -348,5 +352,40 @@ public with sharing class IPM_FinancialActionStandards {
         public ipmFinancialActionStandardWrapper(){
             this.lstGateValues = new List<Decimal>();
         }
+    }
+        /*******************************************************************************************************
+    * @description  Action Method to get Global Action Standards
+    * @param        NONE
+    * @return       NONE
+    */
+    public void getFinancialActionStandards()
+    {
+        string projId = project.Id;
+        
+        string global_STR = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+        string query_Str = 'SELECT IPM_Financial_Action_Standard_Name__c,IPM_Financial_Year_Y1_Gross__c,IPM_Financial_Year_Y1_Incremental__c,IPM_GM_Action_Standards_Charter__c,IPM_Project_Span__c,';
+        query_Str += 'IPM_gTO_Action_Standard_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_IRR_Action_Standard_Charter__c,Name,';
+        query_Str += 'IPM_iTo_Action_Standard_Charter__c,IPM_NPV_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c,IPM_Project__c,IPM_Project_Document_Section__c,';
+        query_Str += 'IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c,IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c,IPM_Financial_Year_Y1_Gross__r.GM_of_TO_Global__c,';
+        query_Str += 'IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c,IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c,IPM_Financial_Year_Y1_Gross__r.IPM_Financial__c,';
+        query_Str += 'IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c,IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c,IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c';
+        query_Str += ' FROM IPM_Financial_Action_Standards__c WHERE IPM_Project__c=:projId';
+        if(IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(project.IPM_ProjectGKM__c)){
+            query_Str += ' AND IPM_Project_Span__c =: global_STR';  
+        }
+        query_Str += ' order by Name Asc limit 1';
+        if(finActionStandardsList==NULL ||finActionStandardsList.isEmpty())
+        {
+            finActionStandardsList=new List<IPM_Financial_Action_Standards__c>();
+            finActionStandardsList = database.query(query_Str);
+        }
+		if(!finActionStandardsList.isEmpty())
+		{
+			finActionStandard= finActionStandardsList[0];
+		}
+		else
+		{
+			finActionStandard = new IPM_Financial_Action_Standards__c();	
+		}
     }
 }

@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[Dear Agency User<br><br>Brand "{!AF_Brand_Estimate__c.Brand__c}" is available for completion of Base Fee inputs in connection with the "{!AF_Brand_Estimate__c.AF_Basefee_Estimate_Initial_Quarter__c} {!AF_Brand_Estimate__c.AF_Fiscal_Year__c}" Purchase Order.<br><br>Please log into the Agency Fees application using the link below to submit your full year estimates.<br><br>{!AF_Brand_Estimate__c.AF_Community_Link__c}<br><br>From "{!AF_Brand_Estimate__c.Brand__c}" Finance Team<br>]]></td>
+</tr>
+</table>

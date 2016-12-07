@@ -26,6 +26,7 @@ public with sharing class SAM_RequestInformationController{
     private ApexPages.StandardController stdController;
     public Boolean flagToShowSubmitbutton{get; set;}
     public String commentsStr{get;set;}
+    public String labelStr {get;set;}
     public boolean reminderSetFlag{get;set;}
     public boolean requestorFlag;
     public boolean samAdminFlag;
@@ -58,7 +59,7 @@ public with sharing class SAM_RequestInformationController{
         reverseMandatoryFields = new Map<string,Schema.SobjectField>();
         validation_message = new Map<string,String>();
         reverseValidation_message = new Map<string,String>();
-        
+        labelStr = null; 
         List<PermissionSetAssignment> loggedInUserPermissionList = [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId()];
         PermissionSet requestorPermissionSet = [select id,Name from PermissionSet where Name = 'SAM_Requestor' limit 1];
         PermissionSet samAdminPermissionSet = [select id,Name from PermissionSet where Name = 'SAM_Admin' limit 1];
@@ -121,12 +122,29 @@ public with sharing class SAM_RequestInformationController{
         requestRecord = Database.query(queryString);          
        //project record type
         if(requestRecord.RecordTypeId !=null && requestRecord.txt_Request_Type__c != null){
-            List<SAM_success_messages__c> customSettingStatusMsg = SAM_success_messages__c.getall().values();             
+            /*List<SAM_success_messages__c> customSettingStatusMsg = SAM_success_messages__c.getall().values();             
             for(SAM_success_messages__c msg:customSettingStatusMsg){
-               if(msg.SAM_Status__c == requestRecord.pkl_Status__c){                       
-                   ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, msg.SAM_Success_message__c));
+               if(msg.SAM_Status__c == requestRecord.pkl_Status__c && msg.SAM_recordtype__c.contains(requestRecord.txt_Request_Type__c)){                       
+                   labelStr = 'SAM_Open';
+				   //List<String> l = s.split('<br>');
+                   //ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, '{!$Label.' + s + '}'));
                 }                
+            }*/
+            if(requestRecord.pkl_Status__c != null && requestRecord.txt_Request_Type__c != null){
+                string specialCharPatterns = '[^\\w]+';
+                string multiUnderscorePattern = '_+';
+                if(requestRecord.txt_Request_Type__c == SAM_Constants.SAM_RW_QUERY_REQUEST){
+                    labelStr = SAM_Constants.SAM_RW_QUERY_REQUEST;
+                }else 
+                {labelStr = SAM_Constants.SAM_RW_PROJECT_REQUEST; }
+                labelStr = labelStr +' ' + requestRecord.pkl_Status__c;
+                system.debug('labelStr>>>>>>>>1'+labelStr);
+                //replace special chars with underscores, and multiple underscores with one
+                labelStr = labelStr.replaceAll(specialCharPatterns,'_').replaceAll(multiUnderscorePattern,'_').removeEnd('_');
+                system.debug('labelStr>>>>>>>>2'+labelStr);
+                
             }
+            
             //below fields are manadtory if status is saved 
             mapOFMandatoryFields(requestRecord);
             mapOFDisplayList(requestRecord,mandatoryFields,reverseMandatoryFields);
@@ -228,7 +246,7 @@ public with sharing class SAM_RequestInformationController{
 			for(string key : reverseMandatoryFields.keySet()){
 				objectMap.put(key,reverseValidation_message.get(key));
 			}
-			if((requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST || requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_NON_PROJECT_REQUEST) && requestRecordValue.rol_Product_Details_Count__c == 0){
+			if(requestRecordValue.pkl_SAAS_Yes_No__c != 'Yes' && (requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST || requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_NON_PROJECT_REQUEST) && requestRecordValue.rol_Product_Details_Count__c == 0){
 				objectMap.put(SAM_Constants.PRODUCTDETAIL,SAM_Constants.MANDATORY);
 			}
 			if(requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST && requestRecordValue.mpkl_Landscape_Details__c != SAM_Constants.GLOBALLANDSCAPE && requestRecordValue.mpkl_Country_of_Deployment__c == null){
@@ -322,7 +340,9 @@ public with sharing class SAM_RequestInformationController{
         String strBody='Hi '+user.FirstName+' '+user.lastname+','+'\n\n'+'The request with Id : '+reqInfo.Name+' is pending for your action with below details.'+'\n\n'+commentsStr+'\n\n'+'Kindly take the action.'+'\n\n'+'Thanks,'+'\n'+Userinfo.getname();
         system.debug('str!!!'+strBody);
         message.plainTextBody = strBody;
-        Messaging.SendEmail(new Messaging.SingleEmailMessage[]{message});
+        if(!Test.isRunningTest()){
+        	Messaging.SendEmail(new Messaging.SingleEmailMessage[]{message});
+        }
         }
     }
     

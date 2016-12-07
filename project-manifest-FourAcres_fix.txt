@@ -1,6 +1,0 @@
-src
-src/classes
-src/classes/FA_Trigger_CourseFacilitator.cls
-src/classes/FA_Trigger_CourseFacilitator.cls-meta.xml
-src/classes/FA_Test_Trigger_CouFacilitator.cls
-src/classes/FA_Test_Trigger_CouFacilitator.cls-meta.xml

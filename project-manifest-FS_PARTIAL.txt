@@ -1,0 +1,22 @@
+src
+src/objects/Account.object
+src/layouts/Account-Operator Russia Read Only.layout
+src/layouts/Account-Operators Russia.layout
+src/layouts/Product2-Food Solutions Product Russia.layout
+src/layouts/Account-Feed Based Distributor Russia.layout
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
+src/permissionsets/FS_RussiaSalesRep.permissionset
+src/permissionsets/FS_Operator_Russia.permissionset
+src/permissionsets/FS_Admin.permissionset
+src/profiles/Unilever Food Solution - Russia.profile
+src/email/FS_Email_Templates/NAFS_Operator_Account_approval_request_email_template.email
+src/email/FS_Email_Templates/NAFS_Operator_Account_approval_request_email_template.email-meta.xml
+src/workflows/Account.workflow
+src/permissionsets/FS_Admin.permissionset
+src/flows/FS_UpdateRegionandZonebasedoncityforRussia-4.flow
+src/objects/Account.object
+src/objects/Opportunity.object
+src/objects/Activity.object
+src/objects/Task.object
+src/objects/Event.object
+src/objects/Product2.object

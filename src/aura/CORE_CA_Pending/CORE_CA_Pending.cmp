@@ -4,9 +4,10 @@
   Date: 03 June 2016
   Requirement/Description: Pending tab of home Page of approval app. 
 -->
-<aura:component controller="Core_CA_ApprovalsController" implements="flexipage:availableForAllPageTypes,force:appHostable">
+<aura:component controller="Core_CA_ApprovalsController" implements="flexipage:availableForAllPageTypes,force:appHostable" access="global">
     
-    <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,resource/Lightning_designing_style/assets/fonts/" afterScriptsLoaded="{!c.doInit}"/>
+  <!--  <ltng:require styles="/resource/CORE_CA_ApprovalsLightning,resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css,resource/Lightning_designing_style/assets/fonts/" scripts="/resource/CORE_CA_ApprovalsLightning/jquery/jquery.js"   afterScriptsLoaded="{!c.doInit}"/> -->
+    <ltng:require styles="{!join(',', $Resource.CORE_CA_ApprovalsLightning, $Resource.Lightning_designing_style + '/assets/styles/salesforce-lightning-design-system.min.css')}" scripts="{!$Resource.CORE_CA_ApprovalsLightning + '/jquery/jquery.js'}"  afterScriptsLoaded="{!c.doInit}"/>
     <aura:attribute name="spinnercomp" type="boolean" default="true"/>
     
     <aura:attribute name="ApprovalData" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
@@ -30,6 +31,14 @@
     <aura:attribute name="RequestId" type="String"/>
     <aura:attribute name="ApproverId" type="String"/>
     <aura:attribute name="filterValue" type="String"/>
+    <!--Winter'17 fix start-->
+    <aura:attribute name="pendingData" type="String"/>
+    <aura:attribute name="filterview" type="boolean"/>
+    <aura:attribute name="count" type="String"/>
+    <aura:attribute name="oldFilter" type="String"/>
+    <aura:attribute name="dataCount" type="String"/>
+    <!--Winter'17 fix end-->
+    
     
     <!--<aura:attribute name="isFeedBackPopup" type="boolean"/>-->
     <aura:attribute name="isFeedBackPopup" type="boolean" default="false"/>
@@ -60,9 +69,9 @@
         }
         }
         .slds-nubbin--top-left:before, .slds-nubbin--top-left:after { 
-        left: 10.5rem !important;
+        left: 10.3rem !important;
         
-        } 
+        }
         .filterSelected{
         font-weight:bold;
         }
@@ -92,18 +101,24 @@
         margin-top: -3% !important;
         }
         }
-        @media screen and (min-width:1200px){
-        .sort-box{
-        	margin-top: -1.6% !important;
-            margin-right: 174px !important;
+        button.slds-button.slds-button--neutral.uiButton {
+        border: none;
+        color: black;
+        line-height: 1rem;
         }
-        .slds-nubbin--top-left:before, .slds-nubbin--top-left:after { 
-        left: 8.9rem !important;
-        
-        } 
+        .slds-button--neutral {
+        	padding-left: 0rem;
+        	padding-right: 1rem;
+        }
+        button.slds-button.slds-button--neutral.uiButton {
+        width: 100%;
+        text-align: left;
+        height: 100%;
+        }
+        .slds-button {
+        font-size: 12px !important;
         }
     </style>
-    
     
     <div class="homePageHeader">
         <div class="defaultLeftSpace">
@@ -141,27 +156,32 @@
                         <ul class="dropdown__list" role="menu" >
                             <li class="slds-dropdown__item" >
                                 <a href="" role="menuitem">
-                                    <span style="width:100%;" class="slds-truncate filterSelected" aura:id="all" ><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ALL}" title="Show All" click="{!c.doInit}"/></span>
+                                    <span style="width:100%;" class="slds-truncate filterSelected" aura:id="all" ><ui:button label="{!$Label.c.CORE_LBL_SHOW_ALL}" buttonTitle="Show All" press="{!c.doInit}"/></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item">
                                 <a href="" role="menuitem">
-                                    <span style="width:100%;" class="slds-truncate" aura:id="gtes"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_EXPENSES}" title="Show Only Expenses" click="{!c.doInit}" /></span>
+                                    <span style="width:100%;" class="slds-truncate" aura:id="contracts"><ui:button label="Show Contracts" buttonTitle="Show Only Contracts" press="{!c.doInit}"/></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item">
                                 <a href="" role="menuitem">
-                                    <span style="width:100%;" class="slds-truncate" aura:id="ariba"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_PURCHASE_REQUEST}" title="Show Only Purchase Requests" click="{!c.doInit}"/></span>
+                                    <span style="width:100%;" class="slds-truncate" aura:id="gtes"><ui:button label="{!$Label.c.CORE_LBL_SHOW_ONLY_EXPENSES}" buttonTitle="Show Only Expenses" press="{!c.doInit}"/></span>
+                                </a>
+                            </li>
+                            <li class="slds-dropdown__item">
+                                <a href="" role="menuitem">
+                                    <span style="width:100%;" class="slds-truncate" aura:id="ariba"><ui:button label="{!$Label.c.CORE_LBL_SHOW_ONLY_PURCHASE_REQUEST}" buttonTitle="Show Only Purchase Requests" press="{!c.doInit}"/></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item" >
                                 <a href="" role="menuitem">
-                                    <span style="width:100%;" class="slds-truncate" aura:id="clarity"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_PROJECT_APPROVAL}" title="Show only Project Approval" click="{!c.doInit}"/></span>
+                                    <span style="width:100%;" class="slds-truncate" aura:id="clarity"><ui:button label="{!$Label.c.CORE_LBL_SHOW_ONLY_PROJECT_APPROVAL}" buttonTitle="Show only Project Approval" press="{!c.doInit}"/></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item" >
                                 <a href="" role="menuitem">
-                                    <span style="width:100%;" class="slds-truncate" aura:id="invoice"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_INVOICE}" title="Show only Invoices" click="{!c.doInit}"/></span>
+                                    <span style="width:100%;" class="slds-truncate" aura:id="invoice"><ui:button label="{!$Label.c.CORE_LBL_SHOW_ONLY_INVOICE}" buttonTitle="Show only Invoices" press="{!c.doInit}"/></span>
                                 </a>
                             </li>
                         </ul>

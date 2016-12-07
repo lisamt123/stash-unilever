@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -74,6 +70,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -173,6 +170,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -246,6 +244,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -297,6 +296,20 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>fml_Applicable_Cross_Charge__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  ISPICKVAL(pkl_Charging_Type__c , &apos;Cross Charge Applicable (X)&apos;) ,  Total_Annual_Maint__c +  fml_Total_CAPEX__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Applicable Cross Charge</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>fml_DO_detail_validation__c</fullName>
@@ -354,11 +367,10 @@
         <fullName>fml_Run_Cost_Detail_Validation__c</fullName>
         <externalId>false</externalId>
         <formula>IF( AND(ISPICKVAL( pkl_Run_Cost_Applicable__c , &apos;Yes&apos;), 
-OR( ISBLANK( txt_Run_Cost_Publisher__c ) , ISBLANK(txt_Run_Cost_in_Euros__c) , 
-ISBLANK(txt_Project_Maintained_by__c),ISBLANK(dt_Contract_Start_Date__c),
-ISBLANK(dt_Contract_End_Date__c),ISPICKVAL( pkl_Run_Cost_Start_Year__c , &apos;&apos;),
+OR(  ISBLANK(txt_Run_Cost_in_Euros__c) , 
+ISBLANK(txt_Project_Maintained_by__c),ISPICKVAL( pkl_Run_Cost_Start_Year__c , &apos;&apos;),
 ISPICKVAL( pkl_Run_Cost_End_Year__c , &apos;&apos;),ISPICKVAL( pkl_Whether_SAM_will_pick_up_Run_Cost__c , &apos;&apos;), 
-ISBLANK( txta_SAM_Comments__c ),ISBLANK(txt_Run_Cost_Publisher__c),ISBLANK(txt_Software_Name__c),ISBLANK(Run_Cost_Year_1__c),ISBLANK(Run_Cost_Year_2__c),ISPICKVAL(Run_Cost_for_Year_1__c,&apos;&apos;),ISPICKVAL(Run_Cost_for_Year_2__c,&apos;&apos;),ISPICKVAL(pkl_Whether_SAM_will_pick_up_Run_Cost__c,&apos;&apos;))),
+ISBLANK( txta_SAM_Comments__c ),ISBLANK(txt_Run_Cost_Publisher__c),ISBLANK(Run_Cost_Year_1__c),ISBLANK(Run_Cost_Year_2__c),ISPICKVAL(Run_Cost_for_Year_1__c,&apos;&apos;),ISPICKVAL(Run_Cost_for_Year_2__c,&apos;&apos;),ISPICKVAL(pkl_Whether_SAM_will_pick_up_Run_Cost__c,&apos;&apos;))),
 true,
 false )</formula>
         <label>Run Cost Detail Validation</label>
@@ -517,6 +529,7 @@ false )</formula>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -545,6 +558,7 @@ false )</formula>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -570,6 +584,7 @@ false )</formula>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -590,6 +605,7 @@ false )</formula>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -611,6 +627,7 @@ false )</formula>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -639,6 +656,7 @@ false )</formula>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -660,6 +678,7 @@ false )</formula>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -692,6 +711,7 @@ false )</formula>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -713,6 +733,7 @@ false )</formula>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -820,6 +841,7 @@ false )</formula>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -840,6 +862,7 @@ false )</formula>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -912,6 +935,7 @@ false )</formula>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -984,6 +1008,7 @@ false )</formula>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1008,16 +1033,15 @@ false )</formula>
             <picklistValues>
                 <fullName>No</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
             </picklistValues>
             <picklistValues>
                 <fullName>Yes</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -4493,7 +4517,7 @@ true,false )</errorConditionFormula>
         <fullName>SAM_Run_cost_Reverse_Validation</fullName>
         <active>true</active>
         <description>Don&apos;t allow run cost fields to enter if run cost is No.</description>
-        <errorConditionFormula>AND( md_Request__r.txt_Request_Type__c = &apos;SAM_RW_Project_Request&apos;, OR(ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;No&apos;),ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;&apos;)),OR( NOT(ISBLANK( dt_Contract_Start_Date__c )),NOT(ISBLANK( dt_Contract_End_Date__c )),NOT(ISBLANK( dt_Contract_Start_Date__c )),NOT(ISBLANK( text(pkl_Run_Cost_Start_Year__c) )),NOT(ISBLANK( text(pkl_Run_Cost_End_Year__c) )),NOT(ISBLANK( txt_Run_Cost_in_Euros__c )),NOT(ISBLANK(  Run_Cost_Year_1__c  )),NOT(ISBLANK(  Run_Cost_Year_2__c  )),NOT(ISBLANK(text( Run_Cost_for_Year_1__c ) )),NOT(ISBLANK( text( Run_Cost_for_Year_2__c) )),NOT(ISBLANK(text(  pkl_Whether_SAM_will_pick_up_Run_Cost__c ) )),NOT(ISBLANK(  txt_Project_Maintained_by__c  )),NOT(ISBLANK( txta_SAM_Comments__c  )),NOT(ISBLANK(  txt_Run_Cost_Publisher__c )),NOT(ISBLANK( txt_Software_Name__c)) )   )</errorConditionFormula>
+        <errorConditionFormula>AND( md_Request__r.txt_Request_Type__c = &apos;SAM_RW_Project_Request&apos;, OR(ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;No&apos;),ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;&apos;)),OR(NOT(ISBLANK( text(pkl_Run_Cost_Start_Year__c) )),NOT(ISBLANK( text(pkl_Run_Cost_End_Year__c) )),NOT(ISBLANK( txt_Run_Cost_in_Euros__c )),NOT(ISBLANK( Run_Cost_Year_1__c )),NOT(ISBLANK( Run_Cost_Year_2__c )),NOT(ISBLANK(text( Run_Cost_for_Year_1__c ) )),NOT(ISBLANK( text( Run_Cost_for_Year_2__c) )),NOT(ISBLANK(text( pkl_Whether_SAM_will_pick_up_Run_Cost__c ) )),NOT(ISBLANK( txt_Project_Maintained_by__c )),NOT(ISBLANK( txta_SAM_Comments__c )) ) )</errorConditionFormula>
         <errorMessage>Run Cost fields are mandatory only if Run Cost Applicable is Yes.</errorMessage>
     </validationRules>
     <validationRules>

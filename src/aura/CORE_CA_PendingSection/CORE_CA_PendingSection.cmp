@@ -4,9 +4,12 @@
   Date: 03 June 2016
   Requirement/Description: Closed tab of the Approval APP.
 -->
-<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" controller="CORE_FB_Feedback_App_Controller">
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" controller="CORE_FB_Feedback_App_Controller" access="global">
     <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> -->
     <aura:attribute name="isFeedBackPopup" type="boolean" />
+    <!-- Winter'17 fix start-->
+    <aura:attribute name="isDesktop" type="String"/>
+     <!-- Winter'17 fix end-->
     <style>
         .hiddenClass{
         color: red;
@@ -84,7 +87,7 @@
                 <div>
                     <div class = "local-div">
                         <div class="name">
-                            {!v.ApprovalData.ExpenseID}<br/>
+                            {!v.ApprovalData.ExpenseID}<br/> 
                             <div class="expenseName truncate">{!v.ApprovalData.ExpenseName} </div>
                             
                             <aura:if isTrue="{!(v.ApprovalData.Action !='QUER' &amp;&amp; v.ApprovalData.Status !='Query With Vendor')}"> 
@@ -98,6 +101,12 @@
                                         <div class="slds-text-body--small right-class">
                                             {!v.ApprovalData.Currencies}&nbsp;
                                             {!v.ApprovalData.ProjectBug} 
+                                        </div>
+                                    </aura:if>
+                                <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='CLM')}">
+                                        <div class="slds-text-body--small right-class">
+                                            {!v.ApprovalData.Currencies}&nbsp;
+                                            {!v.ApprovalData.Amount} 
                                         </div>
                                     </aura:if>
                             </aura:if>
