@@ -371,7 +371,7 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <rules>
+     <rules>
         <fullName>CEC %3A CaseOrigin Update</fullName>
         <actions>
             <name>CEC_Case_Origin_to_email</name>
@@ -391,7 +391,7 @@
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
-            <value>Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ,Email Philippines,Email Indonesia,Email Vietnam,Email Thailand,Email Bangladesh,Email Pakistan,Email Japan</value>
+            <value>Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ,Email Philippines,Email Indonesia,Email Vietnam,Email Thailand,Email Bangladesh,Email Pakistan,Email Japan,Email Korea,Email Taiwan</value>
         </criteriaItems>
         <description>CEC : To update the Case Origin field.</description>
         <triggerType>onAllChanges</triggerType>
