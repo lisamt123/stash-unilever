@@ -25,7 +25,7 @@
             <thead> 
                 <tr>
                     <th scope="col"  width="40%"><span>{!$Label.IPM_Sourcing_Units}</span></th>
-                        <th scope="col" width="20%"><div class="approvalTip">{!$Label.IPM_Capability_Confirmed}</div></th>
+                        <th scope="col" width="20%"><div class="{!if(bIsPDLApproved,'approvalTip','capcon approvalTip')}">{!$Label.IPM_Capability_Confirmed}</div></th>
                     <th scope="col" width="40%"><span>{!$Label.IPM_Sourced_Into}</span></th>
                 </tr>
             </thead>               

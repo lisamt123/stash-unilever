@@ -127,7 +127,15 @@ public with sharing class IPM_SourcePlanController {
     {       
         bIsPDLApproved = false;
         List<IPM_Project_Document__c> lstPDlDocument  = new List<IPM_Project_Document__c>();
-        lstPDlDocument = [Select id,IPM_Document_Status__c From IPM_Project_Document__c Where IPM_GateDocuments__c =: IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT and IPM_Project__c=: projectId and IPM_Document_Status__c=:IPM_ConstantUtils.STATUS_APPROVED limit 1];
+        Id projID;
+        if(project.IPM_Parent_Project__c == Null)
+        {    	
+        	projID = project.id;
+        }else if(project.IPM_Parent_Project__c != Null)
+        {
+        	projID = project.IPM_Parent_Project__c;
+        }
+        lstPDlDocument = [Select id,IPM_Document_Status__c From IPM_Project_Document__c Where IPM_GateDocuments__c =: IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT and IPM_Project__c=: projID and IPM_Document_Status__c=:IPM_ConstantUtils.STATUS_APPROVED limit 1];
         if(!lstPDlDocument.isEmpty())
         {
             bIsPDLApproved = true;        
