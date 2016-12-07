@@ -3751,8 +3751,5 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <searchResultsAdditionalFields>CORE.USERS.EMAIL</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
-<<<<<<< HEAD
 </CustomObject>
-=======
-</CustomObject>
->>>>>>> 09165a8adc1210ea9690f90b5c5a633feab6350a
+
