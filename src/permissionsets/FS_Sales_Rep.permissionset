@@ -18638,8 +18638,7 @@
         <field>FS_Account_Plan__c.Identified_Risk__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>FS_Account_Plan__c.FS_Incremental_Cases__c</field>
         <readable>true</readable>
