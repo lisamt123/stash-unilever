@@ -53,32 +53,7 @@ public with sharing class EA_Notification_Controller {
                 return userprofileList;
         
     }    
-    
-    
-    
-     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-      
+          
     @AuraEnabled
     public static void inviteResponseNofitification(string activityId, string teamid , string responseText){    
         try{
@@ -111,8 +86,8 @@ public with sharing class EA_Notification_Controller {
 
                                 
                 if(String.isNotBlank(actName) && String.isNotBlank(participantName)&& String.isNotBlank(msgLabel)){               
-                    EA_Utils.postOnChatter(teamList.Invited_By__c, msgLabel);
                     updateParticipantResponse(activityId, teamList.Participant__c, responseText);
+                    EA_Utils.postOnChatter(teamList.Invited_By__c, msgLabel);
                // }
            // }
             }
@@ -122,8 +97,8 @@ public with sharing class EA_Notification_Controller {
     /* Submit Invitation Response */ 
     @AuraEnabled
     public static void updateParticipantResponse(string activityId, string participantId, string responseText){ 
-        String actvityName = '';
-        String activityDesc = '';
+        //String actvityName = '';
+        //String activityDesc = '';
         Decimal points = 0; 
         List<Everyday_Activity__c> acts=new List<Everyday_Activity__c>();
         
@@ -133,8 +108,8 @@ public with sharing class EA_Notification_Controller {
                where id=:activityId];
         
         for(Everyday_Activity__c act : acts){
-            actvityName = act.Name;
-            activityDesc = act.Description__c;
+            //actvityName = act.Name;
+            //activityDesc = act.Description__c;
             points = act.Activity_Points__c;
         } 
                      
@@ -144,7 +119,9 @@ public with sharing class EA_Notification_Controller {
                 partcipantTeamMeberRec.Invitation_Status__c = EA_Constants.INVITATION_STATUS_ACCEPTED; 
                 partcipantTeamMeberRec.Activity_Points__c = points ;
             }
-            else if(responseText == EA_Constants.INVITATION_STATUS_DECLINED) partcipantTeamMeberRec.Invitation_Status__c = EA_Constants.INVITATION_STATUS_DECLINED;          
+            else if(responseText == EA_Constants.INVITATION_STATUS_DECLINED){
+                partcipantTeamMeberRec.Invitation_Status__c = EA_Constants.INVITATION_STATUS_DECLINED;          
+            }
             update partcipantTeamMeberRec;
         }      
     }  

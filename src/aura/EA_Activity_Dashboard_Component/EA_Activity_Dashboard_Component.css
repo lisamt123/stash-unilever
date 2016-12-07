@@ -1,41 +1,35 @@
 .THIS .slds .slds-text-body--regular space_below{
     margin-top: 40px;
 }
-
-.THIS .slds-list__item{
-    margin-top:-50px;
-}
 .THIS .divider {
-  height: 1px;
-  width: 100%;
-  display: block;
-  margin-left: 0px;
-  overflow: hidden;
-  background-color: #e5e5e5;
+    height: 1px;
+    width: 100%;
+    display: block;
+    margin-left: 0px;
+    overflow: hidden;
+    background-color: #e5e5e5;
 }
 .THIS .list_name  {
-  font-weight: 500;
-  font-size: 1.2rem;
-  line-height: 1;
-  margin-left: 15px;
-  margin-top: -20px;
-  color: black;
-  width: 52%;
-  float: left;
-  padding-top:18px;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.25;
+    margin-top: -20px;
+    color: black;
+    float: left;
+    padding-top:18px;
+    margin-bottom: 13px;
 }
 .THIS .regular_font {
     margin-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
     padding-top: 1rem;
     color: #4f6a92;
     margin-left: 15px;
     width: 100%;
     text-transform: uppercase;
     font-weight: 100;
-    font-size: 1.2rem;
-    padding-bottom: 20px;
-    padding-top: 1rem;
+    font-size: 12px;
+    padding-top: 10px;
     color: #4f6a92;
     margin-left: 15px;
     width: 100%;
@@ -49,57 +43,85 @@
 .THIS .Container{
     background:white;
     margin-top:1px;
-    }
+}
 .THIS   .right_arrow{
     width:10px;
     height:10px;
     margin-left: 300px;
     margin-top: -32px;
-    }
+}
 .THIS .feed_img {
-  width: 10px;
-  height: 10px;
-  margin-left: 5px;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
 }
 .THIS .feedback{
-  width: 15rem;
-  height: 2rem;
-  background: orange;
-  border-radius: 10px;
-  font-size: 1rem;
-  color: white;
-  font-weight: 600;
-  margin-left:1rem;
+    width: 15rem;
+    height: 2rem;
+    background: orange;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: white;
+    font-weight: 600;
+    margin-left:1rem;
     padding-right:8px;
-     margin-top:20px;
+    margin-top:20px;
     
 }
 .THIS div.feedback , .THIS div.invitation{
     float: right;
     padding-right: 0!important;
     margin-top: -4px!important;
-    width: 113px!important;
+    width: 124px!important;
     margin-left: 59%;
     position: absolute;
     display: block;
     padding: 3px 0;
     height: 22px;
+    font-size: 11px;
 }
 
 .THIS .inv_img {
-  width: 10px;
-  height: 10px;
-  margin-left: 5px;
+    width: 10px;
+    height: 10px;
+    margin-left: 5px;
 }
 .THIS .invitation{
-  width: 12rem;
-  height: 2rem;
-  background:#70dbdb ;
-  border-radius: 10px;
-  font-size: 1rem;
-  color: white;
-  font-weight: 600;
-  margin-left:1rem;
+    width: 12rem;
+    height: 2rem;
+    background:#70dbdb ;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: white;
+    font-weight: 600;
+    margin-left:1rem;
     padding-right:8px;
     margin-top:20px;
+}
+.THIS .home-page-container-ul{
+    background: WHITE;
+    height: 54PX;
+    margin: 0 10PX 14PX 10PX;
+    border-radius: 10px 0 0 10px;
+}
+.THIS .new-class{
+    BACKGROUND: PINK;
+    FLOAT: LEFT;
+    HEIGHT: 54PX;
+    font-size: 7px;
+    MARGIN: 0 10PX;
+    color: transparent;
+    border-radius: 5px 0 0 5px;
+}
+.THIS .image-ref{
+    border: 1px solid #e0dfdf;
+    border-radius: 5px;
+    float: right;
+    margin-top: -20px;
+    margin-right: 10px;
+    padding: 5px;
+    width: 35px; 
+}
+.THIS.feedback-div{
+    margin-top: -42px;
 }

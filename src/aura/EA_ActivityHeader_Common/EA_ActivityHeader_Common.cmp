@@ -1,0 +1,34 @@
+<aura:component >
+    <aura:attribute name="themeName" type="Map"/>
+    <aura:attribute name="activityName" type="Map"/>
+    <aura:attribute name="themeColors" type="Map"/>
+    <aura:attribute name="activityRating" type="string"/>
+    <aura:attribute name="check_image" type="Map"/>
+    <aura:attribute name="numbers" type="Map"/>
+    <aura:attribute name="remain" type="Map"/> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+  
+    <div class="activity-sec" style="{!'background:'+ v.themeColors +';'}">
+        <div class="slds-text-body--small a-title"><p><ui:outputText value="{!v.themeName}"/></p></div>
+        <div class="slds-text-heading--small t-title"><h4><ui:outputText value="{!v.activityName}"/></h4></div>
+        <aura:if isTrue="{!v.check_image}">
+            <span class="check_image_auto"><img src="/resource/Lightning_designing_style/assets/icons/utility/check_60.png"></img></span>
+        </aura:if>     
+        
+        <div class="default-rating" style="margin-left:-5px;">
+            <aura:if isTrue="{!v.activityRating != null}">
+                <aura:iteration items="{!v.numbers}" var="rating">
+                    <span>
+                        <img  value="{!rating}" class="starfill" src="/resource/Lightning_designing_style/assets/icons/utility/favorite_60.png" alt="person name" />
+                    </span>
+                </aura:iteration>
+                
+                <aura:iteration var="rating1" items="{!v.remain}">
+                    <span style="margin-left=12px;">
+                        <img   value="{!rating1}" class="starfill" src="/resource/Lightning_designing_style/assets/icons/utility/favorite.svg" alt="person name" />
+                    </span>
+                </aura:iteration>
+            </aura:if>
+        </div>
+    </div>
+</aura:component>

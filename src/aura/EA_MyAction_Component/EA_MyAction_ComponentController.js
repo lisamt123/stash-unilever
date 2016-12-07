@@ -1,6 +1,7 @@
 ({
 	doInit : function(component, event, helper) {
         var action=component.get("c.getUserActivities");
+        component.set("v.showspinner",true);
         var actvity=[];
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -9,26 +10,31 @@
             var inactiveActivities=[];
             if (state === "SUCCESS" && response.getReturnValue()!=='') {
                 var items=response.getReturnValue();
+               
                  for(var i=0;i<items.length;i++)
                  {
+                      //alert(JSON.stringify(items[i]));
                      if(items[i].isActive ===true)
                      {
                          active.push(items[i]);
+                         
                      }
                      
                      else if(items[i].isActive ===false)
                      {
                             inactiveActivities[items[i].activity_name] = items[i];
+                         
                      }
                  }
                  //var inactive=new Array();
                   var inactive=[];
-                  for(var item in inactiveActivities)
-                  {     
-                      if(inactiveActivities[item].isActive===true){
-                         inactive.push(inactiveActivities[item]);
-                      }
-                 }
+                for(var item in inactiveActivities)
+                {     
+                    if(inactiveActivities[item].isActive===true){
+                        inactive.push(inactiveActivities[item]);
+                    }
+                }
+                console.log("inactive"+inactive.length);
                 var completedActivity=[];
               /* For Completed Activities */  
                 for(var i=0;i<active.length;i++)
@@ -64,9 +70,10 @@
                 }
                 if(items.length>0){
                     component.set("v.acivities", response.getReturnValue());
-                     component.set("v.Active_activities", finalActivityList);
-                      component.set("v.invitedActivities", invitedActivities);
-                     component.set("v.Inactive_acivities", inactive);
+                    component.set("v.Active_activities", finalActivityList);
+                    component.set("v.invitedActivities", invitedActivities);
+                    component.set("v.Inactive_acivities", inactive);
+                    
                     
                 }
                 else{
@@ -75,5 +82,8 @@
             }
         });
         $A.enqueueAction(action);
+       
+        component.set("v.showspinner",false);
     },
+    
 })

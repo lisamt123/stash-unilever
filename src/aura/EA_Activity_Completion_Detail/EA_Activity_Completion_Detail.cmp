@@ -1,0 +1,16 @@
+<aura:component >
+    <aura:attribute name="minutestoComplete" type="string"/>
+    <aura:attribute name="peopleRequired" type="string"/>
+    <aura:attribute name="activityPoints" type="string"/>
+    <div class="min-sec min-sec1">
+        <table class="min-table"><tr>
+            <td class="td_img_icon"> <img class="img_icon_size" src="/resource/Lightning_designing_style/assets/icons/utility/clock_60.png" alt="tick" /></td>
+            <td class="slds-text-body--medium tdFont"><ui:outputText value="{!v.minutestoComplete}"/>   min  </td>
+            <td class="td_img_icon"><img class="img_icon_size" src="/resource/Lightning_designing_style/assets/icons/utility/user_60.png" alt="tick" /></td>
+            <td class="slds-text-body--medium tdFont"><ui:outputText value="{!v.peopleRequired}"/>  people</td>
+            <td class="td_img_icon"><img class="img_icon_size" src="/resource/EA_StaticResource/images/badge.svg" alt="tick" /></td>
+            <td class="slds-text-body--medium tdFont"><ui:outputText value="{!v.activityPoints}"/>  points</td>
+            </tr>
+        </table>
+    </div>
+</aura:component>

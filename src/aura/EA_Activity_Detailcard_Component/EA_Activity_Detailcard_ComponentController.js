@@ -1,7 +1,6 @@
 ({
     getData : function(component, event, helper){
-         component.set("v.showspinner",true);
-        
+        $(".uiSpinner").removeClass("spinner");
         var action=component.get("c.getActivities");
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -10,17 +9,18 @@
                 component.set("v.activities", response.getReturnValue());
                 
                 tabstyle=component.find("myaction") ;
-                $A.util.addClass(tabstyle, "active");
+                $A.util.addClass(tabstyle, "slds-active");
                 helper.getBoolean(component);
                 component.set("v.showdownarrow",true); 
                 helper.getAllThemeColor(component);
-                var index=component.get("index");
+                var index=component.get("v.index");   
+                console.log("index in detailcard: "+index);
+                //alert(index);
                 setTimeout(function() {
                     $A.run(function() {
-                    $('.carousel').slick({'arrows': false});
+                        $('.carousel').slick({'arrows': false});
                     });
-                });
-           
+                });                
             }   
         });
         $A.enqueueAction(action);
@@ -46,7 +46,7 @@
         setTimeout( "jQuery('.outer_sec1').hide();",2000 );
         setTimeout( "jQuery('.outer_sec2').show();",2000 );
         component.set("v.showspinner",false);
-         
+        //alert();
     },
     showmyactions1 : function(cmp,event,helper){
         cmp.set("v.showswipe",false);
@@ -61,8 +61,8 @@
     applyfilter : function(component, event, helper) {
         setTimeout( "jQuery('.outer_sec').hide();",2000);
         $('.outer_sec').hide();
-          component.set("v.showspinner",true);
-         component.set("v.showdownarrow",true);
+        component.set("v.showspinner",true);
+        component.set("v.showdownarrow",true);
         component.set("v.showuparrow",false);
         component.set("v.showDetailCard",false);
         var filter=event.getParam("theme");
@@ -200,6 +200,7 @@
     },	
     
     showFeedback :function(cmp,event,helper){
+        //alert(event.getParam("themeColors"));
         var actId=event.getParam("activityId");
         var memberid=event.getParam("team_memberid");
         var rating=event.getParam("participant_rating");
@@ -208,7 +209,7 @@
         // Page Index for Backbutton
         var pageIndex=event.getParam("navigatePageIndex");
         cmp.set("v.pageIndex",pageIndex);
-        
+        cmp.set("v.themeColorsForFeedback",event.getParam("themeColors"));
         cmp.set("v.index",index);
         cmp.set("v.pagename",page);
         cmp.set("v.activityId",actId);
@@ -224,7 +225,7 @@
         cmp.set("v.showDetailCard",false);
     },
     showToDoActivityPage : function(component, event, helper) {
-         
+        
         var actId=event.getParam("activityId");
         var page=event.getParam("pagename");
         var index=event.getParam("index");
@@ -259,6 +260,7 @@
         component.set("v.showtodoactpage",false);
         component.set("v.showInvitation",true);
         component.set("v.showDetailCard",false);
+        
     },
     
     gotoDetail2 : function(cmp,event,helper){
@@ -278,13 +280,12 @@
         helper.getactivities1(cmp);
     },
     showShareComp : function(component, event, helper) {
-       
+        
         var actvity=event.getParam("activity");
         var id=event.getParam("activityId");
         var page=event.getParam("pagename");
         var index=event.getParam("index");
-         // Page Index for Backbutton
-         
+        
         var pageIndex=event.getParam("navigatePageIndex");
         component.set("v.pageIndex",pageIndex);
         component.set("v.selectedactivityId",id); 
@@ -296,14 +297,14 @@
         component.set("v.showswipe",false);
         component.set("v.showtabs",false);
         component.set("v.MyActions",false);
-       
+        
         component.set("v.showAllthemebutton",false);
         component.set("v.showtodoactpage",false);
         component.set("v.showInvitation",false);
         component.set("v.showchatter",true);
         component.set("v.showDetailCard",false);
-         
-         
+        
+        
     },
     
     showPrevious : function(cmp,event,helper){
@@ -331,8 +332,8 @@
             setTimeout(function() {
                 $A.run(function() { 
                     $('.carousel').slick({'arrows': false});
-                	$('.carousel').slick('slickGoTo',pageIndex,true);
-               });
+                    $('.carousel').slick('slickGoTo',pageIndex,true);
+                });
             });
             helper.showTabActive(cmp,event,'themes');
         }else  if(pagename ==='MyAction')
@@ -382,4 +383,16 @@
             helper.showTabActive(cmp,event,'myaction');
         }
     },
+    showSpinner : function (component, event, helper) {
+        var spinner = component.find('spinner');
+        var evt = spinner.get("e.toggle");
+        evt.setParams({ isVisible : true });
+        evt.fire();    
+    },
+    hideSpinner : function (component, event, helper) {
+        var spinner = component.find('spinner');
+        var evt = spinner.get("e.toggle");
+        evt.setParams({ isVisible : false });
+        evt.fire();    
+    }, 
 })

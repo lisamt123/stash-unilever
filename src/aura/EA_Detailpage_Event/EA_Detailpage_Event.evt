@@ -6,4 +6,5 @@
     <aura:attribute name="showcontent" type="boolean"/>
     <aura:attribute name="index" type="integer"/>
     <aura:attribute name="navigatePageIndex" type="integer"/>
+    <aura:attribute name="themeColor" type="String"/>
 </aura:event>

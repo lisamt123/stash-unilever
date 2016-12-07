@@ -1,20 +1,27 @@
 ({
     doInit : function(component, event, helper) {
-        
+        var ids=[];
+        ids=component.get("v.booleanValue");
+        for(var i=0;i<ids.length;i++)
+        {
+            
+            if(ids[i] === component.get("v.activityId"))
+            {
+                component.set("v.check_image",true);
+            }
+        }
         var pagename=component.get("v.pagename");
-        console.log("todo"+pagename);
         component.get("v.selectedUsers",[]);
         var activityid=component.get("v.activityId");
         var action=component.get("c.getactivitydetail");
         action.setParams({"ActivityID":activityid});
-         
+        
         action.setCallback(this, function(response) {
-          
+            
             var state = response.getState();
-             
+            
             if (state === "SUCCESS" && response.getReturnValue()!=='') {
                 var items = response.getReturnValue();
-                
                 component.set("v.activity",items[0]);
                 component.set("v.maxLimit",items[0].Participants_Required__c);
                 var rectype=component.get("v.themerecordtype");
@@ -24,9 +31,23 @@
                         component.set("v.themecolor", actionColor[prop]);
                     }
                 }
-                
                 helper.getToDoTimeline(component);
                 helper.getPrticipantCount(component);
+                var numbers = [];
+                for (var i = 0; i < items[0].Rating__c; i++) {
+                    numbers.push({
+                        value: i
+                    });
+                }
+                var remain = [];
+                for (var i = 0; i < 5-items[0].Rating__c; i++) {
+                    remain.push({
+                        value: i
+                    });
+                }
+                component.set("v.rating_value",items[0].Rating__c);
+                component.set("v.numbers", numbers);
+                component.set("v.remain", remain);
             }
         });
         $A.enqueueAction(action);
@@ -57,18 +78,17 @@
         // Set user list for to do activity
         var toDoActivityUser = cmp.get("v.selectedUsers");
         for (var i=0;i<toDoActivityUser.length;i++) {
-             if (toDoActivityUser[i] === itemId) {
-                 console.log("handleIdUpdate#User:"+ itemId +" already exist");
-                 return;
-             }
+            if (toDoActivityUser[i] === itemId) {
+                console.log("handleIdUpdate#User:"+ itemId +" already exist");
+                return;
+            }
         }
         toDoActivityUser.push(itemId);
-        
         cmp.set('v.selectedUsers', toDoActivityUser);
         // Set the Id bound to the View
         cmp.set('v.recordId', itemId);
     },
- 	/**
+    /**
      * Handler for receiving the clearLookupIdEvent event
      */
     handleIdClear : function(cmp, event, helper) {

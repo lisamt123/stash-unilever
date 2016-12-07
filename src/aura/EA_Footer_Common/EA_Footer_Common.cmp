@@ -1,0 +1,16 @@
+<aura:component >
+    <aura:attribute name="activity" type="String"/>
+    <aura:attribute name="pagename" type="String"/>
+    <aura:attribute name="index" type="Integer"/>
+    <aura:attribute name="activityId" type="String"/>
+    <aura:attribute name="themeColors" type="String"/>
+    <aura:attribute name="navigatePageIndex" type="Integer"/>
+    <aura:attribute name="pageIndex" type="Integer"/>
+    <div class="slds-tabs--default chat_icon">
+        <ul class="slds-tabs--default__nav" role="tablist" style="width:100%;">
+            <li class="slds-tabs--default__item"  role="presentation"><div class="share_img"> <img class="right_arrow" src="/resource/Lightning_designing_style/assets/icons/utility/share_post_60.png" alt="tick" onclick="{!c.callfeedback}"/></div></li>
+            <li class="slds-tabs--default__item"  role="presentation"><div class="approve_img"><button class="footer-enrol slds-button--neutral slds-button--brand  submit" onclick="{!c.calltodoactivity}" >Enrol</button></div></li>
+            <li class="slds-tabs--default__item"  role="presentation"><div class="share_img"> <img class="right_arrow" src="/resource/EA_StaticResource/images/share_60.png" alt="tick" onclick="{!c.commentspage2}"/></div></li>           
+        </ul>
+    </div>
+</aura:component>

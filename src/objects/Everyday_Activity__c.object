@@ -144,7 +144,6 @@
     <listViews>
         <fullName>All</fullName>
         <columns>RECORDTYPE</columns>
-        <columns>Rating__c</columns>
         <columns>NAME</columns>
         <columns>Activity_Points__c</columns>
         <columns>Description__c</columns>
@@ -251,6 +250,11 @@
         <active>true</active>
         <description>Line Manager will be Theme for an Activity.</description>
         <label>Line Manager</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Smart_Spending</fullName>
+        <active>true</active>
+        <label>Smart Spending</label>
     </recordTypes>
     <recordTypes>
         <fullName>Working_Effectively</fullName>

@@ -1,113 +1,111 @@
-.THIS .slds .slds-text-body--regular space_below{
-    margin-top: 60px;
-  font-size: 14px;
-  line-height: 1.25;
-  margin-left: 15px;
-  font-weight: bold;
-}
 .THIS .act_space{
     margin-top:4rem;
 }
 .THIS .actionTitle {
     line-height: 1.25;
-    margin-left: 20px;
-    font-weight: bold;
-    margin-top: 15px;
-    padding-top: 10px;
-    font-size: 1.4rem;
-    padding-bottom: 20px;
+    margin-left: 1rem;
+    padding-top: 1rem;
+    font-size: 20px;
+    font-weight: 400;
 }
 .THIS .dashTitle {
-    margin-left: 20px;
-    font-weight: bold;
-    margin-top: 67px;
-    padding-top: 50px;
-    text-transform: capitalize;
-    font-size: 1.4rem;
-    margin-bottom: 20px;
+    margin-left: 1.1rem;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 3.1rem;
+    margin-bottom: -1rem;
+    line-height: 5rem;
 }
 
 .THIS .dashboard{
-    background:#EEF1F6;
     margin-top:-50px;
-    }
-.THIS .right_arrow{
-    width:10px;
-    height:10px;
-    margin-left:180px;
-    }
-
-.THIS .badges_name :nth-child(1) {
-    margin: -7px;
 }
-.THIS .badges_name :nth-child(2) {
-    padding: 6px;
-}
-.THIS .badges_name :nth-child(4) {
-    padding: 15px;
-}
-
-   
-
-
-.THIS .badges_name{
-    position: absolute;
-    margin-top: 65px;
-    margin-left: 5px;
-    
-
-}
- 
-.THIS .bigcirlce3.active {
-    border-radius: 60%;
+.THIS .progressbar{
+    display: block;
+    height: 16px;
     background: green;
-    width: 70px;
-    height: 70px;
+    border-radius: 15px 0px 0px 15px;
+    clear: both;
+    width: 0%;
+    margin-top:3px;
+    max-width: 100%;
+    position:absolute;
+}
+.THIS .currentpoints{
     position: absolute;
-    margin-top: 35px;
-
-}
-        
-.THIS img.user_badge {
- display: block;
- padding-left:20%;
-}
-
-.THIS  .main_badge_image_newbee_img_pos {
-    margin-left:9%;   
-    margin-bottom: -15px;
-}
-.THIS  .main_badge_image_bronze_img_pos {
-    margin-left:27%; 
-    margin-bottom: -15px;
-}
-.THIS  .main_badge_image_silver_img_pos {
-    margin-left:45%; 
-    margin-bottom: -15px;
-}
-.THIS  .main_badge_image_gold_img_pos {
-    margin-left:66%; 
-    margin-bottom: -15px;
-}
-.THIS  .main_badge_image{
-    width: 85px;
+    right: 10px;
+    top: 3px;
+    color: white;
     text-align: center;
-        
- }
-.THIS .progress_bar{
-    text-align: center;
+    font-size:11px;
 }
-.THIS  img.user_badge-New {
-    border-radius: 34px;
-        width: 75%;
-}    
-.THIS .prg_image{
-    width:90%;
-   margin: 0 auto;
-} 
-.THIS .main_image_content{
+.THIS .home_user_img{
+    border-radius: 50px;
+}
+.THIS .point-1,.THIS .point-2,.THIS .point-3, .THIS .points-icon-1, .THIS .points-icon-2, .THIS .points-icon-3{
+    float:left;   
+}
+.THIS .point-4{
+    position: absolute;
+    right: 0px;
+}
+.THIS .points-icon-4{
+    float: right;
+    margin-top: -68px;
+    margin-right: -19px;    
+}
+.THIS .points-icon img{
+    width:43px;
+}
+.THIS .points-icon{
+    margin-left: -18px;
+}
+.THIS .Defaultprogressbar{
+    background: #cec9c9;
     width: 100%;
-  margin-right: 5%;
-    
-}       
-.THIS ul li{list-style:none;}
+    height: 16px;
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-top:3px;
+    Position:absolute;
+}
+.THIS .home_user_img{
+    position: relative;
+    min-width: 40px;    
+}
+.THIS .points{
+    position: relative;
+    top: -11%;
+}
+.THIS .new{
+    width: 100%;
+    position: relative; 
+    text-align: right;
+}
+.THIS .new img{
+    width:41px;
+    min-width:41px;
+}
+.THIS .Profile_Pic_Pints{
+    text-align: right;    
+}
+.THIS .box-dashboard{
+    height: 193px;
+    width: 101%;
+    margin: 0 auto;
+    padding: 4.5% 10%;
+    background: white;
+    width: 94%;
+    margin-bottom: 20px;
+}
+.THIS .Main_Progress{
+    position:Relative;
+    width:100%;
+}
+.THIS .position{
+    margin-left: -19px !important;
+    min-height: 50px;
+    min-width: 50px;
+    padding-right: 4px;
+    margin-left: 6%;
+}

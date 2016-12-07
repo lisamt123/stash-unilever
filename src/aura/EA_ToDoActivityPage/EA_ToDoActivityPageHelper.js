@@ -12,7 +12,6 @@
         $A.enqueueAction(action);
     },
     callToDoSubmitAction : function (cmp,event){
-        cmp.set("v.showLoading",true);
         var actTimeField = cmp.find('activityTime').getElement();
         var selUserCmp = $A.util.json.encode(cmp.get("v.selectedUsers"));
         var act = cmp.get("v.activity");
@@ -21,7 +20,6 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!==''){
-                cmp.set("v.showLoading",false);
                 var act = cmp.get("v.activity");
                 var pagename=cmp.get("v.pagename");
                 var index=cmp.get("v.index");
@@ -50,7 +48,6 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!==''){
-                console.log("#ToDoHelper:participantCount:"+ response.getReturnValue());
                 cmp.set("v.participantCount",response.getReturnValue());
             }
         });

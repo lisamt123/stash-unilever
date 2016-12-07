@@ -26,6 +26,20 @@
       if(actvity.invitation_status ==='Invited'){
             component.set("v.showInvitation",true);
        } 
+        
+       var action1=component.get("c.getColorTheme");
+        var activityname=actvity.theme_name;
+         //alert("color" + action1);
+        action1.setParams({"ActivityName":activityname});
+        action1.setCallback(this, function(response) {
+        var state = response.getState(); 
+        if (state === "SUCCESS" && response.getReturnValue()!=='') {
+        var color=response.getReturnValue();
+         component.set("v.themecolor",color);
+
+        }     
+        });
+        $A.enqueueAction(action1);
     },
     
     gotoInvitation :function(cmp, event, helper) {
@@ -37,10 +51,10 @@
     },
     gotofeedback : function(component, event, helper) {
         helper.scrollToLocation(component, "top"); 
-        console.log("feedback");
+      // alert(component.get("v.themecolor"));
         var member=component.get("v.activity");
         var feedbackevent=$A.get("e.c:EA_Feedback_Event");
-        feedbackevent.setParams({"activityId":member.acivityId,"team_memberid":member.member_Id,"participant_rating":member.participant_rating});
+        feedbackevent.setParams({"activityId":member.acivityId,"themeColors":component.get("v.themecolor"),"team_memberid":member.member_Id,"participant_rating":member.participant_rating});
         feedbackevent.fire();
     }
 })

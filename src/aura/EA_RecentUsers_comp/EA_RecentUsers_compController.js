@@ -1,6 +1,5 @@
 ({
     getUsersPics : function(component, event, helper) {
-        
         var action =component.get("c.getuserList");
         action.setParams({"recentactivityid":component.get("v.recentactivityid")});
         action.setCallback(this, function(response) {
@@ -11,16 +10,12 @@
                 component.set("v.users", items);
                  component.set("v.showrecentUsers", true);
                 }
-            
             else
              {
                component.set("v.showmessage", true); 
              }  
             }
-        
         });
         $A.enqueueAction(action);
         },
-    
- 
 })

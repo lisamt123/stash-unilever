@@ -1,8 +1,8 @@
 .THIS .regular_font{
     font-weight: 100;
-    font-size: 1.2rem;
-    padding-bottom: 20px;
-    padding-top: 1rem;
+    font-size: 12px;
+    padding-bottom: 5px;
+    padding-top:10px;
     color: #4f6a92;
     margin-left: 15px;
     width: 100%;
@@ -10,7 +10,7 @@
 }
 .THIS .list_name{
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1;
     margin-left: 15px;
     margin-top: -20px;
@@ -38,12 +38,13 @@
     float: right;
     padding-right: 0!important;
     margin-top: -19px!important;
-    width: 113px!important;
+    width: 120px!important;
     margin-left: 59%;
     position: absolute;
     display: block;
     padding: 3px 0;
     height: 22px;
+        font-size: 11px;
 }
 
 .THIS .inv_img {
@@ -78,3 +79,24 @@
     margin-left: 300px;
     margin-top: -36px;
     }
+.THIS .invitation1{
+	float: right;
+    padding: 6px;
+    margin-top: -38px;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+}
+.THIS .new-class{
+    BACKGROUND: PINK;
+    FLOAT: LEFT;
+    HEIGHT: 54PX;
+    font-size: 7px;
+    color: pink;
+    border-radius: 5px 0 0 5px;
+}
+.THIS .home-page-container-ul{
+    background: WHITE;
+    height: 54PX;
+    margin: 0 10PX 14PX 10PX;
+    border-radius: 10px 0 0 10px; 
+}

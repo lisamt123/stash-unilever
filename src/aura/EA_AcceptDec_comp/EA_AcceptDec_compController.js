@@ -9,13 +9,11 @@
             if (state === "SUCCESS") {
                 if(response.getReturnValue()!==''){
                     var items=response.getReturnValue();
-                    //alert(items[0].Id);
                     var participant_rating = items[0].participant_rating;
-                    //component.set("v.activityid",items[0].Id);
-                    component.set("v.activity", response.getReturnValue());
-                       
+                    component.set("v.activityId",items[0].Id);
+                    component.set("v.activity", response.getReturnValue());                    
                 }
-                 var numbers = [];
+                var numbers = [];
                 for (var i = 0; i < participant_rating; i++) {
                     numbers.push({
                         value: i
@@ -27,9 +25,12 @@
                         value: i
                     });
                 }
+                component.set("v.rating_value",items[0].Rating__c);
+                component.set("v.numberfound", numbers);
+                component.set("v.remainfound", remain); 
                 component.set("v.numbers", numbers); 
                 component.set("v.remain", remain);
-            } 
+            }
         });
         $A.enqueueAction(action);
         
@@ -39,45 +40,22 @@
             if (state === "SUCCESS" && response.getReturnValue()!=='') {
                 var items=response.getReturnValue();
                 component.set("v.userDetail", response.getReturnValue());
-                if(items[0].badgeprogress_color == 'newbee' ){
-                    component.set("v.shownewbee1",true);
+                if(items[0].badgeprogress_color === 'newbee' || items[0].badgeprogress_color === 'newbee1' ){
                     component.set("v.NewBee_badge",true);  
                 }
-                else  if(items[0].badgeprogress_color == 'newbee1' ){
-                    component.set("v.shownewbee2",true);
-                    component.set("v.NewBee_badge",true); 
+                if(items[0].badgeprogress_color === 'bronz1' || items[0].badgeprogress_color === 'bronz2' ){
+                    component.set("v.Bronze_badge",true);  
                 }
-                    else  if(items[0].badgeprogress_color == 'bronz1' ){
-                        component.set("v.showbronz1",true);
-                        component.set("v.Bronze_badge",true); 
-                    }
-                        else  if(items[0].badgeprogress_color == 'bronz2' ){
-                            component.set("v.showbronz2",true);  
-                            component.set("v.Bronze_badge",true); 
-                        }
-                            else if(items[0].badgeprogress_color == 'silver1'){
-                                component.set("v.showsilver1",true); 
-                                component.set("v.Silver_badge",true);                        
-                            }
-                                else  if(items[0].badgeprogress_color == 'silver2' ){
-                                    
-                                    component.set("v.showsilver2",true);
-                                    
-                                    component.set("v.shownewbee2",false);
-                                    component.set("v.showbronz2",false); 
-                                    component.set("v.Silver_badge",true); 
-                                }
-                                    else  if(items[0].badgeprogress_color == 'gold'){
-                                        
-                                        component.set("v.showgold",true);
-                                        component.set("v.Gold_badge",true); 
-                                    }
-            } 
-        });
-        $A.enqueueAction(action);
-        
-        
-        
+                if(items[0].badgeprogress_color === 'silver1' || items[0].badgeprogress_color === 'silver2' ){
+                    component.set("v.Silver_badge",true);  
+                }
+                if(items[0].badgeprogress_color == 'gold'){
+                    component.set("v.Gold_badge",true); 
+                }
+            }     
+            
+        });        
+        $A.enqueueAction(action);        
     },
     Acceptmethod1: function(component, event, helper) {
         var aid=component.get("v.activityId");

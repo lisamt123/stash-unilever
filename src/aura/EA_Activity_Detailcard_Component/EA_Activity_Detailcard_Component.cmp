@@ -1,7 +1,21 @@
 <aura:component controller="EA_ControllerClass">
+    <!--<ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />-->
+    <ltng:require styles="{!$Resource.Lightning_designing_style +'/assets/styles/salesforce-lightning-design-system.min.css'}" />
+    <ltng:require styles="/resource/Slick_latest/slick/slick.css,/resource/Slick_latest/slick/slick-theme.css" scripts="/resource/Jquery_3_1_1/jquery-3.1.1.min.js,/resource/Slick_latest/slick/slick.min.js" afterScriptsLoaded="{!c.getData}"/>
+     <ltng:require styles="{!join(',',
+                          !$Resource.Lightning_designing_style +'/assets/styles/salesforce-lightning-design-system.min.css',
+                          !$Resource.Slick_latest +'/slick/slick.css',
+                          !$Resource.Slick_latest +'/slick/slick-theme.css'
+                          )}"
+                  scripts="{!join(',',
+                           !$Resource.Jquery_3_1_1 +'/jquery-3.1.1.min.js',
+                           !$Resource.Slick_latest +'/slick/slick.min.js'
+                           )}"
+                  afterScriptsLoaded="{!c.getData}"/>
     <aura:attribute name="activities" type="EA_Wrapper_Class.EA_RecentlyCompletedUsers[]"/>
     <aura:attribute name="activityDetail" type="Everyday_Activity__c[]"/>
     <aura:attribute name="booleanValue" type="List"/>
+    <aura:attribute name="themeColorsForFeedback" type="string"/>
     <aura:attribute name="activityForShare" type="Everyday_Activity__c"/>
     <aura:attribute name="selectedfilter" type="string" default="All Themes"/>
     <aura:attribute name="showAllthemebutton" type="boolean" default="false"/>
@@ -21,194 +35,100 @@
     <aura:attribute name="showDetailCard" type="boolean" default="false"/>
     <aura:attribute name="showchatter" type="boolean" default="false"/>
     <aura:attribute name="pagename" type="string"/>
-    <aura:attribute name="index" type="integer" default="0"/>
+    <aura:attribute name="index" type="integer" default="0" />
     <aura:attribute name="pageIndex" type="integer"/>
     <aura:attribute name="showspinner" type="Boolean" default="true"/>
-   
-    
-
     <aura:attribute name="activityId" type="string" />
     <aura:handler event="c:EA_Feedback_Event" action="{!c.showFeedback}"/> 
-    
     <aura:attribute name="showtodoactpage" type="boolean" default="false" />
     <aura:handler event="c:EA_ToDoActivity_Event" action="{!c.showToDoActivityPage}"/> 
-    
     <aura:handler event="c:EverydayAction_Active_Filter_Event" action="{!c.applyfilter}"/>
     <aura:handler event="c:EverydayAction_Filter_Cancel_Event" action="{!c.cancelfilter}"/> 
     <aura:handler event="c:EA_Detailpage_Event" action="{!c.gotoDetail}"/> 
     <aura:handler event="c:EA_Accept_Event" action="{!c.gotoInvitation}"/>
     <!--<aura:handler name="init" value="{!this}" action="{!c.getData}" />-->
-    
-    <ltng:require styles="/resource/EA_StaticResource/css/bootstrap.3.3.css,/resource/EA_StaticResource/slick/slick.css,/resource/EA_StaticResource/slick/slick-theme.css,/resource/EA_StaticResource/css/main.css,/resource/EA_StaticResource/assets/styles/salesforce-lightning-design-system-vf.css" scripts="/resource/EA_StaticResource/jquery/jquery.js,/resource/EA_StaticResource/slick/slick.min.js" afterScriptsLoaded="{!c.getData}"/>
     <!--aura:handler name="init" value="{!this}" action="{!c.callSlick}"/-->
     <aura:handler event="c:EA_Decline" action="{!c.gotoDetail2}"/>
     <aura:handler event="c:EA_Showshare_Event" action="{!c.showShareComp}"/>
     <aura:handler event="c:EA_Back_Event" action="{!c.showPrevious}"/>
     <aura:attribute name="showLoading" type="boolean" default="false"/>
-    <style>
-        .outer_sec{
-    /*padding-top:2px;*/
-    height:100%;
-    display:none;
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/> 
     
-}
-        .outer_sec2{
-    /*padding-top:2px;*/
-    height:100%;
-    display:none;
-    
-}
-
-        .filter-container {
-        margin-top: 50px;
-        margin-left: 20px;
-        margin-bottom: 10px;
-        }
-        .theme_space{
-        padding-top:20px;
-        }
-        .nav-pills li {
-        display: block;
-        float: left;
-        margin: 0;
-        position: relative;
-        width: 49.5%;
-        background-color:#fff;
-        }
-        .nav-pills>li+li {
-        margin-left:0px;
-        }
-        .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
-        color: #fff;
-        background-color: #337ab7;
-        }
-        .nav>li>a {
-        position: relative;
-        display: block;
-        padding: 10px 15px;
-        }
-        .nav-pills>li>a {
-        width: auto;
-        }
-        .list-inline>li {
-        width: 32%;
-        float: left;
-        padding-left: 20px;
-        }
-        
-        .slds ul {
-        list-style: none;
-        margin-left: 0px;
-        }
-        
-        .slds .slds-fade-in-open {
-        background-color: black;
-        opacity: 0.5;
-        visibility: visible;
-        -webkit-transition: opacity 0.1s linear;
-        transition: opacity 0.1s linear;
-        }
-        .slds .slds-spinner--small {
-        width: 32px;
-        height: 32px;
-        margin-left: 40%;
-        }
-        .uiSpinner.spinner {
-            margin-top: 68px;
-            margin-bottom: -74px;
-		}
-             .outer_sec1{
-    /*padding-top:2px;*/
-    height:100%;
-    display:show;
-    
-}
-    </style>
-    <div class="outer_sec1">
-         <center><img style="width:10%;top:50%;position:absolute;" src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif"></img></center> 
-    </div>
-   <div class="outer_sec2"> 
-    <aura:if isTrue="{!v.showtabs}">
-        <div class=" navbar-fixed-top " >
-            <ul class="nav nav-pills" >
-                <li  aura:id="myaction" class="active_class" onclick="{!c.callMyAction}">{!$Label.c.EA_MyActionsTab_Title}</li>
-                <li aura:id="themes" class="inactive_class" onclick="{!c.callShowSwipe}">{!$Label.c.EA_ThemeTab_Title}</li>
-            </ul>
-        </div>
-    </aura:if>
-    <div class="slds">
-         
-        <div>
-            
-            <aura:if isTrue="{!v.MyActions}">
-                <c:EA_MyAction_Component /> 
-            </aura:if>
-            <aura:if isTrue="{!v.showspinner}"><center><img style="width:10%;position: absolute;top:50%;" src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif"></img></center></aura:if>
-                        
-            <aura:if isTrue="{!v.showAllthemebutton}">
-                <div class="filter-container">
-                    <div aura:id="themeFilter" class="theme_space" onclick="{!c.callFilterComponent}"  >
-                        <span class="tilteTheme">{!v.selectedfilter}</span>&nbsp;
-                        <aura:if isTrue="{!v.showdownarrow}">
-                            <img src="/resource/EA_StaticResource/images/down_60.png" height="10" width="10"/></aura:if>
-                        <aura:if isTrue="{!v.showuparrow}">
-                            <img src="/resource/EA_StaticResource/images/up_60.png" height="7" width="7"/> </aura:if>
-                    </div>
-                </div>  
-            </aura:if>
-            <aura:if isTrue="{!v.showswipe}">
-                <div class="carousel">
-                    <aura:iteration items="{!v.activities}" var="activity" indexvar="indexval" start="{!v.index}">
-                        <div class="container">
-                            <c:EA_Activity_Detail_Component activity="{!activity}" showcontent="{!v.showDetailCard}"  themeColors="{!v.themeColors}" themeName="{!v.showAllthemebutton}"  showswipecard="{!v.showswipe}" detailPage="{!v.detailpage}" booleanValue="{!v.booleanValue}"/>
-                        </div>
-                    </aura:iteration>
-                </div>
-            </aura:if> 
-            <aura:if isTrue="{!v.showfilter}">
-                <div class="slds">
-                    <c:EverydayAction_Filter_Component temp="{!v.selectedfilter}"/>
-                </div>
-            </aura:if>
-            <aura:if isTrue="{!v.detailpage}">
-                <div class="carousel" style="margin-top:50px;">
-                    <aura:iteration items="{!v.activities}" var="activity">
-                        <div class="container">
-                            <c:EA_Activity_Detail_Component activity="{!activity}" showcontent="{!v.showDetailCard}"  themeColors="{!v.themeColors}" themeName="{!v.showAllthemebutton}"   showswipecard="{!v.showswipe}" detailPage="{!v.detailpage}" index="{!v.index}" pageIndex="{!v.pageIndex}" />
-                        </div>
-                    </aura:iteration> 
-                </div>
-                
-            </aura:if>
-            
-            <aura:if isTrue="{!v.showfeedback}">
-                <c:EA_FeedBack_comp activityId="{!v.activityId}" team_memberId="{!v.memberid}" participant_rating="{!v.participant_rating}" pagename="{!v.pagename}" index="{!v.index}" pageIndex="{!v.pageIndex}"></c:EA_FeedBack_comp>
-            </aura:if>
-            <aura:if isTrue="{!v.showtodoactpage}">
-                <c:EA_ToDoActivityPage activityId="{!v.activityId}"  themeColors="{!v.themeColors}" pagename="{!v.pagename}" index="{!v.index}"  pageIndex="{!v.pageIndex}"></c:EA_ToDoActivityPage>
-            </aura:if>
-        </div>
-        
-        <aura:if isTrue="{!v.showInvitation}">
-            <c:EA_AcceptDec_comp activityId="{!v.activityId}" teamid="{!v.memberid}"/>
-        </aura:if>
-        
-        <aura:if isTrue="{!v.showchatter}">
-            <c:EA_chatteEmail_component activityDetail="{!v.activityForShare}" pagename="{!v.pagename}" index="{!v.index}" activityId="{!v.selectedactivityId}" pageIndex="{!v.pageIndex}"/> 
-        </aura:if>
-        <aura:if isTrue="{!v.showDetailCard}">
-            <c:EA_Activity_Detailpage_Component EAactivityid="{!v.selectedactivityId}" pagename="{!v.pagename}" index="{!v.index}" pageIndex="{!v.pageIndex}" themeColors="{!v.themeColors}" />
-        </aura:if>
-        
-        <aura:if isTrue="{!v.showLoading}">
-            <div class="slds-modal slds-fade-in-open" style="height:736px;" aria-hidden="false" role="dialog" data-aura-rendered-by="1191:c">
-                <div class="slds-modal__container" data-aura-rendered-by="1192:c">
-                    <div class="slds-spinner--small">
-                        <img src="/resource/EA_StaticResource/assets/images/spinners/slds_spinner.gif" alt="Loading..." />
-                    </div>
-                </div>
+    <div class="outer_sec2"> 
+        <div class="spinner-location"><ui:spinner aura:id="spinner" /></div>
+        <aura:if isTrue="{!v.showtabs}">
+            <div class="slds-tabs--default">
+                <ul class="slds-tabs--default__nav menu_ul" role="tablist">
+                    <li aura:id="myaction" class="slds-tabs--default__item slds-text-title--caps menu_li li_1" title="Item One" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item" onclick="{!c.callMyAction}">{!$Label.c.EA_MyActionsTab_Title}</a></li>
+                    <li aura:id="themes" class="slds-tabs--default__item slds-text-title--caps menu_li li_2" title="Item Two" role="presentation"><a class="slds-tabs--default__link" href="" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item" onclick="{!c.callShowSwipe}">{!$Label.c.EA_ThemeTab_Title}</a></li>
+                </ul>
             </div>
         </aura:if>
-    </div>
-   </div> 
+        <div class="slds">
+            <div>
+                <aura:if isTrue="{!v.MyActions}">
+                    <c:EA_MyAction_Component /> 
+                </aura:if>
+                <aura:if isTrue="{!v.showAllthemebutton}">
+                    <div class="filter-container">
+                        <div aura:id="themeFilter" class="theme_space" onclick="{!c.callFilterComponent}"  >
+                            <span class="slds-text-heading--small tilteTheme">{!v.selectedfilter}</span>&nbsp;
+                            <aura:if isTrue="{!v.showdownarrow}">
+                                <img src="/resource/Lightning_designing_style/assets/icons/utility/chevrondown_60.png" height="20" width="20"/></aura:if>
+                            <aura:if isTrue="{!v.showuparrow}">
+                                <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronup_60.png" height="20" width="20"/> </aura:if>
+                        </div>
+                    </div>  
+                </aura:if>
+                <aura:if isTrue="{!v.showswipe}">
+                    <div class="carousel">
+                        <aura:iteration items="{!v.activities}" var="activity" indexvar="indexval" start="{!v.index}">
+                            <div class="container">
+                                <c:EA_Activity_Detail_Component activity="{!activity}" showcontent="{!v.showDetailCard}"  themeColors="{!v.themeColors}" themeName="{!v.showAllthemebutton}"  showswipecard="{!v.showswipe}" detailPage="{!v.detailpage}" booleanValue="{!v.booleanValue}"/>
+                            </div>
+                        </aura:iteration>
+                    </div>
+                </aura:if> 
+                <aura:if isTrue="{!v.showfilter}">
+                    <div class="slds">
+                        <c:EverydayAction_Filter_Component temp="{!v.selectedfilter}"/>
+                    </div>
+                </aura:if>
+                <aura:if isTrue="{!v.detailpage}">
+                    <div class="carousel" style="margin-top:50px;">
+                        <aura:iteration items="{!v.activities}" var="activity">
+                            <div class="container">
+                                <c:EA_Activity_Detail_Component activity="{!activity}" showcontent="{!v.showDetailCard}"  themeColors="{!v.themeColors}" themeName="{!v.showAllthemebutton}"   showswipecard="{!v.showswipe}" detailPage="{!v.detailpage}" index="{!v.index}" pageIndex="{!v.pageIndex}" />
+                            </div>
+                        </aura:iteration> 
+                    </div>
+                </aura:if>
+                <aura:if isTrue="{!v.showfeedback}">
+                    <c:EA_FeedBack_comp activityId="{!v.activityId}" themeColorsForFeedback="{!v.themeColorsForFeedback}" team_memberId="{!v.memberid}" participant_rating="{!v.participant_rating}" pagename="{!v.pagename}" index="{!v.index}" pageIndex="{!v.pageIndex}"></c:EA_FeedBack_comp>
+                </aura:if>
+                <aura:if isTrue="{!v.showtodoactpage}">
+                    <c:EA_ToDoActivityPage activityId="{!v.activityId}"  themeColors="{!v.themeColors}" pagename="{!v.pagename}" index="{!v.index}"  pageIndex="{!v.pageIndex}" booleanValue="{!v.booleanValue}"></c:EA_ToDoActivityPage>
+                </aura:if>
+            </div>
+            <aura:if isTrue="{!v.showInvitation}">
+                <c:EA_AcceptDec_comp activityId="{!v.activityId}" teamid="{!v.memberid}"/>
+            </aura:if>
+            <aura:if isTrue="{!v.showchatter}">
+                <c:EA_chatteEmail_component activityDetail="{!v.activityForShare}" pagename="{!v.pagename}" index="{!v.index}" activityId="{!v.selectedactivityId}" pageIndex="{!v.pageIndex}"/> 
+            </aura:if>
+            <aura:if isTrue="{!v.showDetailCard}">
+                <c:EA_Activity_Detailpage_Component EAactivityid="{!v.selectedactivityId}" pagename="{!v.pagename}" index="{!v.index}" pageIndex="{!v.pageIndex}" themeColors="{!v.themeColors}" booleanValue="{!v.booleanValue}"/>
+            </aura:if>
+            <aura:if isTrue="{!v.showLoading}">
+                <div class="slds-modal slds-fade-in-open" style="height:736px;" aria-hidden="false" role="dialog" data-aura-rendered-by="1191:c">
+                    <div class="slds-modal__container" data-aura-rendered-by="1192:c">
+                        <div class="slds-spinner--small">
+                            <img src="Lightning_designing_style/assets/images/spinners/slds_spinner.gif" alt="Loading..." />
+                        </div>
+                    </div>
+                </div>
+            </aura:if>
+        </div>
+    </div> 
 </aura:component>

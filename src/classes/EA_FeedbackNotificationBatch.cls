@@ -10,6 +10,7 @@ global with sharing class EA_FeedbackNotificationBatch implements Database.Batch
         String status = 'Self';
         dateTime whenDay = system.today()-1;
         //dateTime nowDay = system.now();
+        //SONAR Fix - status and whenDay are being used at line no.14 , This is salesforce limitation, we have to use it in below manner only
         String q = 'SELECT Activity_Due_Date__c,Id,Invitation_Status__c,Participant__c,Everyday_Activity__c FROM EA_Team_Member__c WHERE Invitation_Status__c =: status AND Activity_Due_Date__c =: whenDay';      
         return Database.getQueryLocator(q);
     }      
@@ -17,7 +18,7 @@ global with sharing class EA_FeedbackNotificationBatch implements Database.Batch
                    
         if(scope != null && scope.size()>0){ 
                           
-            ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput(); 
+            //ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput(); 
             
              
             List<Everyday_Activity__c> acts = new List<Everyday_Activity__c>();
