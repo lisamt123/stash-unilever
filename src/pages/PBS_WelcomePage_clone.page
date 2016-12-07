@@ -11,8 +11,9 @@
     <style type="text/css">
     
         body{
-         background: transparent url("{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/PBS_Welcome_Page.png')}") no-repeat top!important;
-         background-size: 100% 100% !important;
+         //background: transparent url("{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/PBS_Welcome_Page.png')}") no-repeat top!important;
+         //background-size: 100% 100% !important;
+         overflow-y: hidden!important;
            
         }
          .leftheader , .navbar-brand {
@@ -101,7 +102,13 @@
       <!--  <div>
             <apex:image id="theImage" style="width:967px;height:500px;position:relative;top:40px;left:155px;" url="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/PBS_Welcome_Page.png')}" />
         </div>-->
+        
+        <div>
+            <apex:image id="theImage" style="margin-top:-150px" width="100%" url="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/PBS_Welcome_Page.png')}" />
+        </div>
         <style>
+        
+        
         .headerDiv {
     background: transparent !important;
     }
