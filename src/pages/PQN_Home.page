@@ -199,7 +199,7 @@
             <div class="row" style="margin-top: 30px;">
              <div class="col-sm-2 portfolio-item">
                     <a href="./PQN_PalletLossTreeData">
-                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/Archive.png')}" class="img-responsive" alt="Loss Tree Data"/>
+                        <img src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/img/portfolio/lossTree.png')}" class="img-responsive" alt="Loss Tree Data"/>
                     </a>
                     <div class="text-center">
                         <span class="name">Loss Tree Data</span>
