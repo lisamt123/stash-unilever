@@ -308,9 +308,9 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>FSNA_Gross_Margin__c</fullName>
         <externalId>false</externalId>
-        <formula>(Amount - 
+        <formula>(Amount * 0.99 - 
 (FS_TotalRate__c+FSNA_Distributor_TMI__c+FS_TotalHQRate__c+FS_LumpSum__c)-
-Total_Opp_COGS__c) /(Amount - 
+Total_Opp_COGS__c) /(Amount * 0.99 - 
 (FS_TotalRate__c+FSNA_Distributor_TMI__c+FS_TotalHQRate__c+FS_LumpSum__c))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>Average Gross Margin % for all products within opportunity.</inlineHelpText>
@@ -652,7 +652,7 @@ CASE(FSNA_Margin_Market_Code__c,
     <fields>
         <fullName>FSNA_TotalSpend__c</fullName>
         <externalId>false</externalId>
-        <formula>FSNA_BMI__c  +  FS_TotalHQRate__c +  FS_TotalRate__c +  FSNA_Distributor_TMI__c+FS_LumpSum__c</formula>
+        <formula>FS_TotalHQRate__c +   FS_TotalRate__c  +   FSNA_Distributor_TMI__c   +  FS_LumpSum__c + FSNA_BMI__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>Total TMI invested in opportunity (Sum of Distributor and Operator)</inlineHelpText>
         <label>Total Spend</label>
@@ -1216,6 +1216,19 @@ FS_TotalGrossSalesValue__c*(1-FS_onInvoice__c)*FS_offInvoice__c))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TotalTurnoverNA__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Net in Pocket for UFS (NSV - Total TMI)</inlineHelpText>
+        <label>Total Turnover (NA)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>FS_TotalTurnover__c</fullName>

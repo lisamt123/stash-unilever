@@ -87,3 +87,5 @@ src/quickActions/FS_Defined_Objective__c.Create_Risk.quickAction
 src/quickActions/FS_Defined_Objective__c.New_Opportunity.quickAction
 src/quickActions/FS_Account_Plan__c.New_Distributor_Objective.quickAction
 src/quickActions/FS_Account_Plan__c.New_Operator_Objective.quickAction
+src/quickActions/Account.New_Dist_Account_Plan.quickAction
+src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
