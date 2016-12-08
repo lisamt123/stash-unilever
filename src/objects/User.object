@@ -103,6 +103,10 @@
                 <fullName>Agency</fullName>
                 <default>false</default>
             </picklistValues>
+			<picklistValues>
+                <fullName>Approver</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Category Finance</fullName>
                 <default>false</default>
