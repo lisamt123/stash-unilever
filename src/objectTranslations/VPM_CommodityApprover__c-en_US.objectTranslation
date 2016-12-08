@@ -1,0 +1,1003 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Commodity Approver</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Commodity Approvers</value>
+    </caseValues>
+    <fields>
+        <label><!-- Approver 10 --></label>
+        <name>VPM_Approver10__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Approver 10) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approver 1 --></label>
+        <name>VPM_Approver1__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Approver 1) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approver 2 --></label>
+        <name>VPM_Approver2__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Approver 2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approver 3 --></label>
+        <name>VPM_Approver3__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Approver 3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approver 4 --></label>
+        <name>VPM_Approver4__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Approver 4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approver 5 --></label>
+        <name>VPM_Approver5__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Approver 5) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approver 6 --></label>
+        <name>VPM_Approver6__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Approver 6) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approver 7 --></label>
+        <name>VPM_Approver7__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Approver 7) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approver 8 --></label>
+        <name>VPM_Approver8__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Approver 8) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Approver 9 --></label>
+        <name>VPM_Approver9__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Approver 9) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Code --></label>
+        <name>VPM_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commodity Class --></label>
+        <name>VPM_CommodityClass__c</name>
+        <picklistValues>
+            <masterLabel>Activations and Promotions</masterLabel>
+            <translation><!-- Activations and Promotions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ad-hoc Research</masterLabel>
+            <translation><!-- Ad-hoc Research --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Adhesives &amp; Sealants</masterLabel>
+            <translation><!-- Adhesives &amp; Sealants --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Advertising Agency</masterLabel>
+            <translation><!-- Advertising Agency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Advertising Production Services</masterLabel>
+            <translation><!-- Advertising Production Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agile Working</masterLabel>
+            <translation><!-- Agile Working --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Archiving &amp; Records Management Services</masterLabel>
+            <translation><!-- Archiving &amp; Records Management Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand Design</masterLabel>
+            <translation><!-- Brand Design --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Broadcast Advertising Placement</masterLabel>
+            <translation><!-- Broadcast Advertising Placement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Building Maintenance &amp; Repairs Services</masterLabel>
+            <translation><!-- Building Maintenance &amp; Repairs Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business Support Services</masterLabel>
+            <translation><!-- Business Support Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Catering &amp; Vending Services</masterLabel>
+            <translation><!-- Catering &amp; Vending Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cleaning &amp; Janitorial</masterLabel>
+            <translation><!-- Cleaning &amp; Janitorial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Co-op marketing</masterLabel>
+            <translation><!-- Co-op marketing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumer Care</masterLabel>
+            <translation><!-- Consumer Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Continuous Research</masterLabel>
+            <translation><!-- Continuous Research --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corporate &amp; Public Relations Services</masterLabel>
+            <translation><!-- Corporate &amp; Public Relations Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corporate Insurance Services</masterLabel>
+            <translation><!-- Corporate Insurance Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Courier &amp; Mail Services</masterLabel>
+            <translation><!-- Courier &amp; Mail Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Creative Services</masterLabel>
+            <translation><!-- Creative Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Care</masterLabel>
+            <translation><!-- Customer Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical</masterLabel>
+            <translation><!-- Electrical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical innovation device</masterLabel>
+            <translation><!-- Electrical innovation device --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electricity</masterLabel>
+            <translation><!-- Electricity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Factory Technical &amp; Engineering Services</masterLabel>
+            <translation><!-- Factory Technical &amp; Engineering Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Field Sales</masterLabel>
+            <translation><!-- Field Sales --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Financial Services</masterLabel>
+            <translation><!-- Financial Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fleet &amp; Company Vehicles</masterLabel>
+            <translation><!-- Fleet &amp; Company Vehicles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food and Beverage POS</masterLabel>
+            <translation><!-- Food and Beverage POS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Furniture, Fixtures, Space Planning &amp; Office Moves</masterLabel>
+            <translation><!-- Furniture, Fixtures, Space Planning &amp; Office Moves --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global Mobility &amp; Personnel Relocation</masterLabel>
+            <translation><!-- Global Mobility &amp; Personnel Relocation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Goods Transportation &amp; Distribution</masterLabel>
+            <translation><!-- Goods Transportation &amp; Distribution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grants &amp; Subsidies</masterLabel>
+            <translation><!-- Grants &amp; Subsidies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grounds Maintenance Services</masterLabel>
+            <translation><!-- Grounds Maintenance Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HR Benefits and Reward</masterLabel>
+            <translation><!-- HR Benefits and Reward --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HR Services</masterLabel>
+            <translation><!-- HR Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hardware</masterLabel>
+            <translation><!-- Hardware --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IT Services</masterLabel>
+            <translation><!-- IT Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ice Cream POS</masterLabel>
+            <translation><!-- Ice Cream POS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Industrial Supplies</masterLabel>
+            <translation><!-- Industrial Supplies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Instrumentation &amp; Process Control</masterLabel>
+            <translation><!-- Instrumentation &amp; Process Control --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interactive (Digital)</masterLabel>
+            <translation><!-- Interactive (Digital) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interactive Advertising Placement</masterLabel>
+            <translation><!-- Interactive Advertising Placement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intercompany Charges</masterLabel>
+            <translation><!-- Intercompany Charges --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Laboratory Support</masterLabel>
+            <translation><!-- Laboratory Support --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal Services</masterLabel>
+            <translation><!-- Legal Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lubricants</masterLabel>
+            <translation><!-- Lubricants --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Management Consulting</masterLabel>
+            <translation><!-- Management Consulting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing Materials - Warehousing &amp; Logistics</masterLabel>
+            <translation><!-- Marketing Materials - Warehousing &amp; Logistics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Material Handling Equipment</masterLabel>
+            <translation><!-- Material Handling Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mechanical</masterLabel>
+            <translation><!-- Mechanical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media Agency</masterLabel>
+            <translation><!-- Media Agency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Motors &amp; Power Transmissions</masterLabel>
+            <translation><!-- Motors &amp; Power Transmissions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non - Ariba</masterLabel>
+            <translation><!-- Non - Ariba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Occupational Health</masterLabel>
+            <translation><!-- Occupational Health --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Office Consumables</masterLabel>
+            <translation><!-- Office Consumables --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oil &amp; Gas</masterLabel>
+            <translation><!-- Oil &amp; Gas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POS Equipment</masterLabel>
+            <translation><!-- POS Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging Equipment</masterLabel>
+            <translation><!-- Packaging Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging Print Production</masterLabel>
+            <translation><!-- Packaging Print Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payment</masterLabel>
+            <translation><!-- Payment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payroll</masterLabel>
+            <translation><!-- Payroll --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pest Control Maintenance</masterLabel>
+            <translation><!-- Pest Control Maintenance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pipes, Valves &amp; Fittings</masterLabel>
+            <translation><!-- Pipes, Valves &amp; Fittings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pneumatics &amp; Hydraulics</masterLabel>
+            <translation><!-- Pneumatics &amp; Hydraulics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Point of Sale Materials (POSM)</masterLabel>
+            <translation><!-- Point of Sale Materials (POSM) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Premiums</masterLabel>
+            <translation><!-- Premiums --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Print Media Placement</masterLabel>
+            <translation><!-- Print Media Placement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Printed Material</masterLabel>
+            <translation><!-- Printed Material --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Printed Stationary &amp; Forms</masterLabel>
+            <translation><!-- Printed Stationary &amp; Forms --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Equipment</masterLabel>
+            <translation><!-- Process Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production Support</masterLabel>
+            <translation><!-- Production Support --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Relations (Marketing)</masterLabel>
+            <translation><!-- Public Relations (Marketing) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Publications</masterLabel>
+            <translation><!-- Publications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pumps</masterLabel>
+            <translation><!-- Pumps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>R&amp;D and QA Professional Services</masterLabel>
+            <translation><!-- R&amp;D and QA Professional Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Real Estate</masterLabel>
+            <translation><!-- Real Estate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reception &amp; Switchboard Services</masterLabel>
+            <translation><!-- Reception &amp; Switchboard Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reprographics Services</masterLabel>
+            <translation><!-- Reprographics Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resourcing/Permanent Recruitment</masterLabel>
+            <translation><!-- Resourcing/Permanent Recruitment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resourcing/Temporary Staffing</masterLabel>
+            <translation><!-- Resourcing/Temporary Staffing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Security</masterLabel>
+            <translation><!-- Security --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Site Infrastructure Equipment</masterLabel>
+            <translation><!-- Site Infrastructure Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Software</masterLabel>
+            <translation><!-- Software --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supply Chain Services</masterLabel>
+            <translation><!-- Supply Chain Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TV Advertising Production Services</masterLabel>
+            <translation><!-- TV Advertising Production Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Telecoms</masterLabel>
+            <translation><!-- Telecoms --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training, Education &amp; Seminar</masterLabel>
+            <translation><!-- Training, Education &amp; Seminar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Travel and Accomodation</masterLabel>
+            <translation><!-- Travel and Accomodation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Warehousing &amp; Pallets</masterLabel>
+            <translation><!-- Warehousing &amp; Pallets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waste</masterLabel>
+            <translation><!-- Waste --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Water</masterLabel>
+            <translation><!-- Water --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Water Treatment Consumables</masterLabel>
+            <translation><!-- Water Treatment Consumables --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work Clothing &amp; Uniforms</masterLabel>
+            <translation><!-- Work Clothing &amp; Uniforms --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Commodity Country (Unique) --></label>
+        <name>VPM_CommodityCountryUnique__c</name>
+    </fields>
+    <fields>
+        <label><!-- Configured Approvers --></label>
+        <name>VPM_ConfiguredApprovers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>VPM_Country__c</name>
+        <picklistValues>
+            <masterLabel>Algeria</masterLabel>
+            <translation><!-- Algeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Argentina</masterLabel>
+            <translation><!-- Argentina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Australia</masterLabel>
+            <translation><!-- Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Austria</masterLabel>
+            <translation><!-- Austria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bahrain</masterLabel>
+            <translation><!-- Bahrain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bangladesh</masterLabel>
+            <translation><!-- Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Belgium</masterLabel>
+            <translation><!-- Belgium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bermuda</masterLabel>
+            <translation><!-- Bermuda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bolivia</masterLabel>
+            <translation><!-- Bolivia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bulgaria</masterLabel>
+            <translation><!-- Bulgaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cambodia</masterLabel>
+            <translation><!-- Cambodia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canada</masterLabel>
+            <translation><!-- Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chile</masterLabel>
+            <translation><!-- Chile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>China</masterLabel>
+            <translation><!-- China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colombia</masterLabel>
+            <translation><!-- Colombia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Costa Rica</masterLabel>
+            <translation><!-- Costa Rica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Croatia</masterLabel>
+            <translation><!-- Croatia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Czech Republic</masterLabel>
+            <translation><!-- Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denmark</masterLabel>
+            <translation><!-- Denmark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Djibouti</masterLabel>
+            <translation><!-- Djibouti --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dominican Rep.</masterLabel>
+            <translation><!-- Dominican Rep. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ecuador</masterLabel>
+            <translation><!-- Ecuador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Egypt</masterLabel>
+            <translation><!-- Egypt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>El Salvador</masterLabel>
+            <translation><!-- El Salvador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Estonia</masterLabel>
+            <translation><!-- Estonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ethiopia</masterLabel>
+            <translation><!-- Ethiopia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finland</masterLabel>
+            <translation><!-- Finland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>France</masterLabel>
+            <translation><!-- France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Germany</masterLabel>
+            <translation><!-- Germany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ghana</masterLabel>
+            <translation><!-- Ghana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greece</masterLabel>
+            <translation><!-- Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guatemala</masterLabel>
+            <translation><!-- Guatemala --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Honduras</masterLabel>
+            <translation><!-- Honduras --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hong Kong</masterLabel>
+            <translation><!-- Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hungary</masterLabel>
+            <translation><!-- Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indonesia</masterLabel>
+            <translation><!-- Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Iran</masterLabel>
+            <translation><!-- Iran --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ireland</masterLabel>
+            <translation><!-- Ireland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Israel</masterLabel>
+            <translation><!-- Israel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italy</masterLabel>
+            <translation><!-- Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ivory Coast</masterLabel>
+            <translation><!-- Ivory Coast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japan</masterLabel>
+            <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kazakhstan</masterLabel>
+            <translation><!-- Kazakhstan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kenya</masterLabel>
+            <translation><!-- Kenya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Latvia</masterLabel>
+            <translation><!-- Latvia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lebanon</masterLabel>
+            <translation><!-- Lebanon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lithuania</masterLabel>
+            <translation><!-- Lithuania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Malawi</masterLabel>
+            <translation><!-- Malawi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Malaysia</masterLabel>
+            <translation><!-- Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mexico</masterLabel>
+            <translation><!-- Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Morocco</masterLabel>
+            <translation><!-- Morocco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mozambique</masterLabel>
+            <translation><!-- Mozambique --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Myanmar</masterLabel>
+            <translation><!-- Myanmar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nepal</masterLabel>
+            <translation><!-- Nepal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Netherlands</masterLabel>
+            <translation><!-- Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Zealand</masterLabel>
+            <translation><!-- New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nicaragua</masterLabel>
+            <translation><!-- Nicaragua --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nigeria</masterLabel>
+            <translation><!-- Nigeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Norway</masterLabel>
+            <translation><!-- Norway --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oman</masterLabel>
+            <translation><!-- Oman --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pakistan</masterLabel>
+            <translation><!-- Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Palestine</masterLabel>
+            <translation><!-- Palestine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Panama</masterLabel>
+            <translation><!-- Panama --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paraguay</masterLabel>
+            <translation><!-- Paraguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Peru</masterLabel>
+            <translation><!-- Peru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Philippines</masterLabel>
+            <translation><!-- Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poland</masterLabel>
+            <translation><!-- Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Puerto Rico</masterLabel>
+            <translation><!-- Puerto Rico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Romania</masterLabel>
+            <translation><!-- Romania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Russian Fed.</masterLabel>
+            <translation><!-- Russian Fed. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saudi Arabia</masterLabel>
+            <translation><!-- Saudi Arabia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Serbia</masterLabel>
+            <translation><!-- Serbia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Singapore</masterLabel>
+            <translation><!-- Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovakia</masterLabel>
+            <translation><!-- Slovakia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slovenia</masterLabel>
+            <translation><!-- Slovenia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Africa</masterLabel>
+            <translation><!-- South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Korea</masterLabel>
+            <translation><!-- South Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spain</masterLabel>
+            <translation><!-- Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sri Lanka</masterLabel>
+            <translation><!-- Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sweden</masterLabel>
+            <translation><!-- Sweden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Switzerland</masterLabel>
+            <translation><!-- Switzerland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Taiwan</masterLabel>
+            <translation><!-- Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tanzania</masterLabel>
+            <translation><!-- Tanzania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thailand</masterLabel>
+            <translation><!-- Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trinidad,Tobago</masterLabel>
+            <translation><!-- Trinidad,Tobago --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tunisia</masterLabel>
+            <translation><!-- Tunisia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Turkey</masterLabel>
+            <translation><!-- Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USA</masterLabel>
+            <translation><!-- USA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uganda</masterLabel>
+            <translation><!-- Uganda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ukraine</masterLabel>
+            <translation><!-- Ukraine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>United Kingdom</masterLabel>
+            <translation><!-- United Kingdom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uruguay</masterLabel>
+            <translation><!-- Uruguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Utd.Arab Emir.</masterLabel>
+            <translation><!-- Utd.Arab Emir. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Venezuela</masterLabel>
+            <translation><!-- Venezuela --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vietnam</masterLabel>
+            <translation><!-- Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zambia</masterLabel>
+            <translation><!-- Zambia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zimbabwe</masterLabel>
+            <translation><!-- Zimbabwe --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver 10 --></label>
+        <name>VPM_TempApprover10__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Temp Approver 10) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver 1 --></label>
+        <name>VPM_TempApprover1__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Temp Approver 1) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver 2 --></label>
+        <name>VPM_TempApprover2__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Temp Approver 2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver 3 --></label>
+        <name>VPM_TempApprover3__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Temp Approver 3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver 4 --></label>
+        <name>VPM_TempApprover4__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Temp Approver 4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver 6 --></label>
+        <name>VPM_TempApprover6__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Temp Approver 6) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver 7 --></label>
+        <name>VPM_TempApprover7__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Temp Approver 7) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver 8 --></label>
+        <name>VPM_TempApprover8__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Temp Approver 8) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver 9 --></label>
+        <name>VPM_TempApprover9__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Temp Approver 9) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver Date 10 --></label>
+        <name>VPM_TempApproverDate10__c</name>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver Date1 --></label>
+        <name>VPM_TempApproverDate1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver Date 2 --></label>
+        <name>VPM_TempApproverDate2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver Date 3 --></label>
+        <name>VPM_TempApproverDate3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver Date 4 --></label>
+        <name>VPM_TempApproverDate4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver Date 5 --></label>
+        <name>VPM_TempApproverDate5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver Date 6 --></label>
+        <name>VPM_TempApproverDate6__c</name>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver Date 7 --></label>
+        <name>VPM_TempApproverDate7__c</name>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver Date 8 --></label>
+        <name>VPM_TempApproverDate8__c</name>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver Date 9 --></label>
+        <name>VPM_TempApproverDate9__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM isCurrentUserApprover10 --></label>
+        <name>VPM_isCurrentUserApprover10__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM isCurrentUserApprover1 --></label>
+        <name>VPM_isCurrentUserApprover1__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM isCurrentUserApprover2 --></label>
+        <name>VPM_isCurrentUserApprover2__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM isCurrentUserApprover3 --></label>
+        <name>VPM_isCurrentUserApprover3__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM isCurrentUserApprover4 --></label>
+        <name>VPM_isCurrentUserApprover4__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM isCurrentUserApprover5 --></label>
+        <name>VPM_isCurrentUserApprover5__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM isCurrentUserApprover6 --></label>
+        <name>VPM_isCurrentUserApprover6__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM isCurrentUserApprover7 --></label>
+        <name>VPM_isCurrentUserApprover7__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM isCurrentUserApprover8 --></label>
+        <name>VPM_isCurrentUserApprover8__c</name>
+    </fields>
+    <fields>
+        <label><!-- VPM isCurrentUserApprover9 --></label>
+        <name>VPM_isCurrentUserApprover9__c</name>
+    </fields>
+    <fields>
+        <label><!-- Temp Approver 5 --></label>
+        <name>VPm_TempApprover5__c</name>
+        <relationshipLabel><!-- Commodity Approvers (Temp Approver 5) --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Commodity Approver Layout</layout>
+        <sections>
+            <label><!-- Approvers --></label>
+            <section>Approvers</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please ensure approvers should not be duplicate --></errorMessage>
+        <name>VPM_ApprovalNotDuplicate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure approvers are entered sequentially. --></errorMessage>
+        <name>VPM_ApproverNotSequential</name>
+    </validationRules>
+</CustomObjectTranslation>

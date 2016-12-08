@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Vendor Request Default Values</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Vendor Request Default Values</value>
+    </caseValues>
+    <fields>
+        <label><!-- CSB? --></label>
+        <name>VPM_CSB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cash Management Group --></label>
+        <name>VPM_CashManagementGroup__c</name>
+        <picklistValues>
+            <masterLabel>A1_V-DOMESTIC_VENDOR-DOMESTIC</masterLabel>
+            <translation><!-- A1_V-DOMESTIC_VENDOR-DOMESTIC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A2_V-FOREIGN _VENDOR-FOREIGN</masterLabel>
+            <translation><!-- A2_V-FOREIGN _VENDOR-FOREIGN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A3_V-CONC DOM_VENDOR-CONCERN - DOMESTIC</masterLabel>
+            <translation><!-- A3_V-CONC DOM_VENDOR-CONCERN - DOMESTIC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A4_V-CONC FOR_VENDOR-CONCERN - FOREIGN</masterLabel>
+            <translation><!-- A4_V-CONC FOR_VENDOR-CONCERN - FOREIGN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A5_V-INSTITUT_VENDOR-INSTITUTIONS (Israel)</masterLabel>
+            <translation><!-- A5_V-INSTITUT_VENDOR-INSTITUTIONS (Israel) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A6_V-TAXES_VENDOR-TAXES (Israel)</masterLabel>
+            <translation><!-- A6_V-TAXES_VENDOR-TAXES (Israel) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A7_V-EMPLOYEE_VENDOR-EMPLOYEE</masterLabel>
+            <translation><!-- A7_V-EMPLOYEE_VENDOR-EMPLOYEE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A8_V-STAND OR_VENDOR-STANDING ORDER (Israel)</masterLabel>
+            <translation><!-- A8_V-STAND OR_VENDOR-STANDING ORDER (Israel) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A9_V-OTHERS_VENDOR-OTHERS</masterLabel>
+            <translation><!-- A9_V-OTHERS_VENDOR-OTHERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AA_L-SHORT TE_LOANS-SHORT TERM LOANS</masterLabel>
+            <translation><!-- AA_L-SHORT TE_LOANS-SHORT TERM LOANS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AB_L-LONG TER_LOANS-LONG TERM LOANS</masterLabel>
+            <translation><!-- AB_L-LONG TER_LOANS-LONG TERM LOANS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AD_DEPOSITS_LOANS-DEPOSITS</masterLabel>
+            <translation><!-- AD_DEPOSITS_LOANS-DEPOSITS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AE_V-OIL DOM _VENDOR-OIL (DOMESTIC)</masterLabel>
+            <translation><!-- AE_V-OIL DOM _VENDOR-OIL (DOMESTIC) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AF_V-OIL IMP _VENDOR-OIL (IMPORT)</masterLabel>
+            <translation><!-- AF_V-OIL IMP _VENDOR-OIL (IMPORT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AI_V-INTERCOM_VENDOR- INTERCOMP (Israel)</masterLabel>
+            <translation><!-- AI_V-INTERCOM_VENDOR- INTERCOMP (Israel) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AK_V-TEA DOM_VENDOR-TEA (DOMESTIC)</masterLabel>
+            <translation><!-- AK_V-TEA DOM_VENDOR-TEA (DOMESTIC) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AL_V-TEA IMP_VENDOR-TEA (IMPORT)</masterLabel>
+            <translation><!-- AL_V-TEA IMP_VENDOR-TEA (IMPORT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AM_V-MAR MEDI_VENDOR-MARKETING&amp;MEDIA</masterLabel>
+            <translation><!-- AM_V-MAR MEDI_VENDOR-MARKETING&amp;MEDIA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AT_V-TRANSPOR_VENDOR-TRANSPORTATION</masterLabel>
+            <translation><!-- AT_V-TRANSPOR_VENDOR-TRANSPORTATION --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AV_V-ONE TIME_VENDOR-ONE TIME VENDOR</masterLabel>
+            <translation><!-- AV_V-ONE TIME_VENDOR-ONE TIME VENDOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AX_V-PERS TBI_VENDOR-PERS. T.B. INV (Turkey)</masterLabel>
+            <translation><!-- AX_V-PERS TBI_VENDOR-PERS. T.B. INV (Turkey) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AY_V-CUST TBI_VENDOR-CUST. T.B. INV (Turkey)</masterLabel>
+            <translation><!-- AY_V-CUST TBI_VENDOR-CUST. T.B. INV (Turkey) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C1000_Customer_Customers</masterLabel>
+            <translation><!-- C1000_Customer_Customers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C1010_Risk Cust_Risk Customers</masterLabel>
+            <translation><!-- C1010_Risk Cust_Risk Customers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C2000_UL Cust_Group Customers</masterLabel>
+            <translation><!-- C2000_UL Cust_Group Customers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E1_C-3rd LOCL_CUSTOMER-3rd PARTY LOCAL</masterLabel>
+            <translation><!-- E1_C-3rd LOCL_CUSTOMER-3rd PARTY LOCAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E2_C-3rd EXP_CUSTOMER-3rd PARTY EXPORTS</masterLabel>
+            <translation><!-- E2_C-3rd EXP_CUSTOMER-3rd PARTY EXPORTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E3_C-CONC LOC_CUSTOMER-CONC WITHIN THE B.G.</masterLabel>
+            <translation><!-- E3_C-CONC LOC_CUSTOMER-CONC WITHIN THE B.G. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E4_C-CONC FOR_CUSTOMER-CONC OUTSIDE THE B.G.</masterLabel>
+            <translation><!-- E4_C-CONC FOR_CUSTOMER-CONC OUTSIDE THE B.G. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E5_C-NON-TRAD_CUSTOMER-NON-TRADE</masterLabel>
+            <translation><!-- E5_C-NON-TRAD_CUSTOMER-NON-TRADE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E6_C-DEPOSITS_CUSTOMER-DEPOSITS</masterLabel>
+            <translation><!-- E6_C-DEPOSITS_CUSTOMER-DEPOSITS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E9_C-OTHERS_CUSTOMER-OTHERS</masterLabel>
+            <translation><!-- E9_C-OTHERS_CUSTOMER-OTHERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EI_C-INTERCOM_CUSTOMER- INTERCOMP (Israel)</masterLabel>
+            <translation><!-- EI_C-INTERCOM_CUSTOMER- INTERCOMP (Israel) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ES_C-SEED OIL_CUSTOMER-SEED OIL</masterLabel>
+            <translation><!-- ES_C-SEED OIL_CUSTOMER-SEED OIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V1000_Vendor RM_Vendors: RM &amp; Packaging</masterLabel>
+            <translation><!-- V1000_Vendor RM_Vendors: RM &amp; Packaging --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V1010_Vendor FG_Vendors: Finished Goods</masterLabel>
+            <translation><!-- V1010_Vendor FG_Vendors: Finished Goods --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V1020_Vendor SE_Vendors: Services</masterLabel>
+            <translation><!-- V1020_Vendor SE_Vendors: Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V1030_Employees_Employees</masterLabel>
+            <translation><!-- V1030_Employees_Employees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V1040_Taxes_Taxes &amp; social security due</masterLabel>
+            <translation><!-- V1040_Taxes_Taxes &amp; social security due --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V1050_Vendor AS_Vendors: Assets</masterLabel>
+            <translation><!-- V1050_Vendor AS_Vendors: Assets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V2000_UL vendors_Group vendors</masterLabel>
+            <translation><!-- V2000_UL vendors_Group vendors --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Company Code --></label>
+        <name>VPM_CompanyCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Method 1 --></label>
+        <name>VPM_PaymentMethod1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Method 2 --></label>
+        <name>VPM_PaymentMethod2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Method 3 --></label>
+        <name>VPM_PaymentMethod3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Method 4 --></label>
+        <name>VPM_PaymentMethod4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Method 5 --></label>
+        <name>VPM_PaymentMethod5__c</name>
+    </fields>
+    <fields>
+        <label><!-- DELPayment Method --></label>
+        <name>VPM_PaymentMethod__c</name>
+        <picklistValues>
+            <masterLabel>0_NEFT-National Electr Fund Tran</masterLabel>
+            <translation><!-- 0_NEFT-National Electr Fund Tran --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1_TRFR-Fund Tran Fr HSBC To HSBC</masterLabel>
+            <translation><!-- 1_TRFR-Fund Tran Fr HSBC To HSBC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2_RTGS-Real TimeGross Settlement</masterLabel>
+            <translation><!-- 2_RTGS-Real TimeGross Settlement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3_ACC - HSBC At Par Cheque</masterLabel>
+            <translation><!-- 3_ACC - HSBC At Par Cheque --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4_CCC - UTI At Par Cheque</masterLabel>
+            <translation><!-- 4_CCC - UTI At Par Cheque --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5_IDD -DD Issu by HSBC On Oth Bk</masterLabel>
+            <translation><!-- 5_IDD -DD Issu by HSBC On Oth Bk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6_DDP - Demand Draft</masterLabel>
+            <translation><!-- 6_DDP - Demand Draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7_RMP - Remote DD</masterLabel>
+            <translation><!-- 7_RMP - Remote DD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8_ICO - Inter company order</masterLabel>
+            <translation><!-- 8_ICO - Inter company order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B_E-Payment-Interbank Tr-ICICI</masterLabel>
+            <translation><!-- B_E-Payment-Interbank Tr-ICICI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C_E-Payment - Cheques</masterLabel>
+            <translation><!-- C_E-Payment - Cheques --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D_E-Payment - Demand draft</masterLabel>
+            <translation><!-- D_E-Payment - Demand draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E</masterLabel>
+            <translation><!-- E --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>H_Foreign Currency</masterLabel>
+            <translation><!-- H_Foreign Currency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>I_E-Payment-Interbank Tr - HDFC</masterLabel>
+            <translation><!-- I_E-Payment-Interbank Tr - HDFC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>J_NEFT-S</masterLabel>
+            <translation><!-- J_NEFT-S --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>K_TRFR-S</masterLabel>
+            <translation><!-- K_TRFR-S --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>L_RTGS-S</masterLabel>
+            <translation><!-- L_RTGS-S --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>M_Cheque payments</masterLabel>
+            <translation><!-- M_Cheque payments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N_Demand draft Payments</masterLabel>
+            <translation><!-- N_Demand draft Payments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payment Method 1</masterLabel>
+            <translation><!-- Payment Method 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T_Bank Transfer payments</masterLabel>
+            <translation><!-- T_Bank Transfer payments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U_NEFT-T National Electr Fund Tr</masterLabel>
+            <translation><!-- U_NEFT-T National Electr Fund Tr --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>V_TRFR-T Fund Tr Fr HSBC To HSBC</masterLabel>
+            <translation><!-- V_TRFR-T Fund Tr Fr HSBC To HSBC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W_RTGS-T Real Time Gr Settlement</masterLabel>
+            <translation><!-- W_RTGS-T Real Time Gr Settlement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X_eTAX- Payment Method for DB</masterLabel>
+            <translation><!-- X_eTAX- Payment Method for DB --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Reconciliation Account --></label>
+        <name>VPM_ReconciliationAccount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sort Key --></label>
+        <name>VPM_SortKey__c</name>
+        <picklistValues>
+            <masterLabel>000_Allocation number</masterLabel>
+            <translation><!-- 000_Allocation number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>001_Posting date</masterLabel>
+            <translation><!-- 001_Posting date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>002_Doc.no., fiscal year</masterLabel>
+            <translation><!-- 002_Doc.no., fiscal year --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>003_Document date</masterLabel>
+            <translation><!-- 003_Document date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>004_Branch account</masterLabel>
+            <translation><!-- 004_Branch account --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>005_Loc.currency amount</masterLabel>
+            <translation><!-- 005_Loc.currency amount --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>006_Doc.currency amount</masterLabel>
+            <translation><!-- 006_Doc.currency amount --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>007_Bill/exch.due date</masterLabel>
+            <translation><!-- 007_Bill/exch.due date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>008_Cost center</masterLabel>
+            <translation><!-- 008_Cost center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>009_External doc.number</masterLabel>
+            <translation><!-- 009_External doc.number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>010_Purchase order no.</masterLabel>
+            <translation><!-- 010_Purchase order no. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>011_Plant number</masterLabel>
+            <translation><!-- 011_Plant number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>012_Vendor number</masterLabel>
+            <translation><!-- 012_Vendor number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>014_Purchase order</masterLabel>
+            <translation><!-- 014_Purchase order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>015_Personnel number</masterLabel>
+            <translation><!-- 015_Personnel number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>016_Settlement period</masterLabel>
+            <translation><!-- 016_Settlement period --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>017_Settl.per., pers.no.</masterLabel>
+            <translation><!-- 017_Settl.per., pers.no. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>018_Asset number</masterLabel>
+            <translation><!-- 018_Asset number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>021_Segment text</masterLabel>
+            <translation><!-- 021_Segment text --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>022_One-time name / city</masterLabel>
+            <translation><!-- 022_One-time name / city --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>023_One-time city / name</masterLabel>
+            <translation><!-- 023_One-time city / name --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>024_Document header text</masterLabel>
+            <translation><!-- 024_Document header text --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>025_CPU date</masterLabel>
+            <translation><!-- 025_CPU date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>026_Pmnt per.bslne date</masterLabel>
+            <translation><!-- 026_Pmnt per.bslne date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>027_Value date</masterLabel>
+            <translation><!-- 027_Value date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>028_Asset number</masterLabel>
+            <translation><!-- 028_Asset number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>029_Pstng month, vendor</masterLabel>
+            <translation><!-- 029_Pstng month, vendor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>031_Customer number</masterLabel>
+            <translation><!-- 031_Customer number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>032_Pstng yr,month,curr.</masterLabel>
+            <translation><!-- 032_Pstng yr,month,curr. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>033_Cost center</masterLabel>
+            <translation><!-- 033_Cost center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>034_Month, cost center</masterLabel>
+            <translation><!-- 034_Month, cost center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>035_Contract number</masterLabel>
+            <translation><!-- 035_Contract number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>036_Order</masterLabel>
+            <translation><!-- 036_Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>037_Currency key</masterLabel>
+            <translation><!-- 037_Currency key --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>039_Project number</masterLabel>
+            <translation><!-- 039_Project number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>055_Fiscal year, month</masterLabel>
+            <translation><!-- 055_Fiscal year, month --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>060_Matnr - Menge</masterLabel>
+            <translation><!-- 060_Matnr - Menge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>090 _Doc.no., Year,Line</masterLabel>
+            <translation><!-- 090 _Doc.no., Year,Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>101_Cash discnt clearing</masterLabel>
+            <translation><!-- 101_Cash discnt clearing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>102 _Document Number</masterLabel>
+            <translation><!-- 102 _Document Number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>103 _CoCod.Fis.Year.DocNo</masterLabel>
+            <translation><!-- 103 _CoCod.Fis.Year.DocNo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z01_Trading Partner</masterLabel>
+            <translation><!-- Z01_Trading Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z02_Reference Key 1</masterLabel>
+            <translation><!-- Z02_Reference Key 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z09_Sales order</masterLabel>
+            <translation><!-- Z09_Sales order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z10_Sales order+Item N0</masterLabel>
+            <translation><!-- Z10_Sales order+Item N0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z11_Delivery + Material</masterLabel>
+            <translation><!-- Z11_Delivery + Material --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z12_Salesorder + Materia</masterLabel>
+            <translation><!-- Z12_Salesorder + Materia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z50_Delivery</masterLabel>
+            <translation><!-- Z50_Delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Z52_Payment reference</masterLabel>
+            <translation><!-- Z52_Payment reference --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Tolerance Group --></label>
+        <name>VPM_ToleranceGroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Sub Type --></label>
+        <name>VPM_VendorSubType__c</name>
+        <picklistValues>
+            <masterLabel>Domestic</masterLabel>
+            <translation><!-- Domestic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foreign</masterLabel>
+            <translation><!-- Foreign --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Vendor Type --></label>
+        <name>VPM_VendorType__c</name>
+        <picklistValues>
+            <masterLabel>FRGT_Freight Vendor_G001</masterLabel>
+            <translation><!-- FRGT_Freight Vendor_G001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBS_Marketing Business Services_G001</masterLabel>
+            <translation><!-- MBS_Marketing Business Services_G001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PI_Production Item Vendor_G001</masterLabel>
+            <translation><!-- PI_Production Item Vendor_G001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RCT_Russian Customs Tax Vendor_G001</masterLabel>
+            <translation><!-- RCT_Russian Customs Tax Vendor_G001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS_Supply Chain Services_G001</masterLabel>
+            <translation><!-- SCS_Supply Chain Services_G001 --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Vendor Request Default Values Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

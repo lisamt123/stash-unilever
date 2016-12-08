@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>VPM - Custom Meta data which is used to keep the track Whether Country has FLS or Not</description>
+    <fields>
+        <fullName>FLS__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - field will have the true if FLS is present for the country , if FLS is not available it will be false</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>FLS</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_Country__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>VPM - Used to capture the Country Requesting Vendor</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Country</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <label>Countries with FLS</label>
+    <pluralLabel>Countries with FLS</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

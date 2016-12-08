@@ -1,0 +1,1863 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Order Currency Default Values</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Order Currency Default Values</value>
+    </caseValues>
+    <fields>
+        <label><!-- Order Currency --></label>
+        <name>VPM_OrderCurrency__c</name>
+        <picklistValues>
+            <masterLabel>ADP_Andoran peseta</masterLabel>
+            <translation><!-- ADP_Andoran peseta --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AED_United Arab Emirates Dirham</masterLabel>
+            <translation><!-- AED_United Arab Emirates Dirham --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AFA_Afghani</masterLabel>
+            <translation><!-- AFA_Afghani --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ALL_Albanian Lek</masterLabel>
+            <translation><!-- ALL_Albanian Lek --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AMD_Armenian Dram</masterLabel>
+            <translation><!-- AMD_Armenian Dram --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ANG_West Indian Guilder</masterLabel>
+            <translation><!-- ANG_West Indian Guilder --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AON_Angolan New Kwanza</masterLabel>
+            <translation><!-- AON_Angolan New Kwanza --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AOR_Angolan Kwanza Reajustado</masterLabel>
+            <translation><!-- AOR_Angolan Kwanza Reajustado --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ARS_Argentine Peso</masterLabel>
+            <translation><!-- ARS_Argentine Peso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ATS_Austrian Schilling</masterLabel>
+            <translation><!-- ATS_Austrian Schilling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AUD_Australian Dollar</masterLabel>
+            <translation><!-- AUD_Australian Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AWG_Aruban Guilder</masterLabel>
+            <translation><!-- AWG_Aruban Guilder --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AZM_Azerbaijan Manat</masterLabel>
+            <translation><!-- AZM_Azerbaijan Manat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AZN_Azerbaijani New Manat</masterLabel>
+            <translation><!-- AZN_Azerbaijani New Manat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BAM_Bosnia and Herzegovina Convertible Mark</masterLabel>
+            <translation><!-- BAM_Bosnia and Herzegovina Convertible Mark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BBD_Barbados Dollar</masterLabel>
+            <translation><!-- BBD_Barbados Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BDT_Bangladesh Taka</masterLabel>
+            <translation><!-- BDT_Bangladesh Taka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BEF_Belgian Franc</masterLabel>
+            <translation><!-- BEF_Belgian Franc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BGN_Bulgarian Lev</masterLabel>
+            <translation><!-- BGN_Bulgarian Lev --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BHD_Bahrain Dinar</masterLabel>
+            <translation><!-- BHD_Bahrain Dinar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BIF_Burundi Franc</masterLabel>
+            <translation><!-- BIF_Burundi Franc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BMD_Bermudan Dollar</masterLabel>
+            <translation><!-- BMD_Bermudan Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BND_Brunei Dollar</masterLabel>
+            <translation><!-- BND_Brunei Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOB_Boliviano</masterLabel>
+            <translation><!-- BOB_Boliviano --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BRL_Brazilian Real</masterLabel>
+            <translation><!-- BRL_Brazilian Real --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BSD_Bahaman Dollar</masterLabel>
+            <translation><!-- BSD_Bahaman Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BTN_Bhutan Ngultrum</masterLabel>
+            <translation><!-- BTN_Bhutan Ngultrum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BWP_Botswana Pula</masterLabel>
+            <translation><!-- BWP_Botswana Pula --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BYB_Belorussian Ruble</masterLabel>
+            <translation><!-- BYB_Belorussian Ruble --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BZD_Belize Dollar</masterLabel>
+            <translation><!-- BZD_Belize Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAD_Canadian Dollar</masterLabel>
+            <translation><!-- CAD_Canadian Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CDF_Congolese Franc</masterLabel>
+            <translation><!-- CDF_Congolese Franc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CFP_French Franc (Pacific Islands)</masterLabel>
+            <translation><!-- CFP_French Franc (Pacific Islands) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHF_Swiss Franc</masterLabel>
+            <translation><!-- CHF_Swiss Franc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLP_Chilean Peso</masterLabel>
+            <translation><!-- CLP_Chilean Peso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CNY_Chinese Renminbi</masterLabel>
+            <translation><!-- CNY_Chinese Renminbi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COP_Colombian Peso</masterLabel>
+            <translation><!-- COP_Colombian Peso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CRC_Costa Rica Colon</masterLabel>
+            <translation><!-- CRC_Costa Rica Colon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CSD_Serbian Dinars</masterLabel>
+            <translation><!-- CSD_Serbian Dinars --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CUP_Cuban Peso</masterLabel>
+            <translation><!-- CUP_Cuban Peso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CVE_Cape Verde Escudo</masterLabel>
+            <translation><!-- CVE_Cape Verde Escudo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CYP_Cyprus Pound</masterLabel>
+            <translation><!-- CYP_Cyprus Pound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CZK_Czech Krona</masterLabel>
+            <translation><!-- CZK_Czech Krona --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DEM3_(Internal) German Mark (3 dec.places)</masterLabel>
+            <translation><!-- DEM3_(Internal) German Mark (3 dec.places) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DEM_German Mark</masterLabel>
+            <translation><!-- DEM_German Mark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DJF_Djibouti Franc</masterLabel>
+            <translation><!-- DJF_Djibouti Franc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DKK_Danish Krone</masterLabel>
+            <translation><!-- DKK_Danish Krone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DOP_Dominican Peso</masterLabel>
+            <translation><!-- DOP_Dominican Peso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DZD_Algerian Dinar</masterLabel>
+            <translation><!-- DZD_Algerian Dinar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ECS_Ecuadorian Sucre</masterLabel>
+            <translation><!-- ECS_Ecuadorian Sucre --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EEK_Estonian Krone</masterLabel>
+            <translation><!-- EEK_Estonian Krone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EGP_Egyptian Pound</masterLabel>
+            <translation><!-- EGP_Egyptian Pound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ERN_Eritrean Nafka</masterLabel>
+            <translation><!-- ERN_Eritrean Nafka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ESP_Spanish Peseta</masterLabel>
+            <translation><!-- ESP_Spanish Peseta --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ETB_Ethiopian Birr</masterLabel>
+            <translation><!-- ETB_Ethiopian Birr --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EUC_Euro europeo Constante</masterLabel>
+            <translation><!-- EUC_Euro europeo Constante --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EUM_Euro europeo Constante</masterLabel>
+            <translation><!-- EUM_Euro europeo Constante --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EURZ_European Euro -PA Delete</masterLabel>
+            <translation><!-- EURZ_European Euro -PA Delete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EUR_European Euro</masterLabel>
+            <translation><!-- EUR_European Euro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FIM_Finnish markka</masterLabel>
+            <translation><!-- FIM_Finnish markka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FJD_Fiji Dollar</masterLabel>
+            <translation><!-- FJD_Fiji Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FKP_Falkland Pound</masterLabel>
+            <translation><!-- FKP_Falkland Pound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FRF_French Franc</masterLabel>
+            <translation><!-- FRF_French Franc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GBP_British Pound</masterLabel>
+            <translation><!-- GBP_British Pound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GEL_Georgian Lari</masterLabel>
+            <translation><!-- GEL_Georgian Lari --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GHC_Ghanian Cedi</masterLabel>
+            <translation><!-- GHC_Ghanian Cedi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GHS_Ghanian Cedi</masterLabel>
+            <translation><!-- GHS_Ghanian Cedi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GIP_Gibraltar Pound</masterLabel>
+            <translation><!-- GIP_Gibraltar Pound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GMD_Gambian Dalasi</masterLabel>
+            <translation><!-- GMD_Gambian Dalasi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GNF_Guinean Franc</masterLabel>
+            <translation><!-- GNF_Guinean Franc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GRD_Greek Drachma</masterLabel>
+            <translation><!-- GRD_Greek Drachma --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GTQ_Guatemalan Quetzal</masterLabel>
+            <translation><!-- GTQ_Guatemalan Quetzal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GWP_Guinea Peso</masterLabel>
+            <translation><!-- GWP_Guinea Peso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GYD_Guyana Dollar</masterLabel>
+            <translation><!-- GYD_Guyana Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HKD_Hong Kong Dollar</masterLabel>
+            <translation><!-- HKD_Hong Kong Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HNL_Honduran Lempira</masterLabel>
+            <translation><!-- HNL_Honduran Lempira --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HRK_Croatian Kuna</masterLabel>
+            <translation><!-- HRK_Croatian Kuna --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HTG_Haitian Gourde</masterLabel>
+            <translation><!-- HTG_Haitian Gourde --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HUF_Hungarian Forint</masterLabel>
+            <translation><!-- HUF_Hungarian Forint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IDR_Indonesian Rupiah</masterLabel>
+            <translation><!-- IDR_Indonesian Rupiah --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IEP_Irish Punt</masterLabel>
+            <translation><!-- IEP_Irish Punt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ILS_Israeli Scheckel</masterLabel>
+            <translation><!-- ILS_Israeli Scheckel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INR_Indian Rupee</masterLabel>
+            <translation><!-- INR_Indian Rupee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IQD_Iraqui Dinar</masterLabel>
+            <translation><!-- IQD_Iraqui Dinar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IRR_Iranian Rial</masterLabel>
+            <translation><!-- IRR_Iranian Rial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ISK_Iceland Krona</masterLabel>
+            <translation><!-- ISK_Iceland Krona --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ITL_Italian Lira</masterLabel>
+            <translation><!-- ITL_Italian Lira --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JMD_Jamaican Dollar</masterLabel>
+            <translation><!-- JMD_Jamaican Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JOD_Jordanian Dinar</masterLabel>
+            <translation><!-- JOD_Jordanian Dinar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JPY_Japanese Yen</masterLabel>
+            <translation><!-- JPY_Japanese Yen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KES_Kenyan Shilling</masterLabel>
+            <translation><!-- KES_Kenyan Shilling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KGS_Kyrgyzstan Som</masterLabel>
+            <translation><!-- KGS_Kyrgyzstan Som --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KHR_Cambodian Riel</masterLabel>
+            <translation><!-- KHR_Cambodian Riel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KMF_Comoros Franc</masterLabel>
+            <translation><!-- KMF_Comoros Franc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KPW_North Korean Won</masterLabel>
+            <translation><!-- KPW_North Korean Won --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KRW_South Korean Won</masterLabel>
+            <translation><!-- KRW_South Korean Won --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KWD_Kuwaiti Dinar</masterLabel>
+            <translation><!-- KWD_Kuwaiti Dinar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KYD_Cayman Dollar</masterLabel>
+            <translation><!-- KYD_Cayman Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KZT_Kazakstanian Tenge</masterLabel>
+            <translation><!-- KZT_Kazakstanian Tenge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LAK_Laotian Kip</masterLabel>
+            <translation><!-- LAK_Laotian Kip --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LBP_Lebanese Pound</masterLabel>
+            <translation><!-- LBP_Lebanese Pound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LKR_Sri Lankan Rupee</masterLabel>
+            <translation><!-- LKR_Sri Lankan Rupee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LRD_Liberian Dollar</masterLabel>
+            <translation><!-- LRD_Liberian Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LSL_Lesotho Loti</masterLabel>
+            <translation><!-- LSL_Lesotho Loti --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LTL_Lithuanian Lita</masterLabel>
+            <translation><!-- LTL_Lithuanian Lita --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LUF_Luxembourg Franc</masterLabel>
+            <translation><!-- LUF_Luxembourg Franc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LVL_Latvian Lat</masterLabel>
+            <translation><!-- LVL_Latvian Lat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LYD_Libyan Dinar</masterLabel>
+            <translation><!-- LYD_Libyan Dinar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MAD_Moroccan Dirham</masterLabel>
+            <translation><!-- MAD_Moroccan Dirham --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MDL_Moldavian Leu</masterLabel>
+            <translation><!-- MDL_Moldavian Leu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MGF_Madagascan Franc</masterLabel>
+            <translation><!-- MGF_Madagascan Franc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MKD_Macedonian Denar</masterLabel>
+            <translation><!-- MKD_Macedonian Denar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MMK_Myanmar Kyat</masterLabel>
+            <translation><!-- MMK_Myanmar Kyat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MNT_Mongolian Tugrik</masterLabel>
+            <translation><!-- MNT_Mongolian Tugrik --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MOP_Macao Pataca</masterLabel>
+            <translation><!-- MOP_Macao Pataca --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MRO_Mauritanian Ouguiya</masterLabel>
+            <translation><!-- MRO_Mauritanian Ouguiya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MTL_Maltese Lira</masterLabel>
+            <translation><!-- MTL_Maltese Lira --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MUR_Mauritian Rupee</masterLabel>
+            <translation><!-- MUR_Mauritian Rupee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MVR_Maldive Rufiyaa</masterLabel>
+            <translation><!-- MVR_Maldive Rufiyaa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MWK_Malawi Kwacha</masterLabel>
+            <translation><!-- MWK_Malawi Kwacha --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MXN_Mexican Pesos</masterLabel>
+            <translation><!-- MXN_Mexican Pesos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MYR_Malaysian Ringgit</masterLabel>
+            <translation><!-- MYR_Malaysian Ringgit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MZM_Mozambique Metical</masterLabel>
+            <translation><!-- MZM_Mozambique Metical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MZN_Mozambican Metical</masterLabel>
+            <translation><!-- MZN_Mozambican Metical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NAD_Namibian Dollar</masterLabel>
+            <translation><!-- NAD_Namibian Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NGN_Nigerian Naira</masterLabel>
+            <translation><!-- NGN_Nigerian Naira --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NIO_Nicaraguan Cordoba Oro</masterLabel>
+            <translation><!-- NIO_Nicaraguan Cordoba Oro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NLG_Dutch Guilder</masterLabel>
+            <translation><!-- NLG_Dutch Guilder --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NOK_Norwegian Krone</masterLabel>
+            <translation><!-- NOK_Norwegian Krone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NPR_Nepalese Rupee</masterLabel>
+            <translation><!-- NPR_Nepalese Rupee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NZD_New Zealand Dollars</masterLabel>
+            <translation><!-- NZD_New Zealand Dollars --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OMR_Omani Rial</masterLabel>
+            <translation><!-- OMR_Omani Rial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PAB_Panamanian Balboa</masterLabel>
+            <translation><!-- PAB_Panamanian Balboa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PEN_Peruvian New Sol</masterLabel>
+            <translation><!-- PEN_Peruvian New Sol --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PGK_Papua New Guinea Kina</masterLabel>
+            <translation><!-- PGK_Papua New Guinea Kina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PHP_Philippine Peso</masterLabel>
+            <translation><!-- PHP_Philippine Peso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PKR_Pakistani Rupee</masterLabel>
+            <translation><!-- PKR_Pakistani Rupee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLN_Polish Zloty (new)</masterLabel>
+            <translation><!-- PLN_Polish Zloty (new) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PTE_Portuguese Escudo</masterLabel>
+            <translation><!-- PTE_Portuguese Escudo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PYG_Paraguayan Guarani</masterLabel>
+            <translation><!-- PYG_Paraguayan Guarani --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QAR_Qatar Rial</masterLabel>
+            <translation><!-- QAR_Qatar Rial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RMB_Chinese Yuan Renminbi</masterLabel>
+            <translation><!-- RMB_Chinese Yuan Renminbi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ROL_Romanian Leu</masterLabel>
+            <translation><!-- ROL_Romanian Leu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RON_New Romanian Leu</masterLabel>
+            <translation><!-- RON_New Romanian Leu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RSD_Serbian Dinar</masterLabel>
+            <translation><!-- RSD_Serbian Dinar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RUB_Russian Ruble</masterLabel>
+            <translation><!-- RUB_Russian Ruble --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RWF_Rwandan Franc</masterLabel>
+            <translation><!-- RWF_Rwandan Franc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAR_Saudi Riyal</masterLabel>
+            <translation><!-- SAR_Saudi Riyal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SBD_Solomon Islands Dollar</masterLabel>
+            <translation><!-- SBD_Solomon Islands Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCR_Seychelles Rupee</masterLabel>
+            <translation><!-- SCR_Seychelles Rupee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SDP_Sudanese Pound</masterLabel>
+            <translation><!-- SDP_Sudanese Pound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEK_Swedish Krona</masterLabel>
+            <translation><!-- SEK_Swedish Krona --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SGD_Singapore Dollar</masterLabel>
+            <translation><!-- SGD_Singapore Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SHP_St.Helena Pound</masterLabel>
+            <translation><!-- SHP_St.Helena Pound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SIT_Slovenian Tolar</masterLabel>
+            <translation><!-- SIT_Slovenian Tolar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SKK_Slovakian Krona</masterLabel>
+            <translation><!-- SKK_Slovakian Krona --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SLL_Sierra Leone Leone</masterLabel>
+            <translation><!-- SLL_Sierra Leone Leone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SOS_Somalian Shilling</masterLabel>
+            <translation><!-- SOS_Somalian Shilling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SRG_Surinam Guilder</masterLabel>
+            <translation><!-- SRG_Surinam Guilder --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STD_Sao Tome / Principe Dobra</masterLabel>
+            <translation><!-- STD_Sao Tome / Principe Dobra --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SVC_El Salvador Colon</masterLabel>
+            <translation><!-- SVC_El Salvador Colon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SYP_Syrian Pound</masterLabel>
+            <translation><!-- SYP_Syrian Pound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SZL_Swaziland Lilangeni</masterLabel>
+            <translation><!-- SZL_Swaziland Lilangeni --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>THB_Thailand Baht</masterLabel>
+            <translation><!-- THB_Thailand Baht --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TJR_Tajikistani Ruble</masterLabel>
+            <translation><!-- TJR_Tajikistani Ruble --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TMM_Turkmenistani Manat</masterLabel>
+            <translation><!-- TMM_Turkmenistani Manat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TND_Tunisian Dinar</masterLabel>
+            <translation><!-- TND_Tunisian Dinar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TOP_Tongan Pa&apos;anga</masterLabel>
+            <translation><!-- TOP_Tongan Pa&apos;anga --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPE_Timor Escudo</masterLabel>
+            <translation><!-- TPE_Timor Escudo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TRL_Turkish Lira</masterLabel>
+            <translation><!-- TRL_Turkish Lira --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TRY_Turkish Lira</masterLabel>
+            <translation><!-- TRY_Turkish Lira --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TTD_Trinidad and Tobago Dollar</masterLabel>
+            <translation><!-- TTD_Trinidad and Tobago Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TWD_New Taiwan Dollar</masterLabel>
+            <translation><!-- TWD_New Taiwan Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TZS_Tanzanian Shilling</masterLabel>
+            <translation><!-- TZS_Tanzanian Shilling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UAH_Ukraine Hryvnia</masterLabel>
+            <translation><!-- UAH_Ukraine Hryvnia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UFV_Peso boliviano</masterLabel>
+            <translation><!-- UFV_Peso boliviano --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UGX_Ugandan Shilling</masterLabel>
+            <translation><!-- UGX_Ugandan Shilling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US1_Dolares Petroleros</masterLabel>
+            <translation><!-- US1_Dolares Petroleros --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US2_Dolares SITME</masterLabel>
+            <translation><!-- US2_Dolares SITME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USDN_(Internal) United States Dollar (5 Dec.)</masterLabel>
+            <translation><!-- USDN_(Internal) United States Dollar (5 Dec.) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USD_United States Dollar</masterLabel>
+            <translation><!-- USD_United States Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USM_Dolar Mediun Americano</masterLabel>
+            <translation><!-- USM_Dolar Mediun Americano --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UYU_Uruguayan Peso (new)</masterLabel>
+            <translation><!-- UYU_Uruguayan Peso (new) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UZS_Uzbekistan Som</masterLabel>
+            <translation><!-- UZS_Uzbekistan Som --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VEB_Venezuelan Bolivar</masterLabel>
+            <translation><!-- VEB_Venezuelan Bolivar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VEF_Fuerte (Parallel)</masterLabel>
+            <translation><!-- VEF_Fuerte (Parallel) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VND_Vietnamese Dong</masterLabel>
+            <translation><!-- VND_Vietnamese Dong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VUV_Vanuatu Vatu</masterLabel>
+            <translation><!-- VUV_Vanuatu Vatu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WST_Samoan Tala</masterLabel>
+            <translation><!-- WST_Samoan Tala --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XAF_Gabon CFA Franc BEAC</masterLabel>
+            <translation><!-- XAF_Gabon CFA Franc BEAC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XCD_East Carribean Dollar</masterLabel>
+            <translation><!-- XCD_East Carribean Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XDS_St. Christopher Dollar</masterLabel>
+            <translation><!-- XDS_St. Christopher Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XEU_European Currency Unit (E.C.U.)</masterLabel>
+            <translation><!-- XEU_European Currency Unit (E.C.U.) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XOF_Benin CFA Franc BCEAO</masterLabel>
+            <translation><!-- XOF_Benin CFA Franc BCEAO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XPF_CFP Franc</masterLabel>
+            <translation><!-- XPF_CFP Franc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YER_Yemeni Ryal</masterLabel>
+            <translation><!-- YER_Yemeni Ryal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YUM_New Yugoslavian Dinar</masterLabel>
+            <translation><!-- YUM_New Yugoslavian Dinar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZAR_South African Rand</masterLabel>
+            <translation><!-- ZAR_South African Rand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZMK_Zambian Kwacha</masterLabel>
+            <translation><!-- ZMK_Zambian Kwacha --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZRN_Zaire</masterLabel>
+            <translation><!-- ZRN_Zaire --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZWD_Zimbabwean Dollar</masterLabel>
+            <translation><!-- ZWD_Zimbabwean Dollar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZZZ_SK Euro Conversion Currency</masterLabel>
+            <translation><!-- ZZZ_SK Euro Conversion Currency --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Vendor Country --></label>
+        <name>VPM_VendorCountry__c</name>
+        <picklistValues>
+            <masterLabel>AD_Andorra</masterLabel>
+            <translation><!-- AD_Andorra --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AE_Utd.Arab Emir (UAE)</masterLabel>
+            <translation><!-- AE_Utd.Arab Emir (UAE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AF_Afghanistan</masterLabel>
+            <translation><!-- AF_Afghanistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AG_Antigua/Barbuda</masterLabel>
+            <translation><!-- AG_Antigua/Barbuda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AI_Anguilla</masterLabel>
+            <translation><!-- AI_Anguilla --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AL_Albania</masterLabel>
+            <translation><!-- AL_Albania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AM_Armenia</masterLabel>
+            <translation><!-- AM_Armenia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AN_Dutch Antilles</masterLabel>
+            <translation><!-- AN_Dutch Antilles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AO_Angola</masterLabel>
+            <translation><!-- AO_Angola --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AQ_Antarctica</masterLabel>
+            <translation><!-- AQ_Antarctica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AR_Argentina</masterLabel>
+            <translation><!-- AR_Argentina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AS_Samoa, American</masterLabel>
+            <translation><!-- AS_Samoa, American --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AT_Austria</masterLabel>
+            <translation><!-- AT_Austria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AU_Australia</masterLabel>
+            <translation><!-- AU_Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AW_Aruba</masterLabel>
+            <translation><!-- AW_Aruba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AZ_Azerbaijan</masterLabel>
+            <translation><!-- AZ_Azerbaijan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BA_Bosnia-Herz.</masterLabel>
+            <translation><!-- BA_Bosnia-Herz. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BB_Barbados</masterLabel>
+            <translation><!-- BB_Barbados --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BD_Bangladesh</masterLabel>
+            <translation><!-- BD_Bangladesh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BE_Belgium</masterLabel>
+            <translation><!-- BE_Belgium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BF_Burkina-Faso</masterLabel>
+            <translation><!-- BF_Burkina-Faso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BG_Bulgaria</masterLabel>
+            <translation><!-- BG_Bulgaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BH_Bahrain</masterLabel>
+            <translation><!-- BH_Bahrain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BI_Burundi</masterLabel>
+            <translation><!-- BI_Burundi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BJ_Benin</masterLabel>
+            <translation><!-- BJ_Benin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BM_Bermuda</masterLabel>
+            <translation><!-- BM_Bermuda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BN_Brunei Dar-es-S (Brunei Daruss)</masterLabel>
+            <translation><!-- BN_Brunei Dar-es-S (Brunei Daruss) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BO_Bolivia</masterLabel>
+            <translation><!-- BO_Bolivia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BQ_Bon+Statia+Saba</masterLabel>
+            <translation><!-- BQ_Bon+Statia+Saba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BR_Brazil</masterLabel>
+            <translation><!-- BR_Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BS_Bahamas</masterLabel>
+            <translation><!-- BS_Bahamas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BT_Bhutan</masterLabel>
+            <translation><!-- BT_Bhutan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BV_Bouvet Island</masterLabel>
+            <translation><!-- BV_Bouvet Island --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BW_Botswana</masterLabel>
+            <translation><!-- BW_Botswana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BY_Belarus</masterLabel>
+            <translation><!-- BY_Belarus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BZ_Belize</masterLabel>
+            <translation><!-- BZ_Belize --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA_Canada</masterLabel>
+            <translation><!-- CA_Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CC_Coconut Islands (Cocos Islands)</masterLabel>
+            <translation><!-- CC_Coconut Islands (Cocos Islands) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CD_Congo (Dem. Rep. Congo)</masterLabel>
+            <translation><!-- CD_Congo (Dem. Rep. Congo) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CF_Central Afr.Rep (CAR)</masterLabel>
+            <translation><!-- CF_Central Afr.Rep (CAR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CG_Congo</masterLabel>
+            <translation><!-- CG_Congo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CH_Switzerland</masterLabel>
+            <translation><!-- CH_Switzerland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CI_Cote d&apos;Ivoire (Ivory Coast)</masterLabel>
+            <translation><!-- CI_Cote d&apos;Ivoire (Ivory Coast) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CK_Cook Islands</masterLabel>
+            <translation><!-- CK_Cook Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CL_Chile</masterLabel>
+            <translation><!-- CL_Chile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CM_Cameroon</masterLabel>
+            <translation><!-- CM_Cameroon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CN_China</masterLabel>
+            <translation><!-- CN_China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CO_Colombia</masterLabel>
+            <translation><!-- CO_Colombia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CR_Costa Rica</masterLabel>
+            <translation><!-- CR_Costa Rica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CS_Serbia/Monten.</masterLabel>
+            <translation><!-- CS_Serbia/Monten. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CU_Cuba</masterLabel>
+            <translation><!-- CU_Cuba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CV_Cape Verde</masterLabel>
+            <translation><!-- CV_Cape Verde --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CW_Curaçao</masterLabel>
+            <translation><!-- CW_Curaçao --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CX_Christmas Islnd</masterLabel>
+            <translation><!-- CX_Christmas Islnd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CY_Cyprus</masterLabel>
+            <translation><!-- CY_Cyprus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CZ_Czech Republic</masterLabel>
+            <translation><!-- CZ_Czech Republic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DE_Germany</masterLabel>
+            <translation><!-- DE_Germany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DJ_Djibouti</masterLabel>
+            <translation><!-- DJ_Djibouti --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DK_Denmark</masterLabel>
+            <translation><!-- DK_Denmark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DM_Dominica</masterLabel>
+            <translation><!-- DM_Dominica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DO_Dominican Rep.</masterLabel>
+            <translation><!-- DO_Dominican Rep. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DZ_Algeria</masterLabel>
+            <translation><!-- DZ_Algeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EC_Ecuador</masterLabel>
+            <translation><!-- EC_Ecuador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EE_Estonia</masterLabel>
+            <translation><!-- EE_Estonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EF_Estonia</masterLabel>
+            <translation><!-- EF_Estonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EG_Egypt</masterLabel>
+            <translation><!-- EG_Egypt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EH_Western Sahara</masterLabel>
+            <translation><!-- EH_Western Sahara --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ER_Eritrea</masterLabel>
+            <translation><!-- ER_Eritrea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ES_Spain</masterLabel>
+            <translation><!-- ES_Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ET_Ethiopia</masterLabel>
+            <translation><!-- ET_Ethiopia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FI_Finland</masterLabel>
+            <translation><!-- FI_Finland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FJ_Fiji</masterLabel>
+            <translation><!-- FJ_Fiji --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FK_Falkland Islnds</masterLabel>
+            <translation><!-- FK_Falkland Islnds --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FM_Micronesia</masterLabel>
+            <translation><!-- FM_Micronesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FO_Faroe Islands</masterLabel>
+            <translation><!-- FO_Faroe Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FR_France</masterLabel>
+            <translation><!-- FR_France --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GA_Gabon</masterLabel>
+            <translation><!-- GA_Gabon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GB_United Kingdom</masterLabel>
+            <translation><!-- GB_United Kingdom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GD_Grenada</masterLabel>
+            <translation><!-- GD_Grenada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GE_Georgia</masterLabel>
+            <translation><!-- GE_Georgia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GF_French Guayana</masterLabel>
+            <translation><!-- GF_French Guayana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GG_Guernsey</masterLabel>
+            <translation><!-- GG_Guernsey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GH_Ghana</masterLabel>
+            <translation><!-- GH_Ghana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GI_Gibraltar</masterLabel>
+            <translation><!-- GI_Gibraltar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GL_Greenland</masterLabel>
+            <translation><!-- GL_Greenland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GM_Gambia</masterLabel>
+            <translation><!-- GM_Gambia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GN_Guinea</masterLabel>
+            <translation><!-- GN_Guinea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GP_Guadeloupe</masterLabel>
+            <translation><!-- GP_Guadeloupe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GQ_Equatorial Guin</masterLabel>
+            <translation><!-- GQ_Equatorial Guin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GR_Greece</masterLabel>
+            <translation><!-- GR_Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GS_S. Sandwich Ins</masterLabel>
+            <translation><!-- GS_S. Sandwich Ins --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GT_Guatemala</masterLabel>
+            <translation><!-- GT_Guatemala --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GU_Guam</masterLabel>
+            <translation><!-- GU_Guam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GW_Guinea-Bissau</masterLabel>
+            <translation><!-- GW_Guinea-Bissau --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GY_Guyana</masterLabel>
+            <translation><!-- GY_Guyana --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HK_Hong Kong</masterLabel>
+            <translation><!-- HK_Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HM_Heard/McDon.Isl</masterLabel>
+            <translation><!-- HM_Heard/McDon.Isl --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HN_Honduras</masterLabel>
+            <translation><!-- HN_Honduras --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HR_Croatia</masterLabel>
+            <translation><!-- HR_Croatia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HT_Haiti</masterLabel>
+            <translation><!-- HT_Haiti --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HU_Hungary</masterLabel>
+            <translation><!-- HU_Hungary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ID_Indonesia</masterLabel>
+            <translation><!-- ID_Indonesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IE_Ireland</masterLabel>
+            <translation><!-- IE_Ireland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IL_Israel</masterLabel>
+            <translation><!-- IL_Israel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IM_Isle of Man</masterLabel>
+            <translation><!-- IM_Isle of Man --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IN_India</masterLabel>
+            <translation><!-- IN_India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IO_Brit.Ind.Oc.Ter</masterLabel>
+            <translation><!-- IO_Brit.Ind.Oc.Ter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IQ_Iraq</masterLabel>
+            <translation><!-- IQ_Iraq --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IR_Iran</masterLabel>
+            <translation><!-- IR_Iran --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IS_Iceland</masterLabel>
+            <translation><!-- IS_Iceland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IT_Italy</masterLabel>
+            <translation><!-- IT_Italy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JE_Jersey</masterLabel>
+            <translation><!-- JE_Jersey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JM_Jamaica</masterLabel>
+            <translation><!-- JM_Jamaica --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JO_Jordan</masterLabel>
+            <translation><!-- JO_Jordan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JP_Japan</masterLabel>
+            <translation><!-- JP_Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KE_Kenya</masterLabel>
+            <translation><!-- KE_Kenya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KG_Kyrgyzstan</masterLabel>
+            <translation><!-- KG_Kyrgyzstan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KH_Cambodia</masterLabel>
+            <translation><!-- KH_Cambodia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KI_Kiribati</masterLabel>
+            <translation><!-- KI_Kiribati --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KM_Comoros</masterLabel>
+            <translation><!-- KM_Comoros --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KN_St Kitts&amp;Nevis</masterLabel>
+            <translation><!-- KN_St Kitts&amp;Nevis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KP_North Korea</masterLabel>
+            <translation><!-- KP_North Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KR_South Korea</masterLabel>
+            <translation><!-- KR_South Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KW_Kuwait</masterLabel>
+            <translation><!-- KW_Kuwait --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KY_Cayman Islands</masterLabel>
+            <translation><!-- KY_Cayman Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KZ_Kazakhstan</masterLabel>
+            <translation><!-- KZ_Kazakhstan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA_Laos</masterLabel>
+            <translation><!-- LA_Laos --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LB_Lebanon</masterLabel>
+            <translation><!-- LB_Lebanon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LC_St. Lucia</masterLabel>
+            <translation><!-- LC_St. Lucia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LI_Liechtenstein</masterLabel>
+            <translation><!-- LI_Liechtenstein --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LK_Sri Lanka</masterLabel>
+            <translation><!-- LK_Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LR_Liberia</masterLabel>
+            <translation><!-- LR_Liberia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LS_Lesotho</masterLabel>
+            <translation><!-- LS_Lesotho --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LT_Lithuania</masterLabel>
+            <translation><!-- LT_Lithuania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LU_Luxembourg</masterLabel>
+            <translation><!-- LU_Luxembourg --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LV_Latvia</masterLabel>
+            <translation><!-- LV_Latvia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LY_Libya</masterLabel>
+            <translation><!-- LY_Libya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MA_Morocco</masterLabel>
+            <translation><!-- MA_Morocco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MB_Myanmar</masterLabel>
+            <translation><!-- MB_Myanmar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MC_Monaco</masterLabel>
+            <translation><!-- MC_Monaco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MD_Moldova (Moldavia)</masterLabel>
+            <translation><!-- MD_Moldova (Moldavia) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ME _Montenegro</masterLabel>
+            <translation><!-- ME _Montenegro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MG_Madagascar</masterLabel>
+            <translation><!-- MG_Madagascar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MH_Marshall Islnds</masterLabel>
+            <translation><!-- MH_Marshall Islnds --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MK_Macedonia</masterLabel>
+            <translation><!-- MK_Macedonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ML_Mali</masterLabel>
+            <translation><!-- ML_Mali --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MM_Myanmar (Burma)</masterLabel>
+            <translation><!-- MM_Myanmar (Burma) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MN_Mongolia</masterLabel>
+            <translation><!-- MN_Mongolia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MO_Macau</masterLabel>
+            <translation><!-- MO_Macau --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MP_N.Mariana Islnd</masterLabel>
+            <translation><!-- MP_N.Mariana Islnd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MQ_Martinique</masterLabel>
+            <translation><!-- MQ_Martinique --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MR_Mauretania</masterLabel>
+            <translation><!-- MR_Mauretania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS_Montserrat</masterLabel>
+            <translation><!-- MS_Montserrat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MT_Malta</masterLabel>
+            <translation><!-- MT_Malta --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MU_Mauritius</masterLabel>
+            <translation><!-- MU_Mauritius --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MV_Maldives</masterLabel>
+            <translation><!-- MV_Maldives --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MW_Malawi</masterLabel>
+            <translation><!-- MW_Malawi --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MX_Mexico</masterLabel>
+            <translation><!-- MX_Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MY_Malaysia</masterLabel>
+            <translation><!-- MY_Malaysia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MZ_Mozambique</masterLabel>
+            <translation><!-- MZ_Mozambique --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NA_Namibia</masterLabel>
+            <translation><!-- NA_Namibia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NC_New Caledonia</masterLabel>
+            <translation><!-- NC_New Caledonia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NE_Niger</masterLabel>
+            <translation><!-- NE_Niger --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NF_Norfolk Islands</masterLabel>
+            <translation><!-- NF_Norfolk Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NG_Nigeria</masterLabel>
+            <translation><!-- NG_Nigeria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NI_Nicaragua</masterLabel>
+            <translation><!-- NI_Nicaragua --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NL_Netherlands</masterLabel>
+            <translation><!-- NL_Netherlands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NO_Norway</masterLabel>
+            <translation><!-- NO_Norway --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NP_Nepal</masterLabel>
+            <translation><!-- NP_Nepal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NR_Nauru</masterLabel>
+            <translation><!-- NR_Nauru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NU _Niue Islands</masterLabel>
+            <translation><!-- NU _Niue Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NZ_New Zealand</masterLabel>
+            <translation><!-- NZ_New Zealand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OM_Oman</masterLabel>
+            <translation><!-- OM_Oman --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA_Panama</masterLabel>
+            <translation><!-- PA_Panama --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PE_Peru</masterLabel>
+            <translation><!-- PE_Peru --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PF_French Polynesia</masterLabel>
+            <translation><!-- PF_French Polynesia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PG_Papua New Guinea</masterLabel>
+            <translation><!-- PG_Papua New Guinea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PH_Philippines</masterLabel>
+            <translation><!-- PH_Philippines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK_Pakistan</masterLabel>
+            <translation><!-- PK_Pakistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PL_Poland</masterLabel>
+            <translation><!-- PL_Poland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PM_St.Pier,Miquel.</masterLabel>
+            <translation><!-- PM_St.Pier,Miquel. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PN_Pitcairn Islnds</masterLabel>
+            <translation><!-- PN_Pitcairn Islnds --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PR_Puerto Rico</masterLabel>
+            <translation><!-- PR_Puerto Rico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PS_Palestine</masterLabel>
+            <translation><!-- PS_Palestine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PT_Portugal</masterLabel>
+            <translation><!-- PT_Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PW_Palau</masterLabel>
+            <translation><!-- PW_Palau --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PY_Paraguay</masterLabel>
+            <translation><!-- PY_Paraguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QA_Qatar</masterLabel>
+            <translation><!-- QA_Qatar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RE_Reunion</masterLabel>
+            <translation><!-- RE_Reunion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RO_Romania</masterLabel>
+            <translation><!-- RO_Romania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RS _Serbia</masterLabel>
+            <translation><!-- RS _Serbia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RU_Russian Fed.</masterLabel>
+            <translation><!-- RU_Russian Fed. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RW_Rwanda</masterLabel>
+            <translation><!-- RW_Rwanda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SA_Saudi Arabia</masterLabel>
+            <translation><!-- SA_Saudi Arabia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SB_Solomon Islands</masterLabel>
+            <translation><!-- SB_Solomon Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SC_Seychelles</masterLabel>
+            <translation><!-- SC_Seychelles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SD_Sudan</masterLabel>
+            <translation><!-- SD_Sudan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SE_Sweden</masterLabel>
+            <translation><!-- SE_Sweden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SG_Singapore</masterLabel>
+            <translation><!-- SG_Singapore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SH_St. Helena</masterLabel>
+            <translation><!-- SH_St. Helena --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SI_Slovenia</masterLabel>
+            <translation><!-- SI_Slovenia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SJ_Svalbard</masterLabel>
+            <translation><!-- SJ_Svalbard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SK_Slovakia</masterLabel>
+            <translation><!-- SK_Slovakia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SL_Sierra Leone</masterLabel>
+            <translation><!-- SL_Sierra Leone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SM_San Marino</masterLabel>
+            <translation><!-- SM_San Marino --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SN_Senegal</masterLabel>
+            <translation><!-- SN_Senegal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SO_Somalia</masterLabel>
+            <translation><!-- SO_Somalia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SR_Suriname</masterLabel>
+            <translation><!-- SR_Suriname --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SS _South Sudan</masterLabel>
+            <translation><!-- SS _South Sudan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STL_stateless</masterLabel>
+            <translation><!-- STL_stateless --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ST_S.Tome,Principe</masterLabel>
+            <translation><!-- ST_S.Tome,Principe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SV_El Salvador</masterLabel>
+            <translation><!-- SV_El Salvador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SX_St Maarten</masterLabel>
+            <translation><!-- SX_St Maarten --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SY_Syria</masterLabel>
+            <translation><!-- SY_Syria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SZ_Swaziland</masterLabel>
+            <translation><!-- SZ_Swaziland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TC _Turks &amp; Caicos (Turksh Caicosin)</masterLabel>
+            <translation><!-- TC _Turks &amp; Caicos (Turksh Caicosin) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TD_Chad</masterLabel>
+            <translation><!-- TD_Chad --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TF_French S.Territ</masterLabel>
+            <translation><!-- TF_French S.Territ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TG_Togo</masterLabel>
+            <translation><!-- TG_Togo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TH_Thailand</masterLabel>
+            <translation><!-- TH_Thailand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TJ_Tajikistan</masterLabel>
+            <translation><!-- TJ_Tajikistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TK_Tokelau Islands</masterLabel>
+            <translation><!-- TK_Tokelau Islands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TL_East Timor</masterLabel>
+            <translation><!-- TL_East Timor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TM_Turkmenistan</masterLabel>
+            <translation><!-- TM_Turkmenistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TN_Tunisia</masterLabel>
+            <translation><!-- TN_Tunisia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TO_Tonga</masterLabel>
+            <translation><!-- TO_Tonga --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TP_East Timor</masterLabel>
+            <translation><!-- TP_East Timor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TR_Turkey</masterLabel>
+            <translation><!-- TR_Turkey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TT_Trinidad,Tobago</masterLabel>
+            <translation><!-- TT_Trinidad,Tobago --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TV_Tuvalu</masterLabel>
+            <translation><!-- TV_Tuvalu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TW_Taiwan</masterLabel>
+            <translation><!-- TW_Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TZ_Tanzania</masterLabel>
+            <translation><!-- TZ_Tanzania --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UA_Ukraine</masterLabel>
+            <translation><!-- UA_Ukraine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UG_Uganda</masterLabel>
+            <translation><!-- UG_Uganda --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UM _Minor Outl.Isl.</masterLabel>
+            <translation><!-- UM _Minor Outl.Isl. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US_USA</masterLabel>
+            <translation><!-- US_USA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UY_Uruguay</masterLabel>
+            <translation><!-- UY_Uruguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UZ_Uzbekistan</masterLabel>
+            <translation><!-- UZ_Uzbekistan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VA_Vatican City</masterLabel>
+            <translation><!-- VA_Vatican City --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VC_St. Vincent</masterLabel>
+            <translation><!-- VC_St. Vincent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VE_Venezuela</masterLabel>
+            <translation><!-- VE_Venezuela --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VG_Brit.Virgin Is.</masterLabel>
+            <translation><!-- VG_Brit.Virgin Is. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VI_Amer.Virgin Is.</masterLabel>
+            <translation><!-- VI_Amer.Virgin Is. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VN_Vietnam</masterLabel>
+            <translation><!-- VN_Vietnam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VU_Vanuatu</masterLabel>
+            <translation><!-- VU_Vanuatu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WF_Wallis,Futuna</masterLabel>
+            <translation><!-- WF_Wallis,Futuna --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WS_Western Samoa</masterLabel>
+            <translation><!-- WS_Western Samoa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XK_Kosovo</masterLabel>
+            <translation><!-- XK_Kosovo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XM_Mayotte</masterLabel>
+            <translation><!-- XM_Mayotte --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YD_South Yemen</masterLabel>
+            <translation><!-- YD_South Yemen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YE_Yemen</masterLabel>
+            <translation><!-- YE_Yemen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YT_Mayotte</masterLabel>
+            <translation><!-- YT_Mayotte --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YU_Serbia &amp;Mtnegro (Yugosalvia)</masterLabel>
+            <translation><!-- YU_Serbia &amp;Mtnegro (Yugosalvia) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZA_South Africa</masterLabel>
+            <translation><!-- ZA_South Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZM_Zambia</masterLabel>
+            <translation><!-- ZM_Zambia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZR_Zaire</masterLabel>
+            <translation><!-- ZR_Zaire --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZW_Zimbabwe</masterLabel>
+            <translation><!-- ZW_Zimbabwe --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Order Currency Default Values Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

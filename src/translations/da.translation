@@ -157,6 +157,10 @@
         <name>Unilever_International_Distributor</name>
     </customApplications>
     <customApplications>
+        <label><!-- Vendor Requests --></label>
+        <name>VPM_PurchasingRequests</name>
+    </customApplications>
+    <customApplications>
         <label><!-- Warehouse Utilization --></label>
         <name>Warehouse_Utilization</name>
     </customApplications>
@@ -373,6 +377,14 @@
         <name>User_Admin</name>
     </customTabs>
     <customTabs>
+        <label><!-- Procurement Central Admin --></label>
+        <name>VPM_ProcurementCentralAdmin</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Vendor Request Procurement Approvals --></label>
+        <name>VPM_VendorRequestProcurementApprovals</name>
+    </customTabs>
+    <customTabs>
         <label><!-- Visitor Dashboard --></label>
         <name>Visitor_Dashboard</name>
     </customTabs>
@@ -408,6 +420,25 @@
         <label><!-- Issues --></label>
         <name>im_Issues</name>
     </customTabs>
+    <globalPicklists>
+        <name>VPM_ECC</name>
+        <picklistValues>
+            <masterLabel>Cordillera</masterLabel>
+            <translation><!-- Cordillera --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fusion</masterLabel>
+            <translation><!-- Fusion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sirius</masterLabel>
+            <translation><!-- Sirius --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>U2K2</masterLabel>
+            <translation><!-- U2K2 --></translation>
+        </picklistValues>
+    </globalPicklists>
     <globalPicklists>
         <name>Country</name>
         <picklistValues>

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Commodity</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Commodities</value>
+    </caseValues>
+    <fields>
+        <label><!-- Authorisation Group --></label>
+        <name>VPM_AuthorisationGroup__c</name>
+        <picklistValues>
+            <masterLabel>3PM--3PM Europe_VMBA 3PM Europe</masterLabel>
+            <translation><!-- 3PM- - 3PM Europe_VMBA 3PM Europe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3PM--3PM NAMCA, TUII, South Africa &amp; RUB_VMBA 3PM NAMCA South Afr RUB</masterLabel>
+            <translation><!-- 3PM- - 3PM NAMCA, TUII, South Africa &amp; RUB_VMBA 3PM NAMCA South Afr RUB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3PM--3PM South &amp; North Asia &amp; SEAA_VMBA 3PM Asia SEAA</masterLabel>
+            <translation><!-- 3PM- - 3PM South &amp; North Asia &amp; SEAA_VMBA 3PM Asia SEAA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3PM--3Pm America&apos;s_VMBA 3PM America</masterLabel>
+            <translation><!-- 3PM- - 3Pm America&apos;s_VMBA 3PM America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chemicals--Fragrances &amp; Flavours_VMBA Fragrances Flavors</masterLabel>
+            <translation><!-- Chemicals- - Fragrances &amp; Flavours_VMBA Fragrances Flavors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chemicals--Functional Chemicals_VMBA Functional Chemicals</masterLabel>
+            <translation><!-- Chemicals- - Functional Chemicals_VMBA Functional Chemicals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chemicals--Inorganics_VMBA Inorganics</masterLabel>
+            <translation><!-- Chemicals- - Inorganics_VMBA Inorganics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chemicals--Oleochemicals_VMBA Oleochemicals</masterLabel>
+            <translation><!-- Chemicals- - Oleochemicals_VMBA Oleochemicals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chemicals--Petrochemicals_VMBA Petrochemicals</masterLabel>
+            <translation><!-- Chemicals- - Petrochemicals_VMBA Petrochemicals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chemicals--Speciality Chemicals_VMBA Speciality Chemicals</masterLabel>
+            <translation><!-- Chemicals- - Speciality Chemicals_VMBA Speciality Chemicals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commodities--Liquid Oils_VMBA Liquid Oils</masterLabel>
+            <translation><!-- Commodities- - Liquid Oils_VMBA Liquid Oils --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commodities--Risk - Food Soft Commoditie_VMBA Food Soft Commodities</masterLabel>
+            <translation><!-- Commodities- - Risk - Food Soft Commoditie_VMBA Food Soft Commodities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commodities--Risk - Oils &amp; Fats_VMBA Risk Oils and Fats</masterLabel>
+            <translation><!-- Commodities- - Risk - Oils &amp; Fats_VMBA Risk Oils and Fats --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commodities--Risk - Petro Based_VMBA Petro Based</masterLabel>
+            <translation><!-- Commodities- - Risk - Petro Based_VMBA Petro Based --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commodities--Soft Commodities_VMBA Soft Commodities</masterLabel>
+            <translation><!-- Commodities- - Soft Commodities_VMBA Soft Commodities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commodities--Tropical Oils_VMBA Tropical Oils</masterLabel>
+            <translation><!-- Commodities- - Tropical Oils_VMBA Tropical Oils --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee_Employee</masterLabel>
+            <translation><!-- Employee_Employee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Freight_Freight</masterLabel>
+            <translation><!-- Freight_Freight --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ingredients--Ingredients 1_VMBA Ingredients 1</masterLabel>
+            <translation><!-- Ingredients- - Ingredients 1_VMBA Ingredients 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ingredients--Ingredients 2_VMBA Ingredients 2</masterLabel>
+            <translation><!-- Ingredients- - Ingredients 2_VMBA Ingredients 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ingredients--Ingredients 3_VMBA Ingredients 3</masterLabel>
+            <translation><!-- Ingredients- - Ingredients 3_VMBA Ingredients 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intercompany Transfer_VMBA Intercompany Transfer</masterLabel>
+            <translation><!-- Intercompany Transfer_VMBA Intercompany Transfer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intercompany_VMBA Intercompany</masterLabel>
+            <translation><!-- Intercompany_VMBA Intercompany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBS--HR_VMBA HR TRAVEL</masterLabel>
+            <translation><!-- MBS- - HR_VMBA HR TRAVEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBS--IT_VMBA IT</masterLabel>
+            <translation><!-- MBS- - IT_VMBA IT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBS--Innovation &amp; Professional Services_VMBA Outsourcing Professional</masterLabel>
+            <translation><!-- MBS- - Innovation &amp; Professional Services_VMBA Outsourcing Professional --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBS--Lakme Lever Ltd_VMBA Lakme Lever Ltd</masterLabel>
+            <translation><!-- MBS- - Lakme Lever Ltd_VMBA Lakme Lever Ltd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBS--Marketing Materials_VMBA MRKTNG MATERIALS</masterLabel>
+            <translation><!-- MBS- - Marketing Materials_VMBA MRKTNG MATERIALS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBS--Marketing Services_VMBA MARKTNG SRVCS</masterLabel>
+            <translation><!-- MBS- - Marketing Services_VMBA MARKTNG SRVCS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBS--Other_MBS--Other</masterLabel>
+            <translation><!-- MBS- - Other_MBS- - Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBS--Workplace &amp; Travel_VMBA workplace</masterLabel>
+            <translation><!-- MBS- - Workplace &amp; Travel_VMBA workplace --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging--Bottles_VMBA Bottles</masterLabel>
+            <translation><!-- Packaging- - Bottles_VMBA Bottles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging--Closures, Assemblies and Valv_VMBA CLSR Assemblies Valves</masterLabel>
+            <translation><!-- Packaging- - Closures, Assemblies and Valv_VMBA CLSR Assemblies Valves --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging--Customer Packaging_VMBA CUST PACKAGING</masterLabel>
+            <translation><!-- Packaging- - Customer Packaging_VMBA CUST PACKAGING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging--Decoration_VMBA Decoration</masterLabel>
+            <translation><!-- Packaging- - Decoration_VMBA Decoration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging--Feedstock_VMBA Feedstock</masterLabel>
+            <translation><!-- Packaging- - Feedstock_VMBA Feedstock --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging--Flexibles_VMBA Flexibles</masterLabel>
+            <translation><!-- Packaging- - Flexibles_VMBA Flexibles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging--Folding Cartons, Aseptic, IC_VMBA Fldng crtns Stick tea</masterLabel>
+            <translation><!-- Packaging- - Folding Cartons, Aseptic, IC_VMBA Fldng crtns Stick tea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging--Metal &amp; Glass_VMBA Metal Glass</masterLabel>
+            <translation><!-- Packaging- - Metal &amp; Glass_VMBA Metal Glass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging--Tea Packaging_VMBA Tea Packaging</masterLabel>
+            <translation><!-- Packaging- - Tea Packaging_VMBA Tea Packaging --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging--Tubs &amp; Lids, In-mould Labels_VMBA TL IN Mould Label Tubes</masterLabel>
+            <translation><!-- Packaging- - Tubs &amp; Lids, In-mould Labels_VMBA TL IN Mould Label Tubes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rice Exports_VMBA Rice Exports</masterLabel>
+            <translation><!-- Rice Exports_VMBA Rice Exports --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Russian Custom Tax_VMBA Russian Tax</masterLabel>
+            <translation><!-- Russian Custom Tax_VMBA Russian Tax --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-CAPEX AFR ASIA SEAA_VMBA CAPEX AAR</masterLabel>
+            <translation><!-- SCS-CAPEX AFR ASIA SEAA_VMBA CAPEX AAR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-CAPEX EU AM LATAM</masterLabel>
+            <translation><!-- SCS-CAPEX EU AM LATAM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-CAPEX EU AM LATAM_VMBA CAPEX EU AM LATAM</masterLabel>
+            <translation><!-- SCS-CAPEX EU AM LATAM_VMBA CAPEX EU AM LATAM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-Logistics AM_VMBA Logistics AM</masterLabel>
+            <translation><!-- SCS-Logistics AM_VMBA Logistics AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-Logistics Africa_VMBA Logistics Africa</masterLabel>
+            <translation><!-- SCS-Logistics Africa_VMBA Logistics Africa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-Logistics EU</masterLabel>
+            <translation><!-- SCS-Logistics EU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-Logistics EU_VMBA Logistics EU</masterLabel>
+            <translation><!-- SCS-Logistics EU_VMBA Logistics EU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-Logistics NA (North Asia)_VMBA Logistics NA</masterLabel>
+            <translation><!-- SCS-Logistics NA (North Asia)_VMBA Logistics NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-Logistics NAME_VMBA Logistics NAME</masterLabel>
+            <translation><!-- SCS-Logistics NAME_VMBA Logistics NAME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-Logistics RUB_VMBA Logistics RUB</masterLabel>
+            <translation><!-- SCS-Logistics RUB_VMBA Logistics RUB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-Logistics SA (South Asia)_VMBA Logistics SA</masterLabel>
+            <translation><!-- SCS-Logistics SA (South Asia)_VMBA Logistics SA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-Logistics TUII_VMBA Logistics TUII</masterLabel>
+            <translation><!-- SCS-Logistics TUII_VMBA Logistics TUII --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-Logistics – SEAA_VMBA Logistics SEAA</masterLabel>
+            <translation><!-- SCS-Logistics – SEAA_VMBA Logistics SEAA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS-UNICA_VMBA UNICA</masterLabel>
+            <translation><!-- SCS-UNICA_VMBA UNICA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tea--Tea_VMBA Tea</masterLabel>
+            <translation><!-- Tea- - Tea_VMBA Tea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UOI--UOI_VMBA UOI--UOI</masterLabel>
+            <translation><!-- UOI- - UOI_VMBA UOI- - UOI --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CSB Vendor? --></label>
+        <name>VPM_CSBVendor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commodity Class --></label>
+        <name>VPM_CommodityClass__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commodity Code --></label>
+        <name>VPM_CommodityCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commodity Family --></label>
+        <name>VPM_CommodityFamily__c</name>
+        <picklistValues>
+            <masterLabel>Equipment &amp; MRO</masterLabel>
+            <translation><!-- Equipment &amp; MRO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Human Resources</masterLabel>
+            <translation><!-- Human Resources --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IT &amp; Telecom</masterLabel>
+            <translation><!-- IT &amp; Telecom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Innovation Sourcing</masterLabel>
+            <translation><!-- Innovation Sourcing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Logistics</masterLabel>
+            <translation><!-- Logistics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Research</masterLabel>
+            <translation><!-- Market Research --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing Agencies and Media</masterLabel>
+            <translation><!-- Marketing Agencies and Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing Promotional and Sales Services</masterLabel>
+            <translation><!-- Marketing Promotional and Sales Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media (Placement)</masterLabel>
+            <translation><!-- Media (Placement) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non - Ariba</masterLabel>
+            <translation><!-- Non - Ariba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Out of Scope Procurement</masterLabel>
+            <translation><!-- Out of Scope Procurement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Professional Services</masterLabel>
+            <translation><!-- Professional Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Travel</masterLabel>
+            <translation><!-- Travel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Workplace Materials &amp; Services</masterLabel>
+            <translation><!-- Workplace Materials &amp; Services --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Commodity Region (Unique) --></label>
+        <name>VPM_CommodityRegionUnique__c</name>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>VPM_Region__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Type --></label>
+        <name>VPM_VendorType__c</name>
+        <picklistValues>
+            <masterLabel>FRGT_Freight Vendor_G001</masterLabel>
+            <translation><!-- FRGT_Freight Vendor_G001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBS_Marketing Business Services_G001</masterLabel>
+            <translation><!-- MBS_Marketing Business Services_G001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PI_Production Item Vendor_G001</masterLabel>
+            <translation><!-- PI_Production Item Vendor_G001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RCT_Russian Customs Tax Vendor_G001</masterLabel>
+            <translation><!-- RCT_Russian Customs Tax Vendor_G001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCS_Supply Chain Services_G001</masterLabel>
+            <translation><!-- SCS_Supply Chain Services_G001 --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Commodity Code Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Vendor and Authorisation --></label>
+            <section>Vendor and Authorisation</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

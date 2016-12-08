@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>VPM_ListOfRegionalandGlobalField</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>VPM_ListOfRegionalandGlobalField</value>
+    </caseValues>
+    <fields>
+        <label><!-- ApiName --></label>
+        <name>VPM_ApiName__c</name>
+    </fields>
+    <fields>
+        <label><!-- ECCRegion --></label>
+        <name>VPM_ECCRegion__c</name>
+    </fields>
+    <fields>
+        <label><!-- JSONFieldName --></label>
+        <name>VPM_JSONFieldName__c</name>
+    </fields>
+    <fields>
+        <label><!-- fieldDatatype --></label>
+        <name>VPM_fieldDatatype__c</name>
+    </fields>
+    <fields>
+        <label><!-- fieldType --></label>
+        <name>VPM_fieldType__c</name>
+    </fields>
+    <fields>
+        <label><!-- parentElement --></label>
+        <name>VPM_parentElement__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
