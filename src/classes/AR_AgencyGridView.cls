@@ -180,7 +180,7 @@ public with sharing class AR_AgencyGridView {
         {
             if (allAgencies == null)
             {
-                string agencyQuery = '  Select Id, Name, Agency_Expertise__c, Description, Strategic_Capabilities__c, Overall_Rating__c, Featured__c, Discipline__c, ' + 
+                string agencyQuery = '  Select Id, Name, Agency_Expertise__c, Description, Strategic_Capabilities__c, Overall_Rating__c, Featured__c, agency_Discipline__c, ' + 
                                      '      (Select Id, RecordType.Name, Category__c, Brand__c From Experiences__r ' +
                                      '          Where RecordType.Name = \'Experience\' ' +
                                      '              OR  RecordType.Name = \'Project\' ' +
@@ -306,14 +306,14 @@ public with sharing class AR_AgencyGridView {
             }
             
             // If discipline option selected, filter agency
-            if (disciplineSelectedOptions != null && disciplineSelectedOptions.size() > 0)
+           /* if (disciplineSelectedOptions != null && disciplineSelectedOptions.size() > 0)
             {
                 meetsCriteria = false;
                 for (String discipline :disciplineSelectedOptions)
                 {
-                    if (agencies[i].Discipline__c != null)
+                    if (agencies[i].agency_Discipline__c != null)
                     {
-                        if (discipline == agencies[i].Discipline__c)
+                        if (discipline == agencies[i].agency_Discipline__c)
                         {
                             meetsCriteria = true;
                             break; // break out now if agency matches discipline on any selected option
@@ -321,6 +321,23 @@ public with sharing class AR_AgencyGridView {
                     }
                 }
 
+            }*/
+              if (disciplineSelectedOptions != null && disciplineSelectedOptions.size() > 0)
+            {
+                meetsCriteria = false;
+                integer matchCount = 0;
+                
+                for (String discipline :disciplineSelectedOptions)
+                {
+                    if (agencies[i].Agency_Discipline__c != null)
+                    {
+                        for (String agencyDiscipline :agencies[i].Agency_Discipline__c.split(';'))
+                        {
+                            if (discipline == agencyDiscipline) matchCount++;
+                        }
+                    }
+                }
+                if (matchCount >= disciplineSelectedOptions.size()) meetsCriteria = true;
             }
             // Remove agency if fails above, then skip to next record in loop.
             if (!meetsCriteria)
@@ -452,10 +469,16 @@ public with sharing class AR_AgencyGridView {
             {
                 if (agency.Agency_Expertise__c != null)
                 {
+                
+                 for (String agencyExpertise :agency.Agency_Expertise__c.split(';'))
+                        {
+                            if (agencyExpertise.equals(pickListEntry.getValue())) optionCount++;
+                        }
+                        /*
                     if (agency.Agency_Expertise__c.contains(pickListEntry.getValue()))
                     {
                         optionCount++;
-                    }
+                    }*/
                 }
             }
             if (optionCount > 0) expertiseOptionsToCount.put(pickListEntry.getValue(),optionCount);
@@ -466,23 +489,48 @@ public with sharing class AR_AgencyGridView {
 
         // The other filter options are built based on child data records of agencies.
         // Here we are looping through all published agencies and child data, building our options and count for each
+        /*
         for (Account agency :agencies)
         {   
             
-            if (agency.Discipline__c != null)
+            if (agency.agency_Discipline__c != null)
             {
                 // Build map for discipline filter and count
-                if (disciplineOptionsToCount.containsKey(agency.Discipline__c))
+                if (disciplineOptionsToCount.containsKey(agency.agency_Discipline__c))
                 {
-                    disciplineOptionsToCount.put(agency.Discipline__c, disciplineOptionsToCount.get(agency.Discipline__c) + 1);
+                    disciplineOptionsToCount.put(agency.agency_Discipline__c, disciplineOptionsToCount.get(agency.agency_Discipline__c) + 1);
                 }
                 else
                 {
-                    disciplineOptionsToCount.put(agency.Discipline__c, 1);
+                    disciplineOptionsToCount.put(agency.agency_Discipline__c, 1);
                 }
             }
-            
+            */
+              for (Schema.PicklistEntry disciplinePickListEntry :Account.Agency_Discipline__c.getDescribe().getPicklistValues())
+        {
+        system.debug('Blessy  '+disciplinePickListEntry.getValue());
+            integer disciplineOptionCount = 0;
+            for (Account agency :agencies)
+            {
+                if (agency.Agency_Discipline__c != null)
+                {
+                
+                for (String agencyDiscipline :agency.Agency_Discipline__c.split(';'))
+                        {
+                            if (agencyDiscipline.equals(disciplinePickListEntry.getValue())) disciplineOptionCount++;
+                        }
+                
+                  /*  if (agency.Agency_Discipline__c.equals(disciplinePickListEntry.getValue()))
+                    {
+                        disciplineOptionCount++;
+                    }*/
+                }
+            }
+            if (disciplineOptionCount> 0) disciplineOptionsToCount.put(disciplinePickListEntry.getValue(),disciplineOptionCount);
+        }
             // Build map for category and brand options and count of agencies for each
+             for (Account agency :agencies)
+        { 
             for (ar_Experience__c experience :agency.Experiences__r)
             {
                 if (experience.RecordType.Name == 'Experience')

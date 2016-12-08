@@ -1124,9 +1124,137 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+            <fullName>Agency_Discipline__c</fullName>
+            <description>New field created as multiselect picklist type. Old field: Discipline__c is only a picklist.</description>
+            <externalId>false</externalId>
+            <label>Discipline</label>
+            <picklist>
+                <picklistValues>
+                    <fullName>Design (Creative)</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Design (Adaptive)</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Interactive (Digital)</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Advertising</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Public Relations</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Advertising Production</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Media</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Artwork</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Marketing Materials</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Print Media Placement</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Packaging Print Production</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Media Agency</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Activations and Promotions</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Consumer &amp; Customer Response</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Co-op marketing</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Customer Care</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Distribution &amp; Mailing Services</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Field Sales</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Point of Sale Materials (POSM)</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Premiums</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Printed Material</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Promotional Merchandise</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Sales &amp; Business Promotion Activities</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Sales Channel Operations</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Sales Promotion Print Production</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Warehousing &amp; Logistics</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Research - Ad hoc</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <picklistValues>
+                    <fullName>Research – Continuous</fullName>
+                    <default>false</default>
+                </picklistValues>
+                <restrictedPicklist>true</restrictedPicklist>
+                <sorted>false</sorted>
+            </picklist>
+            <required>false</required>
+            <trackFeedHistory>false</trackFeedHistory>
+            <trackHistory>false</trackHistory>
+            <type>MultiselectPicklist</type>
+            <visibleLines>7</visibleLines>
+        </fields>
+
+    <fields>
         <fullName>Discipline__c</fullName>
         <externalId>false</externalId>
-        <label>Discipline</label>
+        <label>Discipline Old</label>
         <picklist>
             <picklistValues>
                 <fullName>Design (Creative)</fullName>
@@ -6527,6 +6655,121 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>User Interface Design</fullName>
                 <default>false</default>
             </values>
+        </picklistValues>
+        <picklistValues>
+	            <picklist>Agency_Discipline__c</picklist>
+	            <values>
+	                <fullName>Activations and Promotions</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Advertising</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Advertising Production</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Artwork</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Co-op marketing</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Consumer %26 Customer Response</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Customer Care</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Design %28Adaptive%29</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Design %28Creative%29</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Distribution %26 Mailing Services</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Field Sales</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Interactive %28Digital%29</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Marketing Materials</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Media</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Media Agency</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Packaging Print Production</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Point of Sale Materials %28POSM%29</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Premiums</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Print Media Placement</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Printed Material</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Promotional Merchandise</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Public Relations</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Research %E2%80%93 Continuous</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Research - Ad hoc</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Sales %26 Business Promotion Activities</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Sales Channel Operations</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Sales Promotion Print Production</fullName>
+	                <default>false</default>
+	            </values>
+	            <values>
+	                <fullName>Warehousing %26 Logistics</fullName>
+	                <default>false</default>
+	            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Agree_to_Audits__c</picklist>
