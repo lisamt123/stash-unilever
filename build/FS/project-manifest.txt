@@ -51,6 +51,7 @@ src/objects/FS_Defined_Objective__c.object
 src/objects/Task.object
 src/objects/Risk__c.object
 src/objects/Product2.object
+src/objects/Activity.object
 src/layouts/FS_Account_Plan__c-Distributor Account Plan Feed Based.layout
 src/layouts/FS_Account_Plan__c-Distributor Account Plan Layout.layout
 src/layouts/FS_Account_Plan__c-Operator Account Plan Feed Based.layout
@@ -82,3 +83,7 @@ src/classes/FS_CHDUtilityTest.cls-meta.xml
 src/flows/FS_CHD_Segemetation_Call_Apex-10.flow
 src/classes/FS_AccountPlanningTest.cls
 src/classes/FS_AccountPlanningTest.cls-meta.xml
+src/quickActions/FS_Defined_Objective__c.Create_Risk.quickAction
+src/quickActions/FS_Defined_Objective__c.New_Opportunity.quickAction
+src/quickActions/FS_Account_Plan__c.New_Distributor_Objective.quickAction
+src/quickActions/FS_Account_Plan__c.New_Operator_Objective.quickAction
