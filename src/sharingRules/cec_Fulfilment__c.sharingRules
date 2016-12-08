@@ -166,6 +166,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Korea_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Korea - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Korea</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Korea</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Middle_Americas_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Middle Americas - Manager</label>
@@ -372,17 +383,6 @@
         </sharedTo>
         <sharedFrom>
             <role>CEC_Manager_HGS_Europe</role>
-        </sharedFrom>
-    </sharingOwnerRules>
-    <sharingOwnerRules>
-        <fullName>Role_Equals_North_Asia_Manager</fullName>
-        <accessLevel>Edit</accessLevel>
-        <label>Role Equals North Asia - Manager</label>
-        <sharedTo>
-            <role>CEC_Manager_North_Asia</role>
-        </sharedTo>
-        <sharedFrom>
-            <role>CEC_Manager_North_Asia</role>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

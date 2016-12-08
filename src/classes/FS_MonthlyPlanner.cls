@@ -1,5 +1,6 @@
 public class FS_MonthlyPlanner {
  public string userName{get;set;}
+    public string Total{get;set;}
     public integer plan{get;set;}
     public integer actual{get;set;}
     public decimal average{get;set;}
