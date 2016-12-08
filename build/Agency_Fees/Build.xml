@@ -131,6 +131,8 @@
 	  <runTest>AF_Usersearch_Test</runTest>
 	  <runTest>AF_Utils_Test</runTest>
 	  <runTest>AF_ViewAllController_Test</runTest>
+	  <runTest>AF_Constants_Test</runTest>
+	  <runTest>AF_UpdBonusSummaryCatApproverValues_Test</runTest>
     </sf:deploy>
   </target>  
 
