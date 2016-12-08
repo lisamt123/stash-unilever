@@ -345,9 +345,7 @@ public with sharing class IPM_FinancialHelper
     	List<IPM_Financial__c> consolidationChangedFinancialList = new List<IPM_Financial__c>(); 
         Map<String,IPM_Financial__c> consolidatedFinancialMap = new Map<String,IPM_Financial__c>();
         
-    	Set<String> regionalProjectNames = new Set<String>();
-    	Set<String> regionalRolloutNames = new Set<String>();
-        Set<String> globalProjectNamesRollout = new Set<String>();
+      Set<String> regionalProjectNames = new Set<String>();
         Set<String> globalProjectNamesProject = new Set<String>();
         
     	if(newFinancialList!=null && !newFinancialList.isEmpty())
@@ -379,35 +377,35 @@ public with sharing class IPM_FinancialHelper
                  
 		if(financialDetailMap!=null && !financialDetailMap.isEmpty())
         {          
-    		for(IPM_Financial__c financial : financialDetailMap.values())
-	        { 
-	            // Check if Financials are associated with Regional Rollouts 
-	            if(financial.IPM_Project_Rollout__c !=null) 
-	            {
-	                regionalRolloutNames.add(financial.IPM_Project_Rollout__r.IPM_Rollout_Project__c);
-        }
-        
-	            else if(financial.Regional_Project__c !=null)// Check if Financials are associated with Regional Projects.
-        		{
-	                regionalProjectNames.add(financial.Regional_Project__r.IPM_Project_Name__c);
-	            }
-	            if(financial.IPM_Project_Rollout__r.IPM_Project__c !=null)
-	            {
-	            	globalProjectNamesRollout.add(financial.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c);
-	            }
-	            else if(financial.Regional_Project__r.IPM_Parent_Project__c !=null)
-	            {
-	            	globalProjectNamesProject.add(financial.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c);
-	            }
-	        }
-            
-	    	if(!regionalRolloutNames.isEmpty() || !regionalProjectNames.isEmpty())
-            { 
-	            consolidatedFinancialMap.putAll(IPM_FinancialUtils.processRegionalConsolidationFinancial(regionalProjectNames,regionalRolloutNames)); 
+        for(IPM_Financial__c financial : financialDetailMap.values())
+          { 
+              // Check if Financials are associated with Regional Rollouts 
+              if(financial.IPM_Project_Rollout__c !=null) 
+              {
+                  regionalProjectNames.add(financial.IPM_Project_Rollout__r.IPM_Rollout_Project__c);
             }
-            if(!globalProjectNamesRollout.isEmpty() || !globalProjectNamesProject.isEmpty())
+              else if(financial.Regional_Project__c !=null)// Check if Financials are associated with Regional Projects.
             {
-            	consolidatedFinancialMap.putAll(IPM_FinancialUtils.processGlobalConsolidationFinancial(globalProjectNamesProject,globalProjectNamesRollout));
+                  regionalProjectNames.add(financial.Regional_Project__r.IPM_Project_Name__c);
+              }
+              
+              if(financial.IPM_Project_Rollout__r.IPM_Project__c !=null)
+              {
+                globalProjectNamesProject.add(financial.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c);
+              }
+              else if(financial.Regional_Project__r.IPM_Parent_Project__c !=null)
+              {
+                globalProjectNamesProject.add(financial.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c);
+              }
+          }
+            
+        if(!regionalProjectNames.isEmpty())
+            { 
+              consolidatedFinancialMap.putAll(IPM_FinancialUtils.processRegionalConsolidationFinancial(regionalProjectNames)); 
+            }
+            if(!globalProjectNamesProject.isEmpty())
+            {
+              consolidatedFinancialMap.putAll(IPM_FinancialUtils.processGlobalConsolidationFinancial(globalProjectNamesProject));
             }
         }
         return consolidatedFinancialMap;
@@ -793,50 +791,51 @@ public with sharing class IPM_FinancialHelper
             {
                 for(String fieldAPI : financialToChangedFeilds.get(financialID))
                 {
-                	String sourceSnapShot = changedFinancialDetail.IPM_Financial_Postfix__c;
-                	String sourceCopy,targetCopy = IPM_ConstantUtils.BLANK;
-		        	String targetSnapshot = IPM_ConstantUtils.BLANK;
-		        	if(fieldAPI == 'Copy_Global_to_Regional__c')
-		        	{
-		        		sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
-		        		targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;	
-		        	}
-		        	else if(fieldAPI == 'Copy_Regional_to_Local__c')
-		        	{
-		        		sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-		        		targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-		        	}
-		        	else if(fieldAPI == 'Copy_Global_to_Local__c')
-		        	{
-		        		sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
-		        		targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-		        	}
-		        	else if(fieldAPI == 'Copy_Local_to_Regional__c')
-		        	{
-		        		sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-		        		targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-		        	}
-		        	else if(fieldAPI == 'Copy_Local_to_Global__c')
-		        	{
-		        		sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-		        		targetCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
-		        	}
-		            if(fieldAPI == 'Charter_Approved__c')
-		        	{
-		        		targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CHARTER;
-		        	}
-		        	else if(fieldAPI == 'Contract_Approved__c')
-		        	{
-		        		targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CONTRACT;
-		        	}
-		        	else if(fieldAPI == 'MR_Approved__c')
-		        	{
-		        		targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_READY;
-		        	}
-		        	else if(fieldAPI == 'MD_Approved__c')
-		        	{
-		        		targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_DEPLOYMENT;
-		        	}
+                  String sourceSnapShot = changedFinancialDetail.IPM_Financial_Postfix__c;
+                  String sourceCopy,targetCopy = IPM_ConstantUtils.BLANK;
+              String targetSnapshot = IPM_ConstantUtils.BLANK;
+
+              if(fieldAPI == 'Copy_Global_to_Regional__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
+              {
+                sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+                targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;  
+              }
+              else if(fieldAPI == 'Copy_Regional_to_Local__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
+              {
+                sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+                targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+              }
+              else if(fieldAPI == 'Copy_Global_to_Local__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
+              {
+                sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+                targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+              }
+              else if(fieldAPI == 'Copy_Local_to_Regional__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
+              {
+                sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+                targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+              }
+              else if(fieldAPI == 'Copy_Local_to_Global__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
+              {
+                sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+                targetCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+              }
+                if(fieldAPI == 'Charter_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
+              {
+                targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CHARTER;
+              }
+              else if(fieldAPI == 'Contract_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
+              {
+                targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_CONTRACT;
+              }
+              else if(fieldAPI == 'MR_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
+              {
+                targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_READY;
+              }
+              else if(fieldAPI == 'MD_Approved__c' && (Boolean)changedFinancialDetail.get(fieldAPI))
+              {
+                targetSnapshot = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_DEPLOYMENT;
+              }
                     for(IPM_Financial_Year__c financialYear : changedFinancialDetail.IPM_Financial_Years__r)
                     {
                         financialYear.put(fieldAPI,changedFinancialDetail.get(fieldAPI));

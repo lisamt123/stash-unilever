@@ -44,11 +44,10 @@ public with sharing class IPM_FinancialYearHelper
     *********************************************************************************************************************/
     public static Map<String,IPM_Financial_Year__c> initialiseFYConsolidation(List<IPM_Financial_Year__c> newFinancialYearList, Map<Id, IPM_Financial_Year__c> oldFinancialYearMap,Map<Id,IPM_Financial_Year__c> financialYearDetailMap)
     {
-    	List<IPM_Financial_Year__c> consolidationChangedFinancialYearList = new List<IPM_Financial_Year__c>();
-    	Map<String,IPM_Financial_Year__c> consolidatedFinancialFYMap = new Map<String,IPM_Financial_Year__c>();
-    	Set<String> regionalRolloutNames = new Set<String>();
-    	Set<String> regionalProjectNames = new Set<String>();
-        Set<String> globalProjectNamesRollout = new Set<String>();
+      List<IPM_Financial_Year__c> consolidationChangedFinancialYearList = new List<IPM_Financial_Year__c>();
+      Map<String,IPM_Financial_Year__c> consolidatedFinancialFYMap = new Map<String,IPM_Financial_Year__c>();
+      
+      Set<String> regionalProjectNames = new Set<String>();
         Set<String> globalProjectNamesProject = new Set<String>();
         
     	if(newFinancialYearList!=null && !newFinancialYearList.isEmpty())
@@ -89,7 +88,7 @@ public with sharing class IPM_FinancialYearHelper
                 if(financialYear.IPM_Financial__r.IPM_Project_Rollout__c !=null) 
                 
                 {
-                	regionalRolloutNames.add(financialYear.IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c);
+                  regionalProjectNames.add(financialYear.IPM_Financial__r.IPM_Project_Rollout__r.IPM_Rollout_Project__c);
                 }  
 
             
@@ -103,24 +102,23 @@ public with sharing class IPM_FinancialYearHelper
                
                         
                 if(financialYear.IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__c !=null)
-                    {
-            		globalProjectNamesRollout.add(financialYear.IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c);
-                    }
-	            
-	            else if(financialYear.IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__c !=null)
-	                    {
-	            	globalProjectNamesProject.add(financialYear.IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c);
-	                    }
-                    }
-                         
-            if(!regionalProjectNames.isEmpty() || !regionalRolloutNames.isEmpty())
                 {
-				consolidatedFinancialFYMap.putall(IPM_FinancialUtils.processRegionalConsolidationFY(regionalProjectNames,regionalRolloutNames));
-                    }
-            
-            if(!globalProjectNamesRollout.isEmpty() || !globalProjectNamesProject.isEmpty())
+                globalProjectNamesProject.add(financialYear.IPM_Financial__r.IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c);
+                }
+              else if(financialYear.IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__c !=null)
+                {
+                globalProjectNamesProject.add(financialYear.IPM_Financial__r.Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c);
+              }
+           }
+                         
+            if(!regionalProjectNames.isEmpty())
             {
-            	consolidatedFinancialFYMap.putAll(IPM_FinancialUtils.processGlobalConsolidationFY(globalProjectNamesProject,globalProjectNamesRollout));
+        consolidatedFinancialFYMap.putall(IPM_FinancialUtils.processRegionalConsolidationFY(regionalProjectNames));
+            }
+            
+            if(!globalProjectNamesProject.isEmpty())
+            {
+              consolidatedFinancialFYMap.putAll(IPM_FinancialUtils.processGlobalConsolidationFY(globalProjectNamesProject));
             }
         }
         return consolidatedFinancialFYMap; 
