@@ -593,25 +593,6 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_DACH_Queue_cec_Enclosure</fullName>
-        <columns>NAME</columns>
-        <columns>Active__c</columns>
-        <columns>Country__c</columns>
-        <columns>FileName__c</columns>
-        <columns>MailItemName__c</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <filterScope>Queue</filterScope>
-        <label>CEC DACH Queue</label>
-        <language>en_US</language>
-        <queue>CEC_DACH_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_DACH</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_User_DACH</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_France_Queue_cec_Enclosure</fullName>
         <columns>NAME</columns>
         <columns>Country__c</columns>
@@ -925,16 +906,6 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>alle_DACH_Enclosures1</fullName>
-        <columns>NAME</columns>
-        <columns>OWNER.ALIAS</columns>
-        <columns>Active__c</columns>
-        <columns>Country__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>alle DACH-Enclosures</label>
-        <language>de</language>
-    </listViews>
-    <listViews>
         <fullName>test</fullName>
         <columns>NAME</columns>
         <columns>Active__c</columns>
@@ -944,7 +915,7 @@
         <columns>MailItemName__c</columns>
         <columns>MaximumQty__c</columns>
         <filterScope>Everything</filterScope>
-        <label>test D</label>
+        <label>CEC DACH Queue</label>
         <language>de</language>
     </listViews>
     <nameField>
