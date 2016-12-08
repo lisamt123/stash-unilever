@@ -470,7 +470,6 @@ public with sharing class AR_AgencyGridView {
         // Here we are looping through all published agencies and child data, building our options and count for each
         for (Schema.PicklistEntry disciplinePickListEntry :Account.Agency_Discipline__c.getDescribe().getPicklistValues())
         {
-        system.debug('Blessy  '+disciplinePickListEntry.getValue());
             integer disciplineOptionCount = 0;
             for (Account agency :agencies)
             {
