@@ -1,5 +1,4 @@
 src
-src/roles/RFS_Regional_Chef.role
 src/objects/FS_Account_Plan__c.object
 src/objects/FS_Defined_Objective__c.object
 src/objects/Task.object

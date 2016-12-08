@@ -144,35 +144,11 @@
         <label>Material Type</label>
         <picklist>
             <picklistValues>
-                <fullName>Rigids</fullName>
+                <fullName>Dummy 1</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Label</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Flexible</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Carton</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Corrugate</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tube</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Alu Can</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Glass</fullName>
+                <fullName>Dummy 2</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -200,15 +176,11 @@
         <label>Solution Category</label>
         <picklist>
             <picklistValues>
-                <fullName>Overt</fullName>
+                <fullName>Dummy 1</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Covert</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Dual</fullName>
+                <fullName>Dummy 2</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -225,19 +197,11 @@
         <label>Solution Status</label>
         <picklist>
             <picklistValues>
-                <fullName>Approved</fullName>
+                <fullName>Dummy 1</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Under Review</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Archived</fullName>
+                <fullName>Dummy 2</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -254,11 +218,11 @@
         <label>Solution Type</label>
         <picklist>
             <picklistValues>
-                <fullName>Taggents</fullName>
+                <fullName>Dummy 1</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Water Marks</fullName>
+                <fullName>Dummy 2</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -319,112 +283,6 @@
         <type>Phone</type>
     </fields>
     <label>PACV Solutions</label>
-    <listViews>
-        <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>PACV_Material_Type__c</columns>
-        <columns>PACV_Price_Per_Unit__c</columns>
-        <columns>PACV_Solution_Category__c</columns>
-        <columns>PACV_Solution_in_Use__c</columns>
-        <columns>PACV_Solution_Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Category</fullName>
-        <booleanFilter>1 OR 2 OR 3</booleanFilter>
-        <columns>NAME</columns>
-        <columns>PACV_Benefits__c</columns>
-        <columns>PACV_Material_Type__c</columns>
-        <columns>PACV_Price_Per_Unit__c</columns>
-        <columns>PACV_Solution_Category__c</columns>
-        <columns>PACV_Solution_in_Use__c</columns>
-        <columns>PACV_Solution_Status__c</columns>
-        <columns>PACV_Solution_Type__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>PACV_Solution_Category__c</field>
-            <operation>equals</operation>
-            <value>Overt</value>
-        </filters>
-        <filters>
-            <field>PACV_Solution_Category__c</field>
-            <operation>equals</operation>
-            <value>Covert</value>
-        </filters>
-        <filters>
-            <field>PACV_Solution_Category__c</field>
-            <operation>equals</operation>
-            <value>Dual</value>
-        </filters>
-        <label>Category</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Material_Type</fullName>
-        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
-        <columns>NAME</columns>
-        <columns>PACV_Benefits__c</columns>
-        <columns>PACV_Material_Type__c</columns>
-        <columns>PACV_Price_Per_Unit__c</columns>
-        <columns>PACV_Solution_Category__c</columns>
-        <columns>PACV_Solution_in_Use__c</columns>
-        <columns>PACV_Solution_Status__c</columns>
-        <columns>PACV_Solution_Type__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>PACV_Material_Type__c</field>
-            <operation>equals</operation>
-            <value>Rigids</value>
-        </filters>
-        <filters>
-            <field>PACV_Material_Type__c</field>
-            <operation>equals</operation>
-            <value>Label</value>
-        </filters>
-        <filters>
-            <field>PACV_Material_Type__c</field>
-            <operation>equals</operation>
-            <value>Flexible</value>
-        </filters>
-        <filters>
-            <field>PACV_Material_Type__c</field>
-            <operation>equals</operation>
-            <value>Carton</value>
-        </filters>
-        <filters>
-            <field>PACV_Material_Type__c</field>
-            <operation>equals</operation>
-            <value>Corrugate</value>
-        </filters>
-        <label>Material Type</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Price_per_unit</fullName>
-        <columns>NAME</columns>
-        <columns>PACV_Benefits__c</columns>
-        <columns>PACV_Material_Type__c</columns>
-        <columns>PACV_Price_Per_Unit__c</columns>
-        <columns>PACV_Solution_Category__c</columns>
-        <columns>PACV_Solution_in_Use__c</columns>
-        <columns>PACV_Solution_Status__c</columns>
-        <columns>PACV_Solution_Type__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>PACV_Price_Per_Unit__c</field>
-            <operation>greaterThan</operation>
-            <value>EUR 0</value>
-        </filters>
-        <filters>
-            <field>PACV_Price_Per_Unit__c</field>
-            <operation>lessThan</operation>
-            <value>EUR 100</value>
-        </filters>
-        <label>Price per unit</label>
-        <language>en_US</language>
-    </listViews>
     <nameField>
         <label>Solutions Name</label>
         <trackHistory>false</trackHistory>
@@ -444,20 +302,6 @@
         <lookupDialogsAdditionalFields>PACV_Contact_Phone__c</lookupDialogsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
-    <validationRules>
-        <fullName>PACV_ContactPhoneIsEmpty</fullName>
-        <active>true</active>
-        <errorConditionFormula>NOT(REGEX( PACV_Contact_Phone__c, &quot;(\\d){10}&quot;))</errorConditionFormula>
-        <errorDisplayField>PACV_Contact_Phone__c</errorDisplayField>
-        <errorMessage>Contact Phone number should not be blank or It should  contain 10 digit number.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>PACV_SupplierPhoneIsEmpty</fullName>
-        <active>true</active>
-        <errorConditionFormula>NOT(REGEX( PACV_Supplier_Phone__c , &quot;(\\d){10}&quot;))</errorConditionFormula>
-        <errorDisplayField>PACV_Supplier_Phone__c</errorDisplayField>
-        <errorMessage>Supplier Phone number should not be blank or It should  contain 10 digit number.</errorMessage>
-    </validationRules>
     <webLinks>
         <fullName>Generate_PDF</fullName>
         <availability>online</availability>
