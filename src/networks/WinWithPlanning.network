@@ -26,7 +26,7 @@
     <networkMemberGroups>
         <permissionSet>WWP_User_Permissions_for_supplier</permissionSet>
         <profile>admin</profile>
-        <profile>WWP Supplier Profile</profile>
+        <profile>wwp supplier profile</profile>
     </networkMemberGroups>
     <picassoSite>WinWithPlanning1</picassoSite>
     <selfRegistration>false</selfRegistration>
