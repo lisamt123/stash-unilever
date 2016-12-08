@@ -89,3 +89,11 @@ src/quickActions/FS_Account_Plan__c.New_Distributor_Objective.quickAction
 src/quickActions/FS_Account_Plan__c.New_Operator_Objective.quickAction
 src/quickActions/Account.New_Dist_Account_Plan.quickAction
 src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
+src/roles/RFS_Distributor_Account_Executive_DAE_MR.role
+src/roles/Senior_Distributor_Account_Executive.role
+src/roles/RFS_Regional_Chef_S.role
+src/roles/Sales_Development_Manager.role
+src/roles/Sales_Development_Executive_NCM.role
+src/roles/Sales_Development_Executive_NDM.role
+src/roles/Specnaz.role
+src/roles/Independent_Manager.role
