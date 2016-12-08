@@ -3942,7 +3942,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>New</value>
         </filters>
-        <label>Out of SLA</label>
+        <label>CEC UKI Out of SLA Queue</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_UK</role>
@@ -5929,8 +5929,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>Country__c</field>
-            <operation>contains</operation>
+            <field>Case_Market_Mapping_Country__c</field>
+            <operation>equals</operation>
             <value>United States</value>
         </filters>
         <filters>
@@ -5946,7 +5946,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>notContain</operation>
-            <value>Bazaar,IVR,Sun,Ragu,Facebook</value>
+            <value>Bazaar,IVR,Sun,Ragu,Facebook,Talenti</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
@@ -5956,12 +5956,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>notContain</operation>
-            <value>Bertolli,Snuggle,Gortons,Frequent Caller Queue</value>
+            <value>Bertolli,Snuggle,Frequent Caller Queue</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
             <operation>notContain</operation>
-            <value>Ben</value>
+            <value>Ben,Maille</value>
         </filters>
         <label>CEC North America 24-7 In Touch USA</label>
         <language>en_US</language>
@@ -5972,7 +5972,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_24_7_In_Touch_Canada1</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 and 6</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 and 6 and 7 and 8</booleanFilter>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
@@ -6002,17 +6002,27 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>notContain</operation>
-            <value>Bertoli,Bazaar,Bluewater,IVR,Sunlight,Sun,Ragu,Facebook,Ben,WalMart</value>
+            <value>Privacy,Bertolli,Bazaar,Bluewater,IVR,Sunlight,Sun,Ragu,Facebook,Ben,WalMart</value>
         </filters>
         <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>notContain</operation>
-            <value>,Claims,Frequent,DIN,Brand</value>
+            <field>OWNER_NAME</field>
+            <operation>notEqual</operation>
+            <value>CEC North America Canada DIN Queue,CEC North America Mexico</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>notEqual</operation>
-            <value>U-FS-PL,JJoan,C-AA-ATH,C-LD-EgA</value>
+            <value>U-FS-PL,JJoan,CEC North America Frequent Caller Queue</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>notEqual</operation>
+            <value>C-LD-EgA,C-LD-TR,C-AA-ATH,U-NK-GFP</value>
+        </filters>
+        <filters>
+            <field>OWNER_NAME</field>
+            <operation>notEqual</operation>
+            <value>CEC North America Brand Queue,CEC North America Claims Queue</value>
         </filters>
         <label>CEC North America 24-7 In Touch Canada</label>
         <language>en_US</language>
@@ -7094,6 +7104,53 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Philippines_All_Cases4</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>Global_Reason_L1_desc__c</columns>
+        <columns>Global_Reason_L5_desc__c</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>CASES.CLOSED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Global_Reason_L1_desc__c</field>
+            <operation>equals</operation>
+            <value>Complaints</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notContain</operation>
+            <value>test,spam</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>12/1/2016 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>lessOrEqual</operation>
+            <value>12/31/2016 12:00 AM</value>
+        </filters>
+        <label>CEC Philippines-CurrentMonth_COMPLAINTS</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>CEC_User_Philippines</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Philippines_All_Cases5</fullName>
         <columns>Default_From_Address__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -7261,6 +7318,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>Action_Taken__c</columns>
+        <columns>CASES.CLOSED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -7442,6 +7500,194 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_Philippines</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Philippines_CurrentMonth_COMPLAINTS</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>Global_Reason_L1_desc__c</columns>
+        <columns>Global_Reason_L5_desc__c</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>CASES.CLOSED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Global_Reason_L1_desc__c</field>
+            <operation>equals</operation>
+            <value>Praises</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notContain</operation>
+            <value>test,spam</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>12/1/2016 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>lessOrEqual</operation>
+            <value>12/31/2016 12:00 AM</value>
+        </filters>
+        <label>CEC Philippines-CurrentMonth_PRAISES</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>CEC_User_Philippines</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Philippines_CurrentMonth_PRAISES</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>Global_Reason_L1_desc__c</columns>
+        <columns>Global_Reason_L5_desc__c</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>CASES.CLOSED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Global_Reason_L1_desc__c</field>
+            <operation>equals</operation>
+            <value>Suggestions</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notContain</operation>
+            <value>test,spam</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>12/1/2016 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>lessOrEqual</operation>
+            <value>12/31/2016 12:00 AM</value>
+        </filters>
+        <label>CEC Philippines-CurrentMonth_SUGGESTIONS</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>CEC_User_Philippines</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Philippines_CurrentMonth_SUGGESTIONS</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>Global_Reason_L1_desc__c</columns>
+        <columns>Global_Reason_L5_desc__c</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>CASES.CLOSED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Global_Reason_L1_desc__c</field>
+            <operation>equals</operation>
+            <value>Queries</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notContain</operation>
+            <value>test,spam</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>12/1/2016 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>lessOrEqual</operation>
+            <value>12/31/2016 12:00 AM</value>
+        </filters>
+        <label>CEC Philippines-CurrentMonth_QUERIES</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>CEC_User_Philippines</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Philippines_CurrentMonth_SUGGESTIONS1</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>Global_Reason_L1_desc__c</columns>
+        <columns>Global_Reason_L5_desc__c</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>CASES.CLOSED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Global_Reason_L1_desc__c</field>
+            <operation>equals</operation>
+            <value>Others</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notContain</operation>
+            <value>test,spam</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>12/1/2016 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>lessOrEqual</operation>
+            <value>12/31/2016 12:00 AM</value>
+        </filters>
+        <label>CEC Philippines-CurrentMonth_OTHERS</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>CEC_User_Philippines</roleAndSubordinatesInternal>
         </sharedTo>
     </listViews>
     <listViews>
@@ -8614,7 +8860,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>DACH_Vacation_Queue_3</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -8661,17 +8907,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>ukrah</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>Ute</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
             <value>Rebe</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Saskia</value>
         </filters>
         <label>DACH Vacation Queue 3</label>
         <language>en_US</language>
@@ -9217,26 +9458,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>My_Open_Cases_DO_NOT_EDIT13</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.ORIGIN</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>Action_Taken__c</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <label>My Open Cases - DO NOT EDIT</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
         <fullName>My_Open_Cases_DO_NOT_EDIT14</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.ORIGIN</columns>
@@ -9280,6 +9501,26 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Pending with Courier</value>
         </filters>
         <label>CEC Philippines Open Cases - Courier</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Open_Cases_DO_NOT_EDIT16</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>My Open Cases - DO NOT EDIT</label>
         <language>en_US</language>
     </listViews>
     <listViews>
@@ -9796,7 +10037,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>New</value>
         </filters>
-        <label>Within SLA</label>
+        <label>CEC UKI Within SLA Queue</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_UK</role>
