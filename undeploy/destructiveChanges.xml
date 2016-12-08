@@ -174,6 +174,42 @@
 			<members>VPM_PurchasingRequests__c.VPM_FusionBankingDataValidation_VPM_PurchasingRequests</members>
 			<members>VPM_PurchasingRequests__c.VPM_FLS_VPM_PurchasingRequests</members>
 			<members>VPM_PurchasingRequests__c.VPM_ECCQueue_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_Finance_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceAlgeria_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceArgentina_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceAustralia_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceAustria_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceBahrain_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceBangladesh_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceBelgium_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceBermuda_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceBolivia_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceBrazil_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceBulgaria_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceCambodia_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceCanada_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceChile_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceChina_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceColombia_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceCostaRica_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceCroatia_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceCzechRepublic_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceDenmark_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceDominicanRep_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceEcuador_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceEgypt_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceElSalvador_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceEstonia_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceEthiopia_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceFinland_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceFrance_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceGermany_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceGhana_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceGreece_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceGuatemala_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceHonduras_VPM_PurchasingRequests</members>
+			<members>VPM_PurchasingRequests__c.VPM_FinanceHongKong_VPM_PurchasingRequests</members>
+
 
 
                    <name>ListView</name>
