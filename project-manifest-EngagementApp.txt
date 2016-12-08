@@ -62,3 +62,4 @@ src/staticresources/Engagementbackground.resource
 src/staticresources/Engagementbackground.resource-meta.xml
 src/staticresources/engagementpic.resource
 src/staticresources/engagementpic.resource-meta.xml
+src/permissionsets/Engagement_App_Admin.permissionset
