@@ -1,5 +1,7 @@
 src
 src/classes
+src/classes/AF_ApprovalProcessForBrandEstContro_Test.cls
+src/classes/AF_ApprovalProcessForBrandEstContro_Test.cls-meta.xml
 src/classes/AF_UpdBonusSummaryCatApproverValues_Test.cls
 src/classes/AF_UpdBonusSummaryCatApproverValues_Test.cls-meta.xml
 src/classes/AF_BonusMatrixOverrideController.cls
