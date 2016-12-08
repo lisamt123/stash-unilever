@@ -9,8 +9,6 @@ src/pages/PBS_TrainingPlanFeedback.page
 src/pages/PBS_TrainingPlanFeedback.page-meta.xml
 src/pages/PBS_EditProfile.page
 src/pages/PBS_EditProfile.page-meta.xml
-src/pages/PC_RankingTable.page
-src/pages/PC_RankingTable.page-meta.xml
 src/pages/PC_Forum_clone.page
 src/pages/PC_Forum_clone.page-meta.xml
 src/pages/PBS_WelcomePage_clone.page
