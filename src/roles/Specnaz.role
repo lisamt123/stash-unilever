@@ -4,7 +4,7 @@
     <contactAccessLevel>Edit</contactAccessLevel>
     <description>RFS Specnaz</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>RFS Specnaz</name>
+    <name>RFS Specnaz M</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
     <parentRole>Independent_Manager</parentRole>
 </Role>
