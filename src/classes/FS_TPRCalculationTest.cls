@@ -52,13 +52,18 @@ public class FS_TPRCalculationTest {
                                 FS_supplyCostChain__c,
                                 FS_grossProfit__c,
                                 FS_grossMargin__c,
-                                FS_gmWhenTPREqualsZero__c                    
+                                FS_gmWhenTPREqualsZero__c,
+                        		FS_listPriceCasePiece__c
                         FROM OpportunityLineItem
                         WHERE id =: oppProd.Id];
             
             
             
-            //System.debug('oppProd1: ' + oppProd1);            
+            //System.debug('oppProd1: ' + oppProd1);
+            
+            System.debug('oppProd.FS_listPriceCasePiece__c: ' + oppProd1.FS_listPriceCasePiece__c);
+            System.assertEquals(657.79, oppProd1.FS_listPriceCasePiece__c.setScale(2));
+            
             //System.debug('oppProd.FS_tprPercent__c: ' + oppProd1.FS_tprPercent__c);
             System.assertEquals(2.00, oppProd1.FS_tprPercent__c.setScale(2));
             
@@ -144,7 +149,8 @@ public class FS_TPRCalculationTest {
                                 FS_supplyCostChain__c,
                                 FS_grossProfit__c,
                                 FS_grossMargin__c,
-                                FS_gmWhenTPREqualsZero__c                    
+                                FS_gmWhenTPREqualsZero__c,
+                        		FS_listPriceCasePiece__c
                         FROM OpportunityLineItem
                         WHERE id =: oppProd.Id];
             
@@ -158,7 +164,11 @@ public class FS_TPRCalculationTest {
             //System.debug('>>> opp1A: ' + opp1);
             
             
-            //System.debug('oppProd2: ' + oppProd1);            
+            //System.debug('oppProd2: ' + oppProd1);
+            
+			System.debug('oppProd.FS_listPriceCasePiece__c: ' + oppProd1.FS_listPriceCasePiece__c);
+            System.assertEquals(2631.15, oppProd1.FS_listPriceCasePiece__c.setScale(2));
+            
             //System.debug('oppProd.FS_tprPercent__c: ' + oppProd1.FS_tprPercent__c);
             System.assertEquals(2.00, oppProd1.FS_tprPercent__c.setScale(2));
             
@@ -425,7 +435,7 @@ public class FS_TPRCalculationTest {
             System.assertEquals(82.19, oppProd1.FS_necessaryTPR__c.setScale(2));
             
         }
-        System.debug('end5');        
+        System.debug('end');        
     }
     
     

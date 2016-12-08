@@ -209,6 +209,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Market_Equals_Korea_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Korea - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Korea</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country_Code__c</field>
+            <operation>equals</operation>
+            <value>KR</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Market_Equals_Middle_Americas_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Middle Americas - Manager</label>

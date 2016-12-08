@@ -188,8 +188,12 @@ public class AF_AnnualBonus_Test
             annulBonus.annualBonusConstructorExt(subResultlist);
             annulBonus.annualBonusDigitalTradExt(subResultlist);
             annulBonus.annualBonusTotalTradDigitalCalc();
+<<<<<<< HEAD
             annulBonus.annualBonusBMCalc(subResultlist);
             annulBonus.annualBonusQualQuantPerCalc(subResultlist);
+=======
+            
+>>>>>>> 604b08d855cd7c8d50d0ecc21ab2505bbc64fd68
             List<AF_Sub_Result__c> subResultlist1= new  List<AF_Sub_Result__c>();
             for(AF_Sub_Result__c sr : subResultlist)
             {
@@ -210,7 +214,10 @@ public class AF_AnnualBonus_Test
             annulBonus.annualBonusTotalTradDigitalCalc();
             annulBonus.annualBonusQuantQualExt(subResultlist1);
             
+<<<<<<< HEAD
             
+=======
+>>>>>>> 604b08d855cd7c8d50d0ecc21ab2505bbc64fd68
             List<AF_Sub_Result__c> subResultlist2= new  List<AF_Sub_Result__c>();
             for(AF_Sub_Result__c sr : subResultlist)
             {
@@ -224,7 +231,10 @@ public class AF_AnnualBonus_Test
             annulBonus.annualBonusDigitalTradExt(subResultlist2);
             annulBonus.annualBonusTotalTradDigitalCalc();
             
+<<<<<<< HEAD
             
+=======
+>>>>>>> 604b08d855cd7c8d50d0ecc21ab2505bbc64fd68
             List<AF_Sub_Result__c> subResultlist3= new  List<AF_Sub_Result__c>();
             for(AF_Sub_Result__c sr : subResultlist)
             {
@@ -237,8 +247,11 @@ public class AF_AnnualBonus_Test
             annulBonus.annualBonusConstructorExt(subResultlist3);
             annulBonus.annualBonusDigitalTradExt(subResultlist3);
             annulBonus.annualBonusTotalTradDigitalCalc();
+<<<<<<< HEAD
             //annulBonus.annualBonusQualQuantPerCalc(subResultlist1);
             
+=======
+>>>>>>> 604b08d855cd7c8d50d0ecc21ab2505bbc64fd68
             Test.stopTest();
         }
     }
@@ -993,6 +1006,7 @@ public class AF_AnnualBonus_Test
             insert BonusThresholdlist;
             //insert sub Results.
             List<AF_Sub_Result__c> subResults = AF_TestFactory_Helper.insertSubResult(1,true);
+<<<<<<< HEAD
             AF_QuarterlyBonus__c  quart=new AF_QuarterlyBonus__c ();
             quart.Name='Business Measure';
             quart.Minimum__c=5;
@@ -1262,6 +1276,22 @@ public class AF_AnnualBonus_Test
             
             insert subResultlist;
             //system.assertequals(subResultlist[0].AF_Country__c,Null);
+=======
+            
+            
+            System.assert(subResults!=null, AF_TestFactory_Helper.SUBRESULT_RECORD);
+            List<AF_Sub_Result__c> subResultlist= new  List<AF_Sub_Result__c>();
+            for(AF_Sub_Result__c sr : subResults)
+            {
+                sr.AF_Digital__c = false;
+                sr.AF_Traditional__c = true;
+                sr.AF_Adaptation__c = false;
+                sr.Bonus_Measure__c ='Business Measure';
+                subResultlist.add(sr);
+            }
+            update subResultlist;
+            
+>>>>>>> 604b08d855cd7c8d50d0ecc21ab2505bbc64fd68
             //Insert Bonus Results.
             List<AF_Bonus_Results__c> BonusResultList = AF_TestFactory_Helper.insertBonusResults(1,true);
             System.assert(BonusResultList[0].id!=null, AF_TestFactory_Helper.SUBRESULT_RECORD);
@@ -1281,7 +1311,10 @@ public class AF_AnnualBonus_Test
             annulBonus.ConfirmBonus();
             annulBonus.annualBonusTotalTradDigitalCalc();
             
+<<<<<<< HEAD
             
+=======
+>>>>>>> 604b08d855cd7c8d50d0ecc21ab2505bbc64fd68
             List<AF_Sub_Result__c> subResultlist1= new  List<AF_Sub_Result__c>();
             for(AF_Sub_Result__c sr : subResultlist)
             {
@@ -1292,6 +1325,7 @@ public class AF_AnnualBonus_Test
             }
             update subResultlist1;
             AF_AnnualBonus annulBonus1 =new AF_AnnualBonus();
+<<<<<<< HEAD
             AF_AnnualBonus.wrapbonus wrapobj = new AF_AnnualBonus.wrapbonus(0,250,10,BonusThresholdlist[0].id,'Argentina',2,3,4,subResultlist[0],1500,'Brand Attribute',1,'Brand equity');
             annulBonus1.QuartelyBonus = new List<AF_AnnualBonus.wrapbonus>();
             annulBonus1.QuartelyBonus.add(wrapobj);
@@ -1320,6 +1354,10 @@ public class AF_AnnualBonus_Test
             annulBonus1.pilotMode=true;
             annulBonus1.total_bonus_fees=234;
             
+=======
+            annulBonus1.annualBonusConstructorExt(subResultlist1);
+            annulBonus1.annualBonusDigitalTradExt(subResultlist1);
+>>>>>>> 604b08d855cd7c8d50d0ecc21ab2505bbc64fd68
             Test.stopTest();
         }
     }

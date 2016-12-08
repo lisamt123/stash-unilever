@@ -172,6 +172,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
                 }
                 mail.setToAddresses(toEmailAdresses);
                 // add email to list of emails to be sent
+                emailList.clear();
                 emailList.add(mail);
                 
                 // create emailMessage object to link to case
@@ -185,6 +186,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
                 eMessage.Incoming = false;
                 eMessage.MessageDate = system.Now();
                 // add email to list of emails to be added to case
+                emailMessageList.clear();
                 emailMessageList.add(eMessage);
                 // send emails and attach them to parent cases
                 sendEmailsAndAttachToCases(emailMessageList, emailList, factoryRetrievalMapToSendMail);
