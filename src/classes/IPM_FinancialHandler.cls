@@ -415,27 +415,27 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 finCopyOverAlreadyInitiatedSet.add(newfinancial.Id);
             }
             
-			if(newfinancial.Copy_Global_to_Regional__c)
+            if((oldfinancial.Copy_Global_to_Regional__c != newfinancial.Copy_Global_to_Regional__c) &&  newfinancial.Copy_Global_to_Regional__c)
 			{
 				sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
             	targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;	
 			}
-			else if(newfinancial.Copy_Regional_to_Local__c)
+            else if((oldfinancial.Copy_Regional_to_Local__c != newfinancial.Copy_Regional_to_Local__c) && newfinancial.Copy_Regional_to_Local__c)
 			{
 				sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
             	targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
 			}
-			else if(newfinancial.Copy_Global_to_Local__c)
+            else if((oldfinancial.Copy_Global_to_Local__c != newfinancial.Copy_Global_to_Local__c) && newfinancial.Copy_Global_to_Local__c)
 			{
 				sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
             	targetCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;	
 			}
-			else if(newfinancial.Copy_Local_to_Global__c)
+            else if((oldfinancial.Copy_Local_to_Global__c != newfinancial.Copy_Local_to_Global__c) && newfinancial.Copy_Local_to_Global__c)
 			{
 			sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
             	targetCopy = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;	
 			}
-			else if(newfinancial.Copy_Local_to_Regional__c)
+            else if((oldfinancial.Copy_Local_to_Regional__c != newfinancial.Copy_Local_to_Regional__c) && newfinancial.Copy_Local_to_Regional__c)
 			{
 				sourceCopy = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
             	targetCopy = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;	
