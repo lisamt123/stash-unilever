@@ -18,7 +18,7 @@
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>sharada.ganachari@capgemini.com.uni</siteAdmin>
+    <siteAdmin>sneha.singh2@unilever.com.wwp</siteAdmin>
     <siteType>ChatterNetwork</siteType>
     <subdomain>unilever</subdomain>
     <urlPathPrefix>WWP</urlPathPrefix>
