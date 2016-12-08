@@ -117,7 +117,7 @@
                                             </div>
                                             <apex:outputPanel layout="block" id="Container5" rendered="{!!OR(ISBLANK(project.Id),project.IPM_IsSaved__c,NOT(isEditable))}" >
                                                 <apex:outputPanel styleClass="oprtnTopAlertContainer" layout="block" >
-                                                    <apex:outputLabel styleClass="oprtnTopAlertLabel" value="{!$Label.IPM_ProjectTypeAndCompany_ReadOnly}" escape="false"/>
+                                                    <apex:outputText styleClass="oprtnTopAlertLabel" value="{!$Label.IPM_ProjectTypeAndCompany_ReadOnly}"  />
                                                 </apex:outputPanel>
                                             </apex:outputPanel>
                                             <apex:outputPanel id="formMessage" styleClass="proSuccessMsg" layout="block" >
@@ -223,7 +223,7 @@
                                                             <div class="row">
                                                                 <div class="col-sm-6 proMarginbottom">
                                                                     <apex:outputPanel id="CompanyCardPanel" styleClass="inputField">
-                                                                        <div class="bsFieldLabel"><apex:outputlabel value="{!$Label.IPM_COMPANY}" /><span class="mandatorycolor"> *</span></div>
+                                                                        <div class="bsFieldLabel"><apex:outputlabel value="Company" /><span class="mandatorycolor"> *</span></div>
                                                                         <label class="ipmSelect">
                                                                             <apex:actionRegion >
                                                                                 <apex:outputPanel >

@@ -3449,6 +3449,13 @@ If approved your project will be linked after your Charter gate has been approve
         <value>Description Restricted to 255 Characters</value>
     </labels>
     <labels>
+        <fullName>IPM_Doc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Doc</shortDescription>
+        <value>Doc</value>
+    </labels>
+    <labels>
         <fullName>IPM_Document</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7268,7 +7275,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ProjectTypeAndCompany_ReadOnlyWarning</shortDescription>
-        <value>Please note that AFTER clicking 'Submit for Project Creation' the selection of 70-20-10 Classification (70: Global teams working on Global brands; 20: Regional/Local teams working on Global brands or 10: Local teams working on Local Jewels) as well as Type of Project (Innovation/Renovation; Operational or BLG) is PERMANENT and cannot be changed anymore.</value>
+        <value>Please note that &lt;b&gt;AFTER&lt;/b&gt; clicking &apos;Submit for Project Creation&apos; the selection of &lt;b&gt;70-20-10 Classification&lt;/b&gt; (70: Global teams working on Global brands; 20: Regional/Local teams working on Global brands or 10: Local teams working on Local Jewels) as well as &lt;b&gt;Type of Project &lt;/b&gt;(Innovation/Renovation; Operational or BLG) &lt;b&gt;is PERMANENT and cannot be changed anymore&lt;/b&gt;.</value>
     </labels>
     <labels>
         <fullName>IPM_Project_Classified</fullName>
