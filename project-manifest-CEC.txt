@@ -17,6 +17,8 @@ src/classes/CEC_AnonymiseConsumerHelper.cls
 src/classes/CEC_AnonymiseConsumerHelper.cls-meta.xml
 src/classes/CEC_IRIProductLocatorController.cls
 src/classes/CEC_IRIProductLocatorController.cls-meta.xml
+src/classes/CEC_RetrievalRequestTriggerHelper.cls
+src/classes/CEC_RetrievalRequestTriggerHelper.cls-meta.xml
 src/email/CEC_Emails_Korea
 src/email/CEC_Emails_Korea-meta.xml
 src/labels/CEC.labels
