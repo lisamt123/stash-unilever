@@ -254,7 +254,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+   <fields>
         <fullName>Market__c</fullName>
         <externalId>false</externalId>
         <label>Market</label>
@@ -316,6 +316,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Korea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Middle Americas</fullName>
                 <default>false</default>
             </picklistValues>
@@ -357,6 +361,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Sri Lanka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Taiwan</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

@@ -6,5 +6,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>RFS Cash &amp; Carry &amp; Business Development Manager</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>UFS_Russia</parentRole>
+    <parentRole>UFS_Admin</parentRole>
 </Role>
