@@ -1,9 +1,4 @@
-/**
- * Name:        -   PACV_Questions_AnswerCreation
- * @description -   This is the Trigger for inserting PACV_Questions__c and PACV_Answers__c record. 
- * @Author      -   Deepika Gulati, Mindtree Ltd     
- */
-trigger PACV_Questions_AnswerCreation on PACV_Questions__c (after insert) {
+trigger PACV_Questions_AnswerCreation on PACV_Questions__c (before insert) {
 if(Label.PACV_Trigger_Switch.equalsIgnoreCase('True') &&  trigger.isInsert)
     {
         

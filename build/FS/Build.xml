@@ -96,6 +96,7 @@
 	  <runTest>ICB_SobjectInstance_SP2_Test</runTest>
 	  <runTest>ICB_SobjectInstance_Test</runTest>
 	  <runTest>SurveyManagerController_Test</runTest>
+	  <runTest>FS_CHDUtilityTest</runTest>
 	  <runTest>FS_AccountPlanningTest</runTest>
 	  <runTest>FS_ContactDetail_Test</runTest>
 	  <runTest>FS_CreateContact_CC_Test</runTest>

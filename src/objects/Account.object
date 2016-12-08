@@ -228,10 +228,18 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Digital Build</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
 	                    <fullName>Digital Creative &amp; Strategic</fullName>
 	                    <default>false</default>
 	                </picklistValues>
-	               <picklistValues>
+	                <picklistValues>
+	                    <fullName>Digital Design</fullName>
+	                    <default>false</default>
+	                </picklistValues>
+	                <picklistValues>
 	                    <fullName>Digital Mobile, Games &amp; Apps</fullName>
 	                    <default>false</default>
 	                </picklistValues>
@@ -3948,14 +3956,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Cruise Travel Leisure</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Education Healthcare BusInd</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Retail Foodservice</fullName>
                 <default>false</default>
             </picklistValues>
@@ -4057,6 +4057,30 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <picklistValues>
                 <fullName>S-C&amp;C</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Education, Healthcare, B&amp;I</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cruise, Travel &amp; Leisure</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Club, Cash &amp; Carry</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Contracted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Restaurant Chains</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C-Store</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -6403,29 +6427,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Behaviour Design</fullName>
                 <default>false</default>
             </values>
-             <values>
-	                    <fullName>Digital %E2%80%93 Other</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Creative %26 Strategic</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Mobile%2C Games %26 Apps</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Search</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Social</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Web %26 Microsites</fullName>
-	                    <default>false</default>
+            <values>
+                <fullName>Digital Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Design</fullName>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Environment%2FSet Design</fullName>
@@ -7447,7 +7455,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Behaviour Design</fullName>
                 <default>false</default>
             </values>
-             <values>
+            <values>
+                <fullName>Digital Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
 	                    <fullName>Digital %E2%80%93 Other</fullName>
 	                    <default>false</default>
 	                </values>
@@ -8526,6 +8542,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
+                <fullName>Digital Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Environment%2FSet Design</fullName>
                 <default>false</default>
             </values>
@@ -9438,7 +9462,15 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Behaviour Design</fullName>
                 <default>false</default>
             </values>
-           <values>
+            <values>
+                <fullName>Digital Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Environment%2FSet Design</fullName>
                 <default>false</default>
             </values>
@@ -12710,7 +12742,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Behaviour Design</fullName>
                 <default>false</default>
             </values>
-            
+            <values>
+                <fullName>Digital Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Design</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Environment%2FSet Design</fullName>
                 <default>false</default>
@@ -14699,14 +14738,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cruise Travel Leisure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Education Healthcare BusInd</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>GPO</fullName>
                 <default>false</default>
             </values>
@@ -15279,7 +15310,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Behaviour Design</fullName>
                 <default>false</default>
             </values>
-            
+            <values>
+                <fullName>Digital Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Design</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Environment%2FSet Design</fullName>
                 <default>false</default>
@@ -17292,19 +17330,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <picklistValues>
             <picklist>Segment__c</picklist>
             <values>
-                <fullName>Contract Caterers</fullName>
+                <fullName>C-Store</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cruise Travel Leisure</fullName>
+                <fullName>Club%2C Cash %26 Carry</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Education Healthcare BusInd</fullName>
+                <fullName>Cruise%2C Travel %26 Leisure</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>GPO</fullName>
+                <fullName>Education%2C Healthcare%2C B%26I</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -17312,11 +17350,11 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>OCS</fullName>
+                <fullName>Other Contracted</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Restaurant</fullName>
+                <fullName>Restaurant Chains</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -18671,7 +18709,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Behaviour Design</fullName>
                 <default>false</default>
             </values>
-            
+            <values>
+                <fullName>Digital Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Design</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Environment%2FSet Design</fullName>
                 <default>false</default>
@@ -19727,7 +19772,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Behaviour Design</fullName>
                 <default>false</default>
             </values>
-            
+            <values>
+                <fullName>Digital Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Design</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Environment%2FSet Design</fullName>
                 <default>false</default>
@@ -20642,7 +20694,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Behaviour Design</fullName>
                 <default>false</default>
             </values>
-            
+            <values>
+                <fullName>Digital Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Design</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Environment%2FSet Design</fullName>
                 <default>false</default>
@@ -22029,7 +22088,14 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <fullName>Behaviour Design</fullName>
                 <default>false</default>
             </values>
-            
+            <values>
+                <fullName>Digital Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Design</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Environment%2FSet Design</fullName>
                 <default>false</default>

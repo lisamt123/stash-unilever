@@ -296,6 +296,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>PQN_PalletLossTreeData</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>PQN_SingleEntryScreen_VF</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
