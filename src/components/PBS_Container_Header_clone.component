@@ -5,19 +5,51 @@
   <!--javascript -->
   <!--<apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
     <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/pc_container_js.js')}" /> -->
+    
+    <style>
+    
+        .headerDiv {
+            background: transparent url("{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/Header.png')}") no-repeat top!important;
+            margin-bottom: 0px;
+            background-size: 105%!important;
+            text-align: center;
+           right:3px !important;
+            
+        }
+         .headerDiv img{
+         margin-top:40px;
+         }
+        
+        body.sfdcBody {
+            background: none repeat scroll 0 0 #2a94d6 !important;
+        }
+        
+        .menuTabs {
+            bottom: 110px;
+            right: 30%;
+        }
+        
+        .text-muted, .menuTabs li>a{
+            color: white;
+        }
+    </style>
     <div class="mainContainer group row"></div>
 
     <div class="row bodyRow group align-center">
     <div class="col-xs-12 headerDiv group">
-            <div class="leftheader">
+         
+        <apex:image id="UnileverLogo" url="{!URLFOR($Resource.PBS_ImagesPage, '/WelcomePage/img/Unilever_Logo.png')}" width="81" height="85" />
+            
+            <!--<div class="leftheader">
                 <apex:image id="UnileverLogo" url="{!URLFOR($Resource.PCResources, 'img/UnileverLogo.jpg')}" width="81" height="85" />
             </div>
+           
             <div class="leftheader">
-                <!--<img id="mainLogo" src="{!profilePic}" />-->
+                <img id="mainLogo" src="{!profilePic}" />
             </div>
             <div class="leftheader">
-                <!--{!$User.FirstName}&nbsp;{!$User.LastName}<br />-->
-            </div>
+                {!$User.FirstName}&nbsp;{!$User.LastName}<br />
+            </div> -->
             <div class="menuTabs">
                 <ul>
                     <li><a onclick="setActiveLink('home');" id="home" href="{!$Page.PC_ContainerPage_clone}" target="_self" class="active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
