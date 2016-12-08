@@ -293,13 +293,14 @@ with Sharing public class VPM_GoldenDataController2 {
         
         system.debug('@@ ECC' + entity.VPM_ECC__c);
         
-        
-        if(string.isNotBlank(purchReqVar.VPM_VendorContactDetail__c)){        
-            if(string.isBlank(purchReqVar.VPM_OrderingEmailAddress__c))
-            {  entity.VPM_OrderingEmailAddress__c = purchReqVar.VPM_VendorContactDetail__c; }
-            
-            if(string.isBlank(purchReqVar.VPM_ClerksInternet__c))
-            { entity.VPM_ClerksInternet__c = purchReqVar.VPM_VendorContactDetail__c; }
+        if(recordTypeId==STR_CONST_CREATE || (recordTypeId==STR_CONST_EXTEND && purchReqVar.VPM_ExtensionType__c==STR_CONST_GLOBAL)){
+            if(string.isNotBlank(purchReqVar.VPM_VendorContactDetail__c)){        
+                if(string.isBlank(purchReqVar.VPM_OrderingEmailAddress__c))
+                {  entity.VPM_OrderingEmailAddress__c = purchReqVar.VPM_VendorContactDetail__c; }
+                
+                if(string.isBlank(purchReqVar.VPM_ClerksInternet__c))
+                { entity.VPM_ClerksInternet__c = purchReqVar.VPM_VendorContactDetail__c; }
+            }
         }
         
         system.debug('recordTypeId '+recordTypeId );
@@ -888,7 +889,6 @@ with Sharing public class VPM_GoldenDataController2 {
         }        
     }
 // End of Function saveRecordRegional : VPM - Used to save saveRecordRegional Based on the Regional Page 
-
 /******************************************************************** 
     
     Created By   : Samrin Shaikh

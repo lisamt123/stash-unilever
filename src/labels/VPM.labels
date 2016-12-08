@@ -5,6 +5,13 @@
         <shortDescription>VPM_AccountGroup</shortDescription>
         <value>Account Group</value>
     </labels>
+	<labels>
+        <fullName>VPM_OkForRework</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Are you sure you want to rework the request?</shortDescription>
+        <value>Are you sure you want to rework the request? Please provide guidance via the Chatter feed</value>
+    </labels>
     <labels>
         <fullName>VPMOrderCurrencyPageMessage</fullName>
         <language>en_US</language>
@@ -47,6 +54,20 @@
         <shortDescription>VPM_AddressLine1ReqHelpText</shortDescription>
         <value>Provide the first line of the street address</value>
     </labels>
+	<labels>
+        <fullName>VPM_AlreadyRework</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Already in Rework display message</shortDescription>
+        <value>Already send for rework</value>
+    </labels>
+	<labels>
+        <fullName>VPM_CannotSendRework</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Business Requestor &amp; MDM Ops (Except Fusion Region) can&apos;t send Rework</shortDescription>
+        <value>Business Requestor &amp; MDM Ops (Except Fusion Region) cannot send for rework.</value>
+    </labels>
     <labels>
         <fullName>VPM_AlreadyCommodityapprover</fullName>
         <language>en_US</language>
@@ -54,12 +75,12 @@
         <shortDescription>VPM - Error Msg  Already added as Commodity approver</shortDescription>
         <value>Already added as Commodity approver for</value>
     </labels>
-    <labels>
+	<labels>
         <fullName>VPM_AlreadySendApprovalMessage</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Record Already Send for Approval Message</shortDescription>
-        <value>The request is already send for Approval , you can&apos;t make changes before it Approved/Reworked ...</value>
+        <value>This request has already been sent for approval, so changes cannot be made. Once an approval decision is given, it may be possible to make changes.</value>
     </labels>
     <labels>
         <fullName>VPM_Alternative_payee_in_document</fullName>
@@ -591,7 +612,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM Country Label Proc Admin</shortDescription>
-        <value>Country :</value>
+        <value>Responsible Country</value>
     </labels>
     <labels>
         <fullName>VPM_CountryNotSelected</fullName>
@@ -2173,7 +2194,16 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM_VendorTypeTPTHelpText</shortDescription>
-        <value>Select Vendor Type, Global Authorisation Group and Trade Partner</value>
+        <value>Click next to confirm the default values. 
+
+It is recommended that the default values are left as they are, unless you need to make an update</value>
+    </labels>
+	<labels>
+        <fullName>VPM_ReworkCancelled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Rework Cancelled Display Message</shortDescription>
+        <value>Rework Cancelled</value>
     </labels>
     <labels>
         <fullName>VPM_Vendor_Contact_Details</fullName>
