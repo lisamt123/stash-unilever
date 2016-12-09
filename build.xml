@@ -1211,7 +1211,7 @@
     <!--<antcall target="generatePackage"/>-->
   </target>
     <!-- ***************************************************************************** -->
-  <!-- Validate the  set of IPM Destructive chhanges meta-data before deployment                          -->
+  <!-- Validate the  set of VPM Destructive changes meta-data before deployment                          -->
   <!-- ***************************************************************************** --> 
      <target name="validate-undeployVPM">
       <echo level="info">Performing validate undeploy - DESTRUCTIVE CHANGE</echo>  
