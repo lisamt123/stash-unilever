@@ -13,6 +13,8 @@ src/pages/PC_Forum_clone.page
 src/pages/PC_Forum_clone.page-meta.xml
 src/pages/PBS_WelcomePage_clone.page
 src/pages/PBS_WelcomePage_clone.page-meta.xml
+src/pages/PC_ContainerPage.page
+src/pages/PC_ContainerPage.page-meta.xml
 src/pages/PC_ContainerPage_clone.page
 src/pages/PC_ContainerPage_clone.page-meta.xml
 src/pages/PBS_Header_Template_clone.page

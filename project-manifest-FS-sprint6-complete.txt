@@ -44,7 +44,7 @@ src/roles/Field_Sales_Rep_NDM.role
 src/roles/National_Chains_Manager.role
 src/roles/National_Development_Manager.role
 src/roles/UFS_Admin.role
-
+src/permissionsets/FS_Integration_User.permissionset
 
 
 
