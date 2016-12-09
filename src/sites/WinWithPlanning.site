@@ -18,7 +18,7 @@
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>mike.colley@unilever.com.old</siteAdmin>
+    <siteAdmin>pushpak.goel@unilever.com.qatest1</siteAdmin>
     <siteType>ChatterNetwork</siteType>
     <subdomain>unilever</subdomain>
     <urlPathPrefix>WWP</urlPathPrefix>
