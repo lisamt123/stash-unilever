@@ -327,7 +327,7 @@ public with sharing class VPM_HttpUtil {
     Description  : Send Email and payload after service call
     Return Type  : String.
     ********************************************************************/
-    public static void sendEmail(String toEmail, String subjectEmail, String bodyEmail) {
+  /*  public static void sendEmail(String toEmail, String subjectEmail, String bodyEmail) {
         List<String> toAddressList = new List<String>();
         toAddressList.add(toEmail);
         Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
@@ -343,5 +343,5 @@ public with sharing class VPM_HttpUtil {
         } else {
             System.debug('The email failed to send: ' + results[0].errors[0].message);
         }
-    }
+    }*/
 }

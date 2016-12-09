@@ -228,28 +228,28 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-	                    <fullName>Digital Creative &amp; Strategic</fullName>
-	                    <default>false</default>
-	                </picklistValues>
-	               <picklistValues>
-	                    <fullName>Digital Mobile, Games &amp; Apps</fullName>
-	                    <default>false</default>
-	                </picklistValues>
-	                <picklistValues>
-	                    <fullName>Digital Social</fullName>
-	                    <default>false</default>
-	                </picklistValues>
-	                <picklistValues>
-	                    <fullName>Digital Search</fullName>
-	                    <default>false</default>
-	                </picklistValues>
-	                <picklistValues>
-	                    <fullName>Digital Web &amp; Microsites</fullName>
-	                    <default>false</default>
-	                </picklistValues>
-	                <picklistValues>
-	                    <fullName>Digital – Other</fullName>
-	                    <default>false</default>
+                        <fullName>Digital Creative &amp; Strategic</fullName>
+                        <default>false</default>
+                    </picklistValues>
+                   <picklistValues>
+                        <fullName>Digital Mobile, Games &amp; Apps</fullName>
+                        <default>false</default>
+                    </picklistValues>
+                    <picklistValues>
+                        <fullName>Digital Social</fullName>
+                        <default>false</default>
+                    </picklistValues>
+                    <picklistValues>
+                        <fullName>Digital Search</fullName>
+                        <default>false</default>
+                    </picklistValues>
+                    <picklistValues>
+                        <fullName>Digital Web &amp; Microsites</fullName>
+                        <default>false</default>
+                    </picklistValues>
+                    <picklistValues>
+                        <fullName>Digital – Other</fullName>
+                        <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Environment/Set Design</fullName>
@@ -6420,28 +6420,28 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
              <values>
-	                    <fullName>Digital %E2%80%93 Other</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Creative %26 Strategic</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Mobile%2C Games %26 Apps</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Search</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Social</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Web %26 Microsites</fullName>
-	                    <default>false</default>
+                        <fullName>Digital %E2%80%93 Other</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Creative %26 Strategic</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Mobile%2C Games %26 Apps</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Search</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Social</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Web %26 Microsites</fullName>
+                        <default>false</default>
             </values>
             <values>
                 <fullName>Environment%2FSet Design</fullName>
@@ -7464,28 +7464,28 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
              <values>
-	                    <fullName>Digital %E2%80%93 Other</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Creative %26 Strategic</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Mobile%2C Games %26 Apps</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Search</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Social</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Web %26 Microsites</fullName>
-	                    <default>false</default>
+                        <fullName>Digital %E2%80%93 Other</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Creative %26 Strategic</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Mobile%2C Games %26 Apps</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Search</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Social</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Web %26 Microsites</fullName>
+                        <default>false</default>
             </values>
             <values>
                 <fullName>Environment%2FSet Design</fullName>
@@ -23476,8 +23476,8 @@ IF(ISCHANGED(OwnerId)=true &amp;&amp; (RecordType.DeveloperName = &quot;Distribu
         <active>true</active>
         <description>CEC : This will validate the  Local Identifier Length for Brazil user. It should contain 11 digits numbers</description>
         <errorConditionFormula>IF( ( ( $UserRole.Name  = &apos;CEC Manager - Brazil&apos;) || ( $UserRole.Name  = &apos;CEC User -  Brazil&apos;) || ( $UserRole.Name  = &apos;CEC User - Planitox Brazil&apos;)) &amp;&amp;  Local_Identifier__c  &lt;&gt; null ,
-	(NOT( ISNUMBER( SUBSTITUTE(SUBSTITUTE(  Local_Identifier__c , &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) ) ||LEN(SUBSTITUTE(SUBSTITUTE( Local_Identifier__c, &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) &lt;&gt; 11),
-	false)</errorConditionFormula>
+    (NOT( ISNUMBER( SUBSTITUTE(SUBSTITUTE(  Local_Identifier__c , &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) ) ||LEN(SUBSTITUTE(SUBSTITUTE( Local_Identifier__c, &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) &lt;&gt; 11),
+    false)</errorConditionFormula>
         <errorDisplayField>Local_Identifier__c</errorDisplayField>
         <errorMessage>Invalid CPF number (Should contain 11 digit numeric value)</errorMessage>
     </validationRules>
