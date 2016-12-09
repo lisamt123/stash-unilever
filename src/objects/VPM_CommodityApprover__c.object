@@ -216,7 +216,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+      <fields>
         <fullName>VPM_CommodityClass__c</fullName>
         <description>Records the Commodity Class against which the approver is configured</description>
         <externalId>false</externalId>
@@ -579,6 +579,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Warehousing &amp; Logistics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Warehousing &amp; Pallets</fullName>
                 <default>false</default>
             </picklistValues>
@@ -599,13 +603,13 @@
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
         </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    <fields>
+	<fields>
         <fullName>VPM_CommodityCountryUnique__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>VPM - This custom field stores a unique combination of commodity and country code.</description>

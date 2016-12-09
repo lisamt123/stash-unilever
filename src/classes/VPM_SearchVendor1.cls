@@ -330,8 +330,7 @@ public with sharing class VPM_SearchVendor1{
             }
             street1 = vendorQuery1.VPM_Street1__c;
             vendorName = vendorQuery1.VPM_VendorName1__c;
-            if(string.isBlank(searchTerm1))
-            searchTerm1 = string.isNotblank(vendorName) ? vendorName.left(10) : '';            
+                       
             zipPostcode = vendorQuery1.VPM_ZIPPostcode__c;
             countryName = vendorQuery1.VPM_Country__c;
             countryNameList = VPM_RecordTypeHelper.getCountries();
@@ -1056,7 +1055,8 @@ public with sharing class VPM_SearchVendor1{
                 vendorDetails.VPM_ThirdPartyName__c = op.CompanyData[0].ThirdPartyName;
                 vendorDetails.VPM_ThirdPartyAddress1__c = op.CompanyData[0].ThirdPartyAddress1;  
                 vendorDetails.VPM_ThirdPartyAddress2__c = op.CompanyData[0].ThirdPartyAddress2;
-                vendorDetails.VPM_ThirdPartyAddress3__c = op.CompanyData[0].ThirdPartyAddress3;  
+                vendorDetails.VPM_ThirdPartyAddress3__c = op.CompanyData[0].ThirdPartyAddress3; 
+                vendorDetails.VPM_ThirdPartyCountry__c = op.CompanyData[0].ThirdPartyCountry;  
                 //vendorDetails.VPM_PaymentTermsKeyCreditMemos__c =  op.CompanyData[0].PaymentTermsCreditMemoKey;
                 //paymentTermsCreditMemos = op.CompanyData[0].PaymentTermsCreditMemoKey;
                 vendorDetails.VPM_ThirdPartyAddress4__c = op.CompanyData[0].ThirdPartyAddress4;  
@@ -1578,6 +1578,7 @@ public with sharing class VPM_SearchVendor1{
         isBackToDetalPage = false;
         //vendorQuery1.VPM_Commodity__c = vendorDetails.VPM_Commodity__c;        
         vendorQuery1.VPM_TradePartnerType__c =vendortradepartnerType;
+         VPM_SearchVendor1.checkFlag = true;
         update vendorQuery1;
         screenVisited.add('GoldenData1Screen');
         system.debug('@@vendorQuery1' +vendorQuery1);
@@ -1625,11 +1626,15 @@ public with sharing class VPM_SearchVendor1{
                 showSearchVendor = false;
                 isBackToDetalPage = true;
                 system.debug('### requestType '+requestType );
-                if((!requestType.equals(VPM_RecordTypeHelper.CREATE))&&(vendorQuery1.VPM_GlobalAuthorisationGroup__c.equalsIgnoreCase(commodityAuthorizationGrp) || vendorQuery1.VPM_TradePartnerType__c.equalsIgnoreCase(commodityVendorType) || vendorQuery1.VPM_VendorType__c.equalsIgnoreCase(commodityVendorType))) {
+                if((!requestType.equals(VPM_RecordTypeHelper.CREATE))&&(vendorQuery1.VPM_GlobalAuthorisationGroup__c.equalsIgnoreCase(commodityAuthorizationGrp) && vendorQuery1.VPM_TradePartnerType__c.equalsIgnoreCase(vendorTradePartnerType) && vendorQuery1.VPM_VendorType__c.equalsIgnoreCase(commodityVendorType))) {
                     VPM_SearchVendor1.CheckFlag  = true;
-                }else { 
-                    VPM_SearchVendor1.CheckFlag  = false;                   
+                }else {
+                VPM_PurchasingRequests__c purreqField =[select Id,VPM_FieldType__c from VPM_PurchasingRequests__c where id = : recId]; 
+                   purreqField.VPM_FieldType__c = 'Global';
+                   update purreqField;
+                    VPM_SearchVendor1.CheckFlag  = true;                   
                 }
+                 system.debug('vendorQuery1 '+vendorQuery1);
                 system.debug('### VPM_SearchVendor1.checkFlag '+VPM_SearchVendor1.CheckFlag  ); 
                 //update vendorQuery1;
                 vendorDetails.VPM_Telephone__c = vendorQuery1.VPM_VendorPhone__c;               
@@ -1637,15 +1642,13 @@ public with sharing class VPM_SearchVendor1{
                 if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.MAINTAIN_2)) {
                     isMaintainRecord = true; 
                 }
-                if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.CREATE) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.EXTEND)) {
-                    system.debug('@@Coming here');               
-                    if(string.isNotBlank(vendorDetails.VPM_VendorContactDetail__c)){        
-                        if(string.isBlank(vendorQuery1.VPM_OrderingEmailAddress__c))
-                            vendorQuery1.VPM_OrderingEmailAddress__c = vendorQuery1.VPM_VendorContactDetail__c;
-                            
-                        if(string.isBlank(vendorQuery1.VPM_ClerksInternet__c))
-                            vendorQuery1.VPM_ClerksInternet__c = vendorQuery1.VPM_VendorContactDetail__c;
-                    }                    
+                 if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.CREATE) || requestType.equalsIgnoreCase(VPM_RecordTypeHelper.EXTEND)) {
+                    system.debug('@@Coming here');   
+                     if(string.isBlank(searchTerm1))
+                     {
+                        searchTerm1 = string.isNotblank(vendorName) ? vendorName.left(10) : ''; 
+                     }                     
+                                     
                     if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.CREATE) && (vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_PI) || (vendorQuery1.VPM_VendorType__c.equals(VPM_RecordTypeHelper.VENDOR_TYPE_SCS_SUPPLY) && (vendorQuery1.VPM_GlobalAuthorisationGroup__c.containsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_AUTH_3PM))))) {
                         PIMethod(); 
                     }
@@ -1653,8 +1656,20 @@ public with sharing class VPM_SearchVendor1{
                     VendorQuery1.VPM_OrderCurrency__c = VPM_RecordTypeHelper.customMedataCallOrderCurrency(vendorQuery1.VPM_CompanyCode__r.ECC__c, purchOrgName, countryName);   
                     vendorPaymentTerms = VPM_RecordTypeHelper.defaultPaymentTerm(vendorQuery1.VPM_CompanyCode__r.ECC__c, vendorQuery1.VPM_IsVendorSME__c);
                     termsOFPayment = vendorPaymentTerms;
-                    updateVendorReqRecord();                    
+                    system.debug('vendorQuery1 '+vendorQuery1);
+                                        
                  }
+                  if(requestType.equalsIgnoreCase(VPM_RecordTypeHelper.CREATE) || (requestType.equalsIgnoreCase(VPM_RecordTypeHelper.EXTEND) && string.isNotBlank(vendorQuery1.VPM_ExtensionType__c) && vendorQuery1.VPM_ExtensionType__c.equalsIgnoreCase(VPM_RecordTypeHelper.GLOBAL_REQUEST) )) {
+                    system.debug('@@Coming here');               
+                        if(string.isNotBlank(vendorDetails.VPM_VendorContactDetail__c)){        
+                            if(string.isBlank(vendorQuery1.VPM_OrderingEmailAddress__c))
+                                vendorQuery1.VPM_OrderingEmailAddress__c = vendorQuery1.VPM_VendorContactDetail__c;
+                                
+                            if(string.isBlank(vendorQuery1.VPM_ClerksInternet__c))
+                                vendorQuery1.VPM_ClerksInternet__c = vendorQuery1.VPM_VendorContactDetail__c;
+                        }   
+                  }
+                 updateVendorReqRecord();
             }            
     }
     

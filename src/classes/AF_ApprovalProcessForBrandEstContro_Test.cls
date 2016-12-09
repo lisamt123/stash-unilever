@@ -242,6 +242,7 @@ public class AF_ApprovalProcessForBrandEstContro_Test
             
         
             AF_ApprovalProcessForBrandEstController approvProceBrandEst=new AF_ApprovalProcessForBrandEstController();
+            approvProceBrandEst.Actoridset.add(u.id);
             approvProceBrandEst.hasStep=true;
             approvProceBrandEst.RejectComment='reject';
             approvProceBrandEst.BrandEstRecord=BrandEstRecord;

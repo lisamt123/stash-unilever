@@ -268,10 +268,8 @@ public class AF_ApprovalProcessForBrandEstController
                 workItemId=pis.id;
                 Actoridset.add(pis.ActorId) ;
             }  
-            if(Test.isrunningtest())
-            {
-                Actoridset.add(Userinfo.getuserid()) ;
-            } 
+            system.debug(UserInfo.getUserId()+'--Actoridset--'+Actoridset);
+            
         }
         identifyLoggedUser();
         if(Actoridset.contains(LoggedinUser.id))

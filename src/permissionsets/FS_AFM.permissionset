@@ -31987,7 +31987,12 @@
         <editable>false</editable>
         <field>Oblix_User_Permission__c.User_id__c</field>
         <readable>false</readable>
-    </fieldPermissions>
+    </fieldPermissions> 
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.FS_TotalTurnoverNA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>    
     <fieldPermissions>
         <editable>true</editable>
         <field>Opportunity.AccountId</field>
@@ -32089,9 +32094,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Opportunity.FS_AverageGrossProfit__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32161,7 +32166,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.FS_MSCS__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32314,9 +32319,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Opportunity.FS_distributor__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32601,7 +32606,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.FS_NSV__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32816,7 +32821,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.Turnover__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
