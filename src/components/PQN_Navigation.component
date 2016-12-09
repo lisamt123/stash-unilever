@@ -177,9 +177,9 @@
                     <li class="{!If(navigationName=='target' ,'active','')}">
                         <a href="./PQN_TargetEntryScreen_VF"><i class="fa fa-fw fa-bullseye"></i> Target</a>
                     </li>
-                    <li class="{!If(navigationName=='multiple_target' ,'active','')}">
+                    <!--<li class="{!If(navigationName=='multiple_target' ,'active','')}">
                         <a href="./PQN_MultiTargets_VF"><i class="fa fa-fw fa-arrows"></i> Multiple Target</a>
-                    </li>
+                    </li>-->
                     <li class="{!If(navigationName=='dc_volumes' ,'active','')}">
                         <a href="./PQN_DC_Volumes_Edit_VF"><i class="fa fa-fw fa-flask"></i> DC Volumes</a>
                     </li>

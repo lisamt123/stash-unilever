@@ -11,7 +11,7 @@ public with sharing class PQN_singleEntryScreen{
         pqn = new PQN_Pallet_Quality_Non_Conformance__c();
         pqnId = Apexpages.currentpage().getparameters().get('id');
         if(pqnId!=null){
-            pqn = [select id,Reporting_DC__c,Region__c,DC_Country__c,MCO__c,Cluster__c,Sub_Cluster__c,Delivery_Note_Number__c,Description__c,
+            pqn = [select id,Reporting_DC__c,Region__c,DC_Country__c,MCO__c,Cluster__c,Sub_Cluster__c, Delivery_Note_Number__c,Description__c,
                     Product_Name__c,Product_Group__c,Product_Category__c,SKU__c,Supplier_type__c,Supplier__c,Supplier_Number__c,Non_compliance_reason_code__c,
                     Number_of_Pallets_Per_SKU_Non_Compliant__c,Date_Pallet_Received__c,Comments__c,Days_Left_Before_Freeze__c 
                     from PQN_Pallet_Quality_Non_Conformance__c where id=: pqnId];    
@@ -59,14 +59,14 @@ public with sharing class PQN_singleEntryScreen{
               if(suppName!=null && suppName!=''){
                PQNList_Sup= [select id,Name,Supplier_type__c,Supplier_Number__c  from PQN_Supplier__c where Name=:suppName limit 1];
                 if(PQNList_Sup.isempty()){   
-                    pqn.Supplier_Number__c = null;
+                  pqn.Supplier_Number__c = '';
                     pqn.Supplier_type__c = '';            
                    ApexPages.Message myMsg1 = new ApexPages.Message(ApexPages.Severity.ERROR,'Supplier is not found.');
                    ApexPages.addMessage(myMsg1);  
                    err++;                 
                 }
                 else{
-                    pqn.Supplier_Number__c = integer.valueof(PQNList_Sup[0].Supplier_Number__c);
+                    pqn.Supplier_Number__c = string.valueof(PQNList_Sup[0].Supplier_Number__c);
                     pqn.Supplier_type__c = PQNList_Sup[0].Supplier_type__c;
                     immediatevalidate = true;
                 }
