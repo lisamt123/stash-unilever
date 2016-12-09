@@ -5,3 +5,5 @@ src/wave/Daily_Sales.wapp
 src/wave/Daily_Sales_for_Sales_Rep.wdash
 src/wave/Daily_Sales_for_Sales_Rep.wdash-meta.xml
 src/wave/DailySales.wds
+src/groups/Wave_Analytics_POC.group
+src/wave/Daily_Sales_RU.wapp
