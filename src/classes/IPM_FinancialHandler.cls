@@ -13,8 +13,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     
     public static final Set<String> F_COPYOVERFIELDS = new Set<String>{'BIC_','CAPEX_','NPV_','Payback_','Volume_Unit_','IRR_'};
     public static final Set<String> F_SNAPSHOTFIELDS = new Set<String>{'BIC_','CAPEX_','GM_Y1_bps_vs_DNDS_','IPM_Business_Impact_','NPV_','PBO_Y1_bps_vs_DNDS_','Payback_','Volume_Unit_','Year_3_iTO_','IRR_'};
-    private static Map<Id,IPM_Financial__c> deleteFinancialMap = new Map<Id,IPM_Financial__c>();
-    private static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
+    public static Map<Id,IPM_Financial__c> deleteFinancialMap = new Map<Id,IPM_Financial__c>();
+    public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
     
     private static Set<Id> finCopyOverAlreadyInitiatedSet = new Set<Id>();
     
