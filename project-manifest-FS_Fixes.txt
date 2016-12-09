@@ -1,6 +1,15 @@
 src
-src/permissionsets
-src/permissionsets/FS_RussiaSalesRep.permissionset
+src/layouts/Account-Operator Russia Read Only.layout
+src/layouts/Account-Operators Russia.layout
+src/layouts/Account-Feed Based Distributor Russia.layout
+src/layouts/Product2-Food Solutions Product Russia.layout
+src/permissionsets/FS_SCP_And_Corp.permissionset
+src/permissionsets/FS_NA_Non_DDM.permissionset
+src/permissionsets/FS_Sales_Rep.permissionset
+src/permissionsets/FS_Marketing.permissionset
 src/permissionsets/FS_Admin.permissionset
-src/objects/OpportunityLineItem.object
-src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
+src/permissionsets/FS_AFM.permissionset
+src/objects/FS_Defined_Objective__c.object
+src/pages/FS_ContactDetailPage.page
+src/pages/FS_ContactDetailPage.page-meta.xml
+src/permissionsets/FS_Sales_Rep.permissionset

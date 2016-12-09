@@ -5114,16 +5114,37 @@
         <field>Account.Zone__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    
+     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.FS_SoftServeDistrId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>    
+    
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account_Relationship__c.FS_MasterAccount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account_Relationship__c.FS_MergedAccountName__c</field>
+        <readable>true</readable>
+    </fieldPermissions> 
+    
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account_Relationship__c.FS_UniqueAccountID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>         
+    
     <fieldPermissions>
         <editable>false</editable>
         <field>Account_Relationship__c.External_ID__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account_Relationship__c.Secondary_Account__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+
     <fieldPermissions>
         <editable>false</editable>
         <field>Account_Relationship__c.Type__c</field>
@@ -44991,7 +45012,7 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
