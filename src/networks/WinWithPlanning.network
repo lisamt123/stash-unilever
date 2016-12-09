@@ -28,7 +28,7 @@
         <profile>admin</profile>
         <profile>wwp supplier profile</profile>
     </networkMemberGroups>
-    <picassoSite>WinWithPlanning</picassoSite>
+    <picassoSite>WinWithPlanning1</picassoSite>
     <selfRegistration>false</selfRegistration>
     <sendWelcomeEmail>true</sendWelcomeEmail>
     <site>WinWithPlanning</site>
