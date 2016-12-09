@@ -50,9 +50,14 @@ public with sharing class WWP_Losstree_Copy_Component_Ctrl {
           showfeature = false;
           }
           public void showPanelmassUpdate(){
+          system.debug('entered');
     if(showMassFeature){
-           
+           system.debug('true');
             showfeature = true;
+        }
+        else{
+            showfeature = false;
+            system.debug('false');
         }
         
         fetchLossTree1(); 
