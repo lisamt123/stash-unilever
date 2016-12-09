@@ -1,5 +1,4 @@
 src
-src/groups/Wave_Analytics_POC.group
 src/layouts/Account-Operator Russia Read Only.layout
 src/layouts/Account-Operators Russia.layout
 src/layouts/Account-Feed Based Distributor Russia.layout
