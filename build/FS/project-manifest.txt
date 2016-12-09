@@ -98,9 +98,3 @@ src/roles/Sales_Development_Executive_NCM.role
 src/roles/Sales_Development_Executive_NDM.role
 src/roles/Specnaz.role
 src/roles/Independent_Manager.role
-src/wave/Daily_Sales.wapp
-src/wave/Daily_Sales_for_Sales_Rep.wdash
-src/wave/Daily_Sales_for_Sales_Rep.wdash-meta.xml
-src/wave/DailySales.wds
-src/groups/Wave_Analytics_POC.group
-src/wave/Daily_Sales_RU.wapp
