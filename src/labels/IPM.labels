@@ -8416,7 +8416,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_SelectCompanyCard</shortDescription>
-        <value>Select Company Card</value>
+        <value>Select 70-20-10 Classification</value>
     </labels>
     <labels>
         <fullName>IPM_SelectGeoScopeLocal</fullName>
