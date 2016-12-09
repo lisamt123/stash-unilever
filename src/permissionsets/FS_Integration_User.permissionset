@@ -5129,12 +5129,6 @@
 
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account_Relationship__c.FS_MergedAccount__c</field>
-        <readable>true</readable>
-    </fieldPermissions>  
-    
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Account_Relationship__c.FS_MergedAccountName__c</field>
         <readable>true</readable>
     </fieldPermissions> 
