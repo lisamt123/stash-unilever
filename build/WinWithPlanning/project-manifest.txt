@@ -37,3 +37,4 @@ src/permissionsets/WWP_User_Permissions.permissionset
 src/permissionsets/WWP_User_Permissions_for_supplier.permissionset
 src/sites/WinWithPlanning.site
 src/networks/WinWithPlanning.network
+src/profiles/WWP Supplier Profile.profile
