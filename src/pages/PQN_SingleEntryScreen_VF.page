@@ -1,5 +1,6 @@
-<apex:page standardController="PQN_Pallet_Quality_Non_Conformance__c" extensions="PQN_singleEntryScreen" showHeader="false">
+<apex:page standardController="PQN_Pallet_Quality_Non_Conformance__c" extensions="PQN_singleEntryScreen"  showHeader="false">
 <head>
+
     <script src="{!URLFOR($Resource.PQN_Bootstrap, 'PQN_Bootstrap_Home/js/jquery-1.11.1.min.js')}"></script>
     
     <script>
@@ -8,9 +9,9 @@
             appendSearch();
         });
         function appendSearch(){
-            $("input.SKU_Name").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="getProduct();"><i class="fa fa-search"></i></button>');
-            $("input.Supplier_Name").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="openSuppliers();"><i class="fa fa-external-link"></i></button>');
-            $("input.Loss_Code").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="openLossCode();"><i class="fa fa-external-link"></i></button>');
+            $("input.SKU_Name").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="getProduct();"><i class="fa fa-external-link"></i></button>');
+            $("input.Supplier_Name").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="openSuppliers();"><i class="fa fa-search"></i></button>');
+            $("input.Loss_Code").after('<button type="button" style="padding:6px;" class="btn btn-default" onclick="openLossCode();"><i class="fa fa-search"></i></button>');
 
         }
         function getProduct(){
@@ -105,12 +106,12 @@
         </apex:pageblockbuttons>
         <apex:pageMessages id="renderErrorMsg"/>
         <apex:pageBlockSection title="Reporting Distribution Centre" columns="2" collapsible="false" >
-            <apex:inputField value="{!pqn.Reporting_DC__c}"/>
-            <apex:inputField value="{!pqn.Region__c}"/>
-            <apex:inputField value="{!pqn.DC_Country__c}"/>
-            <apex:inputField value="{!pqn.MCO__c}"/>
-            <apex:inputField value="{!pqn.Cluster__c}"/>
-            <apex:inputField value="{!pqn.Sub_Cluster__c}"/>
+            <apex:inputField value="{!pqn.Reporting_DC__c}" required="true"/>
+            <apex:inputField value="{!pqn.Region__c}" required="true"/>
+            <apex:inputField value="{!pqn.DC_Country__c}" required="true"/>
+            <apex:inputField value="{!pqn.Cluster__c}" required="true"/>
+            <apex:inputField value="{!pqn.Sub_Cluster__c}" required="true"/>                        
+            <apex:inputField value="{!pqn.MCO__c}" required="true"/>
             <apex:inputField value="{!pqn.Delivery_Note_Number__c}"/>
             <!--<apex:inputField value="{!pqn.Description__c}"/>-->       
                         
@@ -149,5 +150,5 @@
 </div>
 <!-- /#page-wrapper -->
 </div>
-</body>
+</body> 
 </apex:page>
