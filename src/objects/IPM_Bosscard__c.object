@@ -711,6 +711,15 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_LIQUID_MDM_W2_SEAA_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_LIQUID MDM W2_SEAA</label>
+        <queue>IPM_LIQUID_MDM_W2_SEAA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7I0L000000GqFa_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7I0L000000GqFa</label>
@@ -18873,15 +18882,6 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>IPM_a7I0L000000H4rb1_IPM_Bosscard</fullName>
-        <filterScope>Queue</filterScope>
-        <label>IPM_LIQUID MDM PH_SEAA</label>
-        <queue>IPM_a7I0L000000H4rb1</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>IPM_a7I0L000000H4rg1_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7I0L000000H4rg</label>
@@ -19264,6 +19264,42 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <filterScope>Queue</filterScope>
         <label>IPM_RHONE2W5_EU</label>
         <queue>IPM_a7I0L000000H5PQ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H5Pf_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H5Pf</label>
+        <queue>IPM_a7I0L000000H5Pf</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H5Pk_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_JWL SIMBA_NAS</label>
+        <queue>IPM_a7I0L000000H5Pk</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H5Pp_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I0L000000H5Pp</label>
+        <queue>IPM_a7I0L000000H5Pp</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000H5Pz_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SIRENA WAVE  2</label>
+        <queue>IPM_a7I0L000000H5Pz</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

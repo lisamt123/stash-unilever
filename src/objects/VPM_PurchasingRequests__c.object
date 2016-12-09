@@ -30057,15 +30057,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>VPM_FinanceAlgeria_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Algeria</label>
-        <queue>VPM_FinanceAlgeria</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>VPM_FinanceArgentinaVPMPurchasingRequests</fullName>
         <columns>NAME</columns>
         <columns>VPM_VendorName1__c</columns>
@@ -30094,15 +30085,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <language>en_US</language>
         <sharedTo>
             <group>VPM_FinanceArgentina</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceArgentina_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Argentina</label>
-        <queue>VPM_FinanceArgentina</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -30137,15 +30119,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>VPM_FinanceAustralia_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Australia</label>
-        <queue>VPM_FinanceAustralia</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>VPM_FinanceAustriaVPMPurchasingRequests</fullName>
         <columns>NAME</columns>
         <columns>VPM_VendorName1__c</columns>
@@ -30174,24 +30147,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <language>en_US</language>
         <sharedTo>
             <group>VPM_FinanceAustria</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceAustria_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Austria</label>
-        <queue>VPM_FinanceAustria</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceBahrain_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Bahrain</label>
-        <queue>VPM_FinanceBahrain</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -30226,15 +30181,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>VPM_FinanceBangladesh_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Bangladesh</label>
-        <queue>VPM_FinanceBangladesh</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>VPM_FinanceBelgiumVPMPurchasingRequests</fullName>
         <columns>NAME</columns>
         <columns>VPM_VendorName1__c</columns>
@@ -30263,15 +30209,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <language>en_US</language>
         <sharedTo>
             <group>VPM_FinanceBelgium</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceBelgium_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Belgium</label>
-        <queue>VPM_FinanceBelgium</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -30306,15 +30243,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>VPM_FinanceBermuda_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Bermuda</label>
-        <queue>VPM_FinanceBermuda</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>VPM_FinanceBoliviaVPMPurchasingRequests</fullName>
         <columns>NAME</columns>
         <columns>VPM_VendorName1__c</columns>
@@ -30343,15 +30271,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <language>en_US</language>
         <sharedTo>
             <group>VPM_FinanceBolivia</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceBolivia_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Bolivia</label>
-        <queue>VPM_FinanceBolivia</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -30386,15 +30305,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>VPM_FinanceBrazil_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Brazil</label>
-        <queue>VPM_FinanceBrazil</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>VPM_FinanceBulgariaVPMPurchasingRequests</fullName>
         <columns>NAME</columns>
         <columns>VPM_VendorName1__c</columns>
@@ -30423,15 +30333,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <language>en_US</language>
         <sharedTo>
             <group>VPM_FinanceBulgaria</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceBulgaria_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Bulgaria</label>
-        <queue>VPM_FinanceBulgaria</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -30466,15 +30367,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>VPM_FinanceCambodia_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Cambodia</label>
-        <queue>VPM_FinanceCambodia</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>VPM_FinanceCanadaVPMPurchasingRequests</fullName>
         <columns>NAME</columns>
         <columns>VPM_VendorName1__c</columns>
@@ -30503,15 +30395,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <language>en_US</language>
         <sharedTo>
             <group>VPM_FinanceCanada</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceCanada_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Canada</label>
-        <queue>VPM_FinanceCanada</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -30546,15 +30429,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>VPM_FinanceChile_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Chile</label>
-        <queue>VPM_FinanceChile</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>VPM_FinanceChinaVPMPurchasingRequests</fullName>
         <columns>NAME</columns>
         <columns>VPM_VendorName1__c</columns>
@@ -30583,15 +30457,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <language>en_US</language>
         <sharedTo>
             <group>VPM_FinanceChina</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceChina_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance China</label>
-        <queue>VPM_FinanceChina</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -30626,15 +30491,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>VPM_FinanceColombia_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Colombia</label>
-        <queue>VPM_FinanceColombia</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>VPM_FinanceCostaRicaVPMPurchasingRequests</fullName>
         <columns>NAME</columns>
         <columns>VPM_VendorName1__c</columns>
@@ -30663,15 +30519,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <language>en_US</language>
         <sharedTo>
             <group>VPM_FinanceCostaRica</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceCostaRica_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Costa Rica</label>
-        <queue>VPM_FinanceCostaRica</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -30706,15 +30553,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>VPM_FinanceCroatia_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Croatia</label>
-        <queue>VPM_FinanceCroatia</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>VPM_FinanceCzechRepublicVPMPurchasingRequests</fullName>
         <columns>NAME</columns>
         <columns>VPM_VendorName1__c</columns>
@@ -30746,15 +30584,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>VPM_FinanceCzechRepublic_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Czech Republic</label>
-        <queue>VPM_FinanceCzechRepublic</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>VPM_FinanceDenmarkVPMPurchasingRequests</fullName>
         <columns>NAME</columns>
         <columns>VPM_VendorName1__c</columns>
@@ -30783,141 +30612,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <language>en_US</language>
         <sharedTo>
             <group>VPM_FinanceDenmark</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceDenmark_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Denmark</label>
-        <queue>VPM_FinanceDenmark</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceDominicanRep_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Dominican Rep.</label>
-        <queue>VPM_FinanceDominicanRep</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceEcuador_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Ecuador</label>
-        <queue>VPM_FinanceEcuador</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceEgypt_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Egypt</label>
-        <queue>VPM_FinanceEgypt</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceElSalvador_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance El Salvador</label>
-        <queue>VPM_FinanceElSalvador</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceEstonia_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Estonia</label>
-        <queue>VPM_FinanceEstonia</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceEthiopia_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Ethiopia</label>
-        <queue>VPM_FinanceEthiopia</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceFinland_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Finland</label>
-        <queue>VPM_FinanceFinland</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceFrance_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance France</label>
-        <queue>VPM_FinanceFrance</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceGermany_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Germany</label>
-        <queue>VPM_FinanceGermany</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceGhana_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Ghana</label>
-        <queue>VPM_FinanceGhana</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceGreece_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Greece</label>
-        <queue>VPM_FinanceGreece</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceGuatemala_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Guatemala</label>
-        <queue>VPM_FinanceGuatemala</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceHonduras_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Honduras</label>
-        <queue>VPM_FinanceHonduras</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_FinanceHongKong_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance Hong Kong</label>
-        <queue>VPM_FinanceHongKong</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -31492,15 +31186,6 @@ RIGHT(MID ( TEXT (VPM_RequestGroupTime__c), 12, 5), FIND(&apos;:&apos;, MID ( TE
         <filterScope>Queue</filterScope>
         <label>Finance Zimbabwe</label>
         <queue>VPM_FinanceZimbabwe</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_Finance_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Finance</label>
-        <queue>VPM_Finance</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

@@ -60767,6 +60767,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>CEC_PreChatFormPortugese</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>CEC_PreChatFormSpanish</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
