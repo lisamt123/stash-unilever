@@ -1,2 +1,4 @@
 src
 src/objects/FS_Defined_Objective__c.object
+src/pages/FS_ContactDetailPage.page
+src/pages/FS_ContactDetailPage.page-meta.xml
