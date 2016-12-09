@@ -152,10 +152,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             
             IPM_FinancialYearHelper.initialiseFYConsolidation(null,null,deleteFinancialYearMap); 
             
-            deleteFinancialYearMap.clear(); 
-            
             IPM_FinancialHelper.initializeConsolidation(null,null,deleteFinancialMap);
-            deleteFinancialMap.clear();
+            
             finIdsforProjY3iToSync.addAll(Trigger.OldMap.keySet());
 
         }
@@ -622,6 +620,11 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         {
             IPM_FinancialHelper.updateAssoProjectY3iToValue(finIdsforProjY3iToSync); 
         }
+        if(Trigger.isDelete && Trigger.isAfter)
+        {
+        	deleteFinancialMap.clear();
+        	deleteFinancialYearMap.clear();
+        } 
         //Added by Devendra - call method to insert all exception logs got while excecution of trigger  
         ExceptionLoggingHelper.insertLogRecordList();
     }

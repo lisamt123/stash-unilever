@@ -1051,8 +1051,14 @@ public with sharing class IPM_FinancialHelper
     public static void updateAssoProjectY3iToValue(Set<Id> financialIds) 
     {
     		List<Id> projIdsforY3iToSync = new  List<Id>();
+    		List<IPM_Financial__c> financialList = [Select Id ,Global_Project_Id__c,Local_Project__c,Regional_Project__c,Parent_Project__c from  IPM_Financial__c where Id IN: financialIds];
+            
+            if(Trigger.isDelete)
+            {
+                financialList.addAll(IPM_FinancialHandler.deleteFinancialMap.values());
+            } 
     		
-    		for(IPM_Financial__c  ipmFinRec: [Select Id ,Global_Project_Id__c,Local_Project__c,Regional_Project__c,Parent_Project__c from  IPM_Financial__c where Id IN: financialIds])
+    		for(IPM_Financial__c  ipmFinRec: financialList)
     		{
                if(ipmFinRec.Local_Project__c!=null)
                {
