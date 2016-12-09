@@ -425,7 +425,7 @@
         <fullName>FS_Task_Type__c</fullName>
         <description>It gives values of different task types which can be selected on an activity</description>
         <externalId>false</externalId>
-        <label>Task Type</label>
+        <label>Event Type</label>
         <picklist>
             <picklistValues>
                 <fullName>Locally Led</fullName>

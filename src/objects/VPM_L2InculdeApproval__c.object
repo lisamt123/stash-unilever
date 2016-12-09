@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>VPM - Used to store list of country that need to be Exclude or Include for level 2 Approval process during Create &amp; Extend</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>VPM_ECC__c</fullName>
+        <description>VPM- used to store the ECC values.</description>
+        <externalId>false</externalId>
+        <label>ECC</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_L2CreateExtendApproval__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM -  Flag to check whether the L2 approval is required or not (True:Exclude  False:Include)</description>
+        <externalId>false</externalId>
+        <label>Exclude L2 Create/Extend Approval?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>VPM  L2 Approval</label>
+    <visibility>Public</visibility>
+</CustomObject>

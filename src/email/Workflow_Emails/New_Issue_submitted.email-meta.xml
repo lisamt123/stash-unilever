@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email alert for CIMT advising of new issue raised and submitted for approval</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_Issue_Alert</letterhead>
+    <name>New Issue submitted</name>
+    <style>freeForm</style>
+    <subject>CIMT flag: {!im_Issue__c.Name}</subject>
+    <textOnly>CIMT flag ...
+
+The Issue &apos;{!im_Issue__c.Name}&apos; was submitted by {!im_Issue__c.LastModifiedBy} on {!im_Issue__c.LastModifiedDate}
+
+
+Created Date: {!im_Issue__c.CreatedDate}
+Issue Reporter: {!im_Issue__c.OwnerFullName}
+Related Global Issue: {!im_Issue__c.Related_Global_Issue__c}
+Issue Subject Group: {!im_Issue__c.Issue_Subject_Group__c}
+Description:
+{!im_Issue__c.Issue_Description__c}
+
+Additional Issue Information
+
+Protagonist:
+{!im_Issue__c.Protagonist__c}
+
+Activist Action to Date:
+{!im_Issue__c.Activist_Action_To_Date__c}
+
+Way Forward:
+{!im_Issue__c.Way_Forward__c}
+
+Unilever Readiness to Respond:
+{!im_Issue__c.Unilever_Readiness_To_Response__c}
+
+Unilever Risk/Opportunity:
+{!im_Issue__c.Unilever_Risk_Opportunity__c}
+
+Driver for Change:
+{!im_Issue__c.Driver_for_Change__c}
+
+Issue Profile
+
+Severity: {!im_Issue__c.severity_RAG__c}
+
+Issue Source: {!im_Issue__c.Issue_Source__c}
+Brand Category: {!im_Issue__c.Brand_Category__c}
+Brand(s) Affected: {!im_Issue__c.Brand_s_Affected__c}
+Level of NGO Activity: {!im_Issue__c.Level_of_NGO_activity__c}
+On Social Media: {!im_Issue__c.IsSocialMediaChecked__c}
+Social Media Type: {!im_Issue__c.SocialMediaType__c}
+
+Location(s) Affected
+
+Cluster: {!im_Issue__c.Cluster__c}
+Country: {!im_Issue__c.Country__c}
+
+
+To review and/or amend this issue click the link {!im_Issue__c.Link}</textOnly>
+    <type>html</type>
+</EmailTemplate>

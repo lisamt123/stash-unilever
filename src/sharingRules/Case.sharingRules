@@ -10,7 +10,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Australia,New Zealand</value>
+            <value>New Zealand,Australia</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -23,7 +23,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Lithuania,Estonia,Latvia</value>
+            <value>Estonia,Latvia,Lithuania</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -75,7 +75,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Switzerland,Austria,Germany</value>
+            <value>Austria,Switzerland,Germany</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -175,6 +175,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Case_Country_Equals_Korea</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Case Country Equals Korea</label>
+        <sharedTo>
+            <role>CEC_User_Korea</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Korea</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Case_Country_Equals_Nordic</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Case Country Equals Nordic</label>
@@ -184,7 +197,7 @@
         <criteriaItems>
             <field>Country_Name__c</field>
             <operation>equals</operation>
-            <value>Denmark,Finland,Norway,Sweden</value>
+            <value>Finland,Denmark,Norway,Sweden</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -552,6 +565,17 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_Japan</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Korea_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Korea - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Korea</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Korea</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

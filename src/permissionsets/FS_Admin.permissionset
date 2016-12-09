@@ -18557,6 +18557,16 @@
         <field>FAU_Webinar__c.FAU_URL__c</field>
         <readable>false</readable>
     </fieldPermissions>
+        <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Account_Plan__c.FS_Incremental_Cases__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+        <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Account_Plan__c.FS_Incremental_NSV__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FS_Account_Plan__c.FS_Account_Business_Plan_Name__c</field>
@@ -18640,6 +18650,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FS_Account_Plan__c.Identified_Risk__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FS_Defined_Objective__c.FS_IncrementalCases__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -32134,6 +32149,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Opportunity.FS_amountCasePiece__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Opportunity.FS_Indicator__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -32593,6 +32613,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>OpportunityLineItem.FS_NSV_CALCULATION__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.FS_NSV__c</field>
         <readable>true</readable>
@@ -32680,6 +32705,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>OpportunityLineItem.FS_necessaryTPR__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>OpportunityLineItem.FS_listPriceCasePiece__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.FS_totalListPrice__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -35447,6 +35482,16 @@
         <field>Product_at_Risk__c.Total__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Risk__c.FSNA_Margin_Market_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Risk__c.FS_No_of_Products__c</field>
+        <readable>true</readable>
+    </fieldPermissions>    
     <fieldPermissions>
         <editable>true</editable>
         <field>Risk__c.Account_Plan__c</field>

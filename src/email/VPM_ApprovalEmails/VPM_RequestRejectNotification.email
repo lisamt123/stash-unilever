@@ -1,0 +1,29 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">The following vendor
+request has been rejected, if required a new request has to be opened.<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;</span></p><ul type="disc">
+ <li class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Request ID:&nbsp;&nbsp;{!VPM_PurchasingRequests__c.Name}&nbsp;<o:p></o:p></span></li>
+ <li class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Rejected By:&nbsp;{!User.Email}<o:p></o:p></span></li>
+ <li class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Date Rejected: {!Today()}<o:p></o:p></span></li>
+ <li class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Comments:&nbsp;{!ApprovalRequest.Comments}<o:p></o:p></span></li>
+ <li class="MsoNormal"><font face="Arial, sans-serif" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size: 12pt;">ECC&nbsp;Vendor Code:&nbsp;</span></font><font face="Arial, sans-serif">{!VPM_PurchasingRequests__c.VPM_VendorCode__c}</font></li>
+ <li class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Vendor Name:{!VPM_PurchasingRequests__c.VPM_VendorName1__c}</span><span style="font-size:9.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;"><o:p></o:p></span></li><li class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;">Country:&nbsp;</span><font face="Arial, sans-serif">{!VPM_PurchasingRequests__c.VPM_Country__c}</font></li>
+</ul><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt;"><span style="font-size: 13pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt;">
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt;"><b><i><span style="font-size: 12pt; font-family: Arial, sans-serif;">Disclaimer: Please do
+not reply to this mail, the sending mail box is not monitored.</span></i></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>]]></td>
+</tr>
+</table>

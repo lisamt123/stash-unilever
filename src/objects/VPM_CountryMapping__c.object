@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>VPM - This is used to fetch country from country code which we get from integration</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>VPM_SourceCountry__c</fullName>
+        <description>VPM - This field is used to fetch country from country code which we get from integration</description>
+        <externalId>false</externalId>
+        <label>VPM_Source Country</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>VPM_CountryMapping</label>
+    <visibility>Protected</visibility>
+</CustomObject>

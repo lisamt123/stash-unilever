@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Read</externalSharingModel>
+    <fields>
+        <fullName>PACV_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>PACV_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Published</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Published</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>PACV Questionnaire</label>
+    <listViews>
+        <fullName>All_Questionnaire</fullName>
+        <columns>NAME</columns>
+        <columns>PACV_Status__c</columns>
+        <columns>PACV_Description__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Questionnaire</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Questionnaire Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>PACV Questionnaire</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Not_Published</fullName>
+        <active>true</active>
+        <description>This record type is used to have the right page layout for a Not Published questionnaire</description>
+        <label>Not Published</label>
+        <picklistValues>
+            <picklist>PACV_Status__c</picklist>
+            <values>
+                <fullName>Not Published</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Published</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Published</fullName>
+        <active>true</active>
+        <description>This record type is used to have the right page layout for a Published questionnaire</description>
+        <label>Published</label>
+        <picklistValues>
+            <picklist>PACV_Status__c</picklist>
+            <values>
+                <fullName>Not Published</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Published</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>PACV_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>LAST_UPDATE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>PACV_Description__c</customTabListAdditionalFields>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>PACV_Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>PACV_Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CREATED_DATE</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>LAST_UPDATE</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>PACV_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PACV_Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <webLinks>
+        <fullName>PACV_Publish</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Publish</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+
+var p = new sforce.SObject(&apos;PACV_Risk_Assessment_Questionnaire__c&apos;);
+p.id = &quot;{!PACV_Risk_Assessment_Questionnaire__c.Id}&quot;;
+p.PACV_Status__c=&quot;{!PACV_Risk_Assessment_Questionnaire__c.PACV_Status__c}&quot;;
+
+
+if(p.PACV_Status__c != &quot;Published&quot;) {
+if(confirm(&apos;Are you sure you want to publish the Questionnaire? Once published, you will not be able to edit the Questionnaire&apos;)) 
+{
+	p.PACV_Status__c= &quot;Published&quot;;
+	p.RecordTypeId = &quot;{!$Label.PACV_Published_RecTypeId}&quot;;
+	result = sforce.connection.update([p]);
+	location.reload(true);
+
+
+}
+}
+
+else if(p.PACV_Status__c == &quot;Published&quot;){
+
+alert(&quot;The Questionnaire is already published&quot;);
+location.reload(true);
+
+}
+else if(p.PACV_Status__c == &quot;Not Published&quot;){
+p.RecordTypeId = &quot;{!$Label.PACV_Not_Published_RecTypeId}&quot;;
+
+result = sforce.connection.update([p]);
+location.reload(true);
+}</url>
+    </webLinks>
+</CustomObject>

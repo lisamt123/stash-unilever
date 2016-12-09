@@ -496,6 +496,11 @@
 	<readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
+	<editable>true</editable>
+	<field>CEC_Case_Market_Mapping__c.Business_Hours__c</field>
+	<readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
     <editable>true</editable>
     <field>CEC_Case_Market_Mapping__c.Locale__c</field>
     <readable>true</readable>
@@ -590,6 +595,11 @@
     <field>CEC_Case_Market_Mapping__c.Company_Phone__c</field>
     <readable>true</readable>
 </fieldPermissions>
+<fieldPermissions>
+        <editable>true</editable>
+        <field>CEC_Case_Market_Mapping__c.TimeZone_Difference_GMT__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 <fieldPermissions>
     <editable>true</editable>
     <field>cec_Case_QC_Mapping__c.Product__c</field>

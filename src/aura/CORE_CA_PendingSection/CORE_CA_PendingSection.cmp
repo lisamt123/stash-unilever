@@ -87,7 +87,7 @@
                 <div>
                     <div class = "local-div">
                         <div class="name">
-                            {!v.ApprovalData.ExpenseID}<br/>
+                            {!v.ApprovalData.ExpenseID}<br/> 
                             <div class="expenseName truncate">{!v.ApprovalData.ExpenseName} </div>
                             
                             <aura:if isTrue="{!(v.ApprovalData.Action !='QUER' &amp;&amp; v.ApprovalData.Status !='Query With Vendor')}"> 
@@ -101,6 +101,12 @@
                                         <div class="slds-text-body--small right-class">
                                             {!v.ApprovalData.Currencies}&nbsp;
                                             {!v.ApprovalData.ProjectBug} 
+                                        </div>
+                                    </aura:if>
+                                <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='CLM')}">
+                                        <div class="slds-text-body--small right-class">
+                                            {!v.ApprovalData.Currencies}&nbsp;
+                                            {!v.ApprovalData.Amount} 
                                         </div>
                                     </aura:if>
                             </aura:if>

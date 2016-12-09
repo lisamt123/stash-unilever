@@ -10,8 +10,8 @@ public with sharing class AR_AgencyPortfolioAndInformation {
         get {
             if (agency == null)
             {
-                return [Select  Id, Name, Description, Awards__c, Strategic_Capabilities__c, Overall_Rating__c, Website, Phone, 
-                                General_Email__c, Vimeo_Link__c, Agency_Contact__c,
+                return [Select  Id, Name, Description, Awards__c,Agency_Expertise__c,Discipline__c, Strategic_Capabilities__c, Overall_Rating__c, Website, Phone, 
+                                General_Email__c, Vimeo_Link__c, Agency_Contact__c,Procurement_Contact__c,
                                 (Select country__c From Geographies__r Order by Country__c),
                                 (Select Number_of_Employees__c From Financials__r Order by Name DESC limit 1),
                                 (Select Id, Name From Attachments Order By Name)

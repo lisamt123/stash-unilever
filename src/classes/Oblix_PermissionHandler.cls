@@ -150,6 +150,9 @@ public with sharing class Oblix_PermissionHandler {
             || Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC == sow_status
             || Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status
             || Oblix_Utils.SOW_STATUS_FINALISED == sow_status
+            || Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL == sow_status
+            || Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER == sow_status
+            || Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY == sow_status
             || null != sow_approved_version){
         
         return true;
@@ -210,7 +213,7 @@ public with sharing class Oblix_PermissionHandler {
             && 
             (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)
             ||
-            (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status))
+           (Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES == sow_status))
         {
         return true;
       }

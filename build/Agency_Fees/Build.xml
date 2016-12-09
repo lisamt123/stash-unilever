@@ -1,0 +1,139 @@
+<!--    *******************************************************************************************************************-->
+<!--    Build Script in Ant for Unilever Salesforce Projects - BEGIN                                               -->
+<!--    ******************************************************************************************************************* -->
+<project name="salesforce" default="validate" basedir="." xmlns:sf="antlib:com.salesforce">
+
+  <!-- *************************************************************** -->
+  <!--   Properties for Salesforce ANT targets                         -->
+  <!-- *************************************************************** -->
+  <property file="${basedir}/build.properties"/>
+  <property environment="env"/>
+  <!-- Properties for salesforce dataloader CLI for IPM NG-->
+  <property name="dataLoaderAPIVersion" value="35.0.0-uber" />
+  <!-- *************************************************************** -->
+  <!--   Set-Up of Salesforce Ant / CLI Jar Classpath for IPM NG       -->
+  <!-- *************************************************************** -->
+  <!-- Define required jars for salesforce dataloder CLI-->
+  <path id="taskDependencies">
+    <pathelement location="${basedir}/lib/ant.jar"/>
+    <pathelement location="${basedir}/lib/antutils.jar"/>
+    <pathelement location="${basedir}/lib/commons-io-2.4.jar"/>
+    <pathelement location="${basedir}/lib/commons-lang-2.6.jar"/>
+    <pathelement location="${basedir}/lib/commons-logging-1.1.3.jar"/>
+    <pathelement location="${basedir}/lib/gson-2.2.4.jar"/>
+    <pathelement location="${basedir}/lib/httpclient-4.3.5.jar"/>
+    <pathelement location="${basedir}/lib/httpcore-4.3.2.jar"/>
+    <pathelement location="${basedir}/lib/json-20080701.jar"/>
+  </path>
+  <!-- Define salesforce Ant Jar-->
+  <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+    <classpath>
+      <pathelement location="${basedir}/lib/ant-salesforce.jar" />
+    </classpath>
+  </taskdef>
+  <!-- ***************************************************************************** -->
+  <!-- ANT Import Files for invoking APEX inside ANT Scripts                         -->
+  <!-- ***************************************************************************** -->
+  <import file="${basedir}/lib/exec_anon.xml"/>
+  <import file="${basedir}/lib/deploy.xml"/>
+  <import file="${basedir}/lib/undeploy.xml"/>
+  <import file="${basedir}/lib/run_tests.xml"/>
+  <import file="${basedir}/lib/package_generator.xml"/>
+
+
+  <target name="validate">
+    <echo level="info">Agent App Lightning Deployment</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      testLevel="RunSpecifiedTests"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="src"
+      pollWaitMillis="${sfdc.pollWaitMillis}"
+      maxPoll="${sfdc.maxPoll}">
+      <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLoginControllerTest</runTest>
+      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+      <runTest>CommunitiesSelfRegControllerTest</runTest>
+      <runTest>ExceptionLoggingHelper_Test</runTest>
+      <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
+      <runTest>TestDataFactory</runTest>
+      <runTest>UserTestUtil</runTest>
+      <runTest>UserTrigger_Test</runTest>
+      <runTest>AF_AdjustQuater_Homepage_lightbox_Test</runTest>
+      <runTest>AF_AfterUpdateBonusResHandler_Test1</runTest>
+	  <runTest>AF_AgencyEstimateController_Test</runTest>
+	  <runTest>AF_AgencyHomePageController_Test</runTest>
+	  <runTest>AF_AgencyReviewCommentsExtension_Test</runTest>
+	  <runTest>AF_Agency_EstimateHandler_Test</runTest>
+	  <runTest>AF_AnnualBonus_Test</runTest>
+	  <runTest>AF_ApprovalProcessForBrandEstContro_Test</runTest>
+	  <runTest>AF_ApproveActualsCtrl_Test</runTest>
+	  <runTest>AF_AttachmentUploadController_Test</runTest>
+	  <runTest>AF_BatchProcess_copy_Test</runTest>
+	  <runTest>AF_BonusFeeStdCtrlExt_Test</runTest>
+	  <runTest>AF_BonusMatrixOverrideController_Test</runTest>
+	  <runTest>AF_BonusMatrixSummary_Test</runTest>
+	  <runTest>AF_BonusMatrix_BonusApprover_Test</runTest>
+	  <runTest>AF_Bonusquarterly_Reminder_Test</runTest>
+	  <runTest>AF_BonusQuarterly_Test</runTest>
+	  <runTest>AF_BonusQuaterlyEmailToCatFinance_Test</runTest>
+	  <runTest>AF_BonusRecordManager_Test</runTest>
+	  <runTest>AF_BonusSummaryRemote_Test</runTest>
+	  <runTest>AF_Bonus_ResultsHandler_Test</runTest>
+	  <runTest>AF_Bonus_ThresholdHandler_Test</runTest>
+	  <runTest>AF_BrandAgencyCombinationController_Test</runTest>
+	  <runTest>AF_BrandEstimateController2_Test</runTest>
+	  <runTest>AF_brandEstimatehandlerHelper_Test</runTest>
+	  <runTest>AF_BrandEstimateRemote_Test</runTest>
+	  <runTest>AF_BrandEstimatesBatch_Test</runTest>
+	  <runTest>AF_BrandEstimateStCtrlExtSummary_test</runTest>
+	  <runTest>AF_BrandEstimateUpdate_Test</runTest>
+	  <runTest>AF_BrandEstimate_SelController_Test</runTest>
+	  <runTest>AF_Brand_Controller_Review_Test</runTest>
+	  <runTest>AF_CloseAndRefresh_Test</runTest>
+	  <runTest>AF_CommentsListCompController_Test</runTest>
+	  <runTest>AF_CountryBreakdownCheck_Test</runTest>
+	  <runTest>AF_CurrencyHandler_Test</runTest>
+	  <runTest>AF_CustomSetting_Test</runTest>
+	  <runTest>AF_DocumentListCompController_Test</runTest>
+	  <runTest>AF_EditComment_Test</runTest>
+	  <runTest>AF_EmailToCatFinance_Test</runTest>
+	  <runTest>AF_FieldHistoryCompController_Test</runTest>
+	  <runTest>AF_GetBaseFeePOData_Test</runTest>
+	  <runTest>AF_MatrixAgencySummary_Test</runTest>
+	  <runTest>AF_middlebonusmatrix_Test</runTest>
+	  <runTest>AF_MultiSelectComponent_Test</runTest>
+	  <runTest>AF_OopEstimateRemote_Test</runTest>
+	  <runTest>AF_OOPSActualHandler_Test</runTest>
+	  <runTest>AF_OopsActualStdCtrlExt_Test</runTest>
+	  <runTest>AF_OOPSEstimateController_Test</runTest>
+	  <runTest>AF_OOPSRecordManager_Test</runTest>
+	  <runTest>AF_OOPS_SelectionController_Test</runTest>
+	  <runTest>AF_PO_ReportHandler_Test</runTest>
+	  <runTest>AF_RaisenewPO_Homepage_lightbox_Test</runTest>
+	  <runTest>AF_SendCurrencyReminder_Test</runTest>
+	  <runTest>AF_SendEmailToCatFinance_Test</runTest>
+	  <runTest>AF_Sendemail_categoryfinance_Test</runTest>
+	  <runTest>AF_SubResultHandler_Test</runTest>
+	  <runTest>AF_subResult_Helper_Test</runTest>
+	  <runTest>AF_UpdateAgencyEstimatesValues2_Test</runTest>
+	  <runTest>AF_UpdateBonusEstimatesValues5_Test</runTest>
+	  <runTest>AF_updateBonusThreshold_Test</runTest>
+	  <runTest>AF_UpdateBrandEstimateCatApprover_Test</runTest>
+	  <runTest>AF_UpdateOopsEstimatesValues5_Test</runTest>
+	  <runTest>AF_UpdOopsEstCatApproverValues_Test</runTest>
+	  <runTest>AF_Usersearch_Test</runTest>
+	  <runTest>AF_Utils_Test</runTest>
+	  <runTest>AF_ViewAllController_Test</runTest>
+	  <runTest>AF_Constants_Test</runTest>
+	  <runTest>AF_UpdBonusSummaryCatApproverValues_Test</runTest>
+    </sf:deploy>
+  </target>  
+
+</project>

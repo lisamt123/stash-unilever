@@ -258,6 +258,15 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+	<fieldUpdates>
+        <fullName>CEC_Update_SMS_Mobile_Number</fullName>
+        <field>SMS_Mobile_Number__c</field>
+        <formula>Account.Mobile_Phone_No_Special_Char__c</formula>
+        <name>CEC Update SMS Mobile Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>Escalated_Date_Update</fullName>
         <description>CEC : To capture the date when a case gets Escalated for first time.</description>
@@ -362,7 +371,7 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <rules>
+     <rules>
         <fullName>CEC %3A CaseOrigin Update</fullName>
         <actions>
             <name>CEC_Case_Origin_to_email</name>
@@ -382,7 +391,7 @@
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
-            <value>Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ,Email Philippines,Email Indonesia,Email Vietnam,Email Thailand,Email Bangladesh,Email Pakistan,Email Japan</value>
+            <value>Email North America CS,Email Brazil,Email Middle Americas,Email Southern Cone,Email South Africa,Email ANZ,Email Philippines,Email Indonesia,Email Vietnam,Email Thailand,Email Bangladesh,Email Pakistan,Email Japan,Email Korea,Email Taiwan</value>
         </criteriaItems>
         <description>CEC : To update the Case Origin field.</description>
         <triggerType>onAllChanges</triggerType>
@@ -622,6 +631,24 @@
         </criteriaItems>
         <description>CEC Update Email Case Priority Field: To Update &apos;Case Priority&apos; information to Null</description>
         <triggerType>onCreateOnly</triggerType>
+    </rules>
+	<rules>
+        <fullName>CEC Update SMS Mobile From Account</fullName>
+        <actions>
+            <name>CEC_Update_SMS_Mobile_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.SMS_Mobile_Number__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.PersonMobilePhone</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Whenever account information gets populated on the case or updated on the case then we need to update &apos;SMS Mobile Number&apos; field only if this field is not populated with any value.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>TO - IsEscalated Update</fullName>

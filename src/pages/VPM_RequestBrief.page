@@ -1,0 +1,26 @@
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true"
+           sidebar="false" extensions="VPM_SubController" language="{!userlang}">
+    <script>
+    debugger;
+    localStorage.removeItem("cancelClicked");
+    </script>
+    <chatter:feedWithFollowers entityid="{!VPM_PurchasingRequests__c.Id}" id="ChatterBlock"  />
+    <apex:form >
+        <apex:pageBlock title="{!$Label.VPM_Request_Brief_Heading}" id="thePageBlock">
+          <apex:pageBlockButtons >    
+                 <apex:commandButton action="{!backToFlow}" value="{!$Label.VPM_Next}" immediate="true" reRender="hiddenBlock" status="actStatusId"/>    
+                
+            </apex:pageBlockButtons>
+            <apex:pageBlock id="hiddenBlock" rendered="false"></apex:pageBlock> 
+            <apex:pageBlockSection columns="1">                
+                <apex:outputField value="{!UserVar.Name}" label="{!$Label.VPM_RequestorName}"  />  
+                <apex:outputField value="{!UserVar.phone}" label="{!$Label.VPM_RequestorTelephone}" />
+                <apex:outputField value="{!UserVar.Email}" label="{!$Label.VPM_RequestorEmail}" />
+                <apex:outputField value="{!UserVar.userRole.name}" label="{!$Label.VPM_RequestorRole}" />               
+                <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_Comments__c}" label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_Comments__c.Label}"/> 
+                
+          </apex:pageBlockSection>        
+       </apex:pageBlock>          
+   </apex:form>
+    
+</apex:page>

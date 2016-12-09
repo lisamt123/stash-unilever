@@ -1047,7 +1047,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     private void validateNonKeyMcoTLDMisalignment( Map<Id,IPM_Project_Rollout__c> updaterolloutsMap ) {
             // The TLD misalignment check is only for Global/Regional original projects in Ideas phase
             // Also adding logic to check TLD misalignment for GKM3 projects
-            if( (project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL||project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)) || project.IPM_ProjectGKM__c=='GKM3')
+        IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(project);
+        if(currentProjectType != null && currentProjectType.IPM_Enable_NonKeyMcoTLDValidation__c)
             {
                 Map<String,Date> mcoTLDMap = new Map<String,Date>();
                 Date mcoTDL;
@@ -1062,7 +1063,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     		mcoTLDMap.put(rollout.Regional_Rollout_External_Id__c,rollout.Target_Launch_Date__c);
                     		continue;
                     	}
-                    	if(mcoTLDMap.get(rollout.Regional_Rollout_External_Id__c)!=rollout.Target_Launch_Date__c) {
+                    if(mcoTLDMap.get(rollout.Regional_Rollout_External_Id__c)!=rollout.Target_Launch_Date__c )
+                    {
                     		// if any of the non-key local rollout TLDs are not same, raise validation error 
                     	    nonKeyMcoTLDMisalignedMap.put(rollout.Regional_Rollout_External_Id__c,true);
                     		validationError = Label.IPM_NonMCO_TLD_Misaligned;

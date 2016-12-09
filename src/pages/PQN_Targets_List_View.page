@@ -1,0 +1,19 @@
+<apex:page showHeader="false" tabstyle="Case">
+<style>
+    .pbBody{
+        overflow-y: scroll;
+    }
+</style>
+<body>
+    <div id="wrapper">
+        <c:PQN_Navigation navigationName="Archive" subNavName="targetView"/>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+               <apex:ListViews type="PQN_Targets__c" />
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+</body>
+</apex:page>
