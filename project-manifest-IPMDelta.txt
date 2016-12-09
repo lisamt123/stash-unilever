@@ -1,6 +1,3 @@
 src
-src/labels
-src/labels/CustomLabels.labels
-src/pages
-src/pages/IPM_ProjectSetUpView.page
-src/pages/IPM_ProjectSetUpView.page-meta.xml
+src/flows
+src/flows/IPM_Notify_the_Local_Project_leader_when_local_project_created-19.flow
