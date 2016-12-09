@@ -4493,6 +4493,13 @@
         <field>Account.External_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.FS_SoftServeDistrId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>    
+    
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.FS_ABCSegmentation__c</field>

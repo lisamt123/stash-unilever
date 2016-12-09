@@ -58,23 +58,33 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
-        <fullName>External_ID__c</fullName>
-        <description>Store the external for Ship To, PoP and Store Id. (Cross Dock)</description>
+        <fullName>FS_MasterAccount__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <inlineHelpText>StStore the external for Ship To, PoP and Store Id. (Cross Dock)</inlineHelpText>
-        <label>External ID</label>
-        <length>10</length>
+        <label>Master Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Account Relationship (Secondary Account)</relationshipLabel>
+        <relationshipName>Account_Relationship</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FS_MergedAccountName__c</fullName>
+        <externalId>false</externalId>
+        <label>Merged Account Name</label>
+        <length>100</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Primary_Account__c</fullName>
+        <fullName>FS_MergedAccount__c</fullName>
         <description>Accounts under this Id.</description>
         <externalId>false</externalId>
         <inlineHelpText>Accounts under this Id.</inlineHelpText>
-        <label>Primary Account</label>
+        <label>Merged Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Account Relationship (Account)</relationshipLabel>
         <relationshipName>FS_Cross_Account_ID</relationshipName>
@@ -85,51 +95,24 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
-        <fullName>Secondary_Account__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
+        <fullName>FS_UniqueAccountID__c</fullName>
+        <description>Store the external for Ship To, PoP and Store Id. (Cross Dock)</description>
         <externalId>false</externalId>
-        <label>Secondary Account</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipLabel>Account Relationship (Secondary Account)</relationshipLabel>
-        <relationshipName>Account_Relationship</relationshipName>
+        <inlineHelpText>Account External Id_SoftServe Distr Id</inlineHelpText>
+        <label>Unique Account ID</label>
+        <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Type__c</fullName>
-        <description>Store the information about Cross Account Reference such as PoP, Ship To or Store Id.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Store the information about Cross Account Reference such as PoP, Ship To or Store Id.</inlineHelpText>
-        <label>Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>PoP Id.</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ship To Id.</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Store Id. (Cross Dock)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <label>Account Relationship</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>External_ID__c</columns>
-        <columns>Type__c</columns>
-        <columns>Primary_Account__c</columns>
-        <columns>Secondary_Account__c</columns>
+        <columns>FS_UniqueAccountID__c</columns>
+        <columns>FS_MergedAccount__c</columns>
+        <columns>FS_MasterAccount__c</columns>
         <columns>OBJECT_ID</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>

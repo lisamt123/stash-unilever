@@ -3,3 +3,16 @@ src/objects/FS_Defined_Objective__c.object
 src/pages/FS_ContactDetailPage.page
 src/pages/FS_ContactDetailPage.page-meta.xml
 src/permissionsets/FS_Sales_Rep.permissionset
+src/objects/Account_Relationship__c.object
+src/layouts/Account_Relationship__c-External PoP ID Layout.layout
+src/objects/Account.object
+src/workflows/Account_Relationship__c.workflow
+src/permissionsets/FS_Integration_User.permissionset
+src/permissionsets/FS_RussiaSalesRep.permissionset
+
+
+
+
+
+
+
