@@ -186,7 +186,13 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     private IPM_Analytics_OTIF__c prepareAnalyticeRecord(IPM_Project__c proj, IPM_Analytics_OTIF__c otifAnalytic,  map<Id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap){
         
         IPM_Analytics_OTIF__c otifAnalyticProj=otifAnalytic;
-        
+        //EPIC406
+      	if(String.isNotBlank(proj.Project_External_ID__c)){
+        	otifAnalyticProj.IPM_External_ID__c = proj.Project_External_ID__c;
+	    }else
+	    {
+	    	otifAnalyticProj.IPM_External_ID__c = proj.id;
+	    }
         otifAnalyticProj.IPM_Project_Id__c = proj.id;
         otifAnalyticProj.IPM_Project_Name__c = proj.IPM_Project_Name__c;
         otifAnalyticProj.IPM_Project_Phantom_Non_Key__c = IPM_ConstantUtils.Project;
@@ -341,10 +347,8 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         nonKeyAnalytic.IPM_Project_Id__c = parentAnalytic.IPM_Project_Id__c;
         nonKeyAnalytic.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
         nonKeyAnalytic.IPM_Project_Name__c = nonKeyFinancial.Display_Name__c;
-        //nonKeyAnalytic.IPM_Parent_Project_Name__c = parent.IPM_Project_Name__c;     
         nonKeyAnalytic.IPM_Project_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
         nonKeyAnalytic.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-       // nonKeyAnalytic.IPM_Company__c = parent.IPM_Company__c;
         nonKeyAnalytic.IPM_Category_Group__c = parent.IPM_Category_Group__c;
         nonKeyAnalytic.IPM_Category__c = parent.IPM_Category__c;
         nonKeyAnalytic.IPM_Phase__c = parent.IPM_Phase__c;
