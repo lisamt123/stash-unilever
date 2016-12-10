@@ -1474,8 +1474,8 @@ public with sharing class Oblix_SOWRollOverLogic {
             Map<Id, Oblix_Project_Assets__c> map_original_ids_to_cloned = new Map<Id,Oblix_Project_Assets__c>();
             for (Oblix_Project_Assets__c cloned_asset: database.query(query_string2)){
                 map_original_ids_to_cloned.put(cloned_asset.Asset_PFY__c,cloned_asset );
-                Set_Cloned_MDM_IDs.add(cloned_asset.mdm_id__c);
-                map_NFY_Assets_with_MDMIds.put(cloned_asset.mdm_id__c,cloned_asset);
+                Set_Cloned_MDM_IDs.add(cloned_asset.mdm_id__c+cloned_asset.Campaign_PFY__c);
+                map_NFY_Assets_with_MDMIds.put(cloned_asset.mdm_id__c+cloned_asset.Campaign_PFY__c,cloned_asset);
             }
 
             result_msg += '\n query2 result rows: ' + map_original_ids_to_cloned.size();
@@ -1535,7 +1535,8 @@ public with sharing class Oblix_SOWRollOverLogic {
                     + ' - asset.quantity: ' + asset.Quantity__c + ' - asset: ' + JSON.serialize(asset);
 
                 // ensure the NFY Campaign exists - campaigns which are 100% or cancelled will not have a NFY record!
-                if(!map_original_ids_to_cloned.containsKey(asset.id) && set_cloned_campaign_pfy_ids.contains(asset.Agency_Projects__c)&&!Set_Cloned_MDM_IDs.contains(asset.mdm_id__c)){
+                if(!map_original_ids_to_cloned.containsKey(asset.id) && set_cloned_campaign_pfy_ids.contains(asset.Agency_Projects__c)&&!Set_Cloned_MDM_IDs.contains(asset.mdm_id__c+asset.Campaign_ID__c.substring(0,asset.Campaign_ID__c.length()-3))){
+               // if(!map_original_ids_to_cloned.containsKey(asset.id) && set_cloned_campaign_pfy_ids.contains(asset.Agency_Projects__c)){
                     //  1- PFY asset is newly created: create a clone of the for the NFY
                     
 
@@ -1545,6 +1546,8 @@ public with sharing class Oblix_SOWRollOverLogic {
                     cloned_asset.Agency_Projects__c = (Id) asset.get(job_component.attrib_2);
                     cloned_asset.Campaign_ID__c = (String) asset.get(job_component.attrib_2);
                     list_assets_to_clone.add(cloned_asset);
+                    
+                    
                     
                     result_msg += '\n\n\n to clone - campaign_id ' + cloned_asset.Campaign_ID__c + ' - Agency_Projects__c: ' + cloned_asset.Agency_Projects__c;
 
@@ -1643,11 +1646,16 @@ public with sharing class Oblix_SOWRollOverLogic {
 
                 for (Oblix_Project_Assets__c asset: map_original_ids_to_original_temp.values()){
 
-                  If(Set_Cloned_MDM_IDs_temp.contains(asset.mdm_id__c)){
-                    Oblix_Project_Assets__c temp =  map_NFY_Assets_with_MDMIds_temp.get(asset.mdm_id__c);  
+                  If(Set_Cloned_MDM_IDs_temp.contains(asset.mdm_id__c+asset.Campaign_ID__c.substring(0,asset.Campaign_ID__c.length()-3))){
+                    Oblix_Project_Assets__c temp =  map_NFY_Assets_with_MDMIds_temp.get(asset.mdm_id__c+asset.Campaign_ID__c.substring(0,asset.Campaign_ID__c.length()-3));  
+                  //  if(temp.Asset_PFY__c !=asset.Id ){
+                    
                     temp.Asset_PFY__c = asset.Id;
                     list_NFY_assets_to_update.add(temp);
+                    
                     map_original_ids_to_cloned_temp.put(asset.Id,temp);
+                    
+                 //   }
                   }
 
               }

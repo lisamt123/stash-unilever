@@ -58239,6 +58239,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Core_Approval_Header__c-Ariba_FeedBased</layout>
+        <recordType>Core_Approval_Header__c.CLM</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Core_Approval_Header__c-Ariba_FeedBased</layout>
         <recordType>Core_Approval_Header__c.Invoice</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -58255,6 +58259,10 @@
     <layoutAssignments>
         <layout>Core_Approver_Details__c-Approver_Ariba_FeedBased</layout>
         <recordType>Core_Approver_Details__c.Ariba</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Core_Approver_Details__c-Approver_Ariba_FeedBased</layout>
+        <recordType>Core_Approver_Details__c.CLM</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Core_Approver_Details__c-Approver_Ariba_FeedBased</layout>
@@ -62984,6 +62992,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Core_Approval_Header__c.CLM</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Core_Approval_Header__c.Clarity</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -63001,6 +63014,11 @@
         <default>true</default>
         <recordType>Core_Approver_Details__c.Ariba</recordType>
         <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Core_Approver_Details__c.CLM</recordType>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>

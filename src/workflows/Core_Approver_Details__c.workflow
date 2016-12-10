@@ -28,6 +28,23 @@
         <useDeadLetterQueue>false</useDeadLetterQueue>
     </outboundMessages>
     <outboundMessages>
+        <fullName>Core_CA_IP_CLM_OutboundMessage</fullName>
+        <apiVersion>38.0</apiVersion>
+        <endpointUrl>http://52.213.239.243:8081/ClmMobilityResponseService</endpointUrl>
+        <fields>Ariba_Role__c</fields>
+        <fields>Comments__c</fields>
+        <fields>CurrentDateTime__c</fields>
+        <fields>Header_ExternalId__c</fields>
+        <fields>Id</fields>
+        <fields>Interested_Party_Email__c</fields>
+        <fields>Status__c</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>clarity.system@unilever.com.prod</integrationUser>
+        <name>Core CA IP CLM OutboundMessage</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+    <outboundMessages>
         <fullName>Core_CA_IP_Clarity_OutboundMessage</fullName>
         <apiVersion>36.0</apiVersion>
         <endpointUrl>https://sbi.clarity.cloudhub.unileverservices.com:8082/ClaritySalesforceResponseService</endpointUrl>
@@ -113,6 +130,47 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>Core CA ActionDate WF Rule CLM approve</fullName>
+        <actions>
+            <name>Core_CA_ActionDate_Field_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Source_System__c</field>
+            <operation>equals</operation>
+            <value>CLM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <description>It will update action date to last modify if source system is CLM.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Core CA ActionDate WF Rule CLM reject</fullName>
+        <actions>
+            <name>Core_CA_ActionDate_Field_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Source_System__c</field>
+            <operation>equals</operation>
+            <value>CLM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </criteriaItems>
+        <description>It will update action date to last modify if source system is CLM.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>Core CA ActionDate WF RuleThree</fullName>
         <actions>
             <name>Core_CA_ActionDate_Field_Update</name>
@@ -150,6 +208,31 @@
             <value>Query With Vendor</value>
         </criteriaItems>
         <description>It will update action date to last modify if source system is Invoice.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Core CA CLM Notifications WF Rule</fullName>
+        <actions>
+            <name>Core_CA_IP_CLM_OutboundMessage</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Source_System__c</field>
+            <operation>equals</operation>
+            <value>CLM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

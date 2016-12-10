@@ -17,6 +17,7 @@ public class Core_CA_Header_Handler{
         List<RecordType> gtesRecordType   = [SELECT Id FROM RecordType where Name ='GTES' AND SobjectType = 'Core_Approval_Header__c'];
         List<RecordType> clarityRecordType  = [SELECT Id FROM RecordType where Name ='Clarity' AND SobjectType = 'Core_Approval_Header__c'];
         List<RecordType> invoiceRecordType   = [SELECT Id FROM RecordType where Name ='Invoice' AND SobjectType = 'Core_Approval_Header__c'];
+        List<RecordType> clmRecordType   = [SELECT Id FROM RecordType where Name ='CLM' AND SobjectType = 'Core_Approval_Header__c'];
         
         for(Core_Approval_Header__c headerRec : headerList){
           
@@ -29,6 +30,8 @@ public class Core_CA_Header_Handler{
                 headerRec.RecordTypeId  = clarityRecordType[0].ID;                             
            if(headerRec.Source_System__c == 'Invoice')
                 headerRec.RecordTypeId  = invoiceRecordType[0].ID;
+            if(headerRec.Source_System__c == 'CLM')
+                headerRec.RecordTypeId  = clmRecordType[0].ID;
            
            
            // Updating Name field with External System Value.
