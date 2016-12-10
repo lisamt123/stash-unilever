@@ -96,6 +96,12 @@ src/groups/SoCo_Category_Planner_CL01.group
 src/groups/SoCo_Category_Planner_CL03.group
 src/groups/SoCo_Category_Planner.group
 src/groups/UK_SO.group
+src/groups/Ireland_SO_Admin.group
+src/groups/Ireland_SO_Authoriser.group
+src/groups/Ireland_SO_Planner.group
+src/groups/UK_Admin.group
+src/groups/UK_Authoriser.group
+src/groups/UK_Planner_CAM.group
 src/sharingRules
 src/sharingRules/Account.sharingRules
 src/sharingRules/ACSFUL001__Fund_Template__c.sharingRules
