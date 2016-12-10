@@ -196,6 +196,86 @@
         </displayedFields>
         <label>Tactic Dates Fields</label>
     </fieldSets>
+    <fieldSets>
+        <fullName>UL_SoCo_NotApproved</fullName>
+        <description>This field set is used for the fields which should not be edit when promotion is in approved/Finance Check/Manager check state</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Tactic_Template__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Instore_Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Instore_Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Order_Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Order_Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Shipment_Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Shipment_Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Lift__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Pct_of_Stores__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Amount__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Payment_Method__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Compensation_Model__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>SoCo_NotApproved</label>
+    </fieldSets>
     <fields>
         <fullName>ACSFUL001__Amount__c</fullName>
         <deprecated>false</deprecated>
@@ -341,14 +421,6 @@
                 <fullName>A&amp;P</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Check</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Deduction</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -458,6 +530,89 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>UL_Condition_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Condition Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Visibility</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Visibility New Products</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CPP Off Invoice</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDLP Off Invoice</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CPP On Invoice</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDLP On Invoice</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Investment_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Investment Method</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cash Discount Per Case</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>% Discount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exact Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Off_On_Invoice__c</fullName>
+        <externalId>false</externalId>
+        <label>Off / On Invoice</label>
+        <picklist>
+            <picklistValues>
+                <fullName>On Invoice</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Off Invoice</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>UL_Order_Date_From__c</fullName>
         <description>This field is used to store order date of tactic</description>
         <externalId>false</externalId>
@@ -475,6 +630,76 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>UL_Promotion_Phase__c</fullName>
+        <description>Reflects the Phase of the Promotion to which the Tactic is related to</description>
+        <externalId>false</externalId>
+        <label>Promotion Phase</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Committed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ForApproval</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UL_Take_Up_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Take-up Rate %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>UL_Volume_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Volume Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <label>Tactic</label>
     <listViews>
@@ -531,6 +756,97 @@
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>UL_Condition_Type__c</picklist>
+            <values>
+                <fullName>CPP Off Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CPP On Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDLP Off Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDLP On Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visibility</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visibility New Products</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Investment_Method__c</picklist>
+            <values>
+                <fullName>%25 Discount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cash Discount Per Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exact Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Off_On_Invoice__c</picklist>
+            <values>
+                <fullName>Off Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Invoice</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Promotion_Phase__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Committed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ForApproval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Volume_Type__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>ACSFUL001__PriceReduction</fullName>
@@ -566,6 +882,97 @@
                 <default>true</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>UL_Condition_Type__c</picklist>
+            <values>
+                <fullName>CPP Off Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CPP On Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDLP Off Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDLP On Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visibility</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visibility New Products</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Investment_Method__c</picklist>
+            <values>
+                <fullName>%25 Discount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cash Discount Per Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exact Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Off_On_Invoice__c</picklist>
+            <values>
+                <fullName>Off Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Invoice</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Promotion_Phase__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Committed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ForApproval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Volume_Type__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
@@ -599,6 +1006,12 @@
         <errorConditionFormula>ACSFUL001__Date_From__c  &gt;   ACSFUL001__Date_Thru__c</errorConditionFormula>
         <errorDisplayField>ACSFUL001__Date_From__c</errorDisplayField>
         <errorMessage>Date From cannot be later than Date Thru.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_CreateInvestmentOnPromotionRule</fullName>
+        <active>true</active>
+        <errorConditionFormula>if( ISPICKVAL(ACSFUL001__Promotion__r.UL_Promotion_Type__c, &apos;Volume Only&apos;) ,true,false )</errorConditionFormula>
+        <errorMessage>you can&apos;t able to create on this promotion type</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>UL_OrderDateFromLessthanThrudate</fullName>

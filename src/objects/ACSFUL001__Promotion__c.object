@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -44,7 +44,8 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Standard</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -343,6 +344,151 @@
         </displayedFields>
         <label>Promotion Status Fields</label>
     </fieldSets>
+    <fieldSets>
+        <fullName>UL_SoCo_PendingApproved</fullName>
+        <description>This field set is used for the fields which should not be edit when promotion is in approved/Finance Check/Manager check state</description>
+        <displayedFields>
+            <field>ACSFUL001__Phase__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Slogan__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Active__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Placement_Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Placement_Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Order_Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Order_Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Delivery_Date_From__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Delivery_Date_Thru__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Post_Dip_End_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Anchor_Account__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ACSFUL001__Anchor_Account_Set__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Current_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Account__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Delivery_Profile__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Mechanic__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Sub_Mechanic__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Primary_Objective__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Secondary_Objective__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Cannibalisation_Override__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Feature__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Category__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Promotion_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Pre_Evaluation_Comment__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Brand__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>UL_Volume_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>SoCo_PendingApproved</label>
+    </fieldSets>
     <fields>
         <fullName>ACSFUL001__Active__c</fullName>
         <defaultValue>true</defaultValue>
@@ -610,6 +756,10 @@
                 <fullName>Cancelled</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -760,13 +910,13 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>UL_Account__c </fullName>
+        <fullName>UL_Account__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Account</label>
+        <label>Customer</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>Promotions (Account)</relationshipLabel>
-        <relationshipName>Promotions</relationshipName>
+        <relationshipName>Promotions1</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -781,6 +931,29 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Cannibalisation_Override__c</fullName>
+        <externalId>false</externalId>
+        <label>Cannibalisation Override</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>UL_Cannibalisation_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Cannibalisation Rate (%)</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -807,6 +980,26 @@
                 <fullName>No</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance Check</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Manager Check</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>End Date</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -830,10 +1023,6 @@
         <externalId>false</externalId>
         <label>Feature</label>
         <picklist>
-            <picklistValues>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </picklistValues>
             <picklistValues>
                 <fullName>Dump Bins</fullName>
                 <default>false</default>
@@ -1009,6 +1198,20 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>UL_Parent_Locker_Promotion__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Availability of this field value locks the current promotion.</description>
+        <externalId>false</externalId>
+        <label>Parent Locker Promotion</label>
+        <referenceTo>ACSFUL001__Promotion__c</referenceTo>
+        <relationshipLabel>Promotions (Parent Locker Promotion)</relationshipLabel>
+        <relationshipName>Promotions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>UL_Post_Dip_End_Date__c</fullName>
         <externalId>false</externalId>
         <label>Post Dip End Date</label>
@@ -1033,10 +1236,6 @@
         <externalId>false</externalId>
         <label>Primary Objective</label>
         <picklist>
-            <picklistValues>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </picklistValues>
             <picklistValues>
                 <fullName>AWOP</fullName>
                 <default>false</default>
@@ -1073,10 +1272,23 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>UL_Promotion_Name__c</fullName>
+        <fullName>UL_Promotion_ID__c</fullName>
         <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; &amp; Id ,  Name,&apos;_self&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Promotion ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UL_Promotion_Name_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; &amp; Id,ACSFUL001__Slogan__c,&apos;_self&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Promotion Name</label>
-        <length>250</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1124,14 +1336,6 @@
         <externalId>false</externalId>
         <label>Secondary Objective</label>
         <picklist>
-            <picklistValues>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>No</fullName>
-                <default>false</default>
-            </picklistValues>
             <picklistValues>
                 <fullName>Incremental Profit</fullName>
                 <default>false</default>
@@ -1181,10 +1385,6 @@
         <label>Sub Mechanic</label>
         <picklist>
             <controllingField>UL_Mechanic__c</controllingField>
-            <picklistValues>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </picklistValues>
             <picklistValues>
                 <fullName>Loyalty Points (Bonus points)</fullName>
                 <default>false</default>
@@ -1531,8 +1731,7 @@
     <label>Promotion</label>
     <listViews>
         <fullName>ACSFUL001__All</fullName>
-        <columns>NAME</columns>
-        <columns>ACSFUL001__Slogan__c</columns>
+        <columns>UL_Promotion_Name_URL__c</columns>
         <columns>ACSFUL001__Parent_Promotion__c</columns>
         <columns>ACSFUL001__Promotion_Template__c</columns>
         <columns>ACSFUL001__Active__c</columns>
@@ -1541,11 +1740,86 @@
         <columns>ACSFUL001__Date_From__c</columns>
         <columns>ACSFUL001__Date_Thru__c</columns>
         <columns>ACSFUL001__Anchor_Account__c</columns>
+        <columns>ACSFUL001__Anchor_Account_Set__c</columns>
         <columns>ACSFUL001__Sales_Org__c</columns>
         <columns>CREATEDBY_USER</columns>
+        <columns>UL_Promotion_Type__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Admin</fullName>
+        <columns>UL_Promotion_ID__c</columns>
+        <columns>ACSFUL001__Slogan__c</columns>
+        <columns>UL_Promotion_Name_URL__c</columns>
+        <columns>UL_Account__c</columns>
+        <columns>UL_Current_Status__c</columns>
+        <columns>UL_Sub_Mechanic__c</columns>
+        <columns>ACSFUL001__Delivery_Date_From__c</columns>
+        <columns>ACSFUL001__Placement_Date_From__c</columns>
+        <columns>UL_Category__c</columns>
+        <columns>UL_Brand__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>Admin</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Category</fullName>
+        <columns>UL_Promotion_Name_URL__c</columns>
+        <columns>UL_Account__c</columns>
+        <columns>UL_Mechanic__c</columns>
+        <columns>UL_Sub_Mechanic__c</columns>
+        <columns>UL_Feature__c</columns>
+        <columns>UL_Free_Text__c</columns>
+        <columns>ACSFUL001__Placement_Date_From__c</columns>
+        <columns>UL_Category__c</columns>
+        <columns>UL_Brand__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Category</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>OPSO</fullName>
+        <columns>UL_Promotion_ID__c</columns>
+        <columns>ACSFUL001__Slogan__c</columns>
+        <columns>UL_Account__c</columns>
+        <columns>UL_Mechanic__c</columns>
+        <columns>UL_Sub_Mechanic__c</columns>
+        <columns>UL_Feature__c</columns>
+        <columns>UL_Free_Text__c</columns>
+        <columns>ACSFUL001__Placement_Date_From__c</columns>
+        <columns>UL_Category__c</columns>
+        <columns>UL_Brand__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>OPSO</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Promotion_Overview</fullName>
+        <columns>UL_Promotion_ID__c</columns>
+        <columns>UL_Account__c</columns>
+        <columns>UL_Current_Status__c</columns>
+        <columns>UL_Mechanic__c</columns>
+        <columns>UL_Sub_Mechanic__c</columns>
+        <columns>UL_Feature__c</columns>
+        <columns>UL_Free_Text__c</columns>
+        <columns>ACSFUL001__Delivery_Date_From__c</columns>
+        <columns>ACSFUL001__Placement_Date_From__c</columns>
+        <columns>ACSFUL001__Placement_Date_Thru__c</columns>
+        <columns>UL_Delivery_Profile__c</columns>
+        <columns>UL_Category__c</columns>
+        <columns>UL_Brand__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>UL_Sales_Organization__c</field>
+            <operation>contains</operation>
+            <value>UK SO,Ireland SO</value>
+        </filters>
+        <label>Promotion Overview</label>
+        <language>en_GB</language>
     </listViews>
     <nameField>
         <displayFormat>P-{0000000}</displayFormat>
@@ -1586,152 +1860,24 @@
         <picklistValues>
             <picklist>UL_Current_Status__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Approved</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Feature__c</picklist>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Mechanic__c</picklist>
-            <values>
-                <fullName>Loyalty Points</fullName>
+                <fullName>End Date</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Multi-Buy</fullName>
+                <fullName>Finance Check</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Other Mechanics</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pipefill%2FPlinth</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Price Reduction</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Special Pack - Extra Free</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Special Pack - Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Special Pack - Price Marked Pack</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Next_Status__c</picklist>
-            <values>
-                <fullName>NO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>YES</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Primary_Objective__c</picklist>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Promotion_Type__c</picklist>
-            <values>
-                <fullName>Value Only</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Volume Only</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Secondary_Objective__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Sub_Mechanic__c</picklist>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Volume_Type__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>ACSFUL001__Promotion</fullName>
-        <active>true</active>
-        <description>Record type for editable page layout.</description>
-        <label>Promotion</label>
-        <picklistValues>
-            <picklist>ACSFUL001__Phase__c</picklist>
-            <values>
-                <fullName>Cancelled</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Committed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ForApproval</fullName>
+                <fullName>Manager Check</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Planning</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UL_Current_Status__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -1790,10 +1936,6 @@
             </values>
             <values>
                 <fullName>Store Entrance</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1873,10 +2015,6 @@
                 <fullName>Reactive %2F Defensive</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
         <picklistValues>
             <picklist>UL_Promotion_Type__c</picklist>
@@ -1904,15 +2042,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pipeline Filling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2166,10 +2296,6 @@
                 <fullName>Special Pack - Price Marked Pack %28On Pack Marked%29</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
         <picklistValues>
             <picklist>UL_Volume_Type__c</picklist>
@@ -2184,12 +2310,16 @@
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>ACSFUL001__SellablePromotion</fullName>
+        <fullName>ACSFUL001__Promotion</fullName>
         <active>true</active>
-        <description>Promotion record type for FSM</description>
-        <label>SellablePromotion</label>
+        <description>Record type for editable page layout.</description>
+        <label>Promotion</label>
         <picklistValues>
             <picklist>ACSFUL001__Phase__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Cancelled</fullName>
                 <default>false</default>
@@ -2214,12 +2344,24 @@
         <picklistValues>
             <picklist>UL_Current_Status__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Approved</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Yes</fullName>
+                <fullName>End Date</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manager Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -2278,10 +2420,6 @@
             </values>
             <values>
                 <fullName>Store Entrance</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2361,8 +2499,488 @@
                 <fullName>Reactive %2F Defensive</fullName>
                 <default>false</default>
             </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Value Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Volume Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Volume and Value</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Secondary_Objective__c</picklist>
+            <values>
+                <fullName>Incremental Profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incremental TO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline Filling</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Sub_Mechanic__c</picklist>
+            <values>
+                <fullName>Loyalty Points %28Bonus points%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %2812 for 10 %28C%26C Case Deal%29%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A31%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A31%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A32%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A32%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A32%2E50%29-Price Reduction %28TPR %C2%A31%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A33%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A34%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A35%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A36%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A37%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %283 for %C2%A33%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %283 for %C2%A35%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %283 for %C2%A36%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %283 for the Price of 2%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %286 for 5 %28C%26C Case Deal%29%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %28B2G3rdF%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %28BOGOF%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %28Link-save%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %28Multi-Buy Offer%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy-Price Reduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipefill%2FPlinth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipefill%2FPlinth %28Pipefill%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipefill%2FPlinth %28Plinth%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %281%2F3 off%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %2812 for 10 %28C%26C Case Deal%29%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %2820%25off%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %2825%25off%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %286 for 5 %28C%26C Case Deal%29%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28Better Than Half Price%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28Half Price%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28Price Cut %28TPR%29%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28Save %C2%A30%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28Save %C2%A30%2E75%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28Save 1%2F3%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A30%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A30%2E75%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A30%2E99%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A31%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A31%29-Multi-Buy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A31%29-Multi-Buy %282 for %C2%A32%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A31%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A32%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A32%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A33%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A33%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A34%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A35%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction-Multi-Buy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction-Price Reduction %28TPR %C2%A34%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Extra Free</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Extra Free %2825%25 Xtra FREE%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Extra Free %2850%25 Xtra FREE%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Other %28Banded-pack%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Other %28On Pack Offer %28ONO%29 Price Mark Pack%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Other %28Other%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Price Marked Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Price Marked Pack %28On Pack Marked%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Volume_Type__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ACSFUL001__SellablePromotion</fullName>
+        <active>true</active>
+        <description>Promotion record type for FSM</description>
+        <label>SellablePromotion</label>
+        <picklistValues>
+            <picklist>ACSFUL001__Phase__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Committed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ForApproval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Current_Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>End Date</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manager Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Feature__c</picklist>
+            <values>
+                <fullName>Dump Bins</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Free Standing Unit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gondola End</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hot Spot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ladder Rack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mid Gondola</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None Specified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Drop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sampling %28E-Tail%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shelf</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipper%2FOFD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Side Stack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Store Entrance</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Mechanic__c</picklist>
+            <values>
+                <fullName>Loyalty Points</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Mechanics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipefill%2FPlinth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Extra Free</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Price Marked Pack</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Next_Status__c</picklist>
+            <values>
+                <fullName>NO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>YES</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UL_Primary_Objective__c</picklist>
+            <values>
+                <fullName>AWOP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gap Fill</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NPD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Penetration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reactive %2F Defensive</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2392,22 +3010,258 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pipeline Filling</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
             <picklist>UL_Sub_Mechanic__c</picklist>
             <values>
-                <fullName>Yes</fullName>
+                <fullName>Loyalty Points %28Bonus points%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %2812 for 10 %28C%26C Case Deal%29%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A31%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A31%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A32%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A32%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A32%2E50%29-Price Reduction %28TPR %C2%A31%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A33%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A34%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A35%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A36%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %282 for %C2%A37%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %283 for %C2%A33%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %283 for %C2%A35%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %283 for %C2%A36%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %283 for the Price of 2%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %286 for 5 %28C%26C Case Deal%29%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %28B2G3rdF%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %28BOGOF%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %28Link-save%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy %28Multi-Buy Offer%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Buy-Price Reduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipefill%2FPlinth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipefill%2FPlinth %28Pipefill%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipefill%2FPlinth %28Plinth%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %281%2F3 off%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %2812 for 10 %28C%26C Case Deal%29%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %2820%25off%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %2825%25off%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %286 for 5 %28C%26C Case Deal%29%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28Better Than Half Price%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28Half Price%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28Price Cut %28TPR%29%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28Save %C2%A30%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28Save %C2%A30%2E75%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28Save 1%2F3%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A30%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A30%2E75%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A30%2E99%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A31%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A31%29-Multi-Buy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A31%29-Multi-Buy %282 for %C2%A32%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A31%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A32%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A32%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A33%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A33%2E50%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A34%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction %28TPR %C2%A35%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction-Multi-Buy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Reduction-Price Reduction %28TPR %C2%A34%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Extra Free</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Extra Free %2825%25 Xtra FREE%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Extra Free %2850%25 Xtra FREE%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Other %28Banded-pack%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Other %28On Pack Offer %28ONO%29 Price Mark Pack%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Other %28Other%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Price Marked Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Pack - Price Marked Pack %28On Pack Marked%29</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2424,16 +3278,18 @@
         </picklistValues>
     </recordTypes>
     <searchLayouts>
-        <customTabListAdditionalFields>ACSFUL001__Slogan__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>ACSFUL001__Promotion_Template__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>ACSFUL001__Date_From__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>ACSFUL001__Date_Thru__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>ACSFUL001__Phase__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>ACSFUL001__Sales_Org__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>ACSFUL001__Active__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>ACSFUL001__Anchor_Account__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>ACSFUL001__Commit_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UL_Promotion_ID__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields xsi:nil="true"/>
+        <customTabListAdditionalFields>UL_Account__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UL_Current_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UL_Mechanic__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UL_Sub_Mechanic__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UL_Feature__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UL_Free_Text__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACSFUL001__Delivery_Date_From__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ACSFUL001__Placement_Date_From__c</customTabListAdditionalFields>
         <listViewButtons>ACSFUL001__Derive</listViewButtons>
+        <listViewButtons>Copy</listViewButtons>
         <lookupDialogsAdditionalFields>ACSFUL001__Slogan__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACSFUL001__Promotion_Template__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACSFUL001__Date_From__c</lookupDialogsAdditionalFields>
@@ -2457,7 +3313,7 @@
     <sharingModel>Private</sharingModel>
     <validationRules>
         <fullName>ACSFUL001__Commit_Date_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>The Commit_Date must be less than or equal to DateThru.</description>
         <errorConditionFormula>ACSFUL001__Commit_Date__c  &gt;  ACSFUL001__Date_Thru__c</errorConditionFormula>
         <errorMessage>The Commit Date must be the same day or sooner than Date Thru.</errorMessage>
@@ -2517,8 +3373,25 @@ Id=VLOOKUP
         <errorMessage>Name should not be edited when the Phase is Committed.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>UL_PastDated_Urgent_Promotion_Validation</fullName>
+        <fullName>UL_LTA_Validation_Rule</fullName>
         <active>true</active>
+        <description>Validation rule to restrict selection of top level Customer while creating an LTA promotion.</description>
+        <errorConditionFormula>IF(AND(TEXT(ACSFUL001__Promotion_Template__r.UL_Promo_Type_ControlView__c) == &apos;LTA&apos; 
+, TEXT(ACSFUL001__Anchor_Account__r.UL_Customer_Hierarchy_Level__c ) == &apos;Level 1&apos;
+, OR(ACSFUL001__Sales_Org__c == &apos;AR01&apos;,ACSFUL001__Sales_Org__c == &apos;CL01&apos;,ACSFUL001__Sales_Org__c == &apos;CL03&apos;))
+, TRUE, FALSE)</errorConditionFormula>
+        <errorMessage>An LTA Promotion can&apos;t be associated with a Customer at All Customers (top) level, please select other customer</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_MarketingEvent_Validation_Rule</fullName>
+        <active>true</active>
+        <description>Validation rule to restrict selection of Customer at Level 1 while creating a Marketing Event.</description>
+        <errorConditionFormula>IF(TEXT(ACSFUL001__Promotion_Template__r.UL_Promo_Type_ControlView__c) == &apos;MarketingEvent&apos; &amp;&amp; TEXT(ACSFUL001__Anchor_Account__r.UL_Customer_Hierarchy_Level__c ) != &apos;Level 1&apos; &amp;&amp; (ACSFUL001__Anchor_Account__r.ACSFUL001__Sales_Org__c  == &apos;AR01&apos; || ACSFUL001__Anchor_Account__r.ACSFUL001__Sales_Org__c  == &apos;CL01&apos; || ACSFUL001__Anchor_Account__r.ACSFUL001__Sales_Org__c  == &apos;CL03&apos;), TRUE, FALSE)</errorConditionFormula>
+        <errorMessage>A Marketing Event can only be associated with a Customer at All Customers (top) level</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>UL_PastDated_Urgent_Promotion_Validation</fullName>
+        <active>false</active>
         <description>Past Dated validation rule</description>
         <errorConditionFormula>IF(ISPICKVAL(ACSFUL001__Promotion_Template__r.UL_Promo_Type_ControlView__c, &apos;Past Dated/Urgent&apos;),
 	IF(ACSFUL001__Date_From__c  &gt;=  TODAY() || ACSFUL001__Date_Thru__c  &lt;  TODAY(),TRUE,FALSE ),
@@ -2528,20 +3401,24 @@ Id=VLOOKUP
     <validationRules>
         <fullName>in_store_date_from_validation</fullName>
         <active>true</active>
-        <errorConditionFormula>IF( ACSFUL001__Promotion_Template__r.Calculate_In_store_Dates__c = true,if(ACSFUL001__Placement_Date_From__c&lt;TODAY() ,true,false),false)</errorConditionFormula>
-        <errorMessage>Date should be greater then today date</errorMessage>
+        <errorConditionFormula>IF( ACSFUL001__Promotion_Template__r.Calculate_In_store_Dates__c = true,if( ISCHANGED(ACSFUL001__Placement_Date_From__c )  &amp;&amp; ACSFUL001__Placement_Date_From__c&lt;TODAY() ,true,false),false)</errorConditionFormula>
+        <errorMessage>Date should be greater than today date</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>in_store_date_thru_validation</fullName>
         <active>true</active>
-        <errorConditionFormula>IF( ACSFUL001__Promotion_Template__r.Calculate_In_store_Dates__c = true,if(ACSFUL001__Placement_Date_Thru__c&lt;TODAY() ,true,false), false)</errorConditionFormula>
-        <errorDisplayField>UL_Account__c</errorDisplayField> 
-        <errorMessage>Date should be greater then today date</errorMessage>
+        <errorConditionFormula>IF( ACSFUL001__Promotion_Template__r.Calculate_In_store_Dates__c = true,if( ISCHANGED(ACSFUL001__Placement_Date_Thru__c)  &amp;&amp; ACSFUL001__Placement_Date_Thru__c&lt;TODAY() ,true,false), false)</errorConditionFormula>
+        <errorMessage>Date should be greater than today date</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>validation_for_date_ranges</fullName>
         <active>true</active>
-        <errorConditionFormula>IF( ACSFUL001__Promotion_Template__r.Calculate_In_store_Dates__c  = true, IF( (ACSFUL001__Placement_Date_Thru__c -  ACSFUL001__Placement_Date_From__c)&gt;90 || (ACSFUL001__Placement_Date_Thru__c -  ACSFUL001__Placement_Date_From__c)&lt;1 , true, false), false)</errorConditionFormula>
+        <errorConditionFormula>IF(ACSFUL001__Promotion_Template__r.Calculate_In_store_Dates__c = true,
+ IF((ACSFUL001__Placement_Date_Thru__c - ACSFUL001__Placement_Date_From__c)&gt;ACSFUL001__Promotion_Template__r.UL_Calculate_for_Max_Min_Dates__c || 
+ (ACSFUL001__Placement_Date_Thru__c - ACSFUL001__Placement_Date_From__c)&lt;0 , true, false), false) || 
+ IF(ACSFUL001__Promotion_Template__r.UL_Validate_for_Max_Min_Dates__c = true, 
+ IF((ACSFUL001__Date_Thru__c - ACSFUL001__Date_From__c)&gt; ACSFUL001__Promotion_Template__r.UL_Calculate_for_Max_Min_Dates__c || 
+ (ACSFUL001__Date_Thru__c - ACSFUL001__Date_From__c)&lt;0 , true, false),false)</errorConditionFormula>
         <errorMessage>In store dates range should be more than 1 day or below 91 days</errorMessage>
     </validationRules>
     <webLinks>
@@ -2555,5 +3432,36 @@ Id=VLOOKUP
         <page>ACSFUL001__DerivePromotion</page>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Copy</fullName>
+        <availability>online</availability>
+        <description>This is related to copy Promotions</description>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Copy</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>if(&apos;{!User.Profile}&apos;!= &apos;System Administrator&apos;){
+{!REQUIRESCRIPT(&quot;/soap/ajax/25.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/25.0/apex.js&quot;)}
+var records = {!GETRECORDIDS($ObjectType.ACSFUL001__Promotion__c)};
+var newRecords = [];
+if(records.length&gt;1){
+alert(&quot;Selected More than one Promotion, Kindly select one Promotion&quot;);
+}
+else if(records.length==0)
+{
+alert(&quot;Promotion is not selected, Kindly select promotion &quot;);
+}
+else {
+//alert(records[0]);
+window.open(&quot;/apex/UL_PromotionCopy?id=&quot;+records[0],&quot;_self&quot;);
+}
+}
+else{
+alert(&quot;Access Denied&quot;);
+}</url>
     </webLinks>
 </CustomObject>

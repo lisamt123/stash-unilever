@@ -481,8 +481,9 @@
     <fields>
         <fullName>Calculate_In_store_Dates__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>This field is used to check the validation rules.</description>
         <externalId>false</externalId>
-        <label>Calculate In store Dates</label>
+        <label>Validate for In store Dates</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -493,6 +494,26 @@
         <label>Calculate Promotion Type</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UL_Calculate_Slogan_Name__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Calculate Slogan Name</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UL_Calculate_for_Max_Min_Dates__c</fullName>
+        <description>This field is used to calculate the max and min dates on promotion</description>
+        <externalId>false</externalId>
+        <label>Calculate for Max/Min Days</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>UL_Promo_Type_ControlView__c</fullName>
@@ -531,18 +552,69 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
+    <fields>
+        <fullName>UL_Validate_for_Max_Min_Dates__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is used for validating the Max and min dates.</description>
+        <externalId>false</externalId>
+        <label>Validate for Max/Min Dates</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>test_picklist__c</fullName>
+        <externalId>false</externalId>
+        <label>test_picklist</label>
+        <picklist>
+            <picklistValues>
+                <fullName>test1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <label>Promotion Template</label>
     <listViews>
         <fullName>ACSFUL001__All</fullName>
         <columns>NAME</columns>
+        <columns>ACSFUL001__Sort__c</columns>
         <columns>ACSFUL001__Active__c</columns>
         <columns>ACSFUL001__Description__c</columns>
         <columns>RECORDTYPE</columns>
         <columns>UL_Promo_Type_ControlView__c</columns>
         <columns>ACSFUL001__Promotion_Type__c</columns>
         <columns>ACSFUL001__Sales_Org__c</columns>
+        <columns>ACSFUL001__Anchor_Type__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACSFUL001__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>UK SO,Ireland SO,AR01</value>
+        </filters>
         <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>ACSFUL001__Sort__c</columns>
+        <columns>ACSFUL001__Active__c</columns>
+        <columns>ACSFUL001__Description__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>UL_Promo_Type_ControlView__c</columns>
+        <columns>ACSFUL001__Promotion_Type__c</columns>
+        <columns>ACSFUL001__Sales_Org__c</columns>
+        <columns>ACSFUL001__Anchor_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACSFUL001__Sales_Org__c</field>
+            <operation>equals</operation>
+            <value>AR01</value>
+        </filters>
+        <label>AR01</label>
         <language>en_US</language>
     </listViews>
     <nameField>
@@ -661,6 +733,13 @@
             </values>
             <values>
                 <fullName>SpecialHoliday</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>test_picklist__c</picklist>
+            <values>
+                <fullName>test1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -783,22 +862,33 @@
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>test_picklist__c</picklist>
+            <values>
+                <fullName>test1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <searchLayouts>
+        <customTabListAdditionalFields>ACSFUL001__Sort__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACSFUL001__Active__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACSFUL001__Description__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACSFUL001__Sales_Org__c</customTabListAdditionalFields>
         <listViewButtons>ACSFUL001__Update_Product_Filter_Cache</listViewButtons>
+        <lookupDialogsAdditionalFields>ACSFUL001__Sort__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACSFUL001__Active__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACSFUL001__Description__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>RECORDTYPE</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACSFUL001__Sales_Org__c</lookupDialogsAdditionalFields>
         <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>ACSFUL001__Sort__c</searchFilterFields>
         <searchFilterFields>ACSFUL001__Active__c</searchFilterFields>
         <searchFilterFields>ACSFUL001__Description__c</searchFilterFields>
         <searchFilterFields>RECORDTYPE</searchFilterFields>
         <searchFilterFields>ACSFUL001__Sales_Org__c</searchFilterFields>
+        <searchResultsAdditionalFields>ACSFUL001__Sort__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACSFUL001__Active__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACSFUL001__Description__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
