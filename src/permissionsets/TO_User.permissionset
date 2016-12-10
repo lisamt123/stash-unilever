@@ -37287,6 +37287,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Core_Approval_Header__c.CLM</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Core_Approval_Header__c.Clarity</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -37300,6 +37304,10 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Core_Approver_Details__c.Ariba</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Core_Approver_Details__c.CLM</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

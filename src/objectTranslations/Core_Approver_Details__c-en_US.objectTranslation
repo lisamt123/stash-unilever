@@ -214,6 +214,10 @@
             <translation><!-- Ariba --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>CLM</masterLabel>
+            <translation><!-- CLM --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Clarity</masterLabel>
             <translation><!-- Clarity --></translation>
         </picklistValues>
@@ -315,6 +319,10 @@
     <recordTypes>
         <label><!-- Ariba --></label>
         <name>Ariba</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CLM --></label>
+        <name>CLM</name>
     </recordTypes>
     <recordTypes>
         <label><!-- Clarity --></label>
