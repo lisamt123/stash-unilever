@@ -251,6 +251,6 @@
         <fullName>UL_Validation_for_date_ranges</fullName>
         <active>true</active>
         <errorConditionFormula>UL_Valid_From__c &gt; UL_Valid_Thru__c</errorConditionFormula>
-        <errorMessage>Valid From Thru Date cannot be less than Valid From Date</errorMessage>
+        <errorMessage>Valid From Thru Date cannot be less than Valid from Date</errorMessage>
     </validationRules>
 </CustomObject>
