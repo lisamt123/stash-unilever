@@ -228,28 +228,28 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-	                    <fullName>Digital Creative &amp; Strategic</fullName>
-	                    <default>false</default>
-	                </picklistValues>
-	               <picklistValues>
-	                    <fullName>Digital Mobile, Games &amp; Apps</fullName>
-	                    <default>false</default>
-	                </picklistValues>
-	                <picklistValues>
-	                    <fullName>Digital Social</fullName>
-	                    <default>false</default>
-	                </picklistValues>
-	                <picklistValues>
-	                    <fullName>Digital Search</fullName>
-	                    <default>false</default>
-	                </picklistValues>
-	                <picklistValues>
-	                    <fullName>Digital Web &amp; Microsites</fullName>
-	                    <default>false</default>
-	                </picklistValues>
-	                <picklistValues>
-	                    <fullName>Digital – Other</fullName>
-	                    <default>false</default>
+                        <fullName>Digital Creative &amp; Strategic</fullName>
+                        <default>false</default>
+                    </picklistValues>
+                   <picklistValues>
+                        <fullName>Digital Mobile, Games &amp; Apps</fullName>
+                        <default>false</default>
+                    </picklistValues>
+                    <picklistValues>
+                        <fullName>Digital Social</fullName>
+                        <default>false</default>
+                    </picklistValues>
+                    <picklistValues>
+                        <fullName>Digital Search</fullName>
+                        <default>false</default>
+                    </picklistValues>
+                    <picklistValues>
+                        <fullName>Digital Web &amp; Microsites</fullName>
+                        <default>false</default>
+                    </picklistValues>
+                    <picklistValues>
+                        <fullName>Digital – Other</fullName>
+                        <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Environment/Set Design</fullName>
@@ -2669,6 +2669,18 @@ Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</for
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>FS_SoftServeDistrId__c</fullName>
+        <description>Id of Distributor (Parent) from SoftServe for Russia</description>
+        <externalId>false</externalId>
+        <label>SoftServe Distr Id</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_SoldToCode__c</fullName>
         <description>Purpose : Legal entity which receive goods  
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
@@ -4359,57 +4371,46 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <picklistValues>
                 <fullName>Airlines</fullName>
                 <default>false</default>
-                <controllingFieldValues>Cruise Travel Leisure</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cruise Lines</fullName>
                 <default>false</default>
-                <controllingFieldValues>Cruise Travel Leisure</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Entertainment</fullName>
                 <default>false</default>
-                <controllingFieldValues>Cruise Travel Leisure</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hotels</fullName>
                 <default>false</default>
-                <controllingFieldValues>Cruise Travel Leisure</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Sports &amp; Leisure</fullName>
                 <default>false</default>
-                <controllingFieldValues>Cruise Travel Leisure</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Business &amp; Industry</fullName>
                 <default>false</default>
-                <controllingFieldValues>Education Healthcare BusInd</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Correction Center</fullName>
                 <default>false</default>
-                <controllingFieldValues>Education Healthcare BusInd</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Education (C&amp;U)</fullName>
                 <default>false</default>
-                <controllingFieldValues>Education Healthcare BusInd</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Education (K-12)</fullName>
                 <default>false</default>
-                <controllingFieldValues>Education Healthcare BusInd</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Healthcare/Hospital</fullName>
                 <default>false</default>
-                <controllingFieldValues>Education Healthcare BusInd</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Senior Living</fullName>
                 <default>false</default>
-                <controllingFieldValues>Education Healthcare BusInd</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>C Stores</fullName>
@@ -6548,28 +6549,28 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
              <values>
-	                    <fullName>Digital %E2%80%93 Other</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Creative %26 Strategic</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Mobile%2C Games %26 Apps</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Search</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Social</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Web %26 Microsites</fullName>
-	                    <default>false</default>
+                        <fullName>Digital %E2%80%93 Other</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Creative %26 Strategic</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Mobile%2C Games %26 Apps</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Search</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Social</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Web %26 Microsites</fullName>
+                        <default>false</default>
             </values>
             <values>
                 <fullName>Environment%2FSet Design</fullName>
@@ -7707,28 +7708,28 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
              <values>
-	                    <fullName>Digital %E2%80%93 Other</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Creative %26 Strategic</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Mobile%2C Games %26 Apps</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Search</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Social</fullName>
-	                    <default>false</default>
-	                </values>
-	                <values>
-	                    <fullName>Digital Web %26 Microsites</fullName>
-	                    <default>false</default>
+                        <fullName>Digital %E2%80%93 Other</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Creative %26 Strategic</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Mobile%2C Games %26 Apps</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Search</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Social</fullName>
+                        <default>false</default>
+                    </values>
+                    <values>
+                        <fullName>Digital Web %26 Microsites</fullName>
+                        <default>false</default>
             </values>
             <values>
                 <fullName>Environment%2FSet Design</fullName>
@@ -23719,8 +23720,8 @@ IF(ISCHANGED(OwnerId)=true &amp;&amp; (RecordType.DeveloperName = &quot;Distribu
         <active>true</active>
         <description>CEC : This will validate the  Local Identifier Length for Brazil user. It should contain 11 digits numbers</description>
         <errorConditionFormula>IF( ( ( $UserRole.Name  = &apos;CEC Manager - Brazil&apos;) || ( $UserRole.Name  = &apos;CEC User -  Brazil&apos;) || ( $UserRole.Name  = &apos;CEC User - Planitox Brazil&apos;)) &amp;&amp;  Local_Identifier__c  &lt;&gt; null ,
-	(NOT( ISNUMBER( SUBSTITUTE(SUBSTITUTE(  Local_Identifier__c , &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) ) ||LEN(SUBSTITUTE(SUBSTITUTE( Local_Identifier__c, &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) &lt;&gt; 11),
-	false)</errorConditionFormula>
+    (NOT( ISNUMBER( SUBSTITUTE(SUBSTITUTE(  Local_Identifier__c , &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) ) ||LEN(SUBSTITUTE(SUBSTITUTE( Local_Identifier__c, &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) &lt;&gt; 11),
+    false)</errorConditionFormula>
         <errorDisplayField>Local_Identifier__c</errorDisplayField>
         <errorMessage>Invalid CPF number (Should contain 11 digit numeric value)</errorMessage>
     </validationRules>

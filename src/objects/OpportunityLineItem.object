@@ -367,7 +367,7 @@
     <fields>
         <fullName>FS_NetPrice__c</fullName>
         <externalId>false</externalId>
-        <formula>PricebookEntry.FS_Bracket_1__c  -  (  Opportunity.FS_MSCS__c  +  FS_HQRate__c  +  FS_Rate__c  )</formula>
+        <formula>IF( ISPICKVAL( CurrencyIsoCode , &apos;CAD&apos;), PricebookEntry.FS_Bracket_3__c, PricebookEntry.FS_Bracket_1__c)  -  (  Opportunity.FS_MSCS__c  +  FS_HQRate__c  +  FS_Rate__c  )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>List Price minus offered Operator Discounts.</inlineHelpText>
         <label>Net Price</label>
