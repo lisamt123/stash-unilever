@@ -2157,7 +2157,7 @@ public class IPM_TestFactory_Helper
         
         Map<String,List<Object>> taskMasterMap = new Map<String,List<Object>>{
             'IPM_Function__c' => new List<String>{BD,R_D,SC,CD,CMI,CMI,FINANCE,BB,R_D,CMI},
-            'IPM_Multiple_Functional_Role__c' => new List<String>{BD,R_D,'Supply Chain',CD,CMI,CMI,FINANCE,BB,R_D,CMI},
+            'IPM_Multiple_Functional_Role__c' => new List<String>{'','','','','','','','','',''},
             'IPM_Is_Master__c' => new List<Boolean>{true,true,true,true,true,true,true,true,true,true},
             IPM_PHASE => new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT},
             IPM_PROJECT_TEMPLATE => new List<Id>{projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id},
