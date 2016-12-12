@@ -2,6 +2,8 @@ src
 src/wave/Daily_Sales_for_Sales_Rep.wdash
 src/wave/Daily_Sales_for_Sales_Rep.wdash-meta.xml
 src/wave/Daily_Sales_Stage.wapp
+src/wave/Daily_Sales_RU.wapp
+src/wave/Daily_Sales.wapp
 src/wave/DailySales.wds
 src/wave/DailySales_stage.wds
 src/wave/Data_Flow_Check.wlens
