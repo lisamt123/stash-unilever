@@ -23,6 +23,8 @@ src/classes/IPM_FinancialHelper.cls
 src/classes/IPM_FinancialHelper.cls-meta.xml
 src/classes/IPM_FinancialUtils.cls
 src/classes/IPM_FinancialUtils.cls-meta.xml
+src/classes/IPM_FinancialUtils_Test.cls
+src/classes/IPM_FinancialUtils_Test.cls-meta.xml
 src/classes/IPM_FinancialYearHandler.cls
 src/classes/IPM_FinancialYearHandler.cls-meta.xml
 src/classes/IPM_FinancialYearHelper.cls
