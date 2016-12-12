@@ -6,7 +6,6 @@ src/objects
 src/package.xml
 src/pages
 src/permissionsets
-src/projectmanifest.txt
 src/staticresources
 src/workflows
 src/classes/VPM_CreateVendorServiceHelper.cls
@@ -41,6 +40,8 @@ src/pages/VPM_ProcurementCentralAdmin.page
 src/pages/VPM_ProcurementCentralAdmin.page-meta.xml
 src/pages/VPM_UserSpecificFields.page
 src/pages/VPM_UserSpecificFields.page-meta.xml
+src/pages/VPM_VendorRequestsHome.page
+src/pages/VPM_VendorRequestsHome.page-meta.xml
 src/permissionsets/VPM_API.permissionset
 src/permissionsets/VPM_BankDatavalidation.permissionset
 src/permissionsets/VPM_Business_Requestor.permissionset

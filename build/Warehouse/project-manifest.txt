@@ -35,6 +35,7 @@ src/objects/WU_Warehouse_Capacity_Detail__c.object
 src/layouts
 src/layouts/WU_Master_Warehouse__c-Warehouse Capacity CustomLayout.layout
 src/layouts/WU_Master_Warehouse__c-New Warehouse Capacity Layout.layout
+src/layouts/WU_Master_Warehouse__c-ADMIN  Warehouse Capacity CustomLayout.layout
 src/permissionsets
 src/permissionsets/WU_Logistics_Leadership_Team.permissionset
 src/permissionsets/WU_Warehouse_Excellence_Operations.permissionset
@@ -63,10 +64,3 @@ src/labels/WU.labels
 src/tabs/WU_Warehouse_Maps.tab
 src/workflows
 src/workflows/WU_Master_Warehouse__c.workflow
-
-
-
-
-
-
-
