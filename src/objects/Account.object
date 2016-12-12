@@ -23425,14 +23425,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
             <values>
-                <fullName>Digital Build</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Digital Design</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Environment%2FSet Design</fullName>
                 <default>false</default>
             </values>
