@@ -9,6 +9,8 @@ src/classes/FS_TPRUtil.cls
 src/classes/FS_TPRUtil.cls-meta.xml
 src/classes/FS_ContactExtend_CX.cls
 src/classes/FS_ContactExtend_CX.cls-meta.xml
+src/classes/FS_OpportunityHelper.cls
+src/classes/FS_OpportunityHelper.cls-meta.xml
 src/labels/FS.labels
 src/layouts/Account-Feed Based Distributor Russia.layout
 src/layouts/Account-Operators Russia.layout
