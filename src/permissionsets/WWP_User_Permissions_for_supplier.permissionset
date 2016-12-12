@@ -934,3 +934,7 @@
         <visible>false</visible>
     </recordTypeVisibilities>
 </PermissionSet>
+<tabSettings>
+        <tab>Loss_Tree</tab>
+        <visibility>Visible</visibility>
+</tabSettings>
