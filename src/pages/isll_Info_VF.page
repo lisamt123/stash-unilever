@@ -1,0 +1,12 @@
+<!--Timeline
+    Date                    | Name                    | Description
+    2016-12-09              | Rajitha Darapureddy     | Navigate to other URL-->
+<apex:page showHeader="false" standardStylesheets="true" sidebar="false">
+    <apex:form >
+        <apex:pageBlock title="INFORMATION FROM ISLL">
+  <apex:pageMessage summary="The <b>ISLL</b> Application URL has been changed <b> <a href=https://unilever.sharepoint.com/sites/Communications/sll/Pages/Home.aspx>Click here to Access</a></b></br>
+   Kindly please contact with <b>IT Help Desk</b> for further assistance."
+    severity="Info" strength="3"  escape="false"/>
+       </apex:pageBlock> 
+   </apex:form>
+</apex:page>
