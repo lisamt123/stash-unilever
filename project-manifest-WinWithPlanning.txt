@@ -1,5 +1,6 @@
 src/applications/Win_With_Planning.app
 src/tabs/Loss_Tree.tab
+src/email/unfiled$public/WWP_Supplier_Notification_Temp.email
 src/workflows/WWP_Loss_Tree__c.workflow
 src/classes/WWP_LossTree_CC.cls
 src/classes/WWP_LossTree_CC.cls-meta.xml
@@ -37,4 +38,3 @@ src/permissionsets/WWP_User_Permissions_for_supplier.permissionset
 src/sites/WinWithPlanning.site
 src/networks/WinWithPlanning.network
 src/profiles/WWP Supplier Profile.profile
-src/email/unfiled$public/WWP_Supplier_Notification_Temp
