@@ -226,15 +226,4 @@
         <lookupDialogsAdditionalFields>LAST_UPDATE</lookupDialogsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
-    <webLinks>
-        <fullName>Questionnaire</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <height>600</height>
-        <linkType>page</linkType>
-        <masterLabel>Questionnaire</masterLabel>
-        <openType>sidebar</openType>
-        <page>PACV_RiskAssessment_Questionnaire</page>
-        <protected>false</protected>
-    </webLinks>
 </CustomObject>
