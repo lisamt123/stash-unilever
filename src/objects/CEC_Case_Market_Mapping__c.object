@@ -272,7 +272,7 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <fields>
+     <fields>
         <fullName>Language__c</fullName>
         <description>CEC: contains the Language Name which will be used in webtocase scenario by integration team</description>
         <externalId>false</externalId>
@@ -334,8 +334,12 @@
                 <fullName>Italian</fullName>
                 <default>false</default>
             </picklistValues>
-			<picklistValues>
+            <picklistValues>
                 <fullName>Japanese</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korean</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -374,8 +378,9 @@
                 <fullName>Swedish</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>

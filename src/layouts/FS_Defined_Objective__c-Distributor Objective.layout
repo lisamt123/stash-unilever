@@ -32,7 +32,7 @@
                 <field>FS_NSV__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>FS_Volume__c</field>
             </layoutItems>
             <layoutItems>
@@ -42,6 +42,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_Other_Reason__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_IncrementalCases__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -54,7 +58,7 @@
                 <field>FS_Status__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>BSP__c</field>
             </layoutItems>
             <layoutItems>
@@ -211,8 +215,8 @@
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
+        <fields>TASK.TYPE</fields>
         <fields>TASK.WHO_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
         <fields>TASK.DUE_DATE</fields>
         <fields>CORE.USERS.FULL_NAME</fields>
         <fields>TASK.LAST_UPDATE</fields>
@@ -242,7 +246,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h8A000000Elpq</masterLabel>
+        <masterLabel>00hV0000000O2sC</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

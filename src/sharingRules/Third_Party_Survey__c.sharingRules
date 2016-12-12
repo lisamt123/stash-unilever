@@ -166,6 +166,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Korea_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Korea - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Korea</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Korea</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Middle_Americas_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Middle Americas - Manager</label>

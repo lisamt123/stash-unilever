@@ -80,7 +80,14 @@
                 <fullName>Third Parties</fullName>
                 <default>false</default>
             </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
+            <picklistValues>
+                <fullName>SU</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Im / Ex</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <required>false</required>
@@ -90,8 +97,13 @@
     <label>Supplier</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Supplier_Number__c</columns>
+        <columns>Supplier_Type__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Supplier Name</label>

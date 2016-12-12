@@ -4,7 +4,7 @@
     <contactAccessLevel>Edit</contactAccessLevel>
     <description>RFS SDE</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>RFS Sales Development Executive (SDE)</name>
+    <name>RFS Sales Development Executive (SDE) S</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
     <parentRole>Sales_Development_Manager</parentRole>
 </Role>

@@ -1,0 +1,271 @@
+<apex:page controller="VPM_ProcurementCentralController" sidebar="false">
+    <apex:stylesheet value="{!URLFOR($Resource.vpmadvancedformcss)}" />
+    <apex:stylesheet value="{!URLFOR($Resource.VPM_ProcurementCentralAdminStyle)}" />
+    <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
+    <apex:includeScript value="{!$Resource.VPM_ProcurementCentralAdminScript}"/>
+    <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.4.js')}"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"/>
+<script>
+      function changeValue(input, textid) {
+      debugger;
+      document.getElementById(textid).value = input.value;
+      
+      }
+      function selectVal(textid){
+       if(document.getElementById(textid).value == '')
+       {
+       alert('{!$Label.VPM_selection_error}');
+       return null;
+       }
+       doCreate();
+      }
+      </script>
+    <apex:pageBlock tabStyle="VPM_PurchasingRequests__c" title="{!$Label.VPM_Procurement_Central_Admin}" id="out">
+    <apex:form id="pageForm">
+            <apex:actionFunction name="doCreate" action="{!Go}" rerender="out"/>
+            <apex:actionFunction name="doChange" action="{!ChangeApprover}" rerender="out"/>
+            <apex:actionFunction name="doRemove" action="{!goAssign}" rerender="out"/>
+              <apex:pageMessages />
+            <apex:pageBlockSection columns="1" rendered="{!MainScreen}" title="{!$Label.VPM_Procurement_Central_Admin}" collapsible="false">
+            <apex:pageBlockSectionItem helpText="{!$Label.VPM_AssignProcurement}">
+                <input type="radio" name="Letters" value="Assign" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> {!$Label.VPM_Assign_Procurement_Permission} <br/>    
+                </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem helpText="{!$Label.VPM_RemoveApprover}">
+              <input type="radio" name="Letters" value="Remove" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> {!$Label.VPM_Remove_Procurement_Permission} <br/>  
+                </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem helpText="{!$Label.VPM_ReplaceNewApprover}">
+              <input type="radio" name="Letters" value="Replace" style="margin-right: 6px;" onclick="changeValue(this,'{!$Component.RadioButtonValue}');"/>{!$Label.VPM_Replace_Approver} <br/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem helpText="{!$Label.VPM_TemporaryReplaceNewApprover}">
+            <input type="radio" name="Letters" value="Temporary" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> {!$Label.VPM_Temporary_Replace_Approver} <br/>  
+              </apex:pageBlockSectionItem>
+                         
+                <apex:inputHidden value="{!MDMVendor}" id="RadioButtonValue" />
+               
+                <apex:pageBlockSectionItem >
+                <apex:commandButton value="Go" status="actStatusId" onclick="return selectVal('{!$Component.RadioButtonValue}');" action="{!Go}" rerender="out" />
+                </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+         
+                <apex:pageBlockSection columns="2" rendered="{!ClickGo}" title="{!$Label.VPM_Replace_Approver} " collapsible="false" >
+                <apex:outputPanel rendered="{!ClickGo}" >
+                    <apex:actionstatus id="status" startText="loading..."> 
+                      <apex:facet name="stop"> 
+                       <apex:outputPanel >
+                           <apex:pageBlockSection >
+                               <apex:pageBlockSectionItem helpText="{!$Label.VPM_SelectOldApprover}">
+                                 <apex:outputLabel value="{!$Label.VPM_Old_Approver}"/>
+                                 <apex:inputField id="replaceRender1" value="{!com.VPM_Approver1__c}" StyleClass="hideDropdown" />
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem helpText="Enter New Approver Name">
+                                   <apex:outputLabel value="{!$Label.VPM_New_Approver}" />
+                                   <apex:inputField id="replaceRender2" value="{!com.VPM_Approver2__c}" StyleClass="hideDropdown" />
+                                </apex:pageBlockSectionItem>
+                             </apex:pageBlockSection>
+                         </apex:outputPanel>
+                      </apex:facet>
+                    </apex:actionstatus>
+            </apex:outputPanel> 
+                        
+                    
+     </apex:pageBlockSection>
+        
+         <apex:pageBlockSection columns="3" rendered="{!ClickGoTemp}" title="{!$Label.VPM_Temporary_Replace_Approver} " collapsible="false" >
+         <apex:outputPanel rendered="{!ClickGoTemp}" >
+          <apex:actionstatus id="status2" startText="loading..."> 
+          
+             <apex:facet name="stop"> 
+               <apex:outputPanel >
+                   <apex:pageBlockSection columns="1">
+               <apex:pageBlockSectionItem helpText="{!$Label.VPM_SelectOldApprover}">
+                 <apex:outputLabel value="{!$Label.VPM_Old_Approver}" /> 
+                 <apex:inputField id="replaceRender1" value="{!com.VPM_Approver1__c}" StyleClass="hideDropdown"  />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem helpText="{!$Label.VPM_SelectNewApprover}">
+               <apex:outputLabel value="{!$Label.VPM_New_Approver}" />
+                <apex:inputField id="replaceRender2" value="{!com.VPM_Approver2__c}" StyleClass="hideDropdown"  />
+                  </apex:pageBlockSectionItem><br/>
+                    <apex:pageBlockSectionItem helpText="{!$Label.VPM_TempDateNotSelected}">
+                       <apex:outputLabel value="{!$Label.VPM_ReplaceUntill}" />
+                       <apex:inputField value="{!com.VPM_TempApproverDate1__c}" StyleClass="hideDropdown"  />
+                    </apex:pageBlockSectionItem>
+                       </apex:pageBlockSection>
+                 </apex:outputPanel>
+              </apex:facet>
+            </apex:actionstatus> 
+     </apex:outputPanel> 
+</apex:pageBlockSection> 
+        
+<apex:pageBlockSection columns="2" rendered="{!ClickGoAssign}" title="{!$Label.VPM_SelectUser}" collapsible="false">
+          <!--apex:outputPanel rendered="{!ClickGoAssign}"-->
+            <apex:pageBlockSectionItem helpText="{!$Label.VPM_SelectUserAssign}">
+                <apex:outputLabel value="{!$Label.VPM_AssignProcurementPermission}" />
+                <apex:inputField id="replaceRender1" value="{!com.VPM_Approver2__c}" StyleClass="hideDropdown"  />
+            </apex:pageBlockSectionItem><br/>
+            <apex:pageBlockSectionItem helpText="{!$Label.VPM_CountryNotSelected}">        
+                <apex:outputLabel value="{!$Label.VPM_CountryLabelProcAdmin}"/>
+                <apex:inputField value="{!com.VPM_Country__c}" label="{!$Label.VPM_SelectCountry}"/>
+            </apex:pageBlockSectionItem><br/><br/>
+            <apex:pageBlockSectionItem >
+                 <apex:commandButton value="{!$Label.VPM_Back}" action="{!GoBack}" rerender="out" status="status" immediate="true" />
+                <apex:commandButton value="Go" status="actStatusId" action="{!goAssign}" oncomplete="callGo();" rerender="out" />
+           </apex:pageBlockSectionItem>
+           </apex:pageBlockSection>
+           
+              <br/><br/>   
+              <apex:outputPanel rendered="{!ClickGoAssign}">
+               <apex:pageBlockSection id="member" title="{!$Label.VPM_SelectCommodity}" rendered="{!showTable}" collapsible="false" columns="1">
+               <apex:pageBlock >
+                 <apex:pageBlockButtons >
+               <!--div style="text-align:center" -->
+                         <!-- apex:commandButton value="Back" action="{!GoBack}" rerender="out" status="status" immediate="true" /-->
+                        <!--apex:commandButton value="Change" action="{!ChangeApprover}" rerender="out" status="actStatusId" /-->
+                        <apex:commandButton value="Change"  action="{!changeApprover}" oncomplete="callChangeApprover();" rerender="out" status="actStatusId" />
+           <!-- /div -->
+           </apex:pageBlockButtons>
+                <apex:PageBlockTable id="accsTable" styleclass="tablesorter" value="{!commApprover}" var="com1">
+                    <apex:column headerValue="{!$Label.VPM_RecordID}">
+                    <apex:inputCheckbox value="{!com1.setFlag}" disabled="{!com1.checkFlag}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Code}">
+                    <apex:outputText value="{!com1.comApp.VPM_Code__c}" ></apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_CommodityApprover}">
+                    <apex:outputLink value="/{!com1.comApp}" target="_blank">{!com1.comApp.VPM_CommodityClass__c}</apex:outputLink>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_TotalNumberApprover}">
+                    <apex:outputText value="{!com1.comApp.VPM_ConfiguredApprovers__c}" ></apex:outputText>
+                    </apex:column>
+                     <apex:column headerValue="{!$Label.VPM_Approver_1}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver1__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Approver_2}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver2__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Approver_3}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver3__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Approver_4}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver4__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Approver_5}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver5__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Approver_6}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver6__r.Name}</apex:outputText>
+                    </apex:column> 
+                    <apex:column headerValue="{!$Label.VPM_Approver_7}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver7__r.Name}</apex:outputText>
+                    </apex:column> 
+                    <apex:column headerValue="{!$Label.VPM_Approver_8}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver8__r.Name}</apex:outputText>
+                    </apex:column> 
+                    <apex:column headerValue="{!$Label.VPM_Approver_9}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver9__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Approver_10}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver10__r.Name}</apex:outputText>
+                    </apex:column>
+                    
+                </apex:PageBlockTable> 
+           </apex:pageBlock>
+            </apex:pageBlockSection> 
+          </apex:outputPanel>
+         
+     <!-- /apex:pageBlockSection -->
+     <apex:pageBlockSection rendered="{!ClickGoRemove}" title="{!$Label.VPM_SelectUserAssign}" collapsible="false" >
+          <!--apex:outputPanel rendered="{!ClickGoRemove}" -->
+            <apex:pageBlockSectionItem helpText="{!$Label.VPM_SelectUserRemove}">
+                    <apex:outputLabel value="{!$Label.VPM_RemoveProcurementPermissionFrom}"/>
+                    <apex:inputField id="replaceRender1" value="{!com.VPM_Approver1__c}" StyleClass="hideDropdown"  />
+            </apex:pageBlockSectionItem><br/><br/>
+            <apex:pageBlockSectionItem >
+                 <apex:commandButton value="Back" action="{!GoBack}" rerender="out" status="status" immediate="true" />
+                <apex:commandButton value="Go" status="actStatusId" action="{!goAssign}" oncomplete="callGo();" rerender="out" />
+           </apex:pageBlockSectionItem>
+           </apex:pageBlockSection>
+          <!--/apex:outputPanel-->
+          <br/><br/>   
+              <apex:outputPanel rendered="{!ClickGoRemove}" styleClass="alignBlock">
+               <apex:pageBlockSection id="memberRemove" title="{!$Label.VPM_SelectCommodity}" rendered="{!showTable}" collapsible="false" columns="1">
+                 <!--div style="align:center;width:100%"-->
+                 <apex:pageBlock >
+                 <apex:pageBlockButtons >
+                         <!--apex:commandButton value="Back" action="{!GoBack}" rerender="out" status="status" immediate="true" /-->
+                        <!--apex:commandButton value="Change" action="{!ChangeApprover}" rerender="out" status="actStatusId" /-->
+                        <apex:commandButton value="Change"  action="{!changeApprover}" oncomplete="callChangeApprover();" rerender="out" status="actStatusId" styleClass="alignCenter" />
+                     </apex:pageBlockButtons>
+                <!-- /div -->        
+                <apex:PageBlockTable id="accsTable" styleclass="tablesorter" value="{!commApprover}" var="com1">
+                    <apex:column headerValue="{!$Label.VPM_RecordID}" >
+                    <apex:inputCheckbox value="{!com1.setFlag}" disabled="{!com1.checkFlag}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Code}">
+                    <apex:outputText value="{!com1.comApp.VPM_Code__c}" ></apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_CommodityApprover}">
+                    <apex:outputLink value="/{!com1.comApp}" target="_blank">{!com1.comApp.VPM_CommodityClass__c}</apex:outputLink>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Country}">
+                    <apex:outputText value="{!com1.comApp.VPM_Country__c}" ></apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_TotalNumberApprover}">
+                    <apex:outputText value="{!com1.comApp.VPM_ConfiguredApprovers__c}" ></apex:outputText>
+                    </apex:column>
+                     <apex:column headerValue="{!$Label.VPM_Approver_1}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver1__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Approver_2}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver2__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Approver_3}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver3__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Approver_4}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver4__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Approver_5}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver5__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Approver_6}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver6__r.Name}</apex:outputText>
+                    </apex:column> 
+                    <apex:column headerValue="{!$Label.VPM_Approver_7}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver7__r.Name}</apex:outputText>
+                    </apex:column> 
+                    <apex:column headerValue="{!$Label.VPM_Approver_8}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver8__r.Name}</apex:outputText>
+                    </apex:column> 
+                    <apex:column headerValue="{!$Label.VPM_Approver_9}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver9__r.Name}</apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.VPM_Approver_10}">
+                    <apex:outputText >{!com1.comApp.VPM_Approver10__r.Name}</apex:outputText>
+                    </apex:column> 
+                    
+                </apex:PageBlockTable>
+           </apex:pageBlock>
+            </apex:pageBlockSection> 
+          </apex:outputPanel>
+    <!-- /apex:pageBlockSection -->
+  
+      <div style="text-align:center">
+     <apex:pageBlockSection rendered="{!buttonDisp}" columns="2">
+         <apex:pageBlockSectionItem >
+          
+                         <apex:commandButton value="Back" action="{!GoBack}" rerender="out" status="status" immediate="true" />
+                        <!--apex:commandButton value="Change" action="{!ChangeApprover}" rerender="out" status="actStatusId" /-->
+                        <apex:commandButton value="Change"  action="{!changeApprover}" oncomplete="callChangeApprover();" rerender="out" status="actStatusId" />
+           </apex:pageBlockSectionItem>
+     </apex:pageBlockSection>
+     </div>             
+    
+  <script>
+   $('table div[id*="member"]').find('.mainTitle').css('width','30em');
+   $('table[id*="member"] tr>td:nth-child(2),table[id*="member"] tr>td:nth-child(1)').css('text-align','center');
+   </script>
+     </apex:form>
+     
+    </apex:pageBlock>
+    <c:VPM_LoadingComponent />
+</apex:page>

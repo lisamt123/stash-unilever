@@ -48,19 +48,23 @@ global with sharing class Core_CA_ApproveRejectAction {
     global static Boolean UpdateApproveRejectAction(Core_CA_ApplicationWrapper appWrapperObj){
        
         try{
-            Core_Approver_Details__c approver=[SELECT Action__c,Comments__c,Interested_Party__c,Role__c,Source_System__c,Status__c,Visible_to_Supplier__c,Interested_Party_Details__c,Action_Date__c,Name,Approval_Header__c   FROM Core_Approver_Details__c WHERE Id=: appWrapperObj.myApprovalPostRequest.ApproverId];
-            if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Approve' && approver.Source_System__c !='Invoice'){
+            Core_Approver_Details__c approver=[SELECT Action__c,Comments__c,Interested_Party__c,Role__c,Source_System__c,Status__c,Visible_to_Supplier__c,Interested_Party_Details__c,Action_Date__c,Name,Is_Active__c,Approval_Header__c   FROM Core_Approver_Details__c WHERE Id=: appWrapperObj.myApprovalPostRequest.ApproverId];
+            if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Approve' && (approver.Source_System__c =='Ariba' || approver.Source_System__c =='GTES' ||approver.Source_System__c =='Clarity' ||(approver.Source_System__c =='CLM' && approver.Is_Active__c == true))){
                 approver.Status__c='Approved';
                 approver.Comments__c=appWrapperObj.myApprovalPostRequest.CommentDesc;
                 approver.Send_to_Source_System__c = 'Yes';
                 if(approver.Source_System__c=='Ariba') approver.Visible_to_Supplier__c = Boolean.valueof(appWrapperObj.myApprovalPostRequest.CommentVisibleToUser);
                     update approver;
+                    
+            Success=True;
             }
-            else if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Reject' && approver.Source_System__c !='Invoice'){ 
+            else if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Reject' && (approver.Source_System__c =='Ariba' || approver.Source_System__c =='GTES' ||approver.Source_System__c =='Clarity' ||(approver.Source_System__c =='CLM' && approver.Is_Active__c == true))){ 
                 approver.Status__c='Rejected';
                 approver.Comments__c=appWrapperObj.myApprovalPostRequest.CommentDesc;
                 approver.Send_to_Source_System__c = 'Yes';
                 update approver;
+                
+            Success=True;
             }
             //Need to minimise the code
             else if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Rework' && approver.Source_System__c=='Clarity' ){ 
@@ -68,10 +72,13 @@ global with sharing class Core_CA_ApproveRejectAction {
                 approver.Comments__c=appWrapperObj.myApprovalPostRequest.CommentDesc;
                 approver.Send_to_Source_System__c = 'Yes';
                 update approver;
+                
+            Success=True;
             }
             else if(approver.Source_System__c=='Invoice'){
                 /*Logic to retain old comment */
                 if(approver.Comments__c != null && approver.Comments__c !=''){
+                    system.debug('@@@@@@@@@@ inside code'+approver.Comments__c);
                     Core_Approver_Details__c newApprover = new Core_Approver_Details__c();
                     newApprover.Comments__c = approver.Comments__c;
                     newApprover.Interested_Party_Details__c = approver.Interested_Party_Details__c;
@@ -79,6 +86,7 @@ global with sharing class Core_CA_ApproveRejectAction {
                     newApprover.Approval_Header__c = approver.Approval_Header__c ;
                     newApprover.Name = approver.Name;
                     newApprover.Source_System__c= approver.Source_System__c;
+                    system.debug('@@@@@@@@@@ outside code'+newApprover);
                     insert newApprover;
                 }
                 /*End */
@@ -88,15 +96,24 @@ global with sharing class Core_CA_ApproveRejectAction {
                 approver.Comments__c=appWrapperObj.myApprovalPostRequest.CommentDesc;
                 approver.Send_to_Source_System__c = 'Yes';
                 update approver;
-            }
+                
             Success=True;
+            }
+           /* else if(approver.Source_System__c =='CLM' && approver.Is_Active__c == false)
+            {
+                Success=False;
+           } */
+            else
+            {
+                Success=False;
+                }
         }
         catch(DmlException  ex){
-           // system.debug('^^^^'+ex);
+            System.debug('^^^^'+ex);
             throw new Core_CA_BaseServiceException('Prashanth...',ex);
         }
         catch(Exception ex){
-            //system.debug('$$$$'+ex);
+            System.debug('$$$$'+ex);
             throw new Core_CA_BaseServiceException('Exception occured: Core_CA_ApproveRejectAction : UpdateApproveRejectAction method ', ex);
         }
         return Success;
@@ -120,6 +137,7 @@ global with sharing class Core_CA_ApproveRejectAction {
             //objPostResponse.MyApprovalsDataResponse=Core_CA_MyApprovalData.getMyApprovalsData(objAppWrapper);
             objPostResponse.UpdateFunctionType=appWrapperObj.myApprovalPostRequest.UpdateFunctionType;
             objPostResponse.UpdatedBy=Userinfo.getuserId();//appWrapperObj.myApprovalPostRequest.UpdatedBy; 
+        //  System.debug('@#$' + objPostResponse.statusCode + objPostResponse.UpdatedBy);
         }
         /*catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Action to log related Vendor Request exception</description>
+    <fieldOverrides>
+        <field>VPM_RelatedVendorRequest__c</field>
+        <formula>VPM_PurchasingRequests__c.Id</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>VPM_Status__c</field>
+        <literalValue>Logged</literalValue>
+    </fieldOverrides>
+    <icon>cp_UnileverLogo</icon>
+    <label>Log Exception</label>
+    <optionsCreateFeedItem>true</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>VPM_ExceptionSummary__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>VPM_Category__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>VPM_Description__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns/>
+    </quickActionLayout>
+    <successMessage>Exception logged. Please continue with the Vendor Request.</successMessage>
+    <targetObject>VPM_VendorRequestException__c</targetObject>
+    <targetParentField>VPM_RelatedVendorRequest__c</targetParentField>
+    <type>Create</type>
+</QuickAction>

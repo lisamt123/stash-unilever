@@ -1,5 +1,6 @@
 <apex:component >
 <apex:attribute name="navigationName" type="String" description="Page Name for active and inactive"  required="true" default="multiple_entry" />
+<apex:attribute name="subNavName" type="String" description="Page Name for active and inactive"  required="false" default="multiple_entry" />
 <head>
 
     <meta charset="utf-8"/>
@@ -93,6 +94,9 @@
             list-style: none;
             color: #fff;
         }
+        #demo .active {
+            background-color: #004976!important;
+        }
         
         .navbar-inverse .navbar-toggle {
             border-color: #36a0fe;
@@ -173,24 +177,27 @@
                     <li class="{!If(navigationName=='target' ,'active','')}">
                         <a href="./PQN_TargetEntryScreen_VF"><i class="fa fa-fw fa-bullseye"></i> Target</a>
                     </li>
-                    <li class="{!If(navigationName=='multiple_target' ,'active','')}">
+                    <!--<li class="{!If(navigationName=='multiple_target' ,'active','')}">
                         <a href="./PQN_MultiTargets_VF"><i class="fa fa-fw fa-arrows"></i> Multiple Target</a>
-                    </li>
+                    </li>-->
                     <li class="{!If(navigationName=='dc_volumes' ,'active','')}">
                         <a href="./PQN_DC_Volumes_Edit_VF"><i class="fa fa-fw fa-flask"></i> DC Volumes</a>
+                    </li>
+                     <li class="{!If(navigationName=='Pallet_Losstree' ,'active','')}">
+                        <a href="./PQN_PalletLossTreeData"><i class="fa fa-fw fa-tree"></i> Pallet Losstree</a>
                     </li>
                     
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="" style="{!If(navigationName=='Archive' ,'color: #fff;
     background-color: #004976;','')}" aria-expanded="true"><i class="fa fa-fw fa-th-list"></i> Archive<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse in" aria-expanded="true">
-                            <li class="{!If(navigationName=='pqnView' ,'active','')}">
+                            <li class="{!If(subNavName=='pqnView' ,'active','')}">
                                 <a href="./PQN_List_View">PQN Entries</a>
                             </li>
-                            <li class="{!If(navigationName=='targetView' ,'active','')}">
+                            <li class="{!If(subNavName=='targetView' ,'active','')}">
                                 <a href="./PQN_Targets_List_View">Targets</a>
                             </li>
-                            <li class="{!If(navigationName=='dc_volumesView' ,'active','')}">
+                            <li class="{!If(subNavName=='dc_volumesView' ,'active','')}">
                                 <a href="./PQN_DCVolumesListView_VF">DC Volumes</a>
                             </li>
                         </ul>

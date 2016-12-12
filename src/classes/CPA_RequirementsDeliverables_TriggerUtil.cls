@@ -44,7 +44,7 @@ public with sharing class CPA_RequirementsDeliverables_TriggerUtil{
                     user_has_permission = true;
                     break;
                 }
-                else if ((permission.CONTAINS(CPA_ConstantsForContractingAppClasses.CPAULPM)) && (mapPWORF.get(tempId) != CPA_ConstantsForContractingAppClasses.ACCEPTED && mapPWORF.get(tempId) != CPA_ConstantsForContractingAppClasses.AUTOACCEPT && mapPWORF.get(tempId) != CPA_ConstantsForContractingAppClasses.ANSWERED && mapPWORF.get(tempId) != CPA_ConstantsForContractingAppClasses.CANCELLED)){
+                else if ((permission.CONTAINS(CPA_ConstantsForContractingAppClasses.CPAULPM)||permission.CONTAINS(CPA_ConstantsForContractingAppClasses.CPAULPMSF)) && (mapPWORF.get(tempId) != CPA_ConstantsForContractingAppClasses.ACCEPTED && mapPWORF.get(tempId) != CPA_ConstantsForContractingAppClasses.AUTOACCEPT && mapPWORF.get(tempId) != CPA_ConstantsForContractingAppClasses.ANSWERED && mapPWORF.get(tempId) != CPA_ConstantsForContractingAppClasses.CANCELLED)){
                     user_has_permission = true;
                     break;
                 }
