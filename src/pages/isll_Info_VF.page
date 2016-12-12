@@ -5,7 +5,7 @@
     <apex:form >
         <apex:pageBlock title="INFORMATION FROM ISLL">
   <apex:pageMessage summary="The <b>ISLL</b> Application URL has been changed <b> <a href=https://unilever.sharepoint.com/sites/Communications/sll/Pages/Home.aspx>Click here to Access</a></b></br>
-   Kindly please contact with <b>Salma.Bhamjee@unilever.com</b> for further assistance."
+   Kindly please contact with <b>IT Help Desk</b> for further assistance."
     severity="Info" strength="3"  escape="false"/>
        </apex:pageBlock> 
    </apex:form>
