@@ -3274,7 +3274,7 @@
                             "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                         ],
                         [
@@ -3565,7 +3565,7 @@
                             "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                         ],
                         [
@@ -4083,7 +4083,7 @@
                                         "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                                     ],
                                     [
-                                        "Store_type",
+                                        "Store_Type",
                                         "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                                     ],
                                     [
@@ -4221,7 +4221,7 @@
                                         "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                                     ],
                                     [
-                                        "Store_type",
+                                        "Store_Type",
                                         "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                                     ],
                                     [
@@ -4785,7 +4785,7 @@
                             "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                         ],
                         [
@@ -5060,7 +5060,7 @@
                             "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                         ],
                         [
@@ -5852,8 +5852,8 @@
                             "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                         ],
                         [
-                            "Store_type",
-                            "{{ column(Store_type_49.selection, [\"Store_Type\"]).asObject() }}"
+                            "Store_Type",
+                            "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                         ],
                         [
                             "Sales_region",
@@ -6028,7 +6028,7 @@
                                         "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                                     ],
                                     [
-                                        "Store_type",
+                                        "Store_Type",
                                         "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                                     ],
                                     [
@@ -6173,7 +6173,7 @@
                                         "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                                     ],
                                     [
-                                        "Store_type",
+                                        "Store_Type",
                                         "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                                     ],
                                     [
@@ -6594,16 +6594,16 @@
                             "{{ column(Product_market_67.selection, [\"Product_Market\"]).asObject() }}"
                         ],
                         [
-                          "Product_Market",
-                          "{{ column(Product_sector_68.selection, [\"Product_sector\"]).asObject() }}"
+                            "Product_Market",
+                            "{{ column(Product_sector_68.selection, [\"Product_sector\"]).asObject() }}"
                         ],
                         [
-                          "Product_Market",
-                          "{{ column(Product_brand_69.selection, [\"Product_brand\"]).asObject() }}"
+                            "Product_Market",
+                            "{{ column(Product_brand_69.selection, [\"Product_brand\"]).asObject() }}"
                         ],
                         [
-                          "Product_Market",
-                          "{{ column(SKU_70.selection, [\"SKU\"]).asObject() }}"
+                            "Product_Market",
+                            "{{ column(SKU_70.selection, [\"SKU\"]).asObject() }}"
                         ],
                         [
                             "Product_Category",
@@ -6784,7 +6784,7 @@
                             "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                         ],
                         [
@@ -7103,7 +7103,7 @@
                             "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                         ],
                         [
@@ -7315,7 +7315,7 @@
                             "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                         ],
                         [
@@ -7694,7 +7694,7 @@
                             "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                         ],
                         [
@@ -7980,7 +7980,7 @@
                             "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                         ],
                         [
@@ -8304,7 +8304,7 @@
                             "{{ column(Subchannel_29.selection, [\"Subchannel\"]).asObject() }}"
                         ],
                         [
-                            "Store_type",
+                            "Store_Type",
                             "{{ column(Store_type_49.selection, [\"Store_type\"]).asObject() }}"
                         ],
                         [
@@ -8445,7 +8445,7 @@
         "widgets": {
             "link_place": {
                 "parameters": {
-                    "destination": "0FK2C000000KyuiWAC",
+                    "destination": "0FK2C000000Kyx3WAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,

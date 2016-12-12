@@ -6963,7 +6963,7 @@
         "widgets": {
             "link_place": {
                 "parameters": {
-                    "destination": "0FK2C000000Kyv7WAC",
+                    "destination": "0FK2C000000Kyx3WAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
@@ -7269,7 +7269,7 @@
             },
             "link_pack": {
                 "parameters": {
-                    "destination": "0FK2C000000KyuiWAC",
+                    "destination": "0FK2C000000Kyv7WAC",
                     "destinationType": "dashboard",
                     "fontSize": 14,
                     "includeState": false,
