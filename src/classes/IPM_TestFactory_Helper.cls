@@ -10,7 +10,7 @@ public class IPM_TestFactory_Helper
     public static final String IDEA_GRAPHIC= 'Idea / Graphic';
     public static final String IDEAS = 'Ideas';
     public static boolean FALSE_VAR = False;
-    public static final String GCLT_RCLT = 'GCLT & RCLT';
+    public static final String GCLT_RCLT = 'GCLT Leader & CCVP';
     public static final String TEST_CONTENT =  'A quick brown fox jumped over a lazy dog';
     public static final String NEWVARIANTSIZE_STR = 'New Variant/ Size';
     public static final String COREPARAMETER_BLG = 'BLG';
