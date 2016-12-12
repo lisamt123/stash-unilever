@@ -8,6 +8,7 @@
 -->
 <apex:page Controller="IPM_ProjectDocumentSectionController" sidebar="false" standardStylesheets="true" id="page"  docType="html-5.0" extensions="IPM_GetHelpDoc">
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_SecEditor.css')}"/>     
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Source_Plan_Editor.css')}"/>  
     <apex:composition template="IPM_TemplateRevamp"> 
         <apex:define name="body" >
             <apex:form id="form">
