@@ -481,7 +481,7 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-                <runTest>ExceptionLoggingHelper_Test</runTest>
+			<runTest>ExceptionLoggingHelper_Test</runTest>
       <runTest>IPM_AddManageSection_Test</runTest>
       <runTest>IPM_Approverlist_Test</runTest>
       <runTest>IPM_AssesmentHandler_Helper_Test</runTest>
@@ -527,6 +527,7 @@
       <runTest>IPM_FinancialTriggerHandler_Test</runTest>
       <runTest>IPM_FinancialValueWrapper_Test</runTest>
       <runTest>IPM_FinancialWrapper_Test</runTest>
+      <runTest>IPM_FinancialUtils_Test</runTest>
       <runTest>IPM_FinancialYearTriggerHandler_Test</runTest>
       <runTest>IPM_FinGateController_Test</runTest>
       <runTest>IPM_FunnelController_Test</runTest>
