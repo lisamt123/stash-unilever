@@ -37,6 +37,7 @@ src/permissionsets/FS_Admin.permissionset
 src/permissionsets/FS_RU_Finance.permissionset
 src/permissionsets/FS_RussiaSalesRep.permissionset
 src/profiles/Unilever Food Solution - Russia.profile
+src/profiles/Unilever Food Solution - NA.profile
 src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
 src/workflows/Account.workflow
 src/roles/UFS_Admin.role
