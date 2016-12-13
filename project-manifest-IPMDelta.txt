@@ -78,6 +78,8 @@ src/classes/IPM_TestFactory_Helper.cls
 src/classes/IPM_TestFactory_Helper.cls-meta.xml
 src/classes/IPM_Utils.cls
 src/classes/IPM_Utils.cls-meta.xml
+src/classes/IPM_ValidationHelper_Test.cls
+src/classes/IPM_ValidationHelper_Test.cls-meta.xml
 src/components
 src/components/IPM_CU_Complexity.component
 src/components/IPM_CU_Complexity.component-meta.xml
