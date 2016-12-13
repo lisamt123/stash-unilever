@@ -9,6 +9,8 @@ src/classes/FS_TPRUtil.cls
 src/classes/FS_TPRUtil.cls-meta.xml
 src/classes/FS_ContactExtend_CX.cls
 src/classes/FS_ContactExtend_CX.cls-meta.xml
+src/classes/FS_OpportunityHelper.cls
+src/classes/FS_OpportunityHelper.cls-meta.xml
 src/labels/FS.labels
 src/layouts/Account-Feed Based Distributor Russia.layout
 src/layouts/Account-Operators Russia.layout
@@ -35,6 +37,7 @@ src/permissionsets/FS_Admin.permissionset
 src/permissionsets/FS_RU_Finance.permissionset
 src/permissionsets/FS_RussiaSalesRep.permissionset
 src/profiles/Unilever Food Solution - Russia.profile
+src/profiles/Unilever Food Solution - NA.profile
 src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
 src/workflows/Account.workflow
 src/roles/UFS_Admin.role
@@ -102,14 +105,5 @@ src/objects/Account_Relationship__c.object
 src/layouts/Account_Relationship__c-External PoP ID Layout.layout
 src/workflows/Account_Relationship__c.workflow
 src/permissionsets/FS_Integration_User.permissionset
-src/wave/Daily_Sales_for_Sales_Rep.wdash
-src/wave/Daily_Sales_for_Sales_Rep.wdash-meta.xml
-src/wave/Daily_Sales_Stage.wapp
-src/wave/Daily_Sales_RU.wapp
-src/wave/Daily_Sales.wapp
-src/wave/DailySales.wds
-src/wave/DailySales_stage.wds
-src/wave/Data_Flow_Check.wlens
-src/wave/Data_Flow_Check.wlens-meta.xml
-src/wave/Data_Loader_Check.wlens
-src/wave/Data_Loader_Check.wlens-meta.xml
+src/permissionsets/FS_Operator_Russia.permissionset
+src/permissionsets/FS_RU_Corporate.permissionset
