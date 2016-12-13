@@ -1,7 +1,6 @@
 src
 src/objects/PBS_Profile__c.object
 src/labels/Plancraft.labels
-src/pages/PC_ForumGroup.page
 src/pages/PBS_MyProfile.page
 src/pages/PBS_MyProfile.page-meta.xml
 src/pages/PBS_TrainingCatalogHome.page
