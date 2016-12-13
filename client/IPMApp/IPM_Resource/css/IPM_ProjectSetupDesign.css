@@ -1510,7 +1510,7 @@ margin-right:1px;
 	.radioTltip3::before{	top: -8px;left: 124px;}
 	
 	.oprtnTopAlertContainer{background:url("../images/alert_1a.png")no-repeat 10px 10px #FFF582;background-size: 22px; margin-bottom: 10px;padding: 10px 0;border-radius: 3px;}
-	.oprtnTopAlertLabel{    margin-left: 45px;}
+	.oprtnTopAlertLabel{display:block;margin-left: 45px;}
 	.oprtnRadiobtn label{margin-right:110px;}
 	.oprtnRadiobtn table td:first-child label {margin-right:175px ;}
 	.radioTooltip1.oprtnToolTipMsg::before{left:4px;}

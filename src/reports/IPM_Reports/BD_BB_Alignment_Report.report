@@ -4,6 +4,9 @@
         <field>IPM_Analytics__c$IPM_Project_Id__c</field>
     </columns>
     <columns>
+        <field>IPM_Analytics__c$IPM_External_ID__c</field>
+    </columns>
+    <columns>
         <field>IPM_Analytics__c$IPM_IC_NBU__c</field>
     </columns>
     <columns>

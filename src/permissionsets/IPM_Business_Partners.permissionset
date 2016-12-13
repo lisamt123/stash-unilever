@@ -1660,6 +1660,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_External_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>IPM_Analytics_OTIF__c.IPM_Finance_Member__c</field>
         <readable>true</readable>
     </fieldPermissions>

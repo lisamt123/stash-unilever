@@ -91,7 +91,7 @@ table.table.table-bordered.productsource {
     margin-right: -18px;
 }
 table.table.table-bordered.productsource th {
-    padding-top: 29px;
+    padding-top: 9px;
     background-color: #f2f8fc;
     border: 2px solid #ddd;
     text-align: center;
@@ -148,7 +148,7 @@ table.table.table-bordered.productsource tr td span{
 text-align:center;
 }
 table.table.table-bordered.productsource tr {
-    height: 74px;
+    height: 53px;
 }
 .table>thead>tr>th>div.capcon {
     width: 75px;
@@ -156,7 +156,7 @@ table.table.table-bordered.productsource tr {
     background-color: #ececec;
     color: #555;
     vertical-align: middle;
-    padding: 23px 0 10px;
+    padding: 6px 0 10px;
     height: auto;
     border: 1px solid #ddd;
 }
@@ -165,7 +165,7 @@ table.table.table-bordered.productsourcegrey td select {
 }
 .darkoverlay span
 {
-    padding-top: 25px;
+    padding-top: 5px;
 }
 .goldenbg
 {
@@ -288,7 +288,7 @@ a.save:hover{text-decoration:none; background: #56843b;
 .table-bordered.noTabborder{border:0;margin-bottom:0;}
 .table>tbody>tr>td.noPadd{padding:0;}
 .productsourcegrey input.srcUnitBox{float: left;width: 90%;}
-input.numberBox{width:47%;}
+.numberBox{width:100%;}
 input.sizeNumberbox{width:47%;float:left;}
 table.table.table-bordered.productsourcegrey td .sizeSelect{width:50%;height: 23px;}
 .ipmDropDown .srcedcntrymainlist .noindent>li{border-bottom: 0;padding: 0;}
@@ -301,7 +301,7 @@ table.table.table-bordered.productsourcegrey td .sizeSelect{width:50%;height: 23
 .goldenCheckcontainer label{width:90%;background:#999;padding:5px;height: 29px;margin: 0;cursor: pointer;}
 .greenBoxCheck,.srcingGreyCheck{visibility: hidden;width: 0;height: 0;display: none;}
 .approvalCheckcontainer label.greenBox{width:90%;background:#A3C24B;color:#fff;padding:5px;font-size: 11px;margin: 0;cursor: pointer;}
-.approvalCheckcontainer label{width:90%;background:red;padding:5px;height: 29px;margin: 0;cursor: pointer;color:#fff;}
+.approvalCheckcontainer label{width:90%;background:red;padding:5px;height: 24px;font-size:10px;margin: 0;cursor: pointer;color:#fff;}
 .hdnCheckboxDiv label{background: red;padding: 8px;height: 33px; margin: 0;cursor: pointer;color: #fff;font-size: 12px;position: relative;bottom: 2px;width: 40%;text-align: center;}
 .noPointer label,.noPointer label.goldbox,.approvalCheckcontainer.noPointer label.greenBox{cursor:auto;}
 .hdnCheckboxDiv label.greenBox{background:#A3C24B;padding: 8px;height: 33px; margin: 0;cursor: pointer;color: #fff;font-size: 12px;position: relative;bottom: 2px;width: 40%;text-align: center;}
@@ -311,9 +311,9 @@ table.table.table-bordered.productsourcegrey td .sizeSelect{width:50%;height: 23
 .duplicateText{padding:20px;}
 .buttonMarginRight{margin-right:20px;}
 table.table.table-bordered.productsourcegrey tr .alignAddicn{text-align:left;}
-.leftHeadWidthResp{width:56%;float:left;position:relative;}
+.leftHeadWidthResp{width:66%;float:left;position:relative;}
 .rightHeadWidthResp{width:34%;float:left;position:relative;}
-.custWidthResp1,.greyBoxContainer{width:90%;}
+.custWidthResp1,.greyBoxContainer{width:100%;}
 .hdnCheckboxDiv .primary{margin-left: 7px;}
 .proInitLoader {
     text-align: center;
@@ -346,7 +346,7 @@ input.icoButton.clone{position:relative; background:url(../images/ico-clone.svg)
 .hdnCheckboxDiv{display:none;float: left;margin-top: 5px;width: 190px;margin-left: 10px;}
 .scrollcontainer .col-sm-6{width:56%;}
 .drpDownContainer select.srcingSlectlist{height: 35px;width: 100%;}
-.fa.deleteRow{cursor:pointer;margin-left: 0;margin-top: 0;position: absolute; cursor: pointer; width:17px; height:17px; text-align:center; font-size: 1em; border-radius: 50%; background-color: #81bd42; color: #fff; line-height: 16px;}
+.fa.deleteRow{cursor:pointer;margin-left: -6px;margin-top: 2px;position: absolute; cursor: pointer; width:17px; height:17px; text-align:center; font-size: 1em; border-radius: 50%; background-color: #81bd42; color: #fff; line-height: 16px;}
 .fa-sort-up:before,.fa-sort-desc:before {content: "\f0de";position: relative;top: 5px;}
 /* Tooltip Styles */
 .ui-tooltip.apprUnitTip{
@@ -454,22 +454,22 @@ input.icoButton.clone{position:relative; background:url(../images/ico-clone.svg)
 .ui-tooltip.srcunitTip{background:#01B1A6;color:#fff;}
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
      /* IE10+ CSS styles go here */
-	 a.ui-spinner-button,a.ui-state-hover,a.ui-state-active{right:0;}
+	 a.ui-spinner-button,a.ui-state-hover,a.ui-state-active{right:-6px;}
 }
 @media (min-width: 1024px) and (max-width: 1129px) {
-   .darkoverlay th{height:91px;}
+   .darkoverlay th{height:auto;}
    .goldenCheckcontainer label.goldbox{width:100%;font-size:9px;}
    .custSizeWidth span.ui-spinner.ui-state-default{width:76%;}
    table.table.table-bordered.productsourcegrey td .sizeSelect{width:75%;}
 }
 @media (min-width: 1024px) and (max-width: 1300px) {
-  .custWidthResp1,.greyBoxContainer{width:87%;}
-  .leftHeadWidthResp{width:57%;float:left;position:relative;}
+  .custWidthResp1,.greyBoxContainer{width:100%;}
+  .leftHeadWidthResp{width:70%;float:left;position:relative;}
   .rightHeadWidthResp{width:30%;float:left;position:relative;}
   .countryassociation .lightblue{width:58%;}
   .countryassociation .darkblue{width:30.5%;}
   .formCustWidth{width:7%;}
-  .custLeftTdwidth{width:66%;}
+  .custLeftTdwidth{width:70%;}
   .custLstCntryWidth{width:11%;}
   .custSizeWidth{width:9%;}
   .custNameWidth{width:5%;}
@@ -481,12 +481,3 @@ input.icoButton.clone{position:relative; background:url(../images/ico-clone.svg)
 @media (min-width: 1024px) and (max-width: 1300px) {
 
 }
-.greyCapabilityConfirm {
-    width: 90%;
-    background: #999;
-    padding: 5px;
-    height: 29px;
-    margin: 0;
-	color:#fff;
-}
-.table>thead>tr>th>div.approvalTip{padding: 23px 10px 7px 7px;}
