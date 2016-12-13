@@ -102,6 +102,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>primary_key_update</fullName>
+        <field>SF_Primary_Key__c</field>
+        <formula>SF_key__c</formula>
+        <name>primary key update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>update_last_modified_planner_email</fullName>
         <field>Last_modified_planner_email__c</field>
         <formula>$User.Email</formula>
@@ -119,6 +128,19 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>Update SF Primary Key</fullName>
+        <actions>
+            <name>primary_key_update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>WWP_Loss_Tree__c.Name</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
     <rules>
         <fullName>WWP Loss Type MRP WF</fullName>
         <actions>
